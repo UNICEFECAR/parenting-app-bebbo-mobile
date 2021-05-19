@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+yarn-error.log
+android/.gradle
+android/app/build
+ios/Pods
+.DS_store
+local.properties
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+!debug.keystore
