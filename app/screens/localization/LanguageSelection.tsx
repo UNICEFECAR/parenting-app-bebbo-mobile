@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Pressable} from 'react-native';
 import {
   Container,
@@ -10,6 +10,9 @@ import {
 } from '../../styles/style';
 import {LocalizationStackParamList} from '../../navigation/types';
 import LanguageItem from '../../components/LanguageItem';
+import { useAppSelector } from '../../../App';
+import { localization } from '../../assets/data/localization';
+import { useTranslation } from 'react-i18next';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -22,6 +25,14 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const {country} = route.params;
   // console.log(country);
   const languages = country.languages;
+  const { t } = useTranslation();
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  useEffect(() => {
+    const selectedLanguage = languages.find(lang=> lang.languageCode === languageCode)
+    setLanguage(selectedLanguage);
+  },[]);
   const renderItem = ({item}: any) => (
     <LanguageItem
       item={item}
@@ -33,7 +44,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
     <>
       <Container>
         <Header>
-          <HeaderText>Select country's Language</HeaderText>
+          <HeaderText>{t('selectYourLang')}</HeaderText>
         </Header>
         <SelectionView>
           <FlatList
@@ -51,7 +62,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
                 language,
               })
             }>
-            <ButtonText>go to Confirm</ButtonText>
+            <ButtonText>{t('goToConfirm')}</ButtonText>
           </Pressable>
         ) : null}
       </Container>
