@@ -5,12 +5,14 @@ interface selectedLocalizationType {
   // name: string;
   callingCode: number;
   languageCode: string;
+  locale: string;
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
   callingCode: 0,
   languageCode: 'en',
+  locale: 'en',
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -45,6 +47,7 @@ export const localizationSlice = createSlice({
       // state.name = action.payload.name;
       state.callingCode = action.payload.country.callingCode;
       state.languageCode = action.payload.language.languageCode;
+      state.locale = action.payload.language.locale;
     },
     // onLanguageSelect: (
     //   state,
