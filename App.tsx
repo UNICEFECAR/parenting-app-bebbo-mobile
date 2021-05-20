@@ -22,7 +22,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {ActivityIndicator} from 'react-native';
 import {Action, ThunkAction} from '@reduxjs/toolkit';
 import persistStore from 'redux-persist/lib/persistStore';
-
+import './app/localization/initI18next';
 const store = configureAppStore();
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {LocalizationStackParamList} from '../../navigation/types';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -21,18 +21,40 @@ import {
 } from '../../styles/style';
 import {localization} from '../../assets/data/localization';
 import CountryItem from '../../components/CountryItem';
+import {useTranslation} from 'react-i18next';
+import { useAppSelector } from '../../../App';
+
 //{navigation}: Props
+type localizationType = {
+  name: string;
+  displayName: string;
+  callingCode: number;
+  languages: {
+      name: string;
+      displayName: string;
+      languageCode: string;
+      locale: string;
+    }
+}
 const CountrySelection = (props: any) => {
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState<localizationType>();
+  const callingCode = useAppSelector(
+    (state: any) => state.selectedCountry.callingCode,
+  );
+  useEffect(() => {
+    const selectedCountry = localization.find(country=> country.callingCode === callingCode)
+    setCountry(selectedCountry);
+  },[]);
   const renderItem = ({item}: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
-
+  const { t } = useTranslation();
+  // console.log("-----bj ",i18n);
   return (
     <>
       <Container>
         <Header>
-          <HeaderText>Select your country</HeaderText>
+          <HeaderText>{t('selectYourCountry')}</HeaderText>
         </Header>
         <SelectionView>
           <FlatList
@@ -46,7 +68,7 @@ const CountrySelection = (props: any) => {
           onPress={() =>
             props.navigation.navigate('LanguageSelection', {country})
           }>
-          <ButtonText>go to LanguageSelection</ButtonText>
+          <ButtonText>{t('goToLanguageSelection')}</ButtonText>
         </Pressable>
       </Container>
     </>
