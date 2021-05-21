@@ -23,7 +23,7 @@ import {localization} from '../../assets/data/localization';
 import CountryItem from '../../components/CountryItem';
 import {useTranslation} from 'react-i18next';
 import { useAppSelector } from '../../../App';
-
+// import {API_URL, API_TOKEN} from "@env";
 //{navigation}: Props
 type localizationType = {
   name: string;
@@ -54,6 +54,7 @@ const CountrySelection = (props: any) => {
     <>
       <Container>
         <Header>
+          {/* <HeaderText>{API_URL}</HeaderText> */}
           <HeaderText>{t('selectYourCountry')}</HeaderText>
         </Header>
         <SelectionView>
