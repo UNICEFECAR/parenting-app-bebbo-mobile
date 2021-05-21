@@ -12,6 +12,7 @@ import {
   Header3Text,
   LocalizationContainer,
 } from '../../styles/style';
+import { useTranslation } from 'react-i18next';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -29,7 +30,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   // const language = useAppSelector(
   //     (state: any) => state.selectedCountry.language,
   //   );
+
+  const { t, i18n } = useTranslation();
   const saveSelection = () => {
+    // i18n.changeLanguage(language.locale);
+    console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
     // dispatch(onLanguageSelect(language));
     navigation.navigate('Walkthrough');
@@ -40,8 +45,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={{flex: 1}}>
             <MiniHeader>
-              <Header2Text>You have selected the country language</Header2Text>
-              <Header3Text>check once before proceeding</Header3Text>
+              <Header2Text>{t('countryLangSelection')}</Header2Text>
+              <Header3Text>{t('checkonce')}</Header3Text>
             </MiniHeader>
           </View>
           <LocalizationContainer>
@@ -52,7 +57,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               }}>
               <View style={{flex: 2, flexDirection: 'row'}}>
                 <View style={{flex: 2}}>
-                  <Header3Text>Country</Header3Text>
+                  <Header3Text>{t('country')}</Header3Text>
                 </View>
                 <View style={{flex: 3}}>
                   <Header2Text>{country.displayName}</Header2Text>
@@ -61,7 +66,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
               <View style={{flex: 2, flexDirection: 'row'}}>
                 <View style={{flex: 2}}>
-                  <Header3Text>Language</Header3Text>
+                  <Header3Text>{t('language')}</Header3Text>
                 </View>
                 <View style={{flex: 3}}>
                   <Header2Text>{language.displayName}</Header2Text>
@@ -71,7 +76,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                 <Pressable
                   style={{padding: 10}}
                   onPress={() => navigation.navigate('CountrySelection')}>
-                  <ButtonText>Edit</ButtonText>
+                  <ButtonText>{t('editCountryLang')}</ButtonText>
                 </Pressable>
               </View>
             </View>
@@ -81,7 +86,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
             <Pressable
               style={{backgroundColor: 'red', padding: 10}}
               onPress={() => saveSelection()}>
-              <ButtonText>Continue</ButtonText>
+              <ButtonText>{t('continueCountryLang')}</ButtonText>
             </Pressable>
           </View>
         </View>
