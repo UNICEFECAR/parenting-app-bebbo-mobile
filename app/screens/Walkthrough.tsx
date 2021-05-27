@@ -48,6 +48,7 @@ const Walkthrough = ({navigation}: Props) => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     // this.setState({ showRealApp: true });
+    navigation.navigate('Terms');
   }
   const keyExtractor = (item: Item) => item.title;
   return (
@@ -61,6 +62,7 @@ const Walkthrough = ({navigation}: Props) => {
           showSkipButton
           showPrevButton
           data={data}
+          onDone={onDone}
         />
       {/* <AppIntroSlider renderItem={renderItem} data={data} onDone={onDone}/> */}
       {/* <Text>Walkthrough screen</Text>
