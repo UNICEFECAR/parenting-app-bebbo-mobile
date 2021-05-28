@@ -1,6 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
-import {FlatList, Pressable} from 'react-native';
+import {FlatList, Image, Pressable, View} from 'react-native';
 import {
   Container,
   ButtonText,
@@ -54,16 +54,27 @@ const LanguageSelection = ({route, navigation}: Props) => {
           />
         </SelectionView>
         {language ? (
+          <View style={{flex:1,flexDirection: 'row',alignItems:'flex-end',padding:15}}>
+            <Pressable
+              style={{flex:1,flexDirection: 'column',backgroundColor: 'white',borderRadius: 20,justifyContent: 'center',alignItems: 'flex-start',}}
+              onPress={() =>
+                navigation.goBack()
+              }>
+                <Image style={{width:50,height:50}} source={ require( '../../assets/ic_prev_arrow.png') } />
+            </Pressable>
           <Pressable
-            style={{backgroundColor: 'red', padding: 10}}
+            style={{flex:1,flexDirection: 'column',backgroundColor: 'white',borderRadius: 20,justifyContent: 'center',alignItems: 'flex-end',}}
             onPress={() =>
               navigation.navigate('CountryLanguageConfirmation', {
                 country,
                 language,
               })
             }>
-            <ButtonText>{t('goToConfirm')}</ButtonText>
+            {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
+            <Image style={{width:50,height:50}} source={ require( '../../assets/ic_next_arrow.png') } />
           </Pressable>
+          
+        </View>
         ) : null}
       </Container>
     </>
