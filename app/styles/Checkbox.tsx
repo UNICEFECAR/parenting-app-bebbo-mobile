@@ -65,11 +65,11 @@ interface IProps {
         <>
         <Pressable
         onPress={() => {
-          console.log("pressed123--",checkedbox);
+          // console.log("pressed123--",checkedbox);
         //   (checked===true) ? setChecked(false) : setChecked(true);
             setChecked(prevchecked => !prevchecked);
             // checkedbox = !checkedbox;
-          console.log("after123--",checkedbox);
+          // console.log("after123--",checkedbox);
         //   setChecked(checkedbox);
         }}>
             <View style={{ 
