@@ -1,6 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {View, Pressable, Text} from 'react-native';
+import {View, Pressable, Text, Image} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../App';
 import {onLocalizationSelect} from '../../redux/reducers/localizationSlice';
 import {RootStackParamList} from '../../navigation/types';
@@ -42,9 +42,16 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   return (
     <>
       <Container>
-        <View style={{flex: 1, flexDirection: 'column'}}>
-          <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          <View style={{flex: 1,marginBottom:50}}>
+            {/* <View style={{justifyContent:'center',padding:'35%'}}>
+              
+            </View> */}
             <MiniHeader>
+              <Image
+                  style={{width:100,height:100,marginBottom:20}}
+                  source={require('../../assets/ic_globe.png')}
+                />
               <Header2Text>{t('countryLangSelection')}</Header2Text>
               <Header3Text>{t('checkonce')}</Header3Text>
             </MiniHeader>
@@ -53,22 +60,21 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
             <View
               style={{
                 flex: 1,
-                flexDirection: 'column',
               }}>
-              <View style={{flex: 2, flexDirection: 'row'}}>
-                <View style={{flex: 2}}>
+              <View style={{flex: 2, flexDirection: 'row',alignItems:'center'}}>
+                <View style={{flex: 1}}>
                   <Header3Text>{t('country')}</Header3Text>
                 </View>
-                <View style={{flex: 3}}>
+                <View style={{flex: 2}}>
                   <Header2Text>{country.displayName}</Header2Text>
                 </View>
               </View>
 
-              <View style={{flex: 2, flexDirection: 'row'}}>
-                <View style={{flex: 2}}>
+              <View style={{flex: 2, flexDirection: 'row',alignItems:'center'}}>
+                <View style={{flex: 1}}>
                   <Header3Text>{t('language')}</Header3Text>
                 </View>
-                <View style={{flex: 3}}>
+                <View style={{flex: 2}}>
                   <Header2Text>{language.displayName}</Header2Text>
                 </View>
               </View>
@@ -84,7 +90,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
           <View style={{flex: 1}}>
             <Pressable
-              style={{backgroundColor: 'red', padding: 10}}
+              style={{backgroundColor: '#00AEEF', padding: 10}}
               onPress={() => saveSelection()}>
               <ButtonText>{t('continueCountryLang')}</ButtonText>
             </Pressable>
