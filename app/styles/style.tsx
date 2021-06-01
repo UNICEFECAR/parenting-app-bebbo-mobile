@@ -31,7 +31,8 @@ export const RadioItem = styled.View`
   border-color: #cacaca;
   border-width: 0.5px;
   border-radius: 3px;
-  background: ${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
+  /* background: '#FFF'; */
+  //${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
 `;
 // color: ${props => props.theme.PRIMARY_FOREGROUND_COLOR};
 //   font-family: ${props => props.theme.PRIMARY_FONT_FAMILY};
