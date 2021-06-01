@@ -1,9 +1,10 @@
+
 import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.PRIMARY_COLOR};
 `;
 // ${props => props.theme.PRIMARY_BACKGROUND_COLOR}
 export const ButtonText = styled.Text`
@@ -23,9 +24,11 @@ export const RadioItemText = styled.Text`
   text-align: left;
   font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')};
   font-size: 15px;
+  color: ${props => props.theme.colors.PRIMARY_TINTCOLOR};
 `;
 export const RadioItem = styled.View`
   padding: 17px;
+ 
   /* margin-left: 5px;
   margin-right: 5px; */
   border-color: #cacaca;

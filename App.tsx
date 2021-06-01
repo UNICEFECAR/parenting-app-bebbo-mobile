@@ -23,6 +23,8 @@ import {ActivityIndicator} from 'react-native';
 import {Action, ThunkAction} from '@reduxjs/toolkit';
 import persistStore from 'redux-persist/lib/persistStore';
 import './app/localization/initI18next';
+import {ThemeProvider} from 'styled-components/native';
+import {appTheme} from './app/styles/theme';
 const store = configureAppStore();
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
@@ -39,6 +41,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const App = () => {
   return (
+    <ThemeProvider theme={appTheme}>
     <SafeAreaView style={{flex: 1}}>
       <Provider store={store}>
         <PersistGate
@@ -48,6 +51,7 @@ const App = () => {
         </PersistGate>
       </Provider>
     </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
