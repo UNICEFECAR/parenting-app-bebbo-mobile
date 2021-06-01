@@ -11,6 +11,11 @@ const loggerMiddleware = createLogger({
   collapsed: true,
   duration: true,
 });
+const allMiddlewares:any[] =[];
+if (process.env.NODE_ENV !== 'production' ){
+allMiddlewares.push(loggerMiddleware);
+}
+
 export default function configureAppStore() {
   // export const store = configureStore({
   // reducer: rootReducer,
@@ -31,7 +36,7 @@ export default function configureAppStore() {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(loggerMiddleware),
+      }).concat(allMiddlewares),
     devTools: process.env.NODE_ENV !== 'production',
     // preloadedState,
     enhancers: [reduxBatch],
