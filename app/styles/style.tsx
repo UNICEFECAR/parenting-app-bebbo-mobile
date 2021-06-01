@@ -12,19 +12,20 @@ export const ButtonText = styled.Text`
   color: #000;
 `;
 export const SelectionView = styled.View`
-  border-width: 1px;
+  /* border-width: 1px;
   border-radius: 2px;
   border-color: #ddd;
-  border-bottom-width: 0;
-  margin-left: 5px;
-  margin-right: 5px;
+  border-bottom-width: 0; */
+  margin-left: 15px;
+  margin-right: 15px;
   flex: 1;
 `;
 export const RadioItemText = styled.Text`
   text-align: left;
   font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')};
   font-size: 15px;
-  color: ${props => props.theme.colors.PRIMARY_TINTCOLOR};
+  color: #FFF;
+  flex:9;
 `;
 export const RadioItem = styled.View`
   padding: 17px;
@@ -32,7 +33,7 @@ export const RadioItem = styled.View`
   /* margin-left: 5px;
   margin-right: 5px; */
   border-color: #cacaca;
-  border-width: 0.5px;
+  border-bottom-width: 0.5px;
   border-radius: 3px;
   /* background: '#FFF'; */
   //${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
@@ -59,7 +60,7 @@ export const MiniHeader = styled.View`
 /* background-color: ${props => props.theme.PRIMARY_COLOR}; */
 export const HeaderText = styled.Text`
   font-size: 24px;
-  color: black;
+  color: #FFF;
 `;
 export const Header2Text = styled.Text`
   font-size: 18px;
