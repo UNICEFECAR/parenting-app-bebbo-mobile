@@ -1,6 +1,6 @@
 {
-  "name": "parentbuddyapp",
-  "version": "0.0.1",
+  "name": "Bebbo",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -20,6 +20,7 @@
     "@react-navigation/stack": "^5.14.5",
     "@reduxjs/toolkit": "^1.2.5",
     "@types/react": "^17.0.5",
+    "@types/react-native-dotenv": "^0.2.0",
     "@types/redux-logger": "^3.0.8",
     "@types/styled-components": "^5.1.9",
     "@types/styled-components-react-native": "^5.1.1",
@@ -28,9 +29,11 @@
     "react-i18next": "^11.8.15",
     "react-native": "^0.64.1",
     "react-native-app-intro-slider": "^4.0.4",
+    "react-native-dotenv": "^2.5.5",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-localize": "^2.0.3",
     "react-native-reanimated": "^2.1.0",
+    "react-native-render-html": "^5.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.2.0",
     "react-redux": "^7.2.0",
