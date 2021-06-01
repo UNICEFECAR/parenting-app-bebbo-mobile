@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {View, Text, Button, useWindowDimensions, ScrollView} from 'react-native';
 import HTML from 'react-native-render-html';
 import {RootStackParamList} from '../navigation/types';
-import CheckBox from '../styles/Checkbox';
+// import CheckBox from '../components/Checkbox';
 // import Checkbox from '../styles/Checkbox';
 import { Container, Header, HeaderText } from '../styles/style';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
