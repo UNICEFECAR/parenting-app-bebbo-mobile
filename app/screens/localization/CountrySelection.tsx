@@ -11,7 +11,7 @@ type Props = {
 };
 // import {defaultProps} from '../../interfaces/interface';
 // import {darkTheme, lightTheme} from '../../theme/theme';
-import {FlatList, Image, Pressable, View} from 'react-native';
+import {FlatList, Image, Pressable, StyleSheet, View} from 'react-native';
 import {
   Container,
   ButtonText,
@@ -65,7 +65,7 @@ const CountrySelection = (props: any) => {
           />
         </SelectionView>
         <Pressable
-          style={{padding:15,backgroundColor: 'white',borderRadius: 20,justifyContent: 'flex-end',alignItems: 'flex-end',}}
+          style={{marginTop:30,marginStart:300,marginBottom:10,marginEnd:10,borderRadius: 20,justifyContent: 'flex-end',alignItems: 'flex-end',}}
           onPress={() =>
             props.navigation.navigate('LanguageSelection', {country})
           }>
@@ -80,3 +80,11 @@ const CountrySelection = (props: any) => {
 };
 
 export default CountrySelection;
+
+export const styles = StyleSheet.create({
+  // Header CSS
+  headerMenuIcon: {
+    marginLeft: 10,
+  },
+
+});
