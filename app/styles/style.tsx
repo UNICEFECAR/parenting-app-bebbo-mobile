@@ -22,10 +22,11 @@ export const SelectionView = styled.View`
 `;
 export const RadioItemText = styled.Text`
   text-align: left;
-  font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')};
+  /* font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')}; */
   font-size: 15px;
   color: #FFF;
   flex:9;
+  font-family: ${(props: any) => (props.isActive ? 'roboto-bold' : 'roboto-regular')};
 `;
 export const RadioItem = styled.View`
   padding: 17px;
@@ -61,6 +62,7 @@ export const MiniHeader = styled.View`
 export const HeaderText = styled.Text`
   font-size: 24px;
   color: #FFF;
+  font-family: 'roboto-bold';
 `;
 export const Header2Text = styled.Text`
   font-size: 18px;

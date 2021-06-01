@@ -23,3 +23,4 @@ declare module 'styled-components' {
         ARTICLES_TINTCOLOR: string,
     };
   }
+}
