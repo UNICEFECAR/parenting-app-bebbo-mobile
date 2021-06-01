@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {View, Text, Button, useWindowDimensions, ScrollView, Pressable, Alert} from 'react-native';
 import HTML from 'react-native-render-html';
 import {RootStackParamList} from '../navigation/types';
-import CheckBox from '../styles/Checkbox';
+import CheckBox from '../components/Checkbox';
 // import Checkbox from '../styles/Checkbox';
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 type TermsNavigationProp = StackNavigationProp<
@@ -108,7 +108,7 @@ const Terms = ({navigation}: Props) => {
               onPress={() => navigation.navigate('ChildSetup')}
             /> */}
       </ScrollView>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => Alert.alert('Coming Soon',"Work in Progress",)}>
+      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('ChildSetup')}>
             <ButtonText>I accept terms and conditions</ButtonText>
       </Pressable>
       </Container>
