@@ -7,6 +7,10 @@ const CustomDrawerContent = ({navigation}: any) => {
   return (
     <View>
       <Text>CustomDrawerContent screen</Text>
+      <Button
+        title="Go to ChildProfile"
+        onPress={() => navigation.navigate('ChildProfileScreen')}
+      />
       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
       <Button
         title="Go to NotificationsScreen"
@@ -38,7 +42,10 @@ const CustomDrawerContent = ({navigation}: any) => {
       ) : null}
 
       <Text>Favourites</Text>
-      <Text>About us</Text>
+      <Button
+        title="Go to About us"
+        onPress={() => navigation.navigate('AboutusScreen')}
+      />
       <Text>User Guide</Text>
       <Button
         title="Go to Settings"
