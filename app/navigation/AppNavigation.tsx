@@ -8,6 +8,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import Walkthrough from '../screens/Walkthrough';
 import {useAppSelector} from '../../App';
+import PrivacyPolicy from '../screens/PrivacyPolicy';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -34,6 +35,11 @@ export default () => {
         <RootStack.Screen
           name="Terms"
           component={Terms}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
           options={{headerShown: false}}
         />
         <RootStack.Screen name="ChildSetup" component={ChildSetup} />

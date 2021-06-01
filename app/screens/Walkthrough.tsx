@@ -1,10 +1,9 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
-import {View, Text, Button, SafeAreaView, ImageBackground} from 'react-native';
+import React, { useState } from 'react';
+import {View, Text, Button, SafeAreaView, ImageBackground, Image} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {RootStackParamList} from '../navigation/types';
 import { StyleSheet } from 'react-native';
-import { Image } from 'react-native';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -44,10 +43,33 @@ const Walkthrough = ({navigation}: Props) => {
       </ImageBackground>
     );
   };
+  const renderDoneButton = () =>{
+    return (
+      // <View style={{width: 40,height: 40,backgroundColor: 'rgba(0, 0, 0, .2)',borderRadius: 20,justifyContent: 'center',alignItems: 'center',}}>
+      //   <Image style={{width:40,height:40}} source={ require( '../assets/round-tick.png') } />
+      // </View>
+      <Text style={{color:'#000'}}>Next</Text>
+    );
+  }
+  const renderPrevButton = () =>{
+    return (
+      // <View style={{width: 40,height: 40,backgroundColor: 'rgba(0, 0, 0, .2)',borderRadius: 20,justifyContent: 'center',alignItems: 'center',}}>
+      //   <Image style={{width:40,height:40}} source={ require( '../assets/round-tick.png') } />
+      // </View>
+      <Text style={{color:'#000'}}>Back</Text>
+    );
+  }
+  const [showPrevbtn,setShowPrevbtn] = useState(false);
+  const onSlideChange = (index,lastIndex) => {
+    console.log(index," --index----",lastIndex);
+    (index == 3) ? setShowPrevbtn(true) : setShowPrevbtn(false);
+    
+  }
   const onDone = () => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     // this.setState({ showRealApp: true });
+    navigation.navigate('Terms');
   }
   const keyExtractor = (item: Item) => item.title;
   return (
@@ -58,9 +80,14 @@ const Walkthrough = ({navigation}: Props) => {
           // bottomButton
           dotClickEnabled
           // showDoneButton={false}
-          showSkipButton
-          showPrevButton
+          showSkipButton = {false}
+          showPrevButton = {showPrevbtn}
+          showNextButton = {false}
           data={data}
+          onDone={onDone}
+          onSlideChange={onSlideChange}
+          renderDoneButton={renderDoneButton}
+          renderPrevButton={renderPrevButton}
         />
       {/* <AppIntroSlider renderItem={renderItem} data={data} onDone={onDone}/> */}
       {/* <Text>Walkthrough screen</Text>

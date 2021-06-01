@@ -11,7 +11,7 @@ type Props = {
 };
 // import {defaultProps} from '../../interfaces/interface';
 // import {darkTheme, lightTheme} from '../../theme/theme';
-import {FlatList, Pressable} from 'react-native';
+import {FlatList, Image, Pressable, View} from 'react-native';
 import {
   Container,
   ButtonText,
@@ -23,7 +23,7 @@ import {localization} from '../../assets/data/localization';
 import CountryItem from '../../components/CountryItem';
 import {useTranslation} from 'react-i18next';
 import { useAppSelector } from '../../../App';
-
+// import {API_URL, API_TOKEN} from "@env";
 //{navigation}: Props
 type localizationType = {
   name: string;
@@ -54,6 +54,7 @@ const CountrySelection = (props: any) => {
     <>
       <Container>
         <Header>
+          {/* <HeaderText>{API_URL}</HeaderText> */}
           <HeaderText>{t('selectYourCountry')}</HeaderText>
         </Header>
         <SelectionView>
@@ -64,11 +65,14 @@ const CountrySelection = (props: any) => {
           />
         </SelectionView>
         <Pressable
-          style={{backgroundColor: 'red', padding: 10}}
+          style={{padding:15,backgroundColor: 'white',borderRadius: 20,justifyContent: 'flex-end',alignItems: 'flex-end',}}
           onPress={() =>
             props.navigation.navigate('LanguageSelection', {country})
           }>
-          <ButtonText>{t('goToLanguageSelection')}</ButtonText>
+          {/* <ButtonText>{t('goToLanguageSelection')}</ButtonText> */}
+          {/* <View style={{width: 40,height: 40,backgroundColor: 'rgba(0, 0, 0, .2)',borderRadius: 20,justifyContent: 'center',alignItems: 'center',}}> */}
+            <Image style={{width:50,height:50}} source={ require( '../../assets/ic_next_arrow.png') } />
+          {/* </View> */}
         </Pressable>
       </Container>
     </>

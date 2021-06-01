@@ -31,7 +31,8 @@ export const RadioItem = styled.View`
   border-color: #cacaca;
   border-width: 0.5px;
   border-radius: 3px;
-  background: ${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
+  /* background: '#FFF'; */
+  //${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
 `;
 // color: ${props => props.theme.PRIMARY_FOREGROUND_COLOR};
 //   font-family: ${props => props.theme.PRIMARY_FONT_FAMILY};
@@ -48,6 +49,9 @@ export const MiniHeader = styled.View`
   padding-bottom: 30px;
   padding-left: 100px;
   padding-right: 100px;
+  display:flex;
+  flex-direction:column;
+  alignItems:center;
 `;
 /* background-color: ${props => props.theme.PRIMARY_COLOR}; */
 export const HeaderText = styled.Text`
@@ -59,6 +63,7 @@ export const Header2Text = styled.Text`
   color: black;
   text-align: center;
   font-weight: ${'bold'};
+  marginBottom:10px;
 `;
 export const Header3Text = styled.Text`
   font-size: 14px;
@@ -80,7 +85,7 @@ export const Header3Text = styled.Text`
 // `;
 
 export const LocalizationContainer = styled.View`
-  flex: 3;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   background-color: #eee;
@@ -89,6 +94,7 @@ export const LocalizationContainer = styled.View`
   margin-right: 20px;
   margin-top: 20px;
   margin-bottom: 60px;
+  border-radius:5px;
 `;
 
 // const Icon = styled.Image`

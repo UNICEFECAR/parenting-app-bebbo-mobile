@@ -3,6 +3,7 @@ export type RootStackParamList = {
   Walkthrough: undefined;
   ChildSetup: undefined;
   Terms: undefined;
+  PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
 };
 
