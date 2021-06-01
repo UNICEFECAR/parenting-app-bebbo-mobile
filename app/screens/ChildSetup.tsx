@@ -2,6 +2,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {View, Text, Button} from 'react-native';
 import {RootStackParamList} from '../navigation/types';
+import { Header, HeaderText } from '../styles/style';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -13,9 +14,12 @@ type Props = {
 const ChildSetup = ({navigation}: Props) => {
   return (
     <View>
-      <Text>ChildSetup</Text>
+        <Header>
+          <HeaderText>Please take a moment to personalize your app</HeaderText>
+        </Header>
+        <Text>Relationship with child</Text>
       <Button
-        title="Go to Home"
+        title="Continue & Go to Home"
         onPress={() => navigation.navigate('HomeDrawerNavigator')}
       />
     </View>
