@@ -21,7 +21,7 @@ export default () => {
     <NavigationContainer>
       <RootStack.Navigator
         // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
-        initialRouteName={'Localization'}>
+        initialRouteName={'ChildSetup'}>
         <RootStack.Screen
           name="Localization"
           component={LocalizationNavigation}
