@@ -1,11 +1,11 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {View, Text, Button, useWindowDimensions, ScrollView, Pressable, Alert} from 'react-native';
 import HTML from 'react-native-render-html';
 import {RootStackParamList} from '../navigation/types';
-import CheckBox from '../components/Checkbox';
-// import Checkbox from '../styles/Checkbox';
+import CheckBox from '@react-native-community/checkbox';
+
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -16,6 +16,9 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 const Terms = ({navigation}: Props) => {
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
+  const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const { t } = useTranslation();
   const body = "<p>By using ParentBuddy application you accept these terms. These Terms and Conditions are in line with the Privacy Policy of the application<strong>.</strong></p>\n\n<p>The ParentBuddy is an app providing information and guidance to parents of young children, 0-6 years old, on different aspects of child health and development. It also supports parents to track child’s growth and development and receive relevant information and guidance on how to support them. Lastly, the app enables tracking of vaccination and health check-ups and can send notifications to remind parents of these important events.</p>\n\n<p>All information and guidance in this app serve solely for informational and educational purposes.</p>\n\n<p>The content of this app is not a substitute for health check-ups, medical examinations,assessments or diagnostic procedures. If you are concerned for your child’s health or development, we recommend that you consult your doctor or nurse. If the use of any information contained in the app leads to or causes loss or damage, UNICEF is not and cannot be responsible.</p>";
   const contentWidth = useWindowDimensions().width;
@@ -43,25 +46,38 @@ const Terms = ({navigation}: Props) => {
 
                                     {/* checkPrivateData */}
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                          <CheckBox
-                                              label={t('tAndCCheckbox1')}
-                                              checkedValue={false}
-                                              // style={{alignSelf: "center"}}
-                                            />
+                                    <CheckBox
+                                        disabled={false}
+                                        value={toggleCheckBox}
+                                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                      />
+                                        <Text>{t('tAndCCheckbox1')}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', marginTop:14, alignItems: 'center' }}>
-                                          <CheckBox
+                                    <CheckBox
+                                        disabled={false}
+                                        value={toggleCheckBox1}
+                                        onValueChange={(newValue) => setToggleCheckBox1(newValue)}
+                                      />
+                                      <Text>{t('tAndCPrivacyPolicy')}</Text>
+                                        {/* <CheckBox
                                               label={t('tAndCCheckbox2')}
-                                              extralabel = {t('tAndCPrivacyPolicy')}
+                                              extralabel = {}
                                               goToPrivacy = {goToPrivacyPolicy}
                                               checkedValue = {false}
-                                            />
+                                            /> */}
                                     </View>
                                     <View style={{ flexDirection: 'row', marginTop: 14, alignItems: 'center' }}>
-                                          <CheckBox
+                                    <CheckBox
+                                        disabled={false}
+                                        value={toggleCheckBox2}
+                                        onValueChange={(newValue) => setToggleCheckBox2(newValue)}
+                                      />
+                                      <Text>{t('tAndCCheckbox3')}</Text>
+                                       {/* <CheckBox
                                               label={t('tAndCCheckbox3')}
                                               checkedValue = {true}
-                                            />
+                                            /> */}
                                     </View>
 
                                     {/* checkOtherConditions */}
