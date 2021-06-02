@@ -9,6 +9,8 @@ import HealthCheckups from '../screens/home/HealthCheckups';
 import DashboardTabNavigator from './DashboardTabNavigator';
 import CustomDrawerContent from '../screens/CustomDrawerContent';
 import SettingScreen from '../screens/home/SettingScreen';
+import Aboutus from '../screens/home/Aboutus';
+import ChildProfile from '../screens/home/ChildProfile';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
@@ -23,6 +25,14 @@ export default () => {
       <HomeDrawerNavigator.Screen
         name="NotificationsScreen"
         component={Notifications}
+      />
+      <HomeDrawerNavigator.Screen
+        name="AboutusScreen"
+        component={Aboutus}
+      />
+      <HomeDrawerNavigator.Screen
+        name="ChildProfileScreen"
+        component={ChildProfile}
       />
       <HomeDrawerNavigator.Screen
         name="ChildgrowthScreen"

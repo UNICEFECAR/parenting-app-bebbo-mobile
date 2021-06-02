@@ -1,9 +1,10 @@
+
 import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.PRIMARY_COLOR};
 `;
 // ${props => props.theme.PRIMARY_BACKGROUND_COLOR}
 export const ButtonText = styled.Text`
@@ -11,27 +12,32 @@ export const ButtonText = styled.Text`
   color: #000;
 `;
 export const SelectionView = styled.View`
-  border-width: 1px;
+  /* border-width: 1px;
   border-radius: 2px;
   border-color: #ddd;
-  border-bottom-width: 0;
-  margin-left: 5px;
-  margin-right: 5px;
+  border-bottom-width: 0; */
+  margin-left: 15px;
+  margin-right: 15px;
   flex: 1;
 `;
 export const RadioItemText = styled.Text`
   text-align: left;
-  font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')};
+  /* font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')}; */
   font-size: 15px;
+  color: #FFF;
+  flex:9;
+  font-family: ${(props: any) => (props.isActive ? 'roboto-bold' : 'roboto-regular')};
 `;
 export const RadioItem = styled.View`
   padding: 17px;
+ 
   /* margin-left: 5px;
   margin-right: 5px; */
   border-color: #cacaca;
-  border-width: 0.5px;
+  border-bottom-width: 0.5px;
   border-radius: 3px;
-  background: ${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
+  /* background: '#FFF'; */
+  //${(props: any) => (props.isActive ? '#bbb' : '#FFF')};
 `;
 // color: ${props => props.theme.PRIMARY_FOREGROUND_COLOR};
 //   font-family: ${props => props.theme.PRIMARY_FONT_FAMILY};
@@ -55,7 +61,8 @@ export const MiniHeader = styled.View`
 /* background-color: ${props => props.theme.PRIMARY_COLOR}; */
 export const HeaderText = styled.Text`
   font-size: 24px;
-  color: black;
+  color: #FFF;
+  font-family: 'roboto-bold';
 `;
 export const Header2Text = styled.Text`
   font-size: 18px;
