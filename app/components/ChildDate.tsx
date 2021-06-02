@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Button,
@@ -8,11 +8,13 @@ import {
   Pressable,
   Text,
 } from 'react-native';
-import {Header3Text} from '../styles/style';
-import CheckBox from './Checkbox';
+import { Header3Text } from '../styles/style';
+import CheckBox from '@react-native-community/checkbox';
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const ChildDate = () => {
+  const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [dobDate, setdobDate] = useState();
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event: any, selectedDate: any) => {
@@ -39,11 +41,11 @@ const ChildDate = () => {
   return (
     <View>
       <Header3Text>Child Date of Birth / Expected due date</Header3Text>
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 3, backgroundColor: 'red'}}>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ flex: 3, backgroundColor: 'gray' }}>
           <Header3Text> {dobDate ? dobDate.toDateString() : null}</Header3Text>
         </View>
-        <View style={{flex: 1, backgroundColor: 'green'}}>
+        <View style={{ flex: 1, backgroundColor: 'green' }}>
           <Pressable style={styles.title} onPress={showdobDatepicker}>
             <Header3Text>Select DOBDate</Header3Text>
           </Pressable>
@@ -60,14 +62,22 @@ const ChildDate = () => {
           />
         )}
       </View>
-      <CheckBox label="Baby Born Prematurely" checkedValue={false} />
+
+
+      <CheckBox
+        disabled={false}
+        value={toggleCheckBox}
+        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+      />
+      <Header3Text>Baby Born Prematurely</Header3Text>
+      {/* <CheckBox label="Baby Born Prematurely" checkedValue={false} /> */}
       <Header3Text>Original due date</Header3Text>
 
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 3, backgroundColor: 'red'}}>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ flex: 3, backgroundColor: 'gray' }}>
           <Header3Text> {dueDate ? dueDate.toDateString() : null}</Header3Text>
         </View>
-        <View style={{flex: 1, backgroundColor: 'darkorange'}}>
+        <View style={{ flex: 1, backgroundColor: 'darkorange' }}>
           <Pressable style={styles.title} onPress={showdueDatepicker}>
             <Header3Text>{'Select Due Date'}</Header3Text>
           </Pressable>
@@ -80,6 +90,8 @@ const ChildDate = () => {
             value={new Date()}
             mode={'date'}
             display="default"
+            // minimumDate={{}}
+            // maximumDate={{}}
             onChange={ondueDateChange}
           />
         )}
