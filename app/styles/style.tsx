@@ -26,7 +26,9 @@ export const RadioItemText = styled.Text`
   font-size: 15px;
   color: #FFF;
   flex:9;
-  font-family: ${(props: any) => (props.isActive ? 'roboto-bold' : 'roboto-regular')};
+  font-family: ${(props: any) => (props.isActive ?  props.theme.fonts.ROBOTO_BOLD : props.theme.fonts.ROBOTO_REGULAR)};
+
+  /* font-family: ${(props: any) => (props.isActive ?  props.theme.colors.PRIMARY_COLOR : 'roboto-regular')}; */
 `;
 export const RadioItem = styled.View`
   padding: 17px;

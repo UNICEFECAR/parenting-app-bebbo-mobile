@@ -1,7 +1,7 @@
+import { DefaultTheme } from "styled-components/native";
 
-import { DefaultTheme } from "styled-components";
 
-export const appTheme: DefaultTheme = {
+export const appTheme: DefaultTheme= {
     colors: {
         PRIMARY_COLOR: '#2B2F84',
         PRIMARY_TINTCOLOR: '#8CAEE4',
@@ -19,5 +19,9 @@ export const appTheme: DefaultTheme = {
         ACTIVITIES_TINTCOLOR: '#CFF7E5',
         ARTICLES_COLOR: '#FF8D6B',
         ARTICLES_TINTCOLOR: '#FFD2C4',
+    },
+    fonts: {
+        ROBOTO_BOLD: 'roboto-bold',
+        ROBOTO_REGULAR: 'roboto-regular'
     }
 };
