@@ -42,7 +42,7 @@ export const localizationSlice = createSlice({
     //   // state.value += 1;
     // },
     onLocalizationSelect: (state, action: PayloadAction<any>) => {
-      // console.log(state);
+      console.log(state);
       console.log(action.payload);
       // state.name = action.payload.name;
       state.callingCode = action.payload.country.callingCode;

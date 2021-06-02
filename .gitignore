@@ -14,3 +14,4 @@ buck-out/
 !debug.keystore
 # .env added
 .env
+.env
