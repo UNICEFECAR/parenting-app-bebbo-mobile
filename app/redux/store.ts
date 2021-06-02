@@ -13,6 +13,12 @@ const loggerMiddleware = createLogger({
   duration: true,
 });
 const sagaMiddleware= createSagaMiddleware();
+const allMiddlewares:any[] =[];
+if (process.env.NODE_ENV !== 'production' ){
+allMiddlewares.push(loggerMiddleware);
+allMiddlewares.push(sagaMiddleware);
+}
+
 export default function configureAppStore() {
   // export const store = configureStore({
   // reducer: rootReducer,
@@ -33,7 +39,8 @@ export default function configureAppStore() {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(loggerMiddleware,sagaMiddleware),
+
+      }).concat(allMiddlewares),
     devTools: process.env.NODE_ENV !== 'production',
     // preloadedState,
     enhancers: [reduxBatch],

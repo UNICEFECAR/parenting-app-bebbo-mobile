@@ -7,7 +7,7 @@ import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {RootStackParamList} from '../navigation/types';
 import { fetchOnloadAPI } from '../redux/sagaMiddleware/sagaActions';
-import CheckBox from '../styles/Checkbox';
+import CheckBox from '../components/Checkbox';
 // import Checkbox from '../styles/Checkbox';
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 import { appConfig } from '../types/apiConstants';
@@ -172,7 +172,7 @@ const Terms = ({navigation}: Props) => {
               onPress={() => navigation.navigate('ChildSetup')}
             /> */}
       </ScrollView>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => Alert.alert('Coming Soon',"Work in Progress",)}>
+      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('ChildSetup')}>
             <ButtonText>I accept terms and conditions</ButtonText>
       </Pressable>
       <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
