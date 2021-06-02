@@ -21,6 +21,8 @@ export type HomeDrawerNavigatorStackParamList = {
   VaccinationScreen: undefined;
   HealthCheckupsScreen: undefined;
   SettingsScreen: undefined;
+  AboutusScreen: undefined;
+  ChildProfileScreen: undefined;
 };
 
 export type DashboardBottomTabParamList = {

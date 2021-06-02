@@ -42,7 +42,7 @@ export default () => {
           component={PrivacyPolicy}
           options={{headerShown: false}}
         />
-        <RootStack.Screen name="ChildSetup" component={ChildSetup} />
+        <RootStack.Screen name="ChildSetup" component={ChildSetup}  options={{headerShown: false}}/>
         <RootStack.Screen
           name="HomeDrawerNavigator"
           options={{headerShown: false}}
