@@ -21,6 +21,10 @@ declare module 'styled-components' {
         ACTIVITIES_TINTCOLOR: string,
         ARTICLES_COLOR:string,
         ARTICLES_TINTCOLOR: string,
-    };
+    },
+    fonts:{
+      ROBOTO_BOLD: string,
+      ROBOTO_REGULAR: string
+    }
   }
 }
