@@ -26,7 +26,9 @@ export const RadioItemText = styled.Text`
   font-size: 15px;
   color: #FFF;
   flex:9;
-  font-family: ${(props: any) => (props.isActive ? 'roboto-bold' : 'roboto-regular')};
+  font-family: ${(props: any) => (props.isActive ?  props.theme.fonts.ROBOTO_BOLD : props.theme.fonts.ROBOTO_REGULAR)};
+
+  /* font-family: ${(props: any) => (props.isActive ?  props.theme.colors.PRIMARY_COLOR : 'roboto-regular')}; */
 `;
 export const RadioItem = styled.View`
   padding: 17px;
@@ -56,7 +58,7 @@ export const MiniHeader = styled.View`
   padding-right: 100px;
   display:flex;
   flex-direction:column;
-  alignItems:center;
+  align-Items:center;
 `;
 /* background-color: ${props => props.theme.PRIMARY_COLOR}; */
 export const HeaderText = styled.Text`
@@ -69,7 +71,7 @@ export const Header2Text = styled.Text`
   color: black;
   text-align: center;
   font-weight: ${'bold'};
-  marginBottom:10px;
+  margin-Bottom:10px;
 `;
 export const Header3Text = styled.Text`
   font-size: 14px;
