@@ -5,7 +5,7 @@ import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header3Text } from '../styles/style';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'HomeDrawerNavigator'
+  'AddSiblingDataScreen'
 >;
 
 type Props = {
@@ -25,7 +25,7 @@ const ChildSetupList = ({ navigation }: Props) => {
           
           <Button
             title="Add Sister or Brother"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('AddSiblingDataScreen')}
           />
           <Button
             title="Continue"
