@@ -64,13 +64,9 @@ const ChildSetup = ({ navigation }: Props) => {
             }
               </View>
           </ActionSheet>
-          <Button
-            title="Continue & Go to Home"
-            onPress={() => navigation.navigate('HomeDrawerNavigator')}
-          />
         </View>
           <Button
-            title="Continue & Go to Home"
+            title="Continue"
             onPress={() => navigation.navigate('ChildSetupList')}
           />
        
