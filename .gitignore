@@ -16,3 +16,4 @@ buck-out/
 .env
 .env
 *.lock
+ios/PodFile.lock
