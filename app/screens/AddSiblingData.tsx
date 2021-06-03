@@ -5,7 +5,7 @@ import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 import ChildDate from '../components/ChildDate';
 import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header2Text } from '../styles/style';
-import ActionSheet from "react-native-actions-sheet";
+
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -34,7 +34,6 @@ const AddSiblingData = ({ navigation }: Props) => {
             title="Save Data"
             onPress={() => navigation.navigate('ChildSetupList')}
           />
-       
 
       </Container>
     </>

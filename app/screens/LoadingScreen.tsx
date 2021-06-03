@@ -1,11 +1,11 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
 import { RootStackParamList } from '../navigation/types';
-import { Header, Container, HeaderText, Header3Text } from '../styles/style';
+import { Header, Container, HeaderText, Header2Text } from '../styles/style';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'HomeDrawerNavigator'
+  'ChildSetup'
 >;
 
 type Props = {
@@ -17,11 +17,12 @@ const LoadingScreen = ({ navigation }: Props) => {
   return (
     <>
       <Container>
-        <View>
-          
+        <View style={{justifyContent:'center',alignContent:'center',flex:1}}>
+        <ActivityIndicator size="large" color="#00ff00" />
+        <Header2Text>Loading screen</Header2Text>
           <Button
-            title="Continue"
-            onPress={() => navigation.navigate('HomeDrawerNavigator')}
+            title="Next"
+            onPress={() => navigation.navigate('ChildSetup')}
           />
         </View>
       </Container>
