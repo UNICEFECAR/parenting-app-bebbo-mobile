@@ -26,6 +26,7 @@
     "@types/redux-logger": "^3.0.8",
     "@types/styled-components": "^5.1.9",
     "@types/styled-components-react-native": "^5.1.1",
+    "axios": "^0.21.1",
     "i18next": "^20.2.4",
     "react": "16.13.1",
     "react-i18next": "^11.8.15",

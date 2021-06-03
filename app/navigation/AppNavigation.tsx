@@ -9,6 +9,8 @@ import HomeDrawerNavigator from './HomeDrawerNavigator';
 import Walkthrough from '../screens/Walkthrough';
 import {useAppSelector} from '../../App';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
+import ChildProfileList from '../screens/home/ChildProfileList';
+import ChildSetupList from '../screens/ChildSetupList';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -21,7 +23,7 @@ export default () => {
     <NavigationContainer>
       <RootStack.Navigator
         // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
-        initialRouteName={'Localization'}>
+        initialRouteName={'Terms'}>
         <RootStack.Screen
           name="Localization"
           component={LocalizationNavigation}
@@ -43,6 +45,7 @@ export default () => {
           options={{headerShown: false}}
         />
         <RootStack.Screen name="ChildSetup" component={ChildSetup}  options={{headerShown: false}}/>
+        <RootStack.Screen name="ChildSetupList" component={ChildSetupList}  options={{headerShown: false}}/>
         <RootStack.Screen
           name="HomeDrawerNavigator"
           options={{headerShown: false}}

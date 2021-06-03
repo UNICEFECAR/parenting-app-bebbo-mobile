@@ -1,3 +1,4 @@
+
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useState } from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
@@ -5,9 +6,10 @@ import ChildDate from '../components/ChildDate';
 import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header2Text } from '../styles/style';
 import ActionSheet from "react-native-actions-sheet";
+
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'HomeDrawerNavigator'
+  'ChildSetupList'
 >;
 
 type Props = {
@@ -23,6 +25,7 @@ const ChildSetup = ({ navigation }: Props) => {
     <>
       <Container>
         <View>
+
           <Header>
             <HeaderText>Please take a moment to personalize your app</HeaderText>
           </Header>
@@ -43,7 +46,11 @@ const ChildSetup = ({ navigation }: Props) => {
             </View>
           </View>
           
+
           <ActionSheet ref={actionSheetRef}>
+
+          { <ActionSheet ref={actionSheetRef}>
+
             <View>
             {
             genders.map((item,index) => {
@@ -61,12 +68,21 @@ const ChildSetup = ({ navigation }: Props) => {
             })
           }
             </View>
+
           </ActionSheet>
           <Button
             title="Continue & Go to Home"
             onPress={() => navigation.navigate('HomeDrawerNavigator')}
           />
         </View>
+
+          </ActionSheet> */}
+          <Button
+            title="Continue & Go to Home"
+            onPress={() => navigation.navigate('ChildSetupList')}
+          />
+       
+
       </Container>
     </>
   );
