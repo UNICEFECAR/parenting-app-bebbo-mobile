@@ -1,25 +1,28 @@
+import { DrawerActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, Button,Text, StyleSheet, Pressable} from 'react-native';
 const TabScreenHeader = () => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.top} />
+    <View
+      style={{
+        flexDirection: 'row',
+        flex: 1,
+        backgroundColor: '#fff',
+        maxHeight:50,
+      }}>
+      <View style={{flex: 1, backgroundColor: 'red'}} >
+        <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+          <Text>Menu</Text>
+        </Pressable>
+        </View>
+      <View style={{flex: 3, backgroundColor: '#FFF'}} >
+        <Text> ParentBuddy</Text>
+        </View>
+      <View style={{flex: 1, backgroundColor: 'yellow'}} />
+      <View style={{flex: 1, backgroundColor: 'purple'}} />
     </View>
   );
 };
 export default TabScreenHeader;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    height: 12,
-  },
-  top: {
-    flex: 1,
-    backgroundColor: 'grey',
-    borderWidth: 1,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-});
