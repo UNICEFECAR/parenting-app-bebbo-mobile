@@ -9,7 +9,6 @@ import HomeDrawerNavigator from './HomeDrawerNavigator';
 import Walkthrough from '../screens/Walkthrough';
 import {useAppSelector} from '../../App';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
-import ChildProfileList from '../screens/home/ChildProfileList';
 import ChildSetupList from '../screens/ChildSetupList';
 import AddSiblingData from '../screens/AddSiblingData';
 import LoadingScreen from '../screens/LoadingScreen';
@@ -25,7 +24,7 @@ export default () => {
     <NavigationContainer>
       <RootStack.Navigator
         // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
-        initialRouteName={'Terms'}>
+        initialRouteName={'HomeDrawerNavigator'}>
         <RootStack.Screen
           name="Localization"
           component={LocalizationNavigation}
