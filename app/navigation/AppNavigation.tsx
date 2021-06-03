@@ -12,6 +12,7 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import ChildProfileList from '../screens/home/ChildProfileList';
 import ChildSetupList from '../screens/ChildSetupList';
 import AddSiblingData from '../screens/AddSiblingData';
+import LoadingScreen from '../screens/LoadingScreen';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -48,6 +49,7 @@ export default () => {
         <RootStack.Screen name="ChildSetup" component={ChildSetup}  options={{headerShown: false}}/>
         <RootStack.Screen name="ChildSetupList" component={ChildSetupList}  options={{headerShown: false}}/>
         <RootStack.Screen name="AddSiblingDataScreen" component={AddSiblingData}  options={{headerShown: false}}/>
+        <RootStack.Screen name="LoadingScreen" component={LoadingScreen}  options={{headerShown: false}}/>
         <RootStack.Screen
           name="HomeDrawerNavigator"
           options={{headerShown: false}}
