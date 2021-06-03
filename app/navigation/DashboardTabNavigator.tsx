@@ -38,19 +38,12 @@ export default () => {
             style={styles.modalView}
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            {/* <Pressable
-              style={styles.modalText}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}>
-            </Pressable> */}
             <Text style={styles.modalText}>Add New Development Milestone</Text>
-
             <Text style={styles.modalText}>Add Vaccination Details</Text>
             <Text style={styles.modalText}>Add Health Checkup Details</Text>
             <Text style={styles.modalText}>Add New Measurement Details</Text>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={[styles.button]}
               onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>close</Text>
             </Pressable>
@@ -104,12 +97,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
   },
   textStyle: {
     color: 'white',
