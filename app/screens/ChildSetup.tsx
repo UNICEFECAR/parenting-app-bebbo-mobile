@@ -45,38 +45,30 @@ const ChildSetup = ({ navigation }: Props) => {
               <Text> Arrow</Text>
             </View>
           </View>
-          
-
-          <ActionSheet ref={actionSheetRef}>
-
-          { <ActionSheet ref={actionSheetRef}>
-
-            <View>
-            {
-            genders.map((item,index) => {
-              return(
-                <View key={index}>
-              <Pressable
-                onPress={() => {
-                  setRelationship(item);
-                  actionSheetRef.current?.hide();
-                }}>
-                <Header2Text>{item}</Header2Text>
-              </Pressable>
+            <ActionSheet ref={actionSheetRef}>
+              <View>
+              {
+              genders.map((item,index) => {
+                return(
+                  <View key={index}>
+                <Pressable
+                  onPress={() => {
+                    setRelationship(item);
+                    actionSheetRef.current?.hide();
+                  }}>
+                  <Header2Text>{item}</Header2Text>
+                </Pressable>
+                </View>
+                )
+              })
+            }
               </View>
-              )
-            })
-          }
-            </View>
-
           </ActionSheet>
           <Button
             title="Continue & Go to Home"
             onPress={() => navigation.navigate('HomeDrawerNavigator')}
           />
         </View>
-
-          </ActionSheet> */}
           <Button
             title="Continue & Go to Home"
             onPress={() => navigation.navigate('ChildSetupList')}

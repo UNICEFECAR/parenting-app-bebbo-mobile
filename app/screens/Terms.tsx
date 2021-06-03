@@ -2,7 +2,6 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import React, { Fragment, useState } from 'react';
 import { put } from '@redux-saga/core/effects';
-import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import {View, Text, Button, useWindowDimensions, ScrollView, Pressable, Alert} from 'react-native';
 import HTML from 'react-native-render-html';
@@ -10,10 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import {RootStackParamList} from '../navigation/types';
 
 import CheckBox from '@react-native-community/checkbox';
-
 import { fetchOnloadAPI } from '../redux/sagaMiddleware/sagaActions';
-import CheckBox from '../components/Checkbox';
-// import Checkbox from '../styles/Checkbox';
 
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 import { appConfig } from '../types/apiConstants';
