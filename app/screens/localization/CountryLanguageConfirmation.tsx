@@ -13,6 +13,7 @@ import {
   LocalizationContainer,
 } from '../../styles/style';
 import { useTranslation } from 'react-i18next';
+import { StackActions } from '@react-navigation/native';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -37,7 +38,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
     // dispatch(onLanguageSelect(language));
-    navigation.navigate('Walkthrough');
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Walkthrough'}],
+    })
+    // navigation.navigate('Walkthrough');
+
   };
   return (
     <>

@@ -12,19 +12,56 @@ import PrivacyPolicy from '../screens/PrivacyPolicy';
 import ChildSetupList from '../screens/ChildSetupList';
 import AddSiblingData from '../screens/AddSiblingData';
 import LoadingScreen from '../screens/LoadingScreen';
+import { Linking, Platform } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
+const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
   // const callingCode = useAppSelector(
   //   (state: any) => state.selectedCountry.callingCode,
   // );
+
+  const [isReady, setIsReady] = React.useState(false);
+  const [initialState, setInitialState] = React.useState();
+
+  React.useEffect(() => {
+    const restoreState = async () => {
+      try {
+        const initialUrl = await Linking.getInitialURL();
+
+        if (Platform.OS !== 'web' && initialUrl == null) {
+          // Only restore state if there's no deep link and we're not on web
+          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+          const state = savedStateString ? JSON.parse(savedStateString) : undefined;
+
+          if (state !== undefined) {
+            setInitialState(state);
+          }
+        }
+      } finally {
+        setIsReady(true);
+      }
+    };
+
+    if (!isReady) {
+      restoreState();
+    }
+  }, [isReady]);
+
+  if (!isReady) {
+    return null;
+  }
   return (
     // <ThemeProvider theme={theme}>
-    <NavigationContainer>
+    <NavigationContainer initialState={initialState}
+    onStateChange={(state) =>
+      AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+    }>
       <RootStack.Navigator
         // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
-        initialRouteName={'HomeDrawerNavigator'}>
+        initialRouteName={'Localization'}>
         <RootStack.Screen
           name="Localization"
           component={LocalizationNavigation}

@@ -59,7 +59,7 @@ const TabScreenHeader = (props:any) => {
         <View style={{ flex: 1, backgroundColor: 'yellow' }} />
         <View style={{ flex: 1, backgroundColor: 'purple' }} >
           <Pressable onPress={() => {
-            console.log(modalVisible);
+            // console.log(modalVisible);
             if (modalVisible) { setModalVisible(false) }
             else { setModalVisible(true) }
           }}><Text>Beboo</Text></Pressable>
