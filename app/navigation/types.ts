@@ -3,6 +3,7 @@ export type RootStackParamList = {
   Walkthrough: undefined;
   ChildSetup: undefined;
   ChildSetupList: undefined;
+  AddSiblingDataScreen: undefined;
   LoadingScreen: undefined;
   Terms: undefined;
   PrivacyPolicy: undefined;
