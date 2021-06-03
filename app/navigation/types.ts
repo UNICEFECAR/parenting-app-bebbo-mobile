@@ -2,6 +2,8 @@ export type RootStackParamList = {
   Localization: undefined;
   Walkthrough: undefined;
   ChildSetup: undefined;
+  ChildSetupList: undefined;
+  LoadingScreen: undefined;
   Terms: undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
