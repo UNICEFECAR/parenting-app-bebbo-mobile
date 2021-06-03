@@ -1,22 +1,27 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { DrawerActions } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {HomeDrawerNavigatorStackParamList} from '../../../navigation/types';
+import { View, Text, Button } from 'react-native';
+import TabScreenHeader from '../../../components/TabScreenHeader';
+import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
-const SupportChat = ({navigation}: Props) => {
+const SupportChat = ({ navigation }: Props) => {
   return (
-    <View>
-      <Text>SupportChat screen</Text>
-      <Button
-        title="Toggle"
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      />
-    </View>
+    <>
+      <View style={{
+        flexDirection: 'column',
+        flex: 1,
+      }}>
+        <TabScreenHeader title="SupportChat"/>
+        <View>
+          <Text>SupportChat screen</Text>
+        </View>
+      </View>
+    </>
   );
 };
 

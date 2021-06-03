@@ -15,13 +15,8 @@ const Home = ({ navigation }: Props) => {
         flexDirection: 'column',
         flex: 1,
       }}>
-          <TabScreenHeader />
-        <ScrollView style={{flex:4}}>
-          <Text>Home screen</Text>
-          <Button
-            title="Toggle"
-            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-          />
+        <TabScreenHeader title="ParentBuddy"/>
+        <ScrollView style={{ flex: 4 }}>    
           <View>
             <Text>Your Child's Development</Text>
             <Button
