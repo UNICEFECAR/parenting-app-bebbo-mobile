@@ -13,7 +13,6 @@ import {
   LocalizationContainer,
 } from '../../styles/style';
 import { useTranslation } from 'react-i18next';
-import { StackActions } from '@react-navigation/native';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
