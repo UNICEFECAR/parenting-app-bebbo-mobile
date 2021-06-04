@@ -1,22 +1,35 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {HomeDrawerNavigatorStackParamList} from '../../../navigation/types';
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FocusAwareStatusBar from '../../../components/FocusAwareStatusBar';
+import TabScreenHeader from '../../../components/TabScreenHeader';
+import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
-const SupportChat = ({navigation}: Props) => {
+const headerColor="blue";
+const SupportChat = ({ navigation }: Props) => {
   return (
-    <View>
-      <Text>SupportChat screen</Text>
-      <Button
-        title="Toggle"
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      />
-    </View>
+    <>
+     <SafeAreaView style={{flex:1}}>
+     <FocusAwareStatusBar
+        animated={true}
+        backgroundColor={headerColor}
+       />
+      <View style={{
+        flexDirection: 'column',
+        flex: 1,
+      }}>
+        <TabScreenHeader title="ParentBuddy" headerColor={headerColor}/>
+        <View>
+          <Text>SupportChat screen</Text>
+        </View>
+      </View>
+      </SafeAreaView>
+    </>
   );
 };
 

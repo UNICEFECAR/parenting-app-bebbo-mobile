@@ -1,50 +1,57 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {Text,View, Button, ScrollView} from 'react-native';
-import {HomeDrawerNavigatorStackParamList} from '../../../navigation/types';
+import { Text, View, Button, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FocusAwareStatusBar from '../../../components/FocusAwareStatusBar';
+import AdviceAndArticles from '../../../components/homeScreen/AdviceAndArticles';
+import ChildInfo from '../../../components/homeScreen/ChildInfo';
+import ChildMilestones from '../../../components/homeScreen/ChildMilestones';
+import DailyReads from '../../../components/homeScreen/DailyReads';
+import PlayingTogether from '../../../components/homeScreen/PlayingTogether';
+import Tools from '../../../components/homeScreen/Tools';
+import TabScreenHeader from '../../../components/TabScreenHeader';
+import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
+import { Container, Header3Text } from '../../../styles/style';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
 };
-const Home = ({navigation}: Props) => {
+
+const headerColor="blue";
+const Home = () => {
+  
   return (
     <>
-      <ScrollView>
-        <Text>Home screen</Text>
-        <Button
-          title="Toggle"
-          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-        />
-        <View>
-          <Text>Your Child's Development</Text>
-          <Button
-          title="Read more"
-          onPress={() => {}}
-        />
-        </View>
-        <View>
-          <Text>Daily Reads</Text>
-        </View>
-        <View>
-        <Text>Your Child Milestones</Text>
-        </View>
-        <View>
-        <Text>Playing together</Text>
-        </View>
-        <View>
-        <Text>Expert Advice And Articles</Text>
-        </View>
-        <View>
-        <Text>Tools</Text>
-        </View>
-        <View>
-        <Text>How is your Parenting Experience</Text>
-        <Button
-          title="Take a Survey"
-          onPress={() => {}}/>
-        </View>
-      </ScrollView>
+     <SafeAreaView style={{flex:1}}>
+     <FocusAwareStatusBar
+        animated={true}
+        // barStyle="dark-content"
+        backgroundColor={headerColor}
+       />
+      <View style={{
+        flexDirection: 'column',
+        flex: 1,
+      }}>
+        <TabScreenHeader title="ParentBuddy" headerColor={headerColor}/>
+        <ScrollView style={{ flex: 4 }}>
+          <ChildInfo/>
+          <DailyReads/>
+          <ChildMilestones/>
+          <PlayingTogether/>
+          <AdviceAndArticles/>
+          <Tools/>
+          <View style={{padding:10}}>
+            <Text>How is your Parenting Experience</Text>
+            <Button
+              title="Take a Survey"
+              onPress={() => { }} />
+          </View>
+          <Container style={{padding:10}}>
+            <Header3Text>A loving relationship with the parent is the foundation of every baby's healthy growth and development</Header3Text>
+          </Container>
+        </ScrollView>
+      </View>
+      </SafeAreaView>
     </>
   );
 };
