@@ -8,6 +8,6 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
 
 export const appConfig = {
     articles: 'articles',
-    dailyMessages: 'daily-homescreen-messagesss',
-    basicPages: 'basic-pagesss'
+    dailyMessages: 'daily-homescreen-messages',
+    basicPages: 'basic-pages'
 }
