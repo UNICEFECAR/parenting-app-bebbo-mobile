@@ -37,7 +37,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
     // dispatch(onLanguageSelect(language));
-    navigation.navigate('Walkthrough');
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Walkthrough'}],
+    })
+    // navigation.navigate('Walkthrough');
+
   };
   return (
     <>
