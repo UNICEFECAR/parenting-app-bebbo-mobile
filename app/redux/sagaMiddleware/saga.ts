@@ -1,15 +1,17 @@
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
 import { onLoadApiSuccess, retryOnloadAlert } from '../../screens/Terms';
 import  commonApiService  from '../../services/commonApiService';
+import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
-import { apijsonArray, fetchOnloadAPI, FETCH_ONLOAD_API } from './sagaActions';
+import { apijsonArray, fetchOnloadAPI, FETCH_ONLOAD_API, insertInDB } from './sagaActions';
+import { InsertInDBSaga } from './sagaInsertInDB';
 import { receiveOnloadAPIFailure } from './sagaSlice';
 // declare global errorArr;
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
 export default function* rootSaga() {
     console.log("called rootSaga");
-    yield all([fetchOnloadPISaga()]);
+    yield all([fetchOnloadPISaga(),InsertInDBSaga()]);
 }
 
 function* onFetchOnloadAPI(value:any) {
@@ -77,6 +79,15 @@ function* apiCall(data: apijsonArray) {
     yield put(receiveOnloadAPIFailure(errorArr))
   }else {
     // call realm db insertion code by creating another saga.
+    try{
+      // yield call(addApiDataInRealm, response);
+      console.log("insert started");
+      yield put(insertInDB(response));
+    }
+    catch(e) {
+      errorArr.push(response);
+      console.log("errorArr after insert---",errorArr)
+    }
   }
   // return response;
   // yield put(receiveData(response))
