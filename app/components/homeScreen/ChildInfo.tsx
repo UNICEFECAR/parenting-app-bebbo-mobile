@@ -8,7 +8,7 @@ import { Header3Text } from '../../styles/style';
 const ChildInfo = ({ navigation }: Props) => {
     return (
         <>
-            <View style={{padding:10,backgroundColor:'gray'}}>
+            <View style={{padding:10,backgroundColor:'#DED'}}>
                 <Header3Text>Your Child's Development</Header3Text>
                 <View style={{
                     backgroundColor: '#f9c2ff',
