@@ -6,6 +6,7 @@ const headerHeight=50;
 const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const headerColor = props.headerColor;
   return (
     <>
       <Modal
@@ -45,19 +46,19 @@ const TabScreenHeader = (props:any) => {
         style={{
           flexDirection: 'row',
           flex: 1,
-          backgroundColor: '#fff',
+          backgroundColor: headerColor,
           maxHeight: headerHeight,
         }}>
-        <View style={{ flex: 1, backgroundColor: 'red' }} >
+        <View style={{ flex: 1, }} >
           <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
             <Text>Menu</Text>
           </Pressable>
         </View>
-        <View style={{ flex: 3, backgroundColor: '#FFF' }} >
+        <View style={{ flex: 3}} >
           <Text> {props.title}</Text>
         </View>
-        <View style={{ flex: 1, backgroundColor: 'yellow' }} />
-        <View style={{ flex: 1, backgroundColor: 'purple' }} >
+        <View style={{ flex: 1 }} />
+        <View style={{ flex: 1 }} >
           <Pressable onPress={() => {
             // console.log(modalVisible);
             if (modalVisible) { setModalVisible(false) }

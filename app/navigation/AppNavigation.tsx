@@ -14,6 +14,7 @@ import AddSiblingData from '../screens/AddSiblingData';
 import LoadingScreen from '../screens/LoadingScreen';
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -55,6 +56,7 @@ export default () => {
   }
   return (
     // <ThemeProvider theme={theme}>
+    <SafeAreaProvider>
     <NavigationContainer initialState={initialState}
     onStateChange={(state) =>
       AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
@@ -106,6 +108,7 @@ export default () => {
         />
       </RootStack.Navigator>
     </NavigationContainer>
+    </SafeAreaProvider>
     // </ThemeProvider>
   );
 };
