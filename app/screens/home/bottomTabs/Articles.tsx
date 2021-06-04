@@ -62,8 +62,8 @@ const Articles = ({ navigation }: Props) => {
       <View style={{flex:1,flexDirection:'column'}}>
         <View style={{flex:1}}>
           <TextInput
-            autoCapitalize="none"
-            autoCorrect={false}
+           autoCapitalize='none'
+           autoCorrect={false}
             clearButtonMode="always"
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
