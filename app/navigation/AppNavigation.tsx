@@ -15,6 +15,7 @@ import LoadingScreen from '../screens/LoadingScreen';
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import useRealmListener from '../database/dbquery/userRealmListener';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -54,6 +55,7 @@ export default () => {
   if (!isReady) {
     return null;
   }
+  const callRealmListener = useRealmListener();
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
