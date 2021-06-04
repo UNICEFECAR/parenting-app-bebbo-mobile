@@ -49,6 +49,15 @@ export const localizationSlice = createSlice({
       state.languageCode = action.payload.language.languageCode;
       state.locale = action.payload.language.locale;
     },
+    setChildStore: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log("child data---",state);
+      console.log(action.payload);
+      // state.name = action.payload.name;
+      // state.callingCode = action.payload.callingCode;
+    },
     // onLanguageSelect: (
     //   state,
     //   action: PayloadAction<selectedLocalizationType>,
@@ -75,7 +84,7 @@ export const localizationSlice = createSlice({
   // },
 });
 
-export const {onLocalizationSelect} = localizationSlice.actions;
+export const {onLocalizationSelect,setChildStore} = localizationSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

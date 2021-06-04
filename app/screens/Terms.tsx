@@ -70,12 +70,11 @@ const Terms = ({navigation}: Props) => {
     navigation.navigate('PrivacyPolicy');
   }
   const dispatch = useAppDispatch();
-  
-  
     
     // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
     {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
+    // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
     {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
     {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
   ]
