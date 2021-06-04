@@ -16,22 +16,49 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
   return (
     <>
-      <Container>
-        <View>
-          <Header>
-            <HeaderText>Awesome! Your child profile has been created !</HeaderText>
-            <Header3Text>Please review your child details before proceeding!</Header3Text>
-          </Header>
-          
-          <Button
-            title="Add Sister or Brother"
-            onPress={() => navigation.navigate('AddSiblingDataScreen')}
-          />
-          <Button
-            title="Continue"
-            onPress={() => navigation.navigate('HomeDrawerNavigator')}
-          />
+<Container>
+      <View >
+      <Header>
+        <HeaderText>Awesome!! Your child profile has been created !</HeaderText>
+        <Header3Text>Please review your child details before proceeding!</Header3Text>
+        </Header>
+      </View>
+      <View style={{flex:2}}>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, backgroundColor: "red" }} >
+            <Text>Child1</Text>
+            <Text>Born on 08 july 2020</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: "darkorange" }} >
+            <Text>Delete</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: "green" }} >
+            <Text>Edit Profile</Text>
+          </View>
         </View>
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1, backgroundColor: "green" }} >
+            <Text>Child1</Text>
+            <Text>Born on 08 july 2020</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: "gray" }} >
+            <Text>Delete</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: "red" }} >
+            <Text>Edit Profile</Text>
+          </View>
+        </View>
+        </View>
+        <View>
+        <Button
+          title="Add Sister or Brother"
+          onPress={() => navigation.navigate('AddSiblingDataScreen')}
+        />
+        <Button
+          title="Continue"
+          onPress={() => navigation.navigate('HomeDrawerNavigator')}
+        />
+      </View>
       </Container>
     </>
   );
