@@ -1,7 +1,8 @@
-import { DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Text, View, Button, ScrollView, FlatList, StyleSheet } from 'react-native';
+import { Text, View, Button, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FocusAwareStatusBar from '../../../components/FocusAwareStatusBar';
 import AdviceAndArticles from '../../../components/homeScreen/AdviceAndArticles';
 import ChildInfo from '../../../components/homeScreen/ChildInfo';
 import ChildMilestones from '../../../components/homeScreen/ChildMilestones';
@@ -10,22 +11,28 @@ import PlayingTogether from '../../../components/homeScreen/PlayingTogether';
 import Tools from '../../../components/homeScreen/Tools';
 import TabScreenHeader from '../../../components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
-import { Container, Header2Text, Header3Text } from '../../../styles/style';
+import { Container, Header3Text } from '../../../styles/style';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
 };
 
-
-const Home = ({ navigation }: Props) => {
+const headerColor="blue";
+const Home = () => {
   
   return (
     <>
+     <SafeAreaView style={{flex:1}}>
+     <FocusAwareStatusBar
+        animated={true}
+        // barStyle="dark-content"
+        backgroundColor={headerColor}
+       />
       <View style={{
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="ParentBuddy" />
+        <TabScreenHeader title="ParentBuddy" headerColor={headerColor}/>
         <ScrollView style={{ flex: 4 }}>
           <ChildInfo/>
           <DailyReads/>
@@ -44,6 +51,7 @@ const Home = ({ navigation }: Props) => {
           </Container>
         </ScrollView>
       </View>
+      </SafeAreaView>
     </>
   );
 };
