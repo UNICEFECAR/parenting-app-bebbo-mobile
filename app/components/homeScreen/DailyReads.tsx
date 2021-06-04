@@ -1,8 +1,5 @@
-import { DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
-import { Header3Text } from '../../styles/style';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 const Item = ({ title }) => (
     <View style={styles.item}>
       <Text style={styles.title}>{title}</Text>
