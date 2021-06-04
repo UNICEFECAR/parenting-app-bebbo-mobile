@@ -1,10 +1,28 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Share, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CustomDrawerContent = ({ navigation }: any) => {
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
-
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'Parenbuddy App | An App for parents to monitor and guide your child growth',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
@@ -54,7 +72,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             title="Go to Settings"
             onPress={() => navigation.navigate('SettingsScreen')}
           />
-          <Text>Share The App</Text>
+          <Button title="Share The App" onPress={() => onShare}/>
           <Text>Feedback</Text>
           <Text>Love the App? Rate it</Text>
         </View>
