@@ -27,7 +27,7 @@ export default () => {
 
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
-
+  const callRealmListener = useRealmListener();
   React.useEffect(() => {
     const restoreState = async () => {
       try {
@@ -55,7 +55,7 @@ export default () => {
   if (!isReady) {
     return null;
   }
-  const callRealmListener = useRealmListener();
+  
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
