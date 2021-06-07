@@ -1,11 +1,19 @@
 import React from 'react';
 import { View, Text, Button, FlatList, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
-
+const circleWidth=100;
 const Item = ({ title }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
   </View>
 );
+const MilestoneCircle = () => (
+  <View style={{width: circleWidth,
+    height: circleWidth,
+    borderRadius: circleWidth / 2,
+    backgroundColor:'purple'}}>
+  </View>
+);
+
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -20,18 +28,24 @@ const DATA = [
     title: 'Third Item',
   },
 ];
-
+const boxWidth= 200;
+const contentContainerStyleWidth = (boxWidth * DATA.length-1)+circleWidth;
 const ChildMilestones = ({ navigation }: Props) => {
-  const renderDailyReadItem = (item, index) => (
-    <Item title={item.title} key={index} />
-  );
+  const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
+    if (index === 0) {
+     return (<MilestoneCircle key={index}  />)
+    } else {
+     return (<Item title={item.title} key={index} />)
+    }
+  }
+
   return (
     <>
-      <View style={{backgroundColor:'#DDD'}}>
+      <View style={{ backgroundColor: '#DDD' }}>
         <Text>{'Child Milestones'}</Text>
         <ScrollView
           horizontal={true}
-          contentContainerStyle={{ width: `${100 * 3}%` }}
+          contentContainerStyle={{ width: `${contentContainerStyleWidth}%` }}
           showsHorizontalScrollIndicator={true}
           scrollEventThrottle={200}
           decelerationRate="fast"
@@ -55,12 +69,14 @@ const ChildMilestones = ({ navigation }: Props) => {
 };
 
 export default ChildMilestones;
+
 const styles = StyleSheet.create({
   item: {
     backgroundColor: '#f9c2ff',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    width: boxWidth,
   },
   title: {
     fontSize: 32,
