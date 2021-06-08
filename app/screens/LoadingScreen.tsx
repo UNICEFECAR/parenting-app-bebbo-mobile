@@ -40,25 +40,6 @@ const apiJsonData = [
   });
   return (
     <>
-
-      <Container>
-        <View style={{justifyContent:'center',alignContent:'center',flex:1}}>
-        <ActivityIndicator size="large" color="#00ff00" />
-        <Header2Text>Loading screen</Header2Text>
-          <Button
-            title="Next"
-            onPress={() => {
-              navigation.reset({
-                index: 0,
-                routes: [{name: 'ChildSetup'}],
-              })
-              // navigation.navigate('ChildSetup')
-            }}
-          />
-        </View>
-      </Container>
-    </>
-
      <LoadingScreenComponent></LoadingScreenComponent>
    </>
 
