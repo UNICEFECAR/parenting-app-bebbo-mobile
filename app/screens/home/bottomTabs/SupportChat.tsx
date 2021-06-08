@@ -2,8 +2,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FocusAwareStatusBar from '../../../components/FocusAwareStatusBar';
-import TabScreenHeader from '../../../components/TabScreenHeader';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;

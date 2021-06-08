@@ -11,6 +11,7 @@ import CustomDrawerContent from '../screens/CustomDrawerContent';
 import SettingScreen from '../screens/home/SettingScreen';
 import Aboutus from '../screens/home/Aboutus';
 import ChildProfile from '../screens/home/ChildProfile';
+import ArtilcleDetails from '../screens/ArtilcleDetails';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
@@ -54,6 +55,8 @@ export default () => {
         name="SettingsScreen"
         component={SettingScreen}
       />
+        <HomeDrawerNavigator.Screen name="ArtilcleDetails" component={ArtilcleDetails}/>
+
     </HomeDrawerNavigator.Navigator>
   );
 };

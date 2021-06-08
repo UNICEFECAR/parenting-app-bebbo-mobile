@@ -2,7 +2,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useState } from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
-import ChildDate from '../components/ChildDate';
+import ChildDate from '@components/ChildDate';
 import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header2Text } from '../styles/style';
 
