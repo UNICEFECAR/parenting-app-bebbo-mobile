@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { FlatList, View, Text, StyleSheet, ScrollView, Pressable, Dimensions } from "react-native"
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Icon from './shared/Icon';
 const Item = ({ title }) => (
     <View style={styles.item}>
         <Text style={styles.title}>{title}</Text>
@@ -80,7 +81,7 @@ const AgeBrackets = () => {
             <View style={{ padding: 10, flex: 1, minHeight: 80, flexDirection: "row" }}>
                 <View style={{ padding: 10, paddingTop: 16 }} >
                     <TouchableOpacity onPress={() => leftArrow()}>
-                        <Text>{'< Left'}</Text>
+                    <Icon name="ic_angle_left" size={20} color="#000" />
                     </TouchableOpacity>
                 </View>
                 <ScrollView
@@ -102,7 +103,8 @@ const AgeBrackets = () => {
                     })}
                 </ScrollView>
                 <View style={{ padding: 10, paddingTop: 16 }}>
-                    <TouchableOpacity onPress={() => { rightArrow() }}><Text>{'Right >'}</Text>
+                    <TouchableOpacity onPress={() => { rightArrow() }}>
+                    <Icon name="ic_angle_right" size={20} color="#000" />
                     </TouchableOpacity></View>
             </View>
         </>
