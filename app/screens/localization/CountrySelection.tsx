@@ -20,7 +20,7 @@ import {
   SelectionView,
 } from '../../styles/style';
 import {localization} from '../../assets/data/localization';
-import CountryItem from '../../components/CountryItem';
+import CountryItem from '@components/CountryItem';
 import {useTranslation} from 'react-i18next';
 import { useAppSelector } from '../../../App';
 // import {API_URL, API_TOKEN} from "@env";

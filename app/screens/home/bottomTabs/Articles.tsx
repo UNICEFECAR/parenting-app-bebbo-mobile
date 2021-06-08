@@ -2,15 +2,17 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text, ScrollView,FlatList, StyleSheet, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ArticleCategories from '../../../components/ArticleCategories';
-import FocusAwareStatusBar from '../../../components/FocusAwareStatusBar';
-import TabScreenHeader from '../../../components/TabScreenHeader';
+import ArticleCategories from '@components/ArticleCategories';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  navigation: ArticlesNavigationProp;
+  navigation: ArticlesNavigationProp,
+  'ArtilcleDetails'
 };
 
 const Item = ({ title }) => (
@@ -44,13 +46,19 @@ const DATA = [
     title: '6th Item',
   },
 ];
+
+
 const headerColor = "orange";
 const Articles = ({ navigation }: Props) => {
   const renderDailyReadItem = ({ item }) => (
+    <TouchableOpacity onPress={onPress} >
     <Item title={item.title} />
+    </TouchableOpacity>
   );
 
-
+  const onPress = ()=>{
+    navigation.navigate('ArtilcleDetails');
+  }
   return (
     <>
      <SafeAreaView style={{flex:1}}>
@@ -81,8 +89,6 @@ const Articles = ({ navigation }: Props) => {
         </View>
         </View>
        </SafeAreaView>
-      
-     
     </>
   );
 };
