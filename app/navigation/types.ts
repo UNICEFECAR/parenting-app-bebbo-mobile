@@ -8,6 +8,7 @@ export type RootStackParamList = {
   Terms: undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
+  // ArticleDetails1:undefined;
 };
 
 export type LocalizationStackParamList = {
