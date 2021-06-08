@@ -19,7 +19,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       } else if (result.action === Share.dismissedAction) {
         // dismissed
       }
-    } catch (error) {
+    } catch (error: any) {
       Alert.alert(error.message);
     }
   };
@@ -61,18 +61,24 @@ const CustomDrawerContent = ({ navigation }: any) => {
               />
             </>
           ) : null}
-
-          <Text>Favourites</Text>
+          <Button
+            title="Go to Favourites"
+            onPress={() => navigation.navigate('Favourites')}
+          />
+          {/* <Text>Favourites</Text> */}
           <Button
             title="Go to About us"
             onPress={() => navigation.navigate('AboutusScreen')}
           />
-          <Text>User Guide</Text>
+          <Button
+            title="Go to UserGuide"
+            onPress={() => navigation.navigate('UserGuide')}
+          />
           <Button
             title="Go to Settings"
             onPress={() => navigation.navigate('SettingsScreen')}
           />
-          <Button title="Share The App" onPress={() => onShare}/>
+          <Button title="Share The App" onPress={() => onShare} />
           <Text>Feedback</Text>
           <Text>Love the App? Rate it</Text>
         </View>

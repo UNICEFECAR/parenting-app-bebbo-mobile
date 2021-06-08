@@ -3,18 +3,18 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { RootStackParamList } from '../navigation/types';
-import { Header, Container, HeaderText, Header3Text } from '../styles/style';
-type ArtilcleDetailsNavigationProp = StackNavigationProp<
-  RootStackParamList
+import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
+import { Header, Container, HeaderText, Header3Text } from '../../styles/style';
+type ActivityDetailsNavigationProp = StackNavigationProp<
+HomeDrawerNavigatorStackParamList
 >;
 
 type Props = {
-  navigation: ArtilcleDetailsNavigationProp;
+  navigation: ActivityDetailsNavigationProp;
 };
 
 const headerColor = 'red';
-const ArtilcleDetails = ({ navigation }: Props) => {
+const ActivityDetails = ({ navigation }: Props) => {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
@@ -35,12 +35,12 @@ const ArtilcleDetails = ({ navigation }: Props) => {
                 maxHeight: 50,
               }}>
               <View style={{ flex: 1, }} >
-                <Pressable onPress={() => navigation.pop()}>
+                <Pressable onPress={() => {navigation.goBack()}}>
                   <Text>Back</Text>
                 </Pressable>
               </View>
               <View style={{ flex: 3 }} >
-                <Text> {'Article Details'}</Text>
+                <Text> {'Activity Details'}</Text>
               </View>
             </View>
           </View>
@@ -54,4 +54,4 @@ const ArtilcleDetails = ({ navigation }: Props) => {
   );
 };
 
-export default ArtilcleDetails;
+export default ActivityDetails;
