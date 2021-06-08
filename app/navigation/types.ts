@@ -26,7 +26,10 @@ export type HomeDrawerNavigatorStackParamList = {
   SettingsScreen: undefined;
   AboutusScreen: undefined;
   ChildProfileScreen: undefined;
-  ArtilcleDetails: undefined;
+  ArticleDetails: undefined;
+  ActivityDetails: undefined;
+  UserGuide: undefined;
+  Favourites: undefined;
 };
 
 export type DashboardBottomTabParamList = {

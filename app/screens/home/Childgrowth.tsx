@@ -17,6 +17,18 @@ const Childgrowth = ({navigation}: Props) => {
         title="Toggle"
         onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
       />
+      <Button
+        title="go to ArtilcleDetails"
+        onPress={() =>{
+          navigation.navigate('ArticleDetails');
+        }}
+      />
+      <Button
+        title="go to ActivityDetails"
+        onPress={() =>{
+          navigation.navigate('ActivityDetails');
+        }}
+      />
     </View>
   );
 };
