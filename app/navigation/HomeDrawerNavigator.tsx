@@ -15,6 +15,8 @@ import ArticleDetails from '../screens/home/ArticleDetails';
 import ActivityDetails from '../screens/home/ActivityDetails';
 import UserGuide from '../screens/home/UserGuide';
 import Favourites from '../screens/home/Favourites';
+import AddSiblingProfile from '../screens/AddSiblingProfile';
+import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
@@ -37,6 +39,14 @@ export default () => {
       <HomeDrawerNavigator.Screen
         name="ChildProfileScreen"
         component={ChildProfile}
+      />
+      <HomeDrawerNavigator.Screen
+        name="AddSiblingProfile"
+        component={AddSiblingProfile}
+      />
+      <HomeDrawerNavigator.Screen
+        name="AddExpectingChildProfile"
+        component={AddExpectingChildProfile}
       />
       <HomeDrawerNavigator.Screen
         name="ChildgrowthScreen"
