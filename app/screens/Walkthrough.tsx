@@ -69,7 +69,11 @@ const Walkthrough = ({navigation}: Props) => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     // this.setState({ showRealApp: true });
-    navigation.navigate('Terms');
+    // navigation.navigate('Terms');
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Terms'}],
+    })
   }
   const keyExtractor = (item: Item) => item.title;
   return (

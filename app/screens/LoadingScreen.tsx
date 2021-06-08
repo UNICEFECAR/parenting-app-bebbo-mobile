@@ -22,7 +22,13 @@ const LoadingScreen = ({ navigation }: Props) => {
         <Header2Text>Loading screen</Header2Text>
           <Button
             title="Next"
-            onPress={() => navigation.navigate('ChildSetup')}
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'ChildSetup'}],
+              })
+              // navigation.navigate('ChildSetup')
+            }}
           />
         </View>
       </Container>

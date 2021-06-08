@@ -71,7 +71,13 @@ const ChildSetup = ({ navigation }: Props) => {
         </View>
         <Button
           title="Continue"
-          onPress={() => navigation.navigate('ChildSetupList')}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'ChildSetupList'}],
+            })
+            // navigation.navigate('ChildSetupList')
+          }}
         />
 
 
