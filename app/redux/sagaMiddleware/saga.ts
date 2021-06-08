@@ -1,6 +1,7 @@
+import { AxiosResponse } from 'axios';
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
-import { onApiSuccess, retryAlert } from '../../screens/Terms';
-import  commonApiService  from '../../services/commonApiService';
+import { retryAlert } from '../../screens/Terms';
+import  commonApiService, { onApiSuccess }  from '../../services/commonApiService';
 import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
@@ -58,7 +59,7 @@ function* onFetchAPI(value:any) {
           }
          }
          else {
-           onApiSuccess();
+          onApiSuccess(response);
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {
@@ -66,6 +67,7 @@ function* onFetchAPI(value:any) {
         //yield put(receiveAPIFailure(e));
       }
 }
+
 function* apiCall(data: apijsonArray) {
   const response = yield call(commonApiService, data.apiEndpoint,data.method,data.postdata);
   console.log(response,"  in apicall")
@@ -81,8 +83,10 @@ function* apiCall(data: apijsonArray) {
     // call realm db insertion code by creating another saga.
     try{
       // yield call(addApiDataInRealm, response);
+      if(data.saveinDB==true){
       console.log("insert started");
       yield put(insertInDB(response));
+      }
     }
     catch(e) {
       errorArr.push(response);

@@ -1,3 +1,4 @@
+
 import axios, { AxiosResponse } from "axios";
 import { SagaReturnType } from "redux-saga/effects";
 import { RootState, useAppSelector } from "../../App";
@@ -5,6 +6,7 @@ import { commonApiInterface } from "../interface/interface";
 import { finalUrl } from "../types/apiConstants";
 import axiosService from "./axiosService";
 import { store } from "../../App";
+import ImageStorage from "../downloadImages/ImageStorage";
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -47,5 +49,16 @@ const commonApiService:commonApiInterface = async (apiEndpoint:string,methodname
       // }
     });
   }
-
+  export const onApiSuccess=(response:any)=>{
+    console.log(response,"..response..");
+    ImageStorage(response);
+  }
+  export const onApiFail=(error:any)=>{
+    console.log(error,"..error..");
+  
+  }
+  export const onRetryAlert=(data:any)=>{
+    console.log(data,"..data..");
+  
+  }
   export default commonApiService;
