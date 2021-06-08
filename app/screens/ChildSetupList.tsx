@@ -57,11 +57,11 @@ const ChildSetupList = ({ navigation }: Props) => {
         <Button
           title="Continue"
           onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'HomeDrawerNavigator'}],
-            })
-            // navigation.navigate('HomeDrawerNavigator')
+            // navigation.reset({
+            //   index: 0,
+            //   routes: [{name: 'HomeDrawerNavigator'}],
+            // })
+            navigation.navigate('HomeDrawerNavigator')
           
           }}
         />

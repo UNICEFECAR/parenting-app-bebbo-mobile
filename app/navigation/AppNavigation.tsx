@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useRealmListener from '../database/dbquery/userRealmListener';
+import ArticleDetails from '../screens/home/ArticleDetails';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -110,6 +111,7 @@ export default () => {
           //   headerLeftContainerStyle: {paddingLeft: 10},
           // })}
         />
+        {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
     </NavigationContainer>
     </SafeAreaProvider>
