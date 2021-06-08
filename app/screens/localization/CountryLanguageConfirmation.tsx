@@ -15,6 +15,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
+import ImageStorage from '../../downloadImages/ImageStorage';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -33,7 +34,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   //     (state: any) => state.selectedCountry.language,
   //   );
   const apiJsonData = [
-    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{}}
+    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{},saveinDB:false}
     ]
   const { t, i18n } = useTranslation();
   const saveSelection = () => {
@@ -49,6 +50,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // navigation.navigate('Walkthrough');
 
   };
+
   return (
     <>
       <Container>
