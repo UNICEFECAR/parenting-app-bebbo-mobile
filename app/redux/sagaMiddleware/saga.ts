@@ -1,20 +1,20 @@
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
-import { onLoadApiSuccess, retryOnloadAlert } from '../../screens/Terms';
+import { onApiSuccess, retryAlert } from '../../screens/Terms';
 import  commonApiService  from '../../services/commonApiService';
 import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
-import { apijsonArray, fetchOnloadAPI, FETCH_ONLOAD_API, insertInDB } from './sagaActions';
+import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
-import { receiveOnloadAPIFailure } from './sagaSlice';
+import { receiveAPIFailure } from './sagaSlice';
 // declare global errorArr;
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
 export default function* rootSaga() {
     console.log("called rootSaga");
-    yield all([fetchOnloadPISaga(),InsertInDBSaga()]);
+    yield all([fetchAPISaga(),InsertInDBSaga()]);
 }
 
-function* onFetchOnloadAPI(value:any) {
+function* onFetchAPI(value:any) {
     console.log(" called ..onFetchAPI..",value);
     try {
         // API Request
@@ -32,7 +32,7 @@ function* onFetchOnloadAPI(value:any) {
          if(errorArr.length > 0)
          {
           try {
-            const confirm = yield call(retryOnloadAlert);
+            const confirm = yield call(retryAlert);
             console.log("confirm--",confirm);
             let failedApiObj = errorArr;
             let onLoadApiArray;
@@ -51,14 +51,14 @@ function* onFetchOnloadAPI(value:any) {
             }
             console.log("onLoadApiArray--",onLoadApiArray);
             errorArr = [];
-            yield put(fetchOnloadAPI(onLoadApiArray));
+            yield put(fetchAPI(onLoadApiArray));
           }catch(e) {
             console.log("user selected cancelled");
             //code of what to fo if user selected cancel.
           }
          }
          else {
-           onLoadApiSuccess();
+           onApiSuccess();
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {
@@ -76,7 +76,7 @@ function* apiCall(data: apijsonArray) {
     //code to insert in realm
     errorArr.push(response);
     console.log("errorArr---",errorArr)
-    yield put(receiveOnloadAPIFailure(errorArr))
+    yield put(receiveAPIFailure(errorArr))
   }else {
     // call realm db insertion code by creating another saga.
     try{
@@ -92,7 +92,7 @@ function* apiCall(data: apijsonArray) {
   // return response;
   // yield put(receiveData(response))
 }
-export function* fetchOnloadPISaga() {
+export function* fetchAPISaga() {
     console.log("called fetchAPISaga");
-    yield takeEvery(FETCH_ONLOAD_API, onFetchOnloadAPI);
+    yield takeEvery(FETCH_API, onFetchAPI);
   }
