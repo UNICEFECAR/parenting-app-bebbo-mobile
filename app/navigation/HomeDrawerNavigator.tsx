@@ -11,7 +11,10 @@ import CustomDrawerContent from '../screens/CustomDrawerContent';
 import SettingScreen from '../screens/home/SettingScreen';
 import Aboutus from '../screens/home/Aboutus';
 import ChildProfile from '../screens/home/ChildProfile';
-import ArtilcleDetails from '../screens/ArtilcleDetails';
+import ArticleDetails from '../screens/home/ArticleDetails';
+import ActivityDetails from '../screens/home/ActivityDetails';
+import UserGuide from '../screens/home/UserGuide';
+import Favourites from '../screens/home/Favourites';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
@@ -54,8 +57,12 @@ export default () => {
       <HomeDrawerNavigator.Screen
         name="SettingsScreen"
         component={SettingScreen}
-      />
-        <HomeDrawerNavigator.Screen name="ArtilcleDetails" component={ArtilcleDetails}/>
+
+      />      
+      <HomeDrawerNavigator.Screen name="ArticleDetails" component={ArticleDetails}/>
+      <HomeDrawerNavigator.Screen name="ActivityDetails" component={ActivityDetails}/>
+      <HomeDrawerNavigator.Screen name="UserGuide" component={UserGuide}/>
+      <HomeDrawerNavigator.Screen name="Favourites" component={Favourites}/>
 
     </HomeDrawerNavigator.Navigator>
   );

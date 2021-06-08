@@ -190,7 +190,14 @@ const Terms = ({navigation}: Props) => {
               onPress={() => navigation.navigate('ChildSetup')}
             /> */}
       </ScrollView>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('LoadingScreen')}>
+      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => {
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'LoadingScreen'}],
+        })
+        // navigation.navigate('LoadingScreen')
+        
+        }}>
             <ButtonText>I accept terms and conditions</ButtonText>
       </Pressable>
       <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
