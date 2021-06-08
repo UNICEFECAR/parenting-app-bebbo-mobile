@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, FlatList, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
+import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 const circleWidth=100;
 const Item = ({ title }) => (
   <View style={styles.item}>
@@ -29,11 +30,14 @@ const DATA = [
   },
 ];
 const boxWidth= 200;
+import icoMoonConfig from '../../assets/iconConfig/selection.json';
+const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon',
+'icomoon.ttf');
 const contentContainerStyleWidth = (boxWidth * DATA.length-1)+circleWidth;
 const ChildMilestones = ({ navigation }: Props) => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     if (index === 0) {
-     return (<MilestoneCircle key={index}  />)
+     return ( <Icon name="ic_next_arow" size={50} color="red" key={index}  />)
     } else {
      return (<Item title={item.title} key={index} />)
     }
@@ -43,6 +47,7 @@ const ChildMilestones = ({ navigation }: Props) => {
     <>
       <View style={{ backgroundColor: '#DDD' }}>
         <Text>{'Child Milestones'}</Text>
+       
         <ScrollView
           horizontal={true}
           contentContainerStyle={{ width: `${contentContainerStyleWidth}%` }}
