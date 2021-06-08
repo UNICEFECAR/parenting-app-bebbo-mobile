@@ -16,18 +16,20 @@ import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import useRealmListener from '../database/dbquery/userRealmListener';
+
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
-  // const callingCode = useAppSelector(
-  //   (state: any) => state.selectedCountry.callingCode,
+  // const countryId = useAppSelector(
+  //   (state: any) => state.selectedCountry.countryId,
   // );
 
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
-
+  const callRealmListener = useRealmListener();
   React.useEffect(() => {
     const restoreState = async () => {
       try {
@@ -55,6 +57,7 @@ export default () => {
   if (!isReady) {
     return null;
   }
+  
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
@@ -63,7 +66,7 @@ export default () => {
       AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
     }>
       <RootStack.Navigator
-        // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
+        // initialRouteName={countryId ? 'Walkthrough' : 'Localization'}>
         initialRouteName={'Localization'}>
         <RootStack.Screen
           name="Localization"

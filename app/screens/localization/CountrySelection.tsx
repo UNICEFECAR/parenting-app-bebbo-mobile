@@ -28,7 +28,7 @@ import { useAppSelector } from '../../../App';
 type localizationType = {
   name: string;
   displayName: string;
-  callingCode: number;
+  countryId: number;
   languages: {
       name: string;
       displayName: string;
@@ -38,11 +38,11 @@ type localizationType = {
 }
 const CountrySelection = (props: any) => {
   const [country, setCountry] = useState<localizationType>();
-  const callingCode = useAppSelector(
-    (state: any) => state.selectedCountry.callingCode,
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
   );
   useEffect(() => {
-    const selectedCountry = localization.find(country=> country.callingCode === callingCode)
+    const selectedCountry = localization.find(country=> country.countryId === countryId)
     setCountry(selectedCountry);
   },[]);
   const renderItem = ({item}: any) => (
@@ -61,7 +61,7 @@ const CountrySelection = (props: any) => {
           <FlatList
             data={localization}
             renderItem={renderItem}
-            keyExtractor={(item) => item.callingCode.toString()}
+            keyExtractor={(item) => item.countryId.toString()}
           />
         </SelectionView>
         <Pressable
