@@ -3,14 +3,14 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface selectedLocalizationType {
   // name: string;
-  callingCode: number;
+  countryId: number;
   languageCode: string;
   locale: string;
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
-  callingCode: 0,
+  countryId: 1,
   languageCode: 'en',
   locale: 'en',
 };
@@ -45,7 +45,7 @@ export const localizationSlice = createSlice({
       console.log(state);
       console.log(action.payload);
       // state.name = action.payload.name;
-      state.callingCode = action.payload.country.callingCode;
+      state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
       state.locale = action.payload.language.locale;
     },
@@ -56,7 +56,7 @@ export const localizationSlice = createSlice({
       console.log("child data---",state);
       console.log(action.payload);
       // state.name = action.payload.name;
-      // state.callingCode = action.payload.callingCode;
+      // state.countryId = action.payload.countryId;
     },
     // onLanguageSelect: (
     //   state,

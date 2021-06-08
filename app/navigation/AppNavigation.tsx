@@ -21,8 +21,8 @@ import useRealmListener from '../database/dbquery/userRealmListener';
 const RootStack = createStackNavigator<RootStackParamList>();
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
-  // const callingCode = useAppSelector(
-  //   (state: any) => state.selectedCountry.callingCode,
+  // const countryId = useAppSelector(
+  //   (state: any) => state.selectedCountry.countryId,
   // );
 
   const [isReady, setIsReady] = React.useState(false);
@@ -64,7 +64,7 @@ export default () => {
       AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
     }>
       <RootStack.Navigator
-        // initialRouteName={callingCode ? 'Walkthrough' : 'Localization'}>
+        // initialRouteName={countryId ? 'Walkthrough' : 'Localization'}>
         initialRouteName={'Localization'}>
         <RootStack.Screen
           name="Localization"
