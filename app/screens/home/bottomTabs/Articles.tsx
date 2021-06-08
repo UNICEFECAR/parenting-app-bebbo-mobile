@@ -7,12 +7,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
-type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+import { RootStackParamList } from '../../../navigation/types';
+type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ArticlesNavigationProp,
-  'ArtilcleDetails'
 };
 
 const Item = ({ title }) => (
@@ -57,7 +56,7 @@ const Articles = ({ navigation }: Props) => {
   );
 
   const onPress = ()=>{
-    navigation.navigate('ArtilcleDetails');
+    navigation.navigate('ArticleDetails');
   }
   return (
     <>

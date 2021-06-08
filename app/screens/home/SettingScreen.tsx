@@ -21,7 +21,12 @@ const SettingScreen = (props: any) => {
         <View style={{ flex: 1 }}>
           <Pressable
             style={{ padding: 10 }}
-            onPress={() => props.navigation.navigate('CountrySelection')}>
+            onPress={() => {
+              //reset navigation to localization
+              props.navigation.navigate('Localization', { screen: 'CountrySelection' });
+              
+              // props.navigation.navigate('CountrySelection')
+              }}>
             <ButtonText>{t('editCountryLang')}</ButtonText>
           </Pressable>
         </View>
