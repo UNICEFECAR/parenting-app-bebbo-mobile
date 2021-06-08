@@ -13,6 +13,8 @@ import {
   LocalizationContainer,
 } from '../../styles/style';
 import { useTranslation } from 'react-i18next';
+import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
+import { appConfig } from '../../types/apiConstants';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -30,12 +32,15 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   // const language = useAppSelector(
   //     (state: any) => state.selectedCountry.language,
   //   );
-
+  const apiJsonData = [
+    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{}}
+    ]
   const { t, i18n } = useTranslation();
   const saveSelection = () => {
     // i18n.changeLanguage(language.locale);
     console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
+    dispatch(fetchAPI(apiJsonData));
     // dispatch(onLanguageSelect(language));
     navigation.reset({
       index: 0,

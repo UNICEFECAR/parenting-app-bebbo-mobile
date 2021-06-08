@@ -48,6 +48,7 @@ export const localizationSlice = createSlice({
       state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
       state.locale = action.payload.language.locale;
+      
     },
     setChildStore: (
       state,
