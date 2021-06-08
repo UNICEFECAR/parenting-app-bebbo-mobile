@@ -1,12 +1,12 @@
 export const localization = [
   {
     name: 'Albania',
-    displayName: 'Shqipëria',
-    callingCode: 355,
+    countryId: 6,
+    displayName: 'Albania (Shqipëria)',
     languages: [
       {
         name: 'Albanian',
-        displayName: 'shqip',
+        displayName: 'Shqip',
         languageCode: 'al-sq',
         locale: 'ALsq',
       },
@@ -14,12 +14,12 @@ export const localization = [
   },
   {
     name: 'Bulgaria',
-    callingCode: 359,
-    displayName: 'България',
+    countryId: 11,
+    displayName: 'Bulgaria (България)',
     languages: [
       {
         name: 'Bulgarian',
-        displayName: 'български',
+        displayName: 'Български',
         languageCode: 'bg-bg',
         locale: 'BGbg',
       },
@@ -27,8 +27,8 @@ export const localization = [
   },
   {
     name: 'Greece',
-    callingCode: 30,
-    displayName: 'Ελλάδα',
+    countryId: 16,
+    displayName: 'Greece (Ελλάδα)',
     languages: [
       {
         name: 'Greek',
@@ -40,12 +40,12 @@ export const localization = [
   },
   {
     name: 'Kosovo',
-    callingCode: 38,
-    displayName: 'Kosova',
+    countryId: 21,
+    displayName: 'Kosovo (Kosova)',
     languages: [
       {
         name: 'Albanian',
-        displayName: 'shqip',
+        displayName: 'Shqip',
         languageCode: 'xk-sq',
         locale: 'XKsq',
       },
@@ -53,8 +53,8 @@ export const localization = [
   },
   {
     name: 'Kyrgyzstan',
-    callingCode: 996,
-    displayName: 'Kyrgyzstan',
+    countryId: 26,
+    displayName: 'Kyrgyzstan (Кыргызстан)',
     languages: [
       {
         name: 'Kyrgyz',
@@ -64,7 +64,7 @@ export const localization = [
       },
       {
         name: 'Russian',
-        displayName: 'русский',
+        displayName: 'Русский',
         languageCode: 'kg-ru',
         locale: 'KGru',
       },
@@ -72,12 +72,12 @@ export const localization = [
   },
   {
     name: 'Montenegro',
-    callingCode: 382,
-    displayName: 'Crna Gora',
+    countryId: 31,
+    displayName: 'Montenegro (Crna Gora)',
     languages: [
       {
         name: 'Montenegrin',
-        displayName: 'crnogorski',
+        displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
       },
@@ -85,18 +85,18 @@ export const localization = [
   },
   {
     name: 'North macedonia',
-    callingCode: 389,
-    displayName: 'Sjeverna Makedonija',
+    countryId: 36,
+    displayName: 'North Macedonia (Северна Македонија)',
     languages: [
       {
         name: 'Macedonian',
-        displayName: 'македонски',
+        displayName: 'Македонски',
         languageCode: 'mk-mk',
         locale: 'MKmk',
       },
       {
         name: 'Albanian',
-        displayName: 'shqip',
+        displayName: 'Shqip',
         languageCode: 'mk-sq',
         locale: 'MKsq',
       },
@@ -104,12 +104,12 @@ export const localization = [
   },
   {
     name: 'Serbia',
-    callingCode: 381,
-    displayName: 'Srbija',
+    countryId: 41,
+    displayName: 'Serbia (Srbija)',
     languages: [
       {
         name: 'Serbian',
-        displayName: 'srpski',
+        displayName: 'Srpski',
         languageCode: 'rs-sr',
         locale: 'RSsr',
       },
@@ -117,18 +117,18 @@ export const localization = [
   },
   {
     name: 'Tajikistan',
-    callingCode: 992,
-    displayName: 'Тоҷикистон',
+    countryId: 46,
+    displayName: 'Tajikistan (Тоҷикистон)',
     languages: [
       {
         name: 'Tajik',
-        displayName: 'тоҷикӣ',
+        displayName: 'Тоҷикӣ',
         languageCode: 'tj-tg',
         locale: 'TJtg',
       },
       {
         name: 'Russian',
-        displayName: 'русский',
+        displayName: 'Русский',
         languageCode: 'tj-ru',
         locale: 'TJru',
       },
@@ -136,18 +136,18 @@ export const localization = [
   },
   {
     name: 'Uzbekistan',
-    callingCode: 998,
-    displayName: 'Oʻzbekiston',
+    countryId: 51,
+    displayName: 'Uzbekistan (Oʻzbekiston)',
     languages: [
       {
         name: 'Uzbek',
-        displayName: "o'zbek",
+        displayName: "Oʻzbekcha",
         languageCode: 'uz-uz',
         locale: 'UZuz',
       },
       {
         name: 'Russian',
-        displayName: 'русский',
+        displayName: 'Русский',
         languageCode: 'uz-ru',
         locale: 'UZru',
       },
@@ -155,7 +155,7 @@ export const localization = [
   },
   {
     name: 'Rest of the world',
-    callingCode: 0,
+    countryId: 1,
     displayName: 'Rest of the world',
     languages: [
       {
