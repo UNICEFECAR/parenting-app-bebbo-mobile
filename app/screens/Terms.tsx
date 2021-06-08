@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import {RootStackParamList} from '../navigation/types';
 
 import CheckBox from '@react-native-community/checkbox';
-import { fetchOnloadAPI } from '../redux/sagaMiddleware/sagaActions';
+import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 import { appConfig } from '../types/apiConstants';
@@ -21,7 +21,7 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
-export function retryOnloadAlert(){
+export function retryAlert(){
   return new Promise((resolve, reject) => {
     Alert.alert('Retry',"All content is not downloaded.Please Retry.",
       [
@@ -37,7 +37,7 @@ export function retryOnloadAlert(){
 }
 // function* retryApis(errorArr: any[]){
 //   console.log("in retry",errorArr);
-//   let onLoadApiArray;
+//   let onApiArray;
 //   let failedApiObj = errorArr;
 //   const apiJsonData = [
 //     {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
@@ -45,19 +45,19 @@ export function retryOnloadAlert(){
 //     {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
 //   ]
 //   if(failedApiObj) {
-//     onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
+//     onApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
 //       failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
 //     );
 //   }else {
-//     onLoadApiArray = apiJsonData;
+//     onApiArray = apiJsonData;
 //   }
-//   console.log("onLoadApiArray--",onLoadApiArray);
-//   const output = yield put(fetchOnloadAPI(onLoadApiArray));
+//   console.log("onApiArray--",onApiArray);
+//   const output = yield put(fetchAPI(onApiArray));
 //   return output;
 // }
-export const onLoadApiSuccess =() => {
+export const onApiSuccess =() => {
   //hide loading and redirect on next screen code here
-  console.log("onLoadApiSuccess");
+  console.log("onApiSuccess");
 }
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
@@ -88,7 +88,7 @@ const Terms = ({navigation}: Props) => {
   // const postdata={childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}
   const callSagaApi = () => {
     console.log("terms call");
-    dispatch(fetchOnloadAPI(apiJsonData))
+    dispatch(fetchApi(apiJsonData))
   }
   return (
     <>
@@ -192,9 +192,9 @@ const Terms = ({navigation}: Props) => {
       <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('LoadingScreen')}>
             <ButtonText>I accept terms and conditions</ButtonText>
       </Pressable>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
+      {/* <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
             <ButtonText>Call saga</ButtonText>
-      </Pressable>
+      </Pressable> */}
       </Container>
       </>
   );
