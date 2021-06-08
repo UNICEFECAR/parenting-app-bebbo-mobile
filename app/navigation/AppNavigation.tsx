@@ -109,6 +109,8 @@ export default () => {
           // })}
         />
       </RootStack.Navigator>
+      {/* <RootStack.Screen name="ArtilcleDetails" component={ArtilcleDetails}/> */}
+
     </NavigationContainer>
     </SafeAreaProvider>
     // </ThemeProvider>

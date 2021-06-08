@@ -9,7 +9,7 @@ import {
   SelectionView,
 } from '../../styles/style';
 import {LocalizationStackParamList} from '../../navigation/types';
-import LanguageItem from '../../components/LanguageItem';
+import LanguageItem from '@components/LanguageItem';
 import { useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
 import { useTranslation } from 'react-i18next';
