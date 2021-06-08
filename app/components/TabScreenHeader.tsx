@@ -40,11 +40,11 @@ const TabScreenHeader = (props:any) => {
             title="Manage Profile"
             onPress={() => navigation.navigate('ChildProfileScreen')}
           />
-            <Pressable
+            {/* <Pressable
               style={[styles.button]}
               onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>close</Text>
-            </Pressable>
+            </Pressable> */}
           </TouchableOpacity>
         </Pressable>
       </Modal>
