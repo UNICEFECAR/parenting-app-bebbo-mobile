@@ -31,9 +31,14 @@ const TabScreenHeader = (props:any) => {
             activeOpacity={1}>
             <Text style={styles.modalText}>Jenny</Text>
             <Text style={styles.modalText}>Michel </Text>
-
-            <Text style={styles.modalText}>Add sister or brother</Text>
-            <Text style={styles.modalText}>Manage Profile</Text>
+            <Button
+            title="Add sister or brother"
+            onPress={() => navigation.navigate('AddSiblingProfile')}
+          />
+            <Button
+            title="Manage Profile"
+            onPress={() => navigation.navigate('ChildProfileScreen')}
+          />
             <Pressable
               style={[styles.button]}
               onPress={() => setModalVisible(!modalVisible)}>

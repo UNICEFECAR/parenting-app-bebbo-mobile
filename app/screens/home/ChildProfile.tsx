@@ -32,8 +32,8 @@ const ChildProfile = ({ navigation }: Props) => {
                 maxHeight: 50,
               }}>
               <View style={{ flex: 1, }} >
-                <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-                  <Text>Menu</Text>
+                <Pressable onPress={() => navigation.goBack()}>
+                  <Text>Back</Text>
                 </Pressable>
               </View>
               <View style={{ flex: 3 }} >
@@ -42,7 +42,14 @@ const ChildProfile = ({ navigation }: Props) => {
             </View>
           </View>
           <View>
-            
+          <Button
+            title="Add sister or brother"
+            onPress={() => navigation.navigate('AddSiblingProfile')}
+          />
+          <Button
+            title="Add Expecting Child"
+            onPress={() => navigation.navigate('AddExpectingChildProfile')}
+          />
             
           </View>
         </View>

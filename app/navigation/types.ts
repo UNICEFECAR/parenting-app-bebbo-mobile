@@ -26,6 +26,8 @@ export type HomeDrawerNavigatorStackParamList = {
   SettingsScreen: undefined;
   AboutusScreen: undefined;
   ChildProfileScreen: undefined;
+  AddSiblingProfile: undefined;
+  AddExpectingChildProfile: undefined;
   ArticleDetails: undefined;
   ActivityDetails: undefined;
   UserGuide: undefined;
