@@ -16,10 +16,7 @@ const commonApiService:commonApiInterface = async (apiEndpoint:string,methodname
   console.log("store val--",storedata)
 
   let selectedLang,selectedCountry;
-  if(storedata.selectedCountry.callingCode == 0)
-  {
-      selectedCountry = 1;
-  }
+  selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
     let newurl = finalUrl(apiEndpoint,selectedCountry,selectedLang)
     console.log("newurl--",newurl);

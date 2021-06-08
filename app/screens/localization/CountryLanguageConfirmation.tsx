@@ -24,8 +24,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {country, language} = route.params;
   const dispatch = useAppDispatch();
   console.log(country, language);
-  // const callingCode = useAppSelector(
-  //     (state: any) => state.selectedCountry.callingCode,
+  // const countryId = useAppSelector(
+  //     (state: any) => state.selectedCountry.countryId,
   //   );
   // const language = useAppSelector(
   //     (state: any) => state.selectedCountry.language,
