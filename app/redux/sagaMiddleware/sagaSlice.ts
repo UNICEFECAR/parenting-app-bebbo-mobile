@@ -12,14 +12,14 @@ let errorarray: WritableDraft<[]> = [];
     },
     reducers: {
             
-            receiveOnloadAPIFailure: (state, action) => {
+            receiveAPIFailure: (state, action) => {
               // console.log(state);
               // console.log("receiveOnloadAPIFailure--",action.payload);
               state.errorObj = JSON.stringify(action.payload);
             }
         }
     });
-     export const {receiveOnloadAPIFailure} = sagaSlice.actions;
+     export const {receiveAPIFailure} = sagaSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
