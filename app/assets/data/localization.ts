@@ -12,6 +12,25 @@ export const localization = [
       },
     ],
   },
+  // {
+  //   name: 'Belarus',
+  //   countryId: 6,
+  //   displayName: 'Belarus (Беларусь)',
+  //   languages: [
+  //     {
+  //       name: 'Belarusian',
+  //       displayName: 'Беларуская мова',
+  //       languageCode: 'by-be',
+  //       locale: 'BYbe',
+  //     },
+  //     {
+  //       name: 'Russian',
+  //       displayName: 'Русский',
+  //       languageCode: 'by-ru',
+  //       locale: 'BYru',
+  //     }
+  //   ],
+  // },
   {
     name: 'Bulgaria',
     countryId: 11,
@@ -49,6 +68,12 @@ export const localization = [
         languageCode: 'xk-sq',
         locale: 'XKsq',
       },
+      // {
+      //   name: 'Serbian',
+      //   displayName: 'Srpski',
+      //   languageCode: 'xk-rs',
+      //   locale: 'XKrs',
+      // },
     ],
   },
   {
@@ -113,6 +138,12 @@ export const localization = [
         languageCode: 'rs-sr',
         locale: 'RSsr',
       },
+      // {
+      //   name: 'English',
+      //   displayName: 'English',
+      //   languageCode: 'rs-en',
+      //   locale: 'RSen',
+      // },
     ],
   },
   {
