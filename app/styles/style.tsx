@@ -23,19 +23,27 @@ export const SelectionView = styled.View`
 export const RadioItemText = styled.Text`
   text-align: left;
   /* font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')}; */
-  font-size: 15px;
+  font-size: 16px;
+  lineHeight:20px;
   color: #FFF;
   flex:9;
+  
+
+  
+  
   font-family: ${(props: any) => (props.isActive ?  props.theme.fonts.ROBOTO_BOLD : props.theme.fonts.ROBOTO_REGULAR)};
 
   /* font-family: ${(props: any) => (props.isActive ?  props.theme.colors.PRIMARY_COLOR : 'roboto-regular')}; */
 `;
 export const RadioItem = styled.View`
-  padding: 17px;
- 
+  padding: 13px 0;
+flexDirection:row;
+
+  alignItems: center;
   /* margin-left: 5px;
   margin-right: 5px; */
-  border-color: #cacaca;
+  border-color: rgba(255,255,255,.3);
+  
   border-bottom-width: 0.5px;
   border-radius: 3px;
   /* background: '#FFF'; */
@@ -46,10 +54,12 @@ export const RadioItem = styled.View`
 //   font-size: ${props => props.theme.FONT_SIZE_LARGE};
 
 export const Header = styled.View`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  flexDirection:row;
+  align-items:center;
 `;
 export const MiniHeader = styled.View`
   padding-top: 40px;
@@ -65,7 +75,10 @@ export const HeaderText = styled.Text`
   font-size: 24px;
   color: #FFF;
   font-family: 'roboto-bold';
+  
 `;
+  
+
 export const Header2Text = styled.Text`
   font-size: 18px;
   color: black;
