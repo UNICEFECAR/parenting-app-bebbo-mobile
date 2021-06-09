@@ -50,9 +50,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // navigation.navigate('Walkthrough');
 
   };
-  const dispatchSponsars=()=>{
-    dispatch(setSponsarStore);
-  }
+
 
   return (
     <>

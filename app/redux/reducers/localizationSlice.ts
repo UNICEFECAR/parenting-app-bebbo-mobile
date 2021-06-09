@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { WritableDraft } from 'immer/dist/internal';
 // import {RootState} from './../../../App';
 
 interface selectedLocalizationType {
@@ -6,7 +7,7 @@ interface selectedLocalizationType {
   countryId: number;
   languageCode: string;
   locale: string;
-  sponsars:Object
+  sponsars:Array<any>
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
@@ -14,7 +15,7 @@ const initialState: selectedLocalizationType = {
   countryId: 1,
   languageCode: 'en',
   locale: 'en',
-  sponsars:{}
+  sponsars:[]
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -59,7 +60,11 @@ export const localizationSlice = createSlice({
       console.log("state data---",state);
       console.log("sponsar data---",state.sponsars);
       console.log(action.payload);
-      state.sponsars = action.payload.sponsars;
+      let sponsars:any=[];
+      action.payload.map((value:any)=>{
+      sponsars.push(value.args)
+      })
+      state.sponsars = sponsars;
       // state.countryId = action.payload.countryId;
     },
     setChildStore: (
