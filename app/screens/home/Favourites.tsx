@@ -11,7 +11,7 @@ type NotificationsNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackP
 type Props = {
   navigation: NotificationsNavigationProp;
 };
-const Aboutus = ({ navigation }: Props) => {
+const Favourites = ({ navigation }: Props) => {
   return (
     <>
 
@@ -33,7 +33,7 @@ const Aboutus = ({ navigation }: Props) => {
               </Pressable>
             </View>
             <View style={{ flex: 3 }} >
-              <Text> {'About us'}</Text>
+              <Text> {'Favourites'}</Text>
             </View>
           </View>
         </View>
@@ -49,4 +49,4 @@ const Aboutus = ({ navigation }: Props) => {
 // Aboutus.navigationOptions = () => ({
 //   title: 'Aboutus',
 // });
-export default Aboutus;
+export default Favourites;

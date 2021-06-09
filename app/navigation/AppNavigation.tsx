@@ -15,9 +15,12 @@ import LoadingScreen from '../screens/LoadingScreen';
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import useRealmListener from '../database/dbquery/userRealmListener';
 import ImageStorage from '../downloadImages/ImageStorage';
 import { useNetInfo } from '@react-native-community/netinfo';
+import ArticleDetails from '../screens/home/ArticleDetails';
+
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -115,9 +118,8 @@ export default () => {
           //   headerLeftContainerStyle: {paddingLeft: 10},
           // })}
         />
+        {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
-      {/* <RootStack.Screen name="ArtilcleDetails" component={ArtilcleDetails}/> */}
-
     </NavigationContainer>
     </SafeAreaProvider>
     // </ThemeProvider>
