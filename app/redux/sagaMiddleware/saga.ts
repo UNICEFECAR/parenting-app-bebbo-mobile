@@ -1,6 +1,6 @@
+import { AxiosResponse } from 'axios';
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
-import { onApiSuccess, retryAlert } from '../../screens/Terms';
-import  commonApiService  from '../../services/commonApiService';
+import  commonApiService, { onApiSuccess, retryAlert }  from '../../services/commonApiService';
 import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
@@ -19,6 +19,7 @@ function* onFetchAPI(value:any) {
     try {
         // API Request
         const payload=value.payload;
+        console.log(payload,"..payload..");
         //we can use fork instead of all.Need to check.
         // yield payload.map((data: apijsonArray) =>call(apiCall, data))
         // const response:commonApiServiceResponse = yield all(payload.forEach((data: apijsonArray) =>  fork(apiCall, data)));
@@ -36,11 +37,7 @@ function* onFetchAPI(value:any) {
             console.log("confirm--",confirm);
             let failedApiObj = errorArr;
             let onLoadApiArray;
-            const apiJsonData = [
-              {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-              {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
-              {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
-            ]
+            const apiJsonData =payload;
             
             if(failedApiObj) {
               onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
@@ -58,7 +55,7 @@ function* onFetchAPI(value:any) {
           }
          }
          else {
-           onApiSuccess();
+          onApiSuccess(response);
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {
@@ -66,6 +63,7 @@ function* onFetchAPI(value:any) {
         //yield put(receiveAPIFailure(e));
       }
 }
+
 function* apiCall(data: apijsonArray) {
   const response = yield call(commonApiService, data.apiEndpoint,data.method,data.postdata);
   console.log(response,"  in apicall")
@@ -81,15 +79,17 @@ function* apiCall(data: apijsonArray) {
     // call realm db insertion code by creating another saga.
     try{
       // yield call(addApiDataInRealm, response);
+      if(data.saveinDB==true){
       console.log("insert started");
       yield put(insertInDB(response));
+      }
     }
     catch(e) {
       errorArr.push(response);
       console.log("errorArr after insert---",errorArr)
     }
   }
-  // return response;
+     return response;
   // yield put(receiveData(response))
 }
 export function* fetchAPISaga() {

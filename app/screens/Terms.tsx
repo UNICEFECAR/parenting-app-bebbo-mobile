@@ -21,20 +21,7 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
-export function retryAlert(){
-  return new Promise((resolve, reject) => {
-    Alert.alert('Retry',"All content is not downloaded.Please Retry.",
-      [
-        {
-          text: "Cancel",
-          onPress: () => reject("Retry Cancelled"),
-          style: "cancel"
-        },
-        { text: "Retry", onPress: () => resolve("Retry success") }
-      ]
-    );
-  });
-}
+
 // function* retryApis(errorArr: any[]){
 //   console.log("in retry",errorArr);
 //   let onApiArray;
@@ -73,10 +60,10 @@ const Terms = ({navigation}: Props) => {
     
     // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
-    {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
+    {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'},saveinDB:true},
     // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-    {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
-    {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
+    {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{},saveinDB:true},
+    {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
   ]
   
   //  apiJsonData.filter((el) => {
@@ -87,8 +74,8 @@ const Terms = ({navigation}: Props) => {
   // });
   // const postdata={childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}
   const callSagaApi = () => {
-    console.log("terms call");
-    dispatch(fetchApi(apiJsonData))
+    console.log("terms call",apiJsonData);
+   // dispatch(fetchAPI(apiJsonData))
   }
   return (
     <>
@@ -192,7 +179,7 @@ const Terms = ({navigation}: Props) => {
       <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => {
         navigation.reset({
           index: 0,
-          routes: [{name: 'LoadingScreen'}],
+          routes: [{name: 'LoadingScreen',params:apiJsonData}]      
         })
         // navigation.navigate('LoadingScreen')
         
