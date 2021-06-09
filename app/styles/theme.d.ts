@@ -21,6 +21,8 @@ declare module 'styled-components' {
         ACTIVITIES_TINTCOLOR: string,
         ARTICLES_COLOR:string,
         ARTICLES_TINTCOLOR: string,
+        PRIMARY_TEXTCOLOR: string,
+        SECONDARY_TEXTCOLOR: String,
     },
     fonts:{
       ROBOTO_BOLD: string,
