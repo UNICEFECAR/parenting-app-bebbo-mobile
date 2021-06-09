@@ -40,10 +40,10 @@ export const dataRealmConfig: Realm.Configuration ={
     if(oldRealm.schemaVersion < 1){
       const oldObjects = oldRealm.objects('VariableEntity');
       const newObjects = newRealm.objects('VariableEntity');
-      console.log("oldobj---",oldObjects);
-      console.log("newObjects---",newObjects);
-      console.log("oldRealm schema---",oldRealm.schema);
-      console.log("newRealm schema---",newRealm.schema);
+      // console.log("oldobj---",oldObjects);
+      // console.log("newObjects---",newObjects);
+      // console.log("oldRealm schema---",oldRealm.schema);
+      // console.log("newRealm schema---",newRealm.schema);
 
       // console.log("MeasurementEntity obj---",Array.from(newRealm.objects('MeasurementEntity')));
       // migrateuserRealm(oldRealm,newRealm);
