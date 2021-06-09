@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-
+import RNFS from 'react-native-fs';
 const Container = styled.View`
   width: 100%;
   flex:1;
@@ -51,36 +51,35 @@ align-items:center;
 `;
 const image = {uri: "../assets/01.png" };
 
-const LoadingScreenComponent = () => {
+const LoadingScreenComponent = (props:any) => {
+  //console.log(,"..sponsars..");
+  const sponsars=props.sponsars;
+  console.log(sponsars,"..11sponsars..");
   return (
     <Container>
       <MainView>
      
     <ImageBackground source={require('../assets/walkthrough/01.png')}>
     {/* <Child> */}
-            <HeartLogo
+        <HeartLogo
               source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                uri:'https://reactnative.dev/img/tiny_logo.png',
               }}
             />
             <PartnerLogo
-              source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
-              }}
+            source={{ uri:"file://"+sponsars[0].destFolder+"/"+sponsars[0].destFilename}}
             />
            {/* </Child>
        
           <InnerView> */}
             <SponsarLogo
-              source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
-              }}
+            source={{ uri:"file://"+sponsars[1].destFolder+"/"+sponsars[1].destFilename }}
             />
             <WrapView> 
             <Text>Supports</Text>
             <StaticLogo
               source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                uri:"file://"+sponsars[2].destFolder+"/"+sponsars[2].destFilename ,
               }}
             />
             </WrapView>
