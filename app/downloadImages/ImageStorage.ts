@@ -1,8 +1,10 @@
 import { ApiImageData } from './../types/types';
 import { useNetInfo } from "@react-native-community/netinfo";
 import RNFS from 'react-native-fs';
-import {downloadImagesBatchSize, downloadImagesIntervalBetweenBatches,showLog} from "@env";
-
+// import {downloadImagesBatchSize, downloadImagesIntervalBetweenBatches,showLog} from "@env";
+const downloadImagesBatchSize= 50; // Works for 15
+const downloadImagesIntervalBetweenBatches= 200; // In milliseconds. Works for 3000
+const showLog=true;
  //   console.log(netInfo,"..netInfo..");
 const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
     let rval: boolean = false;
@@ -54,7 +56,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
     console.log(args,"..args..");
     let allResponses: any[] = [];
     const numberOfLoops: number = Math.ceil(args.length / downloadImagesBatchSize);
-
+    console.log(downloadImagesBatchSize,"--numberOfLoops--",numberOfLoops);
     for (let loop = 0; loop < numberOfLoops; loop++) {
         // Get currentLoopImages
         const indexStart = loop * downloadImagesBatchSize;

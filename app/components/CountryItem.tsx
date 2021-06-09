@@ -8,7 +8,7 @@ import { RadioItem, RadioItemText } from '../styles/style';
 const CountryItem = ({ item, currentItem, setCountry }) => {
   const isActive = item === currentItem ? true : false;
   const netInfo=useNetInfo();
-  console.log(netInfo,"..netInfo..");
+  // console.log(netInfo,"..netInfo..");
   // const Icon = createIconSetFromFontello(fontelloConfig);
   return (
     <>

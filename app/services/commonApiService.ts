@@ -57,12 +57,33 @@ const commonApiService:commonApiInterface = async (apiEndpoint:string,methodname
   export const onApiSuccess=async (response:any)=>{
     console.log(response,"..response..");
     response=response[0];
+    const ImageArray=[];
+   // const sponsarobj = [...response.data.data];
+    // const filteredArray=response.data.data[0].find((item:any)=>{
+    //   item['country_flag'] && item['country_sponsar_logo'] && item['country_national_partner']
+    // })
+    
+    // console.log(filteredArray,"..filteredArray..");
+   
   if(response.apiEndpoint==appConfig.sponsors){
-    const ImageArray=[{
-      srcUrl: 'http://parentbuddy2fz6bm64mba.devcloud.acquia-sites.com/sites/default/files/2021-06/flag-round-250.png',
-      destFolder: RNFS.DocumentDirectoryPath + '/content',
-      destFilename: 'countryFlag.png',
-    }]
+    // let obj=[];
+    const sponsarObj=response.data.data.map((val:any)=> {
+      return ({srcUrl:val['country_flag'].url ,destFolder:RNFS.DocumentDirectoryPath + '/content',destFilename:val['country_flag'].name})
+    })
+    const partnerObj=response.data.data.map((val:any)=> {
+      return ({srcUrl:val['country_sponsor_logo'].url ,destFolder:RNFS.DocumentDirectoryPath + '/content',destFilename:val['country_sponsor_logo'].name})
+    })
+    const logoObj=response.data.data.map((val:any)=> {
+      return ({srcUrl:val['country_national_partner'].url ,destFolder:RNFS.DocumentDirectoryPath + '/content',destFilename:val['country_national_partner'].name})
+    })
+    ImageArray.push(sponsarObj[0])
+    ImageArray.push(partnerObj[0])
+    ImageArray.push(logoObj[0])
+    // const ImageArray=[{
+    //   srcUrl: 'http://parentbuddy2fz6bm64mba.devcloud.acquia-sites.com/sites/default/files/2021-06/flag-round-250.png',
+    //   destFolder: RNFS.DocumentDirectoryPath + '/content',
+    //   destFilename: 'countryFlag.png',
+    // }]
     const imagesDownloadResult = await downloadImages(ImageArray);
    console.log(imagesDownloadResult,"..image result..")
     // const country= new CountryLanguageConfirmation();

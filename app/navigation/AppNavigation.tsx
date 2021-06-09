@@ -32,7 +32,7 @@ export default () => {
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
   const netInfo=useNetInfo();
-  console.log(netInfo,"..BeforeisConnected..");
+  // console.log(netInfo,"..BeforeisConnected..");
   React.useEffect(() => {
    
     const restoreState = async () => {
