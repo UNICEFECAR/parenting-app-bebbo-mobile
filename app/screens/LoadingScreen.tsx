@@ -42,7 +42,7 @@ console.log(apiJsonData,"..apiJsonData..");
     callSagaApi();
     setTimeout(()=>{
     navigation.navigate('ChildSetup');
-    },30000)
+    },10000)
   });
   return (
     <>
