@@ -1,3 +1,5 @@
+import  RNFS  from 'react-native-fs';
+import { appConfig } from './../types/apiConstants';
 
 import axios, { AxiosResponse } from "axios";
 import { SagaReturnType } from "redux-saga/effects";
@@ -7,6 +9,9 @@ import { finalUrl } from "../types/apiConstants";
 import axiosService from "./axiosService";
 import { store } from "../../App";
 import ImageStorage from "../downloadImages/ImageStorage";
+import { Alert } from "react-native";
+import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
+import downloadImages from '../downloadImages/ImageStorage';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -49,16 +54,38 @@ const commonApiService:commonApiInterface = async (apiEndpoint:string,methodname
       // }
     });
   }
-  export const onApiSuccess=(response:any)=>{
+  export const onApiSuccess=async (response:any)=>{
     console.log(response,"..response..");
-    ImageStorage(response);
+    response=response[0];
+  if(response.apiEndpoint==appConfig.sponsors){
+    const ImageArray=[{
+      srcUrl: 'http://parentbuddy2fz6bm64mba.devcloud.acquia-sites.com/sites/default/files/2021-06/flag-round-250.png',
+      destFolder: RNFS.DocumentDirectoryPath + '/content',
+      destFilename: 'countryFlag.png',
+    }]
+    const imagesDownloadResult = await downloadImages(ImageArray);
+   console.log(imagesDownloadResult,"..image result..")
+    // const country= new CountryLanguageConfirmation();
+    // country.dispatchSponsars();
+  }
   }
   export const onApiFail=(error:any)=>{
     console.log(error,"..error..");
   
   }
-  export const onRetryAlert=(data:any)=>{
-    console.log(data,"..data..");
-  
+  export const retryAlert=()=>{
+    return new Promise((resolve, reject) => {
+      Alert.alert('Retry',"All content is not downloaded.Please Retry.",
+        [
+          {
+            text: "Cancel",
+            onPress: () => reject("Retry Cancelled"),
+            style: "cancel"
+          },
+          { text: "Retry", onPress: () => resolve("Retry success") }
+        ]
+      );
+    });
   }
+ 
   export default commonApiService;

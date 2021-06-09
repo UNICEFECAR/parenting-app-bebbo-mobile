@@ -6,6 +6,7 @@ interface selectedLocalizationType {
   countryId: number;
   languageCode: string;
   locale: string;
+  sponsars:Object
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
@@ -13,6 +14,7 @@ const initialState: selectedLocalizationType = {
   countryId: 1,
   languageCode: 'en',
   locale: 'en',
+  sponsars:{}
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -50,6 +52,16 @@ export const localizationSlice = createSlice({
       state.locale = action.payload.language.locale;
       
     },
+    setSponsarStore: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log("state data---",state);
+      console.log("sponsar data---",state.sponsars);
+      console.log(action.payload);
+      state.sponsars = action.payload.sponsars;
+      // state.countryId = action.payload.countryId;
+    },
     setChildStore: (
       state,
       action: PayloadAction<any>,
@@ -85,7 +97,7 @@ export const localizationSlice = createSlice({
   // },
 });
 
-export const {onLocalizationSelect,setChildStore} = localizationSlice.actions;
+export const {onLocalizationSelect,setChildStore,setSponsarStore} = localizationSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
