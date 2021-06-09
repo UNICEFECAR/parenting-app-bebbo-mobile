@@ -5,23 +5,23 @@ import { dataRealmConfig } from '../config/dataDbConfig';
 // import userRealm from '../config/dbConfig'
 // export const userRealmInstance = getUserRealm();
 const deleteRealmFilesBeforeOpen = false;
-console.log("in datarealm file");
+//console.log("in datarealm file");
 
 class DataRealmCommon {
     public realm?: Realm;
     private static instance: DataRealmCommon;
 
     public constructor() {
-        console.log("constructor called data");
+      //  console.log("constructor called data");
         // this.closeRealm();
         this.openRealm();
         
     }
 
     static getInstance(): DataRealmCommon {
-        console.log("getnewinstance called");
+        //console.log("getnewinstance called");
         if (!DataRealmCommon.instance) {
-            console.log("getnewinstance called in if");
+            //console.log("getnewinstance called in if");
             DataRealmCommon.instance = new DataRealmCommon();
         }
         return DataRealmCommon.instance;
@@ -29,7 +29,7 @@ class DataRealmCommon {
 
     public async openRealm(): Promise<Realm | null> {
         return new Promise((resolve, reject) => {
-            console.log("in openrealm");
+          //  console.log("in openrealm");
             if (this.realm) {
             //     this.closeRealm();
             // }
@@ -43,7 +43,7 @@ class DataRealmCommon {
                 // Open realm file
                 Realm.open(dataRealmConfig)
                     .then(realm => {
-                        console.log("open realm data");
+                       // console.log("open realm data");
                         this.realm = realm;
                         resolve(realm);
                     })
@@ -55,7 +55,7 @@ class DataRealmCommon {
     }
     public closeRealm() {
         if (this.realm) {
-            console.log("closed realm data");
+           // console.log("closed realm data");
             this.realm.close();
             delete this.realm;
         }
@@ -78,7 +78,7 @@ class DataRealmCommon {
                 if(realm)
                 {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                    console.log("in try",objLength);
+                   // console.log("in try",objLength);
                     resolve(objLength);
                 }
                 else {
@@ -92,7 +92,7 @@ class DataRealmCommon {
 
     public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<String> {
         return new Promise(async (resolve, reject) => {
-            console.log(entitySchema,"--entity--");
+           // console.log(entitySchema,"--entity--");
             try {
                 const realm = await this.openRealm();
                 if(realm)
