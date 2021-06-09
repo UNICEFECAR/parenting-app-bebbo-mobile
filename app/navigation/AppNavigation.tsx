@@ -68,8 +68,7 @@ export default () => {
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-    <NavigationContainer 
-    // initialState={initialState}
+    <NavigationContainer initialState={initialState}
     onStateChange={(state) =>
       AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
     }>
