@@ -21,6 +21,10 @@ import i18n, {
   import UZru from '../assets/translations/UZru';
   import UZuz from '../assets/translations/UZuz';
   import XKsq from '../assets/translations/XKsq';
+  import XKrs from '../assets/translations/XKrs';
+  import RSen from '../assets/translations/RSen';
+  // import BYbe from '../assets/translations/BYbe';
+  // import BYru from '../assets/translations/BYru';
 
   export const AVAILABLE_LANGUAGES = {
     en,
@@ -37,7 +41,11 @@ import i18n, {
     TJtg,
     UZru,
     UZuz,
-    XKsq
+    XKsq,
+    XKrs,
+    RSen,
+    // BYbe,
+    // BYru
   };
   console.log(AVAILABLE_LANGUAGES,"----");
   const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);

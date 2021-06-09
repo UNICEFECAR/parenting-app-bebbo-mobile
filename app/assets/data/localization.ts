@@ -68,12 +68,12 @@ export const localization = [
         languageCode: 'xk-sq',
         locale: 'XKsq',
       },
-      // {
-      //   name: 'Serbian',
-      //   displayName: 'Srpski',
-      //   languageCode: 'xk-rs',
-      //   locale: 'XKrs',
-      // },
+      {
+        name: 'Serbian',
+        displayName: 'Srpski',
+        languageCode: 'xk-rs',
+        locale: 'XKrs',
+      },
     ],
   },
   {
@@ -138,12 +138,12 @@ export const localization = [
         languageCode: 'rs-sr',
         locale: 'RSsr',
       },
-      // {
-      //   name: 'English',
-      //   displayName: 'English',
-      //   languageCode: 'rs-en',
-      //   locale: 'RSen',
-      // },
+      {
+        name: 'English',
+        displayName: 'English',
+        languageCode: 'rs-en',
+        locale: 'RSen',
+      },
     ],
   },
   {
