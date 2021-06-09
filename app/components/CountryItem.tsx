@@ -15,7 +15,7 @@ const CountryItem = ({ item, currentItem, setCountry }) => {
    
       <Pressable
         onPress={() => {
-          console.log(item);
+        //  console.log(item);
           setCountry(item);
         }}>
         <RadioItem>

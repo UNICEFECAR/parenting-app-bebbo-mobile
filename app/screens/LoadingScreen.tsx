@@ -24,7 +24,7 @@ const LoadingScreen = ({route, navigation }: Props) => {
   const sponsars = useAppSelector(
       (state: any) => state.selectedCountry.sponsars,
     );
-    console.log(sponsars,"..fom loading sponsars..");
+   // console.log(sponsars,"..fom loading sponsars..");
 // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
 // const apiJsonData = [
 // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
@@ -33,9 +33,9 @@ const LoadingScreen = ({route, navigation }: Props) => {
 // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
 // ]
 const apiJsonData  = route.params;
-console.log(apiJsonData,"..apiJsonData..");
+//console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
-    console.log("terms call");
+   // console.log("terms call");
     dispatch(fetchAPI(apiJsonData))
   }
   useEffect(() => {
