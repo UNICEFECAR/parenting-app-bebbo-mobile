@@ -2,7 +2,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {View, Pressable, Text, Image} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../App';
-import {onLocalizationSelect} from '../../redux/reducers/localizationSlice';
+import {onLocalizationSelect, setSponsarStore} from '../../redux/reducers/localizationSlice';
 import {RootStackParamList} from '../../navigation/types';
 import {
   Container,
@@ -50,6 +50,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // navigation.navigate('Walkthrough');
 
   };
+  const dispatchSponsars=()=>{
+    dispatch(setSponsarStore);
+  }
 
   return (
     <>

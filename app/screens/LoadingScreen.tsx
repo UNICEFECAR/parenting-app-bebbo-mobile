@@ -13,21 +13,24 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 const window = Dimensions.get('window');
 type Props = {
+  route:any;
   navigation: ChildSetupNavigationProp;
 };
 
 
-const LoadingScreen = ({ navigation }: Props) => {
+const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
     
 // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
-const apiJsonData = [
-{apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
+// const apiJsonData = [
 // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-{apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
-{apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
-]
+// // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
+// {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
+// {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
+// ]
+const apiJsonData  = route.params;
+console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
     console.log("terms call");
     dispatch(fetchAPI(apiJsonData))

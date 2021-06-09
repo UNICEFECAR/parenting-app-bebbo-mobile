@@ -38,6 +38,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 import { enableScreens } from 'react-native-screens';
+import ImageStorage from './app/downloadImages/ImageStorage';
+import { useNetInfo } from '@react-native-community/netinfo';
 enableScreens();
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -49,6 +51,7 @@ const CustomFallback = (props: { error: Error, resetError: Function }) => (
     <Pressable onPress={()=>{props.resetError}} ><Text>{'Try again'} </Text></Pressable>
   </View>
 )
+
 const App = () => {
   return (
     <ErrorBoundary FallbackComponent={CustomFallback}>
