@@ -21,20 +21,7 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
-export function retryAlert(){
-  return new Promise((resolve, reject) => {
-    Alert.alert('Retry',"All content is not downloaded.Please Retry.",
-      [
-        {
-          text: "Cancel",
-          onPress: () => reject("Retry Cancelled"),
-          style: "cancel"
-        },
-        { text: "Retry", onPress: () => resolve("Retry success") }
-      ]
-    );
-  });
-}
+
 // function* retryApis(errorArr: any[]){
 //   console.log("in retry",errorArr);
 //   let onApiArray;
@@ -87,8 +74,8 @@ const Terms = ({navigation}: Props) => {
   // });
   // const postdata={childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}
   const callSagaApi = () => {
-    console.log("terms call");
-    dispatch(fetchApi(apiJsonData))
+    console.log("terms call",apiJsonData);
+   // dispatch(fetchAPI(apiJsonData))
   }
   return (
     <>
@@ -189,7 +176,7 @@ const Terms = ({navigation}: Props) => {
               onPress={() => navigation.navigate('ChildSetup')}
             /> */}
       </ScrollView>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('LoadingScreen')}>
+      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => navigation.navigate('LoadingScreen',apiJsonData)}>
             <ButtonText>I accept terms and conditions</ButtonText>
       </Pressable>
       {/* <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>

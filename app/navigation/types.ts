@@ -4,7 +4,7 @@ export type RootStackParamList = {
   ChildSetup: undefined;
   ChildSetupList: undefined;
   AddSiblingDataScreen: undefined;
-  LoadingScreen: undefined;
+  LoadingScreen: {};
   Terms: undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
