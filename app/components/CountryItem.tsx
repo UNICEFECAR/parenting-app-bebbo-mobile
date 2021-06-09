@@ -12,8 +12,7 @@ const CountryItem = ({ item, currentItem, setCountry }) => {
   // const Icon = createIconSetFromFontello(fontelloConfig);
   return (
     <>
-    <Text>{netInfo.isConnected}</Text>
-    <Text>{netInfo.type}</Text>
+   
       <Pressable
         onPress={() => {
           console.log(item);
