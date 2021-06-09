@@ -32,3 +32,4 @@ export const addApiDataInRealm = async (response: any) => {
     // console.log("getresult is ", Array.from(getresult));
     
 }
+ 

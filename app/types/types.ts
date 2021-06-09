@@ -28,5 +28,9 @@ export type UserProps = {
   }
 export type ApplicationState= ReturnType<typeof rootReducer>
 
-
+export type ApiImageData = {
+  srcUrl: string;
+  destFolder: string;
+  destFilename: string;
+};
 

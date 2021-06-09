@@ -17,11 +17,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useRealmListener from '../database/dbquery/userRealmListener';
+import ImageStorage from '../downloadImages/ImageStorage';
+import { useNetInfo } from '@react-native-community/netinfo';
 import ArticleDetails from '../screens/home/ArticleDetails';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
+
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
   // const countryId = useAppSelector(
@@ -31,7 +34,10 @@ export default () => {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
+  const netInfo=useNetInfo();
+  // console.log(netInfo,"..BeforeisConnected..");
   React.useEffect(() => {
+   
     const restoreState = async () => {
       try {
         const initialUrl = await Linking.getInitialURL();
