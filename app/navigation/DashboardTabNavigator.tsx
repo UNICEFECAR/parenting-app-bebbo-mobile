@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DashboardBottomTabParamList } from './types';
 import Activities from '../screens/home/bottomTabs/Activities';
@@ -14,10 +14,13 @@ import {
   View,
 } from 'react-native';
 import Icon from '@components/shared/Icon';
+import { ThemeContext } from 'styled-components';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 export default () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const themeContext = useContext(ThemeContext);
+  const headerColor=themeContext.colors.SECONDARY_COLOR;
   return (
     <>
       <Modal
@@ -55,7 +58,7 @@ export default () => {
       <DashboardBottomTab.Navigator tabBarOptions={{
         activeTintColor: '#000',
         inactiveTintColor:'#000',
-        activeBackgroundColor:'blue',
+        activeBackgroundColor:headerColor,
         inactiveBackgroundColor:'#FFF'
 
       }}>

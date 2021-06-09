@@ -1,6 +1,6 @@
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, ScrollView,FlatList, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '../../../navigation/types';
+import { ThemeContext } from 'styled-components';
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -45,9 +46,6 @@ const DATA = [
     title: '6th Item',
   },
 ];
-
-
-const headerColor = "orange";
 const Articles = ({ navigation }: Props) => {
   const renderDailyReadItem = ({ item }) => (
     <TouchableOpacity onPress={onPress} >
@@ -58,6 +56,8 @@ const Articles = ({ navigation }: Props) => {
   const onPress = ()=>{
     navigation.navigate('ArticleDetails');
   }
+  const themeContext = useContext(ThemeContext);
+  const headerColor=themeContext.colors.ARTICLES_COLOR;
   return (
     <>
      <SafeAreaView style={{flex:1}}>
