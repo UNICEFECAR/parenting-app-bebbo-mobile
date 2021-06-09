@@ -30,16 +30,14 @@ const DATA = [
   },
 ];
 const boxWidth= 200;
-//import icoMoonConfig from '../../assets/iconConfig/selection.json';
+// import icoMoonConfig from '../../assets/iconConfig/selection.json';
 // const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon',
 // 'icomoon.ttf');
-
 const contentContainerStyleWidth = (boxWidth * DATA.length-1)+circleWidth;
 const ChildMilestones = ({ navigation }: Props) => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     if (index === 0) {
-      return (<></>);
-    // return ( <Icon name="ic_next_arow" size={50} color="red" key={index}  />)
+     return ( <MilestoneCircle key={index}/>)
     } else {
      return (<Item title={item.title} key={index} />)
     }

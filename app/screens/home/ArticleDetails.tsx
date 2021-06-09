@@ -1,17 +1,20 @@
-import { DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, SafeAreaView, Button, Pressable } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
-
-type NotificationsNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
+import { Header, Container, HeaderText, Header3Text } from '../../styles/style';
+type ArtilcleDetailsNavigationProp = StackNavigationProp<
+HomeDrawerNavigatorStackParamList
+>;
 
 type Props = {
-  navigation: NotificationsNavigationProp;
+  navigation: ArtilcleDetailsNavigationProp;
 };
-const headerColor = 'blue';
-const ChildProfile = ({ navigation }: Props) => {
+
+const headerColor = 'red';
+const ArticleDetails = ({ navigation }: Props) => {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
@@ -32,35 +35,23 @@ const ChildProfile = ({ navigation }: Props) => {
                 maxHeight: 50,
               }}>
               <View style={{ flex: 1, }} >
-                <Pressable onPress={() => navigation.goBack()}>
+                <Pressable onPress={() => {navigation.goBack()}}>
                   <Text>Back</Text>
                 </Pressable>
               </View>
               <View style={{ flex: 3 }} >
-                <Text> {'Child and ParentProfile'}</Text>
+                <Text> {'Article Details'}</Text>
               </View>
             </View>
           </View>
           <View>
-          <Button
-            title="Add sister or brother"
-            onPress={() => navigation.navigate('AddSiblingProfile')}
-          />
-          <Button
-            title="Add Expecting Child"
-            onPress={() => navigation.navigate('AddExpectingChildProfile')}
-          />
-            
+
+
           </View>
         </View>
       </SafeAreaView>
     </>
   );
 };
-// Notifications.navigationOptions = screenProps => ({
-//   title: 'Home',
-// });
-ChildProfile.navigationOptions = () => ({
-  title: 'ChildProfile',
-});
-export default ChildProfile;
+
+export default ArticleDetails;

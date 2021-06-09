@@ -2,6 +2,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, Pressable, Modal, TouchableOpacity } from 'react-native';
+import Icon from './shared/Icon';
 const headerHeight=50;
 const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
@@ -31,14 +32,19 @@ const TabScreenHeader = (props:any) => {
             activeOpacity={1}>
             <Text style={styles.modalText}>Jenny</Text>
             <Text style={styles.modalText}>Michel </Text>
-
-            <Text style={styles.modalText}>Add sister or brother</Text>
-            <Text style={styles.modalText}>Manage Profile</Text>
-            <Pressable
+            <Button
+            title="Add sister or brother"
+            onPress={() => navigation.navigate('AddSiblingProfile')}
+          />
+            <Button
+            title="Manage Profile"
+            onPress={() => navigation.navigate('ChildProfileScreen')}
+          />
+            {/* <Pressable
               style={[styles.button]}
               onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.textStyle}>close</Text>
-            </Pressable>
+            </Pressable> */}
           </TouchableOpacity>
         </Pressable>
       </Modal>
@@ -49,21 +55,20 @@ const TabScreenHeader = (props:any) => {
           backgroundColor: headerColor,
           maxHeight: headerHeight,
         }}>
-        <View style={{ flex: 1, }} >
+        <View style={{ flex: 1,padding:10}} >
           <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-            <Text>Menu</Text>
+              <Icon name="ic_navmenu" size={20} color="#FFF" />
           </Pressable>
         </View>
-        <View style={{ flex: 3}} >
-          <Text> {props.title}</Text>
+        <View style={{ flex: 4,padding:10}} >
+          <Text style={{color:"#FFF"}}> {props.title}</Text>
         </View>
-        <View style={{ flex: 1 }} />
-        <View style={{ flex: 1 }} >
+        <View style={{ flex: 1 ,padding:10,alignItems:'flex-end'}} >
           <Pressable onPress={() => {
             // console.log(modalVisible);
             if (modalVisible) { setModalVisible(false) }
             else { setModalVisible(true) }
-          }}><Text>Beboo</Text></Pressable>
+          }}><Icon name="ic_baby" size={25} color="#FFF" /></Pressable>
         </View>
       </View>
     </>

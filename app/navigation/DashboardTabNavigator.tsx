@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DashboardBottomTabParamList} from './types';
+import React, { useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { DashboardBottomTabParamList } from './types';
 import Activities from '../screens/home/bottomTabs/Activities';
 import Articles from '../screens/home/bottomTabs/Articles';
 import SupportChat from '../screens/home/bottomTabs/SupportChat';
@@ -11,7 +11,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
+import Icon from '@components/shared/Icon';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 export default () => {
@@ -50,13 +52,46 @@ export default () => {
           </TouchableOpacity>
         </Pressable>
       </Modal>
-      <DashboardBottomTab.Navigator>
-        <DashboardBottomTab.Screen name="Home" component={Home} />
-        <DashboardBottomTab.Screen name="Activities" component={Activities} />
+      <DashboardBottomTab.Navigator tabBarOptions={{
+        activeTintColor: '#000',
+        inactiveTintColor:'#000',
+        activeBackgroundColor:'blue',
+        inactiveBackgroundColor:'#FFF'
+
+      }}>
+        <DashboardBottomTab.Screen name="Home" component={Home}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="ic_sb_home" color={color} size={size} />
+            ),
+          }} />
+        <DashboardBottomTab.Screen name="Activities" component={Activities}
+          options={{
+            tabBarLabel: 'Play',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="ic_activities" color={color} size={size} />
+            ),
+          }} />
         <DashboardBottomTab.Screen
           component={SupportChat}
           name="Add"
-          listeners={({}) => ({
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: ({ color, size }) => (
+              <View
+                style={{
+                  position: 'absolute',
+                  top: 5, // space from top
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Icon name="ic_plus" color={color} size={35} style={{alignContent: 'center',}} />
+              </View>
+
+            ),
+          }}
+          listeners={({ }) => ({
             tabPress: (e) => {
               // navigation.dispatch(DrawerActions.openDrawer());
               setModalVisible(true);
@@ -64,8 +99,20 @@ export default () => {
             },
           })}
         />
-        <DashboardBottomTab.Screen name="Articles" component={Articles} />
-        <DashboardBottomTab.Screen name="SupportChat" component={SupportChat} />
+        <DashboardBottomTab.Screen name="Articles" component={Articles}
+          options={{
+            tabBarLabel: 'Articles',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="ic_articles" color={color} size={size} />
+            ),
+          }} />
+        <DashboardBottomTab.Screen name="SupportChat" component={SupportChat}
+          options={{
+            tabBarLabel: 'Chat',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="ic_chat" color={color} size={size} />
+            ),
+          }} />
       </DashboardBottomTab.Navigator>
     </>
   );
