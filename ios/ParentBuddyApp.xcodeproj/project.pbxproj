@@ -18,7 +18,6 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ParentBuddyAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ParentBuddyAppTests.m */; };
-		3C0ADE30C04C4F61999D284F /* fontello.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B7DDF5C49414368A52D0E24 /* fontello.ttf */; };
 		47893DF8512247D6A2F04AD0 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */; };
 		518435E4BEEF40C098DA6032 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 7E381652FDB746499AC00012 /* roboto-regular.woff2 */; };
 		63772003EE55E9BAFD3F24E0 /* libPods-ParentBuddyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB874E4B9FBFE16BA709E35 /* libPods-ParentBuddyApp.a */; };
@@ -54,7 +53,6 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ParentBuddyAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentBuddyAppTests.m; sourceTree = "<group>"; };
 		0B005E4D62561F06B81E5F3D /* Pods-ParentBuddyApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-tvOSTests/Pods-ParentBuddyApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		0B7DDF5C49414368A52D0E24 /* fontello.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = fontello.ttf; path = "../node_modules/react-native-vector-icons/Fonts/fontello.ttf"; sourceTree = "<group>"; };
 		0DF113AEDDB85393A7C35B08 /* Pods-ParentBuddyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp/Pods-ParentBuddyApp.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ParentBuddyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ParentBuddyApp/AppDelegate.h; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				56DCFCF254384121AFD15232 /* roboto-regular.ttf */,
 				ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */,
 				7E381652FDB746499AC00012 /* roboto-regular.woff2 */,
-				0B7DDF5C49414368A52D0E24 /* fontello.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -331,6 +328,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -386,7 +384,6 @@
 				0C16CB43AF2C40A89CF6F187 /* roboto-regular.ttf in Resources */,
 				47893DF8512247D6A2F04AD0 /* roboto-regular.woff in Resources */,
 				518435E4BEEF40C098DA6032 /* roboto-regular.woff2 in Resources */,
-				3C0ADE30C04C4F61999D284F /* fontello.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n ../node_modules/react-native-vector-image/strip_svgs.shw\n";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n../node_modules/react-native-vector-image/strip_svgs.shw\n";
 		};
 		29D082DE7B45B9071F43859C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -740,7 +737,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -751,6 +751,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ParentBuddyApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -763,7 +764,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -773,6 +777,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ParentBuddyApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
