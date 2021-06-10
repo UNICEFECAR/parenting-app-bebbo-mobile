@@ -91,6 +91,12 @@ export const onSponsorApiSuccess = async (response: any,dispatch: any,navigation
     // country.dispatchSponsors();
   }
 }
+export const onOnLoadApiSuccess = async (response: any,dispatch: any,navigation: any) => {
+  navigation.navigate('ChildSetup');
+}
+export const onChildSetuppiSuccess = async (response: any,dispatch: any,navigation: any) => {
+  navigation.navigate('HomeDrawerNavigator');
+}
 export const onApiFail = (error: any) => {
   console.log(error, "..error..");
 
