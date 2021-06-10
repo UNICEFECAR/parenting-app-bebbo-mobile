@@ -16,7 +16,7 @@ const MilestoneCircle = () => (
   <View style={{
     width: circleWidth,
     height: circleWidth,
-    borderRadius: circleWidth / 2,
+    // borderRadius: circleWidth / 2,
     backgroundColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center'
