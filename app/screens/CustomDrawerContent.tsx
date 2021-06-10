@@ -132,7 +132,7 @@ const CustomDrawerContent = ({navigation}: any) => {
 
         <Pressable onPress={() => onShare} style={styles.item}>
           <Icon name="ic_sb_shareapp" size={25} color="#000" />
-          <Text>Settings</Text>
+          <Text>Share</Text>
         </Pressable>
         <Pressable onPress={() => {}} style={styles.item}>
           <Icon name="ic_sb_feedback" size={25} color="#000" />
