@@ -63,43 +63,40 @@ const LoadingScreenComponent = (props: any) => {
   return (
     <Container>
       <MainView>
-        {/* <ImageBackground source={require('../assets/walkthrough/01.png')}> */}
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} style={{
-          flex: 1, justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          {/* <Child> */}
-
-          <View style={{ flex: 1, alignItems: 'center' }}><VectorImage source={item.image} style={styles.imagetag} /></View>
-          <View style={{ flex: 1 }}>
-            <PartnerLogo
-              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('../assets/loading/partner_albania.jpeg')}
-
-            // source={{ uri:sponsors.length>0 ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
-            />
-          </View>
-          {/* </Child>
        
-          <InnerView> */}
-          <View style={{ flex: 1 }}>
-            <SponsorLogo
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} style={{
+          flex: 1, 
+        }}>
+         
+
+          <View style={{ flex: 3, alignItems: 'center', justifyContent:'space-around', flexDirection:'column', }}>
+            <Text style={{marginTop:25}}><VectorImage source={item.image} style={styles.imagetag} /></Text>
+            <Text >
+            <PartnerLogo 
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('../assets/loading/partner_albania.jpeg')}
+            />            
+            </Text>
+            <Text><SponsorLogo
               source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('../assets/loading/sponser_albania.png')}
-            // source={{ uri:sponsors.length>0 ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
             />
-          </View>
-          <WrapView>
-            <Text>Supports</Text>
-            <StaticLogo
-              source={require('../assets/loading/unicef_logo.png')}
-            // source={{
-            //   uri:sponsors.length>0 ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
-            // }}
+            </Text>
+            <WrapView>
+            <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text>
+            <StaticLogo source={require('../assets/loading/unicef_logo.png')}
             />
           </WrapView>
-          <View style={{ flex: 1 ,flexDirection:'column',alignItems:'flex-end'}}>
-           <View style={{ flex: 1 }}><ActivityIndicator size="large" color="#ffffff" /></View>
-           <View style={{ flex: 1 }}><LoadingText>Loading data and getting content..</LoadingText></View>
           </View>
+
+         
+           <View style={{marginBottom:20, flex: 1, flexDirection:'column',alignItems:'center',alignContent:'center', justifyContent:'flex-end'}}>
+           <Text>
+           <ActivityIndicator size="large" color="#ffffff" />
+           </Text>
+           <Text style={{textAlign:'center'}}>
+             <LoadingText>Loading data and getting content..</LoadingText>
+             </Text>
+           </View>
+         
 
 
 
