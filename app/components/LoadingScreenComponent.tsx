@@ -46,64 +46,66 @@ const styles = StyleSheet.create({
     // width:120,
     // height:120,
     // marginTop:10,
-    position:'absolute',
-    top:80
+    position: 'absolute',
+    top: 80
   },
 });
 
-const item= {
+const item = {
   image: require('../assets/svg/bebbo_logo_shape.svg'),
   colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
 }
 
-const LoadingScreenComponent = (props:any) => {
+const LoadingScreenComponent = (props: any) => {
   //console.log(,"..sponsors..");
-  const sponsors=props.sponsors;
-   console.log(sponsors,"..11sponsors..");
+  const sponsors = props.sponsors;
+  console.log(sponsors, "..11sponsors..");
   return (
     <Container>
       <MainView>
-    {/* <ImageBackground source={require('../assets/walkthrough/01.png')}> */}
-    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} style={{flex:1,justifyContent: 'center',
-alignItems:'center'}}>
-    {/* <Child> */}
-      
-            <View style={{flex:1,alignItems:'center'}}><VectorImage source={item.image} style={styles.imagetag} /></View>
-            <View style={{flex:1}}> 
+        {/* <ImageBackground source={require('../assets/walkthrough/01.png')}> */}
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} style={{
+          flex: 1, justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          {/* <Child> */}
+
+          <View style={{ flex: 1, alignItems: 'center' }}><VectorImage source={item.image} style={styles.imagetag} /></View>
+          <View style={{ flex: 1 }}>
             <PartnerLogo
-              source={sponsors.length>0 ? {uri:"file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename}:require('../assets/loading/partner_albania.jpeg')}
-   
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('../assets/loading/partner_albania.jpeg')}
+
             // source={{ uri:sponsors.length>0 ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
             />
-            </View>
-           {/* </Child>
+          </View>
+          {/* </Child>
        
           <InnerView> */}
-            <View style={{flex:1}}> 
+          <View style={{ flex: 1 }}>
             <SponsorLogo
-            source={sponsors.length>0 ? {uri:"file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename}:require('../assets/loading/sponser_albania.png')}
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('../assets/loading/sponser_albania.png')}
             // source={{ uri:sponsors.length>0 ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
             />
-                 </View> 
-            <WrapView> 
+          </View>
+          <WrapView>
             <Text>Supports</Text>
             <StaticLogo
-            source={require('../assets/loading/unicef_logo.png')}
-              // source={{
-              //   uri:sponsors.length>0 ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
-              // }}
+              source={require('../assets/loading/unicef_logo.png')}
+            // source={{
+            //   uri:sponsors.length>0 ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
+            // }}
             />
-            </WrapView>
-            <View style={{flex:1}}> 
-            <ActivityIndicator size="large" color="#ffffff" />
-            <LoadingText>Loading data and getting content..</LoadingText>
-            </View>
-        
-      
+          </WrapView>
+          <View style={{ flex: 1 ,flexDirection:'column',alignItems:'flex-end'}}>
+           <View style={{ flex: 1 }}><ActivityIndicator size="large" color="#ffffff" /></View>
+           <View style={{ flex: 1 }}><LoadingText>Loading data and getting content..</LoadingText></View>
+          </View>
 
-    </LinearGradient>
 
-        
+
+        </LinearGradient>
+
+
       </MainView>
     </Container>
   );
