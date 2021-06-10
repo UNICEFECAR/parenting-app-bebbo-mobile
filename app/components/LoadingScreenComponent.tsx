@@ -59,7 +59,7 @@ const item= {
 const LoadingScreenComponent = (props:any) => {
   //console.log(,"..sponsors..");
   const sponsors=props.sponsors;
-  // console.log(sponsors,"..11sponsors..");
+   console.log(sponsors,"..11sponsors..");
   return (
     <Container>
       <MainView>
