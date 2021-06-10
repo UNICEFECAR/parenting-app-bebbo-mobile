@@ -6,15 +6,22 @@ import {onLocalizationSelect, setSponsarStore} from '../../redux/reducers/locali
 import {RootStackParamList} from '../../navigation/types';
 import {
   Container,
-  ButtonText,
+  
   MiniHeader,
   Header2Text,
   Header3Text,
-  LocalizationContainer,
+  
 } from '../../styles/style';
 import { useTranslation } from 'react-i18next';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
+import OnboardingContainer, {LocalizationContainer,LocalizationAction, LocalizationRow,LocalizationCol, LocalizationcontentHead, LocalizationcontentResult, OnboardingContent, OnboardingconfirmationHead,OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+
+
+import Icon from '@components/shared/Icon';
+import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
+import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText } from '@components/shared/ButtonGlobal';
+
 import ImageStorage from '../../downloadImages/ImageStorage';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -54,62 +61,57 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
   return (
     <>
-      <Container>
-        <View style={{flex: 1}}>
-          <View style={{flex: 1,marginBottom:50}}>
-            {/* <View style={{justifyContent:'center',padding:'35%'}}>
-              
-            </View> */}
-            <MiniHeader>
-              <Image
-                  style={{width:100,height:100,marginBottom:20}}
-                  source={require('../../assets/ic_globe.png')}
-                />
-              <Header2Text>{t('countryLangSelection')}</Header2Text>
-              <Header3Text>{t('checkonce')}</Header3Text>
-            </MiniHeader>
-          </View>
+
+    <OnboardingContainer>
+      <OnboardingconfirmationHead>
+       <Icon name= 'ic_country' size={100} color="#FFF" />
+       <OnboardingshiftHead><Heading2Centerw>{t('countryLangSelection')}</Heading2Centerw></OnboardingshiftHead>
+       <Heading3Centerw>{t('checkonce')}</Heading3Centerw>
+      </OnboardingconfirmationHead>
+
+      <OnboardingContent>
           <LocalizationContainer>
-            <View
-              style={{
-                flex: 1,
-              }}>
-              <View style={{flex: 2, flexDirection: 'row',alignItems:'center'}}>
-                <View style={{flex: 1}}>
-                  <Header3Text>{t('country')}</Header3Text>
-                </View>
-                <View style={{flex: 2}}>
-                  <Header2Text>{country.displayName}</Header2Text>
-                </View>
-              </View>
+            <LocalizationRow>
+              <LocalizationCol>
+              <LocalizationcontentHead>
+              <Heading3Regular>{t('country')}</Heading3Regular>
+              </LocalizationcontentHead>
+              <LocalizationcontentResult>
+              <Heading3>{country.displayName}</Heading3>
+              </LocalizationcontentResult>
+              </LocalizationCol>
 
-              <View style={{flex: 2, flexDirection: 'row',alignItems:'center'}}>
-                <View style={{flex: 1}}>
-                  <Header3Text>{t('language')}</Header3Text>
-                </View>
-                <View style={{flex: 2}}>
-                  <Header2Text>{language.displayName}</Header2Text>
-                </View>
-              </View>
-              <View style={{flex: 1}}>
-                <Pressable
-                  style={{padding: 10}}
+              <LocalizationCol>
+              <LocalizationcontentHead>
+              <Heading3Regular>{t('language')}</Heading3Regular>
+              </LocalizationcontentHead>
+              <LocalizationcontentResult>
+              <Heading3>{language.displayName}</Heading3>
+              </LocalizationcontentResult>
+              </LocalizationCol>
+              
+              <LocalizationAction>
+              <Pressable
                   onPress={() => navigation.navigate('CountrySelection')}>
-                  <ButtonText>{t('editCountryLang')}</ButtonText>
+                  <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
                 </Pressable>
-              </View>
-            </View>
-          </LocalizationContainer>
-
-          <View style={{flex: 1}}>
-            <Pressable
-              style={{backgroundColor: '#00AEEF', padding: 10}}
+              </LocalizationAction>
+              </LocalizationRow>
+              <ButtonContainer>
+            <ButtonPrimary
               onPress={() => saveSelection()}>
               <ButtonText>{t('continueCountryLang')}</ButtonText>
-            </Pressable>
-          </View>
-        </View>
-      </Container>
+              </ButtonPrimary>
+          </ButtonContainer>
+            
+          </LocalizationContainer>
+          
+          
+
+        </OnboardingContent>
+
+    </OnboardingContainer>
+
     </>
   );
 };

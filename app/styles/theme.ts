@@ -19,9 +19,12 @@ export const appTheme: DefaultTheme= {
         ACTIVITIES_TINTCOLOR: '#CFF7E5',
         ARTICLES_COLOR: '#FF8D6B',
         ARTICLES_TINTCOLOR: '#FFD2C4',
+        PRIMARY_TEXTCOLOR: '#000000',
+        SECONDARY_TEXTCOLOR: '#ffffff',
     },
     fonts: {
         ROBOTO_BOLD: 'roboto-bold',
         ROBOTO_REGULAR: 'roboto-regular'
     }
 };
+
