@@ -23,15 +23,15 @@ const Tools = ({ navigation }: Props) => {
           <Text>Tools</Text>
           <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.item} >
-              <VectorImage source={require('../../assets/svg/ic_vaccination_color.svg')} />
+              <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
               <Text style={styles.title}>Vaccination</Text>
             </View>
             <View style={styles.item} >
-              <VectorImage source={require('../../assets/svg/ic_health_color.svg')} />
+              <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
               <Text style={styles.title}>Health checkup</Text>
             </View>
             <View style={styles.item}>
-              <VectorImage source={require('../../assets/svg/ic_growth_color.svg')} />
+              <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
               <Text style={styles.title}>Child Growth</Text>
             </View>
           </ScrollView>

@@ -14,7 +14,7 @@ const ChildInfo = ({ navigation }: Props) => {
                     marginVertical: 8,
                     marginHorizontal: 16,
                 }}>
-                    <Image source={require('../../assets/trash/card5.jpeg')} style={{width:'100%',borderRadius:10}}/>
+                    <Image source={require('@assets/trash/card5.jpeg')} style={{width:'100%',borderRadius:10}}/>
                 </View>
                 <Header3Text>your baby is 3 month Old</Header3Text>
                 <Header3Text>your baby can likely roll from front to back and hold their head with fewer wobbles these days</Header3Text>

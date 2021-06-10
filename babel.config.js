@@ -29,6 +29,7 @@ module.exports = (api) => {
         ],
         alias: {
           '@components': './app/components',
+          '@assets': './app/assets',
         },
       },
     ],

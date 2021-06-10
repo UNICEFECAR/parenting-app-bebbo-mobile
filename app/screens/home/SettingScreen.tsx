@@ -43,7 +43,7 @@ const SettingScreen = (props: any) => {
             <ButtonText>{t('editCountryLang')}</ButtonText>
           </Pressable>
 
-          <VectorImage source={require('../../assets/svg/ic_gdrive.svg')} />
+          <VectorImage source={require('@assets/svg/ic_gdrive.svg')} />
         </View>
         <Button
           title="Toggle"
