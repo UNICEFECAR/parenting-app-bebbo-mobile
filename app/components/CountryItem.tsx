@@ -2,7 +2,6 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import { RadioItem, RadioItemText } from '../styles/style';
 import Icon from './shared/Icon';
 import Radio, { RadioActive, RadioItemText,RadioItem} from './shared/radio';
 
