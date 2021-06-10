@@ -24,7 +24,7 @@ width:200px;
 height:80px;
 margin-top:30px;
 align-items:center;
-
+resize-mode:contain;
 `;
 const SponsorLogo = styled.Image`
 width:50px;
@@ -32,8 +32,8 @@ height:50px;
 margin-top:30px;
 `;
 const StaticLogo = styled.Image`
-width:50px;
-height:50px;
+width:150px;
+height:80;
 
 `;
 const LoadingText = styled.Text`
@@ -68,19 +68,23 @@ const LoadingScreenComponent = (props:any) => {
 alignItems:'center'}}>
     {/* <Child> */}
       
-            <VectorImage source={item.image} style={styles.imagetag} />
+            <View style={{flex:1,alignItems:'center'}}><VectorImage source={item.image} style={styles.imagetag} /></View>
+            <View style={{flex:1}}> 
             <PartnerLogo
               source={sponsors.length>0 ? {uri:"file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename}:require('../assets/loading/partner_albania.jpeg')}
    
             // source={{ uri:sponsors.length>0 ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
             />
+            </View>
            {/* </Child>
        
           <InnerView> */}
+            <View style={{flex:1}}> 
             <SponsorLogo
             source={sponsors.length>0 ? {uri:"file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename}:require('../assets/loading/sponser_albania.png')}
             // source={{ uri:sponsors.length>0 ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
             />
+                 </View> 
             <WrapView> 
             <Text>Supports</Text>
             <StaticLogo
@@ -90,8 +94,10 @@ alignItems:'center'}}>
               // }}
             />
             </WrapView>
+            <View style={{flex:1}}> 
             <ActivityIndicator size="large" color="#ffffff" />
             <LoadingText>Loading data and getting content..</LoadingText>
+            </View>
         
       
 
