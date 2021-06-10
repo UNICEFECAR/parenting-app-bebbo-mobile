@@ -16,6 +16,9 @@ export default function* rootSaga() {
 
 function* onFetchAPI(value:any) {
     console.log(" called ..onFetchAPI..",value);
+     const payload=value.payload;
+     const prevPage=value.prevPage;
+        console.log(payload,"..payload..");
     try {
         // API Request
         const payload=value.payload;
@@ -56,6 +59,7 @@ function* onFetchAPI(value:any) {
          }
          else {
           onApiSuccess(response);
+
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {

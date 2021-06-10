@@ -57,8 +57,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
 }
 export const onApiSuccess = async (response: any) => {
   console.log(response, "..response..");
-  response = response[0];
-  const ImageArray = [];
+ 
   // const sponsarobj = [...response.data.data];
   // const filteredArray=response.data.data[0].find((item:any)=>{
   //   item['country_flag'] && item['country_sponsar_logo'] && item['country_national_partner']
@@ -66,7 +65,9 @@ export const onApiSuccess = async (response: any) => {
 
   // console.log(filteredArray,"..filteredArray..");
 
-  if (response.apiEndpoint == appConfig.sponsors) {
+  if (response[0].apiEndpoint == appConfig.sponsors) {
+    response = response[0];
+    const ImageArray = [];
     // let obj=[];
    // type:val.type,title:val.title,id:val.id,
     const sponsarObj = response.data.data.map((val: any) => {
@@ -88,6 +89,9 @@ export const onApiSuccess = async (response: any) => {
     
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsars();
+  }
+  else if(response.apiEndpoint == appConfig.sponsors){
+
   }
 }
 export const onApiFail = (error: any) => {
