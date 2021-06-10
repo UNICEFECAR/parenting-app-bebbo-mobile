@@ -1,93 +1,124 @@
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
-import { View, Text, ScrollView,FlatList, StyleSheet, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useContext } from 'react';
+import { View, Text, FlatList, StyleSheet, TextInput, Image, Pressable, ScrollView } from 'react-native';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '../../../navigation/types';
+import styled, { ThemeContext } from 'styled-components/native';
+import Icon from '@components/shared/Icon';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ArticlesNavigationProp,
 };
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+
+const ContainerView = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
+`;
+
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    id: '1',
+    imagePath: require('../../../assets/trash/card1.jpeg'),
+    title: 'General recommendations for overweight and obese infants'
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    id: '2',
+    imagePath: require('../../../assets/trash/card2.jpeg'),
+    title: 'General recommendations for overweight and obese infants'
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    id: '3',
+    imagePath: require('../../../assets/trash/card3.jpeg'),
+    title: 'General recommendations for overweight and obese infants'
   },
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
-    title: '4th Item',
+    id: '4',
+    imagePath: require('../../../assets/trash/card4.jpeg'),
+    title: 'General recommendations for overweight and obese infants'
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f64',
-    title: '5th Item',
+    id: '5',
+    imagePath: require('../../../assets/trash/card5.jpeg'),
+    title: 'General recommendations for overweight and obese infants'
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d73',
-    title: '6th Item',
+    id: '6',
+    imagePath: require('../../../assets/trash/card6.jpeg'),
+    title: 'Picking stuff around'
   },
 ];
-
-
-const headerColor = "orange";
 const Articles = ({ navigation }: Props) => {
-  const renderDailyReadItem = ({ item }) => (
-    <TouchableOpacity onPress={onPress} >
-    <Item title={item.title} />
-    </TouchableOpacity>
+  const renderArticleItem = (item: typeof DATA[0], index: number) => (
+    <>
+      <Pressable onPress={onPress}>
+        <View style={styles.item} key={index}>
+          <Image style={styles.cardImage}
+            source={item.imagePath} resizeMode={'cover'} />
+          <Text style={styles.label}>Play and learning</Text>
+          <Text style={styles.title}>{item.title}</Text>
+          <View style={{ flexDirection: "row", padding: 10 }}>
+            <View style={{ flex: 1, }} >
+              <Pressable onPress={() => { }} style={{ flexDirection: "row", }}>
+                <Icon name="ic_sb_shareapp" size={20} color="#000" /><Text>Share</Text>
+              </Pressable>
+            </View>
+            <View style={{ flex: 1, }} >
+              <Pressable onPress={() => { }} style={{ flexDirection: "row", }}>
+                <Icon name="ic_sb_shareapp" size={20} color="#000" /><Text>Add to favourites</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Pressable>
+    </>
   );
 
-  const onPress = ()=>{
+  const onPress = () => {
     navigation.navigate('ArticleDetails');
   }
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.ARTICLES_COLOR;
   return (
     <>
-     <SafeAreaView style={{flex:1}}>
-      <FocusAwareStatusBar
-        animated={true}
-        backgroundColor={headerColor}
-      />
-      <TabScreenHeader title="Articles" headerColor={headerColor} />
-      <View style={{flex:1,flexDirection:'column'}}>
-        <View style={{flex:1}}>
-          <TextInput
-           autoCapitalize='none'
-           autoCorrect={false}
-            clearButtonMode="always"
-            value={''}
-            // onChangeText={queryText => handleSearch(queryText)}
-            placeholder="Search"
-            style={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
+      <ContainerView>
+        <KeyboardAwareScrollView>
+
+          <FocusAwareStatusBar
+            animated={true}
+            backgroundColor={headerColor}
           />
-        </View>
-        <ArticleCategories />
-        <View style={{flex:9}}>
-        <FlatList
-          data={DATA}
-          renderItem={renderDailyReadItem}
-          keyExtractor={item => item.id}
-        />
-        </View>
-        </View>
-       </SafeAreaView>
+          <TabScreenHeader title="Articles" headerColor={headerColor} textColor='#000'/>
+        
+          <View style={{ flex: 1, flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'row', backgroundColor: '#fff', }}>
+              <Icon name="ic_search" size={20} color="#000" style={{ paddingHorizontal: 20, paddingVertical: 16 }} />
+              <TextInput
+                autoCapitalize='none'
+                autoCorrect={false}
+                clearButtonMode="always"
+                value={''}
+                // onChangeText={queryText => handleSearch(queryText)}
+                placeholder="Search for Keywords"
+                style={{ backgroundColor: '#fff', width: '100%', textAlign: 'left', paddingHorizontal: 20 }}
+              />
+            </View>
+            <ArticleCategories borderColor={headerColor} />
+            <FlatList
+              data={DATA}
+              renderItem={({ item, index }) => renderArticleItem(item, index)}
+              keyExtractor={item => item.id}
+            />
+          </View>
+      
+      </KeyboardAwareScrollView>
+    </ContainerView>
+      
     </>
   );
 };
@@ -95,12 +126,29 @@ const Articles = ({ navigation }: Props) => {
 export default Articles;
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
+    backgroundColor: '#FFF',
+    // padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderRadius: 5,
+    flex: 1
   },
   title: {
-    fontSize: 32,
+    fontSize: 16,
+    padding: 10,
+    flex: 1,
   },
+  label: {
+    fontSize: 12,
+    paddingLeft: 10,
+    flex: 1,
+  },
+  cardImage: {
+    height: 200,
+    width: '100%',
+    flex: 1,
+    alignSelf: 'center',
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+  }
 });

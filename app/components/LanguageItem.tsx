@@ -1,6 +1,8 @@
 import React from 'react';
-import {Pressable, Text} from 'react-native';
-import {RadioItem, RadioItemText} from '../styles/style';
+import { Pressable, Text, View } from 'react-native';
+
+import Icon from './shared/Icon';
+import Radio, { RadioActive, RadioItemText,RadioItem} from './shared/radio';
 const LanguageItem = ({item, currentItem, setLanguage}) => {
   const isActive = item === currentItem ? true : false;
   return (
@@ -11,8 +13,10 @@ const LanguageItem = ({item, currentItem, setLanguage}) => {
           setLanguage(item);
         }}>
         <RadioItem>
-        <Text> {isActive ? 'Act' : 'inA'} </Text>
-          <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
+        <View>
+            {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#000" /></RadioActive> : <Radio></Radio> } 
+            </View>
+            <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
         </RadioItem>
       </Pressable>
     </>

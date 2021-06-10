@@ -1,5 +1,6 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useEffect, useState} from 'react';
+
 import {LocalizationStackParamList} from '../../navigation/types';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -13,7 +14,6 @@ type Props = {
 // import {darkTheme, lightTheme} from '../../theme/theme';
 import {FlatList, Image, Pressable, StyleSheet, View} from 'react-native';
 import {
-  Container,
   ButtonText,
   Header,
   HeaderText,
@@ -23,6 +23,13 @@ import {localization} from '../../assets/data/localization';
 import CountryItem from '@components/CountryItem';
 import {useTranslation} from 'react-i18next';
 import { useAppSelector } from '../../../App';
+import Icon from '../../components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+
+import OnboardingStyle from '@components/shared/OnboardingStyle';
+import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shared/ButtonView';
+
+
 // import {API_URL, API_TOKEN} from "@env";
 //{navigation}: Props
 type localizationType = {
@@ -52,11 +59,10 @@ const CountrySelection = (props: any) => {
   // console.log("-----bj ",i18n);
   return (
     <>
-      <Container>
-        <Header>
-          {/* <HeaderText>{API_URL}</HeaderText> */}
-          <HeaderText>{t('selectYourCountry')}</HeaderText>
-        </Header>
+    <OnboardingContainer>
+    
+    <OnboardingStyle title= {t('selectYourCountry').toString()} iconname= 'ic_country' />
+
         <SelectionView>
           <FlatList
             data={localization}
@@ -64,17 +70,21 @@ const CountrySelection = (props: any) => {
             keyExtractor={(item) => item.countryId.toString()}
           />
         </SelectionView>
-        <Pressable
-          style={{marginTop:30,marginStart:300,marginBottom:10,marginEnd:10,borderRadius: 20,justifyContent: 'flex-end',alignItems: 'flex-end',}}
-          onPress={() =>
-            props.navigation.navigate('LanguageSelection', {country})
-          }>
-          {/* <ButtonText>{t('goToLanguageSelection')}</ButtonText> */}
-          {/* <View style={{width: 40,height: 40,backgroundColor: 'rgba(0, 0, 0, .2)',borderRadius: 20,justifyContent: 'center',alignItems: 'center',}}> */}
-            <Image style={{width:50,height:50}} source={ require( '../../assets/ic_next_arrow.png') } />
-          {/* </View> */}
-        </Pressable>
-      </Container>
+        <ButtonSection>
+        
+        <ButtonviewNext>
+            <ButtonviewClick 
+            style={{}}
+            onPress={() =>
+              props.navigation.navigate('LanguageSelection', {country})
+            }>
+              <Icon name="ic_angle_right" size={32} color="#000" />
+         
+            </ButtonviewClick>
+        </ButtonviewNext>
+        
+        </ButtonSection>
+        </OnboardingContainer>
     </>
   );
 };

@@ -1,53 +1,119 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, ImageBackground } from 'react-native';
+import styled from 'styled-components/native';
 const Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+const ContainerView = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: ${props => props.theme.colors.SECONDARY_TINTCOLOR};
+`;
+
+const DATA = [
+  {
+    id: '1',
+    imagePath: require('../../assets/trash/card1.jpeg'),
+    title: 'Gripping your filgers'
+  },
+  {
+    id: '2',
+    imagePath: require('../../assets/trash/card2.jpeg'),
+    title: 'Molding your hands'
+  },
+  {
+    id: '3',
+    imagePath: require('../../assets/trash/card3.jpeg'),
+    title: 'Picking stuff around'
+  },
+  {
+    id: '4',
+    imagePath: require('../../assets/trash/card4.jpeg'),
+    title: 'Gripping your filgers'
+  },
+  {
+    id: '5',
+    imagePath: require('../../assets/trash/card5.jpeg'),
+    title: 'Molding your hands'
+  },
+  {
+    id: '6',
+    imagePath: require('../../assets/trash/card6.jpeg'),
+    title: 'Picking stuff around'
+  },
+];
 
 const DailyReads = ({ navigation }: Props) => {
-    const renderDailyReadItem = ({ item }) => (
-        <Item title={item.title} />
-      );
+  const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
+
     return (
-        <>
-            <View style={{padding:15,backgroundColor:'#EEE'}}>
-            <Text>Daily Reads</Text>
-            <FlatList
-              data={DATA}
-              horizontal
-              renderItem={renderDailyReadItem}
-              keyExtractor={item => item.id}
-            />
-          </View>
-        </>
-    );
+      <View style={styles.item} key={index}>
+        <ImageBackground source={ item.imagePath } style={styles.cardImage }>
+            <Text style={styles.title}>{item.title}</Text>
+        </ImageBackground>
+        <View style={{ flex: 1, flexDirection: "row",backgroundColor:'#FFF' }}>
+            <View style={styles.btn} >
+              <Text style={styles.btntxt}>Share</Text>
+            </View>
+            <View style={styles.btn} >  
+              <Text style={styles.btntxt}>View Details</Text>
+            </View>
+            </View>
+      </View>
+    )
+
+  }
+
+  return (
+    <>
+      <ContainerView>
+        <Text>Daily Reads</Text>
+        <FlatList
+          data={DATA}
+          horizontal
+          renderItem={({ item, index }) => renderDailyReadItem(item, index)}
+          keyExtractor={item => item.id}
+        />
+      </ContainerView>
+    </>
+  );
 };
 
 export default DailyReads;
+
 const styles = StyleSheet.create({
-    item: {
-      backgroundColor: '#f9c2ff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
-    },
-    title: {
-      fontSize: 32,
-    },
-  });
+  item: {
+    // backgroundColor: '#FFF',
+    // padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    width: 300,
+    borderRadius: 5
+  },
+  btn:{
+    width: 150,
+    padding: 10
+  },
+  btntxt:{
+    color:'#000'
+  },
+  title: {
+    fontSize: 16,
+    padding: 5,
+    color: '#FFF',
+  },
+  cardImage: {
+    width: '100%', height: 120 , flex: 1,
+     position: 'relative', 
+    top: 0,
+    left: 0,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5
+    // backgroundColor: 'red'
+  }
+});

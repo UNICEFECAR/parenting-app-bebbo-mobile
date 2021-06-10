@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -12,14 +12,15 @@ import Tools from '@components/homeScreen/Tools';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 import { Container, Header3Text } from '../../../styles/style';
+import { ThemeContext } from 'styled-components';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
 };
 
-const headerColor="blue";
 const Home = () => {
-  
+  const themeContext = useContext(ThemeContext);
+  const headerColor=themeContext.colors.PRIMARY_COLOR;
   return (
     <>
      <SafeAreaView style={{flex:1}}>
@@ -32,8 +33,8 @@ const Home = () => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="ParentBuddy" headerColor={headerColor}/>
-        <ScrollView style={{ flex: 4 }}>
+        <TabScreenHeader title="ParentBuddy" headerColor={headerColor} textColor='#FFF'/>
+        <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <ChildInfo/>
           <DailyReads/>
           <ChildMilestones/>
