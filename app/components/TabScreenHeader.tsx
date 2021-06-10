@@ -2,7 +2,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, Pressable, Modal, TouchableOpacity } from 'react-native';
-import Icon from './shared/Icon';
+import Icon from '@components/shared/Icon';
 const headerHeight=50;
 const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
