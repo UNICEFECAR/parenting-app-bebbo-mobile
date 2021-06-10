@@ -10,6 +10,7 @@ import {
   Alert,
   Modal,
 } from 'react-native';
+import Icon from '@components/shared/Icon';
 import { Header3Text } from '../styles/style';
 import CheckBox from '@react-native-community/checkbox';
 
@@ -51,7 +52,7 @@ const ChildDate = () => {
           </View>
           <View style={{ flex: 1, backgroundColor: 'green' }}>
             <Pressable style={styles.title} onPress={showdobDatepicker}>
-              <Header3Text>Select DOBDate</Header3Text>
+            <Icon name="ic_angle_right" size={20} color="#000" />
             </Pressable>
           </View>
         </View>
