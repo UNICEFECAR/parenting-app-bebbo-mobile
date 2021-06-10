@@ -59,7 +59,6 @@ const Terms = ({navigation}: Props) => {
     navigation.navigate('PrivacyPolicy');
   }
   const dispatch = useAppDispatch();
-    
     // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
     {apiEndpoint:appConfig.videoArticles,method:'get',postdata:{},saveinDB:true},
