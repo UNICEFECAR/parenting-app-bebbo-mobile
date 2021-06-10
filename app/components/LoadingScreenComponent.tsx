@@ -66,19 +66,19 @@ const LoadingScreenComponent = (props:any) => {
               }}
             />
             <PartnerLogo
-            source={{ uri:sponsors ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
+            source={{ uri:sponsors.length>0 ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
             />
            {/* </Child>
        
           <InnerView> */}
             <SponsorLogo
-            source={{ uri:sponsors ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
+            source={{ uri:sponsors.length>0 ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
             />
             <WrapView> 
             <Text>Supports</Text>
             <StaticLogo
               source={{
-                uri:sponsors ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
+                uri:sponsors.length>0 ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
               }}
             />
             </WrapView>
