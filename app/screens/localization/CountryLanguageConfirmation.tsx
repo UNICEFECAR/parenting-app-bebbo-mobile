@@ -41,7 +41,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // i18n.changeLanguage(language.locale);
     console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
-    dispatch(fetchAPI(apiJsonData));
+    dispatch(fetchAPI(apiJsonData,'CountryLanguageSelection'));
     // dispatch(onLanguageSelect(language));
     navigation.reset({
       index: 0,
