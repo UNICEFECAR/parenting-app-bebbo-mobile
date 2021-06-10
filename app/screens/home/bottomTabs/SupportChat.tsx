@@ -24,7 +24,7 @@ const SupportChat = ({ navigation }: Props) => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="Support" headerColor={headerColor}/>
+        <TabScreenHeader title="Support" headerColor={headerColor} textColor='#FFF'/>
         <View style={{alignItems:'center',justifyContent: 'space-between'}}>
           <Text>Coming soon !</Text>
           <Text>Chat support not available at the moment</Text>

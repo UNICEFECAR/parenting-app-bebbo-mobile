@@ -8,6 +8,7 @@ const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const headerColor = props.headerColor;
+  const textColor = props.textColor;
   return (
     <>
       <Modal
@@ -61,7 +62,7 @@ const TabScreenHeader = (props:any) => {
           </Pressable>
         </View>
         <View style={{ flex: 4,padding:10}} >
-          <Text style={{color:"#FFF"}}> {props.title}</Text>
+          <Text style={{color:textColor}}> {props.title}</Text>
         </View>
         <View style={{ flex: 1 ,padding:10,alignItems:'flex-end'}} >
           <Pressable onPress={() => {
