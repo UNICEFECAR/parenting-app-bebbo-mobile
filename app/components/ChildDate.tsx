@@ -44,15 +44,15 @@ const ChildDate = () => {
   };
   return (
     <>
-      <View>
+      <View style={{ margin: 10 }}>
         <Header3Text>Child Date of Birth / Expected due date</Header3Text>
-        <View style={{ flexDirection: 'row' }}>
-          <View style={{ flex: 3, backgroundColor: 'gray' }}>
-            <Header3Text> {dobDate ? dobDate.toDateString() : null}</Header3Text>
+        <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
+          <View style={{ flex: 3, }}>
+            <Text style={styles.title}> {dobDate ? dobDate.toDateString() : null}</Text>
           </View>
-          <View style={{ flex: 1, backgroundColor: 'green' }}>
+          <View style={{ flex: 1 }}>
             <Pressable style={styles.title} onPress={showdobDatepicker}>
-            <Icon name="ic_angle_right" size={20} color="#000" />
+              <Icon name="ic_calendar" size={20} color="#000" />
             </Pressable>
           </View>
         </View>
@@ -68,34 +68,48 @@ const ChildDate = () => {
           )}
         </View>
 
-        <View style={{ flex: 1, flexDirection: 'row',minHeight:50 }}>
-          <View style={{ flex: 1, backgroundColor: "red",alignItems:'flex-end' }} >
+        <View style={{ flex: 1, flexDirection: 'row', minHeight: 50 }}>
+          <View style={{ flex: 1, alignItems: 'flex-end' }} >
             <CheckBox
               disabled={false}
               value={toggleCheckBox}
+              tintColors={
+                { true: '#FFF', false: '#FFF' }
+              }
+              boxType={'square'}
+              tintColor={'#FFF'}
+              onCheckColor={'#000'}
+              onFillColor={'#FFF'}
+              onTintColor={'#000'}
               onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
           </View>
-          <View style={{ flex: 5, backgroundColor: "darkorange" ,alignItems:'flex-start'}} >
-            <Header3Text>Baby Born Prematurely</Header3Text>
-          </View>
-          <View style={{ flex: 1, backgroundColor: "green" ,alignItems:'flex-start'}} >
-            <Pressable onPress={() => setModalVisible(true)}><Text>Info</Text></Pressable>
+          <View style={{ flex: 5, alignItems: 'flex-start', flexDirection: 'row' }} >
+            <Text style={[styles.title, { color: '#FFF' }]}>Baby Born Prematurely</Text>
+            <Pressable style={[styles.title,{marginLeft:15}]} onPress={() => setModalVisible(true)}>
+              <Icon name="ic_info" size={15} color="#FFF" />
+            </Pressable>
           </View>
         </View>
-
-
-
-        {/* <CheckBox label="Baby Born Prematurely" checkedValue={false} /> */}
         <Header3Text>Original due date</Header3Text>
 
-        <View style={{ flexDirection: 'row' }}>
+        {/* <View style={{ flexDirection: 'row' }}>
           <View style={{ flex: 3, backgroundColor: 'gray' }}>
             <Header3Text> {dueDate ? dueDate.toDateString() : null}</Header3Text>
           </View>
           <View style={{ flex: 1, backgroundColor: 'darkorange' }}>
             <Pressable style={styles.title} onPress={showdueDatepicker}>
               <Header3Text>{'Select Due Date'}</Header3Text>
+            </Pressable>
+          </View>
+        </View> */}
+        <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
+          <View style={{ flex: 3, }}>
+            <Text style={styles.title}> {dueDate ? dueDate.toDateString() : null}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Pressable style={styles.title} onPress={showdueDatepicker}>
+              <Icon name="ic_calendar" size={20} color="#000" />
             </Pressable>
           </View>
         </View>
@@ -151,15 +165,18 @@ export default ChildDate;
 const styles = StyleSheet.create({
   title: {
     marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#FFF',
+    marginBottom: 16,
+    // paddingVertical: 8,
+    // paddingHorizontal:8,
+    // borderWidth: 4,
+    // borderColor: '#20232a',
+    // borderRadius: 6,
+    alignItems: 'center',
+    // backgroundColor: '#FFF',
     color: '#20232a',
-    textAlign: 'left',
-    fontSize: 30,
-    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 14,
+    // fontWeight: 'bold',
   },
   centeredView: {
     flex: 1,
