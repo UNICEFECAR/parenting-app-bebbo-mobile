@@ -1,8 +1,10 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
+import { useAppDispatch } from '../../App';
 import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header3Text } from '../styles/style';
+import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -14,6 +16,24 @@ type Props = {
 
 
 const ChildSetupList = ({ navigation }: Props) => {
+    // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
+  const apiJsonData = [
+    {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'},saveinDB:true},
+    // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{},saveinDB:true},
+    // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
+  ]
+  const childSetup=()=>{
+    // if(netInfo.isConnected){
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'LoadingScreen',params:{apiJsonData:apiJsonData,prevPage:'ChilSetup'}}]      
+      })
+      // navigation.navigate('HomeDrawerNavigator')
+    }
+    // else{
+    //   Alert.alert("No Internet Connection.")
+    // }
+  
   return (
     <>
 <Container>
@@ -61,8 +81,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             //   index: 0,
             //   routes: [{name: 'HomeDrawerNavigator'}],
             // })
-            navigation.navigate('HomeDrawerNavigator')
-          
+            childSetup()
           }}
         />
       </View>

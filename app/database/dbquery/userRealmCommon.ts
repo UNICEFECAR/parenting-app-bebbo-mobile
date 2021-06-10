@@ -14,7 +14,7 @@ class UserRealmCommon extends Component {
 
     private constructor(props: any) {
         super(props);
-        console.log("constructor called");
+      //  console.log("constructor called");
         // this.closeRealm();
         this.openRealm();
         
@@ -29,7 +29,7 @@ class UserRealmCommon extends Component {
 
     public async openRealm(): Promise<Realm | null> {
         return new Promise((resolve, reject) => {
-            console.log("in openrealm");
+          //  console.log("in openrealm");
             if (this.realm) {
             //     this.closeRealm();
             // }

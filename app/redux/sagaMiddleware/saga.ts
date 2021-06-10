@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
-import  commonApiService, { onApiSuccess, retryAlert }  from '../../services/commonApiService';
+import  commonApiService, { onChildSetuppiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert }  from '../../services/commonApiService';
 import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
@@ -16,10 +16,15 @@ export default function* rootSaga() {
 
 function* onFetchAPI(value:any) {
     console.log(" called ..onFetchAPI..",value);
+     
     try {
         // API Request
         const payload=value.payload;
+        const prevPage=value.prevPage;
+        const dispatch=value.dispatch;
+        const navigation=value.navigation;
         console.log(payload,"..payload..");
+        console.log(prevPage,"..prevPage..");
         //we can use fork instead of all.Need to check.
         // yield payload.map((data: apijsonArray) =>call(apiCall, data))
         // const response:commonApiServiceResponse = yield all(payload.forEach((data: apijsonArray) =>  fork(apiCall, data)));
@@ -55,7 +60,8 @@ function* onFetchAPI(value:any) {
           }
          }
          else {
-          onApiSuccess(response);
+          yield call(onApiSuccess,response,prevPage,dispatch,navigation);
+
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {
@@ -95,4 +101,20 @@ function* apiCall(data: apijsonArray) {
 export function* fetchAPISaga() {
     console.log("called fetchAPISaga");
     yield takeEvery(FETCH_API, onFetchAPI);
-  }
+}
+
+function* onApiSuccess(response: AxiosResponse<any>,prevPage: string,dispatch: any,navigation: any){
+  if(prevPage == 'Terms')
+ {
+  //dispatch action for terms page
+  yield call(onOnLoadApiSuccess,response,dispatch,navigation);
+ } else if(prevPage == 'CountryLanguageSelection')
+ {
+ //dispatch action for sponsor page
+  yield call(onSponsorApiSuccess,response,dispatch,navigation)
+ } else if(prevPage == 'ChilSetup')
+ {
+ //dispatch action for before home page
+  yield call(onChildSetuppiSuccess,response,dispatch,navigation)
+ }
+}

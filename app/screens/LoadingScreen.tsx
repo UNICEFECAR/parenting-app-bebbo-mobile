@@ -1,6 +1,7 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Alert, Dimensions, Text, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
 import { RootStackParamList } from '../navigation/types';
@@ -21,10 +22,24 @@ type Props = {
 const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
-  const sponsars = useAppSelector(
-      (state: any) => state.selectedCountry.sponsars,
+  
+  const sponsors = useAppSelector(
+      (state: any) => state.selectedCountry.sponsors,
     );
-    console.log(sponsars,"..fom loading sponsars..");
+    const netInfo=useNetInfo();
+    useEffect(() => {
+      console.log(netInfo,"..netinfo..");
+      // if(netInfo.isConnected){
+        callSagaApi();
+      // }
+      // else{
+      //   Alert.alert("No Internet Connection..");
+      // }
+      // setTimeout(()=>{
+      // navigation.navigate('ChildSetup');
+      // },10000)
+    },[]);
+   // console.log(sponsors,"..fom loading sponsors..");
 // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
 // const apiJsonData = [
 // {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
@@ -32,21 +47,16 @@ const LoadingScreen = ({route, navigation }: Props) => {
 // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
 // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
 // ]
-const apiJsonData  = route.params;
-console.log(apiJsonData,"..apiJsonData..");
+const apiJsonData  = route.params.apiJsonData;
+const prevPage  = route.params.prevPage;
+//console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
-    console.log("terms call");
-    dispatch(fetchAPI(apiJsonData))
+    dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation))
   }
-  useEffect(() => {
-    callSagaApi();
-    setTimeout(()=>{
-    navigation.navigate('ChildSetup');
-    },10000)
-  });
+  
   return (
     <>
-     <LoadingScreenComponent sponsars={sponsars}></LoadingScreenComponent>
+     <LoadingScreenComponent sponsors={sponsors}></LoadingScreenComponent>
    </>
 
   );

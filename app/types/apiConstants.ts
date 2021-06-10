@@ -1,6 +1,6 @@
 
-//import {apiUrlDevelop} from "@env";
-const apiUrlDevelop = "";
+import {apiUrlDevelop} from "@env"
+
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     console.log("in finalurl");
     if(apiEndpoint==appConfig.sponsors){
@@ -11,6 +11,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
 
 export const appConfig = {
     articles: 'articles',
+    videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
     sponsors:'sponsors'
