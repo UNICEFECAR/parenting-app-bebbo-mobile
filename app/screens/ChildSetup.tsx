@@ -6,6 +6,7 @@ import ChildDate from '@components/ChildDate';
 import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header2Text } from '../styles/style';
 import ActionSheet from "react-native-actions-sheet";
+import Icon from '@components/shared/Icon';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -34,8 +35,8 @@ const ChildSetup = ({ navigation }: Props) => {
           </View>
           <View style={{ padding: 50 }}>
             <Text>Relationship with child</Text>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 3, backgroundColor: 'gray' }}>
+            <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
+              <View style={{ flex: 3 }}>
                 <Pressable
                   onPress={() => {
                     actionSheetRef.current?.setModalVisible();
@@ -44,8 +45,8 @@ const ChildSetup = ({ navigation }: Props) => {
                   <Header2Text>{relationship ? relationship : 'Select'}</Header2Text>
                 </Pressable>
               </View>
-              <View style={{ flex: 1, backgroundColor: 'green' }}>
-                <Text> Arrow</Text>
+              <View style={{ flex: 1 }}>
+                <Icon name="ic_angle_down" size={10} color="#000" />
               </View>
             </View>
             <ActionSheet ref={actionSheetRef}>
