@@ -55,15 +55,13 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>fontello.ttf</string>
 		<string>roboto-bold.ttf</string>
 		<string>roboto-bold.woff</string>
 		<string>roboto-bold.woff2</string>
 		<string>roboto-regular.ttf</string>
 		<string>roboto-regular.woff</string>
 		<string>roboto-regular.woff2</string>
-		<string>fontello.woff</string>
-		<string>fontello.woff2</string>
+		<string>fontello.ttf</string>
 	</array>
 </dict>
 </plist>
