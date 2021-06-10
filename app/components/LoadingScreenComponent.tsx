@@ -71,7 +71,7 @@ const LoadingScreenComponent = (props: any) => {
 
           <View style={{ flex: 3, alignItems: 'center', justifyContent:'space-around', flexDirection:'column', }}>
             <Text style={{marginTop:25}}><VectorImage source={item.image} style={styles.imagetag} /></Text>
-            <Text >
+            <Text>
             <PartnerLogo 
               source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('../assets/loading/partner_albania.jpeg')}
             />            
