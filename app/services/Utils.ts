@@ -2,6 +2,7 @@ import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ArticleEntity, ArticleEntitySchema, CoverImage, } from "../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema, DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
+import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { appConfig } from "../types/apiConstants";
 
 export const addApiDataInRealm = async (response: any) => {
@@ -12,6 +13,11 @@ export const addApiDataInRealm = async (response: any) => {
     {
         Entity= Entity as ArticleEntity;
         EntitySchema = ArticleEntitySchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.videoArticles)
+    {
+        Entity= Entity as VideoArticleEntity;
+        EntitySchema = VideoArticleEntitySchema;
     }
     else if(response.payload.apiEndpoint == appConfig.dailyMessages)
     {

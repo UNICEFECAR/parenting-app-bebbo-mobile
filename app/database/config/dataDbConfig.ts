@@ -1,6 +1,7 @@
 import Realm, { ObjectSchema } from "realm";
 import { ArticleEntitySchema, CoverImage, CoverVideo } from "../schema/ArticleSchema";
 import { BasicPagesSchema, DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
+import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 // import { VariableEntitySchema } from "../schema/childDataSchema";
 
 export type VariableEntity = {
@@ -31,6 +32,7 @@ export const dataRealmConfig: Realm.Configuration ={
     ArticleEntitySchema,
     CoverVideo,
     CoverImage,
+    VideoArticleEntitySchema,
     DailyHomeMessagesSchema,
     BasicPagesSchema
   ],
@@ -40,10 +42,10 @@ export const dataRealmConfig: Realm.Configuration ={
     if(oldRealm.schemaVersion < 1){
       const oldObjects = oldRealm.objects('VariableEntity');
       const newObjects = newRealm.objects('VariableEntity');
-      console.log("oldobj---",oldObjects);
-      console.log("newObjects---",newObjects);
-      console.log("oldRealm schema---",oldRealm.schema);
-      console.log("newRealm schema---",newRealm.schema);
+      // console.log("oldobj---",oldObjects);
+      // console.log("newObjects---",newObjects);
+      // console.log("oldRealm schema---",oldRealm.schema);
+      // console.log("newRealm schema---",newRealm.schema);
 
       // console.log("MeasurementEntity obj---",Array.from(newRealm.objects('MeasurementEntity')));
       // migrateuserRealm(oldRealm,newRealm);
