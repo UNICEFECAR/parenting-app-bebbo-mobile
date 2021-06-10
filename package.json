@@ -46,6 +46,7 @@
     "react-native-render-html": "^5.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.2.0",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-vector-image": "^0.3.2",
     "react-redux": "^7.2.0",
