@@ -30,7 +30,6 @@ const Activities = ({ navigation }: Props) => {
         <View>
           <AgeBrackets/>
           <Text>Activities screen</Text>
-          {/* <Wallet/> */}
         </View>
       </View>
       </SafeAreaView>
