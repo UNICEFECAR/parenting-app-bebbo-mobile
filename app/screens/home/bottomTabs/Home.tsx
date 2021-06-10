@@ -33,7 +33,7 @@ const Home = () => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="ParentBuddy" headerColor={headerColor}/>
+        <TabScreenHeader title="ParentBuddy" headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <ChildInfo/>
           <DailyReads/>
