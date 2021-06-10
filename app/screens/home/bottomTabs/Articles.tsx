@@ -93,7 +93,7 @@ const Articles = ({ navigation }: Props) => {
             animated={true}
             backgroundColor={headerColor}
           />
-          <TabScreenHeader title="Articles" headerColor={headerColor} />
+          <TabScreenHeader title="Articles" headerColor={headerColor} textColor='#000'/>
         
           <View style={{ flex: 1, flexDirection: 'column' }}>
             <View style={{ flexDirection: 'row', backgroundColor: '#fff', }}>

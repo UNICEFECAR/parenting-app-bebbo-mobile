@@ -26,7 +26,7 @@ const Activities = ({ navigation }: Props) => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="Activities" headerColor={headerColor}/>
+        <TabScreenHeader title="Activities" headerColor={headerColor} textColor='#000'/>
         <View>
           <AgeBrackets/>
           <Text>Activities screen</Text>
