@@ -11,6 +11,7 @@
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
+    "@klarna/react-native-vector-drawable": "^0.3.0",
     "@manaflair/redux-batch": "^1.0.0",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-native-community/checkbox": "^0.5.8",
@@ -38,12 +39,15 @@
     "react-native-error-boundary": "^1.1.9",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-keyboard-aware-scroll-view": "^0.9.4",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-localize": "^2.0.3",
     "react-native-reanimated": "^2.1.0",
     "react-native-render-html": "^5.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.2.0",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-vector-image": "^0.3.2",
     "react-redux": "^7.2.0",
     "realm": "^10.4.1",
     "redux-devtools-extension": "^2.13.9",
