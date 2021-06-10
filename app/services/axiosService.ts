@@ -23,10 +23,6 @@ axiosService.interceptors.request.use(
     // if (tokennew) {
     //   config.headers.Authorization = 'Bearer ' + tokennew;
     // }
-    config.auth = {
-        username: 'globaladmin',
-        password: 'P@ssw0rd'
-    }
     // config.params = {Seasons: "all", childAge: "all", childGender: "all", parentGender: "all"};
     console.log("edited config-",config);
     return config;
