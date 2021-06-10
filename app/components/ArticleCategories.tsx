@@ -7,7 +7,7 @@ import Icon from '@components/shared/Icon';
 const ArticleCategories = (props:any) => {
     return (
         <>
-            <View style={{ padding: 10, minHeight: 130,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
+            <View style={{ padding: 10, minHeight: 150,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
 
                     <View style={styles.item} >

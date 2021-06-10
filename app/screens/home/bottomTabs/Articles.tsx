@@ -8,7 +8,8 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '../../../navigation/types';
 import styled, { ThemeContext } from 'styled-components/native';
 import Icon from '@components/shared/Icon';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { KeyboardAwareView } from 'react-native-keyboard-aware-view'
+
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -87,7 +88,8 @@ const Articles = ({ navigation }: Props) => {
   return (
     <>
       <ContainerView>
-        <KeyboardAwareScrollView>
+        
+      <KeyboardAwareView animated useNativeDriver={true}>
 
           <FocusAwareStatusBar
             animated={true}
@@ -113,10 +115,11 @@ const Articles = ({ navigation }: Props) => {
               data={DATA}
               renderItem={({ item, index }) => renderArticleItem(item, index)}
               keyExtractor={item => item.id}
+              
             />
           </View>
       
-      </KeyboardAwareScrollView>
+      </KeyboardAwareView>
     </ContainerView>
       
     </>
