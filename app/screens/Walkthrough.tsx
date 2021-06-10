@@ -6,6 +6,7 @@ import { RootStackParamList } from '../navigation/types';
 import { StyleSheet } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import LinearGradient from 'react-native-linear-gradient';
+import WalkthroughContainer, { Slide,WalkthroughTitle, WalkthroughSubtext,WalkthroughImagebox } from '@components/shared/WalkthroughStyle';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -45,25 +46,24 @@ const Walkthrough = ({ navigation }: Props) => {
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
-        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} style={{
-          flex: 1,
-          paddingLeft: 15,
-          paddingRight: 15,
-        }}>
-          <View style={styles.slide} >
+      <WalkthroughContainer>
+        <LinearGradient style={{flex:1,}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
+          <Slide>
 
             {index ==0 ?
             (<VectorImage source={item.image} style={styles.imagetag} />)
-            :  (<View style={styles.item} >
+            :  (<WalkthroughImagebox>
               <VectorImage source={item.image} style={styles.imagetag} />
-              </View>)}
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.title}>{item.subtitle}</Text>
-          </View>
+              </WalkthroughImagebox>)}
+            <WalkthroughTitle style={styles.title}>{item.title}</WalkthroughTitle>
+            <WalkthroughSubtext style={styles.title}>{item.subtitle}</WalkthroughSubtext>
+          </Slide>
         </LinearGradient>
+        </WalkthroughContainer>
       </>
     );
   };
+  
   const renderDoneButton = () => {
     return (
       <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
@@ -77,9 +77,10 @@ const Walkthrough = ({ navigation }: Props) => {
       <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
         <Text style={{ color: '#000' }}>Back</Text>
       </View>
-
     );
   }
+
+
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
@@ -96,6 +97,8 @@ const Walkthrough = ({ navigation }: Props) => {
       routes: [{ name: 'Terms' }],
     })
   }
+
+  
   const keyExtractor = (item: Item) => item.title;
   return (
     <>
@@ -124,30 +127,23 @@ const styles = StyleSheet.create({
   imagetag: {
 
   },
-  slide: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '80%'
-  },
+
   text: {
-    color: '#333',
-    marginTop: 475,
+    color: '#fff',
+    marginTop: 200,
     textAlign: 'center',
   },
   item: {
-    backgroundColor: '#FFF',
-    borderRadius: 5,
-    margin: 3,
-    padding: 10,
-    // width: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
+    // backgroundColor: '#FFF',
+    // borderRadius: 4,
+    // margin: 20,
+    // padding: 30,
+    // // width: 200,
+    // justifyContent: 'center',
+    // alignItems: 'center'
   },
   title: {
-    fontSize: 16,
+    
     padding: 5,
     // width: 100,
     fontWeight: 'bold',

@@ -27,7 +27,7 @@ import Icon from '../../components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 
 import OnboardingStyle from '@components/shared/OnboardingStyle';
-import { ButtonviewClick, ButtonviewNext, ButtonviewPrevious } from '@components/shared/ButtonView';
+import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shared/ButtonView';
 
 
 // import {API_URL, API_TOKEN} from "@env";
@@ -70,21 +70,20 @@ const CountrySelection = (props: any) => {
             keyExtractor={(item) => item.countryId.toString()}
           />
         </SelectionView>
+        <ButtonSection>
+        
         <ButtonviewNext>
-        <ButtonviewClick 
-          style={{}}
-          onPress={() =>
-            props.navigation.navigate('LanguageSelection', {country})
-          }>
-            <Icon name="ic_angle_right" size={32} color="#000" />
-          {/* <ButtonText>{t('goToLanguageSelection')}</ButtonText> */}
-          {/* <View style={{width: 40,height: 40,backgroundColor: 'rgba(0, 0, 0, .2)',borderRadius: 20,justifyContent: 'center',alignItems: 'center',}}> */}
-          
-            {/* <Image style={{width:50,height:50}} source={ require( '../../assets/ic_next_arrow.png') } /> */}
-          {/* </View> */}
-        </ButtonviewClick>
+            <ButtonviewClick 
+            style={{}}
+            onPress={() =>
+              props.navigation.navigate('LanguageSelection', {country})
+            }>
+              <Icon name="ic_angle_right" size={32} color="#000" />
+         
+            </ButtonviewClick>
         </ButtonviewNext>
         
+        </ButtonSection>
         </OnboardingContainer>
     </>
   );

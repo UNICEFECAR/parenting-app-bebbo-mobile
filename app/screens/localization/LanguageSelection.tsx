@@ -18,7 +18,7 @@ import { localization } from '../../assets/data/localization';
 import { useTranslation } from 'react-i18next';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
-import { ButtonviewClick, ButtonviewNext, ButtonviewPrevious } from '@components/shared/ButtonView';
+import { BtnMultiple, ButtonSection, ButtonviewClick, ButtonviewNext, ButtonviewPrevious } from '@components/shared/ButtonView';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -65,32 +65,29 @@ const LanguageSelection = ({route, navigation}: Props) => {
         {language ? (
             
             
-            
-            
-               <View style={{flexDirection:'row', alignContent:'flex-end',justifyContent:'space-between'}}>
-  <View style={{flexDirection:'column',justifyContent:'space-between' }}>
-  <ButtonviewPrevious>
-            <ButtonviewClick onPress={() =>
+        <BtnMultiple>
+            <ButtonviewPrevious>
+          <ButtonviewClick onPress={() =>
                 navigation.goBack()
               }>
                 <Icon name="ic_angle_left" size={32} color="#000" />
                 {/* <Image style={{width:50,height:50}} source={ require( '../../assets/ic_prev_arrow.png') } /> */}
                 </ButtonviewClick>
             </ButtonviewPrevious>
-
-            <ButtonviewNext>
-              <ButtonviewClick onPress={() =>
-              navigation.navigate('CountryLanguageConfirmation', {
-                country,
-                language,
-              })
-            }>
-            {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
-            <Icon name="ic_angle_right" size={32} color="#000" />
-          </ButtonviewClick>
-          </ButtonviewNext>
-          </View>
-        </View>
+                <ButtonviewNext>
+                <ButtonviewClick onPress={() =>
+                navigation.navigate('CountryLanguageConfirmation', {
+                  country,
+                  language,
+                })
+              }>
+              {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
+              <Icon name="ic_angle_right" size={32} color="#000" />
+            </ButtonviewClick>
+            </ButtonviewNext>
+        </BtnMultiple>    
+            
+               
         ) : null}
       </OnboardingContainer>
     </>
