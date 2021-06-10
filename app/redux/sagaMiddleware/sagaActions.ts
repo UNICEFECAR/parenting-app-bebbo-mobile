@@ -8,9 +8,10 @@ export const INSERT_IN_DB = 'api/INSERT_IN_DB';
 export interface apijsonArray{
   apiEndpoint:string,method:string,postdata:any,saveinDB?:boolean
 }
-export const fetchAPI = (apiJsonData:Array<apijsonArray>) => ({
+export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string) => ({
   type: FETCH_API,
-  payload:apiJsonData
+  payload:apiJsonData,
+  prevPage:prevPage
 });
 
 export const insertInDB = (apiJsonData:Array<apijsonArray>) => ({

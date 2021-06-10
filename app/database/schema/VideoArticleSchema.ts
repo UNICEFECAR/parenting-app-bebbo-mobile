@@ -1,35 +1,8 @@
+import { CoverImageEntity, CoverVideoEntity,CoverImage,CoverVideo} from './ArticleSchema';
 import {ObjectSchema} from 'realm';
 
-export type CoverVideoEntity = {
-  url:string;
-  name:string;
-  site:string;
-}
-export type CoverImageEntity = {
-  url:string;
-  name:string;
-  alt:string;
-}
 
-export const CoverVideo: ObjectSchema = {
-  name: "CoverVideo",
-  embedded: true,
-  properties: {
-    url: { type: 'string' },
-    name: { type: 'string' },
-    site: { type: 'string' },
-  }
-}
-export const CoverImage: ObjectSchema = {
-  name: "CoverImage",
-  embedded: true,
-  properties: {
-    url: { type: 'string' },
-    name: { type: 'string' },
-    alt: { type: 'string' },
-  }
-}
-export type ArticleEntity = {
+export type VideoArticleEntity = {
     id: string,
     langcode?:string,
     type: string,
@@ -53,8 +26,8 @@ export type ArticleEntity = {
   };
 
 
-  export const ArticleEntitySchema: ObjectSchema = {
-    name: 'ArticleEntity',
+  export const VideoArticleEntitySchema: ObjectSchema = {
+    name: 'VideoArticleEntity',
     primaryKey: 'id',
   
     // API: https://bit.ly/3f7k9jq

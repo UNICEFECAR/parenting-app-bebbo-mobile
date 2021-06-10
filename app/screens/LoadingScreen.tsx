@@ -1,6 +1,7 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
-import { Dimensions, Text, View } from 'react-native';
+import { Alert, Dimensions, Text, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
 import { RootStackParamList } from '../navigation/types';
@@ -21,6 +22,7 @@ type Props = {
 const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
+  const netInfo=useNetInfo();
   const sponsars = useAppSelector(
       (state: any) => state.selectedCountry.sponsars,
     );
@@ -32,17 +34,23 @@ const LoadingScreen = ({route, navigation }: Props) => {
 // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
 // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
 // ]
-const apiJsonData  = route.params;
+const apiJsonData  = route.params.apiJsonData;
+const prevPage  = route.params.prevPage;
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
-   // console.log("terms call");
-    dispatch(fetchAPI(apiJsonData))
+    dispatch(fetchAPI(apiJsonData,prevPage))
   }
   useEffect(() => {
-    callSagaApi();
-    setTimeout(()=>{
-    navigation.navigate('ChildSetup');
-    },10000)
+    console.log(netInfo,"..netinfo..");
+    if(netInfo.isConnected){
+      callSagaApi();
+    }
+    else{
+      Alert.alert("No Internet Connection..");
+    }
+    // setTimeout(()=>{
+    // navigation.navigate('ChildSetup');
+    // },10000)
   });
   return (
     <>
