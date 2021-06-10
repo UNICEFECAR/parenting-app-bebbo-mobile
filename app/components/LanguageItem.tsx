@@ -9,7 +9,7 @@ const LanguageItem = ({item, currentItem, setLanguage}) => {
     <>
       <Pressable
         onPress={() => {
-          console.log(item);
+        //  console.log(item);
           setLanguage(item);
         }}>
         <RadioItem>

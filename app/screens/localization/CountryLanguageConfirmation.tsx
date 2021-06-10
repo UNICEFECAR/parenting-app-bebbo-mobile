@@ -2,7 +2,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
 import {View, Pressable, Text, Image} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../App';
-import {onLocalizationSelect, setSponsarStore} from '../../redux/reducers/localizationSlice';
+import {onLocalizationSelect, setSponsorStore} from '../../redux/reducers/localizationSlice';
 import {RootStackParamList} from '../../navigation/types';
 import {
   Container,
@@ -48,7 +48,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // i18n.changeLanguage(language.locale);
     console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
-    dispatch(fetchAPI(apiJsonData));
+    dispatch(fetchAPI(apiJsonData,'CountryLanguageSelection',dispatch,navigation));
     // dispatch(onLanguageSelect(language));
     navigation.reset({
       index: 0,
