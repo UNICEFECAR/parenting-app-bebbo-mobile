@@ -12,7 +12,7 @@ import ImageStorage from "../downloadImages/ImageStorage";
 import { Alert } from "react-native";
 import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
 import downloadImages from '../downloadImages/ImageStorage';
-import { setSponsarStore } from '../redux/reducers/localizationSlice';
+import { setSponsorStore } from '../redux/reducers/localizationSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -55,14 +55,14 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // }
     });
 }
-export const onApiSuccess = async (response: any) => {
+export const onSponsorApiSuccess = async (response: any,dispatch: any,navigation: any) => {
+// async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
   console.log(response, "..response..");
- 
-  // const sponsarobj = [...response.data.data];
+  console.log(dispatch, "..dispatch..");
+  // const sponsorobj = [...response.data.data];
   // const filteredArray=response.data.data[0].find((item:any)=>{
-  //   item['country_flag'] && item['country_sponsar_logo'] && item['country_national_partner']
+  //   item['country_flag'] && item['country_sponsor_logo'] && item['country_national_partner']
   // })
-
   // console.log(filteredArray,"..filteredArray..");
 
   if (response[0].apiEndpoint == appConfig.sponsors) {
@@ -70,7 +70,7 @@ export const onApiSuccess = async (response: any) => {
     const ImageArray = [];
     // let obj=[];
    // type:val.type,title:val.title,id:val.id,
-    const sponsarObj = response.data.data.map((val: any) => {
+    const sponsorObj = response.data.data.map((val: any) => {
       return ({country_flag:{ srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name }})
     })
     const partnerObj = response.data.data.map((val: any) => {
@@ -81,17 +81,14 @@ export const onApiSuccess = async (response: any) => {
     })
     ImageArray.push(logoObj[0].country_national_partner)
     ImageArray.push(partnerObj[0].country_sponsor_logo)
-    ImageArray.push(sponsarObj[0].country_flag)
+    ImageArray.push(sponsorObj[0].country_flag)
    
     const imagesDownloadResult = await downloadImages(ImageArray);
     console.log(imagesDownloadResult, "..image result..");
-    store.dispatch(setSponsarStore(imagesDownloadResult));
+    dispatch(setSponsorStore(imagesDownloadResult));
     
     // const country= new CountryLanguageConfirmation();
-    // country.dispatchSponsars();
-  }
-  else if(response.apiEndpoint == appConfig.sponsors){
-
+    // country.dispatchSponsors();
   }
 }
 export const onApiFail = (error: any) => {

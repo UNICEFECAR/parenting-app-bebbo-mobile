@@ -27,7 +27,7 @@ height:70px;
 margin-top:30px;
 align-items:center;
 `;
-const SponsarLogo = styled.Image`
+const SponsorLogo = styled.Image`
 width:50px;
 height:50px;
 margin-top:30px;
@@ -52,13 +52,12 @@ align-items:center;
 const image = {uri: "../assets/01.png" };
 
 const LoadingScreenComponent = (props:any) => {
-  //console.log(,"..sponsars..");
-  const sponsars=props.sponsars;
-  console.log(sponsars,"..11sponsars..");
+  //console.log(,"..sponsors..");
+  const sponsors=props.sponsors;
+  console.log(sponsors,"..11sponsors..");
   return (
     <Container>
       <MainView>
-     
     <ImageBackground source={require('../assets/walkthrough/01.png')}>
     {/* <Child> */}
         <HeartLogo
@@ -67,19 +66,19 @@ const LoadingScreenComponent = (props:any) => {
               }}
             />
             <PartnerLogo
-            source={{ uri:"file://"+sponsars[0].destFolder+"/"+sponsars[0].destFilename}}
+            source={{ uri:sponsors ? "file://"+sponsors[0].destFolder+"/"+sponsors[0].destFilename: 'https://reactnative.dev/img/tiny_logo.png'}}
             />
            {/* </Child>
        
           <InnerView> */}
-            <SponsarLogo
-            source={{ uri:"file://"+sponsars[1].destFolder+"/"+sponsars[1].destFilename }}
+            <SponsorLogo
+            source={{ uri:sponsors ? "file://"+sponsors[1].destFolder+"/"+sponsors[1].destFilename:'https://reactnative.dev/img/tiny_logo.png' }}
             />
             <WrapView> 
             <Text>Supports</Text>
             <StaticLogo
               source={{
-                uri:"file://"+sponsars[2].destFolder+"/"+sponsars[2].destFilename ,
+                uri:sponsors ? "file://"+sponsors[2].destFolder+"/"+sponsors[2].destFilename:'https://reactnative.dev/img/tiny_logo.png' ,
               }}
             />
             </WrapView>
