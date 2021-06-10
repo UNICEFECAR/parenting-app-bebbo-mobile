@@ -16,13 +16,14 @@ export default function* rootSaga() {
 
 function* onFetchAPI(value:any) {
     console.log(" called ..onFetchAPI..",value);
-     
+    const payload=value.payload;
+    const prevPage=value.prevPage;
+    const dispatch=value.dispatch;
+    const navigation=value.navigation;
+    console.log("prevPage--",prevPage);
     try {
         // API Request
-        const payload=value.payload;
-        const prevPage=value.prevPage;
-        const dispatch=value.dispatch;
-        const navigation=value.navigation;
+        
         console.log(payload,"..payload..");
         console.log(prevPage,"..prevPage..");
         //we can use fork instead of all.Need to check.
@@ -53,10 +54,18 @@ function* onFetchAPI(value:any) {
             }
             console.log("onLoadApiArray--",onLoadApiArray);
             errorArr = [];
-            yield put(fetchAPI(onLoadApiArray));
+            yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
           }catch(e) {
-            console.log("user selected cancelled");
+            console.log("user selected cancelled",prevPage);
             //code of what to fo if user selected cancel.
+            if(prevPage == 'Terms')
+            {
+              navigation.navigate('ChildSetup');
+            }else if(prevPage == 'ChilSetup')
+            {
+              //dispatch action for before home page
+              navigation.navigate('HomeDrawerNavigator');
+            }
           }
          }
          else {
@@ -65,8 +74,40 @@ function* onFetchAPI(value:any) {
          }
         //yield put(receiveAPISuccess(response));
       }catch(e) {
-        console.log("in catch");
-        //yield put(receiveAPIFailure(e));
+        console.log("in catch---",prevPage);
+        if(prevPage !== 'CountryLanguageSelection')
+        {
+          try {
+            const confirm = yield call(retryAlert);
+            console.log("confirm--",confirm);
+            // let failedApiObj = errorArr;
+            let onLoadApiArray;
+            const apiJsonData =payload;
+            
+            // if(failedApiObj) {
+            //   onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
+            //     failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
+            //   );
+            // }else {
+            //   onLoadApiArray = apiJsonData;
+            // }
+            onLoadApiArray = apiJsonData;
+            console.log("onLoadApiArray--",onLoadApiArray);
+            errorArr = [];
+            yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
+          }catch(e) {
+            console.log("user selected cancelled",prevPage);
+            //code of what to fo if user selected cancel.
+            if(prevPage == 'Terms')
+            {
+              navigation.navigate('ChildSetup');
+            }else if(prevPage == 'ChilSetup')
+            {
+              //dispatch action for before home page
+              navigation.navigate('HomeDrawerNavigator');
+            }
+          }
+        }
       }
 }
 
