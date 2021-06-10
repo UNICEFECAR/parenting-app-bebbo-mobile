@@ -16,8 +16,7 @@ export const SelectionView = styled.View`
   border-radius: 2px;
   border-color: #ddd;
   border-bottom-width: 0; */
-  margin-left: 15px;
-  margin-right: 15px;
+  
   flex: 1;
 `;
 export const RadioItemText = styled.Text`
