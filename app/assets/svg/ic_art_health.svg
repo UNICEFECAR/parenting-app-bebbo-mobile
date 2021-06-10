@@ -1,0 +1,13 @@
+<svg id="ic_art_health" xmlns="http://www.w3.org/2000/svg" width="51.602" height="51.601" viewBox="0 0 51.602 51.601">
+  <rect id="Rectangle_506" data-name="Rectangle 506" width="40" height="38" transform="translate(6.051 6.801)" fill="none"/>
+  <g id="Group_2104" data-name="Group 2104">
+    <path id="Union_62" data-name="Union 62" d="M16.3,32.589V16.294H0V0H32.593V32.589Z" transform="translate(1.696 17.654)" fill="#ff8d6b"/>
+    <path id="Union_61" data-name="Union 61" d="M16.3,32.589V16.294H32.593V32.589ZM0,16.294V0H16.3V16.294Z" transform="translate(17.991 1.359)" fill="#ffd2c4"/>
+    <g id="Group_2102" data-name="Group 2102" transform="translate(16.537)">
+      <path id="Path_903" data-name="Path 903" d="M1213.126,515.574H1196.6a1.011,1.011,0,0,1-1.008-1.008V499.05h-15.515a1.011,1.011,0,0,1-1.009-1.008V481.518a1.011,1.011,0,0,1,1.009-1.008H1196.6a1.011,1.011,0,0,1,1.008,1.008v15.516h15.516a1.011,1.011,0,0,1,1.009,1.008v16.524A1,1,0,0,1,1213.126,515.574Zm-15.528-2.017H1212.1V499.05H1197.6Zm-16.524-16.524h14.507V482.527h-14.507Z" transform="translate(-1179.07 -480.51)"/>
+    </g>
+    <g id="Group_2103" data-name="Group 2103" transform="translate(0 16.537)">
+      <path id="Path_904" data-name="Path 904" d="M1200.006,528.694h-16.524a1.012,1.012,0,0,1-1.009-1.008V512.17h-15.516a1.011,1.011,0,0,1-1.008-1.008V494.638a1.011,1.011,0,0,1,1.008-1.008h33.06a1.011,1.011,0,0,1,1.008,1.008V527.7A1.02,1.02,0,0,1,1200.006,528.694Zm-15.515-2.017H1199V495.634h-31.043v14.507h15.516a1.011,1.011,0,0,1,1.008,1.008v15.528Z" transform="translate(-1165.95 -493.63)"/>
+    </g>
+  </g>
+</svg>

@@ -1,12 +1,18 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
-import { FlatList, View, Text, StyleSheet, ScrollView, Pressable, Dimensions } from "react-native"
+import React, { useContext, useRef } from 'react';
+import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ThemeContext } from 'styled-components';
 import Icon from './shared/Icon';
-const Item = ({ title }) => (
-    <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
-    </View>
-);
+const Item = ({ title }) => {
+    const themeContext = useContext(ThemeContext);
+    const itemColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+    const selectedItemColor = themeContext.colors.ACTIVITIES_COLOR;
+    return (
+        <View style={[styles.item, { backgroundColor: itemColor }]}>
+            <Text style={styles.title}>{title}</Text>
+        </View>
+    )
+};
 const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -78,10 +84,10 @@ const AgeBrackets = () => {
     }
     return (
         <>
-            <View style={{ padding: 10, flex: 1, minHeight: 80, flexDirection: "row" }}>
+            <View style={{ padding: 10, flex: 1, minHeight: 80, flexDirection: "row", backgroundColor: '#FFF' }}>
                 <View style={{ padding: 10, paddingTop: 16 }} >
                     <TouchableOpacity onPress={() => leftArrow()}>
-                    <Icon name="ic_angle_left" size={20} color="#000" />
+                        <Icon name="ic_angle_left" size={20} color="#000" />
                     </TouchableOpacity>
                 </View>
                 <ScrollView
@@ -104,16 +110,17 @@ const AgeBrackets = () => {
                 </ScrollView>
                 <View style={{ padding: 10, paddingTop: 16 }}>
                     <TouchableOpacity onPress={() => { rightArrow() }}>
-                    <Icon name="ic_angle_right" size={20} color="#000" />
+                        <Icon name="ic_angle_right" size={20} color="#000" />
                     </TouchableOpacity></View>
             </View>
         </>
     );
 };
 export default AgeBrackets;
+
 const styles = StyleSheet.create({
     item: {
-        backgroundColor: '#f9c2ff',
+        // backgroundColor: itemColor,
         padding: 10,
 
         paddingVertical: 10,

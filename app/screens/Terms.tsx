@@ -14,6 +14,9 @@ import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { ButtonText, Container, Header, HeaderText } from '../styles/style';
 import { appConfig } from '../types/apiConstants';
 import { useNetInfo } from '@react-native-community/netinfo';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { Heading1w, Heading2w } from '../styles/typography';
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
   'LoadingScreen'
@@ -88,10 +91,10 @@ const Terms = ({navigation}: Props) => {
   
   return (
     <>
-      <Container>
-        <Header>
-          <HeaderText>{t('termsandconditionheader')}</HeaderText>
-        </Header>
+      <OnboardingContainer>
+        <OnboardingHeading>
+          <Heading1w>{t('termsandconditionheader')}</Heading1w>
+        </OnboardingHeading>
         <ScrollView contentContainerStyle={{ padding: 24, }}>
           <HTML
               source={{ html: body }}
@@ -195,7 +198,7 @@ const Terms = ({navigation}: Props) => {
       {/* <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
             <ButtonText>Call saga</ButtonText>
       </Pressable> */}
-      </Container>
+      </OnboardingContainer>
       </>
   );
 };

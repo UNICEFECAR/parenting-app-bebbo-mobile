@@ -1,74 +1,89 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet, TouchableHighlight, Dimensions, ScrollView } from 'react-native';
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
-const circleWidth=100;
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+import { View, Text, Button, FlatList, StyleSheet, TouchableHighlight, Dimensions, ScrollView, Image } from 'react-native';
+import VectorImage from 'react-native-vector-image';
+import styled from 'styled-components/native';
+const circleWidth = 130;
+const ContainerView = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
+`;
 const MilestoneCircle = () => (
-  <View style={{width: circleWidth,
+
+
+  <View style={{
+    width: circleWidth,
     height: circleWidth,
     borderRadius: circleWidth / 2,
-    backgroundColor:'purple'}}>
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}>
+    <VectorImage source={require('../../assets/svg/ic_development_color.svg')} />
   </View>
 );
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    id: '1',
+    imagePath: require('../../assets/trash/card1.jpeg'),
+    title: 'Gripping your filgers'
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    id: '2',
+    imagePath: require('../../assets/trash/card2.jpeg'),
+    title: 'Molding your hands'
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    id: '3',
+    imagePath: require('../../assets/trash/card3.jpeg'),
+    title: 'Picking stuff around'
+  },
+  {
+    id: '4',
+    imagePath: require('../../assets/trash/card4.jpeg'),
+    title: 'Gripping your filgers'
+  },
+  {
+    id: '5',
+    imagePath: require('../../assets/trash/card5.jpeg'),
+    title: 'Molding your hands'
+  },
+  {
+    id: '6',
+    imagePath: require('../../assets/trash/card6.jpeg'),
+    title: 'Picking stuff around'
   },
 ];
-const boxWidth= 200;
-// import icoMoonConfig from '../../assets/iconConfig/selection.json';
-// const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon',
-// 'icomoon.ttf');
-const contentContainerStyleWidth = (boxWidth * DATA.length-1)+circleWidth;
 const ChildMilestones = ({ navigation }: Props) => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     if (index === 0) {
-     return ( <MilestoneCircle key={index}/>)
+      return (<MilestoneCircle key={index} />)
     } else {
-     return (<Item title={item.title} key={index} />)
+      return (
+        <View style={styles.item} key={index}>
+          <Image style={styles.cardImage}
+            source={item.imagePath} resizeMode={'cover'} />
+          <Text style={styles.title}>{item.title}</Text>
+        </View>
+      )
     }
   }
 
   return (
     <>
-      <View style={{ backgroundColor: '#DDD' }}>
+      <ContainerView>
         <Text>{'Child Milestones'}</Text>
-       
-        <ScrollView
-          horizontal={true}
-          contentContainerStyle={{ width: `${contentContainerStyleWidth}%` }}
-          showsHorizontalScrollIndicator={true}
-          scrollEventThrottle={200}
-          decelerationRate="fast"
-          pagingEnabled
-        >
-          {DATA.map((item, index) => {
-            return renderDailyReadItem(item, index)
-          })}
-        </ScrollView>
-      </View>
-
-      {/* <FlatList
+        <FlatList
           data={DATA}
           horizontal
-          renderItem={renderDailyReadItem}
+          contentContainerStyle={{ padding: 10 }}
+          renderItem={({ item, index }) => renderDailyReadItem(item, index)}
           keyExtractor={item => item.id}
-        /> */}
-
+        />
+      </ContainerView>
     </>
   );
 };
@@ -77,13 +92,19 @@ export default ChildMilestones;
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
+    backgroundColor: '#FFF',
+    // padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    width: boxWidth,
+    width: 200,
+    borderRadius:5
   },
   title: {
-    fontSize: 32,
+    fontSize: 16,
+    padding: 5
   },
+  cardImage: {
+    width: 200,
+    height: 100,
+  }
 });

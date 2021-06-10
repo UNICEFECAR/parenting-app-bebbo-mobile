@@ -8,11 +8,17 @@ import {
   HeaderText,
   SelectionView,
 } from '../../styles/style';
+
 import {LocalizationStackParamList} from '../../navigation/types';
 import LanguageItem from '@components/LanguageItem';
 import { useAppSelector } from '../../../App';
+import Icon from '../../components/shared/Icon';
 import { localization } from '../../assets/data/localization';
+
 import { useTranslation } from 'react-i18next';
+import OnboardingStyle from '@components/shared/OnboardingStyle';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import { BtnMultiple, ButtonSection, ButtonviewClick, ButtonviewNext, ButtonviewPrevious } from '@components/shared/ButtonView';
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'
@@ -42,10 +48,13 @@ const LanguageSelection = ({route, navigation}: Props) => {
   );
   return (
     <>
-      <Container>
-        <Header>
-          <HeaderText>{t('selectYourLang')}</HeaderText>
-        </Header>
+
+ 
+      <OnboardingContainer>
+      <OnboardingStyle title= {t('selectYourCountry').toString()} iconname= 'ic_act_language' />
+
+
+        
         <SelectionView>
           <FlatList
             data={languages}
@@ -54,29 +63,33 @@ const LanguageSelection = ({route, navigation}: Props) => {
           />
         </SelectionView>
         {language ? (
-          <View style={{flex:1,flexDirection: 'row',alignItems:'flex-end',padding:15}}>
-            <Pressable
-              style={{flex:1,flexDirection: 'column',backgroundColor: 'white',borderRadius: 20,justifyContent: 'center',alignItems: 'flex-start',}}
-              onPress={() =>
+            
+            
+        <BtnMultiple>
+            <ButtonviewPrevious>
+          <ButtonviewClick onPress={() =>
                 navigation.goBack()
               }>
-                <Image style={{width:50,height:50}} source={ require( '../../assets/ic_prev_arrow.png') } />
-            </Pressable>
-          <Pressable
-            style={{flex:1,flexDirection: 'column',backgroundColor: 'white',borderRadius: 20,justifyContent: 'center',alignItems: 'flex-end',}}
-            onPress={() =>
-              navigation.navigate('CountryLanguageConfirmation', {
-                country,
-                language,
-              })
-            }>
-            {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
-            <Image style={{width:50,height:50}} source={ require( '../../assets/ic_next_arrow.png') } />
-          </Pressable>
-          
-        </View>
+                <Icon name="ic_angle_left" size={32} color="#000" />
+                {/* <Image style={{width:50,height:50}} source={ require( '../../assets/ic_prev_arrow.png') } /> */}
+                </ButtonviewClick>
+            </ButtonviewPrevious>
+                <ButtonviewNext>
+                <ButtonviewClick onPress={() =>
+                navigation.navigate('CountryLanguageConfirmation', {
+                  country,
+                  language,
+                })
+              }>
+              {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
+              <Icon name="ic_angle_right" size={32} color="#000" />
+            </ButtonviewClick>
+            </ButtonviewNext>
+        </BtnMultiple>    
+            
+               
         ) : null}
-      </Container>
+      </OnboardingContainer>
     </>
   );
 };
