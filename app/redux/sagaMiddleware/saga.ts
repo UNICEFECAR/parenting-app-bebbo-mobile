@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
-import  commonApiService, { onSponsorApiSuccess, retryAlert }  from '../../services/commonApiService';
+import  commonApiService, { onChildSetuppiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert }  from '../../services/commonApiService';
 import { addApiDataInRealm } from '../../services/Utils';
 import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
@@ -107,12 +107,14 @@ function* onApiSuccess(response: AxiosResponse<any>,prevPage: string,dispatch: a
   if(prevPage == 'Terms')
  {
   //dispatch action for terms page
+  yield call(onOnLoadApiSuccess,response,dispatch,navigation);
  } else if(prevPage == 'CountryLanguageSelection')
  {
  //dispatch action for sponsor page
-  onSponsorApiSuccess(response,dispatch,navigation)
+  yield call(onSponsorApiSuccess,response,dispatch,navigation)
  } else if(prevPage == 'ChilSetup')
  {
  //dispatch action for before home page
+  yield call(onChildSetuppiSuccess,response,dispatch,navigation)
  }
 }

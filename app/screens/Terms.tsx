@@ -43,10 +43,10 @@ type Props = {
 //   const output = yield put(fetchAPI(onApiArray));
 //   return output;
 // }
-export const onApiSuccess =() => {
-  //hide loading and redirect on next screen code here
-  console.log("onApiSuccess");
-}
+// export const onApiSuccess2 =() => {
+//   //hide loading and redirect on next screen code here
+//   console.log("onApiSuccess");
+// }
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
