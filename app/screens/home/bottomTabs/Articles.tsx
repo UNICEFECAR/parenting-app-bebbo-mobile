@@ -9,6 +9,8 @@ import {
   Image,
   Pressable,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -16,7 +18,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import {RootStackParamList} from '../../../navigation/types';
 import styled, {ThemeContext} from 'styled-components/native';
 import Icon from '@components/shared/Icon';
-import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
+// import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -63,7 +65,6 @@ const DATA = [
 ];
 const Articles = ({navigation}: Props) => {
   const renderArticleItem = (item: typeof DATA[0], index: number) => (
-    <>
       <Pressable onPress={onPress} key={index}>
         <View style={styles.item}>
           <Image
@@ -89,7 +90,7 @@ const Articles = ({navigation}: Props) => {
           </View>
         </View>
       </Pressable>
-    </>
+
   );
 
   const onPress = () => {
@@ -100,7 +101,10 @@ const Articles = ({navigation}: Props) => {
   return (
     <>
       <ContainerView>
-        <KeyboardAwareView animated useNativeDriver>
+      <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{flex:1}}
+    >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <ScrollView nestedScrollEnabled={true}>
           <TabScreenHeader
@@ -146,7 +150,7 @@ const Articles = ({navigation}: Props) => {
             /> */}
           </View>
           </ScrollView>
-        </KeyboardAwareView>
+        </KeyboardAvoidingView>
       </ContainerView>
     </>
   );
