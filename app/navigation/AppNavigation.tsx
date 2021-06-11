@@ -53,10 +53,9 @@ export default () => {
         }
       } finally {
         setIsReady(true);
-        SplashScreen.hide();
       }
     };
-
+    SplashScreen.hide();
     if (!isReady) {
       restoreState();
     }
