@@ -54,12 +54,16 @@ const Walkthrough = ({ navigation }: Props) => {
         <LinearGradient style={{flex:1,}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
           <Slide>
 
-            {index ==0 ?
-            (<VectorImage source={item.image} style={styles.imagetag} />)
-            :  (<WalkthroughImagebox>
-              <VectorImage source={item.image} style={styles.imagetag} />
+            {(index ==0) ?
+            (<VectorImage source={item.image} />)
+            : (index ==1) ? (<WalkthroughImagebox>
+              <VectorImage source={item.image} style={{width: 130,height: 140,}} />
+              </WalkthroughImagebox>): (index ==2) ? (<WalkthroughImagebox>
+              <VectorImage source={item.image} style={{width: 123,height: 150,}} />
+              </WalkthroughImagebox>): (<WalkthroughImagebox>
+              <VectorImage source={item.image} style={{width: 160,height: 123,}} />
               </WalkthroughImagebox>)}
-              <WalkthroughTitle style={[styles.title,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
+              <WalkthroughTitle style={[styles.titleText,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
             <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
           </Slide>
         </LinearGradient>
@@ -140,23 +144,16 @@ const Walkthrough = ({ navigation }: Props) => {
 
 export default Walkthrough;
 const styles = StyleSheet.create({
-  imagetag: {
-
-  },
-
-  text: {
+  titleText:{
     color: '#fff',
-    marginTop: 200,
+    fontSize:50,
     textAlign: 'center',
-  },
-  item: {
- 
+    fontFamily:'roboto-bold',
+    marginBottom:40,
   },
   title: {
-    
+    fontFamily:'roboto-regular',
     padding: 5,
-    
-    fontWeight: 'bold',
     textAlign: 'center'
   },
 
