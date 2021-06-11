@@ -2,12 +2,12 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import VectorImage from 'react-native-vector-image';
 import { Header3Text } from "../styles/style"
-import Icon from './shared/Icon';
+import Icon from '@components/shared/Icon';
 
 const ArticleCategories = (props:any) => {
     return (
         <>
-            <View style={{ padding: 10, minHeight: 130,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
+            <View style={{ padding: 10, minHeight: 150,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
 
                     <View style={styles.item} >

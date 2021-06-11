@@ -2,7 +2,8 @@ import { DrawerActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Button, Text, StyleSheet, Pressable, Modal, TouchableOpacity } from 'react-native';
-import Icon from './shared/Icon';
+import Icon from '@components/shared/Icon';
+import BurgerIcon from './shared/BurgerIcon';
 const headerHeight=50;
 const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
@@ -56,11 +57,7 @@ const TabScreenHeader = (props:any) => {
           backgroundColor: headerColor,
           maxHeight: headerHeight,
         }}>
-        <View style={{ flex: 1,padding:10}} >
-          <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-              <Icon name="ic_navmenu" size={20} color="#FFF" />
-          </Pressable>
-        </View>
+        <BurgerIcon/>
         <View style={{ flex: 4,padding:10}} >
           <Text style={{color:textColor}}> {props.title}</Text>
         </View>

@@ -1,20 +1,12 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useEffect, useState} from 'react';
-import {FlatList, Image, Pressable, View} from 'react-native';
-import {
-  Container,
-  ButtonText,
-  Header,
-  HeaderText,
-  SelectionView,
-} from '../../styles/style';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useEffect, useState } from 'react';
+import { FlatList} from 'react-native';
+import { SelectionView } from '../../styles/style';
 
-import {LocalizationStackParamList} from '../../navigation/types';
+import { LocalizationStackParamList } from '../../navigation/types';
 import LanguageItem from '@components/LanguageItem';
 import { useAppSelector } from '../../../App';
-import Icon from '../../components/shared/Icon';
-import { localization } from '../../assets/data/localization';
-
+import Icon from '@components/shared/Icon';
 import { useTranslation } from 'react-i18next';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -26,9 +18,9 @@ type LanguageSelectionNavigationProp = StackNavigationProp<
 type Props = {
   navigation: LanguageSelectionNavigationProp;
 };
-const LanguageSelection = ({route, navigation}: Props) => {
+const LanguageSelection = ({ route, navigation }: Props) => {
   const [language, setLanguage] = useState();
-  const {country} = route.params;
+  const { country } = route.params;
   // console.log(country);
   const languages = country.languages;
   const { t } = useTranslation();
@@ -36,10 +28,10 @@ const LanguageSelection = ({route, navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   useEffect(() => {
-    const selectedLanguage = languages.find(lang=> lang.languageCode === languageCode)
+    const selectedLanguage = languages.find(lang => lang.languageCode === languageCode)
     setLanguage(selectedLanguage);
-  },[]);
-  const renderItem = ({item}: any) => (
+  }, []);
+  const renderItem = ({ item }: any) => (
     <LanguageItem
       item={item}
       currentItem={language}
@@ -49,12 +41,12 @@ const LanguageSelection = ({route, navigation}: Props) => {
   return (
     <>
 
- 
+
       <OnboardingContainer>
-      <OnboardingStyle title= {t('selectYourCountry').toString()} iconname= 'ic_act_language' />
+        <OnboardingStyle title={t('selectYourCountry').toString()} iconname='ic_act_language' />
 
 
-        
+
         <SelectionView>
           <FlatList
             data={languages}
@@ -63,31 +55,31 @@ const LanguageSelection = ({route, navigation}: Props) => {
           />
         </SelectionView>
         {language ? (
-            
-            
-        <BtnMultiple>
+
+
+          <BtnMultiple>
             <ButtonviewPrevious>
-          <ButtonviewClick onPress={() =>
+              <ButtonviewClick onPress={() =>
                 navigation.goBack()
               }>
                 <Icon name="ic_angle_left" size={32} color="#000" />
-                {/* <Image style={{width:50,height:50}} source={ require( '../../assets/ic_prev_arrow.png') } /> */}
-                </ButtonviewClick>
+                {/* <Image style={{width:50,height:50}} source={ require( '@assets/ic_prev_arrow.png') } /> */}
+              </ButtonviewClick>
             </ButtonviewPrevious>
-                <ButtonviewNext>
-                <ButtonviewClick onPress={() =>
+            <ButtonviewNext>
+              <ButtonviewClick onPress={() =>
                 navigation.navigate('CountryLanguageConfirmation', {
                   country,
                   language,
                 })
               }>
-              {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
-              <Icon name="ic_angle_right" size={32} color="#000" />
-            </ButtonviewClick>
+                {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
+                <Icon name="ic_angle_right" size={32} color="#000" />
+              </ButtonviewClick>
             </ButtonviewNext>
-        </BtnMultiple>    
-            
-               
+          </BtnMultiple>
+
+
         ) : null}
       </OnboardingContainer>
     </>

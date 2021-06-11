@@ -2,7 +2,7 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import Icon from './shared/Icon';
+import Icon from '@components/shared/Icon';
 import Radio, { RadioActive, RadioItemText,RadioItem} from './shared/radio';
 
 const CountryItem = ({ item, currentItem, setCountry }) => {

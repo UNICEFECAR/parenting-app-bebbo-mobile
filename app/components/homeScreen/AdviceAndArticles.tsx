@@ -24,27 +24,27 @@ const AdviceAndArticles = ({ navigation }: Props) => {
 
           <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.item} >
-              <VectorImage source={require('../../assets/svg/ic_art_play.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_play.svg')} />
               <Text style={styles.title}>Playing and Learning</Text>
             </View>
             <View style={styles.item} >
-              <VectorImage source={require('../../assets/svg/ic_art_health.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_health.svg')} />
               <Text style={styles.title}>Health and Wellbeing</Text>
             </View>
             <View style={styles.item}>
-              <VectorImage source={require('../../assets/svg/ic_art_safety.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_safety.svg')} />
               <Text style={styles.title}>Safety and Protection</Text>
             </View>
             <View style={styles.item}>
-              <VectorImage source={require('../../assets/svg/ic_art_responsive.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_responsive.svg')} />
               <Text style={styles.title}>Responsive Parenting</Text>
             </View>
             <View style={styles.item}>
-              <VectorImage source={require('../../assets/svg/ic_art_parenting.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_parenting.svg')} />
               <Text style={styles.title}>Responsive Parenting</Text>
             </View>
             <View style={styles.item}>
-              <VectorImage source={require('../../assets/svg/ic_art_nutrition.svg')} />
+              <VectorImage source={require('@assets/svg/ic_art_nutrition.svg')} />
               <Text style={styles.title}>Responsive Parenting</Text>
             </View>
           </ScrollView>
