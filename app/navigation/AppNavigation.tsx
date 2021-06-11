@@ -20,6 +20,7 @@ import useRealmListener from '../database/dbquery/userRealmListener';
 import ImageStorage from '../downloadImages/ImageStorage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import ArticleDetails from '../screens/home/ArticleDetails';
+import SplashScreen from 'react-native-splash-screen';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
