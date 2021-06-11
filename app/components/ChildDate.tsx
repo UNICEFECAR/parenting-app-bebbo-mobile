@@ -16,6 +16,7 @@ import CheckBox from '@react-native-community/checkbox';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LabelText } from './shared/ChildSetupStyle';
 
 const ChildDate = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
@@ -44,13 +45,14 @@ const ChildDate = () => {
   };
   return (
     <>
-      <View style={{ margin: 10 }}>
-        <Header3Text>Child Date of Birth / Expected due date</Header3Text>
-        <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
-          <View style={{ flex: 3, }}>
+      <View style={{width:'100%', marginTop:10 }}>
+        <LabelText>Child Date of Birth / Expected due date</LabelText>
+
+        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff', marginBottom:10,}}>
+          <View style={{ flex: 4,}}>
             <Text style={styles.title}> {dobDate ? dobDate.toDateString() : null}</Text>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
             <Pressable style={styles.title} onPress={showdobDatepicker}>
               <Icon name="ic_calendar" size={20} color="#000" />
             </Pressable>
@@ -68,8 +70,8 @@ const ChildDate = () => {
           )}
         </View>
 
-        <View style={{ flex: 1, flexDirection: 'row', minHeight: 50 }}>
-          <View style={{ flex: 1, alignItems: 'flex-end' }} >
+        <View style={{  flexDirection: 'row', minHeight: 50 }}>
+          <View style={{ flex: 1, alignItems: 'flex-start' }} >
             <CheckBox
               disabled={false}
               value={toggleCheckBox}
@@ -84,30 +86,20 @@ const ChildDate = () => {
               onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
           </View>
-          <View style={{ flex: 5, alignItems: 'flex-start', flexDirection: 'row' }} >
-            <Text style={[styles.title, { color: '#FFF' }]}>Baby Born Prematurely</Text>
-            <Pressable style={[styles.title,{marginLeft:15}]} onPress={() => setModalVisible(true)}>
+          <View style={{ flex: 6,alignContent:'center',justifyContent:'flex-start', alignItems: 'center', flexDirection: 'row',height:40, }} >
+            <LabelText>Baby Born Prematurely</LabelText>
+            <Pressable style={[styles.title,{marginLeft:10,marginTop:8}]} onPress={() => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
             </Pressable>
           </View>
         </View>
-        <Header3Text>Original due date</Header3Text>
+        <LabelText>Original due date</LabelText>
 
-        {/* <View style={{ flexDirection: 'row' }}>
-          <View style={{ flex: 3, backgroundColor: 'gray' }}>
-            <Header3Text> {dueDate ? dueDate.toDateString() : null}</Header3Text>
-          </View>
-          <View style={{ flex: 1, backgroundColor: 'darkorange' }}>
-            <Pressable style={styles.title} onPress={showdueDatepicker}>
-              <Header3Text>{'Select Due Date'}</Header3Text>
-            </Pressable>
-          </View>
-        </View> */}
-        <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
-          <View style={{ flex: 3, }}>
+        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff' }}>
+          <View style={{ flex: 4, }}>
             <Text style={styles.title}> {dueDate ? dueDate.toDateString() : null}</Text>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
             <Pressable style={styles.title} onPress={showdueDatepicker}>
               <Icon name="ic_calendar" size={20} color="#000" />
             </Pressable>
@@ -166,6 +158,7 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 16,
     marginBottom: 16,
+    
     // paddingVertical: 8,
     // paddingHorizontal:8,
     // borderWidth: 4,

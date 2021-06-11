@@ -18,8 +18,9 @@ padding:0 25px;
 
 export const WalkthroughImagebox = styled.Text`
 background : #fff;
-padding:20px;
-border-radius:4px;
+padding:50px;
+border-radius:20px;
+margin-bottom: 40px;
 `
 
 export const WalkthroughTitle = styled.Text`
@@ -35,6 +36,29 @@ text-align:center;
 padding:0 25px;
 font-family: roboto-regular;
 `
+
+export const ButtonTertiary1 = styled.View`
+
+padding: 15px 30px;
+border-radius:4px;
+font-size:16px;
+color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
+background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+flex:1;
+min-width:140px;
+
+`
+
+export const ButtonTertiary2 = styled(ButtonTertiary1)`
+background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
+
+`
+
+export const WalkthroughButton = styled.View`
+height:52px;
+
+`
+
 
 export default WalkthroughContainer;
 
