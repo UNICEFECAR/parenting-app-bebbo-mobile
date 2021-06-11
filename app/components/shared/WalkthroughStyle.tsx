@@ -18,8 +18,9 @@ padding:0 25px;
 
 export const WalkthroughImagebox = styled.Text`
 background : #fff;
-padding:20px;
-border-radius:4px;
+padding:50px;
+border-radius:20px;
+margin-bottom: 40px;
 `
 
 export const WalkthroughTitle = styled.Text`
