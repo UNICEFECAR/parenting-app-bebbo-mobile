@@ -25,7 +25,6 @@ type TermsNavigationProp = StackNavigationProp<
 type Props = {
   navigation: TermsNavigationProp;
 };
-
 // function* retryApis(errorArr: any[]){
 //   console.log("in retry",errorArr);
 //   let onApiArray;
