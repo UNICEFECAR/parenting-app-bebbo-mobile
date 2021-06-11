@@ -24,10 +24,10 @@ axiosService.interceptors.request.use(
     //   config.headers.Authorization = 'Bearer ' + tokennew;
     // }
     // config.params = {Seasons: "all", childAge: "all", childGender: "all", parentGender: "all"};
-    config.auth = {
-      username: 'globaladmin',
-      password: 'P@ssw0rd'
-  }
+  //   config.auth = {
+  //     username: 'globaladmin',
+  //     password: 'P@ssw0rd'
+  // }
     console.log("edited config-",config);
     return config;
   },
