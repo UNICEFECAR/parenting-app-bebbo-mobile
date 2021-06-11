@@ -7,6 +7,11 @@ import { RootStackParamList } from '../navigation/types';
 import { Header, Container, HeaderText, Header2Text } from '../styles/style';
 import ActionSheet from "react-native-actions-sheet";
 import Icon from '@components/shared/Icon';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import { Heading1w,Heading1Centerw,Heading3 } from '../styles/typography';
+import { ChildCenterView ,ChildContentArea,LabelText,ChildSection} from '@components/shared/ChildSetupStyle';
+import { ButtonPrimary } from '@components/shared/ButtonGlobal';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -24,28 +29,36 @@ const ChildSetup = ({ navigation }: Props) => {
   const actionSheetRef = createRef();
   return (
     <>
-      <Container>
-        <View>
 
-          <Header>
-            <HeaderText>Please take a moment to personalize your app</HeaderText>
-          </Header>
-          <View >
+<OnboardingContainer>
+          <OnboardingHeading>
+                <ChildCenterView><Heading1Centerw> Please take a moment to personalize your app</Heading1Centerw></ChildCenterView>
+          </OnboardingHeading>
+     
+
+      <ChildContentArea>
+      <ChildSection>
             <ChildDate />
-          </View>
-          <View style={{ padding: 50 }}>
-            <Text>Relationship with child</Text>
-            <View style={{ flexDirection: 'row', backgroundColor: 'gray' }}>
-              <View style={{ flex: 3 }}>
+          </ChildSection>
+      </ChildContentArea>
+      
+      <View style={{width:'100%', marginTop:30,flex:1, }}>
+
+          
+          
+          <View style={{marginTop:10 }}>
+            <LabelText>Relationship with child</LabelText>
+            <View style={{ flexDirection: 'row', backgroundColor: '#ffffff',height:60 }}>
+            <View style={{ flex: 4,alignItems:'center',flexDirection:'row',paddingLeft:15,paddingTop:10, }}>
                 <Pressable
                   onPress={() => {
                     actionSheetRef.current?.setModalVisible();
                   }}
                 >
-                  <Header2Text>{relationship ? relationship : 'Select'}</Header2Text>
+                  <Heading3>{relationship ? relationship : 'Select'}</Heading3>
                 </Pressable>
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 1,justifyContent:'center',alignItems:'center',flexDirection:'row', }}>
                 <Icon name="ic_angle_down" size={10} color="#000" />
               </View>
             </View>
@@ -70,8 +83,10 @@ const ChildSetup = ({ navigation }: Props) => {
             </ActionSheet>
           </View>
         </View>
-        <Button
-          title="Continue"
+        <View style = {{marginBottom:15,}}>
+
+        
+        <Button title="Continue"
           onPress={() => {
             navigation.reset({
               index: 0,
@@ -80,9 +95,10 @@ const ChildSetup = ({ navigation }: Props) => {
             // navigation.navigate('ChildSetupList')
           }}
         />
+</View>
 
-
-      </Container>
+      
+      </OnboardingContainer>
     </>
   );
 };
