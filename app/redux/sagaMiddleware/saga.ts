@@ -21,6 +21,7 @@ function* onFetchAPI(value:any) {
     const dispatch=value.dispatch;
     const navigation=value.navigation;
     console.log("prevPage--",prevPage);
+    errorArr = [];
     try {
         // API Request
         
@@ -38,35 +39,43 @@ function* onFetchAPI(value:any) {
          console.log(errorArr,"..errorArr..");
          if(errorArr.length > 0)
          {
-          try {
-            const confirm = yield call(retryAlert);
-            console.log("confirm--",confirm);
-            let failedApiObj = errorArr;
-            let onLoadApiArray;
-            const apiJsonData =payload;
-            
-            if(failedApiObj) {
-              onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
-                failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
-              );
-            }else {
-              onLoadApiArray = apiJsonData;
-            }
-            console.log("onLoadApiArray--",onLoadApiArray);
-            errorArr = [];
-            yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
-          }catch(e) {
-            console.log("user selected cancelled",prevPage);
-            //code of what to fo if user selected cancel.
-            if(prevPage == 'Terms')
-            {
-              navigation.navigate('ChildSetup');
-            }else if(prevPage == 'ChilSetup')
-            {
-              //dispatch action for before home page
-              navigation.navigate('HomeDrawerNavigator');
-            }
+          if(prevPage == 'Terms')
+          {
+            navigation.navigate('ChildSetup');
+          }else if(prevPage == 'ChilSetup')
+          {
+            //dispatch action for before home page
+            navigation.navigate('HomeDrawerNavigator');
           }
+          // try {
+          //   const confirm = yield call(retryAlert);
+          //   console.log("confirm--",confirm);
+          //   let failedApiObj = errorArr;
+          //   let onLoadApiArray;
+          //   const apiJsonData =payload;
+            
+          //   if(failedApiObj) {
+          //     onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
+          //       failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
+          //     );
+          //   }else {
+          //     onLoadApiArray = apiJsonData;
+          //   }
+          //   console.log("onLoadApiArray--",onLoadApiArray);
+          //   errorArr = [];
+          //   yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
+          // }catch(e) {
+          //   console.log("user selected cancelled",prevPage);
+          //   //code of what to fo if user selected cancel.
+          //   if(prevPage == 'Terms')
+          //   {
+          //     navigation.navigate('ChildSetup');
+          //   }else if(prevPage == 'ChilSetup')
+          //   {
+          //     //dispatch action for before home page
+          //     navigation.navigate('HomeDrawerNavigator');
+          //   }
+          // }
          }
          else {
           yield call(onApiSuccess,response,prevPage,dispatch,navigation);
@@ -77,28 +86,7 @@ function* onFetchAPI(value:any) {
         console.log("in catch---",prevPage);
         if(prevPage !== 'CountryLanguageSelection')
         {
-          try {
-            const confirm = yield call(retryAlert);
-            console.log("confirm--",confirm);
-            // let failedApiObj = errorArr;
-            let onLoadApiArray;
-            const apiJsonData =payload;
-            
-            // if(failedApiObj) {
-            //   onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
-            //     failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
-            //   );
-            // }else {
-            //   onLoadApiArray = apiJsonData;
-            // }
-            onLoadApiArray = apiJsonData;
-            console.log("onLoadApiArray--",onLoadApiArray);
-            errorArr = [];
-            yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
-          }catch(e) {
-            console.log("user selected cancelled",prevPage);
-            //code of what to fo if user selected cancel.
-            if(prevPage == 'Terms')
+          if(prevPage == 'Terms')
             {
               navigation.navigate('ChildSetup');
             }else if(prevPage == 'ChilSetup')
@@ -106,7 +94,36 @@ function* onFetchAPI(value:any) {
               //dispatch action for before home page
               navigation.navigate('HomeDrawerNavigator');
             }
-          }
+          // try {
+          //   const confirm = yield call(retryAlert);
+          //   console.log("confirm--",confirm);
+          //   // let failedApiObj = errorArr;
+          //   let onLoadApiArray;
+          //   const apiJsonData =payload;
+            
+          //   // if(failedApiObj) {
+          //   //   onLoadApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
+          //   //     failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
+          //   //   );
+          //   // }else {
+          //   //   onLoadApiArray = apiJsonData;
+          //   // }
+          //   onLoadApiArray = apiJsonData;
+          //   console.log("onLoadApiArray--",onLoadApiArray);
+          //   errorArr = [];
+          //   yield put(fetchAPI(onLoadApiArray,prevPage,dispatch,navigation));
+          // }catch(e) {
+          //   console.log("user selected cancelled",prevPage);
+          //   //code of what to fo if user selected cancel.
+          //   if(prevPage == 'Terms')
+          //   {
+          //     navigation.navigate('ChildSetup');
+          //   }else if(prevPage == 'ChilSetup')
+          //   {
+          //     //dispatch action for before home page
+          //     navigation.navigate('HomeDrawerNavigator');
+          //   }
+          // }
         }
       }
 }
