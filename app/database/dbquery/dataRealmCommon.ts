@@ -98,9 +98,12 @@ class DataRealmCommon {
                 if(realm)
                 {
                     realm.write(() => {
-                        records.forEach(record => {
-                            realm?.create<Entity>(entitySchema.name, record);
-                        })
+                        if(records?.length>0)
+                        {
+                            records.forEach(record => {
+                                realm?.create<Entity>(entitySchema.name, record);
+                            })
+                        }
                             
                         resolve("success");
                     });
