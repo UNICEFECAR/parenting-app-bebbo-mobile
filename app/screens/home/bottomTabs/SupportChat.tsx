@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
+import {Heading1, Heading3} from '../../../styles/typography';
 import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
 import { ThemeContext } from 'styled-components';
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -26,8 +27,8 @@ const SupportChat = ({ navigation }: Props) => {
       }}>
         <TabScreenHeader title="Support" headerColor={headerColor} textColor='#FFF'/>
         <View style={{alignItems:'center',justifyContent: 'space-between'}}>
-          <Text>Coming soon !</Text>
-          <Text>Chat support not available at the moment</Text>
+          <Heading1>Coming soon !</Heading1>
+          <Heading3>Chat support not available at the moment</Heading3>
         </View>
       </View>
       </SafeAreaView>
