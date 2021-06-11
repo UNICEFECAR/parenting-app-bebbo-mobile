@@ -56,15 +56,15 @@ const Terms = ({navigation}: Props) => {
   // });
   // const postdata={childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}
   const acceptTerms=()=>{
-    if(netInfo.isConnected){
+    ///if(netInfo.isConnected){
       navigation.reset({
         index: 0,
         routes: [{name: 'LoadingScreen',params:{apiJsonData:apiJsonData,prevPage:'Terms'}}]      
       })
-    }
-    else{
-      Alert.alert("No Internet Connection.")
-    }
+    // }
+    // else{
+    //   Alert.alert("No Internet Connection.")
+    // }
   
   }
   
