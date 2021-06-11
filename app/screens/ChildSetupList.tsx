@@ -18,7 +18,7 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
     // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
-    {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'},saveinDB:true},
+    {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'43',childGender:'40',parentGender:'all',Seasons:'all'},saveinDB:true},
     // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{},saveinDB:true},
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
   ]
