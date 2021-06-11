@@ -16,9 +16,9 @@ const sagaMiddleware= createSagaMiddleware();
 const allMiddlewares:any[] =[];
 if (process.env.NODE_ENV !== 'production' ){
 allMiddlewares.push(loggerMiddleware);
-
 }
 allMiddlewares.push(sagaMiddleware);
+
 export default function configureAppStore() {
   // export const store = configureStore({
   // reducer: rootReducer,

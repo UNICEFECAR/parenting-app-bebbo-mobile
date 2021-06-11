@@ -14,7 +14,8 @@ buck-out/
 !debug.keystore
 # .env added
 .env
-.env
 *.lock
 ios/PodFile.lock
 package-lock.json
+*.bundle
+android/app/src/main/assets/index.android.bundle

@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView } from "react-native"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
-import Icon from './shared/Icon';
+import Icon from '@components/shared/Icon';
 const Item = ({ title }) => {
     const themeContext = useContext(ThemeContext);
     const itemColor = themeContext.colors.ACTIVITIES_TINTCOLOR;

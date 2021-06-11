@@ -1,8 +1,8 @@
 
-import {apiUrlDevelop} from "@env"
+import {apiUrlDevelop} from "react-native-dotenv"
 
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
-    console.log("in finalurl");
+    console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
     }
