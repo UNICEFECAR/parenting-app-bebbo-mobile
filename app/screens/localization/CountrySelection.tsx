@@ -49,7 +49,7 @@ const CountrySelection = (props: any) => {
     (state: any) => state.selectedCountry.countryId,
   );
   useEffect(() => {
-    const selectedCountry = localization.find(country=> country.countryId === countryId)
+    const selectedCountry: any= localization.find(country=> country.countryId === countryId)
     setCountry(selectedCountry);
   },[]);
   const renderItem = ({item}: any) => (
@@ -79,7 +79,6 @@ const CountrySelection = (props: any) => {
               props.navigation.navigate('LanguageSelection', {country})
             }>
               <Icon name="ic_angle_right" size={32} color="#000" />
-         
             </ButtonviewClick>
         </ButtonviewNext>
         
@@ -90,11 +89,3 @@ const CountrySelection = (props: any) => {
 };
 
 export default CountrySelection;
-
-export const styles = StyleSheet.create({
-  // Header CSS
-  headerMenuIcon: {
-    marginLeft: 10,
-  },
-
-});
