@@ -25,7 +25,7 @@ const PlayingTogether = ({ navigation }: Props) => {
               justifyContent: 'center',
               alignItems: 'center'
             }} >
-              <VectorImage source={require('../../assets/svg/ic_activity_color.svg')} />
+              <VectorImage source={require('@assets/svg/ic_activity_color.svg')} />
             </View>
             <View style={{ flex: 3, }} >
              
