@@ -11,12 +11,15 @@ import {RootStackParamList} from '../navigation/types';
 import CheckBox from '@react-native-community/checkbox';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 
-import { ButtonText, Container, Header, HeaderText } from '../styles/style';
+
 import { appConfig } from '../types/apiConstants';
 import { useNetInfo } from '@react-native-community/netinfo';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
-import { Heading1w, Heading2w } from '../styles/typography';
+import { Heading1w, Heading2w, Heading3w } from '../styles/typography';
+import { ButtonPrimary, ButtonText ,ButtonRow} from '@components/shared/ButtonGlobal';
+import { CheckboxContainer, CheckboxItemText} from '@components/shared/CheckboxStyle';
+import { ButtonviewPrevious } from '@components/shared/ButtonView';
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
   'LoadingScreen'
@@ -26,30 +29,6 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 
-// function* retryApis(errorArr: any[]){
-//   console.log("in retry",errorArr);
-//   let onApiArray;
-//   let failedApiObj = errorArr;
-//   const apiJsonData = [
-//     {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-//     {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
-//     {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
-//   ]
-//   if(failedApiObj) {
-//     onApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
-//       failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
-//     );
-//   }else {
-//     onApiArray = apiJsonData;
-//   }
-//   console.log("onApiArray--",onApiArray);
-//   const output = yield put(fetchAPI(onApiArray));
-//   return output;
-// }
-// export const onApiSuccess2 =() => {
-//   //hide loading and redirect on next screen code here
-//   console.log("onApiSuccess");
-// }
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
@@ -95,109 +74,68 @@ const Terms = ({navigation}: Props) => {
         <OnboardingHeading>
           <Heading1w>{t('termsandconditionheader')}</Heading1w>
         </OnboardingHeading>
-        <ScrollView contentContainerStyle={{ padding: 24, }}>
+        <ScrollView contentContainerStyle={{ padding: 0, }}>
           <HTML
               source={{ html: body }}
-              // contentWidth={contentWidth}
-              baseFontStyle={{ fontSize: 18 }}
-              // tagsStyles={htmlStyles}
-              // imagesMaxWidth={Dimensions.get('window').width}
-              // staticContentMaxWidth={Dimensions.get('window').width}
+             
+              baseFontStyle={{ fontSize: 16, color:'#ffffff' }}
+            
           />
 
           <Fragment>
                                 <View style={{ marginTop: 20, paddingRight: 40 }}>
 
-                                    {/* checkPrivateData */}
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                    <CheckBox
+                                <CheckboxContainer>
+                                   <CheckBox
                                         disabled={false}
                                         value={toggleCheckBox}
                                         onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                                        tintColors = {{ true: '#ffffff' , false: '#d4d4d4' }}
                                       />
-                                        <Text>{t('tAndCCheckbox1')}</Text>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop:14, alignItems: 'center' }}>
-                                    <CheckBox
+                                        <CheckboxItemText>{t('tAndCCheckbox1')}</CheckboxItemText>
+
+                                   </CheckboxContainer>
+
+                                   <CheckboxContainer>
+                                   <CheckBox
                                         disabled={false}
                                         value={toggleCheckBox1}
                                         onValueChange={(newValue) => setToggleCheckBox1(newValue)}
+                                        tintColors = {{ true: '#ffffff' , false: '#d4d4d4' }}
                                       />
-                                      <Text>{t('tAndCPrivacyPolicy')}</Text>
-                                        {/* <CheckBox
-                                              label={t('tAndCCheckbox2')}
-                                              extralabel = {}
-                                              goToPrivacy = {goToPrivacyPolicy}
-                                              checkedValue = {false}
-                                            /> */}
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 14, alignItems: 'center' }}>
-                                    <CheckBox
+                                        <CheckboxItemText>{t('tAndCPrivacyPolicy')}</CheckboxItemText>
+
+                                   </CheckboxContainer>
+                                   <CheckboxContainer>
+                                   <CheckBox
                                         disabled={false}
                                         value={toggleCheckBox2}
                                         onValueChange={(newValue) => setToggleCheckBox2(newValue)}
+                                        tintColors = {{ true: '#ffffff' , false: '#d4d4d4' }}
+                                        
                                       />
-                                      <Text>{t('tAndCCheckbox3')}</Text>
-                                       {/* <CheckBox
-                                              label={t('tAndCCheckbox3')}
-                                              checkedValue = {true}
-                                            /> */}
+                                        <CheckboxItemText>{t('tAndCCheckbox3')}</CheckboxItemText>
+
+                                   </CheckboxContainer>
+
+                                    
+                                    
                                     </View>
 
-                                    {/* checkOtherConditions */}
-                                    {/* <View style={{ flexDirection: 'row', marginTop: scale(14), alignItems: 'center' }}>
-                                        <Checkbox.Android
-                                            status={this?.state?.checkOtherConditions ? 'checked' : 'unchecked'}
-                                            onPress={() => { this.setState({ checkOtherConditions: !this.state.checkOtherConditions }); }}
-                                            color={colors?.checkboxColor}
-                                        />
-                                        <View style={{ flex: 1, }}>
-                                            <Typography type={TypographyType.bodyRegular} style={{ textAlign: 'left', marginLeft: scale(5) }}>
-                                                {translate('privacyPolicyCheckBox')}
-                                                <Text style={{ fontWeight: "bold" }} onPress={() => this.props.navigation.navigate('RootModalStackNavigator_PrivacyPolicyScreen')}> {translate('privacyPolicyLinkText')}</Text>
-                                            </Typography>
-                                        </View>
-                                    </View> */}
-
-                                    {/* checkAnonDataAccess */}
-                                    {/* <View style={{ flexDirection: 'row', marginTop: scale(14), alignItems: 'center', }}>
-                                        <Checkbox.Android
-                                            status={this?.state?.checkAnonDataAccess ? 'checked' : 'unchecked'}
-                                            onPress={() => { this.onAnonDataAccessPress() }}
-                                            color={colors?.checkboxColor}
-                                        />
-                                        <TouchableWithoutFeedback style={{ padding: 5 }} onPress={() => { this.onAnonDataAccessPress() }}>
-                                            <Typography type={TypographyType.bodyRegular} style={{ flex: 1, textAlign: 'left', marginLeft: scale(5) }}>
-                                                {translate('dataUsageCheckbox')}
-                                            </Typography>
-                                        </TouchableWithoutFeedback>
-                                    </View> */}
-                                </View>
-
-                                {/* ACCEPT BUTTON */}
-                                {/* <RoundedButton
-                                    text={translate('acceptTermsAndConditions')}
-                                    disabled={this?.state?.checkPrivateData && this?.state?.checkOtherConditions ? false : true}
-                                    type={RoundedButtonType.purple}
-                                    onPress={() => { this.onAcceptButtonClick() }}
-                                    style={{ marginTop: scale(20) }}
-                                /> */}
                             </Fragment>
-            {/* <Button
-              title="Go to ChildSetup"
-              onPress={() => navigation.navigate('ChildSetup')}
-            /> */}
+           
       </ScrollView>
-      <Pressable style={{backgroundColor: '#00AEEF', padding: 10,margin:10}} onPress={() => {
+      <ButtonRow>
+      <ButtonPrimary onPress={() => {
        acceptTerms();
         // navigation.navigate('LoadingScreen')
         
         }}>
       <ButtonText>I accept terms and conditions</ButtonText>
-      </Pressable>
-      {/* <Pressable style={{backgroundColor: '#00AEEF', padding: 10}} onPress={() => callSagaApi()}>
-            <ButtonText>Call saga</ButtonText>
-      </Pressable> */}
+      </ButtonPrimary>
+      </ButtonRow>
+      
+     
       </OnboardingContainer>
       </>
   );

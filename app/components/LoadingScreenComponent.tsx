@@ -7,14 +7,12 @@ const Container = styled.View`
   flex:1;
 `;
 const MainView = styled.View`
-justify-content:center;
-align-content:center;
 flex:1;
 `;
 const WrapView = styled.View`
 justify-content:center;
 align-content:center;
-margin-top:20px;
+margin-top:25px;
 `;
 const HeartLogo = styled.Image`
 width:120px;
@@ -30,7 +28,7 @@ align-items:center;
 const SponsorLogo = styled.Image`
 width:50px;
 height:50px;
-margin-top:30px;
+
 `;
 const StaticLogo = styled.Image`
 width:50px;
@@ -39,8 +37,8 @@ height:50px;
 `;
 const LoadingText = styled.Text`
 color: #fff;
- font-size: 25px;
-  font-weight: bold;
+font-size: 25px;
+font-weight: bold;
 `;
 const ImageBackground =styled.ImageBackground
 ` 
