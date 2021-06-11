@@ -16,44 +16,44 @@ const MilestoneCircle = () => (
   <View style={{
     width: circleWidth,
     height: circleWidth,
-    borderRadius: circleWidth / 2,
+    // borderRadius: circleWidth / 2,
     backgroundColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center'
   }}>
-    <VectorImage source={require('../../assets/svg/ic_development_color.svg')} />
+    <VectorImage source={require('@assets/svg/ic_development_color.svg')} />
   </View>
 );
 
 const DATA = [
   {
     id: '1',
-    imagePath: require('../../assets/trash/card1.jpeg'),
+    imagePath: require('@assets/trash/card1.jpeg'),
     title: 'Gripping your filgers'
   },
   {
     id: '2',
-    imagePath: require('../../assets/trash/card2.jpeg'),
+    imagePath: require('@assets/trash/card2.jpeg'),
     title: 'Molding your hands'
   },
   {
     id: '3',
-    imagePath: require('../../assets/trash/card3.jpeg'),
+    imagePath: require('@assets/trash/card3.jpeg'),
     title: 'Picking stuff around'
   },
   {
     id: '4',
-    imagePath: require('../../assets/trash/card4.jpeg'),
+    imagePath: require('@assets/trash/card4.jpeg'),
     title: 'Gripping your filgers'
   },
   {
     id: '5',
-    imagePath: require('../../assets/trash/card5.jpeg'),
+    imagePath: require('@assets/trash/card5.jpeg'),
     title: 'Molding your hands'
   },
   {
     id: '6',
-    imagePath: require('../../assets/trash/card6.jpeg'),
+    imagePath: require('@assets/trash/card6.jpeg'),
     title: 'Picking stuff around'
   },
 ];
