@@ -33,7 +33,7 @@ margin-top:30px;
 `;
 const StaticLogo = styled.Image`
 width:150px;
-height:80;
+height:80px;
 
 `;
 const LoadingText = styled.Text`
