@@ -1,13 +1,12 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { View, Text, Button, SafeAreaView, ImageBackground, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { RootStackParamList } from '../navigation/types';
 import { StyleSheet } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import LinearGradient from 'react-native-linear-gradient';
 import WalkthroughContainer, { Slide,ButtonTertiary1,ButtonTertiary2,WalkthroughTitle,WalkthroughButton, WalkthroughSubtext,WalkthroughImagebox } from '@components/shared/WalkthroughStyle';
-import { ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
+import { ButtonText } from '@components/shared/ButtonGlobal';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -60,8 +59,8 @@ const Walkthrough = ({ navigation }: Props) => {
             :  (<WalkthroughImagebox>
               <VectorImage source={item.image} style={styles.imagetag} />
               </WalkthroughImagebox>)}
-              <WalkthroughTitle style={[styles.title,item.textcolor]}>{item.title}</WalkthroughTitle>
-            <WalkthroughSubtext style={styles.title}>{item.subtitle}</WalkthroughSubtext>
+              <WalkthroughTitle style={[styles.title,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
+            <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
           </Slide>
         </LinearGradient>
         </WalkthroughContainer>
@@ -92,9 +91,11 @@ const Walkthrough = ({ navigation }: Props) => {
 
 
   const [showPrevbtn, setShowPrevbtn] = useState(false);
+  const [isDotsRequired, setIsDotsRequired] = useState(true);
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
     (index == 3) ? setShowPrevbtn(true) : setShowPrevbtn(false);
+    (index == 3) ? setIsDotsRequired(false) : setIsDotsRequired(true);
 
   }
   const onDone = () => {
@@ -107,6 +108,9 @@ const Walkthrough = ({ navigation }: Props) => {
       routes: [{ name: 'Terms' }],
     })
   }
+  const getDotStyle = (colorString:string)=>{
+    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
+  }
 
   
   const keyExtractor = (item: Item) => item.title;
@@ -118,9 +122,11 @@ const Walkthrough = ({ navigation }: Props) => {
         renderItem={({ item, index }) => renderItem(item, index)}
         // bottomButton
         dotClickEnabled
-        // showDoneButton={false}
+        activeDotStyle={getDotStyle('black')}
+        dotStyle={getDotStyle('white')}
         showSkipButton={false}
         showPrevButton={showPrevbtn}
+        // dotsRequired={isDotsRequired}
         showNextButton={false}
         data={data}
         onDone={onDone}
