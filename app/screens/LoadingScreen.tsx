@@ -1,6 +1,7 @@
 import { useNetInfo } from '@react-native-community/netinfo';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Alert, Dimensions, Text, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
@@ -22,23 +23,26 @@ type Props = {
 const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
-  
+  const apiJsonData  = route.params.apiJsonData;
+const prevPage  = route.params.prevPage;
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
     );
     const netInfo=useNetInfo();
-    useEffect(() => {
-      console.log(netInfo,"..netinfo..");
-      // if(netInfo.isConnected){
-        callSagaApi();
-      // }
-      // else{
-      //   Alert.alert("No Internet Connection..");
-      // }
-      // setTimeout(()=>{
-      // navigation.navigate('ChildSetup');
-      // },10000)
-    },[]);
+    useFocusEffect(
+      React.useCallback(() => {
+        console.log(netInfo,"..netinfo useFocusEffect..",prevPage);
+        // if(netInfo.isConnected){
+          callSagaApi();
+        // }
+        // else{
+        //   Alert.alert("No Internet Connection..");
+        // }
+        // setTimeout(()=>{
+        // navigation.navigate('ChildSetup');
+        // },10000)
+      },[])
+    );
    // console.log(sponsors,"..fom loading sponsors..");
 // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
 // const apiJsonData = [
@@ -47,8 +51,7 @@ const LoadingScreen = ({route, navigation }: Props) => {
 // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
 // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
 // ]
-const apiJsonData  = route.params.apiJsonData;
-const prevPage  = route.params.prevPage;
+
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
     dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation))
