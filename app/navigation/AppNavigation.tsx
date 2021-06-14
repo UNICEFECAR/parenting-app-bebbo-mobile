@@ -41,7 +41,6 @@ export default () => {
     const restoreState = async () => {
       try {
         const initialUrl = await Linking.getInitialURL();
-
         if (Platform.OS !== 'web' && initialUrl == null) {
           // Only restore state if there's no deep link and we're not on web
           const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
