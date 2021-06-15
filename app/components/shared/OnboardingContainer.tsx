@@ -41,7 +41,7 @@ export const LocalizationRow = styled.View`
   flex-direction: column;
   
   background-color: #fff;
-  min-height:60px
+  min-height:60px;
   margin-top:0px;
   margin-bottom: 30px;
   border-radius:4px;
