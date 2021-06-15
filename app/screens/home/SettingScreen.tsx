@@ -14,13 +14,14 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Text,
-  Button,
+  Modal,
   View,
   Pressable,
   SafeAreaView,
   ScrollView,
+  StyleSheet,
 } from 'react-native';
-import {Switch} from 'react-native-gesture-handler';
+import {Switch, TouchableOpacity} from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import styled, {ThemeContext} from 'styled-components/native';
 import {useAppSelector} from '../../../App';
@@ -34,6 +35,7 @@ import {
   Heading3,
 } from '../../styles/typography';
 import {localization} from '@assets/data/localization';
+import Icon from '@components/shared/Icon';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -61,7 +63,8 @@ const SettingScreen = (props: any) => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
-  console.log(countryId);
+  const [modalVisible, setModalVisible] = useState(false);
+  // console.log(countryId);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -226,7 +229,7 @@ const SettingScreen = (props: any) => {
               </ButtonPrimary>
             </View>
           </View>
-          <View style={{paddingHorizontal: 15,}}>
+          <View style={{paddingHorizontal: 15}}>
             <View style={{flexDirection: 'row'}}>
               <Heading1>Country and language</Heading1>
               <Pressable
@@ -264,12 +267,11 @@ const SettingScreen = (props: any) => {
               </LocalizationRow>
             </LocalizationContainer>
           </View>
-         
 
           <View style={{padding: 15}}>
             <Heading1>Data Export / Import</Heading1>
             <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary onPress={() => {}}>
+              <ButtonPrimary onPress={() => {setModalVisible(!modalVisible);}}>
                 <ButtonText>Export All Saved Data</ButtonText>
               </ButtonPrimary>
             </View>
@@ -279,13 +281,50 @@ const SettingScreen = (props: any) => {
               </ButtonPrimary>
             </View>
           </View>
-          {/* <VectorImage source={require('@assets/svg/ic_gdrive.svg')} />
+          {/* 
           <Button
             title="Toggle"
             onPress={() =>
               props.navigation.dispatch(DrawerActions.toggleDrawer())
             }
           /> */}
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              // Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}
+            onDismiss={() => {
+              setModalVisible(!modalVisible);
+            }}>
+            <Pressable
+              style={styles.centeredView}
+              onPress={() => {
+                setModalVisible(!modalVisible);
+              }}>
+              <TouchableOpacity
+                style={styles.modalView}
+                onPress={() => console.log('do nothing')}
+                activeOpacity={1}>
+                <Heading1> Export Data on</Heading1>
+                <View style={{flexDirection:'row'}}>
+                <View style={styles.item}>
+                  <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                  <Text style={styles.modalText}>
+                    Share
+                  </Text>
+                </View>
+                <View style={styles.item}>
+                  <VectorImage source={require('@assets/svg/ic_gdrive.svg')} />
+                  <Text style={styles.modalText}>Google Drive</Text>
+                </View>
+                </View>
+              </TouchableOpacity>
+            </Pressable>
+          </Modal>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -293,3 +332,25 @@ const SettingScreen = (props: any) => {
 };
 
 export default SettingScreen;
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalView: {
+    backgroundColor: 'white',
+    elevation: 5,
+  },
+  item: {
+    flexDirection: 'column',
+    borderBottomColor: '#EEE',
+    borderBottomWidth: 2,
+    alignItems:'center',
+    padding: 15,
+  },
+  modalText: {
+    fontWeight: 'bold',
+    marginVertical:15
+  },
+});
