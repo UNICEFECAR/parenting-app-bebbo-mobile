@@ -22,10 +22,13 @@ export const utilsSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("child data---",state);
+      console.log("taxonomy data---",state);
       console.log(action.payload);
-      state.allTaxonomyData = action.payload[0].allData;
-      state.languageCode = action.payload[0].langCode;
+      if(action.payload[0])
+      {
+        state.allTaxonomyData = action.payload[0].allData;
+        state.languageCode = action.payload[0].langCode;
+      }
       // state.countryId = action.payload.countryId;
     },
   },

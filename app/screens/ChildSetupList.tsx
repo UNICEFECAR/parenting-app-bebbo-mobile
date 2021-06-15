@@ -40,7 +40,7 @@ const ChildSetupList = ({navigation}: Props) => {
       },
       saveinDB: true,
     },
-    // {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{},saveinDB:true},
+    {apiEndpoint:appConfig.taxonomies,method:'get',postdata:{},saveinDB:true}
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
   ];
   const childSetup = () => {
