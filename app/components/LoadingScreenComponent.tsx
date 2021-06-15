@@ -9,12 +9,14 @@ const Container = styled.View`
   flex:1;
 `;
 const MainView = styled.View`
+justify-content:center;
+align-content:center;
 flex:1;
 `;
 const WrapView = styled.View`
 justify-content:center;
 align-content:center;
-margin-top:25px;
+margin-top:20px;
 `;
 
 const PartnerLogo = styled.Image`
@@ -27,7 +29,7 @@ resize-mode:contain;
 const SponsorLogo = styled.Image`
 width:50px;
 height:50px;
-
+margin-top:30px;
 `;
 const StaticLogo = styled.Image`
 width:150px;
@@ -36,8 +38,8 @@ height:80px;
 `;
 const LoadingText = styled.Text`
 color: #fff;
-font-size: 25px;
-font-weight: bold;
+ font-size: 25px;
+  font-weight: bold;
 `;
 const styles = StyleSheet.create({
   imagetag: {

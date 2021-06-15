@@ -1,5 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
+import { View, Text, Button, SafeAreaView, ImageBackground, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { RootStackParamList } from '../navigation/types';
 import { StyleSheet } from 'react-native';
@@ -20,29 +21,25 @@ const data = [
     title: 'Welcome Parents!',
     image: require('../assets/svg/bebbo_logo_shape.svg'),
     colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
-    subtitle: "Discover Bebbo - everything you need as a parent to support your child's development",
-    textcolor:'#ffffff',
+    subtitle: "Discover Bebbo - everything you need as a parent to support your child's development"
   },
   {
     title: 'Activities',
     image: require('../assets/svg/ic_activity_color.svg'),
     colors: ['#0FD87E', '#CFF7E5'],
-    subtitle: "and games to stimulate your child everyday",
-    textcolor:'#000000',
+    subtitle: "and games to stimulate your child everyday"
   },
   {
     title: 'Tools',
     image: require('../assets/svg/ic_tools_color.svg'),
     colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
-    subtitle: "to track your child's development,growth,immunizations and health",
-    textcolor:'#000000',
+    subtitle: "to track your child's development,growth,immunizations and health"
   },
   {
     title: 'Advice',
     image: require('../assets/svg/ic_article_color.svg'),
     colors: ['#FF8D6B', '#FFD2C4'],
-    subtitle: 'tailored to your questions and the needs of your child',
-    textcolor:'#000000',
+    subtitle: 'tailored to your questions and the needs of your child'
   },
 ];
 type Item = typeof data[0];
@@ -77,32 +74,25 @@ const Walkthrough = ({ navigation }: Props) => {
   
   const renderDoneButton = () => {
     return (
-      <WalkthroughButton>
-      <ButtonTertiary1>
-        <ButtonText>Next</ButtonText>
-        </ButtonTertiary1>
-        </WalkthroughButton>
+      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
+        <Text style={{ color: '#000' }}>Next</Text>
+      </View>
 
     );
   }
   const renderPrevButton = () => {
     return (
-      <WalkthroughButton>
-      <ButtonTertiary2>
-        {/* style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }} */}
-        <ButtonText>Back</ButtonText>
-      </ButtonTertiary2>
-      </WalkthroughButton>
+      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
+        <Text style={{ color: '#000' }}>Back</Text>
+      </View>
     );
   }
 
 
   const [showPrevbtn, setShowPrevbtn] = useState(false);
-  const [isDotsRequired, setIsDotsRequired] = useState(true);
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
     (index == 3) ? setShowPrevbtn(true) : setShowPrevbtn(false);
-    (index == 3) ? setIsDotsRequired(false) : setIsDotsRequired(true);
 
   }
   const onDone = () => {
@@ -115,9 +105,6 @@ const Walkthrough = ({ navigation }: Props) => {
       routes: [{ name: 'Terms' }],
     })
   }
-  const getDotStyle = (colorString:string)=>{
-    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
-  }
 
   
   const keyExtractor = (item: Item) => item.title;
@@ -129,11 +116,9 @@ const Walkthrough = ({ navigation }: Props) => {
         renderItem={({ item, index }) => renderItem(item, index)}
         // bottomButton
         dotClickEnabled
-        activeDotStyle={getDotStyle('black')}
-        dotStyle={getDotStyle('white')}
+        // showDoneButton={false}
         showSkipButton={false}
         showPrevButton={showPrevbtn}
-        // dotsRequired={isDotsRequired}
         showNextButton={false}
         data={data}
         onDone={onDone}
@@ -157,8 +142,10 @@ const styles = StyleSheet.create({
 },
 
   title: {
-    fontFamily:'roboto-regular',
+    
     padding: 5,
+    // width: 100,
+    fontWeight: 'bold',
     textAlign: 'center'
   },
 
