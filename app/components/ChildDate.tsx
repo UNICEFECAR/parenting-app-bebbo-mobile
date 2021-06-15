@@ -11,12 +11,14 @@ import {
   Modal,
 } from 'react-native';
 import Icon from '@components/shared/Icon';
-import { Header3Text } from '../styles/style';
+import styled from 'styled-components/native';
 import CheckBox from '@react-native-community/checkbox';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { LabelText } from './shared/ChildSetupStyle';
+import { FormDateContainer, FormDateAction,FormDateText, LabelText,FormInputBox, FormInputGroup } from './shared/ChildSetupStyle';
+import FormPrematureContainer, { FormOuterCheckbox,FormCheckboxLabel } from './shared/FormPrematureContainer';
+import { ShiftFromBottom30 } from '../styles/typography';
 
 const ChildDate = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
@@ -45,33 +47,22 @@ const ChildDate = () => {
   };
   return (
     <>
-      <View style={{width:'100%', marginTop:10 }}>
+
+      <FormDateContainer>
+        <FormInputGroup onPress={showdobDatepicker}>
         <LabelText>Child Date of Birth / Expected due date</LabelText>
+          <FormInputBox>
+            <FormDateText>
+          <Text> {dobDate ? dobDate.toDateString() : null}</Text>
+          </FormDateText>
+            <FormDateAction>
+            <Icon name="ic_calendar" size={20} color="#000" />
+            </FormDateAction>
+          </FormInputBox>
+        </FormInputGroup>
 
-        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff', marginBottom:10,}}>
-          <View style={{ flex: 4,}}>
-            <Text style={styles.title}> {dobDate ? dobDate.toDateString() : null}</Text>
-          </View>
-          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
-            <Pressable style={styles.title} onPress={showdobDatepicker}>
-              <Icon name="ic_calendar" size={20} color="#000" />
-            </Pressable>
-          </View>
-        </View>
-        <View>
-          {showdob && (
-            <DateTimePicker
-              testID="dobdatePicker"
-              value={new Date()}
-              mode={'date'}
-              display="default"
-              onChange={ondobChange}
-            />
-          )}
-        </View>
-
-        <View style={{  flexDirection: 'row', minHeight: 50 }}>
-          <View style={{ flex: 1, alignItems: 'flex-start' }} >
+        <FormPrematureContainer>
+          <FormOuterCheckbox>
             <CheckBox
               disabled={false}
               value={toggleCheckBox}
@@ -85,26 +76,44 @@ const ChildDate = () => {
               onTintColor={'#000'}
               onValueChange={(newValue) => setToggleCheckBox(newValue)}
             />
-          </View>
-          <View style={{ flex: 6,alignContent:'center',justifyContent:'flex-start', alignItems: 'center', flexDirection: 'row',height:40, }} >
-            <LabelText>Baby Born Prematurely</LabelText>
-            <Pressable style={[styles.title,{marginLeft:10,marginTop:8}]} onPress={() => setModalVisible(true)}>
+          </FormOuterCheckbox>
+          <FormCheckboxLabel>
+          <LabelText>Baby Born Prematurely</LabelText>
+          <Pressable onPress={() => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
             </Pressable>
-          </View>
+          </FormCheckboxLabel>
+        </FormPrematureContainer>
+        
+        <View>
+          {showdob && (
+            <DateTimePicker
+              testID="dobdatePicker"
+              value={new Date()}
+              mode={'date'}
+              display="default"
+              onChange={ondobChange}
+            />
+         )}
         </View>
+      
+        {toggleCheckBox ? (
+<>
+<ShiftFromBottom30>
+        <FormInputGroup onPress={showdueDatepicker}>
         <LabelText>Original due date</LabelText>
+          <FormInputBox>
+            <FormDateText>
+            <Text> {dueDate ? dueDate.toDateString() : null}</Text>
+          </FormDateText>
+            <FormDateAction>
+            <Icon name="ic_calendar" size={20} color="#000" />
+            </FormDateAction>
+          </FormInputBox>
+        </FormInputGroup>
+        </ShiftFromBottom30>
 
-        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff' }}>
-          <View style={{ flex: 4, }}>
-            <Text style={styles.title}> {dueDate ? dueDate.toDateString() : null}</Text>
-          </View>
-          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
-            <Pressable style={styles.title} onPress={showdueDatepicker}>
-              <Icon name="ic_calendar" size={20} color="#000" />
-            </Pressable>
-          </View>
-        </View>
+       
         <View>
           {showdue && (
             <DateTimePicker
@@ -118,8 +127,9 @@ const ChildDate = () => {
             />
           )}
         </View>
-      </View>
-
+        </>) : null}
+       
+        </FormDateContainer>
       <Modal
         animationType="none"
         transparent={true}
@@ -131,21 +141,15 @@ const ChildDate = () => {
         onDismiss={() => {
           setModalVisible(!modalVisible);
         }}>
-        <Pressable
-          style={styles.centeredView}
-          onPress={() => {
+        <Pressable onPress={() => {
             setModalVisible(!modalVisible);
           }}>
-          <TouchableOpacity
-            style={styles.modalView}
-            onPress={() => console.log('do nothing')}
+          <TouchableOpacity onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            <Pressable
-              style={[styles.button]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>close</Text>
+            <Pressable onPress={() => setModalVisible(!modalVisible)}>
+              <Text>close</Text>
             </Pressable>
-            <Text style={styles.modalText}>A baby born before 37 weeks of Pregnanacy is considered premature or born too early</Text>
+            <Text>A baby born before 37 weeks of Pregnanacy is considered premature or born too early</Text>
 
           </TouchableOpacity>
         </Pressable>
@@ -154,51 +158,55 @@ const ChildDate = () => {
   );
 };
 export default ChildDate;
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    marginBottom: 16,
+
+
+
+// const styles = StyleSheet.create({
+//   title: {
+  
     
-    // paddingVertical: 8,
-    // paddingHorizontal:8,
-    // borderWidth: 4,
-    // borderColor: '#20232a',
-    // borderRadius: 6,
-    alignItems: 'center',
-    // backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'center',
-    fontSize: 14,
-    // fontWeight: 'bold',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)'
-    // paddingTop: headerHeight,
-  },
-  modalView: {
-    // margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 30,
-    alignItems: 'center'
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    alignItems: 'flex-end'
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
+//     // paddingVertical: 8,
+//     // paddingHorizontal:8,
+//     // borderWidth: 4,
+//     // borderColor: '#20232a',
+//     // borderRadius: 6,
+//     alignItems: 'center',
+//     // backgroundColor: '#FFF',
+//     color: '#20232a',
+//     textAlign: 'center',
+//     fontSize: 14,
+//     // fontWeight: 'bold',
+//   },
+
+  
+//   centeredView: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     backgroundColor: 'rgba(0,0,0,0.5)'
+//     // paddingTop: headerHeight,
+//   },
+//   modalView: {
+//     // margin: 20,
+//     backgroundColor: 'white',
+//     borderRadius: 10,
+//     padding: 30,
+//     alignItems: 'center'
+//   },
+//   button: {
+//     borderRadius: 20,
+//     padding: 10,
+//     elevation: 2,
+//     alignItems: 'flex-end'
+//   },
+//   textStyle: {
+//     color: 'white',
+//     fontWeight: 'bold',
+//     textAlign: 'center',
+//   },
+//   modalText: {
+//     marginBottom: 15,
+//     textAlign: 'center',
+//   },
+// });
 

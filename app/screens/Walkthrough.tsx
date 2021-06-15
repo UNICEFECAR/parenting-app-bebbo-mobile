@@ -5,7 +5,7 @@ import { RootStackParamList } from '../navigation/types';
 import { StyleSheet } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import LinearGradient from 'react-native-linear-gradient';
-import WalkthroughContainer, { Slide,ButtonTertiary1,ButtonTertiary2,WalkthroughTitle,WalkthroughButton, WalkthroughSubtext,WalkthroughImagebox } from '@components/shared/WalkthroughStyle';
+import WalkthroughContainer, { WalkthroughImageContainer, WalkthroughContentArea,Slide,ButtonTertiary1,ButtonTertiary2,WalkthroughTitle,WalkthroughButton, WalkthroughSubtext,WalkthroughImagebox } from '@components/shared/WalkthroughStyle';
 import { ButtonText } from '@components/shared/ButtonGlobal';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -51,9 +51,9 @@ const Walkthrough = ({ navigation }: Props) => {
     return (
       <>
       <WalkthroughContainer>
-        <LinearGradient style={{flex:1,}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
+        <LinearGradient style={{flex:1}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
           <Slide>
-
+            <WalkthroughImageContainer>
             {(index ==0) ?
             (<VectorImage source={item.image} />)
             : (index ==1) ? (<WalkthroughImagebox>
@@ -63,8 +63,11 @@ const Walkthrough = ({ navigation }: Props) => {
               </WalkthroughImagebox>): (<WalkthroughImagebox>
               <VectorImage source={item.image} style={{width: 160,height: 123,}} />
               </WalkthroughImagebox>)}
-              <WalkthroughTitle style={[styles.titleText,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
-            <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
+              </WalkthroughImageContainer>
+              <WalkthroughContentArea>
+                <WalkthroughTitle style={[styles.titleText,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
+                <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
+              </WalkthroughContentArea>
           </Slide>
         </LinearGradient>
         </WalkthroughContainer>
@@ -144,13 +147,15 @@ const Walkthrough = ({ navigation }: Props) => {
 
 export default Walkthrough;
 const styles = StyleSheet.create({
-  titleText:{
-    color: '#fff',
-    fontSize:50,
-    textAlign: 'center',
-    fontFamily:'roboto-bold',
-    marginBottom:40,
-  },
+  
+  titleText:
+  {color: '#fff',
+  fontSize:50,
+  textAlign: 'center',
+  fontFamily:'roboto-bold',
+  marginBottom:20,
+},
+
   title: {
     fontFamily:'roboto-regular',
     padding: 5,

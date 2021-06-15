@@ -3,18 +3,11 @@ import React, {createRef, useState} from 'react';
 import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
 import ChildDate from '@components/ChildDate';
 import {RootStackParamList} from '../navigation/types';
-import {
-  Header,
-  Container,
-  HeaderText,
-  Header2Text,
-  ButtonText,
-} from '../styles/style';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
-import {ButtonPrimary} from '@components/shared/ButtonGlobal';
+import {ButtonPrimary, ButtonRow, ButtonText} from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
-import {ChildCenterView} from '@components/shared/ChildSetupStyle';
+import {ChildCenterView,ChildAddTop} from '@components/shared/ChildSetupStyle';
 import { Heading1Centerw } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -31,7 +24,7 @@ const AddSiblingData = ({navigation}: Props) => {
       <OnboardingContainer>
         <View>
           <OnboardingHeading>
-            <ChildCenterView style={{flexDirection: 'row',justifyContent:'space-between'}}>
+            <ChildAddTop>
               <Heading1Centerw>Add Brother or Sister</Heading1Centerw>
               <Pressable
                 onPress={() => {
@@ -39,11 +32,14 @@ const AddSiblingData = ({navigation}: Props) => {
                 }}>
                 <Icon name="ic_close" size={20} color="#FFF" />
               </Pressable>
-            </ChildCenterView>
+            </ChildAddTop>
           </OnboardingHeading>
           <ChildDate />
+          
+          
+        </View>
 
-          <View style={{width: '100%', marginTop: 30}}>
+        <ButtonRow>
             <ButtonPrimary
               onPress={() => {
                 // navigation.reset({
@@ -52,10 +48,9 @@ const AddSiblingData = ({navigation}: Props) => {
                 // })
                 navigation.navigate('ChildSetupList');
               }}>
-              <ButtonText>Continue</ButtonText>
+              <ButtonText>Save data</ButtonText>
             </ButtonPrimary>
-          </View>
-        </View>
+            </ButtonRow>
       </OnboardingContainer>
     </>
   );
