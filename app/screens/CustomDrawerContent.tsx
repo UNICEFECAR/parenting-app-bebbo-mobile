@@ -80,28 +80,28 @@ const CustomDrawerContent = ({navigation}: any) => {
         {accordvalue ? (
           <>
             <Pressable
-              onPress={() => navigation.navigate('ChildgrowthScreen')}
-              style={styles.item}>
-              <Icon name="ic_growth" size={25} color="#000" />
-              <Text>ChildGrowth</Text>
-            </Pressable>
-            <Pressable
               onPress={() => navigation.navigate('ChildDevelopmentScreen')}
               style={styles.item}>
-              <Icon name="ic_growth" size={25} color="#000" />
+              <Icon name="ic_milestone" size={25} color="#000" />
               <Text>ChildDevelopment</Text>
             </Pressable>
             <Pressable
               onPress={() => navigation.navigate('VaccinationScreen')}
               style={styles.item}>
-              <Icon name="ic_growth" size={25} color="#000" />
+              <Icon name="ic_vaccination" size={25} color="#000" />
               <Text>Vaccination</Text>
             </Pressable>
             <Pressable
               onPress={() => navigation.navigate('HealthCheckupsScreen')}
               style={styles.item}>
-              <Icon name="ic_growth" size={25} color="#000" />
+              <Icon name="ic_doctor_chk_up" size={25} color="#000" />
               <Text>HealthCheckups</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => navigation.navigate('ChildgrowthScreen')}
+              style={styles.item}>
+              <Icon name="ic_growth" size={25} color="#000" />
+              <Text>ChildGrowth</Text>
             </Pressable>
           </>
         ) : null}
