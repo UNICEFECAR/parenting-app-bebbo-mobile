@@ -56,7 +56,8 @@ export const addApiDataInRealm = async (response: any) => {
 }
 
 export const onRealmDataDbChange = (collection: any, changes: any) => {
-    console.log("Realm listener called--",collection);
+    console.log("Realm listener called--",collection.name);
+    console.log("Realm listener called--",collection.schema);
     console.log("Realm listener called string--",changes);
     // console.log("Realm listener called Schema--",Schema);
 }
