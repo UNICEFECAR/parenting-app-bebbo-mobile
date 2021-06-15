@@ -21,6 +21,8 @@ import ImageStorage from '../downloadImages/ImageStorage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import ArticleDetails from '../screens/home/ArticleDetails';
 import SplashScreen from 'react-native-splash-screen';
+import EditChildProfile from '../screens/home/EditChildProfile';
+import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -116,6 +118,16 @@ export default () => {
           //   headerLeftContainerStyle: {paddingLeft: 10},
           // })}
         />
+        <RootStack.Screen
+        name="EditChildProfile"
+        options={{headerShown: false}}
+        component={EditChildProfile}
+      />
+      <RootStack.Screen
+        name="AddExpectingChildProfile"
+        options={{headerShown: false}}
+        component={AddExpectingChildProfile}
+      />
         {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
     </NavigationContainer>

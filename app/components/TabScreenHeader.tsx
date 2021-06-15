@@ -36,7 +36,7 @@ const TabScreenHeader = (props:any) => {
             <Text style={styles.modalText}>Michel </Text>
             <Button
             title="Add sister or brother"
-            onPress={() => navigation.navigate('AddSiblingProfile')}
+            onPress={() => navigation.navigate('EditChildProfile')}
           />
             <Button
             title="Manage Profile"

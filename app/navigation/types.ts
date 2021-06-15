@@ -8,7 +8,8 @@ export type RootStackParamList = {
   Terms: undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
-  // ArticleDetails1:undefined;
+  EditChildProfile:undefined;
+  AddExpectingChildProfile:undefined;
 };
 
 export type LocalizationStackParamList = {
@@ -27,8 +28,6 @@ export type HomeDrawerNavigatorStackParamList = {
   SettingsScreen: undefined;
   AboutusScreen: undefined;
   ChildProfileScreen: undefined;
-  AddSiblingProfile: undefined;
-  AddExpectingChildProfile: undefined;
   ArticleDetails: undefined;
   ActivityDetails: undefined;
   UserGuide: undefined;
