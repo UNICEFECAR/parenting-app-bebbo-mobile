@@ -12,7 +12,6 @@ import OnboardingContainer from '@components/shared/OnboardingContainer';
 import { Heading1w,Heading1Centerw,Heading3 } from '../styles/typography';
 import { ChildCenterView ,ChildContentArea,LabelText,ChildSection} from '@components/shared/ChildSetupStyle';
 import { ButtonPrimary } from '@components/shared/ButtonGlobal';
-
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetupList'
@@ -21,7 +20,6 @@ type ChildSetupNavigationProp = StackNavigationProp<
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
 
 const ChildSetup = ({ navigation }: Props) => {
   const [relationship, setRelationship] = useState('');

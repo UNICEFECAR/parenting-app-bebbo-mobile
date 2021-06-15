@@ -21,6 +21,7 @@ import ImageStorage from '../downloadImages/ImageStorage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import ArticleDetails from '../screens/home/ArticleDetails';
 import SplashScreen from 'react-native-splash-screen';
+import useToGetTaxonomy from '@assets/translations/appOfflineData/taxonomies';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -34,7 +35,10 @@ export default () => {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
+  console.log("callRealmListener--",callRealmListener);
   const netInfo=useNetInfo();
+  const taxonomyData = useToGetTaxonomy();
+  console.log("taxonomyData--",taxonomyData);
   // console.log(netInfo,"..BeforeisConnected..");
   React.useEffect(() => {
    
