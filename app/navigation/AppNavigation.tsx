@@ -7,7 +7,7 @@ import {RootStackParamList} from './types';
 import LocalizationNavigation from './LocalizationNavigation';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import Walkthrough from '../screens/Walkthrough';
-import {useAppSelector} from '../../App';
+import {useAppDispatch, useAppSelector} from '../../App';
 import PrivacyPolicy from '../screens/PrivacyPolicy';
 import ChildSetupList from '../screens/ChildSetupList';
 import AddSiblingData from '../screens/AddSiblingData';
@@ -37,11 +37,15 @@ export default () => {
   const callRealmListener = useRealmListener();
   console.log("callRealmListener--",callRealmListener);
   const netInfo=useNetInfo();
-  const taxonomyData = useToGetTaxonomy();
-  console.log("taxonomyData--",taxonomyData);
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const dispatch = useAppDispatch();
   // console.log(netInfo,"..BeforeisConnected..");
   React.useEffect(() => {
-   
+    const taxonomyData = useToGetTaxonomy(languageCode,dispatch);
+    console.log("taxonomyData--",taxonomyData);
+    
     const restoreState = async () => {
       try {
         const initialUrl = await Linking.getInitialURL();
