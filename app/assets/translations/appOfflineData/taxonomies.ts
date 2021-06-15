@@ -5,6 +5,7 @@ import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/Taxonom
 import { setAllTaxonomyData } from "../../../redux/reducers/utilsSlice";
 import { AppState } from "react-native";
 import React from "react";
+import { onRealmDataDbChange } from "../../../services/Utils";
 const data:any = {
     "en": {
         "activity_category": [
@@ -10214,20 +10215,28 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
     //React.useEffect(() => {
         async function fetchData() {
             let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-            // taxanomylistener = taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
             console.log("db length--",taxonomyData2?.length);
                 if(taxonomyData2?.length > 0)
                 {
-                    setTaxonomyData(JSON.parse(taxonomyData2[0].allData));
-                    console.log(taxanomylistener,"--taxanomylistener");
-                    if(!taxanomylistener)
-                    {
-                         taxanomylistener = taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
-                    }
+                    // setTaxonomyData(JSON.parse(taxonomyData2[0].allData));
+                    // console.log(taxanomylistener,"--taxanomylistener");
+                    dispatch(setAllTaxonomyData(taxonomyData2));
+                    // if(taxonomyData)
+                    // {
+                         const taxanomylistener = taxonomyData2.addListener(() => {
+                             console.log("in if listener called");
+                             dispatch(setAllTaxonomyData(taxonomyData2))
+                            });
+                    // }
                 }else {
-                    setTaxonomyData(data[languageCode]);
-                    taxonomyData3.push({langCode:languageCode,allData:JSON.stringify(taxonomyData),standardDeviationData:{}})
-                    dispatch(setAllTaxonomyData(taxonomyData3))
+                    // setTaxonomyData(data[languageCode]);
+                    taxonomyData3.push({langCode:languageCode,allData:JSON.stringify(data[languageCode]),standardDeviationData:{}})
+                    dispatch(setAllTaxonomyData(taxonomyData3));
+                    // if(taxonomyData)
+                    // {
+                    //     console.log(" in if else taxonomyData")
+                        const taxanomylistener = taxonomyData2.addListener(onRealmDataDbChange)
+                    // }
                 }
         }
         fetchData()

@@ -17,8 +17,8 @@ const useRealmListener = () => {
         async function fetchData() {
             let objdata = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
             objdata.addListener(() => dispatch(setChildStore(JSON.stringify(objdata))));
-            let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-            taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
+            // let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
+            // taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
 
         }
         fetchData()

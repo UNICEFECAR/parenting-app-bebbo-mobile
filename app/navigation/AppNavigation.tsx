@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import ChildSetup from '../screens/ChildSetup';
@@ -22,6 +22,9 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import ArticleDetails from '../screens/home/ArticleDetails';
 import SplashScreen from 'react-native-splash-screen';
 import useToGetTaxonomy from '@assets/translations/appOfflineData/taxonomies';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { onRealmDataDbChange } from '../services/Utils';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -35,17 +38,43 @@ export default () => {
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
-  console.log("callRealmListener--",callRealmListener);
+  // console.log("callRealmListener--",callRealmListener);
   const netInfo=useNetInfo();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  // console.log(netInfo,"..BeforeisConnected..");
-  React.useEffect(() => {
+  useEffect(() => {
     const taxonomyData = useToGetTaxonomy(languageCode,dispatch);
     console.log("taxonomyData--",taxonomyData);
-    
+    return () => {
+      console.log("in useeffect1 return");
+    };
+  },[languageCode]);
+  // useEffect(() => {
+  //   async function addDBListener() {
+  //     const datarealm = await dataRealmCommon.openRealm();
+  //     console.log("datarealm----",datarealm);
+  //     // if(datarealm)
+  //     // {
+  //       const datalistenerobj = datarealm?.addListener('change',onRealmDataDbChange);
+  //     // }
+
+  //     return() => {
+  //       console.log("in useeffect return");
+  //     //   if(datarealm)
+  //     //   {
+  //     //     datarealm.removeListener("change",onRealmDataDbChange);
+  //     //   }
+  //     }
+  //     // let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
+  //     // taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
+
+  //   }
+  //   // addDBListener()
+  // },[])
+  // console.log(netInfo,"..BeforeisConnected..");
+  useEffect(() => {
     const restoreState = async () => {
       try {
         const initialUrl = await Linking.getInitialURL();
