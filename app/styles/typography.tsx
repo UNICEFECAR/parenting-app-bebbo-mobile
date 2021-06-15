@@ -78,9 +78,7 @@ export const Paragraphw = styled(Paragraph)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
-export const Heading1Centerw = styled(Heading1w)`
-text-align: center;
-`
+
 export const Heading2Centerw = styled(Heading2w)`
 text-align: center;
 `
