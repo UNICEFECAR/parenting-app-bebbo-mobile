@@ -4,6 +4,7 @@ import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { setAllTaxonomyData } from "../../../redux/reducers/utilsSlice";
 import { AppState } from "react-native";
+import React from "react";
 const data:any = {
     "en": {
         "activity_category": [
@@ -10201,18 +10202,16 @@ const data:any = {
     }
 };
 
-const useToGetTaxonomy = () => {
-    const [taxonomyData,setTaxonomyData] = useState();
-    const languageCode = useAppSelector(
-        (state: any) => state.selectedCountry.languageCode,
-      );
+const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
+    const [taxonomyData,setTaxonomyData] = React.useState();
+  
     console.log(languageCode,"languageCode in taxonomy file");
     //Get data from db and if it exists then use db data or use const data in this file.
-    const dispatch = useAppDispatch();
+  
     let taxonomyData3:any = [];
     let taxanomylistener:any;
     console.log(AppState.currentState,"--AppState");
-    useEffect(() => {
+    //React.useEffect(() => {
         async function fetchData() {
             let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
             // taxanomylistener = taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
@@ -10232,7 +10231,7 @@ const useToGetTaxonomy = () => {
                 }
         }
         fetchData()
-    },[])
+   // },[])
     return [taxonomyData];
 }
 
