@@ -8,9 +8,9 @@ import React from "react";
 import { onRealmDataDbChange } from "../../../services/Utils";
 const data:any = {
     "en": {
-        "activity_category": [
+        "activity_category2": [
             {
-                "id": "6421",
+                "id": "64212",
                 "name": "Fine motor"
             },
             {
@@ -10204,7 +10204,7 @@ const data:any = {
 };
 
 const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
-    const [taxonomyData,setTaxonomyData] = React.useState();
+    // const [taxonomyData,setTaxonomyData] = React.useState();
   
     console.log(languageCode,"languageCode in taxonomy file");
     //Get data from db and if it exists then use db data or use const data in this file.
@@ -10224,7 +10224,7 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
                     // if(taxonomyData)
                     // {
                          const taxanomylistener = taxonomyData2.addListener(() => {
-                             console.log("in if listener called");
+                             console.log("in if listener called--",taxonomyData2);
                              dispatch(setAllTaxonomyData(taxonomyData2))
                             });
                     // }
@@ -10235,13 +10235,20 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
                     // if(taxonomyData)
                     // {
                     //     console.log(" in if else taxonomyData")
-                        const taxanomylistener = taxonomyData2.addListener(onRealmDataDbChange)
+                        const taxanomylistener = taxonomyData2.addListener(() => {
+                            console.log("in else listener called");
+                            if(taxonomyData2?.length > 0)
+                            {
+                                console.log("in else if listener called--",taxonomyData2);
+                                dispatch(setAllTaxonomyData(taxonomyData2))
+                            }
+                        });
                     // }
                 }
         }
         fetchData()
    // },[])
-    return [taxonomyData];
+    return [];
 }
 
   
