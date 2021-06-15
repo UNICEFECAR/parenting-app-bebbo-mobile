@@ -4,7 +4,6 @@ import React from 'react';
 import { View, Text, SafeAreaView, Button, Pressable } from 'react-native';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
-import BurgerIcon from '@components/shared/BurgerIcon';
 
 type NotificationsNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -29,11 +28,13 @@ const ChildProfile = ({ navigation }: Props) => {
               style={{
                 flexDirection: 'row',
                 flex: 1,
-                backgroundColor: headerColor,
+                backgroundColor: 'green',
                 maxHeight: 50,
               }}>
               <View style={{ flex: 1, }} >
-                <BurgerIcon/>
+                <Pressable onPress={() => navigation.goBack()}>
+                  <Text>Back</Text>
+                </Pressable>
               </View>
               <View style={{ flex: 3 }} >
                 <Text> {'Child and ParentProfile'}</Text>

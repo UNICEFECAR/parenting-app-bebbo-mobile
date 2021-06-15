@@ -28,8 +28,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const actionSheetRef = createRef();
   return (
     <>
-
-<OnboardingContainer>
+      <OnboardingContainer>
           <OnboardingHeading>
                 <ChildCenterView><Heading1Centerw> Please take a moment to personalize your app</Heading1Centerw></ChildCenterView>
           </OnboardingHeading>
