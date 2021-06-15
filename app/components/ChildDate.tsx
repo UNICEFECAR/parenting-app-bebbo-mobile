@@ -141,15 +141,14 @@ const ChildDate = () => {
         onDismiss={() => {
           setModalVisible(!modalVisible);
         }}>
-        <Pressable onPress={() => {
+        <Pressable
+        style={styles.centeredView}
+        onPress={() => {
             setModalVisible(!modalVisible);
           }}>
-          <TouchableOpacity onPress={() => console.log('do nothing')}
+          <TouchableOpacity style={styles.modalView} onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            <Pressable onPress={() => setModalVisible(!modalVisible)}>
-              <Text>close</Text>
-            </Pressable>
-            <Text>A baby born before 37 weeks of Pregnanacy is considered premature or born too early</Text>
+            <Text style={styles.modalText}>A baby born before 37 weeks of Pregnanacy is considered premature or born too early</Text>
 
           </TouchableOpacity>
         </Pressable>
@@ -161,52 +160,27 @@ export default ChildDate;
 
 
 
-// const styles = StyleSheet.create({
-//   title: {
-  
-    
-//     // paddingVertical: 8,
-//     // paddingHorizontal:8,
-//     // borderWidth: 4,
-//     // borderColor: '#20232a',
-//     // borderRadius: 6,
-//     alignItems: 'center',
-//     // backgroundColor: '#FFF',
-//     color: '#20232a',
-//     textAlign: 'center',
-//     fontSize: 14,
-//     // fontWeight: 'bold',
-//   },
+const styles = StyleSheet.create({
+
 
   
-//   centeredView: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: 'rgba(0,0,0,0.5)'
-//     // paddingTop: headerHeight,
-//   },
-//   modalView: {
-//     // margin: 20,
-//     backgroundColor: 'white',
-//     borderRadius: 10,
-//     padding: 30,
-//     alignItems: 'center'
-//   },
-//   button: {
-//     borderRadius: 20,
-//     padding: 10,
-//     elevation: 2,
-//     alignItems: 'flex-end'
-//   },
-//   textStyle: {
-//     color: 'white',
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-//   modalText: {
-//     marginBottom: 15,
-//     textAlign: 'center',
-//   },
-// });
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
+    // paddingTop: headerHeight,
+  },
+  modalView: {
+    // margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 30,
+    alignItems: 'center'
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+});
 
