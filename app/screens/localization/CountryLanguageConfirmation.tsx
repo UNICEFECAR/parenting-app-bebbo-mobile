@@ -22,7 +22,6 @@ import Icon from '@components/shared/Icon';
 import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
 import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText } from '@components/shared/ButtonGlobal';
 
-import ImageStorage from '../../downloadImages/ImageStorage';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
