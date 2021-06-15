@@ -1,6 +1,8 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import {ButtonPrimary} from '@components/shared/ButtonGlobal';
+
+import ActionSheet from 'react-native-actions-sheet';
 import {
   LocalizationCol,
   LocalizationContainer,
@@ -10,7 +12,7 @@ import {
 } from '@components/shared/OnboardingContainer';
 import {DrawerActions} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {createRef, useContext, useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {
   Text,
@@ -60,6 +62,7 @@ const SettingScreen = (props: any) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
+  const actionSheetRef = createRef();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -271,7 +274,10 @@ const SettingScreen = (props: any) => {
           <View style={{padding: 15}}>
             <Heading1>Data Export / Import</Heading1>
             <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary onPress={() => {setModalVisible(!modalVisible);}}>
+              <ButtonPrimary
+                onPress={() => {
+                  actionSheetRef.current?.setModalVisible();
+                }}>
                 <ButtonText>Export All Saved Data</ButtonText>
               </ButtonPrimary>
             </View>
@@ -288,43 +294,25 @@ const SettingScreen = (props: any) => {
               props.navigation.dispatch(DrawerActions.toggleDrawer())
             }
           /> */}
-
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              // Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}
-            onDismiss={() => {
-              setModalVisible(!modalVisible);
-            }}>
-            <Pressable
-              style={styles.centeredView}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}>
-              <TouchableOpacity
-                style={styles.modalView}
-                onPress={() => console.log('do nothing')}
-                activeOpacity={1}>
+          <ActionSheet ref={actionSheetRef}>
+            <View>
+              <View style={styles.modalView}>
                 <Heading1> Export Data on</Heading1>
-                <View style={{flexDirection:'row'}}>
-                <View style={styles.item}>
-                  <Icon name="ic_sb_shareapp" size={30} color="#000" />
-                  <Text style={styles.modalText}>
-                    Share
-                  </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={styles.item}>
+                    <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                    <Text style={styles.modalText}>Share</Text>
+                  </View>
+                  <View style={styles.item}>
+                    <VectorImage
+                      source={require('@assets/svg/ic_gdrive.svg')}
+                    />
+                    <Text style={styles.modalText}>Google Drive</Text>
+                  </View>
                 </View>
-                <View style={styles.item}>
-                  <VectorImage source={require('@assets/svg/ic_gdrive.svg')} />
-                  <Text style={styles.modalText}>Google Drive</Text>
-                </View>
-                </View>
-              </TouchableOpacity>
-            </Pressable>
-          </Modal>
+              </View>
+            </View>
+          </ActionSheet>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -333,11 +321,6 @@ const SettingScreen = (props: any) => {
 
 export default SettingScreen;
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
   modalView: {
     backgroundColor: 'white',
     elevation: 5,
@@ -346,11 +329,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     borderBottomColor: '#EEE',
     borderBottomWidth: 2,
-    alignItems:'center',
+    alignItems: 'center',
     padding: 15,
   },
   modalText: {
     fontWeight: 'bold',
-    marginVertical:15
+    marginVertical: 15,
   },
 });
