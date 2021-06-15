@@ -79,6 +79,9 @@ export const Paragraphw = styled(Paragraph)`
 `;
 
 
+export const Heading1Centerw = styled(Heading1w)`
+text-align: center;
+`
 export const Heading2Centerw = styled(Heading2w)`
 text-align: center;
 `
