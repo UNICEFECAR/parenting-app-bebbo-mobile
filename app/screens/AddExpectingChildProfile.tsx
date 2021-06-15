@@ -1,12 +1,38 @@
-
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { createRef, useState } from 'react';
-import { View, Text, Button, StyleSheet, Pressable, TextInput, Platform } from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import React, {createRef, useContext, useState} from 'react';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Pressable,
+  TextInput,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 import ChildDate from '@components/ChildDate';
-import { RootStackParamList } from '../navigation/types';
-import { Header, Container, HeaderText, Header2Text, Header3Text } from '../styles/style';
+import {RootStackParamList} from '../navigation/types';
+import {
+  Header,
+  Container,
+  HeaderText,
+  Header2Text,
+  Header3Text,
+} from '../styles/style';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {ThemeContext} from 'styled-components';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import {
+  FormDateAction,
+  FormDateContainer,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  LabelText,
+} from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
+import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -17,8 +43,7 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-
-const AddExpectingChildProfile = ({ navigation }: Props) => {
+const AddExpectingChildProfile = ({navigation}: Props) => {
   const [dobDate, setdobDate] = useState();
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event: any, selectedDate: any) => {
@@ -26,64 +51,91 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     setdobShow(Platform.OS === 'ios');
     setdobDate(currentDate);
   };
-
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   const showdobDatepicker = () => {
     setdobShow(true);
   };
   return (
     <>
-      <Container>
-        <View>
+      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
-          <Header>
-            <HeaderText>Add Expecting Child Details</HeaderText>
-            <Pressable onPress={() => {navigation.goBack()}}>
-                  <Text>Back</Text>
-                </Pressable>
-          </Header>
-         
-          <Header3Text>Child Date of Birth / Expected due date</Header3Text>
-        <View style={{ flexDirection: 'row' }}>
-          <View style={{ flex: 3, backgroundColor: 'gray' }}>
-            <Header3Text> {dobDate ? dobDate.toDateString() : null}</Header3Text>
-          </View>
-          <View style={{ flex: 1, backgroundColor: 'green' }}>
-            <Pressable style={styles.title} onPress={showdobDatepicker}>
-              <Header3Text>Select DOBDate</Header3Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            backgroundColor: headerColor,
+            maxHeight: 50,
+            borderBottomColor: 'gray',
+            borderBottomWidth: 2,
+          }}>
+          <View style={{flex: 1}}>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Text>Back</Text>
             </Pressable>
           </View>
-        </View>
-        <View>
-          {showdob && (
-            <DateTimePicker
-              testID="dobdatePicker"
-              value={new Date()}
-              mode={'date'}
-              display="default"
-              onChange={ondobChange}
-            />
-          )}
-        </View>
-          
+          <View style={{flex: 3}}>
+            <Text> {'Add Expecting Child Details'}</Text>
+          </View>
         </View>
 
-         
-        <View style={{flex:1}}>
-          <TextInput
-           autoCapitalize='none'
-           autoCorrect={false}
-            clearButtonMode="always"
-            value={''}
-            // onChangeText={queryText => handleSearch(queryText)}
-            placeholder="Enter your child anme"
-            style={{ backgroundColor: '#fff', paddingHorizontal: 20,paddingVertical: 20 }}
-          />
+        <View style={{margin: 10}}>
+          <FormDateContainer>
+            <FormInputGroup onPress={showdobDatepicker}>
+              <LabelText>Expected due date</LabelText>
+              <FormInputBox>
+                <FormDateText>
+                  <Text> {dobDate ? dobDate.toDateString() : null}</Text>
+                </FormDateText>
+                <FormDateAction>
+                  <Icon name="ic_calendar" size={20} color="#000" />
+                </FormDateAction>
+              </FormInputBox>
+            </FormInputGroup>
+          </FormDateContainer>
+
+          <View>
+            {showdob && (
+              <DateTimePicker
+                testID="dobdatePicker"
+                value={new Date()}
+                mode={'date'}
+                display="default"
+                onChange={ondobChange}
+              />
+            )}
+          </View>
+
+          <View>
+            <LabelText>Any preferred Name</LabelText>
+            <TextInput
+              autoCapitalize="none"
+              autoCorrect={false}
+              clearButtonMode="always"
+              value={''}
+              // onChangeText={queryText => handleSearch(queryText)}
+              placeholder="Enter your child name"
+              style={{
+                backgroundColor: '#fff',
+                paddingHorizontal: 20,
+                paddingVertical: 20,
+              }}
+            />
+          </View>
+          <View style={{width: '100%', marginTop: 30}}>
+            <ButtonPrimary
+              onPress={() => {
+                navigation.navigate('ChildProfileScreen');
+              }}>
+              <ButtonText>Save Data</ButtonText>
+            </ButtonPrimary>
+          </View>
         </View>
-        <Button
-            title="Save Data"
-            onPress={() => navigation.navigate('ChildProfileScreen')}
-          />
-      </Container>
+      </SafeAreaView>
     </>
   );
 };
