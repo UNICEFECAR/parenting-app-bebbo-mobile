@@ -90,26 +90,21 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               </LocalizationcontentResult>
               </LocalizationCol>
               
-              <LocalizationAction>
-              <Pressable
-                  onPress={() => navigation.navigate('CountrySelection')}>
-                  <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
-                </Pressable>
-              </LocalizationAction>
+                <LocalizationAction>
+                <Pressable
+                    onPress={() => navigation.navigate('CountrySelection')}>
+                    <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
+                  </Pressable>
+                </LocalizationAction>
               </LocalizationRow>
-              <ButtonContainer>
-            <ButtonPrimary
-              onPress={() => saveSelection()}>
-              <ButtonText>{t('continueCountryLang')}</ButtonText>
-              </ButtonPrimary>
-          </ButtonContainer>
-            
+                <ButtonContainer>
+                  <ButtonPrimary
+                    onPress={() => saveSelection()}>
+                    <ButtonText>{t('continueCountryLang')}</ButtonText>
+                  </ButtonPrimary>
+                </ButtonContainer>
           </LocalizationContainer>
-          
-          
-
         </OnboardingContent>
-
     </OnboardingContainer>
 
     </>

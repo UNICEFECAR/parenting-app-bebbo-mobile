@@ -41,6 +41,9 @@ const ChildProfile = ({ navigation }: Props) => {
             </View>
           </View>
           <View>
+            <View>
+              <Pressable onPress={()=>{}}><Text>Edit Profile</Text></Pressable>
+            </View>
           <Button
             title="Add sister or brother"
             onPress={() => navigation.navigate('AddSiblingProfile')}
