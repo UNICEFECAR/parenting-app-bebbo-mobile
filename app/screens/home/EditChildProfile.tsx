@@ -1,6 +1,6 @@
 import {DrawerActions} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
+import React, {createRef, useContext} from 'react';
 import {
   View,
   Text,
@@ -22,8 +22,10 @@ import {
   ShiftFromTop30,
   Heading3Regular,
 } from '../../styles/typography';
+import ActionSheet from 'react-native-actions-sheet';
 import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
-import {LabelText} from '@components/shared/ChildSetupStyle';
+import {ChildRelationList, LabelText} from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
 const genders = ['Male', 'Female', 'Other'];
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -34,6 +36,10 @@ type Props = {
 const EditChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
+  const genders = ['boy','girl'];
+  const imageOptions = ['Camera', 'Gallery'];
+  const actionSheetRef = createRef();
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -59,14 +65,18 @@ const EditChildProfile = ({navigation}: Props) => {
           </View>
         </View>
 
-        <ScrollView>
+        <ScrollView style={{flex:4}}>
           <View style={{flexDirection: 'column'}}>
-            <View>
+            {/* <View>
               <Image
                 source={require('@assets/trash/card3.jpeg')}
                 style={{width: '100%'}}
               />
-            </View>
+            </View> */}
+            <Pressable style={{height:150,backgroundColor:SecondaryColor,  justifyContent: 'center',
+    alignItems: 'center'}} onPress={()=>{actionSheetRef.current?.setModalVisible();}}>
+              <Icon name="ic_camera" size={20} color="#FFF" />
+            </Pressable>
             <View style={{padding: 10}}>
               <LabelText>Name</LabelText>
               <View style={{flex: 1}}>
@@ -98,6 +108,7 @@ const EditChildProfile = ({navigation}: Props) => {
                   );
                 })}
               </View>
+              
               <ChildDate />
               <View style={{width: '100%', marginTop: 30}}>
                 <ButtonPrimary onPress={() => {}}>
@@ -106,6 +117,22 @@ const EditChildProfile = ({navigation}: Props) => {
               </View>
             </View>
           </View>
+          <ActionSheet ref={actionSheetRef}>
+          <View>
+            {imageOptions.map((item, index) => {
+              return (
+                <ChildRelationList key={index}>
+                  <Pressable
+                    onPress={() => {
+                      actionSheetRef.current?.hide();
+                    }}>
+                    <Heading3>{item}</Heading3>
+                  </Pressable>
+                </ChildRelationList>
+              );
+            })}
+          </View>
+        </ActionSheet>
         </ScrollView>
       </SafeAreaView>
     </>

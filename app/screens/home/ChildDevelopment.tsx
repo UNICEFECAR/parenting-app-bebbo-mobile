@@ -74,9 +74,12 @@ const ChildDevelopment = ({navigation}: Props) => {
                   <Icon name="ic_info" size={15} color="#000" />
                 </Heading2>
               </View>
-              <View style={{margin: 15}}>
+              <View style={{margin: 15,}}>
                 <View style={{flexDirection: 'column'}}>
-                  <Heading5>  <Icon name="ic_info" size={15} color="#FFF" style={{backgroundColor:'red',borderRadius:50}} />Pending</Heading5>
+                  <View style={{flexDirection: 'row'}}>
+                  <Icon name="ic_info" size={25} color="#FFF" style={{backgroundColor:'red',borderRadius:150}} />
+                  <Heading5>  Pending</Heading5>
+                  </View>
                   <Heading3 >
                   Milestones from the current period that remain to be achieved
                   </Heading3>
