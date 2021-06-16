@@ -4,7 +4,7 @@ module.exports = (api) => {
     [
       'module:react-native-dotenv',
       {
-        moduleName: "react-native-dotenv",
+        moduleName: "@env",
         path: '.env',
         blacklist: null,
         whitelist: null,
@@ -30,6 +30,10 @@ module.exports = (api) => {
         alias: {
           '@components': './app/components',
           '@assets': './app/assets',
+          '@screens': './app/screens',
+          '@types': './app/types',
+          '@styles': './app/styles',
+          '@navigation': './app/navigation',
         },
       },
     ],

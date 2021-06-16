@@ -1,11 +1,9 @@
-import { DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { Header3Text } from '@styles/style';
 import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
-import { Header3Text } from '../../styles/style';
+import { Button, Image, View } from 'react-native';
 
 
-const ChildInfo = ({ navigation }: Props) => {
+const ChildInfo = () => {
     return (
         <>
             <View style={{padding:10}}>

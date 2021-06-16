@@ -1,11 +1,8 @@
-import { DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
-import { Header3Text } from '../../styles/style';
 
 const ContainerView = styled.View`
   flex: 1;
@@ -15,7 +12,7 @@ const ContainerView = styled.View`
   margin-top: 10px;
   background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
-const AdviceAndArticles = ({ navigation }: Props) => {
+const AdviceAndArticles = () => {
   return (
     <>
       <ContainerView>

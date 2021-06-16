@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Icon from './Icon';
-import OnboardingContainer from './OnboardingContainer';
 import OnboardingHeading from './OnboardingHeading';
 
 const Title = styled.Text`

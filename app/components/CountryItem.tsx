@@ -1,9 +1,9 @@
+import Icon from '@components/shared/Icon';
 import { useNetInfo } from '@react-native-community/netinfo';
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
 
-import Icon from '@components/shared/Icon';
-import Radio, { RadioActive, RadioItemText,RadioItem} from './shared/radio';
 
 const CountryItem = ({ item, currentItem, setCountry }) => {
   const isActive = item === currentItem ? true : false;

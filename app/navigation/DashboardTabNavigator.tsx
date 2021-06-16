@@ -1,20 +1,20 @@
-import React, { useContext, useState } from 'react';
+import Icon from '@components/shared/Icon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { DashboardBottomTabParamList } from './types';
-import Activities from '../screens/home/bottomTabs/Activities';
-import Articles from '../screens/home/bottomTabs/Articles';
-import SupportChat from '../screens/home/bottomTabs/SupportChat';
-import Home from '../screens/home/bottomTabs/Home';
+import Activities from '@screens/home/bottomTabs/Activities';
+import Articles from '@screens/home/bottomTabs/Articles';
+import Home from '@screens/home/bottomTabs/Home';
+import SupportChat from '@screens/home/bottomTabs/SupportChat';
+import React, { useContext, useState } from 'react';
 import {
   Modal,
   Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import Icon from '@components/shared/Icon';
 import { ThemeContext } from 'styled-components';
+import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
 export default () => {

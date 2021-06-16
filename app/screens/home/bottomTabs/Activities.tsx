@@ -1,22 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-} from 'react-native';
-import {Heading3} from '../../../styles/typography';
+import ActivitiesCategories from '@components/ActivitiesCategories';
 import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import TabScreenHeader from '@components/TabScreenHeader';
-import {HomeDrawerNavigatorStackParamList} from '../../../navigation/types';
-import styled, {ThemeContext} from 'styled-components/native';
-import ActivitiesCategories from '@components/ActivitiesCategories';
-import {Pressable} from 'react-native';
 import Icon from '@components/shared/Icon';
+import TabScreenHeader from '@components/TabScreenHeader';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading3 } from '@styles/typography';
+import React, { useContext } from 'react';
+import {
+  Image, Pressable, ScrollView, StyleSheet, Text, View
+} from 'react-native';
+import styled, { ThemeContext } from 'styled-components/native';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -26,32 +20,32 @@ type Props = {
 const DATA = [
   {
     id: '1',
-    imagePath: require('../../../assets/trash/card1.jpeg'),
+    imagePath: require('@assets/trash/card1.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '2',
-    imagePath: require('../../../assets/trash/card2.jpeg'),
+    imagePath: require('@assets/trash/card2.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '3',
-    imagePath: require('../../../assets/trash/card3.jpeg'),
+    imagePath: require('@assets/trash/card3.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '4',
-    imagePath: require('../../../assets/trash/card4.jpeg'),
+    imagePath: require('@assets/trash/card4.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '5',
-    imagePath: require('../../../assets/trash/card5.jpeg'),
+    imagePath: require('@assets/trash/card5.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '6',
-    imagePath: require('../../../assets/trash/card6.jpeg'),
+    imagePath: require('@assets/trash/card6.jpeg'),
     title: 'Picking stuff around',
   },
 ];
@@ -66,7 +60,7 @@ const SuggestedActivities = () => {
       <View style={styles.item}>
         <Image
           style={styles.cardImage}
-          source={require('../../../assets/trash/card5.jpeg')}
+          source={require('@assets/trash/card5.jpeg')}
           resizeMode={'cover'}
         />
         <View>
@@ -136,6 +130,7 @@ const Activities = ({navigation}: Props) => {
       </View>
     </Pressable>
   );
+  
   return (
     <>
       <ContainerView>
@@ -147,7 +142,7 @@ const Activities = ({navigation}: Props) => {
           textColor="#000"
         />
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <AgeBrackets />
+          <AgeBrackets itemColor={backgroundColor} activatedItemColor={headerColor}/>
           <ActivitiesCategories
             borderColor={headerColor}
             backgroundColor={backgroundColor}

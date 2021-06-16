@@ -1,5 +1,4 @@
 
-import { Button } from 'react-native';
 import styled from 'styled-components/native';
 export const ButtonviewNext = styled.Text`
 width:50px;height:50px;

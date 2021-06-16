@@ -1,30 +1,28 @@
 import React, { useEffect } from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import ChildSetup from '../screens/ChildSetup';
-import Terms from '../screens/Terms';
-import {RootStackParamList} from './types';
-import LocalizationNavigation from './LocalizationNavigation';
-import HomeDrawerNavigator from './HomeDrawerNavigator';
-import Walkthrough from '../screens/Walkthrough';
-import {useAppDispatch, useAppSelector} from '../../App';
-import PrivacyPolicy from '../screens/PrivacyPolicy';
-import ChildSetupList from '../screens/ChildSetupList';
-import AddSiblingData from '../screens/AddSiblingData';
-import LoadingScreen from '../screens/LoadingScreen';
-import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-import useRealmListener from '../database/dbquery/userRealmListener';
-import ImageStorage from '../downloadImages/ImageStorage';
 import { useNetInfo } from '@react-native-community/netinfo';
-import ArticleDetails from '../screens/home/ArticleDetails';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Linking, Platform } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
+import useRealmListener from '../database/dbquery/userRealmListener';
+import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
+import AddSiblingData from '../screens/AddSiblingData';
+import ChildSetup from '../screens/ChildSetup';
+import ChildSetupList from '../screens/ChildSetupList';
+import EditParentDetails from '../screens/EditParentDetails';
+import EditChildProfile from '../screens/home/EditChildProfile';
+import LoadingScreen from '../screens/LoadingScreen';
+import PrivacyPolicy from '../screens/PrivacyPolicy';
+import Terms from '../screens/Terms';
+import Walkthrough from '../screens/Walkthrough';
+import HomeDrawerNavigator from './HomeDrawerNavigator';
+import LocalizationNavigation from './LocalizationNavigation';
+import { RootStackParamList } from './types';
 import useToGetTaxonomy from '@assets/translations/appOfflineData/taxonomies';
-import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
-import { userRealmCommon } from '../database/dbquery/userRealmCommon';
-import { onRealmDataDbChange } from '../services/Utils';
+import { useAppDispatch, useAppSelector } from '../../App';
+
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -153,6 +151,21 @@ export default () => {
           //   headerLeftContainerStyle: {paddingLeft: 10},
           // })}
         />
+        <RootStack.Screen
+        name="EditChildProfile"
+        options={{headerShown: false}}
+        component={EditChildProfile}
+      />
+      <RootStack.Screen
+        name="AddExpectingChildProfile"
+        options={{headerShown: false}}
+        component={AddExpectingChildProfile}
+      />
+      <RootStack.Screen
+        name="EditParentDetails"
+        options={{headerShown: false}}
+        component={EditParentDetails}
+      />
         {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
     </NavigationContainer>
