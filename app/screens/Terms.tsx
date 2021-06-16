@@ -43,6 +43,30 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 
+// function* retryApis(errorArr: any[]){
+//   console.log("in retry",errorArr);
+//   let onApiArray;
+//   let failedApiObj = errorArr;
+//   const apiJsonData = [
+//     {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
+//     {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
+//     {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
+//   ]
+//   if(failedApiObj) {
+//     onApiArray = apiJsonData.filter((f: { apiEndpoint: any; }) =>
+//       failedApiObj.some((d: any) => d.apiEndpoint == f.apiEndpoint)
+//     );
+//   }else {
+//     onApiArray = apiJsonData;
+//   }
+//   console.log("onApiArray--",onApiArray);
+//   const output = yield put(fetchAPI(onApiArray));
+//   return output;
+// }
+// export const onApiSuccess2 =() => {
+//   //hide loading and redirect on next screen code here
+//   console.log("onApiSuccess");
+// }
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);

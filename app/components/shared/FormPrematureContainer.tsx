@@ -9,15 +9,13 @@ const FormPrematureContainer = styled.View`
   margin-bottom:20px;
 `;
 
-export const FormOuterCheckbox = styled.Text`
-margin-right:10px;
-align-items:flex-start;
 
-`
 
-export const FormCheckboxLabel = styled.Text`
+export const FormInfoLabel = styled.Text`
 flex-direction:row;
-
+margin-left:0px;
+margin-top:3px;
+padding:10px 10px;
 `
 
 

@@ -1,17 +1,25 @@
 
 import styled from 'styled-components/native';
-const Checkbox = styled.Text`
+const Checkbox = styled.View`
     background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
     width:20px;
     height:20px;
-    borderRadius:100px;
+    borderRadius:4px;
+    
    
 `;
+export const FormOuterCheckbox = styled.Pressable`
 
+margin-top:10px;
+align-items:flex-start;
+flex-direction:row;
+
+`
 export const CheckboxActive = styled(Checkbox)`
     alignItems:center;
     lineHeight:20px;
     flex-direction:row;
+    justify-content:center;
    text-align:center;
     background-color: ${props => props.theme.colors.PRIMARY_TINTCOLOR};
 `;
@@ -34,13 +42,7 @@ align-items:flex-start;
 `;
 
 export const CheckboxItem = styled.View`
-flexDirection: row;
-alignItems:center;
-padding: 15px 0;
-alignItems: center;
-  border-color: rgba(255,255,255,.3);
-  border-bottom-width: 0.5px;
-  border-radius: 3px;
+margin-right:10px;
 
 `;
 
