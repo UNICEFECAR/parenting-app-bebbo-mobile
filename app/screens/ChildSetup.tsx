@@ -1,17 +1,25 @@
-
+import ChildDate from '@components/ChildDate';
+import {
+  ButtonPrimary, ButtonRow, ButtonText
+} from '@components/shared/ButtonGlobal';
+import {
+  ChildCenterView,
+  ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
+} from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useState } from 'react';
-import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
-import ChildDate from '@components/ChildDate';
-import { RootStackParamList } from '../navigation/types';
-import { Header, Container, HeaderText, Header2Text } from '../styles/style';
-import ActionSheet from "react-native-actions-sheet";
-import Icon from '@components/shared/Icon';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import { Heading1w,Heading1Centerw,Heading3 } from '../styles/typography';
-import { ChildCenterView ,ChildContentArea,LabelText,ChildSection} from '@components/shared/ChildSetupStyle';
-import { ButtonPrimary } from '@components/shared/ButtonGlobal';
+import { Pressable, Text, View } from 'react-native';
+import ActionSheet from 'react-native-actions-sheet';
+import {
+  Heading1Centerw,
+  Heading3
+} from '../styles/typography';
+
+
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetupList'
@@ -21,81 +29,73 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const ChildSetup = ({ navigation }: Props) => {
+const ChildSetup = ({navigation}: Props) => {
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef();
   return (
     <>
+      <OnboardingContainer>
+        <OnboardingHeading>
+          <ChildCenterView>
+            <Heading1Centerw>
+              Please take a moment to personalize your app
+            </Heading1Centerw>
+          </ChildCenterView>
+        </OnboardingHeading>
 
-<OnboardingContainer>
-          <OnboardingHeading>
-                <ChildCenterView><Heading1Centerw> Please take a moment to personalize your app</Heading1Centerw></ChildCenterView>
-          </OnboardingHeading>
-     
-
-      <ChildContentArea>
-      <ChildSection>
+        <ChildContentArea>
+          <ChildSection>
             <ChildDate />
+
+            <FormInputGroup
+              onPress={() => {
+                actionSheetRef.current?.setModalVisible();
+              }}>
+              <LabelText>Relationship with child</LabelText>
+
+              <FormInputBox>
+                <FormDateText>
+                  <Text>{relationship ? relationship : 'Select'}</Text>
+                </FormDateText>
+                <FormDateAction>
+                  <Icon name="ic_angle_down" size={10} color="#000" />
+                </FormDateAction>
+              </FormInputBox>
+            </FormInputGroup>
           </ChildSection>
-      </ChildContentArea>
-      
-      <View style={{width:'100%', marginTop:30,flex:1, }}>
+        </ChildContentArea>
 
-          
-          
-          <View style={{marginTop:10 }}>
-            <LabelText>Relationship with child</LabelText>
-            <View style={{ flexDirection: 'row', backgroundColor: '#ffffff',height:60 }}>
-            <View style={{ flex: 4,alignItems:'center',flexDirection:'row',paddingLeft:15,paddingTop:10, }}>
-                <Pressable
-                  onPress={() => {
-                    actionSheetRef.current?.setModalVisible();
-                  }}
-                >
-                  <Heading3>{relationship ? relationship : 'Select'}</Heading3>
-                </Pressable>
-              </View>
-              <View style={{ flex: 1,justifyContent:'center',alignItems:'center',flexDirection:'row', }}>
-                <Icon name="ic_angle_down" size={10} color="#000" />
-              </View>
-            </View>
-            <ActionSheet ref={actionSheetRef}>
-              <View>
-                {
-                  genders.map((item, index) => {
-                    return (
-                      <View key={index}>
-                        <Pressable
-                          onPress={() => {
-                            setRelationship(item);
-                            actionSheetRef.current?.hide();
-                          }}>
-                          <Header2Text>{item}</Header2Text>
-                        </Pressable>
-                      </View>
-                    )
-                  })
-                }
-              </View>
-            </ActionSheet>
+        <ActionSheet ref={actionSheetRef}>
+          <View>
+            {genders.map((item, index) => {
+              return (
+                <ChildRelationList key={index}>
+                  <Pressable
+                    onPress={() => {
+                      setRelationship(item);
+                      actionSheetRef.current?.hide();
+                    }}>
+                    <Heading3>{item}</Heading3>
+                  </Pressable>
+                </ChildRelationList>
+              );
+            })}
           </View>
-        </View>
-        <View style = {{marginBottom:15,}}>
+        </ActionSheet>
 
-        
-        <Button title="Continue"
-          onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{name: 'ChildSetupList'}],
-            })
-            // navigation.navigate('ChildSetupList')
-          }}
-        />
-</View>
-
-      
+        <ButtonRow>
+          <ButtonPrimary
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'ChildSetupList'}],
+              });
+              // navigation.navigate('ChildSetupList')
+            }}>
+            <ButtonText>Continue</ButtonText>
+          </ButtonPrimary>
+        </ButtonRow>
       </OnboardingContainer>
     </>
   );

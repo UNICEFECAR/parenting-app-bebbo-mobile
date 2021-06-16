@@ -1,7 +1,7 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {RootStackParamList} from '../navigation/types';
+import { Button, Text, View } from 'react-native';
 type TourNavigationProp = StackNavigationProp<RootStackParamList, 'ChildSetup'>;
 
 type Props = {

@@ -1,28 +1,19 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading2Centerw, Heading3, Heading3Centerw, Heading3Regular } from '@styles/typography';
 import React from 'react';
-import {View, Pressable, Text, Image} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../../../App';
-import {onLocalizationSelect, setSponsorStore} from '../../redux/reducers/localizationSlice';
-import {RootStackParamList} from '../../navigation/types';
-import {
-  Container,
-  
-  MiniHeader,
-  Header2Text,
-  Header3Text,
-  
-} from '../../styles/style';
 import { useTranslation } from 'react-i18next';
+import { Pressable } from 'react-native';
+import { useAppDispatch } from '../../../App';
+import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
-import OnboardingContainer, {LocalizationContainer,LocalizationAction, LocalizationRow,LocalizationCol, LocalizationcontentHead, LocalizationcontentResult, OnboardingContent, OnboardingconfirmationHead,OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 
 
-import Icon from '@components/shared/Icon';
-import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
-import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText } from '@components/shared/ButtonGlobal';
 
-import ImageStorage from '../../downloadImages/ImageStorage';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -91,26 +82,21 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               </LocalizationcontentResult>
               </LocalizationCol>
               
-              <LocalizationAction>
-              <Pressable
-                  onPress={() => navigation.navigate('CountrySelection')}>
-                  <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
-                </Pressable>
-              </LocalizationAction>
+                <LocalizationAction>
+                <Pressable
+                    onPress={() => navigation.navigate('CountrySelection')}>
+                    <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
+                  </Pressable>
+                </LocalizationAction>
               </LocalizationRow>
-              <ButtonContainer>
-            <ButtonPrimary
-              onPress={() => saveSelection()}>
-              <ButtonText>{t('continueCountryLang')}</ButtonText>
-              </ButtonPrimary>
-          </ButtonContainer>
-            
+                <ButtonContainer>
+                  <ButtonPrimary
+                    onPress={() => saveSelection()}>
+                    <ButtonText>{t('continueCountryLang')}</ButtonText>
+                  </ButtonPrimary>
+                </ButtonContainer>
           </LocalizationContainer>
-          
-          
-
         </OnboardingContent>
-
     </OnboardingContainer>
 
     </>

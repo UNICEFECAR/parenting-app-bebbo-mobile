@@ -1,7 +1,3 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import ChildInfo from '@components/homeScreen/ChildInfo';
@@ -10,8 +6,12 @@ import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
-import { Container, Header3Text } from '../../../styles/style';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Container, Header3Text } from '@styles/style';
+import React, { useContext } from 'react';
+import { Button, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

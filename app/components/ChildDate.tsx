@@ -1,27 +1,28 @@
+import Icon from '@components/shared/Icon';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 import {
-  View,
-  Button,
-  StyleSheet,
-  TextInput,
-  Platform,
-  Pressable,
-  Text,
-  Alert,
-  Modal,
+  Modal, Platform,
+  Pressable, StyleSheet, Text, View
 } from 'react-native';
-import Icon from '@components/shared/Icon';
-import { Header3Text } from '../styles/style';
-import CheckBox from '@react-native-community/checkbox';
+import { Heading4Centerr, ShiftFromBottom30 } from '../styles/typography';
+import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox } from './shared/CheckboxStyle';
+import {
+  FormDateAction, FormDateContainer, FormDateText, FormInputBox,
+  FormInputGroup, LabelText
+} from './shared/ChildSetupStyle';
+import FormPrematureContainer, {
 
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { LabelText } from './shared/ChildSetupStyle';
+  FormInfoLabel
+} from './shared/FormPrematureContainer';
+import ModalPopupContainer, { PopupClose, PopupCloseContainer, PopupOverlay } from './shared/ModalPopupStyle';
+
 
 const ChildDate = () => {
-  const [toggleCheckBox, setToggleCheckBox] = useState(false)
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [dobDate, setdobDate] = useState();
   const [showdob, setdobShow] = useState(false);
+  
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
@@ -39,25 +40,51 @@ const ChildDate = () => {
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
   };
-
+  const [checkbox, setCheckbox] = useState<Boolean>(false);
+  // const isActive = item === currentItem ? true : false;
   const showdueDatepicker = () => {
     setdueShow(true);
   };
   return (
     <>
-      <View style={{width:'100%', marginTop:10 }}>
-        <LabelText>Child Date of Birth / Expected due date</LabelText>
-
-        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff', marginBottom:10,}}>
-          <View style={{ flex: 4,}}>
-            <Text style={styles.title}> {dobDate ? dobDate.toDateString() : null}</Text>
-          </View>
-          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
-            <Pressable style={styles.title} onPress={showdobDatepicker}>
+      <FormDateContainer>
+        <FormInputGroup onPress={showdobDatepicker}>
+          <LabelText>Child Date of Birth / Expected due date</LabelText>
+          <FormInputBox>
+            <FormDateText>
+              <Text> {dobDate ? dobDate.toDateString() : null}</Text>
+            </FormDateText>
+            <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
+            </FormDateAction>
+          </FormInputBox>
+        </FormInputGroup>
+
+        <FormPrematureContainer>
+          
+            <FormOuterCheckbox
+        onPress={() => {
+        //  console.log(item);
+          setCheckbox(!checkbox);
+        }}>
+        <CheckboxItem>
+            <View>
+            {checkbox ? <CheckboxActive><Icon name="ic_tick" size={12} color="#000" /></CheckboxActive> : <Checkbox></Checkbox> } 
+            </View>
+        </CheckboxItem>
+        <LabelText>Baby Born Prematurely</LabelText>
+      </FormOuterCheckbox>
+              
+           
+          
+          <FormInfoLabel>
+            
+            <Pressable onPress={() => setModalVisible(true)}>
+              <Icon name="ic_info" size={15} color="#FFF" />
             </Pressable>
-          </View>
-        </View>
+          </FormInfoLabel>
+        </FormPrematureContainer>
+
         <View>
           {showdob && (
             <DateTimePicker
@@ -70,56 +97,37 @@ const ChildDate = () => {
           )}
         </View>
 
-        <View style={{  flexDirection: 'row', minHeight: 50 }}>
-          <View style={{ flex: 1, alignItems: 'flex-start' }} >
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox}
-              tintColors={
-                { true: '#FFF', false: '#FFF' }
-              }
-              boxType={'square'}
-              tintColor={'#FFF'}
-              onCheckColor={'#000'}
-              onFillColor={'#FFF'}
-              onTintColor={'#000'}
-              onValueChange={(newValue) => setToggleCheckBox(newValue)}
-            />
-          </View>
-          <View style={{ flex: 6,alignContent:'center',justifyContent:'flex-start', alignItems: 'center', flexDirection: 'row',height:40, }} >
-            <LabelText>Baby Born Prematurely</LabelText>
-            <Pressable style={[styles.title,{marginLeft:10,marginTop:8}]} onPress={() => setModalVisible(true)}>
-              <Icon name="ic_info" size={15} color="#FFF" />
-            </Pressable>
-          </View>
-        </View>
-        <LabelText>Original due date</LabelText>
-
-        <View style={{ flexDirection: 'row', backgroundColor: '#ffffff' }}>
-          <View style={{ flex: 4, }}>
-            <Text style={styles.title}> {dueDate ? dueDate.toDateString() : null}</Text>
-          </View>
-          <View style={{ flex: 1,justifyContent:'center',flexDirection:'row', }}>
-            <Pressable style={styles.title} onPress={showdueDatepicker}>
-              <Icon name="ic_calendar" size={20} color="#000" />
-            </Pressable>
-          </View>
-        </View>
-        <View>
-          {showdue && (
-            <DateTimePicker
-              testID="duedatePicker"
-              value={new Date()}
-              mode={'date'}
-              display="default"
-              // minimumDate={{}}
-              // maximumDate={{}}
-              onChange={ondueDateChange}
-            />
-          )}
-        </View>
-      </View>
-
+        {toggleCheckBox ? (
+          <>
+            <ShiftFromBottom30>
+              <FormInputGroup onPress={showdueDatepicker}>
+                <LabelText>Original due date</LabelText>
+                <FormInputBox>
+                  <FormDateText>
+                    <Text> {dueDate ? dueDate.toDateString() : null}</Text>
+                  </FormDateText>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              </FormInputGroup>
+            </ShiftFromBottom30>
+            <View>
+              {showdue && (
+                <DateTimePicker
+                  testID="duedatePicker"
+                  value={new Date()}
+                  mode={'date'}
+                  display="default"
+                  // minimumDate={{}}
+                  // maximumDate={{}}
+                  onChange={ondueDateChange}
+                />
+              )}
+            </View>
+          </>
+        ) : null}
+      </FormDateContainer>
       <Modal
         animationType="none"
         transparent={true}
@@ -131,74 +139,50 @@ const ChildDate = () => {
         onDismiss={() => {
           setModalVisible(!modalVisible);
         }}>
-        <Pressable
-          style={styles.centeredView}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <TouchableOpacity
-            style={styles.modalView}
+        <PopupOverlay
+          >
+          <ModalPopupContainer
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            <Pressable
-              style={[styles.button]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>close</Text>
-            </Pressable>
-            <Text style={styles.modalText}>A baby born before 37 weeks of Pregnanacy is considered premature or born too early</Text>
-
-          </TouchableOpacity>
-        </Pressable>
+              <PopupCloseContainer>
+                <PopupClose 
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+                </PopupCloseContainer>
+            <Heading4Centerr>
+              A baby born before 37 weeks of Pregnanacy is considered premature
+              or born too early
+            </Heading4Centerr>
+          </ModalPopupContainer>
+        </PopupOverlay>
       </Modal>
     </>
   );
 };
 export default ChildDate;
+
 const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    marginBottom: 16,
-    
-    // paddingVertical: 8,
-    // paddingHorizontal:8,
-    // borderWidth: 4,
-    // borderColor: '#20232a',
-    // borderRadius: 6,
-    alignItems: 'center',
-    // backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'center',
-    fontSize: 14,
-    // fontWeight: 'bold',
-  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
     // paddingTop: headerHeight,
+    padding:20,
   },
   modalView: {
     // margin: 20,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 4,
     padding: 30,
-    alignItems: 'center'
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    alignItems: 'flex-end'
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    alignItems: 'center',
+    
   },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
   },
 });
-
