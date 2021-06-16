@@ -1,7 +1,21 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useEffect, useState} from 'react';
+import { localization } from '@assets/data/localization';
+import CountryItem from '@components/CountryItem';
+import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shared/ButtonView';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingStyle from '@components/shared/OnboardingStyle';
+import { LocalizationStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import {
+  SelectionView
+} from '@styles/style';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+// import {defaultProps} from '../../interfaces/interface';
+// import {darkTheme, lightTheme} from '../../theme/theme';
+import { FlatList } from 'react-native';
+import { useAppSelector } from '../../../App';
 
-import {LocalizationStackParamList} from '../../navigation/types';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -10,24 +24,7 @@ type CountrySelectionNavigationProp = StackNavigationProp<
 type Props = {
   navigation: CountrySelectionNavigationProp;
 };
-// import {defaultProps} from '../../interfaces/interface';
-// import {darkTheme, lightTheme} from '../../theme/theme';
-import {FlatList, Image, Pressable, StyleSheet, View} from 'react-native';
-import {
-  ButtonText,
-  Header,
-  HeaderText,
-  SelectionView,
-} from '../../styles/style';
-import {localization} from '@assets/data/localization';
-import CountryItem from '@components/CountryItem';
-import {useTranslation} from 'react-i18next';
-import { useAppSelector } from '../../../App';
-import Icon from '@components/shared/Icon';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
 
-import OnboardingStyle from '@components/shared/OnboardingStyle';
-import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shared/ButtonView';
 
 
 // import {API_URL, API_TOKEN} from "@env";

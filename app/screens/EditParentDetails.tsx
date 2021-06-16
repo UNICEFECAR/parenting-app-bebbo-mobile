@@ -1,23 +1,24 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  FormDateAction,
-  FormDateContainer,
-  FormDateText,
+  ChildRelationList,
+  FormDateAction, FormDateText,
   FormInputBox,
   FormInputGroup,
   LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext, useState } from 'react';
+import React, { createRef, useContext, useState } from 'react';
 import {
-  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
+import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
-
+import {
+  Heading3
+} from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -28,19 +29,12 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddExpectingChildProfile = ({navigation}: Props) => {
-  const [dobDate, setdobDate] = useState();
-  const [showdob, setdobShow] = useState(false);
-  const ondobChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || dobDate;
-    setdobShow(Platform.OS === 'ios');
-    setdobDate(currentDate);
-  };
+const EditParentDetails = ({navigation}: Props) => {
+  const [relationship, setRelationship] = useState('');
+  const genders = ['Father', 'Mother', 'Other'];
+  const actionSheetRef = createRef();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const showdobDatepicker = () => {
-    setdobShow(true);
-  };
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -64,46 +58,51 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
             </Pressable>
           </View>
           <View style={{flex: 3}}>
-            <Text> {'Add Expecting Child Details'}</Text>
+            <Text> {'Edit Parent Details'}</Text>
           </View>
         </View>
 
-        <View style={{margin: 10}}>
-          <FormDateContainer>
-            <FormInputGroup onPress={showdobDatepicker}>
-              <LabelText>Expected due date</LabelText>
+        <FormInputGroup
+              onPress={() => {
+                actionSheetRef.current?.setModalVisible();
+              }}>
+              <LabelText>Relationship with child</LabelText>
+
               <FormInputBox>
                 <FormDateText>
-                  <Text> {dobDate ? dobDate.toDateString() : null}</Text>
+                  <Text>{relationship ? relationship : 'Select'}</Text>
                 </FormDateText>
                 <FormDateAction>
-                  <Icon name="ic_calendar" size={20} color="#000" />
+                  <Icon name="ic_angle_down" size={10} color="#000" />
                 </FormDateAction>
               </FormInputBox>
             </FormInputGroup>
-          </FormDateContainer>
-
+        <ActionSheet ref={actionSheetRef}>
           <View>
-            {showdob && (
-              <DateTimePicker
-                testID="dobdatePicker"
-                value={new Date()}
-                mode={'date'}
-                display="default"
-                onChange={ondobChange}
-              />
-            )}
+            {genders.map((item, index) => {
+              return (
+                <ChildRelationList key={index}>
+                  <Pressable
+                    onPress={() => {
+                      setRelationship(item);
+                      actionSheetRef.current?.hide();
+                    }}>
+                    <Heading3>{item}</Heading3>
+                  </Pressable>
+                </ChildRelationList>
+              );
+            })}
           </View>
-
+        </ActionSheet>
           <View>
-            <LabelText>Any preferred Name</LabelText>
+            <LabelText>Parent Name</LabelText>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
               clearButtonMode="always"
               value={''}
               // onChangeText={queryText => handleSearch(queryText)}
-              placeholder="Enter your child name"
+              placeholder="Enter your name"
               style={{
                 backgroundColor: '#fff',
                 paddingHorizontal: 20,
@@ -119,13 +118,12 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
               <ButtonText>Save Data</ButtonText>
             </ButtonPrimary>
           </View>
-        </View>
       </SafeAreaView>
     </>
   );
 };
 
-export default AddExpectingChildProfile;
+export default EditParentDetails;
 const styles = StyleSheet.create({
   title: {
     marginTop: 16,

@@ -1,20 +1,21 @@
-import * as React from 'react'
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
-import styled from 'styled-components/native';
-import RNFS from 'react-native-fs';
+import * as React from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
+import styled from 'styled-components/native';
 const Container = styled.View`
   width: 100%;
   flex:1;
 `;
 const MainView = styled.View`
+justify-content:center;
+align-content:center;
 flex:1;
 `;
 const WrapView = styled.View`
 justify-content:center;
 align-content:center;
-margin-top:25px;
+margin-top:20px;
 `;
 
 const PartnerLogo = styled.Image`
@@ -27,7 +28,7 @@ resize-mode:contain;
 const SponsorLogo = styled.Image`
 width:50px;
 height:50px;
-
+margin-top:30px;
 `;
 const StaticLogo = styled.Image`
 width:150px;
@@ -36,8 +37,8 @@ height:80px;
 `;
 const LoadingText = styled.Text`
 color: #fff;
-font-size: 25px;
-font-weight: bold;
+ font-size: 25px;
+  font-weight: bold;
 `;
 const styles = StyleSheet.create({
   imagetag: {
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
 });
 
 const item = {
-  image: require('../assets/svg/bebbo_logo_shape.svg'),
+  image: require('@assets/svg/bebbo_logo_shape.svg'),
   colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
 }
 
@@ -71,16 +72,16 @@ const LoadingScreenComponent = (props: any) => {
             <Text style={{marginTop:25}}><VectorImage source={item.image} style={styles.imagetag} /></Text>
             <Text>
             <PartnerLogo 
-              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('../assets/loading/partner_albania.jpeg')}
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('@assets/loading/partner_albania.jpeg')}
             />            
             </Text>
             <Text><SponsorLogo
-              source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('../assets/loading/sponser_albania.png')}
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('@assets/loading/sponser_albania.png')}
             />
             </Text>
             <WrapView>
             <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text>
-            <StaticLogo source={require('../assets/loading/unicef_logo.png')}
+            <StaticLogo source={require('@assets/loading/unicef_logo.png')}
             />
           </WrapView>
           </View>

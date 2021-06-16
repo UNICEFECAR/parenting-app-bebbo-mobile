@@ -39,9 +39,12 @@ flex:1;
 export const LocalizationRow = styled.View`
   flex: 1;
   flex-direction: column;
-  
+  justify-content: space-between;
   background-color: #fff;
-  min-height:60px
+
+  align-items: stretch;
+  min-height:80px;
+  
   margin-top:0px;
   margin-bottom: 30px;
   border-radius:4px;
@@ -50,11 +53,10 @@ export const LocalizationRow = styled.View`
 export const LocalizationCol = styled.View`
 flex:1;
 flex-direction: row;
-
-align-items:center;
+align-items:center
 border-bottom-width:1px;
 border-color: rgba(0,0,0,.15);
-padding:5px 15px 0px;
+padding:10px 15px 0px;
 `
 export const LocalizationAction = styled.View`
 flex:1;flex-direction: row; align-items:center;justify-content:center;

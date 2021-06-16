@@ -1,12 +1,11 @@
+import WalkthroughContainer, { Slide, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
+import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { RootStackParamList } from '../navigation/types';
-import { StyleSheet } from 'react-native';
-import VectorImage from 'react-native-vector-image';
 import LinearGradient from 'react-native-linear-gradient';
-import WalkthroughContainer, { Slide,ButtonTertiary1,ButtonTertiary2,WalkthroughTitle,WalkthroughButton, WalkthroughSubtext,WalkthroughImagebox } from '@components/shared/WalkthroughStyle';
-import { ButtonText } from '@components/shared/ButtonGlobal';
+import VectorImage from 'react-native-vector-image';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -18,31 +17,31 @@ type Props = {
 const data = [
   {
     title: 'Welcome Parents!',
-    image: require('../assets/svg/bebbo_logo_shape.svg'),
+    image: require('@assets/svg/bebbo_logo_shape.svg'),
     colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
-    subtitle: "Discover Bebbo - everything you need as a parent to support your child's development",
-    textcolor:'#ffffff',
+    textcolor:'#FFF',
+    subtitle: "Discover Bebbo - everything you need as a parent to support your child's development"
   },
   {
     title: 'Activities',
-    image: require('../assets/svg/ic_activity_color.svg'),
+    image: require('@assets/svg/ic_activity_color.svg'),
     colors: ['#0FD87E', '#CFF7E5'],
-    subtitle: "and games to stimulate your child everyday",
-    textcolor:'#000000',
+    textcolor:'#000',
+    subtitle: "and games to stimulate your child everyday"
   },
   {
     title: 'Tools',
-    image: require('../assets/svg/ic_tools_color.svg'),
+    image: require('@assets/svg/ic_tools_color.svg'),
     colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
-    subtitle: "to track your child's development,growth,immunizations and health",
-    textcolor:'#000000',
+    textcolor:'#000',
+    subtitle: "to track your child's development,growth,immunizations and health"
   },
   {
     title: 'Advice',
-    image: require('../assets/svg/ic_article_color.svg'),
+    image: require('@assets/svg/ic_article_color.svg'),
     colors: ['#FF8D6B', '#FFD2C4'],
-    subtitle: 'tailored to your questions and the needs of your child',
-    textcolor:'#000000',
+    textcolor:'#000',
+    subtitle: 'tailored to your questions and the needs of your child'
   },
 ];
 type Item = typeof data[0];
@@ -51,9 +50,9 @@ const Walkthrough = ({ navigation }: Props) => {
     return (
       <>
       <WalkthroughContainer>
-        <LinearGradient style={{flex:1,}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
+        <LinearGradient style={{flex:1}} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={item.colors} >
           <Slide>
-
+            <WalkthroughImageContainer>
             {(index ==0) ?
             (<VectorImage source={item.image} />)
             : (index ==1) ? (<WalkthroughImagebox>
@@ -63,8 +62,11 @@ const Walkthrough = ({ navigation }: Props) => {
               </WalkthroughImagebox>): (<WalkthroughImagebox>
               <VectorImage source={item.image} style={{width: 160,height: 123,}} />
               </WalkthroughImagebox>)}
-              <WalkthroughTitle style={[styles.titleText,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
-            <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
+              </WalkthroughImageContainer>
+              <WalkthroughContentArea>
+                <WalkthroughTitle style={[styles.titleText,{color:item.textcolor}]}>{item.title}</WalkthroughTitle>
+                <WalkthroughSubtext style={[styles.title,{color:item.textcolor}]}>{item.subtitle}</WalkthroughSubtext>
+              </WalkthroughContentArea>
           </Slide>
         </LinearGradient>
         </WalkthroughContainer>
@@ -74,25 +76,22 @@ const Walkthrough = ({ navigation }: Props) => {
   
   const renderDoneButton = () => {
     return (
-      <WalkthroughButton>
-      <ButtonTertiary1>
-        <ButtonText>Next</ButtonText>
-        </ButtonTertiary1>
-        </WalkthroughButton>
+      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
+        <Text style={{ color: '#000' }}>Next</Text>
+      </View>
 
     );
   }
   const renderPrevButton = () => {
     return (
-      <WalkthroughButton>
-      <ButtonTertiary2>
-        {/* style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }} */}
-        <ButtonText>Back</ButtonText>
-      </ButtonTertiary2>
-      </WalkthroughButton>
+      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
+        <Text style={{ color: '#000' }}>Back</Text>
+      </View>
     );
   }
-
+  const getDotStyle = (colorString:string)=>{
+    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
+  }
 
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
@@ -112,9 +111,6 @@ const Walkthrough = ({ navigation }: Props) => {
       routes: [{ name: 'Terms' }],
     })
   }
-  const getDotStyle = (colorString:string)=>{
-    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
-  }
 
   
   const keyExtractor = (item: Item) => item.title;
@@ -126,11 +122,11 @@ const Walkthrough = ({ navigation }: Props) => {
         renderItem={({ item, index }) => renderItem(item, index)}
         // bottomButton
         dotClickEnabled
+        // showDoneButton={false}
         activeDotStyle={getDotStyle('black')}
         dotStyle={getDotStyle('white')}
         showSkipButton={false}
         showPrevButton={showPrevbtn}
-        // dotsRequired={isDotsRequired}
         showNextButton={false}
         data={data}
         onDone={onDone}
@@ -144,16 +140,20 @@ const Walkthrough = ({ navigation }: Props) => {
 
 export default Walkthrough;
 const styles = StyleSheet.create({
-  titleText:{
-    color: '#fff',
-    fontSize:50,
-    textAlign: 'center',
-    fontFamily:'roboto-bold',
-    marginBottom:40,
-  },
+  
+  titleText:
+  {color: '#fff',
+  fontSize:50,
+  textAlign: 'center',
+  fontFamily:'roboto-bold',
+  marginBottom:20,
+},
+
   title: {
-    fontFamily:'roboto-regular',
+    
     padding: 5,
+    // width: 100,
+    fontWeight: 'bold',
     textAlign: 'center'
   },
 
