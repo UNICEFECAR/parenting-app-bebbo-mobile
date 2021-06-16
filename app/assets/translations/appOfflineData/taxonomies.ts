@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../App";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { setAllTaxonomyData } from "../../../redux/reducers/utilsSlice";
-import { Alert, AppState } from "react-native";
+import { AppState } from "react-native";
 import React from "react";
 import { onRealmDataDbChange } from "../../../services/Utils";
 const data:any = {
@@ -10211,11 +10211,11 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
   
     let taxonomyData3:any = [];
     let taxanomylistener:any;
-    console.log(AppState.currentState,"--AppState");
+    // console.log(AppState.currentState,"--AppState");
     //React.useEffect(() => {
         async function fetchData() {
             let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-            Alert.alert("db length--",taxonomyData2?.length);
+            console.log("db length--",taxonomyData2?.length);
                 if(taxonomyData2?.length > 0)
                 {
                     // setTaxonomyData(JSON.parse(taxonomyData2[0].allData));
@@ -10223,23 +10223,25 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
                     dispatch(setAllTaxonomyData(taxonomyData2));
                     // if(taxonomyData)
                     // {
-                         const taxanomylistener = taxonomyData2.addListener(() => {
-                            Alert.alert("in if listener called--",taxonomyData2);
+                        taxonomyData2.removeAllListeners();
+                         taxanomylistener = taxonomyData2.addListener(() => {
+                            console.log("in if listener called--",taxonomyData2);
                              dispatch(setAllTaxonomyData(taxonomyData2))
                             });
                     // }
                 }else {
                     // setTaxonomyData(data[languageCode]);
-                    taxonomyData3.push({langCode:languageCode,allData:JSON.stringify(data[languageCode]),standardDeviationData:{}})
+                    taxonomyData3.push({langCode:languageCode,allData:JSON.stringify(data[languageCode]),standardDevData:{}})
                     dispatch(setAllTaxonomyData(taxonomyData3));
                     // if(taxonomyData)
                     // {
                     //     console.log(" in if else taxonomyData")
-                        const taxanomylistener = taxonomyData2.addListener(() => {
-                            Alert.alert("in else listener called");
+                        taxonomyData2.removeAllListeners();
+                        taxanomylistener = taxonomyData2.addListener(() => {
+                            console.log("in else listener called");
                             if(taxonomyData2?.length > 0)
                             {
-                                Alert.alert("in else if listener called--",taxonomyData2);
+                                console.log("in else if listener called--",taxonomyData2);
                                 dispatch(setAllTaxonomyData(taxonomyData2))
                             }
                         });

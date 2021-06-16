@@ -19,3 +19,5 @@ ios/PodFile.lock
 package-lock.json
 *.bundle
 android/app/src/main/assets/index.android.bundle
+android/.idea/
+.gradle/

@@ -40,19 +40,15 @@ export const addApiDataInRealm = async (response: any) => {
         const {standard_deviation, ...allData} = response.payload.data.data;
         console.log(allData);
         // insertData = response.payload.data.langcode;
-        insertData.push({langCode:response.payload.data.langcode,allData:JSON.stringify(allData),standardDeviationData:JSON.stringify(response.payload.data.data.standard_deviation)});
+        insertData.push({langCode:response.payload.data.langcode,allData:JSON.stringify(allData),standardDevData:JSON.stringify(response.payload.data.data.standard_deviation)});
         console.log("insertData--",insertData);
         Entity= Entity as TaxonomyEntity;
         EntitySchema = TaxonomySchema;
     }
-    let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
-    // let deleteresult2 = await dataRealmCommon.deleteAll(CoverImage);
-    let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
-    console.log(new Date()," result is ",createresult);
-    // let closedresult = await dataRealmCommon.closeRealm();
-    // let getresult = await dataRealmCommon.getData<typeof Entity>(EntitySchema);
-    // console.log("getresult is ", Array.from(getresult));
-    
+        let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
+        // let deleteresult2 = await dataRealmCommon.deleteAll(CoverImage);
+        let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+        console.log(new Date()," result is ",createresult);
 }
 
 export const onRealmDataDbChange = (collection: any, changes: any) => {
