@@ -1,7 +1,7 @@
 import { ApiImageData } from './../types/types';
 import { useNetInfo } from "@react-native-community/netinfo";
 import RNFS from 'react-native-fs';
-// import {downloadImagesBatchSize, downloadImagesIntervalBetweenBatches,showLog} from "@env";
+// import {downloadImagesBatchSize, downloadImagesIntervalBetweenBatches,showLog} from "react-native-dotenv";
 const downloadImagesBatchSize= 50; // Works for 15
 const downloadImagesIntervalBetweenBatches= 200; // In milliseconds. Works for 3000
 const showLog=true;
