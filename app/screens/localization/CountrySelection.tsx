@@ -30,7 +30,7 @@ import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shared/ButtonView';
 
 
-// import {API_URL, API_TOKEN} from "@env";
+// import {API_URL, API_TOKEN} from "react-native-dotenv";
 //{navigation}: Props
 type localizationType = {
   name: string;

@@ -25,15 +25,18 @@ import {
   FormInputGroup,
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
-  FormOuterCheckbox,
-  FormCheckboxLabel,
+  
+  FormInfoLabel,
 } from './shared/FormPrematureContainer';
-import {ShiftFromBottom30} from '../styles/typography';
+import {Heading4Centerr, ShiftFromBottom30} from '../styles/typography';
+import Checkbox, { CheckboxItemText,CheckboxActive,CheckboxItem,FormOuterCheckbox } from './shared/CheckboxStyle';
+import ModalPopupContainer, {PopupOverlay,PopupClose,PopupCloseContainer} from './shared/ModalPopupStyle';
 
 const ChildDate = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [dobDate, setdobDate] = useState();
   const [showdob, setdobShow] = useState(false);
+  
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
@@ -51,7 +54,8 @@ const ChildDate = () => {
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
   };
-
+  const [checkbox, setCheckbox] = useState<Boolean>(false);
+  // const isActive = item === currentItem ? true : false;
   const showdueDatepicker = () => {
     setdueShow(true);
   };
@@ -71,25 +75,28 @@ const ChildDate = () => {
         </FormInputGroup>
 
         <FormPrematureContainer>
-          <FormOuterCheckbox>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox}
-              tintColors={{true: '#FFF', false: '#FFF'}}
-              boxType={'square'}
-              tintColor={'#FFF'}
-              onCheckColor={'#000'}
-              onFillColor={'#FFF'}
-              onTintColor={'#000'}
-              onValueChange={(newValue) => setToggleCheckBox(newValue)}
-            />
-          </FormOuterCheckbox>
-          <FormCheckboxLabel>
-            <LabelText>Baby Born Prematurely</LabelText>
+          
+            <FormOuterCheckbox
+        onPress={() => {
+        //  console.log(item);
+          setCheckbox(!checkbox);
+        }}>
+        <CheckboxItem>
+            <View>
+            {checkbox ? <CheckboxActive><Icon name="ic_tick" size={12} color="#000" /></CheckboxActive> : <Checkbox></Checkbox> } 
+            </View>
+        </CheckboxItem>
+        <LabelText>Baby Born Prematurely</LabelText>
+      </FormOuterCheckbox>
+              
+           
+          
+          <FormInfoLabel>
+            
             <Pressable onPress={() => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
             </Pressable>
-          </FormCheckboxLabel>
+          </FormInfoLabel>
         </FormPrematureContainer>
 
         <View>
@@ -146,21 +153,25 @@ const ChildDate = () => {
         onDismiss={() => {
           setModalVisible(!modalVisible);
         }}>
-        <Pressable
-          style={styles.centeredView}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <TouchableOpacity
-            style={styles.modalView}
+        <PopupOverlay
+          >
+          <ModalPopupContainer
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            <Text style={styles.modalText}>
+              <PopupCloseContainer>
+                <PopupClose 
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+                </PopupCloseContainer>
+            <Heading4Centerr>
               A baby born before 37 weeks of Pregnanacy is considered premature
               or born too early
-            </Text>
-          </TouchableOpacity>
-        </Pressable>
+            </Heading4Centerr>
+          </ModalPopupContainer>
+        </PopupOverlay>
       </Modal>
     </>
   );
@@ -174,13 +185,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
     // paddingTop: headerHeight,
+    padding:20,
   },
   modalView: {
     // margin: 20,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 4,
     padding: 30,
     alignItems: 'center',
+    
   },
   modalText: {
     marginBottom: 15,
