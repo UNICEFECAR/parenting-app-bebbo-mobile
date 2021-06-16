@@ -1,21 +1,14 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Button,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import {ThemeContext} from 'styled-components';
+import { ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
-import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useContext } from 'react';
+import {
+  Pressable, SafeAreaView, ScrollView, Text, View
+} from 'react-native';
+import { ThemeContext } from 'styled-components';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;

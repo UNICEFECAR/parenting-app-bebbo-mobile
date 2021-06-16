@@ -1,20 +1,14 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
-import {View, Text, Pressable, SafeAreaView, ScrollView} from 'react-native';
-import {ThemeContext} from 'styled-components';
-import {HomeDrawerNavigatorStackParamList} from '../../navigation/types';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading3,
-  Heading2,
-  Heading4,
-  Heading3Regular,
-  Paragraph,
-  Heading5,
-} from '../../styles/typography';
+  Heading2, Heading3, Heading3Regular, Heading4, Heading5, Paragraph
+} from '@styles/typography';
+import React, { useContext } from 'react';
+import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { ThemeContext } from 'styled-components';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 

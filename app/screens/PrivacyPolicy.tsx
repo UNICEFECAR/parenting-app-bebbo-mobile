@@ -1,9 +1,9 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, { Fragment } from 'react';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {View, Text, Button, useWindowDimensions, ScrollView} from 'react-native';
+import { ScrollView, useWindowDimensions } from 'react-native';
 import HTML from 'react-native-render-html';
-import {RootStackParamList} from '../navigation/types';
 import { Container, Header, HeaderText } from '../styles/style';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
   RootStackParamList,
