@@ -48,7 +48,13 @@ border-color:rgba(0,0,0,0.2)
 
 `
 
+export const FormOuterCheckbox = styled.Pressable`
 
+margin-top:10px;
+align-items:flex-start;
+flex-direction:row;
+
+`
 
 export const ChildCenterView = styled.View`
 flex: 1;
