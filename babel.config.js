@@ -4,7 +4,7 @@ module.exports = (api) => {
     [
       'module:react-native-dotenv',
       {
-        moduleName: "react-native-dotenv",
+        moduleName: "@env",
         path: '.env',
         blacklist: null,
         whitelist: null,

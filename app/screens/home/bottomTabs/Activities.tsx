@@ -136,6 +136,7 @@ const Activities = ({navigation}: Props) => {
       </View>
     </Pressable>
   );
+  
   return (
     <>
       <ContainerView>
@@ -147,7 +148,7 @@ const Activities = ({navigation}: Props) => {
           textColor="#000"
         />
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <AgeBrackets />
+          <AgeBrackets itemColor={backgroundColor} activatedItemColor={headerColor}/>
           <ActivitiesCategories
             borderColor={headerColor}
             backgroundColor={backgroundColor}
