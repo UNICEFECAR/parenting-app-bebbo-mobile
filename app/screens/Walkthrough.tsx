@@ -19,24 +19,28 @@ const data = [
     title: 'Welcome Parents!',
     image: require('@assets/svg/bebbo_logo_shape.svg'),
     colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
+    textcolor:'#FFF',
     subtitle: "Discover Bebbo - everything you need as a parent to support your child's development"
   },
   {
     title: 'Activities',
     image: require('@assets/svg/ic_activity_color.svg'),
     colors: ['#0FD87E', '#CFF7E5'],
+    textcolor:'#000',
     subtitle: "and games to stimulate your child everyday"
   },
   {
     title: 'Tools',
     image: require('@assets/svg/ic_tools_color.svg'),
     colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
+    textcolor:'#000',
     subtitle: "to track your child's development,growth,immunizations and health"
   },
   {
     title: 'Advice',
     image: require('@assets/svg/ic_article_color.svg'),
     colors: ['#FF8D6B', '#FFD2C4'],
+    textcolor:'#000',
     subtitle: 'tailored to your questions and the needs of your child'
   },
 ];
@@ -85,12 +89,16 @@ const Walkthrough = ({ navigation }: Props) => {
       </View>
     );
   }
-
+  const getDotStyle = (colorString:string)=>{
+    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
+  }
 
   const [showPrevbtn, setShowPrevbtn] = useState(false);
+  const [isDotsRequired, setIsDotsRequired] = useState(true);
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
     (index == 3) ? setShowPrevbtn(true) : setShowPrevbtn(false);
+    (index == 3) ? setIsDotsRequired(false) : setIsDotsRequired(true);
 
   }
   const onDone = () => {
@@ -115,6 +123,8 @@ const Walkthrough = ({ navigation }: Props) => {
         // bottomButton
         dotClickEnabled
         // showDoneButton={false}
+        activeDotStyle={getDotStyle('black')}
+        dotStyle={getDotStyle('white')}
         showSkipButton={false}
         showPrevButton={showPrevbtn}
         showNextButton={false}
