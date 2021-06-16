@@ -10,6 +10,7 @@ export type RootStackParamList = {
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
   EditChildProfile:undefined;
   AddExpectingChildProfile:undefined;
+  EditParentDetails:undefined;
 };
 
 export type LocalizationStackParamList = {

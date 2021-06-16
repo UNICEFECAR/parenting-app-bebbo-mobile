@@ -176,7 +176,7 @@ const ChildProfile = ({navigation}: Props) => {
                 </View>
                 <Text>Activated</Text>
               </View>
-              <ScrollView style={{height: 550, marginTop: 10}} nestedScrollEnabled = {true}>
+              <ScrollView style={{height: 350, marginTop: 10}} nestedScrollEnabled = {true}>
                 {DATA.map((item, index) => {
                   return renderChildItem(item, index);
                 })}
@@ -223,7 +223,12 @@ const ChildProfile = ({navigation}: Props) => {
                   <ButtonText>Parent Details</ButtonText>
                 </View>
                 <View style={{padding: 10}}>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('EditParentDetails');
+                  }}>
                   <Text>Edit Profile</Text>
+                  </Pressable>
                 </View>
               </View>
               <View style={{flexDirection: 'row'}}>

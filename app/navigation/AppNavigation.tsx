@@ -23,6 +23,7 @@ import ArticleDetails from '../screens/home/ArticleDetails';
 import SplashScreen from 'react-native-splash-screen';
 import EditChildProfile from '../screens/home/EditChildProfile';
 import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
+import EditParentDetails from '../screens/EditParentDetails';
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -127,6 +128,11 @@ export default () => {
         name="AddExpectingChildProfile"
         options={{headerShown: false}}
         component={AddExpectingChildProfile}
+      />
+      <RootStack.Screen
+        name="EditParentDetails"
+        options={{headerShown: false}}
+        component={EditParentDetails}
       />
         {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
