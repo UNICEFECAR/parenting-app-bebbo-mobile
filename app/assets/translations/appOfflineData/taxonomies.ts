@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../../App";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { setAllTaxonomyData } from "../../../redux/reducers/utilsSlice";
-import { AppState } from "react-native";
+import { Alert, AppState } from "react-native";
 import React from "react";
 import { onRealmDataDbChange } from "../../../services/Utils";
 const data:any = {
@@ -10215,7 +10215,7 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
     //React.useEffect(() => {
         async function fetchData() {
             let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-            console.log("db length--",taxonomyData2?.length);
+            Alert.alert("db length--",taxonomyData2?.length);
                 if(taxonomyData2?.length > 0)
                 {
                     // setTaxonomyData(JSON.parse(taxonomyData2[0].allData));
@@ -10224,7 +10224,7 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
                     // if(taxonomyData)
                     // {
                          const taxanomylistener = taxonomyData2.addListener(() => {
-                             console.log("in if listener called--",taxonomyData2);
+                            Alert.alert("in if listener called--",taxonomyData2);
                              dispatch(setAllTaxonomyData(taxonomyData2))
                             });
                     // }
@@ -10236,10 +10236,10 @@ const useToGetTaxonomy = (languageCode:any,dispatch:any) => {
                     // {
                     //     console.log(" in if else taxonomyData")
                         const taxanomylistener = taxonomyData2.addListener(() => {
-                            console.log("in else listener called");
+                            Alert.alert("in else listener called");
                             if(taxonomyData2?.length > 0)
                             {
-                                console.log("in else if listener called--",taxonomyData2);
+                                Alert.alert("in else if listener called--",taxonomyData2);
                                 dispatch(setAllTaxonomyData(taxonomyData2))
                             }
                         });
