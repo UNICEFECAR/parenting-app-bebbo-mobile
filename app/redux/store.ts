@@ -15,7 +15,7 @@ const loggerMiddleware = createLogger({
 const sagaMiddleware= createSagaMiddleware();
 const allMiddlewares:any[] =[];
 if (process.env.NODE_ENV !== 'production' ){
-allMiddlewares.push(loggerMiddleware);
+  allMiddlewares.push(loggerMiddleware);
 }
 allMiddlewares.push(sagaMiddleware);
 

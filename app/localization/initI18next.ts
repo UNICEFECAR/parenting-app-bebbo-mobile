@@ -1,29 +1,30 @@
-import ALsq from '@assets/translations/ALsq';
-import BGbg from '@assets/translations/BGbg';
-import en from '@assets/translations/en';
-import GRel from '@assets/translations/GRel';
-import KGky from '@assets/translations/KGky';
-import KGru from '@assets/translations/KGru';
-import MEcnr from '@assets/translations/MEcnr';
-import MKmk from '@assets/translations/MKmk';
-import MKsq from '@assets/translations/MKsq';
-import RSen from '@assets/translations/RSen';
-import RSsr from '@assets/translations/RSsr';
-import TJru from '@assets/translations/TJru';
-import TJtg from '@assets/translations/TJtg';
-import UZru from '@assets/translations/UZru';
-import UZuz from '@assets/translations/UZuz';
-import XKrs from '@assets/translations/XKrs';
-import XKsq from '@assets/translations/XKsq';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n, {
-  InitOptions, LanguageDetectorAsyncModule,
-  Services
-} from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import * as RNLocalize from 'react-native-localize';
-  // import BYbe from '@assets/translations/BYbe';
-  // import BYru from '@assets/translations/BYru';
+    LanguageDetectorAsyncModule,
+    Services,
+    InitOptions,
+  } from 'i18next';
+  import {initReactI18next} from 'react-i18next';
+  import AsyncStorage from '@react-native-async-storage/async-storage';
+  import * as RNLocalize from 'react-native-localize';
+  import en from '@assets/translations/appConstants/en';
+  import RSsr from '@assets/translations/appConstants/RSsr';
+  import MEcnr from '@assets/translations/appConstants/MEcnr';
+  import ALsq from '@assets/translations/appConstants/ALsq';
+  import BGbg from '@assets/translations/appConstants/BGbg';
+  import GRel from '@assets/translations/appConstants/GRel';
+  import KGky from '@assets/translations/appConstants/KGky';
+  import KGru from '@assets/translations/appConstants/KGru';
+  import MKmk from '@assets/translations/appConstants/MKmk';
+  import MKsq from '@assets/translations/appConstants/MKsq';
+  import TJru from '@assets/translations/appConstants/TJru';
+  import TJtg from '@assets/translations/appConstants/TJtg';
+  import UZru from '@assets/translations/appConstants/UZru';
+  import UZuz from '@assets/translations/appConstants/UZuz';
+  import XKsq from '@assets/translations/appConstants/XKsq';
+  import XKrs from '@assets/translations/appConstants/XKrs';
+  import RSen from '@assets/translations/appConstants/RSen';
+  // import BYbe from '@assets/translations/appConstants/BYbe';
+  // import BYru from '@assets/translations/appConstants/BYru';
 
   export const AVAILABLE_LANGUAGES = {
     en,
