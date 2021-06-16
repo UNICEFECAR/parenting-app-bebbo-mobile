@@ -1,13 +1,12 @@
+import { RootStackParamList } from '@navigation/types';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { Alert, Dimensions, Text, View } from 'react-native';
+import { Dimensions } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
-import { RootStackParamList } from '../navigation/types';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
-import { appConfig } from '../types/apiConstants';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,

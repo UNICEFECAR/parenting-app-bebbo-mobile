@@ -1,11 +1,11 @@
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
-import {Heading1, Heading3} from '../../../styles/typography';
-import { HomeDrawerNavigatorStackParamList } from '../../../navigation/types';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading1, Heading3 } from '@styles/typography';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
-
 import Icon from '@components/shared/Icon';
-import Radio, { RadioActive, RadioItemText,RadioItem} from './shared/radio';
+import React from 'react';
+import { Pressable, View } from 'react-native';
+import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
+
 const LanguageItem = ({item, currentItem, setLanguage}) => {
   const isActive = item === currentItem ? true : false;
   return (

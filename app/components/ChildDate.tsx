@@ -1,36 +1,22 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Button,
-  StyleSheet,
-  TextInput,
-  Platform,
-  Pressable,
-  Text,
-  Alert,
-  Modal,
-} from 'react-native';
 import Icon from '@components/shared/Icon';
-import styled from 'styled-components/native';
-import CheckBox from '@react-native-community/checkbox';
-
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import React, { useState } from 'react';
 import {
-  FormDateContainer,
-  FormDateAction,
-  FormDateText,
-  LabelText,
-  FormInputBox,
-  FormInputGroup,
+  Modal, Platform,
+  Pressable, StyleSheet, Text, View
+} from 'react-native';
+import { Heading4Centerr, ShiftFromBottom30 } from '../styles/typography';
+import Checkbox, { CheckboxActive, CheckboxItem, FormOuterCheckbox } from './shared/CheckboxStyle';
+import {
+  FormDateAction, FormDateContainer, FormDateText, FormInputBox,
+  FormInputGroup, LabelText
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
-  
-  FormInfoLabel,
+
+  FormInfoLabel
 } from './shared/FormPrematureContainer';
-import {Heading4Centerr, ShiftFromBottom30} from '../styles/typography';
-import Checkbox, { CheckboxItemText,CheckboxActive,CheckboxItem,FormOuterCheckbox } from './shared/CheckboxStyle';
-import ModalPopupContainer, {PopupOverlay,PopupClose,PopupCloseContainer} from './shared/ModalPopupStyle';
+import ModalPopupContainer, { PopupClose, PopupCloseContainer, PopupOverlay } from './shared/ModalPopupStyle';
+
 
 const ChildDate = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
