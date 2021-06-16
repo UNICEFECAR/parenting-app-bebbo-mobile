@@ -32,7 +32,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   //     (state: any) => state.selectedCountry.language,
   //   );
   const apiJsonData = [
-    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{},saveinDB:false}
+    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{},saveinDB:false},
+      {apiEndpoint:appConfig.taxonomies,method:'get',postdata:{},saveinDB:true}
     ]
   const { t, i18n } = useTranslation();
   const saveSelection = () => {
