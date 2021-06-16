@@ -1,38 +1,23 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useContext, useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  Pressable,
-  TextInput,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
-import ChildDate from '@components/ChildDate';
-import {RootStackParamList} from '../navigation/types';
-import {
-  Header,
-  Container,
-  HeaderText,
-  Header2Text,
-  Header3Text,
-} from '../styles/style';
-
-import DateTimePicker from '@react-native-community/datetimepicker';
-import {ThemeContext} from 'styled-components';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormDateAction,
   FormDateContainer,
   FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelText,
+  LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
-import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
+import { RootStackParamList } from '@navigation/types';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useContext, useState } from 'react';
+import {
+  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+} from 'react-native';
+import { ThemeContext } from 'styled-components';
+
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,

@@ -1,9 +1,9 @@
+import { createStackNavigator } from '@react-navigation/stack';
+import CountryLanguageConfirmation from '@screens/localization/CountryLanguageConfirmation';
+import CountrySelection from '@screens/localization/CountrySelection';
+import LanguageSelection from '@screens/localization/LanguageSelection';
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {LocalizationStackParamList} from './types';
-import CountrySelection from '../screens/localization/CountrySelection';
-import LanguageSelection from '../screens/localization/LanguageSelection';
-import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
+import { LocalizationStackParamList } from './types';
 
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
 export default () => {
