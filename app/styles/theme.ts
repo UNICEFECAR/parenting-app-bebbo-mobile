@@ -1,7 +1,4 @@
-import { DefaultTheme } from "styled-components/native";
-
-
-export const appTheme: DefaultTheme= {
+export const appTheme= {
     colors: {
         PRIMARY_COLOR: '#2B2F84',
         PRIMARY_TINTCOLOR: '#8CAEE4',
