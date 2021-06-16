@@ -1,8 +1,6 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from "react-native"
-import VectorImage from 'react-native-vector-image';
-import { Header3Text } from "../styles/style"
 import Icon from '@components/shared/Icon';
+import React from 'react';
+import { StyleSheet, Text, View } from "react-native";
 
 const ArticleCategories = (props:any) => {
     return (

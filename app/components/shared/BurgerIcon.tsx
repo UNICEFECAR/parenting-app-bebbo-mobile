@@ -1,11 +1,10 @@
 
 
+import Icon from '@components/shared/Icon';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
-import Container from './Container';
-import Icon from '@components/shared/Icon';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
 const TextInput = styled.TextInput`
   width: 100%;
   height: 160px;

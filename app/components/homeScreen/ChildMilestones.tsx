@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, FlatList, StyleSheet, TouchableHighlight, Dimensions, ScrollView, Image } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
 const circleWidth = 130;
@@ -57,7 +57,7 @@ const DATA = [
     title: 'Picking stuff around'
   },
 ];
-const ChildMilestones = ({ navigation }: Props) => {
+const ChildMilestones = () => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     if (index === 0) {
       return (<MilestoneCircle key={index} />)
