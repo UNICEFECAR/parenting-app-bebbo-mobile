@@ -1,6 +1,6 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from "react-native"
 import Icon from '@components/shared/Icon';
+import React from 'react';
+import { StyleSheet, Text, View } from "react-native";
 
 const ActivitiesCategories = (props:any) => {
     return (

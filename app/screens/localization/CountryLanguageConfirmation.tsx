@@ -1,26 +1,18 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading2Centerw, Heading3, Heading3Centerw, Heading3Regular } from '@styles/typography';
 import React from 'react';
-import {View, Pressable, Text, Image} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../../../App';
-import {onLocalizationSelect, setSponsorStore} from '../../redux/reducers/localizationSlice';
-import {RootStackParamList} from '../../navigation/types';
-import {
-  Container,
-  
-  MiniHeader,
-  Header2Text,
-  Header3Text,
-  
-} from '../../styles/style';
 import { useTranslation } from 'react-i18next';
+import { Pressable } from 'react-native';
+import { useAppDispatch } from '../../../App';
+import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
-import OnboardingContainer, {LocalizationContainer,LocalizationAction, LocalizationRow,LocalizationCol, LocalizationcontentHead, LocalizationcontentResult, OnboardingContent, OnboardingconfirmationHead,OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 
 
-import Icon from '@components/shared/Icon';
-import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
-import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText } from '@components/shared/ButtonGlobal';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,

@@ -3,6 +3,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import { ChildRelationList, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext } from 'react';
 import {
@@ -10,7 +11,6 @@ import {
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
-import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
 import {
   Heading3
 } from '../../styles/typography';

@@ -1,22 +1,20 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
-import {SelectionView} from '../../styles/style';
-
-import {LocalizationStackParamList} from '../../navigation/types';
 import LanguageItem from '@components/LanguageItem';
-import {useAppSelector} from '../../../App';
-import Icon from '@components/shared/Icon';
-import {useTranslation} from 'react-i18next';
-import OnboardingStyle from '@components/shared/OnboardingStyle';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
 import {
-  BtnMultiple,
-  ButtonSection,
-  ButtonviewClick,
+  BtnMultiple, ButtonviewClick,
   ButtonviewNext,
-  ButtonviewPrevious,
+  ButtonviewPrevious
 } from '@components/shared/ButtonView';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingStyle from '@components/shared/OnboardingStyle';
+import { LocalizationStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { SelectionView } from '@styles/style';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList } from 'react-native';
+import { useAppSelector } from '../../../App';
+
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'CountryLanguageConfirmation'

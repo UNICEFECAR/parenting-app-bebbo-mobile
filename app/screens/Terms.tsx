@@ -1,39 +1,28 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-
-import React, {Fragment, useState} from 'react';
-import {put} from '@redux-saga/core/effects';
-import {useTranslation} from 'react-i18next';
 import {
-  View,
-  Text,
-  Button,
-  useWindowDimensions,
-  ScrollView,
-  Pressable,
-  Alert,
-} from 'react-native';
-import HTML from 'react-native-render-html';
-import {useAppDispatch, useAppSelector} from '../../App';
-import {RootStackParamList} from '../navigation/types';
-
-import CheckBox from '@react-native-community/checkbox';
-import {fetchAPI} from '../redux/sagaMiddleware/sagaActions';
-
-import {appConfig} from '../types/apiConstants';
-import {useNetInfo} from '@react-native-community/netinfo';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import {Heading1w, Heading2w, Heading3w} from '../styles/typography';
-import {
-  ButtonPrimary,
-  ButtonText,
-  ButtonRow,
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   CheckboxContainer,
-  CheckboxItemText,
+  CheckboxItemText
 } from '@components/shared/CheckboxStyle';
-import {ButtonviewPrevious} from '@components/shared/ButtonView';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { RootStackParamList } from '@navigation/types';
+import CheckBox from '@react-native-community/checkbox';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { Fragment, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  ScrollView, useWindowDimensions, View
+} from 'react-native';
+import HTML from 'react-native-render-html';
+import { useAppDispatch } from '../../App';
+import { Heading1w } from '../styles/typography';
+import { appConfig } from '../types/apiConstants';
+
+
+
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
   'LoadingScreen'

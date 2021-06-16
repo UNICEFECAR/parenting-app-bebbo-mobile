@@ -1,11 +1,11 @@
 import WalkthroughContainer, { Slide, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
+import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
-import { RootStackParamList } from '../navigation/types';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
