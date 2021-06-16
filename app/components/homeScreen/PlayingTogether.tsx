@@ -1,10 +1,8 @@
-import { DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
-import { Header3Text } from '../../styles/style';
 import styled from 'styled-components/native';
+import { Header3Text } from '../../styles/style';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -13,7 +11,7 @@ const ContainerView = styled.View`
   margin-top: 10px;
   background-color: ${props => props.theme.colors.ACTIVITIES_TINTCOLOR};
 `;
-const PlayingTogether = ({ navigation }: Props) => {
+const PlayingTogether = () => {
   return (
     <>
       <ContainerView >

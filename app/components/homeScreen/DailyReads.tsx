@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image, ImageBackground } from 'react-native';
+import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-const Item = ({ title }) => (
+const Item = ({ title }:any) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
   </View>
@@ -48,7 +48,7 @@ const DATA = [
   },
 ];
 
-const DailyReads = ({ navigation }: Props) => {
+const DailyReads = () => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
 
     return (

@@ -1,15 +1,14 @@
+import { ButtonLinkText, ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
+import { ChildCenterView, ChildColArea1, ChildColArea2, ChildContentArea, ChildListingArea, ChildListingBox, ChildListTitle, TitleLinkSm } from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
-import {useAppDispatch} from '../../App';
-import {RootStackParamList} from '../navigation/types';
-import {appConfig} from '../types/apiConstants';
-import {Heading3Centerw, Heading1Centerw, Heading3w} from '../styles/typography';
-import Icon from '@components/shared/Icon';
-import { ButtonContainer,ButtonPrimary,ButtonText,ButtonLinkText, ButtonRow, } from '@components/shared/ButtonGlobal';
-import {ChildCenterView, ChildContentArea,ChildListingArea,TitleLinkSm, ChildColArea1,ChildColArea2,ChildListingBox,ChildListTitle} from '@components/shared/ChildSetupStyle';
+import { Pressable, Text, View } from 'react-native';
+import { Heading1Centerw, Heading3Centerw } from '../styles/typography';
+import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
