@@ -36,7 +36,7 @@ export const dataRealmConfig: Realm.Configuration ={
     VideoArticleEntitySchema,
     DailyHomeMessagesSchema,
     BasicPagesSchema,
-    TaxonomySchema
+    TaxonomySchema,
   ],
   schemaVersion: 2,
   migration: (oldRealm, newRealm) => {
