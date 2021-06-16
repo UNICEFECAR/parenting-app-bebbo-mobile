@@ -1,23 +1,16 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TextInput,
-  Image,
-  Pressable,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import TabScreenHeader from '@components/TabScreenHeader';
-import {RootStackParamList} from '../../../navigation/types';
-import styled, {ThemeContext} from 'styled-components/native';
 import Icon from '@components/shared/Icon';
+import TabScreenHeader from '@components/TabScreenHeader';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { useContext } from 'react';
+import {
+  Image, KeyboardAvoidingView,
+  Platform, Pressable,
+  ScrollView, StyleSheet, Text, TextInput, View
+} from 'react-native';
+import styled, { ThemeContext } from 'styled-components/native';
+import { RootStackParamList } from '../navigation/types';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -34,32 +27,32 @@ const ContainerView = styled.SafeAreaView`
 const DATA = [
   {
     id: '1',
-    imagePath: require('../../../assets/trash/card1.jpeg'),
+    imagePath: require('@assets/trash/card1.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '2',
-    imagePath: require('../../../assets/trash/card2.jpeg'),
+    imagePath: require('@assets/trash/card2.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '3',
-    imagePath: require('../../../assets/trash/card3.jpeg'),
+    imagePath: require('@assets/trash/card3.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '4',
-    imagePath: require('../../../assets/trash/card4.jpeg'),
+    imagePath: require('@assets/trash/card4.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '5',
-    imagePath: require('../../../assets/trash/card5.jpeg'),
+    imagePath: require('@assets/trash/card5.jpeg'),
     title: 'General recommendations for overweight and obese infants',
   },
   {
     id: '6',
-    imagePath: require('../../../assets/trash/card6.jpeg'),
+    imagePath: require('@assets/trash/card6.jpeg'),
     title: 'Picking stuff around',
   },
 ];

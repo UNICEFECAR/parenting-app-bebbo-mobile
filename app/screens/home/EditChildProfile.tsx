@@ -1,31 +1,19 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useContext} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Button,
-  ScrollView,
-  Pressable,
-  TextInput,
-  Image,
-} from 'react-native';
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import {HomeDrawerNavigatorStackParamList} from '../../navigation/types';
 import ChildDate from '@components/ChildDate';
-import {ThemeContext} from 'styled-components';
-import {
-  Heading1w,
-  Heading1Centerw,
-  Heading3,
-  ShiftFromTop30,
-  Heading3Regular,
-} from '../../styles/typography';
-import ActionSheet from 'react-native-actions-sheet';
-import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
-import {ChildRelationList, LabelText} from '@components/shared/ChildSetupStyle';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ChildRelationList, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { createRef, useContext } from 'react';
+import {
+  Pressable, SafeAreaView, ScrollView, Text, TextInput, View
+} from 'react-native';
+import ActionSheet from 'react-native-actions-sheet';
+import { ThemeContext } from 'styled-components';
+import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
+import {
+  Heading3
+} from '../../styles/typography';
 const genders = ['Male', 'Female', 'Other'];
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -39,7 +27,7 @@ const EditChildProfile = ({navigation}: Props) => {
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const genders = ['boy','girl'];
   const imageOptions = ['Camera', 'Gallery'];
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>

@@ -30,6 +30,10 @@ module.exports = (api) => {
         alias: {
           '@components': './app/components',
           '@assets': './app/assets',
+          '@screens': './app/screens',
+          '@types': './app/types',
+          '@styles': './app/styles',
+          '@navigation': './app/navigation',
         },
       },
     ],
