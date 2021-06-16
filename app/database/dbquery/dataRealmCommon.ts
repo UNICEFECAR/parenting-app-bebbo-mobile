@@ -60,12 +60,12 @@ class DataRealmCommon {
             delete this.realm;
         }
     }
-    public addListenerToDataRealm(onRealmDataDbChange) {
-        if (this.realm) {
-           // console.log("closed realm data");
-            this.realm.addListener('change',onRealmDataDbChange);
-        }
-    }
+    // public addListenerToDataRealm(onRealmDataDbChange) {
+    //     if (this.realm) {
+    //        // console.log("closed realm data");
+    //         this.realm.addListener('change',onRealmDataDbChange);
+    //     }
+    // }
 
     public isRealmClosed(): boolean {
         let rval = true;

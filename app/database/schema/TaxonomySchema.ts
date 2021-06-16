@@ -3,8 +3,8 @@ import { ObjectSchema } from "realm";
 
 export type TaxonomyEntity = {
     langCode: string,
-    allData: string,
-    standardDeviationData: string,
+    allData?: string,
+    standardDevData?: string,
   };
 
 
@@ -16,6 +16,6 @@ export type TaxonomyEntity = {
     properties: {
         langCode: { type: 'string' },
         allData: { type: 'string',optional: true },
-        standardDeviationData: { type: 'string',optional: true},
+        standardDevData: { type: 'string',optional: true},
     }
   };

@@ -3,16 +3,16 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface selectedLocalizationType {
   // name: string;
-  allTaxonomyData: Object;
+  allTaxonomyData: string;
   languageCode: string;
-  standardDeviationData?: Object;
+  standardDevData: string;
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
-  allTaxonomyData: {},
+  allTaxonomyData: '',
   languageCode: 'en',
-  standardDeviationData: {},
+  standardDevData: '',
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
