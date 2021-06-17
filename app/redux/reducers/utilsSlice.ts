@@ -1,18 +1,52 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 
-interface selectedLocalizationType {
+interface hardcodedDataType {
   // name: string;
-  allTaxonomyData: string;
-  languageCode: string;
-  standardDevData: string;
+  taxonomy: { 
+    allTaxonomyData: string;
+    languageCode: string;
+    standardDevData: string;
+  },
+  aboutus:{
+    id:string;
+    title:string;
+    body:string;
+  },
+  terms:{
+    id:string;
+    title:string;
+    body:string;
+  },
+  privacypolicy:{
+    id:string;
+    title:string;
+    body:string;
+  }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
-const initialState: selectedLocalizationType = {
+const initialState: hardcodedDataType = {
   // name: 'Rest of the world',
-  allTaxonomyData: '',
-  languageCode: 'en',
-  standardDevData: '',
+  taxonomy: { 
+    allTaxonomyData: '',
+    languageCode: 'en',
+    standardDevData: '',
+  },
+  aboutus:{
+    id:'',
+    title:'',
+    body:'',
+  },
+  terms:{
+    id:'',
+    title:'',
+    body:'',
+  },
+  privacypolicy:{
+    id:'',
+    title:'',
+    body:'',
+  }
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -26,10 +60,35 @@ export const utilsSlice = createSlice({
       console.log(action.payload);
       if(action.payload[0])
       {
-        state.allTaxonomyData = action.payload[0].allData;
-        state.languageCode = action.payload[0].langCode;
+        state.taxonomy.allTaxonomyData = action.payload[0].allData;
+        state.taxonomy.languageCode = action.payload[0].langCode;
+        state.taxonomy.standardDevData = action.payload[0].standardDevData;
       }
-      // state.countryId = action.payload.countryId;
+    },
+    setAllTermsData: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log("setAllTermsData data---",state);
+      console.log(action.payload);
+      if(action.payload[0])
+      {
+        state.aboutus.id = action.payload[0].id;
+        state.aboutus.title = action.payload[0].title;
+        state.aboutus.body = action.payload[0].body;
+      }
+      if(action.payload[1])
+      {
+        state.terms.id = action.payload[0].id;
+        state.terms.title = action.payload[0].title;
+        state.terms.body = action.payload[0].body;
+      }
+      if(action.payload[2])
+      {
+        state.privacypolicy.id = action.payload[0].id;
+        state.privacypolicy.title = action.payload[0].title;
+        state.privacypolicy.body = action.payload[0].body;
+      }
     },
   },
   // extraReducers: (builder) => {
@@ -44,7 +103,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData} = utilsSlice.actions;
+export const {setAllTaxonomyData,setAllTermsData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
