@@ -21,8 +21,7 @@ import {
 } from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'ChildProfileScreen'
+  RootStackParamList
 >;
 
 type Props = {
@@ -32,7 +31,7 @@ type Props = {
 const EditParentDetails = ({navigation}: Props) => {
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
