@@ -1,7 +1,8 @@
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ArticleEntity, ArticleEntitySchema, CoverImage, } from "../database/schema/ArticleSchema";
-import { BasicPagesEntity, BasicPagesSchema, DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
+import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPagesSchema";
+import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { appConfig } from "../types/apiConstants";
