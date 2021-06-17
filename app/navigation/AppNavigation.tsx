@@ -20,8 +20,11 @@ import Walkthrough from '../screens/Walkthrough';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-import useToGetTaxonomy from '@assets/translations/appOfflineData/taxonomies';
+import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { TaxonomyEntity, TaxonomySchema } from '../database/schema/TaxonomySchema';
+import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
+import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -32,7 +35,6 @@ export default () => {
   // const countryId = useAppSelector(
   //   (state: any) => state.selectedCountry.countryId,
   // );
-
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
@@ -43,11 +45,10 @@ export default () => {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    const taxonomyData = useToGetTaxonomy(languageCode,dispatch);
+    let Entity:any;
+    // Entity = Entity as TaxonomyEntity
+    const taxonomyData = useToGetOfflineData(languageCode,dispatch,TaxonomySchema,Entity as TaxonomyEntity,taxonomydata,setAllTaxonomyData);
     console.log("taxonomyData--",taxonomyData);
-    return () => {
-      console.log("in useeffect1 return");
-    };
   },[languageCode]);
   // useEffect(() => {
   //   async function addDBListener() {
