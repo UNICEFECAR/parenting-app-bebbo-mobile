@@ -32,9 +32,25 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   //     (state: any) => state.selectedCountry.language,
   //   );
   const apiJsonData = [
-    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{},saveinDB:false},
-      {apiEndpoint:appConfig.taxonomies,method:'get',postdata:{},saveinDB:true}
-    ]
+    {
+      apiEndpoint:appConfig.sponsors,
+      method:'get',
+      postdata:{},
+      saveinDB:false
+    },
+    {
+      apiEndpoint:appConfig.taxonomies,
+      method:'get',
+      postdata:{},
+      saveinDB:true
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    }
+  ]
   const { t, i18n } = useTranslation();
   const saveSelection = () => {
     // i18n.changeLanguage(language.locale);
