@@ -2,21 +2,23 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
+import AddNewChildgrowth from '@screens/AddNewChildgrowth';
+import AddNewChildWeight from '@screens/AddNewChildWeight';
+import AddSiblingData from '@screens/AddSiblingData';
+import ChildSetup from '@screens/ChildSetup';
+import ChildSetupList from '@screens/ChildSetupList';
+import EditParentDetails from '@screens/EditParentDetails';
+import EditChildProfile from '@screens/home/EditChildProfile';
+import LoadingScreen from '@screens/LoadingScreen';
+import PrivacyPolicy from '@screens/PrivacyPolicy';
+import Terms from '@screens/Terms';
+import Walkthrough from '@screens/Walkthrough';
 import React from 'react';
 import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import useRealmListener from '../database/dbquery/userRealmListener';
-import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
-import AddSiblingData from '../screens/AddSiblingData';
-import ChildSetup from '../screens/ChildSetup';
-import ChildSetupList from '../screens/ChildSetupList';
-import EditParentDetails from '../screens/EditParentDetails';
-import EditChildProfile from '../screens/home/EditChildProfile';
-import LoadingScreen from '../screens/LoadingScreen';
-import PrivacyPolicy from '../screens/PrivacyPolicy';
-import Terms from '../screens/Terms';
-import Walkthrough from '../screens/Walkthrough';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
@@ -130,6 +132,16 @@ export default () => {
         name="EditParentDetails"
         options={{headerShown: false}}
         component={EditParentDetails}
+      />
+      <RootStack.Screen
+        name="AddNewChildgrowth"
+        options={{headerShown: false}}
+        component={AddNewChildgrowth}
+      />
+      <RootStack.Screen
+        name="AddNewChildWeight"
+        options={{headerShown: false}}
+        component={AddNewChildWeight}
       />
         {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
