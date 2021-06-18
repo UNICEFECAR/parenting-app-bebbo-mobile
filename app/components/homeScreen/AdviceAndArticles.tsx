@@ -1,6 +1,7 @@
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
 
@@ -13,38 +14,29 @@ const ContainerView = styled.View`
   background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 const AdviceAndArticles = () => {
+  const navigation = useNavigation();
   return (
     <>
       <ContainerView>
+      <View style={{flexDirection:'row',padding:10}}>
+        <View style={{
+          width: 130,
+          height: 130,
+          // borderRadius: circleWidth / 2,
+          backgroundColor: '#FFF',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
+        </View>
         <View>
-          <Text>Expert Advice And Articles</Text>
-
-          <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.item} >
-              <VectorImage source={require('@assets/svg/ic_art_play.svg')} />
-              <Text style={styles.title}>Playing and Learning</Text>
-            </View>
-            <View style={styles.item} >
-              <VectorImage source={require('@assets/svg/ic_art_health.svg')} />
-              <Text style={styles.title}>Health and Wellbeing</Text>
-            </View>
-            <View style={styles.item}>
-              <VectorImage source={require('@assets/svg/ic_art_safety.svg')} />
-              <Text style={styles.title}>Safety and Protection</Text>
-            </View>
-            <View style={styles.item}>
-              <VectorImage source={require('@assets/svg/ic_art_responsive.svg')} />
-              <Text style={styles.title}>Responsive Parenting</Text>
-            </View>
-            <View style={styles.item}>
-              <VectorImage source={require('@assets/svg/ic_art_parenting.svg')} />
-              <Text style={styles.title}>Responsive Parenting</Text>
-            </View>
-            <View style={styles.item}>
-              <VectorImage source={require('@assets/svg/ic_art_nutrition.svg')} />
-              <Text style={styles.title}>Responsive Parenting</Text>
-            </View>
-          </ScrollView>
+          <Text>Expert Advices and Articles</Text>
+          <ButtonContainer>
+              <ButtonPrimary onPress={() =>  navigation.navigate('Articles')}>
+                <ButtonText>Start Reading</ButtonText>
+              </ButtonPrimary>
+            </ButtonContainer>
+        </View>
         </View>
       </ContainerView>
     </>

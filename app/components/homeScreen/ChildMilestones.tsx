@@ -1,8 +1,10 @@
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
-const circleWidth = 130;
+
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -10,20 +12,20 @@ const ContainerView = styled.View`
   margin-top: 10px;
   background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
 `;
-const MilestoneCircle = () => (
+// const MilestoneCircle = () => (
 
 
-  <View style={{
-    width: circleWidth,
-    height: circleWidth,
-    // borderRadius: circleWidth / 2,
-    backgroundColor: '#FFF',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }}>
-    <VectorImage source={require('@assets/svg/ic_development_color.svg')} />
-  </View>
-);
+//   <View style={{
+//     width: circleWidth,
+//     height: circleWidth,
+//     // borderRadius: circleWidth / 2,
+//     backgroundColor: '#FFF',
+//     justifyContent: 'center',
+//     alignItems: 'center'
+//   }}>
+//     <VectorImage source={require('@assets/svg/ic_development_color.svg')} />
+//   </View>
+// );
 
 const DATA = [
   {
@@ -58,53 +60,51 @@ const DATA = [
   },
 ];
 const ChildMilestones = () => {
-  const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
-    if (index === 0) {
-      return (<MilestoneCircle key={index} />)
-    } else {
-      return (
-        <View style={styles.item} key={index}>
-          <Image style={styles.cardImage}
-            source={item.imagePath} resizeMode={'cover'} />
-          <Text style={styles.title}>{item.title}</Text>
-        </View>
-      )
-    }
-  }
+  // const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
+  //   if (index === 0) {
+  //     return (<MilestoneCircle key={index} />)
+  //   } else {
+  //     return (
+  //       <View style={styles.item} key={index}>
+  //         <Image style={styles.cardImage}
+  //           source={item.imagePath} resizeMode={'cover'} />
+  //         <Text style={styles.title}>{item.title}</Text>
+  //       </View>
+  //     )
+  //   }
+  // }
+  const navigation = useNavigation();
 
   return (
     <>
       <ContainerView>
-        <Text>{'Child Milestones'}</Text>
-        <FlatList
-          data={DATA}
-          horizontal
-          contentContainerStyle={{ padding: 10 }}
-          renderItem={({ item, index }) => renderDailyReadItem(item, index)}
-          keyExtractor={item => item.id}
-        />
+        <View style={{flexDirection: 'row', padding: 10}}>
+          <View
+            style={{
+              width: 130,
+              height: 130,
+              // borderRadius: circleWidth / 2,
+              backgroundColor: '#FFF',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <VectorImage
+              source={require('@assets/svg/ic_development_color.svg')}
+            />
+          </View>
+          <View>
+            <Text>Child Development</Text>
+            <ButtonContainer>
+              <ButtonPrimary
+                onPress={() => navigation.navigate('ChildDevelopment')}>
+                <ButtonText>Track Development</ButtonText>
+              </ButtonPrimary>
+            </ButtonContainer>
+          </View>
+        </View>
       </ContainerView>
     </>
   );
 };
 
 export default ChildMilestones;
-
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    // padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    width: 200,
-    borderRadius:5
-  },
-  title: {
-    fontSize: 16,
-    padding: 5
-  },
-  cardImage: {
-    width: 200,
-    height: 100,
-  }
-});
