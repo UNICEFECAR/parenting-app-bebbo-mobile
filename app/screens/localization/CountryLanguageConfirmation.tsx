@@ -1,10 +1,11 @@
+
 import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+
 import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2Centerw, Heading3, Heading3Centerw, Heading3Regular } from '@styles/typography';
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { useAppDispatch } from '../../../App';
@@ -13,6 +14,9 @@ import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
 
 
+import Icon, { OuterIconRow,OuterIconLeft } from '@components/shared/Icon';
+import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '@styles/typography';
+import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText, ButtonLinkText } from '@components/shared/ButtonGlobal';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -99,10 +103,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               </LocalizationCol>
               
                 <LocalizationAction>
-                <Pressable
+                <ButtonLinkText
                     onPress={() => navigation.navigate('CountrySelection')}>
-                    <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
-                  </Pressable>
+                    <OuterIconRow>
+                    <OuterIconLeft>
+                    <Icon name="ic_edit" size={16} color="#000" /></OuterIconLeft>
+                      <ButtonTextsm>{t('editCountryLang')}</ButtonTextsm>
+                      </OuterIconRow>
+                    </ButtonLinkText>
                 </LocalizationAction>
               </LocalizationRow>
                 <ButtonContainer>
