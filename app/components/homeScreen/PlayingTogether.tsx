@@ -1,39 +1,52 @@
+import {
+  ButtonContainer,
+  ButtonPrimary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
-import { Header3Text } from '../../styles/style';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
   padding: 15px;
   margin-top: 10px;
-  background-color: ${props => props.theme.colors.ACTIVITIES_TINTCOLOR};
+  background-color: ${(props) => props.theme.colors.ACTIVITIES_TINTCOLOR};
 `;
 const PlayingTogether = () => {
+  const navigation = useNavigation();
   return (
     <>
-      <ContainerView >
-        <View>
-          <Text>Playing together</Text>
-          <View style={{ flex: 1, flexDirection: "row", height: 150 }}>
-            <View style={{
-              flex: 2, backgroundColor: '#FFF',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }} >
-              <VectorImage source={require('@assets/svg/ic_activity_color.svg')} />
+      <ContainerView>
+        <View style={{flexDirection: 'row', padding: 10}}>
+
+            <View
+              style={{
+                width: 130,
+                height: 130,
+                backgroundColor: '#FFF',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <VectorImage
+                source={require('@assets/svg/ic_activity_color.svg')}
+              />
             </View>
-            <View style={{ flex: 3, }} >
-             
-                <Header3Text>Here are some interesting activities, you can play with your child</Header3Text>
-              
-                <Header3Text>Start Playing</Header3Text>
-             
+            <View>
+              <View>
+                <Text>Playing together</Text>
+                <ButtonContainer>
+                  <ButtonPrimary
+                    onPress={() => navigation.navigate('Activities')}>
+                    <ButtonText>Start Playing</ButtonText>
+                  </ButtonPrimary>
+                </ButtonContainer>
+              </View>
             </View>
           </View>
-        </View>
       </ContainerView>
     </>
   );
