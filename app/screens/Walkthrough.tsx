@@ -1,3 +1,4 @@
+
 import { RootStackParamList } from '@navigation/types';
 import { ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
 import WalkthroughContainer, { ButtonTertiary1,ButtonTertiary2, Slide, WalkthroughButton, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';

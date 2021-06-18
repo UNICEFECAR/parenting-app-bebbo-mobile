@@ -5,6 +5,8 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
+    }else if(apiEndpoint==appConfig.taxonomies){
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
 }
@@ -14,5 +16,6 @@ export const appConfig = {
     videoArticles: 'video-articles',
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
-    sponsors:'sponsors'
+    sponsors:'sponsors',
+    taxonomies:'taxonomies'
 }

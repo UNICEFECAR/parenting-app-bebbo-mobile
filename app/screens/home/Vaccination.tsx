@@ -1,8 +1,8 @@
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { DrawerActions } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, Button} from 'react-native';
-import {HomeDrawerNavigatorStackParamList} from '../../navigation/types';
+import { Button, Text, View } from 'react-native';
 
 type VaccinationNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

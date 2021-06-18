@@ -11,6 +11,8 @@ export type RootStackParamList = {
   EditChildProfile:undefined;
   AddExpectingChildProfile:undefined;
   EditParentDetails:undefined;
+  AddNewChildgrowth:undefined;
+  AddNewChildWeight:undefined;
 };
 
 export type LocalizationStackParamList = {

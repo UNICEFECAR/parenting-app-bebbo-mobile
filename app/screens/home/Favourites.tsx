@@ -1,10 +1,8 @@
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button, Pressable } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import HTML from 'react-native-render-html';
-import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
+import { Pressable, Text, View } from 'react-native';
 
 type NotificationsNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 

@@ -1,42 +1,35 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Button,
-  StyleSheet,
-  TextInput,
-  Platform,
-  Pressable,
-  Text,
-  Alert,
-  Modal,
-} from 'react-native';
 import Icon from '@components/shared/Icon';
-import styled from 'styled-components/native';
-import CheckBox from '@react-native-community/checkbox';
-
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
+import React, { useState } from 'react';
+import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import Checkbox, {
+  CheckboxActive,
+  CheckboxItem,
+  FormOuterCheckbox
+} from './shared/CheckboxStyle';
 import {
-  FormDateContainer,
   FormDateAction,
+  FormDateContainer,
   FormDateText,
-  LabelText,
   FormInputBox,
   FormInputGroup,
+  LabelText
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
-  
-  FormInfoLabel,
+  FormInfoLabel
 } from './shared/FormPrematureContainer';
-import {Heading4Centerr, ShiftFromBottom30} from '../styles/typography';
-import Checkbox, { CheckboxItemText,CheckboxActive,CheckboxItem,FormOuterCheckbox } from './shared/CheckboxStyle';
-import ModalPopupContainer, {PopupOverlay,PopupClose,PopupCloseContainer} from './shared/ModalPopupStyle';
+import ModalPopupContainer, {
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from './shared/ModalPopupStyle';
 
 const ChildDate = () => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [dobDate, setdobDate] = useState();
-  const [showdob, setdobShow] = useState(false);
-  
+  const [dobDate, setdobDate] = useState<Date>();
+  const [showdob, setdobShow] = useState<Boolean>(false);
+
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
@@ -47,8 +40,8 @@ const ChildDate = () => {
     setdobShow(true);
   };
   const [modalVisible, setModalVisible] = useState(false);
-  const [dueDate, setdueDate] = useState();
-  const [showdue, setdueShow] = useState(false);
+  const [dueDate, setdueDate] = useState<Date>();
+  const [showdue, setdueShow] = useState<Boolean>(false);
   const ondueDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdueShow(Platform.OS === 'ios');
@@ -75,24 +68,26 @@ const ChildDate = () => {
         </FormInputGroup>
 
         <FormPrematureContainer>
-          
-            <FormOuterCheckbox
-        onPress={() => {
-        //  console.log(item);
-          setCheckbox(!checkbox);
-        }}>
-        <CheckboxItem>
-            <View>
-            {checkbox ? <CheckboxActive><Icon name="ic_tick" size={12} color="#000" /></CheckboxActive> : <Checkbox></Checkbox> } 
-            </View>
-        </CheckboxItem>
-        <LabelText>Baby Born Prematurely</LabelText>
-      </FormOuterCheckbox>
-              
-           
-          
+          <FormOuterCheckbox
+            onPress={() => {
+              //  console.log(item);
+              setToggleCheckBox(!toggleCheckBox);
+            }}>
+            <CheckboxItem>
+              <View>
+                {toggleCheckBox ? (
+                  <CheckboxActive>
+                    <Icon name="ic_tick" size={12} color="#000" />
+                  </CheckboxActive>
+                ) : (
+                  <Checkbox></Checkbox>
+                )}
+              </View>
+            </CheckboxItem>
+            <LabelText>Baby Born Prematurely</LabelText>
+          </FormOuterCheckbox>
+
           <FormInfoLabel>
-            
             <Pressable onPress={() => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
             </Pressable>
@@ -153,19 +148,16 @@ const ChildDate = () => {
         onDismiss={() => {
           setModalVisible(!modalVisible);
         }}>
-        <PopupOverlay
-          >
-          <ModalPopupContainer
-            onPress={() => console.log('do nothing')}
-            activeOpacity={1}>
-              <PopupCloseContainer>
-                <PopupClose 
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
                 onPress={() => {
                   setModalVisible(!modalVisible);
                 }}>
-                  <Icon name="ic_close" size={16} color="#000" />
-                </PopupClose>
-                </PopupCloseContainer>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
             <Heading4Centerr>
               A baby born before 37 weeks of Pregnanacy is considered premature
               or born too early
@@ -185,7 +177,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
     // paddingTop: headerHeight,
-    padding:20,
+    padding: 20,
   },
   modalView: {
     // margin: 20,
@@ -193,7 +185,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 30,
     alignItems: 'center',
-    
   },
   modalText: {
     marginBottom: 15,
