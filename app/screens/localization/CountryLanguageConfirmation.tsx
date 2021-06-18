@@ -1,4 +1,6 @@
-import {StackNavigationProp} from '@react-navigation/stack';
+import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {View, Pressable, Text, Image} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../App';
@@ -17,11 +19,9 @@ import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
 import OnboardingContainer, {LocalizationContainer,LocalizationAction, LocalizationRow,LocalizationCol, LocalizationcontentHead, LocalizationcontentResult, OnboardingContent, OnboardingconfirmationHead,OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 
-
-import Icon from '@components/shared/Icon';
+import Icon, { OuterIconRow,OuterIconLeft } from '@components/shared/Icon';
 import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
-import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText } from '@components/shared/ButtonGlobal';
-
+import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText, ButtonLinkText } from '@components/shared/ButtonGlobal';
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -90,10 +90,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               </LocalizationCol>
               
                 <LocalizationAction>
-                <Pressable
+                <ButtonLinkText
                     onPress={() => navigation.navigate('CountrySelection')}>
-                    <ButtonTextsm><Icon name="ic_edit" size={16} color="#000" />{t('editCountryLang')}</ButtonTextsm>
-                  </Pressable>
+                    <OuterIconRow>
+                    <OuterIconLeft>
+                    <Icon name="ic_edit" size={16} color="#000" /></OuterIconLeft>
+                      <ButtonTextsm>{t('editCountryLang')}</ButtonTextsm>
+                      </OuterIconRow>
+                    </ButtonLinkText>
                 </LocalizationAction>
               </LocalizationRow>
                 <ButtonContainer>
