@@ -1,5 +1,7 @@
-import WalkthroughContainer, { Slide, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
+
 import { RootStackParamList } from '@navigation/types';
+import { ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
+import WalkthroughContainer, { ButtonTertiary1,ButtonTertiary2, Slide, WalkthroughButton, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -76,17 +78,20 @@ const Walkthrough = ({ navigation }: Props) => {
   
   const renderDoneButton = () => {
     return (
-      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
-        <Text style={{ color: '#000' }}>Next</Text>
-      </View>
-
+      <WalkthroughButton>
+      <ButtonTertiary1>
+        <ButtonText>Next</ButtonText>
+      </ButtonTertiary1>
+      </WalkthroughButton>
     );
   }
   const renderPrevButton = () => {
     return (
-      <View style={{ height: 40, backgroundColor: 'rgba(0, 0, 0, .2)', justifyContent: 'center', alignItems: 'center', }}>
-        <Text style={{ color: '#000' }}>Back</Text>
-      </View>
+      <WalkthroughButton>
+      <ButtonTertiary2>
+        <ButtonText>Back</ButtonText>
+        </ButtonTertiary2>
+        </WalkthroughButton>
     );
   }
   const getDotStyle = (colorString:string)=>{

@@ -33,7 +33,6 @@ flex:1;
 `
 export const LocalizationContainer = styled.View`
 flex:1;
-
 `
 
 export const LocalizationRow = styled.View`
@@ -41,10 +40,8 @@ export const LocalizationRow = styled.View`
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
-
   align-items: stretch;
-  min-height:80px;
-  
+  min-height:52px;  
   margin-top:0px;
   margin-bottom: 30px;
   border-radius:4px;
@@ -56,12 +53,17 @@ flex-direction: row;
 align-items:center
 border-bottom-width:1px;
 border-color: rgba(0,0,0,.15);
-padding:10px 15px 0px;
+padding:4px 15px 0px;
 `
-export const LocalizationAction = styled.View`
-flex:1;flex-direction: row; align-items:center;justify-content:center;
 
+export const LocalizationAction = styled.View`
+flex:1;
+flex-direction: row;
+align-items:center;
+align-content:center;
+justify-content:center;
 `
+
 
 export const LocalizationcontentHead = styled.View`
 flex:1;
