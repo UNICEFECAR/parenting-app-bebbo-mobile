@@ -32,7 +32,7 @@ type Props = {
 const ChildSetup = ({navigation}: Props) => {
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   return (
     <>
       <OnboardingContainer>

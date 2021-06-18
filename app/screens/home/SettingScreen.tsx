@@ -56,7 +56,7 @@ const SettingScreen = (props: any) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -71,7 +71,7 @@ const SettingScreen = (props: any) => {
     );
     setCountry(selectedCountry);
     const selectedLanguage: any = selectedCountry.languages.find(
-      (language) => language.languageCode === languageCode,
+      (language:any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
     // console.log(selectedCountry,selectedLanguage);
