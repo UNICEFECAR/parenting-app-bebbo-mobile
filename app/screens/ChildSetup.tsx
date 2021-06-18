@@ -12,6 +12,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import {
@@ -30,6 +31,7 @@ type Props = {
 };
 
 const ChildSetup = ({navigation}: Props) => {
+  const {t} = useTranslation();
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
@@ -39,7 +41,7 @@ const ChildSetup = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-              Please take a moment to personalize your app
+            {t('childSetup.header')}
             </Heading1Centerw>
           </ChildCenterView>
         </OnboardingHeading>
@@ -52,11 +54,11 @@ const ChildSetup = ({navigation}: Props) => {
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <LabelText>Relationship with child</LabelText>
+              <LabelText>{t('childSetup.relationSelectTitle')}</LabelText>
 
               <FormInputBox>
                 <FormDateText>
-                  <Text>{relationship ? relationship : 'Select'}</Text>
+                  <Text>{relationship ? relationship : t('childSetup.relationSelectText')}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_angle_down" size={10} color="#000" />
@@ -93,7 +95,7 @@ const ChildSetup = ({navigation}: Props) => {
               });
               // navigation.navigate('ChildSetupList')
             }}>
-            <ButtonText>Continue</ButtonText>
+            <ButtonText>{t('childSetup.continueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

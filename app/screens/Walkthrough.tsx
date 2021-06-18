@@ -1,10 +1,11 @@
 
+import { ButtonText } from '@components/shared/ButtonGlobal';
+import WalkthroughContainer, { ButtonTertiary1, ButtonTertiary2, Slide, WalkthroughButton, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
-import { ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
-import WalkthroughContainer, { ButtonTertiary1,ButtonTertiary2, Slide, WalkthroughButton, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -16,38 +17,41 @@ type Walkthrough1NavigationProp = StackNavigationProp<
 type Props = {
   navigation: Walkthrough1NavigationProp;
 };
-const data = [
-  {
-    title: 'Welcome Parents!',
-    image: require('@assets/svg/bebbo_logo_shape.svg'),
-    colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
-    textcolor:'#FFF',
-    subtitle: "Discover Bebbo - everything you need as a parent to support your child's development"
-  },
-  {
-    title: 'Activities',
-    image: require('@assets/svg/ic_activity_color.svg'),
-    colors: ['#0FD87E', '#CFF7E5'],
-    textcolor:'#000',
-    subtitle: "and games to stimulate your child everyday"
-  },
-  {
-    title: 'Tools',
-    image: require('@assets/svg/ic_tools_color.svg'),
-    colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
-    textcolor:'#000',
-    subtitle: "to track your child's development,growth,immunizations and health"
-  },
-  {
-    title: 'Advice',
-    image: require('@assets/svg/ic_article_color.svg'),
-    colors: ['#FF8D6B', '#FFD2C4'],
-    textcolor:'#000',
-    subtitle: 'tailored to your questions and the needs of your child'
-  },
-];
-type Item = typeof data[0];
+
+
 const Walkthrough = ({ navigation }: Props) => {
+  const {t} = useTranslation();
+  const data = [
+    {
+      title: t('walkthroughTexts.0.title'),
+      image: require('@assets/svg/bebbo_logo_shape.svg'),
+      colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
+      textcolor:'#FFF',
+      subtitle: t('walkthroughTexts.0.subtitle'),
+    },
+    {
+      title: t('walkthroughTexts.1.title'),
+      image: require('@assets/svg/ic_activity_color.svg'),
+      colors: ['#0FD87E', '#CFF7E5'],
+      textcolor:'#000',
+      subtitle: t('walkthroughTexts.1.subtitle'),
+    },
+    {
+      title: t('walkthroughTexts.2.title'),
+      image: require('@assets/svg/ic_tools_color.svg'),
+      colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
+      textcolor:'#000',
+      subtitle: t('walkthroughTexts.2.subtitle'),
+    },
+    {
+      title: t('walkthroughTexts.3.title'),
+      image: require('@assets/svg/ic_article_color.svg'),
+      colors: ['#FF8D6B', '#FFD2C4'],
+      textcolor:'#000',
+      subtitle:t('walkthroughTexts.3.subtitle'),
+    },
+  ];
+  type Item = typeof data[0];
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
@@ -80,16 +84,17 @@ const Walkthrough = ({ navigation }: Props) => {
     return (
       <WalkthroughButton>
       <ButtonTertiary1>
-        <ButtonText>Next</ButtonText>
+        <ButtonText>{t('walkthroughButtonTexts.1')}</ButtonText>
       </ButtonTertiary1>
       </WalkthroughButton>
     );
   }
   const renderPrevButton = () => {
+
     return (
       <WalkthroughButton>
       <ButtonTertiary2>
-        <ButtonText>Back</ButtonText>
+        <ButtonText>{t('walkthroughButtonTexts.0')}</ButtonText>
         </ButtonTertiary2>
         </WalkthroughButton>
     );
@@ -123,11 +128,8 @@ const Walkthrough = ({ navigation }: Props) => {
     <>
       <AppIntroSlider
         keyExtractor={keyExtractor}
-        // renderItem={renderItem}
         renderItem={({ item, index }) => renderItem(item, index)}
-        // bottomButton
         dotClickEnabled
-        // showDoneButton={false}
         activeDotStyle={getDotStyle('black')}
         dotStyle={getDotStyle('white')}
         showSkipButton={false}
