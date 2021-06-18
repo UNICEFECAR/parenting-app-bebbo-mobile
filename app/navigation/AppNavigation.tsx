@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
+import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddNewChildgrowth from '@screens/AddNewChildgrowth';
 import AddNewChildWeight from '@screens/AddNewChildWeight';
 import AddSiblingData from '@screens/AddSiblingData';
+import AllChildgrowthMeasures from '@screens/AllChildgrowthMeasures';
 import ChildSetup from '@screens/ChildSetup';
 import ChildSetupList from '@screens/ChildSetupList';
 import EditParentDetails from '@screens/EditParentDetails';
@@ -16,18 +17,18 @@ import LoadingScreen from '@screens/LoadingScreen';
 import PrivacyPolicy from '@screens/PrivacyPolicy';
 import Terms from '@screens/Terms';
 import Walkthrough from '@screens/Walkthrough';
+import React, { useEffect } from 'react';
 import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
+import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
+import { TaxonomyEntity, TaxonomySchema } from '../database/schema/TaxonomySchema';
+import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { TaxonomyEntity, TaxonomySchema } from '../database/schema/TaxonomySchema';
-import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
-import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
+
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -179,6 +180,11 @@ export default () => {
         name="AddNewChildWeight"
         options={{headerShown: false}}
         component={AddNewChildWeight}
+      />
+      <RootStack.Screen
+        name="AllChildgrowthMeasures"
+        options={{headerShown: false}}
+        component={AllChildgrowthMeasures}
       />
         {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
       </RootStack.Navigator>
