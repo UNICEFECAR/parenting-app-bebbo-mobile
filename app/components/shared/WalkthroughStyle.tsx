@@ -52,6 +52,7 @@ background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex:1;
 min-width:140px;
 
+
 `
 
 export const ButtonTertiary2 = styled(ButtonTertiary1)`

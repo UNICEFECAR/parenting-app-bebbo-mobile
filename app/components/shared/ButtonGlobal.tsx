@@ -28,7 +28,7 @@ export const ButtonLinkText = styled.Text`
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
-  margin-bottom:15px;
+  
 `;
 
 export const ButtonTextsm = styled(ButtonText)`
