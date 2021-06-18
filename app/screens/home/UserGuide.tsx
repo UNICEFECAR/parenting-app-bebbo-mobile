@@ -10,15 +10,14 @@ import WalkthroughContainer, {
 } from '@components/shared/WalkthroughStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w, Heading4Center } from '@styles/typography';
+import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import {
-  Dimensions,
-  Pressable,
   SafeAreaView,
   StyleSheet,
   View
 } from 'react-native';
+import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components';
@@ -54,11 +53,12 @@ const data = [
 const UserGuide = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const secondaryColor = themeContext.colors.SECONDARY_COLOR;
-  const secondaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
-  const [currentIndex, setCurrentIntex] = useState<number>(0);
   type Item = typeof data[0];
   const keyExtractor = (item: Item) => item.title;
+  const [isDotsRequired, setIsDotsRequired] = useState(true);
+  const getDotStyle = (colorString:string)=>{
+    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
+  }
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
@@ -111,9 +111,6 @@ const UserGuide = ({navigation}: Props) => {
       </>
     );
   };
-
-  const {width} = Dimensions.get('screen');
-  const {height} = Dimensions.get('screen');
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -134,40 +131,19 @@ const UserGuide = ({navigation}: Props) => {
         </View>
 
         <View style={{flexDirection: 'column', flex: 1}}>
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: '#FFF',
-              justifyContent: 'center',
-              flex: 1,
-              maxHeight: 50,
-            }}>
-            {data.map((item, itemindex) => {
-              return (
-                <Pressable
-                  key={itemindex}
-                  style={{flex: 1}}
-                  onPress={() => {
-                    setCurrentIntex(itemindex);
-                  }}>
-                  <View
-                    style={[
-                      {
-                        backgroundColor: (itemindex==currentIndex)?secondaryColor:secondaryTintColor,
-                        padding: 10,
-                        margin: 3,
-                      },
-                    ]}>
-                    <Heading4Center>{item.title}</Heading4Center>
-                  </View>
-                </Pressable>
-              );
-            })}
-          </View>
-
-          <View style={{flex: 1, width: '100%'}}>
-            {renderItem(data[currentIndex], currentIndex)}
-          </View>
+        <AppIntroSlider
+        keyExtractor={keyExtractor}
+        // renderItem={renderItem}
+        renderItem={({ item, index }) => renderItem(item, index)}
+        // bottomButton
+        dotClickEnabled
+        showDoneButton={false}
+        activeDotStyle={getDotStyle('black')}
+        dotStyle={getDotStyle('white')}
+        showSkipButton={false}
+        showPrevButton={false}
+        showNextButton={false}
+        data={data}      />
         </View>
       </SafeAreaView>
     </>
