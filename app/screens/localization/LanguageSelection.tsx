@@ -48,7 +48,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
     <>
       <OnboardingContainer>
         <OnboardingStyle
-          title={t('selectYourCountry').toString()}
+          title={t('localization.selectYourCountry').toString()}
           iconname="ic_act_language"
         />
 
@@ -64,7 +64,6 @@ const LanguageSelection = ({route, navigation}: Props) => {
             <ButtonviewPrevious>
               <ButtonviewClick onPress={() => navigation.goBack()}>
                 <Icon name="ic_angle_left" size={32} color="#000" />
-                {/* <Image style={{width:50,height:50}} source={ require( '@assets/ic_prev_arrow.png') } /> */}
               </ButtonviewClick>
             </ButtonviewPrevious>
             <ButtonviewNext>
@@ -75,7 +74,6 @@ const LanguageSelection = ({route, navigation}: Props) => {
                     language,
                   })
                 }>
-                {/* <ButtonText>{t('goToConfirm')}</ButtonText> */}
                 <Icon name="ic_angle_right" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
