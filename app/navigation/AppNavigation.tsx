@@ -1,7 +1,9 @@
+import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddNewChildgrowth from '@screens/AddNewChildgrowth';
 import AddNewChildWeight from '@screens/AddNewChildWeight';
@@ -22,6 +24,11 @@ import useRealmListener from '../database/dbquery/userRealmListener';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
+import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { TaxonomyEntity, TaxonomySchema } from '../database/schema/TaxonomySchema';
+import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
+import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -32,14 +39,45 @@ export default () => {
   // const countryId = useAppSelector(
   //   (state: any) => state.selectedCountry.countryId,
   // );
-
   const [isReady, setIsReady] = React.useState(false);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
+  // console.log("callRealmListener--",callRealmListener);
   const netInfo=useNetInfo();
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    let Entity:any;
+    // Entity = Entity as TaxonomyEntity
+    const taxonomyData = useToGetOfflineData(languageCode,dispatch,TaxonomySchema,Entity as TaxonomyEntity,taxonomydata,setAllTaxonomyData);
+    console.log("taxonomyData--",taxonomyData);
+  },[languageCode]);
+  // useEffect(() => {
+  //   async function addDBListener() {
+  //     const datarealm = await dataRealmCommon.openRealm();
+  //     console.log("datarealm----",datarealm);
+  //     // if(datarealm)
+  //     // {
+  //       const datalistenerobj = datarealm?.addListener('change',onRealmDataDbChange);
+  //     // }
+
+  //     return() => {
+  //       console.log("in useeffect return");
+  //     //   if(datarealm)
+  //     //   {
+  //     //     datarealm.removeListener("change",onRealmDataDbChange);
+  //     //   }
+  //     }
+  //     // let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
+  //     // taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
+
+  //   }
+  //   // addDBListener()
+  // },[])
   // console.log(netInfo,"..BeforeisConnected..");
-  React.useEffect(() => {
-   
+  useEffect(() => {
     const restoreState = async () => {
       try {
         const initialUrl = await Linking.getInitialURL();
