@@ -1,11 +1,9 @@
-import { DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
-import { Header3Text } from '../../styles/style';
 
 const ContainerView = styled.View`
   flex: 1;
@@ -15,25 +13,26 @@ const ContainerView = styled.View`
   margin-top: 10px;
   background-color: ${props => props.theme.colors.SECONDARY_TINTCOLOR};
 `;
-const Tools = ({ navigation }: Props) => {
+const Tools = () => {
+  const navigation = useNavigation();
   return (
     <>
       <ContainerView>
         <View>
           <Text>Tools</Text>
           <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.item} >
+            <Pressable style={styles.item}  onPress={() => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
               <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
               <Text style={styles.title}>Vaccination</Text>
-            </View>
-            <View style={styles.item} >
+            </Pressable>
+            <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
               <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
               <Text style={styles.title}>Health checkup</Text>
-            </View>
-            <View style={styles.item}>
+            </Pressable>
+            <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
               <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
               <Text style={styles.title}>Child Growth</Text>
-            </View>
+            </Pressable>
           </ScrollView>
         </View>
       </ContainerView>

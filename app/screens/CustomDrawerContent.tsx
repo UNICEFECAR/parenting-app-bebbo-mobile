@@ -1,17 +1,11 @@
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Icon from '@components/shared/Icon';
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
-  View,
-  Text,
-  Button,
-  Share,
   Alert,
-  Pressable,
-  StyleSheet,
+  Pressable, Share, StyleSheet, Text, View
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ThemeContext} from 'styled-components';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ThemeContext } from 'styled-components';
 const CustomDrawerContent = ({navigation}: any) => {
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const onShare = async () => {
@@ -80,25 +74,25 @@ const CustomDrawerContent = ({navigation}: any) => {
         {accordvalue ? (
           <>
             <Pressable
-              onPress={() => navigation.navigate('ChildDevelopmentScreen')}
+              onPress={() => navigation.navigate('Home', { screen: 'ChildDevelopment' })}
               style={styles.item}>
               <Icon name="ic_milestone" size={25} color="#000" />
               <Text>ChildDevelopment</Text>
             </Pressable>
             <Pressable
-              onPress={() => navigation.navigate('VaccinationScreen')}
+              onPress={() => navigation.navigate("Tools", { screen: 'VaccinationTab' })}
               style={styles.item}>
               <Icon name="ic_vaccination" size={25} color="#000" />
               <Text>Vaccination</Text>
             </Pressable>
             <Pressable
-              onPress={() => navigation.navigate('HealthCheckupsScreen')}
+              onPress={() => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}
               style={styles.item}>
               <Icon name="ic_doctor_chk_up" size={25} color="#000" />
               <Text>HealthCheckups</Text>
             </Pressable>
             <Pressable
-              onPress={() => navigation.navigate('ChildgrowthScreen')}
+              onPress={() => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}
               style={styles.item}>
               <Icon name="ic_growth" size={25} color="#000" />
               <Text>ChildGrowth</Text>
