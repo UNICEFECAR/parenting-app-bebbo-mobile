@@ -1,15 +1,16 @@
 
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useState} from 'react';
 import ChildDate from '@components/ChildDate';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import {ButtonPrimary, ButtonRow, ButtonText} from '@components/shared/ButtonGlobal';
-import { ChildCenterView,ChildAddTop } from '@components/shared/ChildSetupStyle';
+import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
+import { ChildAddTop } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
-import { Heading1Centerw,ShiftFromTop5 } from '../styles/typography';
+import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -20,13 +21,14 @@ type Props = {
 };
 
 const AddSiblingData = ({navigation}: Props) => {
+  const {t} = useTranslation();
   return (
     <>
       <OnboardingContainer>
         <View>
           <OnboardingHeading>
             <ChildAddTop>
-              <Heading1Centerw>Add Brother or Sister</Heading1Centerw>
+              <Heading1Centerw>{t('childSetupList.addSiblingBtn')}</Heading1Centerw>
               <ShiftFromTop5>
               <Pressable
                 onPress={() => {
@@ -51,7 +53,7 @@ const AddSiblingData = ({navigation}: Props) => {
                 // })
                 navigation.navigate('ChildSetupList');
               }}>
-              <ButtonText>Save data</ButtonText>
+              <ButtonText>{t('childSetupList.saveBtnText')}</ButtonText>
             </ButtonPrimary>
             </ButtonRow>
       </OnboardingContainer>

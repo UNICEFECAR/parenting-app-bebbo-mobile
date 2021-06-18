@@ -14,7 +14,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ButtonText } from '@styles/style';
 import {
-  Heading1, Heading3, Heading3Regular,
+  Heading1, Heading2w, Heading3, Heading3Regular,
   Heading4,
   Heading6
 } from '@styles/typography';
@@ -50,7 +50,12 @@ type localizationType = {
 };
 const SettingScreen = (props: any) => {
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const primaryColor = themeContext.colors.PRIMARY_COLOR;
+  const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const trackTrueColor =primaryTintColor;
+  const trackFalseColor = '#C8D6EE';
+  const thumbTrueColor = primaryColor
+  const thumbFalseColor ='#9598BE';
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -79,19 +84,19 @@ const SettingScreen = (props: any) => {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <View
           style={{
             flexDirection: 'row',
             flex: 1,
-            backgroundColor: headerColor,
+            backgroundColor: primaryColor,
             maxHeight: 50,
           }}>
           <View style={{flex: 1}}>
             <BurgerIcon />
           </View>
           <View style={{flex: 3}}>
-            <Text> {'Settings'}</Text>
+            <Heading2w> {'Settings'}</Heading2w>
           </View>
         </View>
         <ScrollView style={{flex: 1}}>
@@ -103,8 +108,8 @@ const SettingScreen = (props: any) => {
                 marginBottom: 10,
               }}>
               <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isEnabled ? headerColor : '#f4f3f4'}
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -120,8 +125,8 @@ const SettingScreen = (props: any) => {
                 marginBottom: 10,
               }}>
               <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isEnabled ? headerColor : '#f4f3f4'}
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -139,8 +144,8 @@ const SettingScreen = (props: any) => {
                 marginBottom: 10,
               }}>
               <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isEnabled ? headerColor : '#f4f3f4'}
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -158,8 +163,8 @@ const SettingScreen = (props: any) => {
                 marginBottom: 10,
               }}>
               <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isEnabled ? headerColor : '#f4f3f4'}
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -194,8 +199,8 @@ const SettingScreen = (props: any) => {
                 marginBottom: 10,
               }}>
               <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={isEnabled ? headerColor : '#f4f3f4'}
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -239,14 +244,14 @@ const SettingScreen = (props: any) => {
 
                   // props.navigation.navigate('CountrySelection')
                 }}>
-                <ButtonText>{t('editCountryLang')}</ButtonText>
+                <ButtonText>{t('localization.editCountryLang')}</ButtonText>
               </Pressable>
             </View>
             <LocalizationContainer>
               <LocalizationRow>
                 <LocalizationCol>
                   <LocalizationcontentHead>
-                    <Heading3Regular>{t('country')}</Heading3Regular>
+                    <Heading3Regular>{t('localization.country')}</Heading3Regular>
                   </LocalizationcontentHead>
                   <LocalizationcontentResult>
                     <Heading3>{country.displayName}</Heading3>
@@ -255,7 +260,7 @@ const SettingScreen = (props: any) => {
 
                 <LocalizationCol>
                   <LocalizationcontentHead>
-                    <Heading3Regular>{t('language')}</Heading3Regular>
+                    <Heading3Regular>{t('localization.language')}</Heading3Regular>
                   </LocalizationcontentHead>
                   <LocalizationcontentResult>
                     <Heading3>{language.displayName}</Heading3>

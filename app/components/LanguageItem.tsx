@@ -4,7 +4,7 @@ import { Pressable, View } from 'react-native';
 import Radio, { RadioActive, RadioItem, RadioItemText } from './shared/radio';
 
 const LanguageItem = ({item, currentItem, setLanguage}) => {
-  const isActive = item === currentItem ? true : false;
+  const isActive: boolean = item === currentItem ? true : false;
   return (
     <>
       <Pressable

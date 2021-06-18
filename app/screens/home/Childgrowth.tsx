@@ -8,12 +8,12 @@ import {
   Heading3,
   Heading3Regular,
   Heading4,
+  Heading4Center,
   Heading5,
   Paragraph
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import SegmentedControlTab from "react-native-segmented-control-tab";
 import { ThemeContext } from 'styled-components';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -22,12 +22,23 @@ type Props = {
   navigation: ChildgrowthNavigationProp,
   'AddNewChildgrowth'
 };
+const data = [{title: 'Weight for Height'}, {title: 'Height For Age'}];
 const Childgrowth = ({navigation}: Props) => {
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+
+  const renderItem = (item: typeof data[0], index: number) => {
+    return (
+      <>
+        <View style={{padding: 100}}>
+          <Heading2>Graph for {item.title}</Heading2>
+        </View>
+      </>
+    );
+  };
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -57,7 +68,7 @@ const Childgrowth = ({navigation}: Props) => {
             </View>
           </View>
           <ScrollView
-            style={{flex: 4, backgroundColor: backgroundColor, padding: 15}}>
+            style={{flex: 9, backgroundColor: backgroundColor, padding: 15,maxHeight:'100%'}}>
             {childmeasures.length == 0 ? (
               <View style={{alignItems: 'center'}}>
                 <Heading3>Baby is 3 month Old</Heading3>
@@ -67,14 +78,6 @@ const Childgrowth = ({navigation}: Props) => {
                 <Heading4>
                   This will help you to track related to your child's growth
                 </Heading4>
-                <View style={{width: '100%', marginTop: 30}}>
-                  <ButtonPrimary
-                    onPress={() => {
-                      navigation.navigate('AddNewChildgrowth');
-                    }}>
-                    <ButtonText>Add new measurement</ButtonText>
-                  </ButtonPrimary>
-                </View>
               </View>
             ) : (
               <View>
@@ -97,7 +100,7 @@ const Childgrowth = ({navigation}: Props) => {
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Heading5>Last measured on 13th Nov,2019</Heading5>
-                    <Pressable>
+                    <Pressable onPress={()=> navigation.navigate('AllChildgrowthMeasures')}>
                       <Text
                         style={{padding: 2, textDecorationLine: 'underline'}}>
                         All measurements
@@ -130,17 +133,70 @@ const Childgrowth = ({navigation}: Props) => {
                   </View>
                 </View>
                 <View style={{backgroundColor: '#FFF'}}>
-                <SegmentedControlTab
-                  values={["Weight for Height", "Height For Age"]}
-                  selectedIndex={selectedIndex}
-                  onTabPress={(index:number)=>{
-                    setSelectedIndex(index);
-                  }}
-                />
+                  <View style={{flexDirection: 'column', flex: 1}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        backgroundColor: '#FFF',
+                        justifyContent: 'center',
+                        flex: 1,
+                        maxHeight: 50,
+                      }}>
+                      {data.map((item, itemindex) => {
+                        return (
+                          <Pressable
+                            key={itemindex}
+                            style={{flex: 1}}
+                            onPress={() => {
+                              setSelectedIndex(itemindex);
+                            }}>
+                            <View
+                              style={[
+                                {
+                                  backgroundColor:
+                                    itemindex == selectedIndex
+                                      ? headerColor
+                                      : backgroundColor,
+                                  padding: 10,
+                                  margin: 3,
+                                },
+                              ]}>
+                              <Heading4Center>{item.title}</Heading4Center>
+                            </View>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+
+                    <View style={{flex: 1, width: '100%', padding: 5}}>
+                      {renderItem(data[selectedIndex], selectedIndex)}
+                      <Heading2>Summary</Heading2>
+                      <Paragraph>
+                        [Child growth progress text] [Child growth progress
+                        text] [Child growth progress text] [Child growth
+                        progress text] [Child growth progress text] [Child
+                        growth progress text]
+                      </Paragraph>
+                    </View>
+                  </View>
                 </View>
               </View>
             )}
+            
           </ScrollView>
+          
+          
+          <View style={{flex: 1,backgroundColor:backgroundColor, maxHeight: 100,}}>
+              <View style={{width: '100%', marginTop: 30}}>
+                <ButtonPrimary
+                style={{backgroundColor:headerColor,}}
+                  onPress={() => {
+                    navigation.navigate('AddNewChildgrowth');
+                  }}>
+                  <ButtonText>Add new measurement</ButtonText>
+                </ButtonPrimary>
+              </View>
+            </View>
         </View>
       </SafeAreaView>
     </>

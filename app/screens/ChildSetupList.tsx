@@ -20,6 +20,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, Text } from 'react-native';
 import {
   Heading1Centerw,
@@ -36,6 +37,7 @@ type Props = {
 };
 
 const ChildSetupList = ({navigation}: Props) => {
+  const {t} = useTranslation();
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
     {
@@ -80,10 +82,10 @@ const ChildSetupList = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-              Awesome! Your child profile has been created !
+            {t('childSetupList.header')}
             </Heading1Centerw>
             <Heading3Centerw>
-              Please review your child details before proceeding!
+            {t('childSetupList.subHeader')}
             </Heading3Centerw>
           </ChildCenterView>
         </OnboardingHeading>
@@ -122,7 +124,7 @@ const ChildSetupList = ({navigation}: Props) => {
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
                 </OuterIconLeft>
-                <ButtonLinkText>Add Sister or Brother</ButtonLinkText>
+                <ButtonLinkText> {t('childSetupList.addSiblingBtn')}</ButtonLinkText>
               </OuterIconRow>
             </Pressable>
           </ShiftFromBottom20>
@@ -131,7 +133,7 @@ const ChildSetupList = ({navigation}: Props) => {
             onPress={() => {
               childSetup();
             }}>
-            <ButtonText>Continue</ButtonText>
+            <ButtonText>{t('childSetupList.continueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
