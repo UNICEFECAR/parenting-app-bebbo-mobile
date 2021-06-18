@@ -1,48 +1,27 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useContext, useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  Pressable,
-  TextInput,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
-import {RootStackParamList} from '../navigation/types';
-import {
-  Header,
-  Container,
-  HeaderText,
-  Header2Text,
-  Header3Text,
-} from '../styles/style';
-import ActionSheet from 'react-native-actions-sheet';
-import {ThemeContext} from 'styled-components';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   ChildRelationList,
-  FormDateAction,
-  FormDateContainer,
-  FormDateText,
+  FormDateAction, FormDateText,
   FormInputBox,
   FormInputGroup,
-  LabelText,
+  LabelText
 } from '@components/shared/ChildSetupStyle';
-import {
-  Heading1w,
-  Heading1Centerw,
-  Heading3,
-  ShiftFromTop30,
-  Heading3Regular,
-} from '../styles/typography';
 import Icon from '@components/shared/Icon';
-import {ButtonPrimary, ButtonText} from '@components/shared/ButtonGlobal';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { createRef, useContext, useState } from 'react';
+import {
+  Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+} from 'react-native';
+import ActionSheet from 'react-native-actions-sheet';
+import { ThemeContext } from 'styled-components';
+import {
+  Heading3
+} from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'ChildProfileScreen'
+  RootStackParamList
 >;
 
 type Props = {
@@ -52,7 +31,7 @@ type Props = {
 const EditParentDetails = ({navigation}: Props) => {
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (

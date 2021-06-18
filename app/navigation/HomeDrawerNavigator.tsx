@@ -1,22 +1,20 @@
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import CustomDrawerContent from '@screens/CustomDrawerContent';
+import Aboutus from '@screens/home/Aboutus';
+import ActivityDetails from '@screens/home/ActivityDetails';
+import ArticleDetails from '@screens/home/ArticleDetails';
+import ChildDevelopment from '@screens/home/ChildDevelopment';
+import Childgrowth from '@screens/home/Childgrowth';
+import ChildProfile from '@screens/home/ChildProfile';
+import Favourites from '@screens/home/Favourites';
+import HealthCheckups from '@screens/home/HealthCheckups';
+import Notifications from '@screens/home/Notifications';
+import SettingScreen from '@screens/home/SettingScreen';
+import UserGuide from '@screens/home/UserGuide';
+import Vaccination from '@screens/home/Vaccination';
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {HomeDrawerNavigatorStackParamList} from './types';
-import Notifications from '../screens/home/Notifications';
-import Childgrowth from '../screens/home/Childgrowth';
-import ChildDevelopment from '../screens/home/ChildDevelopment';
-import Vaccination from '../screens/home/Vaccination';
-import HealthCheckups from '../screens/home/HealthCheckups';
 import DashboardTabNavigator from './DashboardTabNavigator';
-import CustomDrawerContent from '../screens/CustomDrawerContent';
-import SettingScreen from '../screens/home/SettingScreen';
-import Aboutus from '../screens/home/Aboutus';
-import ChildProfile from '../screens/home/ChildProfile';
-import ArticleDetails from '../screens/home/ArticleDetails';
-import ActivityDetails from '../screens/home/ActivityDetails';
-import UserGuide from '../screens/home/UserGuide';
-import Favourites from '../screens/home/Favourites';
-import AddExpectingChildProfile from '../screens/AddExpectingChildProfile';
-import EditChildProfile from '../screens/home/EditChildProfile';
+import { HomeDrawerNavigatorStackParamList } from './types';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {

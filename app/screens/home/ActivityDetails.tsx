@@ -1,10 +1,9 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
-import { Header, Container, HeaderText, Header3Text } from '../../styles/style';
 type ActivityDetailsNavigationProp = StackNavigationProp<
 HomeDrawerNavigatorStackParamList
 >;

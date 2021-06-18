@@ -2,6 +2,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Icon from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
+import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import {
@@ -10,7 +11,6 @@ import {
   ScrollView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
-import { RootStackParamList } from '../navigation/types';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;

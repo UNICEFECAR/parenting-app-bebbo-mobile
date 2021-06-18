@@ -1,13 +1,14 @@
+
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {createRef, useState} from 'react';
 import ChildDate from '@components/ChildDate';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import {ButtonPrimary, ButtonRow, ButtonText} from '@components/shared/ButtonGlobal';
+import { ChildCenterView,ChildAddTop } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { Pressable, View } from 'react-native';
-import {ChildCenterView,ChildAddTop} from '@components/shared/ChildSetupStyle';
 import { Heading1Centerw,ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
