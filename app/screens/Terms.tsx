@@ -1,39 +1,32 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-
-import React, {Fragment, useState} from 'react';
-import {put} from '@redux-saga/core/effects';
-import {useTranslation} from 'react-i18next';
+import basicPagesData from '@assets/translations/appOfflineData/basicPages';
+import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 import {
-  View,
-  Text,
-  Button,
-  useWindowDimensions,
-  ScrollView,
-  Pressable,
-  Alert,
-} from 'react-native';
-import HTML from 'react-native-render-html';
-import {useAppDispatch, useAppSelector} from '../../App';
-import {RootStackParamList} from '../navigation/types';
-
-import CheckBox from '@react-native-community/checkbox';
-import {fetchAPI} from '../redux/sagaMiddleware/sagaActions';
-
-import {appConfig} from '../types/apiConstants';
-import {useNetInfo} from '@react-native-community/netinfo';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import {Heading1w, Heading2w, Heading3w} from '../styles/typography';
-import {
-  ButtonPrimary,
-  ButtonText,
-  ButtonRow,
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   CheckboxContainer,
-  CheckboxItemText,
+  CheckboxItemText
 } from '@components/shared/CheckboxStyle';
-import {ButtonviewPrevious} from '@components/shared/ButtonView';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { RootStackParamList } from '@navigation/types';
+import CheckBox from '@react-native-community/checkbox';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  ScrollView, useWindowDimensions, View
+} from 'react-native';
+import HTML from 'react-native-render-html';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
+import { setAllTermsData } from '../redux/reducers/utilsSlice';
+import { Heading1w } from '../styles/typography';
+import { appConfig } from '../types/apiConstants';
+
+
+
 type TermsNavigationProp = StackNavigationProp<
   RootStackParamList,
   'LoadingScreen'
@@ -73,14 +66,32 @@ const Terms = ({navigation}: Props) => {
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const netInfo = useNetInfo();
   const {t} = useTranslation();
-  const body =
-    '<p>By using ParentBuddy application you accept these terms. These Terms and Conditions are in line with the Privacy Policy of the application<strong>.</strong></p>\n\n<p>The ParentBuddy is an app providing information and guidance to parents of young children, 0-6 years old, on different aspects of child health and development. It also supports parents to track child’s growth and development and receive relevant information and guidance on how to support them. Lastly, the app enables tracking of vaccination and health check-ups and can send notifications to remind parents of these important events.</p>\n\n<p>All information and guidance in this app serve solely for informational and educational purposes.</p>\n\n<p>The content of this app is not a substitute for health check-ups, medical examinations,assessments or diagnostic procedures. If you are concerned for your child’s health or development, we recommend that you consult your doctor or nurse. If the use of any information contained in the app leads to or causes loss or damage, UNICEF is not and cannot be responsible.</p>';
-  const contentWidth = useWindowDimensions().width;
+  // const body =
+  //   '<p>By using ParentBuddy application you accept these terms. These Terms and Conditions are in line with the Privacy Policy of the application<strong>.</strong></p>\n\n<p>The ParentBuddy is an app providing information and guidance to parents of young children, 0-6 years old, on different aspects of child health and development. It also supports parents to track child’s growth and development and receive relevant information and guidance on how to support them. Lastly, the app enables tracking of vaccination and health check-ups and can send notifications to remind parents of these important events.</p>\n\n<p>All information and guidance in this app serve solely for informational and educational purposes.</p>\n\n<p>The content of this app is not a substitute for health check-ups, medical examinations,assessments or diagnostic procedures. If you are concerned for your child’s health or development, we recommend that you consult your doctor or nurse. If the use of any information contained in the app leads to or causes loss or damage, UNICEF is not and cannot be responsible.</p>';
+  
+    const contentWidth = useWindowDimensions().width;
   const goToPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
   };
+  // dispatch(setAllTermsData([{termsId:'1234',termsData:'terms page text'}]));
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    let Entity:any;
+    // Entity = Entity as TaxonomyEntity
+    const basicData = useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
+    console.log("basicpagesData--",basicData);
+  },[languageCode]);
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
+  const termsdata = useAppSelector(
+    (state: any) => state.utilsData.terms.body,
+  );
+  const privacydata = useAppSelector(
+    (state: any) => state.utilsData.privacypolicy.body,
+  );
+  console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -93,13 +104,7 @@ const Terms = ({navigation}: Props) => {
       method: 'get',
       postdata: {},
       saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
+    }
   ];
 
   //  apiJsonData.filter((el) => {
@@ -134,7 +139,7 @@ const Terms = ({navigation}: Props) => {
         </OnboardingHeading>
         <ScrollView contentContainerStyle={{padding: 0}}>
           <HTML
-            source={{html: body}}
+            source={{html: termsdata}}
             baseFontStyle={{fontSize: 16, color: '#ffffff'}}
           />
 

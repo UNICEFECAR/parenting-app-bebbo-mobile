@@ -1,6 +1,8 @@
 import Realm, { ObjectSchema } from "realm";
 import { ArticleEntitySchema, CoverImage, CoverVideo } from "../schema/ArticleSchema";
-import { BasicPagesSchema, DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
+import { BasicPagesSchema } from "../schema/BasicPagesSchema";
+import { DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
+import { TaxonomySchema } from "../schema/TaxonomySchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 // import { VariableEntitySchema } from "../schema/childDataSchema";
 
@@ -34,7 +36,8 @@ export const dataRealmConfig: Realm.Configuration ={
     CoverImage,
     VideoArticleEntitySchema,
     DailyHomeMessagesSchema,
-    BasicPagesSchema
+    BasicPagesSchema,
+    TaxonomySchema,
   ],
   schemaVersion: 2,
   migration: (oldRealm, newRealm) => {

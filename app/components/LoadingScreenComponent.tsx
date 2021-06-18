@@ -72,16 +72,16 @@ const LoadingScreenComponent = (props: any) => {
             <Text style={{marginTop:25}}><VectorImage source={item.image} style={styles.imagetag} /></Text>
             <Text>
             <PartnerLogo 
-              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('@assets/loading/partner_albania.jpeg')}
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[0].destFolder + "/" + sponsors[0].destFilename } : require('')}
             />            
             </Text>
             <Text><SponsorLogo
-              source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('@assets/loading/sponser_albania.png')}
+              source={sponsors.length > 0 ? { uri: "file://" + sponsors[1].destFolder + "/" + sponsors[1].destFilename } : require('')}
             />
             </Text>
             <WrapView>
-            <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text>
-            <StaticLogo source={require('@assets/loading/unicef_logo.png')}
+            {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
+            <StaticLogo source={require('../assets/loading/unicef_logo.png')}
             />
           </WrapView>
           </View>

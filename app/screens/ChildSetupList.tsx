@@ -1,3 +1,6 @@
+
+import { ChildCenterView, ChildColArea1, ChildColArea2, ChildContentArea, ChildListingArea, ChildListingBox, ChildListTitle, TitleLinkSm } from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -8,8 +11,7 @@ import {RootStackParamList} from '../navigation/types';
 import {appConfig} from '../types/apiConstants';
 import {Heading3Centerw, Heading1Centerw, ShiftFromBottom20} from '../styles/typography';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import { ButtonContainer,ButtonPrimary,ButtonText,ButtonLinkText, ButtonRow, } from '@components/shared/ButtonGlobal';
-import { ChildCenterView, ChildColArea1, ChildColArea2, ChildContentArea, ChildListingArea, ChildListingBox, ChildListTitle, TitleLinkSm } from '@components/shared/ChildSetupStyle';
+import { ButtonContainer,ButtonPrimary,ButtonText,ButtonLinkText, ButtonRow,ButtonText } from '@components/shared/ButtonGlobal';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'

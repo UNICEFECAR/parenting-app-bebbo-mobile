@@ -2,20 +2,14 @@ import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import Icon from '@components/shared/Icon';
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {useContext} from 'react';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading2, Heading3, Heading5 } from '@styles/typography';
+import React, { useContext } from 'react';
 import {
-  View,
-  Text,
-  Button,
-  ScrollView,
-  SafeAreaView,
-  Image,
+  Image, SafeAreaView, ScrollView, Text, View
 } from 'react-native';
-import {ThemeContext} from 'styled-components';
-import {HomeDrawerNavigatorStackParamList} from '../../navigation/types';
-import {Heading3, Heading2,Heading5} from '../../styles/typography';
+import { ThemeContext } from 'styled-components';
 
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;

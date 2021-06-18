@@ -1,8 +1,7 @@
-import { DrawerActions } from '@react-navigation/native';
+import Icon from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Button, Text, StyleSheet, Pressable, Modal, TouchableOpacity } from 'react-native';
-import Icon from '@components/shared/Icon';
+import { Button, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BurgerIcon from './shared/BurgerIcon';
 const headerHeight=50;
 const TabScreenHeader = (props:any) => {

@@ -3,18 +3,17 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import { ChildRelationList, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import {
+  Heading3
+} from '@styles/typography';
 import React, { createRef, useContext } from 'react';
 import {
   Pressable, SafeAreaView, ScrollView, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
-import { HomeDrawerNavigatorStackParamList } from '../../navigation/types';
-import {
-  Heading3
-} from '../../styles/typography';
-const genders = ['Male', 'Female', 'Other'];
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 

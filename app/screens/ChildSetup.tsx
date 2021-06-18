@@ -1,36 +1,24 @@
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useState} from 'react';
-import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
 import ChildDate from '@components/ChildDate';
-import {RootStackParamList} from '../navigation/types';
-
-import ActionSheet from 'react-native-actions-sheet';
-import Icon from '@components/shared/Icon';
-import OnboardingHeading from '@components/shared/OnboardingHeading';
-import OnboardingContainer from '@components/shared/OnboardingContainer';
 import {
-  Heading1w,
-  Heading1Centerw,
-  Heading3,
-  ShiftFromTop30,
-  Heading3Regular,
-} from '../styles/typography';
+  ButtonPrimary, ButtonRow, ButtonText
+} from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildContentArea,
-  LabelText,
-  ChildSection,
-  ChildRelationList,
-  FormInputGroup,
-  FormInputBox,
-  FormDateText,
-  FormDateAction,
+  ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
 } from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
+import OnboardingContainer from '@components/shared/OnboardingContainer';
+import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { RootStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import React, { createRef, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import ActionSheet from 'react-native-actions-sheet';
 import {
-  ButtonPrimary,
-  ButtonText,
-  ButtonRow,
-} from '@components/shared/ButtonGlobal';
+  Heading1Centerw,
+  Heading3
+} from '../styles/typography';
+
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -44,7 +32,7 @@ type Props = {
 const ChildSetup = ({navigation}: Props) => {
   const [relationship, setRelationship] = useState('');
   const genders = ['Father', 'Mother', 'Other'];
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   return (
     <>
       <OnboardingContainer>

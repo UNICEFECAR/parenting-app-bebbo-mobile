@@ -1,5 +1,4 @@
 
-import { Button } from 'react-native';
 import styled from 'styled-components/native';
 
 /*Button Pressable */

@@ -1,15 +1,8 @@
-import React, {useContext, useRef} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from '@components/shared/Icon';
-// const Item = ( title ,itemColor,activatedItemColor) => {
-//     console.log(activatedItemColor);
-//     return (
-//         <View style={[styles.item, { backgroundColor: itemColor }]}>
-//             <Text style={styles.title}>{title}</Text>
-//         </View>
-//     )
-// };
+import React, { useRef } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',

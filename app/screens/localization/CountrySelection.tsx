@@ -4,17 +4,17 @@ import { ButtonSection, ButtonviewClick, ButtonviewNext } from '@components/shar
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
+import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import {
+  SelectionView
+} from '@styles/style';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // import {defaultProps} from '../../interfaces/interface';
 // import {darkTheme, lightTheme} from '../../theme/theme';
 import { FlatList } from 'react-native';
 import { useAppSelector } from '../../../App';
-import { LocalizationStackParamList } from '../../navigation/types';
-import {
-  SelectionView
-} from '../../styles/style';
 
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,

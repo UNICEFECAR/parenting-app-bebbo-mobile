@@ -1,18 +1,23 @@
+
+import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextsm } from '@components/shared/ButtonGlobal';
+
+import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
-import {View, Pressable, Text, Image} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../../../App';
-import {onLocalizationSelect, setSponsorStore} from '../../redux/reducers/localizationSlice';
 
 import { useTranslation } from 'react-i18next';
+import { Pressable } from 'react-native';
+import { useAppDispatch } from '../../../App';
+import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
-import OnboardingContainer, {LocalizationContainer,LocalizationAction, LocalizationRow,LocalizationCol, LocalizationcontentHead, LocalizationcontentResult, OnboardingContent, OnboardingconfirmationHead,OnboardingshiftHead } from '@components/shared/OnboardingContainer';
+
 
 import Icon, { OuterIconRow,OuterIconLeft } from '@components/shared/Icon';
-import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '../../styles/typography';
+import {  Heading2w, Heading3w,Heading3,Heading3Regular,HeadingRegular, Heading3Centerw, Heading2Centerw } from '@styles/typography';
 import { ButtonPrimary,ButtonContainer, ButtonTextsm,ButtonText, ButtonLinkText } from '@components/shared/ButtonGlobal';
+
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Walkthrough'
@@ -31,8 +36,25 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   //     (state: any) => state.selectedCountry.language,
   //   );
   const apiJsonData = [
-    {apiEndpoint:appConfig.sponsors,method:'get',postdata:{},saveinDB:false}
-    ]
+    {
+      apiEndpoint:appConfig.sponsors,
+      method:'get',
+      postdata:{},
+      saveinDB:false
+    },
+    {
+      apiEndpoint:appConfig.taxonomies,
+      method:'get',
+      postdata:{},
+      saveinDB:true
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    }
+  ]
   const { t, i18n } = useTranslation();
   const saveSelection = () => {
     // i18n.changeLanguage(language.locale);

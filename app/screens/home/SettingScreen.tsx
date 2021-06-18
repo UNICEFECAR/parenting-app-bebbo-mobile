@@ -1,43 +1,37 @@
+import { localization } from '@assets/data/localization';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import {ButtonPrimary} from '@components/shared/ButtonGlobal';
-
-import ActionSheet from 'react-native-actions-sheet';
+import { ButtonPrimary } from '@components/shared/ButtonGlobal';
+import Icon from '@components/shared/Icon';
 import {
   LocalizationCol,
   LocalizationContainer,
   LocalizationcontentHead,
   LocalizationcontentResult,
-  LocalizationRow,
+  LocalizationRow
 } from '@components/shared/OnboardingContainer';
-import {DrawerActions} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import React, {createRef, useContext, useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ButtonText } from '@styles/style';
 import {
-  Text,
-  Modal,
-  View,
+  Heading1, Heading3, Heading3Regular,
+  Heading4,
+  Heading6
+} from '@styles/typography';
+import React, { createRef, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
+  StyleSheet, Text, View
 } from 'react-native';
-import {Switch, TouchableOpacity} from 'react-native-gesture-handler';
+import ActionSheet from 'react-native-actions-sheet';
+import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
-import styled, {ThemeContext} from 'styled-components/native';
-import {useAppSelector} from '../../../App';
-import {HomeDrawerNavigatorStackParamList} from '../../navigation/types';
-import {ButtonText, Container} from '../../styles/style';
-import {
-  Heading1,
-  Heading3Regular,
-  Heading4,
-  Heading6,
-  Heading3,
-} from '../../styles/typography';
-import {localization} from '@assets/data/localization';
-import Icon from '@components/shared/Icon';
+import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
+
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -62,7 +56,7 @@ const SettingScreen = (props: any) => {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
-  const actionSheetRef = createRef();
+  const actionSheetRef = createRef<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -77,7 +71,7 @@ const SettingScreen = (props: any) => {
     );
     setCountry(selectedCountry);
     const selectedLanguage: any = selectedCountry.languages.find(
-      (language) => language.languageCode === languageCode,
+      (language:any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
     // console.log(selectedCountry,selectedLanguage);

@@ -1,12 +1,11 @@
+
 import styled from 'styled-components/native';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import fontelloConfig from '@assets/iconConfig/config.json';
+
  
  
- const Icon = createIconSetFromFontello(fontelloConfig);`
- 
- 
- `
+ const Icon = createIconSetFromFontello(fontelloConfig);
 
 export const OuterIconRow = styled.View`
 flex-direction:row;
