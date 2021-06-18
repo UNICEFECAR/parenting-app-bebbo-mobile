@@ -16,7 +16,6 @@ import LoadingScreen from '@screens/LoadingScreen';
 import PrivacyPolicy from '@screens/PrivacyPolicy';
 import Terms from '@screens/Terms';
 import Walkthrough from '@screens/Walkthrough';
-import React from 'react';
 import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
