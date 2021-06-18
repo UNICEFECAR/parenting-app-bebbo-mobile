@@ -1,19 +1,10 @@
-import OnboardingContainer, { LocalizationAction, LocalizationCol, LocalizationContainer, LocalizationcontentHead, LocalizationcontentResult, LocalizationRow, OnboardingconfirmationHead, OnboardingContent, OnboardingshiftHead } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import {View, Pressable, Text, Image} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../../App';
 import {onLocalizationSelect, setSponsorStore} from '../../redux/reducers/localizationSlice';
-import {RootStackParamList} from '../../navigation/types';
-import {
-  Container,
-  
-  MiniHeader,
-  Header2Text,
-  Header3Text,
-  
-} from '../../styles/style';
+
 import { useTranslation } from 'react-i18next';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { appConfig } from '../../types/apiConstants';
