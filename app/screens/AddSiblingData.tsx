@@ -1,14 +1,14 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {createRef, useState} from 'react';
-import {View, Text, Button, StyleSheet, Pressable} from 'react-native';
 import ChildDate from '@components/ChildDate';
-import {RootStackParamList} from '../navigation/types';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import {ButtonPrimary, ButtonRow, ButtonText} from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
+import { RootStackParamList } from '@navigation/types';
+import { Pressable, View } from 'react-native';
 import {ChildCenterView,ChildAddTop} from '@components/shared/ChildSetupStyle';
-import { Heading1Centerw } from '../styles/typography';
+import { Heading1Centerw,ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -26,12 +26,14 @@ const AddSiblingData = ({navigation}: Props) => {
           <OnboardingHeading>
             <ChildAddTop>
               <Heading1Centerw>Add Brother or Sister</Heading1Centerw>
+              <ShiftFromTop5>
               <Pressable
                 onPress={() => {
                   navigation.goBack();
                 }}>
                 <Icon name="ic_close" size={20} color="#FFF" />
               </Pressable>
+              </ShiftFromTop5>
             </ChildAddTop>
           </OnboardingHeading>
           <ChildDate />

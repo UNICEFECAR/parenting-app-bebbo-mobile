@@ -27,7 +27,7 @@ type Props = {
 
 
 
-// import {API_URL, API_TOKEN} from "@env";
+// import {API_URL, API_TOKEN} from "react-native-dotenv";
 //{navigation}: Props
 type localizationType = {
   name: string;

@@ -184,8 +184,14 @@ export const HeadingRegular = styled.Text`
 font-family: 'roboto-regular';
 `
 
+export const ShiftFromBottom5 = styled.View`
+margin-bottom:5px;
+`
 export const ShiftFromBottom10 = styled.View`
 margin-bottom:10px;
+`
+export const ShiftFromBottom15 = styled.View`
+margin-bottom:15px;
 `
 export const ShiftFromBottom20 = styled.View`
 margin-bottom:20px;
@@ -199,8 +205,14 @@ margin-bottom:40px;
 export const ShiftFromBottom50 = styled.View`
 margin-bottom:50px;
 `
+export const ShiftFromTop5 = styled.View`
+margin-top:5px;
+`
 export const ShiftFromTop10 = styled.View`
 margin-top:10px;
+`
+export const ShiftFromTop15 = styled.View`
+margin-top:15px;
 `
 export const ShiftFromTop20 = styled.View`
 margin-top:20px;
