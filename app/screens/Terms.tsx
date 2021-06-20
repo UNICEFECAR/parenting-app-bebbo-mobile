@@ -14,7 +14,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
+import { Alert, Pressable, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
@@ -35,7 +35,9 @@ type Props = {
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
-  const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
+  const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
+  const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
+
   const {t} = useTranslation();
   const goToPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
@@ -138,7 +140,8 @@ const Terms = ({navigation}: Props) => {
           </Fragment>
         </ScrollView>
         <ButtonRow>
-          <ButtonPrimary
+        <ButtonPrimary
+            disabled={isButtonDisabled}
             onPress={() => {
               acceptTerms();
               // navigation.navigate('LoadingScreen')

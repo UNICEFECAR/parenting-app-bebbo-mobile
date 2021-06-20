@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 /*Button Pressable */
 export const ButtonPrimary = styled.Pressable`
-background: ${props => props.theme.colors.SECONDARY_COLOR};
+background: ${props => props.disabled ? '#cccccc' : props.theme.colors.SECONDARY_COLOR};
 color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
 padding: 14px 15px;
 width:100%;

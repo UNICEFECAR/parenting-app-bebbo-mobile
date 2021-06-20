@@ -3,8 +3,9 @@ import { apiUrlDevelop } from "react-native-dotenv";
 
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     console.log("in finalurl", apiUrlDevelop);
+   
     if(apiEndpoint==appConfig.sponsors){
-        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     }else if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }

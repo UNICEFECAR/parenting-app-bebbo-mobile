@@ -15,6 +15,7 @@ function* onInsertInDB(response:any) {
         console.log("in onInsertInDB err ", e);
       }
 }
+
 export function* InsertInDBSaga() {
     console.log("called InsertInDBSaga");
     yield takeEvery(INSERT_IN_DB, onInsertInDB);

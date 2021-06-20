@@ -7,9 +7,11 @@ import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
+import { useAppDispatch } from '../../App';
+import { addChild, getNewChild } from '../services/childCRUD';
 import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -22,6 +24,17 @@ type Props = {
 
 const AddSiblingData = ({navigation}: Props) => {
   const {t} = useTranslation();
+  const dispatch = useAppDispatch();
+  let initialData:any={};
+  const [birthDate, setBirthDate] =useState<Date>();
+  const [plannedTermDate, setPlannedTermDate] = useState<Date>();
+  const [isPremature, setIsPremature] =useState<string>('false');
+  const sendData = (data:any) => { // the callback. Use a better name
+    setBirthDate(data.birthDate);
+    setPlannedTermDate(data.dueDate);
+    var myString: string = String(data.isPremature);
+    setIsPremature(myString);
+  };
   return (
     <>
       <OnboardingContainer>
@@ -39,7 +52,7 @@ const AddSiblingData = ({navigation}: Props) => {
               </ShiftFromTop5>
             </ChildAddTop>
           </OnboardingHeading>
-          <ChildDate />
+          <ChildDate  sendData={sendData}/>
           
           
         </View>
@@ -51,7 +64,11 @@ const AddSiblingData = ({navigation}: Props) => {
                 //   index: 0,
                 //   routes: [{name: 'HomeDrawerNavigator'}],
                 // })
-                navigation.navigate('ChildSetupList');
+                let insertData:any=getNewChild(birthDate,plannedTermDate,isPremature);
+                console.log(insertData,"..insertData..");
+                let childSet:Array<any>=[];
+                childSet.push(insertData);
+                addChild(1,childSet,dispatch,navigation);  
               }}>
               <ButtonText>{t('childSetupList.saveBtnText')}</ButtonText>
             </ButtonPrimary>

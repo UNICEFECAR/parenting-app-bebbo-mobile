@@ -1,5 +1,5 @@
 import {ObjectSchema} from 'realm';
-export type ChildGender = 'boy' | 'girl';
+export type ChildGender = 'boy' | 'girl' | '';
 // export type ChildType = {
 //   uuid: string;
 //   name: string;
@@ -51,8 +51,9 @@ export type ChildEntity = {
   photoUri?: string;
   createdAt: Date;
   updatedAt: Date;
-  plannedTermDate?: Date;
+  plannedTermDate?: Date | undefined;
   birthDate?: Date | undefined;
+  relationship:string;
   babyRating?: number;
   // measures: string;
   comment?: string;
@@ -60,7 +61,6 @@ export type ChildEntity = {
   // reminders?: string;
   measurementPlace: string;
   isPremature?: string;
-  isPremature2?: string;
 };
 
 /**
@@ -80,7 +80,8 @@ export const ChildEntitySchema: ObjectSchema = {
       createdAt: { type: 'date' },
       updatedAt: { type: 'date' },
       plannedTermDate: { type: 'date', optional: true },
-      birthDate: { type: 'date', optional: true },
+      relationship:{ type:'string'},
+      birthDate: { type: 'date'},
       babyRating: { type: 'int', optional: true },
       // measures: { type: 'string', optional: true },
       comment: { type: 'string', optional: true },
@@ -88,7 +89,7 @@ export const ChildEntitySchema: ObjectSchema = {
       // reminders: {type: 'string', optional: true},
       measurementPlace: {type: 'string', optional: true},
       isPremature: {type: 'string', optional: true},
-      isPremature2: {type: 'string', optional: true},
+  
   }
 };
 

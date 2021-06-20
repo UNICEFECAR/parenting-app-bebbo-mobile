@@ -26,7 +26,7 @@ import ModalPopupContainer, {
   PopupOverlay
 } from './shared/ModalPopupStyle';
 
-const ChildDate = () => {
+const ChildDate = (props:any) => {
   const {t} = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [dobDate, setdobDate] = useState<Date>();
@@ -36,6 +36,7 @@ const ChildDate = () => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
     setdobDate(currentDate);
+    props.sendData({birthDate:currentDate,dueDate:dueDate,isPremature:toggleCheckBox});
   };
 
   const showdobDatepicker = () => {
@@ -48,6 +49,7 @@ const ChildDate = () => {
     const currentDate = selectedDate || dobDate;
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
+    props.sendData({birthDate:dobDate,dueDate:currentDate,isPremature:toggleCheckBox});
   };
   const showdueDatepicker = () => {
     setdueShow(true);
