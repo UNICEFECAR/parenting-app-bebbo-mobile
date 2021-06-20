@@ -22,6 +22,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text } from 'react-native';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { ChildEntity } from '../database/schema/ChildDataSchema';
+import { deleteChild, getAllChildren } from '../services/childCRUD';
 import {
   Heading1Centerw,
   Heading3Centerw,
@@ -36,8 +39,27 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const ChildSetupList = ({navigation}: Props) => {
-  const {t} = useTranslation();
+
+const ChildSetupList = ({ navigation }: Props) => {
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  //getAllChildren(dispatch);
+  const childList = useAppSelector(
+    (state: any) => state.childData.allChild,
+  );
+  console.log(childList, "..childList..childLis..");
+  // const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
+  //   return (
+      
+  //   );
+  //  };
+   const deleteRecord = (index:number,dispatch:any,uuid: string) => {
+    console.log("..deleted..");
+    deleteChild(index,dispatch,'ChildEntity', uuid);
+  }
+  const editRecord = (uuid: string) => {
+  
+  }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
     {
@@ -66,7 +88,7 @@ const ChildSetupList = ({navigation}: Props) => {
       routes: [
         {
           name: 'LoadingScreen',
-          params: {apiJsonData: apiJsonData, prevPage: 'ChilSetup'},
+          params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
         },
       ],
     });
@@ -82,43 +104,45 @@ const ChildSetupList = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-            {t('childSetupList.header')}
+              {t('childSetupList.header')}
             </Heading1Centerw>
             <Heading3Centerw>
-            {t('childSetupList.subHeader')}
+              {t('childSetupList.subHeader')}
             </Heading3Centerw>
           </ChildCenterView>
         </OnboardingHeading>
         <ChildContentArea>
           <ChildListingArea>
+            {
+           childList?.length > 0 ? (
+              childList.map((data: any, index: number) => {
+                // let newItem=Object.assign({}, item);
+                // return renderDailyReadItem(dispatch,newItem,index);
+                <ChildListingBox key={data.uuid}>
+        <ChildColArea1>
+          <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
+          <Text>Born on {String(data.birthDate)}</Text>
+        </ChildColArea1>
+        <ChildColArea2>
+          <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+          <TitleLinkSm onPress={() => editRecord(data.uuid)}>Edit Profile</TitleLinkSm>
+        </ChildColArea2>
+      </ChildListingBox>
+              })
+            ) :
             <ChildListingBox>
-              <ChildColArea1>
-                <ChildListTitle>Child 1</ChildListTitle>
-                <Text>Born on 08 july 2020</Text>
-              </ChildColArea1>
-              <ChildColArea2>
-                <TitleLinkSm>Delete</TitleLinkSm>
-                <TitleLinkSm>Edit Profile</TitleLinkSm>
-              </ChildColArea2>
+            <ChildColArea1>
+              <Text>No Data</Text></ChildColArea1>
             </ChildListingBox>
+            }
 
-            <ChildListingBox>
-              <ChildColArea1>
-                <ChildListTitle>Child 2</ChildListTitle>
-                <Text>Born on 22 june 2018</Text>
-              </ChildColArea1>
-              <ChildColArea2>
-                <TitleLinkSm>Delete</TitleLinkSm>
-                <TitleLinkSm>Edit Profile</TitleLinkSm>
-              </ChildColArea2>
-            </ChildListingBox>
           </ChildListingArea>
         </ChildContentArea>
 
         <ButtonRow>
           <ShiftFromBottom20>
             <Pressable
-              style={{flexDirection: 'row', justifyContent: 'center'}}
+              style={{ flexDirection: 'row', justifyContent: 'center' }}
               onPress={() => navigation.navigate('AddSiblingDataScreen')}>
               <OuterIconRow>
                 <OuterIconLeft>
