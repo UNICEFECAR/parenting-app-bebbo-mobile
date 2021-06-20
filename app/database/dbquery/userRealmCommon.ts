@@ -2,7 +2,7 @@
 import { Component } from 'react';
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { userRealmConfig } from '../config/dbConfig';
-import { ChildEntity, ChildEntitySchema } from '../schema/childDataSchema';
+import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 // import { dispatchchildstore2 } from './userRealmListener';
 // import userRealm from '../config/dbConfig'
 // export const userRealmInstance = getUserRealm();
@@ -134,14 +134,22 @@ class UserRealmCommon extends Component {
             }
         });
     }
-    public async delete(record: any): Promise<void> {
+    public async delete(Schema:string,record: any): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if(realm)
                 {
                     realm.write(() => {
-                        realm?.delete(record);
+                        if (
+                            realm.objects(Schema).filtered('uuid ="' + record+ '"')
+                              .length > 0
+                          ) {
+                            realm.delete(
+                              realm.objects(Schema).filtered('uuid ="' + record+ '"')
+                            );
+                        }
+                        // realm?.delete(realm.objectForPrimaryKey(Schema, record));
                         resolve();
                     });
                 }
@@ -149,6 +157,7 @@ class UserRealmCommon extends Component {
                     reject();
                 }  
             } catch (e) {
+                console.log(e.message,"..error in delete..");
                 reject();
             }
         });
