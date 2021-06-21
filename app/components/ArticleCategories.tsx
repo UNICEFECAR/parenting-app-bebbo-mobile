@@ -1,8 +1,14 @@
 import Icon from '@components/shared/Icon';
+import { activityCategory } from '@types/apiConstants';
 import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
+import { useAppSelector } from '../../App';
 
 const ArticleCategories = (props:any) => {
+    const categoryData = useAppSelector(
+        (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
+      );
+    //   console.log("categoryData ArticleCategories--",categoryData);
     return (
         <>
             <View style={{ padding: 10, minHeight: 150,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
@@ -10,30 +16,30 @@ const ArticleCategories = (props:any) => {
 
                     <View style={styles.item} >
                         <Icon style={styles.iconStyle} name="ic_artl_play" size={20} color="#000" />
-                        <Text style={styles.title}>Playing and Learning</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.playingAndLearning)[0].name }</Text>
                     </View>
                     <View style={styles.item} >
                         <Icon style={styles.iconStyle} name="ic_artl_health" size={20} color="#000" />
-                        <Text style={styles.title}>Health and Wellbeing</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.healthAndWellbeing)[0].name }</Text>
                     </View>
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_safety" size={20} color="#000" />
-                        <Text style={styles.title}>Safety and Protection</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.safetyAndProtection)[0].name }</Text>
                     </View>
 
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_responsive" size={20} color="#000" />
-                        <Text style={styles.title}>Responsive Parenting</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.responsiveParenting)[0].name }</Text>
                     </View>
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_parenting" size={20} color="#000" />
-                        <Text style={styles.title}>Responsive Parenting</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.parentingCorner)[0].name }</Text>
                     </View>
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_nutrition" size={20} color="#000" />
-                        <Text style={styles.title}>Responsive Parenting</Text>
+                        <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.nutritionAndBreastfeeding)[0].name }</Text>
                     </View>
                 </View>
             </View>
