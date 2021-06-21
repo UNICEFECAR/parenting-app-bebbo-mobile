@@ -45,17 +45,25 @@ const ChildSetupList = ({ navigation }: Props) => {
   const dispatch = useAppDispatch();
   //getAllChildren(dispatch);
   const childList = useAppSelector(
-    (state: any) => state.childData.allChild,
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
   );
-  console.log(childList, "..childList..childLis..");
-  // const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
-  //   return (
-      
-  //   );
-  //  };
+   const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
+     return (
+    <ChildListingBox key={data.uuid}>
+    <ChildColArea1>
+      <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
+      <Text>Born on {String(data.birthDate)}</Text>
+    </ChildColArea1>
+    <ChildColArea2>
+      <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+      <TitleLinkSm onPress={() => editRecord(data.uuid)}>Edit Profile</TitleLinkSm>
+    </ChildColArea2>
+  </ChildListingBox>
+     );
+    };
    const deleteRecord = (index:number,dispatch:any,uuid: string) => {
     console.log("..deleted..");
-    deleteChild(index,dispatch,'ChildEntity', uuid);
+    deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
   }
   const editRecord = (uuid: string) => {
   
@@ -117,19 +125,9 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ChildListingArea>
             {
            childList?.length > 0 ? (
-              childList.map((data: any, index: number) => {
-                // let newItem=Object.assign({}, item);
-                // return renderDailyReadItem(dispatch,newItem,index);
-                <ChildListingBox key={data.uuid}>
-        <ChildColArea1>
-          <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
-          <Text>Born on {String(data.birthDate)}</Text>
-        </ChildColArea1>
-        <ChildColArea2>
-          <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
-          <TitleLinkSm onPress={() => editRecord(data.uuid)}>Edit Profile</TitleLinkSm>
-        </ChildColArea2>
-      </ChildListingBox>
+              childList.map((item: ChildEntity, index: number) => {
+                console.log(childList,"..childList123..");
+                return renderDailyReadItem(dispatch,item,index);
               })
             ) :
             <ChildListingBox>
