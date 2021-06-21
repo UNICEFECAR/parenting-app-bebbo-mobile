@@ -1,3 +1,4 @@
+import { AnyAction } from '@reduxjs/toolkit';
 
 import { Component } from 'react';
 import Realm, { ObjectSchema, Collection } from 'realm';
@@ -134,31 +135,32 @@ class UserRealmCommon extends Component {
             }
         });
     }
-    public async delete(Schema:string,record: any): Promise<void> {
+    public async delete(Schema:string,record: any,filterCondition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if(realm)
                 {
-                    realm.write(() => {
+                    realm?.write(() => {
                         if (
-                            realm.objects(Schema).filtered('uuid ="' + record+ '"')
+                            realm.objects(Schema).filtered(filterCondition)
                               .length > 0
                           ) {
+                            //let collectionPages = Object.assign([], realm.objects(Schema));
                             realm.delete(
-                              realm.objects(Schema).filtered('uuid ="' + record+ '"')
+                              realm.objects(Schema).filtered(filterCondition)
                             );
                         }
                         // realm?.delete(realm.objectForPrimaryKey(Schema, record));
-                        resolve();
+                        resolve('success');
                     });
                 }
                 else {
-                    reject();
+                    reject('error');
                 }  
-            } catch (e) {
+            } catch (e:any) {
                 console.log(e.message,"..error in delete..");
-                reject();
+                reject('error');
             }
         });
     }
