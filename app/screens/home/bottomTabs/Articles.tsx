@@ -1,16 +1,24 @@
+import { articledata } from '@assets/translations/appOfflineData/article';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import { destinationFolder } from '@types/apiConstants';
+import React, { useContext, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Image, KeyboardAvoidingView,
   Platform, Pressable,
   ScrollView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
+import { useAppDispatch, useAppSelector } from '../../../../App';
+import { getChildArticleData } from '../../../database/dbquery/getChildArticles';
+import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
+import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -24,48 +32,50 @@ const ContainerView = styled.SafeAreaView`
   background-color: ${(props) => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 
-const DATA = [
-  {
-    id: '1',
-    imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '2',
-    imagePath: require('@assets/trash/card2.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '3',
-    imagePath: require('@assets/trash/card3.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '4',
-    imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '5',
-    imagePath: require('@assets/trash/card5.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '6',
-    imagePath: require('@assets/trash/card6.jpeg'),
-    title: 'Picking stuff around',
-  },
-];
+// const DATA = [
+//   {
+//     id: '1',
+//     imagePath: require('@assets/trash/card1.jpeg'),
+//     title: 'General recommendations for overweight and obese infants',
+//   },
+//   {
+//     id: '2',
+//     imagePath: require('@assets/trash/card2.jpeg'),
+//     title: 'General recommendations for overweight and obese infants',
+//   },
+//   {
+//     id: '3',
+//     imagePath: require('@assets/trash/card3.jpeg'),
+//     title: 'General recommendations for overweight and obese infants',
+//   },
+//   {
+//     id: '4',
+//     imagePath: require('@assets/trash/card4.jpeg'),
+//     title: 'General recommendations for overweight and obese infants',
+//   },
+//   {
+//     id: '5',
+//     imagePath: require('@assets/trash/card5.jpeg'),
+//     title: 'General recommendations for overweight and obese infants',
+//   },
+//   {
+//     id: '6',
+//     imagePath: require('@assets/trash/card6.jpeg'),
+//     title: 'Picking stuff around',
+//   },
+// ];
 const Articles = ({navigation}: Props) => {
-  const renderArticleItem = (item: typeof DATA[0], index: number) => (
+
+  const renderArticleItem = (item: typeof articleData[0], index: number) => (
       <Pressable onPress={onPress} key={index}>
         <View style={styles.item}>
           <Image
             style={styles.cardImage}
-            source={item.imagePath}
+            source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
+            // source={item.cover_image.url}
             resizeMode={'cover'}
           />
-          <Text style={styles.label}>Play and learning</Text>
+          <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
           <Text style={styles.title}>{item.title}</Text>
           <View style={{flexDirection: 'row', padding: 10}}>
             <View style={{flex: 1}}>
@@ -91,8 +101,49 @@ const Articles = ({navigation}: Props) => {
   };
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
+
+  //code for getting article dynamic data starts here.
+  const currentChildData = {
+    "gender":"40",
+    "taxonomyData":{
+      "id": "43",
+      "name": "1st month",
+      "days_from": "0",
+      "days_to": "30",
+      "buffers_days": null,
+      "age_bracket": null,
+      "weeks_from": null,
+      "weeks_to": null
+    }
+  }
+  const [loading, setLoading] = useState(true);
+  const categoryData = useAppSelector(
+    (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
+  );
+  // console.log("categoryData--",categoryData);
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    async function fetchData() {
+      let Entity:any;
+      // Entity = Entity as TaxonomyEntity
+      const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
+      // console.log("artData--",artData);
+      setLoading(false);
+    }
+    fetchData()
+  },[languageCode]);
+  
+  const articleData = useAppSelector(
+    (state: any) => state.articlesData.article.articles != '' ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
+  // console.log("articleData--",articleData);
+  //code for getting article dynamic data ends here.
   return (
     <>
+      <OverlayLoadingComponent loading={loading} />
       <ContainerView>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -131,9 +182,12 @@ const Articles = ({navigation}: Props) => {
             </View>
            
               <ArticleCategories borderColor={headerColor} />
-              {DATA.map((item, index) => {
+              {articleData != '' ? articleData.map((item, index) => {
                 return renderArticleItem(item, index);
-              })}
+              }) : null}
+              {/* {DATA.map((item, index) => {
+                return renderArticleItem(item, index);
+              })} */}
            
             {/* <FlatList
               data={DATA}
