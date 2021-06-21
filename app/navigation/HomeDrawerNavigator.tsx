@@ -12,12 +12,27 @@ import Notifications from '@screens/home/Notifications';
 import SettingScreen from '@screens/home/SettingScreen';
 import UserGuide from '@screens/home/UserGuide';
 import Vaccination from '@screens/home/Vaccination';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardTabNavigator from './DashboardTabNavigator';
 import { HomeDrawerNavigatorStackParamList } from './types';
+import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { articledata } from '@assets/translations/appOfflineData/article';
+import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
+import { setAllArticleData } from '../redux/reducers/articlesSlice';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
+  // const languageCode = useAppSelector(
+  //   (state: any) => state.selectedCountry.languageCode,
+  // );
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  //   let Entity:any;
+  //   // Entity = Entity as TaxonomyEntity
+  //   const artData = useToGetOfflineData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData);
+  //   console.log("artData--",artData);
+  // },[languageCode]);
   return (
     <HomeDrawerNavigator.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
