@@ -67,7 +67,9 @@ const ChildSetupList = ({ navigation }: Props) => {
       method: 'get',
       postdata: {
         childAge: '43',
-        childGender: '40',
+        childGender: 'all',
+        // childAge: '43',
+        // childGender: '40',
         parentGender: 'all',
         Seasons: 'all',
       },

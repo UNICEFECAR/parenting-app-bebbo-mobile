@@ -48,10 +48,13 @@ const Terms = ({navigation}: Props) => {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    let Entity:any;
-    // Entity = Entity as TaxonomyEntity
-    const basicData = useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
-    console.log("basicpagesData--",basicData);
+    async function fetchData() {
+      let Entity:any;
+      // Entity = Entity as TaxonomyEntity
+      const basicData = useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
+      console.log("basicpagesData--",basicData);
+    }
+    fetchData()
   },[languageCode]);
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const termsdata = useAppSelector(
