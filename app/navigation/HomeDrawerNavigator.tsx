@@ -7,6 +7,7 @@ import ChildProfile from '@screens/home/ChildProfile';
 import Favourites from '@screens/home/Favourites';
 import Notifications from '@screens/home/Notifications';
 import SettingScreen from '@screens/home/SettingScreen';
+import SupportChat from '@screens/home/SupportChat';
 import UserGuide from '@screens/home/UserGuide';
 import React from 'react';
 import DashboardTabNavigator from './DashboardTabNavigator';
@@ -44,7 +45,7 @@ export default () => {
         name="ChildProfileScreen"
         component={ChildProfile}
       />
-      
+      <HomeDrawerNavigator.Screen name="SupportChat" component={SupportChat}/>
       {/* <HomeDrawerNavigator.Screen
         name="ChildgrowthScreen"
         component={Childgrowth}

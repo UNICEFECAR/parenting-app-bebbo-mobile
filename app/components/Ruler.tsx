@@ -104,46 +104,6 @@ type Props = {
   backgroundColor: string;
 
   /**
-   * Number's font family
-   */
-  numberFontFamily: string;
-
-  /**
-   * Number's size
-   */
-  numberSize: number;
-
-  /**
-   * Number's color
-   */
-  numberColor: string;
-
-  /**
-   * Unit
-   */
-  unit: string;
-
-  /**
-   * Unit's space from bottom
-   */
-  unitBottom: number;
-
-  /**
-   * Unit's font family
-   */
-  unitFontFamily: string;
-
-  /**
-   * Unit's color
-   */
-  unitColor: string;
-
-  /**
-   * Unit's size
-   */
-  unitSize: number;
-
-  /**
    * On value change
    */
   onChangeValue: Function;
@@ -287,14 +247,6 @@ class Ruler extends React.Component<Props, State> {
       indicatorColor,
       indicatorBottom,
       backgroundColor,
-      numberFontFamily,
-      numberSize,
-      numberColor,
-      unit,
-      unitBottom,
-      unitFontFamily,
-      unitColor,
-      unitSize,
       width,
       height,
       vertical,
@@ -326,35 +278,6 @@ class Ruler extends React.Component<Props, State> {
             left: (width - indicatorWidth) / 2,
           }}
           pointerEvents="none">
-          {/* <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-              transform: vertical ? [{rotate: '-90deg'}] : undefined,
-            }}> */}
-          {/* Number */}
-          {/* <TextInput
-              ref={this.textInputRef}
-              style={{
-                fontSize: numberSize,
-                fontFamily: numberFontFamily,
-                color: numberColor,
-              }}
-              defaultValue={minimum.toString()}
-            /> */}
-
-          {/* Unit */}
-          {/* <Text
-              style={{
-                marginBottom: unitBottom,
-                fontSize: unitSize,
-                fontFamily: unitFontFamily,
-                color: unitColor,
-              }}>
-              {unit}
-            </Text> */}
-          {/* </View> */}
 
           {/* Indicator */}
           <View style={{flexDirection: 'row'}}>
@@ -427,14 +350,7 @@ Ruler.defaultProps = {
   normalColor: '#999999',
   normalHeight: 20,
   backgroundColor: '#FFFFFF',
-  numberFontFamily: 'System',
-  numberSize: 40,
-  numberColor: '#000000',
-  unit: 'cm',
-  unitBottom: height * 0.027,
-  unitFontFamily: 'System',
-  unitColor: '#888888',
-  unitSize: 16,
+  
 };
 
 export default Ruler;

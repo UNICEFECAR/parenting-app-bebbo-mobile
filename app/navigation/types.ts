@@ -15,6 +15,7 @@ export type RootStackParamList = {
   AddNewChildWeight:undefined;
   AddNewChildHeight:undefined;
   AllChildgrowthMeasures:undefined;
+ 
 };
 
 export type LocalizationStackParamList = {
@@ -37,6 +38,7 @@ export type HomeDrawerNavigatorStackParamList = {
   ActivityDetails: undefined;
   UserGuide: undefined;
   Favourites: undefined;
+  SupportChat:undefined;
 };
 
 export type DashboardBottomTabParamList = {
