@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
@@ -24,20 +24,7 @@ const Vaccination = ({navigation}: Props) => {
             flexDirection: 'column',
             flex: 1,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1}}>
-              <BurgerIcon />
-            </View>
-            <View style={{flex: 3}}>
-              <Text> {'Vaccination'}</Text>
-            </View>
-          </View>
+          <TabScreenHeader title="Child Vaccination" headerColor={headerColor} textColor='#FFF'/>
           <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
               <Text>VaccinationScreen screen</Text>

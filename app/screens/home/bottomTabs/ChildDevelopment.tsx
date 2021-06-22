@@ -1,14 +1,13 @@
 import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
 import Icon from '@components/shared/Icon';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
-import {
-  Image, SafeAreaView, ScrollView, Text, View
-} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Image, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 
 type ChildDevelopmentNavigationProp =
@@ -20,6 +19,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
+  const {t} = useTranslation();
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -29,21 +29,12 @@ const ChildDevelopment = ({navigation}: Props) => {
             flexDirection: 'column',
             flex: 1,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1}}>
-              <BurgerIcon />
-            </View>
-            <View style={{flex: 3}}>
-              <Text> {'Child Development'}</Text>
-            </View>
-          </View>
-          <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}>
+          <TabScreenHeader
+            title={t('developScreen.headerTitle')}
+            headerColor={headerColor}
+            textColor="#000"
+          />
+          <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
               <View style={{flexDirection: 'column'}}></View>
               <AgeBrackets
@@ -60,25 +51,32 @@ const ChildDevelopment = ({navigation}: Props) => {
                 <View style={{flexDirection: 'row'}}>
                   <Heading3>3rd and 4th Month </Heading3>
                   <Text style={{backgroundColor: headerColor, padding: 2}}>
-                    Premature
+                    {t('developScreen.prematureText')}
                   </Text>
                 </View>
                 <Heading2>
-                  The Period of Diverse Experiences{' '}
+                  The Period of Diverse Experiences{'        '}
                   <Icon name="ic_info" size={15} color="#000" />
                 </Heading2>
               </View>
-              <View style={{margin: 15,}}>
+              <View style={{marginVertical: 10, marginHorizontal: 15}}>
                 <View style={{flexDirection: 'column'}}>
                   <View style={{flexDirection: 'row'}}>
-                  <Icon name="ic_info" size={25} color="#FFF" style={{backgroundColor:'red',borderRadius:150}} />
-                  <Heading5>  Pending</Heading5>
+                    <Icon
+                      name="ic_incom"
+                      size={25}
+                      color="#FFF"
+                      style={{backgroundColor: 'red', borderRadius: 150}}
+                    />
+                    <Heading5>{t('developScreen.chartLabel')}</Heading5>
                   </View>
-                  <Heading3 >
-                  Milestones from the current period that remain to be achieved
-                  </Heading3>
+                  <Heading3>{t('developScreen.chartText')}</Heading3>
                 </View>
-                
+              </View>
+              <Heading3>{t('developScreen.mileStoneQ')}</Heading3>
+              <View style={{marginVertical: 10, marginHorizontal: 15,padding:20,backgroundColor:'#FFF'}}>
+              <Heading5>{t('developScreen.tipsText')}</Heading5>
+              <Heading3>Watch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the first month you baby:</Heading3>
               </View>
             </View>
           </ScrollView>

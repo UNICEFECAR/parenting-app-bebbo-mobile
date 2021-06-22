@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Activities from '@screens/home/bottomTabs/Activities';
 import Articles from '@screens/home/bottomTabs/Articles';
+import ChildDevelopment from '@screens/home/bottomTabs/ChildDevelopment';
 import Home from '@screens/home/bottomTabs/Home';
-import ChildDevelopment from '@screens/home/ChildDevelopment';
 import Childgrowth from '@screens/home/Childgrowth';
 import HealthCheckups from '@screens/home/HealthCheckups';
 import Vaccination from '@screens/home/Vaccination';
@@ -15,8 +15,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { DashboardBottomTabParamList } from './types';
@@ -80,9 +79,9 @@ export default () => {
         </Pressable>
       </Modal>
       <DashboardBottomTab.Navigator tabBarOptions={{
-        activeTintColor: '#000',
+        activeTintColor: headerColor,
         inactiveTintColor:'#000',
-        activeBackgroundColor:headerColor,
+        activeBackgroundColor:'#FFF',
         inactiveBackgroundColor:'#FFF'
 
       }}>
@@ -104,17 +103,17 @@ export default () => {
           component={secondaryRoot}
           name="Tools"
           options={{
-            tabBarLabel: '',
+            tabBarLabel: 'Tools',
             tabBarIcon: ({ color, size }) => (
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 5, // space from top
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Icon name="ic_plus" color={color} size={35} style={{alignContent: 'center',}} />
-              </View>
+              // <View
+              //   style={{
+              //     position: 'absolute',
+              //     top: 5, // space from top
+              //     justifyContent: 'center',
+              //     alignItems: 'center',
+              //   }}>  {/* </View> */}
+                <Icon name="ic_sb_tools" color={color} size={size} style={{alignContent: 'center',}} />
+            
 
             ),
           }}
@@ -135,7 +134,7 @@ export default () => {
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment}
           options={{
-            tabBarLabel: 'Development',
+            tabBarLabel: 'Track',
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),

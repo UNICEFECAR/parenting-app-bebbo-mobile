@@ -1,6 +1,7 @@
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
@@ -15,6 +16,7 @@ const ContainerView = styled.View`
 `;
 const AdviceAndArticles = () => {
   const navigation = useNavigation();
+  const {t} = useTranslation();
   return (
     <>
       <ContainerView>
@@ -30,10 +32,10 @@ const AdviceAndArticles = () => {
           <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
         </View>
         <View>
-          <Text>Expert Advices and Articles</Text>
+          <Text>{t('homeScreen.expHeader')}</Text>
           <ButtonContainer>
               <ButtonPrimary onPress={() =>  navigation.navigate('Articles')}>
-                <ButtonText>Start Reading</ButtonText>
+                <ButtonText>{t('homeScreen.expButton')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
         </View>
