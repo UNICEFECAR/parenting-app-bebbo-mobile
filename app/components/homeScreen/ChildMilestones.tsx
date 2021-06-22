@@ -1,6 +1,7 @@
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
@@ -74,7 +75,7 @@ const ChildMilestones = () => {
   //   }
   // }
   const navigation = useNavigation();
-
+  const {t} = useTranslation();
   return (
     <>
       <ContainerView>
@@ -93,11 +94,11 @@ const ChildMilestones = () => {
             />
           </View>
           <View>
-            <Text>Child Development</Text>
+            <Text>{t('homeScreen.cdHeader')}</Text>
             <ButtonContainer>
               <ButtonPrimary
                 onPress={() => navigation.navigate('ChildDevelopment')}>
-                <ButtonText>Track Development</ButtonText>
+                <ButtonText>{t('homeScreen.cdButton')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>

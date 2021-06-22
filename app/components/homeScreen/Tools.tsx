@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
@@ -15,23 +16,24 @@ const ContainerView = styled.View`
 `;
 const Tools = () => {
   const navigation = useNavigation();
+  const {t} = useTranslation();
   return (
     <>
       <ContainerView>
         <View>
-          <Text>Tools</Text>
+          <Text>{t('homeScreen.toolsHeader')}</Text>
           <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
             <Pressable style={styles.item}  onPress={() => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
               <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
-              <Text style={styles.title}>Vaccination</Text>
+              <Text style={styles.title}>{t('homeScreen.vc')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
               <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
-              <Text style={styles.title}>Health checkup</Text>
+              <Text style={styles.title}>{t('homeScreen.hc')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
               <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
-              <Text style={styles.title}>Child Growth</Text>
+              <Text style={styles.title}>{t('homeScreen.cg')}</Text>
             </Pressable>
           </ScrollView>
         </View>

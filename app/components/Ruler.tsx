@@ -2,7 +2,9 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
-  SafeAreaView, Text, View,
+  SafeAreaView,
+  Text,
+  View,
   ViewStyle
 } from 'react-native';
 
@@ -74,7 +76,7 @@ type Props = {
    * Step
    */
   step: number;
-  stepPreFix:number;
+  stepPreFix: number;
 
   /**
    * Steps color
@@ -193,9 +195,9 @@ class Ruler extends React.Component<Props, State> {
       //     text: `${Math.round(value / this.snapSegment) + minimum}`,
       //   });
 
-        this.setState({
-          value: Math.round(value / this.snapSegment) + minimum,
-        });
+      this.setState({
+        value: Math.round(value / this.snapSegment) + minimum,
+      });
       // }
     });
   }
@@ -205,7 +207,7 @@ class Ruler extends React.Component<Props, State> {
     this.state.scrollX.removeListener(this.scrollListener);
   }
 
-  renderRuler(data:number[]) {
+  renderRuler(data: number[]) {
     const {
       minimum,
       maximum,
@@ -220,8 +222,8 @@ class Ruler extends React.Component<Props, State> {
     } = this.props;
 
     // Create an array to make a ruler
-    
-// console.log(minimum,maximum,data);
+
+    // console.log(minimum,maximum,data);
     return (
       <View
         style={{
@@ -238,25 +240,28 @@ class Ruler extends React.Component<Props, State> {
         />
 
         {/* Ruler */}
-        {data.map((i,index) => {
+        {data.map((i, index) => {
           return (
             <>
-            <View key={i.toString()} style={{flexDirection:'column-reverse'}}>
-            <View              
-              style={{
-                backgroundColor: i % step === 0 ? stepColor : normalColor,
-                height: i % step === 0 ? stepHeight : normalHeight,
-                width: segmentWidth,
-                marginRight: segmentSpacing,
-              }}
-            />
-            {i % step === Number(0.0) ? (
-              <View style={{width:40,marginLeft:-25}}>
-                <Text style={{textAlign:'center',fontSize:11}}>{Number(stepPreFix*i).toFixed(2)}</Text>
-            </View>
-            ): null}
-
-            </View>
+              <View
+                key={index}
+                style={{flexDirection: 'column-reverse'}}>
+                <View
+                  style={{
+                    backgroundColor: i % step === 0 ? stepColor : normalColor,
+                    height: i % step === 0 ? stepHeight : normalHeight,
+                    width: segmentWidth,
+                    marginRight: segmentSpacing,
+                  }}
+                />
+                {i % step === Number(0.0) ? (
+                  <View style={{width: 40, marginLeft: -25}}>
+                    <Text style={{textAlign: 'center', fontSize: 11}}>
+                      {Number(stepPreFix * i).toFixed(2)}
+                    </Text>
+                  </View>
+                ) : null}
+              </View>
             </>
           );
         })}
@@ -310,7 +315,7 @@ class Ruler extends React.Component<Props, State> {
             transform: vertical ? [{rotate: '90deg'}] : undefined,
           },
         ]}>
-             {/* Number && Unit */}
+        {/* Number && Unit */}
         <View
           style={{
             width: indicatorWidth,
@@ -328,8 +333,8 @@ class Ruler extends React.Component<Props, State> {
               alignItems: 'flex-end',
               transform: vertical ? [{rotate: '-90deg'}] : undefined,
             }}> */}
-            {/* Number */}
-            {/* <TextInput
+          {/* Number */}
+          {/* <TextInput
               ref={this.textInputRef}
               style={{
                 fontSize: numberSize,
@@ -339,8 +344,8 @@ class Ruler extends React.Component<Props, State> {
               defaultValue={minimum.toString()}
             /> */}
 
-            {/* Unit */}
-            {/* <Text
+          {/* Unit */}
+          {/* <Text
               style={{
                 marginBottom: unitBottom,
                 fontSize: unitSize,
@@ -352,22 +357,27 @@ class Ruler extends React.Component<Props, State> {
           {/* </View> */}
 
           {/* Indicator */}
-          <View style={{flexDirection:'row'}}>
-
-          <View
-            style={{
-              height: indicatorHeight,
-              // transform: [{ rotate: '180deg' }],
-              backgroundColor: indicatorColor,
-              width: segmentWidth,
-            }}
-          >
-            <View style={{marginTop:0,marginLeft:-14,borderLeftWidth:15,borderRightWidth:15,borderTopWidth:20,borderLeftColor:'transparent',borderRightColor:'transparent',borderTopColor:indicatorColor}}>
-                
+          <View style={{flexDirection: 'row'}}>
+            <View
+              style={{
+                height: indicatorHeight,
+                // transform: [{ rotate: '180deg' }],
+                backgroundColor: indicatorColor,
+                width: segmentWidth,
+              }}>
+              <View
+                style={{
+                  marginTop: 0,
+                  marginLeft: -14,
+                  borderLeftWidth: 15,
+                  borderRightWidth: 15,
+                  borderTopWidth: 20,
+                  borderLeftColor: 'transparent',
+                  borderRightColor: 'transparent',
+                  borderTopColor: indicatorColor,
+                }}></View>
             </View>
-            
-            </View>
-            </View>
+          </View>
         </View>
         <Animated.ScrollView
           ref={this.scrollViewRef}
@@ -391,7 +401,7 @@ class Ruler extends React.Component<Props, State> {
           )}
           onMomentumScrollEnd={() => onChangeValue(this.state.value)}>
           {this.renderRuler(data)}
-        </Animated.ScrollView>       
+        </Animated.ScrollView>
       </SafeAreaView>
     );
   }
@@ -411,7 +421,7 @@ Ruler.defaultProps = {
   indicatorHeight: 80,
   indicatorBottom: 20,
   step: 10,
-  stepPreFix:0,
+  stepPreFix: 0,
   stepColor: '#333333',
   stepHeight: 40,
   normalColor: '#999999',

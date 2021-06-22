@@ -1,5 +1,6 @@
 import Icon from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
+import { Heading2w } from '@styles/typography';
 import React, { useState } from 'react';
 import { Button, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BurgerIcon from './shared/BurgerIcon';
@@ -56,16 +57,16 @@ const TabScreenHeader = (props:any) => {
           backgroundColor: headerColor,
           maxHeight: headerHeight,
         }}>
-        <BurgerIcon/>
-        <View style={{ flex: 4,padding:10}} >
-          <Text style={{color:textColor}}> {props.title}</Text>
+        <BurgerIcon color={textColor}/>
+        <View style={{ flex: 9,padding:10,alignContent:'flex-start'}} >
+          <Heading2w style={{color:textColor}}> {props.title}</Heading2w>
         </View>
         <View style={{ flex: 1 ,padding:10,alignItems:'flex-end',}} >
           <Pressable onPress={() => {
             // console.log(modalVisible);
             if (modalVisible) { setModalVisible(false) }
             else { setModalVisible(true) }
-          }}><Icon name="ic_baby" size={25} color="#FFF" /></Pressable>
+          }}><Icon name="ic_baby" size={25} color={textColor} /></Pressable>
         </View>
       </View>
     </>
