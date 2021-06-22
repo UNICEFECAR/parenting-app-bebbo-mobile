@@ -13,6 +13,7 @@ export type RootStackParamList = {
   EditParentDetails:undefined;
   AddNewChildgrowth:undefined;
   AddNewChildWeight:undefined;
+  AddNewChildHeight:undefined;
   AllChildgrowthMeasures:undefined;
 };
 

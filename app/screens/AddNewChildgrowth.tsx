@@ -60,8 +60,6 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             flex: 1,
             backgroundColor: headerColor,
             maxHeight: 50,
-            borderBottomColor: 'gray',
-            borderBottomWidth: 2,
           }}>
           <View
             style={{
@@ -147,7 +145,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               <Heading4Regular>{t('growthScreen.kgText')}</Heading4Regular>
             </Pressable>
             <Pressable
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate('AddNewChildHeight');
+              }}
               style={{
                 backgroundColor: '#FFF',
                 padding: 20,
