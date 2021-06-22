@@ -81,6 +81,9 @@ const en = {
             feedbackTxt:"Feedback",
             rateTxt:"Love the App? Rate it",
         },
+        notiScreen:{
+            headerTitle:"Notifications",
+        },
         settingScreen:{
             headerTitle:"Settings",
             notiHeaderText:'Notifications',
