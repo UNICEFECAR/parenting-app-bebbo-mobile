@@ -148,6 +148,9 @@ const en = {
             enterDoctorRemarkText:"Doctor Remark or Comment",
             enterDoctorRemarkTextPlaceHolder:"Enter your Doctor's Remark or Comment",
             saveMeasures:"Save Data",
+            saveMeasuresDetails:"Save Details",
+            addWeight:"Add Weight",
+            addHeight:"Add Height",
             newGrowthBottomText:"Measuring a child at home is less accurate than measuring at a doctor's and can affect the accuracy of the growth chart."
         }
 
