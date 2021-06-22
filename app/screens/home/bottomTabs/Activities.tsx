@@ -112,6 +112,12 @@ const Activities = ({navigation}: Props) => {
   const onPress = () => {
     navigation.navigate('ActivityDetails');
   };
+  const buttonData =[
+    {iconName:'ic_act_emotional',displayName:'Emotional'},
+    {iconName:'ic_act_language',displayName:'Language'},
+    {iconName:'ic_act_cognitive',displayName:'Cognitive'},
+    {iconName:'ic_act_movement',displayName:'Movement'}
+  ]
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
     <Pressable onPress={onPress} key={index}>
       <View style={styles.item}>
@@ -158,6 +164,7 @@ const Activities = ({navigation}: Props) => {
             <ActivitiesCategories
               borderColor={headerColor}
               backgroundColor={backgroundColor}
+              buttonData={buttonData}
             />
             <View style={{padding: 10, height: 400, marginBottom: 30}}>
               <Heading3>{t('actScreen.sugacttxt')}</Heading3>
