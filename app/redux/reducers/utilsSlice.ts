@@ -57,12 +57,14 @@ export const utilsSlice = createSlice({
       action: PayloadAction<any>,
     ) => {
       console.log("taxonomy data---",state);
-      console.log(action.payload);
+      console.log(action.payload[0],"--",typeof action.payload);
+      (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
+      console.log(action.payload[0],"-- after",typeof action.payload);
       if(action.payload[0])
       {
-        state.taxonomy.allTaxonomyData = action.payload[0].allData;
+        state.taxonomy.allTaxonomyData = (typeof action.payload[0].allData == 'object') ? (JSON.stringify(action.payload[0].allData)) : (action.payload[0].allData);
         state.taxonomy.languageCode = action.payload[0].langCode;
-        state.taxonomy.standardDevData = action.payload[0].standardDevData;
+        state.taxonomy.standardDevData = (typeof action.payload[0].standardDevData == 'object') ? (JSON.stringify(action.payload[0].standardDevData)) : (action.payload[0].standardDevData);
       }
     },
     setAllTermsData: (
