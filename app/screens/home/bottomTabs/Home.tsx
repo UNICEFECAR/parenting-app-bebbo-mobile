@@ -5,12 +5,14 @@ import ChildMilestones from '@components/homeScreen/ChildMilestones';
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Container, Header3Text } from '@styles/style';
 import React, { useContext } from 'react';
-import { Button, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -19,6 +21,7 @@ type Props = {
 };
 
 const Home = () => {
+  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   return (
@@ -26,14 +29,13 @@ const Home = () => {
      <SafeAreaView style={{flex:1}}>
      <FocusAwareStatusBar
         animated={true}
-        // barStyle="dark-content"
         backgroundColor={headerColor}
        />
       <View style={{
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title="ParentBuddy" headerColor={headerColor} textColor='#FFF'/>
+        <TabScreenHeader title={t('homeScreen.headerTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <ChildInfo/>
           <DailyReads/>
@@ -42,13 +44,16 @@ const Home = () => {
           <AdviceAndArticles/>
           <Tools/>
           <View style={{padding:10}}>
-            <Text>How is your Parenting Experience</Text>
-            <Button
-              title="Take a Survey"
-              onPress={() => { }} />
+            <Text>{t('homeScreen.expText')}</Text>
+            <ButtonContainer>
+              <ButtonPrimary
+                onPress={() => {}}>
+                <ButtonText>{t('homeScreen.expBtnText')}</ButtonText>
+              </ButtonPrimary>
+            </ButtonContainer>
           </View>
           <Container style={{padding:10}}>
-            <Header3Text>A loving relationship with the parent is the foundation of every baby's healthy growth and development</Header3Text>
+            <Header3Text>{"A loving relationship with the parent is the foundation of every baby's healthy growth and development"}</Header3Text>
           </Container>
         </ScrollView>
       </View>

@@ -5,6 +5,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
@@ -18,6 +19,7 @@ const ContainerView = styled.View`
 `;
 const PlayingTogether = () => {
   const navigation = useNavigation();
+  const {t} = useTranslation();
   return (
     <>
       <ContainerView>
@@ -37,11 +39,11 @@ const PlayingTogether = () => {
             </View>
             <View>
               <View>
-                <Text>Playing together</Text>
+                <Text>{t('homeScreen.ptHeader')}</Text>
                 <ButtonContainer>
                   <ButtonPrimary
                     onPress={() => navigation.navigate('Activities')}>
-                    <ButtonText>Start Playing</ButtonText>
+                    <ButtonText>{t('homeScreen.ptButton')}</ButtonText>
                   </ButtonPrimary>
                 </ButtonContainer>
               </View>
