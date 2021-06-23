@@ -1,26 +1,42 @@
 import Icon from '@components/shared/Icon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Activities from '@screens/home/bottomTabs/Activities';
 import Articles from '@screens/home/bottomTabs/Articles';
+import ChildDevelopment from '@screens/home/bottomTabs/ChildDevelopment';
 import Home from '@screens/home/bottomTabs/Home';
-import SupportChat from '@screens/home/bottomTabs/SupportChat';
+import Childgrowth from '@screens/home/Childgrowth';
+import HealthCheckups from '@screens/home/HealthCheckups';
+import Vaccination from '@screens/home/Vaccination';
 import React, { useContext, useState } from 'react';
 import {
   Modal,
   Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
+const secondStack = createStackNavigator<any>();
+const secondaryRoot=()=> {
+    return (
+      <secondStack.Navigator>
+        <secondStack.Screen name="ChildgrowthTab" component={Childgrowth} options={{headerShown: false}} />
+        <secondStack.Screen name="VaccinationTab" component={Vaccination} options={{headerShown: false}}/>
+        <secondStack.Screen name="HealthCheckupsTab" component={HealthCheckups} options={{headerShown: false}}/>
+      </secondStack.Navigator>
+    );
+  }
+  
 export default () => {
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.SECONDARY_COLOR;
+  const navigation = useNavigation();
   return (
     <>
       <Modal
@@ -43,29 +59,29 @@ export default () => {
             style={styles.modalView}
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
-            <View style={styles.item}>
+            {/* <Pressable style={styles.item}>
               <Icon name="ic_milestone" size={20} color="#000" />
               <Text style={styles.modalText}>Add New Development Milestone</Text>
-            </View>
-            <View style={styles.item}>
+            </Pressable> */}
+            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
               <Icon name="ic_vaccination" size={20} color="#000" />
               <Text style={styles.modalText}>Add Vaccination Details</Text>
-            </View>
-            <View style={styles.item}>
+            </Pressable>
+            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
               <Icon name="ic_doctor_chk_up" size={20} color="#000" />
               <Text style={styles.modalText}>Add Health Checkup Details</Text>
-            </View>
-            <View style={styles.item}>
+            </Pressable>
+            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
               <Icon name="ic_growth" size={20} color="#000" />
               <Text style={styles.modalText}>Add New Measurement Details</Text>
-            </View>
+            </Pressable>
           </TouchableOpacity>
         </Pressable>
       </Modal>
       <DashboardBottomTab.Navigator tabBarOptions={{
-        activeTintColor: '#000',
+        activeTintColor: headerColor,
         inactiveTintColor:'#000',
-        activeBackgroundColor:headerColor,
+        activeBackgroundColor:'#FFF',
         inactiveBackgroundColor:'#FFF'
 
       }}>
@@ -84,20 +100,20 @@ export default () => {
             ),
           }} />
         <DashboardBottomTab.Screen
-          component={SupportChat}
-          name="Add"
+          component={secondaryRoot}
+          name="Tools"
           options={{
-            tabBarLabel: '',
+            tabBarLabel: 'Tools',
             tabBarIcon: ({ color, size }) => (
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 5, // space from top
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Icon name="ic_plus" color={color} size={35} style={{alignContent: 'center',}} />
-              </View>
+              // <View
+              //   style={{
+              //     position: 'absolute',
+              //     top: 5, // space from top
+              //     justifyContent: 'center',
+              //     alignItems: 'center',
+              //   }}>  {/* </View> */}
+                <Icon name="ic_sb_tools" color={color} size={size} style={{alignContent: 'center',}} />
+            
 
             ),
           }}
@@ -116,13 +132,20 @@ export default () => {
               <Icon name="ic_articles" color={color} size={size} />
             ),
           }} />
-        <DashboardBottomTab.Screen name="SupportChat" component={SupportChat}
+        <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment}
+          options={{
+            tabBarLabel: 'Track',
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="ic_milestone" color={color} size={size} />
+            ),
+          }} />
+        {/* <DashboardBottomTab.Screen name="SupportChat" component={SupportChat}
           options={{
             tabBarLabel: 'Chat',
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_chat" color={color} size={size} />
             ),
-          }} />
+          }} /> */}
       </DashboardBottomTab.Navigator>
     </>
   );
