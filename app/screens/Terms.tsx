@@ -35,7 +35,8 @@ type Props = {
 const Terms = ({navigation}: Props) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
-  const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
+  const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
+  const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
   const {t} = useTranslation();
   const goToPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
@@ -142,6 +143,7 @@ const Terms = ({navigation}: Props) => {
         </ScrollView>
         <ButtonRow>
           <ButtonPrimary
+            disabled={isButtonDisabled}
             onPress={() => {
               acceptTerms();
               // navigation.navigate('LoadingScreen')

@@ -14,11 +14,17 @@ flex-direction:row;
 `
 
 export const OuterIconLeft = styled.View`
-margin-right:10px;
+margin-right:8px;
 `
 
 export const OuterIconRight = styled.View`
-margin-left:10px;
+margin-left:8px;
+`
+
+export const TickView = styled.View`
+background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+padding:4px;
+border-radius:100;
 `
 
 

@@ -2,7 +2,9 @@ import {
   ButtonLinkText,
   ButtonPrimary,
   ButtonRow,
-  ButtonText
+  ButtonText,
+  ButtonTextLinew,
+  ButtonLinkView
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
@@ -25,7 +27,8 @@ import { Pressable, Text } from 'react-native';
 import {
   Heading1Centerw,
   Heading3Centerw,
-  ShiftFromBottom20
+  ShiftFromBottom20,
+  ShiftFromTop30
 } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -86,9 +89,11 @@ const ChildSetupList = ({navigation}: Props) => {
             <Heading1Centerw>
             {t('childSetupList.header')}
             </Heading1Centerw>
+            <ShiftFromTop30>
             <Heading3Centerw>
             {t('childSetupList.subHeader')}
             </Heading3Centerw>
+            </ShiftFromTop30>
           </ChildCenterView>
         </OnboardingHeading>
         <ChildContentArea>
@@ -119,16 +124,16 @@ const ChildSetupList = ({navigation}: Props) => {
 
         <ButtonRow>
           <ShiftFromBottom20>
-            <Pressable
-              style={{flexDirection: 'row', justifyContent: 'center'}}
+            <ButtonLinkView
+              
               onPress={() => navigation.navigate('AddSiblingDataScreen')}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
                 </OuterIconLeft>
-                <ButtonLinkText> {t('childSetupList.addSiblingBtn')}</ButtonLinkText>
+                <ButtonTextLinew> {t('childSetupList.addSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
-            </Pressable>
+            </ButtonLinkView>
           </ShiftFromBottom20>
 
           <ButtonPrimary
