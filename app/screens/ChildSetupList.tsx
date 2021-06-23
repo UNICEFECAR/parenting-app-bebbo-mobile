@@ -21,6 +21,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -47,7 +48,12 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  getAllChildren(dispatch);
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+    },[])
+  );
+
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
   );

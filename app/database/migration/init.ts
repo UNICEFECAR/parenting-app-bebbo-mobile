@@ -1,5 +1,5 @@
-import { userRealmCommon } from './../dbquery/userRealmCommon';
-import { ChildEntity, ChildEntitySchema } from './../schema/ChildDataSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
+import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 
 export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
     //console.log(oldRealm,"------",newRealm);
@@ -52,18 +52,26 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
       relationship:''
      };
   }
-  // const getMeasurementData = (oldmeasure: { weight: any; length: any; measurementPlace: any; measurementDate: any; isChildMeasured: any; didChildGetVaccines: any; vaccineIds: string[] | undefined; doctorComment: string | undefined; }): MeasurementEntity => {
-  //   const id = (Math.floor(1000 + Math.random() * 9000)).toString();
-  //   return {
-  //       id: id,
-  //       weight: oldmeasure.weight,
-  //       height: oldmeasure.length,
-  //       measurementPlace: oldmeasure.measurementPlace,
-  //       measurementDate: oldmeasure.measurementDate,
-  //       isChildMeasured: oldmeasure.isChildMeasured,
-  //       didChildGetVaccines: oldmeasure.didChildGetVaccines,
-  //       vaccineIds: oldmeasure.vaccineIds ? oldmeasure.vaccineIds : [],
-  //       doctorComment: oldmeasure.doctorComment ? oldmeasure.doctorComment : '',
-
-  //   };
-  // }
+  export const migrateConfigSettings = async (oldRealm:any,newRealm: any) => {
+    //console.log(oldRealm,"------",newRealm);
+    const oldObjects = oldRealm.objects('VariableEntity').filtered("key =='currentActiveChildId' && key=='userName' && key=='userParentalRole'");
+    const newObjects = newRealm.objects(ConfigSettingsSchema.name);
+    console.log(oldObjects.length,"------",newObjects);
+    let oldChildrenData = oldObjects;
+    if(oldChildrenData?.length>0){
+    oldChildrenData.map((item: any) => {
+    let createresult = newRealm.create(ConfigSettingsSchema.name, getVariableEntity(item));
+    console.log(createresult,".....createresult...");
+    });
+    }
+   
+  }
+  const getVariableEntity = (variable:ConfigSettingsEntity) => {
+    console.log(variable,"..variable..");
+    return {
+      key: variable.key,
+      value: JSON.stringify(variable.value),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+     };
+  } 
