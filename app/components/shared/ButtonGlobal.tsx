@@ -29,6 +29,14 @@ export const ButtonTextLine = styled(ButtonText)`
 export const ButtonTextSmLine = styled(ButtonTextLine)`
   font-size:12px;
 `;
+
+export const ButtonTextMdLine = styled(ButtonTextLine)`
+  font-size:14px;
+  `;
+export const ButtonTextMdLineL = styled(ButtonTextMdLine)`
+  text-align:left;
+`;
+
 export const ButtonTextLinew = styled(ButtonTextLine)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
@@ -51,6 +59,26 @@ export const ButtonRow = styled.View`
   padding:15px 0;
   margin-top:10px;
   width:100%;
+
+`;
+
+export const ButtonLinkRow = styled(ButtonRow)`
+  
+  flex-direction:row;
+  margin:0;
+  padding: 10px;
+ margin-bottom:15px;
+`;
+
+export const ButtonCol = styled.View`
+ 
+  align-items:center;
+  justify-content:flex-start;
+  flex:1;
+  padding: 0 15px;
+  
+  flex-direction:column;
+  
 `;
 
 export const ButtonContainer = styled.View`
@@ -63,9 +91,9 @@ padding:5px 15px;
 
 
 
-export const ButtonLinkView = styled.Pressable`
+export const ButtonLinkPress = styled.Pressable`
 flex-direction:row;
-justify-content:center;
+align-items:center;
 
 `
 
