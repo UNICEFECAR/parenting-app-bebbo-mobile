@@ -7,8 +7,8 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { destinationFolder } from '@types/apiConstants';
-import React, { useContext, useEffect } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Image, KeyboardAvoidingView,
   Platform, Pressable,
@@ -81,13 +81,13 @@ const Articles = ({navigation}: Props) => {
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_shareapp" size={20} color="#000" />
-                <Text>Share</Text>
+                <Text>{t('articleScreen.shareText')}</Text>
               </Pressable>
             </View>
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_favorites" size={20} color="#000" />
-                <Text>Add to favourites</Text>
+                <Text>{t('articleScreen.addtoFavText')}</Text>
               </Pressable>
             </View>
           </View>
@@ -101,7 +101,7 @@ const Articles = ({navigation}: Props) => {
   };
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
-
+  const {t} = useTranslation();
   //code for getting article dynamic data starts here.
   const currentChildData = {
     "gender":"40",
@@ -152,7 +152,7 @@ const Articles = ({navigation}: Props) => {
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <ScrollView nestedScrollEnabled={true}>
           <TabScreenHeader
-            title="Articles"
+            title={t('articleScreen.headerTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -171,7 +171,8 @@ const Articles = ({navigation}: Props) => {
                 clearButtonMode="always"
                 value={''}
                 // onChangeText={queryText => handleSearch(queryText)}
-                placeholder="Search for Keywords"
+                // placeholder="Search for Keywords"
+                placeholder={t('articleScreen.searchPlaceHolder')}
                 style={{
                   backgroundColor: '#fff',
                   width: '100%',
@@ -185,16 +186,7 @@ const Articles = ({navigation}: Props) => {
               {articleData != '' ? articleData.map((item, index) => {
                 return renderArticleItem(item, index);
               }) : null}
-              {/* {DATA.map((item, index) => {
-                return renderArticleItem(item, index);
-              })} */}
-           
-            {/* <FlatList
-              data={DATA}
-              renderItem={({ item, index }) => renderArticleItem(item, index)}
-              keyExtractor={item => item.id}
               
-            /> */}
           </View>
           </ScrollView>
         </KeyboardAvoidingView>

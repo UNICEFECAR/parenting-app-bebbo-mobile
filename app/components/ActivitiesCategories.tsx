@@ -3,28 +3,29 @@ import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
 
 const ActivitiesCategories = (props:any) => {
+    const buttonData = props.buttonData;
     return (
         <>
             <View style={{ padding: 10,backgroundColor:props.backgroundColor, minHeight: 120,borderBottomColor: props.borderColor,borderBottomWidth:1,paddingHorizontal:70}}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
 
                     <View style={styles.item} >
-                        <Icon style={styles.iconStyle} name="ic_act_emotional" size={20} color="#000" />
-                        <Text style={styles.title}>Emotional</Text>
+                        <Icon style={styles.iconStyle} name={buttonData[0].iconName} size={20} color="#000" />
+                        <Text style={styles.title}>{buttonData[0].displayName}</Text>
                     </View>
                     <View style={styles.item} >
-                        <Icon style={styles.iconStyle} name="ic_act_language" size={20} color="#000" />
-                        <Text style={styles.title}>Language</Text>
+                        <Icon style={styles.iconStyle} name={buttonData[1].iconName} size={20} color="#000" />
+                        <Text style={styles.title}>{buttonData[1].displayName}</Text>
                     </View>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                     <View style={styles.item}>
-                        <Icon style={styles.iconStyle} name="ic_act_cognitive" size={20} color="#000" />
-                        <Text style={styles.title}>Cognitive</Text>
+                        <Icon style={styles.iconStyle} name={buttonData[2].iconName} size={20} color="#000" />
+                        <Text style={styles.title}>{buttonData[2].displayName}</Text>
                     </View>
                     <View style={styles.item}>
-                        <Icon style={styles.iconStyle} name="ic_act_movement" size={20} color="#000" />
-                        <Text style={styles.title}>Movement</Text>
+                        <Icon style={styles.iconStyle} name={buttonData[3].iconName} size={20} color="#000" />
+                        <Text style={styles.title}>{buttonData[3].displayName}</Text>
                     </View>
                 </View>
             </View>
