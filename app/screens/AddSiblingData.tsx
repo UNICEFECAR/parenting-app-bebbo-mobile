@@ -65,7 +65,7 @@ const AddSiblingData = ({navigation}: Props) => {
                 //   routes: [{name: 'HomeDrawerNavigator'}],
                 // })
                 let insertData:any=getNewChild(birthDate,plannedTermDate,isPremature);
-                console.log(insertData,"..insertData..");
+              //  console.log(insertData,"..insertData..");
                 let childSet:Array<any>=[];
                 childSet.push(insertData);
                 addChild(1,childSet,dispatch,navigation);  

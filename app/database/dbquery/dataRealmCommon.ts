@@ -43,7 +43,7 @@ class DataRealmCommon {
                 // Open realm file
                 Realm.open(dataRealmConfig)
                     .then(realm => {
-                       console.log("open realm data");
+                       //console.log("open realm data");
                         this.realm = realm;
                         resolve(realm);
                     })
@@ -154,14 +154,14 @@ class DataRealmCommon {
                     // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
                     // console.log(obj2,"--obj2");
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                    console.log("filtered obj--",obj)
+                  //  console.log("filtered obj--",obj)
                     resolve(obj);
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-                console.log(e.message,"--e catch");
+               // console.log(e.message,"--e catch");
                 reject();
             }
         });

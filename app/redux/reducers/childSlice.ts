@@ -24,8 +24,8 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("child data---",state);
-      console.log("child data length---",action.payload.length);
+    //  console.log("child data---",state);
+     // console.log("child data length---",action.payload.length);
       (typeof action.payload == 'object') ? state.childDataSet.allChild = JSON.stringify(action.payload) : state.childDataSet.allChild = action.payload;
      
     },
@@ -34,13 +34,13 @@ export const childSlice = createSlice({
       action: PayloadAction<any>,
     ) => {
 
-       console.log("before child data---",state.childDataSet.allChild);
-       console.log(typeof action.payload);
+     //  console.log("before child data---",state.childDataSet.allChild);
+      // console.log(typeof action.payload);
       // console.log(typeof state.childDataSet.allChild);
       state.childDataSet.allChild != '' ? JSON.parse(state.childDataSet.allChild).splice(action.payload, 1) : state.childDataSet.allChild;
-      console.log(state.childDataSet.allChild,"before--------");
+     // console.log(state.childDataSet.allChild,"before--------");
       (typeof state.childDataSet.allChild == 'object') ? state.childDataSet.allChild = JSON.stringify(state.childDataSet.allChild) : state.childDataSet.allChild;
-      console.log(state.childDataSet.allChild,"after--------");
+    //  console.log(state.childDataSet.allChild,"after--------");
     }
   },
   

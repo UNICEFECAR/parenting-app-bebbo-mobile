@@ -88,7 +88,7 @@ const AddNewChildgrowth = ({navigation}: Props) => {
                 style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
                 <Pressable
                   onPress={() => {
-                    console.log(item);
+                   // console.log(item);
                   }}>
                   <Heading3>{item}</Heading3>
                 </Pressable>

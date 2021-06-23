@@ -43,7 +43,39 @@ export type ChildGender = 'boy' | 'girl' | '';
 //   },
 // };
 
-
+export const Measurement: ObjectSchema = {
+  name: "Measurement",
+  embedded: true,
+  properties: {
+    measurementPlace: { type: 'string' },
+    length: { type: 'string' },
+    weight: { type: 'string' },
+    measurementDate: { type: 'date' },
+    isChildMeasured: { type: 'boolean' },
+    didChildGetVaccines: { type: 'boolean' }
+  }
+}
+export const reminders: ObjectSchema = {
+  name: "reminders",
+  embedded: true,
+  properties: {
+    date: { type: 'date' },
+    time: { type: 'date' },
+    uuid: { type: 'string' }
+  }
+}
+// export const checkedMilestones: ObjectSchema = {
+//   name: "checkedMilestones",
+//   embedded: true,
+//   properties: {
+//     measurementPlace: { type: 'string' },
+//     length: { type: 'string' },
+//     weight: { type: 'string' },
+//     measurementDate: { type: 'date' },
+//     isChildMeasured: { type: 'boolean' },
+//     didChildGetVaccines: { type: 'boolean' }
+//   }
+// }
 export type ChildEntity = {
   uuid: string;
   name: string;
@@ -53,12 +85,12 @@ export type ChildEntity = {
   updatedAt: Date;
   plannedTermDate?: Date | undefined;
   birthDate?: Date | undefined;
-  relationship:string;
+  relationship?:string;
   babyRating?: number;
-  // measures: string;
+  measures?: string;
   comment?: string;
-  // checkedMilestones?: number[];
-  // reminders?: string;
+  checkedMilestones?: number[];
+  reminders?: string;
   measurementPlace: string;
   isPremature?: string;
 };
@@ -80,16 +112,15 @@ export const ChildEntitySchema: ObjectSchema = {
       createdAt: { type: 'date' },
       updatedAt: { type: 'date' },
       plannedTermDate: { type: 'date', optional: true },
-      relationship:{ type:'string'},
+      relationship:{ type:'string', optional: true},
       birthDate: { type: 'date'},
       babyRating: { type: 'int', optional: true },
-      // measures: { type: 'string', optional: true },
+      measures: { type: 'string', optional: true },
       comment: { type: 'string', optional: true },
-      // checkedMilestones: { type: 'int[]', optional: true },
-      // reminders: {type: 'string', optional: true},
+      checkedMilestones: { type: 'int[]', optional: true },
+      reminders: {type: 'string', optional: true},
       measurementPlace: {type: 'string', optional: true},
-      isPremature: {type: 'string', optional: true},
-  
+      isPremature: {type: 'string', optional: true}
   }
 };
 

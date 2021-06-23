@@ -12,6 +12,7 @@ import {
   ChildListingArea,
   ChildListingBox,
   ChildListTitle,
+  CustomScrollView,
   TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
@@ -21,7 +22,7 @@ import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text } from 'react-native';
+import { Alert, Pressable, ScrollView, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { deleteChild, getAllChildren } from '../services/childCRUD';
@@ -43,7 +44,7 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  //getAllChildren(dispatch);
+  getAllChildren(dispatch);
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
   );
@@ -64,6 +65,22 @@ const ChildSetupList = ({ navigation }: Props) => {
    const deleteRecord = (index:number,dispatch:any,uuid: string) => {
     console.log("..deleted..");
     deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
+    // return new Promise((resolve, reject) => {
+    //   Alert.alert('Delete Child', "Do you want to delete child?",
+    //     [
+    //       {
+    //         text: "Cancel",
+    //         onPress: () => reject("error"),
+    //         style: "cancel"
+    //       },
+    //       { text: "Delete", onPress: () => {
+    //         deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject);
+    //       }
+    //       }
+    //     ]
+    //   );
+    // });
+   
   }
   const editRecord = (uuid: string) => {
   
@@ -122,11 +139,13 @@ const ChildSetupList = ({ navigation }: Props) => {
           </ChildCenterView>
         </OnboardingHeading>
         <ChildContentArea>
+         {/* <ScrollView> */}
           <ChildListingArea>
+          <CustomScrollView>
             {
            childList?.length > 0 ? (
               childList.map((item: ChildEntity, index: number) => {
-                console.log(childList,"..childList123..");
+               // console.log(childList,"..childList123..");
                 return renderDailyReadItem(dispatch,item,index);
               })
             ) :
@@ -135,8 +154,9 @@ const ChildSetupList = ({ navigation }: Props) => {
               <Text>No Data</Text></ChildColArea1>
             </ChildListingBox>
             }
-
+</CustomScrollView>
           </ChildListingArea>
+          {/* </ScrollView> */}
         </ChildContentArea>
 
         <ButtonRow>

@@ -22,8 +22,8 @@ export const articlesSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("articles data---",state);
-      console.log(typeof action.payload);
+     // console.log("articles data---",state);
+      //console.log(typeof action.payload);
       // console.log(action.payload.map(user => user));
       (typeof action.payload == 'object') ? state.article.articles = JSON.stringify(action.payload) : state.article.articles = action.payload;
       // if(action.payload)

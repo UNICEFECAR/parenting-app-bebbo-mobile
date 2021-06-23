@@ -1,3 +1,5 @@
+
+import { userRealmCommon } from './../database/dbquery/userRealmCommon';
 import RNFS from 'react-native-fs';
 import { appConfig } from './../types/apiConstants';
 
@@ -13,6 +15,7 @@ import { Alert } from "react-native";
 import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
 import downloadImages from '../downloadImages/ImageStorage';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -92,7 +95,16 @@ export const onSponsorApiSuccess = async (response: any,dispatch: any,navigation
   }
 }
 export const onOnLoadApiSuccess = async (response: any,dispatch: any,navigation: any) => {
-  navigation.navigate('ChildSetup');
+ // navigation.navigate('ChildSetup');
+  console.log("111db length--",allJsonData?.length);
+      if(allJsonData?.length > 0)
+      {
+      
+        navigation.navigate('ChildSetupList');
+      }
+      else{
+        navigation.navigate('ChildSetup');
+      }
 }
 export const onChildSetuppiSuccess = async (response: any,dispatch: any,navigation: any) => {
   navigation.navigate('HomeDrawerNavigator');

@@ -45,8 +45,8 @@ export const localizationSlice = createSlice({
     //   // state.value += 1;
     // },
     onLocalizationSelect: (state, action: PayloadAction<any>) => {
-      console.log(state);
-      console.log(action.payload);
+     // console.log(state);
+     // console.log(action.payload);
       // state.name = action.payload.name;
       state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
@@ -57,9 +57,9 @@ export const localizationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("state data---",state);
-      console.log("sponsor data---",state.sponsors);
-      console.log(action.payload);
+      // console.log("state data---",state);
+      // console.log("sponsor data---",state.sponsors);
+      // console.log(action.payload);
       let sponsors:any=[];
       action.payload.map((value:any)=>{
       sponsors.push(value.args)
@@ -71,8 +71,8 @@ export const localizationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("child data---",state);
-      console.log(action.payload);
+      // console.log("child data---",state);
+      // console.log(action.payload);
       // state.name = action.payload.name;
       // state.countryId = action.payload.countryId;
     },

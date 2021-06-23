@@ -30,7 +30,7 @@ const prevPage  = route.params.prevPage;
     const netInfo=useNetInfo();
     useFocusEffect(
       React.useCallback(() => {
-        console.log(netInfo,"..netinfo useFocusEffect..",prevPage);
+       // console.log(netInfo,"..netinfo useFocusEffect..",prevPage);
         // if(netInfo.isConnected){
           callSagaApi();
         // }

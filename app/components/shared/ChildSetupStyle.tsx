@@ -10,7 +10,9 @@ export const FormDateContainer = styled.View`
 width:100%;margin-top:10px;
 
 `
-
+export const CustomScrollView = styled.ScrollView`
+flex:1;
+`
 export const FormInputBox = styled.View`
 
 flex-direction:row;
