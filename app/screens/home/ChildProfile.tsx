@@ -1,11 +1,11 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import { ButtonCol, ButtonLinkText, ButtonLinkPress, ButtonLinkRow, ButtonText, ButtonTextMdLineL,ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow, TickView } from '@components/shared/Icon';
-import { ProfileActionView,ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView } from '@components/shared/ProfileListingStyle';
+import { ProfileActionView,ParentListView, ProfileLinkCol,ProfileLinkRow, ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView, ParentRowView, ParentColView, ProfileContentView, ParentSection, ParentLabel, ParentData } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
+import { Heading1, Heading1Regular, Heading2w, Heading3, Heading4, Heading4Regular, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import {
   Pressable, SafeAreaView, ScrollView, Text, View
@@ -107,9 +107,7 @@ const ChildProfile = ({navigation}: Props) => {
       </ProfileListViewSelected> */}
 
       <ProfileListDefault
-        style={{
-          backgroundColor: secopndaryTintColor,
-        }}>
+        >
           <ProfileListInner>
         <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
         <ProfileTextView
@@ -159,17 +157,18 @@ const ChildProfile = ({navigation}: Props) => {
               flex: 1,
               backgroundColor: headerColor,
               maxHeight: 50,
+              alignItems:'center',
             }}>
             <View style={{flex: 1}}>
               <BurgerIcon />
             </View>
             <View style={{flex: 3}}>
-              <Text> {'Child and ParentProfile'}</Text>
+              <Heading2w> {'Child and ParentProfile'}</Heading2w>
             </View>
           </View>
           <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <View style={{margin: 15}}>
-            <View style={{flexDirection: 'column'}}>
+            
               <ProfileListActiveChild
                 style={{
                   backgroundColor: secopndaryColor,
@@ -206,12 +205,51 @@ const ChildProfile = ({navigation}: Props) => {
                   </ProfileActionView>
 
               </ProfileListActiveChild>
-              <ScrollView style={{height: 350, marginTop: 15}} nestedScrollEnabled = {true}>
+              <ScrollView style={{height: 350, marginTop: 15,backgroundColor:secopndaryTintColor}} nestedScrollEnabled = {true}>
                 {DATA.map((item, index) => {
                   return renderChildItem(item, index);
                 })}
               </ScrollView>
-              <View
+              <ProfileLinkRow style={{
+                  backgroundColor: secopndaryTintColor,
+                }}>
+                <ProfileLinkCol>
+              <ButtonLinkPress
+                  
+                  onPress={() => {
+                    navigation.navigate('EditChildProfile');
+                  }}>
+                    <OuterIconRow><OuterIconLeft><Icon
+                    name="ic_plus"
+                    size={24}
+                    color="#000"
+                    
+                  /></OuterIconLeft></OuterIconRow>
+                  
+                  <ButtonTextMdLineL>Add sister or brother</ButtonTextMdLineL>
+                </ButtonLinkPress>
+                </ProfileLinkCol>
+
+                <ProfileLinkCol>
+              <ButtonLinkPress
+                  
+                  onPress={() => {
+                    navigation.navigate('AddExpectingChildProfile');
+                  }}>
+                     <OuterIconRow><OuterIconLeft><Icon
+                    name="ic_plus"
+                    size={24}
+                    color="#000"
+                    
+                  /></OuterIconLeft></OuterIconRow>
+                  
+                  <ButtonTextMdLineL>Add Expecting Child</ButtonTextMdLineL>
+                </ButtonLinkPress>
+                </ProfileLinkCol>
+
+
+              </ProfileLinkRow>
+              {/* <View
                 style={{
                   flexDirection: 'row',
                   backgroundColor: secopndaryTintColor,
@@ -245,40 +283,63 @@ const ChildProfile = ({navigation}: Props) => {
                   />
                   <Text>Add Expecting Child</Text>
                 </Pressable>
-              </View>
-            </View>
-            <View style={{backgroundColor: secopndaryTintColor}}>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <ButtonText>Parent Details</ButtonText>
-                </View>
-                <View style={{padding: 10}}>
-                <Pressable
-                  onPress={() => {
-                    navigation.navigate('EditParentDetails');
-                  }}>
-                  <Text>Edit Profile</Text>
-                  </Pressable>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <Text>Your role is</Text>
-                </View>
-                <View style={{padding: 10}}>
-                  <Text>Father</Text>
-                </View>
-              </View>
+              </View> */}
+            
+            <ParentListView style={{backgroundColor: secopndaryTintColor}}>
+              <ProfileContentView>
+                          <ProfileTextView>
+                            <Heading3>Parent Details</Heading3>
+                          </ProfileTextView>
+                          <ProfileActionView>
+                          <ButtonLinkPress
+                              onPress={() => {
+                                navigation.navigate('EditParentDetails');
+                              }}>
+                              <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>
+                            </ButtonLinkPress>
+                                  
+                              </ProfileActionView>
+                  </ProfileContentView>
 
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <Text>Name</Text>
-                </View>
-                <View style={{padding: 10}}>
-                  <Text>Obama</Text>
-                </View>
-              </View>
-            </View>
+                  <ProfileContentView>
+                          <ParentRowView>
+
+                            <ParentSection>
+                              <ParentLabel>
+                                <Text>Your role</Text>
+                              </ParentLabel>
+                              <ParentData>
+                                <Text>Father</Text>
+                              </ParentData>
+                            </ParentSection>
+                            <ParentSection>
+                              <ParentLabel>
+                                <Text>Name</Text>
+                              </ParentLabel>
+                              <ParentData>
+                                <Text>Antanio</Text>
+                              </ParentData>
+                            </ParentSection>
+{/*                             
+                            <ParentColView>
+                            <Heading4Regular>Your role is</Heading4Regular>
+                            </ParentColView>
+                            <ParentColView>
+                            <Heading4Regular>Father</Heading4Regular>
+                            </ParentColView>
+                          </ParentRowView>
+                          <ParentRowView>
+                            <ParentColView>
+                            <Heading4Regular>Name</Heading4Regular>
+                            </ParentColView>
+                            <ParentColView>
+                            <Heading4Regular>Antanio</Heading4Regular>
+                            </ParentColView> */}
+                          </ParentRowView>
+                  </ProfileContentView>
+
+            </ParentListView>
+           
           </View>
           </ScrollView>
         </View>

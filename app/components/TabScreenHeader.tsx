@@ -4,7 +4,7 @@ import { Heading3,Heading4, Heading3w, Heading2w,Heading5,Heading5Bold, ShiftFro
 import React, { useState } from 'react';
 import { Button, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BurgerIcon from './shared/BurgerIcon';
-import { ButtonLinkText, ButtonSpacing, ButtonTextSmLine, ButtonLinkView, ButtonPrimary, ButtonRow, ButtonText,ButtonTextLine } from './shared/ButtonGlobal';
+import { ButtonLinkText, ButtonSpacing, ButtonTextSmLine, ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,ButtonTextLine } from './shared/ButtonGlobal';
 import { HeaderRowView, HeaderTitleView,HeaderActionView,HeaderActionBox} from './shared/HeaderContainerStyle';
 import { ProfileListViewSelected,ProfileListView,ProfileIconView,ProfileTextView,ProfileActionView} from './shared/ProfileListingStyle';
 const headerHeight=50;
@@ -63,7 +63,7 @@ const TabScreenHeader = (props:any) => {
             <ButtonSpacing>
             <ButtonRow>
           <ShiftFromBottom20>
-            <ButtonLinkView
+            <ButtonLinkPress
               
               onPress={() => navigation.navigate('EditChildProfile')}>
               <OuterIconRow>
@@ -72,7 +72,7 @@ const TabScreenHeader = (props:any) => {
                 </OuterIconLeft>
                 <ButtonTextLine> Add sister or brother</ButtonTextLine>
               </OuterIconRow>
-            </ButtonLinkView>
+            </ButtonLinkPress>
           </ShiftFromBottom20>
 
           <ButtonPrimary
