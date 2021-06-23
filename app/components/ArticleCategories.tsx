@@ -1,20 +1,42 @@
 import Icon from '@components/shared/Icon';
 import { activityCategory } from '@types/apiConstants';
 import React from 'react';
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useAppSelector } from '../../App';
-
+let filterArray: string[] = [];
+const getFilterArray = (itemId: any) =>{
+    // filterArray.push("78");
+    //   console.log(filterArray,"includes(itemId)--",filterArray.includes(itemId));
+      if(!filterArray.includes(itemId)){
+        filterArray.push(itemId);
+        }else{
+            filterArray.splice(filterArray.indexOf(itemId), 1);
+        }
+        // filterArray=filterArray;
+        return filterArray;
+  }
 const ArticleCategories = (props:any) => {
     const categoryData = useAppSelector(
         (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
       );
-    //   console.log("categoryData ArticleCategories--",categoryData);
+     
+    //   console.log("filterArray on start ",filterArray)
+      
+        
     return (
         <>
             <View style={{ padding: 10, minHeight: 150,borderBottomColor: props.borderColor,borderBottomWidth:1,borderTopColor: props.borderColor,borderTopWidth:1}}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
+                    {activityCategory?.length>0 ? activityCategory.map((item) => {
+                        return <TouchableOpacity style={{flex:1}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id))}}>
+                         <View style={[styles.item,{backgroundColor:(filterArray.includes(item.id) ? "#000" : "#fff")}]}  >
+                            <Icon style={styles.iconStyle} name={item.image} size={20} color="#000" />
+                            <Text style={[styles.title,{color:(filterArray.includes(item.id) ? "#fff" : "#000")}]}>{categoryData.filter((x: any) => x.id==item.id)[0].name }</Text>
+                        </View>
+                        </TouchableOpacity>
+                    }) : null}
 
-                    <View style={styles.item} >
+                    {/* <View style={styles.item} >
                         <Icon style={styles.iconStyle} name="ic_artl_play" size={20} color="#000" />
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.playingAndLearning)[0].name }</Text>
                     </View>
@@ -25,10 +47,10 @@ const ArticleCategories = (props:any) => {
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_safety" size={20} color="#000" />
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.safetyAndProtection)[0].name }</Text>
-                    </View>
+                    </View> */}
 
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
+                {/* <View style={{ flex: 1, flexDirection: 'row' }}>
                     <View style={styles.item}>
                         <Icon style={styles.iconStyle} name="ic_artl_responsive" size={20} color="#000" />
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.responsiveParenting)[0].name }</Text>
@@ -41,7 +63,7 @@ const ArticleCategories = (props:any) => {
                         <Icon style={styles.iconStyle} name="ic_artl_nutrition" size={20} color="#000" />
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.nutritionAndBreastfeeding)[0].name }</Text>
                     </View>
-                </View>
+                </View> */}
             </View>
         </>
     );
