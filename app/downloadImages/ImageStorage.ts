@@ -13,31 +13,35 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
         if (!(await RNFS.exists(args.destFolder))) {
             await RNFS.mkdir(args.destFolder);
         }
+        console.log(RNFS.exists(args.destFolder + '/' + args.destFilename));
+        if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
+            console.log("Image already exists");
+        }else {
+            // Download image: https://bit.ly/2S5CeEu
+            let { jobId, promise: downloadPromise } = RNFS.downloadFile({
+                fromUrl: args.srcUrl,
+                toFile: args.destFolder + `/${args.destFilename}`,
+                connectionTimeout: 150 * 1000, // milliseconds
+                readTimeout: 150 * 1000, // milliseconds
+            });
 
-        // Download image: https://bit.ly/2S5CeEu
-        let { jobId, promise: downloadPromise } = RNFS.downloadFile({
-            fromUrl: args.srcUrl,
-            toFile: args.destFolder + `/${args.destFilename}`,
-            connectionTimeout: 150 * 1000, // milliseconds
-            readTimeout: 150 * 1000, // milliseconds
-        });
+            let downloadResult = await downloadPromise;
+            console.log(downloadResult,"..downloadResult..")
+            if (downloadResult.statusCode === 200) {
+                if (RNFS.exists(args.destFolder + '/' + args.destFilename)) {
+                    rval = true;
 
-        let downloadResult = await downloadPromise;
-        console.log(downloadResult,"..downloadResult..")
-        if (downloadResult.statusCode === 200) {
-            if (RNFS.exists(args.destFolder + '/' + args.destFilename)) {
-                rval = true;
+                    if (showLog) {
+                        console.log('IMAGE DOWNLOADED: ', args.destFilename);
+                    }
+                }
+            } else {
+            //  dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + downloadResult.statusCode);
 
                 if (showLog) {
-                    console.log('IMAGE DOWNLOADED: ', args.destFilename);
+                        console.log(`IMAGE DOWNLOAD ERROR: url = ${args.srcUrl}, statusCode: ${downloadResult.statusCode}`);
                 }
             }
-        } else {
-          //  dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + downloadResult.statusCode);
-
-           if (showLog) {
-                console.log(`IMAGE DOWNLOAD ERROR: url = ${args.srcUrl}, statusCode: ${downloadResult.statusCode}`);
-           }
         }
     } catch (rejectError) {
        // const netError = new UnknownError(rejectError);

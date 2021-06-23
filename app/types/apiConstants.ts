@@ -1,5 +1,5 @@
 
-import { apiUrlDevelop } from 'react-native-dotenv';
+import { apiUrlDevelop } from "@env";
 import RNFS from 'react-native-fs';
 
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
@@ -22,12 +22,11 @@ export const appConfig = {
     taxonomies:'taxonomies'
 }
 
-export const activityCategory = {
-    playingAndLearning: '55',
-    healthAndWellbeing: '2',
-    safetyAndProtection: '3',
-    responsiveParenting: '56',
-    parentingCorner: '4',
-    nutritionAndBreastfeeding: '1',
-
-}
+export const activityCategory = [
+    {name:'playingAndLearning',id:'55', image:'ic_artl_play'},
+    {name:'healthAndWellbeingid',id:'2', image:'ic_artl_health'},
+    {name:'safetyAndProtection', id:'3', image:'ic_artl_safety'},
+    {name:'responsiveParenting', id:'56',image:'ic_artl_responsive'},
+    {name:'parentingCorner', id:'4',image:'ic_artl_parenting'},
+    {name:'nutritionAndBreastfeeding',id:'1', image:'ic_artl_nutrition'},
+]
