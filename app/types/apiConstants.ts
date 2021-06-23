@@ -16,12 +16,12 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
 }
 
 export const appConfig = {
-    articles: 'articless',
-    videoArticles: 'video-articlesss',
-    dailyMessages: 'daily-homescreen-messagesss',
-    basicPages: 'basic-pagessss',
-    sponsors:'sponsorsss',
-    taxonomies:'taxonomiesss'
+    articles: 'articles',
+    videoArticles: 'video-articles',
+    dailyMessages: 'daily-homescreen-messages',
+    basicPages: 'basic-pages',
+    sponsors:'sponsors',
+    taxonomies:'taxonomies'
 }
 
 export const activityCategory = {
