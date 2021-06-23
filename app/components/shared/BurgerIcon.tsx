@@ -3,16 +3,16 @@
 import Icon from '@components/shared/Icon';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, View } from 'react-native';
-
-const BurgerIcon = (props:any) => {
+import { Pressable } from 'react-native';
+import { HeaderIconView } from './HeaderContainerStyle';
+const BurgerIcon = (props) => {
     const navigation = useNavigation();
   return (
-    <View style={{ flex: 1,padding:15}} >
+    <HeaderIconView>
           <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
               <Icon name="ic_navmenu" size={15} color={props.color || "#FFF"} />
           </Pressable>
-        </View>
+        </HeaderIconView>
   );
 };
 export default BurgerIcon;
