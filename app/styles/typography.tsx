@@ -9,7 +9,7 @@ export const Heading1 = styled.Text`
   line-height: 32px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
-  margin-bottom:15px;
+  
 `;
 export const Heading1w = styled(Heading1)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -40,7 +40,7 @@ export const Heading2 = styled.Text`
   line-height: 26px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
-  margin-bottom:10px;
+  
   `;
 
 export const Heading2w = styled(Heading2)`
@@ -71,7 +71,7 @@ export const Heading3 = styled.Text`
   line-height: 22px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
-  margin-bottom:10px;
+  
 `
 export const Heading3w = styled(Heading3)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -103,7 +103,7 @@ export const Heading4 = styled.Text`
   line-height: 18px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
-  margin-bottom:10px;
+  
 `;
 export const Heading4w = styled(Heading4)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -135,13 +135,15 @@ export const Heading5 = styled.Text`
   line-height: 16px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-regular';
-  margin-bottom:10px;
+  
 `;
 export const Heading5w = styled(Heading5)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
-
+export const Heading5Bold = styled(Heading5)`
+  font-family: 'roboto-bold';
+`;
 
 
 
@@ -153,7 +155,7 @@ export const Heading6 = styled.Text`
   line-height: 14px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-regular';
-  margin-bottom:10px;
+  
 `;
 export const Heading6w = styled(Heading6)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
