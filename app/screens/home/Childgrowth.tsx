@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -13,23 +13,27 @@ import {
   Paragraph
 } from '@styles/typography';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  navigation: ChildgrowthNavigationProp,
-  'AddNewChildgrowth'
+  navigation: ChildgrowthNavigationProp;
+  AddNewChildgrowth;
 };
-const data = [{title: 'Weight for Height'}, {title: 'Height For Age'}];
 const Childgrowth = ({navigation}: Props) => {
+  const {t} = useTranslation();
+  const data = [
+    {title: t('growthScreen.weightForHeight')},
+    {title: t('growthScreen.heightForAge')},
+  ];
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
@@ -48,36 +52,32 @@ const Childgrowth = ({navigation}: Props) => {
             flexDirection: 'column',
             flex: 1,
           }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1}}>
-              <BurgerIcon />
-            </View>
-            <View style={{flex: 3}}>
-              <Pressable
-                onPress={() => {
-                  setChildmeasures([1]);
-                }}>
-                <Heading2>{'Child Growth'}</Heading2>
-              </Pressable>
-            </View>
-          </View>
+          <TabScreenHeader
+            title={t('growthScreen.headerTitle')}
+            headerColor={headerColor}
+            textColor="#000"
+          />
           <ScrollView
-            style={{flex: 9, backgroundColor: backgroundColor, padding: 15,maxHeight:'100%'}}>
+            style={{
+              flex: 9,
+              backgroundColor: backgroundColor,
+              padding: 15,
+              maxHeight: '100%',
+            }}>
             {childmeasures.length == 0 ? (
               <View style={{alignItems: 'center'}}>
-                <Heading3>Baby is 3 month Old</Heading3>
+                <Pressable
+                  onPress={() => {
+                    setChildmeasures([1]);
+                  }}>
+                  <Heading3>
+                    {t('growthScreen.growthDataTitle', {childAge: 3})}
+                  </Heading3>
+                </Pressable>
                 <Heading3Regular>
-                  your baby's growth data is not measured yet
+                  {t('growthScreen.noGrowthData')}
                 </Heading3Regular>
-                <Heading4>
-                  This will help you to track related to your child's growth
-                </Heading4>
+                <Heading4>{t('growthScreen.noGrowthDataHelpText')}</Heading4>
               </View>
             ) : (
               <View>
@@ -93,40 +93,51 @@ const Childgrowth = ({navigation}: Props) => {
                     marginBottom: 10,
                   }}>
                   <View style={{flexDirection: 'row'}}>
-                    <Heading3>Growth Measurement </Heading3>
+                    <Heading3>{t('growthScreen.subHeading')}</Heading3>
                     <Text style={{backgroundColor: headerColor, padding: 2}}>
-                      Premature
+                      {t('growthScreen.prematureText')}
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
-                    <Heading5>Last measured on 13th Nov,2019</Heading5>
-                    <Pressable onPress={()=> navigation.navigate('AllChildgrowthMeasures')}>
+                    <Heading5>
+                      {' '}
+                      {t('growthScreen.lastMeasureText', {
+                        measureDate: '13th Nov,2019',
+                      })}
+                    </Heading5>
+                    <Pressable
+                      onPress={() =>
+                        navigation.navigate('AllChildgrowthMeasures')
+                      }>
                       <Text
                         style={{padding: 2, textDecorationLine: 'underline'}}>
-                        All measurements
+                        {t('growthScreen.allMeasureHeader')}
                       </Text>
                     </Pressable>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>Weight</Paragraph>
-                      <Heading2 style={{padding: 2}}>8 kg</Heading2>
+                      <Paragraph>{t('growthScreen.wText')}</Paragraph>
+                      <Heading2 style={{padding: 2}}>
+                        8 {t('growthScreen.kgText')}
+                      </Heading2>
                     </View>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>Height</Paragraph>
-                      <Heading2 style={{padding: 2}}>73 cm</Heading2>
+                      <Paragraph>{t('growthScreen.hText')}</Paragraph>
+                      <Heading2 style={{padding: 2}}>
+                        73 {t('growthScreen.cmText')}
+                      </Heading2>
                     </View>
                     <View style={{flex: 2, flexDirection: 'row'}}>
-                      <Pressable>
+                      <Pressable
+                        onPress={() => {
+                          navigation.navigate('AddNewChildgrowth', {
+                            headerTitle: t('growthScreen.editNewBtntxt'),
+                          });
+                        }}>
                         <Text
                           style={{padding: 2, textDecorationLine: 'underline'}}>
-                          Edit
-                        </Text>
-                      </Pressable>
-                      <Pressable>
-                        <Text
-                          style={{padding: 2, textDecorationLine: 'underline'}}>
-                          Delete
+                          {t('growthScreen.editText')}
                         </Text>
                       </Pressable>
                     </View>
@@ -157,7 +168,7 @@ const Childgrowth = ({navigation}: Props) => {
                                     itemindex == selectedIndex
                                       ? headerColor
                                       : backgroundColor,
-                                  padding: 10,
+                                  padding: 7,
                                   margin: 3,
                                 },
                               ]}>
@@ -170,7 +181,7 @@ const Childgrowth = ({navigation}: Props) => {
 
                     <View style={{flex: 1, width: '100%', padding: 5}}>
                       {renderItem(data[selectedIndex], selectedIndex)}
-                      <Heading2>Summary</Heading2>
+                      <Heading2>{t('growthScreen.sumHeading')}</Heading2>
                       <Paragraph>
                         [Child growth progress text] [Child growth progress
                         text] [Child growth progress text] [Child growth
@@ -182,21 +193,22 @@ const Childgrowth = ({navigation}: Props) => {
                 </View>
               </View>
             )}
-            
           </ScrollView>
-          
-          
-          <View style={{flex: 1,backgroundColor:backgroundColor, maxHeight: 100,}}>
-              <View style={{width: '100%', marginTop: 30}}>
-                <ButtonPrimary
-                style={{backgroundColor:headerColor,}}
-                  onPress={() => {
-                    navigation.navigate('AddNewChildgrowth');
-                  }}>
-                  <ButtonText>Add new measurement</ButtonText>
-                </ButtonPrimary>
-              </View>
+
+          <View
+            style={{flex: 1, backgroundColor: backgroundColor, maxHeight: 100}}>
+            <View style={{width: '100%', marginTop: 30}}>
+              <ButtonPrimary
+                style={{backgroundColor: headerColor}}
+                onPress={() => {
+                  navigation.navigate('AddNewChildgrowth', {
+                    headerTitle: t('growthScreen.addNewBtntxt'),
+                  });
+                }}>
+                <ButtonText>{t('growthScreen.addNewBtntxt')}</ButtonText>
+              </ButtonPrimary>
             </View>
+          </View>
         </View>
       </SafeAreaView>
     </>

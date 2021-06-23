@@ -1,16 +1,19 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
-import { ChildRelationList, LabelText } from '@components/shared/ChildSetupStyle';
+import { LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {
-  Heading3
-} from '@styles/typography';
+import { Heading3, Heading4 } from '@styles/typography';
 import React, { createRef, useContext } from 'react';
 import {
-  Pressable, SafeAreaView, ScrollView, Text, TextInput, View
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
@@ -24,8 +27,12 @@ const EditChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
-  const genders = ['boy','girl'];
-  const imageOptions = ['Camera', 'Gallery'];
+  const genders = ['boy', 'girl'];
+  const imageOptions = [
+    {iconName: 'ic_trash', name: 'Remove Photo'},
+    {iconName: 'ic_camera', name: 'Camera'},
+    {iconName: 'ic_gallery', name: 'Gallery'},
+  ];
   const actionSheetRef = createRef<any>();
   return (
     <>
@@ -52,16 +59,18 @@ const EditChildProfile = ({navigation}: Props) => {
           </View>
         </View>
 
-        <ScrollView style={{flex:4}}>
+        <ScrollView style={{flex: 4}}>
           <View style={{flexDirection: 'column'}}>
-            {/* <View>
-              <Image
-                source={require('@assets/trash/card3.jpeg')}
-                style={{width: '100%'}}
-              />
-            </View> */}
-            <Pressable style={{height:150,backgroundColor:SecondaryColor,  justifyContent: 'center',
-    alignItems: 'center'}} onPress={()=>{actionSheetRef.current?.setModalVisible();}}>
+            <Pressable
+              style={{
+                height: 150,
+                backgroundColor: SecondaryColor,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={() => {
+                actionSheetRef.current?.setModalVisible();
+              }}>
               <Icon name="ic_camera" size={20} color="#FFF" />
             </Pressable>
             <View style={{padding: 10}}>
@@ -95,7 +104,7 @@ const EditChildProfile = ({navigation}: Props) => {
                   );
                 })}
               </View>
-              
+
               <ChildDate />
               <View style={{width: '100%', marginTop: 30}}>
                 <ButtonPrimary onPress={() => {}}>
@@ -105,21 +114,33 @@ const EditChildProfile = ({navigation}: Props) => {
             </View>
           </View>
           <ActionSheet ref={actionSheetRef}>
-          <View>
-            {imageOptions.map((item, index) => {
-              return (
-                <ChildRelationList key={index}>
-                  <Pressable
-                    onPress={() => {
-                      actionSheetRef.current?.hide();
+            <View
+              style={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}>
+              {imageOptions.map((item, index) => {
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      justifyContent: 'center',
+                      flexDirection: 'row',
+                      padding: 16,
                     }}>
-                    <Heading3>{item}</Heading3>
-                  </Pressable>
-                </ChildRelationList>
-              );
-            })}
-          </View>
-        </ActionSheet>
+                    <Pressable style={{alignItems:'center'}}
+                      onPress={() => {
+                        actionSheetRef.current?.hide();
+                      }}>
+                      <Icon name={item.iconName} size={50} color="#000" />
+                      <Heading4>{item.name}</Heading4>
+                    </Pressable>
+                  </View>
+                );
+              })}
+            </View>
+          </ActionSheet>
         </ScrollView>
       </SafeAreaView>
     </>
