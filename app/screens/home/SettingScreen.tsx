@@ -1,9 +1,10 @@
 import { localization } from '@assets/data/localization';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonPrimary } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+import { ButtonLinkText, ButtonPrimary } from '@components/shared/ButtonGlobal';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import {
+  LocalizationAction,
   LocalizationCol,
   LocalizationContainer,
   LocalizationcontentHead,
@@ -21,7 +22,6 @@ import {
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet, Text, View
@@ -95,13 +95,13 @@ const SettingScreen = (props: any) => {
           <View style={{flex: 1}}>
             <BurgerIcon />
           </View>
-          <View style={{flex: 3}}>
-            <Heading2w> {'Settings'}</Heading2w>
+          <View style={{flex: 5,padding:8}}>
+            <Heading2w> {t('settingScreen.headerTitle')}</Heading2w>
           </View>
         </View>
         <ScrollView style={{flex: 1}}>
           <View style={{padding: 15}}>
-            <Heading1>Notifications</Heading1>
+            <Heading1> {t('settingScreen.notiHeaderText')}</Heading1>
             <View
               style={{
                 flexDirection: 'row',
@@ -116,7 +116,7 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-                I want to receive Notifications through the application
+              {t('settingScreen.notiType1')}
               </Text>
             </View>
             <View
@@ -133,27 +133,7 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-                I want to receive Notifications related to child growth
-                monitoring
-              </Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
-                trackColor={{false: trackFalseColor, true:trackTrueColor}}
-                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
-              />
-              <Text style={{alignSelf: 'flex-end'}}>
-                I want to receive Notifications related to monitoring of child
-                development
+              {t('settingScreen.notiType2')}
               </Text>
             </View>
 
@@ -171,8 +151,25 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-                I want to receive Notifications related to health check-ups and
-                vaccinations
+              {t('settingScreen.notiType3')}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                marginBottom: 10,
+              }}>
+              <Switch
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                style={{alignSelf: 'flex-start'}}
+              />
+              <Text style={{alignSelf: 'flex-end'}}>
+              {t('settingScreen.notiType4')}
               </Text>
             </View>
 
@@ -183,16 +180,12 @@ const SettingScreen = (props: any) => {
                 padding: 10,
               }}>
               <Text>
-                Notifications are published with different frequency, from daily
-                to monthly and are integral part of the app functionality. You
-                can decide to hide notifications on your home screen. You can
-                also fully disable this function at any point in the app
-                settings what will result in limited app functionality.
+              {t('settingScreen.notiInfo')}
               </Text>
             </View>
           </View>
           <View style={{padding: 15}}>
-            <Heading1>Data Saver Mode</Heading1>
+            <Heading1>{t('settingScreen.dataSaverHeaderText')}</Heading1>
             <View
               style={{
                 flexDirection: 'row',
@@ -207,45 +200,40 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-                I don't want to download any images of any articles or updates
-                due to low internet speed.
+              {t('settingScreen.dataSaverSubText')}
               </Text>
             </View>
           </View>
           <View style={{padding: 15}}>
-            <Heading1>Download Data</Heading1>
-            <Heading4>Download latest Data updates</Heading4>
-            <Heading6>Data last updated on 17 dec 2020 02:32pm</Heading6>
+            <Heading1>{t('settingScreen.downldHeaderText')}</Heading1>
+            <Heading4>{t('settingScreen.downldSubHeaderText')}</Heading4>
+            <Heading6>{t('settingScreen.downldlast',{downloadDate: '17 dec 2020 02:32pm'})}</Heading6>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>Download Update</ButtonText>
+                <ButtonText>{t('settingScreen.downldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </View>
-            <Heading4>Download all app data</Heading4>
-            <Heading6>
-              Download all app Data which optimized for offline use
-            </Heading6>
+            <Heading4>{t('settingScreen.downldSubHeader2Text')}</Heading4>
+            <Heading6>{t('settingScreen.downldSubHeader3Text')}</Heading6>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>Download All Data</ButtonText>
+                <ButtonText>{t('settingScreen.downldallBtn')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>
           <View style={{paddingHorizontal: 15}}>
             <View style={{flexDirection: 'row'}}>
-              <Heading1>Country and language</Heading1>
-              <Pressable
-                style={{padding: 10}}
-                onPress={() => {
-                  //reset navigation to localization
-                  props.navigation.navigate('Localization', {
-                    screen: 'CountrySelection',
-                  });
-
-                  // props.navigation.navigate('CountrySelection')
-                }}>
-                <ButtonText>{t('localization.editCountryLang')}</ButtonText>
-              </Pressable>
+              <Heading1>{t('settingScreen.localizationHeader')}</Heading1>
+              <LocalizationAction>
+                <ButtonLinkText
+                  onPress={() => props.navigation.navigate('CountrySelection')}>
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_edit" size={16} color="#000" />
+                    </OuterIconLeft>
+                  </OuterIconRow>
+                </ButtonLinkText>
+              </LocalizationAction>
             </View>
             <LocalizationContainer>
               <LocalizationRow>
@@ -271,18 +259,18 @@ const SettingScreen = (props: any) => {
           </View>
 
           <View style={{padding: 15}}>
-            <Heading1>Data Export / Import</Heading1>
+            <Heading1>{t('settingScreen.ieHeader')}</Heading1>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
-                <ButtonText>Export All Saved Data</ButtonText>
+                <ButtonText>{t('settingScreen.exportBtnText')}</ButtonText>
               </ButtonPrimary>
             </View>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>Import All Saved Data</ButtonText>
+                <ButtonText>{t('settingScreen.importBtnText')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>
@@ -296,17 +284,17 @@ const SettingScreen = (props: any) => {
           <ActionSheet ref={actionSheetRef}>
             <View>
               <View style={styles.modalView}>
-                <Heading1> Export Data on</Heading1>
+                <Heading1>{t('settingScreen.exportOptionHeader')}</Heading1>
                 <View style={{flexDirection: 'row'}}>
                   <View style={styles.item}>
                     <Icon name="ic_sb_shareapp" size={30} color="#000" />
-                    <Text style={styles.modalText}>Share</Text>
+                    <Text style={styles.modalText}>{t('settingScreen.shareBtntxt')}</Text>
                   </View>
                   <View style={styles.item}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
                     />
-                    <Text style={styles.modalText}>Google Drive</Text>
+                    <Text style={styles.modalText}>{t('settingScreen.gdriveBtntxt')}</Text>
                   </View>
                 </View>
               </View>

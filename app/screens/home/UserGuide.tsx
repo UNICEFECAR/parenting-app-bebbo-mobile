@@ -12,11 +12,8 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View
-} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -26,39 +23,42 @@ type DashboardNavigationProp =
 type Props = {
   navigation: DashboardNavigationProp;
 };
-const data = [
-  {
-    title: 'Activities',
-    image: require('@assets/svg/ic_activity_color.svg'),
-    colors: ['#0FD87E', '#CFF7E5'],
-    textcolor: '#000',
-    subtitle: 'and games to stimulate your child everyday',
-  },
-  {
-    title: 'Tools',
-    image: require('@assets/svg/ic_tools_color.svg'),
-    colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
-    textcolor: '#000',
-    subtitle:
-      "to track your child's development,growth,immunizations and health",
-  },
-  {
-    title: 'Advice',
-    image: require('@assets/svg/ic_article_color.svg'),
-    colors: ['#FF8D6B', '#FFD2C4'],
-    textcolor: '#000',
-    subtitle: 'tailored to your questions and the needs of your child',
-  },
-];
+
 const UserGuide = ({navigation}: Props) => {
+  const {t} = useTranslation();
+  const data = [
+    {
+      title: t('walkthroughTexts.1.title'),
+      image: require('@assets/svg/ic_activity_color.svg'),
+      colors: ['#0FD87E', '#CFF7E5'],
+      textcolor:'#000',
+      subtitle: t('walkthroughTexts.1.subtitle'),
+    },
+    {
+      title: t('walkthroughTexts.2.title'),
+      image: require('@assets/svg/ic_tools_color.svg'),
+      colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
+      textcolor:'#000',
+      subtitle: t('walkthroughTexts.2.subtitle'),
+    },
+    {
+      title: t('walkthroughTexts.3.title'),
+      image: require('@assets/svg/ic_article_color.svg'),
+      colors: ['#FF8D6B', '#FFD2C4'],
+      textcolor:'#000',
+      subtitle:t('walkthroughTexts.3.subtitle'),
+    },
+  ];
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   type Item = typeof data[0];
   const keyExtractor = (item: Item) => item.title;
   const [isDotsRequired, setIsDotsRequired] = useState(true);
-  const getDotStyle = (colorString:string)=>{
-    return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
-  }
+  const getDotStyle = (colorString: string) => {
+    return isDotsRequired
+      ? {backgroundColor: colorString}
+      : {backgroundColor: 'transparent'};
+  };
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
@@ -125,25 +125,26 @@ const UserGuide = ({navigation}: Props) => {
           <View style={{flex: 1}}>
             <BurgerIcon />
           </View>
-          <View style={{flex: 3}}>
-            <Heading2w> {'User Guide'}</Heading2w>
+          <View style={{flex: 5, padding: 8}}>
+            <Heading2w> {t('userGuide.headerTitle')}</Heading2w>
           </View>
         </View>
 
         <View style={{flexDirection: 'column', flex: 1}}>
-        <AppIntroSlider
-        keyExtractor={keyExtractor}
-        // renderItem={renderItem}
-        renderItem={({ item, index }) => renderItem(item, index)}
-        // bottomButton
-        dotClickEnabled
-        showDoneButton={false}
-        activeDotStyle={getDotStyle('black')}
-        dotStyle={getDotStyle('white')}
-        showSkipButton={false}
-        showPrevButton={false}
-        showNextButton={false}
-        data={data}      />
+          <AppIntroSlider
+            keyExtractor={keyExtractor}
+            // renderItem={renderItem}
+            renderItem={({item, index}) => renderItem(item, index)}
+            // bottomButton
+            dotClickEnabled
+            showDoneButton={false}
+            activeDotStyle={getDotStyle('black')}
+            dotStyle={getDotStyle('white')}
+            showSkipButton={false}
+            showPrevButton={false}
+            showNextButton={false}
+            data={data}
+          />
         </View>
       </SafeAreaView>
     </>

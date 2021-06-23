@@ -19,6 +19,7 @@ flex-direction:row;
 background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 border-radius:4px;
 
+
 `
 export const FormDateText = styled.View`
 flex:4;

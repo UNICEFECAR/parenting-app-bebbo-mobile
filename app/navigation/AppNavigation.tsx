@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddNewChildgrowth from '@screens/AddNewChildgrowth';
+import AddNewChildHeight from '@screens/AddNewChildHeight';
 import AddNewChildWeight from '@screens/AddNewChildWeight';
 import AddSiblingData from '@screens/AddSiblingData';
 import AllChildgrowthMeasures from '@screens/AllChildgrowthMeasures';
@@ -180,6 +181,11 @@ export default () => {
         name="AddNewChildWeight"
         options={{headerShown: false}}
         component={AddNewChildWeight}
+      />
+      <RootStack.Screen
+        name="AddNewChildHeight"
+        options={{headerShown: false}}
+        component={AddNewChildHeight}
       />
       <RootStack.Screen
         name="AllChildgrowthMeasures"

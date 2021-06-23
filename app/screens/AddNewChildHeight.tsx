@@ -15,7 +15,7 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddNewChildWeight = ({navigation}: Props) => {
+const AddNewChildHeight = ({navigation}: Props) => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -51,13 +51,13 @@ const AddNewChildWeight = ({navigation}: Props) => {
               </Pressable>
             </View>
             <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{t('growthScreen.addWeight')}</Heading2w>
+              <Heading2w style={{color: '#000'}}>{t('growthScreen.addHeight')}</Heading2w>
             </View>
           </View>
         </View>
         <View style={{padding: screenPadding,backgroundColor:tintColor}}>
           <Heading1 style={{textAlign: 'center'}}>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreen.kgText')}
+            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreen.cmText')}
           </Heading1>
           <Ruler
             style={{elevation: 3}}
@@ -66,7 +66,7 @@ const AddNewChildWeight = ({navigation}: Props) => {
             vertical={false}
             onChangeValue={(value) => setweight(value)}
             minimum={0}
-            maximum={20}
+            maximum={200}
             segmentWidth={2}
             segmentSpacing={20}
             indicatorColor="#AB8AD5"
@@ -119,4 +119,4 @@ const AddNewChildWeight = ({navigation}: Props) => {
   );
 };
 
-export default AddNewChildWeight;
+export default AddNewChildHeight;
