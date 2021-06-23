@@ -52,7 +52,7 @@ export default () => {
     let Entity:any;
     // Entity = Entity as TaxonomyEntity
     const taxonomyData = useToGetOfflineData(languageCode,dispatch,TaxonomySchema,Entity as TaxonomyEntity,taxonomydata,setAllTaxonomyData);
-    console.log("taxonomyData--",taxonomyData);
+    //console.log("taxonomyData--",taxonomyData);
   },[languageCode]);
   // useEffect(() => {
   //   async function addDBListener() {
