@@ -5,6 +5,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { destinationFolder } from '@types/apiConstants';
 import React, { useContext, useEffect, useState } from 'react';
@@ -66,13 +67,13 @@ const ContainerView = styled.SafeAreaView`
 // ];
 const Articles = ({navigation}: Props) => {
 
-  const renderArticleItem = (item: typeof articleData[0], index: number) => (
+  const renderArticleItem = (item: any, index: number) => (
       <Pressable onPress={onPress} key={index}>
         <View style={styles.item}>
           <Image
             style={styles.cardImage}
-            source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
-            // source={item.cover_image.url}
+            // source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
+            source={require('@assets/trash/card3.jpeg')}
             resizeMode={'cover'}
           />
           <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
@@ -103,6 +104,7 @@ const Articles = ({navigation}: Props) => {
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
+  let filterArray: string[] = [];
   const currentChildData = {
     "gender":"40",
     "taxonomyData":{
@@ -125,21 +127,71 @@ const Articles = ({navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    async function fetchData() {
-      let Entity:any;
-      // Entity = Entity as TaxonomyEntity
-      const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
-      // console.log("artData--",artData);
+  const [filteredData,setfilteredData] = useState([]);
+  
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     let Entity:any;
+  //     // Entity = Entity as TaxonomyEntity
+  //     const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
+  //     console.log(stateArticleData,"artData--",artData.length);
+      
+  //     setLoading(false);
+  //   }
+  //   fetchData()
+  // },[languageCode]);
+  useFocusEffect(
+    React.useCallback(() => {
+      async function fetchData() {
+        let Entity:any;
+        // Entity = Entity as TaxonomyEntity
+        const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
+        // console.log(stateArticleData,"artData--",artData.length);
+        // setArticleData(stateArticleData)
+        setFilteredArticleData([]);
+      }
+      fetchData()
+    },[languageCode])
+  );
+  const articleData = useAppSelector(
+    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
+  const setFilteredArticleData = (itemId:any) => {
+    // console.log(itemId,"articleData in filtered ",articleData);
+    if(itemId.length>0)
+    {
+      const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
+      setfilteredData(newArticleData);
+      setLoading(false);
+    }else {
+      const newArticleData = articleData != '' ? articleData : [];
+      setfilteredData(newArticleData);
       setLoading(false);
     }
-    fetchData()
-  },[languageCode]);
+    // if(articleData != '')
+    // {
+    //   setfilteredData(articleData);
+    // }
+  }
   
-  const articleData = useAppSelector(
-    (state: any) => state.articlesData.article.articles != '' ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
-  );
-  // console.log("articleData--",articleData);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     setArticleData(stateArticleData)
+  //     console.log("stateArticleData",stateArticleData);
+  //   },[stateArticleData])
+  // );
+
+  // const filterOnCategory = (itemId: any) => {
+  //   console.log(itemId,"articleData---");
+  //   if(itemId.length>0)
+  //   {
+  //     const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
+  //   }else {
+  //     const newArticleData = [...articleData];
+  //   }
+  //   // console.log("newArticleData--",newArticleData);
+  //   // setArticleData(newArticleData)
+  // }
   //code for getting article dynamic data ends here.
   return (
     <>
@@ -182,8 +234,8 @@ const Articles = ({navigation}: Props) => {
               />
             </View>
            
-              <ArticleCategories borderColor={headerColor} />
-              {articleData != '' ? articleData.map((item, index) => {
+              <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
+              {filteredData.length>0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
               }) : null}
               
