@@ -127,7 +127,10 @@ const Articles = ({navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  const [filteredData,setfilteredData] = useState([]);
+  const articleData = useAppSelector(
+    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
+  const [filteredData,setfilteredData] = useState(articleData);
   
   // useEffect(() => {
   //   async function fetchData() {
@@ -146,30 +149,36 @@ const Articles = ({navigation}: Props) => {
         let Entity:any;
         // Entity = Entity as TaxonomyEntity
         const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
-        // console.log(stateArticleData,"artData--",artData.length);
         // setArticleData(stateArticleData)
-        setFilteredArticleData([]);
+        // setfilteredData(articleData);
+        console.log(filteredData,"artData--",artData.length);
+        // if(filteredData != [])
+        // {
+          setFilteredArticleData([]);
+        // }
       }
       fetchData()
     },[languageCode])
   );
-  const articleData = useAppSelector(
-    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
-  );
+  
   const setFilteredArticleData = (itemId:any) => {
-    // console.log(itemId,"articleData in filtered ",articleData);
-    if(itemId.length>0)
+    console.log(itemId,"articleData in filtered ",articleData);
+    if(articleData != '')
     {
-      const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
-      setfilteredData(newArticleData);
-      setLoading(false);
-    }else {
-      const newArticleData = articleData != '' ? articleData : [];
-      setfilteredData(newArticleData);
-      setLoading(false);
+      if(itemId.length>0)
+      {
+        const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
+        setfilteredData(newArticleData);
+        setLoading(false);
+      }else {
+        const newArticleData = articleData != '' ? articleData : [];
+        setfilteredData(newArticleData);
+        setLoading(false);
+      }
     }
     // if(articleData != '')
     // {
+    //   console.log("in if filterdata");
     //   setfilteredData(articleData);
     // }
   }
@@ -235,9 +244,9 @@ const Articles = ({navigation}: Props) => {
             </View>
            
               <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
-              {filteredData.length>0 ? filteredData.map((item: any, index: number) => {
+              {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
-              }) : null}
+              }) : setFilteredArticleData([])}
               
           </View>
           </ScrollView>
