@@ -20,14 +20,26 @@ export const ButtonText = styled.Text`
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
+  
+`;
+
+export const ButtonTextLine = styled(ButtonText)`
+  text-decoration:underline;
+`;
+export const ButtonTextSmLine = styled(ButtonTextLine)`
+  font-size:12px;
+`;
+export const ButtonTextLinew = styled(ButtonTextLine)`
+color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const ButtonLinkText = styled.Text`
   text-align: center;
-  color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
+  text-decoration:underline;
   
 `;
 
@@ -45,5 +57,16 @@ export const ButtonContainer = styled.View`
 flex:1 0 0;
 `;
 
+export const ButtonSpacing = styled.View`
+padding:5px 15px;
+`;
+
+
+
+export const ButtonLinkView = styled.Pressable`
+flex-direction:row;
+justify-content:center;
+
+`
 
 
