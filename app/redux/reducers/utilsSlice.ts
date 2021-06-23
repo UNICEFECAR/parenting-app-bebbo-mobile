@@ -56,10 +56,10 @@ export const utilsSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("taxonomy data---",state);
-      console.log(action.payload[0],"--",typeof action.payload);
+     // console.log("taxonomy data---",state);
+     // console.log(action.payload[0],"--",typeof action.payload);
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
-      console.log(action.payload[0],"-- after",typeof action.payload);
+    //  console.log(action.payload[0],"-- after",typeof action.payload);
       if(action.payload[0])
       {
         state.taxonomy.allTaxonomyData = (typeof action.payload[0].allData == 'object') ? (JSON.stringify(action.payload[0].allData)) : (action.payload[0].allData);
@@ -71,8 +71,8 @@ export const utilsSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      console.log("setAllTermsData data---",state);
-      console.log(action.payload);
+    //  console.log("setAllTermsData data---",state);
+     // console.log(action.payload);
       if(action.payload[0])
       {
         state.aboutus.id = action.payload[0].id;

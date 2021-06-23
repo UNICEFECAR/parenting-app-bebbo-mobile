@@ -16,7 +16,6 @@ class UserRealmCommon extends Component {
     private constructor(props: any) {
         super(props);
       //  console.log("constructor called");
-        // this.closeRealm();
         this.openRealm();
         
     }
@@ -44,7 +43,7 @@ class UserRealmCommon extends Component {
                 // Open realm file
                 Realm.open(userRealmConfig)
                     .then(realm => {
-                        console.log("open realm");
+                       // console.log("open realm");
                         this.realm = realm;
                         resolve(realm);
                     })
@@ -56,7 +55,7 @@ class UserRealmCommon extends Component {
     }
     public closeRealm() {
         if (this.realm) {
-            console.log("closed");
+           // console.log("closed");
             this.realm.close();
             delete this.realm;
         }
@@ -79,7 +78,7 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                    console.log("in try",objLength);
+                 //   console.log("in try",objLength);
                     resolve(objLength);
                 }
                 else {
@@ -97,10 +96,10 @@ class UserRealmCommon extends Component {
                 const realm = await this.openRealm();
                 if(realm)
                 {
-                    console.log("in try--",records);
+                   // console.log("in try--",records);
                     realm.write(() => {
                         records.forEach(record => {
-                            console.log("record",record);
+                           // console.log("record",record);
                             realm?.create<Entity>(entitySchema.name, record);
                         })
                             
@@ -111,7 +110,7 @@ class UserRealmCommon extends Component {
                     reject();
                 }
             } catch (e) {
-                console.log("realm error-",e);
+               // console.log("realm error-",e);
                 reject();
             }
         });
@@ -123,9 +122,9 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const obj = realm?.objects<Entity>(entitySchema.name);
-                    console.log("in try",obj);
+                    //console.log("in try",obj);
                     resolve(obj);
-                    console.log("---",realm.schema);
+                    //console.log("---",realm.schema);
                 }
                 else {
                     reject();
@@ -159,7 +158,7 @@ class UserRealmCommon extends Component {
                     reject('error');
                 }  
             } catch (e:any) {
-                console.log(e.message,"..error in delete..");
+               // console.log(e.message,"..error in delete..");
                 reject('error');
             }
         });
