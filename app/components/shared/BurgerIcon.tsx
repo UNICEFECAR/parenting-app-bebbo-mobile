@@ -5,6 +5,7 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
+import { HeaderIconView } from './HeaderContainerStyle';
 const TextInput = styled.TextInput`
   width: 100%;
   height: 160px;
@@ -17,11 +18,11 @@ const TextInput = styled.TextInput`
 const BurgerIcon = () => {
     const navigation = useNavigation();
   return (
-    <View style={{ flex: 1,padding:10}} >
+    <HeaderIconView>
           <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
               <Icon name="ic_navmenu" size={20} color="#FFF" />
           </Pressable>
-        </View>
+        </HeaderIconView>
   );
 };
 export default BurgerIcon;

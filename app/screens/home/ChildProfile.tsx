@@ -1,9 +1,11 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonText } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import Icon, { OuterIconLeft, OuterIconRow, TickView } from '@components/shared/Icon';
+import { ProfileActionView,ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading3, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import {
   Pressable, SafeAreaView, ScrollView, Text, View
@@ -92,31 +94,54 @@ const ChildProfile = ({navigation}: Props) => {
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const renderChildItem = (item: typeof DATA[0], index: number) => (
     <View key={index}>
-      <View
+      {/* <ProfileListViewSelected>
+                <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+                <ProfileTextView
+                 >
+                   <Heading3>Jenny</Heading3>
+                   <Heading5>Girl</Heading5>
+                 </ProfileTextView>
+                <ProfileActionView>
+                <OuterIconRow><OuterIconLeft><TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView></OuterIconLeft></OuterIconRow>
+                  <Heading5Bold>Activated</Heading5Bold></ProfileActionView>
+      </ProfileListViewSelected> */}
+
+      <ProfileListDefault
         style={{
-          flexDirection: 'row',
           backgroundColor: secopndaryTintColor,
-          padding: 10,
-          borderBottomWidth: 1,
-          borderColor: '#EEE',
         }}>
-        <Icon name="ic_baby" size={25} color="#000" style={{padding: 10}} />
-        <View style={{flexDirection: 'column'}}>
-          <Text>
-            {item.childname},{item.gender}
-          </Text>
-          <Text>Born on {item.birthday.toDateString()}</Text>
-          <Pressable
-            onPress={() => {
-              navigation.navigate('EditChildProfile');
-            }}>
-            <Text>Edit Profile</Text>
-          </Pressable>
-        </View>
-        <View style={{backgroundColor: '#FFF', margin: 2}}>
-          <Text>Activate Profile</Text>
-        </View>
-      </View>
+          <ProfileListInner>
+        <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+        <ProfileTextView
+                 >
+                   <ProfileSectionView>
+                   <Heading3>{item.childname},</Heading3>
+                   <OuterIconLeft></OuterIconLeft>
+                   <Heading6>{item.gender}</Heading6>
+                  
+                   </ProfileSectionView>
+          
+                   <Heading5>Born on {item.birthday.toDateString()}</Heading5>
+                   
+                   <ProfileLinkView>
+            <ButtonTextSmLine
+                onPress={() => {
+                  navigation.navigate('EditChildProfile');
+                }}>
+                <Text>Edit Profile</Text>
+            </ButtonTextSmLine>
+            <View><Text>|</Text></View>
+            <ButtonTextSmLine>Activate Profile</ButtonTextSmLine>
+          </ProfileLinkView>
+                 </ProfileTextView>
+                 <ProfileActionView>
+                  {/* Pressable button */}
+                 <Text></Text>
+                </ProfileActionView>
+                </ProfileListInner>
+        
+        
+      </ProfileListDefault>
     </View>
   );
   return (
@@ -143,33 +168,45 @@ const ChildProfile = ({navigation}: Props) => {
             </View>
           </View>
           <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
-          <View style={{margin: 10}}>
+          <View style={{margin: 15}}>
             <View style={{flexDirection: 'column'}}>
-              <View
+              <ProfileListActiveChild
                 style={{
-                  flexDirection: 'row',
                   backgroundColor: secopndaryColor,
-                  padding: 10,
                 }}>
-                <Icon
-                  name="ic_baby"
-                  size={25}
-                  color="#000"
-                  style={{padding: 10}}
-                />
-                <View style={{flexDirection: 'column'}}>
-                  <Text>Jenny,Girl</Text>
-                  <Text>Born on 8 july 2022</Text>
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate('EditChildProfile');
-                    }}>
-                    <Text>Edit Profile</Text>
-                  </Pressable>
-                </View>
-                <Text>Activated</Text>
-              </View>
-              <ScrollView style={{height: 350, marginTop: 10}} nestedScrollEnabled = {true}>
+                <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+                <ProfileTextView
+                 >
+                   <ProfileSectionView>
+                   <Heading3>Jenny,</Heading3>
+                   <OuterIconLeft></OuterIconLeft>
+                   <Heading6>Girl</Heading6>
+                  
+                   </ProfileSectionView>
+                   <Heading5>Born on 08 Jul 2020</Heading5>
+                   <ProfileLinkView>
+                      <ButtonTextSmLine
+                              onPress={() => {
+                                navigation.navigate('EditChildProfile');
+                              }}>
+                              <Text>Edit Profile</Text>
+                      </ButtonTextSmLine>
+                  </ProfileLinkView>
+                 </ProfileTextView>
+                
+                  
+
+                  <ProfileActionView>
+                    <OuterIconRow>
+                      <OuterIconLeft>
+                      <TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView>
+                      </OuterIconLeft>
+                      </OuterIconRow>
+                      <Heading5Bold>Activated</Heading5Bold>
+                  </ProfileActionView>
+
+              </ProfileListActiveChild>
+              <ScrollView style={{height: 350, marginTop: 15}} nestedScrollEnabled = {true}>
                 {DATA.map((item, index) => {
                   return renderChildItem(item, index);
                 })}
