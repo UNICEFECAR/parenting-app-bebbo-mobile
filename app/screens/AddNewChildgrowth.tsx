@@ -7,14 +7,24 @@ import {
   FormInputGroup
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import ModalPopupContainer, {
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
+import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Header3Text } from '@styles/style';
-import { Heading2w, Heading3, Heading4Regular } from '@styles/typography';
+import {
+  Heading2w,
+  Heading3, Heading4Regular
+} from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Modal,
   Platform,
   Pressable,
   SafeAreaView,
@@ -37,6 +47,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const [dobDate, setdobDate] = useState<Date>();
   const [showdob, setdobShow] = useState<Boolean>(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const measurementPlaces = [
     t('growthScreen.doctorMeasurePlace'),
     t('growthScreen.homeMeasurePlace'),
@@ -79,7 +90,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             <View style={{flex: 8, padding: 7}}>
               <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
             </View>
-            <Pressable style={{flex: 1, padding: 15}}>
+            <Pressable
+              style={{flex: 1, padding: 15}}
+              onPress={() => {
+                setModalVisible(true)
+              }}>
               <Text>{t('growthScreen.deletebtnText')}</Text>
             </Pressable>
           </View>
@@ -186,6 +201,41 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             <ButtonText>{t('growthScreen.saveMeasures')}</ButtonText>
           </ButtonPrimary>
         </View>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            // Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}
+          onDismiss={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={() => {
+                    setModalVisible(!modalVisible);
+                  }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              <Heading3>
+                {'Do you want to delete child growth measurement details?'}
+              </Heading3>
+              <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
+              <ButtonTertiary2 style={{marginRight:5}}>
+                <ButtonText>{'Cancel'}</ButtonText>
+              </ButtonTertiary2>
+              <ButtonTertiary2>
+                <ButtonText>{'Confirm'}</ButtonText>
+              </ButtonTertiary2>
+              </View>
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
       </SafeAreaView>
     </>
   );
