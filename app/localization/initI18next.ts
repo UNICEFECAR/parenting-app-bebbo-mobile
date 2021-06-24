@@ -47,7 +47,7 @@ import i18n, {
     // BYbe,
     // BYru
   };
-  console.log(AVAILABLE_LANGUAGES,"----");
+ // console.log(AVAILABLE_LANGUAGES,"----");
   const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
   
   const languageDetector: LanguageDetectorAsyncModule = {
@@ -67,14 +67,14 @@ import i18n, {
         // Error fetching stored data or no language was stored
         if (err || !lng) {
           if (err) {
-            console.log('Error fetching "APP_LANG" from async store', err);
+          //  console.log('Error fetching "APP_LANG" from async store', err);
           } else {
-            console.log(
-              'No language is set, choosing the best available or English as fallback',
-            );
+            // console.log(
+            //   'No language is set, choosing the best available or English as fallback',
+            // );
           }
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
-          console.log(bestLng,"--bestLng--- ");
+         // console.log(bestLng,"--bestLng--- ");
           callback(bestLng?.languageTag ?? 'en');
           return;
         }
@@ -82,7 +82,7 @@ import i18n, {
       });
     },
     cacheUserLanguage: (lng: string) => {
-      console.log("lng---cache ",lng);
+     // console.log("lng---cache ",lng);
       AsyncStorage.setItem('APP_LANG', lng);
     },
   };

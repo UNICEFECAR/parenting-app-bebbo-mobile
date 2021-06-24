@@ -14,16 +14,24 @@ import {
   ChildListingArea,
   ChildListingBox,
   ChildListTitle,
+  CustomScrollView,
   TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text } from 'react-native';
+import { Alert, Pressable, ScrollView, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ChildEntity } from '../database/schema/ChildDataSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
   Heading1Centerw,
   Heading3Centerw,
@@ -39,8 +47,64 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const ChildSetupList = ({navigation}: Props) => {
-  const {t} = useTranslation();
+
+const ChildSetupList = ({ navigation }: Props) => {
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      getAllConfigData(dispatch);
+    },[])
+  );
+
+  const childList = useAppSelector(
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
+  );
+  const setActiveChild=async (uuid:any)=>{
+    let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
+  }
+   const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
+     return (
+       <TouchableOpacity
+       onPress={() => setActiveChild(data.uuid)}
+     >
+    <ChildListingBox key={index}>
+    <ChildColArea1>
+      <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
+      <Text>Born on {String(data.birthDate)}</Text>
+    </ChildColArea1>
+    <ChildColArea2>
+      <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+      <TitleLinkSm onPress={() => editRecord(data)}>Edit Profile</TitleLinkSm>
+    </ChildColArea2>
+  </ChildListingBox>
+  </TouchableOpacity>
+     );
+    };
+   const deleteRecord = (index:number,dispatch:any,uuid: string) => {
+    //console.log("..deleted..");
+    deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
+    // return new Promise((resolve, reject) => {
+    //   Alert.alert('Delete Child', "Do you want to delete child?",
+    //     [
+    //       {
+    //         text: "Cancel",
+    //         onPress: () => reject("error"),
+    //         style: "cancel"
+    //       },
+    //       { text: "Delete", onPress: () => {
+    //         deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject);
+    //       }
+    //       }
+    //     ]
+    //   );
+    // });
+   
+  }
+  const editRecord = (data:any) => {
+    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.editSiblingBtn'),childData:data});
+  }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
     {
@@ -71,7 +135,7 @@ const ChildSetupList = ({navigation}: Props) => {
       routes: [
         {
           name: 'LoadingScreen',
-          params: {apiJsonData: apiJsonData, prevPage: 'ChilSetup'},
+          params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
         },
       ],
     });
@@ -87,46 +151,41 @@ const ChildSetupList = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-            {t('childSetupList.header')}
+              {t('childSetupList.header')}
             </Heading1Centerw>
             <ShiftFromTop30>
             <Heading3Centerw>
-            {t('childSetupList.subHeader')}
+              {t('childSetupList.subHeader')}
             </Heading3Centerw>
             </ShiftFromTop30>
           </ChildCenterView>
         </OnboardingHeading>
         <ChildContentArea>
+         {/* <ScrollView> */}
           <ChildListingArea>
+          <CustomScrollView>
+            {
+           childList?.length > 0 ? (
+              childList.map((item: ChildEntity, index: number) => {
+               // console.log(childList,"..childList123..");
+                return renderDailyReadItem(dispatch,item,index);
+              })
+            ) :
             <ChildListingBox>
-              <ChildColArea1>
-                <ChildListTitle>Child 1</ChildListTitle>
-                <Text>Born on 08 july 2020</Text>
-              </ChildColArea1>
-              <ChildColArea2>
-                <TitleLinkSm>Delete</TitleLinkSm>
-                <TitleLinkSm>Edit Profile</TitleLinkSm>
-              </ChildColArea2>
+            <ChildColArea1>
+              <Text>No Data</Text></ChildColArea1>
             </ChildListingBox>
-
-            <ChildListingBox>
-              <ChildColArea1>
-                <ChildListTitle>Child 2</ChildListTitle>
-                <Text>Born on 22 june 2018</Text>
-              </ChildColArea1>
-              <ChildColArea2>
-                <TitleLinkSm>Delete</TitleLinkSm>
-                <TitleLinkSm>Edit Profile</TitleLinkSm>
-              </ChildColArea2>
-            </ChildListingBox>
+            }
+          </CustomScrollView>
           </ChildListingArea>
+          {/* </ScrollView> */}
         </ChildContentArea>
 
         <ButtonRow>
           <ShiftFromBottom20>
             <ButtonLinkView
               
-              onPress={() => navigation.navigate('AddSiblingDataScreen')}>
+              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.addSiblingBtn'),childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />

@@ -201,7 +201,7 @@ There are several other NPM scripts that can be useful during development. Check
         - Data from Drupal, same structure is in Realm
     - src/stores/PollsEntity.ts
         - Data from Drupal, same structure is in Realm
-    - src/stores/VariableEntity.ts
+    - src/stores/ConfigSettingsEntity.ts
 - Realm related code
     - Configure realms
         - src/stores/dataRealmConfig.ts
@@ -234,7 +234,7 @@ Two Realm databases are created by the application:
         - src/stores/DailyMessageEntity.ts
         - src/stores/MilestoneEntity.ts
         - src/stores/PollsEntity.ts
-        - src/stores/VariableEntity.ts
+        - src/stores/ConfigSettingsEntity.ts
 - user
     - Contains user specific data
     - Structure of the Realm classes is saved here:
