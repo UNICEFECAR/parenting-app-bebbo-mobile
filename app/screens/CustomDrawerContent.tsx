@@ -40,7 +40,8 @@ const CustomDrawerContent = ({navigation}: any) => {
               backgroundColor: headerColor,
             }}>
             <Icon name="ic_baby" size={25} color="#000" />
-            <Text>{t('localization.drawerMenuchildInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
+            <Text >{t('localization.drawerMenuchildInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
+
             <Icon name="ic_angle_right" size={15} color="#000" />
           </Pressable>
         </View>
@@ -60,8 +61,10 @@ const CustomDrawerContent = ({navigation}: any) => {
           onPress={() => onChangeaccordvalue(!accordvalue)}
           style={styles.item}>
           <Icon name="ic_sb_tools" size={25} color="#000" />
+
           <Text>{t('localization.drawerMenutoolsTxt')}</Text>
-          <Icon name="ic_angle_down" size={15} color="#000" />
+          <Icon  style={{flex: 1, textAlign: 'right', alignSelf: 'center'}} name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'} size={15} color="#000" />
+
         </Pressable>
 
         {accordvalue ? (
@@ -154,9 +157,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     // padding: 20,
     flexDirection: 'row',
-    marginVertical: 8,
+    marginVertical: 16,
     marginHorizontal: 16,
-    borderRadius: 5,
+    borderBottomWidth:1,
+    borderBottomColor:'#00000011',
     // flex: 1
   },
 });
