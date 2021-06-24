@@ -38,13 +38,13 @@ const SupportChat = ({ navigation }: Props) => {
             <BurgerIcon />
           </View>
           <View style={{flex: 5,padding:8}}>
-            <Heading2w> {t('supportScreen.headerTitle')}</Heading2w>
+            <Heading2w> {t('localization.supportScreenheaderTitle')}</Heading2w>
           </View>
         </View>
         
         <View style={{alignItems:'center',justifyContent: 'space-between'}}>
-          <Heading1>{t('supportScreen.header1text')}</Heading1>
-          <Heading3>{t('supportScreen.header2text')}</Heading3>
+          <Heading1>{t('localization.supportScreenheader1text')}</Heading1>
+          <Heading3>{t('localization.supportScreenheader2text')}</Heading3>
         </View>
       </View>
       </SafeAreaView>

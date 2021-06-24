@@ -71,13 +71,13 @@ const RelatedArticles = () => {
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>{t('articleScreen.shareText')}</Text>
+              <Text>{t('localization.articleScreenshareText')}</Text>
             </Pressable>
           </View>
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>{t('articleScreen.addtoFavText')}</Text>
+              <Text>{t('localization.articleScreenaddtoFavText')}</Text>
             </Pressable>
           </View>
         </View>
@@ -88,7 +88,7 @@ const RelatedArticles = () => {
   return (
     <>
       <ContainerView>
-        <Heading2>{t('growthScreen.relatedArticle')}</Heading2>
+        <Heading2>{t('localization.growthScreenrelatedArticle')}</Heading2>
         <FlatList
           data={DATA}
           horizontal
