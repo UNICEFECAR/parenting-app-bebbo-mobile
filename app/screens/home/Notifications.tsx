@@ -15,7 +15,7 @@ const Notifications = () => {
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const { t } = useTranslation();
   const onchange = (selectedboxes) => {
-    console.log(selectedboxes);
+   // console.log(selectedboxes);
   };
   return (
     <>

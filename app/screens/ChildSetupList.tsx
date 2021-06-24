@@ -59,16 +59,11 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
 
   const childList = useAppSelector(
-    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
-  const setActiveChild=async (uuid:any)=>{
-    let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
-  }
+
    const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
      return (
-       <TouchableOpacity
-       onPress={() => setActiveChild(data.uuid)}
-     >
     <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
@@ -79,7 +74,6 @@ const ChildSetupList = ({ navigation }: Props) => {
       <TitleLinkSm onPress={() => editRecord(data)}>Edit Profile</TitleLinkSm>
     </ChildColArea2>
   </ChildListingBox>
-  </TouchableOpacity>
      );
     };
    const deleteRecord = (index:number,dispatch:any,uuid: string) => {

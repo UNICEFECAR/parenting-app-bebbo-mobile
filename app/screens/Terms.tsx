@@ -70,9 +70,9 @@ const Terms = ({navigation}: Props) => {
         let Entity:any;
         // Entity = Entity as TaxonomyEntity
         const basicData = await useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
-        // console.log(stateArticleData,"artData--",artData.length);
+      // console.log(stateArticleData,"artData--",artData.length);
         // setArticleData(stateArticleData)
-        // console.log("basicpagesData--",basicData);
+      // console.log("basicpagesData--",basicData);
         setLoading(false);
      
       }
@@ -137,7 +137,7 @@ const Terms = ({navigation}: Props) => {
                   disabled={false}
                   value={toggleCheckBox}
                   onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                  tintColors={{true: '#8CAEE4', false: '#FFF'}}
+                  tintColors={{true:'#ffffff', false: '#FFF'}}
                   boxType={'square'}
                   tintColor={'#FFF'}
                   onCheckColor={'#8CAEE4'}
