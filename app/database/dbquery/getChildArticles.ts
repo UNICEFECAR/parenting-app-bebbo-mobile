@@ -7,34 +7,36 @@ import { ApiImageData } from "@types/types";
 
 export const getChildArticleData = async (languageCode:string,dispatch:any,SchemaToUse:ObjectSchema,SchemaEntity:any,jsonData:any,setAllHardcodedData:Function,currentChildData:any) => {
     // const [taxonomyData,setTaxonomyData] = React.useState();
-    console.log(languageCode,"languageCode in taxonomy file");
+    // console.log(languageCode,"languageCode in taxonomy file");
     //Get data from db and if it exists then use db data or use const data in this file.  
     let databaselistener:any;
     let databaseallData:any,databaseData:any;
-    const filterQuery = 'child_gender Contains "'+currentChildData.gender+'"';
-    // const filterQuery = `child_gender Contains ${currentChildData.gender}`;
+    const filterQuery = 'child_age Contains "'+currentChildData.taxonomyData.id+'"';
+    // const filterQuery = 'child_gender Contains "'+currentChildData.gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
+//    console.log(filterQuery);
     // async function fetchData() {
         const imageArray:ApiImageData[] = []
         databaseallData = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse);
+        // databaseData = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse);
         databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse,filterQuery);
-        databaseData.map((val: any) => {
-            console.log("value--",val['cover_image']);
-            imageArray.push({
-                srcUrl: val['cover_image'].url, 
-                destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: (val['cover_image'].url).split('/').pop()
-            })
-        })
-        console.log(imageArray,"  db length--",databaseData?.length);
-        const imagesDownloadResult = await downloadImages(imageArray);
-        console.log(imagesDownloadResult, "..image result..");
+        // databaseData.map((val: any) => {
+        //     // console.log("value--",val['cover_image']);
+        //     imageArray.push({
+        //         srcUrl: val['cover_image'].url, 
+        //         destFolder: RNFS.DocumentDirectoryPath + '/content', 
+        //         destFilename: (val['cover_image'].url).split('/').pop()
+        //     })
+        // })
+        // console.log(imageArray,"  db length--",databaseData?.length);
+        // const imagesDownloadResult = await downloadImages(imageArray);
+        // console.log(imagesDownloadResult, "..image result..");
         // console.log(databaseData.map(user => user));
         if(databaseData?.length > 0)
         {
             // dispatch(setAllHardcodedData(databaseData2));
             databaseallData.removeAllListeners();
             databaselistener = databaseallData.addListener(() => {
-                console.log(databaseData?.length,"in if listener called--",databaseData);
+                // console.log(databaseData?.length,"in if listener called--",databaseData);
                 dispatch(setAllHardcodedData(databaseData))
             });
         }else {
@@ -42,17 +44,18 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
             dispatch(setAllHardcodedData(JSON.stringify(jsonData[languageCode])));
             databaseallData.removeAllListeners();
             databaselistener = databaseallData.addListener(() => {
-                console.log("in else listener called");
+                // console.log("in else listener called");
                 if(databaseData?.length > 0)
                 {
-                    console.log(databaseData?.length,"in else if listener called--",databaseData[0]);
+                    // console.log(databaseData?.length,"in else if listener called--",databaseData[0]);
                     dispatch(setAllHardcodedData(databaseData))
                 }
             });
         }
     // }
     // fetchData()
-    return [imagesDownloadResult];
+    return [databaseData];
+    // return [imagesDownloadResult];
 }
 
   

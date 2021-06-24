@@ -1,5 +1,6 @@
 import basicPagesData from '@assets/translations/appOfflineData/basicPages';
 import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
@@ -11,6 +12,7 @@ import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import CheckBox from '@react-native-community/checkbox';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +39,10 @@ const Terms = ({navigation}: Props) => {
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
   const isButtonDisabled = (toggleCheckBox==false || toggleCheckBox1==false)
+  const [loading, setLoading] = useState(true);
+  // setLoading(true);
   const {t} = useTranslation();
+  // console.log("loading00",loading);
   const goToPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
   };
@@ -46,23 +51,38 @@ const Terms = ({navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    async function fetchData() {
-      let Entity:any;
-      // Entity = Entity as TaxonomyEntity
-      const basicData = useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
-      console.log("basicpagesData--",basicData);
-    }
-    fetchData()
-  },[languageCode]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     let Entity:any;
+  //     // Entity = Entity as TaxonomyEntity
+  //     console.log("basicpagesData--",basicData);
+  //     setLoading(false);
+  //   }
+  //   fetchData()
+  // },[languageCode]);
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
+  useFocusEffect(
+    React.useCallback(() => {
+      async function fetchData() {
+        let Entity:any;
+        // Entity = Entity as TaxonomyEntity
+        const basicData = await useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
+        // console.log(stateArticleData,"artData--",artData.length);
+        // setArticleData(stateArticleData)
+        // console.log("basicpagesData--",basicData);
+        setLoading(false);
+      }
+      fetchData()
+    },[languageCode])
+  );
   const termsdata = useAppSelector(
     (state: any) => state.utilsData.terms.body,
   );
+  
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body,
   );
-  console.log("termsdata--",termsdata);
+  // console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -92,6 +112,7 @@ const Terms = ({navigation}: Props) => {
   return (
     <>
       <OnboardingContainer>
+      <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
           <Heading1w>{t('tNc.header')}</Heading1w>
         </OnboardingHeading>
