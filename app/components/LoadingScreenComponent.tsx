@@ -58,7 +58,7 @@ const item = {
 const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
-  console.log(sponsors, '..11sponsors..');
+ // console.log(sponsors, '..11sponsors..');
   return (
     <Container>
       <MainView>

@@ -7,16 +7,17 @@ import { INSERT_IN_DB } from "./sagaActions";
 //     yield all([InsertInDBSaga()]);
 // }
 function* onInsertInDB(response:any) {
-    console.log("action called insert");
+   // console.log("action called insert");
     try{
         yield call(addApiDataInRealm, response);
       }
       catch(e) {
-        console.log("in onInsertInDB err ", e);
+       // console.log("in onInsertInDB err ", e);
       }
 }
+
 export function* InsertInDBSaga() {
-    console.log("called InsertInDBSaga");
+   // console.log("called InsertInDBSaga");
     yield takeEvery(INSERT_IN_DB, onInsertInDB);
   }
 
