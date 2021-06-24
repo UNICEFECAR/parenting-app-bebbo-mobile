@@ -82,7 +82,7 @@ export const ChildListingArea = styled.View`
 `;
 
 export const ChildListingBox = styled.View`
-  backgroundcolor: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
+  background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
   border-radius: 4;
   padding: 10px;
   flex-direction: row;
