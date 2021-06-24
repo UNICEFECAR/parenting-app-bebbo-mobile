@@ -7,7 +7,7 @@ import Icon from './shared/Icon';
 
 const CollapsibleItem = (props: any) => {
   const {item} = props;
-  console.log(item);
+  // console.log(item);
   const [isOPen, setIsOPen] = useState<Boolean>(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
@@ -60,7 +60,7 @@ const CollapsibleItem = (props: any) => {
         </View>
         {isOPen ? (
           <>
-            <View style={{padding: 5}}>
+            <View style={{padding: 10}}>
               <Heading4>Milestone</Heading4>
               <View style={{flexDirection: 'row'}}>
                 <Image
@@ -118,8 +118,9 @@ const styles = StyleSheet.create({
     color: '#000',
     backgroundColor: '#FFF',
     // marginVertical: 8,
-    // marginHorizontal: 16,
-    margin: 10,
+    marginHorizontal: 16,
+
+    marginVertical: 5,
   },
   title: {
     fontSize: 12,
