@@ -1,15 +1,20 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-import Icon, { OuterIconLeft, OuterIconRow, TickView } from '@components/shared/Icon';
-import { ProfileActionView,ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView } from '@components/shared/ProfileListingStyle';
+import Icon, {
+  OuterIconLeft,
+  OuterIconRow,
+  TickView
+} from '@components/shared/Icon';
+import {
+  ProfileActionView, ProfileIconView,
+  ProfileLinkView, ProfileListActiveChild, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView
+} from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
-import {
-  Pressable, SafeAreaView, ScrollView, Text, View
-} from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
 
@@ -93,16 +98,18 @@ const ChildProfile = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
-  const dispatch =useAppDispatch();
-  const childList = useAppSelector(
-    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
+  const dispatch = useAppDispatch();
+  const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ''
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : state.childData.childDataSet.allChild,
   );
   // const allConfigData = useAppSelector(
   //   (state: any) => state.variableData != '' ? JSON.parse(state.variableData) : state.variableData
   // );
-  
- // console.log(allConfigData,"..allConfigData..")
-  const renderChildItem = (dispatch:any,data:any, index: number) => (
+
+  // console.log(allConfigData,"..allConfigData..")
+  const renderChildItem = (dispatch: any, data: any, index: number) => (
     <View key={index}>
       {/* <ProfileListViewSelected>
                 <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
@@ -120,37 +127,39 @@ const ChildProfile = ({navigation}: Props) => {
         style={{
           backgroundColor: secopndaryTintColor,
         }}>
-          <ProfileListInner>
-        <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
-        <ProfileTextView
-                 >
-                   <ProfileSectionView>
-                   <Heading3>{data.childname?data.childname:"Child"+(index+1)},</Heading3>
-                   <OuterIconLeft></OuterIconLeft>
-                   <Heading6>{data.gender?data.gender:''}</Heading6>
-                  
-                   </ProfileSectionView>
-          
-                   <Heading5>Born on {data.birthDate}</Heading5>
-                   
-                   <ProfileLinkView>
-            <ButtonTextSmLine
+        <ProfileListInner>
+          <ProfileIconView>
+            <Icon name="ic_baby" size={30} color="#000" />
+          </ProfileIconView>
+          <ProfileTextView>
+            <ProfileSectionView>
+              <Heading3>
+                {data.childname ? data.childname : 'Child' + (index + 1)},
+              </Heading3>
+              <OuterIconLeft></OuterIconLeft>
+              <Heading6>{data.gender ? data.gender : ''}</Heading6>
+            </ProfileSectionView>
+
+            <Heading5>Born on {data.birthDate}</Heading5>
+
+            <ProfileLinkView>
+              <ButtonTextSmLine
                 onPress={() => {
                   navigation.navigate('EditChildProfile');
                 }}>
-            <Text>Edit Profile</Text>
-            </ButtonTextSmLine>
-            <View><Text>|</Text></View>
-            <ButtonTextSmLine>Activate Profile</ButtonTextSmLine>
-          </ProfileLinkView>
-                 </ProfileTextView>
-                 <ProfileActionView>
-                  {/* Pressable button */}
-                 <Text></Text>
-                </ProfileActionView>
-                </ProfileListInner>
-        
-        
+                <Text>Edit Profile</Text>
+              </ButtonTextSmLine>
+              <View>
+                <Text>|</Text>
+              </View>
+              <ButtonTextSmLine>Activate Profile</ButtonTextSmLine>
+            </ProfileLinkView>
+          </ProfileTextView>
+          <ProfileActionView>
+            {/* Pressable button */}
+            <Text></Text>
+          </ProfileActionView>
+        </ProfileListInner>
       </ProfileListDefault>
     </View>
   );
@@ -177,119 +186,120 @@ const ChildProfile = ({navigation}: Props) => {
               <Text> {'Child and Parent Profile'}</Text>
             </View>
           </View>
-          <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
-          <View style={{margin: 15}}>
-            <View style={{flexDirection: 'column'}}>
-              <ProfileListActiveChild
-                style={{
-                  backgroundColor: secopndaryColor,
-                }}>
-                <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
-                <ProfileTextView
-                 >
-                   <ProfileSectionView>
-                   <Heading3>Jenny,</Heading3>
-                   <OuterIconLeft></OuterIconLeft>
-                   <Heading6>Girl</Heading6>
-                  
-                   </ProfileSectionView>
-                   <Heading5>Born on 08 Jul 2020</Heading5>
-                   <ProfileLinkView>
+          <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}>
+            <View style={{margin: 15}}>
+              <View style={{flexDirection: 'column'}}>
+                <ProfileListActiveChild
+                  style={{
+                    backgroundColor: secopndaryColor,
+                  }}>
+                  <ProfileIconView>
+                    <Icon name="ic_baby" size={30} color="#000" />
+                  </ProfileIconView>
+                  <ProfileTextView>
+                    <ProfileSectionView>
+                      <Heading3>Jenny,</Heading3>
+                      <OuterIconLeft></OuterIconLeft>
+                      <Heading6>Girl</Heading6>
+                    </ProfileSectionView>
+                    <Heading5>Born on 08 Jul 2020</Heading5>
+                    <ProfileLinkView>
                       <ButtonTextSmLine
-                              onPress={() => {
-                                navigation.navigate('EditChildProfile');
-                              }}>
-                              <Text>Edit Profile</Text>
+                        onPress={() => {
+                          navigation.navigate('EditChildProfile');
+                        }}>
+                        <Text>Edit Profile</Text>
                       </ButtonTextSmLine>
-                  </ProfileLinkView>
-                 </ProfileTextView>
-                
-                  
+                    </ProfileLinkView>
+                  </ProfileTextView>
 
                   <ProfileActionView>
                     <OuterIconRow>
                       <OuterIconLeft>
-                      <TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView>
+                        <TickView>
+                          <Icon name="ic_tick" size={12} color="#009B00" />
+                        </TickView>
                       </OuterIconLeft>
-                      </OuterIconRow>
-                      <Heading5Bold>Activated</Heading5Bold>
+                    </OuterIconRow>
+                    <Heading5Bold>Activated</Heading5Bold>
                   </ProfileActionView>
-
-              </ProfileListActiveChild>
-              <ScrollView style={{height: 350, marginTop: 15}} nestedScrollEnabled = {true}>
-                {childList?.map((item:any, index:number) => {
-                return renderChildItem(dispatch,item,index);
-                })}
-              </ScrollView>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  backgroundColor: secopndaryTintColor,
-                  marginBottom: 10,
-                  borderBottomWidth: 1,
-                  borderColor: '#EEE',
-                }}>
-                <Pressable
-                  style={{padding: 10, flexDirection: 'row'}}
-                  onPress={() => {
-                    navigation.navigate('EditChildProfile');
+                </ProfileListActiveChild>
+                <ScrollView
+                  style={{height: 'auto', marginTop: 15}}
+                  nestedScrollEnabled={true}>
+                  {childList?.map((item: any, index: number) => {
+                    return renderChildItem(dispatch, item, index);
+                  })}
+                </ScrollView>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    backgroundColor: secopndaryTintColor,
+                    marginBottom: 10,
+                    borderBottomWidth: 1,
+                    borderColor: '#EEE',
                   }}>
-                  <Icon
-                    name="ic_plus"
-                    size={25}
-                    color="#000"
-                    style={{padding: 10}}
-                  />
-                  <Text>Add sister or brother</Text>
-                </Pressable>
-                <Pressable
-                  style={{padding: 10, flexDirection: 'row'}}
-                  onPress={() => {
-                    navigation.navigate('AddExpectingChildProfile');
-                  }}>
-                  <Icon
-                    name="ic_plus"
-                    size={25}
-                    color="#000"
-                    style={{padding: 10}}
-                  />
-                  <Text>Add Expecting Child</Text>
-                </Pressable>
-              </View>
-            </View>
-            <View style={{backgroundColor: secopndaryTintColor}}>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <ButtonText>Parent Details</ButtonText>
-                </View>
-                <View style={{padding: 10}}>
-                <Pressable
-                  onPress={() => {
-                    navigation.navigate('EditParentDetails');
-                  }}>
-                  <Text>Edit Profile</Text>
+                  <Pressable
+                    style={{padding: 10, flexDirection: 'row'}}
+                    onPress={() => {
+                      navigation.navigate('EditChildProfile');
+                    }}>
+                    <Icon
+                      name="ic_plus"
+                      size={25}
+                      color="#000"
+                      style={{padding: 10}}
+                    />
+                    <Text>Add sister or brother</Text>
+                  </Pressable>
+                  <Pressable
+                    style={{padding: 10, flexDirection: 'row'}}
+                    onPress={() => {
+                      navigation.navigate('AddExpectingChildProfile');
+                    }}>
+                    <Icon
+                      name="ic_plus"
+                      size={25}
+                      color="#000"
+                      style={{padding: 10}}
+                    />
+                    <Text>Add Expecting Child</Text>
                   </Pressable>
                 </View>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <Text>Your role is</Text>
+              <View style={{backgroundColor: secopndaryTintColor}}>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{padding: 10}}>
+                    <ButtonText>Parent Details</ButtonText>
+                  </View>
+                  <View style={{padding: 10}}>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate('EditParentDetails');
+                      }}>
+                      <Text>Edit Profile</Text>
+                    </Pressable>
+                  </View>
                 </View>
-                <View style={{padding: 10}}>
-                  <Text>Father</Text>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{padding: 10}}>
+                    <Text>Your role is</Text>
+                  </View>
+                  <View style={{padding: 10}}>
+                    <Text>Father</Text>
+                  </View>
                 </View>
-              </View>
 
-              <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                  <Text>Name</Text>
-                </View>
-                <View style={{padding: 10}}>
-                  <Text>Obama</Text>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{padding: 10}}>
+                    <Text>Name</Text>
+                  </View>
+                  <View style={{padding: 10}}>
+                    <Text>Obama</Text>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
           </ScrollView>
         </View>
       </SafeAreaView>
