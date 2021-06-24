@@ -77,7 +77,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
               childSet.push(insertData);
               addChild(editScreen, 1, childSet, dispatch, navigation);
             }}>
-            <ButtonText>{t('childSetupList.saveBtnText')}</ButtonText>
+            <ButtonText>{t('localization.childSetupListsaveBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

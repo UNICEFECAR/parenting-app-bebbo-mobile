@@ -103,7 +103,7 @@ const ChildSetupList = ({ navigation }: Props) => {
    
   }
   const editRecord = (data:any) => {
-    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.editSiblingBtn'),childData:data});
+    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('localization.childSetupListeditSiblingBtn'),childData:data});
   }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
@@ -151,11 +151,11 @@ const ChildSetupList = ({ navigation }: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-              {t('childSetupList.header')}
+              {t('localization.childSetupListheader')}
             </Heading1Centerw>
             <ShiftFromTop30>
             <Heading3Centerw>
-              {t('childSetupList.subHeader')}
+              {t('localization.childSetupListsubHeader')}
             </Heading3Centerw>
             </ShiftFromTop30>
           </ChildCenterView>
@@ -185,12 +185,12 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ShiftFromBottom20>
             <ButtonLinkView
               
-              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.addSiblingBtn'),childData:null})}>
+              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('localization.childSetupListaddSiblingBtn'),childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
                 </OuterIconLeft>
-                <ButtonTextLinew> {t('childSetupList.addSiblingBtn')}</ButtonTextLinew>
+                <ButtonTextLinew> {t('localization.childSetupListaddSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
             </ButtonLinkView>
           </ShiftFromBottom20>
@@ -199,7 +199,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             onPress={() => {
               childSetup();
             }}>
-            <ButtonText>{t('childSetupList.continueBtnText')}</ButtonText>
+            <ButtonText>{t('localization.childSetupListcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

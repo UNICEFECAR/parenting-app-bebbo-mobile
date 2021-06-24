@@ -15,7 +15,7 @@ const ChildInfo = () => {
     <>
       <View style={{padding: 10}}>
         <Heading2Center>
-          {t('homeScreen.childInfoTitle2')} 
+          {t('localization.homeScreenchildInfoTitle2')} 
            {/* if baby found use childInfoTitle */}
         </Heading2Center>
         <View
@@ -35,7 +35,7 @@ const ChildInfo = () => {
         </Header3Text>
         <ButtonContainer>
           <ButtonPrimary onPress={() => {}}>
-            <ButtonText>{t('homeScreen.childBtnText')}</ButtonText>
+            <ButtonText>{t('localization.homeScreenchildBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonContainer>
       </View>

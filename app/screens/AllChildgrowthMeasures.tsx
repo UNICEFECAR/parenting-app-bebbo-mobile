@@ -78,26 +78,26 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
         {title}
         <View style={{flexDirection: 'row'}}>
           <View style={{flexDirection: 'column', flex: 2}}>
-            <Paragraph>{t('growthScreen.wText')}</Paragraph>
+            <Paragraph>{t('localization.growthScreenwText')}</Paragraph>
             <Heading2 style={{padding: 2}}>
-              {rowData.weight} {t('growthScreen.kgText')}
+              {rowData.weight} {t('localization.growthScreenkgText')}
             </Heading2>
           </View>
           <View style={{flexDirection: 'column', flex: 2}}>
-            <Paragraph>{t('growthScreen.hText')}</Paragraph>
+            <Paragraph>{t('localization.growthScreenhText')}</Paragraph>
             <Heading2 style={{padding: 2}}>
-              {rowData.height} {t('growthScreen.cmText')}
+              {rowData.height} {t('localization.growthScreencmText')}
             </Heading2>
           </View>
           <View style={{flex: 2, flexDirection: 'row'}}>
             <Pressable
               onPress={() => {
                 navigation.navigate('AddNewChildgrowth', {
-                  headerTitle: t('growthScreen.editNewBtntxt'),
+                  headerTitle: t('localization.growthScreeneditNewBtntxt'),
                 });
               }}>
               <Text style={{padding: 2, textDecorationLine: 'underline'}}>
-                {t('growthScreen.editText')}
+                {t('localization.growthScreeneditText')}
               </Text>
             </Pressable>
           </View>
@@ -132,7 +132,7 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2w style={{color: '#000'}}>
-                {t('growthScreen.allMeasureHeader')}
+                {t('localization.growthScreenallMeasureHeader')}
               </Heading2w>
             </View>
           </View>
