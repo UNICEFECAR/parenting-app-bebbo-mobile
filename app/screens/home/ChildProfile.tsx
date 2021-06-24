@@ -237,7 +237,7 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Name</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>{userNameData?.length>0?JSON.parse(userNameData[0].value):''}</Text>
+                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
                   </View>
                 </View>
               </View>
