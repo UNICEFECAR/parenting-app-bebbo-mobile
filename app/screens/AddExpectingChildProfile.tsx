@@ -17,6 +17,8 @@ import {
   Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch } from '../../App';
+import { addChild, getNewChild } from '../services/childCRUD';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -28,22 +30,25 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddExpectingChildProfile = ({navigation}: Props) => {
-  const [dobDate, setdobDate] = useState();
+const AddExpectingChildProfile = ({ navigation }: Props) => {
+  //const [dobDate, setdobDate] = useState();
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || dobDate;
+    const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
-    setdobDate(currentDate);
+    setPlannedTermDate(currentDate);
   };
   const themeContext = useContext(ThemeContext);
+  const dispatch = useAppDispatch();
+  const [name, setName] = React.useState("");
+  const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const showdobDatepicker = () => {
     setdobShow(true);
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <View
@@ -55,7 +60,7 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
             borderBottomColor: 'gray',
             borderBottomWidth: 2,
           }}>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <Pressable
               onPress={() => {
                 navigation.goBack();
@@ -63,18 +68,18 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
               <Text>Back</Text>
             </Pressable>
           </View>
-          <View style={{flex: 3}}>
+          <View style={{ flex: 3 }}>
             <Text> {'Add Expecting Child Details'}</Text>
           </View>
         </View>
 
-        <View style={{margin: 10}}>
+        <View style={{ margin: 10 }}>
           <FormDateContainer>
             <FormInputGroup onPress={showdobDatepicker}>
               <LabelText>Expected due date</LabelText>
               <FormInputBox>
                 <FormDateText>
-                  <Text> {dobDate ? dobDate.toDateString() : null}</Text>
+                  <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
@@ -101,7 +106,7 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
               autoCapitalize="none"
               autoCorrect={false}
               clearButtonMode="always"
-              value={''}
+              onChangeText={(value) => { setName(value) }}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your child name"
               style={{
@@ -111,10 +116,14 @@ const AddExpectingChildProfile = ({navigation}: Props) => {
               }}
             />
           </View>
-          <View style={{width: '100%', marginTop: 30}}>
+          <View style={{ width: '100%', marginTop: 30 }}>
             <ButtonPrimary
               onPress={() => {
-                navigation.navigate('ChildProfileScreen');
+                //navigation.navigate('ChildProfileScreen');
+                let insertData: any = getNewChild('', plannedTermDate);
+                let childSet: Array<any> = [];
+                childSet.push(insertData);
+                addChild(false, 2, childSet, dispatch, navigation);
               }}>
               <ButtonText>Save Data</ButtonText>
             </ButtonPrimary>

@@ -58,7 +58,7 @@ const item = {
 const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
-  console.log(sponsors, '..11sponsors..');
+ // console.log(sponsors, '..11sponsors..');
   return (
     <Container>
       <MainView>
@@ -130,7 +130,7 @@ const LoadingScreenComponent = (props: any) => {
               <ActivityIndicator size="large" color="#ffffff" />
             </Text>
             <Text style={{textAlign: 'center'}}>
-              <LoadingText>{t('loadingText')}</LoadingText>
+              <LoadingText>{t('localization.loadingText')}</LoadingText>
             </Text>
           </View>
         </LinearGradient>

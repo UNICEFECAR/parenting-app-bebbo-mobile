@@ -82,13 +82,13 @@ const Articles = ({navigation}: Props) => {
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_shareapp" size={20} color="#000" />
-                <Text>{t('articleScreen.shareText')}</Text>
+                <Text>{t('localization.articleScreenshareText')}</Text>
               </Pressable>
             </View>
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_favorites" size={20} color="#000" />
-                <Text>{t('articleScreen.addtoFavText')}</Text>
+                <Text>{t('localization.articleScreenaddtoFavText')}</Text>
               </Pressable>
             </View>
           </View>
@@ -213,7 +213,7 @@ const Articles = ({navigation}: Props) => {
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <ScrollView nestedScrollEnabled={true}>
           <TabScreenHeader
-            title={t('articleScreen.headerTitle')}
+            title={t('localization.articleScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -233,7 +233,7 @@ const Articles = ({navigation}: Props) => {
                 value={''}
                 // onChangeText={queryText => handleSearch(queryText)}
                 // placeholder="Search for Keywords"
-                placeholder={t('articleScreen.searchPlaceHolder')}
+                placeholder={t('localization.articleScreensearchPlaceHolder')}
                 style={{
                   backgroundColor: '#fff',
                   width: '100%',
