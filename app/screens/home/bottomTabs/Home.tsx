@@ -35,7 +35,7 @@ const Home = () => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title={t('homeScreen.headerTitle')} headerColor={headerColor} textColor='#FFF'/>
+        <TabScreenHeader title={t('localization.homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <ChildInfo/>
           <DailyReads/>
@@ -44,11 +44,11 @@ const Home = () => {
           <AdviceAndArticles/>
           <Tools/>
           <View style={{padding:10}}>
-            <Text>{t('homeScreen.expText')}</Text>
+            <Text>{t('localization.homeScreenexpText')}</Text>
             <ButtonContainer>
               <ButtonPrimary
                 onPress={() => {}}>
-                <ButtonText>{t('homeScreen.expBtnText')}</ButtonText>
+                <ButtonText>{t('localization.homeScreenexpBtnText')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>

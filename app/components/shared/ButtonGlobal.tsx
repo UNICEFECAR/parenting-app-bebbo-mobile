@@ -76,9 +76,7 @@ export const ButtonCol = styled.View`
   justify-content:flex-start;
   flex:1;
   padding: 0 15px;
-  
   flex-direction:column;
-  
 `;
 
 export const ButtonContainer = styled.View`

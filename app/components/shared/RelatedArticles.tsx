@@ -1,7 +1,9 @@
+import { Heading2, Heading3 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import Icon from './Icon';
 const Item = ({title}: any) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
@@ -11,9 +13,8 @@ const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
+  /* padding: 15px; */
   margin-top: 10px;
-  background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};
 `;
 
 const DATA = [
@@ -49,21 +50,35 @@ const DATA = [
   },
 ];
 
-const DailyReads = () => {
+const RelatedArticles = () => {
   const {t} = useTranslation();
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     return (
       <View style={styles.item} key={index}>
-        <ImageBackground source={item.imagePath} style={styles.cardImage}>
-          <Text style={styles.title}>{item.title}</Text>
-        </ImageBackground>
-        <Text>{t('localization.homeScreentodaygame') || t('localization.homeScreentodayarticle')}</Text>
-        <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FFF'}}>
-          <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('localization.homeScreenshareText')}</Text>
+        <Image source={item.imagePath} style={styles.cardImage}></Image>
+        <View
+          style={{flex: 1, flexDirection: 'column', backgroundColor: '#FFF'}}>
+          <Text style={styles.header}>Nutrition and BreastFeeding</Text>
+          <Heading3 style={styles.title}>{item.title}</Heading3>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            padding: 10,
+            backgroundColor: '#FFF',
+          }}>
+          <View style={{flex: 1}}>
+            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+              <Icon name="ic_sb_shareapp" size={20} color="#000" />
+              <Text>{t('localization.articleScreenshareText')}</Text>
+            </Pressable>
           </View>
-          <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('localization.homeScreenviewDetailsText')}</Text>
+          <View style={{flex: 1}}>
+            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+              <Icon name="ic_sb_favorites" size={20} color="#000" />
+              <Text>{t('localization.articleScreenaddtoFavText')}</Text>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -73,7 +88,7 @@ const DailyReads = () => {
   return (
     <>
       <ContainerView>
-        <Text>{t('localization.homeScreendailyReadsTitle')}</Text>
+        <Heading2>{t('localization.growthScreenrelatedArticle')}</Heading2>
         <FlatList
           data={DATA}
           horizontal
@@ -85,34 +100,40 @@ const DailyReads = () => {
   );
 };
 
-export default DailyReads;
+export default RelatedArticles;
 
 const styles = StyleSheet.create({
   item: {
     // backgroundColor: '#FFF',
     // padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginRight: 16,
+    // marginHorizontal: 16,
     width: 300,
     borderRadius: 5,
   },
   btn: {
     width: 150,
-    padding: 10,
+    padding: 5,
   },
   btntxt: {
     color: '#000',
   },
   title: {
-    fontSize: 16,
     padding: 5,
-    color: '#FFF',
+  },
+  header: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    paddingHorizontal: 5,
+    paddingTop: 5,
+    color: '#000',
   },
   cardImage: {
     width: '100%',
     height: 120,
     flex: 1,
-    position: 'relative',
+    // position: 'relative',
     top: 0,
     left: 0,
     borderTopRightRadius: 5,

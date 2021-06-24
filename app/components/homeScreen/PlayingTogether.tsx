@@ -39,11 +39,11 @@ const PlayingTogether = () => {
             </View>
             <View>
               <View>
-                <Text>{t('homeScreen.ptHeader')}</Text>
+                <Text>{t('localization.homeScreenptHeader')}</Text>
                 <ButtonContainer>
                   <ButtonPrimary
                     onPress={() => navigation.navigate('Activities')}>
-                    <ButtonText>{t('homeScreen.ptButton')}</ButtonText>
+                    <ButtonText>{t('localization.homeScreenptButton')}</ButtonText>
                   </ButtonPrimary>
                 </ButtonContainer>
               </View>
