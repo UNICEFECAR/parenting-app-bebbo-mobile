@@ -32,7 +32,7 @@ const Notifications = () => {
             <BurgerIcon />
           </View>
           <View style={{ flex: 5, padding: 8 }}>
-            <Heading2w> {t('notiScreen.headerTitle')}</Heading2w>
+            <Heading2w> {t('localization.notiScreenheaderTitle')}</Heading2w>
           </View>
         </View>
 

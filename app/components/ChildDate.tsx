@@ -68,10 +68,10 @@ const ChildDate = (props: any) => {
     <>
       <FormDateContainer>
         <FormInputGroup onPress={showdobDatepicker}>
-          <LabelText> {t('childSetup.dobLabel')}</LabelText>
+          <LabelText> {t('localization.childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {dobDate ? dobDate.toDateString() : t('childSetup.dobSelector')}</Text>
+              <Text> {dobDate ? dobDate.toDateString() : t('localization.childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -97,7 +97,7 @@ const ChildDate = (props: any) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('childSetup.prematureLabel')}</LabelText>
+            <LabelText>{t('localization.childSetupprematureLabel')}</LabelText>
           </FormOuterCheckbox>
 
           <FormInfoLabel>
@@ -123,10 +123,10 @@ const ChildDate = (props: any) => {
           <>
             <ShiftFromBottom30>
               <FormInputGroup onPress={showdueDatepicker}>
-                <LabelText>{t('childSetup.dueLabel')}</LabelText>
+                <LabelText>{t('localization.childSetupdueLabel')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text> {dueDate ? dueDate.toDateString() : t('childSetup.dueSelector')}</Text>
+                    <Text> {dueDate ? dueDate.toDateString() : t('localization.childSetupdueSelector')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_calendar" size={20} color="#000" />
@@ -172,7 +172,7 @@ const ChildDate = (props: any) => {
               </PopupClose>
             </PopupCloseContainer>
             <Heading4Centerr>
-              {t('childSetup.prematureMessage')}
+              {t('localization.childSetupprematureMessage')}
             </Heading4Centerr>
           </ModalPopupContainer>
         </PopupOverlay>

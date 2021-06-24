@@ -23,32 +23,32 @@ const Walkthrough = ({ navigation }: Props) => {
   const {t} = useTranslation();
   const data = [
     {
-      title: t('walkthroughTexts.0.title'),
+      title: t('localization.walkthroughTextstitle0'),
       image: require('@assets/svg/bebbo_logo_shape.svg'),
       colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
       textcolor:'#FFF',
-      subtitle: t('walkthroughTexts.0.subtitle'),
+      subtitle: t('localization.walkthroughTextssubtitle0'),
     },
     {
-      title: t('walkthroughTexts.1.title'),
+      title: t('localization.walkthroughTextstitle1'),
       image: require('@assets/svg/ic_activity_color.svg'),
       colors: ['#0FD87E', '#CFF7E5'],
       textcolor:'#000',
-      subtitle: t('walkthroughTexts.1.subtitle'),
+      subtitle: t('localization.walkthroughTextssubtitle1'),
     },
     {
-      title: t('walkthroughTexts.2.title'),
+      title: t('localization.walkthroughTextstitle2'),
       image: require('@assets/svg/ic_tools_color.svg'),
       colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
       textcolor:'#000',
-      subtitle: t('walkthroughTexts.2.subtitle'),
+      subtitle: t('wlocalization.walkthroughTextssubtitle2'),
     },
     {
-      title: t('walkthroughTexts.3.title'),
+      title: t('localization.walkthroughTextstitle3'),
       image: require('@assets/svg/ic_article_color.svg'),
       colors: ['#FF8D6B', '#FFD2C4'],
       textcolor:'#000',
-      subtitle:t('walkthroughTexts.3.subtitle'),
+      subtitle:t('localization.walkthroughTextssubtitle3'),
     },
   ];
   type Item = typeof data[0];
@@ -84,7 +84,7 @@ const Walkthrough = ({ navigation }: Props) => {
     return (
       <WalkthroughButton>
       <ButtonTertiary1>
-        <ButtonText>{t('walkthroughButtonTexts.1')}</ButtonText>
+        <ButtonText>{t('localization.walkthroughButtonNext')}</ButtonText>
       </ButtonTertiary1>
       </WalkthroughButton>
     );
@@ -94,7 +94,7 @@ const Walkthrough = ({ navigation }: Props) => {
     return (
       <WalkthroughButton>
       <ButtonTertiary2>
-        <ButtonText>{t('walkthroughButtonTexts.0')}</ButtonText>
+        <ButtonText>{t('localization.walkthroughButtonBack')}</ButtonText>
         </ButtonTertiary2>
         </WalkthroughButton>
     );
