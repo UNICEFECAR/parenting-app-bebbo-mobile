@@ -228,7 +228,7 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Your role is</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>{userParentalRoleData?.length>0?JSON.parse(userParentalRoleData[0].value):''}</Text>
+                    <Text>{userParentalRoleData?.length>0?userParentalRoleData[0].value:''}</Text>
                   </View>
                 </View>
 
