@@ -11,12 +11,14 @@ import {
   ProfileLinkView, ProfileListActiveChild, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { getAllChildren, getAllConfigData } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -25,90 +27,32 @@ type Props = {
   navigation: NotificationsNavigationProp;
 };
 
-const DATA = [
-  {
-    id: '1',
-    childname: 'Harvey',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '2',
-    childname: 'Donna',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '3',
-    childname: 'Michael',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '4',
-    childname: 'Rachel',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '5',
-    childname: 'Louis',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '6',
-    childname: 'Jessica',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '7',
-    childname: 'Samantha',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '8',
-    childname: 'Katrina',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '9',
-    childname: 'Sheila',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '10',
-    childname: 'Jeff',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '11',
-    childname: 'Alex',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-];
 const ChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const dispatch = useAppDispatch();
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      getAllConfigData(dispatch);
+    },[])
+  );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild,
+      :[],
   );
-  // const allConfigData = useAppSelector(
-  //   (state: any) => state.variableData != '' ? JSON.parse(state.variableData) : state.variableData
-  // );
-
-  // console.log(allConfigData,"..allConfigData..")
+  
+ 
+  const allConfigData = useAppSelector(
+    (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
+  );
+  const userParentalRoleData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userParentalRole"):[];
+  const userNameData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userName"):[];
+  
+  //console.log(allConfigData,"..userParentalRole..")
   const renderChildItem = (dispatch: any, data: any, index: number) => (
     <View key={index}>
       {/* <ProfileListViewSelected>
@@ -127,25 +71,23 @@ const ChildProfile = ({navigation}: Props) => {
         style={{
           backgroundColor: secopndaryTintColor,
         }}>
-        <ProfileListInner>
-          <ProfileIconView>
-            <Icon name="ic_baby" size={30} color="#000" />
-          </ProfileIconView>
-          <ProfileTextView>
-            <ProfileSectionView>
-              <Heading3>
-                {data.childname ? data.childname : 'Child' + (index + 1)},
-              </Heading3>
-              <OuterIconLeft></OuterIconLeft>
-              <Heading6>{data.gender ? data.gender : ''}</Heading6>
-            </ProfileSectionView>
-
-            <Heading5>Born on {data.birthDate}</Heading5>
-
-            <ProfileLinkView>
-              <ButtonTextSmLine
+          <ProfileListInner>
+        <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+        <ProfileTextView
+                 >
+                   <ProfileSectionView>
+                   <Heading3>{data.name!="" ? data.name:"Child"+(index+1)},</Heading3>
+                   <OuterIconLeft></OuterIconLeft>
+                   <Heading6>{data.gender?data.gender:''}</Heading6>
+                  
+                   </ProfileSectionView>
+          
+                   <Heading5>Born on {data.birthDate}</Heading5>
+                   
+                   <ProfileLinkView>
+            <ButtonTextSmLine
                 onPress={() => {
-                  navigation.navigate('EditChildProfile');
+                  navigation.navigate('EditChildProfile',{childData:data});
                 }}>
                 <Text>Edit Profile</Text>
               </ButtonTextSmLine>
@@ -186,10 +128,10 @@ const ChildProfile = ({navigation}: Props) => {
               <Text> {'Child and Parent Profile'}</Text>
             </View>
           </View>
-          <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}>
+          {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
             <View style={{margin: 15}}>
               <View style={{flexDirection: 'column'}}>
-                <ProfileListActiveChild
+                {/* <ProfileListActiveChild
                   style={{
                     backgroundColor: secopndaryColor,
                   }}>
@@ -223,9 +165,9 @@ const ChildProfile = ({navigation}: Props) => {
                     </OuterIconRow>
                     <Heading5Bold>Activated</Heading5Bold>
                   </ProfileActionView>
-                </ProfileListActiveChild>
+                </ProfileListActiveChild> */}
                 <ScrollView
-                  style={{height: 'auto', marginTop: 15}}
+                  style={{height: '70%', marginTop: 15}}
                   nestedScrollEnabled={true}>
                   {childList?.map((item: any, index: number) => {
                     return renderChildItem(dispatch, item, index);
@@ -242,7 +184,7 @@ const ChildProfile = ({navigation}: Props) => {
                   <Pressable
                     style={{padding: 10, flexDirection: 'row'}}
                     onPress={() => {
-                      navigation.navigate('EditChildProfile');
+                      navigation.navigate('EditChildProfile',{childData:''});
                     }}>
                     <Icon
                       name="ic_plus"
@@ -286,7 +228,7 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Your role is</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>Father</Text>
+                    <Text>{userParentalRoleData?.length>0?JSON.parse(userParentalRoleData[0].value):''}</Text>
                   </View>
                 </View>
 
@@ -295,12 +237,12 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Name</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>Obama</Text>
+                    <Text>{userNameData?.length>0?JSON.parse(userNameData[0].value):''}</Text>
                   </View>
                 </View>
               </View>
             </View>
-          </ScrollView>
+          {/* </ScrollView> */}
         </View>
       </SafeAreaView>
     </>
