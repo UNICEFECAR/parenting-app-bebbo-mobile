@@ -16,6 +16,9 @@ import {
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
+import { useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import {
   Heading3
 } from '../styles/typography';
@@ -33,7 +36,16 @@ const EditParentDetails = ({navigation}: Props) => {
   const genders = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
+  const [parentName, setParentName] = React.useState("");
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const saveParentData=async (relationship:string,parentName:any)=>{
+    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+    let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName",parentName);
+    // console.log(userParentalRole,"..userParentalRole")
+    // console.log(userNames,"..userNames")
+    navigation.navigate('ChildProfileScreen');
+  }
+   
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -99,7 +111,7 @@ const EditParentDetails = ({navigation}: Props) => {
               autoCapitalize="none"
               autoCorrect={false}
               clearButtonMode="always"
-              value={''}
+              onChangeText={(value:any) => { setParentName(value) }}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
               style={{
@@ -112,7 +124,8 @@ const EditParentDetails = ({navigation}: Props) => {
           <View style={{width: '100%', marginTop: 30}}>
             <ButtonPrimary
               onPress={() => {
-                navigation.navigate('ChildProfileScreen');
+                saveParentData(relationship,parentName);
+             
               }}>
               <ButtonText>Save Data</ButtonText>
             </ButtonPrimary>
