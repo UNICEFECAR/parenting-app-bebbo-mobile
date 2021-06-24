@@ -7,8 +7,14 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3 } from '@styles/typography';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  Image, Pressable, ScrollView, StyleSheet, Text, View
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 type ActivitiesNavigationProp =
@@ -54,55 +60,64 @@ const ContainerView = styled.SafeAreaView`
   background-color: ${(props) => props.theme.colors.ACTIVITIES_TINTCOLOR};
 `;
 const SuggestedActivities = () => {
+  const {t} = useTranslation();
   return (
-    <View style={{padding: 10, height: 400, marginBottom: 30}}>
-      <Heading3>Suggested Activities</Heading3>
-      <View style={styles.item}>
-        <Image
-          style={styles.cardImage}
-          source={require('@assets/trash/card5.jpeg')}
-          resizeMode={'cover'}
-        />
+    <View style={styles.item}>
+      <Image
+        style={styles.cardImage}
+        source={require('@assets/trash/card5.jpeg')}
+        resizeMode={'cover'}
+      />
+      <View>
+        <Text style={styles.label}>Play and learning</Text>
+        <Text style={styles.title}>
+          {'General recommendations for overweight and obese infants'}
+        </Text>
+      </View>
+      <View style={{flexDirection: 'row', padding: 10}}>
         <View>
-          <Text style={styles.label}>Play and learning</Text>
-          <Text style={styles.title}>
-            {'General recommendations for overweight and obese infants'}
+          <Text>
+            {t('actScreen.pendingMilestone')} {t('actScreen.milestones')}
+          </Text>
+          <Text>{'Laugh at Human face'}</Text>
+        </View>
+        <View>
+          <Text style={{borderBottomWidth: 1}}>
+            {t('actScreen.track')} {t('actScreen.milestones')}
           </Text>
         </View>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View>
-            <Text>{'Pending Milestones'}</Text>
-            <Text>{'Laugh at Human face'}</Text>
-          </View>
-          <View>
-            <Text style={{borderBottomWidth: 1}}>Track Milestone</Text>
-          </View>
+      </View>
+      <View style={{flexDirection: 'row', padding: 10}}>
+        <View style={{flex: 1}}>
+          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+            <Icon name="ic_sb_shareapp" size={20} color="#000" />
+            <Text>{t('actScreen.shareText')}</Text>
+          </Pressable>
         </View>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>Share</Text>
-            </Pressable>
-          </View>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>Add to favourites</Text>
-            </Pressable>
-          </View>
+        <View style={{flex: 1}}>
+          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+            <Icon name="ic_sb_favorites" size={20} color="#000" />
+            <Text>{t('actScreen.addtoFavText')}</Text>
+          </Pressable>
         </View>
       </View>
     </View>
   );
 };
 const Activities = ({navigation}: Props) => {
+  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const onPress = () => {
     navigation.navigate('ActivityDetails');
   };
+  const buttonData =[
+    {iconName:'ic_act_emotional',displayName:'Emotional'},
+    {iconName:'ic_act_language',displayName:'Language'},
+    {iconName:'ic_act_cognitive',displayName:'Cognitive'},
+    {iconName:'ic_act_movement',displayName:'Movement'}
+  ]
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
     <Pressable onPress={onPress} key={index}>
       <View style={styles.item}>
@@ -117,52 +132,51 @@ const Activities = ({navigation}: Props) => {
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>Share</Text>
+              <Text>{t('actScreen.shareText')}</Text>
             </Pressable>
           </View>
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>Add to favourites</Text>
+              <Text>{t('actScreen.addtoFavText')}</Text>
             </Pressable>
           </View>
         </View>
       </View>
     </Pressable>
   );
-  
+
   return (
     <>
       <ContainerView>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView nestedScrollEnabled={true}>
-        <TabScreenHeader
-          title="Activities"
-          headerColor={headerColor}
-          textColor="#000"
-        />
-        <View style={{flex: 1, flexDirection: 'column'}}>
-          <AgeBrackets itemColor={backgroundColor} activatedItemColor={headerColor}/>
-          <ActivitiesCategories
-            borderColor={headerColor}
-            backgroundColor={backgroundColor}
+          <TabScreenHeader
+            title={t('actScreen.headerTitle')}
+            headerColor={headerColor}
+            textColor="#000"
           />
-         
-            <SuggestedActivities />
-            <Heading3>Other Activities</Heading3>
+          <View style={{flex: 1, flexDirection: 'column'}}>
+            <AgeBrackets
+              itemColor={backgroundColor}
+              activatedItemColor={headerColor}
+            />
+            <ActivitiesCategories
+              borderColor={headerColor}
+              backgroundColor={backgroundColor}
+              buttonData={buttonData}
+            />
+            <View style={{padding: 10, height: 400, marginBottom: 30}}>
+              <Heading3>{t('actScreen.sugacttxt')}</Heading3>
+              <Text>{t('actScreen.prematureText')}</Text>
+              <SuggestedActivities />
+            </View>
+            <Heading3>{t('actScreen.otheracttxt')}</Heading3>
 
             {DATA.map((item, index) => {
               return renderActivityItem(item, index);
             })}
-            {/* <FlatList
-            nestedScrollEnabled={true}
-              data={DATA}
-              // contentContainerStyle={{height: DATA.length * 400}}
-              renderItem={({item, index}) => renderActivityItem(item, index)}
-              keyExtractor={(item) => item.id}
-            /> */}
-          
-        </View>
+          </View>
         </ScrollView>
       </ContainerView>
     </>
