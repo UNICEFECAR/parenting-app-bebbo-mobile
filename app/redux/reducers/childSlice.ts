@@ -5,16 +5,13 @@ interface childDataType {
   // name: string;
   childDataSet: { 
     allChild: string;
-    activeChild:string;
   }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: childDataType = {
   // name: 'Rest of the world',
   childDataSet: { 
-    allChild: '',
-    activeChild:''
-   
+    allChild: ''
   }
 };
 export const childSlice = createSlice({

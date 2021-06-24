@@ -23,6 +23,7 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllTermsData } from '../redux/reducers/utilsSlice';
+import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import { Heading1w } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 
@@ -73,6 +74,7 @@ const Terms = ({navigation}: Props) => {
         // setArticleData(stateArticleData)
         // console.log("basicpagesData--",basicData);
         setLoading(false);
+     
       }
       fetchData()
     },[languageCode])
@@ -100,19 +102,10 @@ const Terms = ({navigation}: Props) => {
     }
   ];
   const acceptTerms = async () => {
-    let data:any=[{
-      key:"acceptTerms",
-      value:"true",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    {
-      key:"userIsOnboarded",
-      value:"true",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    }]
-    let createresult = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, data);
+   
+    let acceptTermsRes = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "acceptTerms","true");
+    let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
+  
     navigation.reset({
       index: 0,
       routes: [

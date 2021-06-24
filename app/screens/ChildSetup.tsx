@@ -51,7 +51,7 @@ const ChildSetup = ({navigation}: Props) => {
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
   };
-
+ 
   return (
     <>
       <OnboardingContainer>

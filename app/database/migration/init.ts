@@ -54,8 +54,8 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
   }
   export const migrateConfigSettings = async (oldRealm:any,newRealm: any) => {
     //console.log(oldRealm,"------",newRealm);
-   // const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='currentActiveChildId' OR key=='userParentalRole' OR key=='userName'  OR key=='userEnteredChildData'");
-    const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='userName'");
+    const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='currentActiveChildId' OR key=='userParentalRole' OR key=='userName'  OR key=='userEnteredChildData'");
+    //const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='userName'");
     
     const newObjects = newRealm.objects(ConfigSettingsSchema.name);
     //console.log(oldObjects.length,"------",newObjects);
