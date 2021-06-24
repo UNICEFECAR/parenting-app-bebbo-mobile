@@ -8,7 +8,7 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { appConfig } from "../types/apiConstants";
 
 export const addApiDataInRealm = async (response: any) => {
-    console.log(new Date()," response in utils-",response);
+   // console.log(new Date()," response in utils-",response);
     let EntitySchema=<ObjectSchema>{};
    let Entity:any;
    let insertData = [];
@@ -39,23 +39,23 @@ export const addApiDataInRealm = async (response: any) => {
     else if(response.payload.apiEndpoint == appConfig.taxonomies)
     {
         const {standard_deviation, ...allData} = response.payload.data.data;
-        console.log(allData);
+       // console.log(allData);
         // insertData = response.payload.data.langcode;
         insertData.push({langCode:response.payload.data.langcode,allData:JSON.stringify(allData),standardDevData:JSON.stringify(response.payload.data.data.standard_deviation)});
-        console.log("insertData--",insertData);
+       // console.log("insertData--",insertData);
         Entity= Entity as TaxonomyEntity;
         EntitySchema = TaxonomySchema;
     }
         let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
         // let deleteresult2 = await dataRealmCommon.deleteAll(CoverImage);
         let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
-        console.log(new Date()," result is ",createresult);
+       // console.log(new Date()," result is ",createresult);
 }
 
 export const onRealmDataDbChange = (collection: any, changes: any) => {
-    console.log("Realm listener called--",collection.name);
-    console.log("Realm listener called--",collection.schema);
-    console.log("Realm listener called string--",changes);
+    //console.log("Realm listener called--",collection.name);
+   // console.log("Realm listener called--",collection.schema);
+    //console.log("Realm listener called string--",changes);
     // console.log("Realm listener called Schema--",Schema);
 }
  
