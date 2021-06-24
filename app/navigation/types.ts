@@ -8,7 +8,7 @@ export type RootStackParamList = {
   Terms: undefined;
   PrivacyPolicy: undefined;
   HomeDrawerNavigator: HomeDrawerNavigatorStackParamList;
-  EditChildProfile:undefined;
+  EditChildProfile:{};
   AddExpectingChildProfile:undefined;
   EditParentDetails:undefined;
   AddNewChildgrowth:undefined;

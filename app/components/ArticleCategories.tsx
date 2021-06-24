@@ -27,11 +27,11 @@ const ArticleCategories = (props: any) => {
     arr.slice(i * size, i * size + size)
   );
 const articleBrackets = chunk(activityCategory, 2)
-console.log(chunk(articleBrackets, 2));
+//console.log(chunk(articleBrackets, 2));
 //   const articleBrackets = new Array(Math.ceil(activityCategory.length / 3)).fill().map(_ => activityCategory.splice(0, 3))
   
 //   activityCategory.splice(0, 3);
-  console.log(articleBrackets);
+ // console.log(articleBrackets);
   return (
     <>
       <View
@@ -45,7 +45,7 @@ console.log(chunk(articleBrackets, 2));
         }}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           {articleBrackets.map((activityCategoryInner:any[], i:number) => {
-              console.log(activityCategoryInner)
+             // console.log(activityCategoryInner)
             return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
                 {
                  activityCategoryInner.map((item) => {
