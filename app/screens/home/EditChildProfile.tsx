@@ -18,6 +18,8 @@ import {
 import ActionSheet from 'react-native-actions-sheet';
 import ImagePicker, { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch } from '../../../App';
+import { addChild, getNewChild } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -30,6 +32,7 @@ const CROPPED_IMAGE_WIDTH = 800;
 const CROPPED_IMAGE_HEIGHT = 800;
 const EditChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
+  const dispatch=useAppDispatch();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const genders = ['boy', 'girl'];
@@ -40,6 +43,21 @@ const EditChildProfile = ({navigation}: Props) => {
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
+ 
+  const [photoUri, setphotoUri] = React.useState("");
+  let initialData: any = {};
+  const [birthDate, setBirthDate] =  React.useState<Date>();
+  const [name, setName] = React.useState("");
+  const [plannedTermDate, setPlannedTermDate] =  React.useState<Date>();
+  const [isPremature, setIsPremature] =  React.useState<string>('false');
+  
+  const sendData = (data: any) => { // the callback. Use a better name
+    setBirthDate(data.birthDate);
+    setPlannedTermDate(data.dueDate);
+    var myString: string = String(data.isPremature);
+    setIsPremature(myString);
+  };
+  const [gender, setGender] = React.useState('');
   const handleImageOptionClick = (index: number) => {
     if (index === 0) {
       ImagePicker.openPicker({
@@ -55,7 +73,7 @@ const EditChildProfile = ({navigation}: Props) => {
       })
         .then((image: ImageObject | ImageObject[]) => {
           if (!Array.isArray(image)) {
-            console.log(image)
+         //   console.log(image)
             // this.setState(
             //   {
             //     imageUri: image.path,
@@ -70,7 +88,7 @@ const EditChildProfile = ({navigation}: Props) => {
         })
         .catch((error) => {
           if (error.message != 'User cancelled image selection') {
-            console.log(error);
+           // console.log(error);
           }
         });
     } else {
@@ -85,7 +103,7 @@ const EditChildProfile = ({navigation}: Props) => {
         showCropGuidelines: true,
         multiple:false
       }).then((image) => {
-        console.log(image);
+        //console.log(image);
         // setResponse(image)
       });
     }
@@ -106,6 +124,7 @@ const EditChildProfile = ({navigation}: Props) => {
 
     askPermissions();
 }, []);
+
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -165,9 +184,9 @@ const EditChildProfile = ({navigation}: Props) => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   clearButtonMode="always"
-                  value={''}
+                  onChangeText={(value) => { setName(value) }}
                   // onChangeText={queryText => handleSearch(queryText)}
-                  placeholder="Enter your child anme"
+                  placeholder="Enter your child name"
                   style={{
                     backgroundColor: '#FFF',
                   }}
@@ -181,7 +200,8 @@ const EditChildProfile = ({navigation}: Props) => {
                       style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
                       <Pressable
                         onPress={() => {
-                          console.log(item);
+                        //  console.log(item);
+                        setGender(item);
                         }}>
                         <Heading3>{item}</Heading3>
                       </Pressable>
@@ -190,9 +210,15 @@ const EditChildProfile = ({navigation}: Props) => {
                 })}
               </View>
 
-              <ChildDate />
+              <ChildDate sendData={sendData} />
+
               <View style={{width: '100%', marginTop: 30}}>
-                <ButtonPrimary onPress={() => {}}>
+                <ButtonPrimary onPress={() => {
+                   let insertData: any = getNewChild('', plannedTermDate, isPremature,birthDate,'',name,photoUri,gender);
+                   let childSet: Array<any> = [];
+                   childSet.push(insertData);
+                   addChild(false,2,childSet,dispatch,navigation);  
+                }}>
                   <ButtonText>Update Profile</ButtonText>
                 </ButtonPrimary>
               </View>

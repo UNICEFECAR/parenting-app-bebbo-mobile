@@ -1,3 +1,4 @@
+import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
@@ -12,10 +13,10 @@ class DataRealmCommon {
     private static instance: DataRealmCommon;
 
     public constructor() {
-      //  console.log("constructor called data");
+        //  console.log("constructor called data");
         // this.closeRealm();
         this.openRealm();
-        
+
     }
 
     static getInstance(): DataRealmCommon {
@@ -29,10 +30,10 @@ class DataRealmCommon {
 
     public async openRealm(): Promise<Realm | null> {
         return new Promise((resolve, reject) => {
-          //  console.log("in openrealm");
+            //  console.log("in openrealm");
             if (this.realm) {
-            //     this.closeRealm();
-            // }
+                //     this.closeRealm();
+                // }
                 resolve(this.realm);
             } else {
                 // Delete realm file
@@ -43,7 +44,7 @@ class DataRealmCommon {
                 // Open realm file
                 Realm.open(dataRealmConfig)
                     .then(realm => {
-                       console.log("open realm data");
+                        //console.log("open realm data");
                         this.realm = realm;
                         resolve(realm);
                     })
@@ -55,7 +56,7 @@ class DataRealmCommon {
     }
     public closeRealm() {
         if (this.realm) {
-           // console.log("closed realm data");
+            // console.log("closed realm data");
             this.realm.close();
             delete this.realm;
         }
@@ -81,10 +82,9 @@ class DataRealmCommon {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const objLength = realm?.objects<Entity>(entitySchema.name).length;
-                   // console.log("in try",objLength);
+                    // console.log("in try",objLength);
                     resolve(objLength);
                 }
                 else {
@@ -98,19 +98,17 @@ class DataRealmCommon {
 
     public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<String> {
         return new Promise(async (resolve, reject) => {
-           // console.log(entitySchema,"--entity--");
+            // console.log(entitySchema,"--entity--");
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     realm.write(() => {
-                        if(records?.length>0)
-                        {
+                        if (records?.length > 0) {
                             records.forEach(record => {
                                 realm?.create<Entity>(entitySchema.name, record);
                             })
                         }
-                            
+
                         resolve("success");
                     });
                 }
@@ -118,7 +116,54 @@ class DataRealmCommon {
                     reject();
                 }
             } catch (e) {
-                console.error("data insert err",e.message);
+                console.error("data insert err", e.message);
+                reject();
+            }
+        });
+    }
+    public async updateSettings<Entity>(entitySchema: ObjectSchema, key:string,value:string): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+      //  console.log(entitySchema,"--entity--");
+            try {
+                const realm = await this.openRealm();
+                if (realm) {
+                    // realm?.write(() => {
+                        // if (records?.length > 0) {
+                            const allVariables = realm.objects<ConfigSettingsEntity>(ConfigSettingsSchema.name);
+                            const variablesWithKey = allVariables.filtered(`key == "${key}"`);
+                            const keyAlreadyExists = variablesWithKey && variablesWithKey.length > 0 ? true : false;
+if(keyAlreadyExists){
+    realm?.write(() => {
+        variablesWithKey[0].value =value;
+        variablesWithKey[0].updatedAt = new Date();
+        resolve("success");
+    });
+}
+else{
+    realm?.write(() => {
+        realm?.create<ConfigSettingsEntity>(ConfigSettingsSchema.name, {
+            key: key,
+            value: JSON.stringify(value),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+        resolve("success");
+    });
+}
+                            // records.forEach(record => {
+                            //     realm?.create<Entity>(entitySchema.name, record, 'modified');
+                            // })
+                       // }
+
+                        resolve("success");
+                    // });
+                     
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+                console.error("data insert err", e.message);
                 reject();
             }
         });
@@ -127,8 +172,7 @@ class DataRealmCommon {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
                     // console.log(obj2,"--obj2");
                     const obj = realm?.objects<Entity>(entitySchema.name);
@@ -142,36 +186,35 @@ class DataRealmCommon {
             }
         });
     }
-    public async getFilteredData<Entity>(entitySchema: ObjectSchema,filterData:any): Promise<any> {
+    public async getFilteredData<Entity>(entitySchema: ObjectSchema, filterData: any): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
 
                 //write a function
 
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
                     // console.log(obj2,"--obj2");
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                    console.log("filtered obj--",obj)
+                    //  console.log("filtered obj--",obj)
                     resolve(obj);
                 }
                 else {
                     reject();
                 }
             } catch (e) {
-                console.log(e.message,"--e catch");
+                // console.log(e.message,"--e catch");
                 reject();
             }
         });
     }
+
     public async delete(record: any): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     realm.write(() => {
                         realm?.delete(record);
                         resolve();
@@ -179,7 +222,7 @@ class DataRealmCommon {
                 }
                 else {
                     reject();
-                }  
+                }
             } catch (e) {
                 reject();
             }
@@ -190,8 +233,7 @@ class DataRealmCommon {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if(realm)
-                {
+                if (realm) {
                     const allRecords = realm?.objects(entitySchema.name);
 
                     realm?.write(() => {
@@ -201,7 +243,7 @@ class DataRealmCommon {
                 }
                 else {
                     reject();
-                }  
+                }
             } catch (e) {
                 reject(e);
             }

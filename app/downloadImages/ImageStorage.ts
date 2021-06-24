@@ -48,7 +48,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
        // dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + netError.message);
 
        if (showLog) {
-            console.log('IMAGE DOWNLOAD ERROR', rejectError, args.srcUrl);
+           // console.log('IMAGE DOWNLOAD ERROR', rejectError, args.srcUrl);
        }
     }
 
@@ -56,10 +56,10 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
 }
 
 const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, args: ApiImageData }[] | null> =>{
-    console.log(args,"..args..");
+   // console.log(args,"..args..");
     let allResponses: any[] = [];
     const numberOfLoops: number = Math.ceil(args.length / downloadImagesBatchSize);
-    console.log(downloadImagesBatchSize,"--numberOfLoops--",numberOfLoops);
+   // console.log(downloadImagesBatchSize,"--numberOfLoops--",numberOfLoops);
     for (let loop = 0; loop < numberOfLoops; loop++) {
         // Get currentLoopImages
         const indexStart = loop * downloadImagesBatchSize;
@@ -71,7 +71,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
         currentLoopImages.forEach((downloadImageArgs) => {
             promises.push(downloadImage(downloadImageArgs));
         });
-        console.log(currentLoopImages,"..currentLoopImages..");
+       // console.log(currentLoopImages,"..currentLoopImages..");
 
         let loopResponses = await Promise.all<boolean>(promises);
 
@@ -92,7 +92,7 @@ const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, a
 
         // Log
        if (showLog) {
-            console.log(`apiStore.downloadImages() batch ${loop + 1}: Downloaded ${numberOfSuccess} from ${currentLoopImages.length} images`,);
+          //  console.log(`apiStore.downloadImages() batch ${loop + 1}: Downloaded ${numberOfSuccess} from ${currentLoopImages.length} images`,);
        }
 
         // Wait between batches

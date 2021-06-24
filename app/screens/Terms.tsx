@@ -16,11 +16,14 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
+import { Alert, Pressable, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllTermsData } from '../redux/reducers/utilsSlice';
+import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import { Heading1w } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 
@@ -71,6 +74,7 @@ const Terms = ({navigation}: Props) => {
         // setArticleData(stateArticleData)
         // console.log("basicpagesData--",basicData);
         setLoading(false);
+     
       }
       fetchData()
     },[languageCode])
@@ -82,7 +86,7 @@ const Terms = ({navigation}: Props) => {
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body,
   );
-  // console.log("termsdata--",termsdata);
+  //console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -97,7 +101,11 @@ const Terms = ({navigation}: Props) => {
       saveinDB: true,
     }
   ];
-  const acceptTerms = () => {
+  const acceptTerms = async () => {
+   
+    let acceptTermsRes = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "acceptTerms","true");
+    let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
+  
     navigation.reset({
       index: 0,
       routes: [
@@ -114,7 +122,7 @@ const Terms = ({navigation}: Props) => {
       <OnboardingContainer>
       <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
-          <Heading1w>{t('tNc.header')}</Heading1w>
+          <Heading1w>{t('localization.tNcheader')}</Heading1w>
         </OnboardingHeading>
         <ScrollView contentContainerStyle={{padding: 0}}>
           <HTML
@@ -136,7 +144,7 @@ const Terms = ({navigation}: Props) => {
                   onFillColor={'#FFF'}
                   onTintColor={'#FFF'}
                 />
-                <CheckboxItemText>{t('tNc.checkbox1')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox1')}</CheckboxItemText>
               </CheckboxContainer>
 
               <CheckboxContainer>
@@ -146,8 +154,8 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox1(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('tNc.checkbox2')}
-                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNc.privacyPolicy')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox2')}
+                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText>
                  </CheckboxItemText>
               </CheckboxContainer>
               <CheckboxContainer>
@@ -157,7 +165,7 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox2(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('tNc.checkbox3')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox3')}</CheckboxItemText>
               </CheckboxContainer>
             </View>
           </Fragment>
@@ -169,7 +177,7 @@ const Terms = ({navigation}: Props) => {
               acceptTerms();
               // navigation.navigate('LoadingScreen')
             }}>
-            <ButtonText>{t('tNc.acceptbtn')}</ButtonText>
+            <ButtonText>{t('localization.tNcacceptbtn')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

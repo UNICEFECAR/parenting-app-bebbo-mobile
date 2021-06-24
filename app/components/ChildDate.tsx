@@ -1,5 +1,6 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,28 +27,39 @@ import ModalPopupContainer, {
   PopupOverlay
 } from './shared/ModalPopupStyle';
 
-const ChildDate = () => {
-  const {t} = useTranslation();
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [dobDate, setdobDate] = useState<Date>();
-  const [showdob, setdobShow] = useState<Boolean>(false);
+const ChildDate = (props: any) => {
+  let birthDate, isPremature, plannedTermDate=null;
+  const {childData}=props;
+ if(childData!=null){
+        birthDate =childData.birthDate;
+        isPremature =childData.isPremature;
+        plannedTermDate =childData.plannedTermDate;
+      }
 
+  //console.log(birthDate,"..birthDate..");
+  const { t } = useTranslation();
+  const [toggleCheckBox, setToggleCheckBox] = useState(isPremature!=null ? JSON.parse(isPremature) : false);
+  const [dobDate, setdobDate] = useState<Date|null>(birthDate!=null ? new Date(birthDate) : null);
+  const [showdob, setdobShow] = useState<Boolean>(false);
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
     setdobDate(currentDate);
+    props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: toggleCheckBox });
   };
 
   const showdobDatepicker = () => {
     setdobShow(true);
   };
   const [modalVisible, setModalVisible] = useState(false);
-  const [dueDate, setdueDate] = useState<Date>();
+  const [dueDate, setdueDate] = useState<Date | null>(plannedTermDate!=null ? new Date(plannedTermDate) : null);
   const [showdue, setdueShow] = useState<Boolean>(false);
   const ondueDateChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || dobDate;
+    const currentDate = selectedDate;
+    console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
+    props.sendData({ birthDate: dobDate, dueDate: currentDate, isPremature: toggleCheckBox });
   };
   const showdueDatepicker = () => {
     setdueShow(true);
@@ -56,10 +68,10 @@ const ChildDate = () => {
     <>
       <FormDateContainer>
         <FormInputGroup onPress={showdobDatepicker}>
-          <LabelText> {t('childSetup.dobLabel')}</LabelText>
+          <LabelText> {t('localization.childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {dobDate ? dobDate.toDateString() :  t('childSetup.dobSelector')}</Text>
+              <Text> {dobDate ? dobDate.toDateString() : t('localization.childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -72,6 +84,7 @@ const ChildDate = () => {
             onPress={() => {
               //  console.log(item);
               setToggleCheckBox(!toggleCheckBox);
+              setdueDate(null);
             }}>
             <CheckboxItem>
               <View>
@@ -84,7 +97,7 @@ const ChildDate = () => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('childSetup.prematureLabel')}</LabelText>
+            <LabelText>{t('localization.childSetupprematureLabel')}</LabelText>
           </FormOuterCheckbox>
 
           <FormInfoLabel>
@@ -110,10 +123,10 @@ const ChildDate = () => {
           <>
             <ShiftFromBottom30>
               <FormInputGroup onPress={showdueDatepicker}>
-                <LabelText>{t('childSetup.dueLabel')}</LabelText>
+                <LabelText>{t('localization.childSetupdueLabel')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text> {dueDate ? dueDate.toDateString() : t('childSetup.dueSelector')}</Text>
+                    <Text> {dueDate ? dueDate.toDateString() : t('localization.childSetupdueSelector')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_calendar" size={20} color="#000" />
@@ -159,7 +172,7 @@ const ChildDate = () => {
               </PopupClose>
             </PopupCloseContainer>
             <Heading4Centerr>
-            {t('childSetup.prematureMessage')}
+              {t('localization.childSetupprematureMessage')}
             </Heading4Centerr>
           </ModalPopupContainer>
         </PopupOverlay>
