@@ -1,5 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import RelatedArticles from '@components/shared/RelatedArticles';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -20,8 +21,8 @@ type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  navigation: ChildgrowthNavigationProp;
-  AddNewChildgrowth;
+  navigation: ChildgrowthNavigationProp,
+  'AddNewChildgrowth'
 };
 const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
@@ -46,7 +47,7 @@ const Childgrowth = ({navigation}: Props) => {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <FocusAwareStatusBar animated={true} />
         <View
           style={{
             flexDirection: 'column',
@@ -190,6 +191,9 @@ const Childgrowth = ({navigation}: Props) => {
                       </Paragraph>
                     </View>
                   </View>
+                </View>
+                <View style={{flex: 1,padding: 5,marginVertical:10}}>
+                  <RelatedArticles/>
                 </View>
               </View>
             )}
