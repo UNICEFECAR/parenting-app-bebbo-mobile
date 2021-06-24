@@ -48,7 +48,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
     <>
       <OnboardingContainer>
         <OnboardingStyle
-          title={t('localization.selectYourCountry').toString()}
+          title={t('localization.selectYourLang').toString()}
           iconname="ic_act_language"
         />
 
