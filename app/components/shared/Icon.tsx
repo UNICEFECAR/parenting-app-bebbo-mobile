@@ -1,7 +1,7 @@
 
-import styled from 'styled-components/native';
-import { createIconSetFromFontello } from 'react-native-vector-icons';
 import fontelloConfig from '@assets/iconConfig/config.json';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
+import styled from 'styled-components/native';
 
  
  
@@ -24,7 +24,7 @@ margin-left:8px;
 export const TickView = styled.View`
 background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 padding:4px;
-border-radius:100;
+border-radius:100px;
 `
 
 

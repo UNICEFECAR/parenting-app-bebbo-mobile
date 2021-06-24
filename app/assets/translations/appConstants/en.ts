@@ -206,7 +206,8 @@ const en = {
             saveMeasuresDetails:"Save Details",
             addWeight:"Add Weight",
             addHeight:"Add Height",
-            newGrowthBottomText:"Measuring a child at home is less accurate than measuring at a doctor's and can affect the accuracy of the growth chart."
+            newGrowthBottomText:"Measuring a child at home is less accurate than measuring at a doctor's and can affect the accuracy of the growth chart.",
+            relatedArticle:"Related Articles"
         }
 
 
