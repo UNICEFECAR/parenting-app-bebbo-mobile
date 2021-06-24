@@ -27,8 +27,8 @@ type Props = {
 const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
   const data = [
-    {title: t('growthScreen.weightForHeight')},
-    {title: t('growthScreen.heightForAge')},
+    {title: t('localization.growthScreenweightForHeight')},
+    {title: t('localization.growthScreenheightForAge')},
   ];
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
@@ -54,7 +54,7 @@ const Childgrowth = ({navigation}: Props) => {
             flex: 1,
           }}>
           <TabScreenHeader
-            title={t('growthScreen.headerTitle')}
+            title={t('localization.growthScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -72,13 +72,13 @@ const Childgrowth = ({navigation}: Props) => {
                     setChildmeasures([1]);
                   }}>
                   <Heading3>
-                    {t('growthScreen.growthDataTitle', {childAge: 3})}
+                    {t('localization.growthScreengrowthDataTitle', {childAge: 3})}
                   </Heading3>
                 </Pressable>
                 <Heading3Regular>
-                  {t('growthScreen.noGrowthData')}
+                  {t('localization.growthScreennoGrowthData')}
                 </Heading3Regular>
-                <Heading4>{t('growthScreen.noGrowthDataHelpText')}</Heading4>
+                <Heading4>{t('localization.growthScreennoGrowthDataHelpText')}</Heading4>
               </View>
             ) : (
               <View>
@@ -94,15 +94,15 @@ const Childgrowth = ({navigation}: Props) => {
                     marginBottom: 10,
                   }}>
                   <View style={{flexDirection: 'row'}}>
-                    <Heading3>{t('growthScreen.subHeading')}</Heading3>
+                    <Heading3>{t('localization.growthScreensubHeading')}</Heading3>
                     <Text style={{backgroundColor: headerColor, padding: 2}}>
-                      {t('growthScreen.prematureText')}
+                      {t('localization.growthScreenprematureText')}
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Heading5>
                       {' '}
-                      {t('growthScreen.lastMeasureText', {
+                      {t('localization.growthScreenlastMeasureText', {
                         measureDate: '13th Nov,2019',
                       })}
                     </Heading5>
@@ -112,33 +112,33 @@ const Childgrowth = ({navigation}: Props) => {
                       }>
                       <Text
                         style={{padding: 2, textDecorationLine: 'underline'}}>
-                        {t('growthScreen.allMeasureHeader')}
+                        {t('localization.growthScreenallMeasureHeader')}
                       </Text>
                     </Pressable>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>{t('growthScreen.wText')}</Paragraph>
+                      <Paragraph>{t('localization.growthScreenwText')}</Paragraph>
                       <Heading2 style={{padding: 2}}>
-                        8 {t('growthScreen.kgText')}
+                        8 {t('localization.growthScreenkgText')}
                       </Heading2>
                     </View>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>{t('growthScreen.hText')}</Paragraph>
+                      <Paragraph>{t('localization.growthScreenhText')}</Paragraph>
                       <Heading2 style={{padding: 2}}>
-                        73 {t('growthScreen.cmText')}
+                        73 {t('localization.growthScreencmText')}
                       </Heading2>
                     </View>
                     <View style={{flex: 2, flexDirection: 'row'}}>
                       <Pressable
                         onPress={() => {
                           navigation.navigate('AddNewChildgrowth', {
-                            headerTitle: t('growthScreen.editNewBtntxt'),
+                            headerTitle: t('localization.growthScreeneditNewBtntxt'),
                           });
                         }}>
                         <Text
                           style={{padding: 2, textDecorationLine: 'underline'}}>
-                          {t('growthScreen.editText')}
+                          {t('localization.growthScreeneditText')}
                         </Text>
                       </Pressable>
                     </View>
@@ -182,7 +182,7 @@ const Childgrowth = ({navigation}: Props) => {
 
                     <View style={{flex: 1, width: '100%', padding: 5}}>
                       {renderItem(data[selectedIndex], selectedIndex)}
-                      <Heading2>{t('growthScreen.sumHeading')}</Heading2>
+                      <Heading2>{t('localization.growthScreensumHeading')}</Heading2>
                       <Paragraph>
                         [Child growth progress text] [Child growth progress
                         text] [Child growth progress text] [Child growth
@@ -206,10 +206,10 @@ const Childgrowth = ({navigation}: Props) => {
                 style={{backgroundColor: headerColor}}
                 onPress={() => {
                   navigation.navigate('AddNewChildgrowth', {
-                    headerTitle: t('growthScreen.addNewBtntxt'),
+                    headerTitle: t('localization.growthScreenaddNewBtntxt'),
                   });
                 }}>
-                <ButtonText>{t('growthScreen.addNewBtntxt')}</ButtonText>
+                <ButtonText>{t('localization.growthScreenaddNewBtntxt')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>
