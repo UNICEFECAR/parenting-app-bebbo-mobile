@@ -1,5 +1,5 @@
 
-import { apiUrlDevelop } from "@env";
+import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
