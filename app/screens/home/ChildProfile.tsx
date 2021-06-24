@@ -11,6 +11,7 @@ import {
   Pressable, SafeAreaView, ScrollView, Text, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../../App';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -92,7 +93,16 @@ const ChildProfile = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
-  const renderChildItem = (item: typeof DATA[0], index: number) => (
+  const dispatch =useAppDispatch();
+  const childList = useAppSelector(
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
+  );
+  // const allConfigData = useAppSelector(
+  //   (state: any) => state.variableData != '' ? JSON.parse(state.variableData) : state.variableData
+  // );
+  
+ // console.log(allConfigData,"..allConfigData..")
+  const renderChildItem = (dispatch:any,data:any, index: number) => (
     <View key={index}>
       {/* <ProfileListViewSelected>
                 <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
@@ -115,20 +125,20 @@ const ChildProfile = ({navigation}: Props) => {
         <ProfileTextView
                  >
                    <ProfileSectionView>
-                   <Heading3>{item.childname},</Heading3>
+                   <Heading3>{data.childname?data.childname:"Child"+(index+1)},</Heading3>
                    <OuterIconLeft></OuterIconLeft>
-                   <Heading6>{item.gender}</Heading6>
+                   <Heading6>{data.gender?data.gender:''}</Heading6>
                   
                    </ProfileSectionView>
           
-                   <Heading5>Born on {item.birthday.toDateString()}</Heading5>
+                   <Heading5>Born on {data.birthDate}</Heading5>
                    
                    <ProfileLinkView>
             <ButtonTextSmLine
                 onPress={() => {
                   navigation.navigate('EditChildProfile');
                 }}>
-                <Text>Edit Profile</Text>
+            <Text>Edit Profile</Text>
             </ButtonTextSmLine>
             <View><Text>|</Text></View>
             <ButtonTextSmLine>Activate Profile</ButtonTextSmLine>
@@ -164,7 +174,7 @@ const ChildProfile = ({navigation}: Props) => {
               <BurgerIcon />
             </View>
             <View style={{flex: 3}}>
-              <Text> {'Child and ParentProfile'}</Text>
+              <Text> {'Child and Parent Profile'}</Text>
             </View>
           </View>
           <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
@@ -207,8 +217,8 @@ const ChildProfile = ({navigation}: Props) => {
 
               </ProfileListActiveChild>
               <ScrollView style={{height: 350, marginTop: 15}} nestedScrollEnabled = {true}>
-                {DATA.map((item, index) => {
-                  return renderChildItem(item, index);
+                {childList?.map((item:any, index:number) => {
+                return renderChildItem(dispatch,item,index);
                 })}
               </ScrollView>
               <View

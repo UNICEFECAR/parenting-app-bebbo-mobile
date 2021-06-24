@@ -14,6 +14,7 @@ const initialState: childDataType = {
   childDataSet: { 
     allChild: '',
     activeChild:''
+   
   }
 };
 export const childSlice = createSlice({
@@ -25,7 +26,7 @@ export const childSlice = createSlice({
       action: PayloadAction<any>,
     ) => {
     //  console.log("child data---",state);
-     // console.log("child data length---",action.payload.length);
+    // console.log("child data length---",action.payload);
       (typeof action.payload == 'object') ? state.childDataSet.allChild = JSON.stringify(action.payload) : state.childDataSet.allChild = action.payload;
      
     },

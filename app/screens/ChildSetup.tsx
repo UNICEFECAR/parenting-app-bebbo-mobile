@@ -21,7 +21,7 @@ import {
   Heading1Centerw,
   Heading3
 } from '../styles/typography';
-import { ChildEntity } from '../database/schema/ChildDataSchema';
+// import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -104,10 +104,10 @@ const ChildSetup = ({navigation}: Props) => {
         <ButtonRow>
           <ButtonPrimary
             onPress={() => {
-             let insertData:any=getNewChild(birthDate,plannedTermDate,isPremature,relationship);
+             let insertData:any=getNewChild('',plannedTermDate,isPremature,birthDate,relationship);
              let childSet:Array<any>=[];
              childSet.push(insertData);
-             addChild(0,childSet,dispatch,navigation);  
+             addChild(false,0,childSet,dispatch,navigation);  
             }}>
             <ButtonText>{t('childSetup.continueBtnText')}</ButtonText>
           </ButtonPrimary>

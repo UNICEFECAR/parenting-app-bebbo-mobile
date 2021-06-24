@@ -49,19 +49,21 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
       checkedMilestones:child.checkedMilestones,
       reminders: child.reminders,
       isPremature:'false',
-      relationship:''
+      //relationship:''
      };
   }
   export const migrateConfigSettings = async (oldRealm:any,newRealm: any) => {
     //console.log(oldRealm,"------",newRealm);
-    const oldObjects = oldRealm.objects('VariableEntity').filtered("key =='currentActiveChildId' && key=='userName' && key=='userParentalRole'");
+   // const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='currentActiveChildId' OR key=='userParentalRole' OR key=='userName'  OR key=='userEnteredChildData'");
+    const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='userName'");
+    
     const newObjects = newRealm.objects(ConfigSettingsSchema.name);
-    console.log(oldObjects.length,"------",newObjects);
+    //console.log(oldObjects.length,"------",newObjects);
     let oldChildrenData = oldObjects;
     if(oldChildrenData?.length>0){
     oldChildrenData.map((item: any) => {
     let createresult = newRealm.create(ConfigSettingsSchema.name, getVariableEntity(item));
-    console.log(createresult,".....createresult...");
+    //console.log(createresult,".....createresult...");
     });
     }
    
@@ -70,7 +72,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
     console.log(variable,"..variable..");
     return {
       key: variable.key,
-      value: JSON.stringify(variable.value),
+      value: variable.value,
       createdAt: new Date(),
       updatedAt: new Date(),
      };
