@@ -60,6 +60,7 @@ const en = {
             header: "Awesome! Your child profile has been created !",
             subHeader: "Please review your child details before proceeding!",
             addSiblingBtn: 'Add Sister or Brother',
+            editSiblingBtn: 'Edit Child',
             continueBtnText: "Continue",
             saveBtnText: "Save data",
         },

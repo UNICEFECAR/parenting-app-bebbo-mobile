@@ -1,3 +1,6 @@
+import { ConfigSettingsEntity, ConfigSettingsSchema } from './../database/schema/ConfigSettingsSchema';
+
+import { userRealmCommon } from './../database/dbquery/userRealmCommon';
 import RNFS from 'react-native-fs';
 import { appConfig } from './../types/apiConstants';
 
@@ -13,6 +16,8 @@ import { Alert } from "react-native";
 import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
 import downloadImages from '../downloadImages/ImageStorage';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -55,8 +60,8 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // }
     });
 }
-export const onSponsorApiSuccess = async (response: any,dispatch: any,navigation: any) => {
-// async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
+export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any) => {
+  // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
   console.log(response, "..response..");
   console.log(dispatch, "..dispatch..");
   // const sponsorobj = [...response.data.data];
@@ -69,32 +74,41 @@ export const onSponsorApiSuccess = async (response: any,dispatch: any,navigation
     response = response[0];
     const ImageArray = [];
     // let obj=[];
-   // type:val.type,title:val.title,id:val.id,
+    // type:val.type,title:val.title,id:val.id,
     const sponsorObj = response.data.data.map((val: any) => {
-      return ({country_flag:{ srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name }})
+      return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
     })
     const partnerObj = response.data.data.map((val: any) => {
-      return ({country_sponsor_logo:{ srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name }})
+      return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
     })
     const logoObj = response.data.data.map((val: any) => {
-      return ({country_national_partner:{ srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name }})
+      return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
     })
     ImageArray.push(logoObj[0].country_national_partner)
     ImageArray.push(partnerObj[0].country_sponsor_logo)
     ImageArray.push(sponsorObj[0].country_flag)
-   
+
     const imagesDownloadResult = await downloadImages(ImageArray);
     console.log(imagesDownloadResult, "..image result..");
     dispatch(setSponsorStore(imagesDownloadResult));
-    
+
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsors();
   }
 }
-export const onOnLoadApiSuccess = async (response: any,dispatch: any,navigation: any) => {
-  navigation.navigate('ChildSetup');
+export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any) => {
+  // navigation.navigate('ChildSetup');
+  //let userEnteredChildData = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
+  //console.log(userEnteredChildData, "..userEnteredChildData..");
+  let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  if (allJsonData?.length>0) {
+    navigation.navigate('ChildSetupList');
+  }
+  else {
+    navigation.navigate('ChildSetup');
+  }
 }
-export const onChildSetuppiSuccess = async (response: any,dispatch: any,navigation: any) => {
+export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any) => {
   navigation.navigate('HomeDrawerNavigator');
 }
 export const onApiFail = (error: any) => {
