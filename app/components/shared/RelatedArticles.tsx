@@ -1,6 +1,4 @@
-import {
-  Heading2, Heading3
-} from '@styles/typography';
+import { Heading2, Heading3 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -57,25 +55,31 @@ const RelatedArticles = () => {
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     return (
       <View style={styles.item} key={index}>
-        <Image source={item.imagePath} style={styles.cardImage}>
-        </Image>
-        <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#FFF'}}>
+        <Image source={item.imagePath} style={styles.cardImage}></Image>
+        <View
+          style={{flex: 1, flexDirection: 'column', backgroundColor: '#FFF'}}>
           <Text style={styles.header}>Nutrition and BreastFeeding</Text>
           <Heading3 style={styles.title}>{item.title}</Heading3>
         </View>
-        <View style={{flex: 1, flexDirection: 'row',  padding: 10,backgroundColor: '#FFF'}}>
-            <View style={{flex: 1}}>
-              <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-                <Icon name="ic_sb_shareapp" size={20} color="#000" />
-                <Text>{t('articleScreen.shareText')}</Text>
-              </Pressable>
-            </View>
-            <View style={{flex: 1}}>
-              <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-                <Icon name="ic_sb_favorites" size={20} color="#000" />
-                <Text>{t('articleScreen.addtoFavText')}</Text>
-              </Pressable>
-            </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            padding: 10,
+            backgroundColor: '#FFF',
+          }}>
+          <View style={{flex: 1}}>
+            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+              <Icon name="ic_sb_shareapp" size={20} color="#000" />
+              <Text>{t('articleScreen.shareText')}</Text>
+            </Pressable>
+          </View>
+          <View style={{flex: 1}}>
+            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+              <Icon name="ic_sb_favorites" size={20} color="#000" />
+              <Text>{t('articleScreen.addtoFavText')}</Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     );
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#FFF',
     // padding: 20,
     marginVertical: 8,
-    marginRight:16,
+    marginRight: 16,
     // marginHorizontal: 16,
     width: 300,
     borderRadius: 5,
@@ -120,9 +124,9 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 10,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     paddingHorizontal: 5,
-    paddingTop:5,
+    paddingTop: 5,
     color: '#000',
   },
   cardImage: {
