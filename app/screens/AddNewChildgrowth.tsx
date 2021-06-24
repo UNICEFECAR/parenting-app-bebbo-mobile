@@ -49,8 +49,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [showdob, setdobShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const measurementPlaces = [
-    t('growthScreen.doctorMeasurePlace'),
-    t('growthScreen.homeMeasurePlace'),
+    t('localization.growthScreendoctorMeasurePlace'),
+    t('localization.growthScreenhomeMeasurePlace'),
   ];
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
@@ -95,19 +95,19 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               onPress={() => {
                 setModalVisible(true)
               }}>
-              <Text>{t('growthScreen.deletebtnText')}</Text>
+              <Text>{t('localization.growthScreendeletebtnText')}</Text>
             </Pressable>
           </View>
         </View>
         <FormInputGroup onPress={showdobDatepicker}>
-          <Header3Text>{t('growthScreen.dateMeasurementText')}</Header3Text>
+          <Header3Text>{t('localization.growthScreendateMeasurementText')}</Header3Text>
           <FormInputBox>
             <FormDateText>
               <Text>
                 {' '}
                 {dobDate
                   ? dobDate.toDateString()
-                  : t('growthScreen.enterDateMeasurementText')}
+                  : t('localization.growthScreenenterDateMeasurementText')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -115,7 +115,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        <Header3Text>{t('growthScreen.whereMeasured')}</Header3Text>
+        <Header3Text>{t('localization.growthScreenwhereMeasured')}</Header3Text>
         <View style={{flexDirection: 'row'}}>
           {measurementPlaces.map((item, index) => {
             return (
@@ -144,7 +144,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           )}
         </View>
         <View style={{margin: 30}}>
-          <Header3Text>{t('growthScreen.enterMeasuresText')}</Header3Text>
+          <Header3Text>{t('localization.growthScreenenterMeasuresText')}</Header3Text>
           <View style={{flexDirection: 'row'}}>
             <Pressable
               onPress={() => {
@@ -156,8 +156,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 flex: 1,
                 flexDirection: 'row',
               }}>
-              <Heading3>{t('growthScreen.wText')}</Heading3>
-              <Heading4Regular>{t('growthScreen.kgText')}</Heading4Regular>
+              <Heading3>{t('localization.growthScreenwText')}</Heading3>
+              <Heading4Regular>{t('localization.growthScreenkgText')}</Heading4Regular>
             </Pressable>
             <Pressable
               onPress={() => {
@@ -169,20 +169,20 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 flex: 1,
                 flexDirection: 'row',
               }}>
-              <Heading3>{t('growthScreen.hText')}</Heading3>
-              <Heading4Regular>{t('growthScreen.cmText')}</Heading4Regular>
+              <Heading3>{t('localization.growthScreenhText')}</Heading3>
+              <Heading4Regular>{t('localization.growthScreencmText')}</Heading4Regular>
             </Pressable>
           </View>
         </View>
         <View>
-          <Header3Text>{t('growthScreen.enterDoctorRemarkText')}</Header3Text>
+          <Header3Text>{t('localization.growthScreenenterDoctorRemarkText')}</Header3Text>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="always"
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
-            placeholder={t('growthScreen.enterDoctorRemarkTextPlaceHolder')}
+            placeholder={t('localization.growthScreenenterDoctorRemarkTextPlaceHolder')}
             style={{
               backgroundColor: '#fff',
               paddingHorizontal: 20,
@@ -191,14 +191,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           />
         </View>
         <View>
-          <Text>{t('growthScreen.newGrowthBottomText')}</Text>
+          <Text>{t('localization.growthScreennewGrowthBottomText')}</Text>
         </View>
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('growthScreen.saveMeasures')}</ButtonText>
+            <ButtonText>{t('localization.growthScreensaveMeasures')}</ButtonText>
           </ButtonPrimary>
         </View>
         <Modal

@@ -40,7 +40,8 @@ const CustomDrawerContent = ({navigation}: any) => {
               backgroundColor: headerColor,
             }}>
             <Icon name="ic_baby" size={25} color="#000" />
-            <Text >{t('drawerMenu.childInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
+            <Text >{t('localization.drawerMenuchildInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
+
             <Icon name="ic_angle_right" size={15} color="#000" />
           </Pressable>
         </View>
@@ -48,20 +49,22 @@ const CustomDrawerContent = ({navigation}: any) => {
           onPress={() => navigation.navigate('Home')}
           style={styles.item}>
           <Icon name="ic_sb_home" size={25} color="#000" />
-          <Text>{t('drawerMenu.homeTxt')}</Text>
+          <Text>{t('localization.drawerMenuhomeTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('NotificationsScreen')}
           style={styles.item}>
           <Icon name="ic_sb_notification" size={25} color="#000" />
-          <Text>{t('drawerMenu.notiTxt')}</Text>
+          <Text>{t('localization.drawerMenunotiTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => onChangeaccordvalue(!accordvalue)}
           style={styles.item}>
           <Icon name="ic_sb_tools" size={25} color="#000" />
-          <Text>{t('drawerMenu.toolsTxt')}</Text>
+
+          <Text>{t('localization.drawerMenutoolsTxt')}</Text>
           <Icon  style={{flex: 1, textAlign: 'right', alignSelf: 'center'}} name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'} size={15} color="#000" />
+
         </Pressable>
 
         {accordvalue ? (
@@ -72,7 +75,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               }
               style={styles.item}>
               <Icon name="ic_milestone" size={25} color="#000" />
-              <Text>{t('drawerMenu.cdTxt')}</Text>
+              <Text>{t('localization.drawerMenucdTxt')}</Text>
             </Pressable>
             <Pressable
               onPress={() =>
@@ -80,7 +83,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               }
               style={styles.item}>
               <Icon name="ic_vaccination" size={25} color="#000" />
-              <Text>{t('drawerMenu.vcTxt')}</Text>
+              <Text>{t('localization.drawerMenuvcTxt')}</Text>
             </Pressable>
             <Pressable
               onPress={() =>
@@ -88,7 +91,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               }
               style={styles.item}>
               <Icon name="ic_doctor_chk_up" size={25} color="#000" />
-              <Text>{t('drawerMenu.hcTxt')}</Text>
+              <Text>{t('localization.drawerMenuhcTxt')}</Text>
             </Pressable>
             <Pressable
               onPress={() =>
@@ -96,7 +99,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               }
               style={styles.item}>
               <Icon name="ic_growth" size={25} color="#000" />
-              <Text>{t('drawerMenu.cgTxt')}</Text>
+              <Text>{t('localization.drawerMenucgTxt')}</Text>
             </Pressable>
           </>
         ) : null}
@@ -104,44 +107,44 @@ const CustomDrawerContent = ({navigation}: any) => {
           onPress={() => navigation.navigate('SupportChat')}
           style={styles.item}>
           <Icon name="ic_chat" size={25} color="#000" />
-          <Text>{t('drawerMenu.chatTxt')}</Text>
+          <Text>{t('localization.drawerMenuchatTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('Favourites')}
           style={styles.item}>
           <Icon name="ic_sb_favorites" size={25} color="#000" />
-          <Text>{t('drawerMenu.favTxt')}</Text>
+          <Text>{t('localization.drawerMenufavTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('AboutusScreen')}
           style={styles.item}>
           <Icon name="ic_sb_about" size={25} color="#000" />
-          <Text>{t('drawerMenu.abtTxt')}</Text>
+          <Text>{t('localization.drawerMenuabtTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('UserGuide')}
           style={styles.item}>
           <Icon name="ic_sb_userguide" size={25} color="#000" />
-          <Text>{t('drawerMenu.ugTxt')}</Text>
+          <Text>{t('localization.drawerMenuugTxt')}</Text>
         </Pressable>
         <Pressable
           onPress={() => navigation.navigate('SettingsScreen')}
           style={styles.item}>
           <Icon name="ic_sb_settings" size={25} color="#000" />
-          <Text>{t('drawerMenu.setTxt')}</Text>
+          <Text>{t('localization.drawerMenusetTxt')}</Text>
         </Pressable>
 
         <Pressable onPress={() => onShare} style={styles.item}>
           <Icon name="ic_sb_shareapp" size={25} color="#000" />
-          <Text>{t('drawerMenu.shareTxt')}</Text>
+          <Text>{t('localization.drawerMenushareTxt')}</Text>
         </Pressable>
         <Pressable onPress={() => {}} style={styles.item}>
           <Icon name="ic_sb_feedback" size={25} color="#000" />
-          <Text>{t('drawerMenu.feedbackTxt')}</Text>
+          <Text>{t('localization.drawerMenufeedbackTxt')}</Text>
         </Pressable>
         <Pressable onPress={() => {}} style={styles.item}>
           <Icon name="ic_sb_loveapp" size={25} color="#000" />
-          <Text>{t('drawerMenu.rateTxt')}</Text>
+          <Text>{t('localization.drawerMenurateTxt')}</Text>
         </Pressable>
       </SafeAreaView>
     </>
