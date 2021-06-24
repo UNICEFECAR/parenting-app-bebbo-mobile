@@ -8,13 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  FlatList,
-  Image,
-  SafeAreaView,
-  Text,
-  View
-} from 'react-native';
+import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
 
@@ -39,7 +33,8 @@ const ChildDevelopment = ({navigation}: Props) => {
     },
     {
       id: 3,
-      title: 'Begins a mimic facial movements and expressions, as well as sound',
+      title:
+        'Begins a mimic facial movements and expressions, as well as sound',
     },
     {
       id: 4,
@@ -47,11 +42,12 @@ const ChildDevelopment = ({navigation}: Props) => {
     },
     {
       id: 5,
-      title: "Shows that she is angry or happy",
+      title: 'Shows that she is angry or happy',
     },
     {
       id: 6,
-      title: "Begins a mimic facial movements and expressions, as well as soundy",
+      title:
+        'Begins a mimic facial movements and expressions, as well as soundy',
     },
   ];
   const themeContext = useContext(ThemeContext);
@@ -59,7 +55,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
   const {t} = useTranslation();
   const renderItem = (item: typeof cditems[0]) => (
-    <CollapsibleItem item={item} subItemSaperatorColor={headerColor}/>
+    <CollapsibleItem item={item} subItemSaperatorColor={headerColor} />
   );
   return (
     <>
@@ -75,7 +71,9 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}  nestedScrollEnabled={true}>
+          <ScrollView
+            style={{flex: 4, backgroundColor: backgroundColor}}
+            nestedScrollEnabled={true}>
             <View>
               <View style={{flexDirection: 'column'}}></View>
               <AgeBrackets
@@ -100,18 +98,31 @@ const ChildDevelopment = ({navigation}: Props) => {
                   <Icon name="ic_info" size={15} color="#000" />
                 </Heading2>
               </View>
-              <View style={{marginVertical: 10, marginHorizontal: 15}}>
-                <View style={{flexDirection: 'column'}}>
-                  <View style={{flexDirection: 'row'}}>
-                    <Icon
-                      name="ic_incom"
-                      size={25}
-                      color="#FFF"
-                      style={{backgroundColor: 'red', borderRadius: 150}}
-                    />
-                    <Heading5>{t('developScreen.chartLabel')}</Heading5>
-                  </View>
-                  <Heading3>{t('developScreen.chartText')}</Heading3>
+              <View
+                style={{
+                  flexDirection: 'column',
+                  marginVertical: 10,
+                  marginHorizontal: 15,
+                }}>
+                <View style={{flexDirection: 'row'}}>
+                  <Icon
+                    name="ic_incom"
+                    size={25}
+                    color="#FFF"
+                    style={{backgroundColor: 'red', borderRadius: 150}}
+                  />
+                  <Heading5>{t('developScreen.chartLabel')}</Heading5>
+                </View>
+                <View style={{flexDirection: 'row',flex:1}}>
+                  <Heading3 style={{flex:8}}>{t('developScreen.chartText')}</Heading3>
+                  <View
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 44 / 2,
+                      backgroundColor: headerColor,
+                      flex:1
+                    }}></View>
                 </View>
               </View>
               <Heading3>{t('developScreen.mileStoneQ')}</Heading3>
