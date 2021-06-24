@@ -19,7 +19,9 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllTermsData } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
@@ -82,7 +84,7 @@ const Terms = ({navigation}: Props) => {
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body,
   );
-  // console.log("termsdata--",termsdata);
+  //console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.videoArticles,
@@ -97,7 +99,20 @@ const Terms = ({navigation}: Props) => {
       saveinDB: true,
     }
   ];
-  const acceptTerms = () => {
+  const acceptTerms = async () => {
+    let data:any=[{
+      key:"acceptTerms",
+      value:"true",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      key:"userIsOnboarded",
+      value:"true",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }]
+    let createresult = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, data);
     navigation.reset({
       index: 0,
       routes: [

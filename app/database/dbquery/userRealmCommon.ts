@@ -115,6 +115,41 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async updateChild<Entity>(entitySchema: ObjectSchema,records:Entity[]): Promise<Entity[]> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                   // console.log("in try--",records);
+                    realm.write(() => {
+                        records.forEach((record:any) => {
+                           //  console.log("record",record);
+                             record.updatedAt=new Date();
+                             realm?.create<Entity>(entitySchema.name, record,"modified");
+                         })
+                             
+                        // if (
+                        //     realm.objects(entitySchema.name).filtered(filteredCondition)
+                        //       .length > 0
+                        //   ) {
+                        //     //let collectionPages = Object.assign([], realm.objects(Schema));
+                        //     realm.create(
+                        //       realm.objects(entitySchema.name).filtered(filteredCondition),record,"modified"
+                        //     );
+                        // }
+                        resolve(records);
+                    });
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+                reject();
+            }
+        });
+    }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
