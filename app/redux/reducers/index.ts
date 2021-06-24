@@ -6,6 +6,7 @@ import {childSlice} from './childSlice';
 import { articlesSlice } from './articlesSlice';
 import {localizationSlice} from './localizationSlice';
 import { utilsSlice } from './utilsSlice';
+import { variableSlice } from './variableSlice';
 
 // import {createRealmPersistStorage} from '@bankify/redux-persist-realm';
 
@@ -33,7 +34,10 @@ const articleConfig = {
   key: 'articlesData',
   storage: AsyncStorage,
 };
-
+const variableConfig = {
+  key: 'variableData',
+  storage: AsyncStorage,
+};
 const rootReducer = combineReducers({
   // theme: themeSlice.reducer,
   selectedCountry: persistReducer(countryConfig, localizationSlice.reducer),
@@ -42,5 +46,6 @@ const rootReducer = combineReducers({
   childData:persistReducer(childConfig,childSlice.reducer),
   utilsData:persistReducer(utilConfig,utilsSlice.reducer),
   articlesData:persistReducer(articleConfig,articlesSlice.reducer),
+  variableData:persistReducer(variableConfig,variableSlice.reducer),
 });
 export default rootReducer;

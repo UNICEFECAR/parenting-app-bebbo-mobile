@@ -21,7 +21,7 @@ export const dataRealmConfig: Realm.Configuration ={
   ],
   schemaVersion: 1,
   migration: (oldRealm, newRealm) => {
-   console.log("in migration data");
+  // console.log("in migration data");
     if(oldRealm.schemaVersion < 1){
       const oldObjects = oldRealm.objects('VariableEntity');
       const newObjects = newRealm.objects(ConfigSettingsSchema.name);

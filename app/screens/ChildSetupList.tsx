@@ -59,20 +59,20 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
    const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
      return (
-    <ChildListingBox key={data.uuid}>
+    <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
       <Text>Born on {String(data.birthDate)}</Text>
     </ChildColArea1>
     <ChildColArea2>
       <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
-      <TitleLinkSm onPress={() => editRecord(data.uuid)}>Edit Profile</TitleLinkSm>
+      <TitleLinkSm onPress={() => editRecord(data)}>Edit Profile</TitleLinkSm>
     </ChildColArea2>
   </ChildListingBox>
      );
     };
    const deleteRecord = (index:number,dispatch:any,uuid: string) => {
-    console.log("..deleted..");
+    //console.log("..deleted..");
     deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
     // return new Promise((resolve, reject) => {
     //   Alert.alert('Delete Child', "Do you want to delete child?",
@@ -91,8 +91,8 @@ const ChildSetupList = ({ navigation }: Props) => {
     // });
    
   }
-  const editRecord = (uuid: string) => {
-  
+  const editRecord = (data:any) => {
+    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.editSiblingBtn'),childData:data});
   }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
@@ -165,7 +165,7 @@ const ChildSetupList = ({ navigation }: Props) => {
               <Text>No Data</Text></ChildColArea1>
             </ChildListingBox>
             }
-</CustomScrollView>
+          </CustomScrollView>
           </ChildListingArea>
           {/* </ScrollView> */}
         </ChildContentArea>
@@ -174,7 +174,7 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ShiftFromBottom20>
             <ButtonLinkView
               
-              onPress={() => navigation.navigate('AddSiblingDataScreen')}>
+              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupList.addSiblingBtn'),childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
