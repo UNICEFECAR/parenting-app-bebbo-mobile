@@ -1,19 +1,16 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import Icon, {
-  OuterIconLeft,
-  OuterIconRow,
-  TickView
+  OuterIconLeft
 } from '@components/shared/Icon';
 import {
   ProfileActionView, ProfileIconView,
-  ProfileLinkView, ProfileListActiveChild, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView
+  ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
+import { Heading2w, Heading3, Heading5, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
@@ -110,6 +107,27 @@ const ChildProfile = ({navigation}: Props) => {
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: headerColor,
+              maxHeight: 50,
+            }}>
+            <View style={{flex: 1, padding: 15}}>
+              <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#FFF" size={15} />
+              </Pressable>
+            </View>
+            <View style={{flex: 9, padding: 7}}>
+              <Heading2w>
+                {'Child and Parent Profile'}
+              </Heading2w>
+            </View>
+          </View>
+        {/* <View
           style={{
             flexDirection: 'column',
             flex: 1,
@@ -127,7 +145,7 @@ const ChildProfile = ({navigation}: Props) => {
             <View style={{flex: 3}}>
               <Text> {'Child and Parent Profile'}</Text>
             </View>
-          </View>
+          </View> */}
           {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
             <View style={{margin: 15}}>
               <View style={{flexDirection: 'column'}}>
@@ -167,7 +185,7 @@ const ChildProfile = ({navigation}: Props) => {
                   </ProfileActionView>
                 </ProfileListActiveChild> */}
                 <ScrollView
-                  style={{height: '70%', marginTop: 15}}
+                  style={{height: 'auto', marginTop: 15}}
                   nestedScrollEnabled={true}>
                   {childList?.map((item: any, index: number) => {
                     return renderChildItem(dispatch, item, index);
@@ -243,7 +261,7 @@ const ChildProfile = ({navigation}: Props) => {
               </View>
             </View>
           {/* </ScrollView> */}
-        </View>
+        {/* </View> */}
       </SafeAreaView>
     </>
   );
