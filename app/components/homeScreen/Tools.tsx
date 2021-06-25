@@ -21,19 +21,19 @@ const Tools = () => {
     <>
       <ContainerView>
         <View>
-          <Text>{t('localization.homeScreentoolsHeader')}</Text>
+          <Text>{t('homeScreentoolsHeader')}</Text>
           <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
             <Pressable style={styles.item}  onPress={() => navigation.navigate("Tools", { screen: 'VaccinationTab' })}>
               <VectorImage source={require('@assets/svg/ic_vaccination_color.svg')} />
-              <Text style={styles.title}>{t('localization.homeScreenvc')}</Text>
+              <Text style={styles.title}>{t('homeScreenvc')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}>
               <VectorImage source={require('@assets/svg/ic_health_color.svg')} />
-              <Text style={styles.title}>{t('localization.homeScreenhc')}</Text>
+              <Text style={styles.title}>{t('homeScreenhc')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={() => navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}>
               <VectorImage source={require('@assets/svg/ic_growth_color.svg')} />
-              <Text style={styles.title}>{t('localization.homeScreencg')}</Text>
+              <Text style={styles.title}>{t('homeScreencg')}</Text>
             </Pressable>
           </ScrollView>
         </View>
