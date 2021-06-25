@@ -1,21 +1,15 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-import Icon, {
-  OuterIconLeft
-} from '@components/shared/Icon';
-import {
-  ProfileActionView, ProfileIconView,
-  ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView
-} from '@components/shared/ProfileListingStyle';
+import BurgerIcon from '@components/shared/BurgerIcon';
+import { ButtonCol, ButtonLinkText, ButtonLinkPress, ButtonLinkRow, ButtonText, ButtonTextMdLineL,ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import Icon, { OuterIconLeft, OuterIconRow, TickView } from '@components/shared/Icon';
+import { ProfileActionView,ParentListView, ProfileLinkCol,ProfileLinkRow, ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView, ParentRowView, ParentColView, ProfileContentView, ParentSection, ParentLabel, ParentData } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w, Heading3, Heading5, Heading6 } from '@styles/typography';
+import { Heading1, Heading1Regular, Heading2w, Heading3, Heading4, Heading4Regular, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { getAllChildren, getAllConfigData } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -24,32 +18,90 @@ type Props = {
   navigation: NotificationsNavigationProp;
 };
 
+const DATA = [
+  {
+    id: '1',
+    childname: 'Harvey',
+    gender: 'Boy',
+    birthday: new Date(),
+  },
+  {
+    id: '2',
+    childname: 'Donna',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '3',
+    childname: 'Michael',
+    gender: 'Boy',
+    birthday: new Date(),
+  },
+  {
+    id: '4',
+    childname: 'Rachel',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '5',
+    childname: 'Louis',
+    gender: 'Boy',
+    birthday: new Date(),
+  },
+  {
+    id: '6',
+    childname: 'Jessica',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '7',
+    childname: 'Samantha',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '8',
+    childname: 'Katrina',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '9',
+    childname: 'Sheila',
+    gender: 'Girl',
+    birthday: new Date(),
+  },
+  {
+    id: '10',
+    childname: 'Jeff',
+    gender: 'Boy',
+    birthday: new Date(),
+  },
+  {
+    id: '11',
+    childname: 'Alex',
+    gender: 'Boy',
+    birthday: new Date(),
+  },
+];
 const ChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const dispatch = useAppDispatch();
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch);
-      getAllConfigData(dispatch);
-    },[])
-  );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
-      :[],
+      : state.childData.childDataSet.allChild,
   );
-  
- 
-  const allConfigData = useAppSelector(
-    (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
-  );
-  const userParentalRoleData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userParentalRole"):[];
-  const userNameData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userName"):[];
-  
-  //console.log(allConfigData,"..userParentalRole..")
+  // const allConfigData = useAppSelector(
+  //   (state: any) => state.variableData != '' ? JSON.parse(state.variableData) : state.variableData
+  // );
+
+  // console.log(allConfigData,"..allConfigData..")
   const renderChildItem = (dispatch: any, data: any, index: number) => (
     <View key={index}>
       {/* <ProfileListViewSelected>
@@ -68,23 +120,25 @@ const ChildProfile = ({navigation}: Props) => {
         style={{
           backgroundColor: secopndaryTintColor,
         }}>
-          <ProfileListInner>
-        <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
-        <ProfileTextView
-                 >
-                   <ProfileSectionView>
-                   <Heading3>{data.name!="" ? data.name:"Child"+(index+1)},</Heading3>
-                   <OuterIconLeft></OuterIconLeft>
-                   <Heading6>{data.gender?data.gender:''}</Heading6>
-                  
-                   </ProfileSectionView>
-          
-                   <Heading5>Born on {data.birthDate}</Heading5>
-                   
-                   <ProfileLinkView>
-            <ButtonTextSmLine
+        <ProfileListInner>
+          <ProfileIconView>
+            <Icon name="ic_baby" size={30} color="#000" />
+          </ProfileIconView>
+          <ProfileTextView>
+            <ProfileSectionView>
+              <Heading3>
+                {data.childname ? data.childname : 'Child' + (index + 1)},
+              </Heading3>
+              <OuterIconLeft></OuterIconLeft>
+              <Heading6>{data.gender ? data.gender : ''}</Heading6>
+            </ProfileSectionView>
+
+            <Heading5>Born on {data.birthDate}</Heading5>
+
+            <ProfileLinkView>
+              <ButtonTextSmLine
                 onPress={() => {
-                  navigation.navigate('EditChildProfile',{childData:data});
+                  navigation.navigate('EditChildProfile');
                 }}>
                 <Text>Edit Profile</Text>
               </ButtonTextSmLine>
@@ -138,12 +192,13 @@ const ChildProfile = ({navigation}: Props) => {
               flex: 1,
               backgroundColor: headerColor,
               maxHeight: 50,
+              alignItems:'center',
             }}>
             <View style={{flex: 1}}>
               <BurgerIcon />
             </View>
             <View style={{flex: 3}}>
-              <Text> {'Child and Parent Profile'}</Text>
+              <Heading2w> {'Child and ParentProfile'}</Heading2w>
             </View>
           </View> */}
           {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
@@ -191,64 +246,25 @@ const ChildProfile = ({navigation}: Props) => {
                     return renderChildItem(dispatch, item, index);
                   })}
                 </ScrollView>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    backgroundColor: secopndaryTintColor,
-                    marginBottom: 10,
-                    borderBottomWidth: 1,
-                    borderColor: '#EEE',
+              <ProfileLinkRow style={{
+                  backgroundColor: secopndaryTintColor,
+                }}>
+                <ProfileLinkCol>
+              <ButtonLinkPress
+                  
+                  onPress={() => {
+                    navigation.navigate('EditChildProfile');
                   }}>
-                  <Pressable
-                    style={{padding: 10, flexDirection: 'row'}}
-                    onPress={() => {
-                      navigation.navigate('EditChildProfile',{childData:''});
-                    }}>
-                    <Icon
-                      name="ic_plus"
-                      size={25}
-                      color="#000"
-                      style={{padding: 10}}
-                    />
-                    <Text>Add sister or brother</Text>
-                  </Pressable>
-                  <Pressable
-                    style={{padding: 10, flexDirection: 'row'}}
-                    onPress={() => {
-                      navigation.navigate('AddExpectingChildProfile');
-                    }}>
-                    <Icon
-                      name="ic_plus"
-                      size={25}
-                      color="#000"
-                      style={{padding: 10}}
-                    />
-                    <Text>Add Expecting Child</Text>
-                  </Pressable>
-                </View>
-              </View>
-              <View style={{backgroundColor: secopndaryTintColor}}>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <ButtonText>Parent Details</ButtonText>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Pressable
-                      onPress={() => {
-                        navigation.navigate('EditParentDetails');
-                      }}>
-                      <Text>Edit Profile</Text>
-                    </Pressable>
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <Text>Your role is</Text>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Text>{userParentalRoleData?.length>0?userParentalRoleData[0].value:''}</Text>
-                  </View>
-                </View>
+                    <OuterIconRow><OuterIconLeft><Icon
+                    name="ic_plus"
+                    size={24}
+                    color="#000"
+                    
+                  /></OuterIconLeft></OuterIconRow>
+                  
+                  <ButtonTextMdLineL>Add sister or brother</ButtonTextMdLineL>
+                </ButtonLinkPress>
+                </ProfileLinkCol>
 
                 <View style={{flexDirection: 'row'}}>
                   <View style={{padding: 10}}>

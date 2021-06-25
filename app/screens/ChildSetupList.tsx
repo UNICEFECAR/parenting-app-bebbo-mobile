@@ -1,8 +1,10 @@
 import {
-    ButtonLinkView, ButtonPrimary,
-    ButtonRow,
-    ButtonText,
-    ButtonTextLinew
+  ButtonLinkText,
+  ButtonPrimary,
+  ButtonRow,
+  ButtonText,
+  ButtonTextLinew,
+  ButtonLinkPress,
 } from '@components/shared/ButtonGlobal';
 import {
     ChildCenterView,
@@ -172,7 +174,7 @@ const ChildSetupList = ({ navigation }: Props) => {
 
         <ButtonRow>
           <ShiftFromBottom20>
-            <ButtonLinkView
+            <ButtonLinkPress
               
               onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListaddSiblingBtn'),childData:null})}>
               <OuterIconRow>
@@ -181,7 +183,7 @@ const ChildSetupList = ({ navigation }: Props) => {
                 </OuterIconLeft>
                 <ButtonTextLinew> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
-            </ButtonLinkView>
+            </ButtonLinkPress>
           </ShiftFromBottom20>
 
           <ButtonPrimary
