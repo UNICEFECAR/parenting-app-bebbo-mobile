@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonText, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import { ButtonLinkPress, ButtonText, ButtonTextMdLineL, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -8,6 +8,8 @@ import Icon, {
 } from '@components/shared/Icon';
 import {
   ProfileActionView, ProfileIconView,
+  ProfileLinkCol,
+  ProfileLinkRow,
   ProfileLinkView, ProfileListActiveChild, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -110,6 +112,9 @@ const ChildProfile = ({navigation}: Props) => {
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
+  );
+  const allConfigData = useAppSelector(
+    (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
   );
   const userParentalRoleData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userParentalRole"):[];
   const userNameData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userName"):[];
@@ -271,6 +276,7 @@ const ChildProfile = ({navigation}: Props) => {
               <ProfileLinkRow style={{
                   backgroundColor: secopndaryTintColor,
                 }}>
+                 
                 <ProfileLinkCol>
               <ButtonLinkPress
                   
@@ -287,7 +293,7 @@ const ChildProfile = ({navigation}: Props) => {
                   <ButtonTextMdLineL>Add sister or brother</ButtonTextMdLineL>
                 </ButtonLinkPress>
                 </ProfileLinkCol>
-
+</ProfileLinkRow>
                 <View style={{flexDirection: 'row'}}>
                   <View style={{padding: 10}}>
                     <Text>Name</Text>
