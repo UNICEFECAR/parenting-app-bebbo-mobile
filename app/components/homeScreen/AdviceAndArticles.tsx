@@ -32,10 +32,10 @@ const AdviceAndArticles = () => {
           <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
         </View>
         <View>
-          <Text>{t('homeScreen.expHeader')}</Text>
+          <Text>{t('localization.homeScreenexpHeader')}</Text>
           <ButtonContainer>
               <ButtonPrimary onPress={() =>  navigation.navigate('Articles')}>
-                <ButtonText>{t('homeScreen.expButton')}</ButtonText>
+                <ButtonText>{t('localization.homeScreenexpButton')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
         </View>

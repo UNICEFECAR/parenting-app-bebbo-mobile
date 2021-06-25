@@ -26,13 +26,13 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
   //  console.log("apinameapiname")
   //  console.log(apiname,methodname,postdata);
   const storedata = store.getState();
-  console.log("store val--", storedata)
+  //console.log("store val--", storedata)
 
   let selectedLang, selectedCountry;
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-  console.log("newurl--", newurl);
+  //console.log("newurl--", newurl);
   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
@@ -41,7 +41,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     params: postdata
   })
     .then((response: any) => {
-      console.log("successsssss");
+      //console.log("successsssss");
       //  console.log(response.data);
       responseData.data = response.data,
         responseData.status = response.status
@@ -49,7 +49,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // return response;
     })
     .catch((err: any) => {
-      console.log("errcodeee");
+     // console.log("errcodeee");
       responseData.data = err.message
       responseData.status = err.response.status;
       return responseData;
@@ -62,8 +62,8 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
-  console.log(response, "..response..");
-  console.log(dispatch, "..dispatch..");
+  //console.log(response, "..response..");
+  //console.log(dispatch, "..dispatch..");
   // const sponsorobj = [...response.data.data];
   // const filteredArray=response.data.data[0].find((item:any)=>{
   //   item['country_flag'] && item['country_sponsor_logo'] && item['country_national_partner']

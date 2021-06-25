@@ -16,7 +16,7 @@ const Notifications = () => {
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const {t} = useTranslation();
   const onchange = (selectedboxes) => {
-    console.log(selectedboxes);
+   // console.log(selectedboxes);
   };
   const DATA = [
     {
@@ -59,8 +59,8 @@ const Notifications = () => {
           <View style={{flex: 1}}>
             <BurgerIcon />
           </View>
-          <View style={{flex: 5, padding: 8}}>
-            <Heading2w> {t('notiScreen.headerTitle')}</Heading2w>
+          <View style={{ flex: 5, padding: 8 }}>
+            <Heading2w> {t('localization.notiScreenheaderTitle')}</Heading2w>
           </View>
         </View>
 

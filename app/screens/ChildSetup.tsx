@@ -58,7 +58,7 @@ const ChildSetup = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-            {t('childSetup.header')}
+            {t('localization.childSetupheader')}
             </Heading1Centerw>
           </ChildCenterView>
         </OnboardingHeading>
@@ -70,10 +70,10 @@ const ChildSetup = ({navigation}: Props) => {
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <LabelText>{t('childSetup.relationSelectTitle')}</LabelText>
+              <LabelText>{t('localization.childSetuprelationSelectTitle')}</LabelText>
               <FormInputBox>
                 <FormDateText>
-                  <Text>{relationship ? relationship : t('childSetup.relationSelectText')}</Text>
+                  <Text>{relationship ? relationship : t('localization.childSetuprelationSelectText')}</Text>
                 </FormDateText>
                 <FormDateAction>
                 <Icon name="ic_angle_down" size={10} color="#000" />
@@ -109,7 +109,7 @@ const ChildSetup = ({navigation}: Props) => {
              childSet.push(insertData);
              addChild(false,0,childSet,dispatch,navigation);  
             }}>
-            <ButtonText>{t('childSetup.continueBtnText')}</ButtonText>
+            <ButtonText>{t('localization.childSetupcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

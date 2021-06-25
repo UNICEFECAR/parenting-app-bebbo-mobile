@@ -8,8 +8,8 @@ import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { receiveAPIFailure } from './sagaSlice';
-import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 // declare global errorArr;
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>

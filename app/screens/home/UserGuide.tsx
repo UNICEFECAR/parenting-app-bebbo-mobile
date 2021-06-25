@@ -28,25 +28,25 @@ const UserGuide = ({navigation}: Props) => {
   const {t} = useTranslation();
   const data = [
     {
-      title: t('walkthroughTexts.1.title'),
+      title: t('localization.walkthroughTextstitle1'),
       image: require('@assets/svg/ic_activity_color.svg'),
       colors: ['#0FD87E', '#CFF7E5'],
       textcolor:'#000',
-      subtitle: t('walkthroughTexts.1.subtitle'),
+      subtitle: t('localization.walkthroughTextssubtitle1'),
     },
     {
-      title: t('walkthroughTexts.2.title'),
+      title: t('localization.walkthroughTextstitle2'),
       image: require('@assets/svg/ic_tools_color.svg'),
       colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
       textcolor:'#000',
-      subtitle: t('walkthroughTexts.2.subtitle'),
+      subtitle: t('localization.walkthroughTextssubtitle2'),
     },
     {
-      title: t('walkthroughTexts.3.title'),
+      title: t('localization.walkthroughTextstitle3'),
       image: require('@assets/svg/ic_article_color.svg'),
       colors: ['#FF8D6B', '#FFD2C4'],
       textcolor:'#000',
-      subtitle:t('walkthroughTexts.3.subtitle'),
+      subtitle:t('localization.walkthroughTextssubtitle3'),
     },
   ];
   const themeContext = useContext(ThemeContext);
@@ -126,7 +126,7 @@ const UserGuide = ({navigation}: Props) => {
             <BurgerIcon />
           </View>
           <View style={{flex: 5, padding: 8}}>
-            <Heading2w> {t('userGuide.headerTitle')}</Heading2w>
+            <Heading2w> {t('localization.userGuideheaderTitle')}</Heading2w>
           </View>
         </View>
 
