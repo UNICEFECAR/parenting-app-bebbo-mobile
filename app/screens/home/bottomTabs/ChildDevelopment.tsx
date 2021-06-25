@@ -73,7 +73,7 @@ const ChildDevelopment = ({navigation}: Props) => {
           <View style={{flexDirection: 'row'}}>
             <Heading3>3rd and 4th Month </Heading3>
             <Text style={{backgroundColor: headerColor, padding: 2}}>
-              {t('localization.developScreenprematureText')}
+              {t('developScreenprematureText')}
             </Text>
           </View>
           <Heading2>
@@ -94,11 +94,11 @@ const ChildDevelopment = ({navigation}: Props) => {
               color="#FFF"
               style={{backgroundColor: 'red', borderRadius: 150}}
             />
-            <Heading5>{t('localization.developScreenchartLabel')}</Heading5>
+            <Heading5>{t('developScreenchartLabel')}</Heading5>
           </View>
           <View style={{flexDirection: 'row', flex: 1}}>
             <Heading3 style={{flex: 8}}>
-              {t('localization.developScreenchartText')}
+              {t('developScreenchartText')}
             </Heading3>
             <View
               style={{
@@ -110,7 +110,7 @@ const ChildDevelopment = ({navigation}: Props) => {
               }}></View>
           </View>
         </View>
-        <Heading3 style={{paddingHorizontal: 15}}>{t('localization.developScreenmileStoneQ')}</Heading3>
+        <Heading3 style={{paddingHorizontal: 15}}>{t('developScreenmileStoneQ')}</Heading3>
       </>
     );
   };
@@ -124,7 +124,7 @@ const ChildDevelopment = ({navigation}: Props) => {
             flex: 1,
           }}>
           <TabScreenHeader
-            title={t('localization.developScreenheaderTitle')}
+            title={t('developScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -146,7 +146,7 @@ const ChildDevelopment = ({navigation}: Props) => {
                   padding: 20,
                   backgroundColor: '#FFF',
                 }}>
-                <Heading5>{t('localization.developScreentipsText')}</Heading5>
+                <Heading5>{t('developScreentipsText')}</Heading5>
                 <Heading3>
                   Watch your baby's behaviour and talk to your paediatrician or
                   visiting nurse if you notice that at the end of the first

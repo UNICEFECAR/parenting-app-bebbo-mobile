@@ -57,13 +57,13 @@ const DailyReads = () => {
         <ImageBackground source={item.imagePath} style={styles.cardImage}>
           <Text style={styles.title}>{item.title}</Text>
         </ImageBackground>
-        <Text>{t('localization.homeScreentodaygame') || t('localization.homeScreentodayarticle')}</Text>
+        <Text>{t('homeScreentodaygame') || t('homeScreentodayarticle')}</Text>
         <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FFF'}}>
           <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('localization.homeScreenshareText')}</Text>
+            <Text style={styles.btntxt}>{t('homeScreenshareText')}</Text>
           </View>
           <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('localization.homeScreenviewDetailsText')}</Text>
+            <Text style={styles.btntxt}>{t('homeScreenviewDetailsText')}</Text>
           </View>
         </View>
       </View>
@@ -73,7 +73,7 @@ const DailyReads = () => {
   return (
     <>
       <ContainerView>
-        <Text>{t('localization.homeScreendailyReadsTitle')}</Text>
+        <Text>{t('homeScreendailyReadsTitle')}</Text>
         <FlatList
           data={DATA}
           horizontal

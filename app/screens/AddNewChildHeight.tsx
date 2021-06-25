@@ -51,13 +51,13 @@ const AddNewChildHeight = ({navigation}: Props) => {
               </Pressable>
             </View>
             <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{t('localization.growthScreenaddHeight')}</Heading2w>
+              <Heading2w style={{color: '#000'}}>{t('growthScreenaddHeight')}</Heading2w>
             </View>
           </View>
         </View>
         <View style={{padding: screenPadding,backgroundColor:tintColor}}>
           <Heading1 style={{textAlign: 'center'}}>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('localization.growthScreencmText')}
+            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreencmText')}
           </Heading1>
           <Ruler
             style={{elevation: 3}}
@@ -111,7 +111,7 @@ const AddNewChildHeight = ({navigation}: Props) => {
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('localization.growthScreensaveMeasuresDetails')}</ButtonText>
+            <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonPrimary>
         </View>
       </SafeAreaView>
