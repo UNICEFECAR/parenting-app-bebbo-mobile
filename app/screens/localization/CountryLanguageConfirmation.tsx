@@ -1,32 +1,34 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonContainer,
-    ButtonLinkText,
-    ButtonPrimary,
-    ButtonText,
-    ButtonTextsm
+  ButtonContainer,
+  ButtonLinkText,
+  ButtonPrimary,
+  ButtonText,
+  ButtonTextsm
 } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
-    LocalizationAction,
-    LocalizationCol,
-    LocalizationContainer,
-    LocalizationcontentHead,
-    LocalizationcontentResult,
-    LocalizationRow,
-    OnboardingconfirmationHead,
-    OnboardingContent,
-    OnboardingshiftHead
+  LocalizationAction,
+  LocalizationCol,
+  LocalizationContainer,
+  LocalizationcontentHead,
+  LocalizationcontentResult,
+  LocalizationRow,
+  OnboardingconfirmationHead,
+  OnboardingContent,
+  OnboardingshiftHead
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2Centerw,
-    Heading3,
-    Heading3Centerw,
-    Heading3Regular
+  Heading2Centerw,
+  Heading3,
+  Heading3Centerw,
+  Heading3Regular
 } from '@styles/typography';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../../App';
 import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
@@ -79,8 +81,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // navigation.navigate('Walkthrough');
   };
 
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
