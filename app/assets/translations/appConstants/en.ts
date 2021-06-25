@@ -1,7 +1,6 @@
 
 const en = {
     translation: {
-        localization: {
             countryLangSelection: "You have selected country and language",
             choiceVerifiy: "Please verify your choice",
             editCountryLang: "Edit",
@@ -59,7 +58,7 @@ const en = {
             childSetupListsaveBtnText: "Save data",
             
             // drawerMenu
-            drawerMenuchildInfo:"{{childName}} born on {{childdob}} ",
+            drawerMenuchildInfo:"born on {{childdob}} ",
             drawerMenuhomeTxt:"Home",
             drawerMenunotiTxt:"Notifications",
             drawerMenutoolsTxt:"Tools",
@@ -75,6 +74,7 @@ const en = {
             drawerMenushareTxt:"Share",
             drawerMenufeedbackTxt:"Feedback",
             drawerMenurateTxt:"Love the App? Rate it",
+            drawerMenuPrivacyTxt:"Privcy Policy",
         
             // notiScreen
             notiScreenheaderTitle:"Notifications",
@@ -203,7 +203,6 @@ const en = {
             growthScreennewGrowthBottomText:"Measuring a child at home is less accurate than measuring at a doctor's and can affect the accuracy of the growth chart.",
             growthScreenrelatedArticle:"Related Articles"
            
-        }
     }
 }
 export default en;

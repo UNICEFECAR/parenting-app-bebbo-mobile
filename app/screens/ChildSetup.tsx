@@ -15,7 +15,7 @@ import React, { createRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import { useAppDispatch, useAppSelector } from '../../App';
+import { useAppDispatch } from '../../App';
 import { addChild, getNewChild } from '../services/childCRUD';
 import {
   Heading1Centerw,
@@ -58,7 +58,7 @@ const ChildSetup = ({navigation}: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-            {t('localization.childSetupheader')}
+            {t('childSetupheader')}
             </Heading1Centerw>
           </ChildCenterView>
         </OnboardingHeading>
@@ -70,10 +70,10 @@ const ChildSetup = ({navigation}: Props) => {
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <LabelText>{t('localization.childSetuprelationSelectTitle')}</LabelText>
+              <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
               <FormInputBox>
                 <FormDateText>
-                  <Text>{relationship ? relationship : t('localization.childSetuprelationSelectText')}</Text>
+                  <Text>{relationship ? relationship : t('childSetuprelationSelectText')}</Text>
                 </FormDateText>
                 <FormDateAction>
                 <Icon name="ic_angle_down" size={10} color="#000" />
@@ -109,7 +109,7 @@ const ChildSetup = ({navigation}: Props) => {
              childSet.push(insertData);
              addChild(false,0,childSet,dispatch,navigation);  
             }}>
-            <ButtonText>{t('localization.childSetupcontinueBtnText')}</ButtonText>
+            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>

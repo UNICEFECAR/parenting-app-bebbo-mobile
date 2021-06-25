@@ -1,16 +1,16 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  FormDateAction,
-  FormDateText,
-  FormInputBox,
-  FormInputGroup
+    FormDateAction,
+    FormDateText,
+    FormInputBox,
+    FormInputGroup
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-  PopupClose,
-  PopupCloseContainer,
-  PopupOverlay
+    PopupClose,
+    PopupCloseContainer,
+    PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
@@ -18,19 +18,19 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Header3Text } from '@styles/style';
 import {
-  Heading2w,
-  Heading3, Heading4Regular
+    Heading2w,
+    Heading3, Heading4Regular
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Modal,
-  Platform,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TextInput,
-  View
+    Modal,
+    Platform,
+    Pressable,
+    SafeAreaView,
+    Text,
+    TextInput,
+    View
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -49,8 +49,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [showdob, setdobShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const measurementPlaces = [
-    t('localization.growthScreendoctorMeasurePlace'),
-    t('localization.growthScreenhomeMeasurePlace'),
+    t('growthScreendoctorMeasurePlace'),
+    t('growthScreenhomeMeasurePlace'),
   ];
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
@@ -95,19 +95,19 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               onPress={() => {
                 setModalVisible(true)
               }}>
-              <Text>{t('localization.growthScreendeletebtnText')}</Text>
+              <Text>{t('growthScreendeletebtnText')}</Text>
             </Pressable>
           </View>
         </View>
         <FormInputGroup onPress={showdobDatepicker}>
-          <Header3Text>{t('localization.growthScreendateMeasurementText')}</Header3Text>
+          <Header3Text>{t('growthScreendateMeasurementText')}</Header3Text>
           <FormInputBox>
             <FormDateText>
               <Text>
                 {' '}
                 {dobDate
                   ? dobDate.toDateString()
-                  : t('localization.growthScreenenterDateMeasurementText')}
+                  : t('growthScreenenterDateMeasurementText')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -115,7 +115,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        <Header3Text>{t('localization.growthScreenwhereMeasured')}</Header3Text>
+        <Header3Text>{t('growthScreenwhereMeasured')}</Header3Text>
         <View style={{flexDirection: 'row'}}>
           {measurementPlaces.map((item, index) => {
             return (
@@ -144,7 +144,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           )}
         </View>
         <View style={{margin: 30}}>
-          <Header3Text>{t('localization.growthScreenenterMeasuresText')}</Header3Text>
+          <Header3Text>{t('growthScreenenterMeasuresText')}</Header3Text>
           <View style={{flexDirection: 'row'}}>
             <Pressable
               onPress={() => {
@@ -156,8 +156,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 flex: 1,
                 flexDirection: 'row',
               }}>
-              <Heading3>{t('localization.growthScreenwText')}</Heading3>
-              <Heading4Regular>{t('localization.growthScreenkgText')}</Heading4Regular>
+              <Heading3>{t('growthScreenwText')}</Heading3>
+              <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
             </Pressable>
             <Pressable
               onPress={() => {
@@ -169,20 +169,20 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 flex: 1,
                 flexDirection: 'row',
               }}>
-              <Heading3>{t('localization.growthScreenhText')}</Heading3>
-              <Heading4Regular>{t('localization.growthScreencmText')}</Heading4Regular>
+              <Heading3>{t('growthScreenhText')}</Heading3>
+              <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
             </Pressable>
           </View>
         </View>
         <View>
-          <Header3Text>{t('localization.growthScreenenterDoctorRemarkText')}</Header3Text>
+          <Header3Text>{t('growthScreenenterDoctorRemarkText')}</Header3Text>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="always"
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
-            placeholder={t('localization.growthScreenenterDoctorRemarkTextPlaceHolder')}
+            placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
             style={{
               backgroundColor: '#fff',
               paddingHorizontal: 20,
@@ -191,14 +191,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           />
         </View>
         <View>
-          <Text>{t('localization.growthScreennewGrowthBottomText')}</Text>
+          <Text>{t('growthScreennewGrowthBottomText')}</Text>
         </View>
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('localization.growthScreensaveMeasures')}</ButtonText>
+            <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonPrimary>
         </View>
         <Modal

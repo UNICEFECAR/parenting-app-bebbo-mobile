@@ -17,7 +17,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../../../App';
-import { getAllChildren, getAllConfigData } from '../../../services/childCRUD';
+import { getAllChildren } from '../../../services/childCRUD';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
@@ -44,7 +44,7 @@ const Home = () => {
         flexDirection: 'column',
         flex: 1,
       }}>
-        <TabScreenHeader title={t('localization.homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
+        <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <ChildInfo/>
           <DailyReads/>
@@ -53,11 +53,11 @@ const Home = () => {
           <AdviceAndArticles/>
           <Tools/>
           <View style={{padding:10}}>
-            <Text>{t('localization.homeScreenexpText')}</Text>
+            <Text>{t('homeScreenexpText')}</Text>
             <ButtonContainer>
               <ButtonPrimary
                 onPress={() => {}}>
-                <ButtonText>{t('localization.homeScreenexpBtnText')}</ButtonText>
+                <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>

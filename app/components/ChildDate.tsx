@@ -67,10 +67,10 @@ const ChildDate = (props: any) => {
     <>
       <FormDateContainer>
         <FormInputGroup onPress={showdobDatepicker}>
-          <LabelText> {t('localization.childSetupdobLabel')}</LabelText>
+          <LabelText> {t('childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {dobDate ? dobDate.toDateString() : t('localization.childSetupdobSelector')}</Text>
+              <Text> {dobDate ? dobDate.toDateString() : t('childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -96,7 +96,7 @@ const ChildDate = (props: any) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('localization.childSetupprematureLabel')}</LabelText>
+            <LabelText>{t('childSetupprematureLabel')}</LabelText>
           </FormOuterCheckbox>
 
           <FormInfoLabel>
@@ -122,10 +122,10 @@ const ChildDate = (props: any) => {
           <>
             <ShiftFromBottom30>
               <FormInputGroup onPress={showdueDatepicker}>
-                <LabelText>{t('localization.childSetupdueLabel')}</LabelText>
+                <LabelText>{t('childSetupdueLabel')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text> {dueDate ? dueDate.toDateString() : t('localization.childSetupdueSelector')}</Text>
+                    <Text> {dueDate ? dueDate.toDateString() : t('childSetupdueSelector')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_calendar" size={20} color="#000" />
@@ -171,7 +171,7 @@ const ChildDate = (props: any) => {
               </PopupClose>
             </PopupCloseContainer>
             <Heading4Centerr>
-              {t('localization.childSetupprematureMessage')}
+              {t('childSetupprematureMessage')}
             </Heading4Centerr>
           </ModalPopupContainer>
         </PopupOverlay>
