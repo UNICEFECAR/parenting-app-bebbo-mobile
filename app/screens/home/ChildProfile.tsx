@@ -107,6 +107,7 @@ const ChildProfile = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
+  console.log(childList,"..childList..");
   const allConfigData = useAppSelector(
     (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
   );
