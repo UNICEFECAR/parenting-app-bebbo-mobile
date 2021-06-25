@@ -55,7 +55,7 @@ const ChildDate = (props: any) => {
   const [showdue, setdueShow] = useState<Boolean>(false);
   const ondueDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
-    console.log(currentDate,"..currentDate..")
+    //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
     props.sendData({ birthDate: dobDate, dueDate: currentDate, isPremature: toggleCheckBox });
