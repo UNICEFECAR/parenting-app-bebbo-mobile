@@ -4,26 +4,23 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
-import {
-  CheckboxContainer,
-  CheckboxItemText
-} from '@components/shared/CheckboxStyle';
+import Checkbox, { CheckboxActive, CheckboxItem, CheckboxItemText, FormOuterCheckbox } from '@components/shared/CheckboxStyle';
+import { LabelText } from '@components/shared/ChildSetupStyle';
+import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
-import CheckBox from '@react-native-community/checkbox';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllTermsData } from '../redux/reducers/utilsSlice';
-import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import { Heading1w } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 
@@ -132,7 +129,58 @@ const Terms = ({navigation}: Props) => {
 
           <Fragment>
             <View style={{marginTop: 20, paddingRight: 40}}>
-              <CheckboxContainer>
+            <FormOuterCheckbox
+            onPress={() => {
+              setToggleCheckBox(!toggleCheckBox);
+            }}>
+            <CheckboxItem>
+              <View>
+                {toggleCheckBox ? (
+                  <CheckboxActive>
+                    <Icon name="ic_tick" size={12} color="#000" />
+                  </CheckboxActive>
+                ) : (
+                  <Checkbox></Checkbox>
+                )}
+              </View>
+            </CheckboxItem>
+            <LabelText>{t('localization.tNccheckbox1')}</LabelText>
+          </FormOuterCheckbox>
+          <FormOuterCheckbox
+            onPress={() => {
+              setToggleCheckBox1(!toggleCheckBox1);
+            }}>
+            <CheckboxItem>
+              <View>
+                {toggleCheckBox1 ? (
+                  <CheckboxActive>
+                    <Icon name="ic_tick" size={12} color="#000" />
+                  </CheckboxActive>
+                ) : (
+                  <Checkbox></Checkbox>
+                )}
+              </View>
+            </CheckboxItem>
+            <LabelText>{t('localization.tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+          </FormOuterCheckbox>
+          <FormOuterCheckbox
+            onPress={() => {
+              setToggleCheckBox2(!toggleCheckBox2);
+            }}>
+            <CheckboxItem>
+              <View>
+                {toggleCheckBox2 ? (
+                  <CheckboxActive>
+                    <Icon name="ic_tick" size={12} color="#000" />
+                  </CheckboxActive>
+                ) : (
+                  <Checkbox></Checkbox>
+                )}
+              </View>
+            </CheckboxItem>
+            <LabelText>{t('localization.tNccheckbox3')}</LabelText>
+          </FormOuterCheckbox>
+              {/* <CheckboxContainer>
                 <CheckBox
                   disabled={false}
                   value={toggleCheckBox}
@@ -145,9 +193,9 @@ const Terms = ({navigation}: Props) => {
                   onTintColor={'#FFF'}
                 />
                 <CheckboxItemText>{t('localization.tNccheckbox1')}</CheckboxItemText>
-              </CheckboxContainer>
+              </CheckboxContainer> */}
 
-              <CheckboxContainer>
+              {/* <CheckboxContainer>
                 <CheckBox
                   disabled={false}
                   value={toggleCheckBox1}
@@ -157,8 +205,8 @@ const Terms = ({navigation}: Props) => {
                 <CheckboxItemText>{t('localization.tNccheckbox2')}
                  <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText>
                  </CheckboxItemText>
-              </CheckboxContainer>
-              <CheckboxContainer>
+              </CheckboxContainer> */}
+              {/* <CheckboxContainer>
                 <CheckBox
                   disabled={false}
                   value={toggleCheckBox2}
@@ -166,7 +214,7 @@ const Terms = ({navigation}: Props) => {
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
                 <CheckboxItemText>{t('localization.tNccheckbox3')}</CheckboxItemText>
-              </CheckboxContainer>
+              </CheckboxContainer> */}
             </View>
           </Fragment>
         </ScrollView>
