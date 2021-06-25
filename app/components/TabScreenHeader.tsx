@@ -111,7 +111,7 @@ const TabScreenHeader = (props:any) => {
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
             {
-           childList?.length > 0 ? (
+          childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
                // console.log(childList,"..childList123..");
                 return renderDailyReadItem(dispatch,item,index);
@@ -125,7 +125,7 @@ const TabScreenHeader = (props:any) => {
           <ShiftFromBottom20>
             <ButtonLinkPress
               
-              onPress={() => navigation.navigate('EditChildProfile')}>
+              onPress={() => navigation.navigate('EditChildProfile',{childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#000" />

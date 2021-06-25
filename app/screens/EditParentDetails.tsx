@@ -9,6 +9,7 @@ import {
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
 import {
@@ -16,8 +17,10 @@ import {
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
   Heading2w,
   Heading3
@@ -38,8 +41,16 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const genders = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
+  const dispatch=useAppDispatch();
   const [parentName, setParentName] = React.useState(parentEditName?parentEditName:"");
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      getAllConfigData(dispatch);
+     
+    },[])
+  );
   const saveParentData=async (relationship:string,parentName:any)=>{
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName",parentName);
