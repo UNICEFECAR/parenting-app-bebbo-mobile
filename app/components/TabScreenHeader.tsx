@@ -42,7 +42,7 @@ const TabScreenHeader = (props:any) => {
   const currentActiveChildId=allConfigData?.length>0?allConfigData.filter(item => item.key === "currentActiveChildId"):[];
   //  console.log(currentActiveChildId,"..currentActiveChildId")
   const currentActiveChild=currentActiveChildId?.length>0?currentActiveChildId[0].value:null;
-  console.log(currentActiveChild,"..currentActiveChild..");
+  //console.log(currentActiveChild,"..currentActiveChild..");
   const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
  
     <View key={index}>
