@@ -26,7 +26,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
       <OnboardingContainer>
         <OnboardingHeading>
           <ChildAddTop>
-            <Heading1w>{t('localization.tNcprivacyPolicyTitle')}</Heading1w>
+            <Heading1w>{t('tNcprivacyPolicyTitle')}</Heading1w>
             <ShiftFromTop5>
               <Pressable
                 onPress={() => {

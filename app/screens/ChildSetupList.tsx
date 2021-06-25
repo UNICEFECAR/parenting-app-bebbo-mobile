@@ -1,21 +1,19 @@
 import {
-  ButtonLinkText,
-  ButtonPrimary,
-  ButtonRow,
-  ButtonText,
-  ButtonTextLinew,
-  ButtonLinkView
+    ButtonLinkView, ButtonPrimary,
+    ButtonRow,
+    ButtonText,
+    ButtonTextLinew
 } from '@components/shared/ButtonGlobal';
 import {
-  ChildCenterView,
-  ChildColArea1,
-  ChildColArea2,
-  ChildContentArea,
-  ChildListingArea,
-  ChildListingBox,
-  ChildListTitle,
-  CustomScrollView,
-  TitleLinkSm
+    ChildCenterView,
+    ChildColArea1,
+    ChildColArea2,
+    ChildContentArea,
+    ChildListingArea,
+    ChildListingBox,
+    ChildListTitle,
+    CustomScrollView,
+    TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -25,18 +23,15 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
-  Heading1Centerw,
-  Heading3Centerw,
-  ShiftFromBottom20,
-  ShiftFromTop30
+    Heading1Centerw,
+    Heading3Centerw,
+    ShiftFromBottom20,
+    ShiftFromTop30
 } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -97,7 +92,7 @@ const ChildSetupList = ({ navigation }: Props) => {
    
   }
   const editRecord = (data:any) => {
-    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('localization.childSetupListeditSiblingBtn'),childData:data});
+    navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListeditSiblingBtn'),childData:data});
   }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   const apiJsonData = [
@@ -145,11 +140,11 @@ const ChildSetupList = ({ navigation }: Props) => {
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
-              {t('localization.childSetupListheader')}
+              {t('childSetupListheader')}
             </Heading1Centerw>
             <ShiftFromTop30>
             <Heading3Centerw>
-              {t('localization.childSetupListsubHeader')}
+              {t('childSetupListsubHeader')}
             </Heading3Centerw>
             </ShiftFromTop30>
           </ChildCenterView>
@@ -179,12 +174,12 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ShiftFromBottom20>
             <ButtonLinkView
               
-              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('localization.childSetupListaddSiblingBtn'),childData:null})}>
+              onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListaddSiblingBtn'),childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
                 </OuterIconLeft>
-                <ButtonTextLinew> {t('localization.childSetupListaddSiblingBtn')}</ButtonTextLinew>
+                <ButtonTextLinew> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
             </ButtonLinkView>
           </ShiftFromBottom20>
@@ -193,7 +188,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             onPress={() => {
               childSetup();
             }}>
-            <ButtonText>{t('localization.childSetupListcontinueBtnText')}</ButtonText>
+            <ButtonText>{t('childSetupListcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
