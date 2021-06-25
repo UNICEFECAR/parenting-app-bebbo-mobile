@@ -101,8 +101,9 @@ export const getAllChildren = async (dispatch: any) => {
         //console.log(value,"..config value..");
         childAllData.push(value);
       })
-     
+     //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
       dispatch(setAllChildData(childAllData));
+     //}
     });
   }
   else {
@@ -124,7 +125,7 @@ export const getAllChildren = async (dispatch: any) => {
   }
 }
 
-export const deleteChild = async (index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any) => {
+export const deleteChild = async (index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any,resolve:any,reject:any) => {
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   //console.log(createresult,"..createresult..");
   if (createresult == 'success') {
@@ -136,8 +137,10 @@ export const deleteChild = async (index: number, dispatch: any, schemaName: stri
       25,
       50
     );
+    resolve("success");
   }
   else {
+    reject("error");
     ToastAndroid.showWithGravityAndOffset(
       "User Delete Error.Please try again..",
       ToastAndroid.LONG,
