@@ -77,13 +77,13 @@ const SuggestedActivities = () => {
       <View style={{flexDirection: 'row', padding: 10}}>
         <View>
           <Text>
-            {t('localization.actScreenpendingMilestone')} {t('localization.actScreenmilestones')}
+            {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
           </Text>
           <Text>{'Laugh at Human face'}</Text>
         </View>
         <View>
           <Text style={{borderBottomWidth: 1}}>
-            {t('localization.actScreentrack')} {t('localization.actScreenmilestones')}
+            {t('actScreentrack')} {t('actScreenmilestones')}
           </Text>
         </View>
       </View>
@@ -91,13 +91,13 @@ const SuggestedActivities = () => {
         <View style={{flex: 1}}>
           <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <Icon name="ic_sb_shareapp" size={20} color="#000" />
-            <Text>{t('localization.actScreenshareText')}</Text>
+            <Text>{t('actScreenshareText')}</Text>
           </Pressable>
         </View>
         <View style={{flex: 1}}>
           <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <Icon name="ic_sb_favorites" size={20} color="#000" />
-            <Text>{t('localization.actScreenaddtoFavText')}</Text>
+            <Text>{t('actScreenaddtoFavText')}</Text>
           </Pressable>
         </View>
       </View>
@@ -132,13 +132,13 @@ const Activities = ({navigation}: Props) => {
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>{t('localization.actScreenshareText')}</Text>
+              <Text>{t('actScreenshareText')}</Text>
             </Pressable>
           </View>
           <View style={{flex: 1}}>
             <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
               <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>{t('localization.actScreenaddtoFavText')}</Text>
+              <Text>{t('actScreenaddtoFavText')}</Text>
             </Pressable>
           </View>
         </View>
@@ -152,7 +152,7 @@ const Activities = ({navigation}: Props) => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView nestedScrollEnabled={true}>
           <TabScreenHeader
-            title={t('localization.actScreenheaderTitle')}
+            title={t('actScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -167,11 +167,11 @@ const Activities = ({navigation}: Props) => {
               buttonData={buttonData}
             />
             <View style={{padding: 10, height: 400, marginBottom: 30}}>
-              <Heading3>{t('localization.actScreensugacttxt')}</Heading3>
-              <Text>{t('localization.actScreenprematureText')}</Text>
+              <Heading3>{t('actScreensugacttxt')}</Heading3>
+              <Text>{t('actScreenprematureText')}</Text>
               <SuggestedActivities />
             </View>
-            <Heading3>{t('localization.actScreenotheracttxt')}</Heading3>
+            <Heading3>{t('actScreenotheracttxt')}</Heading3>
 
             {DATA.map((item, index) => {
               return renderActivityItem(item, index);

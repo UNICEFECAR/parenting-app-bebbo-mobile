@@ -1,7 +1,7 @@
 import {
-  ButtonContainer,
-  ButtonPrimary,
-  ButtonText
+    ButtonContainer,
+    ButtonPrimary,
+    ButtonText
 } from '@components/shared/ButtonGlobal';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -39,11 +39,11 @@ const PlayingTogether = () => {
             </View>
             <View>
               <View>
-                <Text>{t('localization.homeScreenptHeader')}</Text>
+                <Text>{t('homeScreenptHeader')}</Text>
                 <ButtonContainer>
                   <ButtonPrimary
                     onPress={() => navigation.navigate('Activities')}>
-                    <ButtonText>{t('localization.homeScreenptButton')}</ButtonText>
+                    <ButtonText>{t('homeScreenptButton')}</ButtonText>
                   </ButtonPrimary>
                 </ButtonContainer>
               </View>
