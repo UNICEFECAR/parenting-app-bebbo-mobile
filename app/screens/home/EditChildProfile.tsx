@@ -53,7 +53,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
   const [photoUri, setphotoUri] = React.useState("");
   let initialData: any = {};
   const [birthDate, setBirthDate] =  React.useState<Date>();
-  const [name, setName] = React.useState(editScreen ?childData.name:'');
+  const [name, setName] = React.useState(childData != null ?childData.name:'');
   const [plannedTermDate, setPlannedTermDate] =  React.useState<Date>();
   const [isPremature, setIsPremature] =  React.useState<string>('false');
   const uuid= childData != null ? childData.uuid:'';
@@ -64,7 +64,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
     setIsPremature(myString);
    // 
   };
-  const [gender, setGender] = React.useState(editScreen?childData.gender:'');
+  const [gender, setGender] = React.useState(childData != null ?childData.gender:'');
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
