@@ -8,7 +8,7 @@ const useToGetOfflineData = async (languageCode:string,dispatch:any,SchemaToUse:
     let databaselistener:any;
     // async function fetchData() {
         let databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse);
-        //console.log("  db length--",databaseData2?.length);
+       // console.log("  db length--",databaseData2?.length);
             if(databaseData2?.length > 0)
             {
                 // dispatch(setAllHardcodedData(databaseData2));

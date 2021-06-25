@@ -30,8 +30,3 @@ export const PopupClose = styled.Pressable`
 `;
 
 export default ModalPopupContainer;
-
-//   modalText: {
-//     marginBottom: 15,
-//     textAlign: 'center',
-//   },

@@ -219,11 +219,18 @@ const ChildProfile = ({navigation}: Props) => {
                   </ProfileActionView>
 
               </ProfileListActiveChild>
-              <ScrollView style={{height: 350, marginTop: 15,backgroundColor:secopndaryTintColor}} nestedScrollEnabled = {true}>
+              {/* <ScrollView style={{height: 350, marginTop: 15,backgroundColor:secopndaryTintColor}} nestedScrollEnabled = {true}>
                 {DATA.map((item, index) => {
                   return renderChildItem(item, index);
                 })}
-              </ScrollView>
+              </ScrollView> */}
+              <ScrollView
+                  style={{height: 'auto', marginTop: 15}}
+                  nestedScrollEnabled={true}>
+                  {childList?.map((item: any, index: number) => {
+                    return renderChildItem(dispatch, item, index);
+                  })}
+                </ScrollView>
               <ProfileLinkRow style={{
                   backgroundColor: secopndaryTintColor,
                 }}>
@@ -260,98 +267,45 @@ const ChildProfile = ({navigation}: Props) => {
                   <ButtonTextMdLineL>Add Expecting Child</ButtonTextMdLineL>
                 </ButtonLinkPress>
                 </ProfileLinkCol>
+                  </ProfileLinkRow>
+               
+            	
+            <ParentListView style={{backgroundColor: secopndaryTintColor}}>	
+              <ProfileContentView>	
+                          <ProfileTextView>	
+                            <Heading3>Parent Details</Heading3>	
+                          </ProfileTextView>	
+                          <ProfileActionView>	
+                          <ButtonLinkPress	
+                              onPress={() => {	
+                                navigation.navigate('EditParentDetails');	
+                              }}>	
+                              <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>	
+                            </ButtonLinkPress>	
+                                  	
+                              </ProfileActionView>	
+                  </ProfileContentView>	
+                  <ProfileContentView>	
+                          <ParentRowView>	
+                            <ParentSection>	
+                              <ParentLabel>	
+                                <Text>Your role</Text>	
+                              </ParentLabel>	
+                              <ParentData>	
+                                <Text>Father</Text>	
+                              </ParentData>	
+                            </ParentSection>	
+                            <ParentSection>	
+                              <ParentLabel>	
+                                <Text>Name</Text>	
+                              </ParentLabel>	
+                              <ParentData>	
+                                <Text>Antanio</Text>	
+                              </ParentData>	
+                            </ParentSection>	
 
-
-              </ProfileLinkRow>
-              {/* <View
-                style={{
-                  flexDirection: 'row',
-                  backgroundColor: secopndaryTintColor,
-                  marginBottom: 10,
-                  borderBottomWidth: 1,
-                  borderColor: '#EEE',
-                }}>
-                <Pressable
-                  style={{padding: 10, flexDirection: 'row'}}
-                  onPress={() => {
-                    navigation.navigate('EditChildProfile');
-                  }}>
-                  <Icon
-                    name="ic_plus"
-                    size={25}
-                    color="#000"
-                    style={{padding: 10}}
-                  />
-                  <Text>Add sister or brother</Text>
-                </Pressable>
-                <Pressable
-                  style={{padding: 10, flexDirection: 'row'}}
-                  onPress={() => {
-                    navigation.navigate('AddExpectingChildProfile');
-                  }}>
-                  <Icon
-                    name="ic_plus"
-                    size={25}
-                    color="#000"
-                    style={{padding: 10}}
-                  />
-                  <Text>Add Expecting Child</Text>
-                </Pressable>
-              </View> */}
-            
-            <ParentListView style={{backgroundColor: secopndaryTintColor}}>
-              <ProfileContentView>
-                          <ProfileTextView>
-                            <Heading3>Parent Details</Heading3>
-                          </ProfileTextView>
-                          <ProfileActionView>
-                          <ButtonLinkPress
-                              onPress={() => {
-                                navigation.navigate('EditParentDetails');
-                              }}>
-                              <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>
-                            </ButtonLinkPress>
-                                  
-                              </ProfileActionView>
-                  </ProfileContentView>
-
-                  <ProfileContentView>
-                          <ParentRowView>
-
-                            <ParentSection>
-                              <ParentLabel>
-                                <Text>Your role</Text>
-                              </ParentLabel>
-                              <ParentData>
-                                <Text>Father</Text>
-                              </ParentData>
-                            </ParentSection>
-                            <ParentSection>
-                              <ParentLabel>
-                                <Text>Name</Text>
-                              </ParentLabel>
-                              <ParentData>
-                                <Text>Antanio</Text>
-                              </ParentData>
-                            </ParentSection>
-{/*                             
-                            <ParentColView>
-                            <Heading4Regular>Your role is</Heading4Regular>
-                            </ParentColView>
-                            <ParentColView>
-                            <Heading4Regular>Father</Heading4Regular>
-                            </ParentColView>
-                          </ParentRowView>
-                          <ParentRowView>
-                            <ParentColView>
-                            <Heading4Regular>Name</Heading4Regular>
-                            </ParentColView>
-                            <ParentColView>
-                            <Heading4Regular>Antanio</Heading4Regular>
-                            </ParentColView> */}
-                          </ParentRowView>
-                  </ProfileContentView>
-
+                          </ParentRowView>	
+                  </ProfileContentView>	
             </ParentListView>
            
           </View>

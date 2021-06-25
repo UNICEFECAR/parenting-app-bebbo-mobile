@@ -1,10 +1,9 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, Text, View } from 'react-native';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
@@ -68,10 +67,10 @@ const ChildDate = (props: any) => {
     <>
       <FormDateContainer>
         <FormInputGroup onPress={showdobDatepicker}>
-          <LabelText> {t('localization.childSetupdobLabel')}</LabelText>
+          <LabelText> {t('childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {dobDate ? dobDate.toDateString() : t('localization.childSetupdobSelector')}</Text>
+              <Text> {dobDate ? dobDate.toDateString() : t('childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -97,7 +96,7 @@ const ChildDate = (props: any) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('localization.childSetupprematureLabel')}</LabelText>
+            <LabelText>{t('childSetupprematureLabel')}</LabelText>
           </FormOuterCheckbox>
 
           <FormInfoLabel>
@@ -123,10 +122,10 @@ const ChildDate = (props: any) => {
           <>
             <ShiftFromBottom30>
               <FormInputGroup onPress={showdueDatepicker}>
-                <LabelText>{t('localization.childSetupdueLabel')}</LabelText>
+                <LabelText>{t('childSetupdueLabel')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text> {dueDate ? dueDate.toDateString() : t('localization.childSetupdueSelector')}</Text>
+                    <Text> {dueDate ? dueDate.toDateString() : t('childSetupdueSelector')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_calendar" size={20} color="#000" />
@@ -172,7 +171,7 @@ const ChildDate = (props: any) => {
               </PopupClose>
             </PopupCloseContainer>
             <Heading4Centerr>
-              {t('localization.childSetupprematureMessage')}
+              {t('childSetupprematureMessage')}
             </Heading4Centerr>
           </ModalPopupContainer>
         </PopupOverlay>
@@ -181,25 +180,3 @@ const ChildDate = (props: any) => {
   );
 };
 export default ChildDate;
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    // paddingTop: headerHeight,
-    padding: 20,
-  },
-  modalView: {
-    // margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 4,
-    padding: 30,
-    alignItems: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});

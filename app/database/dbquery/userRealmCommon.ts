@@ -99,7 +99,7 @@ class UserRealmCommon extends Component {
                    // console.log("in try--",records);
                     realm.write(() => {
                         records.forEach(record => {
-                           // console.log("record",record);
+                            console.log("record",record);
                             realm?.create<Entity>(entitySchema.name, record);
                         })
                             

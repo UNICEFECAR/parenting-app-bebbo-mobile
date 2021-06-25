@@ -15,7 +15,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { useAppSelector } from '../../../App';
-
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -58,7 +57,7 @@ const CountrySelection = (props: any) => {
     <>
       <OnboardingContainer>
         <OnboardingStyle
-          title={t('localization.selectYourCountry').toString()}
+          title={t('selectYourCountry').toString()}
           iconname="ic_country"
         />
 
