@@ -23,7 +23,7 @@ export const RadioItemText = styled.Text`
   text-align: left;
   /* font-weight: ${(props: any) => (props.isActive ? 'bold' : 'normal')}; */
   font-size: 16px;
-  lineHeight:20px;
+  line-height:20px;
   color: #FFF;
   flex:9;
   
@@ -36,9 +36,9 @@ export const RadioItemText = styled.Text`
 `;
 export const RadioItem = styled.View`
   padding: 13px 0;
-flexDirection:row;
+flex-direction:row;
 
-  alignItems: center;
+  align-items: center;
   /* margin-left: 5px;
   margin-right: 5px; */
   border-color: rgba(255,255,255,.3);
@@ -57,7 +57,7 @@ export const Header = styled.View`
   padding-bottom: 15px;
   padding-left: 15px;
   padding-right: 15px;
-  flexDirection:row;
+  flex-direction:row;
   align-items:center;
 `;
 export const MiniHeader = styled.View`

@@ -3,9 +3,9 @@ import Ruler from '@components/Ruler';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-  PopupClose,
-  PopupCloseContainer,
-  PopupOverlay
+    PopupClose,
+    PopupCloseContainer,
+    PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -91,14 +91,14 @@ const AddNewChildWeight = ({navigation}: Props) => {
             </View>
             <View style={{flex: 8, padding: 7}}>
               <Heading2w style={{color: '#000'}}>
-                {t('localization.growthScreenaddWeight')}
+                {t('growthScreenaddWeight')}
               </Heading2w>
             </View>
           </View>
         </View>
         <View style={{padding: screenPadding, backgroundColor: tintColor}}>
           <Heading1 style={{textAlign: 'center'}}>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('localization.growthScreenkgText')}
+            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreenkgText')}
           </Heading1>
           <Ruler
             style={{elevation: 3}}
@@ -152,7 +152,7 @@ const AddNewChildWeight = ({navigation}: Props) => {
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('localization.growthScreensaveMeasuresDetails')}</ButtonText>
+            <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonPrimary>
         </View>
       </SafeAreaView>

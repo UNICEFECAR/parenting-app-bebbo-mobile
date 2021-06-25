@@ -27,7 +27,7 @@ const TabScreenHeader = (props:any) => {
   const headerColor = props.headerColor;
   const textColor = props.textColor;
   const childList = useAppSelector(
-    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : state.childData.childDataSet.allChild,
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
   const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
     return (
@@ -115,12 +115,7 @@ const TabScreenHeader = (props:any) => {
             onPress={() => navigation.navigate('ChildProfileScreen')}>
             <ButtonText>Manage Profile</ButtonText>
           </ButtonPrimary>
-      
-
-                <ButtonPrimary
-                  onPress={() => navigation.navigate('ChildProfileScreen')}>
-                  <ButtonText>Manage Profile</ButtonText>
-                </ButtonPrimary>
+   
               </ButtonRow>
             </ButtonSpacing>
           </TouchableOpacity>

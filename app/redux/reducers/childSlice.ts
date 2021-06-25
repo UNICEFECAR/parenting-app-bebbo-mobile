@@ -24,6 +24,7 @@ export const childSlice = createSlice({
     ) => {
     //  console.log("child data---",state);
     // console.log("child data length---",action.payload);
+      (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       (typeof action.payload == 'object') ? state.childDataSet.allChild = JSON.stringify(action.payload) : state.childDataSet.allChild = action.payload;
      
     },
