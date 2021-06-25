@@ -320,7 +320,10 @@ const ChildProfile = ({navigation}: Props) => {
                   <View style={{padding: 10}}>
                     <Pressable
                       onPress={() => {
-                        navigation.navigate('EditParentDetails');
+                        navigation.navigate('EditParentDetails',{
+                          userParentalRoleData:userParentalRoleData?.length>0?userParentalRoleData[0].value:'',
+                          parentEditName:userNameData?.length>0?userNameData[0].value:''
+                        });
                       }}>
                       <Text>Edit Profile</Text>
                     </Pressable>
@@ -340,7 +343,7 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Name</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    {/* <Text>{userNameData?.length>0?userNameData[0].value:''}</Text> */}
+                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
                   </View>
                 </View>
               </View>

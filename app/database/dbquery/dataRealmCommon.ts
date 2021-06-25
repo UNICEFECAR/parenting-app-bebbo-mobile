@@ -121,43 +121,43 @@ class DataRealmCommon {
             }
         });
     }
-    public async updateSettings<Entity>(entitySchema: ObjectSchema, key:string,value:string): Promise<String> {
+    public async updateSettings<Entity>(entitySchema: ObjectSchema, key: string, value: string): Promise<String> {
         return new Promise(async (resolve, reject) => {
-      //  console.log(entitySchema,"--entity--");
+            //  console.log(entitySchema,"--entity--");
             try {
                 const realm = await this.openRealm();
                 if (realm) {
                     // realm?.write(() => {
-                        // if (records?.length > 0) {
-                            const allVariables = realm.objects<ConfigSettingsEntity>(ConfigSettingsSchema.name);
-                            const variablesWithKey = allVariables.filtered(`key == "${key}"`);
-                            const keyAlreadyExists = variablesWithKey && variablesWithKey.length > 0 ? true : false;
-if(keyAlreadyExists){
-    realm?.write(() => {
-        variablesWithKey[0].value =value;
-        variablesWithKey[0].updatedAt = new Date();
-        resolve("success");
-    });
-}
-else{
-    realm?.write(() => {
-        realm?.create<ConfigSettingsEntity>(ConfigSettingsSchema.name, {
-            key: key,
-            value: JSON.stringify(value),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        });
-        resolve("success");
-    });
-}
-                            // records.forEach(record => {
-                            //     realm?.create<Entity>(entitySchema.name, record, 'modified');
-                            // })
-                       // }
+                    // if (records?.length > 0) {
+                    const allVariables = realm.objects<ConfigSettingsEntity>(ConfigSettingsSchema.name);
+                    const variablesWithKey = allVariables.filtered(`key == "${key}"`);
+                    const keyAlreadyExists = variablesWithKey && variablesWithKey.length > 0 ? true : false;
+                    if (keyAlreadyExists) {
+                        realm?.write(() => {
+                            variablesWithKey[0].value = value;
+                            variablesWithKey[0].updatedAt = new Date();
+                            resolve("success");
+                        });
+                    }
+                    else {
+                        realm?.write(() => {
+                            realm?.create<ConfigSettingsEntity>(ConfigSettingsSchema.name, {
+                                key: key,
+                                value: value,
+                                createdAt: new Date(),
+                                updatedAt: new Date(),
+                            });
+                            resolve("success");
+                        });
+                    }
+                    // records.forEach(record => {
+                    //     realm?.create<Entity>(entitySchema.name, record, 'modified');
+                    // })
+                    // }
 
-                        resolve("success");
+                    resolve("success");
                     // });
-                     
+
                 }
                 else {
                     reject();

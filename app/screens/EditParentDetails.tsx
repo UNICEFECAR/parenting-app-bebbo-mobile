@@ -28,15 +28,17 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
+  route:any,
   navigation: ChildSetupNavigationProp;
 };
 
-const EditParentDetails = ({navigation}: Props) => {
-  const [relationship, setRelationship] = useState('');
+const EditParentDetails = ({route,navigation}: Props) => {
+  const {userParentalRoleData,parentEditName}=route.params;
+  const [relationship, setRelationship] = useState(userParentalRoleData?userParentalRoleData:"");
   const genders = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
-  const [parentName, setParentName] = React.useState("");
+  const [parentName, setParentName] = React.useState(parentEditName?parentEditName:"");
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const saveParentData=async (relationship:string,parentName:any)=>{
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
@@ -112,6 +114,7 @@ const EditParentDetails = ({navigation}: Props) => {
               autoCorrect={false}
               clearButtonMode="always"
               onChangeText={(value:any) => { setParentName(value) }}
+              value={parentName}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
               style={{

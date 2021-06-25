@@ -18,7 +18,6 @@ export const variableSlice = createSlice({
     ) => {
       state.variableData=JSON.stringify(action.payload);
     }
-  
   },
   
 });
