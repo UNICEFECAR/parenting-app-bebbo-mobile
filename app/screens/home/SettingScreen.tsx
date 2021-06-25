@@ -96,12 +96,12 @@ const SettingScreen = (props: any) => {
             <BurgerIcon />
           </View>
           <View style={{flex: 5,padding:8}}>
-            <Heading2w> {t('settingScreen.headerTitle')}</Heading2w>
+            <Heading2w> {t('localization.settingScreenheaderTitle')}</Heading2w>
           </View>
         </View>
         <ScrollView style={{flex: 1}}>
           <View style={{padding: 15}}>
-            <Heading1> {t('settingScreen.notiHeaderText')}</Heading1>
+            <Heading1> {t('localization.settingScreennotiHeaderText')}</Heading1>
             <View
               style={{
                 flexDirection: 'row',
@@ -116,7 +116,7 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreen.notiType1')}
+              {t('localization.settingScreennotiType1')}
               </Text>
             </View>
             <View
@@ -133,25 +133,7 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreen.notiType2')}
-              </Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
-                trackColor={{false: trackFalseColor, true:trackTrueColor}}
-                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
-              />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreen.notiType3')}
+              {t('localization.settingScreennotiType2')}
               </Text>
             </View>
 
@@ -169,7 +151,25 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreen.notiType4')}
+              {t('localization.settingScreennotiType3')}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                marginBottom: 10,
+              }}>
+              <Switch
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+                style={{alignSelf: 'flex-start'}}
+              />
+              <Text style={{alignSelf: 'flex-end'}}>
+              {t('localization.settingScreennotiType4')}
               </Text>
             </View>
 
@@ -180,12 +180,12 @@ const SettingScreen = (props: any) => {
                 padding: 10,
               }}>
               <Text>
-              {t('settingScreen.notiInfo')}
+              {t('localization.settingScreennotiInfo')}
               </Text>
             </View>
           </View>
           <View style={{padding: 15}}>
-            <Heading1>{t('settingScreen.dataSaverHeaderText')}</Heading1>
+            <Heading1>{t('localization.settingScreendataSaverHeaderText')}</Heading1>
             <View
               style={{
                 flexDirection: 'row',
@@ -200,30 +200,30 @@ const SettingScreen = (props: any) => {
                 style={{alignSelf: 'flex-start'}}
               />
               <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreen.dataSaverSubText')}
+              {t('localization.settingScreendataSaverSubText')}
               </Text>
             </View>
           </View>
           <View style={{padding: 15}}>
-            <Heading1>{t('settingScreen.downldHeaderText')}</Heading1>
-            <Heading4>{t('settingScreen.downldSubHeaderText')}</Heading4>
-            <Heading6>{t('settingScreen.downldlast',{downloadDate: '17 dec 2020 02:32pm'})}</Heading6>
+            <Heading1>{t('localization.settingScreendownldHeaderText')}</Heading1>
+            <Heading4>{t('localization.settingScreendownldSubHeaderText')}</Heading4>
+            <Heading6>{t('localization.settingScreendownldlast',{downloadDate: '17 dec 2020 02:32pm'})}</Heading6>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreen.downldupdateBtn')}</ButtonText>
+                <ButtonText>{t('localization.settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </View>
-            <Heading4>{t('settingScreen.downldSubHeader2Text')}</Heading4>
-            <Heading6>{t('settingScreen.downldSubHeader3Text')}</Heading6>
+            <Heading4>{t('localization.settingScreendownldSubHeader2Text')}</Heading4>
+            <Heading6>{t('localization.settingScreendownldSubHeader3Text')}</Heading6>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreen.downldallBtn')}</ButtonText>
+                <ButtonText>{t('localization.settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>
           <View style={{paddingHorizontal: 15}}>
             <View style={{flexDirection: 'row'}}>
-              <Heading1>{t('settingScreen.localizationHeader')}</Heading1>
+              <Heading1>{t('localization.settingScreenlocalizationHeader')}</Heading1>
               <LocalizationAction>
                 <ButtonLinkText
                   onPress={() => props.navigation.navigate('CountrySelection')}>
@@ -259,18 +259,18 @@ const SettingScreen = (props: any) => {
           </View>
 
           <View style={{padding: 15}}>
-            <Heading1>{t('settingScreen.ieHeader')}</Heading1>
+            <Heading1>{t('localization.settingScreenieHeader')}</Heading1>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
-                <ButtonText>{t('settingScreen.exportBtnText')}</ButtonText>
+                <ButtonText>{t('localization.settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
             </View>
             <View style={{width: '100%', marginTop: 30}}>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreen.importBtnText')}</ButtonText>
+                <ButtonText>{t('localization.settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>
@@ -284,17 +284,17 @@ const SettingScreen = (props: any) => {
           <ActionSheet ref={actionSheetRef}>
             <View>
               <View style={styles.modalView}>
-                <Heading1>{t('settingScreen.exportOptionHeader')}</Heading1>
+                <Heading1>{t('localization.settingScreenexportOptionHeader')}</Heading1>
                 <View style={{flexDirection: 'row'}}>
                   <View style={styles.item}>
                     <Icon name="ic_sb_shareapp" size={30} color="#000" />
-                    <Text style={styles.modalText}>{t('settingScreen.shareBtntxt')}</Text>
+                    <Text style={styles.modalText}>{t('localization.settingScreenshareBtntxt')}</Text>
                   </View>
                   <View style={styles.item}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
                     />
-                    <Text style={styles.modalText}>{t('settingScreen.gdriveBtntxt')}</Text>
+                    <Text style={styles.modalText}>{t('localization.settingScreengdriveBtntxt')}</Text>
                   </View>
                 </View>
               </View>

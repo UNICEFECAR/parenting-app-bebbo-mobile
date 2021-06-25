@@ -94,11 +94,11 @@ const ChildMilestones = () => {
             />
           </View>
           <View>
-            <Text>{t('homeScreen.cdHeader')}</Text>
+            <Text>{t('localization.homeScreencdHeader')}</Text>
             <ButtonContainer>
               <ButtonPrimary
                 onPress={() => navigation.navigate('ChildDevelopment')}>
-                <ButtonText>{t('homeScreen.cdButton')}</ButtonText>
+                <ButtonText>{t('localization.homeScreencdButton')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>

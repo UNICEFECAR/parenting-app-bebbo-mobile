@@ -70,9 +70,9 @@ const Terms = ({navigation}: Props) => {
         let Entity:any;
         // Entity = Entity as TaxonomyEntity
         const basicData = await useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
-        // console.log(stateArticleData,"artData--",artData.length);
+      // console.log(stateArticleData,"artData--",artData.length);
         // setArticleData(stateArticleData)
-        // console.log("basicpagesData--",basicData);
+      // console.log("basicpagesData--",basicData);
         setLoading(false);
      
       }
@@ -122,7 +122,7 @@ const Terms = ({navigation}: Props) => {
       <OnboardingContainer>
       <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
-          <Heading1w>{t('tNc.header')}</Heading1w>
+          <Heading1w>{t('localization.tNcheader')}</Heading1w>
         </OnboardingHeading>
         <ScrollView contentContainerStyle={{padding: 0}}>
           <HTML
@@ -137,14 +137,14 @@ const Terms = ({navigation}: Props) => {
                   disabled={false}
                   value={toggleCheckBox}
                   onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                  tintColors={{true: '#8CAEE4', false: '#FFF'}}
+                  tintColors={{true:'#ffffff', false: '#FFF'}}
                   boxType={'square'}
                   tintColor={'#FFF'}
                   onCheckColor={'#8CAEE4'}
                   onFillColor={'#FFF'}
                   onTintColor={'#FFF'}
                 />
-                <CheckboxItemText>{t('tNc.checkbox1')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox1')}</CheckboxItemText>
               </CheckboxContainer>
 
               <CheckboxContainer>
@@ -154,8 +154,8 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox1(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('tNc.checkbox2')}
-                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNc.privacyPolicy')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox2')}
+                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText>
                  </CheckboxItemText>
               </CheckboxContainer>
               <CheckboxContainer>
@@ -165,7 +165,7 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox2(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('tNc.checkbox3')}</CheckboxItemText>
+                <CheckboxItemText>{t('localization.tNccheckbox3')}</CheckboxItemText>
               </CheckboxContainer>
             </View>
           </Fragment>
@@ -177,7 +177,7 @@ const Terms = ({navigation}: Props) => {
               acceptTerms();
               // navigation.navigate('LoadingScreen')
             }}>
-            <ButtonText>{t('tNc.acceptbtn')}</ButtonText>
+            <ButtonText>{t('localization.tNcacceptbtn')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
