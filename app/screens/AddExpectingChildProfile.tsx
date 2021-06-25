@@ -11,6 +11,7 @@ import {
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import {
@@ -18,7 +19,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../App';
-import { addChild, getNewChild } from '../services/childCRUD';
+import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -32,6 +33,12 @@ type Props = {
 
 const AddExpectingChildProfile = ({ navigation }: Props) => {
   //const [dobDate, setdobDate] = useState();
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      getAllConfigData(dispatch);
+    },[])
+  );
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || plannedTermDate;
