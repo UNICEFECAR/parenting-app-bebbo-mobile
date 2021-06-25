@@ -161,6 +161,27 @@ const ChildProfile = ({navigation}: Props) => {
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: headerColor,
+              maxHeight: 50,
+            }}>
+            <View style={{flex: 1, padding: 15}}>
+              <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#FFF" size={15} />
+              </Pressable>
+            </View>
+            <View style={{flex: 9, padding: 7}}>
+              <Heading2w>
+                {'Child and Parent Profile'}
+              </Heading2w>
+            </View>
+          </View>
+        {/* <View
           style={{
             flexDirection: 'column',
             flex: 1,
@@ -179,25 +200,25 @@ const ChildProfile = ({navigation}: Props) => {
             <View style={{flex: 3}}>
               <Heading2w> {'Child and ParentProfile'}</Heading2w>
             </View>
-          </View>
-          <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
-          <View style={{margin: 15}}>
-            
-              <ProfileListActiveChild
-                style={{
-                  backgroundColor: secopndaryColor,
-                }}>
-                <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
-                <ProfileTextView
-                 >
-                   <ProfileSectionView>
-                   <Heading3>Jenny,</Heading3>
-                   <OuterIconLeft></OuterIconLeft>
-                   <Heading6>Girl</Heading6>
-                  
-                   </ProfileSectionView>
-                   <Heading5>Born on 08 Jul 2020</Heading5>
-                   <ProfileLinkView>
+          </View> */}
+          {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
+            <View style={{margin: 15}}>
+              <View style={{flexDirection: 'column'}}>
+                {/* <ProfileListActiveChild
+                  style={{
+                    backgroundColor: secopndaryColor,
+                  }}>
+                  <ProfileIconView>
+                    <Icon name="ic_baby" size={30} color="#000" />
+                  </ProfileIconView>
+                  <ProfileTextView>
+                    <ProfileSectionView>
+                      <Heading3>Jenny,</Heading3>
+                      <OuterIconLeft></OuterIconLeft>
+                      <Heading6>Girl</Heading6>
+                    </ProfileSectionView>
+                    <Heading5>Born on 08 Jul 2020</Heading5>
+                    <ProfileLinkView>
                       <ButtonTextSmLine
                         onPress={() => {
                           navigation.navigate('EditChildProfile');
@@ -217,14 +238,8 @@ const ChildProfile = ({navigation}: Props) => {
                     </OuterIconRow>
                     <Heading5Bold>Activated</Heading5Bold>
                   </ProfileActionView>
-
-              </ProfileListActiveChild>
-              {/* <ScrollView style={{height: 350, marginTop: 15,backgroundColor:secopndaryTintColor}} nestedScrollEnabled = {true}>
-                {DATA.map((item, index) => {
-                  return renderChildItem(item, index);
-                })}
-              </ScrollView> */}
-              <ScrollView
+                </ProfileListActiveChild> */}
+                <ScrollView
                   style={{height: 'auto', marginTop: 15}}
                   nestedScrollEnabled={true}>
                   {childList?.map((item: any, index: number) => {
@@ -251,66 +266,18 @@ const ChildProfile = ({navigation}: Props) => {
                 </ButtonLinkPress>
                 </ProfileLinkCol>
 
-                <ProfileLinkCol>
-              <ButtonLinkPress
-                  
-                  onPress={() => {
-                    navigation.navigate('AddExpectingChildProfile');
-                  }}>
-                     <OuterIconRow><OuterIconLeft><Icon
-                    name="ic_plus"
-                    size={24}
-                    color="#000"
-                    
-                  /></OuterIconLeft></OuterIconRow>
-                  
-                  <ButtonTextMdLineL>Add Expecting Child</ButtonTextMdLineL>
-                </ButtonLinkPress>
-                </ProfileLinkCol>
-                  </ProfileLinkRow>
-               
-            	
-            <ParentListView style={{backgroundColor: secopndaryTintColor}}>	
-              <ProfileContentView>	
-                          <ProfileTextView>	
-                            <Heading3>Parent Details</Heading3>	
-                          </ProfileTextView>	
-                          <ProfileActionView>	
-                          <ButtonLinkPress	
-                              onPress={() => {	
-                                navigation.navigate('EditParentDetails');	
-                              }}>	
-                              <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>	
-                            </ButtonLinkPress>	
-                                  	
-                              </ProfileActionView>	
-                  </ProfileContentView>	
-                  <ProfileContentView>	
-                          <ParentRowView>	
-                            <ParentSection>	
-                              <ParentLabel>	
-                                <Text>Your role</Text>	
-                              </ParentLabel>	
-                              <ParentData>	
-                                <Text>Father</Text>	
-                              </ParentData>	
-                            </ParentSection>	
-                            <ParentSection>	
-                              <ParentLabel>	
-                                <Text>Name</Text>	
-                              </ParentLabel>	
-                              <ParentData>	
-                                <Text>Antanio</Text>	
-                              </ParentData>	
-                            </ParentSection>	
-
-                          </ParentRowView>	
-                  </ProfileContentView>	
-            </ParentListView>
-           
-          </View>
-          </ScrollView>
-        </View>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{padding: 10}}>
+                    <Text>Name</Text>
+                  </View>
+                  <View style={{padding: 10}}>
+                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          {/* </ScrollView> */}
+        {/* </View> */}
       </SafeAreaView>
     </>
   );

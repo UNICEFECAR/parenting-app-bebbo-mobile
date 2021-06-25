@@ -1,5 +1,6 @@
 import { localization } from '@assets/data/localization';
 import CountryItem from '@components/CountryItem';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonSection,
   ButtonviewClick,
@@ -11,9 +12,10 @@ import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
+import { ThemeContext } from 'styled-components';
 import { useAppSelector } from '../../../App';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -52,9 +54,12 @@ const CountrySelection = (props: any) => {
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
   const {t} = useTranslation();
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   // console.log("-----bj ",i18n);
   return (
     <>
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourCountry').toString()}

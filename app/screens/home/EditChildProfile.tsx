@@ -6,14 +6,12 @@ import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4 } from '@styles/typography';
+import { Heading2w, Heading3, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import {
   Image, Pressable,
   SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
+  ScrollView, TextInput,
   View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -145,26 +143,27 @@ const EditChildProfile = ({route,navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-
         <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View style={{flex: 1}}>
-            <Pressable
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Text>Back</Text>
-            </Pressable>
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: headerColor,
+              maxHeight: 50,
+            }}>
+            <View style={{flex: 1, padding: 15}}>
+              <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#FFF" size={15} />
+              </Pressable>
+            </View>
+            <View style={{flex: 9, padding: 7}}>
+              <Heading2w>
+                {'Edit Child Profile'}
+              </Heading2w>
+            </View>
           </View>
-          <View style={{flex: 3}}>
-            <Text> {'Edit Child Profile'}</Text>
-          </View>
-        </View>
 
         <ScrollView style={{flex: 4}}>
           <View style={{flexDirection: 'column'}}>
