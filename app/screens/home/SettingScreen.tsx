@@ -3,34 +3,34 @@ import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonLinkText, ButtonPrimary } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import {
-    LocalizationAction,
-    LocalizationCol,
-    LocalizationContainer,
-    LocalizationcontentHead,
-    LocalizationcontentResult,
-    LocalizationRow
+  LocalizationAction,
+  LocalizationCol,
+  LocalizationContainer,
+  LocalizationcontentHead,
+  LocalizationcontentResult,
+  LocalizationRow
 } from '@components/shared/OnboardingContainer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ButtonText } from '@styles/style';
 import {
-    Heading1, Heading2w, Heading3, Heading3Regular,
-    Heading4,
-    Heading6
+  Heading1, Heading2w, Heading3, Heading3Regular,
+  Heading4,
+  Heading6
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    SafeAreaView,
-    ScrollView,
-    StyleSheet, Text, View
+  SafeAreaView,
+  ScrollView,
+  StyleSheet, Text, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
-
+import { localization } from '../../assets/data/localization';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -70,7 +70,7 @@ const SettingScreen = (props: any) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   useEffect(() => {
-    const selectedCountry: any = find(
+    const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
     );
     setCountry(selectedCountry);
