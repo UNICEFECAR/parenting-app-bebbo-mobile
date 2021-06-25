@@ -1,11 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonCol, ButtonLinkText, ButtonLinkPress, ButtonLinkRow, ButtonText, ButtonTextMdLineL,ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-import Icon, { OuterIconLeft, OuterIconRow, TickView } from '@components/shared/Icon';
-import { ProfileActionView,ParentListView, ProfileLinkCol,ProfileLinkRow, ProfileListDefault,ProfileSectionView, ProfileListInner,ProfileIconView,ProfileLinkView, ProfileListView, ProfileListActiveChild, ProfileTextView, ParentRowView, ParentColView, ProfileContentView, ParentSection, ParentLabel, ParentData } from '@components/shared/ProfileListingStyle';
+import { ButtonLinkPress, ButtonTextMdLineL, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import { ProfileActionView, ProfileIconView, ProfileLinkCol, ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading1Regular, Heading2w, Heading3, Heading4, Heading4Regular, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
+import { Heading2w, Heading3, Heading5, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
@@ -265,13 +264,13 @@ const ChildProfile = ({navigation}: Props) => {
                   <ButtonTextMdLineL>Add sister or brother</ButtonTextMdLineL>
                 </ButtonLinkPress>
                 </ProfileLinkCol>
-
+</ProfileLinkRow>
                 <View style={{flexDirection: 'row'}}>
                   <View style={{padding: 10}}>
                     <Text>Name</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
+                    {/* <Text>{userNameData?.length>0?userNameData[0].value:''}</Text> */}
                   </View>
                 </View>
               </View>

@@ -64,11 +64,11 @@ const Walkthrough = ({ navigation }: Props) => {
             {(index ==0) ?
             (<VectorImage source={item.image} />)
             : (index ==1) ? (<WalkthroughImagebox>
-              <VectorImage source={item.image} style={{width: 130,height: 140,}} />
+              <VectorImage source={item.image} style={{width: 130,height: 130,}} />
               </WalkthroughImagebox>): (index ==2) ? (<WalkthroughImagebox>
-              <VectorImage source={item.image} style={{width: 123,height: 150,}} />
+              <VectorImage source={item.image} style={{width: 130,height: 130,}} />
               </WalkthroughImagebox>): (<WalkthroughImagebox>
-              <VectorImage source={item.image} style={{width: 160,height: 123,}} />
+              <VectorImage source={item.image} style={{width: 130,height: 130,}} />
               </WalkthroughImagebox>)}
               </WalkthroughImageContainer>
               <WalkthroughContentArea>

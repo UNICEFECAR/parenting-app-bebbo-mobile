@@ -1,4 +1,8 @@
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import {
+  ButtonContainer,
+  ButtonPrimary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,11 +14,11 @@ const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  padding: 15px;
   margin-top: 10px;
-  background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
+  background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
 `;
 // const MilestoneCircle = () => (
-
 
 //   <View style={{
 //     width: circleWidth,
@@ -32,32 +36,32 @@ const DATA = [
   {
     id: '1',
     imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'Gripping your filgers'
+    title: 'Gripping your filgers',
   },
   {
     id: '2',
     imagePath: require('@assets/trash/card2.jpeg'),
-    title: 'Molding your hands'
+    title: 'Molding your hands',
   },
   {
     id: '3',
     imagePath: require('@assets/trash/card3.jpeg'),
-    title: 'Picking stuff around'
+    title: 'Picking stuff around',
   },
   {
     id: '4',
     imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'Gripping your filgers'
+    title: 'Gripping your filgers',
   },
   {
     id: '5',
     imagePath: require('@assets/trash/card5.jpeg'),
-    title: 'Molding your hands'
+    title: 'Molding your hands',
   },
   {
     id: '6',
     imagePath: require('@assets/trash/card6.jpeg'),
-    title: 'Picking stuff around'
+    title: 'Picking stuff around',
   },
 ];
 const ChildMilestones = () => {
