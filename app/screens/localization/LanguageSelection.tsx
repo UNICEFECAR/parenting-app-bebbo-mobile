@@ -1,8 +1,7 @@
 import LanguageItem from '@components/LanguageItem';
 import {
   BtnMultiple, ButtonviewClick,
-  ButtonviewNext,
-  ButtonviewPrevious
+  ButtonviewNext
 } from '@components/shared/ButtonView';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -61,11 +60,11 @@ const LanguageSelection = ({route, navigation}: Props) => {
         </SelectionView>
         {language ? (
           <BtnMultiple>
-            <ButtonviewPrevious>
+            <ButtonviewNext>
               <ButtonviewClick onPress={() => navigation.goBack()}>
                 <Icon name="ic_angle_left" size={32} color="#000" />
               </ButtonviewClick>
-            </ButtonviewPrevious>
+            </ButtonviewNext>
             <ButtonviewNext>
               <ButtonviewClick
                 onPress={() =>
