@@ -16,30 +16,11 @@ import { Modal, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import BurgerIcon from './shared/BurgerIcon';
-import {
-  ButtonLinkView,
-  ButtonPrimary,
-  ButtonRow,
-  ButtonSpacing,
-  ButtonText,
-  ButtonTextLine,
-  ButtonTextSmLine
-} from './shared/ButtonGlobal';
-import {
-  HeaderActionBox,
-  HeaderActionView,
-  HeaderRowView,
-  HeaderTitleView
-} from './shared/HeaderContainerStyle';
-import {
-  ProfileActionView,
-  ProfileIconView,
-  ProfileListView,
-  ProfileListViewSelected,
-  ProfileTextView
-} from './shared/ProfileListingStyle';
-const headerHeight = 50;
-const TabScreenHeader = (props: any) => {
+import { ButtonLinkText, ButtonSpacing, ButtonTextSmLine, ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,ButtonTextLine } from './shared/ButtonGlobal';
+import { HeaderRowView, HeaderTitleView,HeaderActionView,HeaderActionBox} from './shared/HeaderContainerStyle';
+import { ProfileListViewSelected,ProfileListView,ProfileIconView,ProfileTextView,ProfileActionView} from './shared/ProfileListingStyle';
+const headerHeight=50;
+const TabScreenHeader = (props:any) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
@@ -116,23 +97,25 @@ const TabScreenHeader = (props: any) => {
            
 
             <ButtonSpacing>
-              <ButtonRow>
-                <ShiftFromBottom20>
-                  <ButtonLinkView
-                    onPress={() => navigation.navigate('EditChildProfile',{childData:''})}>
-                    <OuterIconRow>
-                      <OuterIconLeft>
-                        <Icon name="ic_plus" size={20} color="#000" />
-                      </OuterIconLeft>
-                      <ButtonTextLine> Add sister or brother</ButtonTextLine>
-                    </OuterIconRow>
-                  </ButtonLinkView>
-                </ShiftFromBottom20>
+            <ButtonRow>
+          <ShiftFromBottom20>
+            <ButtonLinkPress
+              
+              onPress={() => navigation.navigate('EditChildProfile')}>
+              <OuterIconRow>
+                <OuterIconLeft>
+                  <Icon name="ic_plus" size={20} color="#000" />
+                </OuterIconLeft>
+                <ButtonTextLine> Add sister or brother</ButtonTextLine>
+              </OuterIconRow>
+            </ButtonLinkPress>
+          </ShiftFromBottom20>
 
-                <ButtonPrimary
-                  onPress={() => navigation.navigate('ChildProfileScreen')}>
-                  <ButtonText>Manage Profile</ButtonText>
-                </ButtonPrimary>
+          <ButtonPrimary
+            onPress={() => navigation.navigate('ChildProfileScreen')}>
+            <ButtonText>Manage Profile</ButtonText>
+          </ButtonPrimary>
+   
               </ButtonRow>
             </ButtonSpacing>
           </TouchableOpacity>
