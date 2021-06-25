@@ -107,6 +107,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               autoCorrect={false}
               clearButtonMode="always"
               onChangeText={(value) => { setName(value) }}
+              value={name}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your child name"
               style={{
@@ -120,7 +121,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             <ButtonPrimary
               onPress={() => {
                 //navigation.navigate('ChildProfileScreen');
-                let insertData: any = getNewChild('', plannedTermDate);
+                let insertData: any = getNewChild( '', plannedTermDate, '',null, '',name, '', '');
                 let childSet: Array<any> = [];
                 childSet.push(insertData);
                 addChild(false, 2, childSet, dispatch, navigation);

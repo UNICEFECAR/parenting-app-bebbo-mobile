@@ -23,7 +23,7 @@ export const OnboardingconfirmationHead = styled.View`
 
 export const OnboardingshiftHead = styled.View`
 margin-top:40px;
-margin-bottom:20px
+margin-bottom:20px;
 padding: 0 28px;
 `
 
@@ -50,7 +50,7 @@ export const LocalizationRow = styled.View`
 export const LocalizationCol = styled.View`
 flex:1;
 flex-direction: row;
-align-items:center
+align-items:center;
 border-bottom-width:1px;
 border-color: rgba(0,0,0,.15);
 padding:4px 15px 0px;

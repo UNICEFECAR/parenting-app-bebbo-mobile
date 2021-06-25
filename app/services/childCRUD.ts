@@ -10,7 +10,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/C
 import { removeChild, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 export const getNewChild = (uuidGet: string, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): ChildEntity => {
-  //console.log(uuidGet,"..uuidGet..")
+ // console.log(gender,"..gender..")
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     name: name ? name : '',
@@ -26,29 +26,32 @@ export const getNewChild = (uuidGet: string, plannedTermDate?: any, isPremature?
   };
 
 }
+export const setActiveChild=async (uuid:any)=>{
+  let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
+}
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any) => {
 
   if (editScreen) {
-    console.log("..update child..", data);
+    //console.log("..update child..", data);
     let createresult = await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
-    console.log("..update child..", createresult);
+    //console.log("..update child..", createresult);
   }
   else {
-    console.log("..add child..", data);
+  //  console.log("..add child..", data);
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    
   }
-  let allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
-  if (allJsonDatanew?.length == 1) {
-    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
-    let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
-    let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-  }
+
 
   if (param == 0) {
     navigation.reset({
       index: 0,
       routes: [{ name: 'ChildSetupList' }],
     });
+    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
+    let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
+    let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+ 
   }
   else if (param == 1) {
     navigation.navigate('ChildSetupList');
@@ -66,7 +69,7 @@ export const getAllConfigData = async (dispatch: any) => {
   let allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   allJsonDatanew.removeAllListeners();
   let configAllData: any = [];
-  console.log("db length--", allJsonDatanew?.length);
+  //console.log("db length--", allJsonDatanew?.length);
   if (allJsonDatanew?.length > 0) {
     databaselistener = allJsonDatanew.addListener((changes: any, name: any) => {
       configAllData = [];
@@ -77,7 +80,7 @@ export const getAllConfigData = async (dispatch: any) => {
     });
   }
   else {
-    console.log("..else loop");
+    //console.log("..else loop");
     dispatch(getVariableData(configAllData));
   }
 }
@@ -88,21 +91,22 @@ export const getAllChildren = async (dispatch: any) => {
   let childAllData: any = [];
   let isChanged: boolean = false;
   // dispatch(setAllChildData(childAllData));
-  console.log("db length--", allJsonDatanew?.length);
+  //console.log("db length--", allJsonDatanew?.length);
   if (allJsonDatanew?.length > 0) {
     databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
       // console.log("changes--",changes);
       // console.log("name--",name);
       childAllData = [];
       allJsonDatanew.map((value: ChildEntity) => {
-        console.log(value,"..config value..");
+        //console.log(value,"..config value..");
         childAllData.push(value);
       })
+     
       dispatch(setAllChildData(childAllData));
     });
   }
   else {
-    console.log("..else loop");
+    //console.log("..else loop");
     // let enteredChildData:any=[{
     //     key:"userEnteredChildData",
     //     value:"false",
@@ -124,7 +128,7 @@ export const deleteChild = async (index: number, dispatch: any, schemaName: stri
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   //console.log(createresult,"..createresult..");
   if (createresult == 'success') {
-    console.log(index, "..index..");
+    //console.log(index, "..index..");
     ToastAndroid.showWithGravityAndOffset(
       "User Deleted Succesfully",
       ToastAndroid.LONG,

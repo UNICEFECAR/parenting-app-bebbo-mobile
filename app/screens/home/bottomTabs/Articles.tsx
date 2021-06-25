@@ -7,13 +7,12 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { destinationFolder } from '@types/apiConstants';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image, KeyboardAvoidingView,
-  Platform, Pressable,
-  ScrollView, StyleSheet, Text, TextInput, View
+    Image, KeyboardAvoidingView,
+    Platform, Pressable,
+    ScrollView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
@@ -82,13 +81,13 @@ const Articles = ({navigation}: Props) => {
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_shareapp" size={20} color="#000" />
-                <Text>{t('localization.articleScreenshareText')}</Text>
+                <Text>{t('articleScreenshareText')}</Text>
               </Pressable>
             </View>
             <View style={{flex: 1}}>
               <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
                 <Icon name="ic_sb_favorites" size={20} color="#000" />
-                <Text>{t('localization.articleScreenaddtoFavText')}</Text>
+                <Text>{t('articleScreenaddtoFavText')}</Text>
               </Pressable>
             </View>
           </View>
@@ -213,7 +212,7 @@ const Articles = ({navigation}: Props) => {
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <ScrollView nestedScrollEnabled={true}>
           <TabScreenHeader
-            title={t('localization.articleScreenheaderTitle')}
+            title={t('articleScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -233,7 +232,7 @@ const Articles = ({navigation}: Props) => {
                 value={''}
                 // onChangeText={queryText => handleSearch(queryText)}
                 // placeholder="Search for Keywords"
-                placeholder={t('localization.articleScreensearchPlaceHolder')}
+                placeholder={t('articleScreensearchPlaceHolder')}
                 style={{
                   backgroundColor: '#fff',
                   width: '100%',
