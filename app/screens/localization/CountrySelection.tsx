@@ -15,7 +15,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { useAppSelector } from '../../../App';
-
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -44,7 +43,7 @@ const CountrySelection = (props: any) => {
     (state: any) => state.selectedCountry.countryId,
   );
   useEffect(() => {
-    const selectedCountry: any = find(
+    const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
     );
     setCountry(selectedCountry);
