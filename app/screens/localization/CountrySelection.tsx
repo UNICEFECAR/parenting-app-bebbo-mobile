@@ -44,7 +44,7 @@ const CountrySelection = (props: any) => {
     (state: any) => state.selectedCountry.countryId,
   );
   useEffect(() => {
-    const selectedCountry: any = localization.find(
+    const selectedCountry: any = find(
       (country) => country.countryId === countryId,
     );
     setCountry(selectedCountry);
@@ -58,7 +58,7 @@ const CountrySelection = (props: any) => {
     <>
       <OnboardingContainer>
         <OnboardingStyle
-          title={t('localization.selectYourCountry').toString()}
+          title={t('selectYourCountry').toString()}
           iconname="ic_country"
         />
 

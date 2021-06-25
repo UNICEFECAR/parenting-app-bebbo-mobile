@@ -5,13 +5,13 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2,
-  Heading3,
-  Heading3Regular,
-  Heading4,
-  Heading4Center,
-  Heading5,
-  Paragraph
+    Heading2,
+    Heading3,
+    Heading3Regular,
+    Heading4,
+    Heading4Center,
+    Heading5,
+    Paragraph
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,8 +27,8 @@ type Props = {
 const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
   const data = [
-    {title: t('localization.growthScreenweightForHeight')},
-    {title: t('localization.growthScreenheightForAge')},
+    {title: t('growthScreenweightForHeight')},
+    {title: t('growthScreenheightForAge')},
   ];
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
@@ -54,7 +54,7 @@ const Childgrowth = ({navigation}: Props) => {
             flex: 1,
           }}>
           <TabScreenHeader
-            title={t('localization.growthScreenheaderTitle')}
+            title={t('growthScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
@@ -72,13 +72,13 @@ const Childgrowth = ({navigation}: Props) => {
                     setChildmeasures([1]);
                   }}>
                   <Heading3>
-                    {t('localization.growthScreengrowthDataTitle', {childAge: 3})}
+                    {t('growthScreengrowthDataTitle', {childAge: 3})}
                   </Heading3>
                 </Pressable>
                 <Heading3Regular>
-                  {t('localization.growthScreennoGrowthData')}
+                  {t('growthScreennoGrowthData')}
                 </Heading3Regular>
-                <Heading4>{t('localization.growthScreennoGrowthDataHelpText')}</Heading4>
+                <Heading4>{t('growthScreennoGrowthDataHelpText')}</Heading4>
               </View>
             ) : (
               <View>
@@ -94,15 +94,15 @@ const Childgrowth = ({navigation}: Props) => {
                     marginBottom: 10,
                   }}>
                   <View style={{flexDirection: 'row'}}>
-                    <Heading3>{t('localization.growthScreensubHeading')}</Heading3>
+                    <Heading3>{t('growthScreensubHeading')}</Heading3>
                     <Text style={{backgroundColor: headerColor, padding: 2}}>
-                      {t('localization.growthScreenprematureText')}
+                      {t('growthScreenprematureText')}
                     </Text>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <Heading5>
                       {' '}
-                      {t('localization.growthScreenlastMeasureText', {
+                      {t('growthScreenlastMeasureText', {
                         measureDate: '13th Nov,2019',
                       })}
                     </Heading5>
@@ -112,33 +112,33 @@ const Childgrowth = ({navigation}: Props) => {
                       }>
                       <Text
                         style={{padding: 2, textDecorationLine: 'underline'}}>
-                        {t('localization.growthScreenallMeasureHeader')}
+                        {t('growthScreenallMeasureHeader')}
                       </Text>
                     </Pressable>
                   </View>
                   <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>{t('localization.growthScreenwText')}</Paragraph>
+                      <Paragraph>{t('growthScreenwText')}</Paragraph>
                       <Heading2 style={{padding: 2}}>
-                        8 {t('localization.growthScreenkgText')}
+                        8 {t('growthScreenkgText')}
                       </Heading2>
                     </View>
                     <View style={{flexDirection: 'column', flex: 2}}>
-                      <Paragraph>{t('localization.growthScreenhText')}</Paragraph>
+                      <Paragraph>{t('growthScreenhText')}</Paragraph>
                       <Heading2 style={{padding: 2}}>
-                        73 {t('localization.growthScreencmText')}
+                        73 {t('growthScreencmText')}
                       </Heading2>
                     </View>
                     <View style={{flex: 2, flexDirection: 'row'}}>
                       <Pressable
                         onPress={() => {
                           navigation.navigate('AddNewChildgrowth', {
-                            headerTitle: t('localization.growthScreeneditNewBtntxt'),
+                            headerTitle: t('growthScreeneditNewBtntxt'),
                           });
                         }}>
                         <Text
                           style={{padding: 2, textDecorationLine: 'underline'}}>
-                          {t('localization.growthScreeneditText')}
+                          {t('growthScreeneditText')}
                         </Text>
                       </Pressable>
                     </View>
@@ -182,7 +182,7 @@ const Childgrowth = ({navigation}: Props) => {
 
                     <View style={{flex: 1, width: '100%', padding: 5}}>
                       {renderItem(data[selectedIndex], selectedIndex)}
-                      <Heading2>{t('localization.growthScreensumHeading')}</Heading2>
+                      <Heading2>{t('growthScreensumHeading')}</Heading2>
                       <Paragraph>
                         [Child growth progress text] [Child growth progress
                         text] [Child growth progress text] [Child growth
@@ -206,10 +206,10 @@ const Childgrowth = ({navigation}: Props) => {
                 style={{backgroundColor: headerColor}}
                 onPress={() => {
                   navigation.navigate('AddNewChildgrowth', {
-                    headerTitle: t('localization.growthScreenaddNewBtntxt'),
+                    headerTitle: t('growthScreenaddNewBtntxt'),
                   });
                 }}>
-                <ButtonText>{t('localization.growthScreenaddNewBtntxt')}</ButtonText>
+                <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
               </ButtonPrimary>
             </View>
           </View>

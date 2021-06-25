@@ -119,7 +119,7 @@ const Terms = ({navigation}: Props) => {
       <OnboardingContainer>
       <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
-          <Heading1w>{t('localization.tNcheader')}</Heading1w>
+          <Heading1w>{t('tNcheader')}</Heading1w>
         </OnboardingHeading>
         <ScrollView contentContainerStyle={{padding: 0}}>
           <HTML
@@ -144,7 +144,7 @@ const Terms = ({navigation}: Props) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('localization.tNccheckbox1')}</LabelText>
+            <LabelText>{t('tNccheckbox1')}</LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
             onPress={() => {
@@ -161,7 +161,7 @@ const Terms = ({navigation}: Props) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('localization.tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
             onPress={() => {
@@ -178,7 +178,7 @@ const Terms = ({navigation}: Props) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('localization.tNccheckbox3')}</LabelText>
+            <LabelText>{t('tNccheckbox3')}</LabelText>
           </FormOuterCheckbox>
               {/* <CheckboxContainer>
                 <CheckBox
@@ -192,7 +192,7 @@ const Terms = ({navigation}: Props) => {
                   onFillColor={'#FFF'}
                   onTintColor={'#FFF'}
                 />
-                <CheckboxItemText>{t('localization.tNccheckbox1')}</CheckboxItemText>
+                <CheckboxItemText>{t('tNccheckbox1')}</CheckboxItemText>
               </CheckboxContainer> */}
 
               {/* <CheckboxContainer>
@@ -202,8 +202,8 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox1(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('localization.tNccheckbox2')}
-                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('localization.tNcprivacyPolicy')}</CheckboxItemText>
+                <CheckboxItemText>{t('tNccheckbox2')}
+                 <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNcprivacyPolicy')}</CheckboxItemText>
                  </CheckboxItemText>
               </CheckboxContainer> */}
               {/* <CheckboxContainer>
@@ -213,7 +213,7 @@ const Terms = ({navigation}: Props) => {
                   onValueChange={(newValue) => setToggleCheckBox2(newValue)}
                   tintColors={{true: '#ffffff', false: '#d4d4d4'}}
                 />
-                <CheckboxItemText>{t('localization.tNccheckbox3')}</CheckboxItemText>
+                <CheckboxItemText>{t('tNccheckbox3')}</CheckboxItemText>
               </CheckboxContainer> */}
             </View>
           </Fragment>
@@ -225,7 +225,7 @@ const Terms = ({navigation}: Props) => {
               acceptTerms();
               // navigation.navigate('LoadingScreen')
             }}>
-            <ButtonText>{t('localization.tNcacceptbtn')}</ButtonText>
+            <ButtonText>{t('tNcacceptbtn')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
