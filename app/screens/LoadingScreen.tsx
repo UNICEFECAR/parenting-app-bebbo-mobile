@@ -1,9 +1,11 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { RootStackParamList } from '@navigation/types';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
+import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
@@ -56,8 +58,11 @@ const prevPage  = route.params.prevPage;
     dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation))
   }
   
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
      <LoadingScreenComponent sponsors={sponsors}></LoadingScreenComponent>
    </>
 
