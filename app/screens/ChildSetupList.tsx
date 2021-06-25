@@ -1,21 +1,18 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonLinkText,
-  ButtonPrimary,
-  ButtonRow,
-  ButtonText,
-  ButtonTextLinew,
-  ButtonLinkPress,
+  ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
+  ButtonTextLinew
 } from '@components/shared/ButtonGlobal';
 import {
-    ChildCenterView,
-    ChildColArea1,
-    ChildColArea2,
-    ChildContentArea,
-    ChildListingArea,
-    ChildListingBox,
-    ChildListTitle,
-    CustomScrollView,
-    TitleLinkSm
+  ChildCenterView,
+  ChildColArea1,
+  ChildColArea2,
+  ChildContentArea,
+  ChildListingArea,
+  ChildListingBox,
+  ChildListTitle,
+  CustomScrollView,
+  TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -23,17 +20,19 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
-    Heading1Centerw,
-    Heading3Centerw,
-    ShiftFromBottom20,
-    ShiftFromTop30
+  Heading1Centerw,
+  Heading3Centerw,
+  ShiftFromBottom20,
+  ShiftFromTop30
 } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -136,8 +135,12 @@ const ChildSetupList = ({ navigation }: Props) => {
   //   Alert.alert("No Internet Connection.")
   // }
 
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+     <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingHeading>
           <ChildCenterView>
@@ -173,9 +176,9 @@ const ChildSetupList = ({ navigation }: Props) => {
         </ChildContentArea>
 
         <ButtonRow>
+          
           <ShiftFromBottom20>
             <ButtonLinkPress
-              
               onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListaddSiblingBtn'),childData:null})}>
               <OuterIconRow>
                 <OuterIconLeft>
@@ -185,15 +188,17 @@ const ChildSetupList = ({ navigation }: Props) => {
               </OuterIconRow>
             </ButtonLinkPress>
           </ShiftFromBottom20>
-
+         
           <ButtonPrimary
             onPress={() => {
               childSetup();
             }}>
             <ButtonText>{t('childSetupListcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
+   
         </ButtonRow>
       </OnboardingContainer>
+      </SafeAreaView>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import ChildDate from '@components/ChildDate';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
@@ -11,10 +12,12 @@ import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { createRef, useState } from 'react';
+import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../App';
 import { addChild, getNewChild } from '../services/childCRUD';
 import {
@@ -52,8 +55,13 @@ const ChildSetup = ({navigation}: Props) => {
     setIsPremature(myString);
   };
  
+
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+     <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingHeading>
           <ChildCenterView>
@@ -113,6 +121,7 @@ const ChildSetup = ({navigation}: Props) => {
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
+      </SafeAreaView>
     </>
   );
 };

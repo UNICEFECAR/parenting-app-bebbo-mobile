@@ -125,18 +125,24 @@ const ChildProfile = ({navigation}: Props) => {
           <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
           <ProfileTextView
            >
+             <ProfileSectionView>
              <Heading3>{data.name!="" ? data.name:"Child"+(index+1)}</Heading3>
-             <Heading5>{data.gender?data.gender:''}</Heading5>
+             <OuterIconLeft></OuterIconLeft>
+             <Heading6>{data.gender?data.gender:''}</Heading6>
+             </ProfileSectionView>
              <Heading5>Born on {data.birthDate}</Heading5>
-           </ProfileTextView>
-          <ProfileActionView>
-          <OuterIconRow><OuterIconLeft><TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView></OuterIconLeft></OuterIconRow>
-          <ButtonLinkPress
+             <ProfileLinkView>
+<ButtonTextSmLine
                 onPress={() => {
                   navigation.navigate('EditChildProfile',{childData:data});
                 }}>
                 <Text>Edit Profile</Text>
-              </ButtonLinkPress>
+              </ButtonTextSmLine>
+              </ProfileLinkView>
+           </ProfileTextView>
+          <ProfileActionView>
+          <OuterIconRow><OuterIconLeft><TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView></OuterIconLeft></OuterIconRow>
+          
             <Heading5Bold>Activated</Heading5Bold>
             </ProfileActionView>
           </ProfileListViewSelected>
@@ -153,11 +159,9 @@ const ChildProfile = ({navigation}: Props) => {
                    <Heading3>{data.name!="" ? data.name:"Child"+(index+1)},</Heading3>
                    <OuterIconLeft></OuterIconLeft>
                    <Heading6>{data.gender?data.gender:''}</Heading6>
-                   <Heading5>Born on {data.birthDate}</Heading5>
+                   
                    </ProfileSectionView>
-          
-                   
-                   
+                   <Heading5>Born on {data.birthDate}</Heading5>
                    <ProfileLinkView>
             <ButtonTextSmLine
                 onPress={() => {
@@ -266,7 +270,7 @@ const ChildProfile = ({navigation}: Props) => {
                   </ProfileActionView>
                 </ProfileListActiveChild> */}
                 <ScrollView
-                  style={{height: 'auto', marginTop: 15}}
+                  style={{height: 'auto', }}
                   nestedScrollEnabled={true}>
                   {childList?.map((item: any, index: number) => {
                     return renderChildItem(dispatch, item, index);
@@ -312,41 +316,50 @@ const ChildProfile = ({navigation}: Props) => {
                 </ButtonLinkPress>
                 </ProfileLinkCol>
                 </ProfileLinkRow>
-                <View style={{backgroundColor: secopndaryTintColor}}>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <ButtonText>Parent Details</ButtonText>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Pressable
-                      onPress={() => {
-                        navigation.navigate('EditParentDetails',{
-                          userParentalRoleData:userParentalRoleData?.length>0?userParentalRoleData[0].value:'',
-                          parentEditName:userNameData?.length>0?userNameData[0].value:''
-                        });
-                      }}>
-                      <Text>Edit Profile</Text>
-                    </Pressable>
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <Text>Your role is</Text>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Text>{userParentalRoleData?.length>0?userParentalRoleData[0].value:''}</Text>
-                  </View>
-                </View>
 
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding: 10}}>
-                    <Text>Name</Text>
-                  </View>
-                  <View style={{padding: 10}}>
-                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
-                  </View>
-                </View>
-              </View>
+                
+                <ParentListView style={{backgroundColor: secopndaryTintColor}}>
+                <ProfileContentView>
+                <ProfileTextView>	
+                            <Heading3>Parent Details</Heading3>	
+                          </ProfileTextView>
+                  <ProfileActionView>	
+                          <ButtonLinkPress	
+                              onPress={() => {
+                                navigation.navigate('EditParentDetails',{
+                                  userParentalRoleData:userParentalRoleData?.length>0?userParentalRoleData[0].value:'',
+                                  parentEditName:userNameData?.length>0?userNameData[0].value:''
+                                });
+                              }}>	
+                              <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>	
+                            </ButtonLinkPress>	
+                                  	
+                              </ProfileActionView>
+                  
+                              </ProfileContentView>
+
+                              <ProfileContentView>	
+                          <ParentRowView>	
+                            <ParentSection>	
+                              <ParentLabel>	
+                                <Text>Your role</Text>	
+                              </ParentLabel>	
+                              <ParentData>	
+                              <Text>{userParentalRoleData?.length>0?userParentalRoleData[0].value:''}</Text>
+                              </ParentData>	
+                            </ParentSection>	
+                            <ParentSection>	
+                              <ParentLabel>	
+                                <Text>Name</Text>	
+                              </ParentLabel>	
+                              <ParentData>	
+                              <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
+                              </ParentData>	
+                            </ParentSection>	
+
+                          </ParentRowView>	
+                  </ProfileContentView>	             
+              </ParentListView>
                 {/* <View style={{flexDirection: 'row'}}>
                   <View style={{padding: 10}}>
                     <Text>Name</Text>
