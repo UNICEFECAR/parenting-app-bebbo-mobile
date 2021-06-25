@@ -41,7 +41,7 @@ const Walkthrough = ({ navigation }: Props) => {
       image: require('@assets/svg/ic_tools_color.svg'),
       colors: ['#00AEEF', '#50C7F3', '#97DEF8', '#B3E7FA'],
       textcolor:'#000',
-      subtitle: t('wlocalization.walkthroughTextssubtitle2'),
+      subtitle: t('localization.walkthroughTextssubtitle2'),
     },
     {
       title: t('localization.walkthroughTextstitle3'),
