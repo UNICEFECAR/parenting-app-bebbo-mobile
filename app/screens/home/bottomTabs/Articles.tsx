@@ -72,7 +72,7 @@ const Articles = ({navigation}: Props) => {
           <Image
             style={styles.cardImage}
             // source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
-            source={require('@assets/trash/card3.jpeg')}
+            source={require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
           />
           <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
