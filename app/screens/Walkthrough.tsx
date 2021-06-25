@@ -1,14 +1,16 @@
 
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonText } from '@components/shared/ButtonGlobal';
 import WalkthroughContainer, { ButtonTertiary1, ButtonTertiary2, Slide, WalkthroughButton, WalkthroughContentArea, WalkthroughImagebox, WalkthroughImageContainer, WalkthroughSubtext, WalkthroughTitle } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
+import { ThemeContext } from 'styled-components';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -102,13 +104,16 @@ const Walkthrough = ({ navigation }: Props) => {
   const getDotStyle = (colorString:string)=>{
     return isDotsRequired ? {backgroundColor:colorString}: {backgroundColor:'transparent'}
   }
-
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.SECONDARY_COLOR;
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
+  const [statubarColor, setstatubarColor] = useState(headerColor);
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
     (index == 3) ? setShowPrevbtn(true) : setShowPrevbtn(false);
     (index == 3) ? setIsDotsRequired(false) : setIsDotsRequired(true);
+    (index ==0) ?setstatubarColor('#00AEEF') : (index ==1) ?setstatubarColor('#0FD87E') : (index ==2) ?setstatubarColor('#00AEEF') : (index ==3) ?setstatubarColor('#FF8D6B') :setstatubarColor(headerColor)
 
   }
   const onDone = () => {
@@ -124,8 +129,11 @@ const Walkthrough = ({ navigation }: Props) => {
 
   
   const keyExtractor = (item: Item) => item.title;
+  
+
   return (
     <>
+    <FocusAwareStatusBar animated={true} backgroundColor={statubarColor} />
       <AppIntroSlider
         keyExtractor={keyExtractor}
         renderItem={({ item, index }) => renderItem(item, index)}

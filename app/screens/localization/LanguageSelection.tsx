@@ -1,3 +1,4 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import LanguageItem from '@components/LanguageItem';
 import {
   BtnMultiple, ButtonviewClick,
@@ -9,9 +10,10 @@ import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
+import { ThemeContext } from 'styled-components';
 import { useAppSelector } from '../../../App';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
@@ -43,8 +45,11 @@ const LanguageSelection = ({route, navigation}: Props) => {
       setLanguage={setLanguage}
     />
   );
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourLang').toString()}
