@@ -30,12 +30,11 @@ const Aboutus = ({navigation}: Props) => {
         <View
           style={{
             flexDirection: 'column',
-            flex: 1,
+            paddingBottom:15,
           }}>
           <View
             style={{
               flexDirection: 'row',
-              flex: 1,
               backgroundColor: headerColor,
               maxHeight: 50,
             }}>
@@ -47,9 +46,9 @@ const Aboutus = ({navigation}: Props) => {
             </View>
           </View>
 
-          <View style={{flex: 10}}>
-            <ScrollView contentContainerStyle={{padding: 24}}>
-              <HTML source={{html: body}} baseFontStyle={{fontSize: 18}} />
+          <View>
+            <ScrollView contentContainerStyle={{padding: 15,paddingTop:0}}>
+              <HTML source={{html: body}} baseFontStyle={{fontSize: 16}} />
             </ScrollView>
           </View>
         </View>
