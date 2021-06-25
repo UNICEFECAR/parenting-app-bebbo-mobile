@@ -1,10 +1,9 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, Text, View } from 'react-native';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
@@ -181,25 +180,3 @@ const ChildDate = (props: any) => {
   );
 };
 export default ChildDate;
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    // paddingTop: headerHeight,
-    padding: 20,
-  },
-  modalView: {
-    // margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 4,
-    padding: 30,
-    alignItems: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
