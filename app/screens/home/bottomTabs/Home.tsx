@@ -11,13 +11,13 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Container, Header3Text } from '@styles/style';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../../../App';
-import { getAllChildren } from '../../../services/childCRUD';
+import { getAllChildren, getAllConfigData } from '../../../services/childCRUD';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
@@ -28,11 +28,7 @@ const Home = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   const dispatch=useAppDispatch();
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch);
-     // getAllConfigData(dispatch);
-    },[]));
+  
   return (
     <>
      <SafeAreaView style={{flex:1}}>
