@@ -1,12 +1,12 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import WalkthroughContainer, {
-    Slide,
-    WalkthroughContentArea,
-    WalkthroughImagebox,
-    WalkthroughImageContainer,
-    WalkthroughSubtext,
-    WalkthroughTitle
+  Slide,
+  WalkthroughContentArea,
+  WalkthroughImagebox,
+  WalkthroughImageContainer,
+  WalkthroughSubtext,
+  WalkthroughTitle
 } from '@components/shared/WalkthroughStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -71,26 +71,24 @@ const UserGuide = ({navigation}: Props) => {
             <Slide>
               <WalkthroughImageContainer>
                 {index == 0 ? (
-                  <VectorImage source={item.image} />
+                  <WalkthroughImagebox>
+                    <VectorImage
+                      source={item.image}
+                      style={{width: 130, height: 130}}
+                    />
+                  </WalkthroughImagebox>
                 ) : index == 1 ? (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 130, height: 140}}
-                    />
-                  </WalkthroughImagebox>
-                ) : index == 2 ? (
-                  <WalkthroughImagebox>
-                    <VectorImage
-                      source={item.image}
-                      style={{width: 123, height: 150}}
+                      style={{width: 130, height: 130}}
                     />
                   </WalkthroughImagebox>
                 ) : (
                   <WalkthroughImagebox>
                     <VectorImage
                       source={item.image}
-                      style={{width: 160, height: 123}}
+                      style={{width: 130, height: 130}}
                     />
                   </WalkthroughImagebox>
                 )}

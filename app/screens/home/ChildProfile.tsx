@@ -1,6 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonLinkPress, ButtonText, ButtonTextMdLineL, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import { ButtonLinkPress, ButtonTextMdLineL, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -10,16 +9,16 @@ import {
   ProfileActionView, ProfileIconView,
   ProfileLinkCol,
   ProfileLinkRow,
-  ProfileLinkView, ProfileListActiveChild, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
+  ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading1Regular, Heading2w, Heading3, Heading4, Heading4Regular, Heading5, Heading5Bold, Heading6 } from '@styles/typography';
+import { Heading2w, Heading3, Heading5, Heading6 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
+import { setActiveChild } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -299,7 +298,7 @@ const ChildProfile = ({navigation}: Props) => {
                     <Text>Name</Text>
                   </View>
                   <View style={{padding: 10}}>
-                    <Text>{userNameData?.length>0?userNameData[0].value:''}</Text>
+                    {/* <Text>{userNameData?.length>0?userNameData[0].value:''}</Text> */}
                   </View>
                 </View>
               </View>
