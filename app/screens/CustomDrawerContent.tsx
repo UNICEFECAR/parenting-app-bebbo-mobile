@@ -149,7 +149,7 @@ const CustomDrawerContent = ({navigation}: any) => {
           <Icon name="ic_sb_loveapp" size={25} color="#000" />
           <Text>{t('drawerMenurateTxt')}</Text>
         </Pressable>
-        <Pressable onPress={() => {}} style={styles.item}>
+        <Pressable onPress={() => {navigation.navigate('PrivacyPolicy')}} style={styles.item}>
           <Icon name="ic_sb_privacy" size={25} color="#000" />
           <Text>{t('drawerMenuPrivacyTxt')}</Text>
         </Pressable>

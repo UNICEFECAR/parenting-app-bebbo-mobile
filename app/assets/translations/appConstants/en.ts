@@ -107,6 +107,8 @@ const en = {
             // userGuide
             userGuideheaderTitle:"User Guide",
         
+            // aboutUsScreen
+            aboutUsScreenheaderTitle:"About us",
             // supportScreen
             supportScreenheaderTitle:"Chat",
             supportScreenheader1text:"Coming soon !",
