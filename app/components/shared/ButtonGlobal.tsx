@@ -59,7 +59,7 @@ export const ButtonRow = styled.View`
   padding:15px 0;
   margin-top:10px;
   width:100%;
-
+justify-content: center;
 `;
 
 export const ButtonLinkRow = styled(ButtonRow)`
@@ -92,6 +92,7 @@ padding:5px 15px;
 export const ButtonLinkPress = styled.Pressable`
 flex-direction:row;
 align-items:center;
+justify-content:center;
 
 `
 
