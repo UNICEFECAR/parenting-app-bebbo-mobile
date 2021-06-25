@@ -92,6 +92,7 @@ padding:5px 15px;
 export const ButtonLinkPress = styled.Pressable`
 flex-direction:row;
 align-items:center;
+justify-content:center;
 
 `
 
