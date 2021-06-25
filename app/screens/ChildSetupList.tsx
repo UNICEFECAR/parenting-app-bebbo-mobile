@@ -159,7 +159,7 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ChildListingArea>
           <CustomScrollView>
             {
-           childList?.length > 0 ? (
+         childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
                // console.log(childList,"..childList123..");
                 return renderDailyReadItem(dispatch,item,index);

@@ -27,6 +27,7 @@ export const getNewChild = (uuidGet: string, plannedTermDate?: any, isPremature?
 
 }
 export const setActiveChild=async (uuid:any)=>{
+  console.log(uuid,"..uuid..");
   let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
 }
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any) => {
@@ -48,6 +49,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
       index: 0,
       routes: [{ name: 'ChildSetupList' }],
     });
+    //console.log(data[0].uuid,"..data[0].uuid..");
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
