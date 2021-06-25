@@ -45,6 +45,9 @@ const Notifications = () => {
       type: 'healthchkp',
     },
   ];
+  const geticonname =(type:string)=>{
+   return type=="growth" ? ("ic_growth"): type=="development" ?  "ic_milestone":type=="vaccination" ?  "ic_vaccination":type=="healthchkp" ?  "ic_doctor_chk_up":"";
+  }
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -69,8 +72,8 @@ const Notifications = () => {
           {DATA.map((item, index) => {
             return (
               <View style={{flexDirection: 'row', padding: 10, margin: 10}}>
-                <Icon name={'ic_growth'} size={20} color="#000" />
-                <View style={{flexDirection: 'column'}}>
+                <Icon name={geticonname(item.type)} size={20} color="#000" style={{flex:1}}/>
+                <View style={{flexDirection: 'column',flex:5}}>
                   <View>
                     <Text>{item.title}</Text>
                     <Text>{item.timeStamp}</Text>

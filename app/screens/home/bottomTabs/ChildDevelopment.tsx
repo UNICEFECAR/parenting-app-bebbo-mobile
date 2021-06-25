@@ -56,6 +56,26 @@ const ChildDevelopment = ({navigation}: Props) => {
   const renderItem = (item: typeof cditems[0]) => (
     <CollapsibleItem item={item} subItemSaperatorColor={headerColor} />
   );
+  const ContentThatGoesBelowTheFlatList = () => {
+    return (
+      <>
+<View
+                style={{
+                  marginVertical: 10,
+                  marginHorizontal: 15,
+                  padding: 20,
+                  backgroundColor: '#FFF',
+                }}>
+                <Heading5>{t('developScreentipsText')}</Heading5>
+                <Heading3>
+                  Watch your baby's behaviour and talk to your paediatrician or
+                  visiting nurse if you notice that at the end of the first
+                  month you baby:
+                </Heading3>
+              </View>
+      </>
+    )
+  }
   const ContentThatGoesAboveTheFlatList = () => {
     return (
       <>
@@ -138,21 +158,9 @@ const ChildDevelopment = ({navigation}: Props) => {
                 keyExtractor={(item) => item.id.toString()}
                 nestedScrollEnabled={true}
                 ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+                ListFooterComponent={ContentThatGoesBelowTheFlatList}
               />
-              <View
-                style={{
-                  marginVertical: 10,
-                  marginHorizontal: 15,
-                  padding: 20,
-                  backgroundColor: '#FFF',
-                }}>
-                <Heading5>{t('developScreentipsText')}</Heading5>
-                <Heading3>
-                  Watch your baby's behaviour and talk to your paediatrician or
-                  visiting nurse if you notice that at the end of the first
-                  month you baby:
-                </Heading3>
-              </View>
+              
             </View>
           </View>
         </View>
