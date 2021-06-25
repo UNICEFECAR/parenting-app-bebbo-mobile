@@ -13,6 +13,7 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import {
   Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
@@ -57,8 +58,28 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-
         <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: headerColor,
+              maxHeight: 50,
+            }}>
+            <View style={{flex: 1, padding: 15}}>
+              <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#FFF" size={15} />
+              </Pressable>
+            </View>
+            <View style={{flex: 9, padding: 7}}>
+              <Heading2w>
+                {'Add Expecting Child Details'}
+              </Heading2w>
+            </View>
+          </View>
+        {/* <View
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -78,7 +99,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
           <View style={{ flex: 3 }}>
             <Text> {'Add Expecting Child Details'}</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={{ margin: 10 }}>
           <FormDateContainer>
