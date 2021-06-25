@@ -1,7 +1,16 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonLinkPress, ButtonTextMdLineL, ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import { ProfileActionView, ProfileIconView, ProfileLinkCol, ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileSectionView, ProfileTextView } from '@components/shared/ProfileListingStyle';
+import Icon, {
+  OuterIconLeft,
+  OuterIconRow,
+  TickView
+} from '@components/shared/Icon';
+import {
+  ProfileActionView, ProfileIconView,
+  ProfileLinkCol,
+  ProfileLinkRow,
+  ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
+} from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading3, Heading5, Heading6 } from '@styles/typography';
@@ -9,6 +18,7 @@ import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { setActiveChild } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -17,125 +27,139 @@ type Props = {
   navigation: NotificationsNavigationProp;
 };
 
-const DATA = [
-  {
-    id: '1',
-    childname: 'Harvey',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '2',
-    childname: 'Donna',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '3',
-    childname: 'Michael',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '4',
-    childname: 'Rachel',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '5',
-    childname: 'Louis',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '6',
-    childname: 'Jessica',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '7',
-    childname: 'Samantha',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '8',
-    childname: 'Katrina',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '9',
-    childname: 'Sheila',
-    gender: 'Girl',
-    birthday: new Date(),
-  },
-  {
-    id: '10',
-    childname: 'Jeff',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-  {
-    id: '11',
-    childname: 'Alex',
-    gender: 'Boy',
-    birthday: new Date(),
-  },
-];
+// const DATA = [
+//   {
+//     id: '1',
+//     childname: 'Harvey',
+//     gender: 'Boy',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '2',
+//     childname: 'Donna',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '3',
+//     childname: 'Michael',
+//     gender: 'Boy',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '4',
+//     childname: 'Rachel',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '5',
+//     childname: 'Louis',
+//     gender: 'Boy',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '6',
+//     childname: 'Jessica',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '7',
+//     childname: 'Samantha',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '8',
+//     childname: 'Katrina',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '9',
+//     childname: 'Sheila',
+//     gender: 'Girl',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '10',
+//     childname: 'Jeff',
+//     gender: 'Boy',
+//     birthday: new Date(),
+//   },
+//   {
+//     id: '11',
+//     childname: 'Alex',
+//     gender: 'Boy',
+//     birthday: new Date(),
+//   },
+// ];
 const ChildProfile = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const dispatch = useAppDispatch();
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     getAllChildren(dispatch);
+  //     getAllConfigData(dispatch);
+  //   },[])
+  // );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  // const allConfigData = useAppSelector(
-  //   (state: any) => state.variableData != '' ? JSON.parse(state.variableData) : state.variableData
-  // );
-
-  // console.log(allConfigData,"..allConfigData..")
+  const allConfigData = useAppSelector(
+    (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
+  );
+  const userParentalRoleData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userParentalRole"):[];
+  const userNameData=allConfigData?.length>0?allConfigData.filter(item => item.key === "userName"):[];
+  const currentActiveChildId=allConfigData?.length>0?allConfigData.filter(item => item.key === "currentActiveChildId"):[];
+  //console.log(allConfigData,"..userParentalRole..")
+  const currentActiveChild=currentActiveChildId?.length>0?currentActiveChildId[0].value:null;
+  //console.log(currentActiveChild,"..currentActiveChild..");
   const renderChildItem = (dispatch: any, data: any, index: number) => (
+ 
     <View key={index}>
-      {/* <ProfileListViewSelected>
-                <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
-                <ProfileTextView
-                 >
-                   <Heading3>Jenny</Heading3>
-                   <Heading5>Girl</Heading5>
-                 </ProfileTextView>
-                <ProfileActionView>
-                <OuterIconRow><OuterIconLeft><TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView></OuterIconLeft></OuterIconRow>
-                  <Heading5Bold>Activated</Heading5Bold></ProfileActionView>
-      </ProfileListViewSelected> */}
-
+      {
+         ((currentActiveChild !=""  &&  currentActiveChild !=null  &&  currentActiveChild !=undefined) && currentActiveChild==data.uuid) ? (
+          <ProfileListViewSelected>
+          <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+          <ProfileTextView
+           >
+             <Heading3>{data.name!="" ? data.name:"Child"+(index+1)}</Heading3>
+             <Heading5>{data.gender?data.gender:''}</Heading5>
+             <Heading5>Born on {data.birthDate}</Heading5>
+           </ProfileTextView>
+          <ProfileActionView>
+          <OuterIconRow><OuterIconLeft><TickView><Icon name="ic_tick" size={12} color="#009B00" /></TickView></OuterIconLeft></OuterIconRow>
+           
+            <Heading5Bold>Activated</Heading5Bold>
+            </ProfileActionView>
+          </ProfileListViewSelected>
+            ) :
       <ProfileListDefault
         style={{
           backgroundColor: secopndaryTintColor,
         }}>
-        <ProfileListInner>
-          <ProfileIconView>
-            <Icon name="ic_baby" size={30} color="#000" />
-          </ProfileIconView>
-          <ProfileTextView>
-            <ProfileSectionView>
-              <Heading3>
-                {data.childname ? data.childname : 'Child' + (index + 1)},
-              </Heading3>
-              <OuterIconLeft></OuterIconLeft>
-              <Heading6>{data.gender ? data.gender : ''}</Heading6>
-            </ProfileSectionView>
-
-            <Heading5>Born on {data.birthDate}</Heading5>
-
-            <ProfileLinkView>
-              <ButtonTextSmLine
+          <ProfileListInner>
+        <ProfileIconView><Icon name="ic_baby" size={30} color="#000" /></ProfileIconView>
+        <ProfileTextView
+                 >
+                   <ProfileSectionView>
+                   <Heading3>{data.name!="" ? data.name:"Child"+(index+1)},</Heading3>
+                   <OuterIconLeft></OuterIconLeft>
+                   <Heading6>{data.gender?data.gender:''}</Heading6>
+                   <Heading5>Born on {data.birthDate}</Heading5>
+                   </ProfileSectionView>
+          
+                   
+                   
+                   <ProfileLinkView>
+            <ButtonTextSmLine
                 onPress={() => {
                   navigation.navigate('EditChildProfile');
                 }}>
@@ -144,7 +168,9 @@ const ChildProfile = ({navigation}: Props) => {
               <View>
                 <Text>|</Text>
               </View>
-              <ButtonTextSmLine>Activate Profile</ButtonTextSmLine>
+              <ButtonTextSmLine onPress={() => {
+                setActiveChild(data.uuid)
+                }}>Activate Profile</ButtonTextSmLine>
             </ProfileLinkView>
           </ProfileTextView>
           <ProfileActionView>
@@ -153,7 +179,8 @@ const ChildProfile = ({navigation}: Props) => {
           </ProfileActionView>
         </ProfileListInner>
       </ProfileListDefault>
-    </View>
+}
+  </View>
   );
   return (
     <>
@@ -248,6 +275,7 @@ const ChildProfile = ({navigation}: Props) => {
               <ProfileLinkRow style={{
                   backgroundColor: secopndaryTintColor,
                 }}>
+                 
                 <ProfileLinkCol>
               <ButtonLinkPress
                   
