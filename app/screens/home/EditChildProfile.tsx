@@ -6,7 +6,7 @@ import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4 } from '@styles/typography';
+import { Heading2w, Heading3, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import {
   Image, Pressable,
@@ -160,7 +160,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2w>
-                {'Edit Child'}
+                {'Edit Child Profile'}
               </Heading2w>
             </View>
           </View>
