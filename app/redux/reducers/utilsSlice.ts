@@ -73,6 +73,7 @@ export const utilsSlice = createSlice({
     ) => {
     //  console.log("setAllTermsData data---",state);
      // console.log(action.payload);
+     (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       if(action.payload[0])
       {
         state.aboutus.id = action.payload[0].id;
