@@ -102,23 +102,22 @@ const Notifications = () => {
               <View
                 style={{
                   flexDirection: 'row',
-                  paddingVertical: 10,
+                  // paddingVertical: 10,
                   marginVertical: 10,
                 }}
                 key={index}>
                 <View
                   style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    backgroundColor: item.bgColor,
-                    flex: 1,
+                    flex: 1,marginVertical:10
                   }}>
                   <Icon
                     name={geticonname(item.type)}
                     size={20}
                     color="#000"
-                    style={{padding: 15}}
+                    style={{padding: 20,justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 50,
+                    backgroundColor: item.bgColor,}}
                   />
                 </View>
 
@@ -143,7 +142,7 @@ const Notifications = () => {
                     alignItems: 'center',
                   }}
                   onSelect={(value) =>
-                    console.log(`Selected number: ${value}`)
+                    console.log(`Selected number: ${value} ${item}`)
                   }>
                   <MenuTrigger>
                     <Icon
