@@ -2,7 +2,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading2w, Heading3 } from '@styles/typography';
+import { Heading1, Heading2w, Heading3, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -42,9 +42,11 @@ const SupportChat = ({ navigation }: Props) => {
           </View>
         </View>
         
-        <View style={{alignItems:'center',justifyContent: 'space-between'}}>
+        <View style={{flex:1,alignItems:'center',justifyContent: 'center',padding:50}}>
           <Heading1>{t('supportScreenheader1text')}</Heading1>
-          <Heading3>{t('supportScreenheader2text')}</Heading3>
+          <ShiftFromTop10>
+          <Heading3Center>{t('supportScreenheader2text')}</Heading3Center>
+          </ShiftFromTop10>
         </View>
       </View>
       </SafeAreaView>
