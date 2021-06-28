@@ -3,17 +3,20 @@ import Ruler from '@components/Ruler';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-    PopupClose,
-    PopupCloseContainer,
-    PopupOverlay
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1, Heading2w, Heading4Centerr } from '@styles/typography';
-import React, { useContext, useLayoutEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { setWeightHeightModalOpened } from '../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -25,15 +28,25 @@ const AddNewChildWeight = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const tintColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
   const screenPadding = 10;
   const {height, width} = Dimensions.get('screen');
   const [weight, setweight] = useState<number>(0);
   const [weight1, setweight1] = useState<number>(0.0);
-  useLayoutEffect(() => {
-    setModalVisible(true);
-  }, []);
-  return (
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setWeightHeightModalOpened(obj));
+  };
+  const weightModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsWeightModalOpened),
+    );
+   useFocusEffect(()=>{
+    //  console.log('weightModalOpened',weightModalOpened);
+      // pass true to make modal visible every time
+    setModalVisible(weightModalOpened)
+   })
+    return (
     <>
       <Modal
         animationType="none"
@@ -61,6 +74,12 @@ const AddNewChildWeight = ({navigation}: Props) => {
               <Heading4Centerr>
                 {'Move the ruler to indicate weight of your child'}
               </Heading4Centerr>
+              <ButtonPrimary
+                onPress={() => {
+                  setIsModalOpened('IsWeightModalOpened');
+                }}>
+                <ButtonText>Continue</ButtonText>
+              </ButtonPrimary>
             </View>
           </ModalPopupContainer>
         </PopupOverlay>
