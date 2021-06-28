@@ -2,24 +2,30 @@ import { articledata } from '@assets/translations/appOfflineData/article';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
+import ModalPopupContainer, {
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Heading4Centerr } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image, KeyboardAvoidingView,
-  Platform, Pressable,
-  ScrollView, StyleSheet, Text, TextInput, View
+  Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { getChildArticleData } from '../../../database/dbquery/getChildArticles';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
+import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -66,7 +72,20 @@ const ContainerView = styled.SafeAreaView`
 //   },
 // ];
 const Articles = ({navigation}: Props) => {
-
+  const [modalVisible, setModalVisible] = useState(true);
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+  };
+  const articleModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsArticleModalOpened),
+    );
+   useFocusEffect(()=>{
+    //  console.log('weightModalOpened',weightModalOpened);
+      // pass true to make modal visible every time & reload
+    setModalVisible(articleModalOpened)
+   })
   const renderArticleItem = (item: any, index: number) => (
       <Pressable onPress={onPress} key={index}>
         <View style={styles.item}>
@@ -115,7 +134,7 @@ const Articles = ({navigation}: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const dispatch = useAppDispatch();
+
   const articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
@@ -239,6 +258,42 @@ const Articles = ({navigation}: Props) => {
               
           </View>
           </ScrollView>
+          <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+        onDismiss={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+
+            <View>
+              <Heading4Centerr>
+                {'To choose articles of your interest click on the relevant buttons or search for keywords'}
+              </Heading4Centerr>
+              <ButtonPrimary
+                onPress={() => {
+                  setIsModalOpened('IsArticleModalOpened');
+                }}>
+                <ButtonText>Continue</ButtonText>
+              </ButtonPrimary>
+            </View>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
         </KeyboardAvoidingView>
       </ContainerView>
     </>
