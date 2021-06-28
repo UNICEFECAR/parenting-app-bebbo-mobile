@@ -1,5 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
+import BabyNotification from '@components/homeScreen/BabyNotification';
 import ChildInfo from '@components/homeScreen/ChildInfo';
 import ChildMilestones from '@components/homeScreen/ChildMilestones';
 import DailyReads from '@components/homeScreen/DailyReads';
@@ -8,16 +9,14 @@ import Tools from '@components/homeScreen/Tools';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Container, Header3Text } from '@styles/style';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../../../App';
-import { getAllChildren, getAllConfigData } from '../../../services/childCRUD';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
@@ -42,6 +41,7 @@ const Home = () => {
       }}>
         <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
+          <BabyNotification/>
           <ChildInfo/>
           <DailyReads/>
           <ChildMilestones/>
