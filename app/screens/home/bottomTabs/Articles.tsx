@@ -282,13 +282,13 @@ const Articles = ({navigation}: Props) => {
 
             <View>
               <Heading4Centerr>
-                {'To choose articles of your interest click on the relevant buttons or search for keywords'}
+                {t('articleModalText')}
               </Heading4Centerr>
               <ButtonPrimary
                 onPress={() => {
                   setIsModalOpened('IsArticleModalOpened');
                 }}>
-                <ButtonText>Continue</ButtonText>
+                <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonPrimary>
             </View>
           </ModalPopupContainer>
