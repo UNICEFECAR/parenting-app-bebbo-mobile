@@ -29,7 +29,9 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const { headerTitle } = route.params;
   const { childData } = route.params;
   const uuid= childData != null ? childData.uuid:'';
-  let editScreen = childData?.uuid != "" ? true : false;
+  const name= childData != null ? childData.name:'';
+  const relationship= childData != null ? childData.relationship:'';
+  const editScreen = childData?.uuid != "" ? true : false;
   // console.log(childData,"..childData..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
@@ -41,6 +43,12 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
   };
+  const AddChild=async ()=>{
+    let insertData: any = editScreen ? await getNewChild(uuid, plannedTermDate, isPremature,birthDate,relationship,name) : await getNewChild('', plannedTermDate, isPremature,birthDate)
+    let childSet: Array<any> = [];
+    childSet.push(insertData);
+    addChild(editScreen, 1, childSet, dispatch, navigation);
+}
   return (
     <>
       <OnboardingContainer>
@@ -65,16 +73,14 @@ const AddSiblingData = ({ route, navigation }: Props) => {
 
         <ButtonRow>
           <ButtonPrimary
-            onPress={async () => {
+            onPress={() => {
               // navigation.reset({
               //   index: 0,
               //   routes: [{name: 'HomeDrawerNavigator'}],
               // })
               //console.log(uuid,"..uuid..");
-              let insertData: any = editScreen ? getNewChild(uuid, plannedTermDate, isPremature,birthDate) : getNewChild('', plannedTermDate, isPremature,birthDate)
-              let childSet: Array<any> = [];
-              childSet.push(insertData);
-              addChild(editScreen, 1, childSet, dispatch, navigation);
+             AddChild();
+            
             }}>
             <ButtonText>{t('childSetupListsaveBtnText')}</ButtonText>
           </ButtonPrimary>
