@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 
 interface hardcodedDataType {
@@ -22,7 +22,9 @@ interface hardcodedDataType {
     id:string;
     title:string;
     body:string;
-  }
+  },
+  IsWeightModalOpened:boolean,
+  IsHeightModalOpened:boolean,
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -46,7 +48,9 @@ const initialState: hardcodedDataType = {
     id:'',
     title:'',
     body:'',
-  }
+  },
+  IsWeightModalOpened:true,
+  IsHeightModalOpened:true,
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -93,6 +97,10 @@ export const utilsSlice = createSlice({
         state.privacypolicy.body = action.payload[0].body;
       }
     },
+    setWeightHeightModalOpened:( state:any,
+      action: PayloadAction<any>,)=>{
+        state[action.payload.key] =action.payload.value;
+      }
   },
   // extraReducers: (builder) => {
   //   builder
@@ -106,7 +114,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData,setAllTermsData} = utilsSlice.actions;
+export const {setAllTaxonomyData,setAllTermsData,setWeightHeightModalOpened} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
