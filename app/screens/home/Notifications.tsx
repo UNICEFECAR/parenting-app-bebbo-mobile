@@ -4,11 +4,12 @@ import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading5Bold } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import {
   Menu,
   MenuOption,
@@ -28,6 +29,7 @@ const Notifications = () => {
   const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const {t} = useTranslation();
+  const navigation = useNavigation();
   const onchange = (selectedboxes) => {
     // console.log(selectedboxes);
   };
@@ -73,6 +75,35 @@ const Notifications = () => {
       ? 'ic_doctor_chk_up'
       : '';
   };
+  const getButtonname = (type: string) => {
+    return type == 'growth'
+      ? 'Add New Measurement'
+      : type == 'development'
+      ? 'Track your milestones'
+      : type == 'vaccination'
+      ? 'View Vaccination details'
+      : type == 'healthchkp'
+      ? 'View HealthCheck-up Details'
+      : '';
+  };
+  const gotoPage= (type: string) => {
+    console.log(type);
+     type == 'growth'
+      ? navigation.navigate('AddNewChildgrowth',{
+        headerTitle: t('growthScreenaddNewBtntxt'),
+      })
+      : type == 'development'
+      ?  navigation.navigate('Home', {screen: 'ChildDevelopment'})
+      : type == 'vaccination'
+      ? navigation.navigate('AddChildVaccination',{
+        headerTitle: t('growthScreeneditNewBtntxt'),
+      })
+      : type == 'healthchkp'
+      ? navigation.navigate('AddChildHealthCheckup',{
+        headerTitle: t('growthScreeneditNewBtntxt'),
+      })
+      : '';
+  };
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -91,7 +122,7 @@ const Notifications = () => {
             <Heading2w> {t('notiScreenheaderTitle')}</Heading2w>
           </View>
           <View style={{flex: 2,flexDirection:'row'}}>
-            <Icon name={'ic_sb_settings'} size={20} color="#FFF" />
+            <Pressable onPress={()=>navigation.navigate('SettingsScreen')}><Icon name={'ic_sb_settings'} size={20} color="#FFF" /></Pressable>
             <Icon name={'ic_trash'} size={20} color="#FFF" />
             <HeaderBabyMenu/>
           </View>
@@ -127,6 +158,7 @@ const Notifications = () => {
                   <View>
                     <Text>{item.title}</Text>
                     <Text>{item.timeStamp}</Text>
+                    <Pressable onPress={()=>gotoPage(item.type)}><Text>{getButtonname(item.type)}</Text></Pressable>
                   </View>
                   <View
                     style={{
@@ -171,10 +203,10 @@ const Notifications = () => {
                       },
                     }}>
                     <MenuOption value={1}>
-                      <Heading5Bold>Delete this notification</Heading5Bold>
+                      <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
                     <MenuOption value={2}>
-                      <Heading5Bold>Mark as Read</Heading5Bold>
+                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>

@@ -78,19 +78,21 @@ export default () => {
           </TouchableOpacity>
         </Pressable>
       </Modal>
-      <DashboardBottomTab.Navigator tabBarOptions={{
+      <DashboardBottomTab.Navigator  tabBarOptions={{
         activeTintColor: headerColor,
         inactiveTintColor:'#000',
         activeBackgroundColor:'#FFF',
         inactiveBackgroundColor:'#FFF'
 
-      }}>
+      }}
+      >
         <DashboardBottomTab.Screen name="Home" component={Home}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
+            unmountOnBlur:true,
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities}
           options={{
@@ -98,6 +100,7 @@ export default () => {
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
+            unmountOnBlur:true,
           }} />
         <DashboardBottomTab.Screen
           component={secondaryRoot}
@@ -116,6 +119,7 @@ export default () => {
             
 
             ),
+            unmountOnBlur:true,
           }}
           listeners={({ }) => ({
             tabPress: (e) => {
@@ -131,6 +135,7 @@ export default () => {
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
+            unmountOnBlur:true,
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment}
           options={{
@@ -138,6 +143,7 @@ export default () => {
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
+            unmountOnBlur:true,
           }} />
         {/* <DashboardBottomTab.Screen name="SupportChat" component={SupportChat}
           options={{
