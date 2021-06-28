@@ -107,7 +107,7 @@ const ChildProfile = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  console.log(childList,"..childList..");
+ 
   const allConfigData = useAppSelector(
     (state: any) => state.variableData?.variableData != '' ? JSON.parse(state.variableData?.variableData) :state.variableData?.variableData
   );
@@ -117,7 +117,10 @@ const ChildProfile = ({navigation}: Props) => {
   //console.log(allConfigData,"..userParentalRole..")
   const currentActiveChild=currentActiveChildId?.length>0?currentActiveChildId[0].value:null;
   //console.log(currentActiveChild,"..currentActiveChild..");
-  const renderChildItem = (dispatch: any, data: any, index: number) => (
+  const SortedchildList = [...childList].sort((a:any, b:any)=>{
+    if (a.uuid == currentActiveChild) return -1;
+  });
+  const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
  
     <View key={index}>
       {
@@ -127,7 +130,7 @@ const ChildProfile = ({navigation}: Props) => {
           <ProfileTextView
            >
              <ProfileSectionView>
-             <Heading3>{data.name!="" ? data.name:"Child"+(index+1)}</Heading3>
+             <Heading3>{data.name}</Heading3>
              <OuterIconLeft></OuterIconLeft>
              <Heading6>{data.gender?data.gender:''}</Heading6>
              </ProfileSectionView>
@@ -273,9 +276,18 @@ const ChildProfile = ({navigation}: Props) => {
                 <ScrollView
                   style={{height: 'auto', }}
                   nestedScrollEnabled={true}>
-                  {childList?.map((item: any, index: number) => {
-                    return renderChildItem(dispatch, item, index);
-                  })}
+                  {
+                     
+                     SortedchildList.length> 0 ? (
+                      SortedchildList.map((item: any, index: number) => {
+                         // console.log(childList,"..childList123..");
+                          return renderDailyReadItem(dispatch,item,index);
+                        })
+                      ) :null
+                    }
+                
+                 
+                
                 </ScrollView>
               <ProfileLinkRow style={{
                   backgroundColor: secopndaryTintColor,

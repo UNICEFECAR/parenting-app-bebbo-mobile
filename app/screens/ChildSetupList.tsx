@@ -62,11 +62,15 @@ const ChildSetupList = ({ navigation }: Props) => {
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.name ? data.name : 'Child' + (index+1)}</ChildListTitle>
+      <ChildListTitle>{data.name}</ChildListTitle>
       <Text>Born on {String(data.birthDate)}</Text>
     </ChildColArea1>
     <ChildColArea2>
-      <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+    {
+          childList.length> 1 ? (
+            <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+            ) :null
+          }
       <TitleLinkSm onPress={() => editRecord(data)}>Edit Profile</TitleLinkSm>
     </ChildColArea2>
   </ChildListingBox>
