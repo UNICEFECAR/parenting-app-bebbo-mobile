@@ -14,6 +14,8 @@ export type RootStackParamList = {
   AddNewChildgrowth:undefined;
   AddNewChildWeight:undefined;
   AddNewChildHeight:undefined;
+  AddChildVaccination:undefined;
+  AddChildHealthCheckup:undefined;
   AllChildgrowthMeasures:undefined;
   DetailsScreen: undefined;
 };

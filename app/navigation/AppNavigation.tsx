@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import AddChildHealthCheckup from '@screens/AddChildHealthCheckup';
+import AddChildVaccination from '@screens/AddChildVaccination';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddNewChildgrowth from '@screens/AddNewChildgrowth';
 import AddNewChildHeight from '@screens/AddNewChildHeight';
@@ -197,6 +199,16 @@ export default () => {
         name="DetailsScreen"
         options={{headerShown: false}}
         component={DetailsScreen}
+      />
+      <RootStack.Screen
+        name="AddChildVaccination"
+        options={{headerShown: false}}
+        component={AddChildVaccination}
+      />
+      <RootStack.Screen
+        name="AddChildHealthCheckup"
+        options={{headerShown: false}}
+        component={AddChildHealthCheckup}
       />
       
       </RootStack.Navigator>
