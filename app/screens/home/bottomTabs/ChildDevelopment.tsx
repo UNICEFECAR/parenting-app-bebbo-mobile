@@ -8,7 +8,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  SafeAreaView,
+  Text,
+  View
+} from 'react-native';
 import { ThemeContext } from 'styled-components';
 
 type ChildDevelopmentNavigationProp =
@@ -52,30 +59,39 @@ const ChildDevelopment = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
+  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const {t} = useTranslation();
+  const onPressInfo = () => {
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'ChildDevelopment',
+      headerColor: artHeaderColor,
+      backgroundColor: artBackgroundColor,
+    });
+  };
   const renderItem = (item: typeof cditems[0]) => (
     <CollapsibleItem item={item} subItemSaperatorColor={headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (
       <>
-<View
-                style={{
-                  marginVertical: 10,
-                  marginHorizontal: 15,
-                  padding: 20,
-                  backgroundColor: '#FFF',
-                }}>
-                <Heading5>{t('developScreentipsText')}</Heading5>
-                <Heading3>
-                  Watch your baby's behaviour and talk to your paediatrician or
-                  visiting nurse if you notice that at the end of the first
-                  month you baby:
-                </Heading3>
-              </View>
+        <View
+          style={{
+            marginVertical: 10,
+            marginHorizontal: 15,
+            padding: 20,
+            backgroundColor: '#FFF',
+          }}>
+          <Heading5>{t('developScreentipsText')}</Heading5>
+          <Heading3>
+            Watch your baby's behaviour and talk to your paediatrician or
+            visiting nurse if you notice that at the end of the first month you
+            baby:
+          </Heading3>
+        </View>
       </>
-    )
-  }
+    );
+  };
   const ContentThatGoesAboveTheFlatList = () => {
     return (
       <>
@@ -98,7 +114,9 @@ const ChildDevelopment = ({navigation}: Props) => {
           </View>
           <Heading2>
             The Period of Diverse Experiences
-            <Icon name="ic_info" size={15} color="#000" />
+            <Pressable onPress={onPressInfo}>
+              <Icon name="ic_info" size={15} color="#000" />
+            </Pressable>
           </Heading2>
         </View>
         <View
@@ -117,9 +135,7 @@ const ChildDevelopment = ({navigation}: Props) => {
             <Heading5>{t('developScreenchartLabel')}</Heading5>
           </View>
           <View style={{flexDirection: 'row', flex: 1}}>
-            <Heading3 style={{flex: 8}}>
-              {t('developScreenchartText')}
-            </Heading3>
+            <Heading3 style={{flex: 8}}>{t('developScreenchartText')}</Heading3>
             <View
               style={{
                 width: 44,
@@ -130,7 +146,9 @@ const ChildDevelopment = ({navigation}: Props) => {
               }}></View>
           </View>
         </View>
-        <Heading3 style={{paddingHorizontal: 15}}>{t('developScreenmileStoneQ')}</Heading3>
+        <Heading3 style={{paddingHorizontal: 15}}>
+          {t('developScreenmileStoneQ')}
+        </Heading3>
       </>
     );
   };
@@ -148,9 +166,7 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <View
-            style={{flex: 4, backgroundColor: backgroundColor}}
-            >
+          <View style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
               <FlatList
                 data={cditems}
@@ -160,7 +176,6 @@ const ChildDevelopment = ({navigation}: Props) => {
                 ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                 ListFooterComponent={ContentThatGoesBelowTheFlatList}
               />
-              
             </View>
           </View>
         </View>
