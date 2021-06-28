@@ -67,6 +67,9 @@ import {
     //  console.log(currentActiveChildId,"..currentActiveChildId")
     const currentActiveChild =
       currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
+      const SortedchildList = [...childList].sort((a:any, b:any)=>{
+        if (a.uuid == currentActiveChild) return -1;
+      });
     //console.log(currentActiveChild,"..currentActiveChild..");
     const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
       <View key={index}>
@@ -100,7 +103,7 @@ import {
               <Icon name="ic_baby" size={30} color="#000" />
             </ProfileIconView>
             <ProfileTextView>
-              <Heading3>{data.name ? data.name : 'Child' + (index + 1)}</Heading3>
+              <Heading3>{data.name}</Heading3>
               <Heading5>{data.gender}</Heading5>
               <Heading5>Born on {data.birthDate}</Heading5>
             </ProfileTextView>
@@ -139,8 +142,8 @@ import {
               style={styles.modalView}
               onPress={() => console.log('do nothing')}
               activeOpacity={1}>
-              {childList.length > 0
-                ? childList.map((item: ChildEntity, index: number) => {
+              {SortedchildList.length > 0
+                ? SortedchildList.map((item: ChildEntity, index: number) => {
                     // console.log(childList,"..childList123..");
                     return renderDailyReadItem(dispatch, item, index);
                   })
