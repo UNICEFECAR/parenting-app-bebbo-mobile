@@ -13,6 +13,7 @@ import AllChildgrowthMeasures from '@screens/AllChildgrowthMeasures';
 import ChildSetup from '@screens/ChildSetup';
 import ChildSetupList from '@screens/ChildSetupList';
 import EditParentDetails from '@screens/EditParentDetails';
+import DetailsScreen from '@screens/home/DetailsScreen';
 import EditChildProfile from '@screens/home/EditChildProfile';
 import LoadingScreen from '@screens/LoadingScreen';
 import PrivacyPolicy from '@screens/PrivacyPolicy';
@@ -192,7 +193,12 @@ export default () => {
         options={{headerShown: false}}
         component={AllChildgrowthMeasures}
       />
-        {/* <RootStack.Screen name="ArticleDetails" component={ArticleDetails}/> */}
+      <RootStack.Screen
+        name="DetailsScreen"
+        options={{headerShown: false}}
+        component={DetailsScreen}
+      />
+      
       </RootStack.Navigator>
     </NavigationContainer>
     </SafeAreaProvider>
