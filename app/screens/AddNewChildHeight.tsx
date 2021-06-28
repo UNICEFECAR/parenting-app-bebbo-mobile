@@ -73,13 +73,13 @@ const AddNewChildHeight = ({navigation}: Props) => {
 
             <View>
               <Heading4Centerr>
-                {'Move the ruler to indicate height of your child'}
+                {t('heightModalText')}
               </Heading4Centerr>
               <ButtonPrimary
                 onPress={() => {
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
-                <ButtonText>Continue</ButtonText>
+                <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonPrimary>
             </View>
           </ModalPopupContainer>
