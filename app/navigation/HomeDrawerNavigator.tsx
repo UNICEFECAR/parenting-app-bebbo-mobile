@@ -25,6 +25,9 @@ export default () => {
   // },[languageCode]);
   return (
     <HomeDrawerNavigator.Navigator
+   lazy
+   detachInactiveScreens={true}
+    backBehavior={'initialRoute'}
       drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <HomeDrawerNavigator.Screen
         name="Home"

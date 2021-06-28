@@ -34,14 +34,14 @@ const TrackMilestoneView = () => {
         </View>
         <View style={{flex: 6}}>
           <Heading3>
-            Let's spare some time to update your child milestones.
+           {t('trackMilestoneViewHeader')}
           </Heading3>
           <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <ButtonPrimary
               onPress={() =>
                 navigation.navigate('Home', {screen: 'ChildDevelopment'})
               }>
-              <ButtonText>"Track your child milestone"</ButtonText>
+              <ButtonText>{t('trackMilestoneViewBtn')}</ButtonText>
             </ButtonPrimary>
           </Pressable>
         </View>
