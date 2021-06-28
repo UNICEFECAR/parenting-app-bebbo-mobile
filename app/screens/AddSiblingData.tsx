@@ -31,7 +31,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const uuid= childData != null ? childData.uuid:'';
   const name= childData != null ? childData.name:'';
   const relationship= childData != null ? childData.relationship:'';
-  let editScreen = childData?.uuid != "" ? true : false;
+  const editScreen = childData?.uuid != "" ? true : false;
   // console.log(childData,"..childData..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
