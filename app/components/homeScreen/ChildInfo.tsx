@@ -1,7 +1,7 @@
 import {
-    ButtonContainer,
-    ButtonPrimary,
-    ButtonText
+  ButtonContainer,
+  ButtonPrimary,
+  ButtonText
 } from '@components/shared/ButtonGlobal';
 import { Header3Text } from '@styles/style';
 import { Heading2Center } from '@styles/typography';
@@ -28,7 +28,7 @@ const ChildInfo = () => {
             style={{width: '100%', borderRadius: 10}}
           />
         </View>
-        <Header3Text>your baby is 3 month Old</Header3Text>
+        <Header3Text>{t('babyNotificationbyAge',{ageInMonth: '4'})}</Header3Text>
         <Header3Text>
           your baby can likely roll from front to back and hold their head with
           fewer wobbles these days
