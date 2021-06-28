@@ -3,16 +3,17 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
+import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
-import { RootStackParamList } from '@navigation/types';
+import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Image, KeyboardAvoidingView,
-    Platform, Pressable,
-    ScrollView, StyleSheet, Text, TextInput, View
+  Image, KeyboardAvoidingView,
+  Platform, Pressable,
+  ScrollView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
@@ -21,7 +22,7 @@ import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/Art
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
-type ArticlesNavigationProp = StackNavigationProp<RootStackParamList>;
+type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: ArticlesNavigationProp;
@@ -77,30 +78,19 @@ const Articles = ({navigation}: Props) => {
           />
           <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
           <Text style={styles.title}>{item.title}</Text>
-          <View style={{flexDirection: 'row', padding: 10}}>
-            <View style={{flex: 1}}>
-              <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-                <Icon name="ic_sb_shareapp" size={20} color="#000" />
-                <Text>{t('articleScreenshareText')}</Text>
-              </Pressable>
-            </View>
-            <View style={{flex: 1}}>
-              <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-                <Icon name="ic_sb_favorites" size={20} color="#000" />
-                <Text>{t('articleScreenaddtoFavText')}</Text>
-              </Pressable>
-            </View>
-          </View>
+          <ShareFavButtons backgroundColor={'#FFF'}/>
         </View>
       </Pressable>
 
   );
 
-  const onPress = () => {
-    navigation.navigate('ArticleDetails');
-  };
+ 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
+  const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const onPress = () => {
+    navigation.navigate('DetailsScreen',{fromScreen:"Articles",headerColor:headerColor,backgroundColor:backgroundColor});
+  };
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
   let filterArray: string[] = [];

@@ -1,8 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerContent from '@screens/CustomDrawerContent';
 import Aboutus from '@screens/home/Aboutus';
-import ActivityDetails from '@screens/home/ActivityDetails';
-import ArticleDetails from '@screens/home/ArticleDetails';
 import ChildProfile from '@screens/home/ChildProfile';
 import Favourites from '@screens/home/Favourites';
 import Notifications from '@screens/home/Notifications';
@@ -67,8 +65,6 @@ export default () => {
         component={SettingScreen}
 
       />      
-      <HomeDrawerNavigator.Screen name="ArticleDetails" component={ArticleDetails}/>
-      <HomeDrawerNavigator.Screen name="ActivityDetails" component={ActivityDetails}/>
       <HomeDrawerNavigator.Screen name="UserGuide" component={UserGuide}/>
       <HomeDrawerNavigator.Screen name="Favourites" component={Favourites}/>
 
