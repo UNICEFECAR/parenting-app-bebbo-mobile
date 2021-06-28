@@ -1,9 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 
 type VaccinationNavigationProp =
@@ -24,10 +25,13 @@ const Vaccination = ({navigation}: Props) => {
             flexDirection: 'column',
             flex: 1,
           }}>
-          <TabScreenHeader title="Child Vaccination" headerColor={headerColor} textColor='#FFF'/>
+          <TabScreenHeader title="Vaccination" headerColor={headerColor} textColor='#FFF'/>
           <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
-              <Text>VaccinationScreen screen</Text>
+            <ButtonPrimary
+                    onPress={() => navigation.navigate('AddChildVaccination',{headerTitle:'Add Vaccination Data'})}>
+                    <ButtonText>AddChildVaccination</ButtonText>
+                  </ButtonPrimary>
             </View>
           </ScrollView>
         </View>

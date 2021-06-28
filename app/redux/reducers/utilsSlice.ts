@@ -97,7 +97,7 @@ export const utilsSlice = createSlice({
         state.privacypolicy.body = action.payload[0].body;
       }
     },
-    setWeightHeightModalOpened:( state:any,
+    setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
         state[action.payload.key] =action.payload.value;
       }
@@ -114,7 +114,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData,setAllTermsData,setWeightHeightModalOpened} = utilsSlice.actions;
+export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -1,10 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 
 type HealthCheckupsNavigationProp =
@@ -28,13 +28,10 @@ const HealthCheckups = ({navigation}: Props) => {
           <TabScreenHeader title="Health Checkups" headerColor={headerColor} textColor='#FFF'/>
           <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
-              <Text>HealthCheckupsScreen screen</Text>
-              <Button
-                title="Toggle"
-                onPress={() =>
-                  navigation.dispatch(DrawerActions.toggleDrawer())
-                }
-              />
+            <ButtonPrimary
+                    onPress={() => navigation.navigate('AddChildHealthCheckup',{headerTitle:'Add HealthCheckup Data'})}>
+                    <ButtonText>AddChildHealthCheckup</ButtonText>
+                  </ButtonPrimary>
             </View>
           </ScrollView>
         </View>

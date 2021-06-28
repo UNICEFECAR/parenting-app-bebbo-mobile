@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { setWeightHeightModalOpened } from '../redux/reducers/utilsSlice';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -36,14 +36,14 @@ const AddNewChildWeight = ({navigation}: Props) => {
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
-    dispatch(setWeightHeightModalOpened(obj));
+    dispatch(setInfoModalOpened(obj));
   };
   const weightModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsWeightModalOpened),
     );
    useFocusEffect(()=>{
     //  console.log('weightModalOpened',weightModalOpened);
-      // pass true to make modal visible every time
+      // pass true to make modal visible every time & reload
     setModalVisible(weightModalOpened)
    })
     return (
