@@ -3,7 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
 
 const ActivitiesCategories = (props:any) => {
-    const buttonData = props.buttonData;
+    const buttonData = [
+        {iconName:'ic_act_emotional',displayName:'Emotional'},
+        {iconName:'ic_act_language',displayName:'Language'},
+        {iconName:'ic_act_cognitive',displayName:'Cognitive'},
+        {iconName:'ic_act_movement',displayName:'Movement'}
+      ];
     return (
         <>
             <View style={{ padding: 10,backgroundColor:props.backgroundColor, minHeight: 120,borderBottomColor: props.borderColor,borderBottomWidth:1,paddingHorizontal:70}}>
