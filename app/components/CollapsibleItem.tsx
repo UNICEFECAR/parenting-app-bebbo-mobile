@@ -1,6 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import { Heading4, Heading4Regular, Heading5 } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ThemeContext } from 'styled-components';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import Icon from './shared/Icon';
@@ -8,8 +10,28 @@ import Icon from './shared/Icon';
 const CollapsibleItem = (props: any) => {
   const {item} = props;
   // console.log(item);
+  const navigation = useNavigation()
   const [isOPen, setIsOPen] = useState<Boolean>(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const themeContext = useContext(ThemeContext);
+  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const gotoArticle =()=>{
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'ChildDevelopment',
+      headerColor: artHeaderColor,
+      backgroundColor: artBackgroundColor,
+    });
+  }
+  const gotoActivity =()=>{
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'ChildDevelopment',
+      headerColor: actHeaderColor,
+      backgroundColor: actBackgroundColor,
+    });
+  }
   return (
     <>
       <View style={styles.item}>
@@ -72,9 +94,10 @@ const CollapsibleItem = (props: any) => {
                   <Heading5>
                     Often, easily and spontaneously smiles at people near her.
                   </Heading5>
-                  <Text style={{textDecorationLine: 'underline'}}>
+                  <Pressable onPress={gotoArticle}><Text style={{textDecorationLine: 'underline'}}>
                     View Related Article
                   </Text>
+                  </Pressable>
                 </View>
               </View>
             </View>
@@ -98,9 +121,10 @@ const CollapsibleItem = (props: any) => {
                     Child related content goes here, Child related content goes
                     here,
                   </Heading5>
-                  <Text style={{textDecorationLine: 'underline'}}>
+                  <Pressable onPress={gotoActivity}><Text style={{textDecorationLine: 'underline'}}>
                     View details
                   </Text>
+                  </Pressable>
                 </View>
               </View>
             </View>

@@ -1,7 +1,7 @@
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import Icon from '@components/shared/Icon';
+import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -87,20 +87,6 @@ const SuggestedActivities = () => {
           </Text>
         </View>
       </View>
-      <View style={{flexDirection: 'row', padding: 10}}>
-        <View style={{flex: 1}}>
-          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-            <Icon name="ic_sb_shareapp" size={20} color="#000" />
-            <Text>{t('actScreenshareText')}</Text>
-          </Pressable>
-        </View>
-        <View style={{flex: 1}}>
-          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-            <Icon name="ic_sb_favorites" size={20} color="#000" />
-            <Text>{t('actScreenaddtoFavText')}</Text>
-          </Pressable>
-        </View>
-      </View>
     </View>
   );
 };
@@ -110,14 +96,13 @@ const Activities = ({navigation}: Props) => {
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const onPress = () => {
-    navigation.navigate('ActivityDetails');
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'Activities',
+      headerColor: headerColor,
+      backgroundColor: backgroundColor,
+    });
   };
-  const buttonData =[
-    {iconName:'ic_act_emotional',displayName:'Emotional'},
-    {iconName:'ic_act_language',displayName:'Language'},
-    {iconName:'ic_act_cognitive',displayName:'Cognitive'},
-    {iconName:'ic_act_movement',displayName:'Movement'}
-  ]
+
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
     <Pressable onPress={onPress} key={index}>
       <View style={styles.item}>
@@ -128,20 +113,7 @@ const Activities = ({navigation}: Props) => {
         />
         <Text style={styles.label}>Cognitive</Text>
         <Text style={styles.title}>{item.title}</Text>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>{t('actScreenshareText')}</Text>
-            </Pressable>
-          </View>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>{t('actScreenaddtoFavText')}</Text>
-            </Pressable>
-          </View>
-        </View>
+        <ShareFavButtons backgroundColor={'#FFF'}/>
       </View>
     </Pressable>
   );
@@ -164,7 +136,6 @@ const Activities = ({navigation}: Props) => {
             <ActivitiesCategories
               borderColor={headerColor}
               backgroundColor={backgroundColor}
-              buttonData={buttonData}
             />
             <View style={{padding: 10, height: 400, marginBottom: 30}}>
               <Heading3>{t('actScreensugacttxt')}</Heading3>
