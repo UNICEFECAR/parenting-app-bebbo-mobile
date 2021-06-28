@@ -138,6 +138,7 @@ const ChildProfile = ({navigation}: Props) => {
              <ProfileLinkView>
 <ButtonTextSmLine
                 onPress={() => {
+                  data.index=index;
                   navigation.navigate('EditChildProfile',{childData:data});
                 }}>
                 <Text>Edit Profile</Text>
