@@ -72,13 +72,13 @@ const AddNewChildWeight = ({navigation}: Props) => {
 
             <View>
               <Heading4Centerr>
-                {'Move the ruler to indicate weight of your child'}
+                {t('weightModalText')}
               </Heading4Centerr>
               <ButtonPrimary
                 onPress={() => {
                   setIsModalOpened('IsWeightModalOpened');
                 }}>
-                <ButtonText>Continue</ButtonText>
+                <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonPrimary>
             </View>
           </ModalPopupContainer>
