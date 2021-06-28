@@ -1,7 +1,7 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
-import { LabelText } from '@components/shared/ChildSetupStyle';
+import { LabelText, TitleLinkSm } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading3, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import {
+  Alert,
   Image, Pressable,
   SafeAreaView,
   ScrollView, TextInput,
@@ -17,8 +18,8 @@ import {
 import ActionSheet from 'react-native-actions-sheet';
 import ImagePicker, { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components';
-import { useAppDispatch } from '../../../App';
-import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../../services/childCRUD';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../../services/childCRUD';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -31,11 +32,15 @@ type Props = {
 const CROPPED_IMAGE_WIDTH = 800;
 const CROPPED_IMAGE_HEIGHT = 800;
 const EditChildProfile = ({ route, navigation }: Props) => {
-  const { childData } = route.params;
-
+const { childData } = route.params;
+const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ''
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : state.childData.childDataSet.allChild,
+  );
   // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
-  let editScreen = childData?.uuid != "" ? true : false;
+  const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
 
@@ -122,6 +127,28 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       });
     }
   };
+  const deleteRecord = (index:number,dispatch:any,uuid: string) => {
+    //console.log("..deleted..");
+    // deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
+    return new Promise((resolve, reject) => {
+      Alert.alert('Delete Child', "Do you want to delete child?",
+        [
+          {
+            text: "Cancel",
+            onPress: () => reject("error"),
+            style: "cancel"
+          },
+          { 
+            text: "Delete", onPress: () => {
+            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject);
+            navigation.navigate('ChildProfileScreen')
+          }
+          }
+        ]
+      );
+    });
+   
+  }
   useEffect(() => {
     async function askPermissions() {
       // if (Platform.OS === 'android') {
@@ -165,10 +192,18 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             </Pressable>
           </View>
           <View style={{ flex: 9, padding: 7 }}>
-            <Heading2w>
-              {'Edit Child Profile'}
-            </Heading2w>
+          {
+          childData && childData?.uuid!=""?(<Heading2w>{'Edit Child Profile'} </Heading2w>):( <Heading2w>{'Add Brother or Sister'}</Heading2w>)
+           
+          }
           </View>
+          <View style={{ flex: 9, padding: 7,alignItems:'flex-end' }}>
+          {
+          (childList?.length> 1 && childData && childData?.uuid!="") ? (
+            <Heading2w onPress={() => deleteRecord(childData?.index,dispatch,childData?.uuid)}>Delete</Heading2w>
+            ) :null
+          }
+           </View>
         </View>
 
         <ScrollView style={{ flex: 4 }}>
@@ -239,8 +274,14 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                   AddChild()
 
                 }}>
-                  <ButtonText>Update Profile</ButtonText>
+                  {
+                  childData && childData?.uuid!=""?(
+                  <ButtonText>Edit Profile</ButtonText>):(
+                  <ButtonText>Add Profile</ButtonText>)
+                  }
                 </ButtonPrimary>
+                 
+               
               </View>
             </View>
           </View>
