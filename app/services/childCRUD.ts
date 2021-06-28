@@ -9,11 +9,11 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { removeChild, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
-export const getNewChild = (uuidGet: string, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): ChildEntity => {
- // console.log(gender,"..gender..")
+export const getNewChild = async (uuidGet: string, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
+  let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
-    name: name ? name : '',
+    name: (name!="" && name!=null  && name!=undefined) ? name : 'Child'+(allJsonDatanew?.length+1),
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
