@@ -2,13 +2,22 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Ruler from '@components/Ruler';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
+import ModalPopupContainer, {
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import { RootStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading2w } from '@styles/typography';
+import { Heading1, Heading2w, Heading4Centerr } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, SafeAreaView, View } from 'react-native';
+import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { setWeightHeightModalOpened } from '../redux/reducers/utilsSlice';
+
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -20,12 +29,62 @@ const AddNewChildHeight = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const tintColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const [modalVisible, setModalVisible] = useState(true);
   const screenPadding = 10;
   const {height,width} = Dimensions.get('screen');
   const [weight, setweight] = useState<number>(0);
   const [weight1, setweight1] = useState<number>(0.0);
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setWeightHeightModalOpened(obj));
+  };
+  const heightModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsHeightModalOpened),
+    );
+   useFocusEffect(()=>{
+    // console.log('heightModalOpened',heightModalOpened);
+    // pass true to make modal visible every time
+    setModalVisible(heightModalOpened)
+   })
   return (
     <>
+    <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+        onDismiss={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+
+            <View>
+              <Heading4Centerr>
+                {'Move the ruler to indicate height of your child'}
+              </Heading4Centerr>
+              <ButtonPrimary
+                onPress={() => {
+                  setIsModalOpened('IsHeightModalOpened');
+                }}>
+                <ButtonText>Continue</ButtonText>
+              </ButtonPrimary>
+            </View>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
