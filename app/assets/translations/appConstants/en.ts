@@ -1,4 +1,5 @@
 
+
 const en = {
     translation: {
             countryLangSelection: "You have selected country and language",
@@ -203,7 +204,21 @@ const en = {
             growthScreenaddWeight:"Add Weight",
             growthScreenaddHeight:"Add Height",
             growthScreennewGrowthBottomText:"Measuring a child at home is less accurate than measuring at a doctor's and can affect the accuracy of the growth chart.",
-            growthScreenrelatedArticle:"Related Articles"
+            growthScreenrelatedArticle:"Related Articles",
+
+
+            // Sprint4 Screens
+
+            notiOption1:"Delete this notification",
+            notiOption2:"Mark as Read",
+            continueInModal:"Continue",
+            weightModalText:"Move the ruler to indicate weight of your child",
+            heightModalText:"Move the ruler to indicate height of your child",
+            articleModalText:"To choose articles of your interest click on the relevant buttons or search for keywords",
+            detailScreenArticleHeader:"Choose Articles",
+            detailScreenActivityHeader:"Choose Activity",
+            trackMilestoneViewHeader:"Let's spare some time to update your child milestones.",
+            trackMilestoneViewBtn:"Track your child milestone",
            
     }
 }

@@ -84,7 +84,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                   <RelatedArticles />
                 </View>
                 <View style={{padding: 20}}>
-                  <Heading2>Choose Articles</Heading2>
+                  <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                 </View>
                 <ArticleCategories />
               </View>
@@ -94,7 +94,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <>
             <TrackMilestoneView/>
               <View style={{backgroundColor: backgroundColor, padding: 20}}>
-                <Heading2>Choose Activity</Heading2>
+                <Heading2>{t('detailScreenActivityHeader')}</Heading2>
               </View>
               <ActivitiesCategories
                 borderColor={headerColor}
