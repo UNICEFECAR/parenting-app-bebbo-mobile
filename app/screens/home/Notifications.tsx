@@ -1,4 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import Icon from '@components/shared/Icon';
@@ -86,12 +87,13 @@ const Notifications = () => {
           <View style={{flex: 1}}>
             <BurgerIcon />
           </View>
-          <View style={{flex: 5, padding: 8}}>
+          <View style={{flex: 3, padding: 8}}>
             <Heading2w> {t('notiScreenheaderTitle')}</Heading2w>
           </View>
-          <View style={{flex: 1,flexDirection:'row'}}>
+          <View style={{flex: 2,flexDirection:'row'}}>
             <Icon name={'ic_sb_settings'} size={20} color="#FFF" />
             <Icon name={'ic_trash'} size={20} color="#FFF" />
+            <HeaderBabyMenu/>
           </View>
         </View>
 
