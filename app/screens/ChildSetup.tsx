@@ -38,89 +38,92 @@ type Props = {
 
 
 
-const ChildSetup = ({navigation}: Props) => {
-  const {t} = useTranslation();
+const ChildSetup = ({ navigation }: Props) => {
+  const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
-  const [birthDate, setBirthDate] =useState<Date>();
+  const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
-  const [isPremature, setIsPremature] =useState<string>('false');
+  const [isPremature, setIsPremature] = useState<string>('false');
   const relationshipData = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
   const dispatch = useAppDispatch();
-  let initialData:any={};
-  const sendData = (data:any) => { // the callback. Use a better name
+  let initialData: any = {};
+  const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
   };
- 
+const AddChild=async ()=>{
+  let insertData: any = await getNewChild('', plannedTermDate, isPremature, birthDate, relationship);
+  let childSet: Array<any> = [];
+  childSet.push(insertData);
+  console.log(childSet,"..childSet..");
+  addChild(false, 0, childSet, dispatch, navigation);
+}
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-     <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-      <OnboardingContainer>
-        <OnboardingHeading>
-          <ChildCenterView>
-            <Heading1Centerw>
-            {t('childSetupheader')}
-            </Heading1Centerw>
-          </ChildCenterView>
-        </OnboardingHeading>
+        <OnboardingContainer>
+          <OnboardingHeading>
+            <ChildCenterView>
+              <Heading1Centerw>
+                {t('childSetupheader')}
+              </Heading1Centerw>
+            </ChildCenterView>
+          </OnboardingHeading>
 
-        <ChildContentArea>
-          <ChildSection>
-            <ChildDate sendData={sendData}/>
-            <FormInputGroup
+          <ChildContentArea>
+            <ChildSection>
+              <ChildDate sendData={sendData} />
+              <FormInputGroup
+                onPress={() => {
+                  actionSheetRef.current?.setModalVisible();
+                }}>
+                <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>{relationship ? relationship : t('childSetuprelationSelectText')}</Text>
+                  </FormDateText>
+                  <FormDateAction>
+                    <Icon name="ic_angle_down" size={10} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              </FormInputGroup>
+            </ChildSection>
+          </ChildContentArea>
+
+          <ActionSheet ref={actionSheetRef}>
+            <View>
+              {relationshipData.map((item, index) => {
+                return (
+                  <ChildRelationList key={index}>
+                    <Pressable
+                      onPress={() => {
+                        setRelationship(item);
+                        actionSheetRef.current?.hide();
+                      }}>
+                      <Heading3>{item}</Heading3>
+                    </Pressable>
+                  </ChildRelationList>
+                );
+              })}
+            </View>
+          </ActionSheet>
+
+          <ButtonRow>
+            <ButtonPrimary
               onPress={() => {
-                actionSheetRef.current?.setModalVisible();
+               AddChild();
               }}>
-              <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
-              <FormInputBox>
-                <FormDateText>
-                  <Text>{relationship ? relationship : t('childSetuprelationSelectText')}</Text>
-                </FormDateText>
-                <FormDateAction>
-                <Icon name="ic_angle_down" size={10} color="#000" />
-                </FormDateAction>
-              </FormInputBox>
-            </FormInputGroup>
-          </ChildSection>
-        </ChildContentArea>
-
-        <ActionSheet ref={actionSheetRef}>
-          <View>
-            {relationshipData.map((item, index) => {
-              return (
-                <ChildRelationList key={index}>
-                  <Pressable
-                    onPress={() => {
-                      setRelationship(item);
-                      actionSheetRef.current?.hide();
-                    }}>
-                    <Heading3>{item}</Heading3>
-                  </Pressable>
-                </ChildRelationList>
-              );
-            })}
-          </View>
-        </ActionSheet>
-
-        <ButtonRow>
-          <ButtonPrimary
-            onPress={() => {
-             let insertData:any=getNewChild('',plannedTermDate,isPremature,birthDate,relationship);
-             let childSet:Array<any>=[];
-             childSet.push(insertData);
-             addChild(false,0,childSet,dispatch,navigation);  
-            }}>
-            <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
-          </ButtonPrimary>
-        </ButtonRow>
-      </OnboardingContainer>
+              <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
+            </ButtonPrimary>
+          </ButtonRow>
+        </OnboardingContainer>
       </SafeAreaView>
     </>
   );

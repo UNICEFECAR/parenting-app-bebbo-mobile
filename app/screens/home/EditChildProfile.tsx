@@ -24,53 +24,53 @@ type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  route:any,
+  route: any,
   navigation: NotificationsNavigationProp;
 };
 
 const CROPPED_IMAGE_WIDTH = 800;
 const CROPPED_IMAGE_HEIGHT = 800;
-const EditChildProfile = ({route,navigation}: Props) => {
-  const {childData}=route.params;
-  
+const EditChildProfile = ({ route, navigation }: Props) => {
+  const { childData } = route.params;
+
   // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   let editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
-  const dispatch=useAppDispatch();
-  
+  const dispatch = useAppDispatch();
+
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const genders = ['boy', 'girl'];
   const imageOptions = [
-    {id: 0, iconName: 'ic_trash', name: 'Remove Photo'},
-    {id: 1, iconName: 'ic_camera', name: 'Camera'},
-    {id: 2, iconName: 'ic_gallery', name: 'Gallery'},
+    { id: 0, iconName: 'ic_trash', name: 'Remove Photo' },
+    { id: 1, iconName: 'ic_camera', name: 'Camera' },
+    { id: 2, iconName: 'ic_gallery', name: 'Gallery' },
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
- 
+
   const [photoUri, setphotoUri] = React.useState("");
   let initialData: any = {};
-  const [birthDate, setBirthDate] =  React.useState<Date>();
-  const [name, setName] = React.useState(childData != null ?childData.name:'');
-  const [plannedTermDate, setPlannedTermDate] =  React.useState<Date>();
-  const [isPremature, setIsPremature] =  React.useState<string>('false');
-  const uuid= childData != null ? childData.uuid:'';
+  const [birthDate, setBirthDate] = React.useState<Date>();
+  const [name, setName] = React.useState(childData != null ? childData.name : '');
+  const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
+  const [isPremature, setIsPremature] = React.useState<string>('false');
+  const uuid = childData != null ? childData.uuid : '';
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
-   // 
+    // 
   };
-  const [gender, setGender] = React.useState(childData != null ?childData.gender:'');
+  const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
-     
-    },[])
+
+    }, [])
   );
   const handleImageOptionClick = (index: number) => {
     if (index === 0) {
@@ -83,11 +83,11 @@ const EditChildProfile = ({route,navigation}: Props) => {
         height: CROPPED_IMAGE_HEIGHT,
         freeStyleCropEnabled: true,
         showCropGuidelines: true,
-        multiple:false
+        multiple: false
       })
         .then((image: ImageObject | ImageObject[]) => {
           if (!Array.isArray(image)) {
-         //   console.log(image)
+            //   console.log(image)
             // this.setState(
             //   {
             //     imageUri: image.path,
@@ -102,7 +102,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
         })
         .catch((error) => {
           if (error.message != 'User cancelled image selection') {
-           // console.log(error);
+            // console.log(error);
           }
         });
     } else {
@@ -115,7 +115,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
         height: CROPPED_IMAGE_HEIGHT,
         freeStyleCropEnabled: true,
         showCropGuidelines: true,
-        multiple:false
+        multiple: false
       }).then((image) => {
         //console.log(image);
         // setResponse(image)
@@ -124,49 +124,55 @@ const EditChildProfile = ({route,navigation}: Props) => {
   };
   useEffect(() => {
     async function askPermissions() {
-        // if (Platform.OS === 'android') {
-        //     await Permissions.requestMultiple([
-        //         'android.permission.CAMERA',
-        //         'android.permission.WRITE_EXTERNAL_STORAGE',
-        //     ]);
-        // }
+      // if (Platform.OS === 'android') {
+      //     await Permissions.requestMultiple([
+      //         'android.permission.CAMERA',
+      //         'android.permission.WRITE_EXTERNAL_STORAGE',
+      //     ]);
+      // }
 
-        // if (Platform.OS === 'ios') {
-        //     await Permissions.requestMultiple(['ios.permission.CAMERA', 'ios.permission.PHOTO_LIBRARY']);
-        // }
+      // if (Platform.OS === 'ios') {
+      //     await Permissions.requestMultiple(['ios.permission.CAMERA', 'ios.permission.PHOTO_LIBRARY']);
+      // }
     }
 
     askPermissions();
-}, []);
-
+  }, []);
+  const AddChild = async () => {
+    let insertData: any = editScreen ? await getNewChild(uuid, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('', plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
+    let childSet: Array<any> = [];
+    childSet.push(insertData);
+    //console.log(insertData,"..insertData..");
+    addChild(editScreen, 2, childSet, dispatch, navigation);
+  }
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1, padding: 15}}>
-              <Pressable
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Icon name={'ic_back'} color="#FFF" size={15} />
-              </Pressable>
-            </View>
-            <View style={{flex: 9, padding: 7}}>
-              <Heading2w>
-                {'Edit Child Profile'}
-              </Heading2w>
-            </View>
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            backgroundColor: headerColor,
+            maxHeight: 50,
+          }}>
+          <View style={{ flex: 1, padding: 15 }}>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={'ic_back'} color="#FFF" size={15} />
+            </Pressable>
           </View>
+          <View style={{ flex: 9, padding: 7 }}>
+            <Heading2w>
+              {'Edit Child Profile'}
+            </Heading2w>
+          </View>
+        </View>
 
-        <ScrollView style={{flex: 4}}>
-          <View style={{flexDirection: 'column'}}>
+        <ScrollView style={{ flex: 4 }}>
+          <View style={{ flexDirection: 'column' }}>
             <Pressable
               style={{
                 height: 150,
@@ -180,21 +186,21 @@ const EditChildProfile = ({route,navigation}: Props) => {
               <Icon name="ic_camera" size={20} color="#FFF" />
             </Pressable>
             {response?.assets &&
-              response?.assets.map(({uri}) => (
+              response?.assets.map(({ uri }) => (
                 <View
                   key={uri}
-                  style={{marginVertical: 24, alignItems: 'center'}}>
+                  style={{ marginVertical: 24, alignItems: 'center' }}>
                   <Image
                     resizeMode="cover"
                     resizeMethod="scale"
-                    style={{width: 200, height: 200}}
-                    source={{uri: uri}}
+                    style={{ width: 200, height: 200 }}
+                    source={{ uri: uri }}
                   />
                 </View>
               ))}
-            <View style={{padding: 10}}>
+            <View style={{ padding: 10 }}>
               <LabelText>Name</LabelText>
-              <View style={{flex: 1}}>
+              <View style={{ flex: 1 }}>
                 <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -208,16 +214,16 @@ const EditChildProfile = ({route,navigation}: Props) => {
                   }}
                 />
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 {genders.map((item, index) => {
                   return (
                     <View
                       key={index}
-                      style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
+                      style={{ padding: 10, backgroundColor: '#FFF', margin: 3 }}>
                       <Pressable
                         onPress={() => {
-                        //console.log(item,"..item..");
-                        setGender(item);
+                          //console.log(item,"..item..");
+                          setGender(item);
                         }}>
                         <Heading3>{item}</Heading3>
                       </Pressable>
@@ -228,14 +234,10 @@ const EditChildProfile = ({route,navigation}: Props) => {
 
               <ChildDate sendData={sendData} childData={childData} />
 
-              <View style={{width: '100%', marginTop: 30}}>
+              <View style={{ width: '100%', marginTop: 30 }}>
                 <ButtonPrimary onPress={() => {
-                   let insertData: any = editScreen ? getNewChild(uuid, plannedTermDate,  isPremature, birthDate,'', name, photoUri, gender):getNewChild('', plannedTermDate, isPremature,birthDate,'',name,photoUri,gender);
-                   let childSet: Array<any> = [];
-                   childSet.push(insertData);
-                   //console.log(insertData,"..insertData..");
-                   addChild(editScreen,2,childSet,dispatch,navigation);  
-                  
+                  AddChild()
+
                 }}>
                   <ButtonText>Update Profile</ButtonText>
                 </ButtonPrimary>
@@ -259,7 +261,7 @@ const EditChildProfile = ({route,navigation}: Props) => {
                       padding: 16,
                     }}>
                     <Pressable
-                      style={{alignItems: 'center'}}
+                      style={{ alignItems: 'center' }}
                       onPress={() => {
                         actionSheetRef.current?.hide();
                         handleImageOptionClick(index);
