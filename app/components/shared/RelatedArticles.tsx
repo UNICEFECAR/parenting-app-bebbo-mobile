@@ -1,9 +1,9 @@
 import { Heading2, Heading3 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
-import Icon from './Icon';
+import ShareFavButtons from './ShareFavButtons';
 const Item = ({title}: any) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
@@ -61,26 +61,9 @@ const RelatedArticles = () => {
           <Text style={styles.header}>Nutrition and BreastFeeding</Text>
           <Heading3 style={styles.title}>{item.title}</Heading3>
         </View>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            padding: 10,
-            backgroundColor: '#FFF',
-          }}>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_shareapp" size={20} color="#000" />
-              <Text>{t('articleScreenshareText')}</Text>
-            </Pressable>
-          </View>
-          <View style={{flex: 1}}>
-            <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
-              <Icon name="ic_sb_favorites" size={20} color="#000" />
-              <Text>{t('articleScreenaddtoFavText')}</Text>
-            </Pressable>
-          </View>
-        </View>
+       
+         <ShareFavButtons backgroundColor={'#FFF'}/>
+       
       </View>
     );
   };
