@@ -45,7 +45,7 @@ const FavActivities = (props: any) => {
  
   const gotoActivity =()=>{
     navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
+      fromScreen: 'Activities',
       headerColor: actHeaderColor,
       backgroundColor: actBackgroundColor,
     });

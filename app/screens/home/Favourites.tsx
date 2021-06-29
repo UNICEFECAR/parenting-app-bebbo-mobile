@@ -21,8 +21,6 @@ const Favourites = ({navigation}: Props) => {
   const {t, i18n} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
-  const articlesBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const activitiesBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [
@@ -51,7 +49,7 @@ const Favourites = ({navigation}: Props) => {
         <TabScreenHeader
           title={t('favScreenHeader')}
           headerColor={headerColor}
-          textColor="#000"
+          textColor="#FFF"
         />
 
         <View

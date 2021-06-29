@@ -40,7 +40,7 @@ const Aboutus = ({navigation}: Props) => {
             <TabScreenHeader
               title={t('aboutUsScreenheaderTitle')}
               headerColor={headerColor}
-              textColor="#000"
+              textColor="#FFF"
             />
           </View>
 
