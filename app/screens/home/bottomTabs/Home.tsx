@@ -6,12 +6,18 @@ import ChildMilestones from '@components/homeScreen/ChildMilestones';
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { BgPrimary, BgSecondary } from '@components/shared/BackgroundColors';
+import { ButtonContainer, ButtonPrimary, ButtonText,ButtonTertiary} from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { Flex1, FlexDirRowStart,FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Container, Header3Text } from '@styles/style';
-import React, { useContext } from 'react';
+import { Heading3Regularw,Heading3w, Heading3Regular,ShiftFromTop20, ShiftFromTopBottom10,ShiftFromTopBottom20} from '@styles/typography';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -48,18 +54,47 @@ const Home = () => {
           <PlayingTogether/>
           <AdviceAndArticles/>
           <Tools/>
-          <View style={{padding:10}}>
-            <Text>{t('homeScreenexpText')}</Text>
-            <ButtonContainer>
-              <ButtonPrimary
-                onPress={() => {}}>
-                <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
-              </ButtonPrimary>
-            </ButtonContainer>
-          </View>
-          <Container style={{padding:10}}>
-            <Header3Text>{"A loving relationship with the parent is the foundation of every baby's healthy growth and development"}</Header3Text>
-          </Container>
+          <MainContainer>
+            <ShiftFromTopBottom10>
+            
+            <HomeSurveyBox>
+              <FlexDirRow>
+              <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_survey" size={24} color="#000" />
+                </OuterIconLeft>
+              </OuterIconRow>
+            <Heading3Regular>{t('homeScreenexpText')}</Heading3Regular>
+            </FlexDirRow>
+            <ShiftFromTop20>
+            <ButtonTertiary
+              onPress={() => {}}>
+              <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
+            </ButtonTertiary>
+            </ShiftFromTop20>
+            </HomeSurveyBox>
+            
+            </ShiftFromTopBottom10>
+            
+          </MainContainer>
+            
+          <BgPrimary>
+          <MainContainer>
+            <ShiftFromTopBottom10>
+            <FlexDirRowStart>
+          <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_sb_loveapp" size={24} color="#fff" />
+                </OuterIconLeft>
+              </OuterIconRow>
+              <Flex1>
+                <Heading3Regularw>{"A loving relationship with the parent is the foundation of every baby's healthy growth and development"}</Heading3Regularw>
+                </Flex1>
+            
+            </FlexDirRowStart>
+            </ShiftFromTopBottom10>
+          </MainContainer>
+          </BgPrimary>
         </ScrollView>
       </View>
       </SafeAreaView>
