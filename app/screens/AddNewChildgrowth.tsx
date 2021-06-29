@@ -1,36 +1,37 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-    FormDateAction,
-    FormDateText,
-    FormInputBox,
-    FormInputGroup
+  FormDateAction,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-    PopupClose,
-    PopupCloseContainer,
-    PopupOverlay
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
+import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Header3Text } from '@styles/style';
 import {
-    Heading2w,
-    Heading3, Heading4Regular
+  Heading2w,
+  Heading3, Heading4Regular
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Modal,
-    Platform,
-    Pressable,
-    SafeAreaView,
-    Text,
-    TextInput,
-    View
+  Modal,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
 import { ThemeContext } from 'styled-components';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -49,14 +50,17 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [showdob, setdobShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const measurementPlaces = [
-    t('growthScreendoctorMeasurePlace'),
-    t('growthScreenhomeMeasurePlace'),
+    {title:t('growthScreendoctorMeasurePlace')},
+    {title:t('growthScreenhomeMeasurePlace')},
   ];
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || dobDate;
     setdobShow(Platform.OS === 'ios');
     setdobDate(currentDate);
   };
+  const getCheckedItem =(checkedItem:typeof measurementPlaces[0])=>{
+    console.log(checkedItem);
+  }
   const showdobDatepicker = () => {
     setdobShow(true);
   };
@@ -116,22 +120,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </FormInputBox>
         </FormInputGroup>
         <Header3Text>{t('growthScreenwhereMeasured')}</Header3Text>
-        <View style={{flexDirection: 'row'}}>
-          {measurementPlaces.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
-        </View>
+       
+        <ToggleRadios options={measurementPlaces} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+
         <View>
           {showdob && (
             <DateTimePicker
