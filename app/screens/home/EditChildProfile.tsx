@@ -10,16 +10,21 @@ import { Heading2w, Heading3, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import {
   Alert,
-  Image, Pressable,
+  Image, Platform, Pressable,
   SafeAreaView,
-  ScrollView, TextInput,
+  ScrollView, Text, TextInput,
   View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
+import { copyFile, DocumentDirectoryPath, exists, mkdir, unlink } from 'react-native-fs';
 import ImagePicker, { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../../services/childCRUD';
+import MediaPicker from '../../services/MediaPicker';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -28,9 +33,6 @@ type Props = {
   route: any,
   navigation: NotificationsNavigationProp;
 };
-
-const CROPPED_IMAGE_WIDTH = 800;
-const CROPPED_IMAGE_HEIGHT = 800;
 const EditChildProfile = ({ route, navigation }: Props) => {
 const { childData } = route.params;
 const childList = useAppSelector((state: any) =>
@@ -38,7 +40,7 @@ const childList = useAppSelector((state: any) =>
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  // console.log(childData,"..childData..");
+  console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
@@ -54,8 +56,9 @@ const childList = useAppSelector((state: any) =>
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
-
+  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null ? `${DocumentDirectoryPath}/${childData.photoUri}` :'');
   const [photoUri, setphotoUri] = React.useState("");
+  const [tempImage,cleanUPImage]= React.useState("");
   let initialData: any = {};
   const [birthDate, setBirthDate] = React.useState<Date>();
   const [name, setName] = React.useState(childData != null ? childData.name : '');
@@ -77,55 +80,96 @@ const childList = useAppSelector((state: any) =>
 
     }, [])
   );
-  const handleImageOptionClick = (index: number) => {
-    if (index === 0) {
-      ImagePicker.openPicker({
-        includeBase64: false,
-        compressImageMaxWidth: 500,
-        compressImageMaxHeight: 500,
-        cropping: true,
-        width: CROPPED_IMAGE_WIDTH, // Width of result image when used with cropping option
-        height: CROPPED_IMAGE_HEIGHT,
-        freeStyleCropEnabled: true,
-        showCropGuidelines: true,
-        multiple: false
+ const onChildPhotoChange=async (child: ChildEntity | undefined, image: ImageObject)=>{
+    // Create Documents/children folder if it doesnt exist
+    if (!(await exists(`${DocumentDirectoryPath}/children`))) {
+        mkdir(`${DocumentDirectoryPath}/children`);
+    }
+
+    // Set newFilename
+    let newFilename: string;
+
+    let parts = image.path.split('.');
+    let extension: string | null = null;
+    if (parts.length > 1) {
+        extension = parts[parts.length - 1].toLowerCase();
+    };
+
+    let timestamp = new Date().getTime();
+
+    if (child) {
+        if (extension) {
+            newFilename = `${child.uuid}_${timestamp}.${extension}`;
+        } else {
+            newFilename = child.uuid + "_" + timestamp;
+        };
+
+        // Set destPath
+        let destPath = `${DocumentDirectoryPath}/children/${newFilename}`;
+
+        // Delete image if it exists
+        if (await exists(destPath)) {
+            await unlink(destPath);
+        };
+
+        // Copy image
+        await copyFile(image.path, destPath);
+        setphotoUri(destPath.replace(DocumentDirectoryPath, ''));
+        // Save imageUri to realm
+        // userRealmCommon.realm?.write(() => {
+        //     child.photoUri = destPath.replace(DocumentDirectoryPath, '');
+        // });
+    };
+};
+
+  const handleImageOptionClick = async (index: number) => {
+    if(index==0){
+      // MediaPicker.cleanupSingleImage((image:any) => {
+      //   // image.path ==>> file path 
+      //   console.log(image,"..image..")
+      // setphotoUri('');
+      //});
+      deleteImageFile(capturedPhoto).then(async (data:any)=>{
+        console.log(data,"..deleted..");
+        let record={
+          uuid:childData.uuid,
+          photoUri:''
+        }
+        let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema, record);
+        if(createresult=='success'){
+          MediaPicker.cleanupImages();
+          setCapturedImage('');
+        }
+        else{
+          Alert.alert("Try again...");
+        }
+       
+      }).catch((error:any)=>{
+        Alert.alert("Try again..");
       })
-        .then((image: ImageObject | ImageObject[]) => {
-          if (!Array.isArray(image)) {
-            //   console.log(image)
-            // this.setState(
-            //   {
-            //     imageUri: image.path,
-            //   },
-            //   () => {
-            //     if (this.props.onChange && image.path) {
-            //       this.props.onChange(image);
-            //     }
-            //   },
-            // );
-          }
-        })
-        .catch((error) => {
-          if (error.message != 'User cancelled image selection') {
-            // console.log(error);
-          }
-        });
-    } else {
-      ImagePicker.openCamera({
-        includeBase64: false,
-        compressImageMaxWidth: 500,
-        compressImageMaxHeight: 500,
-        cropping: true,
-        width: CROPPED_IMAGE_WIDTH, // Width of result image when used with cropping option
-        height: CROPPED_IMAGE_HEIGHT,
-        freeStyleCropEnabled: true,
-        showCropGuidelines: true,
-        multiple: false
-      }).then((image) => {
-        //console.log(image);
-        // setResponse(image)
+
+    }
+    else if(index==1){
+      MediaPicker.showCameraImagePicker((image:any) => {
+        // image.path ==>> file path 
+        console.log(image,"..image..");
+        cleanUPImage(image);
+        setCapturedImage(image.path);
+        onChildPhotoChange(childData,image);
+       // setphotoUri(image.path)
       });
     }
+    else if(index==2){
+      MediaPicker.showGalleryImagePicker((image:any) => {
+        // image.path ==>> file path 
+        console.log(image,"..image..");
+        cleanUPImage(image);
+        setCapturedImage(image.path);
+        onChildPhotoChange(childData,image);
+        //setphotoUri(image.path);
+      });
+    }
+   
   };
   const deleteRecord = (index:number,dispatch:any,uuid: string) => {
     //console.log("..deleted..");
@@ -150,26 +194,28 @@ const childList = useAppSelector((state: any) =>
    
   }
   useEffect(() => {
-    async function askPermissions() {
-      // if (Platform.OS === 'android') {
-      //     await Permissions.requestMultiple([
-      //         'android.permission.CAMERA',
-      //         'android.permission.WRITE_EXTERNAL_STORAGE',
-      //     ]);
-      // }
+    // async function askPermissions() {
+  
+    //   if (Platform.OS === 'android') {
+    //       await requestMultiple([PERMISSIONS.ANDROID.CAMERA, PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE]).then((statuses:any) => {
+    //         console.log('Camera', statuses[PERMISSIONS.ANDROID.CAMERA]);
+    //         console.log('WriteExternalSToage', statuses[PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE]);
+    //         console.log('ReadExternalSToage', statuses[PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE]);
+    //       });
+    //   }
 
-      // if (Platform.OS === 'ios') {
-      //     await Permissions.requestMultiple(['ios.permission.CAMERA', 'ios.permission.PHOTO_LIBRARY']);
-      // }
-    }
+    //   if (Platform.OS === 'ios') {
+    //    //   await Permissions.requestMultiple(['ios.permission.CAMERA', 'ios.permission.PHOTO_LIBRARY']);
+    //   }
+    // }
 
-    askPermissions();
+    // askPermissions();
   }, []);
   const AddChild = async () => {
     let insertData: any = editScreen ? await getNewChild(uuid, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('', plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    //console.log(insertData,"..insertData..");
+    console.log(insertData,"..insertData..");
     addChild(editScreen, 2, childSet, dispatch, navigation);
   }
   return (
@@ -208,7 +254,26 @@ const childList = useAppSelector((state: any) =>
 
         <ScrollView style={{ flex: 4 }}>
           <View style={{ flexDirection: 'column' }}>
-            <Pressable
+          {
+            (capturedPhoto!='' && capturedPhoto!=null && capturedPhoto!=undefined) ?
+           
+               <View
+                 style={{ marginVertical: 24, alignItems: 'center' }} >
+                    <View
+                 style={{ marginVertical: 24, alignItems: 'flex-end' }} >
+                    <Icon name="ic_camera" size={20} color="#FFF" onPress={() => {
+                actionSheetRef.current?.setModalVisible();
+              }}/>
+              </View>
+                  <Image
+                    resizeMode="cover"
+                    resizeMethod="scale"
+                    style={{ width: 200, height: 200 }}
+                    source={capturedPhoto!='' ? {uri:  "file://" +capturedPhoto } : null}
+                  />
+                
+                </View>:
+             <Pressable
               style={{
                 height: 150,
                 backgroundColor: SecondaryColor,
@@ -220,19 +285,7 @@ const childList = useAppSelector((state: any) =>
               }}>
               <Icon name="ic_camera" size={20} color="#FFF" />
             </Pressable>
-            {response?.assets &&
-              response?.assets.map(({ uri }) => (
-                <View
-                  key={uri}
-                  style={{ marginVertical: 24, alignItems: 'center' }}>
-                  <Image
-                    resizeMode="cover"
-                    resizeMethod="scale"
-                    style={{ width: 200, height: 200 }}
-                    source={{ uri: uri }}
-                  />
-                </View>
-              ))}
+              }
             <View style={{ padding: 10 }}>
               <LabelText>Name</LabelText>
               <View style={{ flex: 1 }}>
@@ -292,7 +345,8 @@ const childList = useAppSelector((state: any) =>
                 alignItems: 'center',
                 flexDirection: 'row',
               }}>
-              {imageOptions.map((item, index) => {
+              {
+              imageOptions.map((item, index) => {
                 return (
                   <View
                     key={index}
