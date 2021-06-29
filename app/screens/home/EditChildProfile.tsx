@@ -3,6 +3,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import { LabelText, TitleLinkSm } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
+import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -34,13 +35,16 @@ type Props = {
   navigation: NotificationsNavigationProp;
 };
 const EditChildProfile = ({ route, navigation }: Props) => {
-const { childData } = route.params;
-const childList = useAppSelector((state: any) =>
+let  childData  = route.params.childData;
+ const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  console.log(childData,"..childData..");
+  // if(childList.length>0 && childData!=null){
+  // childData=childList.filter(item =>item.uuid == childData?.uuid)[0];
+  // }
+  // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
@@ -53,6 +57,7 @@ const childList = useAppSelector((state: any) =>
   }, {
       title:'girl'
   }];
+ 
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: 'Remove Photo' },
     { id: 1, iconName: 'ic_camera', name: 'Camera' },
@@ -60,7 +65,7 @@ const childList = useAppSelector((state: any) =>
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
-  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null ? `${DocumentDirectoryPath}/${childData.photoUri}` :'');
+  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null && childData.photoUri!="" ? `${DocumentDirectoryPath}/${childData.photoUri}` :'');
   const [photoUri, setphotoUri] = React.useState("");
   const [tempImage,cleanUPImage]= React.useState("");
   let initialData: any = {};
@@ -76,6 +81,7 @@ const childList = useAppSelector((state: any) =>
     setIsPremature(myString);
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
+  const genderData=genders.filter(item =>item.title == childData?.gender);
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -133,11 +139,8 @@ const childList = useAppSelector((state: any) =>
       //});
       deleteImageFile(capturedPhoto).then(async (data:any)=>{
         console.log(data,"..deleted..");
-        let record={
-          uuid:childData.uuid,
-          photoUri:''
-        }
-        let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema, record);
+        let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema,'', 'uuid ="' + childData?.uuid+ '"');
+        console.log(createresult,"..createresult..")
         if(createresult=='success'){
           MediaPicker.cleanupImages();
           setCapturedImage('');
@@ -260,7 +263,9 @@ const childList = useAppSelector((state: any) =>
 
         <ScrollView style={{ flex: 4 }}>
           <View style={{ flexDirection: 'column' }}>
+         
           {
+           
             (capturedPhoto!='' && capturedPhoto!=null && capturedPhoto!=undefined) ?
            
                <View
@@ -325,7 +330,7 @@ const childList = useAppSelector((state: any) =>
                   );
                 })}
               </View> */}
-  <ToggleRadios options={genders} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+  <ToggleRadios options={genders} defaultValue={genderData[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
       
               <ChildDate sendData={sendData} childData={childData} />
 
