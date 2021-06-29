@@ -1,23 +1,22 @@
+import { BgDevelopmentTint } from '@components/shared/BackgroundColors';
 import {
   ButtonContainer,
+  ButtonDevelopment,
   ButtonPrimary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FeatureContentBox, FeatureBox, FeatureImageBox,FeatureDivideArea} from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
+import { Heading2, ShiftFromBottom15 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
 
-const ContainerView = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  margin-top: 10px;
-  background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_TINTCOLOR};
-`;
+
 // const MilestoneCircle = () => (
 
 //   <View style={{
@@ -82,32 +81,30 @@ const ChildMilestones = () => {
   const {t} = useTranslation();
   return (
     <>
-      <ContainerView>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View
-            style={{
-              width: 130,
-              height: 130,
-              // borderRadius: circleWidth / 2,
-              backgroundColor: '#FFF',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+      <BgDevelopmentTint>
+      <FeatureDivideArea>
+        <MainContainer>
+          <FeatureBox>
+         <FlexDirRow>
+          <FeatureImageBox>
             <VectorImage
               source={require('@assets/svg/ic_development_color.svg')}
             />
-          </View>
-          <View>
-            <Text>{t('homeScreencdHeader')}</Text>
-            <ButtonContainer>
-              <ButtonPrimary
+          </FeatureImageBox>
+          <FeatureContentBox>
+            <ShiftFromBottom15>
+            <Heading2>{t('homeScreencdHeader')}</Heading2>
+            </ShiftFromBottom15>
+              <ButtonDevelopment
                 onPress={() => navigation.navigate('ChildDevelopment')}>
                 <ButtonText>{t('homeScreencdButton')}</ButtonText>
-              </ButtonPrimary>
-            </ButtonContainer>
-          </View>
-        </View>
-      </ContainerView>
+              </ButtonDevelopment>
+          </FeatureContentBox>
+          </FlexDirRow>
+          </FeatureBox>
+        </MainContainer>
+        </FeatureDivideArea>
+      </BgDevelopmentTint>
     </>
   );
 };
