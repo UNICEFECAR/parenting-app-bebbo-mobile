@@ -1,71 +1,71 @@
+import { BgArticlesTint } from '@components/shared/BackgroundColors';
 import {
+  ButtonArticles,
   ButtonContainer,
   ButtonPrimary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FeatureContentBox, FeatureBox, FeatureImageBox,FeatureDivideArea} from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
+import { Heading2, ShiftFromBottom15 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
 
-const ContainerView = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  margin-top: 10px;
-  background-color: ${(props) => props.theme.colors.ARTICLES_TINTCOLOR};
-`;
+
 const AdviceAndArticles = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   return (
     <>
-      <ContainerView>
-        <View style={{flexDirection: 'row', padding: 10}}>
-          <View
-            style={{
-              width: 130,
-              height: 130,
-              // borderRadius: circleWidth / 2,
-              backgroundColor: '#FFF',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
-          </View>
-          <View>
-            <Text>{t('homeScreenexpHeader')}</Text>
-            <ButtonContainer>
-              <ButtonPrimary onPress={() => navigation.navigate('Articles')}>
+    <BgArticlesTint>
+      <FeatureDivideArea>
+        <MainContainer>
+          <FeatureBox>
+         <FlexDirRow>
+          <FeatureImageBox>
+          <VectorImage source={require('@assets/svg/ic_article_color.svg')} />
+          </FeatureImageBox>
+          <FeatureContentBox>
+            <ShiftFromBottom15>
+            <Heading2>{t('homeScreenexpHeader')}</Heading2>
+            </ShiftFromBottom15>
+              <ButtonArticles
+                onPress={() => navigation.navigate('Articles')}>
                 <ButtonText>{t('homeScreenexpButton')}</ButtonText>
-              </ButtonPrimary>
-            </ButtonContainer>
-          </View>
-        </View>
-      </ContainerView>
+              </ButtonArticles>
+          </FeatureContentBox>
+          </FlexDirRow>
+          </FeatureBox>
+        </MainContainer>
+        </FeatureDivideArea>
+      </BgArticlesTint>
+
+      
     </>
   );
 };
 
 export default AdviceAndArticles;
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    borderRadius: 5,
-    margin: 3,
-    padding: 10,
-    // width: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    padding: 5,
-    width: 100,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   item: {
+//     backgroundColor: '#FFF',
+//     borderRadius: 5,
+//     margin: 3,
+//     padding: 10,
+//     // width: 200,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   title: {
+//     fontSize: 16,
+//     padding: 5,
+//     width: 100,
+//     fontWeight: 'bold',
+//     textAlign: 'center',
+//   },
+// });

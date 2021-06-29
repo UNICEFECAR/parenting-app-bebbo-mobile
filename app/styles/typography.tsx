@@ -68,7 +68,7 @@ font-family: 'roboto-regular';
 /*Heading 3 Styles */
 export const Heading3 = styled.Text`
   font-size: 16px;
-  line-height: 22px;
+  line-height: 20px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
   
@@ -93,7 +93,9 @@ font-family: 'roboto-regular';
 export const Heading3Regular = styled(Heading3)`
 font-family: 'roboto-regular';
 `
-
+export const Heading3Regularw = styled(Heading3Regular)`
+color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`
 
 /*Heading 3 Styles */
 
@@ -171,7 +173,7 @@ export const Paragraph = styled.Text`
   line-height: 18px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-regular';
-  margin-bottom:15px;
+ 
 `;
 export const Paragraphw = styled(Paragraph)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -227,4 +229,20 @@ margin-top:40px;
 `
 export const ShiftFromTop50 = styled.View`
 margin-top:50px;
+`
+export const ShiftFromTopBottom5 = styled.View`
+margin-bottom:5px;
+margin-top:5px;
+`
+export const ShiftFromTopBottom10 = styled.View`
+margin-bottom:10px;
+margin-top:10px;
+`
+export const ShiftFromTopBottom15 = styled.View`
+margin-bottom:15px;
+margin-top:15px;
+`
+export const ShiftFromTopBottom20 = styled.View`
+margin-bottom:20px;
+margin-top:20px;
 `
