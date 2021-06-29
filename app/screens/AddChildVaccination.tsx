@@ -1,4 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import PlannedVaccines from '@components/PlannedVaccines';
+import PrevPlannedVaccines from '@components/PrevPlannedVaccines';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormDateAction,
@@ -13,10 +15,10 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
+import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Header3Text } from '@styles/style';
 import {
   Heading2w,
   Heading3
@@ -48,19 +50,14 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const plannedVaccines = [
-    "Diphtheria, tetanus, pertussis, polio, influenzae type b- the second dose",
-    "Bacteria Streptococus pnuemoniae - the second dose",
-  ];
-  const prevPlannedVaccines = [
-    "Hepatitis B - the first dose",
-    "Tuberculosis",
-    "Tuberculosis1",
-  ];
+
   const isMeasured = [
-    "YES",
-    "NO",
+    {title:t('vcIsMeasuredOption1')},
+    {title:t('vcIsMeasuredOption2')},
   ];
+  const getCheckedItem =(checkedItem:typeof isMeasured[0])=>{
+    console.log(checkedItem);
+  }
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
     setmeasureShow(Platform.OS === 'ios');
@@ -108,14 +105,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </Pressable>
           </View>
         </View>
+        <View style={{padding:10}}>
         <FormInputGroup onPress={showmeasureDatepicker}>
-          <Header3Text>{t('growthScreendateMeasurementText')}</Header3Text>
+          <Heading3>{t('vcScreenDateText')}</Heading3>
           <FormInputBox>
             <FormDateText>
               <Text>
                 {measureDate
                   ? measureDate.toDateString()
-                  : t('growthScreenenterDateMeasurementText')}
+                  : t('vcScreenenterDateText')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -123,40 +121,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        <Header3Text>{"Planned Vaccines"}</Header3Text>
-        <View style={{flexDirection: 'column'}}>
-          {plannedVaccines.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
-        </View>
-        <Header3Text>{"Vaccines from previous Period"}</Header3Text>
-        <View style={{flexDirection: 'column'}}>
-          {prevPlannedVaccines.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
-        </View>
+        <Heading3>{t('vcPlanned')}</Heading3>
+        <PlannedVaccines/>
+        <Heading3>{t('vcPrev')}</Heading3>
+        <PrevPlannedVaccines/>
         <View>
           {showmeasure && (
             <DateTimePicker
@@ -168,32 +136,17 @@ const AddChildVaccination = ({route, navigation}: any) => {
             />
           )}
         </View>
-        <Header3Text>{'Was the child measured'}</Header3Text>
-        <View style={{flexDirection: 'row'}}>
-          {isMeasured.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
-        </View>
+        <Heading3>{t('vcChildMeasureQ')}</Heading3>
+        <ToggleRadios options={isMeasured} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
         <View>
-          <Header3Text>{'Doctor Remark or Comment'}}</Header3Text>
+          <Heading3>{t('vcDoctorRemark')}</Heading3>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="always"
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
-            placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
+            placeholder={t('vcDoctorRemarkPlaceHolder')}
             style={{
               backgroundColor: '#fff',
               paddingHorizontal: 20,
@@ -201,11 +154,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
             }}
           />
         </View>
-        <View>
-          <Text>{t('growthScreennewGrowthBottomText')}</Text>
-        </View>
+       
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
+          style={{backgroundColor:"#FFF"}}
             onPress={() => {
               navigation.goBack();
             }}>
@@ -247,6 +199,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        </View>
       </SafeAreaView>
     </>
   );

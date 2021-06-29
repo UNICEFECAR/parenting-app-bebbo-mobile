@@ -48,15 +48,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const plannedVaccines = [
-    "Diphtheria, tetanus, pertussis, polio, influenzae type b- the second dose",
-    "Bacteria Streptococus pnuemoniae - the second dose",
-  ];
-  const prevPlannedVaccines = [
-    "Hepatitis B - the first dose",
-    "Tuberculosis",
-    "Tuberculosis1",
-  ];
+
   const isMeasured = [
     "YES",
     "NO",

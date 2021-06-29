@@ -242,10 +242,19 @@ const en = {
             vcArticleLink:"Read Article for more details",
             vcSetReminder:"Set Vaccination Reminder",
             vcAddBtn:"Enter Vaccination data",
-            vcEditDoctorData:"Enter Doctor Visit Data",
+            vcEditDoctorData:"Edit Doctor Visit Data",
             addVcTitle:"New Vaccination",
             editVcTitle:"Edit Vaccination",
             
+            vcScreenDateText:"Date of health check-up",
+            vcScreenenterDateText:"Enter Date of health check-up",
+            vcPlanned:"Planned Vaccines",
+            vcPrev:"Vaccines from previous Period",
+            vcChildMeasureQ:"Was the child measured?",
+            vcDoctorRemark:"Doctor Remark or Comment",
+            vcDoctorRemarkPlaceHolder:"Enter Doctor Remark or Comment",
+            vcIsMeasuredOption1:"YES",
+            vcIsMeasuredOption2:"NO",
            
     }
 }
