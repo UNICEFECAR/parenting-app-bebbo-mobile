@@ -83,7 +83,7 @@ const DailyReads = () => {
           <FDirRow>
           <OuterIconRow>
                 <OuterIconLeft>
-                <Icon name="ic_sb_shareapp" size={24} color="#000" />
+                <Icon name="ic_view" size={13} color="#000" />
                 </OuterIconLeft>
               </OuterIconRow>
               <Heading4>{t('homeScreenviewDetailsText')}</Heading4>

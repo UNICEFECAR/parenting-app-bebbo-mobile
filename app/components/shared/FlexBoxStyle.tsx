@@ -8,10 +8,14 @@ flex-direction:row;
 flex:1;
 align-items:center;
 `;
+
+export const FlexDirCol = styled.View`
+flex-direction:column;
+flex:1;
+justify-content:center;
+`;
 export const FDirCol = styled.View`
 flex-direction:column;
-
-
 `;
 
 
