@@ -1,41 +1,41 @@
 import Icon, {
-    OuterIconLeft,
-    OuterIconRow,
-    TickView
+  OuterIconLeft,
+  OuterIconRow,
+  TickView
 } from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import {
-    Heading3,
-    Heading5,
-    Heading5Bold,
-    ShiftFromBottom20
+  Heading3,
+  Heading5,
+  Heading5Bold,
+  ShiftFromBottom20
 } from '@styles/typography';
 import React, { useState } from 'react';
 import {
-    Modal,
-    Pressable,
-    StyleSheet,
-    TouchableOpacity,
-    View
+  Modal,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import {
-    getAllChildren,
-    getAllConfigData,
-    setActiveChild
+  getAllChildren,
+  getAllConfigData,
+  setActiveChild
 } from '../services/childCRUD';
 import {
-    ButtonLinkPress,
-    ButtonPrimary,
-    ButtonRow, ButtonSpacing, ButtonText,
-    ButtonTextLine, ButtonTextSmLine
+  ButtonLinkPress,
+  ButtonPrimary,
+  ButtonRow, ButtonSpacing, ButtonText,
+  ButtonTextLine, ButtonTextSmLine
 } from './shared/ButtonGlobal';
 import {
-    HeaderActionBox, HeaderActionView
+  HeaderActionBox, HeaderActionView
 } from './shared/HeaderContainerStyle';
 import {
-    ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
+  ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
 } from './shared/ProfileListingStyle';
   const headerHeight = 50;
   const HeaderBabyMenu = (props: any) => {
@@ -186,7 +186,7 @@ import {
                   setModalVisible(true);
                 }
               }}>
-              <Icon name="ic_baby" size={25} color="#000" />
+              <Icon name="ic_baby" size={25} color={props.color || '#FFF'}/>
             </HeaderActionBox>
           </HeaderActionView>
       </>
