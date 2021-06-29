@@ -6,11 +6,16 @@ export const ButtonPrimary = styled.Pressable`
 background: ${props => props.disabled ? '#cccccc' : props.theme.colors.SECONDARY_COLOR};
 opacity: ${props => props.disabled ? 0.5 : 1};
 color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
-padding: 14px 15px;
+padding: 14px 6px;
 width:100%;
 font-family: 'roboto-bold';
 border-radius: 4px;
 height:50px;
+`;
+
+export const ButtonPrimaryMd = styled(ButtonPrimary)`
+padding: 10px 4px;
+height:40px;
 `;
 
 /*Button Text */
@@ -28,6 +33,14 @@ export const ButtonTextLine = styled(ButtonText)`
 `;
 export const ButtonTextSmLine = styled(ButtonTextLine)`
   font-size:12px;
+`;
+
+export const ButtonTextSm = styled(ButtonText)`
+  font-size:12px;
+`;
+
+export const ButtonTextMd = styled(ButtonText)`
+  font-size:14px;
 `;
 
 export const ButtonTextMdLine = styled(ButtonTextLine)`
@@ -51,7 +64,7 @@ export const ButtonLinkText = styled.Text`
   
 `;
 
-export const ButtonTextsm = styled(ButtonText)`
+export const ButtonTextLg = styled(ButtonText)`
   font-size:16px;
 `;
 
@@ -97,6 +110,9 @@ justify-content:center;
 `
 
 export const ButtonTertiary = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`;
+export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
