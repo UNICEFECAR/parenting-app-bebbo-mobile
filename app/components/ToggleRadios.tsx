@@ -1,13 +1,15 @@
 import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
 import { Heading3, Heading3Regular } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import Icon from './shared/Icon';
 
 const ToggleRadios = (props: any) => {
-  const {options,tickColor,tickbgColor} = props;
-  const [checkedItem, setCheckedItem] = useState();
+  const {options,tickColor,tickbgColor,defaultValue} = props;
+  // console.log(defaultValue,"..defaultValue..");
+  const [checkedItem, setCheckedItem] = useState(defaultValue);
+ 
   return (
     <>
       <View style={{flexDirection: 'row'}}>
@@ -22,6 +24,7 @@ const ToggleRadios = (props: any) => {
                 }}>
                 <FormOuterCheckbox
                   onPress={() => {
+                    
                     setCheckedItem(item);
                     props.getCheckedItem(item);
                   }}>
