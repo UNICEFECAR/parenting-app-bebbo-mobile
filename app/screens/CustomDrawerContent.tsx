@@ -1,13 +1,12 @@
 import { BgDevelopment, BgGrowth, BgHealth, BgVaccination } from '@components/shared/BackgroundColors';
-import { MainContainer } from '@components/shared/Container';
-import { FDirCol, Flex1, FlexDirRow,FDirRow } from '@components/shared/FlexBoxStyle';
-import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
-import Icon, { OuterIconLeft15,OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import {SubDrawerLinkView,SubDrawerHead, NavIconSpacing,DrawerHeadContainer,DrawerLinkView } from '@components/shared/NavigationDrawer';
-import { Heading3, Heading4, Heading5, ShiftFromTopBottom10 } from '@styles/typography';
+import { FDirCol, FDirRow, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
+import { DrawerHeadContainer, DrawerLinkView, NavIconSpacing, SubDrawerHead, SubDrawerLinkView } from '@components/shared/NavigationDrawer';
+import { Heading3, Heading4, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, ScrollView, Share, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 const CustomDrawerContent = ({navigation}: any) => {
@@ -239,7 +238,7 @@ const CustomDrawerContent = ({navigation}: any) => {
           <Heading4>{t('drawerMenusetTxt')}</Heading4>
         </DrawerLinkView>
 
-        <DrawerLinkView onPress={() => onShare}>
+        <DrawerLinkView onPress={() => onShare()}>
         <OuterIconRow>
             <OuterIconLeft15>
             <Icon name="ic_sb_shareapp" size={25} color="#000" />
