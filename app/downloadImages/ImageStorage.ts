@@ -74,7 +74,9 @@ export const deleteImageFile=(filename:any)=>{
               console.log(err.message);
             });
         }
-  
+        else{
+            resolve('Success');
+        }
       })
       .catch((err) => {
         reject('Fail');
