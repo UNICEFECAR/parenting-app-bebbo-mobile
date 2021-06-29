@@ -227,6 +227,8 @@ const en = {
 
             actScreenremovetoFavText:"Remove from Favorites",
 
+            appShareText:"Parenbuddy App | An App for parents to monitor and guide your child growth",
+
             vcHeader:"Vaccination",
             vcSummaryHeader:"Vaccination Summary",
             vcStatus1:"Upcoming",
@@ -234,9 +236,15 @@ const en = {
             vcStatus3:"Done",
             vcTab1:"Upcoming",
             vcTab2:"Previous",
+            vaccinesTxt:"Vaccines",
+            vaccinesDoneTxt:"Done",
+            vaccinesPendingTxt:"Pending",
             vcArticleLink:"Read Article for more details",
             vcSetReminder:"Set Vaccination Reminder",
             vcAddBtn:"Enter Vaccination data",
+            vcEditDoctorData:"Enter Doctor Visit Data",
+            addVcTitle:"New Vaccination",
+            editVcTitle:"Edit Vaccination",
             
            
     }

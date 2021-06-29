@@ -26,7 +26,7 @@ const SupportChat = ({ navigation }: Props) => {
        <TabScreenHeader
           title={t('supportScreenheaderTitle')}
           headerColor={headerColor}
-          textColor="#000"
+          textColor="#FFF"
         />
       <View style={{
         flexDirection: 'column',

@@ -116,7 +116,7 @@ const UserGuide = ({navigation}: Props) => {
         <TabScreenHeader
               title={t('userGuideheaderTitle')}
               headerColor={headerColor}
-              textColor="#000"
+              textColor="#FFF"
             />
 
         <View style={{flexDirection: 'column', flex: 1}}>
