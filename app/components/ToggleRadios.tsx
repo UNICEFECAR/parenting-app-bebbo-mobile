@@ -14,7 +14,7 @@ const ToggleRadios = (props: any) => {
         {options.map((item: typeof options[0], index: number) => {
           return (
             <>
-              <View
+              <View key={index}
                 style={{
                   padding: 10,
                   backgroundColor: '#FFF',
