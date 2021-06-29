@@ -47,7 +47,7 @@ const FavArticles = (props: any) => {
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle =()=>{
     navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
+      fromScreen: 'Articles',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
     });
