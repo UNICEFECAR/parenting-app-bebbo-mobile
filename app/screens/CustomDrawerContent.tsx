@@ -4,7 +4,7 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
-import { FDirCol, FDirRow, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FDirCol, FDirRow, FlexDirRow, Flex1 } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderRowView,
@@ -59,39 +59,58 @@ const CustomDrawerContent = ({navigation}: any) => {
     <>
       <SafeAreaView>
         <ScrollView>
-          <View>
-            <Pressable
-              onPress={() => navigation.navigate('ChildProfileScreen')}
-              style={{
-                backgroundColor: headerColor,
-              }}>
-              <DrawerHeadContainer>
-                <HeaderRowView>
-                  <HeaderTitleView>
-                    <FlexDirRow>
-                      <OuterIconRow>
-                        <OuterIconLeft15>
-                          <Icon name="ic_baby" size={25} color="#000" />
-                        </OuterIconLeft15>
-                      </OuterIconRow>
-                      <FDirCol>
-                        <Heading3>Alice</Heading3>
-                        <Heading5>
-                          {t('drawerMenuchildInfo', {
-                            childdob: '19 Jul 2020 02:32pm',
-                          })}
-                        </Heading5>
-                      </FDirCol>
-                    </FlexDirRow>
-                  </HeaderTitleView>
-                  <HeaderActionView>
-                    <Icon name="ic_angle_right" size={16} color="#000" />
-                  </HeaderActionView>
-                </HeaderRowView>
+        {/* <View>
+          <Pressable
+            onPress={() => navigation.navigate('ChildProfileScreen')}
+            style= {{backgroundColor: headerColor,
+            }}>
+            <Icon name="ic_baby" size={25} color="#000" />
+            <Text>Child 1 Born on 19july 2020</Text>
+            <Text>{t('drawerMenu.childInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
+            <Icon name="ic_angle_right" size={15} color="#000" />
+          </Pressable>
+        </View> */}
+        <Flex1>
+          <Pressable
+            onPress={() => navigation.navigate('ChildProfileScreen')}
+            style={{
+              backgroundColor: headerColor,
+            }}>
+               <DrawerHeadContainer>
+              <HeaderRowView>
+                <HeaderTitleView>
+                <FlexDirRow>
+                  <OuterIconRow>
+                    <OuterIconLeft15>
+                <Icon name="ic_baby" size={25} color="#000" />
+                </OuterIconLeft15>
+                </OuterIconRow>
+                <FDirCol>
+            <Heading3>Alice</Heading3>
+            <Heading5>{t('drawerMenuchildInfo',{childdob: '19 Jul 2020 02:32pm'})}</Heading5>
+            </FDirCol>
+            </FlexDirRow>
+                </HeaderTitleView>
+              <HeaderActionView>
+                <Icon name="ic_angle_right" size={16} color="#000" />
+              </HeaderActionView>
+             
+              </HeaderRowView>
               </DrawerHeadContainer>
-            </Pressable>
-          </View>
-          <DrawerLinkView onPress={() => navigation.navigate('Home')}>
+          </Pressable>
+        </Flex1>
+        <DrawerLinkView
+          onPress={() => navigation.navigate('Home')}
+          ><OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_home" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
+          onPress={() => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_home" size={25} color="#000" />
