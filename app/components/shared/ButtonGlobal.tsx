@@ -96,4 +96,28 @@ justify-content:center;
 
 `
 
+export const ButtonTertiary = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`;
 
+
+/*Button Colors as per features*/
+
+export const ButtonActivity = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.ACTIVITIES_COLOR};
+`;
+export const ButtonArticles = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.ARTICLES_COLOR};
+`;
+export const ButtonVaccination = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.VACCINATION_COLOR};
+`;
+export const ButtonDevelopment = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+`;
+export const ButtonGrowth = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.CHILDGROWTH_COLOR};
+`;
+export const ButtonHealth = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.HEALTHCHECKUP_COLOR};
+`;
