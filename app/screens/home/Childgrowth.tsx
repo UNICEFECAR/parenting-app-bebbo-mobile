@@ -5,13 +5,13 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2,
-    Heading3,
-    Heading3Regular,
-    Heading4,
-    Heading4Center,
-    Heading5,
-    Paragraph
+  Heading2,
+  Heading3,
+  Heading3Regular,
+  Heading4,
+  Heading4Center,
+  Heading5,
+  Paragraph
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
