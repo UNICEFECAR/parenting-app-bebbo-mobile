@@ -62,7 +62,7 @@ const RelatedArticles = () => {
           <Heading3 style={styles.title}>{item.title}</Heading3>
         </View>
        
-         <ShareFavButtons backgroundColor={'#FFF'}/>
+         <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
        
       </View>
     );

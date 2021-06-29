@@ -1,5 +1,4 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
 import WalkthroughContainer, {
   Slide,
   WalkthroughContentArea,
@@ -8,9 +7,9 @@ import WalkthroughContainer, {
   WalkthroughSubtext,
   WalkthroughTitle
 } from '@components/shared/WalkthroughStyle';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
@@ -113,20 +112,12 @@ const UserGuide = ({navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View style={{flex: 1}}>
-            <BurgerIcon />
-          </View>
-          <View style={{flex: 5, padding: 8}}>
-            <Heading2w> {t('userGuideheaderTitle')}</Heading2w>
-          </View>
-        </View>
+       
+        <TabScreenHeader
+              title={t('userGuideheaderTitle')}
+              headerColor={headerColor}
+              textColor="#000"
+            />
 
         <View style={{flexDirection: 'column', flex: 1}}>
           <AppIntroSlider

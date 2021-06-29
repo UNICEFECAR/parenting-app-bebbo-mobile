@@ -1,8 +1,8 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading2w, Heading3, Heading3Center, ShiftFromTop10 } from '@styles/typography';
+import { Heading1, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -23,24 +23,15 @@ const SupportChat = ({ navigation }: Props) => {
         animated={true}
         backgroundColor={headerColor}
        />
+       <TabScreenHeader
+          title={t('supportScreenheaderTitle')}
+          headerColor={headerColor}
+          textColor="#000"
+        />
       <View style={{
         flexDirection: 'column',
         flex: 1,
       }}>
-       <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View style={{flex: 1}}>
-            <BurgerIcon />
-          </View>
-          <View style={{flex: 5,padding:8}}>
-            <Heading2w> {t('supportScreenheaderTitle')}</Heading2w>
-          </View>
-        </View>
         
         <View style={{flex:1,alignItems:'center',justifyContent: 'center',padding:50}}>
           <Heading1>{t('supportScreenheader1text')}</Heading1>

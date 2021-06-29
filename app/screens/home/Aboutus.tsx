@@ -1,8 +1,7 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -27,27 +26,26 @@ const Aboutus = ({navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+
         <View
           style={{
             flexDirection: 'column',
-            paddingBottom:15,
+            paddingBottom: 15,
           }}>
           <View
             style={{
               flexDirection: 'row',
-              backgroundColor: headerColor,
               maxHeight: 50,
             }}>
-            <View style={{flex: 1}}>
-              <BurgerIcon />
-            </View>
-            <View style={{flex: 5, padding: 8}}>
-              <Heading2w> {t('aboutUsScreenheaderTitle')}</Heading2w>
-            </View>
+            <TabScreenHeader
+              title={t('aboutUsScreenheaderTitle')}
+              headerColor={headerColor}
+              textColor="#000"
+            />
           </View>
 
           <View>
-            <ScrollView contentContainerStyle={{padding: 15,paddingTop:0}}>
+            <ScrollView contentContainerStyle={{padding: 15, paddingTop: 0}}>
               <HTML source={{html: body}} baseFontStyle={{fontSize: 16}} />
             </ScrollView>
           </View>

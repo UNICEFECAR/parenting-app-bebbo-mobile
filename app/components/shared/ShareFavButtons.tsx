@@ -5,7 +5,7 @@ import Icon from './Icon';
 
 const ShareFavButtons = (props:any) => {
   const {t} = useTranslation();
-  const {backgroundColor}= props;
+  const {backgroundColor,isFavourite}= props;
   return (
     <>
     <View style={{flexDirection: 'row', padding: 10,backgroundColor:backgroundColor}}>
@@ -16,10 +16,14 @@ const ShareFavButtons = (props:any) => {
           </Pressable>
         </View>
         <View style={{flex: 1}}>
-          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+          {isFavourite ? <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+            <Icon name="ic_trash" size={20} color="#000" />
+            <Text>{t('actScreenremovetoFavText')}</Text>
+          </Pressable>:<Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <Icon name="ic_sb_favorites" size={20} color="#000" />
             <Text>{t('actScreenaddtoFavText')}</Text>
           </Pressable>
+}
         </View>
       </View>
       </>
