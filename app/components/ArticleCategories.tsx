@@ -2,7 +2,9 @@ import { activityCategory } from '@types/apiConstants';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useAppSelector } from '../../App';
-import Icon from './shared/Icon';
+import { ArticleFilter,FilterBox,FilterText } from './shared/FilterStyle';
+import { FlexDirRow } from './shared/FlexBoxStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
 let filterArray: string[] = [];
 const getFilterArray = (itemId: any) => {
   // filterArray.push("78");
@@ -34,26 +36,23 @@ const articleBrackets = chunk(activityCategory, 2)
  // console.log(articleBrackets);
   return (
     <>
-      <View
-        style={{
-          padding: 10,
-          minHeight: 150,
-          borderBottomColor: props.borderColor,
-          borderBottomWidth: 1,
-          borderTopColor: props.borderColor,
-          borderTopWidth: 1,
-        }}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+      <ArticleFilter>
+        <FlexDirRow>
           {articleBrackets.map((activityCategoryInner:any[], i:number) => {
              // console.log(activityCategoryInner)
             return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
                 {
                  activityCategoryInner.map((item) => {
                     return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id))}}>
-                    <View style={[styles.item,{backgroundColor:(filterArray.includes(item.id) ? "#000" : "#fff")}]}  >
-                       <Icon style={styles.iconStyle} name={item.image} size={20} color={(filterArray.includes(item.id) ? "#fff" : "#000")} />
-                       <Text style={[styles.title,{color:(filterArray.includes(item.id) ? "#fff" : "#000")}]}>{categoryData.filter((x: any) => x.id==item.id)[0].name }</Text>
-                   </View>
+                    <FilterBox style={[{backgroundColor:(filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
+                       <OuterIconRow>
+                         <OuterIconLeft>
+                              <Icon 
+                              style={styles.iconStyle} name={item.image} size={20} color="#000" />
+                         </OuterIconLeft>
+                         </OuterIconRow>
+                       <FilterText>{categoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
+                   </FilterBox>
                    </Pressable>)
                  })  
                 }
@@ -68,7 +67,8 @@ const articleBrackets = chunk(activityCategory, 2)
                         </View>
                         </TouchableOpacity>
                     }) : null} */}
-        </View>
+                </FlexDirRow>
+
         {/* <View style={styles.item} >
                         <Icon style={styles.iconStyle} name="ic_artl_play" size={20} color="#000" />
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.playingAndLearning)[0].name }</Text>
@@ -96,33 +96,33 @@ const articleBrackets = chunk(activityCategory, 2)
                         <Text style={styles.title}>{categoryData.filter((x: any) => x.id==activityCategory.nutritionAndBreastfeeding)[0].name }</Text>
                     </View>
                 </View> */}
-      </View>
+      </ArticleFilter>
     </>
   );
 };
 export default ArticleCategories;
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    borderRadius: 5,
-    margin: 5,
-    // padding: 10,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
+  // item: {
+  //   backgroundColor: '#FFF',
+  //   borderRadius: 5,
+  //   margin: 5,
+  //   // padding: 10,item
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   alignitems: 'center',
+  //   flexDirection: 'row',
+  // },
   iconStyle: {
     flex: 1,
     marginLeft: 10,
   },
-  title: {
-    fontSize: 10,
-    // padding: 5,
-    margin: 0,
-    flex: 2,
-    width: 100,
-    fontWeight: 'bold',
-    justifyContent: 'flex-start',
-  },
+  // title: {
+  //   fontSize: 10,
+  //   // padding: 5,
+  //   margin: 0,
+  //   flex: 2,
+  //   width: 100,
+  //   fontWeight: 'bold',
+  //   justifyContent: 'flex-start',
+  // },
 });

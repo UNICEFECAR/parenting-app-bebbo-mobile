@@ -2,8 +2,11 @@ import { articledata } from '@assets/translations/appOfflineData/article';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
+import { ButtonContainer, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
+
+import { FDirRow, FlexDirCol } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -14,7 +17,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading4Centerr } from '@styles/typography';
+import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom10,ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -88,17 +91,21 @@ const Articles = ({navigation}: Props) => {
    })
   const renderArticleItem = (item: any, index: number) => (
       <Pressable onPress={onPress} key={index}>
-        <View style={styles.item}>
+        <ArticleListContainer>
           <Image
             style={styles.cardImage}
             // source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
             source={require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
           />
-          <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
-          <Text style={styles.title}>{item.title}</Text>
-          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
-        </View>
+          <ArticleListContent>
+            <ShiftFromTopBottom5>
+          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
+          </ShiftFromTopBottom5>
+          <Heading3>{item.title}</Heading3>
+          </ArticleListContent>
+          <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
+        </ArticleListContainer>
       </Pressable>
 
   );
@@ -226,14 +233,19 @@ const Articles = ({navigation}: Props) => {
             textColor="#000"
           />
 
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <View style={{flexDirection: 'row', backgroundColor: '#fff'}}>
-              <Icon
+          <FlexDirCol>
+            <SearchBox>
+              <OuterIconRow>
+                <OuterIconLeft15>
+                <Icon
                 name="ic_search"
                 size={20}
                 color="#000"
-                style={{paddingHorizontal: 20, paddingVertical: 16}}
+                
               />
+                </OuterIconLeft15>
+              </OuterIconRow>
+              
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -243,20 +255,17 @@ const Articles = ({navigation}: Props) => {
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
                 style={{
-                  backgroundColor: '#fff',
-                  width: '100%',
-                  textAlign: 'left',
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 0,
                 }}
               />
-            </View>
+            </SearchBox>
            
               <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
               {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
               }) : setFilteredArticleData([])}
               
-          </View>
+          </FlexDirCol>
           </ScrollView>
           <Modal
         animationType="none"
@@ -280,17 +289,20 @@ const Articles = ({navigation}: Props) => {
               </PopupClose>
             </PopupCloseContainer>
 
-            <View>
+            
               <Heading4Centerr>
                 {t('articleModalText')}
               </Heading4Centerr>
+              <ShiftFromTop10><Text></Text></ShiftFromTop10>
+              <FDirRow>
               <ButtonPrimary
                 onPress={() => {
                   setIsModalOpened('IsArticleModalOpened');
                 }}>
                 <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonPrimary>
-            </View>
+              </FDirRow>
+
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
@@ -302,30 +314,30 @@ const Articles = ({navigation}: Props) => {
 
 export default Articles;
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    // padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 5,
-    flex: 1,
-  },
-  title: {
-    fontSize: 16,
-    padding: 10,
-    flex: 1,
-  },
-  label: {
-    fontSize: 12,
-    paddingLeft: 10,
-    flex: 1,
-  },
+  // item: {
+  //   backgroundColor: '#FFF',
+  //   // padding: 20,
+  //   marginVertical: 8,
+  //   marginHorizontal: 16,
+  //   borderRadius: 5,
+  //   flex: 1,
+  //   overflow:'hidden',
+  // },
+  // title: {
+  //   fontSize: 16,
+  //   padding: 10,
+  //   flex: 1,
+  // },
+  // label: {
+  //   fontSize: 12,
+  //   paddingLeft: 10,
+  //   flex: 1,
+  // },
   cardImage: {
     height: 200,
     width: '100%',
     flex: 1,
     alignSelf: 'center',
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
+    
   },
 });
