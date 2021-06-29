@@ -37,11 +37,11 @@ const TabScreenHeader = (props: any) => {
           backgroundColor: headerColor,
           maxHeight: headerHeight,
         }}>
-        <BurgerIcon />
+        <BurgerIcon color={textColor}/>
         <HeaderTitleView>
-          <Heading2w> {props.title}</Heading2w>
+          <Heading2w style={{color:textColor}}> {props.title}</Heading2w>
         </HeaderTitleView>
-        <HeaderBabyMenu/>
+        <HeaderBabyMenu color={textColor}/>
         {/* <HeaderActionView>
           <HeaderActionBox
             onPress={() => {
