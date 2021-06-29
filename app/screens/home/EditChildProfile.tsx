@@ -48,7 +48,11 @@ const childList = useAppSelector((state: any) =>
 
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
-  const genders = ['boy', 'girl'];
+  const genders = [{
+    title:'boy'
+  }, {
+      title:'girl'
+  }];
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: 'Remove Photo' },
     { id: 1, iconName: 'ic_camera', name: 'Camera' },
@@ -70,14 +74,12 @@ const childList = useAppSelector((state: any) =>
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
-    // 
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
-
     }, [])
   );
  const onChildPhotoChange=async (child: ChildEntity | undefined, image: ImageObject)=>{
@@ -218,6 +220,10 @@ const childList = useAppSelector((state: any) =>
     console.log(insertData,"..insertData..");
     addChild(editScreen, 2, childSet, dispatch, navigation);
   }
+  const getCheckedItem =(checkedItem:typeof genders[0])=>{
+    console.log(checkedItem);
+    setGender(checkedItem.title);
+  }
   return (
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
@@ -302,7 +308,7 @@ const childList = useAppSelector((state: any) =>
                   }}
                 />
               </View>
-              <View style={{ flexDirection: 'row' }}>
+              {/* <View style={{ flexDirection: 'row' }}>
                 {genders.map((item, index) => {
                   return (
                     <View
@@ -318,8 +324,9 @@ const childList = useAppSelector((state: any) =>
                     </View>
                   );
                 })}
-              </View>
-
+              </View> */}
+  <ToggleRadios options={genders} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+      
               <ChildDate sendData={sendData} childData={childData} />
 
               <View style={{ width: '100%', marginTop: 30 }}>
