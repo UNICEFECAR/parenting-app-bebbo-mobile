@@ -85,7 +85,7 @@ function* onFetchAPI(value: any) {
             });
           } else if (prevPage == 'ChilSetup') {
             //dispatch action for before home page
-            navigation.navigate('HomeDrawerNavigator');
+            navigation.reset('HomeDrawerNavigator');
           }
         }
       }

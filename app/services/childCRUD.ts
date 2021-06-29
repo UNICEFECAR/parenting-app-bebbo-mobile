@@ -31,7 +31,6 @@ export const setActiveChild=async (uuid:any)=>{
   let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
 }
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any) => {
-
   if (editScreen) {
     //console.log("..update child..", data);
     let createresult = await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
@@ -40,10 +39,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
   else {
   //  console.log("..add child..", data);
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
-    
   }
-
-
   if (param == 0) {
     navigation.reset({
       index: 0,
@@ -53,7 +49,6 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
- 
   }
   else if (param == 1) {
     navigation.navigate('ChildSetupList');

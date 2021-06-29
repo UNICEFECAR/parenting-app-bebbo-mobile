@@ -54,7 +54,36 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
 
     return rval;
 }
-
+export const deleteImageFile=(filename:any)=>{
+    return new Promise(function(resolve:any, reject:any){
+    const filepath = filename;
+  
+    RNFS.exists(filepath)
+    .then( (result) => {
+        console.log("file exists: ", result);
+  
+        if(result){
+          return RNFS.unlink(filepath)
+            .then(() => {
+              console.log('FILE DELETED');
+              resolve('Success');
+            })
+            // `unlink` will throw an error, if the item to unlink does not exist
+            .catch((err) => {
+              reject('Fail');
+              console.log(err.message);
+            });
+        }
+        else{
+            resolve('Success');
+        }
+      })
+      .catch((err) => {
+        reject('Fail');
+        console.log(err.message);
+      });
+    });
+  }
 const downloadImages=async (args: ApiImageData[]): Promise<{ success: boolean, args: ApiImageData }[] | null> =>{
    // console.log(args,"..args..");
     let allResponses: any[] = [];
