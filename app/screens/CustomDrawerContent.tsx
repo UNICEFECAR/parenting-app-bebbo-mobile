@@ -1,4 +1,10 @@
-import Icon from '@components/shared/Icon';
+import { BgDevelopment, BgGrowth, BgHealth, BgVaccination } from '@components/shared/BackgroundColors';
+import { MainContainer } from '@components/shared/Container';
+import { FDirCol, Flex1, FlexDirRow,FDirRow } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import Icon, { OuterIconLeft15,OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import {SubDrawerLinkView,SubDrawerHead, NavIconSpacing,DrawerHeadContainer,DrawerLinkView } from '@components/shared/NavigationDrawer';
+import { Heading3, Heading4, Heading5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
@@ -30,129 +36,241 @@ const CustomDrawerContent = ({navigation}: any) => {
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView>
         <ScrollView>
         <View>
           <Pressable
             onPress={() => navigation.navigate('ChildProfileScreen')}
             style={{
-              padding: 25,
-              flexDirection: 'row',
+              
               backgroundColor: headerColor,
             }}>
-            <Icon name="ic_baby" size={25} color="#000" />
-            <View style={{flexDirection:'column'}}>
-            <Text>Alice</Text>
-            <Text >{t('drawerMenuchildInfo',{childdob: '19 Jul 2020 02:32pm'})}</Text>
-            </View>
-            <Icon name="ic_angle_right" size={15} color="#000" />
+               <DrawerHeadContainer>
+              <HeaderRowView>
+                
+              
+              
+              
+                <HeaderTitleView>
+                <FlexDirRow>
+                  <OuterIconRow>
+                    <OuterIconLeft15>
+                <Icon name="ic_baby" size={25} color="#000" />
+                </OuterIconLeft15>
+                </OuterIconRow>
+                <FDirCol>
+            <Heading3>Alice</Heading3>
+            <Heading5>{t('drawerMenuchildInfo',{childdob: '19 Jul 2020 02:32pm'})}</Heading5>
+            </FDirCol>
+           
+           
+            
+            </FlexDirRow>
+                </HeaderTitleView>
+              <HeaderActionView>
+                <Icon name="ic_angle_right" size={16} color="#000" />
+              </HeaderActionView>
+             
+              </HeaderRowView>
+              </DrawerHeadContainer>
           </Pressable>
         </View>
-        <Pressable
+        <DrawerLinkView
           onPress={() => navigation.navigate('Home')}
-          style={styles.item}>
-          <Icon name="ic_sb_home" size={25} color="#000" />
-          <Text>{t('drawerMenuhomeTxt')}</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('NotificationsScreen')}
-          style={styles.item}>
-          <Icon name="ic_sb_notification" size={25} color="#000" />
-          <Text>{t('drawerMenunotiTxt')}</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => onChangeaccordvalue(!accordvalue)}
-          style={styles.item}>
-          <Icon name="ic_sb_tools" size={25} color="#000" />
-
-          <Text>{t('drawerMenutoolsTxt')}</Text>
+          ><OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_home" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
+          onPress={() => navigation.navigate('NotificationsScreen')}>
+            <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_notification" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenunotiTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
+          onPress={() => onChangeaccordvalue(!accordvalue)}>
+          
+          <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_tools" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          <Heading4>{t('drawerMenutoolsTxt')}</Heading4>
           <Icon  style={{flex: 1, textAlign: 'right', alignSelf: 'center'}} name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'} size={10} color="#000" />
 
-        </Pressable>
+        </DrawerLinkView>
 
         {accordvalue ? (
           <>
-            <Pressable
+            <SubDrawerLinkView
               onPress={() =>
                 navigation.navigate('Home', {screen: 'ChildDevelopment'})
-              }
-              style={styles.item}>
-              <Icon name="ic_milestone" size={25} color="#000" />
-              <Text>{t('drawerMenucdTxt')}</Text>
-            </Pressable>
-            <Pressable
+              }>
+                
+              <FDirRow>
+            <BgDevelopment>
+              <NavIconSpacing>
+            <Icon name="ic_milestone" size={25} color="#000" />
+            </NavIconSpacing>
+            </BgDevelopment>
+          </FDirRow>
+          <FDirRow>
+            <SubDrawerHead>
+              <Heading4>{t('drawerMenucdTxt')}</Heading4>
+              </SubDrawerHead>
+              </FDirRow>
+            </SubDrawerLinkView>
+            <SubDrawerLinkView
               onPress={() =>
                 navigation.navigate('Tools', {screen: 'VaccinationTab'})
               }
-              style={styles.item}>
-              <Icon name="ic_vaccination" size={25} color="#000" />
-              <Text>{t('drawerMenuvcTxt')}</Text>
-            </Pressable>
-            <Pressable
+              >
+              <FDirRow>
+            <BgVaccination>
+              <NavIconSpacing>
+            <Icon name="ic_vaccination" size={25} color="#000" />
+            </NavIconSpacing>
+            </BgVaccination>
+          </FDirRow>
+          <FDirRow>
+            <SubDrawerHead>
+              <Heading4>{t('drawerMenuvcTxt')}</Heading4>
+              </SubDrawerHead>
+              </FDirRow>
+            </SubDrawerLinkView>
+            <SubDrawerLinkView
               onPress={() =>
-                navigation.navigate('Tools', {screen: 'HealthCheckupsTab'})
-              }
-              style={styles.item}>
-              <Icon name="ic_doctor_chk_up" size={25} color="#000" />
-              <Text>{t('drawerMenuhcTxt')}</Text>
-            </Pressable>
-            <Pressable
+                navigation.navigate('Tools', {screen: 'HealthCheckupsTab'})}>
+               
+              <FDirRow>
+            <BgHealth>
+              <NavIconSpacing>
+            <Icon name="ic_doctor_chk_up" size={25} color="#000" />
+            </NavIconSpacing>
+            </BgHealth>
+          </FDirRow>
+          <FDirRow>
+            <SubDrawerHead>
+              <Heading4>{t('drawerMenuhcTxt')}</Heading4>
+              </SubDrawerHead>
+              </FDirRow>
+            </SubDrawerLinkView>
+            <SubDrawerLinkView
               onPress={() =>
                 navigation.navigate('Tools', {screen: 'ChildgrowthTab'})
               }
-              style={styles.item}>
-              <Icon name="ic_growth" size={25} color="#000" />
-              <Text>{t('drawerMenucgTxt')}</Text>
-            </Pressable>
+             >
+            <FDirRow>
+            <BgGrowth>
+              <NavIconSpacing>
+            <Icon name="ic_growth" size={25} color="#000" />
+            </NavIconSpacing>
+            </BgGrowth>
+          </FDirRow>
+          <FDirRow>
+            <SubDrawerHead>
+              <Heading4>{t('drawerMenucgTxt')}</Heading4>
+              </SubDrawerHead>
+              </FDirRow>
+            </SubDrawerLinkView>
           </>
         ) : null}
-        <Pressable
-          onPress={() => navigation.navigate('SupportChat')}
-          style={styles.item}>
-          <Icon name="ic_chat" size={25} color="#000" />
-          <Text>{t('drawerMenuchatTxt')}</Text>
-        </Pressable>
-        <Pressable
+        <DrawerLinkView
+          onPress={() => navigation.navigate('SupportChat')}>
+            <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_chat" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+        
+          <Heading4>{t('drawerMenuchatTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
           onPress={() => navigation.navigate('Favourites')}
-          style={styles.item}>
-          <Icon name="ic_sb_favorites" size={25} color="#000" />
-          <Text>{t('drawerMenufavTxt')}</Text>
-        </Pressable>
-        <Pressable
+          >
+             <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_favorites" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+       
+          <Heading4>{t('drawerMenufavTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
           onPress={() => navigation.navigate('AboutusScreen')}
-          style={styles.item}>
-          <Icon name="ic_sb_about" size={25} color="#000" />
-          <Text>{t('drawerMenuabtTxt')}</Text>
-        </Pressable>
-        <Pressable
+          >
+            <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_about" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenuabtTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
           onPress={() => navigation.navigate('UserGuide')}
-          style={styles.item}>
-          <Icon name="ic_sb_userguide" size={25} color="#000" />
-          <Text>{t('drawerMenuugTxt')}</Text>
-        </Pressable>
-        <Pressable
+          >
+            <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_userguide" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenuugTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView
           onPress={() => navigation.navigate('SettingsScreen')}
-          style={styles.item}>
-          <Icon name="ic_sb_settings" size={25} color="#000" />
-          <Text>{t('drawerMenusetTxt')}</Text>
-        </Pressable>
+          >
+            
+            <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_settings" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          
+          <Heading4>{t('drawerMenusetTxt')}</Heading4>
+        </DrawerLinkView>
 
-        <Pressable onPress={() => onShare} style={styles.item}>
-          <Icon name="ic_sb_shareapp" size={25} color="#000" />
-          <Text>{t('drawerMenushareTxt')}</Text>
-        </Pressable>
-        <Pressable onPress={() => {}} style={styles.item}>
-          <Icon name="ic_sb_feedback" size={25} color="#000" />
-          <Text>{t('drawerMenufeedbackTxt')}</Text>
-        </Pressable>
-        <Pressable onPress={() => {}} style={styles.item}>
-          <Icon name="ic_sb_loveapp" size={25} color="#000" />
-          <Text>{t('drawerMenurateTxt')}</Text>
-        </Pressable>
-        <Pressable onPress={() => {navigation.navigate('PrivacyPolicy')}} style={styles.item}>
-          <Icon name="ic_sb_privacy" size={25} color="#000" />
-          <Text>{t('drawerMenuPrivacyTxt')}</Text>
-        </Pressable>
+        <DrawerLinkView onPress={() => onShare}>
+        <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_shareapp" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          <Heading4>{t('drawerMenushareTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView onPress={() => {}}>
+        <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_feedback" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          <Heading4>{t('drawerMenufeedbackTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView onPress={() => {}} >
+        <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_loveapp" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          <Heading4>{t('drawerMenurateTxt')}</Heading4>
+        </DrawerLinkView>
+        <DrawerLinkView onPress={() => {navigation.navigate('PrivacyPolicy')}}>
+        <OuterIconRow>
+            <OuterIconLeft15>
+            <Icon name="ic_sb_privacy" size={25} color="#000" />
+            </OuterIconLeft15>
+          </OuterIconRow>
+          <Heading4>{t('drawerMenuPrivacyTxt')}</Heading4>
+        </DrawerLinkView>
         </ScrollView>
       </SafeAreaView>
     </>

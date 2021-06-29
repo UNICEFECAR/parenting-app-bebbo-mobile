@@ -1,26 +1,26 @@
+import { BgSecondaryTint } from '@components/shared/BackgroundColors';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
+import {DailyBox, DailyArtTitle, DailyAction,OverlayFaded,DailyTag,DailyTagText} from '@components/shared/HomeScreenStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 const Item = ({title}: any) => (
   <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
   </View>
 );
-const ContainerView = styled.View`
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  margin-top: 10px;
-  background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};
-`;
+
 
 const DATA = [
   {
     id: '1',
     imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'Gripping your filgers',
+    title: 'Gripping your fingers',
   },
   {
     id: '2',
@@ -35,7 +35,7 @@ const DATA = [
   {
     id: '4',
     imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'Gripping your filgers',
+    title: 'Gripping your fingers',
   },
   {
     id: '5',
@@ -53,34 +53,65 @@ const DailyReads = () => {
   const {t} = useTranslation();
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     return (
-      <View style={styles.item} key={index}>
+      <View>
+      <DailyBox key={index}>
         <ImageBackground source={item.imagePath} style={styles.cardImage}>
-          <Text style={styles.title}>{item.title}</Text>
+          <DailyArtTitle>
+          <Heading3w>{item.title}</Heading3w>
+          </DailyArtTitle>
+          <OverlayFaded>
+          <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
+            <Text >
+          </Text>
+          </LinearGradient>
+          </OverlayFaded>
         </ImageBackground>
-        <Text>{t('homeScreentodaygame') || t('homeScreentodayarticle')}</Text>
-        <View style={{flex: 1, flexDirection: 'row', backgroundColor: '#FFF'}}>
-          <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('homeScreenshareText')}</Text>
-          </View>
-          <View style={styles.btn}>
-            <Text style={styles.btntxt}>{t('homeScreenviewDetailsText')}</Text>
-          </View>
-        </View>
+        {/*Tag*/ }
+        <DailyTag >
+        <DailyTagText>{t('homeScreentodaygame') || t('homeScreentodayarticle')}</DailyTagText>
+        </DailyTag>
+        {/*Parent Share , View Details*/ }
+        <DailyAction>
+          <FDirRow>
+          <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_sb_shareapp" size={24} color="#000" />
+                </OuterIconLeft>
+              </OuterIconRow>
+            <Heading4>{t('homeScreenshareText')}</Heading4>
+          </FDirRow>
+          <FDirRow>
+          <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_sb_shareapp" size={24} color="#000" />
+                </OuterIconLeft>
+              </OuterIconRow>
+              <Heading4>{t('homeScreenviewDetailsText')}</Heading4>
+          </FDirRow>
+         
+        </DailyAction>
+      </DailyBox>
       </View>
     );
   };
 
   return (
     <>
-      <ContainerView>
-        <Text>{t('homeScreendailyReadsTitle')}</Text>
+      <BgSecondaryTint>
+        <MainContainer>
+          <ShiftFromTopBottom10>
+            <Heading2>{t('homeScreendailyReadsTitle')}</Heading2>
+        </ShiftFromTopBottom10>
+        <View style={{marginLeft:-7,marginRight:-7}}>
         <FlatList
           data={DATA}
           horizontal
           renderItem={({item, index}) => renderDailyReadItem(item, index)}
           keyExtractor={(item) => item.id}
         />
-      </ContainerView>
+        </View>
+        </MainContainer>
+      </BgSecondaryTint>
     </>
   );
 };
@@ -88,35 +119,19 @@ const DailyReads = () => {
 export default DailyReads;
 
 const styles = StyleSheet.create({
-  item: {
-    // backgroundColor: '#FFF',
-    // padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    width: 300,
-    borderRadius: 5,
-  },
-  btn: {
-    width: 150,
-    padding: 10,
-  },
-  btntxt: {
-    color: '#000',
-  },
-  title: {
-    fontSize: 16,
-    padding: 5,
-    color: '#FFF',
+
+
+  linearGradient: {
+    flex: 1,
   },
   cardImage: {
     width: '100%',
-    height: 120,
+    height: 140,
     flex: 1,
     position: 'relative',
-    top: 0,
-    left: 0,
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
     // backgroundColor: 'red'
   },
+
+
+
 });
