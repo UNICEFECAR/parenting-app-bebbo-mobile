@@ -25,7 +25,7 @@ const HealthCheckups = ({navigation}: Props) => {
             flexDirection: 'column',
             flex: 1,
           }}>
-          <TabScreenHeader title="Health Checkups" headerColor={headerColor} textColor='#FFF'/>
+          <TabScreenHeader title="Health Checkups" headerColor={headerColor} textColor='#000'/>
           <ScrollView style={{flex: 4, backgroundColor: backgroundColor}}>
             <View>
             <ButtonPrimary
