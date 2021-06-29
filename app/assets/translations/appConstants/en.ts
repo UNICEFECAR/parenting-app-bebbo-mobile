@@ -221,7 +221,23 @@ const en = {
             trackMilestoneViewBtn:"Track your child milestone",
             babyNotificationText:"Child Birth Data not updated",
             babyNotificationbyAge:"Baby is {{ageInMonth}} Months Old",
-            babyNotificationUpdateBtn:"Update"
+            babyNotificationUpdateBtn:"Update",
+            
+            favScreenHeader:"Favourites",
+
+            actScreenremovetoFavText:"Remove from Favorites",
+
+            vcHeader:"Vaccination",
+            vcSummaryHeader:"Vaccination Summary",
+            vcStatus1:"Upcoming",
+            vcStatus2:"OverDue",
+            vcStatus3:"Done",
+            vcTab1:"Upcoming",
+            vcTab2:"Previous",
+            vcArticleLink:"Read Article for more details",
+            vcSetReminder:"Set Vaccination Reminder",
+            vcAddBtn:"Enter Vaccination data",
+            
            
     }
 }

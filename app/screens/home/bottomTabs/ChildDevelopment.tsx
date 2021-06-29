@@ -1,5 +1,5 @@
 import AgeBrackets from '@components/AgeBrackets';
-import CollapsibleItem from '@components/CollapsibleItem';
+import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Icon from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -70,7 +70,7 @@ const ChildDevelopment = ({navigation}: Props) => {
     });
   };
   const renderItem = (item: typeof cditems[0]) => (
-    <CollapsibleItem item={item} subItemSaperatorColor={headerColor} />
+    <ChilDevelopmentCollapsibleItem item={item} subItemSaperatorColor={headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (

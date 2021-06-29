@@ -46,8 +46,9 @@ const Home = () => {
         flex: 1,
       }}>
         <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
+        <BabyNotification/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
-          <BabyNotification/>
+         
           <ChildInfo/>
           <DailyReads/>
           <ChildMilestones/>

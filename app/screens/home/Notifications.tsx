@@ -1,22 +1,18 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
+import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
+import { ButtonText } from '@components/shared/ButtonGlobal';
 import Icon from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w, Heading5Bold } from '@styles/typography';
-import React, { useContext } from 'react';
+import { Heading2w } from '@styles/typography';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, Text, View } from 'react-native';
-import {
-  Menu,
-  MenuOption,
-  MenuOptions,
-  MenuTrigger,
-  renderers
-} from 'react-native-popup-menu';
+import { Pressable, SafeAreaView, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -30,9 +26,8 @@ const Notifications = () => {
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const onchange = (selectedboxes) => {
-    // console.log(selectedboxes);
-  };
+  const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
+  
   const DATA = [
     {
       id: 0,
@@ -40,6 +35,7 @@ const Notifications = () => {
       timeStamp: '10 minutes ago',
       type: 'growth',
       bgColor: growthColor,
+      isChecked:false,
     },
     {
       id: 2,
@@ -48,6 +44,7 @@ const Notifications = () => {
       timeStamp: '15 minutes ago',
       type: 'development',
       bgColor: cdColor,
+      isChecked:false,
     },
     {
       id: 3,
@@ -55,6 +52,7 @@ const Notifications = () => {
       timeStamp: '19 minutes ago',
       type: 'vaccination',
       bgColor: vaccinationColor,
+      isChecked:false,
     },
     {
       id: 4,
@@ -62,157 +60,137 @@ const Notifications = () => {
       timeStamp: '20 minutes ago',
       type: 'healthchkp',
       bgColor: hkColor,
+      isChecked:false,
+    },
+    {
+      id: 5,
+      title: "You haven't update your child's growth details from last 1 month",
+      timeStamp: '10 minutes ago',
+      type: 'growth',
+      bgColor: growthColor,
+      isChecked:false,
+    },
+    {
+      id: 6,
+      title:
+        "The next development milestones are set for jenny. Fill all the question to track you baby's milestones.",
+      timeStamp: '15 minutes ago',
+      type: 'development',
+      bgColor: cdColor,
+      isChecked:false,
+    },
+    {
+      id: 7,
+      title: 'Reminder has been set for the vaccination',
+      timeStamp: '19 minutes ago',
+      type: 'vaccination',
+      bgColor: vaccinationColor,
+      isChecked:false,
+    },
+    {
+      id: 8,
+      title: "Update your child growth data to track baby's growth",
+      timeStamp: '20 minutes ago',
+      type: 'healthchkp',
+      bgColor: hkColor,
+      isChecked:false,
+    },
+    {
+      id: 9,
+      title: 'Reminder has been set for the vaccination',
+      timeStamp: '19 minutes ago',
+      type: 'vaccination',
+      bgColor: vaccinationColor,
+      isChecked:false,
+    },
+    {
+      id: 10,
+      title: "Update your child growth data to track baby's growth",
+      timeStamp: '20 minutes ago',
+      type: 'healthchkp',
+      bgColor: hkColor,
+      isChecked:false,
     },
   ];
-  const geticonname = (type: string) => {
-    return type == 'growth'
-      ? 'ic_growth'
-      : type == 'development'
-      ? 'ic_milestone'
-      : type == 'vaccination'
-      ? 'ic_vaccination'
-      : type == 'healthchkp'
-      ? 'ic_doctor_chk_up'
-      : '';
+  const [allData, setallData] = useState(DATA);
+  const onCategorychange = (selectedCategories) => {
+    console.log(selectedCategories);
   };
-  const getButtonname = (type: string) => {
-    return type == 'growth'
-      ? 'Add New Measurement'
-      : type == 'development'
-      ? 'Track your milestones'
-      : type == 'vaccination'
-      ? 'View Vaccination details'
-      : type == 'healthchkp'
-      ? 'View HealthCheck-up Details'
-      : '';
-  };
-  const gotoPage= (type: string) => {
-    console.log(type);
-     type == 'growth'
-      ? navigation.navigate('AddNewChildgrowth',{
-        headerTitle: t('growthScreenaddNewBtntxt'),
-      })
-      : type == 'development'
-      ?  navigation.navigate('Home', {screen: 'ChildDevelopment'})
-      : type == 'vaccination'
-      ? navigation.navigate('AddChildVaccination',{
-        headerTitle: t('growthScreeneditNewBtntxt'),
-      })
-      : type == 'healthchkp'
-      ? navigation.navigate('AddChildHealthCheckup',{
-        headerTitle: t('growthScreeneditNewBtntxt'),
-      })
-      : '';
-  };
+  const onNotiItemChecked =(itemIndex:number,isChecked:boolean)=>{
+    const newArray = [...allData];
+    newArray[itemIndex].isChecked=isChecked;
+    setallData(newArray);
+  }
+  
+
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: primaryColor,
-            maxHeight: 50,
-          }}>
-          <View style={{flex: 1}}>
-            <BurgerIcon />
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: primaryColor,
+              maxHeight: 50,
+            }}>
+            <View style={{flex: 1}}>
+              <BurgerIcon />
+            </View>
+            <View style={{flex: 3, padding: 8}}>
+              <Heading2w> {t('notiScreenheaderTitle')}</Heading2w>
+            </View>
+            <View style={{flex: 2, flexDirection: 'row'}}>
+              <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
+                <Icon name={'ic_sb_settings'} size={20} color="#FFF" />
+              </Pressable>
+              <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                <Icon name={'ic_trash'} size={20} color="#FFF" />
+              </Pressable>
+              <HeaderBabyMenu />
+            </View>
           </View>
-          <View style={{flex: 3, padding: 8}}>
-            <Heading2w> {t('notiScreenheaderTitle')}</Heading2w>
-          </View>
-          <View style={{flex: 2,flexDirection:'row'}}>
-            <Pressable onPress={()=>navigation.navigate('SettingsScreen')}><Icon name={'ic_sb_settings'} size={20} color="#FFF" /></Pressable>
-            <Icon name={'ic_trash'} size={20} color="#FFF" />
-            <HeaderBabyMenu/>
-          </View>
-        </View>
-
-        <NotificationsCategories onchange={onchange} />
-        <View style={{marginVertical: 10}}>
-          {DATA.map((item, index) => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  // paddingVertical: 10,
-                  marginVertical: 10,
-                }}
-                key={index}>
-                <View
-                  style={{
-                    flex: 1,marginVertical:10
-                  }}>
-                  <Icon
-                    name={geticonname(item.type)}
-                    size={20}
-                    color="#000"
-                    style={{padding: 20,justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 50,
-                    backgroundColor: item.bgColor,}}
-                  />
-                </View>
-
-                <View style={{flexDirection: 'column', flex: 5}}>
-                  <View>
-                    <Text>{item.title}</Text>
-                    <Text>{item.timeStamp}</Text>
-                    <Pressable onPress={()=>gotoPage(item.type)}><Text>{getButtonname(item.type)}</Text></Pressable>
-                  </View>
-                  <View
-                    style={{
-                      padding: 1,
-                      margin: 5,
-                      backgroundColor: '#000',
-                    }}></View>
-                </View>
-                <Menu
-                  renderer={renderers.ContextMenu}
-                  style={{
-                    width: 50,
-                    height: 50,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
-                  <MenuTrigger>
-                    <Icon
-                      style={{
-                        flex: 1,
-                        textAlign: 'right',
-                        alignSelf: 'center',
-                      }}
-                      name={'ic_kebabmenu'}
-                      size={25}
-                      color="#000"
+          <ScrollView style={{flex: 7}}>
+            <NotificationsCategories onchange={onCategorychange} />
+            <View style={{marginVertical: 10}}>
+              {
+               
+              allData.map((item, index) => {
+                return (
+                  <View key={index}>
+                    <NotificationItem
+                      item={item}
+                      itemIndex={index}
+                      isDeleteEnabled={isDeleteEnabled}
+                      onItemChecked={onNotiItemChecked}
                     />
-                  </MenuTrigger>
-                  <MenuOptions
-                    customStyles={{
-                      optionsContainer: {
-                        marginTop: 30,
-                        borderRadius: 10,
-                        backgroundColor: primaryTintColor,
-                      },
-                      optionWrapper: {
-                        borderBottomWidth: 1,
-                        padding: 15,
-                      },
-                    }}>
-                    <MenuOption value={1}>
-                      <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                    </MenuOption>
-                    <MenuOption value={2}>
-                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
-                    </MenuOption>
-                  </MenuOptions>
-                </Menu>
+                  </View>
+                );
+              })}
+            </View>
+          </ScrollView>
+          {
+          isDeleteEnabled ? (
+            <>
+              <View style={{flex: 1, maxHeight: 80}}>
+                <View
+                  style={{width: '100%', flexDirection: 'row', marginTop: 0}}>
+                  
+                 
+                  <Pressable style={{padding:10}} onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                    <ButtonText>{'Cancel'}</ButtonText>
+                  </Pressable>
+                 
+                  <Pressable style={{padding:10}}>
+                    <ButtonText>Delete Selected ({allData.filter(item=>item.isChecked===true).length})</ButtonText>
+                    </Pressable>
+                   
+                 
+                </View>
               </View>
-            );
-          })}
+            </>
+          ) : null}
         </View>
       </SafeAreaView>
     </>
