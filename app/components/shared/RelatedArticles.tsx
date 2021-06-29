@@ -4,11 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import ShareFavButtons from './ShareFavButtons';
-const Item = ({title}: any) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;

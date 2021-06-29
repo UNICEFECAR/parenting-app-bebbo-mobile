@@ -216,7 +216,7 @@ const SettingScreen = (props: any) => {
               <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
               <LocalizationAction>
                 <ButtonLinkText
-                  onPress={() => props.navigation.navigate('CountrySelection')}>
+                  onPress={() => props.navigation.navigate('Localization')}>
                   <OuterIconRow>
                     <OuterIconLeft>
                       <Icon name="ic_edit" size={16} color="#000" />
