@@ -1,7 +1,12 @@
-import { ButtonText } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+import { BgSecondary } from '@components/shared/BackgroundColors';
+import { ButtonContainer, ButtonTertiary, ButtonTextMd ,ButtonTertiaryMd} from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { FlexDirRow,FDirCol,Flex1,Flex2} from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import Icon, { OuterIconLeft, OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { Header3Text } from '@styles/style';
 import React, { useContext } from 'react';
+import { Heading3, Heading5 } from '@styles/typography';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { ThemeContext } from 'styled-components';
@@ -12,18 +17,35 @@ const BabyNotification = () => {
   const bgColor=themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-      <View
-        style={{padding: 10, flexDirection: 'row', backgroundColor: bgColor}}>
-        <Icon name="ic_baby" size={25} color="#000" />
-        <View style={{flexDirection: 'column'}}>
-          <Header3Text>
-            {t('babyNotificationbyAge', {ageInMonth: '4'})}
-          </Header3Text>
-          <Header3Text>{t('babyNotificationText')}</Header3Text>
-        </View>
-
-        <ButtonText>{t('babyNotificationUpdateBtn')}</ButtonText>
-      </View>
+    <BgSecondary>
+     <MainContainer>
+      <FlexDirRow>
+        
+        <OuterIconRow>
+          <OuterIconLeft>
+          <Icon name="ic_baby" size={36} color="#000" />
+          </OuterIconLeft>
+        </OuterIconRow>
+        <Flex2>
+        <FDirCol>
+        
+        <Heading3>{t('babyNotificationbyAge',{ageInMonth: '4'})}</Heading3>
+        <Heading5>
+        {t('babyNotificationText')}
+        </Heading5>
+        </FDirCol>
+        </Flex2>
+       <Flex1>
+        <ButtonTertiaryMd>
+        <ButtonTextMd>{t('babyNotificationUpdateBtn')}</ButtonTextMd>
+        </ButtonTertiaryMd>
+       </Flex1>
+       
+                
+           
+      </FlexDirRow>
+      </MainContainer>
+      </BgSecondary>
     </>
   );
 };

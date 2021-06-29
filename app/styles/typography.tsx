@@ -163,7 +163,9 @@ export const Heading6w = styled(Heading6)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
-
+export const Heading6Bold = styled(Heading6)`
+  font-family: 'roboto-bold';
+`;
 
 
 

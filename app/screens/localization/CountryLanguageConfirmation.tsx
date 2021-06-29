@@ -4,7 +4,7 @@ import {
   ButtonLinkText,
   ButtonPrimary,
   ButtonText,
-  ButtonTextsm
+  ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
@@ -123,7 +123,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                     <OuterIconLeft>
                       <Icon name="ic_edit" size={16} color="#000" />
                     </OuterIconLeft>
-                    <ButtonTextsm>{t('editCountryLang')}</ButtonTextsm>
+                    <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
                   </OuterIconRow>
                 </ButtonLinkText>
               </LocalizationAction>
