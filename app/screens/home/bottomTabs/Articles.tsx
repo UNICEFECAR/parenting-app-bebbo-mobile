@@ -97,7 +97,7 @@ const Articles = ({navigation}: Props) => {
           />
           <Text style={styles.label}>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Text>
           <Text style={styles.title}>{item.title}</Text>
-          <ShareFavButtons backgroundColor={'#FFF'}/>
+          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
         </View>
       </Pressable>
 

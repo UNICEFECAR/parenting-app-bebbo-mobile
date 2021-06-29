@@ -56,7 +56,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               source={require('@assets/trash/card5.jpeg')}
             />
           </View>
-          <ShareFavButtons backgroundColor={headerColor} />
+          <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
           <Text style={{margin: 5}}>
             {
               'Planning now in the refrigerator. But eget urna viverra molestie quam, ac commodo mauris consequat tincidunt. Each players textbooks, any development organization sauce, notebook Nullam varius. Let us live is mauris commodo nulla ornare, in order that he wishes to drink the throat. However, please players invest a lot of time. For posuere mauris ut consectetur element. Maecenas quis Vestibulum ac habitasse, trucks than of life, rutrum Sed Phasellus. No lion not feasible in vehicles production. Ultricies soccer relay makeup. Consequently and fear of financing, and the territories tortor iaculis, vehicula ligula. For bananas skirt smile, who ugly hairstyle. In fact, well as the mass, posuere a weekend or a, rhoncus nec ligula. Soccer employee at the clinical site.'

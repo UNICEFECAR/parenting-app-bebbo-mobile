@@ -1,5 +1,4 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonLinkText, ButtonPrimary } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import {
@@ -10,11 +9,12 @@ import {
   LocalizationcontentResult,
   LocalizationRow
 } from '@components/shared/OnboardingContainer';
+import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ButtonText } from '@styles/style';
 import {
-  Heading1, Heading2w, Heading3, Heading3Regular,
+  Heading1, Heading3, Heading3Regular,
   Heading4,
   Heading6
 } from '@styles/typography';
@@ -84,20 +84,11 @@ const SettingScreen = (props: any) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: primaryColor,
-            maxHeight: 50,
-          }}>
-          <View style={{flex: 1}}>
-            <BurgerIcon />
-          </View>
-          <View style={{flex: 5,padding:8}}>
-            <Heading2w> {t('settingScreenheaderTitle')}</Heading2w>
-          </View>
-        </View>
+        <TabScreenHeader
+              title={t('settingScreenheaderTitle')}
+              headerColor={primaryColor}
+              textColor="#000"
+            />
         <ScrollView style={{flex: 1}}>
           <View style={{padding: 15}}>
             <Heading1> {t('settingScreennotiHeaderText')}</Heading1>

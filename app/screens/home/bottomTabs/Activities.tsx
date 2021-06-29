@@ -113,7 +113,7 @@ const Activities = ({navigation}: Props) => {
         />
         <Text style={styles.label}>Cognitive</Text>
         <Text style={styles.title}>{item.title}</Text>
-        <ShareFavButtons backgroundColor={'#FFF'}/>
+        <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
       </View>
     </Pressable>
   );
