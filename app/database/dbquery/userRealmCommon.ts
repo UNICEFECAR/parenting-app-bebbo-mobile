@@ -115,6 +115,28 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async updatePhotoUri<Entity>(entitySchema: ObjectSchema,records:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    const obj:any = realm?.objects<Entity>(entitySchema.name);
+                    realm?.write(() => {
+                        obj[0].photoUri = records.photoUri;
+                    });
+                   resolve('success');
+                // console.log("Language is: "+ obj[0].photoUri );
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+               reject('Fail');
+            }
+        });
+    }
     public async updateChild<Entity>(entitySchema: ObjectSchema,records:Entity[]): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
