@@ -87,7 +87,7 @@ const SettingScreen = (props: any) => {
         <TabScreenHeader
               title={t('settingScreenheaderTitle')}
               headerColor={primaryColor}
-              textColor="#000"
+              textColor="#FFF"
             />
         <ScrollView style={{flex: 1}}>
           <View style={{padding: 15}}>
