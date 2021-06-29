@@ -7,7 +7,7 @@ import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import Icon from './shared/Icon';
 
-const CollapsibleItem = (props: any) => {
+const ChilDevelopmentCollapsibleItem = (props: any) => {
   const {item} = props;
   // console.log(item);
   const navigation = useNavigation()
@@ -134,7 +134,7 @@ const CollapsibleItem = (props: any) => {
     </>
   );
 };
-export default CollapsibleItem;
+export default ChilDevelopmentCollapsibleItem;
 
 const styles = StyleSheet.create({
   item: {
