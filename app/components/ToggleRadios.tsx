@@ -8,7 +8,6 @@ import Icon from './shared/Icon';
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
   const [checkedItem, setCheckedItem] = useState(defaultValue);
- 
   return (
     <>
       <View style={{flexDirection: 'row'}}>
@@ -29,7 +28,7 @@ const ToggleRadios = (props: any) => {
                   }}>
                   <CheckboxItem>
                     <View>
-                      {checkedItem.title == item.title ? (
+                      {(checkedItem?.title && checkedItem.title == item.title) ? (
                         <CheckboxActive style={{borderRadius: 50,backgroundColor:tickbgColor}}>
                           <Icon name="ic_tick" size={12} color={tickColor} />
                         </CheckboxActive>
