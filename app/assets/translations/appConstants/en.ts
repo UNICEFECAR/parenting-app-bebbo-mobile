@@ -255,7 +255,14 @@ const en = {
             vcDoctorRemarkPlaceHolder:"Enter Doctor Remark or Comment",
             vcIsMeasuredOption1:"YES",
             vcIsMeasuredOption2:"NO",
-
+            vcDeleteWarning:"Do you want to delete child Vaccination details?",
+            vcReminderHeading:"Set Reminder",
+            vcEditReminderHeading:"Edit Reminder",
+            vcReminderDate:"Select Date",
+            vcReminderTime:"Select Time",
+            vcReminderAddBtn:"Add checkup Reminder",
+            vcReminderText:"Enter the date and time of the vaccination and Bebbo will remind you",
+            vcReminderDeleteWarning:"Do you want to delete Vaccination Reminder details?",
 
             growthDeleteWarning:"Do you want to delete child growth measurement details?",
             growthDeleteOption1:"Cancel",
