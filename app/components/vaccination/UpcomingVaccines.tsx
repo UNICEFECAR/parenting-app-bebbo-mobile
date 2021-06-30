@@ -157,14 +157,18 @@ const UpcomingVaccines = (props: any) => {
                     name="ic_time"
                     size={20}
                     color="#FFF"
-                    style={{backgroundColor: reminderColor, borderRadius: 150}}
+                    style={{backgroundColor: reminderColor, borderRadius: 50}}
                   />
                 </View>
                 <View style={{flex: 7, padding: 10}}>
                   <Heading5>Set Reminder on</Heading5>
                   <Heading4>{new Date().toDateString()}</Heading4>
                 </View>
-                <Pressable onPress={() => {}}>
+                <Pressable onPress={() => {
+                  navigation.navigate('AddChildVaccinationReminder', {
+                    headerTitle: t('vcEditReminderHeading'),
+                  })
+                }}>
                   <Text style={{textDecorationLine: 'underline'}}>
                     {t('editCountryLang')}
                   </Text>
@@ -173,12 +177,20 @@ const UpcomingVaccines = (props: any) => {
             </View>
             <View>
               <View style={{alignItems: 'center'}}>
-                <Pressable>
+                <Pressable onPress={()=>{
+                  navigation.navigate('AddChildVaccinationReminder', {
+                    headerTitle: t('vcReminderHeading'),
+                  })
+                }}>
                   <Text style={{textDecorationLine: 'underline'}}>
                     {t('vcSetReminder')}
                   </Text>
                 </Pressable>
-                <Pressable>
+                <Pressable onPress={() =>
+                    navigation.navigate('AddChildVaccination', {
+                      headerTitle: t('editVcTitle'),
+                    })
+                  }>
                   <Text style={{textDecorationLine: 'underline'}}>
                     {t('vcEditDataBtn')}
                   </Text>
