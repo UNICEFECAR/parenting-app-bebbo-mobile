@@ -138,6 +138,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               value={new Date()}
               mode={'date'}
               display="default"
+              maximumDate={new Date()}
+              // minimumDate => childDOB
               onChange={ondobChange}
             />
           )}
@@ -147,7 +149,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           <View style={{flexDirection: 'row'}}>
             <Pressable
               onPress={() => {
-                navigation.navigate('AddNewChildWeight');
+                navigation.navigate('AddNewChildWeight',{
+                  prevRoute:"AddNewChildgrowth",
+                  headerColor,
+                  backgroundColor
+                });
               }}
               style={{
                 backgroundColor: '#FFF',
@@ -160,9 +166,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate('AddNewChildHeight',{onReturn:(item)=>{
-                  console.log(item);
-                }});
+                navigation.navigate('AddNewChildHeight',{
+                  prevRoute:"AddNewChildgrowth",
+                  headerColor,
+                  backgroundColor
+                });
               }}
               style={{
                 backgroundColor: '#FFF',

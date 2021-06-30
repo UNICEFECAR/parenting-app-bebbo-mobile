@@ -9,6 +9,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Image, Pressable,
@@ -49,19 +50,19 @@ let  childData  = route.params.childData;
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
-
+  const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const genders = [{
-    title:"boy"
+    title:t('chilGender1')
   }, {
-      title:"girl"
+      title:t('chilGender2')
   }];
- 
+
   const imageOptions = [
-    { id: 0, iconName: 'ic_trash', name: 'Remove Photo' },
-    { id: 1, iconName: 'ic_camera', name: 'Camera' },
-    { id: 2, iconName: 'ic_gallery', name: 'Gallery' },
+    { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
+    { id: 1, iconName: 'ic_camera', name:  t('cameraOption2')},
+    { id: 2, iconName: 'ic_gallery', name:  t('cameraOption3') },
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
@@ -251,7 +252,7 @@ let  childData  = route.params.childData;
           </View>
           <View style={{ flex: 9, padding: 7 }}>
           {
-          childData && childData?.uuid!=""?(<Heading2w>{'Edit Child Profile'} </Heading2w>):( <Heading2w>{'Add Brother or Sister'}</Heading2w>)
+          childData && childData?.uuid!=""?(<Heading2w>{t('editChildProfileHeader')} </Heading2w>):( <Heading2w>{t('addChildProfileHeader')}</Heading2w>)
            
           }
           </View>
@@ -301,7 +302,7 @@ let  childData  = route.params.childData;
             </Pressable>
               }
             <View style={{ padding: 10 }}>
-              <LabelText>Name</LabelText>
+              <LabelText>{t('childNameTxt')}</LabelText>
               <View style={{ flex: 1 }}>
                 <TextInput
                   autoCapitalize="none"
@@ -310,29 +311,12 @@ let  childData  = route.params.childData;
                   onChangeText={(value) => { setName(value) }}
                   value={name}
                   // onChangeText={queryText => handleSearch(queryText)}
-                  placeholder="Enter your child name"
+                  placeholder={t('childNamePlaceTxt')}
                   style={{
                     backgroundColor: '#FFF',
                   }}
                 />
               </View>
-              {/* <View style={{ flexDirection: 'row' }}>
-                {genders.map((item, index) => {
-                  return (
-                    <View
-                      key={index}
-                      style={{ padding: 10, backgroundColor: '#FFF', margin: 3 }}>
-                      <Pressable
-                        onPress={() => {
-                          //console.log(item,"..item..");
-                          setGender(item);
-                        }}>
-                        <Heading3>{item}</Heading3>
-                      </Pressable>
-                    </View>
-                  );
-                })}
-              </View> */}
               <View style={{padding:20}}>
   <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
   </View>
@@ -345,8 +329,8 @@ let  childData  = route.params.childData;
                 }}>
                   {
                   childData && childData?.uuid!=""?(
-                  <ButtonText>Edit Profile</ButtonText>):(
-                  <ButtonText>Add Profile</ButtonText>)
+                  <ButtonText>{t('editProfileBtn')}</ButtonText>):(
+                  <ButtonText>{t('addProfileBtn')}</ButtonText>)
                   }
                 </ButtonPrimary>
                  

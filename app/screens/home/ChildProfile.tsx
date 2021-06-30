@@ -22,6 +22,7 @@ import {
   Heading6
 } from '@styles/typography';
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -103,6 +104,7 @@ type Props = {
 //   },
 // ];
 const ChildProfile = ({navigation}: Props) => {
+  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
@@ -144,7 +146,7 @@ const ChildProfile = ({navigation}: Props) => {
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
+  const renderChildProfile = (dispatch: any, data: any, index: number) => (
     <View key={index}>
       {currentActiveChild != '' &&
       currentActiveChild != null &&
@@ -160,14 +162,14 @@ const ChildProfile = ({navigation}: Props) => {
               <OuterIconLeft></OuterIconLeft>
               <Heading6>{data.gender ? data.gender : ''}</Heading6>
             </ProfileSectionView>
-            <Heading5>Born on {data.birthDate}</Heading5>
+            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate})}</Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
                   data.index = index;
                   navigation.navigate('EditChildProfile', {childData: data});
                 }}>
-                <Text>Edit Profile</Text>
+                <Text>{t('editProfileBtn')}</Text>
               </ButtonTextSmLine>
             </ProfileLinkView>
           </ProfileTextView>
@@ -180,7 +182,7 @@ const ChildProfile = ({navigation}: Props) => {
               </OuterIconLeft>
             </OuterIconRow>
 
-            <Heading5Bold>Activated</Heading5Bold>
+            <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
           </ProfileActionView>
         </ProfileListViewSelected>
       ) : (
@@ -200,13 +202,13 @@ const ChildProfile = ({navigation}: Props) => {
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{data.gender ? data.gender : ''}</Heading6>
               </ProfileSectionView>
-              <Heading5>Born on {data.birthDate}</Heading5>
+              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate})}</Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {
                     navigation.navigate('EditChildProfile', {childData: data});
                   }}>
-                  <Text>Edit Profile</Text>
+                  <Text>{t('editProfileBtn')}</Text>
                 </ButtonTextSmLine>
                 <View>
                   <Text>|</Text>
@@ -215,7 +217,7 @@ const ChildProfile = ({navigation}: Props) => {
                   onPress={() => {
                     setActiveChild(data.uuid);
                   }}>
-                  Activate Profile
+                 {t('childActivatebtn')}
                 </ButtonTextSmLine>
               </ProfileLinkView>
             </ProfileTextView>
@@ -248,72 +250,16 @@ const ChildProfile = ({navigation}: Props) => {
             </Pressable>
           </View>
           <View style={{flex: 9, padding: 7}}>
-            <Heading2w>{'Child and Parent Profile'}</Heading2w>
+            <Heading2w>{t('childProfileHeader')}</Heading2w>
           </View>
         </View>
-        {/* <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-              alignItems:'center',
-            }}>
-            <View style={{flex: 1}}>
-              <BurgerIcon />
-            </View>
-            <View style={{flex: 3}}>
-              <Heading2w> {'Child and ParentProfile'}</Heading2w>
-            </View>
-          </View> */}
-        {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
         <View style={{margin: 15}}>
           <View style={{flexDirection: 'column'}}>
-            {/* <ProfileListActiveChild
-                  style={{
-                    backgroundColor: secopndaryColor,
-                  }}>
-                  <ProfileIconView>
-                    <Icon name="ic_baby" size={30} color="#000" />
-                  </ProfileIconView>
-                  <ProfileTextView>
-                    <ProfileSectionView>
-                      <Heading3>Jenny,</Heading3>
-                      <OuterIconLeft></OuterIconLeft>
-                      <Heading6>Girl</Heading6>
-                    </ProfileSectionView>
-                    <Heading5>Born on 08 Jul 2020</Heading5>
-                    <ProfileLinkView>
-                      <ButtonTextSmLine
-                        onPress={() => {
-                          navigation.navigate('EditChildProfile');
-                        }}>
-                        <Text>Edit Profile</Text>
-                      </ButtonTextSmLine>
-                    </ProfileLinkView>
-                  </ProfileTextView>
-
-                  <ProfileActionView>
-                    <OuterIconRow>
-                      <OuterIconLeft>
-                        <TickView>
-                          <Icon name="ic_tick" size={12} color="#009B00" />
-                        </TickView>
-                      </OuterIconLeft>
-                    </OuterIconRow>
-                    <Heading5Bold>Activated</Heading5Bold>
-                  </ProfileActionView>
-                </ProfileListActiveChild> */}
             <ScrollView style={{height: 'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
                     // console.log(childList,"..childList123..");
-                    return renderDailyReadItem(dispatch, item, index);
+                    return renderChildProfile(dispatch, item, index);
                   })
                 : null}
             </ScrollView>
@@ -332,7 +278,7 @@ const ChildProfile = ({navigation}: Props) => {
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>Add sister or brother</ButtonTextMdLineL>
+                  <ButtonTextMdLineL>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
               <ProfileLinkCol>
@@ -346,7 +292,7 @@ const ChildProfile = ({navigation}: Props) => {
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>Add Expecting Child</ButtonTextMdLineL>
+                  <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
             </ProfileLinkRow>
@@ -354,7 +300,7 @@ const ChildProfile = ({navigation}: Props) => {
             <ParentListView style={{backgroundColor: secopndaryTintColor}}>
               <ProfileContentView>
                 <ProfileTextView>
-                  <Heading3>Parent Details</Heading3>
+                  <Heading3>{t('parentDetailsTxt')}</Heading3>
                 </ProfileTextView>
                 <ProfileActionView>
                   <ButtonLinkPress
@@ -368,7 +314,7 @@ const ChildProfile = ({navigation}: Props) => {
                           userNameData?.length > 0 ? userNameData[0].value : '',
                       });
                     }}>
-                    <ButtonTextSmLine>Edit Profile</ButtonTextSmLine>
+                    <ButtonTextSmLine>{t('editProfileBtn')}</ButtonTextSmLine>
                   </ButtonLinkPress>
                 </ProfileActionView>
               </ProfileContentView>
@@ -377,7 +323,7 @@ const ChildProfile = ({navigation}: Props) => {
                 <ParentRowView>
                   <ParentSection>
                     <ParentLabel>
-                      <Text>Your role</Text>
+                      <Text>{t('parentRoleLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
                       <Text>
@@ -389,7 +335,7 @@ const ChildProfile = ({navigation}: Props) => {
                   </ParentSection>
                   <ParentSection>
                     <ParentLabel>
-                      <Text>Name</Text>
+                      <Text>{t('parentNameLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
                       <Text>
