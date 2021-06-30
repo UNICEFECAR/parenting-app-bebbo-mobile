@@ -80,6 +80,7 @@ const Articles = ({navigation}: Props) => {
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
+    setModalVisible(!modalVisible);
   };
   const articleModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsArticleModalOpened),
@@ -88,13 +89,13 @@ const Articles = ({navigation}: Props) => {
     //  console.log('weightModalOpened',weightModalOpened);
       // pass true to make modal visible every time & reload
     setModalVisible(articleModalOpened)
-   })
+   });
   const renderArticleItem = (item: any, index: number) => (
       <Pressable onPress={onPress} key={index}>
         <ArticleListContainer>
           <Image
             style={styles.cardImage}
-            // source={{uri : "file://" + destinationFolder + ((item.cover_image.url).split('/').pop())}}
+            // source={{uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())}}
             source={require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
           />
@@ -166,7 +167,7 @@ const Articles = ({navigation}: Props) => {
         const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
         // setArticleData(stateArticleData)
         // setfilteredData(articleData);
-        console.log(filteredData,"artData--",artData.length);
+        // console.log(filteredData,"artData--",artData.length);
         // if(filteredData != [])
         // {
           setFilteredArticleData([]);
@@ -177,7 +178,7 @@ const Articles = ({navigation}: Props) => {
   );
   
   const setFilteredArticleData = (itemId:any) => {
-    console.log(itemId,"articleData in filtered ",articleData);
+    // console.log(itemId,"articleData in filtered ",articleData);
     if(articleData != '')
     {
       if(itemId.length>0)

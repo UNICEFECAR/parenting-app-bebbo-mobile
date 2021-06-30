@@ -24,9 +24,9 @@ export const CoverImage: ObjectSchema = {
   name: "CoverImage",
   embedded: true,
   properties: {
-    url: { type: 'string' },
-    name: { type: 'string' },
-    alt: { type: 'string' },
+    url: { type: 'string' ,optional: true},
+    name: { type: 'string' ,optional: true},
+    alt: { type: 'string',optional: true },
   }
 }
 export type ArticleEntity = {
@@ -43,8 +43,8 @@ export type ArticleEntity = {
     parent_gender: string,
     // seasons: string,
     keywords: string[],
-    cover_video?: CoverVideoEntity,
-    cover_image?: CoverImageEntity,
+    // cover_video?: CoverVideoEntity,
+    cover_image?: string,
     related_articles: string[],
     // generic: string,
     licensed: string,
@@ -72,10 +72,11 @@ export type ArticleEntity = {
       parent_gender: { type: 'string' },
       // seasons: { type: 'string' },
       keywords: { type: 'string[]' },
-      cover_video: 'CoverVideo',
-      cover_image: 'CoverImage',
+      // cover_video: 'CoverVideo',
+      // cover_image: 'CoverImage',
+      cover_image: { type: 'string' },
       // cover_video: {type: 'object', objectType: 'CoverVideo',optional: true} ,
-      // cover_image: {type: 'object', objectType: 'CoverImage',optional: true} ,
+      // cover_image: {type: 'object', objectType: 'CoverImage | {}',optional: true} ,
       related_articles: { type: 'string[]' },
       // generic: { type: 'string' },
       licensed: { type: 'string' },
