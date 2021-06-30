@@ -11,10 +11,9 @@ import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1, Heading2w, Heading4Centerr } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -25,9 +24,8 @@ type Props = {
 
 const AddNewChildWeight = ({navigation, route}: Props) => {
   const {t} = useTranslation();
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const tintColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const [headerColor,setHeaderColor] = useState();
+  const [tintColor,setTintColor] = useState();
   const [modalVisible, setModalVisible] = useState(true);
   const screenPadding = 10;
   const secondScalePrefix =0.01;
@@ -39,6 +37,24 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
     let obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
+  const [prevRoute,setPrevRoute] = useState<any>();
+
+  React.useEffect(() => {
+    if (route.params?.prevRoute) {
+      // console.log(route.params?.prevRoute);
+      setPrevRoute(route.params?.prevRoute);
+    }
+    if (route.params?.headerColor) {
+      // console.log(route.params?.headerColor);
+      setHeaderColor(route.params?.headerColor);
+    }
+    if (route.params?.backgroundColor) {
+      // console.log(route.params?.backgroundColor);
+      setTintColor(route.params?.backgroundColor);
+    }
+  }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor ]);
+
+
   const weightModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsWeightModalOpened),
     );
@@ -131,7 +147,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             maximum={20}
             segmentWidth={2}
             segmentSpacing={20}
-            indicatorColor="#AB8AD5"
+            indicatorColor={headerColor}
             indicatorWidth={100}
             indicatorHeight={100}
             indicatorBottom={0}
@@ -155,7 +171,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             maximum={100}
             segmentWidth={2}
             segmentSpacing={20}
-            indicatorColor="#AB8AD5"
+            indicatorColor={headerColor}
             indicatorWidth={100}
             indicatorHeight={100}
             indicatorBottom={0}
@@ -165,15 +181,16 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             stepHeight={40}
             normalColor="#999999"
             normalHeight={20}
-            backgroundColor={'#D5C5EA'}
+            backgroundColor={tintColor}
           />
         </View>
 
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
+           style={{backgroundColor: '#FFF'}}
             onPress={() => {
               navigation.navigate({
-                name: 'AddNewChildgrowth',
+                name: prevRoute,
                 params: {weight:(weight + 0.01 * weight1).toFixed(2)},
                 merge: true,
               });

@@ -12,10 +12,7 @@ const PreviousVaccines = (props: any) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
-  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {

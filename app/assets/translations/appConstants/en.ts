@@ -59,7 +59,7 @@ const en = {
             childSetupListsaveBtnText: "Save data",
             
             // drawerMenu
-            drawerMenuchildInfo:"born on {{childdob}} ",
+            drawerMenuchildInfo:"Born on {{childdob}} ",
             drawerMenuhomeTxt:"Home",
             drawerMenunotiTxt:"Notifications",
             drawerMenutoolsTxt:"Tools",
@@ -117,9 +117,8 @@ const en = {
         
             // homeScreen
             homeScreenheaderTitle:"Bebbo",
-            homeScreenchildInfoTitle:"Welcome ",
             homeScreenchildBtnText:"Read More ",
-            homeScreenchildInfoTitle2:"Welcome Baby & Parent",
+            homeScreenchildInfoTitle:"Welcome {{childName}} & {{parentName}}",
             homeScreendailyReadsTitle:"Daily Reads ",
             homeScreentodayarticle:"Today's Article",
             homeScreentodaygame:"Today's Game",
@@ -260,13 +259,41 @@ const en = {
             vcEditReminderHeading:"Edit Reminder",
             vcReminderDate:"Select Date",
             vcReminderTime:"Select Time",
-            vcReminderAddBtn:"Add checkup Reminder",
+            vcReminderAddBtn:"Save Vaccination Reminder",
             vcReminderText:"Enter the date and time of the vaccination and Bebbo will remind you",
             vcReminderDeleteWarning:"Do you want to delete Vaccination Reminder details?",
 
             growthDeleteWarning:"Do you want to delete child growth measurement details?",
             growthDeleteOption1:"Cancel",
             growthDeleteOption2:"Confirm",
+
+            expectChildAddTxt:"Add Expecting Child Details",
+            expectChildDueDateTxt:"Expected due date",
+            expectPreferNametxt:"Any preferred Name",
+            expectPreferNamePlacetxt:"Enter your child name",
+
+            cameraOption1:"Remove Photo",
+            cameraOption2:"Camera",
+            cameraOption3:"Gallery",
+            
+            chilGender1:"Boy",
+            chilGender2:"Girl",
+            editChildProfileHeader:"Edit Child Profile",
+            addChildProfileHeader:"Add Brother or Sister",
+            childNameTxt:"Child Name",
+            childNamePlaceTxt:"Enter your child name",
+            editProfileBtn:"Edit Profile",
+            addProfileBtn:"Add Profile",
+
+            childProfileBornOn:"Born on {{childdob}}",
+            childActivatedtxt:"Activated",
+            childActivatebtn:"Activate Profile",
+            childProfileHeader:"Child and Parent Profile",
+            expectChildAddTxt2:"Add Expecting Child",
+            parentDetailsTxt:"Parent Details",
+            parentRoleLabel:"Your role ",
+            parentNameLabel:"Name",
+
            
     }
 }
