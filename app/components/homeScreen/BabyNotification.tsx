@@ -1,7 +1,7 @@
 import { BgSecondary } from '@components/shared/BackgroundColors';
 import { ButtonContainer, ButtonTertiary, ButtonTextMd ,ButtonTertiaryMd} from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow,FDirCol,Flex1,Flex2} from '@components/shared/FlexBoxStyle';
+import { FlexDirRow,FDirRow,FDirCol,Flex1,Flex2} from '@components/shared/FlexBoxStyle';
 import { HeaderActionView, HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconLeft, OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { Header3Text } from '@styles/style';
@@ -19,7 +19,7 @@ const BabyNotification = () => {
     <>
     <BgSecondary>
      <MainContainer>
-      <FlexDirRow>
+      <FDirRow>
         
         <OuterIconRow>
           <OuterIconLeft>
@@ -43,7 +43,7 @@ const BabyNotification = () => {
        
                 
            
-      </FlexDirRow>
+      </FDirRow>
       </MainContainer>
       </BgSecondary>
     </>
