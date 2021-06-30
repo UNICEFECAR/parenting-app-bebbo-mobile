@@ -1,24 +1,24 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
-import { LabelText, TitleLinkSm } from '@components/shared/ChildSetupStyle';
+import { LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w, Heading3, Heading4 } from '@styles/typography';
+import { Heading2w, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import {
   Alert,
-  Image, Platform, Pressable,
+  Image, Pressable,
   SafeAreaView,
-  ScrollView, Text, TextInput,
+  ScrollView, TextInput,
   View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, DocumentDirectoryPath, exists, mkdir, unlink } from 'react-native-fs';
-import ImagePicker, { Image as ImageObject } from 'react-native-image-crop-picker';
+import { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -81,7 +81,7 @@ let  childData  = route.params.childData;
     setIsPremature(myString);
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
-  const genderData=genders.filter(item =>item.title == childData?.gender);
+
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -330,8 +330,9 @@ let  childData  = route.params.childData;
                   );
                 })}
               </View> */}
-  <ToggleRadios options={genders} defaultValue={genderData[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
-      
+              <View style={{padding:20}}>
+  <ToggleRadios options={genders} defaultValue={genders.find(item=>item.title==childData?.gender)} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+  </View>
               <ChildDate sendData={sendData} childData={childData} />
 
               <View style={{ width: '100%', marginTop: 30 }}>
