@@ -12,6 +12,15 @@ const plannedVaccines = [
     title: 'Bacteria Streptococus pnuemoniae - the second dose',
     isChecked: false,
   },
+  {
+    title:
+      'Pneumococcal disease (PCV13) (1st dose) Rotavirus (RV)  ',
+    isChecked: false,
+  },
+  {
+    title: 'Diphtheria, tetanus, and whooping cough (pertussis) (DTaP) (2nd dose)',
+    isChecked: false,
+  },
 ];
 
 const PlannedVaccines = (props: any) => {

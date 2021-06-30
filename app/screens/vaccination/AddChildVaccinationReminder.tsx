@@ -13,27 +13,22 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
-import ToggleRadios from '@components/ToggleRadios';
-import PlannedVaccines from '@components/vaccination/PlannedVaccines';
-import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2w,
-  Heading3
+  Heading3,
+  Paragraph
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Modal,
-  Platform,
-  Pressable,
+  Modal, Pressable,
   SafeAreaView,
-  Text,
-  TextInput,
-  View
+  Text, View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -41,7 +36,7 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddChildVaccination = ({route, navigation}: any) => {
+const AddChildVaccinationReminder = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle} = route.params;
   const themeContext = useContext(ThemeContext);
@@ -50,28 +45,37 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [measureTime, setmeasureTime] = useState<any>();
+  const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
 
-  const isMeasured = [
-    {title:t('vcIsMeasuredOption1')},
-    {title:t('vcIsMeasuredOption2')},
-  ];
-  const defaultMeasured = isMeasured.find(item=>item.title===t('vcIsMeasuredOption1'))
-  const getCheckedItem =(checkedItem:typeof isMeasured[0])=>{
-    console.log(checkedItem);
-  }
+
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
-    setmeasureShow(Platform.OS === 'ios');
+    setmeasureShow(false);
     setmeasureDate(currentDate);
   };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
   };
+
+  const onmeasureTimeChange = (event: any, selectedTime: any) => {
+    console.log(selectedTime);
+    const currentTime = selectedTime.getHours()+":"+selectedTime.getMinutes() || measureTime;
+    setmeasureShowTime(false);
+    setmeasureTime(currentTime);
+  };
+  const showmeasureTimepicker = () => {
+    setmeasureShowTime(true);
+  };
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-
+        <View
+          style={{
+            flexDirection: 'column',
+            flex: 1,
+          }}>
         <View
           style={{
             flexDirection: 'row',
@@ -106,15 +110,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </Pressable>
           </View>
         </View>
-        <View style={{padding:10}}>
+        <ScrollView style={{padding:15,flex:7}}>
+          <Paragraph>{t('vcReminderText')}</Paragraph>
         <FormInputGroup onPress={showmeasureDatepicker}>
-          <Heading3>{t('vcScreenDateText')}</Heading3>
           <FormInputBox>
             <FormDateText>
               <Text>
                 {measureDate
                   ? measureDate.toDateString()
-                  : t('vcScreenenterDateText')}
+                  : t('vcReminderDate')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -122,39 +126,47 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        <Heading3>{t('vcPlanned')}</Heading3>
-        <PlannedVaccines/>
-        <Heading3>{t('vcPrev')}</Heading3>
-        <PrevPlannedVaccines/>
+
+        <FormInputGroup onPress={showmeasureTimepicker}>
+          <FormInputBox>
+            <FormDateText>
+              <Text>
+                {measureTime
+                  ? (measureTime)
+                  : t('vcReminderTime')}
+              </Text>
+            </FormDateText>
+            <FormDateAction>
+              <Icon name="ic_time" size={20} color="#000" style={{borderWidth: 1, borderRadius: 50}} />
+            </FormDateAction>
+          </FormInputBox>
+        </FormInputGroup>
+        
         <View>
           {showmeasure && (
             <DateTimePicker
               testID="measuredatePicker"
-              value={new Date()}
+              value={new Date(2020, 10, 20)}
               mode={'date'}
               display="default"
               onChange={onmeasureChange}
             />
           )}
         </View>
-        <Heading3>{t('vcChildMeasureQ')}</Heading3>
-        <ToggleRadios options={isMeasured} defaultValue={defaultMeasured} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+
         <View>
-          <Heading3>{t('vcDoctorRemark')}</Heading3>
-          <TextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            clearButtonMode="always"
-            value={''}
-            // onChangeText={queryText => handleSearch(queryText)}
-            placeholder={t('vcDoctorRemarkPlaceHolder')}
-            style={{
-              backgroundColor: '#fff',
-              paddingHorizontal: 20,
-              paddingVertical: 20,
-            }}
-          />
+          {showmeasureTime && (
+            <DateTimePicker
+              testID="measuretimePicker"
+              value={new Date()}
+              mode={'time'}
+              display="default"
+              is24Hour={false}
+              onChange={onmeasureTimeChange}
+            />
+          )}
         </View>
+        
        
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
@@ -162,7 +174,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+            <ButtonText>{t('vcReminderAddBtn')}</ButtonText>
           </ButtonPrimary>
         </View>
         <Modal
@@ -187,23 +199,24 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 </PopupClose>
               </PopupCloseContainer>
               <Heading3>
-                {'Do you want to delete child Vaccination details?'}
+                {t('vcReminderDeleteWarning')}
               </Heading3>
               <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
               <ButtonTertiary2 style={{marginRight:5}}>
-                <ButtonText>{'Cancel'}</ButtonText>
+                <ButtonText>{t('growthDeleteOption1')}</ButtonText>
               </ButtonTertiary2>
               <ButtonTertiary2>
-                <ButtonText>{'Confirm'}</ButtonText>
+                <ButtonText>{t('growthDeleteOption2')}</ButtonText>
               </ButtonTertiary2>
               </View>
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        </ScrollView>
         </View>
       </SafeAreaView>
     </>
   );
 };
 
-export default AddChildVaccination;
+export default AddChildVaccinationReminder;

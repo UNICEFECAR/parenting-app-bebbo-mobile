@@ -9,6 +9,7 @@ import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle'
 const VaccineItem = (props: any) => {
   const themeContext = useContext(ThemeContext);
   const navigation =  useNavigation();
+  const bgColor = themeContext.colors.VACCINATION_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {
@@ -35,7 +36,7 @@ const VaccineItem = (props: any) => {
           <CheckboxItem>
             <View>
               {toggleCheckBox ? (
-                <CheckboxActive>
+                <CheckboxActive style={{backgroundColor:bgColor}}>
                   <Icon name="ic_tick" size={12} color="#000" />
                 </CheckboxActive>
               ) : (
