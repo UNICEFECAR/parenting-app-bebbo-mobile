@@ -53,9 +53,9 @@ let  childData  = route.params.childData;
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const genders = [{
-    title:'boy'
+    title:"boy"
   }, {
-      title:'girl'
+      title:"girl"
   }];
  
   const imageOptions = [
@@ -80,8 +80,11 @@ let  childData  = route.params.childData;
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
   };
-  const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
+  const [gender, setGender] = React.useState(childData != null ? childData.gender : "");
+  const getDefaultgenderValue = ()=>{
+   return childData?.uuid != "" ? genders.find(item=>item.title==childData?.gender) : {title:""}
 
+  }
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -331,7 +334,7 @@ let  childData  = route.params.childData;
                 })}
               </View> */}
               <View style={{padding:20}}>
-  <ToggleRadios options={genders} defaultValue={genders.find(item=>item.title==childData?.gender)} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+  <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
   </View>
               <ChildDate sendData={sendData} childData={childData} />
 
