@@ -47,6 +47,8 @@ const AddChildVaccinationReminder = ({route, navigation}: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [measureTime, setmeasureTime] = useState<any>();
   const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
+const defaultDatePickerValue =new Date(2021, 10, 20);
+const defaulttimePickerValue =new Date();
 
 
   const onmeasureChange = (event: any, selectedDate: any) => {
@@ -146,9 +148,11 @@ const AddChildVaccinationReminder = ({route, navigation}: any) => {
           {showmeasure && (
             <DateTimePicker
               testID="measuredatePicker"
-              value={new Date(2020, 10, 20)}
+              value={defaultDatePickerValue}
               mode={'date'}
               display="default"
+              minimumDate={new Date()}
+              // maximumDate => childDOB +72 weeks
               onChange={onmeasureChange}
             />
           )}
@@ -158,7 +162,7 @@ const AddChildVaccinationReminder = ({route, navigation}: any) => {
           {showmeasureTime && (
             <DateTimePicker
               testID="measuretimePicker"
-              value={new Date()}
+              value={defaulttimePickerValue}
               mode={'time'}
               display="default"
               is24Hour={false}

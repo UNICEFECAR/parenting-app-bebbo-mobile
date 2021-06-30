@@ -19,11 +19,11 @@ const VaccineItem = (props: any) => {
       backgroundColor: artBackgroundColor,
     });
   };
-  const {title, isChecked} = props.item;
+  const {title, isChecked,key} = props.item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
   return (
     <>
-      <View
+      <View key={key}
         style={{
           backgroundColor: '#FFF',
           margin: 3,

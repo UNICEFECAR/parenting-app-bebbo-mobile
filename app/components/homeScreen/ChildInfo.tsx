@@ -1,14 +1,13 @@
 import {
-    ButtonContainer,
-    ButtonPrimary,
-    ButtonSpacing,
-    ButtonText
+  ButtonPrimary,
+  ButtonSpacing,
+  ButtonText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Heading2Center, ShiftFromTop10,ShiftFromBottom10,ShiftFromBottom20,ShiftFromTopBottom10, Heading3, Heading3Center, Heading4Centerr} from '@styles/typography';
+import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
 
 const ChildInfo = () => {
   const {t} = useTranslation();
@@ -18,7 +17,7 @@ const ChildInfo = () => {
       
         <ShiftFromBottom10>
         <Heading2Center>
-          {t('homeScreenchildInfoTitle2')} 
+          {t('homeScreenchildInfoTitle',{childName:"Baby",parentName:"Parent"})} 
            {/* if baby found use childInfoTitle */}
         </Heading2Center>
         </ShiftFromBottom10>
