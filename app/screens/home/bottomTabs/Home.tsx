@@ -6,20 +6,19 @@ import ChildMilestones from '@components/homeScreen/ChildMilestones';
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
-import { BgPrimary, BgSecondary } from '@components/shared/BackgroundColors';
-import { ButtonContainer, ButtonPrimary, ButtonText,ButtonTertiary} from '@components/shared/ButtonGlobal';
+import { BgPrimary } from '@components/shared/BackgroundColors';
+import { ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexDirRowStart,FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { Flex1, FlexDirRow, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Container, Header3Text } from '@styles/style';
-import { Heading3Regularw,Heading3w, Heading3Regular,ShiftFromTop20, ShiftFromTopBottom10,ShiftFromTopBottom20} from '@styles/typography';
-import React, { useContext, useEffect } from 'react';
+import { Heading3Regular, Heading3Regularw, ShiftFromTop20, ShiftFromTopBottom10 } from '@styles/typography';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
 import { useAppDispatch } from '../../../../App';
@@ -46,9 +45,8 @@ const Home = () => {
         flex: 1,
       }}>
         <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
-        <BabyNotification/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
-         
+        <BabyNotification/>
           <ChildInfo/>
           <DailyReads/>
           <ChildMilestones/>

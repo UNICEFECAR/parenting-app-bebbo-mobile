@@ -4,7 +4,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading4Center } from '@styles/typography';
+import { Heading4Centerw } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
@@ -78,7 +78,7 @@ const Favourites = ({navigation}: Props) => {
                       margin: 3,
                     },
                   ]}>
-                  <Heading4Center>{item.title}</Heading4Center>
+                  <Heading4Centerw>{item.title}</Heading4Centerw>
                 </View>
               </Pressable>
             );

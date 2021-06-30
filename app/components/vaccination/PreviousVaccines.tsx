@@ -1,13 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, Heading5 } from '@styles/typography';
+import { Heading2, Heading5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
-import { ButtonPrimary, ButtonText } from './shared/ButtonGlobal';
-import Icon from './shared/Icon';
+import Icon from '../shared/Icon';
 
-const UpcomingVaccines = (props: any) => {
+const PreviousVaccines = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
   // console.log(item);
   const {t} = useTranslation();
@@ -15,7 +14,8 @@ const UpcomingVaccines = (props: any) => {
   const [isOPen, setIsOPen] = useState<Boolean>(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
-  const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
+  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {
@@ -40,12 +40,28 @@ const UpcomingVaccines = (props: any) => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Icon
-              name="ic_incom"
-              size={20}
-              color="#FFF"
-              style={{backgroundColor: 'red', borderRadius: 150}}
-            />
+            {item.totalVc === item.doneVc ? (
+              <Text
+                style={{
+                  alignItems: 'center',
+                  lineHeight: 20,
+                  flexDirection: 'row',
+                  textAlign: 'center',
+                  width: 20,
+                  height: 20,
+                  borderRadius: 100,
+                  backgroundColor: 'green',
+                }}>
+                <Icon name="ic_tick" size={12} color="#FFF" />
+              </Text>
+            ) : (
+              <Icon
+                name="ic_incom"
+                size={20}
+                color="#FFF"
+                style={{backgroundColor: 'red', borderRadius: 150}}
+              />
+            )}
           </View>
           <Pressable
             style={{
@@ -91,12 +107,19 @@ const UpcomingVaccines = (props: any) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Icon
-                    name="ic_incom"
-                    size={20}
-                    color="#FFF"
-                    style={{backgroundColor: 'red', borderRadius: 150}}
-                  />
+                  <Text
+                    style={{
+                      alignItems: 'center',
+                      lineHeight: 20,
+                      flexDirection: 'row',
+                      textAlign: 'center',
+                      width: 20,
+                      height: 20,
+                      borderRadius: 100,
+                      backgroundColor: 'green',
+                    }}>
+                    <Icon name="ic_tick" size={12} color="#FFF" />
+                  </Text>
                 </View>
                 <View style={{flex: 7, padding: 10}}>
                   <Heading5>
@@ -126,12 +149,19 @@ const UpcomingVaccines = (props: any) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Icon
-                    name="ic_incom"
-                    size={20}
-                    color="#FFF"
-                    style={{backgroundColor: 'red', borderRadius: 150}}
-                  />
+                  <Text
+                    style={{
+                      alignItems: 'center',
+                      lineHeight: 20,
+                      flexDirection: 'row',
+                      textAlign: 'center',
+                      width: 20,
+                      height: 20,
+                      borderRadius: 100,
+                      backgroundColor: 'green',
+                    }}>
+                    <Icon name="ic_tick" size={12} color="#FFF" />
+                  </Text>
                 </View>
                 <View style={{flex: 7, padding: 10}}>
                   <Heading5>
@@ -146,44 +176,16 @@ const UpcomingVaccines = (props: any) => {
               </View>
             </View>
             <View>
-              <View style={{flexDirection: 'row'}}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}>
-                  <Icon name="ic_time" size={20} color="#FFF" style={{backgroundColor: reminderColor, borderRadius: 150}} />
-                </View>
-                <View style={{flex: 7, padding: 10}}>
-                  <Heading5>Set Reminder on</Heading5>
-                  <Heading4>{new Date().toDateString()}</Heading4>
-                </View>
-                <Pressable onPress={()=>{}}>
-                  <Text style={{textDecorationLine: 'underline'}}>
-                    {t('editCountryLang')}
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
-            <View>
-              <View style={{alignItems: 'center'}}>
-                <Pressable>
-                  <Text style={{textDecorationLine: 'underline'}}>
-                    {t('vcSetReminder')}
-                  </Text>
-                </Pressable>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <ButtonPrimary
-                  style={{backgroundColor: headerColor, width: '60%'}}
-                  onPress={() =>
+              <View style={{alignItems: 'center', margin: 10}}>
+                <Pressable onPress={() =>
                     navigation.navigate('AddChildVaccination', {
-                      headerTitle: t('addVcTitle'),
+                      headerTitle: t('editVcTitle'),
                     })
                   }>
-                  <ButtonText>{t('vcAddBtn')}</ButtonText>
-                </ButtonPrimary>
+                  <Text style={{textDecorationLine: 'underline'}}>
+                    {t('vcEditDoctorData')}
+                  </Text>
+                </Pressable>
               </View>
             </View>
           </>
@@ -192,7 +194,7 @@ const UpcomingVaccines = (props: any) => {
     </>
   );
 };
-export default UpcomingVaccines;
+export default PreviousVaccines;
 
 const styles = StyleSheet.create({
   item: {

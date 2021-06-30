@@ -255,6 +255,11 @@ const en = {
             vcDoctorRemarkPlaceHolder:"Enter Doctor Remark or Comment",
             vcIsMeasuredOption1:"YES",
             vcIsMeasuredOption2:"NO",
+
+
+            growthDeleteWarning:"Do you want to delete child growth measurement details?",
+            growthDeleteOption1:"Cancel",
+            growthDeleteOption2:"Confirm",
            
     }
 }

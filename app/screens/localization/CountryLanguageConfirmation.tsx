@@ -78,6 +78,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       index: 0,
       routes: [{name: 'Walkthrough'}],
     });
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [
+    //     {
+    //       name: 'HomeDrawerNavigator',
+    //     },
+    //   ],
+    // });
     // navigation.navigate('Walkthrough');
   };
 
