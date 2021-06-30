@@ -15,6 +15,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
@@ -49,6 +50,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const [name, setName] = React.useState("");
+  const {t} = useTranslation();
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const showdobDatepicker = () => {
@@ -81,7 +83,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2w>
-                {'Add Expecting Child Details'}
+                {t('expectChildAddTxt')}
               </Heading2w>
             </View>
           </View>
@@ -110,7 +112,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
         <View style={{ margin: 10 }}>
           <FormDateContainer>
             <FormInputGroup onPress={showdobDatepicker}>
-              <LabelText>Expected due date</LabelText>
+              <LabelText> {t('expectChildDueDateTxt')}</LabelText>
               <FormInputBox>
                 <FormDateText>
                   <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text>
@@ -135,7 +137,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
           </View>
 
           <View>
-            <LabelText>Any preferred Name</LabelText>
+            <LabelText>{t('expectPreferNametxt')}</LabelText>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -143,7 +145,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               onChangeText={(value) => { setName(value) }}
               value={name}
               // onChangeText={queryText => handleSearch(queryText)}
-              placeholder="Enter your child name"
+              placeholder={t('expectPreferNamePlacetxt')}
               style={{
                 backgroundColor: '#fff',
                 paddingHorizontal: 20,
@@ -158,7 +160,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
                 AddChild();
                
               }}>
-              <ButtonText>Save Data</ButtonText>
+              <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
           </View>
         </View>

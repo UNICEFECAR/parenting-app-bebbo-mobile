@@ -13,7 +13,6 @@ const UpcomingVaccines = (props: any) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;

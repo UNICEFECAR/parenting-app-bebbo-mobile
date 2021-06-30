@@ -210,7 +210,7 @@ class Ruler extends React.Component<Props, State> {
         {/* Ruler */}
         {data.map((i, index) => {
           return (
-            <>
+
               <View
                 key={index}
                 style={{flexDirection: 'column-reverse'}}>
@@ -230,7 +230,6 @@ class Ruler extends React.Component<Props, State> {
                   </View>
                 ) : null}
               </View>
-            </>
           );
         })}
 

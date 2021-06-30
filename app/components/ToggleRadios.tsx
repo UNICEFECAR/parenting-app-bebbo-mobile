@@ -13,8 +13,7 @@ const ToggleRadios = (props: any) => {
       <View style={{flexDirection: 'row'}}>
         {options.map((item: typeof options[0], index: number) => {
           return (
-            <>
-              <View key={item.title}
+              <View key={index}
                 style={{
                   padding: 10,
                   backgroundColor: '#FFF',
@@ -47,7 +46,6 @@ const ToggleRadios = (props: any) => {
                   </LabelText>
                 </FormOuterCheckbox>
               </View>
-            </>
           );
         })}
       </View>
