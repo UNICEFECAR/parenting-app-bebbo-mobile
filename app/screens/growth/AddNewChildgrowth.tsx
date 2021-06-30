@@ -64,6 +64,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const showdobDatepicker = () => {
     setdobShow(true);
   };
+  React.useEffect(() => {
+    if (route.params?.weight) {
+      console.log(route.params?.weight);
+    }
+    if (route.params?.height) {
+      console.log(route.params?.height);
+    }
+  }, [route.params?.weight,route.params?.height ]);
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -152,7 +160,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate('AddNewChildHeight');
+                navigation.navigate('AddNewChildHeight',{onReturn:(item)=>{
+                  console.log(item);
+                }});
               }}
               style={{
                 backgroundColor: '#FFF',
