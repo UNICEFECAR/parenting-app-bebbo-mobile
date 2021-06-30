@@ -15,41 +15,41 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../App';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddNewChildHeight = ({navigation}: Props) => {
+const AddNewChildWeight = ({navigation, route}: Props) => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const tintColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const [modalVisible, setModalVisible] = useState(true);
   const screenPadding = 10;
-  const {height,width} = Dimensions.get('screen');
-  const [weight, setweight] = useState<number>(0);
-  const [weight1, setweight1] = useState<number>(0.0);
+  const secondScalePrefix =0.01;
+  const {height, width} = Dimensions.get('screen');
+  const [weight, setweight] = useState<number>(10);
+  const [weight1, setweight1] = useState<number>(0.46);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
-  const heightModalOpened = useAppSelector((state: any) =>
-      (state.utilsData.IsHeightModalOpened),
+  const weightModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsWeightModalOpened),
     );
    useFocusEffect(()=>{
-    // console.log('heightModalOpened',heightModalOpened);
-    // pass true to make modal visible every time & reload
-    setModalVisible(heightModalOpened)
+    //  console.log('weightModalOpened',weightModalOpened);
+      // pass true to make modal visible every time & reload
+    setModalVisible(weightModalOpened)
    })
-  return (
+    return (
     <>
-    <Modal
+      <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible}
@@ -73,11 +73,11 @@ const AddNewChildHeight = ({navigation}: Props) => {
 
             <View>
               <Heading4Centerr>
-                {t('heightModalText')}
+                {t('weightModalText')}
               </Heading4Centerr>
               <ButtonPrimary
                 onPress={() => {
-                  setIsModalOpened('IsHeightModalOpened');
+                  setIsModalOpened('IsWeightModalOpened');
                 }}>
                 <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonPrimary>
@@ -110,22 +110,25 @@ const AddNewChildHeight = ({navigation}: Props) => {
               </Pressable>
             </View>
             <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{t('growthScreenaddHeight')}</Heading2w>
+              <Heading2w style={{color: '#000'}}>
+                {t('growthScreenaddWeight')}
+              </Heading2w>
             </View>
           </View>
         </View>
-        <View style={{padding: screenPadding,backgroundColor:tintColor}}>
+        <View style={{padding: screenPadding, backgroundColor: tintColor}}>
           <Heading1 style={{textAlign: 'center'}}>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreencmText')}
+            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreenkgText')}
           </Heading1>
           <Ruler
             style={{elevation: 3}}
-            width={width - screenPadding- screenPadding}
+            width={width - (screenPadding*2)}
             height={100}
             vertical={false}
+            initialValue={weight} //set value on edit
             onChangeValue={(value) => setweight(value)}
             minimum={0}
-            maximum={200}
+            maximum={20}
             segmentWidth={2}
             segmentSpacing={20}
             indicatorColor="#AB8AD5"
@@ -143,9 +146,10 @@ const AddNewChildHeight = ({navigation}: Props) => {
           <View style={{marginBottom: 20}}></View>
           <Ruler
             style={{elevation: 3}}
-            width={width - screenPadding- screenPadding}
+            width={width - screenPadding - screenPadding}
             height={100}
             vertical={false}
+            initialValue={weight1/secondScalePrefix}
             onChangeValue={(value) => setweight1(value)}
             minimum={0}
             maximum={100}
@@ -156,7 +160,7 @@ const AddNewChildHeight = ({navigation}: Props) => {
             indicatorHeight={100}
             indicatorBottom={0}
             step={10}
-            stepPreFix={0.01}
+            stepPreFix={secondScalePrefix}
             stepColor="#333333"
             stepHeight={40}
             normalColor="#999999"
@@ -168,7 +172,13 @@ const AddNewChildHeight = ({navigation}: Props) => {
         <View style={{width: '100%', marginTop: 30}}>
           <ButtonPrimary
             onPress={() => {
-              navigation.goBack();
+              navigation.navigate({
+                name: 'AddNewChildgrowth',
+                params: {weight:(weight + 0.01 * weight1).toFixed(2)},
+                merge: true,
+              });
+              // route.params.onReturn({weight:(weight + 0.01 * weight1).toFixed(2)});
+              // navigation.goBack();
             }}>
             <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonPrimary>
@@ -178,4 +188,4 @@ const AddNewChildHeight = ({navigation}: Props) => {
   );
 };
 
-export default AddNewChildHeight;
+export default AddNewChildWeight;
