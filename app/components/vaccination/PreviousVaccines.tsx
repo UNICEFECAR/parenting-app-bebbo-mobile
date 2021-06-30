@@ -183,7 +183,7 @@ const PreviousVaccines = (props: any) => {
                     })
                   }>
                   <Text style={{textDecorationLine: 'underline'}}>
-                    {t('vcEditDoctorData')}
+                    {t('vcEditDataBtn')}
                   </Text>
                 </Pressable>
               </View>

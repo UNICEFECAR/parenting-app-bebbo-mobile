@@ -151,15 +151,20 @@ const UpcomingVaccines = (props: any) => {
                   style={{
                     flex: 1,
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
                   }}>
-                  <Icon name="ic_time" size={20} color="#FFF" style={{backgroundColor: reminderColor, borderRadius: 150}} />
+                  <Icon
+                    name="ic_time"
+                    size={20}
+                    color="#FFF"
+                    style={{backgroundColor: reminderColor, borderRadius: 150}}
+                  />
                 </View>
                 <View style={{flex: 7, padding: 10}}>
                   <Heading5>Set Reminder on</Heading5>
                   <Heading4>{new Date().toDateString()}</Heading4>
                 </View>
-                <Pressable onPress={()=>{}}>
+                <Pressable onPress={() => {}}>
                   <Text style={{textDecorationLine: 'underline'}}>
                     {t('editCountryLang')}
                   </Text>
@@ -173,7 +178,13 @@ const UpcomingVaccines = (props: any) => {
                     {t('vcSetReminder')}
                   </Text>
                 </Pressable>
+                <Pressable>
+                  <Text style={{textDecorationLine: 'underline'}}>
+                    {t('vcEditDataBtn')}
+                  </Text>
+                </Pressable>
               </View>
+
               <View style={{alignItems: 'center'}}>
                 <ButtonPrimary
                   style={{backgroundColor: headerColor, width: '60%'}}

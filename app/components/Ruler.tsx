@@ -107,6 +107,7 @@ type Props = {
    * On value change
    */
   onChangeValue: Function;
+  initialValue:number
 };
 interface State {
   value: number;
@@ -146,15 +147,22 @@ class Ruler extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const {minimum} = this.props;
-
+    const {minimum,initialValue,onChangeValue} = this.props;
+  
+      if (this.scrollViewRef && this.scrollViewRef.current) {
+        this.scrollViewRef.current?.scrollTo({
+          x: (initialValue - minimum) * this.snapSegment,
+          y: 0,
+          animated: true
+        });
+        this.setState({
+          value: initialValue,
+        });
+        onChangeValue(initialValue)
+      }
+  
     // Create a listener
     this.scrollListener = this.state.scrollX.addListener(({value}) => {
-      // if (this.textInputRef && this.textInputRef.current) {
-      //   this.textInputRef.current.setNativeProps({
-      //     text: `${Math.round(value / this.snapSegment) + minimum}`,
-      //   });
-
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
       });
@@ -350,7 +358,7 @@ Ruler.defaultProps = {
   normalColor: '#999999',
   normalHeight: 20,
   backgroundColor: '#FFFFFF',
-  
+  initialValue:0,
 };
 
 export default Ruler;

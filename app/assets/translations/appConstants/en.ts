@@ -242,7 +242,7 @@ const en = {
             vcArticleLink:"Read Article for more details",
             vcSetReminder:"Set Vaccination Reminder",
             vcAddBtn:"Enter Vaccination data",
-            vcEditDoctorData:"Edit Doctor Visit Data",
+            vcEditDataBtn:"Edit Vaccination Data",
             addVcTitle:"New Vaccination",
             editVcTitle:"Edit Vaccination",
             
