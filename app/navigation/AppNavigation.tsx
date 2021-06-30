@@ -5,21 +5,22 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddChildHealthCheckup from '@screens/AddChildHealthCheckup';
-import AddChildVaccination from '@screens/AddChildVaccination';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddSiblingData from '@screens/AddSiblingData';
-import AllChildgrowthMeasures from '@screens/AllChildgrowthMeasures';
 import ChildSetup from '@screens/ChildSetup';
 import ChildSetupList from '@screens/ChildSetupList';
 import EditParentDetails from '@screens/EditParentDetails';
 import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
 import AddNewChildHeight from '@screens/growth/AddNewChildHeight';
 import AddNewChildWeight from '@screens/growth/AddNewChildWeight';
+import AllChildgrowthMeasures from '@screens/growth/AllChildgrowthMeasures';
 import DetailsScreen from '@screens/home/DetailsScreen';
 import EditChildProfile from '@screens/home/EditChildProfile';
 import LoadingScreen from '@screens/LoadingScreen';
 import PrivacyPolicy from '@screens/PrivacyPolicy';
 import Terms from '@screens/Terms';
+import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
+import AddChildVaccinationReminder from '@screens/vaccination/AddChildVaccinationReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
 import { Linking, Platform } from 'react-native';
@@ -204,6 +205,11 @@ export default () => {
         name="AddChildVaccination"
         options={{headerShown: false}}
         component={AddChildVaccination}
+      />
+      <RootStack.Screen
+        name="AddChildVaccinationReminder"
+        options={{headerShown: false}}
+        component={AddChildVaccinationReminder}
       />
       <RootStack.Screen
         name="AddChildHealthCheckup"

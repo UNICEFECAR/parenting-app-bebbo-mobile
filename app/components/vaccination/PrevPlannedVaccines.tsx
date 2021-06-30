@@ -13,11 +13,15 @@ const plannedVaccines = [
     isChecked: false,
   },
   {
-    title: 'Tuberculosis1',
+    title: 'Polio (IPV) (2nd dose)',
     isChecked: false,
   },
   {
-    title: 'Tuberculosis2',
+    title: 'Pneumococcal disease (PCV13) (2nd dose)',
+    isChecked: false,
+  },
+  {
+    title: 'Rotavirus (RV) (2nd dose)',
     isChecked: false,
   },
 ];
