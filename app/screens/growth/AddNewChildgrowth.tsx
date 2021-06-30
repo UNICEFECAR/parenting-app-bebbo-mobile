@@ -129,7 +129,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         </FormInputGroup>
         <Header3Text>{t('growthScreenwhereMeasured')}</Header3Text>
        
-        <ToggleRadios options={measurementPlaces} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+        <ToggleRadios options={measurementPlaces} defaultValue={measurementPlaces[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
 
         <View>
           {showdob && (
