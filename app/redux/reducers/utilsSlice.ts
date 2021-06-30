@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { basicPagesUniqueName } from '@types/apiConstants';
 // import {RootState} from './../../../App';
 
 interface hardcodedDataType {
@@ -12,16 +13,19 @@ interface hardcodedDataType {
     id:string;
     title:string;
     body:string;
+    unique_name:string;
   },
   terms:{
     id:string;
     title:string;
     body:string;
+    unique_name:string;
   },
   privacypolicy:{
     id:string;
     title:string;
     body:string;
+    unique_name:string;
   },
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
@@ -38,16 +42,19 @@ const initialState: hardcodedDataType = {
     id:'',
     title:'',
     body:'',
+    unique_name:''
   },
   terms:{
     id:'',
     title:'',
     body:'',
+    unique_name:''
   },
   privacypolicy:{
     id:'',
     title:'',
     body:'',
+    unique_name:''
   },
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
@@ -78,24 +85,32 @@ export const utilsSlice = createSlice({
     //  console.log("setAllTermsData data---",state);
      // console.log(action.payload);
      (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
-      if(action.payload[0])
-      {
-        state.aboutus.id = action.payload[0].id;
-        state.aboutus.title = action.payload[0].title;
-        state.aboutus.body = action.payload[0].body;
-      }
-      if(action.payload[1])
-      {
-        state.terms.id = action.payload[0].id;
-        state.terms.title = action.payload[0].title;
-        state.terms.body = action.payload[0].body;
-      }
-      if(action.payload[2])
-      {
-        state.privacypolicy.id = action.payload[0].id;
-        state.privacypolicy.title = action.payload[0].title;
-        state.privacypolicy.body = action.payload[0].body;
-      }
+     console.log(action.payload);
+     console.log(Array.from(action.payload));
+     action.payload.map((x:any)=> {
+       console.log(x,"---x");
+        if(x.unique_name == basicPagesUniqueName.aboutus)
+        {
+          state.aboutus.id = x.id;
+          state.aboutus.title = x.title;
+          state.aboutus.body = x.body;
+          state.aboutus.unique_name = x.unique_name;
+        }else if(x.unique_name == basicPagesUniqueName.terms)
+        {
+          state.terms.id = x.id;
+          state.terms.title = x.title;
+          state.terms.body = x.body;
+          state.terms.unique_name = x.unique_name;
+        }
+        else if(x.unique_name == basicPagesUniqueName.privacypolicy)
+        {
+          state.privacypolicy.id = x.id;
+          state.privacypolicy.title = x.title;
+          state.privacypolicy.body = x.body;
+          state.privacypolicy.unique_name = x.unique_name;
+        }
+     })
+      
     },
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
