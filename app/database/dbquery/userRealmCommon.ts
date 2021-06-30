@@ -100,7 +100,7 @@ class UserRealmCommon extends Component {
                     realm.write(() => {
                         records.forEach(record => {
                             console.log("record",record);
-                            realm?.create<Entity>(entitySchema.name, record);
+                            realm?.create<Entity>(entitySchema.name, record,"modified");
                         })
                             
                         resolve(records);

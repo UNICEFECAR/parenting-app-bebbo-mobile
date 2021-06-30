@@ -12,7 +12,11 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
-    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    if(apiEndpoint==appConfig.basicPages){
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    }
+    // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
 }
 
 export const appConfig = {
@@ -32,3 +36,10 @@ export const activityCategory = [
     {name:'parentingCorner', id:'4',image:'ic_artl_parenting'},
     {name:'nutritionAndBreastfeeding',id:'1', image:'ic_artl_nutrition'},
 ]
+
+export const basicPagesUniqueName = {
+    aboutus: 'about_us',
+    terms: 'terms_and_conditions',
+    privacypolicy: 'privacy_policy',
+
+}
