@@ -1,15 +1,11 @@
-import { dataRealmCommon } from './../../database/dbquery/dataRealmCommon';
 import { AxiosResponse } from 'axios';
-import { takeLatest, put, call, SagaReturnType, takeEvery, all, takeLeading, fork } from 'redux-saga/effects';
+import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import commonApiService, { onChildSetuppiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
-import { addApiDataInRealm } from '../../services/Utils';
-import { appConfig } from '../../types/apiConstants';
 import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { receiveAPIFailure } from './sagaSlice';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
-import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 // declare global errorArr;
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
@@ -85,7 +81,15 @@ function* onFetchAPI(value: any) {
             });
           } else if (prevPage == 'ChilSetup') {
             //dispatch action for before home page
-            navigation.reset('HomeDrawerNavigator');
+            // navigation.reset('HomeDrawerNavigator');
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'HomeDrawerNavigator',
+                },
+              ],
+            });
           }
         }
       }
