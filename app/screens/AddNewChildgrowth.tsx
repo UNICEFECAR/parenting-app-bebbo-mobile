@@ -214,14 +214,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 </PopupClose>
               </PopupCloseContainer>
               <Heading3>
-                {'Do you want to delete child growth measurement details?'}
+                {t('growthDeleteWarning')}
               </Heading3>
               <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
               <ButtonTertiary2 style={{marginRight:5}}>
-                <ButtonText>{'Cancel'}</ButtonText>
+                <ButtonText>{t('growthDeleteOption1')}</ButtonText>
               </ButtonTertiary2>
               <ButtonTertiary2>
-                <ButtonText>{'Confirm'}</ButtonText>
+                <ButtonText>{t('growthDeleteOption2')}</ButtonText>
               </ButtonTertiary2>
               </View>
             </ModalPopupContainer>

@@ -1,23 +1,23 @@
 import { Heading4 } from '@styles/typography';
-import styled from 'styled-components/native';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
-import { FDirRow, Flex1 } from './FlexBoxStyle';
+import { Alert, Pressable, Share } from 'react-native';
+import styled from 'styled-components/native';
+import { FDirRow } from './FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './Icon';
 
 export const ShareFavBox = styled.View`
-flex-direction:row;
-padding:13px 10px;
-justify-content:space-between;
-align-items:center;
-`
+  flex-direction: row;
+  padding: 13px 10px;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-const ShareFavButtons = (props:any) => {
+const ShareFavButtons = (props: any) => {
   const {t} = useTranslation();
-  const {backgroundColor,isFavourite}= props;
+  const {backgroundColor, isFavourite} = props;
   const onShare = async () => {
-    console.log("share");
+    console.log('share');
     try {
       const result = await Share.share({
         message:
@@ -38,32 +38,43 @@ const ShareFavButtons = (props:any) => {
   };
   return (
     <>
-    <ShareFavBox style={{backgroundColor:backgroundColor}}>
-          <Pressable onPress={() => {}} >
-            <FDirRow>
+      <ShareFavBox style={{backgroundColor: backgroundColor}}>
+        <Pressable onPress={() => {}}>
+          <FDirRow>
             <OuterIconRow>
               <OuterIconLeft>
-              <Icon name="ic_sb_shareapp" size={20} color="#000" />
+                <Icon name="ic_sb_shareapp" size={20} color="#000" />
               </OuterIconLeft>
             </OuterIconRow>
             <Heading4>{t('actScreenshareText')}</Heading4>
+          </FDirRow>
+        </Pressable>
+
+        {isFavourite ? (
+          <Pressable onPress={() => {}}>
+            <FDirRow>
+              <OuterIconRow>
+                <OuterIconLeft>
+                  <Icon name="ic_trash" size={20} color="#000" />
+                </OuterIconLeft>
+              </OuterIconRow>
+              <Heading4>{t('actScreenremovetoFavText')}</Heading4>
             </FDirRow>
           </Pressable>
-        
-          
-          <Pressable onPress={() => {}} >
-          <FDirRow>
-          <OuterIconRow>
-              <OuterIconLeft>
-              <Icon name="ic_sb_favorites" size={20} color="#000" />
-              </OuterIconLeft>
-            </OuterIconRow>
-            <Heading4>{t('actScreenaddtoFavText')}</Heading4>
+        ) : (
+          <Pressable onPress={() => {}}>
+            <FDirRow>
+              <OuterIconRow>
+                <OuterIconLeft>
+                  <Icon name="ic_sb_favorites" size={20} color="#000" />
+                </OuterIconLeft>
+              </OuterIconRow>
+              <Heading4>{t('actScreenaddtoFavText')}</Heading4>
             </FDirRow>
           </Pressable>
-        
+        )}
       </ShareFavBox>
-      </>
+    </>
   );
 };
 export default ShareFavButtons;

@@ -1,6 +1,4 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import PlannedVaccines from '@components/PlannedVaccines';
-import PrevPlannedVaccines from '@components/PrevPlannedVaccines';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormDateAction,
@@ -16,6 +14,8 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
+import PlannedVaccines from '@components/vaccination/PlannedVaccines';
+import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -55,6 +55,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
     {title:t('vcIsMeasuredOption1')},
     {title:t('vcIsMeasuredOption2')},
   ];
+  const defaultMeasured = isMeasured.find(item=>item.title===t('vcIsMeasuredOption1'))
   const getCheckedItem =(checkedItem:typeof isMeasured[0])=>{
     console.log(checkedItem);
   }
@@ -137,7 +138,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
           )}
         </View>
         <Heading3>{t('vcChildMeasureQ')}</Heading3>
-        <ToggleRadios options={isMeasured} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+        <ToggleRadios options={isMeasured} defaultValue={defaultMeasured} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
         <View>
           <Heading3>{t('vcDoctorRemark')}</Heading3>
           <TextInput
