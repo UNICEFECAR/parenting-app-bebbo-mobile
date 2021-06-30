@@ -4,7 +4,7 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
-import { FDirCol, FDirRow, FlexDirRow, Flex1 } from '@components/shared/FlexBoxStyle';
+import { FDirCol, FDirRow, Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderRowView,
@@ -25,9 +25,7 @@ import {
   Alert,
   Pressable,
   ScrollView,
-  Share,
-  StyleSheet,
-  View
+  Share
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components';
@@ -109,16 +107,6 @@ const CustomDrawerContent = ({navigation}: any) => {
           
           <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
         </DrawerLinkView>
-        <DrawerLinkView
-          onPress={() => navigation.navigate('NotificationsScreen')}>
-            <OuterIconRow>
-              <OuterIconLeft15>
-                <Icon name="ic_sb_home" size={25} color="#000" />
-              </OuterIconLeft15>
-            </OuterIconRow>
-
-            <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
-          </DrawerLinkView>
           <DrawerLinkView
             onPress={() => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
@@ -304,15 +292,3 @@ const CustomDrawerContent = ({navigation}: any) => {
 };
 
 export default CustomDrawerContent;
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    // padding: 20,
-    flexDirection: 'row',
-    marginVertical: 16,
-    marginHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#00000011',
-    // flex: 1
-  },
-});

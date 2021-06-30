@@ -5,7 +5,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
 import ShareFavButtons from './shared/ShareFavButtons';
 
-
 const FavArticles = (props: any) => {
   const DATA = [
     {
@@ -39,19 +38,19 @@ const FavArticles = (props: any) => {
       title: 'Picking stuff around',
     },
   ];
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const themeContext = useContext(ThemeContext);
- 
+
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle =()=>{
+  const gotoArticle = () => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'Articles',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
     });
-  }
+  };
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
     <Pressable onPress={gotoArticle} key={index}>
       <View style={styles.item}>
@@ -62,29 +61,28 @@ const FavArticles = (props: any) => {
         />
         <Text style={styles.label}>Cognitive</Text>
         <Text style={styles.title}>{item.title}</Text>
-        <ShareFavButtons  isFavourite={true} backgroundColor={'#FFF'}/>
+        <ShareFavButtons isFavourite={true} backgroundColor={'#FFF'} />
       </View>
     </Pressable>
   );
   return (
     <>
-     
-        <View style={{flex: 1, flexDirection: 'row',backgroundColor:artBackgroundColor}}>
-          <ScrollView
-         >
-            {DATA.map((item, index) => {
-              return renderActivityItem(item, index);
-            })}
-          </ScrollView>
-         
-        </View>
-        
-    
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          backgroundColor: artBackgroundColor,
+        }}>
+        <ScrollView>
+          {DATA.map((item, index) => {
+            return renderActivityItem(item, index);
+          })}
+        </ScrollView>
+      </View>
     </>
   );
 };
 export default FavArticles;
-
 
 const styles = StyleSheet.create({
   item: {
