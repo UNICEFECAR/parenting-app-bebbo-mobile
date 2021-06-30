@@ -1,7 +1,7 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import PreviousVaccines from '@components/PreviousVaccines';
 import TabScreenHeader from '@components/TabScreenHeader';
-import UpcomingVaccines from '@components/UpcomingVaccines';
+import PreviousVaccines from '@components/vaccination/PreviousVaccines';
+import UpcomingVaccines from '@components/vaccination/UpcomingVaccines';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -193,12 +193,6 @@ const Vaccination = ({navigation}: Props) => {
             <View style={{flex: 1, width: '100%'}}>
               {renderItem(selectedIndex)}
             </View>
-            {/* <View>
-            <ButtonPrimary
-                    onPress={() => navigation.navigate('AddChildVaccination',{headerTitle:'Add Vaccination Data'})}>
-                    <ButtonText>AddChildVaccination</ButtonText>
-                  </ButtonPrimary>
-            </View> */}
           </ScrollView>
         </View>
       </SafeAreaView>
