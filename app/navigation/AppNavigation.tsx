@@ -20,7 +20,7 @@ import LoadingScreen from '@screens/LoadingScreen';
 import PrivacyPolicy from '@screens/PrivacyPolicy';
 import Terms from '@screens/Terms';
 import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
-import AddChildVaccinationReminder from '@screens/vaccination/AddChildVaccinationReminder';
+import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
 import { Linking, Platform } from 'react-native';
@@ -108,11 +108,16 @@ export default () => {
   if (!isReady) {
     return null;
   }
-  
+//   const childList = useAppSelector((state: any) =>
+// state.childData.childDataSet.allChild != ''
+// ? JSON.parse(state.childData.childDataSet.allChild)
+// : state.childData.childDataSet.allChild,
+// );
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-    <NavigationContainer initialState={initialState}
+    <NavigationContainer 
+    initialState={initialState}
     onStateChange={(state) =>
       AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
     }>
@@ -207,9 +212,9 @@ export default () => {
         component={AddChildVaccination}
       />
       <RootStack.Screen
-        name="AddChildVaccinationReminder"
+        name="AddReminder"
         options={{headerShown: false}}
-        component={AddChildVaccinationReminder}
+        component={AddReminder}
       />
       <RootStack.Screen
         name="AddChildHealthCheckup"

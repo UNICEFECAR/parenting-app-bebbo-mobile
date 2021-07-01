@@ -1,8 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import LanguageItem from '@components/LanguageItem';
 import {
-  BtnMultiple, ButtonviewClick,
-  ButtonviewNext
+  BtnMultiple,
+  ButtonviewClick,
+  ButtonviewNext,
+  ButtonviewPrevious
 } from '@components/shared/ButtonView';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -49,7 +51,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourLang').toString()}
@@ -63,13 +65,14 @@ const LanguageSelection = ({route, navigation}: Props) => {
             keyExtractor={(item) => item.languageCode.toString()}
           />
         </SelectionView>
-        {language ? (
-          <BtnMultiple>
-            <ButtonviewNext>
-              <ButtonviewClick onPress={() => navigation.goBack()}>
-                <Icon name="ic_angle_left" size={32} color="#000" />
-              </ButtonviewClick>
-            </ButtonviewNext>
+
+        <BtnMultiple>
+          <ButtonviewNext>
+            <ButtonviewClick onPress={() => navigation.goBack()}>
+              <Icon name="ic_angle_left" size={32} color="#000" />
+            </ButtonviewClick>
+          </ButtonviewNext>
+          {language ? (
             <ButtonviewNext>
               <ButtonviewClick
                 onPress={() =>
@@ -81,8 +84,14 @@ const LanguageSelection = ({route, navigation}: Props) => {
                 <Icon name="ic_angle_right" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
-          </BtnMultiple>
-        ) : null}
+          ) : <ButtonviewPrevious>
+          <ButtonviewClick
+            onPress={() =>{}
+            }>
+            <Icon name="ic_angle_right" size={32} color="#000" />
+          </ButtonviewClick>
+        </ButtonviewPrevious>}
+        </BtnMultiple>
       </OnboardingContainer>
     </>
   );
