@@ -18,6 +18,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom10,ShiftFromTopBottom5 } from '@styles/typography';
+import { destinationFolder } from '@types/apiConstants';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -34,48 +35,20 @@ import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
-  navigation: ArticlesNavigationProp;
+  navigation: ArticlesNavigationProp,
+  route:any
 };
-
+export type ArticleCategoriesProps = {
+  borderColor?:any,
+  filterOnCategory?:Function,
+  filterArray?:any
+}
 const ContainerView = styled.SafeAreaView`
   flex: 1;
   background-color: ${(props) => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
-
-// const DATA = [
-//   {
-//     id: '1',
-//     imagePath: require('@assets/trash/card1.jpeg'),
-//     title: 'General recommendations for overweight and obese infants',
-//   },
-//   {
-//     id: '2',
-//     imagePath: require('@assets/trash/card2.jpeg'),
-//     title: 'General recommendations for overweight and obese infants',
-//   },
-//   {
-//     id: '3',
-//     imagePath: require('@assets/trash/card3.jpeg'),
-//     title: 'General recommendations for overweight and obese infants',
-//   },
-//   {
-//     id: '4',
-//     imagePath: require('@assets/trash/card4.jpeg'),
-//     title: 'General recommendations for overweight and obese infants',
-//   },
-//   {
-//     id: '5',
-//     imagePath: require('@assets/trash/card5.jpeg'),
-//     title: 'General recommendations for overweight and obese infants',
-//   },
-//   {
-//     id: '6',
-//     imagePath: require('@assets/trash/card6.jpeg'),
-//     title: 'Picking stuff around',
-//   },
-// ];
-const Articles = ({navigation}: Props) => {
-  const [modalVisible, setModalVisible] = useState(true);
+const Articles = ({route, navigation}: Props) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
@@ -90,12 +63,13 @@ const Articles = ({navigation}: Props) => {
       // pass true to make modal visible every time & reload
     setModalVisible(articleModalOpened)
    });
-  const renderArticleItem = (item: any, index: number) => (
-      <Pressable onPress={onPress} key={index}>
+  const renderArticleItem = (item: typeof filteredData[0], index: number) => (
+      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
+        {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
           <Image
             style={styles.cardImage}
-            // source={{uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())}}
+            // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
             source={require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
           />
@@ -115,14 +89,22 @@ const Articles = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const onPress = () => {
-    navigation.navigate('DetailsScreen',{fromScreen:"Articles",headerColor:headerColor,backgroundColor:backgroundColor});
+  const goToArticleDetail = (item:typeof filteredData[0]) => {
+    navigation.navigate('DetailsScreen',
+    {
+      fromScreen:"Articles",
+      headerColor:headerColor,
+      backgroundColor:backgroundColor,
+      detailData:item,
+      // setFilteredArticleData: setFilteredArticleData
+    });
   };
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
   let filterArray: string[] = [];
   const currentChildData = {
     "gender":"40",
+    "parent_gender":"38",
     "taxonomyData":{
       "id": "43",
       "name": "1st month",
@@ -134,7 +116,7 @@ const Articles = ({navigation}: Props) => {
       "weeks_to": null
     }
   }
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -159,8 +141,11 @@ const Articles = ({navigation}: Props) => {
   //   }
   //   fetchData()
   // },[languageCode]);
+  
   useFocusEffect(
     React.useCallback(() => {
+      setLoading(true);
+      setModalVisible(true);
       async function fetchData() {
         let Entity:any;
         // Entity = Entity as TaxonomyEntity
@@ -170,11 +155,18 @@ const Articles = ({navigation}: Props) => {
         // console.log(filteredData,"artData--",artData.length);
         // if(filteredData != [])
         // {
-          setFilteredArticleData([]);
+          if(route.params?.categoryArray)
+          {
+            // console.log(route.params?.categoryArray);
+            setFilteredArticleData(route.params?.categoryArray);
+          }
+          else {
+            setFilteredArticleData([]);
+          }
         // }
       }
       fetchData()
-    },[languageCode])
+    },[languageCode,route.params?.categoryArray])
   );
   
   const setFilteredArticleData = (itemId:any) => {
