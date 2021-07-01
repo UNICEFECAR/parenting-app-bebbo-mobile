@@ -9,6 +9,15 @@ flex:1;
 align-items:center;
 `;
 
+export const FlexDirRowSpace = styled.View`
+flex-direction:row;
+justify-content:space-between;
+align-items:center;
+`;
+export const FlexDirRowSpaceStart = styled(FlexDirRowSpace)`
+align-items:flex-start;
+`;
+
 export const FlexDirCol = styled.View`
 flex-direction:column;
 flex:1;

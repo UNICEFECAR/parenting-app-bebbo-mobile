@@ -1,7 +1,9 @@
 import Icon from '@components/shared/Icon';
+import { Heading4 } from '@styles/typography';
 import React, { useRef } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import AgeSliderContainer, { AgeSliderBox, AgeSliderNav } from './shared/AgeSliderContainer';
 
 const DATA = [
   {
@@ -53,9 +55,9 @@ const AgeBrackets = (props: any) => {
   let scrollRef = useRef<ScrollView>();
   const renderDailyReadItem = (item, index, itemColor, activatedItemColor) => {
     return (
-      <View key={index} style={[styles.item, {backgroundColor: itemColor}]}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
+      <AgeSliderBox key={index} style={[{backgroundColor: itemColor}]}>
+        <Heading4>{item.title}</Heading4>
+      </AgeSliderBox>
     );
     // <Item title={item.title} key={index} itemColor={itemColor} activatedItemColor={activatedItemColor}/>
   };
@@ -79,19 +81,12 @@ const AgeBrackets = (props: any) => {
   };
   return (
     <>
-      <View
-        style={{
-          padding: 10,
-          flex: 1,
-          minHeight: 80,
-          flexDirection: 'row',
-          backgroundColor: '#FFF',
-        }}>
-        <View style={{padding: 10, paddingTop: 16}}>
+    <AgeSliderContainer>
+        <AgeSliderNav>
           <TouchableOpacity onPress={() => leftArrow()}>
             <Icon name="ic_angle_left" size={20} color="#000" />
           </TouchableOpacity>
-        </View>
+        </AgeSliderNav>
         <ScrollView
           ref={scrollRef}
           // ref={node => { scrollRef = node; }}
@@ -114,32 +109,32 @@ const AgeBrackets = (props: any) => {
             );
           })}
         </ScrollView>
-        <View style={{padding: 10, paddingTop: 16}}>
+        <AgeSliderNav>
           <TouchableOpacity
             onPress={() => {
               rightArrow();
             }}>
             <Icon name="ic_angle_right" size={20} color="#000" />
           </TouchableOpacity>
-        </View>
-      </View>
+        </AgeSliderNav>
+        </AgeSliderContainer>
     </>
   );
 };
 export default AgeBrackets;
 
 const styles = StyleSheet.create({
-  item: {
-    // backgroundColor: itemColor,
-    padding: 10,
+  // item: {
+  //   // backgroundColor: itemColor,
+  //   padding: 10,
 
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    margin: 10,
-    borderWidth: 1,
-    borderRadius: 1,
-    borderColor: 'black',
-  },
+  //   paddingVertical: 10,
+  //   paddingHorizontal: 20,
+  //   margin: 10,
+  //   borderWidth: 1,
+  //   borderRadius: 1,
+  //   borderColor: 'black',
+  // },
   title: {
     fontSize: 12,
   },

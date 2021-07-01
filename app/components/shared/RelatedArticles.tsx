@@ -1,8 +1,10 @@
-import { Heading2, Heading3 } from '@styles/typography';
+import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import { ArticleHeading, RelatedArticleContainer, ArticleListContent,} from './ArticlesStyle';
+import { MainContainer } from './Container';
 import ShareFavButtons from './ShareFavButtons';
 
 const ContainerView = styled.View`
@@ -50,24 +52,26 @@ const RelatedArticles = () => {
   const {t} = useTranslation();
   const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
     return (
-      <View style={styles.item} key={index}>
+      <RelatedArticleContainer key={index}>
         <Image source={item.imagePath} style={styles.cardImage}></Image>
-        <View
-          style={{flex: 1, flexDirection: 'column', backgroundColor: '#FFF'}}>
-          <Text style={styles.header}>Nutrition and BreastFeeding</Text>
-          <Heading3 style={styles.title}>{item.title}</Heading3>
-        </View>
-       
+        <ArticleListContent>
+        <ShiftFromTopBottom5>
+        <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold>
+        </ShiftFromTopBottom5>
+          <Heading3>{item.title}</Heading3>
+        </ArticleListContent>
          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
        
-      </View>
+      </RelatedArticleContainer>
     );
   };
 
   return (
     <>
       <ContainerView>
+        <ArticleHeading>
         <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
+        </ArticleHeading>
         <FlatList
           data={DATA}
           horizontal
@@ -82,32 +86,28 @@ const RelatedArticles = () => {
 export default RelatedArticles;
 
 const styles = StyleSheet.create({
-  item: {
-    // backgroundColor: '#FFF',
-    // padding: 20,
-    marginVertical: 8,
-    marginRight: 16,
-    // marginHorizontal: 16,
-    width: 300,
-    borderRadius: 5,
-  },
-  btn: {
-    width: 150,
-    padding: 5,
-  },
-  btntxt: {
-    color: '#000',
-  },
-  title: {
-    padding: 5,
-  },
-  header: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    paddingHorizontal: 5,
-    paddingTop: 5,
-    color: '#000',
-  },
+  // item: {
+ 
+  //  width: 300,
+  
+  // },
+  // btn: {
+  //   width: 150,
+  //   padding: 5,
+  // },
+  // btntxt: {
+  //   color: '#000',
+  // },
+  // title: {
+  //   padding: 5,
+  // },
+  // header: {
+  //   fontSize: 10,
+  //   fontWeight: 'bold',
+  //   paddingHorizontal: 5,
+  //   paddingTop: 5,
+  //   color: '#000',
+  // },
   cardImage: {
     width: '100%',
     height: 120,
