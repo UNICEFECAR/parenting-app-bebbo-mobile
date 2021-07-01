@@ -53,12 +53,12 @@ let  childData  = route.params.childData;
   const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
-  const genders = [{
-    title:t('chilGender1')
-  }, {
-      title:t('chilGender2')
-  }];
-
+  const genders = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
+  );
+  console.log(genders,"..genders..");
+ 
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
     { id: 1, iconName: 'ic_camera', name:  t('cameraOption2')},
@@ -81,11 +81,8 @@ let  childData  = route.params.childData;
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
   };
-  const [gender, setGender] = React.useState(childData != null ? childData.gender : "");
-  const getDefaultgenderValue = ()=>{
-   return childData?.uuid != "" ? genders.find(item=>item.title==childData?.gender) : {title:""}
-
-  }
+  const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
+  const genderData=genders.filter(item =>item.id == childData?.gender);
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -229,7 +226,7 @@ let  childData  = route.params.childData;
   }
   const getCheckedItem =(checkedItem:typeof genders[0])=>{
     console.log(checkedItem);
-    setGender(checkedItem.title);
+    setGender(checkedItem.id);
   }
   return (
     <>
@@ -307,6 +304,7 @@ let  childData  = route.params.childData;
                 <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
+                  maxLength={30}
                   clearButtonMode="always"
                   onChangeText={(value) => { setName(value) }}
                   value={name}
@@ -317,9 +315,25 @@ let  childData  = route.params.childData;
                   }}
                 />
               </View>
-              <View style={{padding:20}}>
-  <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
-  </View>
+              {/* <View style={{ flexDirection: 'row' }}>
+                {genders.map((item, index) => {
+                  return (
+                    <View
+                      key={index}
+                      style={{ padding: 10, backgroundColor: '#FFF', margin: 3 }}>
+                      <Pressable
+                        onPress={() => {
+                          //console.log(item,"..item..");
+                          setGender(item);
+                        }}>
+                        <Heading3>{item}</Heading3>
+                      </Pressable>
+                    </View>
+                  );
+                })}
+              </View> */}
+  <ToggleRadios options={genders} keydata={'name'} defaultValue={genderData[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+      
               <ChildDate sendData={sendData} childData={childData} />
 
               <View style={{ width: '100%', marginTop: 30 }}>

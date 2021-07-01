@@ -28,7 +28,7 @@ const TabScreenHeader = (props: any) => {
   );
   const headerColor = props.headerColor;
   const textColor = props.textColor;
-
+ 
   return (
     <>
       
