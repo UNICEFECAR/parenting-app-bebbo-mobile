@@ -175,7 +175,7 @@ export const Paragraph = styled.Text`
   line-height: 18px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-regular';
- 
+  margin-bottom:15px;
 `;
 export const Paragraphw = styled(Paragraph)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};

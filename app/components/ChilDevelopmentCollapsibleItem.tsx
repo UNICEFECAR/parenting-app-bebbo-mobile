@@ -5,6 +5,8 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
+import { MainContainer } from './shared/Container';
+import { DevelopmentBox } from './shared/DevelopmentStyle';
 import Icon from './shared/Icon';
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
@@ -34,8 +36,9 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   }
   return (
     <>
-      <View style={styles.item}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+    <MainContainer>
+    <DevelopmentBox>
+    <View style={{flex: 1, flexDirection: 'row'}}>
           <View
             style={{
               flex: 1,
@@ -130,7 +133,8 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             </View>
           </>
         ) : null}
-      </View>
+    </DevelopmentBox>
+    </MainContainer>
     </>
   );
 };
