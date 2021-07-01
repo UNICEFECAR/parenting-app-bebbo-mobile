@@ -1,5 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { WritableDraft } from 'immer/dist/internal';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 
 interface selectedLocalizationType {

@@ -192,7 +192,7 @@ const en = {
             growthScreendeletebtnText:"Delete",
             growthScreendateMeasurementText:"Date of Measurement",
             growthScreenenterDateMeasurementText:"Enter Date of Measurement",
-            growthScreenwhereMeasured:"Where was the child measured",
+            growthScreenwhereMeasured:"Where was the child measured?",
             growthScreendoctorMeasurePlace: "At a Doctor",
             growthScreenhomeMeasurePlace: "At Home",
             growthScreenenterMeasuresText:"Enter Weight and Height",
@@ -294,7 +294,27 @@ const en = {
             parentRoleLabel:"Your role ",
             parentNameLabel:"Name",
 
-           
+            hcHeader:"Health check-up",
+            hcSummaryHeader:"Additional Health Check-ups",
+            hcReminderbtn:"Set Health Check-up Reminder",
+            hcNewBtn:"Add Doctor Visit Data",
+            hcEditBtn:"Edit Doctor Visit Data",
+            hcNewHeaderTitle:"New Health Check up",
+            hcMeasureText:"Child has {{weight}} kg and {{height}} cm",
+            hcVaccineText:"Vaccines were given",
+            hcNoMeasureTxt:"Measures not entered",
+            hcNoVaccineTxt:"Vaccines not entered",
+            hcArticleLink:"Read article for this checkup period",
+            hcHasReminder:"Set Reminder on",
+            hcReminderAddBtn:"Save Health Check-up Reminder",
+            hcReminderText:"Enter the date and time of the Health Check-up and Bebbo will remind you",
+            hcReminderDeleteWarning:"Do you want to delete Health Check-up Reminder details?",
+            hcDeleteWarning:"Do you want to delete child Health Check-up details?",
+
+            hcdateText:"Date of Health Check-up",
+            hcenterDateText:"Enter Date of Health Check-up",
+            hcChildVaccineQ:"Did the Child receive Vaccine?",
+            
     }
 }
 export default en;
