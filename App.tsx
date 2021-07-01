@@ -72,7 +72,7 @@ const App = () => {
         <MenuProvider>
           <Provider store={store}>
             <PersistGate
-              loading={<ActivityIndicator size="large" color="#0000ff" />}
+              loading={<><ActivityIndicator size="large" color="#0000ff" /><Text>{'persiting'}</Text></>}
               persistor={persistor}>
               <SafeAreaView style={{flex: 1}}>
                 <AppNavigation />
