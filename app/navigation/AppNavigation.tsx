@@ -23,17 +23,17 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
-import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SplashScreen from 'react-native-splash-screen';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
-import { TaxonomyEntity, TaxonomySchema } from '../database/schema/TaxonomySchema';
+import {
+  TaxonomyEntity,
+  TaxonomySchema
+} from '../database/schema/TaxonomySchema';
 import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -44,21 +44,35 @@ export default () => {
   // const countryId = useAppSelector(
   //   (state: any) => state.selectedCountry.countryId,
   // );
-  const [isReady, setIsReady] = React.useState(false);
-  const [initialState, setInitialState] = React.useState();
+
+  const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ''
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : state.childData.childDataSet.allChild,
+  );
+  // const [isReady, setIsReady] = React.useState(false);
+  // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
+  // const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
-  const netInfo=useNetInfo();
+  const netInfo = useNetInfo();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    let Entity:any;
+    let Entity: any;
     // Entity = Entity as TaxonomyEntity
-    const taxonomyData = useToGetOfflineData(languageCode,dispatch,TaxonomySchema,Entity as TaxonomyEntity,taxonomydata,setAllTaxonomyData);
+    const taxonomyData = useToGetOfflineData(
+      languageCode,
+      dispatch,
+      TaxonomySchema,
+      Entity as TaxonomyEntity,
+      taxonomydata,
+      setAllTaxonomyData,
+    );
     //console.log("taxonomyData--",taxonomyData);
-  },[languageCode]);
+  }, [languageCode]);
   // useEffect(() => {
   //   async function addDBListener() {
   //     const datarealm = await dataRealmCommon.openRealm();
@@ -82,148 +96,161 @@ export default () => {
   //   // addDBListener()
   // },[])
   // console.log(netInfo,"..BeforeisConnected..");
-  useEffect(() => {
-    const restoreState = async () => {
-      try {
-        const initialUrl = await Linking.getInitialURL();
-        if (Platform.OS !== 'web' && initialUrl == null) {
-          // Only restore state if there's no deep link and we're not on web
-          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-          const state = savedStateString ? JSON.parse(savedStateString) : undefined;
+  // useEffect(() => {
+  //   const restoreState = async () => {
+  //     try {
+  //       const initialUrl = await Linking.getInitialURL();
+  //       if (Platform.OS !== 'web' && initialUrl == null) {
+  //         // Only restore state if there's no deep link and we're not on web
+  //         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+  //         const state = savedStateString ? JSON.parse(savedStateString) : undefined;
 
-          if (state !== undefined) {
-            setInitialState(state);
-          }
-        }
-      } finally {
-        setIsReady(true);
-      }
-    };
-    SplashScreen.hide();
-    if (!isReady) {
-      restoreState();
-    }
-  }, [isReady]);
+  //         if (state !== undefined) {
+  //           setInitialState(state);
+  //         }
+  //       }
+  //     } finally {
+  //       setIsReady(true);
+  //     }
+  //   };
+  //   SplashScreen.hide();
+  //   if (!isReady) {
+  //     restoreState();
+  //   }
+  // }, [isReady]);
 
-  if (!isReady) {
-    return null;
-  }
-//   const childList = useAppSelector((state: any) =>
-// state.childData.childDataSet.allChild != ''
-// ? JSON.parse(state.childData.childDataSet.allChild)
-// : state.childData.childDataSet.allChild,
-// );
+  // if (!isReady) {
+  //   return null;
+  // }
+
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-    <NavigationContainer 
-    initialState={initialState}
-    onStateChange={(state) =>
-      AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-    }>
-      <RootStack.Navigator
-        // initialRouteName={countryId ? 'Walkthrough' : 'Localization'}>
-        initialRouteName={'Localization'}>
-        <RootStack.Screen
-          name="Localization"
-          component={LocalizationNavigation}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          name="Walkthrough"
-          component={Walkthrough}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          name="Terms"
-          component={Terms}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen
-          name="PrivacyPolicy"
-          component={PrivacyPolicy}
-          options={{headerShown: false}}
-        />
-        <RootStack.Screen name="ChildSetup" component={ChildSetup}  options={{headerShown: false}}/>
-        <RootStack.Screen name="ChildSetupList" component={ChildSetupList}  options={{headerShown: false}}/>
-        <RootStack.Screen name="AddSiblingDataScreen" component={AddSiblingData}  options={{headerShown: false}}/>
-        <RootStack.Screen name="LoadingScreen" component={LoadingScreen}  options={{headerShown: false}}/>
-        <RootStack.Screen
-          name="HomeDrawerNavigator"
-          options={{headerShown: false}}
-          component={HomeDrawerNavigator}
-          // initialParams={{navigation}}
-          // options={({navigation}) => ({
-          //   title: 'ParentBuddy',
-          //   headerLeft: () => (
-          //     <TouchableOpacity
-          //       onPress={() =>
-          //         navigation.dispatch(DrawerActions.toggleDrawer())
-          //       }>
-          //       <Text>Toggle</Text>
-          //     </TouchableOpacity>
-          //   ),
-          //   headerLeftContainerStyle: {paddingLeft: 10},
-          // })}
-        />
-        <RootStack.Screen
-        name="EditChildProfile"
-        options={{headerShown: false}}
-        component={EditChildProfile}
-      />
-      <RootStack.Screen
-        name="AddExpectingChildProfile"
-        options={{headerShown: false}}
-        component={AddExpectingChildProfile}
-      />
-      <RootStack.Screen
-        name="EditParentDetails"
-        options={{headerShown: false}}
-        component={EditParentDetails}
-      />
-      <RootStack.Screen
-        name="AddNewChildgrowth"
-        options={{headerShown: false}}
-        component={AddNewChildgrowth}
-      />
-      <RootStack.Screen
-        name="AddNewChildWeight"
-        options={{headerShown: false}}
-        component={AddNewChildWeight}
-      />
-      <RootStack.Screen
-        name="AddNewChildHeight"
-        options={{headerShown: false}}
-        component={AddNewChildHeight}
-      />
-      <RootStack.Screen
-        name="AllChildgrowthMeasures"
-        options={{headerShown: false}}
-        component={AllChildgrowthMeasures}
-      />
-      <RootStack.Screen
-        name="DetailsScreen"
-        options={{headerShown: false}}
-        component={DetailsScreen}
-      />
-      <RootStack.Screen
-        name="AddChildVaccination"
-        options={{headerShown: false}}
-        component={AddChildVaccination}
-      />
-      <RootStack.Screen
-        name="AddReminder"
-        options={{headerShown: false}}
-        component={AddReminder}
-      />
-      <RootStack.Screen
-        name="AddChildHealthCheckup"
-        options={{headerShown: false}}
-        component={AddChildHealthCheckup}
-      />
-      
-      </RootStack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer
+        // initialState={initialState}
+        onStateChange={(state) =>
+          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+        }>
+        <RootStack.Navigator
+          initialRouteName={
+            childList?.length > 0 ? 'HomeDrawerNavigator' : 'Localization'
+          }>
+          {/* initialRouteName={'Localization'}> */}
+          <RootStack.Screen
+            name="Localization"
+            component={LocalizationNavigation}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="Walkthrough"
+            component={Walkthrough}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="Terms"
+            component={Terms}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="PrivacyPolicy"
+            component={PrivacyPolicy}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="ChildSetup"
+            component={ChildSetup}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="ChildSetupList"
+            component={ChildSetupList}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="AddSiblingDataScreen"
+            component={AddSiblingData}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="LoadingScreen"
+            component={LoadingScreen}
+            options={{headerShown: false}}
+          />
+          <RootStack.Screen
+            name="HomeDrawerNavigator"
+            options={{headerShown: false}}
+            component={HomeDrawerNavigator}
+            // initialParams={{navigation}}
+            // options={({navigation}) => ({
+            //   title: 'ParentBuddy',
+            //   headerLeft: () => (
+            //     <TouchableOpacity
+            //       onPress={() =>
+            //         navigation.dispatch(DrawerActions.toggleDrawer())
+            //       }>
+            //       <Text>Toggle</Text>
+            //     </TouchableOpacity>
+            //   ),
+            //   headerLeftContainerStyle: {paddingLeft: 10},
+            // })}
+          />
+          <RootStack.Screen
+            name="EditChildProfile"
+            options={{headerShown: false}}
+            component={EditChildProfile}
+          />
+          <RootStack.Screen
+            name="AddExpectingChildProfile"
+            options={{headerShown: false}}
+            component={AddExpectingChildProfile}
+          />
+          <RootStack.Screen
+            name="EditParentDetails"
+            options={{headerShown: false}}
+            component={EditParentDetails}
+          />
+          <RootStack.Screen
+            name="AddNewChildgrowth"
+            options={{headerShown: false}}
+            component={AddNewChildgrowth}
+          />
+          <RootStack.Screen
+            name="AddNewChildWeight"
+            options={{headerShown: false}}
+            component={AddNewChildWeight}
+          />
+          <RootStack.Screen
+            name="AddNewChildHeight"
+            options={{headerShown: false}}
+            component={AddNewChildHeight}
+          />
+          <RootStack.Screen
+            name="AllChildgrowthMeasures"
+            options={{headerShown: false}}
+            component={AllChildgrowthMeasures}
+          />
+          <RootStack.Screen
+            name="DetailsScreen"
+            options={{headerShown: false}}
+            component={DetailsScreen}
+          />
+          <RootStack.Screen
+            name="AddChildVaccination"
+            options={{headerShown: false}}
+            component={AddChildVaccination}
+          />
+          <RootStack.Screen
+            name="AddReminder"
+            options={{headerShown: false}}
+            component={AddReminder}
+          />
+          <RootStack.Screen
+            name="AddChildHealthCheckup"
+            options={{headerShown: false}}
+            component={AddChildHealthCheckup}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
     // </ThemeProvider>
   );
