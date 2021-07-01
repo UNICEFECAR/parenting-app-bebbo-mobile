@@ -137,3 +137,9 @@ export const ButtonGrowth = styled(ButtonPrimary)`
 export const ButtonHealth = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.HEALTHCHECKUP_COLOR};
 `;
+
+
+export const ButtonDevelopmentMd = styled(ButtonPrimaryMd)`
+  background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+`;
+
