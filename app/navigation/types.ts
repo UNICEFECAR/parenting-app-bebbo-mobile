@@ -18,7 +18,7 @@ export type RootStackParamList = {
   AddReminder:undefined;
   AddChildHealthCheckup:undefined;
   AllChildgrowthMeasures:undefined;
-  DetailsScreen: undefined;
+  DetailsScreen: {};
 };
 
 export type LocalizationStackParamList = {
