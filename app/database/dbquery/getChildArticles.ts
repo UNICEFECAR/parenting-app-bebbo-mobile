@@ -11,8 +11,9 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
     //Get data from db and if it exists then use db data or use const data in this file.  
     let databaselistener:any;
     let databaseallData:any,databaseData:any;
-    const filterQuery = 'child_age Contains "'+currentChildData.taxonomyData.id+'"';
-    // const filterQuery = 'child_gender Contains "'+currentChildData.gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
+    const filterQuery = 'child_age == "'+currentChildData.taxonomyData.id+'" LIMIT(20)';
+    //actual query to use is below one.
+    // const filterQuery = 'parent_gender == "'+currentChildData.parent_gender+'" AND child_age == "'+currentChildData.taxonomyData.id+'"';
 //    console.log(filterQuery);
     // async function fetchData() {
         const imageArray:ApiImageData[] = []
@@ -21,11 +22,14 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
         databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse,filterQuery);
         // databaseData.map((val: any) => {
         //     // console.log("value--",val['cover_image']);
-        //     imageArray.push({
-        //         srcUrl: val['cover_image'].url, 
-        //         destFolder: RNFS.DocumentDirectoryPath + '/content', 
-        //         destFilename: (val['cover_image'].url).split('/').pop()
-        //     })
+            // if(val['cover_image'] != "")
+            // {
+            //     imageArray.push({
+            //         srcUrl: JSON.parse(val['cover_image']).url, 
+            //         destFolder: RNFS.DocumentDirectoryPath + '/content', 
+            //         destFilename: (JSON.parse(val['cover_image']).url).split('/').pop()
+            //     })
+            // }
         // })
         // console.log(imageArray,"  db length--",databaseData?.length);
         // const imagesDownloadResult = await downloadImages(imageArray);

@@ -12,11 +12,15 @@ import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading2w, Paragraph } from '@styles/typography';
+import { Heading2, Heading2w, Heading6Bold, Paragraph } from '@styles/typography';
+import { destinationFolder } from '@types/apiConstants';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAppSelector } from '../../../App';
+
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -24,10 +28,28 @@ type Props = {
   navigation: DetailsScreenNavigationProp;
 };
 
+export type RelatedArticlesProps = {
+  related_articles?:any,
+  category?:any,
+  currentId?:any
+}
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
-  const {headerColor, fromScreen, backgroundColor} = route.params;
+  const {headerColor, fromScreen, backgroundColor,detailData} = route.params;
+  // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
+  // console.log(detailData);
   const {t} = useTranslation();
+  const categoryData = useAppSelector(
+    (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
+  );
+  let filterArray: string[] = [];
+  const setNewFilteredArticleData = (itemId:any) => {
+    navigation.navigate({
+      name: fromScreen,
+      params: {categoryArray:itemId},
+      merge: true,
+    });
+  }
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
@@ -46,7 +68,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2>{fromScreen}</Heading2>
+            <Heading2>{detailData.title}</Heading2>
           </HeaderTitleView>
         </FlexDirRow>
 
@@ -56,43 +78,30 @@ const DetailsScreen = ({route, navigation}: any) => {
               resizeMode="cover"
               resizeMethod="scale"
               style={{width: '100%', height: 200}}
-              source={require('@assets/trash/card5.jpeg')}
+              // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+              source={require('@assets/trash/defaultArticleImage.png')}
             />
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
           <ArticleDetailsContainer>
-          <Paragraph>
-            {
-              'Planning now in the refrigerator. But eget urna viverra molestie quam, ac commodo mauris consequat tincidunt. Each players textbooks, any development organization sauce, notebook Nullam varius. Let us live is mauris commodo nulla ornare, in order that he wishes to drink the throat. However, please players invest a lot of time. For posuere mauris ut consectetur element. Maecenas quis Vestibulum ac habitasse, trucks than of life, rutrum Sed Phasellus. No lion not feasible in vehicles production. Ultricies soccer relay makeup. Consequently and fear of financing, and the territories tortor iaculis, vehicula ligula. For bananas skirt smile, who ugly hairstyle. In fact, well as the mass, posuere a weekend or a, rhoncus nec ligula. Soccer employee at the clinical site.'
-            }
-          </Paragraph>
-          
-          <Paragraph>
-            Orci varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus. Pellentesque fringilla tincidunt nisi, vitae
-            tincidunt augue sagittis vitae. Quisque commodo nunc nisl, eu
-            iaculis turpis vehicula id. Donec sem justo, bibendum non congue a,
-            elementum et sem. Curabitur blandit nisi vitae enim efficitur, nec
-            molestie lacus fermentum. Sed sodales ligula eu odio tristique, a
-            porttitor turpis semper. Curabitur aliquet diam magna. Phasellus
-            accumsan, lorem vitae malesuada mollis, nisi metus consectetur
-            lectus, id posuere ante massa a lorem. Suspendisse eu dapibus augue.
-            Nunc a sapien porta augue ultrices vehicula eget id dui. Vestibulum
-            posuere risus eget augue condimentum, id tincidunt lectus
-            sollicitudin. Donec pulvinar urna eu nunc iaculis finibus. Aliquam
-            eleifend velit ac semper semper.
-          </Paragraph>
+          <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailData.category)[0].name }</Heading6Bold>
+          <Heading2>{detailData.title}</Heading2>
+          <HTML
+            source={{html: detailData.body}}
+            baseFontStyle={{fontSize: 16, color: '#000000'}}
+          />
           </ArticleDetailsContainer>
           {fromScreen === 'Articles' ? (
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
-                  <RelatedArticles />
+                  <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} />
+                  {/* <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} /> */}
                 
                 <View style={{padding: 20}}>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                 </View>
-                <ArticleCategories />
+                <ArticleCategories borderColor={headerColor} filterOnCategory={setNewFilteredArticleData} filterArray={filterArray} />
               </View>
             </>
           ) : null}
