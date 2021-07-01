@@ -6,8 +6,10 @@ import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import Icon from './shared/Icon';
 
 const ToggleRadios = (props: any) => {
-  const {options,tickColor,tickbgColor,defaultValue} = props;
+  const {options,tickColor,tickbgColor,defaultValue,keydata} = props;
+  let keydataSet=(keydata==null || keydata=="" || keydata==undefined)?'title':keydata;
   const [checkedItem, setCheckedItem] = useState(defaultValue);
+  console.log(defaultValue,"..defaultValue..");
   return (
     <>
       <View style={{flexDirection: 'row'}}>
@@ -21,7 +23,6 @@ const ToggleRadios = (props: any) => {
                 }}>
                 <FormOuterCheckbox
                   onPress={() => {
-                    
                     setCheckedItem(item);
                     props.getCheckedItem(item);
                   }}>
@@ -39,9 +40,9 @@ const ToggleRadios = (props: any) => {
                   </CheckboxItem>
                   <LabelText>
                     {checkedItem === item ? (
-                      <Heading3>{item.title}</Heading3>
+                      <Heading3>{item[keydataSet]}</Heading3>
                     ) : (
-                      <Heading3Regular>{item.title}</Heading3Regular>
+                      <Heading3Regular>{item[keydataSet]}</Heading3Regular>
                     )}
                   </LabelText>
                 </FormOuterCheckbox>

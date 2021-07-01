@@ -109,6 +109,10 @@ const ChildProfile = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
+  const genders = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
+  );
   const dispatch = useAppDispatch();
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -146,7 +150,8 @@ const ChildProfile = ({navigation}: Props) => {
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  const renderChildProfile = (dispatch: any, data: any, index: number) => (
+  const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
+    
     <View key={index}>
       {currentActiveChild != '' &&
       currentActiveChild != null &&
@@ -241,34 +246,82 @@ const ChildProfile = ({navigation}: Props) => {
             backgroundColor: headerColor,
             maxHeight: 50,
           }}>
-          <View style={{flex: 1, padding: 15}}>
-            <Pressable
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
-            </Pressable>
-          </View>
-          <View style={{flex: 9, padding: 7}}>
-            <Heading2w>{t('childProfileHeader')}</Heading2w>
-          </View>
-        </View>
-        <View style={{margin: 15}}>
-          <View style={{flexDirection: 'column'}}>
-            <ScrollView style={{height: 'auto'}} nestedScrollEnabled={true}>
-              {SortedchildList.length > 0
-                ? SortedchildList.map((item: any, index: number) => {
-                    // console.log(childList,"..childList123..");
-                    return renderChildProfile(dispatch, item, index);
-                  })
-                : null}
-            </ScrollView>
-            <ProfileLinkRow
-              style={{
-                backgroundColor: secopndaryTintColor,
-              }}>
-              <ProfileLinkCol>
-                <ButtonLinkPress
+          <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              backgroundColor: headerColor,
+              maxHeight: 50,
+              alignItems:'center',
+            }}>
+            <View style={{flex: 1}}>
+              <BurgerIcon />
+            </View>
+            <View style={{flex: 3}}>
+              <Heading2w> {'Child and ParentProfile'}</Heading2w>
+            </View>
+          </View> */}
+          {/* <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}> */}
+            <View style={{margin: 15}}>
+              <View style={{flexDirection: 'column'}}>
+                {/* <ProfileListActiveChild
+                  style={{
+                    backgroundColor: secopndaryColor,
+                  }}>
+                  <ProfileIconView>
+                    <Icon name="ic_baby" size={30} color="#000" />
+                  </ProfileIconView>
+                  <ProfileTextView>
+                    <ProfileSectionView>
+                      <Heading3>Jenny,</Heading3>
+                      <OuterIconLeft></OuterIconLeft>
+                      <Heading6>Girl</Heading6>
+                    </ProfileSectionView>
+                    <Heading5>Born on 08 Jul 2020</Heading5>
+                    <ProfileLinkView>
+                      <ButtonTextSmLine
+                        onPress={() => {
+                          navigation.navigate('EditChildProfile');
+                        }}>
+                        <Text>Edit Profile</Text>
+                      </ButtonTextSmLine>
+                    </ProfileLinkView>
+                  </ProfileTextView>
+
+                  <ProfileActionView>
+                    <OuterIconRow>
+                      <OuterIconLeft>
+                        <TickView>
+                          <Icon name="ic_tick" size={12} color="#009B00" />
+                        </TickView>
+                      </OuterIconLeft>
+                    </OuterIconRow>
+                    <Heading5Bold>Activated</Heading5Bold>
+                  </ProfileActionView>
+                </ProfileListActiveChild> */}
+                <ScrollView
+                  style={{height: 'auto', }}
+                  nestedScrollEnabled={true}>
+                  {
+                     
+                     SortedchildList.length> 0 ? (
+                      SortedchildList.map((item: any, index: number) => {
+                        item.gender=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
+                        return renderDailyReadItem(dispatch,item,index);
+                        })
+                      ) :null
+                    }
+                
+                 
+                
+                </ScrollView>
+              <ProfileLinkRow style={{
+                  backgroundColor: secopndaryTintColor,
+                }}>
+                 
+                <ProfileLinkCol>
+              <ButtonLinkPress
+                  
                   onPress={() => {
                     navigation.navigate('EditChildProfile', {childData: null});
                   }}>
