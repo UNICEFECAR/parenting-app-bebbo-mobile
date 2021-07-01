@@ -1,3 +1,4 @@
+import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
 import { activityCategory } from '@types/apiConstants';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -17,7 +18,7 @@ const getFilterArray = (itemId: any) => {
   // filterArray=filterArray;
   return filterArray;
 };
-const ArticleCategories = (props: any) => {
+const ArticleCategories = (props: ArticleCategoriesProps) => {
   const categoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -33,7 +34,7 @@ const articleBrackets = chunk(activityCategory, 2)
 //   const articleBrackets = new Array(Math.ceil(activityCategory.length / 3)).fill().map(_ => activityCategory.splice(0, 3))
   
 //   activityCategory.splice(0, 3);
- // console.log(articleBrackets);
+//  console.log(articleBrackets);
   return (
     <>
       <ArticleFilter>
