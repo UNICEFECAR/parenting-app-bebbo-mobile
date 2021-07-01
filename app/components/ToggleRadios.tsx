@@ -1,6 +1,6 @@
 import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
 import { Heading3, Heading3Regular } from '@styles/typography';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import Icon from './shared/Icon';
@@ -15,7 +15,7 @@ const ToggleRadios = (props: any) => {
       <View style={{flexDirection: 'row'}}>
         {options.map((item: typeof options[0], index: number) => {
           return (
-            <>
+
               <View key={index}
                 style={{
                   padding: 10,
@@ -48,7 +48,6 @@ const ToggleRadios = (props: any) => {
                   </LabelText>
                 </FormOuterCheckbox>
               </View>
-            </>
           );
         })}
       </View>
