@@ -27,4 +27,12 @@ export const TickView = styled.View`
   border-radius: 100px;
 `;
 
+export const IconBox = styled.View`
+  padding: 15px;
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:100px;
+  margin-right:15px;
+`;
+
+
 export default Icon;

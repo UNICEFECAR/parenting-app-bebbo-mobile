@@ -1,11 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
-import { Heading3 } from '@styles/typography';
+import { Heading3, ShiftFromBottom10,ShiftFromBottom15 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, View,Text } from 'react-native';
 import { ThemeContext } from 'styled-components';
-import { ButtonPrimary, ButtonText } from './ButtonGlobal';
-import Icon from './Icon';
+import { BgWhite } from './BackgroundColors';
+import { ButtonDevelopmentMd, ButtonPrimary, ButtonText, ButtonTextMd } from './ButtonGlobal';
+import { BannerContainer, MainContainer } from './Container';
+import { Flex1,Flex3, FlexDirRow, FlexDirRowStart } from './FlexBoxStyle';
+import { HeaderIconView, HeaderTitleView } from './HeaderContainerStyle';
+import Icon, { IconBox, OuterIconRow,OuterIconLeft } from './Icon';
 const TrackMilestoneView = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -15,11 +19,39 @@ const TrackMilestoneView = () => {
   // const {backgroundColor}= props;
   return (
     <>
-      <View
+    <ShiftFromBottom15>
+      <BannerContainer style={{backgroundColor: backgroundColor,}}>
+        <FlexDirRowStart>
+        <Flex1>
+          <OuterIconRow>
+            <OuterIconLeft>
+            <IconBox>
+        <Icon name="ic_milestone" size={25} color="#000" />
+        </IconBox>
+            </OuterIconLeft>
+          </OuterIconRow>
+          
+       
+        </Flex1>
+        <Flex3>
+          <ShiftFromBottom15>
+        <Heading3>
+           {t('trackMilestoneViewHeader')}
+          </Heading3>
+          </ShiftFromBottom15>
+          <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
+            <ButtonDevelopmentMd
+              onPress={() =>
+                navigation.navigate('Home', {screen: 'ChildDevelopment'})
+              }>
+              <ButtonTextMd>{t('trackMilestoneViewBtn')}</ButtonTextMd>
+            </ButtonDevelopmentMd>
+          </Pressable>
+        </Flex3>
+        </FlexDirRowStart>
+      {/* <View
         style={{
           flexDirection: 'row',
-          padding: 10,
-          margin: 10,
           backgroundColor: backgroundColor,
         }}>
         <View
@@ -45,7 +77,9 @@ const TrackMilestoneView = () => {
             </ButtonPrimary>
           </Pressable>
         </View>
-      </View>
+      </View> */}
+      </BannerContainer> 
+      </ShiftFromBottom15>
     </>
   );
 };
