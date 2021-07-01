@@ -11,10 +11,10 @@ export const ButtonviewNext = styled.Text`
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
 `;
 
-// export const ButtonviewPrevious = styled(ButtonviewNext)`
-//   background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};
-//   justify-content: flex-start;
-// `;
+export const ButtonviewPrevious = styled(ButtonviewNext)`
+  background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};
+  justify-content: flex-start;
+`;
 
 export const ButtonviewClick = styled.Pressable`
   margin-top: 10px;

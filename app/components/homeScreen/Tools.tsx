@@ -1,15 +1,12 @@
 import { BgSecondaryTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { FeatureBox, FeatureDivideArea,ToolBox,ToolPress,ToolBoxText} from '@components/shared/HomeScreenStyle';
+import { FeatureDivideArea, ToolBox, ToolBoxText, ToolPress } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading3Center, ShiftFromBottom10, ShiftFromTop10 } from '@styles/typography';
+import { Heading2, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native';
 import VectorImage from 'react-native-vector-image';
-import styled from 'styled-components/native';
 
 
 const Tools = () => {
@@ -47,14 +44,7 @@ const Tools = () => {
         </MainContainer>  
         </FeatureDivideArea>
       </BgSecondaryTint>
-      {/* <ContainerView>
-        <View>
-          <Text>{t('homeScreentoolsHeader')}</Text>
-          <ScrollView style={{ flex: 1, flexDirection: "row" }} horizontal={true} showsHorizontalScrollIndicator={false}>
-            
-          </ScrollView>
-        </View>
-      </ContainerView> */}
+     
     </>
   );
 };
