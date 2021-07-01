@@ -1,13 +1,18 @@
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ArticleListContent,ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
+import { BgActivityTint } from '@components/shared/BackgroundColors';
+import { MainContainer } from '@components/shared/Container';
+import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading2w } from '@styles/typography';
+import { Heading2, Heading2w, Paragraph } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
@@ -27,28 +32,26 @@ const DetailsScreen = ({route, navigation}: any) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        <FlexDirRow
           style={{
-            flexDirection: 'row',
-            flex: 1,
             backgroundColor: headerColor,
             maxHeight: 50,
           }}>
-          <View style={{flex: 1, padding: 15}}>
+          <HeaderIconView>
             <Pressable
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
+              <Icon name={'ic_back'} color="#000" size={15} />
             </Pressable>
-          </View>
-          <View style={{flex: 9, padding: 7}}>
-            <Heading2w>{fromScreen}</Heading2w>
-          </View>
-        </View>
+          </HeaderIconView>
+          <HeaderTitleView>
+            <Heading2>{fromScreen}</Heading2>
+          </HeaderTitleView>
+        </FlexDirRow>
 
         <ScrollView style={{flex: 4}}>
-          <View style={{alignItems: 'center'}}>
+          <View>
             <Image
               resizeMode="cover"
               resizeMethod="scale"
@@ -57,12 +60,14 @@ const DetailsScreen = ({route, navigation}: any) => {
             />
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
-          <Text style={{margin: 5}}>
+          <ArticleDetailsContainer>
+          <Paragraph>
             {
               'Planning now in the refrigerator. But eget urna viverra molestie quam, ac commodo mauris consequat tincidunt. Each players textbooks, any development organization sauce, notebook Nullam varius. Let us live is mauris commodo nulla ornare, in order that he wishes to drink the throat. However, please players invest a lot of time. For posuere mauris ut consectetur element. Maecenas quis Vestibulum ac habitasse, trucks than of life, rutrum Sed Phasellus. No lion not feasible in vehicles production. Ultricies soccer relay makeup. Consequently and fear of financing, and the territories tortor iaculis, vehicula ligula. For bananas skirt smile, who ugly hairstyle. In fact, well as the mass, posuere a weekend or a, rhoncus nec ligula. Soccer employee at the clinical site.'
             }
-          </Text>
-          <Text style={{margin: 5}}>
+          </Paragraph>
+          
+          <Paragraph>
             Orci varius natoque penatibus et magnis dis parturient montes,
             nascetur ridiculus mus. Pellentesque fringilla tincidunt nisi, vitae
             tincidunt augue sagittis vitae. Quisque commodo nunc nisl, eu
@@ -76,13 +81,14 @@ const DetailsScreen = ({route, navigation}: any) => {
             posuere risus eget augue condimentum, id tincidunt lectus
             sollicitudin. Donec pulvinar urna eu nunc iaculis finibus. Aliquam
             eleifend velit ac semper semper.
-          </Text>
+          </Paragraph>
+          </ArticleDetailsContainer>
           {fromScreen === 'Articles' ? (
             <>
               <View style={{backgroundColor: backgroundColor}}>
-                <View style={{flex: 1, padding: 5, marginVertical: 10}}>
+                
                   <RelatedArticles />
-                </View>
+                
                 <View style={{padding: 20}}>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                 </View>
@@ -92,14 +98,18 @@ const DetailsScreen = ({route, navigation}: any) => {
           ) : null}
           {fromScreen === 'Activities' ? (
             <>
+            <MainContainer>
             <TrackMilestoneView/>
-              <View style={{backgroundColor: backgroundColor, padding: 20}}>
+            </MainContainer>
+            <BgActivityTint>
+              <ArticleHeading>
                 <Heading2>{t('detailScreenActivityHeader')}</Heading2>
-              </View>
+              </ArticleHeading>
               <ActivitiesCategories
                 borderColor={headerColor}
                 backgroundColor={backgroundColor}
               />
+              </BgActivityTint>
             </>
           ) : null}
           {

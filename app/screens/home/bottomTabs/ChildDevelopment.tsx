@@ -1,11 +1,17 @@
 import AgeBrackets from '@components/AgeBrackets';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import Icon from '@components/shared/Icon';
+import { ArticleHeading } from '@components/shared/ArticlesStyle';
+import { BgWhite } from '@components/shared/BackgroundColors';
+import { BannerContainer, MainContainer } from '@components/shared/Container';
+import { DevelopmentPercent, DevelopmentStatus,DevelopmentContent} from '@components/shared/DevelopmentStyle';
+import { FDirCol,FDirRow, Flex1, Flex4, Flex5, FlexDirCol, FlexDirRowSpace,FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconLeft, OuterIconRight, OuterIconRow } from '@components/shared/Icon';
+import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading3, Heading5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading5, Heading5Bold, ShiftFromBottom5,ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -75,20 +81,18 @@ const ChildDevelopment = ({navigation}: Props) => {
   const ContentThatGoesBelowTheFlatList = () => {
     return (
       <>
-        <View
-          style={{
-            marginVertical: 10,
-            marginHorizontal: 15,
-            padding: 20,
-            backgroundColor: '#FFF',
-          }}>
-          <Heading5>{t('developScreentipsText')}</Heading5>
-          <Heading3>
+       <MainContainer><BannerContainer>
+        
+         
+          <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
+          <ShiftFromTop10><Heading3Regular>
             Watch your baby's behaviour and talk to your paediatrician or
             visiting nurse if you notice that at the end of the first month you
             baby:
-          </Heading3>
-        </View>
+          </Heading3Regular></ShiftFromTop10>
+          
+        
+        </BannerContainer></MainContainer>
       </>
     );
   };
@@ -105,50 +109,67 @@ const ChildDevelopment = ({navigation}: Props) => {
             style={{width: '100%'}}
           />
         </View>
-        <View style={{padding: 10}}>
-          <View style={{flexDirection: 'row'}}>
-            <Heading3>3rd and 4th Month </Heading3>
-            <Text style={{backgroundColor: headerColor, padding: 2}}>
+        <ArticleHeading>
+          <FlexDirRowSpace>
+          <Heading3>3rd and 4th Month </Heading3>
+          <PrematureTagDevelopment>
+          <Heading5Bold>
               {t('developScreenprematureText')}
-            </Text>
-          </View>
+            </Heading5Bold>
+          </PrematureTagDevelopment>
+          </FlexDirRowSpace>
+          <ShiftFromTop5>
+          <FlexDirRowSpaceStart>
           <Heading2>
             The Period of Diverse Experiences
-            <Pressable onPress={onPressInfo}>
-              <Icon name="ic_info" size={15} color="#000" />
-            </Pressable>
           </Heading2>
-        </View>
-        <View
-          style={{
-            flexDirection: 'column',
-            marginVertical: 10,
-            marginHorizontal: 15,
-          }}>
-          <View style={{flexDirection: 'row'}}>
-            <Icon
-              name="ic_incom"
-              size={25}
-              color="#FFF"
-              style={{backgroundColor: 'red', borderRadius: 150}}
-            />
-            <Heading5>{t('developScreenchartLabel')}</Heading5>
-          </View>
-          <View style={{flexDirection: 'row', flex: 1}}>
-            <Heading3 style={{flex: 8}}>{t('developScreenchartText')}</Heading3>
-            <View
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 44 / 2,
-                backgroundColor: headerColor,
-                flex: 1,
-              }}></View>
-          </View>
-        </View>
-        <Heading3 style={{paddingHorizontal: 15}}>
+          <Pressable onPress={onPressInfo}>
+            <ShiftFromTop5>
+                <Icon name="ic_info" size={15} color="#000" />
+                </ShiftFromTop5>
+            </Pressable>
+          </FlexDirRowSpaceStart>
+          </ShiftFromTop5>
+          <FDirCol>
+            <DevelopmentStatus>
+            <FlexDirRowSpace>
+              <DevelopmentContent>
+              <FDirRow>
+            
+            <OuterIconRow>
+              <OuterIconLeft>
+              <Icon
+            name="ic_incom"
+            size={24}
+            color="#FFF"
+            style={{backgroundColor: 'red', borderRadius: 150}}
+          />
+              </OuterIconLeft>
+            </OuterIconRow>
+          <Heading4>{t('developScreenchartLabel')}</Heading4>
+          </FDirRow>
+          <ShiftFromTop5>
+              <Heading3>{t('developScreenchartText')}</Heading3>
+              </ShiftFromTop5>
+              </DevelopmentContent>
+             <DevelopmentPercent>
+                <Heading3>25%</Heading3>
+             </DevelopmentPercent>
+            </FlexDirRowSpace>
+            </DevelopmentStatus>
+            <FDirRow>
+            <Heading3Regular>
           {t('developScreenmileStoneQ')}
-        </Heading3>
+        </Heading3Regular>
+            </FDirRow>
+          </FDirCol>
+        
+        </ArticleHeading>
+        
+    
+
+        
+        
       </>
     );
   };
@@ -156,17 +177,14 @@ const ChildDevelopment = ({navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
+        <FlexDirCol>
+         
           <TabScreenHeader
             title={t('developScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
-          <View style={{flex: 4, backgroundColor: backgroundColor}}>
+          <Flex4 style={{backgroundColor: backgroundColor}}>
             <View>
               <FlatList
                 data={cditems}
@@ -177,8 +195,8 @@ const ChildDevelopment = ({navigation}: Props) => {
                 ListFooterComponent={ContentThatGoesBelowTheFlatList}
               />
             </View>
-          </View>
-        </View>
+          </Flex4>
+          </FlexDirCol>
       </SafeAreaView>
     </>
   );
