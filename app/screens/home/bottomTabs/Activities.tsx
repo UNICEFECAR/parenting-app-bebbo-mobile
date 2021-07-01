@@ -1,11 +1,16 @@
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ArticleHeading, ActivityBox, ArticleListContainer,ArticleListContent } from '@components/shared/ArticlesStyle';
+import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { FDirCol, FDirRow, FlexDirRow,FlexDirRowSpace} from '@components/shared/FlexBoxStyle';
+import PrematureTag,{PrematureTagActivity} from '@components/shared/PrematureTag';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3 } from '@styles/typography';
+import { Heading3, Heading4, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -62,32 +67,38 @@ const ContainerView = styled.SafeAreaView`
 const SuggestedActivities = () => {
   const {t} = useTranslation();
   return (
-    <View style={styles.item}>
+    <ArticleListContainer>
       <Image
         style={styles.cardImage}
         source={require('@assets/trash/card5.jpeg')}
         resizeMode={'cover'}
       />
-      <View>
-        <Text style={styles.label}>Play and learning</Text>
-        <Text style={styles.title}>
-          {'General recommendations for overweight and obese infants'}
-        </Text>
-      </View>
-      <View style={{flexDirection: 'row', padding: 10}}>
+      <ArticleListContent>
+      <ShiftFromTopBottom5>
+          <Heading6Bold>Play and learning</Heading6Bold>
+          </ShiftFromTopBottom5>
+          <Heading3>{'General recommendations for overweight and obese infants'}</Heading3>
+      
+      <ActivityBox>
         <View>
-          <Text>
+          <Heading6Bold>
             {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
-          </Text>
-          <Text>{'Laugh at Human face'}</Text>
+          </Heading6Bold>
+          <ShiftFromTop5>
+          <Heading4>{'Laugh at Human face'}</Heading4>
+          </ShiftFromTop5>
         </View>
         <View>
-          <Text style={{borderBottomWidth: 1}}>
+          <ButtonTextSmLine>
             {t('actScreentrack')} {t('actScreenmilestones')}
-          </Text>
+          </ButtonTextSmLine>
         </View>
-      </View>
-    </View>
+        
+      </ActivityBox>
+      
+      </ArticleListContent>
+      <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
+    </ArticleListContainer>
   );
 };
 const Activities = ({navigation}: Props) => {
@@ -105,16 +116,21 @@ const Activities = ({navigation}: Props) => {
 
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
     <Pressable onPress={onPress} key={index}>
-      <View style={styles.item}>
+      <ArticleListContainer>
         <Image
           style={styles.cardImage}
           source={item.imagePath}
           resizeMode={'cover'}
         />
-        <Text style={styles.label}>Cognitive</Text>
-        <Text style={styles.title}>{item.title}</Text>
+        <ArticleListContent>
+            <ShiftFromTopBottom5>
+          <Heading6Bold>Cognitive</Heading6Bold>
+          </ShiftFromTopBottom5>
+          <Heading3>{item.title}</Heading3>
+          </ArticleListContent>
+        
         <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
-      </View>
+      </ArticleListContainer>
     </Pressable>
   );
 
@@ -128,7 +144,7 @@ const Activities = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <View style={{flex: 1, flexDirection: 'column'}}>
+          <FDirCol>
             <AgeBrackets
               itemColor={backgroundColor}
               activatedItemColor={headerColor}
@@ -137,17 +153,28 @@ const Activities = ({navigation}: Props) => {
               borderColor={headerColor}
               backgroundColor={backgroundColor}
             />
-            <View style={{padding: 10, height: 400, marginBottom: 30}}>
-              <Heading3>{t('actScreensugacttxt')}</Heading3>
-              <Text>{t('actScreenprematureText')}</Text>
+            <View style={{height: 450, marginBottom: 15}}>
+            <ArticleHeading>
+              <FlexDirRowSpace>
+                
+                <Heading3>{t('actScreensugacttxt')}</Heading3>
+              <PrematureTagActivity>
+                <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
+              </PrematureTagActivity>
+              </FlexDirRowSpace>
+              </ArticleHeading>
+              
               <SuggestedActivities />
             </View>
-            <Heading3>{t('actScreenotheracttxt')}</Heading3>
-
-            {DATA.map((item, index) => {
-              return renderActivityItem(item, index);
-            })}
-          </View>
+            <ArticleHeading>
+              <Heading3>{t('actScreenotheracttxt')}</Heading3>
+            </ArticleHeading>
+            <View>
+{DATA.map((item, index) => {
+  return renderActivityItem(item, index);
+})}
+            </View>
+          </FDirCol>
         </ScrollView>
       </ContainerView>
     </>
@@ -161,9 +188,9 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#FFF',
     // padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 5,
+    // marginVertical: 8,
+    // marginHorizontal: 16,
+    // borderRadius: 5,
     flex: 1,
   },
   title: {
@@ -172,18 +199,18 @@ const styles = StyleSheet.create({
     // flex: 1,
     color: '#000',
   },
-  label: {
-    fontSize: 12,
-    paddingLeft: 10,
-    // flex: 1,
-    color: '#000',
-  },
+  // label: {
+  //   // fontSize: 12,
+  //   // paddingLeft: 10,
+  //   // flex: 1,
+  //   // color: '#000',
+  // },
   cardImage: {
     height: 200,
     width: '100%',
     // flex: 1,
     // alignSelf: 'center',
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
+    // borderTopRightRadius: 5,
+    // borderTopLeftRadius: 5,
   },
 });

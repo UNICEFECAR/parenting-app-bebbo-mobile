@@ -56,3 +56,6 @@ export const BgActivityTint = styled.View`
 background-color:${props => props.theme.colors.ACTIVITIES_TINTCOLOR};
 `;
 
+export const BgWhite = styled.View`
+background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`;
