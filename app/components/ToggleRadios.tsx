@@ -1,20 +1,21 @@
 import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
 import { Heading3, Heading3Regular } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import Icon from './shared/Icon';
 
 const ToggleRadios = (props: any) => {
-  const {options,tickColor,tickbgColor,defaultValue,keydata} = props;
-  let keydataSet=(keydata==null || keydata=="" || keydata==undefined)?'title':keydata;
+  const {options,tickColor,tickbgColor,defaultValue} = props;
+  console.log(defaultValue,"..defaultValue..")
   const [checkedItem, setCheckedItem] = useState(defaultValue);
-  console.log(defaultValue,"..defaultValue..");
+ 
   return (
     <>
       <View style={{flexDirection: 'row'}}>
         {options.map((item: typeof options[0], index: number) => {
           return (
+            <>
               <View key={index}
                 style={{
                   padding: 10,
@@ -28,7 +29,7 @@ const ToggleRadios = (props: any) => {
                   }}>
                   <CheckboxItem>
                     <View>
-                      {(checkedItem?.title && checkedItem.title == item.title) ? (
+                    {(checkedItem?.title && checkedItem.title == item.title) ? (
                         <CheckboxActive style={{borderRadius: 50,backgroundColor:tickbgColor}}>
                           <Icon name="ic_tick" size={12} color={tickColor} />
                         </CheckboxActive>
@@ -39,14 +40,15 @@ const ToggleRadios = (props: any) => {
                     </View>
                   </CheckboxItem>
                   <LabelText>
-                    {checkedItem === item ? (
-                      <Heading3>{item[keydataSet]}</Heading3>
+                  {(checkedItem?.title && checkedItem.title == item.title) ? (
+                      <Heading3>{item.title}</Heading3>
                     ) : (
-                      <Heading3Regular>{item[keydataSet]}</Heading3Regular>
+                      <Heading3Regular>{item.title}</Heading3Regular>
                     )}
                   </LabelText>
                 </FormOuterCheckbox>
               </View>
+            </>
           );
         })}
       </View>
