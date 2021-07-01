@@ -45,7 +45,7 @@ let  childData  = route.params.childData;
   // if(childList.length>0 && childData!=null){
   // childData=childList.filter(item =>item.uuid == childData?.uuid)[0];
   // }
-  // console.log(childData,"..childData..");
+  console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
@@ -53,11 +53,18 @@ let  childData  = route.params.childData;
   const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
-  const genders = useAppSelector(
+  let genders = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
   );
-  console.log(genders,"..genders..");
+  genders=genders.map(v => ({...v, title: v.name}))
+  //console.log(genders,"..genders..");
+  //console.log(childData?.gender,"..childData?.gender..");
+  const getDefaultgenderValue = ()=>{
+    return childData?.uuid != "" ? genders.find(item=>item.id==childData?.gender) : {title:""}
+  }
+  
+  //console.log(getDefaultgenderValue,"..getDefaultgenderValue..")
  
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
@@ -82,7 +89,6 @@ let  childData  = route.params.childData;
     setIsPremature(myString);
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
-  const genderData=genders.filter(item =>item.id == childData?.gender);
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -332,7 +338,7 @@ let  childData  = route.params.childData;
                   );
                 })}
               </View> */}
-  <ToggleRadios options={genders} keydata={'name'} defaultValue={genderData[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+  <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
       
               <ChildDate sendData={sendData} childData={childData} />
 
