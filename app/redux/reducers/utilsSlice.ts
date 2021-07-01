@@ -85,10 +85,7 @@ export const utilsSlice = createSlice({
     //  console.log("setAllTermsData data---",state);
      // console.log(action.payload);
      (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
-     console.log(action.payload);
-     console.log(Array.from(action.payload));
      action.payload.map((x:any)=> {
-       console.log(x,"---x");
         if(x.unique_name == basicPagesUniqueName.aboutus)
         {
           state.aboutus.id = x.id;

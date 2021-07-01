@@ -1,8 +1,14 @@
+import { useFocusEffect } from '@react-navigation/native';
+import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React from 'react';
+import { maxRelatedArticleSize } from '@types/apiConstants';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import { useAppSelector } from '../../../App';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
+import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import { ArticleHeading, RelatedArticleContainer, ArticleListContent,} from './ArticlesStyle';
 import { MainContainer } from './Container';
 import ShareFavButtons from './ShareFavButtons';
@@ -48,17 +54,65 @@ const DATA = [
   },
 ];
 
-const RelatedArticles = () => {
+const RelatedArticles = (props : RelatedArticlesProps) => {
+  console.log(props);
+  const { related_articles, category, currentId } = props;
   const {t} = useTranslation();
-  const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
+  const relartlength = related_articles.length;
+  const articleData = useAppSelector(
+    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
+  const categoryData = useAppSelector(
+    (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
+  );
+  // let relatedArticleData: any[] = [];
+  const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      async function fetchData() {
+        if(relartlength > 0)
+        {
+          // const filterQuery = 'id Contains "'+currentChildData.parent_gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
+          const filterQuery = related_articles.map((x: any) => `id = '${x}'`).join(' OR ');
+          const databaseData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
+          // console.log(databaseData.length);
+        //  databaseData.map(user => user
+          setrelatedArticleData(databaseData);
+        }
+        if(relartlength < maxRelatedArticleSize) {
+          const catartlength = maxRelatedArticleSize - relartlength;
+          // console.log(articleData)
+          // console.log(relatedArticleData,"--relatedArticleData");
+          const filteredArtData = articleData.filter((x: any)=> {
+            const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
+            return x.category==category && x.id !==currentId && i == -1
+          }).slice(0,catartlength);
+          // console.log(filteredArtData);
+          setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
+          // console.log(relatedArticleData);
+          // setrelatedArticleData(relatedArticleData.push(...filteredArtData));
+        }
+      }
+      fetchData()
+    },[])
+  );
+  console.log("relatedArticleData---",relatedArticleData);
+
+  const renderDailyReadItem = (item: any, index: number) => {
     return (
       <RelatedArticleContainer key={index}>
-        <Image source={item.imagePath} style={styles.cardImage}></Image>
+        <Image 
+        // source={item.imagePath} 
+        // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+        source={require('@assets/trash/defaultArticleImage.png')}
+        style={styles.cardImage}></Image>
         <ArticleListContent>
         <ShiftFromTopBottom5>
         <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold>
         </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
+        {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
+        <Heading3>{item.title}</Heading3>
         </ArticleListContent>
          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
        
@@ -73,7 +127,7 @@ const RelatedArticles = () => {
         <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
         </ArticleHeading>
         <FlatList
-          data={DATA}
+          data={relatedArticleData}
           horizontal
           renderItem={({item, index}) => renderDailyReadItem(item, index)}
           keyExtractor={(item) => item.id}
