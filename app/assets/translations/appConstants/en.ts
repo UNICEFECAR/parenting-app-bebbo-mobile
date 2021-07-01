@@ -20,7 +20,7 @@ const en = {
             walkthroughTextstitle1: "Activities",
             walkthroughTextssubtitle1: "and games to stimulate your child everyday",
             walkthroughTextstitle2: "Tools",
-            walkthroughTextssubtitle2: "to track your child's development,growth,immunizations and health",
+            walkthroughTextssubtitle2: "to track your child's development, growth, immunizations and health",
             walkthroughTextstitle3: "Advice",
             walkthroughTextssubtitle3: "tailored to your questions and the needs of your child",
             walkthroughButtonBack:"Back",
