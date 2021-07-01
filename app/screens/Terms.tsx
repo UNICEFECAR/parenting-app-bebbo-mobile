@@ -122,10 +122,13 @@ const Terms = ({navigation}: Props) => {
           <Heading1w>{t('tNcheader')}</Heading1w>
         </OnboardingHeading>
         <ScrollView contentContainerStyle={{padding: 0}}>
-          <HTML
-            source={{html: termsdata}}
-            baseFontStyle={{fontSize: 16, color: '#ffffff'}}
-          />
+          { termsdata != "" ?
+            <HTML
+              source={{html: termsdata}}
+              baseFontStyle={{fontSize: 16, color: '#ffffff'}}
+            />
+            : null
+          }
 
           <Fragment>
             <View style={{marginTop: 20, paddingRight: 40}}>
