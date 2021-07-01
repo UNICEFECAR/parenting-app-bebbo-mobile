@@ -47,9 +47,15 @@ import {
         getAllConfigData(dispatch);
       }, []),
     );
+    const genders = useAppSelector(
+      (state: any) =>
+        JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
+    );
     const [modalVisible, setModalVisible] = useState(false);
     const headerColor = props.headerColor;
     const textColor = props.textColor;
+  
+   
     const childList = useAppSelector((state: any) =>
       state.childData.childDataSet.allChild != ''
         ? JSON.parse(state.childData.childDataSet.allChild)
@@ -145,6 +151,10 @@ import {
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: ChildEntity, index: number) => {
                     // console.log(childList,"..childList123..");
+                    // if(genders?.length>0 && item.gender!=""){
+                    //   item.gender=genders.find(genderset => genderset.id === item.gender);
+                    // }
+                    item.gender=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
                     return renderDailyReadItem(dispatch, item, index);
                   })
                 : null}
