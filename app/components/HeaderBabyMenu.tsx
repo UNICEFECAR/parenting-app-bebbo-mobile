@@ -77,7 +77,7 @@ import {
         if (a.uuid == currentActiveChild) return -1;
       });
     //console.log(currentActiveChild,"..currentActiveChild..");
-    const renderDailyReadItem = (dispatch: any, data: any, index: number) => (
+    const renderChildItem = (dispatch: any, data: any, index: number,genderName:string) => (
       <View key={index}>
         {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -89,7 +89,7 @@ import {
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name ? data.name : 'Child' + (index + 1)}</Heading3>
-              <Heading5>{data.gender}</Heading5>
+              <Heading5>{genderName}</Heading5>
               <Heading5>Born on {data.birthDate}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -110,7 +110,7 @@ import {
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
-              <Heading5>{data.gender}</Heading5>
+              <Heading5>{genderName}</Heading5>
               <Heading5>Born on {data.birthDate}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -154,8 +154,9 @@ import {
                     // if(genders?.length>0 && item.gender!=""){
                     //   item.gender=genders.find(genderset => genderset.id === item.gender);
                     // }
-                    item.gender=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
-                    return renderDailyReadItem(dispatch, item, index);
+                    const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
+                    console.log(genderLocal,"..genderLocal..");
+                    return renderChildItem(dispatch, item, index,genderLocal);
                   })
                 : null}
   
