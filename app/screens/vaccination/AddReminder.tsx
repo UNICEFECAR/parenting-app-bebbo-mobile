@@ -21,7 +21,7 @@ import {
   Heading3,
   Paragraph
 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Modal, Pressable,
@@ -29,19 +29,15 @@ import {
   Text, View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ThemeContext } from 'styled-components';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddChildVaccinationReminder = ({route, navigation}: any) => {
+const AddReminder = ({route, navigation}: any) => {
   const {t} = useTranslation();
-  const {headerTitle} = route.params;
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.VACCINATION_COLOR;
-  const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
+  const {headerTitle,buttonTitle,titleTxt,warningTxt,headerColor,reminderType} = route.params;
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -113,7 +109,7 @@ const defaulttimePickerValue =new Date();
           </View>
         </View>
         <ScrollView style={{padding:15,flex:7}}>
-          <Paragraph>{t('vcReminderText')}</Paragraph>
+          <Paragraph>{titleTxt}</Paragraph>
         <FormInputGroup onPress={showmeasureDatepicker}>
           <FormInputBox>
             <FormDateText>
@@ -178,7 +174,7 @@ const defaulttimePickerValue =new Date();
             onPress={() => {
               navigation.goBack();
             }}>
-            <ButtonText>{t('vcReminderAddBtn')}</ButtonText>
+            <ButtonText>{buttonTitle}</ButtonText>
           </ButtonPrimary>
         </View>
         <Modal
@@ -203,7 +199,7 @@ const defaulttimePickerValue =new Date();
                 </PopupClose>
               </PopupCloseContainer>
               <Heading3>
-                {t('vcReminderDeleteWarning')}
+                {warningTxt}
               </Heading3>
               <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
               <ButtonTertiary2 style={{marginRight:5}}>
@@ -223,4 +219,4 @@ const defaulttimePickerValue =new Date();
   );
 };
 
-export default AddChildVaccinationReminder;
+export default AddReminder;

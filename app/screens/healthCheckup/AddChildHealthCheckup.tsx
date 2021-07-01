@@ -13,13 +13,16 @@ import ModalPopupContainer, {
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
+import ToggleRadios from '@components/ToggleRadios';
+import PlannedVaccines from '@components/vaccination/PlannedVaccines';
+import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Header3Text } from '@styles/style';
 import {
   Heading2w,
-  Heading3
+  Heading3,
+  Heading4Regular
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +35,7 @@ import {
   TextInput,
   View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -49,10 +53,21 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const isMeasured = [
-    "YES",
-    "NO",
+  const [isMeasured, setIsMeasured] = useState(false);
+  const [isVaccineMeasured, setIsVaccineMeasured] = useState(false);
+  const isMeasuredOptions = [
+    {title: t('vcIsMeasuredOption1')},
+    {title: t('vcIsMeasuredOption2')},
   ];
+  const defaultMeasured = {title: ''};
+  const getCheckedMeasureItem = (checkedItem: typeof isMeasuredOptions[0]) => {
+    console.log(checkedItem);
+    setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
+  };
+  const getCheckedVaccineItem = (checkedItem: typeof isMeasuredOptions[0]) => {
+    console.log(checkedItem);
+    setIsVaccineMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
+  };
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
     setmeasureShow(Platform.OS === 'ios');
@@ -61,11 +76,23 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
   };
+  React.useEffect(() => {
+    if (route.params?.weight) {
+      console.log(route.params?.weight);
+    }
+    if (route.params?.height) {
+      console.log(route.params?.height);
+    }
+  }, [route.params?.weight,route.params?.height ]);
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-
+        <View
+          style={{
+            flexDirection: 'column',
+            flex: 1,
+          }}>
         <View
           style={{
             flexDirection: 'row',
@@ -100,14 +127,15 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             </Pressable>
           </View>
         </View>
+        <ScrollView style={{padding: 15, flex: 9, paddingBottom: 30}}>
         <FormInputGroup onPress={showmeasureDatepicker}>
-          <Header3Text>{t('growthScreendateMeasurementText')}</Header3Text>
+          <Heading3>{t('hcdateText')}</Heading3>
           <FormInputBox>
             <FormDateText>
               <Text>
                 {measureDate
                   ? measureDate.toDateString()
-                  : t('growthScreenenterDateMeasurementText')}
+                  : t('hcenterDateText')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -128,42 +156,79 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             />
           )}
         </View>
-        <Header3Text>{'Was the child measured'}</Header3Text>
-        <View style={{flexDirection: 'row'}}>
-          {isMeasured.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
+        <Heading3>{t('vcChildMeasureQ')}</Heading3>
+            <ToggleRadios
+              options={isMeasuredOptions}
+              defaultValue={defaultMeasured}
+              tickbgColor={headerColor}
+              tickColor={'#FFF'}
+              getCheckedItem={getCheckedMeasureItem}
+            />
+
+            <View>
+              {
+                isMeasured ? <>
+                <View style={{margin: 30}}>
+          <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
+          <View style={{flexDirection: 'row'}}>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('AddNewChildWeight',{
+                  prevRoute:"AddChildHealthCheckup",
+                  headerColor,
+                  backgroundColor
+                });
+              }}
+              style={{
+                backgroundColor: '#FFF',
+                padding: 20,
+                flex: 1,
+                flexDirection: 'row',
+              }}>
+              <Heading3>{t('growthScreenwText')}</Heading3>
+              <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('AddNewChildHeight',{
+                  prevRoute:"AddChildHealthCheckup",
+                  headerColor,
+                  backgroundColor
+                });
+              }}
+              style={{
+                backgroundColor: '#FFF',
+                padding: 20,
+                flex: 1,
+                flexDirection: 'row',
+              }}>
+              <Heading3>{t('growthScreenhText')}</Heading3>
+              <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
+            </Pressable>
+          </View>
         </View>
-        <Header3Text>{'Did Child Receive Vaccine?'}</Header3Text>
+                </>
+                :null
+              }
+            </View>
+        <Heading3>{t('hcChildVaccineQ')}</Heading3>
         <View style={{flexDirection: 'row'}}>
-          {isMeasured.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{padding: 10, backgroundColor: '#FFF', margin: 3}}>
-                <Pressable
-                  onPress={() => {
-                   // console.log(item);
-                  }}>
-                  <Heading3>{item}</Heading3>
-                </Pressable>
-              </View>
-            );
-          })}
+        <ToggleRadios
+              options={isMeasuredOptions}
+              defaultValue={defaultMeasured}
+              tickbgColor={headerColor}
+              tickColor={'#FFF'}
+              getCheckedItem={getCheckedVaccineItem}
+            />
         </View>
+        {
+          isVaccineMeasured? <View><Heading3>{t('vcPlanned')}</Heading3>
+          <PlannedVaccines />
+          <Heading3>{t('vcPrev')}</Heading3>
+          <PrevPlannedVaccines /></View>:null
+        }
         <View>
-          <Header3Text>{'Doctor Remark or Comment'}}</Header3Text>
+          <Heading3>{'Doctor Remark or Comment'}}</Heading3>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
@@ -211,7 +276,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 </PopupClose>
               </PopupCloseContainer>
               <Heading3>
-                {'Do you want to delete child Vaccination details?'}
+                {t('hcDeleteWarning')}
               </Heading3>
               <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
               <ButtonTertiary2 style={{marginRight:5}}>
@@ -224,6 +289,8 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        </ScrollView>
+        </View>
       </SafeAreaView>
     </>
   );

@@ -17,7 +17,6 @@ import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Header3Text } from '@styles/style';
 import {
   Heading2w,
   Heading3, Heading4Regular
@@ -112,7 +111,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </View>
         </View>
         <FormInputGroup onPress={showdobDatepicker}>
-          <Header3Text>{t('growthScreendateMeasurementText')}</Header3Text>
+          <Heading3>{t('growthScreendateMeasurementText')}</Heading3>
           <FormInputBox>
             <FormDateText>
               <Text>
@@ -127,7 +126,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        <Header3Text>{t('growthScreenwhereMeasured')}</Header3Text>
+        <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
        
         <ToggleRadios options={measurementPlaces} defaultValue={measurementPlaces[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
 
@@ -145,7 +144,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           )}
         </View>
         <View style={{margin: 30}}>
-          <Header3Text>{t('growthScreenenterMeasuresText')}</Header3Text>
+          <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
           <View style={{flexDirection: 'row'}}>
             <Pressable
               onPress={() => {
@@ -184,7 +183,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </View>
         </View>
         <View>
-          <Header3Text>{t('growthScreenenterDoctorRemarkText')}</Header3Text>
+          <Heading3>{t('growthScreenenterDoctorRemarkText')}</Heading3>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
