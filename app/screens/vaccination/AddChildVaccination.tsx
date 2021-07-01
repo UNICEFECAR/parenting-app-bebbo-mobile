@@ -17,7 +17,6 @@ import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Header3Text } from '@styles/style';
 import {
   Heading2w,
   Heading3,
@@ -161,7 +160,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               {
                 isMeasured ? <>
                 <View style={{margin: 30}}>
-          <Header3Text>{t('growthScreenenterMeasuresText')}</Header3Text>
+          <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
           <View style={{flexDirection: 'row'}}>
             <Pressable
               onPress={() => {

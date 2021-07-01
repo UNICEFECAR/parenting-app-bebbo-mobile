@@ -4,7 +4,8 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonSection,
   ButtonviewClick,
-  ButtonviewNext
+  ButtonviewNext,
+  ButtonviewPrevious
 } from '@components/shared/ButtonView';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -59,7 +60,7 @@ const CountrySelection = (props: any) => {
   // console.log("-----bj ",i18n);
   return (
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourCountry').toString()}
@@ -73,17 +74,25 @@ const CountrySelection = (props: any) => {
             keyExtractor={(item) => item.countryId.toString()}
           />
         </SelectionView>
-        <ButtonSection>
-          <ButtonviewNext>
-            <ButtonviewClick
-              style={{}}
-              onPress={() =>
-                props.navigation.navigate('LanguageSelection', {country})
-              }>
+        {country ? (
+          <ButtonSection>
+            <ButtonviewNext>
+              <ButtonviewClick
+                style={{}}
+                onPress={() =>
+                  props.navigation.navigate('LanguageSelection', {country})
+                }>
+                <Icon name="ic_angle_right" size={32} color="#000" />
+              </ButtonviewClick>
+            </ButtonviewNext>
+          </ButtonSection>
+        ) : (
+          <ButtonviewPrevious>
+            <ButtonviewClick onPress={() => {}}>
               <Icon name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
-          </ButtonviewNext>
-        </ButtonSection>
+          </ButtonviewPrevious>
+        )}
       </OnboardingContainer>
     </>
   );

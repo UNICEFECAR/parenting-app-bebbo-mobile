@@ -160,12 +160,17 @@ const UpcomingVaccines = (props: any) => {
                   />
                 </View>
                 <View style={{flex: 7, padding: 10}}>
-                  <Heading5>Set Reminder on</Heading5>
+                <Heading5>{t('hcHasReminder')}</Heading5>
                   <Heading4>{new Date().toDateString()}</Heading4>
                 </View>
                 <Pressable onPress={() => {
-                  navigation.navigate('AddChildVaccinationReminder', {
+                  navigation.navigate('AddReminder', {
+                    reminderType:"Vaccination",
                     headerTitle: t('vcEditReminderHeading'),
+                    buttonTitle:t('vcReminderAddBtn'),
+                    titleTxt:t('vcReminderText'),
+                    warningTxt:t('vcReminderDeleteWarning'),
+                    headerColor:headerColor,
                   })
                 }}>
                   <Text style={{textDecorationLine: 'underline'}}>
@@ -177,8 +182,13 @@ const UpcomingVaccines = (props: any) => {
             <View>
               <View style={{alignItems: 'center'}}>
                 <Pressable onPress={()=>{
-                  navigation.navigate('AddChildVaccinationReminder', {
+                  navigation.navigate('AddReminder', {
+                    reminderType:"Vaccination",
                     headerTitle: t('vcReminderHeading'),
+                    buttonTitle:t('vcReminderAddBtn'),
+                    titleTxt:t('vcReminderText'),
+                    warningTxt:t('vcReminderDeleteWarning'),
+                    headerColor:headerColor,
                   })
                 }}>
                   <Text style={{textDecorationLine: 'underline'}}>

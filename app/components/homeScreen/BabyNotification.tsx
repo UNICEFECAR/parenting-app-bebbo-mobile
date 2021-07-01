@@ -1,14 +1,11 @@
 import { BgSecondary } from '@components/shared/BackgroundColors';
-import { ButtonContainer, ButtonTertiary, ButtonTextMd ,ButtonTertiaryMd} from '@components/shared/ButtonGlobal';
+import { ButtonTertiaryMd, ButtonTextMd } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow,FDirRow,FDirCol,Flex1,Flex2} from '@components/shared/FlexBoxStyle';
-import { HeaderActionView, HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
-import Icon, { OuterIconLeft, OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
-import { Header3Text } from '@styles/style';
-import React, { useContext } from 'react';
+import { FDirCol, FDirRow, Flex1, Flex2 } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3, Heading5 } from '@styles/typography';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
 import { ThemeContext } from 'styled-components';
 
 const BabyNotification = () => {
