@@ -141,6 +141,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
+              maxLength={30}
               clearButtonMode="always"
               onChangeText={(value) => { setName(value) }}
               value={name}

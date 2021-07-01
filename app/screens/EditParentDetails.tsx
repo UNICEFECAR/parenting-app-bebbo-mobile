@@ -123,6 +123,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
+              maxLength={30}
               clearButtonMode="always"
               onChangeText={(value:any) => { setParentName(value) }}
               value={parentName}
