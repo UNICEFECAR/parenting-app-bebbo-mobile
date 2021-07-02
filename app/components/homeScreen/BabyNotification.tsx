@@ -6,7 +6,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 
 const BabyNotification = () => {
   const {t} = useTranslation();

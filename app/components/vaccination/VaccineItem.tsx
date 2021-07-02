@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Heading3 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { Pressable, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
   const themeContext = useContext(ThemeContext);

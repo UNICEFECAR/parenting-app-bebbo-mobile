@@ -1,12 +1,12 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  FormDateAction,
-  FormDateContainer,
-  FormDateText,
-  FormInputBox,
-  FormInputGroup,
-  LabelText
+    FormDateAction,
+    FormDateContainer,
+    FormDateText,
+    FormInputBox,
+    FormInputGroup,
+    LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
@@ -17,9 +17,9 @@ import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+    Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../App';
 import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
 

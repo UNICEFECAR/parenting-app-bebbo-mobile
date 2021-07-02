@@ -8,7 +8,7 @@ import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
