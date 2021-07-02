@@ -1,34 +1,34 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonContainer,
-  ButtonLinkText,
-  ButtonPrimary,
-  ButtonText,
-  ButtonTextLg
+    ButtonContainer,
+    ButtonLinkText,
+    ButtonPrimary,
+    ButtonText,
+    ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
-  LocalizationAction,
-  LocalizationCol,
-  LocalizationContainer,
-  LocalizationcontentHead,
-  LocalizationcontentResult,
-  LocalizationRow,
-  OnboardingconfirmationHead,
-  OnboardingContent,
-  OnboardingshiftHead
+    LocalizationAction,
+    LocalizationCol,
+    LocalizationContainer,
+    LocalizationcontentHead,
+    LocalizationcontentResult,
+    LocalizationRow,
+    OnboardingconfirmationHead,
+    OnboardingContent,
+    OnboardingshiftHead
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2Centerw,
-  Heading3,
-  Heading3Centerw,
-  Heading3Regular
+    Heading2Centerw,
+    Heading3,
+    Heading3Centerw,
+    Heading3Regular
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../../App';
 import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';

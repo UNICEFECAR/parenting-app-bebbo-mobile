@@ -5,15 +5,15 @@ import UpcomingVaccines from '@components/vaccination/UpcomingVaccines';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2,
-  Heading3,
-  Heading4Center,
-  Paragraph
+    Heading2,
+    Heading3,
+    Heading4Center,
+    Paragraph
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

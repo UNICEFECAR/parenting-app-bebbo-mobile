@@ -5,13 +5,13 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import {
-  Menu,
-  MenuOption,
-  MenuOptions,
-  MenuTrigger,
-  renderers
+    Menu,
+    MenuOption,
+    MenuOptions,
+    MenuTrigger,
+    renderers
 } from 'react-native-popup-menu';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 

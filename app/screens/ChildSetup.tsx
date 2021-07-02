@@ -1,11 +1,11 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonPrimary, ButtonRow, ButtonText
+    ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
-  ChildCenterView,
-  ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
+    ChildCenterView,
+    ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -17,12 +17,12 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../App';
 import { addChild, getNewChild } from '../services/childCRUD';
 import {
-  Heading1Centerw,
-  Heading3
+    Heading1Centerw,
+    Heading3
 } from '../styles/typography';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 

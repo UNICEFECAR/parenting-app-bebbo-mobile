@@ -7,7 +7,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {

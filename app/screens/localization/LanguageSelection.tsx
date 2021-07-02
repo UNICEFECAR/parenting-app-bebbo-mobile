@@ -1,10 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import LanguageItem from '@components/LanguageItem';
 import {
-  BtnMultiple,
-  ButtonviewClick,
-  ButtonviewNext,
-  ButtonviewPrevious
+    BtnMultiple,
+    ButtonviewClick,
+    ButtonviewNext,
+    ButtonviewPrevious
 } from '@components/shared/ButtonView';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -15,7 +15,7 @@ import { SelectionView } from '@styles/style';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<

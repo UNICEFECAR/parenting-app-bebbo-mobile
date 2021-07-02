@@ -1,16 +1,16 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  FormDateAction,
-  FormDateText,
-  FormInputBox,
-  FormInputGroup
+    FormDateAction,
+    FormDateText,
+    FormInputBox,
+    FormInputGroup
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-  PopupClose,
-  PopupCloseContainer,
-  PopupOverlay
+    PopupClose,
+    PopupCloseContainer,
+    PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
@@ -20,23 +20,23 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2w,
-  Heading3,
-  Heading4Regular
+    Heading2w,
+    Heading3,
+    Heading4Regular
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Modal,
-  Platform,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TextInput,
-  View
+    Modal,
+    Platform,
+    Pressable,
+    SafeAreaView,
+    Text,
+    TextInput,
+    View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
