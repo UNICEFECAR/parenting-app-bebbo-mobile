@@ -1,12 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
-import { Heading4, Heading4Regular, Heading5 } from '@styles/typography';
+import { Heading4, Heading4Regular, Heading5, ShiftFromBottom10, ShiftFromTopBottom10,ShiftFromBottom5,ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+
+
 import { ThemeContext } from 'styled-components/native';
-import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
+import { ButtonTextSmLineL } from './shared/ButtonGlobal';
+import Checkbox, { CheckboxActive, CheckboxItem,CheckboxDevActive } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import { MainContainer } from './shared/Container';
 import { DevelopmentBox } from './shared/DevelopmentStyle';
+import { DividerDev} from './shared/Divider';
+import { Flex5, FlexDirRowStart,FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
@@ -41,38 +46,36 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
     <View style={{flex: 1, flexDirection: 'row'}}>
           <View
             style={{
-              flex: 1,
               justifyContent: 'center',
-              // backgroundColor:'red',
               alignItems: 'center',
+              flexDirection:'row',
             }}>
-            <FormOuterCheckbox
-              style={{alignSelf: 'center'}}
+            <Pressable
               onPress={() => {
                 setToggleCheckBox(!toggleCheckBox);
               }}>
               <CheckboxItem>
                 <View>
                   {toggleCheckBox ? (
-                    <CheckboxActive>
+                    <CheckboxDevActive>
                       <Icon name="ic_tick" size={12} color="#000" />
-                    </CheckboxActive>
+                    </CheckboxDevActive>
                   ) : (
                     <Checkbox style={{borderWidth: 1}}></Checkbox>
                   )}
                 </View>
               </CheckboxItem>
-            </FormOuterCheckbox>
+            </Pressable>
           </View>
           <Pressable
             style={{
               flexDirection: 'row',
-              flex: 8,
+              flex: 1
             }}
             onPress={() => {
               setIsOPen(!isOPen);
             }}>
-            <Heading4Regular style={[styles.title, {flex: 7,textAlignVertical:'center'}]}>
+            <Heading4Regular style={[{flex: 7,textAlignVertical:'center'}]}>
               {item.title}
             </Heading4Regular>
             <Icon
@@ -85,52 +88,63 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
         </View>
         {isOPen ? (
           <>
-            <View style={{padding: 10}}>
+          <ShiftFromTop5></ShiftFromTop5>
+            <ShiftFromTopBottom10>
+              <ShiftFromBottom5>
               <Heading4>Milestone</Heading4>
-              <View style={{flexDirection: 'row'}}>
+             </ShiftFromBottom5>
+              <FDirRow>
                 <Image
                   source={require('@assets/trash/card1.jpeg')}
-                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5}}
+                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                   resizeMode={'cover'}
                 />
-                <View style={{flex: 5, marginHorizontal: 5}}>
+                <Flex5>
+                <ShiftFromBottom5>
                   <Heading5>
                     Often, easily and spontaneously smiles at people near her.
                   </Heading5>
-                  <Pressable onPress={gotoArticle}><Text style={{textDecorationLine: 'underline'}}>
+                  </ShiftFromBottom5>
+                  <Pressable onPress={gotoArticle}>
+                    
+                    <ButtonTextSmLineL>
                     View Related Article
-                  </Text>
+                  </ButtonTextSmLineL>
+                  
                   </Pressable>
-                </View>
-              </View>
-            </View>
-            <View
-              style={{
-                borderBottomColor: props.subItemSaperatorColor,
-                borderBottomWidth: 1,
-                margin: 5,
-                padding: 1,
-              }}></View>
-            <View style={{padding: 5}}>
+                </Flex5>
+              </FDirRow>
+            </ShiftFromTopBottom10>
+            <DividerDev></DividerDev>
+            
+              <ShiftFromTopBottom10>
+              <ShiftFromBottom5>
               <Heading4>Related Activity</Heading4>
-              <View style={{flexDirection: 'row'}}>
-                <Image
+             </ShiftFromBottom5>
+              <FDirRow>
+              <Image
                   source={require('@assets/trash/card1.jpeg')}
-                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5}}
+                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                   resizeMode={'cover'}
                 />
-                <View style={{flex: 5, marginHorizontal: 5}}>
-                  <Heading5>
+                <Flex5>
+                <ShiftFromBottom5>
+                <Heading5>
                     Child related content goes here, Child related content goes
                     here,
                   </Heading5>
-                  <Pressable onPress={gotoActivity}><Text style={{textDecorationLine: 'underline'}}>
-                    View details
-                  </Text>
+                  </ShiftFromBottom5>
+                  <Pressable onPress={gotoActivity}>
+                    
+                    <ButtonTextSmLineL>
+                    View Details
+                  </ButtonTextSmLineL>
+                  
                   </Pressable>
-                </View>
-              </View>
-            </View>
+                </Flex5>
+              </FDirRow>
+            </ShiftFromTopBottom10>
+            
           </>
         ) : null}
     </DevelopmentBox>
@@ -141,15 +155,15 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
 export default ChilDevelopmentCollapsibleItem;
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 10,
-    color: '#000',
-    backgroundColor: '#FFF',
-    // marginVertical: 8,
-    marginHorizontal: 16,
+  // item: {
+  //   padding: 10,
+  //   color: '#000',
+  //   backgroundColor: '#FFF',
+  //   // marginVertical: 8,
+  //   marginHorizontal: 16,
 
-    marginVertical: 5,
-  },
+  //   marginVertical: 5,
+  // },
   title: {
     fontSize: 12,
   },
