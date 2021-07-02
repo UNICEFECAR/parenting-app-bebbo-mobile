@@ -50,6 +50,10 @@ export const ButtonTextMdLineL = styled(ButtonTextMdLine)`
   text-align:left;
 `;
 
+export const ButtonTextSmLineL = styled(ButtonTextSmLine)`
+  text-align:left;
+`;
+
 export const ButtonTextLinew = styled(ButtonTextLine)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;

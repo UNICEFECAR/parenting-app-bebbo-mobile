@@ -4,7 +4,9 @@ import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonText } from '@components/shared/ButtonGlobal';
-import Icon from '@components/shared/Icon';
+import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -128,32 +130,36 @@ const Notifications = () => {
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <View
+          <HeaderRowView
             style={{
-              flexDirection: 'row',
-              flex: 1,
               backgroundColor: primaryColor,
               maxHeight: 50,
             }}>
-            <View style={{flex: 1}}>
+           
               <BurgerIcon />
-            </View>
-            <View style={{flex: 3, padding: 8}}>
-              <Heading2w> {t('notiScreenheaderTitle')}</Heading2w>
-            </View>
-            <View style={{flex: 2, flexDirection: 'row'}}>
-              <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
-                <Icon name={'ic_sb_settings'} size={20} color="#FFF" />
-              </Pressable>
-              <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+           
+            <HeaderTitleView style={{flex: 2}}>
+              <Heading2w>{t('notiScreenheaderTitle')}</Heading2w>
+            </HeaderTitleView>
+           
+             <OuterIconRow>
+               <OuterIconSpace>
+               <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
+                <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
+            </Pressable>
+               </OuterIconSpace>
+               <OuterIconSpace>
+               <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
                 <Icon name={'ic_trash'} size={20} color="#FFF" />
               </Pressable>
+               </OuterIconSpace>
+             </OuterIconRow>
               <HeaderBabyMenu />
-            </View>
-          </View>
+          </HeaderRowView>
+          
           <ScrollView style={{flex: 7}}>
             <NotificationsCategories onchange={onCategorychange} />
-            <View style={{marginVertical: 10}}>
+            <View style={{marginVertical: 0}}>
               {
                
               allData.map((item, index) => {
