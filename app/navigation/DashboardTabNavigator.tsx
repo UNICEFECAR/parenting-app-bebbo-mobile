@@ -17,7 +17,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
-import { ThemeContext } from 'styled-components/native';
+import { ThemeContext } from 'styled-components/native';	
 import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();

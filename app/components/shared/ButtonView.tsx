@@ -2,10 +2,11 @@ import styled from 'styled-components/native';
 export const ButtonviewNext = styled.Text`
   width: 50px;
   height: 50px;
-  margin-top: 30px;
+  margin-top: 10px;
+  
 
   align-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 100px;
   text-align: center;
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
