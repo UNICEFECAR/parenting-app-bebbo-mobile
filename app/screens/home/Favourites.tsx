@@ -9,7 +9,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 

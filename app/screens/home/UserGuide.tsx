@@ -1,11 +1,11 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import WalkthroughContainer, {
-  Slide,
-  WalkthroughContentArea,
-  WalkthroughImagebox,
-  WalkthroughImageContainer,
-  WalkthroughSubtext,
-  WalkthroughTitle
+    Slide,
+    WalkthroughContentArea,
+    WalkthroughImagebox,
+    WalkthroughImageContainer,
+    WalkthroughSubtext,
+    WalkthroughTitle
 } from '@components/shared/WalkthroughStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -16,7 +16,7 @@ import { SafeAreaView, StyleSheet, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type DashboardNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {

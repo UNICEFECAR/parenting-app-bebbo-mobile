@@ -11,16 +11,16 @@ import { Heading2w, Heading4 } from '@styles/typography';
 import React, { createRef, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Alert,
-  Image, Pressable,
-  SafeAreaView,
-  ScrollView, TextInput,
-  View
+    Alert,
+    Image, Pressable,
+    SafeAreaView,
+    ScrollView, TextInput,
+    View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, DocumentDirectoryPath, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';

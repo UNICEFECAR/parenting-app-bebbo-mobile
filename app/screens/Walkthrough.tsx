@@ -10,7 +10,7 @@ import { StyleSheet } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'

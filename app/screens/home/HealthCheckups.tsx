@@ -2,9 +2,9 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import PreviousHealthCheckup from '@components/healthChekup/PreviousHealthCheckup';
 import UpcomingHealthCheckup from '@components/healthChekup/UpcomingHealthCheckup';
 import {
-  ButtonPrimary,
-  ButtonText,
-  ButtonTextLine
+    ButtonPrimary,
+    ButtonText,
+    ButtonTextLine
 } from '@components/shared/ButtonGlobal';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -13,7 +13,7 @@ import { Heading2Center, Heading4Center } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 
 type HealthCheckupsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
