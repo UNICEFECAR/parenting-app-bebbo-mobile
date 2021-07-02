@@ -20,6 +20,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
@@ -63,7 +64,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.name}</ChildListTitle>
-      <Text>Born on {String(data.birthDate)}</Text>
+      <Text>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Text>
     </ChildColArea1>
     <ChildColArea2>
     {

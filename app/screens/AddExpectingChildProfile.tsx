@@ -17,7 +17,8 @@ import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Alert,
+  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../App';
@@ -57,7 +58,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     setdobShow(true);
   };
   const AddChild = async () => {
-    let insertData: any =await getNewChild( '', plannedTermDate, '',null, '',name, '', '');
+    let insertData: any =await getNewChild( '',true, plannedTermDate, '',null, '',name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(false, 2, childSet, dispatch, navigation);
@@ -158,8 +159,11 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             <ButtonPrimary
               onPress={() => {
                 //navigation.navigate('ChildProfileScreen');
+                if(plannedTermDate==null || plannedTermDate==undefined){
+                  Alert.alert('Please enter due date');
+                }else{
                 AddChild();
-               
+                }
               }}>
               <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
