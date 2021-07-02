@@ -2,7 +2,7 @@ import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
-import { dobMin,minDue,maxDue } from '@types/types';
+import { dobMin,minDue,maxDue, dobMax } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,22 +44,22 @@ const ChildDate = (props: any) => {
             const inFuture=isFutureDate(birthDate);
             setdisablePrematureCheck(inFuture);
             if(inFuture){
-              setIsExpected("true");
+              setIsExpected(true);
             }
             else{
-              setIsExpected("false");
+              setIsExpected(false);
             }  
             setToggleCheckBox(isPremature!=null ? JSON.parse(isPremature) : false);
             setdoborExpectedDate(birthDate!=null ? new Date(birthDate) : null);
             setdueDate(plannedTermDate!=null ? new Date(plannedTermDate) : null);
-            console.log(disablePrematureCheck,"..disablePrematureCheck..");
+           // console.log(disablePrematureCheck,"..disablePrematureCheck..");
           }      
         }, [])
       );
   //console.log(birthDate,"..birthDate..");
   const { t } = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [isExpected, setIsExpected] = useState("false");
+  const [isExpected, setIsExpected] = useState(false);
   const [doborExpectedDate, setdoborExpectedDate] = useState<Date|null>(null);
   const [showdob, setdobShow] = useState<Boolean>(false);
   const [disablePrematureCheck, setdisablePrematureCheck] = useState<Boolean>(false);
@@ -71,17 +71,15 @@ const ChildDate = (props: any) => {
     setdisablePrematureCheck(inFuture);
     setdoborExpectedDate(currentDate);
     if(inFuture){
-      setIsExpected("true");
+      setIsExpected(true);
+      setToggleCheckBox(false);
       props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:true});
     }
     else{
-      setIsExpected("false");
+      setIsExpected(false);
       props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:false});
-      
     }  
-   
   };
- 
   const showdobDatepicker = () => {
     setdobShow(true);
   };
@@ -162,6 +160,7 @@ const ChildDate = (props: any) => {
             <DateTimePicker
               testID="dobdatePicker"
               minimumDate={ new Date(dobMin)}
+              maximumDate={ new Date(dobMax)}
               value={new Date()}
               mode={'date'}
               display="default"

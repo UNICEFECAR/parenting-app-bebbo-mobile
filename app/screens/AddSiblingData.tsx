@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, View } from 'react-native';
 import { useAppDispatch } from '../../App';
 import { addChild, getNewChild } from '../services/childCRUD';
+import { validateForm } from '../services/Utils';
 import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -40,7 +41,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
   const sendData = (data: any) => { // the callback. Use a better name
-    console.log(data,"..data..")
+    //console.log(data,"..data..")
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
@@ -89,12 +90,17 @@ const AddSiblingData = ({ route, navigation }: Props) => {
               //   index: 0,
               //   routes: [{name: 'HomeDrawerNavigator'}],
               // })
-              console.log(birthDate,"..birthDate..");
-              console.log(isPremature,"..isPremature..");
-              console.log(plannedTermDate,"..plannedTermDate..");
-              console.log(isExpected,"..isExpected..");
-               
-              AddChild();
+              // console.log(birthDate,"..birthDate..");
+              // console.log(isPremature,"..isPremature..");
+              // console.log(plannedTermDate,"..plannedTermDate..");
+              // console.log(isExpected,"..isExpected..");
+              const validated=validateForm(0,birthDate,isPremature,relationship,plannedTermDate);
+              if(validated==true){
+               AddChild();
+              }
+              else{
+                Alert.alert(validated);
+              }
               // if(birthDate==null || birthDate==undefined){
               //   Alert.alert('Please enter birth date');
               // }

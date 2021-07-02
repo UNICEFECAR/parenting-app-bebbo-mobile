@@ -320,7 +320,7 @@ class MediaPicker {
    * @param {*} image path to be clean
    */
   cleanupSingleImage(image:any) {
-    console.log("will cleanup image", image);
+   // console.log("will cleanup image", image);
 
     ImagePicker.cleanSingle(image ? image.uri : null)
       .then(() => {

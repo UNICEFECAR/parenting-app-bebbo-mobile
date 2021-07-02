@@ -206,7 +206,7 @@ const en = {
 
 
             // Sprint4 Screens
-
+            defaultChildPrefix:"Child",
             notiOption1:"Delete this notification",
             notiOption2:"Mark as Read",
             continueInModal:"Continue",

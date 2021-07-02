@@ -68,7 +68,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
    
   }
   const getVariableEntity = (variable:ConfigSettingsEntity) => {
-    console.log(variable,"..variable..");
+   // console.log(variable,"..variable..");
     return {
       key: variable.key,
       value: variable.value,
