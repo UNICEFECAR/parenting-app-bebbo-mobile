@@ -9,7 +9,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { removeChild, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
-export const getNewChild = async (uuidGet: string, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
@@ -17,12 +17,13 @@ export const getNewChild = async (uuidGet: string, plannedTermDate?: any, isPrem
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
-    isPremature: isPremature ? isPremature : "false",
+    isPremature: (isPremature!='' && isPremature!=null && isPremature!=undefined) ? isPremature : "false",
     gender: gender ? gender : '',
     createdAt: new Date(),
     updatedAt: new Date(),
     measurementPlace: "doctor",
-    relationship: relationship ? relationship : ''
+    relationship: relationship ? relationship : '',
+    isExpected: (isExpected!='' && isExpected!=null && isExpected!=undefined)?isExpected:"false"
   };
 
 }

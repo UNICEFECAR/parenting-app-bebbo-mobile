@@ -82,11 +82,14 @@ let  childData  = route.params.childData;
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
   const [isPremature, setIsPremature] = React.useState<string>('false');
   const uuid = childData != null ? childData.uuid : '';
+  const [isExpected,setIsExpected] = React.useState<string>('false');
+  
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
+    setIsExpected(String(data.isExpected));
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
   useFocusEffect(
@@ -224,7 +227,7 @@ let  childData  = route.params.childData;
     // askPermissions();
   }, []);
   const AddChild = async () => {
-    let insertData: any = editScreen ? await getNewChild(uuid, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('', plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
+    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData..");
@@ -344,8 +347,29 @@ let  childData  = route.params.childData;
 
               <View style={{ width: '100%', marginTop: 30 }}>
                 <ButtonPrimary onPress={() => {
-                  AddChild()
-
+                   console.log(birthDate,"..birthDate..");
+                   console.log(isPremature,"..isPremature..");
+                   console.log(plannedTermDate,"..plannedTermDate..");
+                   console.log(isExpected,"..isExpected..");
+                   AddChild();
+                  // AddChild()
+                  // if(birthDate==null || birthDate==undefined){
+                  //   Alert.alert('Please enter birth date');
+                  // }
+                  // else{
+                  //   if(isPremature){
+                  //     if(plannedTermDate==null || plannedTermDate==undefined){
+                  //       Alert.alert('Please enter due date');
+                  //     }
+                  //     else{
+                  //       AddChild();
+                  //     }
+                  //   }
+                  //   else{
+                  //     AddChild();
+                  //    }
+                  
+                  // }
                 }}>
                   {
                   childData && childData?.uuid!=""?(
