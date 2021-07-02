@@ -34,5 +34,7 @@ export const IconBox = styled.View`
   margin-right:15px;
 `;
 
-
+export const OuterIconSpace = styled.View`
+ padding:8px
+`;
 export default Icon;

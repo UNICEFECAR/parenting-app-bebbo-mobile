@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
+import { Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
+import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavArticles = (props: any) => {
@@ -52,18 +54,25 @@ const FavArticles = (props: any) => {
     });
   };
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
-    <Pressable onPress={gotoArticle} key={index}>
-      <View style={styles.item}>
-        <Image
+<Pressable onPress={gotoArticle} key={index}>
+      <ArticleListContainer>
+      <Image
           style={styles.cardImage}
-          source={item.imagePath}
+         source={item.imagePath}
           resizeMode={'cover'}
-        />
-        <Text style={styles.label}>Cognitive</Text>
-        <Text style={styles.title}>{item.title}</Text>
-        <ShareFavButtons isFavourite={true} backgroundColor={'#FFF'} />
-      </View>
+         />
+        <ArticleListContent>
+            <ShiftFromTopBottom5>
+          <Heading6Bold>Cognitive</Heading6Bold>
+          </ShiftFromTopBottom5>
+          <Heading3>{item.title}</Heading3>
+          </ArticleListContent>
+        
+          <ShareFavButtons isFavourite={true} backgroundColor={'#FFF'} />
+      </ArticleListContainer>
     </Pressable>
+
+
   );
   return (
     <>
@@ -85,33 +94,33 @@ const FavArticles = (props: any) => {
 export default FavArticles;
 
 const styles = StyleSheet.create({
-  item: {
-    height: '100%',
-    backgroundColor: '#FFF',
-    // padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    borderRadius: 5,
-    flex: 1,
-  },
-  title: {
-    fontSize: 16,
-    padding: 10,
-    // flex: 1,
-    color: '#000',
-  },
-  label: {
-    fontSize: 12,
-    paddingLeft: 10,
-    // flex: 1,
-    color: '#000',
-  },
-  cardImage: {
-    height: 200,
-    width: '100%',
-    // flex: 1,
-    // alignSelf: 'center',
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-  },
+  // item: {
+  //   height: '100%',
+  //   backgroundColor: '#FFF',
+  //   // padding: 20,
+  //   marginVertical: 8,
+  //   marginHorizontal: 16,
+  //   borderRadius: 5,
+  //   flex: 1,
+  // },
+  // title: {
+  //   fontSize: 16,
+  //   padding: 10,
+  //   // flex: 1,
+  //   color: '#000',
+  // },
+  // label: {
+  //   fontSize: 12,
+  //   paddingLeft: 10,
+  //   // flex: 1,
+  //   color: '#000',
+  // },
+  // cardImage: {
+  //   height: 200,
+  //   width: '100%',
+  //   // flex: 1,
+  //   // alignSelf: 'center',
+  //   borderTopRightRadius: 5,
+  //   borderTopLeftRadius: 5,
+  // },
 });

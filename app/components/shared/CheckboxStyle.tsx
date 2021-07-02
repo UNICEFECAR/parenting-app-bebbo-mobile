@@ -19,6 +19,20 @@ export const CheckboxActive = styled(Checkbox)`
   background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
 `;
 
+export const CheckboxDevActive = styled(CheckboxActive)`
+  background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+`;
+export const CheckboxGroActive = styled(CheckboxActive)`
+  background-color: ${(props) => props.theme.colors.CHILDGROWTH_COLOR};
+`;
+export const CheckboxVacActive = styled(CheckboxActive)`
+  background-color: ${(props) => props.theme.colors.VACCINATION_COLOR};
+`;
+export const CheckboxChkActive = styled(CheckboxActive)`
+  background-color: ${(props) => props.theme.colors.HEALTHCHECKUP_COLOR};
+`;
+
+
 export const CheckboxItemText = styled.Text`
   text-align: left;
   font-size: 16px;
@@ -27,6 +41,7 @@ export const CheckboxItemText = styled.Text`
   flex: 9;
   margin-left: 15px;
   font-family: roboto-regular;
+ 
 `;
 
 export const CheckboxContainer = styled.View`
@@ -37,6 +52,7 @@ export const CheckboxContainer = styled.View`
 
 export const CheckboxItem = styled.View`
   margin-right: 10px;
+  margin-top:2px;
 `;
 
 export default Checkbox;

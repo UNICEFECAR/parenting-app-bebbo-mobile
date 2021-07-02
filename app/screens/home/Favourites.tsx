@@ -1,3 +1,4 @@
+import styled from 'styled-components/native';
 import FavActivities from '@components/FavActivities';
 import FavArticles from '@components/FavArticles';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -9,13 +10,17 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { ThemeContext } from 'styled-components/native';
+import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
+import { Flex1 } from '@components/shared/FlexBoxStyle';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: NotificationsNavigationProp;
 };
+
 const Favourites = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const {t, i18n} = useTranslation();
@@ -52,13 +57,7 @@ const Favourites = ({navigation}: Props) => {
           textColor="#FFF"
         />
 
-        <View
-          style={{
-            flexDirection: 'row',
-            backgroundColor: '#FFF',
-            justifyContent: 'center',
-            padding: 5,
-          }}>
+        <TabBarContainer>
           {data.map((item, itemindex) => {
             return (
               <Pressable
@@ -67,27 +66,26 @@ const Favourites = ({navigation}: Props) => {
                 onPress={() => {
                   setSelectedIndex(itemindex);
                 }}>
-                <View
+                <TabBarDefault
                   style={[
                     {
                       backgroundColor:
                         itemindex == selectedIndex
                           ? headerColor
                           : backgroundColor,
-                      padding: 10,
-                      margin: 3,
+                      
                     },
                   ]}>
                   <Heading4Centerw>{item.title}</Heading4Centerw>
-                </View>
+                </TabBarDefault>
               </Pressable>
             );
           })}
-        </View>
+        </TabBarContainer>
 
-        <View style={{flex: 1, width: '100%'}}>
+        <Flex1>
           {renderItem(selectedIndex)}
-        </View>
+        </Flex1>
       </SafeAreaView>
     </>
   );
