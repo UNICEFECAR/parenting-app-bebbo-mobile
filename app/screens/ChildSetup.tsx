@@ -14,7 +14,7 @@ import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -44,6 +44,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
+  const [isExpected,setIsExpected] = useState<string>('false');
   const relationshipData = ['Father', 'Mother', 'Other'];
   const actionSheetRef = createRef<any>();
   const dispatch = useAppDispatch();
@@ -53,9 +54,10 @@ const ChildSetup = ({ navigation }: Props) => {
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
+    setIsExpected(String(data.isExpected));
   };
 const AddChild=async ()=>{
-  let insertData: any = await getNewChild('', plannedTermDate, isPremature, birthDate, relationship);
+  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, relationship);
   let childSet: Array<any> = [];
   childSet.push(insertData);
   console.log(childSet,"..childSet..");
@@ -118,7 +120,30 @@ const AddChild=async ()=>{
           <ButtonRow>
             <ButtonPrimary
               onPress={() => {
-               AddChild();
+                console.log(birthDate,"..birthDate..");
+                console.log(isPremature,"..isPremature..");
+                console.log(plannedTermDate,"..plannedTermDate..");
+                console.log(isExpected,"..isExpected..");
+                AddChild();
+                // console.log(birthDate,"..birthDate..");
+                // if(birthDate==null || birthDate==undefined || relationship =='' || relationship ==null || relationship ==undefined){
+                //   Alert.alert('Please enter birth date and relationship.');
+                // }
+                // else{
+                //   console.log(isPremature,"..isPremature..");
+                //   if(isPremature){
+                //     if(plannedTermDate==null || plannedTermDate==undefined){
+                //       Alert.alert('Please enter due date');
+                //     }
+                //     else{
+                //       AddChild();
+                //     }
+                //   }
+                //   else{
+                //     AddChild();
+                //    }
+                // }
+              
               }}>
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
             </ButtonPrimary>

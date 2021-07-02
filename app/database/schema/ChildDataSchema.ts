@@ -93,6 +93,7 @@ export type ChildEntity = {
   reminders?: string;
   measurementPlace: string;
   isPremature?: string;
+  isExpected?: string;
 };
 
 /**
@@ -120,7 +121,9 @@ export const ChildEntitySchema: ObjectSchema = {
       checkedMilestones: { type: 'int[]', optional: true },
       reminders: {type: 'string', optional: true},
       measurementPlace: {type: 'string', optional: true},
-      isPremature: {type: 'string', optional: true}
+      isPremature: {type: 'string', optional: true},
+      isExpected: {type: 'string', optional: true}
+      
   }
 };
 

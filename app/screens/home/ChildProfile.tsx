@@ -167,7 +167,7 @@ const ChildProfile = ({navigation}: Props) => {
               <OuterIconLeft></OuterIconLeft>
               <Heading6>{genderName}</Heading6>
             </ProfileSectionView>
-            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate})}</Heading5>
+            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
@@ -207,7 +207,7 @@ const ChildProfile = ({navigation}: Props) => {
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{genderName}</Heading6>
               </ProfileSectionView>
-              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate})}</Heading5>
+              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {
