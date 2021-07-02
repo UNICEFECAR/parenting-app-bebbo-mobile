@@ -1,18 +1,18 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
-  ButtonTextLinew
+    ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
+    ButtonTextLinew
 } from '@components/shared/ButtonGlobal';
 import {
-  ChildCenterView,
-  ChildColArea1,
-  ChildColArea2,
-  ChildContentArea,
-  ChildListingArea,
-  ChildListingBox,
-  ChildListTitle,
-  CustomScrollView,
-  TitleLinkSm
+    ChildCenterView,
+    ChildColArea1,
+    ChildColArea2,
+    ChildContentArea,
+    ChildListingArea,
+    ChildListingBox,
+    ChildListTitle,
+    CustomScrollView,
+    TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -24,15 +24,15 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
-  Heading1Centerw,
-  Heading3Centerw,
-  ShiftFromBottom20,
-  ShiftFromTop30
+    Heading1Centerw,
+    Heading3Centerw,
+    ShiftFromBottom20,
+    ShiftFromTop30
 } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<

@@ -5,7 +5,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';

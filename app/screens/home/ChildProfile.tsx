@@ -1,30 +1,30 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-  ButtonLinkPress, ButtonTextMdLineL,
-  ButtonTextSmLine
+    ButtonLinkPress, ButtonTextMdLineL,
+    ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import Icon, {
-  OuterIconLeft,
-  OuterIconRow,
-  TickView
+    OuterIconLeft,
+    OuterIconRow,
+    TickView
 } from '@components/shared/Icon';
 import {
-  ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
-  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
+    ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
+    ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2w,
-  Heading3,
-  Heading5,
-  Heading5Bold,
-  Heading6
+    Heading2w,
+    Heading3,
+    Heading5,
+    Heading5Bold,
+    Heading6
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setActiveChild } from '../../services/childCRUD';
 

@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavArticles = (props: any) => {
