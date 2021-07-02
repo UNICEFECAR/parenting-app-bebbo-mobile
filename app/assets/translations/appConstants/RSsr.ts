@@ -1,7 +1,7 @@
 const RSsr = {
     translation: {
         countryLangSelection: 'You have selected country and language',
-        choiceVerifiy: 'Please verify your choice',
+        
         editCountryLang: 'Edit',
         continueCountryLang: 'Continue',
         selectYourCountry: 'Select your country',
@@ -22,7 +22,6 @@ const RSsr = {
     }
     // translation: {
     //     countryLangSelection: 'Odabrali ste zemlju i jezik',
-    //     choiceVerifiy: 'Molimo proverite vaš izbor',
     //     editCountryLang: 'Uredi',
     //     continueCountryLang: 'Nastavak',
     //     selectYourCountry: 'Odaberite zemlju',
