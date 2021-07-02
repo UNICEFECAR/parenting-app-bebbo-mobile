@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ArticleEntity, ArticleEntitySchema, CoverImage, } from "../database/schema/ArticleSchema";
@@ -51,7 +52,41 @@ export const addApiDataInRealm = async (response: any) => {
         let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
        // console.log(new Date()," result is ",createresult);
 }
-
+export const formatDate=(dateData:any)=>{
+    return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
+}
+export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
+    if(birthDate==null || birthDate==undefined){
+       return 'Please enter birth date.';
+      }
+      else{
+        console.log(typeof(isPremature),"..isPremature..");
+        if(param==0){
+            if(relationship =='' || relationship ==null || relationship ==undefined){
+                return 'Please enter relationship.';
+            }
+        }
+        if(param==1){
+            if(name =='' || name ==null || name ==undefined){
+                return 'Please enter name.';
+            }
+            if(gender =='' || gender ==null || gender ==undefined){
+                return 'Please enter gender.';
+            }
+        }
+        if(isPremature=="true"){
+          if(plannedTermDate==null || plannedTermDate==undefined){
+            return 'Please enter due date';
+          }
+          else{
+           return true;
+          }
+        }
+        else{
+            return true;
+        }
+      }
+}
 export const onRealmDataDbChange = (collection: any, changes: any) => {
     //console.log("Realm listener called--",collection.name);
    // console.log("Realm listener called--",collection.schema);

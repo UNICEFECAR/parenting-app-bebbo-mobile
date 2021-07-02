@@ -89,7 +89,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     ImageArray.push(sponsorObj[0].country_flag)
 
     const imagesDownloadResult = await downloadImages(ImageArray);
-    console.log(imagesDownloadResult, "..image result..");
+   // console.log(imagesDownloadResult, "..image result..");
     dispatch(setSponsorStore(imagesDownloadResult));
 
     // const country= new CountryLanguageConfirmation();

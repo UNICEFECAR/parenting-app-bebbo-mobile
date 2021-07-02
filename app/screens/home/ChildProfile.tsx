@@ -21,12 +21,14 @@ import {
     Heading5Bold,
     Heading6
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setActiveChild } from '../../services/childCRUD';
+import { formatDate } from '../../services/Utils';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -167,7 +169,7 @@ const ChildProfile = ({navigation}: Props) => {
               <OuterIconLeft></OuterIconLeft>
               <Heading6>{genderName}</Heading6>
             </ProfileSectionView>
-            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
+            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
@@ -202,12 +204,12 @@ const ChildProfile = ({navigation}: Props) => {
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>
-                  {data.name != '' ? data.name : 'Child' + (index + 1)},
+                  {data.name},
                 </Heading3>
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{genderName}</Heading6>
               </ProfileSectionView>
-              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
+              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {

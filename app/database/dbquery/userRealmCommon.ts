@@ -99,7 +99,7 @@ class UserRealmCommon extends Component {
                    // console.log("in try--",records);
                     realm.write(() => {
                         records.forEach(record => {
-                            console.log("record",record);
+                          //  console.log("record",record);
                             realm?.create<Entity>(entitySchema.name, record,"modified");
                         })
                             
@@ -122,7 +122,7 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    console.log(obj[0].uuid,"..uuid..")
+                   // console.log(obj[0].uuid,"..uuid..")
                     realm?.write(() => {
                         obj[0].photoUri = photoUri;
                     });

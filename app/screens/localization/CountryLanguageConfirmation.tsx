@@ -44,7 +44,7 @@ type Props = {
 const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {country, language} = route.params;
   const dispatch = useAppDispatch();
-  console.log(country, language);
+  //console.log(country, language);
   const apiJsonData = [
     {
       apiEndpoint: appConfig.sponsors,
@@ -68,7 +68,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {t, i18n} = useTranslation();
   const saveSelection = () => {
     // i18n.changeLanguage(language.locale);
-    console.log(i18n.language);
+    //console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
     dispatch(
       fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),

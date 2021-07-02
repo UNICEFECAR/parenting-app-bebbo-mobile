@@ -55,7 +55,7 @@ const DATA = [
 ];
 
 const RelatedArticles = (props : RelatedArticlesProps) => {
-  console.log(props);
+  //console.log(props);
   const { related_articles, category, currentId } = props;
   const {t} = useTranslation();
   const relartlength = related_articles.length;
@@ -69,7 +69,7 @@ const RelatedArticles = (props : RelatedArticlesProps) => {
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
-      console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      //console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       async function fetchData() {
         if(relartlength > 0)
         {
@@ -97,7 +97,7 @@ const RelatedArticles = (props : RelatedArticlesProps) => {
       fetchData()
     },[])
   );
-  console.log("relatedArticleData---",relatedArticleData);
+  //console.log("relatedArticleData---",relatedArticleData);
 
   const renderDailyReadItem = (item: any, index: number) => {
     return (

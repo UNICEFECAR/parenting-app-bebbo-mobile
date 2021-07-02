@@ -25,6 +25,7 @@ import {
   getAllConfigData,
   setActiveChild
 } from '../services/childCRUD';
+import { formatDate } from '../services/Utils';
 import {
   ButtonLinkPress,
   ButtonPrimary,
@@ -90,7 +91,7 @@ import {
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <OuterIconRow>
@@ -111,7 +112,7 @@ import {
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <ButtonTextSmLine
@@ -155,7 +156,7 @@ import {
                     //   item.gender=genders.find(genderset => genderset.id === item.gender);
                     // }
                     const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
-                    console.log(genderLocal,"..genderLocal..");
+                   // console.log(genderLocal,"..genderLocal..");
                     return renderChildItem(dispatch, item, index,genderLocal);
                   })
                 : null}
