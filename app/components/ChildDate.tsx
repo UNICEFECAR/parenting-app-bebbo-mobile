@@ -1,9 +1,12 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
+import { dobMin,minDue,maxDue } from '@types/types';
+import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, Text, View } from 'react-native';
+import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
@@ -29,40 +32,73 @@ import ModalPopupContainer, {
 const ChildDate = (props: any) => {
   let birthDate, isPremature, plannedTermDate=null;
   const {childData}=props;
- if(childData!=null){
-        birthDate =childData.birthDate;
-        isPremature =childData.isPremature;
-        plannedTermDate =childData.plannedTermDate;
-      }
-
+  const isFutureDate = (date: Date) => {
+    return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+};
+      useFocusEffect(
+        React.useCallback(() => {
+          if(childData!=null){
+            birthDate =childData.birthDate;
+            isPremature =childData.isPremature;
+            plannedTermDate =childData.plannedTermDate;
+            const inFuture=isFutureDate(birthDate);
+            setdisablePrematureCheck(inFuture);
+            if(inFuture){
+              setIsExpected("true");
+            }
+            else{
+              setIsExpected("false");
+            }  
+            setToggleCheckBox(isPremature!=null ? JSON.parse(isPremature) : false);
+            setdoborExpectedDate(birthDate!=null ? new Date(birthDate) : null);
+            setdueDate(plannedTermDate!=null ? new Date(plannedTermDate) : null);
+            console.log(disablePrematureCheck,"..disablePrematureCheck..");
+          }      
+        }, [])
+      );
   //console.log(birthDate,"..birthDate..");
   const { t } = useTranslation();
-  const [toggleCheckBox, setToggleCheckBox] = useState(isPremature!=null ? JSON.parse(isPremature) : false);
-  const [dobDate, setdobDate] = useState<Date|null>(birthDate!=null ? new Date(birthDate) : null);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isExpected, setIsExpected] = useState("false");
+  const [doborExpectedDate, setdoborExpectedDate] = useState<Date|null>(null);
   const [showdob, setdobShow] = useState<Boolean>(false);
+  const [disablePrematureCheck, setdisablePrematureCheck] = useState<Boolean>(false);
+  
   const ondobChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || dobDate;
+    const currentDate = selectedDate || doborExpectedDate;
     setdobShow(Platform.OS === 'ios');
-    setdobDate(currentDate);
-    props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: toggleCheckBox });
+    const inFuture=isFutureDate(currentDate);
+    setdisablePrematureCheck(inFuture);
+    setdoborExpectedDate(currentDate);
+    if(inFuture){
+      setIsExpected("true");
+      props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:true});
+    }
+    else{
+      setIsExpected("false");
+      props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:false});
+      
+    }  
+   
   };
-
+ 
   const showdobDatepicker = () => {
     setdobShow(true);
   };
   const [modalVisible, setModalVisible] = useState(false);
-  const [dueDate, setdueDate] = useState<Date | null>(plannedTermDate!=null ? new Date(plannedTermDate) : null);
+  const [dueDate, setdueDate] = useState<Date | null>(null);
   const [showdue, setdueShow] = useState<Boolean>(false);
   const ondueDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
     //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
-    props.sendData({ birthDate: dobDate, dueDate: currentDate, isPremature: toggleCheckBox });
+    props.sendData({ birthDate: doborExpectedDate, dueDate: currentDate, isPremature: toggleCheckBox,isExpected:isExpected });
   };
   const showdueDatepicker = () => {
     setdueShow(true);
   };
+ 
   return (
     <>
       <FormDateContainer>
@@ -70,7 +106,7 @@ const ChildDate = (props: any) => {
           <LabelText> {t('childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {dobDate ? dobDate.toDateString() : t('childSetupdobSelector')}</Text>
+              <Text> {doborExpectedDate ? doborExpectedDate.toDateString() : t('childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -80,15 +116,30 @@ const ChildDate = (props: any) => {
 
         <FormPrematureContainer>
           <FormOuterCheckbox
+            // disabled={disablePrematureCheck}
             onPress={() => {
-              //  console.log(item);
-              setToggleCheckBox(!toggleCheckBox);
-              setdueDate(null);
+             
+              //console.log(disablePrematureCheck,"..click disablePrematureCheck...")
+              // if(!disablePrematureCheck){
+               
+              // }
+              // else{
+              //   console.log(dueDate,"..dueDate..");
+              //   // props.sendData({ birthDate: doborExpectedDate, dueDate: dueDate, isPremature: toggleCheckBox });
+             
+              // }
+              if(!disablePrematureCheck){
+                props.sendData({ birthDate: doborExpectedDate, dueDate: null, isPremature: !toggleCheckBox ,isExpected:isExpected});    
+                setToggleCheckBox(!toggleCheckBox);
+                setdueDate(null)
+              }
+              
             }}>
             <CheckboxItem>
               <View>
+                
                 {toggleCheckBox ? (
-                  <CheckboxActive>
+                  <CheckboxActive  style={disablePrematureCheck?styles.disabledCheckBox:null}>
                     <Icon name="ic_tick" size={12} color="#000" />
                   </CheckboxActive>
                 ) : (
@@ -110,6 +161,7 @@ const ChildDate = (props: any) => {
           {showdob && (
             <DateTimePicker
               testID="dobdatePicker"
+              minimumDate={ new Date(dobMin)}
               value={new Date()}
               mode={'date'}
               display="default"
@@ -118,7 +170,7 @@ const ChildDate = (props: any) => {
           )}
         </View>
 
-        {toggleCheckBox ? (
+        {toggleCheckBox && !disablePrematureCheck? (
           <>
             <ShiftFromBottom30>
               <FormInputGroup onPress={showdueDatepicker}>
@@ -140,6 +192,8 @@ const ChildDate = (props: any) => {
                   value={new Date()}
                   mode={'date'}
                   display="default"
+                  minimumDate={new Date(DateTime.fromJSDate(doborExpectedDate as Date).plus({ weeks: minDue }).toISODate())}
+                  maximumDate={new Date(DateTime.fromJSDate(doborExpectedDate as Date).plus({ months: maxDue }).toISODate())}
                   // minimumDate={{}}
                   // maximumDate={{}}
                   onChange={ondueDateChange}
@@ -180,3 +234,8 @@ const ChildDate = (props: any) => {
   );
 };
 export default ChildDate;
+const styles = StyleSheet.create({
+  disabledCheckBox: {
+    backgroundColor:'#ccc',opacity:0.5
+  }
+});
