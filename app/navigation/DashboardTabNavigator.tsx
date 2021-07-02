@@ -11,13 +11,13 @@ import HealthCheckups from '@screens/home/HealthCheckups';
 import Vaccination from '@screens/home/Vaccination';
 import React, { useContext, useState } from 'react';
 import {
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity
+    Modal,
+    Pressable,
+    StyleSheet,
+    Text,
+    TouchableOpacity
 } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();

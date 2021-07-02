@@ -2,7 +2,7 @@ import Icon from '@components/shared/Icon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 const ButtonItem = (props: any) => {
   return (
     <Pressable

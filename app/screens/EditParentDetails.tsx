@@ -1,11 +1,11 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  ChildRelationList,
-  FormDateAction, FormDateText,
-  FormInputBox,
-  FormInputGroup,
-  LabelText
+    ChildRelationList,
+    FormDateAction, FormDateText,
+    FormInputBox,
+    FormInputGroup,
+    LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
@@ -13,17 +13,17 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
 import {
-  Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+    Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import { ThemeContext } from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../App';
+import { ThemeContext } from 'styled-components/native';
+import { useAppDispatch } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
-  Heading2w,
-  Heading3
+    Heading2w,
+    Heading3
 } from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<

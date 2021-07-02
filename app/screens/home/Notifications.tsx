@@ -13,7 +13,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {

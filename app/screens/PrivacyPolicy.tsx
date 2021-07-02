@@ -10,7 +10,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, useWindowDimensions } from 'react-native';
 import HTML from 'react-native-render-html';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
