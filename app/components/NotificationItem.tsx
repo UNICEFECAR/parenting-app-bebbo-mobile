@@ -1,6 +1,6 @@
 import Icon from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
-import { Heading5Bold } from '@styles/typography';
+import { Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
@@ -12,8 +12,13 @@ import {
     renderers
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
+import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
+import { MainContainer } from './shared/Container';
+import Divider, { DividerContainer } from './shared/Divider';
+import { FDirRow, FDirRowStart, FlexDirRowStart, } from './shared/FlexBoxStyle';
+import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from './shared/NotificationStyle';
 
 
 const NotificationItem = (props:any) => {
@@ -68,42 +73,31 @@ const NotificationItem = (props:any) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   return (
     <>
-      <View
-        style={{
-          flexDirection: 'row',
-          // paddingVertical: 10,
-          marginVertical: 10,
-        }}
-       >
-        <View
-          style={{
-            flex: 1,
-            marginVertical: 10,
-          }}>
+  <NotificationListContainer>
+    <FlexDirRowStart>
+        <NotifIcon style={{
+              backgroundColor: item.bgColor,
+            }}>
+          
           <Icon
             name={geticonname(item.type)}
             size={20}
             color="#000"
-            style={{
-              padding: 20,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 50,
-              backgroundColor: item.bgColor,
-            }}
+            
           />
-        </View>
+        </NotifIcon>
+        <NotifiContent>
+        <Heading4Regular>{item.title}</Heading4Regular>
+        <ShiftFromTop5>
+        <Heading6>{item.timeStamp}</Heading6>
+        </ShiftFromTop5>
+        <ShiftFromTop10>
+        <Pressable onPress={() => gotoPage(item.type)}>
+              <ButtonTextSmLineL>{getButtonname(item.type)}</ButtonTextSmLineL>
+            </Pressable></ShiftFromTop10>
+        </NotifiContent>
 
-        <View style={{flexDirection: 'column', flex: 5}}>
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.timeStamp}</Text>
-            <Pressable onPress={() => gotoPage(item.type)}>
-              <Text>{getButtonname(item.type)}</Text>
-            </Pressable>
-          </View>
-          
-        </View>
+        <NotifAction>
         {(isDeleteEnabled===true) ? (
           <FormOuterCheckbox
             onPress={() => {
@@ -128,8 +122,8 @@ const NotificationItem = (props:any) => {
             <Menu
               renderer={renderers.ContextMenu}
               style={{
-                width: 50,
-                height: 50,
+                width: 40,
+                height: 40,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
@@ -159,6 +153,7 @@ const NotificationItem = (props:any) => {
                     borderBottomWidth: 1,
                     padding: 15,
                   },
+                  
                 }}>
                 <MenuOption value={1}>
                   <Heading5Bold>{t('notiOption1')}</Heading5Bold>
@@ -170,7 +165,12 @@ const NotificationItem = (props:any) => {
             </Menu>
           </>
         )}
-      </View>
+        </NotifAction>
+        
+      </FlexDirRowStart>
+    
+    </NotificationListContainer>
+    <DividerContainer><Divider></Divider></DividerContainer>
     </>
   );
 };
