@@ -27,6 +27,7 @@ import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataS
 import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
+import { validateForm } from '../../services/Utils';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -45,7 +46,7 @@ let  childData  = route.params.childData;
   // if(childList.length>0 && childData!=null){
   // childData=childList.filter(item =>item.uuid == childData?.uuid)[0];
   // }
-  console.log(childData,"..childData..");
+ // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
@@ -85,11 +86,14 @@ let  childData  = route.params.childData;
   const [isExpected,setIsExpected] = React.useState<string>('false');
   
   const sendData = (data: any) => { // the callback. Use a better name
+   // console.log("111111")
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.dueDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
+    //console.log("2222")
     setIsExpected(String(data.isExpected));
+    //console.log("333")
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
   useFocusEffect(
@@ -148,9 +152,9 @@ let  childData  = route.params.childData;
       // setphotoUri('');
       //});
       deleteImageFile(capturedPhoto).then(async (data:any)=>{
-        console.log(data,"..deleted..");
+        //console.log(data,"..deleted..");
         let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema,'', 'uuid ="' + childData?.uuid+ '"');
-        console.log(createresult,"..createresult..")
+       // console.log(createresult,"..createresult..")
         if(createresult=='success'){
           MediaPicker.cleanupImages();
           setCapturedImage('');
@@ -167,7 +171,7 @@ let  childData  = route.params.childData;
     else if(index==1){
       MediaPicker.showCameraImagePicker((image:any) => {
         // image.path ==>> file path 
-        console.log(image,"..image..");
+       // console.log(image,"..image..");
         cleanUPImage(image);
         setCapturedImage(image.path);
         onChildPhotoChange(childData,image);
@@ -177,7 +181,7 @@ let  childData  = route.params.childData;
     else if(index==2){
       MediaPicker.showGalleryImagePicker((image:any) => {
         // image.path ==>> file path 
-        console.log(image,"..image..");
+       // console.log(image,"..image..");
         cleanUPImage(image);
         setCapturedImage(image.path);
         onChildPhotoChange(childData,image);
@@ -230,11 +234,11 @@ let  childData  = route.params.childData;
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    console.log(insertData,"..insertData..");
+   // console.log(insertData,"..insertData..");
     addChild(editScreen, 2, childSet, dispatch, navigation);
   }
   const getCheckedItem =(checkedItem:typeof genders[0])=>{
-    console.log(checkedItem);
+    //console.log(checkedItem);
     setGender(checkedItem.id);
   }
   return (
@@ -347,11 +351,17 @@ let  childData  = route.params.childData;
 
               <View style={{ width: '100%', marginTop: 30 }}>
                 <ButtonPrimary onPress={() => {
-                   console.log(birthDate,"..birthDate..");
-                   console.log(isPremature,"..isPremature..");
-                   console.log(plannedTermDate,"..plannedTermDate..");
-                   console.log(isExpected,"..isExpected..");
-                   AddChild();
+                  //  console.log(birthDate,"..birthDate..");
+                  //  console.log(isPremature,"..isPremature..");
+                  //  console.log(plannedTermDate,"..plannedTermDate..");
+                  //  console.log(isExpected,"..isExpected..");
+                   const validated=validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender);
+                   if(validated==true){
+                    AddChild();
+                   }
+                   else{
+                   Alert.alert(validated);
+                   }
                   // AddChild()
                   // if(birthDate==null || birthDate==undefined){
                   //   Alert.alert('Please enter birth date');
