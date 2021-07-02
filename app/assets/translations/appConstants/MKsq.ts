@@ -1,7 +1,7 @@
 const MKsq = {
     translation: {
         countryLangSelection: 'You have selected country and language',
-        choiceVerifiy: 'Please verify your choice',
+        
         editCountryLang: 'Edit',
         continueCountryLang: 'Continue',
         selectYourCountry: 'Select your country',
