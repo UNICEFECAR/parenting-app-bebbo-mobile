@@ -1,7 +1,7 @@
 const MEcnr = {
     // translation: {
     //     countryLangSelection: 'You have selected country and language',
-    //     choiceVerifiy: 'Please verify your choice',
+    //     
     //     editCountryLang: 'Edit',
     //     continueCountryLang: 'Continue',
     //     selectYourCountry: 'Select your country',
@@ -16,7 +16,6 @@ const MEcnr = {
     // }
     translation: {
         countryLangSelection: 'Odabrali ste zemlju i jezik',
-        choiceVerifiy: 'Molimo provjerite Vaš izbor',
         editCountryLang: 'Uredi',
         continueCountryLang: 'Dalje',
         selectYourCountry: 'Odaberite zemlju',
