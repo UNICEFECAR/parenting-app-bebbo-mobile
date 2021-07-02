@@ -116,7 +116,7 @@ const Notifications = () => {
   ];
   const [allData, setallData] = useState(DATA);
   const onCategorychange = (selectedCategories) => {
-   // console.log(selectedCategories);
+    console.log(selectedCategories);
   };
   const onNotiItemChecked =(itemIndex:number,isChecked:boolean)=>{
     const newArray = [...allData];
