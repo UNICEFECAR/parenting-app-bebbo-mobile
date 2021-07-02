@@ -2,6 +2,7 @@ import { rootReducer } from "../redux";
 import { selectRoleAction, RoleErrorAction, RoleModel, LoginAction, LoginErrorAction, UserModel } from "../interfaces/interface";
 import { PERMISSIONS, PermissionStatus } from "react-native-permissions";
 import { Platform } from "react-native";
+import { DateTime } from "luxon";
 export const On_Login:string = "On_Login";
 export const On_Login_Error:string = "On_Login_Error";
 export const On_Role:string = "On_Role";
@@ -82,7 +83,9 @@ export const IMAGE_PICKER_OPTIONS = {
    showCropGuidelines: true,
    multiple: false
 };
-
+export const dobMin = DateTime.local().plus({ years: -7 }).toISODate();
+export const maxDue=5;
+export const minDue=4;
 export const CAMERA_PERMISSION =
   Platform.OS === "android"
     ? PERMISSIONS.ANDROID.CAMERA
