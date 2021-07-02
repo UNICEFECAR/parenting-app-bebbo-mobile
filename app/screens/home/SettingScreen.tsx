@@ -1,5 +1,7 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonLinkText, ButtonPrimary } from '@components/shared/ButtonGlobal';
+import { ButtonLinkText, ButtonPrimary,ButtonText } from '@components/shared/ButtonGlobal';
+import { BannerContainer, MainContainer } from '@components/shared/Container';
+import { FDirCol, FDirRow, FDirRowStart, Flex1, Flex2, Flex3, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import {
   LocalizationAction,
@@ -9,14 +11,16 @@ import {
   LocalizationcontentResult,
   LocalizationRow
 } from '@components/shared/OnboardingContainer';
+import { SettingHeading, SettingOptions, SettingShareData } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ButtonText } from '@styles/style';
 import {
-  Heading1, Heading3, Heading3Regular,
+  Heading1, Heading3, Heading3Regular,Heading4Regular,
   Heading4,
-  Heading6
+  Heading5,
+  Heading6,
+  ShiftFromBottom10,ShiftFromBottom5, ShiftFromTop10, ShiftFromTop30, ShiftFromTop20, ShiftFromTopBottom15, ShiftFromTopBottom5, ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -89,206 +93,208 @@ const SettingScreen = (props: any) => {
               headerColor={primaryColor}
               textColor="#FFF"
             />
+
         <ScrollView style={{flex: 1}}>
-          <View style={{padding: 15}}>
-            <Heading1> {t('settingScreennotiHeaderText')}</Heading1>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
+          <MainContainer>
+            <SettingHeading>
+            <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
+            </SettingHeading>
+            <ShiftFromBottom10>
+            <FDirRowStart>
               <Switch
                 trackColor={{false: trackFalseColor, true:trackTrueColor}}
                 thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
+                
               />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreennotiType1')}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
-                trackColor={{false: trackFalseColor, true:trackTrueColor}}
-                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
-              />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreennotiType2')}
-              </Text>
-            </View>
+              <Flex1>
+                <Heading4Regular>
+              {t('settingScreennotiType1')}</Heading4Regular>
+              </Flex1>
+            </FDirRowStart>
+            </ShiftFromBottom10>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
+            <ShiftFromBottom10>
+            <FDirRowStart>
+            <Switch
                 trackColor={{false: trackFalseColor, true:trackTrueColor}}
                 thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
+                
               />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreennotiType3')}
-              </Text>
-            </View>
+              <Flex1>
+                <Heading4Regular>{t('settingScreennotiType2')}
+                </Heading4Regular>
+              </Flex1>
+            </FDirRowStart>
+            </ShiftFromBottom10>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
+            <ShiftFromBottom10>
+            <FDirRowStart>
+            <Switch
                 trackColor={{false: trackFalseColor, true:trackTrueColor}}
                 thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
+               
               />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreennotiType4')}
-              </Text>
-            </View>
+              <Flex1>
+                <Heading4Regular>{t('settingScreennotiType3')}
+                </Heading4Regular>
+              </Flex1>
+            </FDirRowStart>
+            </ShiftFromBottom10>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-                padding: 10,
-              }}>
-              <Text>
-              {t('settingScreennotiInfo')}
-              </Text>
-            </View>
-          </View>
-          <View style={{padding: 15}}>
-            <Heading1>{t('settingScreendataSaverHeaderText')}</Heading1>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}>
-              <Switch
+            <ShiftFromBottom10>
+            <FDirRowStart>
+            <Switch
                 trackColor={{false: trackFalseColor, true:trackTrueColor}}
                 thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                style={{alignSelf: 'flex-start'}}
+                
               />
-              <Text style={{alignSelf: 'flex-end'}}>
-              {t('settingScreendataSaverSubText')}
-              </Text>
+              <Flex1>
+                <Heading4Regular>
+                {t('settingScreennotiType4')}
+                </Heading4Regular>
+              </Flex1>
+            </FDirRowStart>
+            </ShiftFromBottom10>
+            
+            <View>
+            <Heading4Regular>{t('settingScreennotiInfo')}</Heading4Regular>
             </View>
-          </View>
-          <View style={{padding: 15}}>
-            <Heading1>{t('settingScreendownldHeaderText')}</Heading1>
+          </MainContainer>
+
+          <MainContainer>
+            <SettingHeading>
+              <Heading1>{t('settingScreendataSaverHeaderText')}</Heading1>
+            </SettingHeading>
+
+            <ShiftFromBottom10>
+            <FDirRowStart>
+            <Switch
+                trackColor={{false: trackFalseColor, true:trackTrueColor}}
+                thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+               
+              />
+              <Flex1>
+                <Heading4Regular>
+                {t('settingScreendataSaverSubText')}</Heading4Regular>
+              </Flex1>
+            </FDirRowStart>
+            </ShiftFromBottom10>
+          </MainContainer>
+          
+          <MainContainer>
+          <SettingHeading>
+              <Heading1>{t('settingScreendownldHeaderText')}</Heading1>
+            </SettingHeading>
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>{t('settingScreendownldlast',{downloadDate: '17 dec 2020 02:32pm'})}</Heading6>
-            <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary onPress={() => {}}>
+            <ShiftFromTop10>
+            <ButtonPrimary onPress={() => {}}>
                 <ButtonText>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
-            </View>
-            <Heading4>{t('settingScreendownldSubHeader2Text')}</Heading4>
+              </ShiftFromTop10>
+              <ShiftFromTop20>
+              <Heading4>{t('settingScreendownldSubHeader2Text')}</Heading4>
             <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
-            <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary onPress={() => {}}>
+            </ShiftFromTop20>
+            <ShiftFromTop10>
+            <ButtonPrimary onPress={() => {}}>
                 <ButtonText>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
-            </View>
-          </View>
-          <View style={{paddingHorizontal: 15}}>
-            <View style={{flexDirection: 'row'}}>
-              <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-              <LocalizationAction>
-                <ButtonLinkText
-                  onPress={() => props.navigation.navigate('Localization')}>
-                  <OuterIconRow>
-                    <OuterIconLeft>
-                      <Icon name="ic_edit" size={16} color="#000" />
-                    </OuterIconLeft>
-                  </OuterIconRow>
-                </ButtonLinkText>
-              </LocalizationAction>
-            </View>
-            <LocalizationContainer>
-              <LocalizationRow>
-                <LocalizationCol>
-                  <LocalizationcontentHead>
-                    <Heading3Regular>{t('country')}</Heading3Regular>
-                  </LocalizationcontentHead>
-                  <LocalizationcontentResult>
-                    <Heading3>{country.displayName}</Heading3>
-                  </LocalizationcontentResult>
-                </LocalizationCol>
+              </ShiftFromTop10>
+          </MainContainer>
 
-                <LocalizationCol>
-                  <LocalizationcontentHead>
-                    <Heading3Regular>{t('language')}</Heading3Regular>
-                  </LocalizationcontentHead>
-                  <LocalizationcontentResult>
-                    <Heading3>{language.displayName}</Heading3>
-                  </LocalizationcontentResult>
-                </LocalizationCol>
-              </LocalizationRow>
-            </LocalizationContainer>
-          </View>
-
-          <View style={{padding: 15}}>
-            <Heading1>{t('settingScreenieHeader')}</Heading1>
-            <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary
+          <MainContainer>
+          <SettingHeading>
+              <FlexDirRowSpace>
+                  <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
+                  <Icon name="ic_edit" size={16} color="#000" />
+              </FlexDirRowSpace>
+                
+            </SettingHeading>
+            <ShiftFromTopBottom5>
+            <FDirRow>
+              <Flex2>
+              <Heading3Regular>{t('country')}</Heading3Regular>
+              </Flex2>
+              <Flex3>
+              <Heading3>{country.displayName}</Heading3>
+              </Flex3>
+            </FDirRow>
+            </ShiftFromTopBottom5>
+            <ShiftFromTopBottom5>
+            <FDirRow>
+              <Flex2>
+              <Heading3Regular>{t('language')}</Heading3Regular>
+              </Flex2>
+              <Flex3>
+              <Heading3>{language.displayName}</Heading3>
+              </Flex3>
+            </FDirRow>
+            </ShiftFromTopBottom5>
+          </MainContainer>
+          
+          <MainContainer>
+          <SettingHeading>
+              <Heading1>{t('settingScreenieHeader')}</Heading1>
+          </SettingHeading>
+          <ShiftFromTopBottom10>
+          <ButtonPrimary
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
                 <ButtonText>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
-            </View>
-            <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreenimportBtnText')}</ButtonText>
-              </ButtonPrimary>
-            </View>
-          </View>
-          {/* 
-          <Button
-            title="Toggle"
-            onPress={() =>
-              props.navigation.dispatch(DrawerActions.toggleDrawer())
-            }
-          /> */}
+              </ShiftFromTopBottom10>
+              <ShiftFromTopBottom10>
+          <ButtonPrimary onPress={() => {}}>
+              <ButtonText>{t('settingScreenimportBtnText')}</ButtonText>
+          </ButtonPrimary>
+          </ShiftFromTopBottom10>
+          </MainContainer>
+         
+
           <ActionSheet ref={actionSheetRef}>
-            <View>
-              <View style={styles.modalView}>
+           
+              <BannerContainer>
+                <SettingHeading>
                 <Heading1>{t('settingScreenexportOptionHeader')}</Heading1>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={styles.item}>
-                    <Icon name="ic_sb_shareapp" size={30} color="#000" />
-                    <Text style={styles.modalText}>{t('settingScreenshareBtntxt')}</Text>
-                  </View>
-                  <View style={styles.item}>
-                    <VectorImage
+                </SettingHeading>
+                <SettingShareData>
+                <FDirRow>
+                  <SettingOptions>
+                  <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                  <ShiftFromTopBottom5>
+                    <Heading4Regular>{t('settingScreenshareBtntxt')}</Heading4Regular>
+                    </ShiftFromTopBottom5>
+                  </SettingOptions>
+                  <SettingOptions>
+                  
+                  <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
                     />
-                    <Text style={styles.modalText}>{t('settingScreengdriveBtntxt')}</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
+                    <ShiftFromTopBottom5>
+                    <Heading4Regular>{t('settingScreengdriveBtntxt')}</Heading4Regular>
+                    </ShiftFromTopBottom5>
+                  </SettingOptions>
+                </FDirRow>
+                </SettingShareData>
+              </BannerContainer>
+            
           </ActionSheet>
         </ScrollView>
       </SafeAreaView>
@@ -298,19 +304,19 @@ const SettingScreen = (props: any) => {
 
 export default SettingScreen;
 const styles = StyleSheet.create({
-  modalView: {
-    backgroundColor: 'white',
-    elevation: 5,
-  },
-  item: {
-    flexDirection: 'column',
-    borderBottomColor: '#EEE',
-    borderBottomWidth: 2,
-    alignItems: 'center',
-    padding: 15,
-  },
-  modalText: {
-    fontWeight: 'bold',
-    marginVertical: 15,
-  },
+  // modalView: {
+  //   backgroundColor: 'white',
+  //   elevation: 5,
+  // },
+  // item: {
+  //   flexDirection: 'column',
+  //   borderBottomColor: '#EEE',
+  //   borderBottomWidth: 2,
+  //   alignItems: 'center',
+  //   padding: 15,
+  // },
+  // modalText: {
+  //   fontWeight: 'bold',
+  //   marginVertical: 15,
+  // },
 });

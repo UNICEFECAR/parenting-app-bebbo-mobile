@@ -8,7 +8,6 @@ export const HeaderRowView = styled.View`
 `;
 
 export const HeaderIconView = styled.View`
-  flex: 1;
   padding: 10px 15px;
   justify-content: center;
 `;
