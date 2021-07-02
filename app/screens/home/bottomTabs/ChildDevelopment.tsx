@@ -2,27 +2,24 @@ import AgeBrackets from '@components/AgeBrackets';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
-import { BgWhite } from '@components/shared/BackgroundColors';
 import { BannerContainer, MainContainer } from '@components/shared/Container';
-import { DevelopmentPercent, DevelopmentStatus,DevelopmentContent} from '@components/shared/DevelopmentStyle';
-import { FDirCol,FDirRow, Flex1, Flex4, Flex5, FlexDirCol, FlexDirRowSpace,FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRight, OuterIconRow } from '@components/shared/Icon';
+import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
+import { FDirCol, FDirRow, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading3, Heading3Regular, Heading4, Heading5, Heading5Bold, ShiftFromBottom5,ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading5Bold, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList,
-  Image,
-  Pressable,
-  SafeAreaView,
-  Text,
-  View
+    FlatList,
+    Image,
+    Pressable,
+    SafeAreaView, View
 } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;

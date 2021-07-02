@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Heading4, Heading4Regular, Heading5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { ThemeContext } from 'styled-components';
+import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
 import { MainContainer } from './shared/Container';
