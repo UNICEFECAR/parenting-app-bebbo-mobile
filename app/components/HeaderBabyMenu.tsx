@@ -88,9 +88,9 @@ import {
               <Icon name="ic_baby" size={30} color="#000" />
             </ProfileIconView>
             <ProfileTextView>
-              <Heading3>{data.name ? data.name : 'Child' + (index + 1)}</Heading3>
+              <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <OuterIconRow>
@@ -111,7 +111,7 @@ import {
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <ButtonTextSmLine
