@@ -128,7 +128,7 @@ const NotificationItem = (props:any) => {
                 alignItems: 'center',
               }}
               onSelect={(value) =>
-                //console.log(`Selected number: ${value} ${item}`)
+                console.log(`Selected number: ${value} ${item}`)
               }>
               <MenuTrigger>
                 <Icon

@@ -20,6 +20,7 @@ import {
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
+import { ImageIcon } from '@components/shared/Image';
 import {
   getAllChildren,
   getAllConfigData,
@@ -38,6 +39,7 @@ import {
 import {
   ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
 } from './shared/ProfileListingStyle';
+import { CHILDREN_PATH } from '@types/types';
   const headerHeight = 50;
   const HeaderBabyMenu = (props: any) => {
     const navigation = useNavigation();
@@ -86,7 +88,11 @@ import {
         currentActiveChild == data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
@@ -107,7 +113,11 @@ import {
         ) : (
           <ProfileListView key={index}>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>

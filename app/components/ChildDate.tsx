@@ -73,11 +73,11 @@ const ChildDate = (props: any) => {
     if(inFuture){
       setIsExpected(true);
       setToggleCheckBox(false);
-      props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:true});
+      props.sendData({ birthDate: currentDate, plannedTermDate: dueDate, isPremature: false,isExpected:true});
     }
     else{
       setIsExpected(false);
-      props.sendData({ birthDate: currentDate, dueDate: dueDate, isPremature: false,isExpected:false});
+      props.sendData({ birthDate: currentDate, plannedTermDate: dueDate, isPremature: false,isExpected:false});
     }  
   };
   const showdobDatepicker = () => {
@@ -91,7 +91,7 @@ const ChildDate = (props: any) => {
     //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
     setdueDate(currentDate);
-    props.sendData({ birthDate: doborExpectedDate, dueDate: currentDate, isPremature: toggleCheckBox,isExpected:isExpected });
+    props.sendData({ birthDate: doborExpectedDate, plannedTermDate: currentDate, isPremature: toggleCheckBox,isExpected:isExpected });
   };
   const showdueDatepicker = () => {
     setdueShow(true);
@@ -127,7 +127,7 @@ const ChildDate = (props: any) => {
              
               // }
               if(!disablePrematureCheck){
-                props.sendData({ birthDate: doborExpectedDate, dueDate: null, isPremature: !toggleCheckBox ,isExpected:isExpected});    
+                props.sendData({ birthDate: doborExpectedDate, plannedTermDate: null, isPremature: !toggleCheckBox ,isExpected:isExpected});    
                 setToggleCheckBox(!toggleCheckBox);
                 setdueDate(null)
               }

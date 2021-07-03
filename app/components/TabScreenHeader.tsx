@@ -20,12 +20,12 @@ import {
 const headerHeight = 50;
 const TabScreenHeader = (props: any) => {
   const dispatch = useAppDispatch();
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch);
-      getAllConfigData(dispatch);
-    }, []),
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     getAllChildren(dispatch);
+  //     getAllConfigData(dispatch);
+  //   }, []),
+  // );
   const headerColor = props.headerColor;
   const textColor = props.textColor;
  
