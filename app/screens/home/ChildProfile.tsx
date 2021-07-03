@@ -8,6 +8,7 @@ import Icon, {
     OuterIconRow,
     TickView
 } from '@components/shared/Icon';
+import { ImageIcon } from '@components/shared/Image';
 import {
     ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
     ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
@@ -21,10 +22,11 @@ import {
     Heading5Bold,
     Heading6
 } from '@styles/typography';
+import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Image, ImageBackground, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setActiveChild } from '../../services/childCRUD';
@@ -160,8 +162,13 @@ const ChildProfile = ({navigation}: Props) => {
       currentActiveChild != undefined &&
       currentActiveChild == data.uuid ? (
         <ProfileListViewSelected>
+          
           <ProfileIconView>
-            <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
@@ -199,12 +206,16 @@ const ChildProfile = ({navigation}: Props) => {
           }}>
           <ProfileListInner>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+              {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>
-                  {data.name},
+                  {data.name}
                 </Heading3>
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{genderName}</Heading6>
