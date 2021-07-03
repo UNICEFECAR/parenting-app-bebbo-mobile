@@ -54,7 +54,7 @@ const ChildSetup = ({ navigation }: Props) => {
   let initialData: any = {};
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
-    setPlannedTermDate(data.dueDate);
+    setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
@@ -124,6 +124,8 @@ const AddChild=async ()=>{
 
           <ButtonRow>
             <ButtonPrimary
+             disabled={!validateForm(0,birthDate,isPremature,relationship,plannedTermDate)}
+           
               onPress={() => {
                 // console.log(birthDate,"..birthDate..");
                 // console.log(isPremature,"..isPremature..");
@@ -136,7 +138,7 @@ const AddChild=async ()=>{
                 AddChild();
                }
                else{
-                 Alert.alert(validated);
+                //  Alert.alert(validated);
                }
               
               }}>

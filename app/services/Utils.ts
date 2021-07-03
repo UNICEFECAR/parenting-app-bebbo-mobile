@@ -56,27 +56,32 @@ export const formatDate=(dateData:any)=>{
     return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
 }
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
+   // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
     if(birthDate==null || birthDate==undefined){
-       return 'Please enter birth date.';
+    //    return 'Please enter birth date.';
+    return false;
       }
       else{
-        console.log(typeof(isPremature),"..isPremature..");
         if(param==0){
             if(relationship =='' || relationship ==null || relationship ==undefined){
-                return 'Please enter relationship.';
+                // return 'Please enter relationship.';
+                return false;
             }
         }
         if(param==1){
             if(name =='' || name ==null || name ==undefined){
-                return 'Please enter name.';
+                // return 'Please enter name.';
+                return false;
             }
             if(gender =='' || gender ==null || gender ==undefined){
-                return 'Please enter gender.';
+                // return 'Please enter gender.';
+                return false;
             }
         }
         if(isPremature=="true"){
           if(plannedTermDate==null || plannedTermDate==undefined){
-            return 'Please enter due date';
+            // return 'Please enter due date';
+            return false;
           }
           else{
            return true;
