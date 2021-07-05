@@ -1,7 +1,7 @@
 import { ObjectSchema } from "realm";
 
 export type VaccinationEntity = {
-    id: string,
+    id: number,
     type: string,
     title: string,
     pinned_article: string,
@@ -17,7 +17,7 @@ export type VaccinationEntity = {
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
+      id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
       pinned_article: { type: 'string' },

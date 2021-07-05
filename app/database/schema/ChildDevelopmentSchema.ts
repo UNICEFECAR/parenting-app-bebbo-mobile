@@ -1,7 +1,7 @@
 import { ObjectSchema } from "realm";
 
 export type ChildDevelopmentEntity = {
-    id: string,
+    id: number,
     type: string,
     title: string,
     body: string,
@@ -21,7 +21,7 @@ export type ChildDevelopmentEntity = {
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
+      id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
       body: { type: 'string' },

@@ -2,6 +2,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSe
 
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
+import { isArticlePinned } from '@types/apiConstants';
 // import { dispatchchildstore2 } from './userRealmListener';
 // import userRealm from '../config/dbConfig'
 // export const userRealmInstance = getUserRealm();
@@ -96,7 +97,7 @@ class DataRealmCommon {
         });
     }
 
-    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[]): Promise<String> {
+    public async create<Entity>(entitySchema: ObjectSchema, records: Entity[],articleRelation?:String): Promise<String> {
         return new Promise(async (resolve, reject) => {
             // console.log(entitySchema,"--entity--");
             try {
@@ -104,12 +105,48 @@ class DataRealmCommon {
                 if (realm) {
                     realm.write(() => {
                         if (records?.length > 0) {
-                            records.forEach(record => {
-                                if(entitySchema.name == "ArticleEntity")
-                                {
-                                    record.cover_image = JSON.stringify(record.cover_image);
-                                }
+                            records.forEach(async record => {
                                 realm?.create<Entity>(entitySchema.name, record,"modified");
+                            })
+                        }
+
+                        resolve("success");
+                    });
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+                console.error("data insert err", e.message);
+                reject();
+            }
+        });
+    }
+    public async createArticles<Entity>(entitySchema: ObjectSchema, records: Entity[],articleRelation:String): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            // console.log(entitySchema,"--entity--");
+            try {
+                const realm = await this.openRealm();
+                if (realm) {
+                    realm.write(() => {
+                        if (records?.length > 0) {
+                            records.forEach(async record => {
+                                // console.log(record.id);
+                                const obj = realm?.objects<Entity>(entitySchema.name).filtered('id == "'+record.id+'"');
+                                console.log(Array.from(obj),"---obj");
+                                console.log(obj.length,"---obj");
+                                if(obj.length > 0)
+                                {
+                                    if(articleRelation == isArticlePinned && obj[0].isarticle_pinned != "1")
+                                    {
+                                        obj[0].isarticle_pinned = articleRelation;
+                                        console.log(Array.from(obj),"---obj after");
+                                    }
+                                }else {
+                                    record.cover_image = JSON.stringify(record.cover_image);
+                                    record.isarticle_pinned = articleRelation;
+                                    realm?.create<Entity>(entitySchema.name, record);
+                                }
                             })
                         }
 

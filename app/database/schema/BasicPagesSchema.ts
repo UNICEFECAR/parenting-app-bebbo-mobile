@@ -1,7 +1,7 @@
 import { ObjectSchema } from "realm";
 
   export type BasicPagesEntity = {
-    id: string,
+    id: number,
     type: string,
     title: string,
     created_at: string,
@@ -18,7 +18,7 @@ import { ObjectSchema } from "realm";
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
+      id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
       created_at: { type: 'string' },

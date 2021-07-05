@@ -6,18 +6,27 @@ import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPage
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
-import { appConfig } from "../types/apiConstants";
+import { appConfig, isArticlePinned } from "../types/apiConstants";
 
 export const addApiDataInRealm = async (response: any) => {
    // console.log(new Date()," response in utils-",response);
     let EntitySchema=<ObjectSchema>{};
    let Entity:any;
    let insertData = [];
+   let pinnedArticle = "";
     if(response.payload.apiEndpoint == appConfig.articles)
     {
         insertData = response.payload.data.data;
         Entity= Entity as ArticleEntity;
         EntitySchema = ArticleEntitySchema;
+        pinnedArticle = "";
+    }
+    else if(response.payload.apiEndpoint == appConfig.pinnedContent)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as ArticleEntity;
+        EntitySchema = ArticleEntitySchema;
+        pinnedArticle = isArticlePinned;
     }
     else if(response.payload.apiEndpoint == appConfig.videoArticles)
     {
@@ -47,9 +56,15 @@ export const addApiDataInRealm = async (response: any) => {
         Entity= Entity as TaxonomyEntity;
         EntitySchema = TaxonomySchema;
     }
-        let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
+        // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
         // let deleteresult2 = await dataRealmCommon.deleteAll(CoverImage);
-        let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+        if(EntitySchema == ArticleEntitySchema)
+        {
+            // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
+            let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+        }else {
+            let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+        }
        // console.log(new Date()," result is ",createresult);
 }
 export const formatDate=(dateData:any)=>{
