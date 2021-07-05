@@ -30,10 +30,11 @@ export const CoverImage: ObjectSchema = {
   }
 }
 export type ArticleEntity = {
-    id: string,
-    langcode?:string,
+    id: number,
+    // langcode?:string,
     type: string,
     title: string,
+    isarticle_pinned?: string,
     created_at: string,
     updated_at: string,
     body: string,
@@ -59,10 +60,11 @@ export type ArticleEntity = {
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
-      langcode: { type: 'string',optional: true },
+      id: { type: 'int' },
+      // langcode: { type: 'string',optional: true },
       type: { type: 'string' },
       title: { type: 'string' },
+      isarticle_pinned: { type: 'string',optional: true },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
       body: { type: 'string'},
