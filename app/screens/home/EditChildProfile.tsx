@@ -75,7 +75,7 @@ let  childData  = route.params.childData;
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
-  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null && childData.photoUri!="" ? `${DocumentDirectoryPath}/${childData.photoUri}` :'');
+  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null && childData.photoUri!="" ? `${CHILDREN_PATH}/${childData.photoUri}` :'');
   const [photoUri, setphotoUri] = React.useState("");
   const [tempImage,cleanUPImage]= React.useState("");
   let initialData: any = {};
@@ -101,7 +101,9 @@ let  childData  = route.params.childData;
     React.useCallback(() => {
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
+      console.log(childData,"..childData..");
       if(childData!=null && childData.uuid!=''){
+        setphotoUri(childData.photoUri);
         sendData(childData);
       }
     }, [])
@@ -254,6 +256,7 @@ const removePhoto=()=>{
     // askPermissions();
   }, []);
   const AddChild = async () => {
+    MediaPicker.cleanupImages();
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
@@ -303,10 +306,10 @@ const removePhoto=()=>{
          
           {
            
-            (capturedPhoto!='' && capturedPhoto!=null && capturedPhoto!=undefined) ?
+            (photoUri!='' && photoUri!=null && photoUri!=undefined) ?
            
             <View style={styles.container}>
-            <ImageBackground source={capturedPhoto!='' ? {uri:  "file://" +capturedPhoto } : null} style={styles.image}>
+            <ImageBackground source={photoUri!='' ? {uri:  "file://"+CHILDREN_PATH +photoUri } : null} style={styles.image}>
             <View style={styles.text}><Icon name="ic_edit" size={30} color="#FFF" onPress={() => {
                         actionSheetRef.current?.setModalVisible();
                       }}/></View>
