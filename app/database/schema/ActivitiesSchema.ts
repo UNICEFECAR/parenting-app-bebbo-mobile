@@ -30,7 +30,7 @@ export const CoverImage: ObjectSchema = {
   }
 }
 export type ActivitiesEntity = {
-    id: string,
+    id: number,
     langcode?:string,
     type: string,
     title: string,
@@ -55,7 +55,7 @@ export type ActivitiesEntity = {
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
+      id: { type: 'int' },
       langcode: { type: 'string',optional: true },
       type: { type: 'string' },
       title: { type: 'string' },
