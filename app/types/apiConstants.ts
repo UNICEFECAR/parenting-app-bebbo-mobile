@@ -4,6 +4,7 @@ import RNFS from 'react-native-fs';
 
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
+export const isArticlePinned = '1';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     //console.log("in finalurl", apiUrlDevelop);
    
@@ -16,8 +17,11 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.basicPages){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     }
-    // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
-    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
+    if(apiEndpoint==appConfig.pinnedContent){
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all/health_check_ups';
+    }
+    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
 }
 
 export const appConfig = {
@@ -26,7 +30,8 @@ export const appConfig = {
     dailyMessages: 'daily-homescreen-messages',
     basicPages: 'basic-pages',
     sponsors:'sponsors',
-    taxonomies:'taxonomies'
+    taxonomies:'taxonomies',
+    pinnedContent:'pinned-contents'
 }
 
 export const activityCategory = [

@@ -3,8 +3,8 @@ import {ObjectSchema} from 'realm';
 
 
 export type VideoArticleEntity = {
-    id: string,
-    langcode?:string,
+    id: number,
+    // langcode?:string,
     type: string,
     title: string,
     created_at: string,
@@ -32,8 +32,8 @@ export type VideoArticleEntity = {
   
     // API: https://bit.ly/3f7k9jq
     properties: {
-      id: { type: 'string' },
-      langcode: { type: 'string',optional: true },
+      id: { type: 'int' },
+      // langcode: { type: 'string',optional: true },
       type: { type: 'string' },
       title: { type: 'string' },
       created_at: { type: 'string' },
