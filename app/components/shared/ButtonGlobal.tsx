@@ -141,9 +141,22 @@ export const ButtonGrowth = styled(ButtonPrimary)`
 export const ButtonHealth = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.HEALTHCHECKUP_COLOR};
 `;
-
+export const ButtonSecondary = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.SECONDARY_COLOR};
+`;
+export const ButtonSecondaryTint = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.SECONDARY_TINTCOLOR};
+`;
 
 export const ButtonDevelopmentMd = styled(ButtonPrimaryMd)`
   background-color: ${props => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;
+export const ButtonContainerTwo = styled.View`
+flex:1;max-height:80px;flex-direction:row;padding:0 10px;align-items:center;
+`;
+export const ButtonColTwo = styled.View`
+flex-direction:row;width:50%;padding:0px 5px;
+`;
+
+
 
