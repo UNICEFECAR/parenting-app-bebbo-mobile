@@ -96,7 +96,15 @@ const Terms = ({navigation}: Props) => {
       method: 'get',
       postdata: {},
       saveinDB: true,
-    }
+    },
+    {
+      apiEndpoint: appConfig.pinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    // survey,child dev,vaccine,healthcheckup,growth,activities,
+    // pinned for all 4 tools
   ];
   const acceptTerms = async () => {
    
