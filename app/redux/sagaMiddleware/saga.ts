@@ -36,7 +36,7 @@ function* onFetchAPI(value: any) {
       )
     )
     // console.log(response,"..response..");
-    //console.log(errorArr,"..errorArr..");
+    // console.log(errorArr,"..errorArr..");
     if (errorArr.length > 0) {
       if (prevPage !== 'CountryLanguageSelection') {
         // if(prevPage == 'Terms')
@@ -178,7 +178,7 @@ function* apiCall(data: apijsonArray) {
     // console.log("errorArr---",errorArr)
     yield put(receiveAPIFailure(errorArr))
   } else {
-      if(response.payload.data.status == 200)
+      if(response.data.status == 200)
       {
         // call realm db insertion code by creating another saga.
         try {
