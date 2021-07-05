@@ -12,7 +12,10 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, View } from 'react-native';
 import { useAppDispatch } from '../../App';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
+import { validateForm } from '../services/Utils';
 import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -32,7 +35,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const uuid= childData != null ? childData.uuid:'';
   const name= childData != null ? childData.name:'';
   const relationship= childData != null ? childData.relationship:'';
-  const editScreen = childData?.uuid != "" ? true : false;
+  const editScreen = childData != null ? true : false;
   // console.log(childData,"..childData..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
@@ -40,9 +43,9 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
   const sendData = (data: any) => { // the callback. Use a better name
-    console.log(data,"..data..")
+    //console.log(data,"..data..")
     setBirthDate(data.birthDate);
-    setPlannedTermDate(data.dueDate);
+    setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
@@ -55,9 +58,13 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     }, [])
   );
   const AddChild=async ()=>{
-    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,relationship,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate)
+    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
+    console.log(defaultName,"..defaultName");
+    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,relationship,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,'',defaultName)
     let childSet: Array<any> = [];
     childSet.push(insertData);
+    console.log(insertData,"..insertData");
     addChild(editScreen, 1, childSet, dispatch, navigation);
 }
   return (
@@ -84,33 +91,24 @@ const AddSiblingData = ({ route, navigation }: Props) => {
 
         <ButtonRow>
           <ButtonPrimary
+            disabled={!validateForm(2,birthDate,isPremature,relationship,plannedTermDate)}
             onPress={() => {
               // navigation.reset({
               //   index: 0,
               //   routes: [{name: 'HomeDrawerNavigator'}],
               // })
-              console.log(birthDate,"..birthDate..");
-              console.log(isPremature,"..isPremature..");
-              console.log(plannedTermDate,"..plannedTermDate..");
-              console.log(isExpected,"..isExpected..");
-               
-              AddChild();
-              // if(birthDate==null || birthDate==undefined){
-              //   Alert.alert('Please enter birth date');
-              // }
-              // else{
-              //   if(isPremature){
-              //     if(plannedTermDate==null || plannedTermDate==undefined){
-              //       Alert.alert('Please enter due date');
-              //     }
-              //     else{
-                   
-              //     }
-              //   }
-              //   else{
-              //     AddChild();
-              //   }
-              // }
+              // console.log(birthDate,"..birthDate..");
+              // console.log(isPremature,"..isPremature..");
+              // console.log(plannedTermDate,"..plannedTermDate..");
+              // console.log(isExpected,"..isExpected..");
+              const validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate);
+              if(validated==true){
+               AddChild();
+              }
+              else{
+                //Alert.alert(validated);
+              }
+              
             
             }}>
             <ButtonText>{t('childSetupListsaveBtnText')}</ButtonText>

@@ -13,9 +13,9 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
         if (!(await RNFS.exists(args.destFolder))) {
             await RNFS.mkdir(args.destFolder);
         }
-        console.log(RNFS.exists(args.destFolder + '/' + args.destFilename));
+        //console.log(RNFS.exists(args.destFolder + '/' + args.destFilename));
         if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
-            console.log("Image already exists");
+           // console.log("Image already exists");
         }else {
             // Download image: https://bit.ly/2S5CeEu
             let { jobId, promise: downloadPromise } = RNFS.downloadFile({
@@ -26,20 +26,20 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
             });
 
             let downloadResult = await downloadPromise;
-            console.log(downloadResult,"..downloadResult..")
+          //  console.log(downloadResult,"..downloadResult..")
             if (downloadResult.statusCode === 200) {
                 if (RNFS.exists(args.destFolder + '/' + args.destFilename)) {
                     rval = true;
 
                     if (showLog) {
-                        console.log('IMAGE DOWNLOADED: ', args.destFilename);
+                       // console.log('IMAGE DOWNLOADED: ', args.destFilename);
                     }
                 }
             } else {
             //  dataRealmStore.setVariable('lastDataSyncError', 'downloadImage failed, ' + downloadResult.statusCode);
 
                 if (showLog) {
-                        console.log(`IMAGE DOWNLOAD ERROR: url = ${args.srcUrl}, statusCode: ${downloadResult.statusCode}`);
+                       // console.log(`IMAGE DOWNLOAD ERROR: url = ${args.srcUrl}, statusCode: ${downloadResult.statusCode}`);
                 }
             }
         }
@@ -60,18 +60,18 @@ export const deleteImageFile=(filename:any)=>{
   
     RNFS.exists(filepath)
     .then( (result) => {
-        console.log("file exists: ", result);
+        //console.log("file exists: ", result);
   
         if(result){
           return RNFS.unlink(filepath)
             .then(() => {
-              console.log('FILE DELETED');
+             // console.log('FILE DELETED');
               resolve('Success');
             })
             // `unlink` will throw an error, if the item to unlink does not exist
             .catch((err) => {
               reject('Fail');
-              console.log(err.message);
+             // console.log(err.message);
             });
         }
         else{
@@ -80,7 +80,7 @@ export const deleteImageFile=(filename:any)=>{
       })
       .catch((err) => {
         reject('Fail');
-        console.log(err.message);
+       // console.log(err.message);
       });
     });
   }

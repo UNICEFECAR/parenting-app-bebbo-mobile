@@ -3,6 +3,7 @@ import { selectRoleAction, RoleErrorAction, RoleModel, LoginAction, LoginErrorAc
 import { PERMISSIONS, PermissionStatus } from "react-native-permissions";
 import { Platform } from "react-native";
 import { DateTime } from "luxon";
+import { DocumentDirectoryPath } from "react-native-fs";
 export const On_Login:string = "On_Login";
 export const On_Login_Error:string = "On_Login_Error";
 export const On_Role:string = "On_Role";
@@ -56,6 +57,7 @@ export const PICKER_TYPE = {
 };
 export const CROPPED_IMAGE_WIDTH = 800;
 export const CROPPED_IMAGE_HEIGHT = 800;
+export const CHILDREN_PATH=`${DocumentDirectoryPath}/children`;
 export const IMAGE_PICKER_OPTIONS = {
   cropping: true,
   // includeExif: false, // Include image details in the response
@@ -84,6 +86,7 @@ export const IMAGE_PICKER_OPTIONS = {
    multiple: false
 };
 export const dobMin = DateTime.local().plus({ years: -7 }).toISODate();
+export const dobMax = DateTime.local().plus({ months: +9 }).toISODate();
 export const maxDue=5;
 export const minDue=4;
 export const CAMERA_PERMISSION =

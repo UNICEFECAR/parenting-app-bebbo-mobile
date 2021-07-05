@@ -1,3 +1,4 @@
+
 import { ChildGender } from '../database/schema/ChildDataSchema';
 import { Dispatch } from '@reduxjs/toolkit';
 import { Alert, ToastAndroid } from 'react-native';
@@ -10,10 +11,9 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/C
 import { removeChild, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
-  let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
-    name: (name!="" && name!=null  && name!=undefined) ? name : 'Child'+(allJsonDatanew?.length+1),
+    name: (name!="" && name!=null  && name!=undefined) ? name:'',
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
@@ -28,7 +28,7 @@ export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDa
 
 }
 export const setActiveChild=async (uuid:any)=>{
-  console.log(uuid,"..uuid..");
+ // console.log(uuid,"..uuid..");
   let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
 }
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any) => {
