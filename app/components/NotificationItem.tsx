@@ -52,7 +52,7 @@ const NotificationItem = (props:any) => {
       : '';
   };
   const gotoPage = (type: string) => {
-    console.log(type);
+    //console.log(type);
     type == 'growth'
       ? navigation.navigate('AddNewChildgrowth', {
           headerTitle: t('growthScreenaddNewBtntxt'),

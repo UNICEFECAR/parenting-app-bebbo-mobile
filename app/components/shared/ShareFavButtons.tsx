@@ -17,7 +17,7 @@ const ShareFavButtons = (props: any) => {
   const {t} = useTranslation();
   const {backgroundColor, isFavourite} = props;
   const onShare = async () => {
-    console.log('share');
+   // console.log('share');
     try {
       const result = await Share.share({
         message:

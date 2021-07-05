@@ -58,17 +58,17 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     setdobDate(currentDate);
   };
   const getCheckedItem =(checkedItem:typeof measurementPlaces[0])=>{
-    console.log(checkedItem);
+   // console.log(checkedItem);
   }
   const showdobDatepicker = () => {
     setdobShow(true);
   };
   React.useEffect(() => {
     if (route.params?.weight) {
-      console.log(route.params?.weight);
+     // console.log(route.params?.weight);
     }
     if (route.params?.height) {
-      console.log(route.params?.height);
+     // console.log(route.params?.height);
     }
   }, [route.params?.weight,route.params?.height ]);
   return (

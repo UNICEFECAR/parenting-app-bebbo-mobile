@@ -61,11 +61,11 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   ];
   const defaultMeasured = {title: ''};
   const getCheckedMeasureItem = (checkedItem: typeof isMeasuredOptions[0]) => {
-    console.log(checkedItem);
+    //console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
   const getCheckedVaccineItem = (checkedItem: typeof isMeasuredOptions[0]) => {
-    console.log(checkedItem);
+    //console.log(checkedItem);
     setIsVaccineMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
   const onmeasureChange = (event: any, selectedDate: any) => {
@@ -78,10 +78,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   };
   React.useEffect(() => {
     if (route.params?.weight) {
-      console.log(route.params?.weight);
+     // console.log(route.params?.weight);
     }
     if (route.params?.height) {
-      console.log(route.params?.height);
+     // console.log(route.params?.height);
     }
   }, [route.params?.weight,route.params?.height ]);
   return (

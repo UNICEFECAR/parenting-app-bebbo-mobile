@@ -19,7 +19,10 @@ import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../App';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
+import { validateForm } from '../services/Utils';
 import {
     Heading1Centerw,
     Heading3
@@ -51,16 +54,18 @@ const ChildSetup = ({ navigation }: Props) => {
   let initialData: any = {};
   const sendData = (data: any) => { // the callback. Use a better name
     setBirthDate(data.birthDate);
-    setPlannedTermDate(data.dueDate);
+    setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
 const AddChild=async ()=>{
-  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, relationship);
+  let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
+  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, relationship,defaultName);
   let childSet: Array<any> = [];
   childSet.push(insertData);
-  console.log(childSet,"..childSet..");
+  //console.log(childSet,"..childSet..");
   addChild(false, 0, childSet, dispatch, navigation);
 }
 
@@ -119,30 +124,22 @@ const AddChild=async ()=>{
 
           <ButtonRow>
             <ButtonPrimary
+             disabled={!validateForm(0,birthDate,isPremature,relationship,plannedTermDate)}
+           
               onPress={() => {
-                console.log(birthDate,"..birthDate..");
-                console.log(isPremature,"..isPremature..");
-                console.log(plannedTermDate,"..plannedTermDate..");
-                console.log(isExpected,"..isExpected..");
-                AddChild();
                 // console.log(birthDate,"..birthDate..");
-                // if(birthDate==null || birthDate==undefined || relationship =='' || relationship ==null || relationship ==undefined){
-                //   Alert.alert('Please enter birth date and relationship.');
-                // }
-                // else{
-                //   console.log(isPremature,"..isPremature..");
-                //   if(isPremature){
-                //     if(plannedTermDate==null || plannedTermDate==undefined){
-                //       Alert.alert('Please enter due date');
-                //     }
-                //     else{
-                //       AddChild();
-                //     }
-                //   }
-                //   else{
-                //     AddChild();
-                //    }
-                // }
+                // console.log(isPremature,"..isPremature..");
+                // console.log(plannedTermDate,"..plannedTermDate..");
+                // console.log(isExpected,"..isExpected..");
+                // AddChild();
+                // console.log(birthDate,"..birthDate..");
+               const validated=validateForm(0,birthDate,isPremature,relationship,plannedTermDate);
+               if(validated==true){
+                AddChild();
+               }
+               else{
+                //  Alert.alert(validated);
+               }
               
               }}>
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>

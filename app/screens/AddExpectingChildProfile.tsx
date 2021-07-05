@@ -58,7 +58,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     setdobShow(true);
   };
   const AddChild = async () => {
-    let insertData: any =await getNewChild( '',true, plannedTermDate, '',null, '',name, '', '');
+    let insertData: any =await getNewChild( '',"true", plannedTermDate, '',null, '',name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(false, 2, childSet, dispatch, navigation);
@@ -161,7 +161,11 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
                 //navigation.navigate('ChildProfileScreen');
                 if(plannedTermDate==null || plannedTermDate==undefined){
                   Alert.alert('Please enter due date');
-                }else{
+                }
+                else if(name==null || name==undefined || name==""){
+                  Alert.alert('Please enter name');
+                }
+                else{
                 AddChild();
                 }
               }}>

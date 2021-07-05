@@ -8,6 +8,7 @@ import Icon, {
     OuterIconRow,
     TickView
 } from '@components/shared/Icon';
+import { ImageIcon } from '@components/shared/Image';
 import {
     ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
     ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
@@ -21,12 +22,15 @@ import {
     Heading5Bold,
     Heading6
 } from '@styles/typography';
+import { CHILDREN_PATH } from '@types/types';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Image, ImageBackground, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setActiveChild } from '../../services/childCRUD';
+import { formatDate } from '../../services/Utils';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -158,8 +162,13 @@ const ChildProfile = ({navigation}: Props) => {
       currentActiveChild != undefined &&
       currentActiveChild == data.uuid ? (
         <ProfileListViewSelected>
+          
           <ProfileIconView>
-            <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
@@ -167,7 +176,7 @@ const ChildProfile = ({navigation}: Props) => {
               <OuterIconLeft></OuterIconLeft>
               <Heading6>{genderName}</Heading6>
             </ProfileSectionView>
-            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
+            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
@@ -197,17 +206,21 @@ const ChildProfile = ({navigation}: Props) => {
           }}>
           <ProfileListInner>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+              {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>
-                  {data.name != '' ? data.name : 'Child' + (index + 1)},
+                  {data.name}
                 </Heading3>
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{genderName}</Heading6>
               </ProfileSectionView>
-              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null?new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''})}</Heading5>
+              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {

@@ -7,7 +7,7 @@ import Icon from './shared/Icon';
 
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
-  console.log(defaultValue,"..defaultValue..")
+  //console.log(defaultValue,"..defaultValue..")
   const [checkedItem, setCheckedItem] = useState(defaultValue);
  
   return (
