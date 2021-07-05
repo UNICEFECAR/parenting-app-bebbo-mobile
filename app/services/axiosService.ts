@@ -15,7 +15,7 @@ const axiosService = axios.create({
 
 axiosService.interceptors.request.use(
   async config => {
-  console.log(config);
+ // console.log(config);
     // const tokennew = await this.getToken(); // slightly longer running function than example above
     // const tokennew = "";
     // slightly longer running function than example above
@@ -28,7 +28,7 @@ axiosService.interceptors.request.use(
   //     username: 'globaladmin',
   //     password: 'P@ssw0rd'
   // }
-    console.log("edited config-",config);
+   // console.log("edited config-",config);
     return config;
   },
   error => {
@@ -39,11 +39,11 @@ axiosService.interceptors.request.use(
 axiosService.interceptors.response.use(
   function(response) {
     // Do something with response data
-    console.log("axios response  ",response);
+   // console.log("axios response  ",response);
     return response;
   },
   error => {
-   console.log('axios error  ', JSON.stringify(error));
+   //console.log('axios error  ', JSON.stringify(error));
   //  return error;
     // console.log(error);
     //Depending on  the api error we will need to modify code

@@ -8,13 +8,14 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading4 } from '@styles/typography';
+import { CHILDREN_PATH, CROPPED_IMAGE_HEIGHT, CROPPED_IMAGE_WIDTH } from '@types/types';
 import React, { createRef, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
     Alert,
-    Image, Pressable,
+    Image, ImageBackground, Pressable,
     SafeAreaView,
-    ScrollView, TextInput,
+    ScrollView, StyleSheet, Text, TextInput,
     View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -27,6 +28,7 @@ import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataS
 import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
+import { validateForm } from '../../services/Utils';
 
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -45,7 +47,7 @@ let  childData  = route.params.childData;
   // if(childList.length>0 && childData!=null){
   // childData=childList.filter(item =>item.uuid == childData?.uuid)[0];
   // }
-  console.log(childData,"..childData..");
+ // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
   const editScreen = childData?.uuid != "" ? true : false;
   const themeContext = useContext(ThemeContext);
@@ -73,7 +75,7 @@ let  childData  = route.params.childData;
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
-  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null && childData.photoUri!="" ? `${DocumentDirectoryPath}/${childData.photoUri}` :'');
+  const [capturedPhoto, setCapturedImage] = React.useState(childData!=null && childData.photoUri!="" ? `${CHILDREN_PATH}/${childData.photoUri}` :'');
   const [photoUri, setphotoUri] = React.useState("");
   const [tempImage,cleanUPImage]= React.useState("");
   let initialData: any = {};
@@ -83,25 +85,33 @@ let  childData  = route.params.childData;
   const [isPremature, setIsPremature] = React.useState<string>('false');
   const uuid = childData != null ? childData.uuid : '';
   const [isExpected,setIsExpected] = React.useState<string>('false');
-  
+  const [destPath,setDestPath]= React.useState<string>('');
   const sendData = (data: any) => { // the callback. Use a better name
+   // console.log("111111")
     setBirthDate(data.birthDate);
-    setPlannedTermDate(data.dueDate);
+    setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
     setIsPremature(myString);
+    //console.log("2222")
     setIsExpected(String(data.isExpected));
+    //console.log("333")
   };
   const [gender, setGender] = React.useState(childData != null ? childData.gender : '');
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
+      console.log(childData,"..childData..");
+      if(childData!=null && childData.uuid!=''){
+        setphotoUri(childData.photoUri);
+        sendData(childData);
+      }
     }, [])
   );
  const onChildPhotoChange=async (child: ChildEntity | undefined, image: ImageObject)=>{
     // Create Documents/children folder if it doesnt exist
-    if (!(await exists(`${DocumentDirectoryPath}/children`))) {
-        mkdir(`${DocumentDirectoryPath}/children`);
+    if (!(await exists(CHILDREN_PATH))) {
+        mkdir(CHILDREN_PATH);
     }
 
     // Set newFilename
@@ -123,8 +133,8 @@ let  childData  = route.params.childData;
         };
 
         // Set destPath
-        let destPath = `${DocumentDirectoryPath}/children/${newFilename}`;
-
+        let destPath = `${CHILDREN_PATH}/${newFilename}`;
+        setDestPath(destPath);
         // Delete image if it exists
         if (await exists(destPath)) {
             await unlink(destPath);
@@ -132,14 +142,33 @@ let  childData  = route.params.childData;
 
         // Copy image
         await copyFile(image.path, destPath);
-        setphotoUri(destPath.replace(DocumentDirectoryPath, ''));
+        console.log(image.path)
+        console.log(destPath)
+        setphotoUri(destPath.replace(CHILDREN_PATH, ''));
         // Save imageUri to realm
         // userRealmCommon.realm?.write(() => {
         //     child.photoUri = destPath.replace(DocumentDirectoryPath, '');
         // });
     };
 };
-
+const removePhoto=()=>{
+  deleteImageFile(capturedPhoto).then(async (data:any)=>{
+    //console.log(data,"..deleted..");
+    let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema,'', 'uuid ="' + childData?.uuid+ '"');
+   // console.log(createresult,"..createresult..")
+    if(createresult=='success'){
+      MediaPicker.cleanupImages();
+      setphotoUri('');
+      setCapturedImage('');
+    }
+    else{
+      Alert.alert("Try again...");
+    }
+   
+  }).catch((error:any)=>{
+    Alert.alert("Try again..");
+  })
+}
   const handleImageOptionClick = async (index: number) => {
     if(index==0){
       // MediaPicker.cleanupSingleImage((image:any) => {
@@ -147,27 +176,27 @@ let  childData  = route.params.childData;
       //   console.log(image,"..image..")
       // setphotoUri('');
       //});
-      deleteImageFile(capturedPhoto).then(async (data:any)=>{
-        console.log(data,"..deleted..");
-        let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(ChildEntitySchema,'', 'uuid ="' + childData?.uuid+ '"');
-        console.log(createresult,"..createresult..")
-        if(createresult=='success'){
-          MediaPicker.cleanupImages();
-          setCapturedImage('');
+     
+      Alert.alert('Remove Photo', "Do you want to remove photo?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {
+            
+          },
+          style: "cancel"
+        },
+        { text: "Remove", onPress: () => {
+          removePhoto()
         }
-        else{
-          Alert.alert("Try again...");
         }
-       
-      }).catch((error:any)=>{
-        Alert.alert("Try again..");
-      })
-
+      ]
+    );
     }
     else if(index==1){
       MediaPicker.showCameraImagePicker((image:any) => {
         // image.path ==>> file path 
-        console.log(image,"..image..");
+       // console.log(image,"..image..");
         cleanUPImage(image);
         setCapturedImage(image.path);
         onChildPhotoChange(childData,image);
@@ -177,7 +206,7 @@ let  childData  = route.params.childData;
     else if(index==2){
       MediaPicker.showGalleryImagePicker((image:any) => {
         // image.path ==>> file path 
-        console.log(image,"..image..");
+       // console.log(image,"..image..");
         cleanUPImage(image);
         setCapturedImage(image.path);
         onChildPhotoChange(childData,image);
@@ -227,6 +256,7 @@ let  childData  = route.params.childData;
     // askPermissions();
   }, []);
   const AddChild = async () => {
+    MediaPicker.cleanupImages();
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
@@ -234,7 +264,7 @@ let  childData  = route.params.childData;
     addChild(editScreen, 2, childSet, dispatch, navigation);
   }
   const getCheckedItem =(checkedItem:typeof genders[0])=>{
-    console.log(checkedItem);
+    //console.log(checkedItem);
     setGender(checkedItem.id);
   }
   return (
@@ -276,24 +306,15 @@ let  childData  = route.params.childData;
          
           {
            
-            (capturedPhoto!='' && capturedPhoto!=null && capturedPhoto!=undefined) ?
+            (photoUri!='' && photoUri!=null && photoUri!=undefined) ?
            
-               <View
-                 style={{ marginVertical: 24, alignItems: 'center' }} >
-                    <View
-                 style={{ marginVertical: 24, alignItems: 'flex-end' }} >
-                    <Icon name="ic_camera" size={20} color="#FFF" onPress={() => {
-                actionSheetRef.current?.setModalVisible();
-              }}/>
-              </View>
-                  <Image
-                    resizeMode="cover"
-                    resizeMethod="scale"
-                    style={{ width: 200, height: 200 }}
-                    source={capturedPhoto!='' ? {uri:  "file://" +capturedPhoto } : null}
-                  />
-                
-                </View>:
+            <View style={styles.container}>
+            <ImageBackground source={photoUri!='' ? {uri:  "file://"+CHILDREN_PATH +photoUri } : null} style={styles.image}>
+            <View style={styles.text}><Icon name="ic_edit" size={30} color="#FFF" onPress={() => {
+                        actionSheetRef.current?.setModalVisible();
+                      }}/></View>
+            </ImageBackground>
+          </View>:
              <Pressable
               style={{
                 height: 150,
@@ -346,12 +367,20 @@ let  childData  = route.params.childData;
               <ChildDate sendData={sendData} childData={childData} />
 
               <View style={{ width: '100%', marginTop: 30 }}>
-                <ButtonPrimary onPress={() => {
-                   console.log(birthDate,"..birthDate..");
-                   console.log(isPremature,"..isPremature..");
-                   console.log(plannedTermDate,"..plannedTermDate..");
-                   console.log(isExpected,"..isExpected..");
-                   AddChild();
+                
+                <ButtonPrimary  disabled={!validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender)}
+                  onPress={() => {
+                  //  console.log(birthDate,"..birthDate..");
+                  //  console.log(isPremature,"..isPremature..");
+                  //  console.log(plannedTermDate,"..plannedTermDate..");
+                  //  console.log(isExpected,"..isExpected..");
+                   const validated=validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender);
+                   if(validated==true){
+                    AddChild();
+                   }
+                   else{
+                  //  Alert.alert(validated);
+                   }
                   // AddChild()
                   // if(birthDate==null || birthDate==undefined){
                   //   Alert.alert('Please enter birth date');
@@ -419,3 +448,21 @@ let  childData  = route.params.childData;
   );
 };
 export default EditChildProfile;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    height: 250,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+  text: {
+    alignSelf: 'flex-end',
+    position: 'absolute', // add if dont work with above
+    right:10,
+    top:10
+  }
+});

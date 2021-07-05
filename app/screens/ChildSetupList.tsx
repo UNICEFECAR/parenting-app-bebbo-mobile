@@ -29,6 +29,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
+import { formatDate } from '../services/Utils';
 import {
     Heading1Centerw,
     Heading3Centerw,
@@ -64,7 +65,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.name}</ChildListTitle>
-      <Text>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Text>
+      <Text>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Text>
     </ChildColArea1>
     <ChildColArea2>
     {

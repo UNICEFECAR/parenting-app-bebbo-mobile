@@ -20,11 +20,13 @@ import {
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
+import { ImageIcon } from '@components/shared/Image';
 import {
   getAllChildren,
   getAllConfigData,
   setActiveChild
 } from '../services/childCRUD';
+import { formatDate } from '../services/Utils';
 import {
   ButtonLinkPress,
   ButtonPrimary,
@@ -37,16 +39,17 @@ import {
 import {
   ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
 } from './shared/ProfileListingStyle';
+import { CHILDREN_PATH } from '@types/types';
   const headerHeight = 50;
   const HeaderBabyMenu = (props: any) => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
-    useFocusEffect(
-      React.useCallback(() => {
-        getAllChildren(dispatch);
-        getAllConfigData(dispatch);
-      }, []),
-    );
+    // useFocusEffect(
+    //   React.useCallback(() => {
+    //     getAllChildren(dispatch);
+    //     getAllConfigData(dispatch);
+    //   }, []),
+    // );
     const genders = useAppSelector(
       (state: any) =>
         JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
@@ -85,12 +88,16 @@ import {
         currentActiveChild == data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <OuterIconRow>
@@ -106,12 +113,16 @@ import {
         ) : (
           <ProfileListView key={index}>
             <ProfileIconView>
-              <Icon name="ic_baby" size={30} color="#000" />
+            {
+          data.photoUri!='' ? 
+          <ImageIcon source={{uri:  "file://"+CHILDREN_PATH +data.photoUri }} style={{borderRadius:20,width:40,height:40}}>
+         </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
+            }
             </ProfileIconView>
             <ProfileTextView>
               <Heading3>{data.name}</Heading3>
               <Heading5>{genderName}</Heading5>
-              <Heading5>Born on {data.birthDate!=null  ? new Date(data.birthDate).toLocaleDateString('en-US', {day:'2-digit', month:'2-digit', year:'numeric'}):''}</Heading5>
+              <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <ButtonTextSmLine
@@ -134,15 +145,19 @@ import {
           visible={modalVisible}
           onRequestClose={() => {
             // Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}
           onDismiss={() => {
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}>
           <Pressable
             style={styles.centeredView}
             onPress={() => {
               setModalVisible(!modalVisible);
+              if (modalVisible) {
+                getAllChildren(dispatch);
+                getAllConfigData(dispatch);
+                }
             }}>
             <TouchableOpacity
               style={styles.modalView}
@@ -155,7 +170,7 @@ import {
                     //   item.gender=genders.find(genderset => genderset.id === item.gender);
                     // }
                     const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
-                    console.log(genderLocal,"..genderLocal..");
+                   // console.log(genderLocal,"..genderLocal..");
                     return renderChildItem(dispatch, item, index,genderLocal);
                   })
                 : null}
@@ -191,10 +206,16 @@ import {
             <HeaderActionBox
               onPress={() => {
                 // console.log(modalVisible);
+                // if (modalVisible) {
+                //   setModalVisible(false);
+                // } else {
+                  
+                //   setModalVisible(true);
+                // }
+                setModalVisible(!modalVisible);
                 if (modalVisible) {
-                  setModalVisible(false);
-                } else {
-                  setModalVisible(true);
+                getAllChildren(dispatch);
+                getAllConfigData(dispatch);
                 }
               }}>
               <Icon name="ic_baby" size={25} color={props.color || '#FFF'}/>

@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ArticleEntity, ArticleEntitySchema, CoverImage, } from "../database/schema/ArticleSchema";
@@ -51,7 +52,46 @@ export const addApiDataInRealm = async (response: any) => {
         let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
        // console.log(new Date()," result is ",createresult);
 }
-
+export const formatDate=(dateData:any)=>{
+    return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
+}
+export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
+   // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
+    if(birthDate==null || birthDate==undefined){
+    //    return 'Please enter birth date.';
+    return false;
+      }
+      else{
+        if(param==0){
+            if(relationship =='' || relationship ==null || relationship ==undefined){
+                // return 'Please enter relationship.';
+                return false;
+            }
+        }
+        if(param==1){
+            if(name =='' || name ==null || name ==undefined){
+                // return 'Please enter name.';
+                return false;
+            }
+            if(gender =='' || gender ==null || gender ==undefined){
+                // return 'Please enter gender.';
+                return false;
+            }
+        }
+        if(isPremature=="true"){
+          if(plannedTermDate==null || plannedTermDate==undefined){
+            // return 'Please enter due date';
+            return false;
+          }
+          else{
+           return true;
+          }
+        }
+        else{
+            return true;
+        }
+      }
+}
 export const onRealmDataDbChange = (collection: any, changes: any) => {
     //console.log("Realm listener called--",collection.name);
    // console.log("Realm listener called--",collection.schema);

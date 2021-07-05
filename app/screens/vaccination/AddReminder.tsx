@@ -57,7 +57,7 @@ const defaulttimePickerValue =new Date();
   };
 
   const onmeasureTimeChange = (event: any, selectedTime: any) => {
-    console.log(selectedTime);
+   // console.log(selectedTime);
     const currentTime = selectedTime.getHours()+":"+selectedTime.getMinutes() || measureTime;
     setmeasureShowTime(false);
     setmeasureTime(currentTime);
