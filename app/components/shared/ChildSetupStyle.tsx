@@ -44,7 +44,7 @@ export const ChildRelationList = styled.Pressable`
 `;
 
 export const FormOuterCheckbox = styled.Pressable`
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   align-items: flex-start;
   flex-direction: row;
 `;
