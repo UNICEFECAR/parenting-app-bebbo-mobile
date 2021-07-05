@@ -19,4 +19,9 @@ flex:1
 export const NotifAction = styled.View`
 margin-right:-10px;
 width:40px;height:40px;
+align-items:flex-end;
 `;
+
+
+
+
