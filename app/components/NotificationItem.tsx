@@ -149,6 +149,7 @@ const NotificationItem = (props:any) => {
                     borderRadius: 10,
                     backgroundColor: primaryTintColor,
                   },
+               
                   optionWrapper: {
                     borderBottomWidth: 1,
                     padding: 15,

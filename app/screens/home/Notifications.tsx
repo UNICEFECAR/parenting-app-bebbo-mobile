@@ -3,8 +3,8 @@ import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonText } from '@components/shared/ButtonGlobal';
-import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary,ButtonSecondaryTint,ButtonPrimary, ButtonPrimaryMd, ButtonText } from '@components/shared/ButtonGlobal';
+import { FlexDirCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -13,6 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PressableStateCallbackType } from 'react-native';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
@@ -129,7 +130,7 @@ const Notifications = () => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <View style={{flex: 1, flexDirection: 'column'}}>
+        <FlexDirCol>
           <HeaderRowView
             style={{
               backgroundColor: primaryColor,
@@ -179,25 +180,23 @@ const Notifications = () => {
           {
           isDeleteEnabled ? (
             <>
-              <View style={{flex: 1, maxHeight: 80}}>
-                <View
-                  style={{width: '100%', flexDirection: 'row', marginTop: 0}}>
-                  
-                 
-                  <Pressable style={{padding:10}} onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+              <ButtonContainerTwo>
+                <ButtonColTwo>
+                  <ButtonSecondaryTint StateCallbackType onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
                     <ButtonText>{'Cancel'}</ButtonText>
-                  </Pressable>
-                 
-                  <Pressable style={{padding:10}}>
+                  </ButtonSecondaryTint>
+                  </ButtonColTwo>
+
+                  <ButtonColTwo>
+                  <ButtonSecondary>
                     <ButtonText>Delete Selected ({allData.filter(item=>item.isChecked===true).length})</ButtonText>
-                    </Pressable>
-                   
-                 
-                </View>
-              </View>
+                    </ButtonSecondary>
+                    </ButtonColTwo>
+                
+              </ButtonContainerTwo>
             </>
           ) : null}
-        </View>
+        </FlexDirCol>
       </SafeAreaView>
     </>
   );
