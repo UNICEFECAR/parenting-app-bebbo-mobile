@@ -1,5 +1,5 @@
-import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
 export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
     //console.log(oldRealm,"------",newRealm);
@@ -48,7 +48,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
       comment: child.comment,
       checkedMilestones:child.checkedMilestones,
       reminders: child.reminders,
-      isPremature:'false',
+      isPremature:'false', //calcualte if its premature or not?
       //relationship:''
      };
   }
