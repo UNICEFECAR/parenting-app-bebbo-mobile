@@ -44,12 +44,12 @@ import { CHILDREN_PATH } from '@types/types';
   const HeaderBabyMenu = (props: any) => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
-    useFocusEffect(
-      React.useCallback(() => {
-        getAllChildren(dispatch);
-        getAllConfigData(dispatch);
-      }, []),
-    );
+    // useFocusEffect(
+    //   React.useCallback(() => {
+    //     getAllChildren(dispatch);
+    //     getAllConfigData(dispatch);
+    //   }, []),
+    // );
     const genders = useAppSelector(
       (state: any) =>
         JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
@@ -145,15 +145,19 @@ import { CHILDREN_PATH } from '@types/types';
           visible={modalVisible}
           onRequestClose={() => {
             // Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}
           onDismiss={() => {
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}>
           <Pressable
             style={styles.centeredView}
             onPress={() => {
               setModalVisible(!modalVisible);
+              if (modalVisible) {
+                getAllChildren(dispatch);
+                getAllConfigData(dispatch);
+                }
             }}>
             <TouchableOpacity
               style={styles.modalView}
@@ -202,10 +206,16 @@ import { CHILDREN_PATH } from '@types/types';
             <HeaderActionBox
               onPress={() => {
                 // console.log(modalVisible);
+                // if (modalVisible) {
+                //   setModalVisible(false);
+                // } else {
+                  
+                //   setModalVisible(true);
+                // }
+                setModalVisible(!modalVisible);
                 if (modalVisible) {
-                  setModalVisible(false);
-                } else {
-                  setModalVisible(true);
+                getAllChildren(dispatch);
+                getAllConfigData(dispatch);
                 }
               }}>
               <Icon name="ic_baby" size={25} color={props.color || '#FFF'}/>
