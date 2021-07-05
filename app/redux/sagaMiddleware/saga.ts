@@ -178,18 +178,21 @@ function* apiCall(data: apijsonArray) {
     // console.log("errorArr---",errorArr)
     yield put(receiveAPIFailure(errorArr))
   } else {
-    // call realm db insertion code by creating another saga.
-    try {
-      // yield call(addApiDataInRealm, response);
-      if (data.saveinDB == true) {
-        // console.log("insert started");
-        yield put(insertInDB(response));
+      if(response.payload.data.status == 200)
+      {
+        // call realm db insertion code by creating another saga.
+        try {
+          // yield call(addApiDataInRealm, response);
+          if (data.saveinDB == true) {
+            // console.log("insert started");
+            yield put(insertInDB(response));
+          }
+        }
+        catch (e) {
+          errorArr.push(response);
+          // console.log("errorArr after insert---",errorArr)
+        }
       }
-    }
-    catch (e) {
-      errorArr.push(response);
-      // console.log("errorArr after insert---",errorArr)
-    }
   }
   return response;
   // yield put(receiveData(response))
