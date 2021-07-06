@@ -1,22 +1,20 @@
 import { ObjectSchema } from "realm";
 
-export type ChildDevelopmentEntity = {
+export type FAQsEntity = {
     id: number,
     type: string,
     title: string,
-    body: string,
-    child_age: string[],
-    boy_article: string,
-    girl_article: string,
-    milestone: string,
     created_at: string,
     updated_at: string,
+    body: string,
+    chatbot_child_age: string,
+    chatbot_sub_category: string,
     mandatory: string,
   };
 
 
-  export const ChildDevelopmentSchema: ObjectSchema = {
-    name: 'ChildDevelopmentEntity',
+  export const FAQsSchema: ObjectSchema = {
+    name: 'FAQsEntity',
     primaryKey: 'id',
   
     // API: https://bit.ly/3f7k9jq
@@ -24,13 +22,11 @@ export type ChildDevelopmentEntity = {
       id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
-      body: { type: 'string' },
-      child_age: { type: 'string[]' },
-      boy_article: { type: 'string' },
-      girl_article: { type: 'string' },
-      milestone: { type: 'string' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
+      body: { type: 'string' },
+      chatbot_child_age: { type: 'string' },
+      chatbot_sub_category: { type: 'string' },      
       mandatory: { type: 'string' },
     }
   };

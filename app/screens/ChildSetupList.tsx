@@ -106,9 +106,9 @@ const ChildSetupList = ({ navigation }: Props) => {
       apiEndpoint: appConfig.articles,
       method: 'get',
       postdata: {
-        childAge: 'all',
+        // childAge: 'all',
         childGender: 'all',
-        // childAge: '43',
+        childAge: '43',
         // childGender: '40',
         parentGender: 'all',
         Seasons: 'all',
