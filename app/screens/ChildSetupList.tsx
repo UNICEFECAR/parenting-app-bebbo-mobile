@@ -20,6 +20,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
@@ -154,15 +155,15 @@ const ChildSetupList = ({ navigation }: Props) => {
       apiJsonData[0].postdata.childAge='all';
     }
     console.log(apiJsonData,"..apiJsonData...")
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'LoadingScreen',
-    //       params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
-    //     },
-    //   ],
-    // });
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'LoadingScreen',
+          params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
+        },
+      ],
+    });
     // navigation.navigate('HomeDrawerNavigator')
   };
   // else{
