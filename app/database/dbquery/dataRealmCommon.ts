@@ -1,3 +1,4 @@
+import { isArticlePinned } from '@types/apiConstants';
 import Realm, { ObjectSchema } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
