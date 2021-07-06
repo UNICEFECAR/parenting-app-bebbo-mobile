@@ -18,7 +18,7 @@ import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
@@ -44,11 +44,16 @@ type Props = {
 const ChildSetup = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
+  const [relationshipname, setRelationshipName] = useState('');
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
-  const relationshipData = ['Father', 'Mother', 'Other'];
+  // const relationshipData = ['Father', 'Mother', 'Other'];
+  const relationshipData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+  );
   const actionSheetRef = createRef<any>();
   const dispatch = useAppDispatch();
   let initialData: any = {};
@@ -94,7 +99,7 @@ const AddChild=async ()=>{
                 <LabelText>{t('childSetuprelationSelectTitle')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text>{relationship ? relationship : t('childSetuprelationSelectText')}</Text>
+                    <Text>{relationshipname ? relationshipname : t('childSetuprelationSelectText')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_angle_down" size={10} color="#000" />
@@ -111,10 +116,11 @@ const AddChild=async ()=>{
                   <ChildRelationList key={index}>
                     <Pressable
                       onPress={() => {
-                        setRelationship(item);
+                        setRelationship(item.id);
+                        setRelationshipName(item.name);
                         actionSheetRef.current?.hide();
                       }}>
-                      <Heading3>{item}</Heading3>
+                      <Heading3>{item.name}</Heading3>
                     </Pressable>
                   </ChildRelationList>
                 );

@@ -64,18 +64,24 @@ import {
         ? JSON.parse(state.childData.childDataSet.allChild)
         : [],
     );
-    const allConfigData = useAppSelector((state: any) =>
-      state.variableData?.variableData != ''
-        ? JSON.parse(state.variableData?.variableData)
-        : state.variableData?.variableData,
-    );
-    const currentActiveChildId =
-      allConfigData?.length > 0
-        ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-        : [];
-    //  console.log(currentActiveChildId,"..currentActiveChildId")
-    const currentActiveChild =
-      currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
+    const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const currentActiveChild =activeChild.uuid;
+    // const allConfigData = useAppSelector((state: any) =>
+    //   state.variableData?.variableData != ''
+    //     ? JSON.parse(state.variableData?.variableData)
+    //     : state.variableData?.variableData,
+    // );
+    // const currentActiveChildId =
+    //   allConfigData?.length > 0
+    //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
+    //     : [];
+    // //  console.log(currentActiveChildId,"..currentActiveChildId")
+    // const currentActiveChild =
+    //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
       const SortedchildList = [...childList].sort((a:any, b:any)=>{
         if (a.uuid == currentActiveChild) return -1;
       });

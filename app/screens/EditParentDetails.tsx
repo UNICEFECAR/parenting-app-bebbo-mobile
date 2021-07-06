@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { getAllChildren, getAllConfigData } from '../services/childCRUD';
@@ -38,7 +38,15 @@ type Props = {
 const EditParentDetails = ({route,navigation}: Props) => {
   const {userParentalRoleData,parentEditName}=route.params;
   const [relationship, setRelationship] = useState(userParentalRoleData?userParentalRoleData:"");
-  const genders = ['Father', 'Mother', 'Other'];
+  const [relationshipName, setRelationshipName] = useState("");
+  // const genders = ['Father', 'Mother', 'Other'];
+  const relationshipData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+  );
+  let relationshipValue = relationshipData.length>0 && userParentalRoleData!="" ? relationshipData.find((o:any) => o.id === userParentalRoleData):'';
+  // console.log(relationshipName,"..relationshipName..");
+
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const dispatch=useAppDispatch();
@@ -48,8 +56,10 @@ const EditParentDetails = ({route,navigation}: Props) => {
     React.useCallback(() => {
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
-     
-    },[])
+     // console.log(relationshipValue.name,"..relationshipValue.name")
+      setRelationshipName(relationshipValue!="" && relationshipValue!=null && relationshipValue!=undefined?relationshipValue.name:'');
+ 
+       },[])
   );
   const saveParentData=async (relationship:string,parentName:any)=>{
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
@@ -94,7 +104,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
 
               <FormInputBox>
                 <FormDateText>
-                  <Text>{relationship ? relationship : 'Select'}</Text>
+                  <Text>{relationshipName ? relationshipName : 'Select'}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_angle_down" size={10} color="#000" />
@@ -103,15 +113,17 @@ const EditParentDetails = ({route,navigation}: Props) => {
             </FormInputGroup>
         <ActionSheet ref={actionSheetRef}>
           <View>
-            {genders.map((item, index) => {
+            {
+            relationshipData.map((item, index) => {
               return (
                 <ChildRelationList key={index}>
                   <Pressable
                     onPress={() => {
-                      setRelationship(item);
+                      setRelationship(item.id);
+                      setRelationshipName(item.name);
                       actionSheetRef.current?.hide();
                     }}>
-                    <Heading3>{item}</Heading3>
+                    <Heading3>{item.name}</Heading3>
                   </Pressable>
                 </ChildRelationList>
               );
