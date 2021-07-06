@@ -2,13 +2,13 @@ export const dailyHomeNotificationdata:any = {
     "en": [{
         "langCode": "en",
         "dailyHomeNotification": [
-            // {
-            //     "id": 5746,
-            //     "type": "Daily Homescreen Messages",
-            //     "title": "Being a parent will help you discover the strengths you did not know you had",
-            //     "created_at": "Tue, 06/01/2021 - 08:20",
-            //     "updated_at": "Tue, 06/01/2021 - 08:20"
-            // },
+            {
+                "id": 5746,
+                "type": "Daily Homescreen Messages",
+                "title": "Being a parent will help you discover the strengths you did not know you had",
+                "created_at": "Tue, 06/01/2021 - 08:20",
+                "updated_at": "Tue, 06/01/2021 - 08:20"
+            },
             {
                 "id": 5501,
                 "type": "Daily Homescreen Messages",
