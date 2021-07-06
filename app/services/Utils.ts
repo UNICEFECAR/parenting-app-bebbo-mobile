@@ -43,7 +43,7 @@ export const addApiDataInRealm = async (response: any) => {
     }
     else if(response.payload.apiEndpoint == appConfig.dailyMessages)
     {
-        console.log('dailyMeassages',response.payload.data.data)
+       // console.log('dailyMeassages',response.payload.data.data)
         insertData = response.payload.data.data;
         Entity= Entity as DailyHomeMessagesEntity;
         EntitySchema = DailyHomeMessagesSchema;
@@ -114,8 +114,10 @@ export const addApiDataInRealm = async (response: any) => {
        // console.log(new Date()," result is ",createresult);
 }
 export const formatDate=(dateData:any)=>{
-    return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
+  return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
 }
+
+
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
     if(birthDate==null || birthDate==undefined){

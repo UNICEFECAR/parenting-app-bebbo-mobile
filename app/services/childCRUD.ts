@@ -1,3 +1,4 @@
+import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 
 import { ChildGender } from '../database/schema/ChildDataSchema';
 import { Dispatch } from '@reduxjs/toolkit';
@@ -8,8 +9,9 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
-import { removeChild, setAllChildData } from '../redux/reducers/childSlice';
+import { removeChild, setActiveChildData, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
+import { DateTime } from 'luxon';
 export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
@@ -27,11 +29,128 @@ export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDa
   };
 
 }
-export const setActiveChild=async (uuid:any)=>{
- // console.log(uuid,"..uuid..");
+export const setActiveChild=async (uuid:any,dispatch:any,child_age:any)=>{
+
+//console.log(child_age,"..child_age..");
+let userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
+
+if(uuid!="" && uuid!=null && uuid!=undefined){
   let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",uuid);
+   let child = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema,`uuid == '${uuid}'`);
+   if(child?.length>0) {
+    child=child.map(item => item)[0];
+    if(child.birthDate!=null && child.birthDate!=undefined && child.birthDate!=""){
+      let ageLimit =[];
+      ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis())); 
+      // console.log(ageLimit,"..ageLimit..")  
+      const taxonomyData=await checkBetween(1,ageLimit,child_age); 
+      // console.log(taxonomyData,"..taxonomyData..")
+      if(taxonomyData?.length>0){
+        child.taxonomyData=  taxonomyData[0];
+      }
+    }  
+    if(userParentalRole?.length>0){
+      child.parent_gender=  userParentalRole[0].value
+    }
+    
+    // childId.parent_gender=
+    // childId.taxonomydata
+    dispatch(setActiveChildData(child));
+  } 
+  else {
+    let child =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    child=child.find((record:any, index:number) => index === 0);
+    if(child.birthDate!=null && child.birthDate!=undefined && child.birthDate!=""){
+      let ageLimit =[];
+      ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis())); 
+      // console.log(ageLimit,"..ageLimit..")  
+      const taxonomyData=await checkBetween(1,ageLimit,child_age); 
+      // console.log(taxonomyData,"..taxonomyData..")
+      if(taxonomyData?.length>0){
+        child.taxonomyData=  taxonomyData[0];
+      }
+    } 
+    if(userParentalRole?.length>0){
+      child.parent_gender=  userParentalRole[0].value
+    }
+    if (child) {
+        dispatch(setActiveChildData(child));
+    }
+   }
+ }
+ else{
+  let child =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  child=child.find((record:any, index:number) => index === 0);
+  if(child.birthDate!=null && child.birthDate!=undefined && child.birthDate!=""){
+    let ageLimit =[];
+    ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis())); 
+    // console.log(ageLimit,"..ageLimit..")  
+    const taxonomyData=await checkBetween(1,ageLimit,child_age); 
+    // console.log(taxonomyData,"..taxonomyData..")
+    if(taxonomyData?.length>0){
+      child.taxonomyData=  taxonomyData[0];
+    }
+  } 
+  if(userParentalRole?.length>0){
+    child.parent_gender=  userParentalRole[0].value
+  }
+  if (child) {
+      dispatch(setActiveChildData(child));
+  }
+ }
+  
 }
-export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any) => {
+
+
+export const between=(x:any, min:any, max:any)=>{
+  return x >= min && x <= max;
+}
+const notEmpty=(value: any)=>{
+  return value !== null && value !== undefined;
+}
+export const checkBetween=async (param:any,users:any,child_age:any)=>{
+  let ageData:any=[];
+  await Promise.all(users.map(async (itemset:any)=>{
+  let result =  await Promise.all(child_age.map((item:any)=>{
+    if(between(itemset,parseInt(item["days_from"]),parseInt(item["days_to"]))){
+    if(item.id!="446"){
+    if(param==0){
+      ageData.push(parseInt(item.id));
+    }
+    else{
+      ageData.push(item);
+    }
+   
+    }
+    }
+    return ageData;
+  }));
+  return result;
+  }));
+  //  console.log(ageData,"..ageData..")
+  return ageData;
+}
+export const getCurrentChildAgeInDays = (birthDayMillis?: number, currentMillis?: number) => {
+  let childBirthDay = birthDayMillis ? birthDayMillis :null;
+  //console.log(childBirthDay,"..childBirthDay..")
+  let timeNow = DateTime.local();
+  if (currentMillis) {
+      timeNow = DateTime.fromMillis(currentMillis);
+  }
+
+  let days: number = 0;
+
+  if (childBirthDay) {
+      let date = DateTime.fromMillis(childBirthDay);
+      // let convertInDays = Math.abs(timeNow.diff(date, "days").toObject().days);
+      const diff = Math.abs(date.diffNow().as('day'));
+      const convertInDays = Math.round(diff);
+      if (convertInDays !== undefined) days = convertInDays;
+  };
+  return days;
+};
+
+export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any,child_age:any) => {
   if (editScreen) {
     //console.log("..update child..", data);
     let createresult = await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
@@ -46,10 +165,11 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
       index: 0,
       routes: [{ name: 'ChildSetupList' }],
     });
-    //console.log(data[0].uuid,"..data[0].uuid..");
+   // console.log(data[0].relationship,"..data[0].relationship..");
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
+    setActiveChild(data[0].uuid,dispatch,child_age);
   }
   else if (param == 1) {
     navigation.navigate('ChildSetupList');
@@ -62,6 +182,8 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
   // //console.log(new Date()," result is ",createresult);
 
 }
+
+
 export const getAllConfigData = async (dispatch: any) => {
   let databaselistener: any;
   let allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);

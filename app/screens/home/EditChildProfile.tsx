@@ -85,6 +85,10 @@ let  childData  = route.params.childData;
   const uuid = childData != null ? childData.uuid : '';
   const [isExpected,setIsExpected] = React.useState<string>('false');
   const [destPath,setDestPath]= React.useState<string>('');
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+     );
   const sendData = (data: any) => { // the callback. Use a better name
    // console.log("111111")
     setBirthDate(data.birthDate);
@@ -260,7 +264,7 @@ const removePhoto=()=>{
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData..");
-    addChild(editScreen, 2, childSet, dispatch, navigation);
+    addChild(editScreen, 2, childSet, dispatch, navigation,child_age);
   }
   const getCheckedItem =(checkedItem:typeof genders[0])=>{
     //console.log(checkedItem);

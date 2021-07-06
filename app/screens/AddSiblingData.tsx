@@ -36,6 +36,10 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const name= childData != null ? childData.childName:'';
   const relationship= childData != null ? childData.relationship:'';
   const editScreen = childData != null ? true : false;
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+     );
   // console.log(childData,"..childData..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
@@ -65,7 +69,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");
-    addChild(editScreen, 1, childSet, dispatch, navigation);
+    addChild(editScreen, 1, childSet, dispatch, navigation,child_age);
 }
   return (
     <>

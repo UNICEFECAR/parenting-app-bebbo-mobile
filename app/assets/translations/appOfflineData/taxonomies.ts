@@ -2,9 +2,9 @@ export const taxonomydata:any = {
     "en": [{
         "langCode": "en",
         "allData": {
-            "activity_category2": [
+            "activity_category": [
                 {
-                    "id": "64212",
+                    "id": "6421",
                     "name": "Fine motor"
                 },
                 {
@@ -223,15 +223,11 @@ export const taxonomydata:any = {
             "child_gender": [
                 {
                     "id": "40",
-                    "name": "Male"
+                    "name": "Boy"
                 },
                 {
                     "id": "41",
-                    "name": "Female"
-                },
-                {
-                    "id": "59",
-                    "name": "Both"
+                    "name": "Girl"
                 }
             ],
             "growth_introductory": [
@@ -4650,6 +4646,10 @@ export const taxonomydata:any = {
                 {
                     "id": "1476",
                     "name": "Temperature"
+                },
+                {
+                    "id": "32781",
+                    "name": "test"
                 },
                 {
                     "id": "821",

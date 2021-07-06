@@ -20,6 +20,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
@@ -27,7 +28,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
+import { between, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChild, getCurrentChildAgeInDays } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -59,7 +60,8 @@ const ChildSetupList = ({ navigation }: Props) => {
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
 
-   const renderDailyReadItem = (dispatch:any,data: ChildEntity, index: number) => {
+   const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number) => {
+       
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
@@ -101,7 +103,8 @@ const ChildSetupList = ({ navigation }: Props) => {
     navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListeditSiblingBtn'),childData:data});
   }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
-  const apiJsonData = [
+  
+  let apiJsonData = [
     {
       apiEndpoint: appConfig.articles,
       method: 'get',
@@ -123,8 +126,35 @@ const ChildSetupList = ({ navigation }: Props) => {
     // },
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
   ];
-  const childSetup = () => {
+ 
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+  );
+  const getAge=()=>{
+    let ageData:any=[];
+    if(childList.length> 0){
+    var promises = childList.map((item:any)=>{
+      if(item.birthDate!=null && item.birthDate!=undefined && item.birthDate!=""){
+      return getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(item.birthDate)).toMillis());   
+      }  
+    })
+    return Promise.all(promises).then(async (results:any)=>{
+        const data=await checkBetween(0,results,child_age); 
+        return data;
+    })
+  }
+  }
+  const childSetup = async () => {
     // if(netInfo.isConnected){
+    const Ages=await getAge();
+    if(Ages?.length>0){
+    apiJsonData[0].postdata.childAge=String(Ages);  
+    }
+    else{
+    apiJsonData[0].postdata.childAge='all';
+    }
+    console.log(apiJsonData,"..apiJsonData...")
     navigation.reset({
       index: 0,
       routes: [
@@ -139,7 +169,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   // else{
   //   Alert.alert("No Internet Connection.")
   // }
-
+ 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
@@ -164,10 +194,9 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ChildListingArea>
           <CustomScrollView>
             {
-         childList.length> 0 ? (
+              childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
-               // console.log(childList,"..childList123..");
-                return renderDailyReadItem(dispatch,item,index);
+               return renderDailyReadItem(dispatch,item,index);
               })
             ) :
             <ChildListingBox>
@@ -196,6 +225,7 @@ const ChildSetupList = ({ navigation }: Props) => {
          
           <ButtonPrimary
             onPress={() => {
+              
               childSetup();
             }}>
             <ButtonText>{t('childSetupListcontinueBtnText')}</ButtonText>
