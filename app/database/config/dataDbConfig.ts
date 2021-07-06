@@ -1,10 +1,17 @@
 import Realm, { ObjectSchema } from "realm";
 import { migrateConfigSettings } from "../migration/init";
+import { ActivitiesEntitySchema } from "../schema/ActivitiesSchema";
 import { ArticleEntitySchema, CoverImage, CoverVideo } from "../schema/ArticleSchema";
 import { BasicPagesSchema } from "../schema/BasicPagesSchema";
+import { ChildDevelopmentSchema } from "../schema/ChildDevelopmentSchema";
+import { ChildGrowthSchema } from "../schema/ChildGrowthSchema";
 import { ConfigSettingsSchema } from "../schema/ConfigSettingsSchema";
 import { DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
+import { HealthCheckUpsSchema } from "../schema/HealthCheckUpsSchema";
+import { MilestonesSchema } from "../schema/MilestonesSchema";
+import { SurveysSchema } from "../schema/SurveysSchema";
 import { TaxonomySchema } from "../schema/TaxonomySchema";
+import { VaccinationSchema } from "../schema/VaccinationSchema";
 import { VideoArticleEntitySchema } from "../schema/VideoArticleSchema";
 
 export const dataRealmConfig: Realm.Configuration ={
@@ -18,6 +25,13 @@ export const dataRealmConfig: Realm.Configuration ={
     DailyHomeMessagesSchema,
     BasicPagesSchema,
     TaxonomySchema,
+    MilestonesSchema,
+    ChildDevelopmentSchema,
+    VaccinationSchema,
+    HealthCheckUpsSchema,
+    ChildGrowthSchema,
+    SurveysSchema,
+    ActivitiesEntitySchema
   ],
   schemaVersion: 1,
   migration: (oldRealm, newRealm) => {

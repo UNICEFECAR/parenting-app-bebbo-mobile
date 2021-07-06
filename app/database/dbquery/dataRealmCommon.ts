@@ -104,8 +104,15 @@ class DataRealmCommon {
                 if (realm) {
                     realm.write(() => {
                         if (records?.length > 0) {
-                            records.forEach(async record => {
-                                realm?.create<Entity>(entitySchema.name, record,"modified");
+                            records.forEach(record => {
+                                if(entitySchema.name == "ActivitiesEntity")
+                                {
+                                    if(record.cover_image == "")
+                                    {
+                                        record.cover_image = {};
+                                    }
+                                }
+                                    realm?.create<Entity>(entitySchema.name, record,"modified");
                             })
                         }
 
