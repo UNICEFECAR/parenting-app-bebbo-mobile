@@ -43,7 +43,7 @@ export const addApiDataInRealm = async (response: any) => {
     }
     else if(response.payload.apiEndpoint == appConfig.dailyMessages)
     {
-        console.log('dailyMeassages',response.payload.data.data)
+       // console.log('dailyMeassages',response.payload.data.data)
         insertData = response.payload.data.data;
         Entity= Entity as DailyHomeMessagesEntity;
         EntitySchema = DailyHomeMessagesSchema;

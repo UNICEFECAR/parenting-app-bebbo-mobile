@@ -117,7 +117,7 @@ console.log(activeChild,"..activeChild..");
 // allConfigData?.length > 0
 //   ? allConfigData.filter((item) => item.key === 'userParentalRole')
 //   : [];
- // console.log(userParentalRoleData,"..userParentalRoleData..")
+//  console.log(userParentalRoleData,"..userParentalRoleData..")
 // const userNameData =
 // allConfigData?.length > 0
 //   ? allConfigData.filter((item) => item.key === 'userName')
@@ -126,22 +126,14 @@ console.log(activeChild,"..activeChild..");
 //     (state: any) =>
 //       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
 //   );
-//let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
+// let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
  
   const currentChildData = {
     "gender":activeChild.gender,
-    "parent_gender":"all",
-    "taxonomyData":{
-      "id": "43",
-      "name": "1st month",
-      "days_from": "0",
-      "days_to": "30",
-      "buffers_days": null,
-      "age_bracket": null,
-      "weeks_from": null,
-      "weeks_to": null
-    }
+    "parent_gender":activeChild.parent_gender,
+    "taxonomyData":activeChild.taxonomyData
   }
+  console.log(currentChildData,"..currentChildData..");
   const [loading, setLoading] = useState(false);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,

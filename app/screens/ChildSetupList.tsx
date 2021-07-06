@@ -140,7 +140,7 @@ const ChildSetupList = ({ navigation }: Props) => {
       }  
     })
     return Promise.all(promises).then(async (results:any)=>{
-        const data=await checkBetween(results,child_age); 
+        const data=await checkBetween(0,results,child_age); 
         return data;
     })
   }
@@ -152,7 +152,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     apiJsonData[0].postdata.childAge=String(Ages);  
     }
     else{
-      apiJsonData[0].postdata.childAge='all';
+    apiJsonData[0].postdata.childAge='all';
     }
     console.log(apiJsonData,"..apiJsonData...")
     navigation.reset({

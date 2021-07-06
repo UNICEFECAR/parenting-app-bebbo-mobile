@@ -203,7 +203,7 @@ class UserRealmCommon extends Component {
                     // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
                     // console.log(obj2,"--obj2");
                     const obj = realm?.objects<Entity>(entitySchema.name).filtered(filterData);
-                     console.log("filtered obj--",obj.length);
+                     //console.log("filtered obj--",obj.length);
                     resolve(obj);
                 }
                 else {

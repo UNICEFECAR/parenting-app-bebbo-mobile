@@ -21,7 +21,7 @@ import {
   Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
 import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
 
 
@@ -48,6 +48,10 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     setdobShow(Platform.OS === 'ios');
     setPlannedTermDate(currentDate);
   };
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+     );
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const [name, setName] = React.useState("");
@@ -61,7 +65,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     let insertData: any =await getNewChild( '',"true", plannedTermDate, '',null, '',name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(false, 2, childSet, dispatch, navigation);
+    addChild(false, 2, childSet, dispatch, navigation,child_age);
   }
   return (
     <>

@@ -65,6 +65,10 @@ const ChildProfile = ({navigation}: Props) => {
     : [],
 );
 const currentActiveChild =activeChild.uuid;
+const child_age = useAppSelector(
+  (state: any) =>
+    JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+);
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
@@ -174,7 +178,7 @@ const currentActiveChild =activeChild.uuid;
                 </View>
                 <ButtonTextSmLine
                   onPress={() => {
-                    setActiveChild(data.uuid);
+                    setActiveChild(data.uuid,dispatch,child_age);
                   }}>
                  {t('childActivatebtn')}
                 </ButtonTextSmLine>

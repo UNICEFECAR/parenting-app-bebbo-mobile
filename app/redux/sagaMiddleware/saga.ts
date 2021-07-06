@@ -71,7 +71,7 @@ function* onFetchAPI(value: any) {
             // navigation.navigate('ChildSetup');
             const allJsonData = navigateToPage();
             allJsonData.next().then(({ value, done }) => {
-               console.log(value.length,"..value..");
+             //  console.log(value.length,"..value..");
               if (value?.length>0) {
                 navigation.navigate('ChildSetupList');
               }
@@ -137,7 +137,7 @@ function* onFetchAPI(value: any) {
           // navigation.navigate('ChildSetup');
           const allJsonData = navigateToPage();
           allJsonData.next().then(({ value, done }) => {
-             console.log(value.length,"..value..");
+             //console.log(value.length,"..value..");
 
             if (value?.length>0) {
               navigation.navigate('ChildSetupList');

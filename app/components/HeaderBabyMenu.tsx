@@ -64,12 +64,17 @@ import {
         ? JSON.parse(state.childData.childDataSet.allChild)
         : [],
     );
-    const activeChild = useAppSelector((state: any) =>
+ const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
   const currentActiveChild =activeChild.uuid;
+  console.log(currentActiveChild,"..currentActiveChild..")
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+  );
     // const allConfigData = useAppSelector((state: any) =>
     //   state.variableData?.variableData != ''
     //     ? JSON.parse(state.variableData?.variableData)
@@ -133,7 +138,7 @@ import {
             <ProfileActionView>
               <ButtonTextSmLine
                 onPress={() => {
-                  setActiveChild(data.uuid);
+                  setActiveChild(data.uuid,dispatch,child_age);
                 }}>
                 Activate Profile
               </ButtonTextSmLine>
