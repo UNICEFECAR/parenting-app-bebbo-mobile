@@ -1,18 +1,18 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
-    ButtonTextLinew
+  ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
+  ButtonTextLinew
 } from '@components/shared/ButtonGlobal';
 import {
-    ChildCenterView,
-    ChildColArea1,
-    ChildColArea2,
-    ChildContentArea,
-    ChildListingArea,
-    ChildListingBox,
-    ChildListTitle,
-    CustomScrollView,
-    TitleLinkSm
+  ChildCenterView,
+  ChildColArea1,
+  ChildColArea2,
+  ChildContentArea,
+  ChildListingArea,
+  ChildListingBox,
+  ChildListTitle,
+  CustomScrollView,
+  TitleLinkSm
 } from '@components/shared/ChildSetupStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -20,7 +20,6 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text } from 'react-native';
@@ -31,10 +30,10 @@ import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { deleteChild, getAllChildren, getAllConfigData } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
-    Heading1Centerw,
-    Heading3Centerw,
-    ShiftFromBottom20,
-    ShiftFromTop30
+  Heading1Centerw,
+  Heading3Centerw,
+  ShiftFromBottom20,
+  ShiftFromTop30
 } from '../styles/typography';
 import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -64,7 +63,7 @@ const ChildSetupList = ({ navigation }: Props) => {
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.name}</ChildListTitle>
+      <ChildListTitle>{data.childName}</ChildListTitle>
       <Text>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Text>
     </ChildColArea1>
     <ChildColArea2>
