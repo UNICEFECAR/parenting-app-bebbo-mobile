@@ -16,6 +16,7 @@ export const variableSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
+      console.log("action.payload",action.payload);
       state.variableData=JSON.stringify(action.payload);
     }
   },
