@@ -36,7 +36,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
   const getChild = (child:ChildEntity) => {
     return {
       uuid: child.uuid,
-      name: child.name,
+      name: child.childName,
       gender: child.gender,
       photoUri: child.photoUri,
       createdAt: child.createdAt,
