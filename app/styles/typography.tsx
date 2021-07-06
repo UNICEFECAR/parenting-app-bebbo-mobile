@@ -248,3 +248,27 @@ export const ShiftFromTopBottom20 = styled.View`
 margin-bottom:20px;
 margin-top:20px;
 `
+export const SideSpacing5 = styled.View`
+margin-left:5px;
+margin-right:5px;
+`
+export const SideSpacing10 = styled.View`
+margin-left:10px;
+margin-right:10px;
+`
+export const SideSpacing15 = styled.View`
+margin-left:15px;
+margin-right:15px;
+`
+export const SideSpacing20 = styled.View`
+margin-left:20px;
+margin-right:20px;
+`
+export const SideSpacing25 = styled.View`
+margin-left:25px;
+margin-right:25px;
+`
+export const SideSpacing30 = styled.View`
+margin-left:30px;
+margin-right:30px;
+`
