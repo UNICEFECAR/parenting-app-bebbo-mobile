@@ -102,9 +102,35 @@ const Articles = ({route, navigation}: Props) => {
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
   let filterArray: string[] = [];
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
+console.log(activeChild,"..activeChild..");
+// const allConfigData = useAppSelector((state: any) =>
+// state.variableData?.variableData != ''
+//   ? JSON.parse(state.variableData?.variableData)
+//   : state.variableData?.variableData,
+// );
+// const userParentalRoleData =
+// allConfigData?.length > 0
+//   ? allConfigData.filter((item) => item.key === 'userParentalRole')
+//   : [];
+ // console.log(userParentalRoleData,"..userParentalRoleData..")
+// const userNameData =
+// allConfigData?.length > 0
+//   ? allConfigData.filter((item) => item.key === 'userName')
+//   : [];
+// const relationshipData = useAppSelector(
+//     (state: any) =>
+//       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+//   );
+//let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
+ 
   const currentChildData = {
-    "gender":"40",
-    "parent_gender":"38",
+    "gender":activeChild.gender,
+    "parent_gender":"all",
     "taxonomyData":{
       "id": "43",
       "name": "1st month",
