@@ -1,6 +1,8 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Ruler from '@components/Ruler';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonModal, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
@@ -10,7 +12,7 @@ import ModalPopupContainer, {
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading2w, Heading4Centerr } from '@styles/typography';
+import { Heading1,Heading1Center, Heading2w, Heading4Centerr,ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
@@ -91,12 +93,14 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
               <Heading4Centerr>
                 {t('heightModalText')}
               </Heading4Centerr>
-              <ButtonPrimary
+              <FDirRow>
+              <ButtonModal
                 onPress={() => {
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
                 <ButtonText>{t('continueInModal')}</ButtonText>
-              </ButtonPrimary>
+              </ButtonModal>
+              </FDirRow>
             </View>
           </ModalPopupContainer>
         </PopupOverlay>
@@ -130,10 +134,14 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             </View>
           </View>
         </View>
-        <View style={{padding: screenPadding,backgroundColor:tintColor}}>
-          <Heading1 style={{textAlign: 'center'}}>
+        <MainContainer>
+          <View style={{backgroundColor: tintColor,borderRadius:4}}>
+        <View style={{padding: screenPadding, overflow:'hidden'}}>
+          <ShiftFromTopBottom20>
+            <Heading1Center>
             {(heightVal + 0.01 * height1).toFixed(2)} {t('growthScreencmText')}
-          </Heading1>
+          </Heading1Center>
+          </ShiftFromTopBottom20>
           <Ruler
             style={{elevation: 3}}
             width={width - (screenPadding*2)}
@@ -197,7 +205,8 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             }}>
             <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonPrimary>
-        </View>
+        </View></View>
+        </MainContainer>
       </SafeAreaView>
     </>
   );
