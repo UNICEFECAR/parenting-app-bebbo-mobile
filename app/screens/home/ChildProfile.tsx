@@ -59,7 +59,12 @@ const ChildProfile = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
+const currentActiveChild =activeChild.uuid;
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
@@ -73,14 +78,14 @@ const ChildProfile = ({navigation}: Props) => {
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
       : [];
-  const currentActiveChildId =
-    allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-      : [];
+  // const currentActiveChildId =
+  //   allConfigData?.length > 0
+  //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
+  //     : [];
   //console.log(allConfigData,"..userParentalRole..")
-  const currentActiveChild =
-    currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
-  //console.log(currentActiveChild,"..currentActiveChild..");
+  // const currentActiveChild =
+  //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
+  // //console.log(currentActiveChild,"..currentActiveChild..");
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
