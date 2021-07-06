@@ -64,18 +64,29 @@ import {
         ? JSON.parse(state.childData.childDataSet.allChild)
         : [],
     );
-    const allConfigData = useAppSelector((state: any) =>
-      state.variableData?.variableData != ''
-        ? JSON.parse(state.variableData?.variableData)
-        : state.variableData?.variableData,
-    );
-    const currentActiveChildId =
-      allConfigData?.length > 0
-        ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-        : [];
-    //  console.log(currentActiveChildId,"..currentActiveChildId")
-    const currentActiveChild =
-      currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
+ const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const currentActiveChild =activeChild.uuid;
+  console.log(currentActiveChild,"..currentActiveChild..")
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+  );
+    // const allConfigData = useAppSelector((state: any) =>
+    //   state.variableData?.variableData != ''
+    //     ? JSON.parse(state.variableData?.variableData)
+    //     : state.variableData?.variableData,
+    // );
+    // const currentActiveChildId =
+    //   allConfigData?.length > 0
+    //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
+    //     : [];
+    // //  console.log(currentActiveChildId,"..currentActiveChildId")
+    // const currentActiveChild =
+    //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
       const SortedchildList = [...childList].sort((a:any, b:any)=>{
         if (a.uuid == currentActiveChild) return -1;
       });
@@ -127,7 +138,7 @@ import {
             <ProfileActionView>
               <ButtonTextSmLine
                 onPress={() => {
-                  setActiveChild(data.uuid);
+                  setActiveChild(data.uuid,dispatch,child_age);
                 }}>
                 Activate Profile
               </ButtonTextSmLine>

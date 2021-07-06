@@ -59,7 +59,16 @@ const ChildProfile = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
+const currentActiveChild =activeChild.uuid;
+const child_age = useAppSelector(
+  (state: any) =>
+    JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+);
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
@@ -73,14 +82,20 @@ const ChildProfile = ({navigation}: Props) => {
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
       : [];
-  const currentActiveChildId =
-    allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-      : [];
+   const relationshipData = useAppSelector(
+        (state: any) =>
+          JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+      );
+    let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
+     
+  // const currentActiveChildId =
+  //   allConfigData?.length > 0
+  //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
+  //     : [];
   //console.log(allConfigData,"..userParentalRole..")
-  const currentActiveChild =
-    currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
-  //console.log(currentActiveChild,"..currentActiveChild..");
+  // const currentActiveChild =
+  //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
+  // //console.log(currentActiveChild,"..currentActiveChild..");
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
@@ -163,7 +178,7 @@ const ChildProfile = ({navigation}: Props) => {
                 </View>
                 <ButtonTextSmLine
                   onPress={() => {
-                    setActiveChild(data.uuid);
+                    setActiveChild(data.uuid,dispatch,child_age);
                   }}>
                  {t('childActivatebtn')}
                 </ButtonTextSmLine>
@@ -275,9 +290,11 @@ const ChildProfile = ({navigation}: Props) => {
                     </ParentLabel>
                     <ParentData>
                       <Text>
-                        {userParentalRoleData?.length > 0
-                          ? userParentalRoleData[0].value
-                          : ''}
+                        {
+                        userParentalRoleData?.length > 0
+                          ? relationshipValue.name
+                          : ''
+                        }
                       </Text>
                     </ParentData>
                   </ParentSection>
