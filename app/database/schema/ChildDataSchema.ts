@@ -1,6 +1,6 @@
 import { ObjectSchema } from "realm";
 export type ChildGender = "boy" | "girl" | "";
-
+export type remiderType = "vaccine" | "healthCheckup";
 export const MeasuresEntitySchema = {
   name: "Measures",
   embedded: true,
@@ -14,7 +14,7 @@ export const MeasuresEntitySchema = {
     /**
      * Centimeters.
      */
-    length:{ type: "string" },
+     height:{ type: "string" },
 
     /**
      * Timestamp in milliseconds.
@@ -42,7 +42,7 @@ export const MeasuresEntitySchema = {
 export type MeasuresEntity = {
   isChildMeasured:boolean,
   weight:string,
-  length:string,
+  height:string,
   measurementDate:Date,
   titleDateInMonth:number
   didChildGetVaccines:boolean,
@@ -54,20 +54,22 @@ export const ReminderEntitySchema = {
   name: "Reminder",
   embedded: true,
   properties: {
-    date: { type: "date" },
-    time: { type: "date" },
+    remiderType:{ type: "string" },
+    remiderDate: { type: "date" },
+    remiderTime: { type: "date" },
     uuid: { type: "string" }
   }
 }
 export type ReminderEntity = {
-    date: Date,
-    time: Date,
+  remiderType:remiderType,
+  remiderDate: Date,
+  remiderTime: Date,
     uuid: string
 }
 
-export type ChildEntitySchema = {
+export type ChildEntity = {
   uuid: string;
-  name: string;
+  childName: string;
   gender: ChildGender,
   photoUri?: string;
   createdAt: Date;
@@ -99,7 +101,7 @@ export const ChildEntitySchema: ObjectSchema = {
   primaryKey: "uuid",
   properties: {
       uuid: { type: "string" },
-      name: { type: "string" },
+      childName: { type: "string" },
       gender: { type: "string" },
       photoUri: { type: "string", optional: true },
       createdAt: { type: "date" },

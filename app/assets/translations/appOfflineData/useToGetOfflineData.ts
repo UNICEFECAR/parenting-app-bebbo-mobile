@@ -13,7 +13,7 @@ const useToGetOfflineData = async (languageCode:string,dispatch:any,SchemaToUse:
                 // dispatch(setAllHardcodedData(databaseData2));
                 databaseData2.removeAllListeners();
                 databaselistener = databaseData2.addListener(() => {
-                    //console.log("in if listener called--",databaseData2);
+                    // console.log("in if listener called--",databaseData2);
                     dispatch(setAllHardcodedData(databaseData2))
                 });
             }else {

@@ -3,36 +3,39 @@ import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import BabyNotification from '@components/homeScreen/BabyNotification';
 import ChildInfo from '@components/homeScreen/ChildInfo';
 import ChildMilestones from '@components/homeScreen/ChildMilestones';
+import DailyHomeNotification from '@components/homeScreen/DailyHomeNotification';
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
-import { BgPrimary } from '@components/shared/BackgroundColors';
 import { ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexDirRow, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
+import { FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3Regular, Heading3Regularw, ShiftFromTop20, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading3Regular, ShiftFromTop20, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch } from '../../../../App';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
 };
-
 const Home = () => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
-  const dispatch=useAppDispatch();
-  
+ 
+//   const dailyMessages = useAppSelector((state: any) =>
+//   state.childData.childDataSet.allChild != ''
+//     ? JSON.parse(state.childData.childDataSet.allChild)
+//     : state.childData.childDataSet.allChild,
+// );
+
   return (
     <>
      <SafeAreaView style={{flex:1}}>
@@ -76,24 +79,8 @@ const Home = () => {
             </ShiftFromTopBottom10>
             
           </MainContainer>
-            
-          <BgPrimary>
-          <MainContainer>
-            <ShiftFromTopBottom10>
-            <FlexDirRowStart>
-          <OuterIconRow>
-                <OuterIconLeft>
-                <Icon name="ic_sb_loveapp" size={24} color="#fff" />
-                </OuterIconLeft>
-              </OuterIconRow>
-              <Flex1>
-                <Heading3Regularw>{"A loving relationship with the parent is the foundation of every baby's healthy growth and development"}</Heading3Regularw>
-                </Flex1>
-            
-            </FlexDirRowStart>
-            </ShiftFromTopBottom10>
-          </MainContainer>
-          </BgPrimary>
+            <DailyHomeNotification/>
+         
         </ScrollView>
       </View>
       </SafeAreaView>
