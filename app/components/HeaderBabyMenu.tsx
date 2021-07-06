@@ -3,13 +3,15 @@ import Icon, {
   OuterIconRow,
   TickView
 } from '@components/shared/Icon';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { ImageIcon } from '@components/shared/Image';
+import { useNavigation } from '@react-navigation/native';
 import {
   Heading3,
   Heading5,
   Heading5Bold,
   ShiftFromBottom20
 } from '@styles/typography';
+import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
 import {
   Modal,
@@ -20,7 +22,6 @@ import {
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { ImageIcon } from '@components/shared/Image';
 import {
   getAllChildren,
   getAllConfigData,
@@ -39,7 +40,6 @@ import {
 import {
   ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
 } from './shared/ProfileListingStyle';
-import { CHILDREN_PATH } from '@types/types';
   const headerHeight = 50;
   const HeaderBabyMenu = (props: any) => {
     const navigation = useNavigation();
@@ -95,7 +95,7 @@ import { CHILDREN_PATH } from '@types/types';
             }
             </ProfileIconView>
             <ProfileTextView>
-              <Heading3>{data.name}</Heading3>
+              <Heading3>{data.childName}</Heading3>
               <Heading5>{genderName}</Heading5>
               <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
@@ -120,7 +120,7 @@ import { CHILDREN_PATH } from '@types/types';
             }
             </ProfileIconView>
             <ProfileTextView>
-              <Heading3>{data.name}</Heading3>
+              <Heading3>{data.childName}</Heading3>
               <Heading5>{genderName}</Heading5>
               <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>

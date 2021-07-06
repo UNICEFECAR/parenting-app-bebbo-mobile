@@ -1,12 +1,13 @@
 import Realm from "realm";
 import { migrateuserRealm } from "../migration/init";
-import { ChildEntitySchema } from "../schema/ChildDataSchema";
-import { MeasurementEntitySchema } from "../schema/measurementDataSchema";
+import { ChildEntitySchema, MeasuresEntitySchema, ReminderEntitySchema } from "../schema/ChildDataSchema";
 
 export const userRealmConfig: Realm.Configuration ={
   path: 'user.realm',
   schema: [
     ChildEntitySchema,
+    MeasuresEntitySchema,
+    ReminderEntitySchema
    // MeasurementEntitySchema
   ],
   schemaVersion: 1,

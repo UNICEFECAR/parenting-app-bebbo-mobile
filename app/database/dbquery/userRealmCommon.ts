@@ -48,7 +48,7 @@ class UserRealmCommon extends Component {
                         resolve(realm);
                     })
                     .catch(error => {
-                        resolve(null);
+                        resolve(error);
                     });
             }
         });
