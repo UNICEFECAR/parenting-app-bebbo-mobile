@@ -29,6 +29,7 @@ interface hardcodedDataType {
   },
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
+  IsArticleModalOpened:boolean,
   dailymessages:Array<any>
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
@@ -59,6 +60,7 @@ const initialState: hardcodedDataType = {
   },
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
+  IsArticleModalOpened:true,
   dailymessages:[]
 };
 export const utilsSlice = createSlice({
@@ -132,7 +134,7 @@ export const utilsSlice = createSlice({
     },
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
-        state.action.payload.key=action.payload.value;
+        state[action.payload.key]=action.payload.value;
       }
   },
   // extraReducers: (builder) => {
