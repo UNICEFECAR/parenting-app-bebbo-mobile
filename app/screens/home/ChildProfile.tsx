@@ -78,6 +78,12 @@ const currentActiveChild =activeChild.uuid;
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
       : [];
+   const relationshipData = useAppSelector(
+        (state: any) =>
+          JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+      );
+    let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
+     
   // const currentActiveChildId =
   //   allConfigData?.length > 0
   //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
@@ -280,9 +286,11 @@ const currentActiveChild =activeChild.uuid;
                     </ParentLabel>
                     <ParentData>
                       <Text>
-                        {userParentalRoleData?.length > 0
-                          ? userParentalRoleData[0].value
-                          : ''}
+                        {
+                        userParentalRoleData?.length > 0
+                          ? relationshipValue.name
+                          : ''
+                        }
                       </Text>
                     </ParentData>
                   </ParentSection>
