@@ -3,7 +3,9 @@ import { Heading3, Heading3Regular } from '@styles/typography';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
+import { FDirRow } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
+import { RadioInnerBox,RadioOuter, RadioLabelText, RadioBoxContainer} from './shared/radio';
 
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
@@ -12,17 +14,14 @@ const ToggleRadios = (props: any) => {
  
   return (
     <>
-      <View style={{flexDirection: 'row'}}>
+    <RadioBoxContainer>
+      <FDirRow>
         {options.map((item: typeof options[0], index: number) => {
           return (
-
-              <View key={index}
-                style={{
-                  padding: 10,
-                  backgroundColor: '#FFF',
-                  marginHorizontal: 3,
-                }}>
-                <FormOuterCheckbox
+            
+              <RadioOuter key={index}
+                >
+                <RadioInnerBox
                   onPress={() => {
                     setCheckedItem(item);
                     props.getCheckedItem(item);
@@ -39,18 +38,19 @@ const ToggleRadios = (props: any) => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <LabelText>
+                  <View>
                   {(checkedItem?.title && checkedItem.title == item.title) ? (
                       <Heading3>{item.title}</Heading3>
                     ) : (
                       <Heading3Regular>{item.title}</Heading3Regular>
                     )}
-                  </LabelText>
-                </FormOuterCheckbox>
-              </View>
+                  </View>
+                </RadioInnerBox>
+              </RadioOuter>
+              
           );
         })}
-      </View>
+      </FDirRow></RadioBoxContainer>
     </>
   );
 };

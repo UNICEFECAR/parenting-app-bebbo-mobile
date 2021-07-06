@@ -1,8 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
+import { FDirRow, Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading2w, Paragraph } from '@styles/typography';
+import { Heading2, Heading2w, Heading3, Heading4Regular, Heading5, Paragraph, ShiftFromTop20,ShiftFromTop10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
@@ -67,42 +69,56 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
   ];
   const renderDetail = (rowData, sectionID, rowID) => {
     let title = (
-      <View style={{flexDirection: 'row'}}>
-        <Text style={[styles.title]}>{rowData.title}</Text>
-        <Text>{rowData.measureDate}</Text>
-      </View>
+      <FDirRow>
+        <Heading3>{rowData.title}</Heading3>
+        <Heading5>{rowData.measureDate}</Heading5>
+      </FDirRow>
     );
 
     return (
-      <View style={{flex: 1}}>
+      
+      <Flex1>
         {title}
-        <View style={{flexDirection: 'row'}}>
-          <View style={{flexDirection: 'column', flex: 2}}>
-            <Paragraph>{t('growthScreenwText')}</Paragraph>
-            <Heading2 style={{padding: 2}}>
-              {rowData.weight} {t('growthScreenkgText')}
-            </Heading2>
-          </View>
-          <View style={{flexDirection: 'column', flex: 2}}>
-            <Paragraph>{t('growthScreenhText')}</Paragraph>
-            <Heading2 style={{padding: 2}}>
-              {rowData.height} {t('growthScreencmText')}
-            </Heading2>
-          </View>
-          <View style={{flex: 2, flexDirection: 'row'}}>
-            <Pressable
+        <ShiftFromTop10>
+            <FlexDirRowSpace>
+              <Flex2> 
+                <FlexFDirRowSpace>
+                <FlexDirColStart>
+                  <Heading4Regular>
+                  {t('growthScreenwText')}
+                  </Heading4Regular>
+                  <Heading2>
+                  {rowData.weight} {t('growthScreenkgText')}
+                  </Heading2>
+                </FlexDirColStart>
+               
+                <FlexDirColStart>
+                  <Heading4Regular>
+                  {t('growthScreenhText')}
+                  </Heading4Regular>
+                  <Heading2>
+                  {rowData.height} {t('growthScreencmText')}
+                  </Heading2>
+                </FlexDirColStart>
+                </FlexFDirRowSpace>
+              </Flex2>
+              <Flex1>
+              <Pressable
               onPress={() => {
                 navigation.navigate('AddNewChildgrowth', {
                   headerTitle: t('growthScreeneditNewBtntxt'),
                 });
               }}>
-              <Text style={{padding: 2, textDecorationLine: 'underline'}}>
-                {t('growthScreeneditText')}
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-      </View>
+                          <FlexDirRowEnd>
+                        <ButtonTextMdLine>
+                        {t('growthScreeneditText')}
+                        </ButtonTextMdLine>
+                        </FlexDirRowEnd>
+                      </Pressable>
+              </Flex1>
+            </FlexDirRowSpace>
+            </ShiftFromTop10>
+      </Flex1>
     );
   };
 
@@ -131,9 +147,9 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               </Pressable>
             </View>
             <View style={{flex: 9, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>
+              <Heading2>
                 {t('growthScreenallMeasureHeader')}
-              </Heading2w>
+              </Heading2>
             </View>
           </View>
           <View
@@ -141,11 +157,14 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               flex: 9,
               backgroundColor: backgroundColor,
               padding: 20,
+              paddingLeft:5,
               maxHeight: '100%',
             }}>
             <Timeline
               data={data}
               circleSize={20}
+              // circleStyle={{marginTop:13,}}
+              // renderFullLine={true}
               circleColor={headerColor}
               lineColor="#000"
               showTime={false}
@@ -154,10 +173,11 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               renderDetail={renderDetail}
               innerCircle={'icon'}
               iconDefault={<Icon name={'ic_tick'} color="#000" size={10} />}
+              
               eventDetailStyle={{
                 backgroundColor: '#FFF',
-                marginBottom: 5,
-                padding: 10,
+                marginBottom: 10,
+                padding: 15,borderRadius:4,
               }}
             />
           </View>
@@ -168,15 +188,15 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
 };
 
 export default AllChildgrowthMeasures;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    paddingTop: 65,
-    backgroundColor: 'white',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//     paddingTop: 65,
+//     backgroundColor: 'white',
+//   },
+//   title: {
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//   },
+// });
