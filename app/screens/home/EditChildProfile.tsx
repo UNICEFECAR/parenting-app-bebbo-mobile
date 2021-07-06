@@ -8,18 +8,17 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading4 } from '@styles/typography';
-import { CHILDREN_PATH, CROPPED_IMAGE_HEIGHT, CROPPED_IMAGE_WIDTH } from '@types/types';
+import { CHILDREN_PATH } from '@types/types';
 import React, { createRef, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Alert,
-    Image, ImageBackground, Pressable,
-    SafeAreaView,
-    ScrollView, StyleSheet, Text, TextInput,
-    View
+  Alert, ImageBackground, Pressable,
+  SafeAreaView,
+  ScrollView, StyleSheet, TextInput,
+  View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import { copyFile, DocumentDirectoryPath, exists, mkdir, unlink } from 'react-native-fs';
+import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -80,7 +79,7 @@ let  childData  = route.params.childData;
   const [tempImage,cleanUPImage]= React.useState("");
   let initialData: any = {};
   const [birthDate, setBirthDate] = React.useState<Date>();
-  const [name, setName] = React.useState(childData != null ? childData.name : '');
+  const [name, setName] = React.useState(childData != null ? childData.childName : '');
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
   const [isPremature, setIsPremature] = React.useState<string>('false');
   const uuid = childData != null ? childData.uuid : '';

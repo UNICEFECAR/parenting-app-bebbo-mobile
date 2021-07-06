@@ -219,7 +219,7 @@ const en = {
             trackMilestoneViewBtn:"Track your child milestone",
             babyNotificationText:"Child Birth Data not updated",
             babyNotificationbyAge:"Baby is {{ageInMonth}} Months Old",
-            babyNotificationUpdateBtn:"Update",
+            babyNotificationUpdateBtn:"Update Profile",
             
             favScreenHeader:"Favourites",
 
