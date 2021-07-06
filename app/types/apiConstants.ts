@@ -17,8 +17,20 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.basicPages){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     }
-    if(apiEndpoint==appConfig.pinnedContent){
-        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all/health_check_ups';
+    if(apiEndpoint==appConfig.vaccinePinnedContent){
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/vaccinations';
+    }
+    if(apiEndpoint==appConfig.childGrowthPinnedContent){
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+    }
+    if(apiEndpoint==appConfig.childdevGirlPinnedContent){
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+    }
+    if(apiEndpoint==appConfig.childdevBoyPinnedContent){
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+    }
+    if(apiEndpoint==appConfig.healthcheckupPinnedContent){
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
     }
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
@@ -31,7 +43,19 @@ export const appConfig = {
     basicPages: 'basic-pages',
     sponsors:'sponsors',
     taxonomies:'taxonomies',
-    pinnedContent:'pinned-contents'
+    milestones:'milestones',
+    activities:'activities',
+    surveys:'surveys',
+    childDevelopmentData:'child-development-data',
+    childGrowthData:'child-growth-data',
+    vaccinations:'vaccinations',
+    healthCheckupData:'health-checkup-data',
+    pinnedContent:'pinned-contents',
+    vaccinePinnedContent:'pinnedvaccinations',
+    childdevGirlPinnedContent:'child_development/41',
+    childdevBoyPinnedContent:'child_development/40',
+    childGrowthPinnedContent:'child_growth',
+    healthcheckupPinnedContent:'health_check_ups'
 }
 
 export const activityCategory = [
