@@ -3,7 +3,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
-import { ButtonContainer, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 
 import { FDirRow, FlexDirCol } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
@@ -288,12 +288,12 @@ const Articles = ({route, navigation}: Props) => {
               </Heading4Centerr>
               <ShiftFromTop10><Text></Text></ShiftFromTop10>
               <FDirRow>
-              <ButtonPrimary
+              <ButtonModal
                 onPress={() => {
                   setIsModalOpened('IsArticleModalOpened');
                 }}>
                 <ButtonText>{t('continueInModal')}</ButtonText>
-              </ButtonPrimary>
+              </ButtonModal>
               </FDirRow>
 
           </ModalPopupContainer>

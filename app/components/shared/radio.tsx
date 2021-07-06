@@ -36,4 +36,32 @@ export const RadioItem = styled.View`
   border-radius: 3px;
 `;
 
+export const RadioBoxContainer = styled.View`
+ margin:0 -10px;
+
+`;
+export const RadioOuter = styled.View`
+ 
+ flex-direction:row;
+ flex:1;
+ justify-content:center;
+ padding:0 10px
+ 
+`;
+export const RadioInnerBox = styled.Pressable`
+  flex:1;
+  flex-direction:row;
+  background:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  align-items:center;
+  justify-content:flex-start;
+  border-radius:4px
+  padding:12px 10px;
+  height:52px;
+`;
+export const RadioLabelText = styled.Text`
+  color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  font-size: 16px;
+ 
+`
+
 export default Radio;

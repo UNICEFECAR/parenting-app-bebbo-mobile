@@ -1,11 +1,12 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonContainer,
+
     ButtonLinkText,
     ButtonPrimary,
     ButtonText,
     ButtonTextLg
 } from '@components/shared/ButtonGlobal';
+import { Flex1 } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
     LocalizationAction,
@@ -136,11 +137,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                 </ButtonLinkText>
               </LocalizationAction>
             </LocalizationRow>
-            <ButtonContainer>
+            <Flex1>
               <ButtonPrimary onPress={() => saveSelection()}>
                 <ButtonText>{t('continueCountryLang')}</ButtonText>
               </ButtonPrimary>
-            </ButtonContainer>
+            </Flex1>
           </LocalizationContainer>
         </OnboardingContent>
       </OnboardingContainer>
