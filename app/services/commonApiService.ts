@@ -32,7 +32,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-  //console.log("newurl--", newurl);
+  console.log("newurl--", newurl);
   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
