@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
-import { ArticleEntity, ArticleEntitySchema, CoverImage, } from "../database/schema/ArticleSchema";
+import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPagesSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
@@ -36,6 +36,7 @@ export const addApiDataInRealm = async (response: any) => {
     }
     else if(response.payload.apiEndpoint == appConfig.dailyMessages)
     {
+        console.log('dailyMeassages',response.payload.data.data)
         insertData = response.payload.data.data;
         Entity= Entity as DailyHomeMessagesEntity;
         EntitySchema = DailyHomeMessagesSchema;

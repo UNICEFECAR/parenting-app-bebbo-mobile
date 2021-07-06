@@ -1,32 +1,31 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonLinkPress, ButtonTextMdLineL,
-    ButtonTextSmLine
+  ButtonLinkPress, ButtonTextMdLineL,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import Icon, {
-    OuterIconLeft,
-    OuterIconRow,
-    TickView
+  OuterIconLeft,
+  OuterIconRow,
+  TickView
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import {
-    ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
-    ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
+  ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
+  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2w,
-    Heading3,
-    Heading5,
-    Heading5Bold,
-    Heading6
+  Heading2w,
+  Heading3,
+  Heading5,
+  Heading5Bold,
+  Heading6
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, ImageBackground, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setActiveChild } from '../../services/childCRUD';
@@ -38,75 +37,6 @@ type NotificationsNavigationProp =
 type Props = {
   navigation: NotificationsNavigationProp;
 };
-
-// const DATA = [
-//   {
-//     id: '1',
-//     childname: 'Harvey',
-//     gender: 'Boy',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '2',
-//     childname: 'Donna',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '3',
-//     childname: 'Michael',
-//     gender: 'Boy',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '4',
-//     childname: 'Rachel',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '5',
-//     childname: 'Louis',
-//     gender: 'Boy',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '6',
-//     childname: 'Jessica',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '7',
-//     childname: 'Samantha',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '8',
-//     childname: 'Katrina',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '9',
-//     childname: 'Sheila',
-//     gender: 'Girl',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '10',
-//     childname: 'Jeff',
-//     gender: 'Boy',
-//     birthday: new Date(),
-//   },
-//   {
-//     id: '11',
-//     childname: 'Alex',
-//     gender: 'Boy',
-//     birthday: new Date(),
-//   },
-// ];
 const ChildProfile = ({navigation}: Props) => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -172,7 +102,7 @@ const ChildProfile = ({navigation}: Props) => {
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
-              <Heading3>{data.name}</Heading3>
+              <Heading3>{data.childName}</Heading3>
               <OuterIconLeft></OuterIconLeft>
               <Heading6>{genderName}</Heading6>
             </ProfileSectionView>
@@ -215,7 +145,7 @@ const ChildProfile = ({navigation}: Props) => {
             <ProfileTextView>
               <ProfileSectionView>
                 <Heading3>
-                  {data.name}
+                  {data.childName}
                 </Heading3>
                 <OuterIconLeft></OuterIconLeft>
                 <Heading6>{genderName}</Heading6>

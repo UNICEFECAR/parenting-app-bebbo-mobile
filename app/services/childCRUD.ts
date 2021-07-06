@@ -13,7 +13,7 @@ import { getVariableData } from '../redux/reducers/variableSlice';
 export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
-    name: (name!="" && name!=null  && name!=undefined) ? name:'',
+    childName: (name!="" && name!=null  && name!=undefined) ? name:'',
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,

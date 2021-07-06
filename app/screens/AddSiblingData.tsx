@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { useAppDispatch } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
@@ -33,7 +33,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const { headerTitle } = route.params;
   const { childData } = route.params;
   const uuid= childData != null ? childData.uuid:'';
-  const name= childData != null ? childData.name:'';
+  const name= childData != null ? childData.childName:'';
   const relationship= childData != null ? childData.relationship:'';
   const editScreen = childData != null ? true : false;
   // console.log(childData,"..childData..");
@@ -60,7 +60,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const AddChild=async ()=>{
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
-    console.log(defaultName,"..defaultName");
+    console.log(defaultName,"..defaultName",editScreen);
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,relationship,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,'',defaultName)
     let childSet: Array<any> = [];
     childSet.push(insertData);

@@ -1,11 +1,11 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonPrimary, ButtonRow, ButtonText
+  ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
-    ChildCenterView,
-    ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
+  ChildCenterView,
+  ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -14,7 +14,7 @@ import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -24,8 +24,8 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import {
-    Heading1Centerw,
-    Heading3
+  Heading1Centerw,
+  Heading3
 } from '../styles/typography';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
@@ -65,7 +65,7 @@ const AddChild=async ()=>{
   let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, relationship,defaultName);
   let childSet: Array<any> = [];
   childSet.push(insertData);
-  //console.log(childSet,"..childSet..");
+  console.log(childSet,"..childSet..");
   addChild(false, 0, childSet, dispatch, navigation);
 }
 

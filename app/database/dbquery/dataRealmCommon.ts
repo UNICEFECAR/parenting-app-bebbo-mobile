@@ -1,8 +1,7 @@
+import Realm, { ObjectSchema } from 'realm';
+import { dataRealmConfig } from '../config/dataDbConfig';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
-import Realm, { ObjectSchema, Collection } from 'realm';
-import { dataRealmConfig } from '../config/dataDbConfig';
-import { isArticlePinned } from '@types/apiConstants';
 // import { dispatchchildstore2 } from './userRealmListener';
 // import userRealm from '../config/dbConfig'
 // export const userRealmInstance = getUserRealm();
@@ -133,14 +132,14 @@ class DataRealmCommon {
                             records.forEach(async record => {
                                 // console.log(record.id);
                                 const obj = realm?.objects<Entity>(entitySchema.name).filtered('id == "'+record.id+'"');
-                                console.log(Array.from(obj),"---obj");
-                                console.log(obj.length,"---obj");
+                                // console.log(Array.from(obj),"---obj");
+                                // console.log(obj.length,"---obj");
                                 if(obj.length > 0)
                                 {
                                     if(articleRelation == isArticlePinned && obj[0].isarticle_pinned != "1")
                                     {
                                         obj[0].isarticle_pinned = articleRelation;
-                                        console.log(Array.from(obj),"---obj after");
+                                        // console.log(Array.from(obj),"---obj after");
                                     }
                                 }else {
                                     record.cover_image = JSON.stringify(record.cover_image);
@@ -209,15 +208,23 @@ class DataRealmCommon {
             }
         });
     }
-    public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
+    public async getData<Entity>(entitySchema: ObjectSchema,sortedOrder?:any): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
+                    if(sortedOrder!=null && sortedOrder!="" && sortedOrder!= undefined){
+                        const obj = realm?.objects<Entity>(entitySchema.name).sorted(sortedOrder);
+                        resolve(obj);
+                    }
+                    else{
+                        const obj = realm?.objects<Entity>(entitySchema.name);
+                        resolve(obj);
+                    }
                     // const obj2 = realm?.objects<Entity>(entitySchema.name)?.filtered('');
                     // console.log(obj2,"--obj2");
-                    const obj = realm?.objects<Entity>(entitySchema.name);
-                    resolve(obj);
+                    
+                   
                 }
                 else {
                     reject();
