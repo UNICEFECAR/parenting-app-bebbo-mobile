@@ -72,7 +72,7 @@ export const utilsSlice = createSlice({
           // console.log("dailyMessages data---",state);
           const allDailyMessages = action.payload;
           let allRecords = allDailyMessages
-          console.log(allRecords,"allDailyMessages");
+          //console.log(allRecords,"allDailyMessages");
           state.dailymessages =allRecords;
           // (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
           // console.log(state);

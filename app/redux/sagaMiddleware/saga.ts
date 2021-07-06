@@ -71,13 +71,15 @@ function* onFetchAPI(value: any) {
             // navigation.navigate('ChildSetup');
             const allJsonData = navigateToPage();
             allJsonData.next().then(({ value, done }) => {
-              // console.log(value.length,"..value..");
+             //  console.log(value.length,"..value..");
               if (value?.length>0) {
                 navigation.navigate('ChildSetupList');
               }
               else {
                 navigation.navigate('ChildSetup');
               }
+            }).catch(({ error }) => {
+              console.log(error,"..error..");
             });
           } else if (prevPage == 'ChilSetup') {
             //dispatch action for before home page
@@ -135,7 +137,7 @@ function* onFetchAPI(value: any) {
           // navigation.navigate('ChildSetup');
           const allJsonData = navigateToPage();
           allJsonData.next().then(({ value, done }) => {
-            // console.log(value.length,"..value..");
+             //console.log(value.length,"..value..");
 
             if (value?.length>0) {
               navigation.navigate('ChildSetupList');
@@ -150,6 +152,8 @@ function* onFetchAPI(value: any) {
             // else{
             //   navigation.navigate('ChildSetup');
             // }
+          }).catch(({ error }) => {
+            console.log(error,"..error..")
           });
         } else if (prevPage == 'ChilSetup') {
           //dispatch action for before home page
@@ -161,6 +165,7 @@ function* onFetchAPI(value: any) {
 }
 async function* navigateToPage() {
    let allJsonData = yield await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+   console.log(allJsonData.length,"..allJsonData..")
   //let userEnteredChildData = yield await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   //console.log("  db length--",allJsonData?.length);
 
