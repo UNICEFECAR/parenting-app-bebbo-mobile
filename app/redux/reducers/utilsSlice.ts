@@ -29,6 +29,7 @@ interface hardcodedDataType {
   },
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
+  dailymessages:Array<any>
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -58,11 +59,31 @@ const initialState: hardcodedDataType = {
   },
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
+  dailymessages:[]
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
   initialState,
   reducers: {
+    setDailyMessagesData:(  state,
+      action: PayloadAction<any>,)=>{
+          // console.log("dailyMessages data---",state);
+          const allDailyMessages = action.payload;
+          let allRecords = allDailyMessages
+          console.log(allRecords,"allDailyMessages");
+          state.dailymessages =allRecords;
+          // (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
+          // console.log(state);
+          // state.dailymessages = action.payload[0];
+          // action.payload.map((x:any)=> {
+          //  console.log(x.id,x.title)
+          // })
+    //  console.log(action.payload,action.payload[0],"--",typeof action.payload);
+    //     if(action.payload[0])
+    //     {
+    //     state.dailymessages = (typeof action.payload[0].dailyMessages == 'object') ? (JSON.stringify(action.payload[0].dailyMessages)) : (action.payload[0].dailyMessages);
+    //     }
+    },
     setAllTaxonomyData: (
       state,
       action: PayloadAction<any>,
@@ -111,7 +132,7 @@ export const utilsSlice = createSlice({
     },
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
-        state[action.payload.key] =action.payload.value;
+        state.action.payload.key=action.payload.value;
       }
   },
   // extraReducers: (builder) => {
@@ -126,7 +147,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened} = utilsSlice.actions;
+export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
