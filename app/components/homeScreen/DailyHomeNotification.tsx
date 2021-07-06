@@ -36,23 +36,26 @@ const DailyHomeNotification = () => {
       : state.variableData?.variableData,
   );
   console.log(allConfigData, '..allConfigData..');
-  const currentNotificationConfig =
+  const currentNotification =
     allConfigData?.length > 0
-      ? allConfigData.filter((item) => item.key == 'dailyNotification')
+      ? allConfigData.find((item) => item.key == 'dailyNotification')
       : [];
-      const currentNotification = JSON.parse(currentNotificationConfig[0].value)
-  console.log('currentNotification', currentNotification);
+const currentNotificationVal = currentNotification?.value
+  // console.log(currentNotificationConfig);
+  // const currentNotification = JSON.parse(currentNotificationConfig?.value);
+  console.log('currentNotification', currentNotification,currentNotificationVal);
   const getNotification = async () => {
     let currentDate = DateTime.local();
-    if (currentNotification.length > 0) {
+    if (currentNotificationVal) {
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
+     
       if (
-        currentNotification.day != currentDate.day ||
-        currentNotification.month != currentDate.month ||
-        currentNotification.year != currentDate.year
+        currentNotificationVal.day != currentDate.day ||
+        currentNotificationVal.month != currentDate.month ||
+        currentNotificationVal.year != currentDate.year
       ) {
         const currentMessageIndex = records.findIndex(
-          (item: any) => item.id === currentNotification.messageId,
+          (item: any) => item.id === currentNotificationVal.messageId,
         );
         // Set next daily message
         let newNotification = {
@@ -69,14 +72,14 @@ const DailyHomeNotification = () => {
             JSON.stringify(newNotification),
           );
         console.log(updateNotifcation);
-        setNotification(currentNotification);
+        setNotification(newNotification);
         return newNotification;
       } else {
-        setNotification(currentNotification);
-        return currentNotification;
+        setNotification(currentNotificationVal);
+        return currentNotificationVal;
       }
     } else {
-      console.log('DAILY MESSAGE VARIABLE WAS NEVER SET',records);
+      console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
       let firstNotification = {
         messageId: records[0].id,
         messageText: records[0].title,
@@ -113,7 +116,6 @@ const DailyHomeNotification = () => {
         );
       }
       fetchData().then(() => {
-        
         getNotification();
       });
     }, [languageCode]),
@@ -121,28 +123,24 @@ const DailyHomeNotification = () => {
 
   return (
     <>
-     
-        <BgPrimary>
-          <MainContainer>
-            <ShiftFromTopBottom10>
-              <FlexDirRowStart>
-                <OuterIconRow>
-                  <OuterIconLeft>
-                    <Pressable onPress={() => getNotification()}>
-                      <Icon name="ic_sb_loveapp" size={24} color="#fff" />
-                    </Pressable>
-                  </OuterIconLeft>
-                </OuterIconRow>
-                <Flex1>
-                  <Heading3Regularw>
-                    {notification?.messageText}
-                  </Heading3Regularw>
-                </Flex1>
-              </FlexDirRowStart>
-            </ShiftFromTopBottom10>
-          </MainContainer>
-        </BgPrimary>
-     
+      <BgPrimary>
+        <MainContainer>
+          <ShiftFromTopBottom10>
+            <FlexDirRowStart>
+              <OuterIconRow>
+                <OuterIconLeft>
+                  <Pressable onPress={() => getNotification()}>
+                    <Icon name="ic_sb_loveapp" size={24} color="#fff" />
+                  </Pressable>
+                </OuterIconLeft>
+              </OuterIconRow>
+              <Flex1>
+                <Heading3Regularw>{notification?.messageText}</Heading3Regularw>
+              </Flex1>
+            </FlexDirRowStart>
+          </ShiftFromTopBottom10>
+        </MainContainer>
+      </BgPrimary>
     </>
   );
 };
