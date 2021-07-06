@@ -10,6 +10,8 @@ import { DateTime } from 'luxon';
 import React, { Suspense, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import {
   DailyHomeMessagesEntity,
   DailyHomeMessagesSchema
@@ -25,7 +27,7 @@ const DailyHomeNotification = () => {
     (state: any) => state.variableData.dailyNotification,
   );
 console.log('currentNotification',currentNotification);
-  const getNotification = () => {
+  const getNotification = async() => {
     let currentDate = DateTime.local();
     if (currentNotification) {
        // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
@@ -34,27 +36,35 @@ console.log('currentNotification',currentNotification);
       || currentNotification.year != currentDate.year){
         const currentMessageIndex = records.findIndex((item:any)=> item.id === currentNotification.messageId);
          // Set next daily message
-        return {
+         let newNotification ={
           messageId: records[currentMessageIndex+1].id,
           messageText: records[currentMessageIndex+1].title,
           day: currentDate.day,
           month: currentDate.month,
           year: currentDate.year,
-        };
+        }
+        let updateNotifcation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification",JSON.stringify(newNotification));
+
+        return newNotification;
       }
     } else {
-      // DAILY MESSAGE VARIABLE WAS NEVER SET
-      return {
+      console.log('DAILY MESSAGE VARIABLE WAS NEVER SET')
+      let firstNotification ={
         messageId: records[0].id,
         messageText: records[0].title,
         day: currentDate.day,
         month: currentDate.month,
         year: currentDate.year,
-      };
+      }
+      console.log(firstNotification);
+      let updateNotifcation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification",JSON.stringify(firstNotification));
+
+      return firstNotification;
     }
   };
   useFocusEffect(
     React.useCallback(() => {
+      getNotification();
       async function fetchData() {
         let Entity: any;
         // Entity = Entity as DailyHomeMessagesEntity
@@ -68,10 +78,9 @@ console.log('currentNotification',currentNotification);
           'id',
         );
       }
-      setNotification(
-        currentNotification ? currentNotification : getNotification(),
-      );
-      
+      console.log(currentNotification,"currentNotification");
+      setNotification(currentNotification);
+      console.log(notification,"notification");
       fetchData();
     }, [languageCode]),
   );
