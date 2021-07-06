@@ -10,29 +10,6 @@ width:100%;margin-top:10px;
 export const CustomScrollView = styled.ScrollView`
 flex:1;
 `
-export const FormInputBox = styled.View`
-  flex-direction: row;
-  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius: 4px;
-`;
-export const FormDateText = styled.View`
-  flex: 4;
-  justify-content: flex-start;
-  flex-direction: row;
-  padding: 16px;
-`;
-
-export const FormDateAction = styled.View`
-  flex: 1;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px 5px;
-`;
-
-export const FormInputGroup = styled.Pressable`
-  width: 100%;
-`;
 
 /*Styling for Child Iput Date */
 
@@ -108,4 +85,48 @@ export const TitleLinkSm = styled.Text`
   padding: 0 5px;
 `;
 
+/*Form Styling*/
+export const FormContainer = styled.View`
+  margin-top:25px;
+`;
+
+export const FormInputBox = styled.View`
+  flex-direction: row;
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius: 4px;
+`;
+export const FormDateText = styled.View`
+  flex: 4;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 16px;
+`;
+
+export const FormDateAction = styled.View`
+  flex: 1;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 5px;
+`;
+
+export const FormInputGroup = styled.Pressable`
+  width: 100%;
+`;
+
+export const FormInputText = styled(LabelText)`
+  color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
+  font-size: 16px;
+  font-weight:bold;
+  margin-bottom: 10px;
+`;
+export const TextAreaBox = styled.View`
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  padding: 0 15px;
+height:60px;
+border-radius:4px;
+`;
+
+
+/*Form Styling*/
 export default ChildSetupContainer;
