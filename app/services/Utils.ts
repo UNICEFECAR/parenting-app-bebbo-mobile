@@ -1,10 +1,17 @@
 import { DateTime } from "luxon";
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
-import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
+import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
+import { ArticleEntity, ArticleEntitySchema, } from "../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPagesSchema";
+import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../database/schema/ChildDevelopmentSchema";
+import { ChildGrowthEntity, ChildGrowthSchema } from "../database/schema/ChildGrowthSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
+import { HealthCheckUpsEntity, HealthCheckUpsSchema } from "../database/schema/HealthCheckUpsSchema";
+import { MilestonesEntity, MilestonesSchema } from "../database/schema/MilestonesSchema";
+import { SurveysEntity, SurveysSchema } from "../database/schema/SurveysSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
+import { VaccinationEntity, VaccinationSchema } from "../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { appConfig, isArticlePinned } from "../types/apiConstants";
 
@@ -50,15 +57,53 @@ export const addApiDataInRealm = async (response: any) => {
     else if(response.payload.apiEndpoint == appConfig.taxonomies)
     {
         const {standard_deviation, ...allData} = response.payload.data.data;
-       // console.log(allData);
-        // insertData = response.payload.data.langcode;
         insertData.push({langCode:response.payload.data.langcode,allData:JSON.stringify(allData),standardDevData:JSON.stringify(response.payload.data.data.standard_deviation)});
-       // console.log("insertData--",insertData);
         Entity= Entity as TaxonomyEntity;
         EntitySchema = TaxonomySchema;
     }
+    else if(response.payload.apiEndpoint == appConfig.activities)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as ActivitiesEntity;
+        EntitySchema = ActivitiesEntitySchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.surveys)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as SurveysEntity;
+        EntitySchema = SurveysSchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.milestones)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as MilestonesEntity;
+        EntitySchema = MilestonesSchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.childDevelopmentData)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as ChildDevelopmentEntity;
+        EntitySchema = ChildDevelopmentSchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.childGrowthData)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as ChildGrowthEntity;
+        EntitySchema = ChildGrowthSchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.vaccinations)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as VaccinationEntity;
+        EntitySchema = VaccinationSchema;
+    }
+    else if(response.payload.apiEndpoint == appConfig.healthCheckupData)
+    {
+        insertData = response.payload.data.data;
+        Entity= Entity as HealthCheckUpsEntity;
+        EntitySchema = HealthCheckUpsSchema;
+    }
         // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
-        // let deleteresult2 = await dataRealmCommon.deleteAll(CoverImage);
         if(EntitySchema == ArticleEntitySchema)
         {
             // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
