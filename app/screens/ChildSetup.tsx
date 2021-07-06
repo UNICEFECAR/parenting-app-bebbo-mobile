@@ -54,6 +54,10 @@ const ChildSetup = ({ navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+     );
   const actionSheetRef = createRef<any>();
   const dispatch = useAppDispatch();
   let initialData: any = {};
@@ -71,7 +75,7 @@ const AddChild=async ()=>{
   let childSet: Array<any> = [];
   childSet.push(insertData);
   console.log(childSet,"..childSet..");
-  addChild(false, 0, childSet, dispatch, navigation);
+  addChild(false, 0, childSet, dispatch, navigation,child_age);
 }
 
   const themeContext = useContext(ThemeContext);
