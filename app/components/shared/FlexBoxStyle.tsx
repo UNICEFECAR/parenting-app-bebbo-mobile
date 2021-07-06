@@ -14,6 +14,12 @@ flex-direction:row;
 justify-content:space-between;
 align-items:center;
 `;
+export const FlexFDirRowSpace = styled(FlexDirRowSpace)`
+flex:1;
+
+`;
+
+
 export const FlexDirRowSpaceStart = styled(FlexDirRowSpace)`
 align-items:flex-start;
 `;
@@ -22,7 +28,12 @@ export const FlexDirCol = styled.View`
 flex-direction:column;
 flex:1;
 justify-content:center;
+align-items:center;
 `;
+export const FlexDirColStart = styled(FlexDirCol)`
+align-items:flex-start;
+`;
+
 export const FDirCol = styled.View`
 flex-direction:column;
 `;
@@ -31,7 +42,10 @@ flex-direction:column;
 export const FlexDirRowStart = styled(FlexDirRow)`
 align-items:flex-start;
 `;
+export const FlexDirRowEnd = styled(FlexDirRow)`
 
+justify-content:flex-end
+`;
 
 export const FDirRow = styled.View`
 flex-direction:row;

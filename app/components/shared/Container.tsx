@@ -15,3 +15,15 @@ export const BannerContainer = styled.View`
   padding:20px 15px;
   background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
+
+export const BannerContainer1 = styled(BannerContainer)`
+  padding:15px 15px;
+  margin-bottom:20px;
+`;
+
+
+export const BgContainer = styled.View`
+  background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:4px;
+
+`;

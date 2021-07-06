@@ -97,7 +97,9 @@ export const ButtonCol = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
-flex:1 0 0;
+padding:10px 15px;
+
+
 `;
 
 export const ButtonSpacing = styled.View`
@@ -159,4 +161,6 @@ flex-direction:row;width:50%;padding:0px 5px;
 `;
 
 
-
+export const ButtonModal = styled(ButtonPrimary)`
+width:auto; padding:14px 30px;margin: 15px auto 0;
+`;

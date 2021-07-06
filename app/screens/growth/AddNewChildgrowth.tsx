@@ -1,17 +1,21 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
     FormDateAction,
     FormDateText,
     FormInputBox,
-    FormInputGroup
+    FormInputGroup,FormInputText,FormContainer, TextAreaBox
 } from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow, Flex1, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
     PopupClose,
     PopupCloseContainer,
     PopupOverlay
 } from '@components/shared/ModalPopupStyle';
+import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
@@ -19,7 +23,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Heading2w,
-    Heading3, Heading4Regular
+    Heading3, Heading4Regular, ShiftFromTop10,ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -75,43 +79,34 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
+        <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+        <HeaderIconView>
+          <Pressable
+            onPress={() => {
+              navigation.goBack();
             }}>
-            <View style={{flex: 1, padding: 15}}>
-              <Pressable
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
-            </View>
-            <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
-            </View>
-            <Pressable
-              style={{flex: 1, padding: 15}}
-              onPress={() => {
-                setModalVisible(true)
-              }}>
-              <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
-          </View>
-        </View>
+            <Icon name={'ic_back'} color="#000" size={15} />
+          </Pressable>
+        </HeaderIconView>
+        <HeaderTitleView>
+          <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
+        </HeaderTitleView>
+        <HeaderActionView>
+          <Pressable
+            onPress={() => {
+              setModalVisible(true)
+            }}>
+            <Text>{t('growthScreendeletebtnText')}</Text>
+          </Pressable>
+        </HeaderActionView>
+          </HeaderRowView>
+       <MainContainer>
         <FormInputGroup onPress={showdobDatepicker}>
-          <Heading3>{t('growthScreendateMeasurementText')}</Heading3>
+          {/* <FormInputText>{t('growthScreendateMeasurementText')}</FormInputText> */}
           <FormInputBox>
             <FormDateText>
               <Text>
@@ -126,10 +121,15 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
+        <FormContainer>
+        <FormInputText>
         <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
-       
+        </FormInputText>
+
         <ToggleRadios options={measurementPlaces} defaultValue={measurementPlaces[0]} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
 
+        </FormContainer>
+        
         <View>
           {showdob && (
             <DateTimePicker
@@ -143,10 +143,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             />
           )}
         </View>
-        <View style={{margin: 30}}>
-          <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
-          <View style={{flexDirection: 'row'}}>
-            <Pressable
+        
+        
+        <FormContainer>
+          <FormInputText>{t('growthScreenenterMeasuresText')}</FormInputText>
+          <RadioBoxContainer>
+          <FDirRow>
+            <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddNewChildgrowth",
@@ -154,16 +158,17 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
+              >
+                <FlexFDirRowSpace>
+                  
               <Heading3>{t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
-            </Pressable>
-            <Pressable
+              
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+            <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddNewChildgrowth",
@@ -171,44 +176,45 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
+              >
+                <FlexFDirRowSpace>
               <Heading3>{t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
-            </Pressable>
-          </View>
-        </View>
-        <View>
-          <Heading3>{t('growthScreenenterDoctorRemarkText')}</Heading3>
-          <TextInput
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+          </FDirRow>
+          </RadioBoxContainer>
+        </FormContainer>
+        
+        <FormContainer>
+          <FormInputText>{t('growthScreenenterDoctorRemarkText')}</FormInputText>
+          <TextAreaBox>
+<TextInput
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="always"
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
             placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
-            style={{
-              backgroundColor: '#fff',
-              paddingHorizontal: 20,
-              paddingVertical: 20,
-            }}
+            
           />
-        </View>
-        <View>
+          </TextAreaBox>
+          
+        </FormContainer>
+        <ShiftFromTopBottom10>
           <Text>{t('growthScreennewGrowthBottomText')}</Text>
-        </View>
-        <View style={{width: '100%', marginTop: 30}}>
-          <ButtonPrimary
+          </ShiftFromTopBottom10>
+       
+        </MainContainer>
+        <ButtonContainer>
+          <ButtonTertiary
             onPress={() => {
               navigation.goBack();
             }}>
             <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
-          </ButtonPrimary>
-        </View>
+          </ButtonTertiary>
+        </ButtonContainer>
         <Modal
           animationType="none"
           transparent={true}
