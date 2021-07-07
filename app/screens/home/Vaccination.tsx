@@ -1,4 +1,8 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { MainContainer } from '@components/shared/Container';
+import { Flex1, FlexDirRow, FlexDirRowAround, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
+import { ToolsBgContainer, VacSummaryBox } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import PreviousVaccines from '@components/vaccination/PreviousVaccines';
 import UpcomingVaccines from '@components/vaccination/UpcomingVaccines';
@@ -7,8 +11,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
     Heading2,
     Heading3,
+    Heading4,
     Heading4Center,
-    Paragraph
+    Heading4Regular,
+    Paragraph,
+    ShiftFromTopBottom5
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -101,69 +108,39 @@ const Vaccination = ({navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
+        <ToolsBgContainer>
           <TabScreenHeader
             title="Vaccination"
             headerColor={headerColor}
             textColor="#000"
           />
           <ScrollView style={{flex: 4}}>
-            <View style={{backgroundColor: backgroundColor}}>
-              <Heading3>{t('vcSummaryHeader')}</Heading3>
-              <View style={{padding: 5}}>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  }}>
-                  <View
-                    style={{
-                      padding: 10,
-                      margin: 5,
-                      backgroundColor: '#FFF',
-                      flex: 1,
-                      alignItems: 'center',
-                    }}>
-                    <Heading2>22</Heading2>
-                    <Paragraph>{t('vcStatus1')}</Paragraph>
-                  </View>
-                  <View
-                    style={{
-                      padding: 10,
-                      margin: 5,
-                      backgroundColor: '#FFF',
-                      flex: 1,
-                      alignItems: 'center',
-                    }}>
-                    <Heading2>4</Heading2>
-                    <Paragraph>{t('vcStatus2')}</Paragraph>
-                  </View>
-                  <View
-                    style={{
-                      padding: 10,
-                      margin: 5,
-                      backgroundColor: '#FFF',
-                      flex: 1,
-                      alignItems: 'center',
-                    }}>
-                    <Heading2>42</Heading2>
-                    <Paragraph>{t('vcStatus3')}</Paragraph>
-                  </View>
-                </View>
-              </View>
+            <MainContainer style={{backgroundColor: backgroundColor}}>
+              <ShiftFromTopBottom5>
+            <Heading3>{t('vcSummaryHeader')}</Heading3>
+            </ShiftFromTopBottom5>
+            <View style={{flex:1,flexDirection:'row', justifyContent:'space-around'}}>	
+              <VacSummaryBox>
+              <Heading2>22</Heading2>
+                    <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
+              </VacSummaryBox>
+              <VacSummaryBox>
+
+              <Heading2>4</Heading2>
+              <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
+              </VacSummaryBox>
+              <VacSummaryBox>
+
+              <Heading2>42</Heading2>
+              <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
+              </VacSummaryBox>
             </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: '#FFF',
-                justifyContent: 'center',
-                padding: 5,
-              }}>
+            
+            </MainContainer>
+            <TabBarContainer
+                      style={{
+                        maxHeight: 50,
+                      }}>
               {data.map((item, itemindex) => {
                 return (
                   <Pressable
@@ -172,29 +149,28 @@ const Vaccination = ({navigation}: Props) => {
                     onPress={() => {
                       setSelectedIndex(itemindex);
                     }}>
-                    <View
+                    <TabBarDefault
                       style={[
                         {
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
                               : backgroundColor,
-                          padding: 10,
-                          margin: 3,
+                          
                         },
                       ]}>
                       <Heading4Center>{item.title}</Heading4Center>
-                    </View>
+                    </TabBarDefault>
                   </Pressable>
                 );
               })}
-            </View>
-
-            <View style={{flex: 1, width: '100%'}}>
+            </TabBarContainer>
+              
+            <Flex1>
               {renderItem(selectedIndex)}
-            </View>
+            </Flex1>
           </ScrollView>
-        </View>
+        </ToolsBgContainer>
       </SafeAreaView>
     </>
   );

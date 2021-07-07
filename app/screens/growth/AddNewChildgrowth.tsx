@@ -22,6 +22,7 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
+  Heading2,
     Heading2w,
     Heading3, Heading4Regular, ShiftFromTop10,ShiftFromTopBottom10
 } from '@styles/typography';
@@ -93,7 +94,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </Pressable>
         </HeaderIconView>
         <HeaderTitleView>
-          <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
+          <Heading2>{headerTitle}</Heading2>
         </HeaderTitleView>
         <HeaderActionView>
           <Pressable

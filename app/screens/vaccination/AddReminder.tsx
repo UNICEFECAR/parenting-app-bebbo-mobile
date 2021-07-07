@@ -1,11 +1,12 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainerTwo, ButtonPrimary, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormDateAction,
   FormDateText,
   FormInputBox,
   FormInputGroup
 } from '@components/shared/ChildSetupStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
@@ -17,9 +18,11 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
+  Heading2,
   Heading2w,
-  Heading3,
-  Paragraph
+  Heading3Center,
+  Paragraph,
+  ShiftFromTop30,ShiftFromTop20,ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -69,45 +72,33 @@ const defaulttimePickerValue =new Date();
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1, padding: 15}}>
+        <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+          
+              <HeaderIconView>
               <Pressable
                 onPress={() => {
                   navigation.goBack();
                 }}>
                 <Icon name={'ic_back'} color="#000" size={15} />
               </Pressable>
-            </View>
-            <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
-            </View>
-            <Pressable
-              style={{flex: 1, padding: 15}}
+              </HeaderIconView>
+              <HeaderTitleView>
+              <Heading2>{headerTitle}</Heading2>
+              </HeaderTitleView>
+              <HeaderActionView>
+              <Pressable
               onPress={() => {
                 setModalVisible(true)
               }}>
-              <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
-          </View>
-        </View>
+                <Text>{t('growthScreendeletebtnText')}</Text>
+              </Pressable>
+              </HeaderActionView>
+              </HeaderRowView>
+        
         <ScrollView style={{padding:15,flex:7}}>
           <Paragraph>{titleTxt}</Paragraph>
         <FormInputGroup onPress={showmeasureDatepicker}>
@@ -124,7 +115,7 @@ const defaulttimePickerValue =new Date();
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-
+<ShiftFromTop20>
         <FormInputGroup onPress={showmeasureTimepicker}>
           <FormInputBox>
             <FormDateText>
@@ -139,7 +130,7 @@ const defaulttimePickerValue =new Date();
             </FormDateAction>
           </FormInputBox>
         </FormInputGroup>
-        
+        </ShiftFromTop20>
         <View>
           {showmeasure && (
             <DateTimePicker
@@ -168,15 +159,15 @@ const defaulttimePickerValue =new Date();
         </View>
         
        
-        <View style={{width: '100%', marginTop: 30}}>
-          <ButtonPrimary
-          style={{backgroundColor:"#FFF"}}
+        <ShiftFromTop30>
+          <ButtonTertiary
+          
             onPress={() => {
               navigation.goBack();
             }}>
             <ButtonText>{buttonTitle}</ButtonText>
-          </ButtonPrimary>
-        </View>
+          </ButtonTertiary>
+          </ShiftFromTop30>
         <Modal
           animationType="none"
           transparent={true}
@@ -198,22 +189,31 @@ const defaulttimePickerValue =new Date();
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
               </PopupCloseContainer>
-              <Heading3>
+              <ShiftFromTopBottom10>
+              <Heading3Center>
                 {warningTxt}
-              </Heading3>
-              <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
-              <ButtonTertiary2 style={{marginRight:5}}>
-                <ButtonText>{t('growthDeleteOption1')}</ButtonText>
-              </ButtonTertiary2>
-              <ButtonTertiary2>
-                <ButtonText>{t('growthDeleteOption2')}</ButtonText>
-              </ButtonTertiary2>
-              </View>
+              </Heading3Center>
+              </ShiftFromTopBottom10>
+              <ButtonContainerTwo>
+                <ButtonColTwo>
+                  <ButtonSecondaryTint>
+                  <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                  </ButtonSecondaryTint>
+                  </ButtonColTwo>
+
+                  <ButtonColTwo>
+                  <ButtonSecondary>
+                  <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                    </ButtonSecondary>
+                    </ButtonColTwo>
+                
+              </ButtonContainerTwo>
+              
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
         </ScrollView>
-        </View>
+        
       </SafeAreaView>
     </>
   );

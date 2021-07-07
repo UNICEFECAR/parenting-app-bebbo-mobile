@@ -11,7 +11,7 @@ import Icon, {
 import { ImageIcon } from '@components/shared/Image';
 import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
-  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
+  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -106,7 +106,7 @@ const child_age = useAppSelector(
       currentActiveChild != null &&
       currentActiveChild != undefined &&
       currentActiveChild == data.uuid ? (
-        <ProfileListViewSelected>
+        <ProfileListViewSelected1>
           
           <ProfileIconView>
             {
@@ -143,7 +143,7 @@ const child_age = useAppSelector(
 
             <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
           </ProfileActionView>
-        </ProfileListViewSelected>
+        </ProfileListViewSelected1>
       ) : (
         <ProfileListDefault
           style={{
