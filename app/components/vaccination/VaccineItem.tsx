@@ -1,7 +1,10 @@
 import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
-import Icon from '@components/shared/Icon';
+import { BgContainer, MainContainer, VacItemContainer } from '@components/shared/Container';
+import { FDirRow, Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconRight, OuterIconRow } from '@components/shared/Icon';
+import { ToolsHeadView } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading3 } from '@styles/typography';
+import { Heading3, Heading4Regular, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -23,12 +26,10 @@ const VaccineItem = (props: any) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
   return (
     <>
-      <View key={key}
-        style={{
-          backgroundColor: '#FFF',
-          margin: 3,
-          flexDirection: 'row',
-        }}>
+      <VacItemContainer key={key}
+        >
+        <ToolsHeadView>
+          <FlexDirRow>
         <FormOuterCheckbox
           onPress={() => {
             setToggleCheckBox(!toggleCheckBox);
@@ -43,18 +44,30 @@ const VaccineItem = (props: any) => {
                 <Checkbox style={{borderWidth: 1}}></Checkbox>
               )}
             </View>
-          </CheckboxItem>
+          </CheckboxItem> 
+          <Flex1>
           <LabelText>
-          <Heading3>{title}</Heading3>
-          <Pressable
+          <Heading4Regular>{title}</Heading4Regular>
+          </LabelText>
+          </Flex1>
+        </FormOuterCheckbox>
+        </FlexDirRow>
+        <Pressable
             onPress={() => {
               gotoArticle();
             }}>
-            <Icon name="ic_info" size={15} color="#000" />
+            <OuterIconRow>
+           <OuterIconRight>
+             
+           <Icon name="ic_info" size={15} color="#000" />
+           
+             </OuterIconRight> 
+            </OuterIconRow>  
+            
           </Pressable>
-          </LabelText>
-        </FormOuterCheckbox>
-      </View>
+        
+        </ToolsHeadView>
+      </VacItemContainer>
     </>
   );
 };
