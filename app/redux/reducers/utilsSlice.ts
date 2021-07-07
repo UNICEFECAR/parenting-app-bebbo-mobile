@@ -30,7 +30,7 @@ interface hardcodedDataType {
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
   IsArticleModalOpened:boolean,
-  dailymessages:Array<any>
+  dailymessages:string,
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -61,7 +61,7 @@ const initialState: hardcodedDataType = {
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
   IsArticleModalOpened:true,
-  dailymessages:[]
+  dailymessages:''
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -69,11 +69,17 @@ export const utilsSlice = createSlice({
   reducers: {
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
+        console.log(action.payload,"actionpayload");
+        (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
+        if(action.payload.length>0)
+        {
+          state.dailymessages = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
+        }
           // console.log("dailyMessages data---",state);
-          const allDailyMessages = action.payload;
-          let allRecords = allDailyMessages
-          //console.log(allRecords,"allDailyMessages");
-          state.dailymessages =allRecords;
+          // const allDailyMessages = action.payload;
+          // let allRecords = allDailyMessages
+          // //console.log(allRecords,"allDailyMessages");
+          // state.dailymessages =allRecords;
           // (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
           // console.log(state);
           // state.dailymessages = action.payload[0];
