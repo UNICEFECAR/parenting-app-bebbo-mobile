@@ -44,7 +44,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
-  let relationshipValue = relationshipData.length>0 && userParentalRoleData!="" ? relationshipData.find((o:any) => o.id === userParentalRoleData):'';
+  let relationshipValue = relationshipData.length>0 && userParentalRoleData!="" ? relationshipData.find((o:any) => String(o.id) === userParentalRoleData):'';
   // console.log(relationshipName,"..relationshipName..");
 
   const actionSheetRef = createRef<any>();

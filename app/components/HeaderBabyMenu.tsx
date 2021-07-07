@@ -183,7 +183,7 @@ import {
                     // if(genders?.length>0 && item.gender!=""){
                     //   item.gender=genders.find(genderset => genderset.id === item.gender);
                     // }
-                    const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
+                    const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => String(genderset.id) === item.gender).name:item.gender;
                    // console.log(genderLocal,"..genderLocal..");
                     return renderChildItem(dispatch, item, index,genderLocal);
                   })
