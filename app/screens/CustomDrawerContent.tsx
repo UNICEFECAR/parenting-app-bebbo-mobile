@@ -29,9 +29,16 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../App';
 const CustomDrawerContent = ({navigation}: any) => {
   const {t} = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
+console.log(activeChild,"..activeChild..");
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -84,8 +91,8 @@ const CustomDrawerContent = ({navigation}: any) => {
                 </OuterIconLeft15>
                 </OuterIconRow>
                 <FDirCol>
-            <Heading3>Alice</Heading3>
-            <Heading5>{t('drawerMenuchildInfo',{childdob: '19 Jul 2020 02:32pm'})}</Heading5>
+            <Heading3>{activeChild.childName!=''?activeChild.childName:''}</Heading3>
+            <Heading5>{t('drawerMenuchildInfo',{childdob: (activeChild.birthDate!='' && activeChild.birthDate!=null && activeChild.birthDate!=undefined)?activeChild.birthDate:''})}</Heading5>
             </FDirCol>
             </FlexDirRow>
                 </HeaderTitleView>
