@@ -112,6 +112,7 @@ let  childData  = route.params.childData;
     }, [])
   );
  const onChildPhotoChange=async (child: ChildEntity | undefined, image: ImageObject)=>{
+    MediaPicker.cleanupImages();
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
         mkdir(CHILDREN_PATH);
@@ -231,7 +232,7 @@ const removePhoto=()=>{
           },
           { 
             text: "Delete", onPress: () => {
-            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject);
+            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
             navigation.navigate('ChildProfileScreen')
           }
           }
@@ -259,7 +260,7 @@ const removePhoto=()=>{
     // askPermissions();
   }, []);
   const AddChild = async () => {
-    MediaPicker.cleanupImages();
+    
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender) : await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, '', name, photoUri, gender);
     let childSet: Array<any> = [];
     childSet.push(insertData);
