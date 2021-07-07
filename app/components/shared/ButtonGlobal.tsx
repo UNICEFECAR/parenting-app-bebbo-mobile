@@ -6,7 +6,7 @@ export const ButtonPrimary = styled.Pressable`
 background: ${props => props.disabled ? '#cccccc' : props.theme.colors.SECONDARY_COLOR};
 opacity: ${props => props.disabled ? 0.5 : 1};
 color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
-padding: 14px 6px;
+padding: 14px 18px;
 width:100%;
 font-family: 'roboto-bold';
 border-radius: 4px;
@@ -99,9 +99,15 @@ export const ButtonCol = styled.View`
 export const ButtonContainer = styled.View`
 padding:10px 15px;
 
-
 `;
+export const ButtonContainerAuto = styled.View`
+padding:10px 15px;
+width:auto;
+margin:0 auto;
 
+text-align:center;
+align-items:center;
+`;
 export const ButtonSpacing = styled.View`
 padding:5px 15px;
 `;
