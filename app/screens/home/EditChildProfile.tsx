@@ -269,7 +269,12 @@ const removePhoto=()=>{
   }
   const getCheckedItem =(checkedItem:typeof genders[0])=>{
     //console.log(checkedItem);
+    if (typeof checkedItem.id === 'string' || checkedItem.id instanceof String){
     setGender(checkedItem.id);
+    }
+    else{
+      setGender(String(checkedItem.id));
+    }
   }
   return (
     <>
