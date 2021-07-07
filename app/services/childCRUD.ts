@@ -169,7 +169,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-    setActiveChild(data[0].uuid,dispatch,child_age);
+   
   }
   else if (param == 1) {
     navigation.navigate('ChildSetupList');
@@ -177,7 +177,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
   else {
     navigation.navigate('ChildProfileScreen');
   }
-
+  setActiveChild(data[0].uuid,dispatch,child_age);
 
   // //console.log(new Date()," result is ",createresult);
 
