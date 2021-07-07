@@ -77,8 +77,8 @@ if(uuid!="" && uuid!=null && uuid!=undefined){
         dispatch(setActiveChildData(child));
     }
    }
- }
- else{
+}
+else{
   let child =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   child=child.find((record:any, index:number) => index === 0);
   if(child.birthDate!=null && child.birthDate!=undefined && child.birthDate!=""){
@@ -176,7 +176,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
-   
+    setActiveChild(data[0].uuid,dispatch,child_age);
   }
   else if (param == 1) {
     navigation.navigate('ChildSetupList');
@@ -184,7 +184,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
   else {
     navigation.navigate('ChildProfileScreen');
   }
-  setActiveChild(data[0].uuid,dispatch,child_age);
+ 
 
   // //console.log(new Date()," result is ",createresult);
 
@@ -252,11 +252,19 @@ export const getAllChildren = async (dispatch: any) => {
   }
 }
 
-export const deleteChild = async (index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any,resolve:any,reject:any) => {
+export const deleteChild = async (index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any,resolve:any,reject:any,child_age:any) => {
+  //setActiveChild(data.uuid,dispatch,child_age);
+  let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   //console.log(createresult,"..createresult..");
   if (createresult == 'success') {
     //console.log(index, "..index..");
+    if(currentActiveChildId?.length>0){
+      currentActiveChildId=currentActiveChildId[0].value;
+      if(currentActiveChildId==recordId){
+        setActiveChild('',dispatch,child_age);
+      }
+    }
     ToastAndroid.showWithGravityAndOffset(
       "User Deleted Succesfully",
       ToastAndroid.LONG,

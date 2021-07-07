@@ -91,7 +91,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             style: "cancel"
           },
           { text: "Delete", onPress: () => {
-            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject);
+            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
           }
           }
         ]
