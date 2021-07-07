@@ -62,6 +62,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
        },[])
   );
   const saveParentData=async (relationship:string,parentName:any)=>{
+    console.log(typeof(relationship),"typeof")
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName",parentName);
     // console.log(userParentalRole,"..userParentalRole")
