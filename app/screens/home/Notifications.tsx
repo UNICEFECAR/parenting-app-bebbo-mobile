@@ -4,7 +4,7 @@ import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary,ButtonSecondaryTint,ButtonPrimary, ButtonPrimaryMd, ButtonText } from '@components/shared/ButtonGlobal';
-import { FlexDirCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FlexDirCol,FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -130,7 +130,7 @@ const Notifications = () => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <FlexDirCol>
+        <FlexCol>
           <HeaderRowView
             style={{
               backgroundColor: primaryColor,
@@ -196,7 +196,7 @@ const Notifications = () => {
               </ButtonContainerTwo>
             </>
           ) : null}
-        </FlexDirCol>
+        </FlexCol>
       </SafeAreaView>
     </>
   );

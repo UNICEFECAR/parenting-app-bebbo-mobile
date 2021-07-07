@@ -18,12 +18,20 @@ export const FlexFDirRowSpace = styled(FlexDirRowSpace)`
 flex:1;
 
 `;
-
+export const FlexDirRowAround = styled(FlexDirRowSpace)`
+flex:1;
+justify-content:space-around;
+`;
 
 export const FlexDirRowSpaceStart = styled(FlexDirRowSpace)`
 align-items:flex-start;
 `;
 
+export const FlexCol = styled.View`
+flex-direction:column;
+flex:1;
+
+`;
 export const FlexDirCol = styled.View`
 flex-direction:column;
 flex:1;
