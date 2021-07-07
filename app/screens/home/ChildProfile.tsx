@@ -86,8 +86,9 @@ const child_age = useAppSelector(
         (state: any) =>
           JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
       );
-    let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
-     
+      console.log(relationshipData,"..relationshipData..")
+    let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => String(o.id) === userParentalRoleData[0].value):'';
+    console.log(relationshipValue,"..relationshipValue..")
   // const currentActiveChildId =
   //   allConfigData?.length > 0
   //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
