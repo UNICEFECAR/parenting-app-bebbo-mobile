@@ -166,6 +166,13 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
       routes: [{ name: 'ChildSetupList' }],
     });
    // console.log(data[0].relationship,"..data[0].relationship..");
+   var relationship=data[0].relationship;
+   if (typeof relationship === 'string' || relationship instanceof String){
+    data[0].relationship=relationship
+   }
+   else{
+    data[0].relationship=String(relationship);
+   }
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
