@@ -11,7 +11,7 @@ import Icon, {
 import { ImageIcon } from '@components/shared/Image';
 import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
-  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
+  ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -107,7 +107,7 @@ const child_age = useAppSelector(
       currentActiveChild != null &&
       currentActiveChild != undefined &&
       currentActiveChild == data.uuid ? (
-        <ProfileListViewSelected1>
+        <ProfileListViewSelected>
           
           <ProfileIconView>
             {
@@ -144,7 +144,7 @@ const child_age = useAppSelector(
 
             <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
           </ProfileActionView>
-        </ProfileListViewSelected1>
+        </ProfileListViewSelected>
       ) : (
         <ProfileListDefault
           style={{
@@ -222,7 +222,7 @@ const child_age = useAppSelector(
             <ScrollView style={{height: 'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
-                  const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => genderset.id === item.gender).name:item.gender;
+                  const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => String(genderset.id) === item.gender).name:item.gender;
                   return renderChildProfile(dispatch, item, index,genderLocal);
                   })
                 : null}
