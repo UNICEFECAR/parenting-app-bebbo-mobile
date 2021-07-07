@@ -120,7 +120,12 @@ const AddChild=async ()=>{
                   <ChildRelationList key={index}>
                     <Pressable
                       onPress={() => {
-                        setRelationship(item.id);
+                        if (typeof item.id === 'string' || item.id instanceof String){
+                          setRelationship(item.id);
+                        }
+                        else{
+                          setRelationship(String(item.id));
+                        }
                         setRelationshipName(item.name);
                         actionSheetRef.current?.hide();
                       }}>
