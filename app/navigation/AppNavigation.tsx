@@ -1,3 +1,4 @@
+import { dailyHomeNotificationdata } from '@assets/translations/appOfflineData/dailyHomeNotification';
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,15 +27,15 @@ import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
+import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSchema';
 import {
   TaxonomyEntity,
   TaxonomySchema
 } from '../database/schema/TaxonomySchema';
-import { setAllTaxonomyData } from '../redux/reducers/utilsSlice';
+import { setAllTaxonomyData, setDailyMessagesData } from '../redux/reducers/utilsSlice';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -71,8 +72,22 @@ export default () => {
       taxonomydata,
       setAllTaxonomyData,
     );
+   setDailyMessagestoStore()
     //console.log("taxonomyData--",taxonomyData);
   }, [languageCode]);
+  const setDailyMessagestoStore = async ()=>{
+    let Entity: any;
+    const alldailyNotiData = await useToGetOfflineData(
+      languageCode,
+      dispatch,
+      DailyHomeMessagesSchema,
+      Entity as DailyHomeMessagesEntity,
+      dailyHomeNotificationdata,
+      setDailyMessagesData,
+      'id',
+    );
+    console.log(alldailyNotiData)
+  }
   // useEffect(() => {
   //   async function addDBListener() {
   //     const datarealm = await dataRealmCommon.openRealm();
