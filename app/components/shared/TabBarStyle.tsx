@@ -14,5 +14,8 @@ background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex-direction:row;
 padding:2px 3px;
 justify-content:center;
-border-radius:4px
+border-radius:4px;
+/*margin-bottom:10px;*/
+border-bottom-width:1px;
+border-color:rgba(0,0,0,0.2)
 `

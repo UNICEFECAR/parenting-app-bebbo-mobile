@@ -1,26 +1,38 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
+  FormContainer,
+    FormContainerFlex,
     FormDateAction,
     FormDateText,
     FormInputBox,
-    FormInputGroup
+    FormInputGroup,
+    FormInputText,
+    TextAreaBox
 } from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
     PopupClose,
     PopupCloseContainer,
     PopupOverlay
 } from '@components/shared/ModalPopupStyle';
+import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
+  Heading2,
     Heading2w,
     Heading3,
-    Heading4Regular
+    Heading3Center,
+    Heading4Regular,
+    ShiftFromTop15,
+    ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -75,48 +87,38 @@ const AddChildVaccination = ({route, navigation}: any) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                flex: 1,
-                backgroundColor: headerColor,
-                maxHeight: 50,
-              }}>
-              <View style={{flex: 1, padding: 15}}>
-                <Pressable
+        <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+          
+              <HeaderIconView>
+              <Pressable
                   onPress={() => {
                     navigation.goBack();
                   }}>
                   <Icon name={'ic_back'} color="#000" size={15} />
                 </Pressable>
-              </View>
-              <View style={{flex: 8, padding: 7}}>
-                <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
-              </View>
+              </HeaderIconView>
+              <HeaderTitleView>
+              <Heading2>{headerTitle}</Heading2>
+              </HeaderTitleView>
+              <HeaderActionView>
               <Pressable
-                style={{flex: 1, padding: 15}}
+                
                 onPress={() => {
                   setModalVisible(true);
                 }}>
                 <Text>{t('growthScreendeletebtnText')}</Text>
               </Pressable>
-            </View>
-          </View>
-          <ScrollView style={{padding: 15, flex: 9, paddingBottom: 30}}>
+              </HeaderActionView>
+              </HeaderRowView>
+         
+          <ScrollView style={{flex: 9}}>
+            <MainContainer>
             <FormInputGroup onPress={showmeasureDatepicker}>
-              <Heading3>{t('vcScreenDateText')}</Heading3>
+              {/* <Heading3>{t('vcScreenDateText')}</Heading3> */}
               <FormInputBox>
                 <FormDateText>
                   <Text>
@@ -130,10 +132,19 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 </FormDateAction>
               </FormInputBox>
             </FormInputGroup>
+            <FormContainerFlex>
+            <FormInputText>
+              
             <Heading3>{t('vcPlanned')}</Heading3>
+            </FormInputText>
             <PlannedVaccines />
+            </FormContainerFlex>
+            <FormContainerFlex>
+              <FormInputText>
             <Heading3>{t('vcPrev')}</Heading3>
+            </FormInputText>
             <PrevPlannedVaccines />
+            </FormContainerFlex>
             <View>
               {showmeasure && (
                 <DateTimePicker
@@ -147,7 +158,8 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 />
               )}
             </View>
-            <Heading3>{t('vcChildMeasureQ')}</Heading3>
+            <FormContainerFlex>
+            <FormInputText><Heading3>{t('vcChildMeasureQ')}</Heading3></FormInputText>
             <ToggleRadios
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
@@ -156,13 +168,19 @@ const AddChildVaccination = ({route, navigation}: any) => {
               getCheckedItem={getCheckedItem}
             />
 
-            <View>
+            
+            </FormContainerFlex>
+            
               {
                 isMeasured ? <>
-                <View style={{margin: 30}}>
+            <ShiftFromTop15>
+              <FormInputText>
           <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
-          <View style={{flexDirection: 'row'}}>
-            <Pressable
+          </FormInputText>
+          <RadioBoxContainer>
+          <FDirRow>
+            <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddChildVaccination",
@@ -170,16 +188,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
-              <Heading3>{t('growthScreenwText')}</Heading3>
+              >
+                <FlexFDirRowSpace>
+                <Heading3>{t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
-            </Pressable>
-            <Pressable
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+            <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddChildVaccination",
@@ -187,23 +204,24 @@ const AddChildVaccination = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
-              <Heading3>{t('growthScreenhText')}</Heading3>
+              >
+                <FlexFDirRowSpace>
+                <Heading3>{t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
-            </Pressable>
-          </View>
-        </View>
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+          </FDirRow>
+          </RadioBoxContainer>
+          </ShiftFromTop15>
+
                 </>
                 :null
               }
-            </View>
-            <View>
-              <Heading3>{t('vcDoctorRemark')}</Heading3>
+            
+            <FormContainer>
+            <FormInputText><Heading3>{t('vcDoctorRemark')}</Heading3></FormInputText>
+            <TextAreaBox>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -211,25 +229,22 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 value={''}
                 // onChangeText={queryText => handleSearch(queryText)}
                 placeholder={t('vcDoctorRemarkPlaceHolder')}
-                style={{
-                  backgroundColor: '#fff',
-                  paddingHorizontal: 20,
-                  paddingVertical: 20,
-                }}
+                
               />
-            </View>
+              </TextAreaBox>
+            </FormContainer>
+            </MainContainer>
           </ScrollView>
-          <View style={{flex: 1, backgroundColor: headerColor, maxHeight: 100}}>
-            <View style={{width: '100%', marginTop: 30}}>
-              <ButtonPrimary
-                style={{backgroundColor: '#FFF'}}
+          <ButtonContainer>
+            
+              <ButtonTertiary
                 onPress={() => {
                   navigation.goBack();
                 }}>
                 <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
-              </ButtonPrimary>
-            </View>
-          </View>
+              </ButtonTertiary>
+            
+          </ButtonContainer>
 
           <Modal
             animationType="none"
@@ -252,24 +267,28 @@ const AddChildVaccination = ({route, navigation}: any) => {
                     <Icon name="ic_close" size={16} color="#000" />
                   </PopupClose>
                 </PopupCloseContainer>
-                <Heading3>{t('vcDeleteWarning')}</Heading3>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    padding: 10,
-                  }}>
-                  <ButtonTertiary2 style={{marginRight: 5}}>
-                    <ButtonText>{t('growthDeleteOption1')}</ButtonText>
-                  </ButtonTertiary2>
-                  <ButtonTertiary2>
-                    <ButtonText>{t('growthDeleteOption2')}</ButtonText>
-                  </ButtonTertiary2>
-                </View>
+                <ShiftFromTopBottom10>
+                <Heading3Center>{t('vcDeleteWarning')}</Heading3Center>
+                </ShiftFromTopBottom10>
+                <ButtonContainerTwo>
+                <ButtonColTwo>
+                  <ButtonSecondaryTint>
+                  <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                  </ButtonSecondaryTint>
+                  </ButtonColTwo>
+
+                  <ButtonColTwo>
+                  <ButtonSecondary>
+                  <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                    </ButtonSecondary>
+                    </ButtonColTwo>
+                
+              </ButtonContainerTwo>
+                
               </ModalPopupContainer>
             </PopupOverlay>
           </Modal>
-        </View>
+        
       </SafeAreaView>
     </>
   );

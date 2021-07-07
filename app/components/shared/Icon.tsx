@@ -37,4 +37,19 @@ export const IconBox = styled.View`
 export const OuterIconSpace = styled.View`
  padding:8px
 `;
+
+export const OuterIconDone = styled.View`
+align-items:center;
+line-height:20px;
+flex-direction:row;
+width:20px;
+height:20px;
+border-radius:100px;
+background-color:#009B00;
+justify-content:center;
+
+`;
+
+
+
 export default Icon;

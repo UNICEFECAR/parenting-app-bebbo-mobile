@@ -9,6 +9,13 @@ export const MainContainer = styled.View`
   width: 100%;
   padding:10px 15px;
 `;
+export const VacItemContainer = styled.View`
+  width: 100%;
+  padding:15px 15px 8px;
+  border-bottom-width:1px;
+  border-color:rgba(0,0,0,0.2)
+  
+`;
 
 export const BannerContainer = styled.View`
   border-radius:4px;

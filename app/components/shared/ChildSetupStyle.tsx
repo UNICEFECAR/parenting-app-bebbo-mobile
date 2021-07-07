@@ -88,26 +88,34 @@ export const TitleLinkSm = styled.Text`
 /*Form Styling*/
 export const FormContainer = styled.View`
   margin-top:25px;
+  
+`;
+export const FormContainerFlex = styled(FormContainer)`
+  flex:1
 `;
 
 export const FormInputBox = styled.View`
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius: 4px;
+  align-items:center;
+  justify-content:space-between;
+  height:52px;
+  padding:12px;
 `;
 export const FormDateText = styled.View`
-  flex: 4;
-  justify-content: flex-start;
-  flex-direction: row;
-  padding: 16px;
+  /*flex: 4;*/
+  /*justify-content: flex-start;
+  flex-direction: row;*/
+  
 `;
 
 export const FormDateAction = styled.View`
-  flex: 1;
+ /* flex: 1;
   justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px 5px;
+  flex-direction: row;*/
+  
+ 
 `;
 
 export const FormInputGroup = styled.Pressable`
@@ -123,7 +131,7 @@ export const FormInputText = styled(LabelText)`
 export const TextAreaBox = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding: 0 15px;
-height:60px;
+height:75px;
 border-radius:4px;
 `;
 

@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 const ModalPopupContainer = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius: 4px;
-  padding: 30px 20px;
+  padding: 20px 15px;
   align-items: center;
 `;
 
