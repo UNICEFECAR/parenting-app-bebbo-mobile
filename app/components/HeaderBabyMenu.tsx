@@ -31,6 +31,7 @@ import { formatDate } from '../services/Utils';
 import {
   ButtonLinkPress,
   ButtonPrimary,
+  ButtonContainer,
   ButtonRow, ButtonSpacing, ButtonText,
   ButtonTextLine, ButtonTextSmLine
 } from './shared/ButtonGlobal';
@@ -38,7 +39,7 @@ import {
   HeaderActionBox, HeaderActionView
 } from './shared/HeaderContainerStyle';
 import {
-  ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileTextView
+  ProfileActionView, ProfileIconView, ProfileListView, ProfileListViewSelected, ProfileSectionView, ProfileTextView
 } from './shared/ProfileListingStyle';
   const headerHeight = 50;
   const HeaderBabyMenu = (props: any) => {
@@ -106,8 +107,10 @@ import {
             }
             </ProfileIconView>
             <ProfileTextView>
+            <ProfileSectionView>
               <Heading3>{data.childName}</Heading3>
               <Heading5>{genderName}</Heading5>
+              </ProfileSectionView>
               <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -186,8 +189,8 @@ import {
                   })
                 : null}
   
-              <ButtonSpacing>
-                <ButtonRow>
+              <ButtonContainer>
+                
                   <ShiftFromBottom20>
                     <ButtonLinkPress
                       onPress={() =>
@@ -206,8 +209,8 @@ import {
                     onPress={() => navigation.navigate('ChildProfileScreen')}>
                     <ButtonText>Manage Profile</ButtonText>
                   </ButtonPrimary>
-                </ButtonRow>
-              </ButtonSpacing>
+               
+              </ButtonContainer>
             </TouchableOpacity>
           </Pressable>
         </Modal>
