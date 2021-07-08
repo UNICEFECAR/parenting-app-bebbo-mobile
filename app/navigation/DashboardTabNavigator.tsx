@@ -14,14 +14,15 @@ import HealthCheckups from '@screens/home/HealthCheckups';
 import Vaccination from '@screens/home/Vaccination';
 import { Heading3 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-    Modal,
-    Pressable,
-    StyleSheet,
-    Text,
-    TouchableOpacity
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity
 } from 'react-native';
-import { ThemeContext } from 'styled-components/native';	
+import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
@@ -41,6 +42,7 @@ export default () => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.SECONDARY_COLOR;
   const navigation = useNavigation();
+  const {t, i18n} = useTranslation();
   return (
     <>
       <Modal
@@ -69,6 +71,7 @@ export default () => {
               <Text style={styles.modalText}>Add New Development Milestone</Text>
             </Pressable> */}
 
+
             <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
               <BottomBarList>
               <FDirRow>
@@ -77,7 +80,7 @@ export default () => {
                 <Icon name="ic_vaccination" size={24} color="#000" />
                 </OuterIconLeft>
                 </OuterIconRow>
-              <Heading3>Vaccination</Heading3>
+              <Heading3>{t('tabbarLabel6')}</Heading3>
               </FDirRow>
               </BottomBarList>
             </Pressable>
@@ -90,7 +93,7 @@ export default () => {
                 </OuterIconLeft>
                 </OuterIconRow>
               
-              <Heading3>Health Checkup</Heading3>
+              <Heading3>{t('tabbarLabel7')}</Heading3>
               </FDirRow>
               </BottomBarList>
             </Pressable>
@@ -102,9 +105,10 @@ export default () => {
                 <Icon name="ic_growth" size={24} color="#000" />
                 </OuterIconLeft>
                 </OuterIconRow>
-              <Heading3>Child Growth</Heading3>
+              <Heading3>{t('tabbarLabel8')}</Heading3>
               </FDirRow>
               </BottomBarList>
+
             </Pressable>
             
             </BottomBarBg>
@@ -122,7 +126,7 @@ export default () => {
       >
         <DashboardBottomTab.Screen name="Home" component={Home}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: t('tabbarLabel1'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
@@ -130,7 +134,7 @@ export default () => {
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities}
           options={{
-            tabBarLabel: 'Play',
+            tabBarLabel: t('tabbarLabel2'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
@@ -140,7 +144,7 @@ export default () => {
           component={secondaryRoot}
           name="Tools"
           options={{
-            tabBarLabel: 'Tools',
+            tabBarLabel: t('tabbarLabel3'),
             tabBarIcon: ({ color, size }) => (
               // <View
               //   style={{
@@ -165,7 +169,7 @@ export default () => {
         />
         <DashboardBottomTab.Screen name="Articles" component={Articles}
           options={{
-            tabBarLabel: 'Articles',
+            tabBarLabel: t('tabbarLabel4'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
@@ -173,7 +177,7 @@ export default () => {
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment}
           options={{
-            tabBarLabel: 'Track',
+            tabBarLabel: t('tabbarLabel5'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
