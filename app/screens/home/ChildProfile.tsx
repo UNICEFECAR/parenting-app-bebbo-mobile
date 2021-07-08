@@ -3,6 +3,7 @@ import {
   ButtonLinkPress, ButtonTextMdLineL,
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
+import { FDirCol, FDirRow } from '@components/shared/FlexBoxStyle';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -134,6 +135,7 @@ const child_age = useAppSelector(
             </ProfileLinkView>
           </ProfileTextView>
           <ProfileActionView>
+            
             <OuterIconRow>
               <OuterIconLeft>
                 <TickView>
@@ -143,6 +145,7 @@ const child_age = useAppSelector(
             </OuterIconRow>
 
             <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+            
           </ProfileActionView>
         </ProfileListViewSelected1>
       ) : (

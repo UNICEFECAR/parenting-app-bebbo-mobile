@@ -1,12 +1,15 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
     ChildRelationList,
+    FormContainer,
     FormDateAction, FormDateText,
     FormInputBox,
     FormInputGroup,
-    LabelText
+    LabelText,
+    TextAreaBox
 } from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -23,7 +26,8 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/C
 import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
     Heading2w,
-    Heading3
+    Heading3,
+    ShiftFromTop20,ShiftFromTop10
 } from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -103,7 +107,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             </View>
           </View>
        
-
+<MainContainer>
         <FormInputGroup
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
@@ -119,6 +123,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
                 </FormDateAction>
               </FormInputBox>
             </FormInputGroup>
+            
         <ActionSheet ref={actionSheetRef}>
           <View>
             {
@@ -143,8 +148,9 @@ const EditParentDetails = ({route,navigation}: Props) => {
             })}
           </View>
         </ActionSheet>
-          <View>
+          <FormContainer>
             <LabelText>Parent Name</LabelText>
+            <TextAreaBox>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -154,14 +160,13 @@ const EditParentDetails = ({route,navigation}: Props) => {
               value={parentName}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
-              style={{
-                backgroundColor: '#fff',
-                paddingHorizontal: 20,
-                paddingVertical: 20,
-              }}
-            />
-          </View>
-          <View style={{width: '100%', marginTop: 30}}>
+              
+            /></TextAreaBox>
+          </FormContainer>
+          </MainContainer>
+          <ShiftFromTop10>
+          <ButtonContainer>
+            
             <ButtonPrimary
               onPress={() => {
                 saveParentData(relationship,parentName);
@@ -169,7 +174,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
               }}>
               <ButtonText>Save Data</ButtonText>
             </ButtonPrimary>
-          </View>
+          </ButtonContainer>
+          </ShiftFromTop10>
       </SafeAreaView>
     </>
   );

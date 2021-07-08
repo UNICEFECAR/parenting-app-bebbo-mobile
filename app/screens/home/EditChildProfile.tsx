@@ -1,13 +1,17 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
-import { LabelText } from '@components/shared/ChildSetupStyle';
-import Icon from '@components/shared/Icon';
+import { ArticleHeading } from '@components/shared/ArticlesStyle';
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { FormInputGroup, LabelText,FormInputBox, FormInputText, FormContainerFlex} from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
+import { FlexCol, FlexDirRow,FlexDirCol } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import Icon, { IconBox } from '@components/shared/Icon';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w, Heading4 } from '@styles/typography';
+import { Heading2w,Heading2,SideSpacing10,Heading3,Heading3w, Heading4, Heading4Regular, Heading4Regularw, Heading4w, ShiftFromTop10, ShiftFromTop20 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { createRef, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -287,67 +291,71 @@ const removePhoto=()=>{
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View style={{ flex: 1, padding: 15 }}>
-            <Pressable
+        <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+          
+              <HeaderIconView>
+              <Pressable
               onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
             </Pressable>
-          </View>
-          <View style={{ flex: 9, padding: 7 }}>
-          {
+              </HeaderIconView>
+              <HeaderTitleView>
+              {
           childData && childData?.uuid!=""?(<Heading2w>{t('editChildProfileHeader')} </Heading2w>):( <Heading2w>{t('addChildProfileHeader')}</Heading2w>)
            
           }
-          </View>
-          <View style={{ flex: 9, padding: 7,alignItems:'flex-end' }}>
-          {
+              </HeaderTitleView>
+              <HeaderActionView>
+              {
           (childList?.length> 1 && childData && childData?.uuid!="") ? (
-            <Heading2w onPress={() => deleteRecord(childData?.index,dispatch,childData?.uuid)}>Delete</Heading2w>
+            <Heading4Regularw onPress={() => deleteRecord(childData?.index,dispatch,childData?.uuid)}>{t('growthScreendeletebtnText')}</Heading4Regularw>
             ) :null
           }
-           </View>
-        </View>
-
+              
+              </HeaderActionView>
+              </HeaderRowView>
         <ScrollView style={{ flex: 4 }}>
-          <View style={{ flexDirection: 'column' }}>
-         
+          <FlexCol>
           {
-           
             (photoUri!='' && photoUri!=null && photoUri!=undefined) ?
-           
             <View style={styles.container}>
             <ImageBackground source={photoUri!='' ? {uri:  "file://"+CHILDREN_PATH +photoUri } : null} style={styles.image}>
-            <View style={styles.text}><Icon name="ic_edit" size={30} color="#FFF" onPress={() => {
+            <View style={{backgroundColor:'#fff',borderRadius:100, margin:10,padding:10}}><Icon name="ic_edit" size={16} color="#000" onPress={() => {
                         actionSheetRef.current?.setModalVisible();
                       }}/></View>
             </ImageBackground>
           </View>:
              <Pressable
               style={{
-                height: 150,
+                height: 180,
                 backgroundColor: SecondaryColor,
-                justifyContent: 'center',
-                alignItems: 'center',
+                alignItems:'center',justifyContent:'center'
               }}
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <Icon name="ic_camera" size={20} color="#FFF" />
+                <IconBox>
+              <Icon name="ic_camera" size={24} color="#000" />
+              </IconBox>
+              <ShiftFromTop10>
+              <Heading4Regular>Upload Child Photo</Heading4Regular>
+              </ShiftFromTop10>
+              
             </Pressable>
               }
-            <View style={{ padding: 10 }}>
+            <MainContainer>
+
+              <FormInputGroup>
+                <ShiftFromTop10>
               <LabelText>{t('childNameTxt')}</LabelText>
-              <View style={{ flex: 1 }}>
-                <TextInput
+              <FormInputBox>
+              <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
                   maxLength={30}
@@ -356,84 +364,37 @@ const removePhoto=()=>{
                   value={name}
                   // onChangeText={queryText => handleSearch(queryText)}
                   placeholder={t('childNamePlaceTxt')}
-                  style={{
-                    backgroundColor: '#FFF',
-                  }}
-                />
-              </View>
-              {/* <View style={{ flexDirection: 'row' }}>
-                {genders.map((item, index) => {
-                  return (
-                    <View
-                      key={index}
-                      style={{ padding: 10, backgroundColor: '#FFF', margin: 3 }}>
-                      <Pressable
-                        onPress={() => {
-                          //console.log(item,"..item..");
-                          setGender(item);
-                        }}>
-                        <Heading3>{item}</Heading3>
-                      </Pressable>
-                    </View>
-                  );
-                })}
-              </View> */}
-  <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
-      
-              <ChildDate sendData={sendData} childData={childData} />
-
-              <View style={{ width: '100%', marginTop: 30 }}>
-                
-                <ButtonPrimary  disabled={!validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender)}
-                  onPress={() => {
-                  //  console.log(birthDate,"..birthDate..");
-                  //  console.log(isPremature,"..isPremature..");
-                  //  console.log(plannedTermDate,"..plannedTermDate..");
-                  //  console.log(isExpected,"..isExpected..");
-                   const validated=validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender);
-                   if(validated==true){
-                    AddChild();
-                   }
-                   else{
-                  //  Alert.alert(validated);
-                   }
-                  // AddChild()
-                  // if(birthDate==null || birthDate==undefined){
-                  //   Alert.alert('Please enter birth date');
-                  // }
-                  // else{
-                  //   if(isPremature){
-                  //     if(plannedTermDate==null || plannedTermDate==undefined){
-                  //       Alert.alert('Please enter due date');
-                  //     }
-                  //     else{
-                  //       AddChild();
-                  //     }
-                  //   }
-                  //   else{
-                  //     AddChild();
-                  //    }
                   
-                  // }
-                }}>
-                  {
-                  childData && childData?.uuid!=""?(
-                  <ButtonText>{t('editProfileBtn')}</ButtonText>):(
-                  <ButtonText>{t('addProfileBtn')}</ButtonText>)
-                  }
-                </ButtonPrimary>
-                 
-               
-              </View>
-            </View>
-          </View>
+                />
+              </FormInputBox>
+              </ShiftFromTop10>
+              </FormInputGroup>
+              <FormContainerFlex>
+              <ToggleRadios options={genders} defaultValue={getDefaultgenderValue()} tickbgColor={headerColor} tickColor={"#FFF"} getCheckedItem={getCheckedItem}/>
+              </FormContainerFlex>
+              <ShiftFromTop10>
+<ChildDate sendData={sendData} childData={childData} />
+              </ShiftFromTop10>
+  
+  
+      
+              
+
+              
+            </MainContainer>
+          </FlexCol>
           <ActionSheet ref={actionSheetRef}>
+            <MainContainer>
+            <ArticleHeading>
+            <Heading2>Choose</Heading2>
+            </ArticleHeading>
             <View
               style={{
-                justifyContent: 'space-between',
+                justifyContent: 'flex-start',
                 alignItems: 'center',
                 flexDirection: 'row',
               }}>
+                
               {
               imageOptions.map((item, index) => {
                 console.log(index==0 && (photoUri=='' || photoUri==null || photoUri==undefined));
@@ -463,8 +424,32 @@ const removePhoto=()=>{
                 }
               })}
             </View>
+            </MainContainer>
           </ActionSheet>
         </ScrollView>
+        <ButtonContainer>
+                <ButtonPrimary  disabled={!validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender)}
+                  onPress={() => {
+                  //  console.log(birthDate,"..birthDate..");
+                  //  console.log(isPremature,"..isPremature..");
+                  //  console.log(plannedTermDate,"..plannedTermDate..");
+                  //  console.log(isExpected,"..isExpected..");
+                   const validated=validateForm(1,birthDate,isPremature,'',plannedTermDate,name,gender);
+                   if(validated==true){
+                    AddChild();
+                   }
+                   else{
+                 
+                   }
+            
+                }}>
+                  {
+                  childData && childData?.uuid!=""?(
+                  <ButtonText>{t('editProfileBtn')}</ButtonText>):(
+                  <ButtonText>{t('addProfileBtn')}</ButtonText>)
+                  }
+                </ButtonPrimary>
+              </ButtonContainer>
       </SafeAreaView>
     </>
   );
@@ -474,12 +459,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    height: 250,
+    height: 180,
+    
   },
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    alignItems:'flex-end',
+    
+
   },
   text: {
     alignSelf: 'flex-end',
