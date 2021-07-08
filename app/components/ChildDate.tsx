@@ -7,6 +7,7 @@ import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { formatDate, formatStringDate } from '../services/Utils';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem,
@@ -30,6 +31,7 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 
 const ChildDate = (props: any) => {
+  const [dateFormat, setDateFormat] = useState("day month year");
   let birthDate, isPremature, plannedTermDate=null;
   const {childData}=props;
   const isFutureDate = (date: Date) => {
@@ -104,7 +106,7 @@ const ChildDate = (props: any) => {
           <LabelText> {t('childSetupdobLabel')}</LabelText>
           <FormInputBox>
             <FormDateText>
-              <Text> {doborExpectedDate ? doborExpectedDate.toDateString() : t('childSetupdobSelector')}</Text>
+              <Text> {doborExpectedDate ? formatStringDate(doborExpectedDate) : t('childSetupdobSelector')}</Text>
             </FormDateText>
             <FormDateAction>
               <Icon name="ic_calendar" size={20} color="#000" />
@@ -159,6 +161,7 @@ const ChildDate = (props: any) => {
           {showdob && (
             <DateTimePicker
               testID="dobdatePicker"
+              dateFormat={"day month year"}
               minimumDate={ new Date(dobMin)}
               maximumDate={ new Date(dobMax)}
               value={new Date()}
@@ -176,7 +179,7 @@ const ChildDate = (props: any) => {
                 <LabelText>{t('childSetupdueLabel')}</LabelText>
                 <FormInputBox>
                   <FormDateText>
-                    <Text> {dueDate ? dueDate.toDateString() : t('childSetupdueSelector')}</Text>
+                    <Text> {dueDate ? formatStringDate(dueDate) : t('childSetupdueSelector')}</Text>
                   </FormDateText>
                   <FormDateAction>
                     <Icon name="ic_calendar" size={20} color="#000" />

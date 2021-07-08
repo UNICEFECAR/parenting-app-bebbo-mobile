@@ -30,6 +30,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
+import { formatDate } from '../services/Utils';
 const CustomDrawerContent = ({navigation}: any) => {
   const {t} = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -92,7 +93,7 @@ console.log(activeChild,"..activeChild..");
                 </OuterIconRow>
                 <FDirCol>
             <Heading3>{activeChild.childName!=''?activeChild.childName:''}</Heading3>
-            <Heading5>{t('drawerMenuchildInfo',{childdob: (activeChild.birthDate!='' && activeChild.birthDate!=null && activeChild.birthDate!=undefined)?activeChild.birthDate:''})}</Heading5>
+            <Heading5>{t('drawerMenuchildInfo',{childdob: (activeChild.birthDate!='' && activeChild.birthDate!=null && activeChild.birthDate!=undefined)?formatDate(activeChild.birthDate):''})}</Heading5>
             </FDirCol>
             </FlexDirRow>
                 </HeaderTitleView>
