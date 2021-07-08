@@ -313,6 +313,16 @@ const en = {
             hcdateText:"Date of Health Check-up",
             hcenterDateText:"Enter Date of Health Check-up",
             hcChildVaccineQ:"Did the Child receive Vaccine?",
+
+            /// sprin5 screens
+            tabbarLabel1:"Home",
+            tabbarLabel2:"Play",
+            tabbarLabel3:"Tools",
+            tabbarLabel4:"Articles",
+            tabbarLabel5:"Track",
+            tabbarLabel6:"Vaccination",
+            tabbarLabel7:"Health Checkup",
+            tabbarLabel8:"Child growth",
             
     }
 }
