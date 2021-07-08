@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
     FormDateAction,
     FormDateText,
@@ -24,7 +24,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
     Heading2w,
-    Heading3, Heading4Regular, ShiftFromTop10,ShiftFromTopBottom10
+    Heading3, Heading3Center, Heading4Regular, ShiftFromTop10,ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -208,6 +208,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </ShiftFromTopBottom10>
        
         </MainContainer>
+        
         <ButtonContainer>
           <ButtonTertiary
             onPress={() => {
@@ -237,17 +238,23 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
               </PopupCloseContainer>
-              <Heading3>
-                {t('growthDeleteWarning')}
-              </Heading3>
-              <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
-              <ButtonTertiary2 style={{marginRight:5}}>
-                <ButtonText>{t('growthDeleteOption1')}</ButtonText>
-              </ButtonTertiary2>
-              <ButtonTertiary2>
-                <ButtonText>{t('growthDeleteOption2')}</ButtonText>
-              </ButtonTertiary2>
-              </View>
+              <ShiftFromTopBottom10>
+                <Heading3Center>{t('growthDeleteWarning')}</Heading3Center>
+                </ShiftFromTopBottom10>
+                <ButtonContainerTwo>
+                <ButtonColTwo>
+                  <ButtonSecondaryTint>
+                  <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                  </ButtonSecondaryTint>
+                  </ButtonColTwo>
+
+                  <ButtonColTwo>
+                  <ButtonPrimary>
+                  <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                    </ButtonPrimary>
+                    </ButtonColTwo>
+              </ButtonContainerTwo>
+              
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>

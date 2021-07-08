@@ -133,6 +133,7 @@ import {
          </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
             }
             </ProfileIconView>
+           
             <ProfileTextView>
             <ProfileSectionView>
               <Heading3>{data.childName}</Heading3>
