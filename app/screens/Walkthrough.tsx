@@ -119,13 +119,13 @@ const Walkthrough = ({navigation}: Props) => {
                   <ButtonContainerTwo>
                     <ButtonColTwo>
                       <ButtonSecondaryTint onPress={goBackSlide}>
-                        <ButtonText>{'Back'}</ButtonText>
+                        <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
                       </ButtonSecondaryTint>
                     </ButtonColTwo>
 
                     <ButtonColTwo>
                       <ButtonSecondary onPress={onDone}>
-                        <ButtonText>{'Next'} </ButtonText>
+                        <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
                       </ButtonSecondary>
                     </ButtonColTwo>
                   </ButtonContainerTwo>
