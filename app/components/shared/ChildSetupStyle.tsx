@@ -46,6 +46,7 @@ export const LabelText = styled.Text`
   color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   font-size: 16px;
   margin-bottom: 7px;
+  
 `;
 export const ChildSection = styled.View`
   flex: 1;
@@ -101,7 +102,7 @@ export const FormInputBox = styled.View`
   align-items:center;
   justify-content:space-between;
   height:52px;
-  padding:12px;
+  padding:5px 12px;
 `;
 export const FormDateText = styled.View`
   /*flex: 4;*/
