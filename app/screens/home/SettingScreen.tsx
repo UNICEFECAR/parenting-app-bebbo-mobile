@@ -1,5 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import Checkbox, {
+  CheckboxActive,
+  CheckboxItem
+} from '@components/shared/CheckboxStyle';
+import { FormOuterCheckbox } from '@components/shared/ChildSetupStyle';
 import { BannerContainer, MainContainer } from '@components/shared/Container';
 import {
   FDirRow,
@@ -79,7 +84,7 @@ const SettingScreen = (props: any) => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
-  const [modalVisible, setModalVisible] = useState(false);
+
   // console.log(countryId);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -129,13 +134,29 @@ const SettingScreen = (props: any) => {
 
             <ShiftFromBottom10>
               <FDirRowStart>
-                <Switch
+                <FormOuterCheckbox
+                  onPress={() => {
+                    setIsEnabled(!isEnabled);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {isEnabled ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#000" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                </FormOuterCheckbox>
+                {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
-                />
+                /> */}
                 <Flex1>
                   <Heading4Regular>
                     {t('settingScreennotiType2')}
@@ -146,13 +167,29 @@ const SettingScreen = (props: any) => {
 
             <ShiftFromBottom10>
               <FDirRowStart>
-                <Switch
+              <FormOuterCheckbox
+                  onPress={() => {
+                    setIsEnabled(!isEnabled);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {isEnabled ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#000" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                </FormOuterCheckbox>
+                {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
-                />
+                /> */}
                 <Flex1>
                   <Heading4Regular>
                     {t('settingScreennotiType3')}
@@ -163,13 +200,29 @@ const SettingScreen = (props: any) => {
 
             <ShiftFromBottom10>
               <FDirRowStart>
-                <Switch
+              <FormOuterCheckbox
+                  onPress={() => {
+                    setIsEnabled(!isEnabled);
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {isEnabled ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#000" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                </FormOuterCheckbox>
+                {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
-                />
+                /> */}
                 <Flex1>
                   <Heading4Regular>
                     {t('settingScreennotiType4')}
