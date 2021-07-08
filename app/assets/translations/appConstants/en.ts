@@ -14,7 +14,7 @@ const en = {
             language: "Language",
 
             // walkthroughTexts
-            walkthroughTextstitle0: "Welcome to Bebbo!",
+            walkthroughTextstitle0: "Welcome Parents!",
             walkthroughTextssubtitle0: "Discover Bebbo - everything you need as a parent to support your child's development",
             walkthroughTextstitle1: "Activities",
             walkthroughTextssubtitle1: "and games to stimulate your child everyday",
