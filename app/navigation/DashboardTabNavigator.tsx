@@ -10,14 +10,15 @@ import Childgrowth from '@screens/home/Childgrowth';
 import HealthCheckups from '@screens/home/HealthCheckups';
 import Vaccination from '@screens/home/Vaccination';
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-    Modal,
-    Pressable,
-    StyleSheet,
-    Text,
-    TouchableOpacity
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity
 } from 'react-native';
-import { ThemeContext } from 'styled-components/native';	
+import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';
 const DashboardBottomTab =
   createBottomTabNavigator<DashboardBottomTabParamList>();
@@ -37,6 +38,7 @@ export default () => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.SECONDARY_COLOR;
   const navigation = useNavigation();
+  const {t, i18n} = useTranslation();
   return (
     <>
       <Modal
@@ -65,15 +67,15 @@ export default () => {
             </Pressable> */}
             <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
               <Icon name="ic_vaccination" size={20} color="#000" />
-              <Text style={styles.modalText}>Add Vaccination Details</Text>
+              <Text style={styles.modalText}>{t('tabbarLabel6')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
               <Icon name="ic_doctor_chk_up" size={20} color="#000" />
-              <Text style={styles.modalText}>Add Health Checkup Details</Text>
+              <Text style={styles.modalText}>{t('tabbarLabel7')}</Text>
             </Pressable>
             <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
               <Icon name="ic_growth" size={20} color="#000" />
-              <Text style={styles.modalText}>Add New Measurement Details</Text>
+              <Text style={styles.modalText}>{t('tabbarLabel8')}</Text>
             </Pressable>
           </TouchableOpacity>
         </Pressable>
@@ -88,7 +90,7 @@ export default () => {
       >
         <DashboardBottomTab.Screen name="Home" component={Home}
           options={{
-            tabBarLabel: 'Home',
+            tabBarLabel: t('tabbarLabel1'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_sb_home" color={color} size={size} />
             ),
@@ -96,7 +98,7 @@ export default () => {
           }} />
         <DashboardBottomTab.Screen name="Activities" component={Activities}
           options={{
-            tabBarLabel: 'Play',
+            tabBarLabel: t('tabbarLabel2'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
@@ -106,7 +108,7 @@ export default () => {
           component={secondaryRoot}
           name="Tools"
           options={{
-            tabBarLabel: 'Tools',
+            tabBarLabel: t('tabbarLabel3'),
             tabBarIcon: ({ color, size }) => (
               // <View
               //   style={{
@@ -131,7 +133,7 @@ export default () => {
         />
         <DashboardBottomTab.Screen name="Articles" component={Articles}
           options={{
-            tabBarLabel: 'Articles',
+            tabBarLabel: t('tabbarLabel4'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_articles" color={color} size={size} />
             ),
@@ -139,7 +141,7 @@ export default () => {
           }} />
         <DashboardBottomTab.Screen name="ChildDevelopment" component={ChildDevelopment}
           options={{
-            tabBarLabel: 'Track',
+            tabBarLabel: t('tabbarLabel5'),
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_milestone" color={color} size={size} />
             ),
