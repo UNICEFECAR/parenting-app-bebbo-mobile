@@ -388,8 +388,8 @@ class MediaPicker {
       check(GALLERY_PERMISSION),
       // …
     ]).then(([cameraStatus, photoStatus]) => {
-      console.log(cameraStatus,"..cameraStatus..")
-      console.log(photoStatus,"..photoStatus..")
+      // Alert.alert(cameraStatus,"..cameraStatus..")
+      // Alert.alert(photoStatus,"..photoStatus..")
       if (cameraStatus === RESULTS.DENIED || cameraStatus === RESULTS.BLOCKED || photoStatus === RESULTS.BLOCKED || photoStatus === RESULTS.DENIED) {
         this.openSettingModal();
       } else {

@@ -4985,11 +4985,11 @@ export const taxonomydata:any = {
             "parent_gender": [
                 {
                     "id": 37,
-                    "name": "Male"
+                    "name": "Father"
                 },
                 {
                     "id": 38,
-                    "name": "Female"
+                    "name": "Mother"
                 },
                 {
                     "id": 60,
