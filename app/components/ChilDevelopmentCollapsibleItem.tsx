@@ -1,18 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
-import { Heading4, Heading4Regular, Heading5, ShiftFromBottom10, ShiftFromTopBottom10,ShiftFromBottom5,ShiftFromTop5 } from '@styles/typography';
+import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-
-
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
-import Checkbox, { CheckboxActive, CheckboxItem,CheckboxDevActive } from './shared/CheckboxStyle';
-import { FormOuterCheckbox } from './shared/ChildSetupStyle';
+import Checkbox, { CheckboxDevActive, CheckboxItem } from './shared/CheckboxStyle';
 import { MainContainer } from './shared/Container';
 import { DevelopmentBox } from './shared/DevelopmentStyle';
-import { DividerDev} from './shared/Divider';
-import { Flex5, FlexDirRowStart,FDirRow } from './shared/FlexBoxStyle';
+import { DividerDev } from './shared/Divider';
+import { FDirRow, Flex5 } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
+
+
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
   const {item} = props;
@@ -26,18 +25,18 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle =()=>{
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'ChildDevelopment',
+    //   headerColor: artHeaderColor,
+    //   backgroundColor: artBackgroundColor,
+    // });
   }
   const gotoActivity =()=>{
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
-      headerColor: actHeaderColor,
-      backgroundColor: actBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'ChildDevelopment',
+    //   headerColor: actHeaderColor,
+    //   backgroundColor: actBackgroundColor,
+    // });
   }
   return (
     <>
