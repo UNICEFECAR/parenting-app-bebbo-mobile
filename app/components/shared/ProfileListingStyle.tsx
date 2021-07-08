@@ -50,6 +50,7 @@ export const ProfileLinkView = styled.View`
 
 export const ProfileListDefault = styled(ProfileListView)`
   padding: 0px 15px;
+  
 `;
 export const ProfileSectionView = styled.View`
   flex-direction: row;

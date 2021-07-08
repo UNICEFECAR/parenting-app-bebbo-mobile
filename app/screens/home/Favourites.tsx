@@ -25,6 +25,8 @@ const Favourites = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const {t, i18n} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
@@ -72,11 +74,19 @@ const Favourites = ({navigation}: Props) => {
                       backgroundColor:
                         itemindex == selectedIndex
                           ? headerColor
-                          : backgroundColor,
+                          : headerColorWhite,
                       
                     },
                   ]}>
-                  <Heading4Centerw>{item.title}</Heading4Centerw>
+                  <Heading4Centerw style={[
+                    {
+                      color:
+                        itemindex == selectedIndex
+                          ? headerColorWhite
+                          : headerColorBlack,
+                      
+                    },
+                  ]}>{item.title}</Heading4Centerw>
                 </TabBarDefault>
               </Pressable>
             );
