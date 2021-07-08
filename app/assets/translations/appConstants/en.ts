@@ -14,7 +14,7 @@ const en = {
             language: "Language",
 
             // walkthroughTexts
-            walkthroughTextstitle0: "Welcome to REMOVED_FACEBOOK_APP_ID1!",
+            walkthroughTextstitle0: "Welcome Parents!",
             walkthroughTextssubtitle0: "Discover REMOVED_FACEBOOK_APP_ID1 - everything you need as a parent to support your child's development",
             walkthroughTextstitle1: "Activities",
             walkthroughTextssubtitle1: "and games to stimulate your child everyday",
