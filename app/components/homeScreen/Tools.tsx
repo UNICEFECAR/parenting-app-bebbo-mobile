@@ -44,28 +44,27 @@ const Tools = () => {
         </MainContainer>  
         </FeatureDivideArea>
       </BgSecondaryTint>
-     
     </>
   );
 };
 
 export default Tools;
 
-const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
-    borderRadius: 5,
-    // margin: 3,
-    // padding: 10,
-    // width: 200,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  // title: {
-  //   fontSize: 16,
-  //   padding: 5,
-  //   width: 100,
-  //   fontWeight: 'bold',
-  //   textAlign: 'center'
-  // },
-})
+// const styles = StyleSheet.create({
+//   item: {
+//     backgroundColor: '#FFF',
+//     borderRadius: 5,
+//     // margin: 3,
+//     // padding: 10,
+//     // width: 200,
+//     justifyContent: 'center',
+//     alignItems: 'center'
+//   },
+//   title: {
+//     fontSize: 16,
+//     padding: 5,
+//     width: 100,
+//     fontWeight: 'bold',
+//     textAlign: 'center'
+//   },
+// })

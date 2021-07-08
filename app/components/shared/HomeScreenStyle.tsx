@@ -44,6 +44,7 @@ justify-content:flex-start;
 align-items:center;
 padding:12px 2px 10px;
 border-radius:4px;
+min-height:125px
 `;
 
 export const ToolBoxText = styled.Pressable`
@@ -90,4 +91,22 @@ overflow:hidden;
 
 `;
 
- 
+export const BottomBarBg = styled.View`
+background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+padding: 0px 0
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+border-color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
+border-top-width:3px;
+
+`;
+
+export const BottomBarList = styled.View`
+
+border-bottom-width:1px;
+border-color:rgba(0,0,0,0.1);
+padding:16px 20px;
+min-height:52px;
+
+`;
+

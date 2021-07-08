@@ -126,6 +126,8 @@ export const ButtonTertiary = styled(ButtonPrimary)`
 `;
 export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+  padding-left:6px;
+  padding-right:6px;
 `;
 
 

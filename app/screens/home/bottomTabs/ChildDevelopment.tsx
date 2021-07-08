@@ -164,10 +164,6 @@ const ChildDevelopment = ({navigation}: Props) => {
         
         </ArticleHeading>
         
-    
-
-        
-        
       </>
     );
   };

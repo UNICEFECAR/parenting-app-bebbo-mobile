@@ -43,14 +43,11 @@ const UpcomingVaccines = (props: any) => {
             />  
             </ToolsIconView>
             <ToolsHeadPress
-            style={{
-              
-            }}
             onPress={() => {
               setIsOPen(!isOPen);
             }}>
             <ToolsHeadingView>
-            <Heading2 style={[{textAlignVertical: 'center'}]}>
+            <Heading2>
                 {item.title}
               </Heading2>
               <Heading5>

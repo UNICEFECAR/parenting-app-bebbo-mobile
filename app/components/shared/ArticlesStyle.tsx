@@ -15,6 +15,7 @@ export const ArticleListContainer = styled.View`
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:4px;
   overflow:hidden;
+  
 `;
 export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;

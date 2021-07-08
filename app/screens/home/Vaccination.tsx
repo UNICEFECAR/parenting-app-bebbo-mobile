@@ -15,6 +15,7 @@ import {
     Heading4Center,
     Heading4Regular,
     Paragraph,
+    ShiftFromTopBottom10,
     ShiftFromTopBottom5
 } from '@styles/typography';
 import React, { useContext } from 'react';
@@ -165,10 +166,11 @@ const Vaccination = ({navigation}: Props) => {
                 );
               })}
             </TabBarContainer>
-              
+            <ShiftFromTopBottom10>
             <Flex1>
               {renderItem(selectedIndex)}
             </Flex1>
+            </ShiftFromTopBottom10>
           </ScrollView>
         </ToolsBgContainer>
       </SafeAreaView>

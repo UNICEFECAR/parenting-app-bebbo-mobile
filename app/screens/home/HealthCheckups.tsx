@@ -2,14 +2,21 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import PreviousHealthCheckup from '@components/healthChekup/PreviousHealthCheckup';
 import UpcomingHealthCheckup from '@components/healthChekup/UpcomingHealthCheckup';
 import {
+  ButtonContainerAuto,
+  ButtonHealth,
     ButtonPrimary,
     ButtonText,
-    ButtonTextLine
+    ButtonTextLine,
+    ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
+import { MainContainer } from '@components/shared/Container';
+import { Flex1, FlexCol } from '@components/shared/FlexBoxStyle';
+import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
+import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2Center, Heading4Center } from '@styles/typography';
+import { Heading2Center, Heading4Center, ShiftFromBottom20, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
@@ -145,26 +152,22 @@ const vaccines = [
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
+        <ToolsBgContainer>
           <TabScreenHeader
             title={t('hcHeader')}
             headerColor={headerColor}
             textColor="#000"
           />
           <ScrollView style={{flex: 4}}>
-            <View style={{backgroundColor: backgroundColor}}>
-              <View style={{padding: 15}}>
+            <MainContainer style={{backgroundColor: backgroundColor}}>
+              <ShiftFromBottom20>
                 <Heading2Center>{t('hcSummaryHeader')}</Heading2Center>
-              </View>
-              <ButtonTextLine>{t('hcReminderbtn')}</ButtonTextLine>
+                </ShiftFromBottom20>
+              <ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine>
 
-              <View style={{alignItems: 'center', padding: 10}}>
-                <ButtonPrimary
-                  style={{backgroundColor: headerColor, width: '60%'}}
+              <ButtonContainerAuto>
+                <ButtonHealth
+                  
                   onPress={
                     () => 
                     navigation.navigate('AddChildHealthCheckup', {
@@ -172,17 +175,12 @@ const vaccines = [
                     })
                   }>
                   <ButtonText>{t('hcNewBtn')}</ButtonText>
-                </ButtonPrimary>
-              </View>
-            </View>
+                </ButtonHealth>
+              </ButtonContainerAuto>
+            </MainContainer>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: '#FFF',
-                justifyContent: 'center',
-                padding: 5,
-              }}>
+            <TabBarContainer
+              >
               {data.map((item, itemindex) => {
                 return (
                   <Pressable
@@ -191,29 +189,29 @@ const vaccines = [
                     onPress={() => {
                       setSelectedIndex(itemindex);
                     }}>
-                    <View
+                    <TabBarDefault
                       style={[
                         {
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
                               : backgroundColor,
-                          padding: 10,
-                          margin: 3,
+                         
                         },
                       ]}>
                       <Heading4Center>{item.title}</Heading4Center>
-                    </View>
+                    </TabBarDefault>
                   </Pressable>
                 );
               })}
-            </View>
-
-            <View style={{flex: 1, width: '100%'}}>
+            </TabBarContainer>
+            <ShiftFromTopBottom10>
+            <Flex1>
               {renderItem(selectedIndex)}
-            </View>
+            </Flex1>
+            </ShiftFromTopBottom10>
           </ScrollView>
-        </View>
+          </ToolsBgContainer>
       </SafeAreaView>
     </>
   );
