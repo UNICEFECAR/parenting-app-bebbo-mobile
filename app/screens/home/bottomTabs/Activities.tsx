@@ -3,8 +3,11 @@ import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ActivityBox, ArticleHeading, ArticleListContainer, ArticleListContent } from '@components/shared/ArticlesStyle';
 import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-import { FDirCol, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
-import { PrematureTagActivity } from '@components/shared/PrematureTag';
+
+import { MainContainer } from '@components/shared/Container';
+import { FDirCol, FDirRow, FlexCol, FlexDirRow,FlexDirRowSpace} from '@components/shared/FlexBoxStyle';
+import PrematureTag,{PrematureTagActivity} from '@components/shared/PrematureTag';
+
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -141,7 +144,7 @@ const Activities = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <FDirCol>
+          <FlexCol>
             <AgeBrackets
               itemColor={backgroundColor}
               activatedItemColor={headerColor}
@@ -171,7 +174,7 @@ const Activities = ({navigation}: Props) => {
   return renderActivityItem(item, index);
 })}
             </View>
-          </FDirCol>
+          </FlexCol>
         </ScrollView>
       </ContainerView>
     </>

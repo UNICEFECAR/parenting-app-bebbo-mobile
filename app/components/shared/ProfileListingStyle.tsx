@@ -35,6 +35,7 @@ export const ProfileActionView = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  align-self:center;
 `;
 
 export const ProfileLinkView = styled.View`

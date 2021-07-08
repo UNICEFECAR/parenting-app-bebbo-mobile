@@ -1,12 +1,16 @@
+import { MainContainer } from '@components/shared/Container';
+import { Bullets, BulletsView } from '@components/shared/Divider';
+import { FDirRow, FlexDirRow,FDirRowStart, Flex1 } from '@components/shared/FlexBoxStyle';
 import { RadioActive } from '@components/shared/radio';
+import { HealthDesc, ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsHeadView, ToolsIconView, ToolsListContainer, ToolsListOuter } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, Heading5 } from '@styles/typography';
+import { Heading2, Heading4, Heading4Regular, Heading5, Paragraph, ShiftFromBottom10, ShiftFromBottom15, ShiftFromBottom20, ShiftFromBottom5, ShiftFromTop15, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonPrimary, ButtonText } from '../shared/ButtonGlobal';
-import Icon from '../shared/Icon';
+import { ButtonContainerAuto, ButtonHealth, ButtonPrimary, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL } from '../shared/ButtonGlobal';
+import Icon, { OuterIconRow } from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
@@ -27,24 +31,17 @@ const UpcomingHealthCheckup = (props: any) => {
   };
   return (
     <>
-      <View style={styles.item}>
-        <View
+      <ToolsListOuter>
+      <ToolsListContainer
           style={{
-            flex: 1,
-            flexDirection: 'row',
             backgroundColor: backgroundColor,
           }}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+          <ToolsIconView>
             {item.measures ? (
               item.givenVaccines.length == 0 ? (
                 <Icon
                   name="ic_incom"
-                  size={24}
+                  size={20}
                   color="#FFF"
                   style={{backgroundColor: 'red', borderRadius: 50}}
                 />
@@ -59,137 +56,136 @@ const UpcomingHealthCheckup = (props: any) => {
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
-              <Icon name="ic_plus" size={24} color="#000" />
+              <Icon name="ic_plus" size={20} color="#000" />
             )}
-          </View>
-          <Pressable
-            style={{
-              flexDirection: 'row',
-              flex: 7,
-            }}
+          </ToolsIconView>
+          <ToolsHeadPress
             onPress={() => {
               setIsOPen(!isOPen);
             }}>
-            <View style={{flex: 7, padding: 10}}>
-              <Heading2 style={[{textAlignVertical: 'center'}]}>
-                {item.title}
+            <ToolsHeadingView>
+              
+              <Heading2>
+               {item.title}
               </Heading2>
-            </View>
+              
+            </ToolsHeadingView>
 
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+            <ToolsActionView>
+              <FlexDirRow>
               <Icon
                 style={{alignSelf: 'center'}}
                 name={isOPen ? 'ic_angle_up' : 'ic_angle_down'}
                 size={10}
                 color="#000"
               />
-            </View>
-          </Pressable>
-        </View>
+              </FlexDirRow>
+            </ToolsActionView>
+          </ToolsHeadPress>
+        </ToolsListContainer>
         {isOPen ? (
           <>
-            <View>
-              <View style={{flexDirection: 'row'}}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Icon name="ic_vaccination" size={20} color="#000" />
-                </View>
-                <View style={{flex: 7, padding: 10}}>
-                  {item.givenVaccines.length > 0 ? (
-                    <View>
-                      <Text>{t('hcVaccineText')}</Text>
-                    </View>
+          <MainContainer>
+            <FDirRowStart>
+            <ToolsIconView>
+            <Icon name="ic_vaccination" size={20} color="#000" />
+            </ToolsIconView>
+            <ToolsHeadingView>
+            <ShiftFromTop5>
+              <ShiftFromBottom15>
+            {item.givenVaccines.length > 0 ? (
+                      <Heading4Regular>{t('hcVaccineText')}</Heading4Regular>
                   ) : (
-                    <Text>{t('hcNoVaccineTxt')}</Text>
+                    <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
                   )}
-                </View>
-              </View>
-              <View style={{marginLeft: 60}}>
-                {item.givenVaccines?.map((vaccineItem: any, index: number) => {
+                  </ShiftFromBottom15> 
+                  </ShiftFromTop5> 
+                  
+                  <HealthDesc>
+                  {item.givenVaccines?.map((vaccineItem: any, index: number) => {
                   return (
-                    <View key={index} style={{padding: 5}}>
-                      <Text>{vaccineItem.title}</Text>
+                    <View key={index} >
+                      <BulletsView>
+                        <Bullets></Bullets>
+                      <Paragraph>{vaccineItem.title}</Paragraph>
+                      </BulletsView>
                     </View>
                   );
                 })}
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Icon name="ic_growth" size={20} color="#000" />
-                </View>
-                <View style={{flex: 7, padding: 10}}>
-                  {item.measures?.weight ? (
-                    <Text>
+                  </HealthDesc>
+
+                  </ToolsHeadingView>
+            </FDirRowStart>
+           
+            <FDirRowStart>
+            <ToolsIconView>
+            <Icon name="ic_growth" size={20} color="#000" />
+            </ToolsIconView>
+            
+            <ToolsHeadingView>
+            <ShiftFromTop5> 
+            {item.measures?.weight ? (
+                    <Heading4Regular>
                       {t('hcMeasureText', {
                         weight: item.measures?.weight,
                         height: item.measures?.height,
                       })}
-                    </Text>
+                    </Heading4Regular>
                   ) : (
-                    <Text>{t('hcNoMeasureTxt')}</Text>
+                    <Heading4Regular>{t('hcNoMeasureTxt')}</Heading4Regular>
                   )}
-                </View>
-              </View>
-              {item.doctorRemarks ? (
-                <View style={{flexDirection: 'row'}}>
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}>
-                    <Icon name="ic_doctor_chk_up" size={20} color="#000" />
-                  </View>
-                  <View style={{flex: 7, padding: 10}}>
-                    <Text>{item.doctorRemarks}</Text>
-                  </View>
-                </View>
-              ) : null}
-            </View>
+            </ShiftFromTop5>
+            </ToolsHeadingView>
+           
+            </FDirRowStart>
+            
 
-            <View>
-              <View style={{flexDirection: 'row'}}>
-                <Pressable onPress={gotoArticle}>
-                  <Text style={{textDecorationLine: 'underline'}}>
+            {item.doctorRemarks ? (
+           <ShiftFromTop15>
+            <FDirRowStart>
+            <ToolsIconView>
+            <Icon name="ic_doctor_chk_up" size={20} color="#000" />
+            </ToolsIconView>
+            <ToolsHeadingView>
+             
+                    <Heading4Regular>
+                      {item.doctorRemarks}</Heading4Regular>
+            
+            </ToolsHeadingView>
+            </FDirRowStart>
+            </ShiftFromTop15>
+) : null}
+<ShiftFromTop15>
+<Pressable onPress={gotoArticle}>
+                  <ButtonTextSmLineL>
                     {t('hcArticleLink')}
-                  </Text>
+                  </ButtonTextSmLineL>
                 </Pressable>
-              </View>
-            </View>
+</ShiftFromTop15>
+            </MainContainer> 
+              
 
-            <View style={{flexDirection: 'row'}}>
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Icon
+              <MainContainer>
+          <FDirRowStart>
+            <ToolsIconView>
+            <Icon
                   name="ic_time"
                   size={20}
                   color="#FFF"
                   style={{backgroundColor: reminderColor, borderRadius: 50}}
                 />
-              </View>
-              <View style={{flex: 7, padding: 10}}>
-                <Heading5>{t('hcHasReminder')}</Heading5>
+            </ToolsIconView>
+            <ToolsHeadView>
+
+            
+            <ToolsHeadingView>
+            <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                 <Heading4>{new Date().toDateString()}</Heading4>
-              </View>
-              <Pressable
+            
+            </ToolsHeadingView>
+            <ToolsActionView>
+              
+            <Pressable
                 onPress={() => {
                   navigation.navigate('AddReminder', {
                     reminderType: 'HealthCheckup',
@@ -200,13 +196,17 @@ const UpcomingHealthCheckup = (props: any) => {
                     headerColor: headerColor,
                   });
                 }}>
-                <Text style={{textDecorationLine: 'underline'}}>
+                <ButtonTextSmLine>
                   {t('editCountryLang')}
-                </Text>
+                </ButtonTextSmLine>
               </Pressable>
-            </View>
-            <View style={{alignItems: 'center'}}>
-              <Pressable
+                
+            </ToolsActionView>
+            </ToolsHeadView>
+            </FDirRowStart>
+            {/* Set Reminder Link */}
+
+            {/* <Pressable
                 onPress={() => {
                   navigation.navigate('AddReminder', {
                     reminderType: 'HealthCheckup',
@@ -220,49 +220,50 @@ const UpcomingHealthCheckup = (props: any) => {
                 <Text style={{textDecorationLine: 'underline'}}>
                   {t('hcReminderbtn')}
                 </Text>
-              </Pressable>
-            </View>
+              </Pressable> */}
 
-            <View>
-              <View style={{alignItems: 'center'}}>
-                {item.measures?.weight ||
+            </MainContainer>
+            
+            {item.measures?.weight ||
                 item.measures?.height ||
                 item.givenVaccines.length > 0 ? (
-                  <Pressable
-                    onPress={() =>
+                  <ShiftFromTopBottom10>
+           <Pressable onPress={() =>
                       navigation.navigate('AddChildVaccination', {
                         headerTitle: t('editVcTitle'),
                       })
                     }>
-                    <Text style={{textDecorationLine: 'underline'}}>
-                      {t('hcEditBtn')}
-                    </Text>
-                  </Pressable>
-                ) : (
-                  <ButtonPrimary
-                    style={{backgroundColor: headerColor, width: '60%'}}
+                  <ButtonTextMdLine>
+                  {t('hcEditBtn')}
+                  </ButtonTextMdLine>
+                </Pressable>
+                </ShiftFromTopBottom10>
+                 ) : (
+                  <ButtonContainerAuto>
+                  <ButtonHealth
                     onPress={() =>
                       navigation.navigate('AddChildHealthCheckup', {
                         headerTitle: t('hcNewHeaderTitle'),
                       })
                     }>
                     <ButtonText>{t('hcNewBtn')}</ButtonText>
-                  </ButtonPrimary>
+                  </ButtonHealth>
+                  </ButtonContainerAuto>
                 )}
-              </View>
-            </View>
+           
+            
           </>
         ) : null}
-      </View>
+      </ToolsListOuter>
     </>
   );
 };
 export default UpcomingHealthCheckup;
 
-const styles = StyleSheet.create({
-  item: {
-    padding: 10,
-    color: '#000',
-    backgroundColor: '#FFF',
-  },
-});
+// const styles = StyleSheet.create({
+//   item: {
+//     padding: 10,
+//     color: '#000',
+//     backgroundColor: '#FFF',
+//   },
+// });
