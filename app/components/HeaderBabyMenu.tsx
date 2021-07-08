@@ -134,8 +134,10 @@ import {
             }
             </ProfileIconView>
             <ProfileTextView>
+            <ProfileSectionView>
               <Heading3>{data.childName}</Heading3>
               <Heading5>{genderName}</Heading5>
+              </ProfileSectionView>
               <Heading5>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Heading5>
             </ProfileTextView>
             <ProfileActionView>
