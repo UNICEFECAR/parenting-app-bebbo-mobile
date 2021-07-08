@@ -116,7 +116,9 @@ export const addApiDataInRealm = async (response: any) => {
 export const formatDate=(dateData:any)=>{
   return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
 }
-
+export const formatStringDate=(dateData:any)=>{
+    return DateTime.fromJSDate(dateData as Date).toFormat('dd LLL yyyy');
+  }
 
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
