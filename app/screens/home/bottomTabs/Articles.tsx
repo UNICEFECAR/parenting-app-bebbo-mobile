@@ -2,9 +2,8 @@ import { articledata } from '@assets/translations/appOfflineData/article';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
-import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
-
+import { ArticleListContainer, ArticleListContent, SearchBox } from '@components/shared/ArticlesStyle';
+import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
 import { FDirRow, FlexDirCol } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
@@ -17,12 +16,11 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom10,ShiftFromTopBottom5 } from '@styles/typography';
-import { destinationFolder } from '@types/apiConstants';
+import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View
+  Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
@@ -30,6 +28,7 @@ import { getChildArticleData } from '../../../database/dbquery/getChildArticles'
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
+
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
