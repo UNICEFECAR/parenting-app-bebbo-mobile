@@ -229,7 +229,6 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 value={''}
                 // onChangeText={queryText => handleSearch(queryText)}
                 placeholder={t('vcDoctorRemarkPlaceHolder')}
-                
               />
               </TextAreaBox>
             </FormContainer>
@@ -295,3 +294,4 @@ const AddChildVaccination = ({route, navigation}: any) => {
 };
 
 export default AddChildVaccination;
+

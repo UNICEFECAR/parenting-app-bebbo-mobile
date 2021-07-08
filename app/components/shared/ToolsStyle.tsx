@@ -34,6 +34,7 @@ export const ToolsListContainer = styled.View`
 border-radius:4px;
 flex-direction:row;
 padding:10px 15px;
+
 `;
 
 export const ToolsIconView = styled.View`
@@ -43,16 +44,24 @@ export const ToolsHeadingView = styled.View`
 padding:0 10px;
 `;
 export const ToolsActionView = styled.View`
-margin-top:7px;
+align-self:center;
+
 `;
 
 export const ToolsHeadPress = styled.Pressable`
 flex-direction:row;
 justify-content:space-between;
 flex:1
+align-items:center;
 `;
 export const ToolsHeadView = styled.View`
 flex-direction:row;
 justify-content:space-between;
 flex:1;
 `;
+
+export const HealthDesc = styled.View`
+margin:0px 10px 0px 0;
+`;
+
+

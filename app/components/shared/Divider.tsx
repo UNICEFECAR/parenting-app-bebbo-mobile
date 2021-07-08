@@ -16,6 +16,18 @@ border-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 export const DividerContainer = styled.View`
 padding:0 15px;
 `;
+export const Bullets = styled.Text`
+background:${props => props.theme.colors.HEALTHCHECKUP_COLOR};
+width:7px;
+height:7px;
+border-radius:100px;
+margin-top:6px;
+margin-right:7px;
+`;
+
+export const BulletsView = styled.View`
+flex-direction:row;
+`;
 
 
 

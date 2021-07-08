@@ -1,17 +1,24 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
+  FormContainerFlex,
     FormDateAction,
     FormDateText,
     FormInputBox,
-    FormInputGroup
+    FormInputGroup,
+    FormInputText,
+    TextAreaBox
 } from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow, FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
     PopupClose,
     PopupCloseContainer,
     PopupOverlay
 } from '@components/shared/ModalPopupStyle';
+import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
 import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
@@ -20,9 +27,13 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
+  Heading2,
     Heading2w,
     Heading3,
-    Heading4Regular
+    Heading3Center,
+    Heading4Regular,
+    ShiftFromTop15,
+    ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -88,48 +99,42 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1, padding: 15}}>
+        <FlexCol>
+        <HeaderRowView
+        style={{
+          backgroundColor: headerColor,
+          maxHeight: 50,
+        }}>
+          
+              <HeaderIconView>
               <Pressable
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
-            </View>
-            <View style={{flex: 8, padding: 7}}>
-              <Heading2w style={{color: '#000'}}>{headerTitle}</Heading2w>
-            </View>
-            <Pressable
-              style={{flex: 1, padding: 15}}
+                  onPress={() => {
+                    navigation.goBack();
+                  }}>
+                  <Icon name={'ic_back'} color="#000" size={15} />
+                </Pressable>
+              </HeaderIconView>
+              <HeaderTitleView>
+              <Heading2>{headerTitle}</Heading2>
+              </HeaderTitleView>
+              <HeaderActionView>
+              <Pressable
               onPress={() => {
                 setModalVisible(true)
               }}>
-              <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
-          </View>
-        </View>
-        <ScrollView style={{padding: 15, flex: 9, paddingBottom: 30}}>
+                <Text>{t('growthScreendeletebtnText')}</Text>
+              </Pressable>
+              </HeaderActionView>
+              </HeaderRowView>
+        
+        <ScrollView style={{flex: 9}}>
+        <MainContainer>
         <FormInputGroup onPress={showmeasureDatepicker}>
+          {/* <FormInputText>
           <Heading3>{t('hcdateText')}</Heading3>
+          </FormInputText> */}
+
+
           <FormInputBox>
             <FormDateText>
               <Text>
@@ -156,7 +161,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             />
           )}
         </View>
+        <FormContainerFlex>
+          <FormInputText>
         <Heading3>{t('vcChildMeasureQ')}</Heading3>
+        </FormInputText>
             <ToggleRadios
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
@@ -164,14 +172,19 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               tickColor={'#FFF'}
               getCheckedItem={getCheckedMeasureItem}
             />
-
+ </FormContainerFlex>
             <View>
               {
                 isMeasured ? <>
-                <View style={{margin: 30}}>
+                <View>
+                <ShiftFromTop15>
+                <FormInputText>
           <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
-          <View style={{flexDirection: 'row'}}>
-            <Pressable
+          </FormInputText> 
+          <RadioBoxContainer>
+          <FDirRow>
+          <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddChildHealthCheckup",
@@ -179,16 +192,15 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
+             >
+               <FlexFDirRowSpace>
               <Heading3>{t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
-            </Pressable>
-            <Pressable
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+            <RadioOuter>
+            <RadioInnerBox
               onPress={() => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddChildHealthCheckup",
@@ -196,23 +208,27 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                   backgroundColor
                 });
               }}
-              style={{
-                backgroundColor: '#FFF',
-                padding: 20,
-                flex: 1,
-                flexDirection: 'row',
-              }}>
+              >
+                <FlexFDirRowSpace>
               <Heading3>{t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
-            </Pressable>
-          </View>
+              </FlexFDirRowSpace>
+            </RadioInnerBox>
+            </RadioOuter>
+            </FDirRow>
+          </RadioBoxContainer>
+          </ShiftFromTop15>
         </View>
+       
                 </>
                 :null
               }
             </View>
+            <FormContainerFlex>
+              <FormInputText>
         <Heading3>{t('hcChildVaccineQ')}</Heading3>
-        <View style={{flexDirection: 'row'}}>
+        </FormInputText>
+        
         <ToggleRadios
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
@@ -220,15 +236,32 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               tickColor={'#FFF'}
               getCheckedItem={getCheckedVaccineItem}
             />
-        </View>
+
+        
+        </FormContainerFlex>
         {
-          isVaccineMeasured? <View><Heading3>{t('vcPlanned')}</Heading3>
+          isVaccineMeasured? 
+          <View>
+            <ShiftFromTop15>
+            <FormInputText>
+            <Heading3>{t('vcPlanned')}</Heading3>
+            </FormInputText>
           <PlannedVaccines />
+          </ShiftFromTop15>
+          <ShiftFromTop15>
+          <FormInputText>
           <Heading3>{t('vcPrev')}</Heading3>
-          <PrevPlannedVaccines /></View>:null
+          </FormInputText>
+          <PrevPlannedVaccines />
+          </ShiftFromTop15>
+          </View>
+          :null
         }
-        <View>
+        <FormContainerFlex>
+          <FormInputText>
           <Heading3>{'Doctor Remark or Comment'}}</Heading3>
+          </FormInputText>
+          <TextAreaBox>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
@@ -236,24 +269,26 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             value={''}
             // onChangeText={queryText => handleSearch(queryText)}
             placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
-            style={{
-              backgroundColor: '#fff',
-              paddingHorizontal: 20,
-              paddingVertical: 20,
-            }}
+            
           />
-        </View>
-        <View>
+          </TextAreaBox>
+        </FormContainerFlex>
+        <ShiftFromTopBottom10>
           <Text>{t('growthScreennewGrowthBottomText')}</Text>
-        </View>
-        <View style={{width: '100%', marginTop: 30}}>
-          <ButtonPrimary
+        </ShiftFromTopBottom10>
+
+       
+        </MainContainer>
+        </ScrollView>
+        <ButtonContainer>
+          <ButtonTertiary
             onPress={() => {
               navigation.goBack();
             }}>
             <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
-          </ButtonPrimary>
-        </View>
+          </ButtonTertiary>
+        </ButtonContainer>
+        
         <Modal
           animationType="none"
           transparent={true}
@@ -275,22 +310,29 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
               </PopupCloseContainer>
-              <Heading3>
-                {t('hcDeleteWarning')}
-              </Heading3>
-              <View style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
-              <ButtonTertiary2 style={{marginRight:5}}>
-                <ButtonText>{'Cancel'}</ButtonText>
-              </ButtonTertiary2>
-              <ButtonTertiary2>
-                <ButtonText>{'Confirm'}</ButtonText>
-              </ButtonTertiary2>
-              </View>
+              
+              <ShiftFromTopBottom10>
+                <Heading3Center>{t('hcDeleteWarning')}</Heading3Center>
+                </ShiftFromTopBottom10>
+                <ButtonContainerTwo>
+                <ButtonColTwo>
+                  <ButtonSecondaryTint>
+                  <ButtonText>{'Cancel'}</ButtonText>
+                  </ButtonSecondaryTint>
+                  </ButtonColTwo>
+
+                  <ButtonColTwo>
+                  <ButtonPrimary>
+                  <ButtonText>{'Confirm'}</ButtonText>
+                    </ButtonPrimary>
+                    </ButtonColTwo>
+                
+              </ButtonContainerTwo>
+              
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-        </ScrollView>
-        </View>
+        </FlexCol>
       </SafeAreaView>
     </>
   );
