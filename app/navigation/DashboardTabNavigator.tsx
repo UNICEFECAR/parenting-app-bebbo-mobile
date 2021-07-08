@@ -1,4 +1,7 @@
-import Icon from '@components/shared/Icon';
+import { MainContainer } from '@components/shared/Container';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
+import { BottomBarBg, BottomBarList } from '@components/shared/HomeScreenStyle';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,6 +12,7 @@ import Home from '@screens/home/bottomTabs/Home';
 import Childgrowth from '@screens/home/Childgrowth';
 import HealthCheckups from '@screens/home/HealthCheckups';
 import Vaccination from '@screens/home/Vaccination';
+import { Heading3 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import {
     Modal,
@@ -56,27 +60,57 @@ export default () => {
             setModalVisible(!modalVisible);
           }}>
           <TouchableOpacity
-            style={styles.modalView}
+            
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
+              <BottomBarBg>
             {/* <Pressable style={styles.item}>
               <Icon name="ic_milestone" size={20} color="#000" />
               <Text style={styles.modalText}>Add New Development Milestone</Text>
             </Pressable> */}
-            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
-              <Icon name="ic_vaccination" size={20} color="#000" />
-              <Text style={styles.modalText}>Add Vaccination Details</Text>
+
+            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
+              <BottomBarList>
+              <FDirRow>
+              <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_vaccination" size={24} color="#000" />
+                </OuterIconLeft>
+                </OuterIconRow>
+              <Heading3>Vaccination</Heading3>
+              </FDirRow>
+              </BottomBarList>
             </Pressable>
-            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
-              <Icon name="ic_doctor_chk_up" size={20} color="#000" />
-              <Text style={styles.modalText}>Add Health Checkup Details</Text>
+            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
+            <BottomBarList>
+            <FDirRow>
+            <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_doctor_chk_up" size={24} color="#000" />
+                </OuterIconLeft>
+                </OuterIconRow>
+              
+              <Heading3>Health Checkup</Heading3>
+              </FDirRow>
+              </BottomBarList>
             </Pressable>
-            <Pressable style={styles.item} onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
-              <Icon name="ic_growth" size={20} color="#000" />
-              <Text style={styles.modalText}>Add New Measurement Details</Text>
+            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
+            <BottomBarList>
+            <FDirRow>
+            <OuterIconRow>
+                <OuterIconLeft>
+                <Icon name="ic_growth" size={24} color="#000" />
+                </OuterIconLeft>
+                </OuterIconRow>
+              <Heading3>Child Growth</Heading3>
+              </FDirRow>
+              </BottomBarList>
             </Pressable>
+            
+            </BottomBarBg>
           </TouchableOpacity>
         </Pressable>
+
       </Modal>
       <DashboardBottomTab.Navigator  tabBarOptions={{
         activeTintColor: headerColor,
@@ -160,32 +194,31 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'flex-end',
-    // alignItems: 'center',
-    // marginTop: 22,
+    
   },
-  modalView: {
-    // margin: 20,
-    backgroundColor: 'white',
-    borderTopColor:'#000',borderTopWidth:1,
-    // borderTopLeftRadius: 20,
-    // borderTopRightRadius: 20,
-    // padding: 30,
+  // modalView: {
+  //   // margin: 20,
+  //   backgroundColor: 'white',
+  //   borderTopColor:'#000',borderTopWidth:1,
+  //   // borderTopLeftRadius: 20,
+  //   // borderTopRightRadius: 20,
+  //   // padding: 30,
 
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 4,
-    elevation: 5,
-  },
-  item:{
-    flexDirection:'row', borderBottomColor:'#EEE',borderBottomWidth:2,
-    padding: 15,
-  },
-  modalText: {
-    fontWeight: 'bold',
-    marginLeft:10
-  },
+  //   // shadowColor: '#000',
+  //   // shadowOffset: {
+  //   //   width: 0,
+  //   //   height: 2,
+  //   // },
+  //   // shadowOpacity: 0.25,
+  //   // shadowRadius: 4,
+  //   elevation: 5,
+  // },
+  // item:{
+  //   flexDirection:'row', borderBottomColor:'#EEE',borderBottomWidth:2,
+  //   padding: 15,
+  // },
+  // modalText: {
+  //   fontWeight: 'bold',
+  //   marginLeft:10
+  // },
 });

@@ -4,7 +4,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading, ActivityBox, ArticleListContainer,ArticleListContent } from '@components/shared/ArticlesStyle';
 import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FDirCol, FDirRow, FlexDirRow,FlexDirRowSpace} from '@components/shared/FlexBoxStyle';
+import { FDirCol, FDirRow, FlexCol, FlexDirRow,FlexDirRowSpace} from '@components/shared/FlexBoxStyle';
 import PrematureTag,{PrematureTagActivity} from '@components/shared/PrematureTag';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -144,7 +144,7 @@ const Activities = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <FDirCol>
+          <FlexCol>
             <AgeBrackets
               itemColor={backgroundColor}
               activatedItemColor={headerColor}
@@ -174,7 +174,7 @@ const Activities = ({navigation}: Props) => {
   return renderActivityItem(item, index);
 })}
             </View>
-          </FDirCol>
+          </FlexCol>
         </ScrollView>
       </ContainerView>
     </>

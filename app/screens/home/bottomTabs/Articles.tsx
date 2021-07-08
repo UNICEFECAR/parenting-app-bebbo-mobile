@@ -5,7 +5,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 
-import { FDirRow, FlexDirCol } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
@@ -243,8 +243,7 @@ console.log(activeChild,"..activeChild..");
             headerColor={headerColor}
             textColor="#000"
           />
-
-          <FlexDirCol>
+          <FlexCol>
             <SearchBox>
               <OuterIconRow>
                 <OuterIconLeft15>
@@ -276,7 +275,7 @@ console.log(activeChild,"..activeChild..");
                 return renderArticleItem(item, index);
               }) : setFilteredArticleData([])}
               
-          </FlexDirCol>
+              </FlexCol>
           </ScrollView>
           <Modal
         animationType="none"
