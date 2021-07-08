@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
@@ -47,11 +47,11 @@ const FavArticles = (props: any) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'Articles',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'Articles',
+    //   headerColor: artHeaderColor,
+    //   backgroundColor: artBackgroundColor,
+    // });
   };
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
 <Pressable onPress={gotoArticle} key={index}>
