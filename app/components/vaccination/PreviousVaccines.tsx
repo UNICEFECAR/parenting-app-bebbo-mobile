@@ -1,12 +1,12 @@
 import { ButtonTextMdLine, ButtonTextSmLineL } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRowStart,FDirRowStart } from '@components/shared/FlexBoxStyle';
+import { FDirRowStart } from '@components/shared/FlexBoxStyle';
 import { ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsIconView, ToolsListContainer, ToolsListOuter } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
 import { Heading2, Heading4Regular, Heading5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Icon, { OuterIconDone } from '../shared/Icon';
 
@@ -20,11 +20,11 @@ const PreviousVaccines = (props: any) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'ChildDevelopment',
+    //   headerColor: artHeaderColor,
+    //   backgroundColor: artBackgroundColor,
+    // });
   };
   return (
     <>
