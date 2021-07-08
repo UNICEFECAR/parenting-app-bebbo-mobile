@@ -1,13 +1,13 @@
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow,FDirRow, FDirRowStart, FlexDirRowEnd } from '@components/shared/FlexBoxStyle';
-import { ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsHeadView, ToolsIconView, ToolsListContainer,ToolsListOuter } from '@components/shared/ToolsStyle';
+import { FDirRowStart } from '@components/shared/FlexBoxStyle';
+import { ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsHeadView, ToolsIconView, ToolsListContainer, ToolsListOuter } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, Heading4Regular, Heading5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, Heading4, Heading4Regular, Heading5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonPrimary, ButtonText,ButtonTextSmLineL, ButtonTextMd, ButtonTextMdLine, ButtonTextSmLine, ButtonLinkPress, ButtonVaccination, ButtonContainerAuto } from '../shared/ButtonGlobal';
+import { ButtonContainerAuto, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL, ButtonVaccination } from '../shared/ButtonGlobal';
 import Icon from '../shared/Icon';
 
 const UpcomingVaccines = (props: any) => {
@@ -21,11 +21,11 @@ const UpcomingVaccines = (props: any) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = () => {
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'ChildDevelopment',
+    //   headerColor: artHeaderColor,
+    //   backgroundColor: artBackgroundColor,
+    // });
   };
   return (
     <>
