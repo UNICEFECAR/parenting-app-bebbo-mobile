@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
@@ -47,11 +47,11 @@ const FavActivities = (props: any) => {
   const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
  
   const gotoActivity =()=>{
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'Activities',
-      headerColor: actHeaderColor,
-      backgroundColor: actBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'Activities',
+    //   headerColor: actHeaderColor,
+    //   backgroundColor: actBackgroundColor,
+    // });
   }
   const renderActivityItem = (item: typeof DATA[0], index: number) => (
 <Pressable onPress={gotoActivity} key={index}>
