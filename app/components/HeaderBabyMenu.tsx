@@ -5,6 +5,7 @@ import Icon, {
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import { useNavigation } from '@react-navigation/native';
+import { SelectionView } from '@styles/style';
 import {
   Heading3,
   Heading5,
@@ -14,6 +15,7 @@ import {
 import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
 import {
+  FlatList,
   Modal,
   Pressable,
   StyleSheet,
@@ -92,7 +94,10 @@ import {
         if (a.uuid == currentActiveChild) return -1;
       });
     //console.log(currentActiveChild,"..currentActiveChild..");
-    const renderChildItem = (dispatch: any, data: any, index: number,genderName:string) => (
+    const renderChildItem = (dispatch: any, data: any, index: number) => {
+      const genderLocal=(genders?.length>0 && data.gender!="")?genders.find(genderset => String(genderset.id) === data.gender).name:data.gender
+      const genderName:string=genderLocal;
+     return(
       <View key={index}>
         {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -125,7 +130,7 @@ import {
             </ProfileActionView>
           </ProfileListViewSelected>
         ) : (
-          <ProfileListView key={index}>
+          <ProfileListView>
             <ProfileIconView>
             {
           data.photoUri!='' ? 
@@ -153,7 +158,7 @@ import {
         )}
       </View>
     );
-  
+    }
     return (
       <>
         <Modal
@@ -181,16 +186,18 @@ import {
               onPress={() => console.log('do nothing')}
               activeOpacity={1}>
               {SortedchildList.length > 0
-                ? SortedchildList.map((item: ChildEntity, index: number) => {
-                    // console.log(childList,"..childList123..");
-                    // if(genders?.length>0 && item.gender!=""){
-                    //   item.gender=genders.find(genderset => genderset.id === item.gender);
-                    // }
-                    const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => String(genderset.id) === item.gender).name:item.gender;
-                   // console.log(genderLocal,"..genderLocal..");
-                    return renderChildItem(dispatch, item, index,genderLocal);
-                  })
-                : null}
+                ?
+        <FlatList nestedScrollEnabled={true}
+        data={SortedchildList}
+        renderItem={({ item, index }:any) => (
+          // return a component using that data
+         renderChildItem(dispatch, item, index)
+        )}
+        keyExtractor={(item: { id: any; }) => item.id}
+      />
+         
+                : null
+                }
   
               <ButtonContainer>
                 

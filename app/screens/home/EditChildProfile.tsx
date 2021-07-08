@@ -105,6 +105,13 @@ let  childData  = route.params.childData;
       getAllChildren(dispatch);
       getAllConfigData(dispatch);
       console.log(childData,"..childData..");
+      // if(photoUri!='' && photoUri!=null && photoUri!=undefined){
+      //   imageOptions = [
+      //    // { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
+      //     { id: 1, iconName: 'ic_camera', name:  t('cameraOption2')},
+      //     { id: 2, iconName: 'ic_gallery', name:  t('cameraOption3') },
+      //   ];
+      // }
       if(childData!=null && childData.uuid!=''){
         setphotoUri(childData.photoUri);
         sendData(childData);
@@ -429,6 +436,11 @@ const removePhoto=()=>{
               }}>
               {
               imageOptions.map((item, index) => {
+                console.log(index==0 && (photoUri=='' || photoUri==null || photoUri==undefined));
+                if (index==0 && (photoUri=='' || photoUri==null || photoUri==undefined)) {
+                 return null;
+                }
+                else{
                 return (
                   <View
                     key={index}
@@ -448,6 +460,7 @@ const removePhoto=()=>{
                     </Pressable>
                   </View>
                 );
+                }
               })}
             </View>
           </ActionSheet>
