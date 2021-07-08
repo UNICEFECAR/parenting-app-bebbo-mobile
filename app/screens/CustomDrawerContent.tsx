@@ -1,31 +1,31 @@
 import {
-    BgDevelopment,
-    BgGrowth,
-    BgHealth,
-    BgVaccination
+  BgDevelopment,
+  BgGrowth,
+  BgHealth,
+  BgVaccination
 } from '@components/shared/BackgroundColors';
 import { FDirCol, FDirRow, Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import {
-    HeaderActionView,
-    HeaderRowView,
-    HeaderTitleView
+  HeaderActionView,
+  HeaderRowView,
+  HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import {
-    DrawerHeadContainer,
-    DrawerLinkView,
-    NavIconSpacing,
-    SubDrawerHead,
-    SubDrawerLinkView
+  DrawerHeadContainer,
+  DrawerLinkView,
+  NavIconSpacing,
+  SubDrawerHead,
+  SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
 import { Heading3, Heading4, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Alert,
-    Pressable,
-    ScrollView,
-    Share
+  Alert,
+  Pressable,
+  ScrollView,
+  Share
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -105,7 +105,8 @@ console.log(activeChild,"..activeChild..");
           </Pressable>
         </Flex1>
         <DrawerLinkView
-          onPress={() => navigation.navigate('Home')}
+          // onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('Home', {screen: 'Home'})}
           ><OuterIconRow>
             <OuterIconLeft15>
             <Icon name="ic_sb_home" size={25} color="#000" />
