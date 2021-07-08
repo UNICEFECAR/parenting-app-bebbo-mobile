@@ -11,7 +11,9 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
     //Get data from db and if it exists then use db data or use const data in this file.  
     let databaselistener:any;
     let databaseallData:any,databaseData:any;
-    const filterQuery = 'child_age == "'+currentChildData.taxonomyData.id+'" LIMIT(20)';
+    // const filterQuery = 'child_age == "'+currentChildData.taxonomyData.id+'" LIMIT(20)';
+    const filterQuery = '(child_age == "'+currentChildData.taxonomyData.id+'" || child_age == "") && (category == "2" || category == "4" || category == "1" || category == "55" || category == "56" || category == "3") LIMIT(20)';
+    console.log(filterQuery,"..filterQuery..")
     //actual query to use is below one.
     // const filterQuery = 'parent_gender == "'+currentChildData.parent_gender+'" AND child_age == "'+currentChildData.taxonomyData.id+'"';
 //    console.log(filterQuery);
