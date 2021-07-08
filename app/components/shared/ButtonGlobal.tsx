@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 /*Button Pressable */
 export const ButtonPrimary = styled.Pressable`
-background: ${props => props.disabled ? '#cccccc' : props.theme.colors.SECONDARY_COLOR};
+background: ${props => props.disabled ? props.theme.colors.SECONDARY_COLOR : props.theme.colors.SECONDARY_COLOR};
 opacity: ${props => props.disabled ? 0.5 : 1};
 color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
 padding: 14px 18px;
@@ -25,7 +25,6 @@ export const ButtonText = styled.Text`
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
-  
 `;
 
 export const ButtonTextLine = styled(ButtonText)`
@@ -138,6 +137,9 @@ export const ButtonActivity = styled(ButtonPrimary)`
 `;
 export const ButtonArticles = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.ARTICLES_COLOR};
+`;
+export const ButtonArticlesTint = styled(ButtonPrimary)`
+  background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
 export const ButtonVaccination = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.VACCINATION_COLOR};

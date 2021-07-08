@@ -1,15 +1,19 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
+  ButtonArticles,
+  ButtonArticlesTint,
   ButtonColTwo,
   ButtonContainerTwo,
   ButtonSecondary,
   ButtonSecondaryTint,
+  ButtonTertiary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
 import WalkthroughContainer, {
   ButtonTertiary1,
   ButtonTertiary2,
   Slide,
+  WalkBtn,
   WalkthroughButton,
   WalkthroughContentArea,
   WalkthroughImagebox,
@@ -116,19 +120,21 @@ const Walkthrough = ({navigation}: Props) => {
                 </WalkthroughSubtext>
 
                 {index == 3 ? (
+                  <WalkBtn style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
                   <ButtonContainerTwo>
                     <ButtonColTwo>
-                      <ButtonSecondaryTint onPress={goBackSlide}>
+                      <ButtonArticlesTint onPress={goBackSlide}>
                         <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
-                      </ButtonSecondaryTint>
+                      </ButtonArticlesTint>
                     </ButtonColTwo>
 
                     <ButtonColTwo>
-                      <ButtonSecondary onPress={onDone}>
+                      <ButtonTertiary onPress={onDone}>
                         <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
-                      </ButtonSecondary>
+                      </ButtonTertiary>
                     </ButtonColTwo>
                   </ButtonContainerTwo>
+                  </WalkBtn>
                 ) : null}
               </WalkthroughContentArea>
             </Slide>
