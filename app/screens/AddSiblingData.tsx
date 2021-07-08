@@ -1,5 +1,6 @@
 
 import ChildDate from '@components/ChildDate';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
 import { ChildAddTop } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
@@ -8,9 +9,10 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
@@ -71,8 +73,11 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     console.log(insertData,"..insertData");
     addChild(editScreen, 1, childSet, dispatch, navigation,child_age);
 }
+const themeContext = useContext(ThemeContext);
+const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <View>
           <OnboardingHeading>

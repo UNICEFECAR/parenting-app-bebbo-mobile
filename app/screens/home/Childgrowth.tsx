@@ -1,35 +1,20 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ArticleHeading } from '@components/shared/ArticlesStyle';
-import { ButtonContainer, ButtonPrimary, ButtonSpacing, ButtonText, ButtonTextMdLine } from '@components/shared/ButtonGlobal';
-import { BannerContainer1,BgContainer } from '@components/shared/Container';
-import { Flex1, Flex2,Flex3, Flex4,FDirRow, FlexDirCol, FlexDirRow, FlexDirRowSpace, FlexDirRowStart, FlexFDirRowSpace, FlexDirRowEnd, FlexDirColStart } from '@components/shared/FlexBoxStyle';
+import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextMdLine } from '@components/shared/ButtonGlobal';
+import { BannerContainer1, BgContainer } from '@components/shared/Container';
+import { Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
-import RelatedArticles from '@components/shared/RelatedArticles';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2,
-    Heading3,
-    Heading3Regular,
-    Heading4,
-    Heading4Center,
-    Heading5,
-    Paragraph,
-    Heading3Centerr,
-    ShiftFromTopBottom20,
-    ShiftFromBottom5,
-    Heading5Bold,
-    ShiftFromTop5,
-    Heading4Regular,
-    ShiftFromTop20,
-    SideSpacing10,
-    ShiftFromTop10
+  Heading2,
+  Heading3, Heading3Centerr, Heading4,
+  Heading4Center, Heading4Regular, Heading5, Heading5Bold, Paragraph, ShiftFromBottom5, ShiftFromTop10, ShiftFromTop20, ShiftFromTopBottom20, SideSpacing10
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -61,7 +46,7 @@ const Childgrowth = ({navigation}: Props) => {
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
-        <FocusAwareStatusBar animated={true} />
+        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
           style={{
             flexDirection: 'column',
