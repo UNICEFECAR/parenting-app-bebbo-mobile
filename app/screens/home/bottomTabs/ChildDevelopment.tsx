@@ -10,14 +10,14 @@ import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading3, Heading3Regular, Heading4, Heading5, Heading5Bold, ShiftFromBottom5,ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading5Bold, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    FlatList,
-    Image,
-    Pressable,
-    SafeAreaView, View
+  FlatList,
+  Image,
+  Pressable,
+  SafeAreaView, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 
@@ -66,11 +66,11 @@ const ChildDevelopment = ({navigation}: Props) => {
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const {t} = useTranslation();
   const onPressInfo = () => {
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'ChildDevelopment',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-    });
+    // navigation.navigate('DetailsScreen', {
+    //   fromScreen: 'ChildDevelopment',
+    //   headerColor: artHeaderColor,
+    //   backgroundColor: artBackgroundColor,
+    // });
   };
   const renderItem = (item: typeof cditems[0]) => (
     <ChilDevelopmentCollapsibleItem item={item} subItemSaperatorColor={headerColor} />
