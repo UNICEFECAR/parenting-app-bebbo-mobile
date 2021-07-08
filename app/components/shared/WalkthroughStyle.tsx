@@ -71,5 +71,11 @@ export const WalkthroughContentArea = styled.View`
   align-items: center;
   align-content: center;
 `;
+export const WalkBtn = styled.View`
+  flex: 1;
+ 
+`;
+
+
 
 export default WalkthroughContainer;

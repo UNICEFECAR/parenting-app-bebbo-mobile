@@ -1,19 +1,23 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
+  FormContainer,
+  FormContainerFlex,
     FormDateAction,
     FormDateContainer,
     FormDateText,
     FormInputBox,
     FormInputGroup,
-    LabelText
+    LabelText,
+    TextAreaBox
 } from '@components/shared/ChildSetupStyle';
+import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w } from '@styles/typography';
+import { Heading2w, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -114,7 +118,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
           </View>
         </View> */}
 
-        <View style={{ margin: 10 }}>
+        <MainContainer>
           <FormDateContainer>
             <FormInputGroup onPress={showdobDatepicker}>
               <LabelText> {t('expectChildDueDateTxt')}</LabelText>
@@ -141,8 +145,9 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             )}
           </View>
 
-          <View>
+          <FormContainer>
             <LabelText>{t('expectPreferNametxt')}</LabelText>
+            <TextAreaBox>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -152,14 +157,14 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               value={name}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder={t('expectPreferNamePlacetxt')}
-              style={{
-                backgroundColor: '#fff',
-                paddingHorizontal: 20,
-                paddingVertical: 20,
-              }}
+              
             />
-          </View>
-          <View style={{ width: '100%', marginTop: 30 }}>
+            </TextAreaBox>
+          </FormContainer>
+          
+        </MainContainer>
+        <ShiftFromTop10>
+        <ButtonContainer>
             <ButtonPrimary
               onPress={() => {
                 //navigation.navigate('ChildProfileScreen');
@@ -175,8 +180,8 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               }}>
               <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
-          </View>
-        </View>
+          </ButtonContainer>
+          </ShiftFromTop10>
       </SafeAreaView>
     </>
   );
