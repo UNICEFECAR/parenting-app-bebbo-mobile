@@ -35,6 +35,7 @@ const Childgrowth = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -187,7 +188,7 @@ const Childgrowth = ({navigation}: Props) => {
                                   backgroundColor:
                                     itemindex == selectedIndex
                                       ? headerColor
-                                      : backgroundColor,
+                                      : headerColorWhite,
                                 },
                               ]}>
                               <Heading4Center>{item.title}</Heading4Center>

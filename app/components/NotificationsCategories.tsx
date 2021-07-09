@@ -82,7 +82,7 @@ const NotificationsCategories = (props: any) => {
           padding: 10,
           backgroundColor: backgroundColor,
           minHeight: 120,
-          paddingHorizontal: 70,
+          paddingHorizontal: 60,
         }}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <ButtonItem data={products[0]} setbutton={() => handleChange(0)} />

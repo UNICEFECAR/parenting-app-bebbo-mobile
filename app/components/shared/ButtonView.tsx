@@ -3,8 +3,6 @@ export const ButtonviewNext = styled.Text`
   width: 50px;
   height: 50px;
   margin-top: 10px;
-  
-
   align-content: center;
   margin-bottom: 10px;
   border-radius: 100px;
@@ -13,9 +11,12 @@ export const ButtonviewNext = styled.Text`
 `;
 
 export const ButtonviewPrevious = styled(ButtonviewNext)`
-  background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};
+  /*background-color: ${(props) => props.theme.colors.SECONDARY_TINTCOLOR};*/
+  opacity:0.5;
   justify-content: flex-start;
 `;
+
+
 
 export const ButtonviewClick = styled.Pressable`
   margin-top: 10px;
