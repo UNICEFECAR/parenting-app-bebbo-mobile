@@ -179,13 +179,30 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     setActiveChild(data[0].uuid,dispatch,child_age);
   }
   else if (param == 1) {
+    let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    if(currentActiveChildId?.length>0){
+      currentActiveChildId=currentActiveChildId[0].value;
+      if(currentActiveChildId==data[0].uuid){
+        setActiveChild(data[0].uuid,dispatch,child_age);
+      }
+    }
     navigation.navigate('ChildSetupList');
+    // setActiveChild(data[0].uuid,dispatch,child_age);
   }
   else {
+    let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    if(currentActiveChildId?.length>0){
+      currentActiveChildId=currentActiveChildId[0].value;
+      if(currentActiveChildId==data[0].uuid){
+        setActiveChild(data[0].uuid,dispatch,child_age);
+      }
+    }  
     navigation.navigate('ChildProfileScreen');
+  
+  
+    // 
   }
- 
-
+  
   // //console.log(new Date()," result is ",createresult);
 
 }
