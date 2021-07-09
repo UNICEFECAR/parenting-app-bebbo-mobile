@@ -178,7 +178,7 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <Flex4 style={{backgroundColor: backgroundColor}}>
+          <Flex4 style={{backgroundColor: backgroundColor, margin:-3}}>
             <View>
               <FlatList
                 data={cditems}
