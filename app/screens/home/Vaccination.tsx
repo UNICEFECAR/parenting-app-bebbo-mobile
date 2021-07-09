@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexDirRow, FlexDirRowAround, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer, VacSummaryBox } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -9,14 +9,10 @@ import UpcomingVaccines from '@components/vaccination/UpcomingVaccines';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2,
-    Heading3,
-    Heading4,
-    Heading4Center,
-    Heading4Regular,
-    Paragraph,
-    ShiftFromTopBottom10,
-    ShiftFromTopBottom5
+  Heading2,
+  Heading3, Heading4Center,
+  Heading4Regular, ShiftFromTopBottom10,
+  ShiftFromTopBottom5
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -122,20 +118,26 @@ const Vaccination = ({navigation}: Props) => {
             <Heading3>{t('vcSummaryHeader')}</Heading3>
             </ShiftFromTopBottom5>
             <View style={{flex:1,flexDirection:'row', justifyContent:'space-around'}}>	
+            <Pressable onPress={()=>setSelectedIndex(0)}>
               <VacSummaryBox>
               <Heading2>22</Heading2>
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
               </VacSummaryBox>
+              </Pressable>
+              <Pressable onPress={()=>setSelectedIndex(1)}>
               <VacSummaryBox>
 
               <Heading2>4</Heading2>
               <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
               </VacSummaryBox>
+              </Pressable>
+              <Pressable onPress={()=>setSelectedIndex(1)}>
               <VacSummaryBox>
 
               <Heading2>42</Heading2>
               <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
               </VacSummaryBox>
+              </Pressable>
             </View>
             
             </MainContainer>
