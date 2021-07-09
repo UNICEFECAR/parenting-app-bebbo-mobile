@@ -16,6 +16,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -34,6 +35,14 @@ const Childgrowth = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+);
+  const isFutureDate = (date: Date) => {
+    return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+  };
   const renderItem = (item: typeof data[0], index: number) => {
     return (
       <>
@@ -211,6 +220,7 @@ const Childgrowth = ({navigation}: Props) => {
             style={{backgroundColor: backgroundColor}}>
             <ShiftFromTop10>
               <ButtonPrimary
+              disabled={isFutureDate(activeChild?.birthDate)}
                 style={{backgroundColor: headerColor}}
                 onPress={() => {
                   navigation.navigate('AddNewChildgrowth', {
