@@ -3,7 +3,6 @@ import {
   ButtonLinkPress, ButtonTextMdLineL,
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
-import { FDirCol, FDirRow } from '@components/shared/FlexBoxStyle';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -210,7 +209,8 @@ const child_age = useAppSelector(
           }}>
           <View style={{flex: 1, padding: 15}}>
             <Pressable
-              onPress={() => {
+              onPress={(e) => {
+                e.stopPropagation();
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
