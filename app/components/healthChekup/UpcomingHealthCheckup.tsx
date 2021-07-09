@@ -1,16 +1,16 @@
 import { MainContainer } from '@components/shared/Container';
 import { Bullets, BulletsView } from '@components/shared/Divider';
-import { FDirRow, FlexDirRow,FDirRowStart, Flex1 } from '@components/shared/FlexBoxStyle';
+import { FDirRowStart, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { RadioActive } from '@components/shared/radio';
 import { HealthDesc, ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsHeadView, ToolsIconView, ToolsListContainer, ToolsListOuter } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, Heading4Regular, Heading5, Paragraph, ShiftFromBottom10, ShiftFromBottom15, ShiftFromBottom20, ShiftFromBottom5, ShiftFromTop15, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, Heading4, Heading4Regular, Paragraph, ShiftFromBottom15, ShiftFromTop15, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonContainerAuto, ButtonHealth, ButtonPrimary, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL } from '../shared/ButtonGlobal';
-import Icon, { OuterIconRow } from '../shared/Icon';
+import { ButtonContainerAuto, ButtonHealth, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL } from '../shared/ButtonGlobal';
+import Icon from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
@@ -229,7 +229,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 item.givenVaccines.length > 0 ? (
                   <ShiftFromTopBottom10>
            <Pressable onPress={() =>
-                      navigation.navigate('AddChildVaccination', {
+                      navigation.navigate('AddChildHealthCheckup', {
                         headerTitle: t('editVcTitle'),
                       })
                     }>
