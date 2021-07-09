@@ -149,7 +149,51 @@ export const getCurrentChildAgeInDays = (birthDayMillis?: number, currentMillis?
   };
   return days;
 };
+export const isFutureDate = (date: Date) => {
+  return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+};
+const yearDiff=(dt1:any, dt2:any)=> 
+{
 
+ var diffYear =(dt2.getTime() - dt1.getTime()) / 1000;
+  diffYear /= (60 * 60 * 24);
+ return Math.abs(Math.round(diffYear/365.25));
+ 
+}
+export const getCurrentChildAgeInMonths = (birthDate:string) => {
+// let months: any = 0;
+// console.log(new Date(birthDate),"..new Date(birthDate)..")
+// const inFuture=isFutureDate(new Date(birthDate));
+// console.log(inFuture,"..inFuture..")
+// var d = new Date();
+// var n = d.toString();
+// if (!inFuture) {
+  // const yearDiffData=yearDiff(d,new Date(birthDate));
+  // console.log(yearDiffData,"..yearDiffData..")
+//   const date1 = DateTime.fromISO(n);
+// const date2 = DateTime.fromISO(birthDate);
+// let date = DateTime.fromMillis(DateTime.(childBirthDay).toMillis());
+// const diff = birthDate.diffNow(["years", "months", "days", "hours"])
+// const date1 = DateTime.fromMillis(DateTime.(childBirthDay).toMillis());
+// const date2 =DateTime.fromMillis(DateTime.(childBirthDay).toMillis());
+
+// const diff = date1.diff(date2, ["years", "months", "days", "hours"])
+
+// console.log(diff.toObject())
+//   const date1 = DateTime.fromISO(n)
+//   const date2 = DateTime.fromISO(birthDate)
+//   const diff = date2.diff(date1, ["years", "months", "days", "hours"]);
+//   console.log(diff.toObject())
+// const convertInMonths=diff.toObject().months;
+// console.log(convertInMonths,"..convertInMonths..")
+// if (convertInMonths !== undefined) months = convertInMonths;
+//   return diff.months;
+// }
+// else{
+//   return 0 ;
+// }
+return "9 Months" ;
+};
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any,child_age:any) => {
   if (editScreen) {
     //console.log("..update child..", data);
@@ -194,7 +238,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     if(currentActiveChildId?.length>0){
       currentActiveChildId=currentActiveChildId[0].value;
       if(currentActiveChildId==data[0].uuid){
-        setActiveChild(data[0].uuid,dispatch,child_age);
+      setActiveChild(data[0].uuid,dispatch,child_age);
       }
     }  
     navigation.navigate('ChildProfileScreen');
