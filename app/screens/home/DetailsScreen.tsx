@@ -95,12 +95,12 @@ const DetailsScreen = ({route, navigation}: any) => {
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
-                  <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} />
-                  {/* <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} /> */}
+                {/*  <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} />
+                   <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} /> */}
                 
-                <View style={{padding: 20}}>
+                <ArticleHeading>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
-                </View>
+                </ArticleHeading>
                 <ArticleCategories borderColor={headerColor} filterOnCategory={setNewFilteredArticleData} filterArray={filterArray} />
               </View>
             </>

@@ -11,10 +11,11 @@ export const ArticleFilter = styled.View`
   min-height:120px;
   border-bottom-color:${props => props.theme.colors.ARTICLES_COLOR};
   border-top-color:${props => props.theme.colors.ARTICLES_COLOR};
-  border-bottom-width:1px;
-  border-Top-width:1px;
+  /*border-bottom-width:1px;
+  border-Top-width:1px;*/
   margin-bottom:5px;
 `;
+
 
 export const FilterBox = styled.View`  
 border-radius:4px;
