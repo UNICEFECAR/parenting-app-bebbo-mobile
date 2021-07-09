@@ -165,7 +165,7 @@ console.log(activeChild,"..activeChild..");
   
   useFocusEffect(
     React.useCallback(() => {
-      setLoading(true);
+      setLoading(false);
       setModalVisible(true);
       async function fetchData() {
         let Entity:any;
