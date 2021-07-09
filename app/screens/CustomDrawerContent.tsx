@@ -4,7 +4,12 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
-import { FDirCol, FDirRow, Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import {
+  FDirCol,
+  FDirRow,
+  Flex1,
+  FlexDirRow
+} from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderRowView,
@@ -21,12 +26,7 @@ import {
 import { Heading3, Heading4, Heading5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  Share
-} from 'react-native';
+import { Alert, Pressable, ScrollView, Share } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
@@ -35,11 +35,11 @@ const CustomDrawerContent = ({navigation}: any) => {
   const {t} = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
-  state.childData.childDataSet.activeChild != ''
-    ? JSON.parse(state.childData.childDataSet.activeChild)
-    : [],
-);
-console.log(activeChild,"..activeChild..");
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  console.log(activeChild, '..activeChild..');
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -65,57 +65,58 @@ console.log(activeChild,"..activeChild..");
     <>
       <SafeAreaView>
         <ScrollView>
-        {/* <View>
-          <Pressable
-            onPress={() => navigation.navigate('ChildProfileScreen')}
-            style= {{backgroundColor: headerColor,
-            }}>
-            <Icon name="ic_baby" size={25} color="#000" />
-            <Text>Child 1 Born on 19july 2020</Text>
-            <Text>{t('drawerMenu.childInfo',{childName:"Alice",childdob: '19 Jul 2020 02:32pm'})}</Text>
-            <Icon name="ic_angle_right" size={15} color="#000" />
-          </Pressable>
-        </View> */}
-        <Flex1>
-          <Pressable
-            onPress={() => navigation.navigate('ChildProfileScreen')}
-            style={{
-              backgroundColor: headerColor,
-            }}>
-               <DrawerHeadContainer>
-              <HeaderRowView>
-                <HeaderTitleView>
-                <FlexDirRow>
-                  <OuterIconRow>
-                    <OuterIconLeft15>
-                <Icon name="ic_baby" size={25} color="#000" />
-                </OuterIconLeft15>
-                </OuterIconRow>
-                <FDirCol>
-            <Heading3>{activeChild.childName!=''?activeChild.childName:''}</Heading3>
-            <Heading5>{t('drawerMenuchildInfo',{childdob: (activeChild.birthDate!='' && activeChild.birthDate!=null && activeChild.birthDate!=undefined)?formatDate(activeChild.birthDate):''})}</Heading5>
-            </FDirCol>
-            </FlexDirRow>
-                </HeaderTitleView>
-              <HeaderActionView>
-                <Icon name="ic_angle_right" size={16} color="#000" />
-              </HeaderActionView>
-             
-              </HeaderRowView>
+          <Flex1>
+            <Pressable
+              onPress={() => navigation.navigate('ChildProfileScreen')}
+              style={{
+                backgroundColor: headerColor,
+              }}>
+              <DrawerHeadContainer>
+                <HeaderRowView>
+                  <HeaderTitleView>
+                    <FlexDirRow>
+                      <OuterIconRow>
+                        <OuterIconLeft15>
+                          <Icon name="ic_baby" size={25} color="#000" />
+                        </OuterIconLeft15>
+                      </OuterIconRow>
+                      <FDirCol>
+                        <Heading3>
+                          {activeChild.childName != ''
+                            ? activeChild.childName
+                            : ''}
+                        </Heading3>
+                        <Heading5>
+                          {t('drawerMenuchildInfo', {
+                            childdob:
+                              activeChild.birthDate != '' &&
+                              activeChild.birthDate != null &&
+                              activeChild.birthDate != undefined
+                                ? formatDate(activeChild.birthDate)
+                                : '',
+                          })}
+                        </Heading5>
+                      </FDirCol>
+                    </FlexDirRow>
+                  </HeaderTitleView>
+                  <HeaderActionView>
+                    <Icon name="ic_angle_right" size={16} color="#000" />
+                  </HeaderActionView>
+                </HeaderRowView>
               </DrawerHeadContainer>
-          </Pressable>
-        </Flex1>
-        <DrawerLinkView
-          // onPress={() => navigation.navigate('Home')}
-          onPress={() => navigation.navigate('Home', {screen: 'Home'})}
-          ><OuterIconRow>
-            <OuterIconLeft15>
-            <Icon name="ic_sb_home" size={25} color="#000" />
-            </OuterIconLeft15>
-          </OuterIconRow>
-          
-          <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
-        </DrawerLinkView>
+            </Pressable>
+          </Flex1>
+          <DrawerLinkView
+            // onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Home', {screen: 'Home'})}>
+            <OuterIconRow>
+              <OuterIconLeft15>
+                <Icon name="ic_sb_home" size={25} color="#000" />
+              </OuterIconLeft15>
+            </OuterIconRow>
+
+            <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
+          </DrawerLinkView>
           <DrawerLinkView
             onPress={() => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
@@ -126,7 +127,7 @@ console.log(activeChild,"..activeChild..");
 
             <Heading4>{t('drawerMenunotiTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => onChangeaccordvalue(!accordvalue)}>
+          <DrawerLinkView style={{backgroundColor:accordvalue ?"#F7F6F4":"#FFF"}} onPress={() => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_tools" size={25} color="#000" />
