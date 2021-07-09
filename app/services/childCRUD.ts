@@ -152,14 +152,7 @@ export const getCurrentChildAgeInDays = (birthDayMillis?: number, currentMillis?
 export const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
 };
-const yearDiff=(dt1:any, dt2:any)=> 
-{
 
- var diffYear =(dt2.getTime() - dt1.getTime()) / 1000;
-  diffYear /= (60 * 60 * 24);
- return Math.abs(Math.round(diffYear/365.25));
- 
-}
 export const getCurrentChildAgeInMonths = (birthDate:string) => {
 // let months: any = 0;
 // console.log(new Date(birthDate),"..new Date(birthDate)..")
@@ -192,7 +185,34 @@ export const getCurrentChildAgeInMonths = (birthDate:string) => {
 // else{
 //   return 0 ;
 // }
-return "9 Months" ;
+const date1 = DateTime.fromISO(DateTime.local().toISODate());
+const date2 = DateTime.fromISO(birthDate);
+
+const diff:any = date1.diff(date2, ["years", "months", "days"])
+console.log(diff.toObject());
+var ageStr = "";
+
+if(diff.years<0 || diff.months<0 || diff.days<0){
+  ageStr= "not born Yet";
+} else{
+  if(diff.years != ""){ 
+    ageStr = diff.years + (diff.years>1 ? " years ":" year ");
+  }
+  if(diff.months != ""){ 
+    ageStr+= diff.months + (diff.months>1 ? " months ":" month ");
+  }
+  if(diff.days != "" && diff.months == "" && diff.years == ""){ 
+    ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? " days": " day");
+  }
+  if(ageStr == ""){
+  	ageStr = "0 day";
+  }
+
+}
+
+return ageStr;
+
+console.log(diff.toObject())
 };
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any,child_age:any) => {
   if (editScreen) {
