@@ -206,6 +206,14 @@ const en = {
 
 
             // Sprint4 Screens
+            noBorn:"Not Born Yet",
+            noday:"0 day",
+            yearstag:"years",
+            yeartag:"year",
+            monthstag:"months",
+            monthtag:"month",
+            daystag:"days",
+            daytag:"day",
             defaultChildPrefix:"Child",
             notiOption1:"Delete this notification",
             notiOption2:"Mark as Read",
