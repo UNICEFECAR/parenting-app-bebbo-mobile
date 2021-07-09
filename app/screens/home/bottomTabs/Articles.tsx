@@ -5,6 +5,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 
 import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
+import Divider,{DividerArt} from '@components/shared/Divider';
 
 import { FDirRow, FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
 
@@ -271,8 +272,11 @@ console.log(activeChild,"..activeChild..");
                 }}
               />
             </SearchBox>
-           
+            <FlexCol>
+                <DividerArt></DividerArt>
               <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
+              <DividerArt></DividerArt>
+              </FlexCol>
               {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
               }) : setFilteredArticleData([])}
