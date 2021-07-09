@@ -153,7 +153,7 @@ export const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
 };
 
-export const getCurrentChildAgeInMonths = (birthDate:string) => {
+export const getCurrentChildAgeInMonths = (t:any,birthDate:string) => {
 // let months: any = 0;
 // console.log(new Date(birthDate),"..new Date(birthDate)..")
 // const inFuture=isFutureDate(new Date(birthDate));
@@ -193,26 +193,25 @@ console.log(diff.toObject());
 var ageStr = "";
 
 if(diff.years<0 || diff.months<0 || diff.days<0){
-  ageStr= "not born Yet";
+  ageStr=t('noBorn');
 } else{
   if(diff.years != ""){ 
-    ageStr = diff.years + (diff.years>1 ? " years ":" year ");
+    ageStr = diff.years + (diff.years>1 ? t('yearstag'):t('yeartag'));
   }
   if(diff.months != ""){ 
-    ageStr+= diff.months + (diff.months>1 ? " months ":" month ");
+    ageStr+= diff.months + (diff.months>1 ? t('monthstag'):t('monthtag'));
   }
   if(diff.days != "" && diff.months == "" && diff.years == ""){ 
-    ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? " days": " day");
+    ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ?  t('daystag'):  t('daytag'));
   }
   if(ageStr == ""){
-  	ageStr = "0 day";
+  	ageStr =t('noday');
   }
 
 }
 
 return ageStr;
 
-console.log(diff.toObject())
 };
 export const addChild = async (editScreen: boolean, param: number, data: any, dispatch: any, navigation: any,child_age:any) => {
   if (editScreen) {
