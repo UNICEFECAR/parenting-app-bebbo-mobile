@@ -34,7 +34,8 @@ import {
   ShiftFromTop10,
   ShiftFromTop20,
   ShiftFromTopBottom10,
-  ShiftFromTopBottom5
+  ShiftFromTopBottom5,
+  SideSpacing10
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -133,7 +134,9 @@ const SettingScreen = (props: any) => {
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
+            <SideSpacing10>
               <FDirRowStart>
+             
                 <FormOuterCheckbox
                   onPress={() => {
                     setIsEnabled(!isEnabled);
@@ -145,7 +148,7 @@ const SettingScreen = (props: any) => {
                           <Icon name="ic_tick" size={12} color="#000" />
                         </CheckboxActive>
                       ) : (
-                        <Checkbox></Checkbox>
+                        <Checkbox style={{borderWidth: 1}}></Checkbox>
                       )}
                     </View>
                   </CheckboxItem>
@@ -163,10 +166,13 @@ const SettingScreen = (props: any) => {
                   </Heading4Regular>
                 </Flex1>
               </FDirRowStart>
+              </SideSpacing10>
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
+            <SideSpacing10>
               <FDirRowStart>
+                
               <FormOuterCheckbox
                   onPress={() => {
                     setIsEnabled(!isEnabled);
@@ -178,7 +184,7 @@ const SettingScreen = (props: any) => {
                           <Icon name="ic_tick" size={12} color="#000" />
                         </CheckboxActive>
                       ) : (
-                        <Checkbox></Checkbox>
+                        <Checkbox style={{borderWidth: 1}}></Checkbox>
                       )}
                     </View>
                   </CheckboxItem>
@@ -196,9 +202,11 @@ const SettingScreen = (props: any) => {
                   </Heading4Regular>
                 </Flex1>
               </FDirRowStart>
+              </SideSpacing10>
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
+            <SideSpacing10>
               <FDirRowStart>
               <FormOuterCheckbox
                   onPress={() => {
@@ -211,7 +219,7 @@ const SettingScreen = (props: any) => {
                           <Icon name="ic_tick" size={12} color="#000" />
                         </CheckboxActive>
                       ) : (
-                        <Checkbox></Checkbox>
+                        <Checkbox style={{borderWidth: 1}}></Checkbox>
                       )}
                     </View>
                   </CheckboxItem>
@@ -229,6 +237,7 @@ const SettingScreen = (props: any) => {
                   </Heading4Regular>
                 </Flex1>
               </FDirRowStart>
+              </SideSpacing10>
             </ShiftFromBottom10>
 
             <View>

@@ -94,6 +94,10 @@ export const FormContainer = styled.View`
 export const FormContainerFlex = styled(FormContainer)`
   flex:1
 `;
+export const FormContainerFlex1 = styled(FormContainerFlex)`
+margin-top:0;
+`;
+
 
 export const FormInputBox = styled.View`
   flex-direction: row;
