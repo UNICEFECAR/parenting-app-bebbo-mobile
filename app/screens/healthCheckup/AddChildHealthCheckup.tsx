@@ -2,6 +2,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex,
+  FormContainerFlex1,
     FormDateAction,
     FormDateText,
     FormInputBox,
@@ -241,7 +242,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         </FormContainerFlex>
         {
           isVaccineMeasured? 
-          <View>
+          <FormContainerFlex1>
             <ShiftFromTop15>
             <FormInputText>
             <Heading3>{t('vcPlanned')}</Heading3>
@@ -254,7 +255,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
           </FormInputText>
           <PrevPlannedVaccines />
           </ShiftFromTop15>
-          </View>
+          </FormContainerFlex1>
           :null
         }
         <FormContainerFlex>
