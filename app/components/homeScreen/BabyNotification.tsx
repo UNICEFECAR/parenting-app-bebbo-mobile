@@ -34,7 +34,7 @@ const BabyNotification = () => {
           </OuterIconLeft>
         </OuterIconRow>
         <FDirCol>
-        <Heading3>{t('babyNotificationbyAge',{childName:(activeChild.childName!=null && activeChild.childName!="" && activeChild.childName!=undefined)?activeChild.childName:'',ageInMonth:(activeChild.birthDate!=null && activeChild.birthDate!="" && activeChild.birthDate!=undefined)? getCurrentChildAgeInMonths(activeChild.birthDate):''})}</Heading3>
+        <Heading3>{t('babyNotificationbyAge',{childName:(activeChild.childName!=null && activeChild.childName!="" && activeChild.childName!=undefined)?activeChild.childName:'',ageInMonth:(activeChild.birthDate!=null && activeChild.birthDate!="" && activeChild.birthDate!=undefined)? getCurrentChildAgeInMonths(t,activeChild.birthDate):''})}</Heading3>
         <Heading5>
         {t('babyNotificationText')}
         </Heading5>
