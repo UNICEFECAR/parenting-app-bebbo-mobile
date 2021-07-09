@@ -22,20 +22,20 @@ const DailyHomeNotification = () => {
   const utilsDatarecordConsts = useAppSelector((state: any) =>
     state.utilsData != '' ? state.utilsData : state.utilsData,
   );
-  console.log(utilsDatarecordConsts, 'utilsDatarecordConsts<>');
+  // console.log(utilsDatarecordConsts, 'utilsDatarecordConsts<>');
   const records = useAppSelector((state: any) =>
     state.utilsData.dailymessages != ''
       ? JSON.parse(state.utilsData.dailymessages)
       : state.utilsData.dailymessages,
   );
-  console.log(records, '<<records>>');
+  // console.log(records, '<<records>>');
 
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
       : state.variableData?.variableData,
   );
-  console.log(allConfigData, '..allConfigData..');
+  // console.log(allConfigData, '..allConfigData..');
   const setNotiInDB = async (noti) => {
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
       ConfigSettingsSchema,
@@ -49,14 +49,14 @@ const DailyHomeNotification = () => {
       allConfigData?.length > 0
         ? allConfigData.find((item) => item.key == 'dailyNotification')
         : null;
-    console.log(currentNotification, 'currentNotification<>');
-    let currentDate = DateTime.local()
+    // console.log(currentNotification, 'currentNotification<>');
+    let currentDate = DateTime.local();
     //.plus({days: 2}); for testing next day noti change
     if (currentNotification != null || currentNotification != undefined) {
       const currentNotificationVal = currentNotification
         ? JSON.parse(currentNotification?.value)
         : null;
-      console.log('currentNotificationVal', currentNotificationVal);
+      // console.log('currentNotificationVal', currentNotificationVal);
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
 
       if (
@@ -67,7 +67,7 @@ const DailyHomeNotification = () => {
         const currentMessageIndex = records.findIndex(
           (item: any) => item.id === currentNotificationVal.messageId,
         );
-        console.log(currentMessageIndex, 'currentMessageIndex');
+        // console.log(currentMessageIndex, 'currentMessageIndex');
         // Set next daily message
         let newNotification = {
           messageId: records[currentMessageIndex + 1].id,
@@ -77,18 +77,18 @@ const DailyHomeNotification = () => {
           year: currentDate.year,
         };
         let updateNotifcation = setNotiInDB(newNotification);
-        console.log(updateNotifcation);
+        // console.log(updateNotifcation);
         setNotification(newNotification);
-        console.log(
-          'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
-          newNotification,
-        );
+        // console.log(
+        //   'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
+        //   newNotification,
+        // );
       } else {
-        console.log('DAILY MESSAGE VARIABLE IS CurrentNotification', records);
+        // console.log('DAILY MESSAGE VARIABLE IS CurrentNotification', records);
         setNotification(currentNotificationVal);
       }
     } else {
-      console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
+      // console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
       let firstNotification = {
         messageId: records ? records[0].id : '',
         messageText: records ? records[0].title : '',
@@ -96,10 +96,10 @@ const DailyHomeNotification = () => {
         month: currentDate.month,
         year: currentDate.year,
       };
-      console.log(firstNotification);
+      // console.log(firstNotification);
       let updateNotifcation = setNotiInDB(firstNotification);
       setNotification(firstNotification);
-      console.log(updateNotifcation);
+      // console.log(updateNotifcation);
     }
   }, []);
   // useFocusEffect(
