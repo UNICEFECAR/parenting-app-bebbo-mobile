@@ -31,6 +31,7 @@ const Vaccination = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
+  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   const vcitems = [
     {
@@ -156,7 +157,7 @@ const Vaccination = ({navigation}: Props) => {
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
-                              : backgroundColor,
+                              : headerColorWhite,
                           
                         },
                       ]}>

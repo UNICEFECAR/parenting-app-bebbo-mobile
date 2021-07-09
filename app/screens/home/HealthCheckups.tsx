@@ -31,6 +31,7 @@ const HealthCheckups = ({navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
+  const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
 
 const vaccines = [
@@ -195,7 +196,7 @@ const vaccines = [
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
-                              : backgroundColor,
+                              : headerColorWhite,
                          
                         },
                       ]}>
