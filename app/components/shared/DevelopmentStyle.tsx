@@ -10,7 +10,7 @@ export const DevelopmentStatus = styled.View`
   border-top-width:1px;
   border-bottom-width:1px;
   border-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
-  margin-:15px 0;
+  margin:15px 0;
   padding:10px 0
 `;
 

@@ -1,13 +1,13 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-    ChildRelationList,
-    FormContainer,
-    FormDateAction, FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    LabelText,
-    TextAreaBox
+  ChildRelationList,
+  FormContainer,
+  FormDateAction, FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  LabelText,
+  TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
@@ -15,8 +15,9 @@ import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-    Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Pressable, SafeAreaView, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
@@ -25,9 +26,8 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { getAllChildren, getAllConfigData } from '../services/childCRUD';
 import {
-    Heading2w,
-    Heading3,
-    ShiftFromTop20,ShiftFromTop10
+  Heading2w,
+  Heading3, ShiftFromTop10
 } from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -54,6 +54,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const dispatch=useAppDispatch();
+  const {t} = useTranslation();
   const [parentName, setParentName] = React.useState(parentEditName?parentEditName:"");
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   useFocusEffect(
@@ -102,7 +103,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2w>
-                {'Edit Parent Details'}
+                {t('editParentTxt')}
               </Heading2w>
             </View>
           </View>
@@ -112,7 +113,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <LabelText>Relationship with child</LabelText>
+              <LabelText>{t('relationShipTxt')}</LabelText>
 
               <FormInputBox>
                 <FormDateText>
@@ -149,7 +150,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
           </View>
         </ActionSheet>
           <FormContainer>
-            <LabelText>Parent Name</LabelText>
+            <LabelText>{t('parentNameTxt')}</LabelText>
             <TextAreaBox>
             <TextInput
               autoCapitalize="none"
@@ -159,7 +160,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               onChangeText={(value:any) => { setParentName(value) }}
               value={parentName}
               // onChangeText={queryText => handleSearch(queryText)}
-              placeholder="Enter your name"
+              placeholder={t('parentPlaceNameTxt')}
               
             /></TextAreaBox>
           </FormContainer>
@@ -170,9 +171,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
             <ButtonPrimary
               onPress={() => {
                 saveParentData(relationship,parentName);
-             
               }}>
-              <ButtonText>Save Data</ButtonText>
+              <ButtonText>{t('childSetupListsaveBtnText')}</ButtonText>
             </ButtonPrimary>
           </ButtonContainer>
           </ShiftFromTop10>
@@ -182,17 +182,3 @@ const EditParentDetails = ({route,navigation}: Props) => {
 };
 
 export default EditParentDetails;
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'left',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});
