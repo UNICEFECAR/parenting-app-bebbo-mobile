@@ -331,6 +331,19 @@ const en = {
             tabbarLabel6:"Vaccination",
             tabbarLabel7:"Health Checkup",
             tabbarLabel8:"Child growth",
+
+            //sprint 6 screens after v3 of language file 
+            manageProfileTxt:"Manage Profile",
+            removePhotoTxt:"Remove Photo",
+            removeWarnTxt:"Do you want to remove photo?",
+            removeOption1:"Cancel",
+            removeOption2:"Remove",
+
+            deleteChildTxt:"Delete child",
+            deleteWarnTxt:"Do you want to delete child?",
+            uploadPhtototxt:"Upload Child Photo",
+            cameraOptionsHeader:"Choose",
+
             
     }
 }
