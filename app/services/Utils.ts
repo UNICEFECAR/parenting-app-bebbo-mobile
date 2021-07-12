@@ -13,7 +13,7 @@ import { SurveysEntity, SurveysSchema } from "../database/schema/SurveysSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
-import { appConfig, isArticlePinned } from "../types/apiConstants";
+import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 
 export const addApiDataInRealm = async (response: any) => {
    // console.log(new Date()," response in utils-",response);

@@ -1,9 +1,9 @@
+import { activityCategory } from '@assets/translations/appOfflineData/apiConstants';
 import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
-import { activityCategory } from '@types/apiConstants';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useAppSelector } from '../../App';
-import { ArticleFilter,FilterBox,FilterText } from './shared/FilterStyle';
+import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
 let filterArray: string[] = [];

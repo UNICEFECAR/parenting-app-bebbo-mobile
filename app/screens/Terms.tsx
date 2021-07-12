@@ -17,12 +17,12 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAllTermsData } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
-import { appConfig } from '../types/apiConstants';
 
 
 

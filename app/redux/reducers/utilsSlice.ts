@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { basicPagesUniqueName } from '@types/apiConstants';
+import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
 // import {RootState} from './../../../App';
 
 interface hardcodedDataType {
