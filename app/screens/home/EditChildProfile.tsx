@@ -244,14 +244,14 @@ const EditChildProfile = ({route, navigation}: Props) => {
       // setphotoUri('');
       //});
 
-      Alert.alert('Remove Photo', 'Do you want to remove photo?', [
+      Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
-          text: 'Cancel',
+          text: t('removePhotoOption1'),
           onPress: () => {},
           style: 'cancel',
         },
         {
-          text: 'Remove',
+          text: t('removePhotoOption2'),
           onPress: () => {
             removePhoto();
           },
@@ -281,14 +281,14 @@ const EditChildProfile = ({route, navigation}: Props) => {
     //console.log("..deleted..");
     // deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
     return new Promise((resolve, reject) => {
-      Alert.alert('Delete Child', 'Do you want to delete child?', [
+      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
-          text: 'Cancel',
+          text: t('removeOption1'),
           onPress: () => reject('error'),
           style: 'cancel',
         },
         {
-          text: 'Delete',
+          text: t('removeOption2'),
           onPress: () => {
             deleteChild(
               index,
@@ -443,7 +443,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                   <Icon name="ic_camera" size={24} color="#000" />
                 </IconBox>
                 <ShiftFromTop10>
-                  <Heading4Regular>Upload Child Photo</Heading4Regular>
+                  <Heading4Regular>{t('uploadPhtototxt')}</Heading4Regular>
                 </ShiftFromTop10>
               </Pressable>
             )}
@@ -484,7 +484,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           <ActionSheet ref={actionSheetRef}>
             <MainContainer>
               <ArticleHeading>
-                <Heading2>Choose</Heading2>
+                <Heading2>{t('cameraOptionsHeader')}</Heading2>
               </ArticleHeading>
               <View
                 style={{
