@@ -79,6 +79,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const measurePlaces = measurementPlaces([t('growthScreendoctorMeasurePlace'),t('growthScreenhomeMeasurePlace')])
   const [weightValue,setWeightValue] = useState();
   const [heightValue,setHeightValue] = useState();
+  const [remarkTxt,handleDoctorRemark]= useState('');
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
@@ -262,8 +263,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                value={''}
-                // onChangeText={queryText => handleSearch(queryText)}
+                defaultValue={remarkTxt}
+                onChangeText={text => handleDoctorRemark(text)}
                 placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
               />
             </TextAreaBox>
