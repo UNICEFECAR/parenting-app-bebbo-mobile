@@ -1,15 +1,13 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-  FormContainer,
-  FormContainerFlex,
-    FormDateAction,
-    FormDateContainer,
-    FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    LabelText,
-    TextAreaBox
+  FormContainer, FormDateAction,
+  FormDateContainer,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  LabelText,
+  TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
@@ -22,7 +20,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Platform, Pressable, SafeAreaView, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -188,17 +186,4 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
 };
 
 export default AddExpectingChildProfile;
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: '#20232a',
-    borderRadius: 6,
-    backgroundColor: '#FFF',
-    color: '#20232a',
-    textAlign: 'left',
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});
+
