@@ -57,6 +57,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [isMeasured, setIsMeasured] = useState(false);
   const [weightValue,setWeightValue] = useState();
   const [heightValue,setHeightValue] = useState();
+  const [remarkTxt,handleDoctorRemark]= useState('');
   const isMeasuredOptions = [
     {title: t('vcIsMeasuredOption1')},
     {title: t('vcIsMeasuredOption2')},
@@ -248,9 +249,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
+                style={{height: 40}}
                 clearButtonMode="always"
-                value={''}
-                // onChangeText={queryText => handleSearch(queryText)}
+                defaultValue={remarkTxt}
+                onChangeText={text => handleDoctorRemark(text)}
                 placeholder={t('vcDoctorRemarkPlaceHolder')}
               />
               </TextAreaBox>
