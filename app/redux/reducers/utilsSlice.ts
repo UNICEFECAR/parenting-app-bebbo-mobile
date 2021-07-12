@@ -69,7 +69,7 @@ export const utilsSlice = createSlice({
   reducers: {
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload");
+        // console.log(action.payload,"actionpayload");
         (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
         if(action.payload.length>0)
         {
