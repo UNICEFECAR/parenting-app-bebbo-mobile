@@ -1,20 +1,15 @@
 import { BgArticlesTint } from '@components/shared/BackgroundColors';
 import {
-  ButtonArticles,
-  ButtonContainer,
-  ButtonPrimary,
-  ButtonText
+  ButtonArticles, ButtonText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { FeatureContentBox, FeatureBox, FeatureImageBox,FeatureDivideArea} from '@components/shared/HomeScreenStyle';
+import { FeatureBox, FeatureContentBox, FeatureDivideArea, FeatureImageBox } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
 import { Heading2, ShiftFromBottom15 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
-import styled from 'styled-components/native';
 
 
 const AdviceAndArticles = () => {

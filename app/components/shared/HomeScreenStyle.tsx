@@ -7,14 +7,14 @@ export const FeatureImageBox = styled.View`
 width:130px;
 height:130px;
 background-color:#fff;
-justifyContent:center;
+justify-content:center;
 align-items:center;
 border-radius:4px;
 `;
 
 export const FeatureContentBox = styled.View`
 margin-left:20px;
-justifyContent:center;
+justify-content:center;
 flex:1;
 
 `;
@@ -71,7 +71,7 @@ position:absolute; bottom:10px;z-index:1;width:100%;padding:3px 10px;
 
 export const DailyTag = styled.Pressable`
 position:absolute; background-color: ${props => props.theme.colors.PRIMARY_COLOR};padding:7px 10px;
-borderTopLeftRadius:4px;
+border-top-left-radius:4px;
 `;
 export const DailyTagText = styled.Text`
 font-size:11px;font-family:roboto-regular;text-transform:uppercase;color:#fff;
@@ -93,7 +93,7 @@ overflow:hidden;
 
 export const BottomBarBg = styled.View`
 background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-padding: 0px 0
+padding: 0px 0;
 border-top-left-radius:10px;
 border-top-right-radius:10px;
 border-color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
