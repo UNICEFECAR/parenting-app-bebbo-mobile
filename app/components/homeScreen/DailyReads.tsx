@@ -1,19 +1,14 @@
 import { BgSecondaryTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
-import {DailyBox, DailyArtTitle, DailyAction,OverlayFaded,DailyTag,DailyTagText} from '@components/shared/HomeScreenStyle';
+import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import styled from 'styled-components/native';
-const Item = ({title}: any) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+
 
 
 const DATA = [
