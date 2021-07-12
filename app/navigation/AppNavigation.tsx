@@ -24,7 +24,9 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
+import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSchema';
@@ -52,8 +54,8 @@ export default () => {
       : state.childData.childDataSet.allChild,
   );
   // const [isReady, setIsReady] = React.useState(false);
-  // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
-  // const [initialState, setInitialState] = React.useState();
+  const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
+  const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
   const netInfo = useNetInfo();
@@ -111,38 +113,38 @@ export default () => {
   //   // addDBListener()
   // },[])
   // console.log(netInfo,"..BeforeisConnected..");
-  // useEffect(() => {
-  //   const restoreState = async () => {
-  //     try {
-  //       const initialUrl = await Linking.getInitialURL();
-  //       if (Platform.OS !== 'web' && initialUrl == null) {
-  //         // Only restore state if there's no deep link and we're not on web
-  //         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-  //         const state = savedStateString ? JSON.parse(savedStateString) : undefined;
+  useEffect(() => {
+    const restoreState = async () => {
+      try {
+        const initialUrl = await Linking.getInitialURL();
+        if (Platform.OS !== 'web' && initialUrl == null) {
+          // Only restore state if there's no deep link and we're not on web
+          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+          const state = savedStateString ? JSON.parse(savedStateString) : undefined;
 
-  //         if (state !== undefined) {
-  //           setInitialState(state);
-  //         }
-  //       }
-  //     } finally {
-  //       setIsReady(true);
-  //     }
-  //   };
-  //   SplashScreen.hide();
-  //   if (!isReady) {
-  //     restoreState();
-  //   }
-  // }, [isReady]);
+          if (state !== undefined) {
+            setInitialState(state);
+          }
+        }
+      } finally {
+        setIsReady(true);
+      }
+    };
+    SplashScreen.hide();
+    if (!isReady) {
+      restoreState();
+    }
+  }, [isReady]);
 
-  // if (!isReady) {
-  //   return null;
-  // }
+  if (!isReady) {
+    return null;
+  }
 
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
       <NavigationContainer
-        // initialState={initialState}
+        initialState={initialState}
         onStateChange={(state) =>
           AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
         }>
