@@ -61,7 +61,8 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [weightValue,setWeightValue] = useState();
+  const [heightValue,setHeightValue] = useState();
   const [isMeasured, setIsMeasured] = useState(false);
   const [isVaccineMeasured, setIsVaccineMeasured] = useState(false);
   const isMeasuredOptions = [
@@ -85,12 +86,34 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
   };
+  const setInitialWeightValues = (weightValue:any)=>{
+    console.log(weightValue)
+    let w = (weightValue + "").split(".");
+    if(weightValue && w[1].length==1){
+      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
+    } else {
+      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+    }
+    // console.log(weight,weight1)
+  }
+  const setInitialHeightValues = (heightValue:any)=>{
+    console.log(heightValue)
+    let w = (heightValue + "").split(".");
+    if(heightValue && w[1].length==1){
+      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
+    } else {
+      return {height:Number(w[0]) ,height1:(Number(w[1]))}
+    }
+    // console.log(height,height1)
+  }
   React.useEffect(() => {
     if (route.params?.weight) {
-     // console.log(route.params?.weight);
+      console.log(route.params?.weight);
+      setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
-     // console.log(route.params?.height);
+      console.log(route.params?.height);
+      setHeightValue(route.params?.height)
     }
   }, [route.params?.weight,route.params?.height ]);
   return (
@@ -187,12 +210,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddChildHealthCheckup",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  weightValue:setInitialWeightValues(weightValue)
                 });
               }}
              >
                <FlexFDirRowSpace>
-              <Heading3>{t('growthScreenwText')}</Heading3>
+              <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
@@ -203,12 +227,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddChildHealthCheckup",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  heightValue:setInitialHeightValues(heightValue)
                 });
               }}
               >
                 <FlexFDirRowSpace>
-              <Heading3>{t('growthScreenhText')}</Heading3>
+              <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
