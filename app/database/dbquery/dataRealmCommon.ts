@@ -1,4 +1,4 @@
-import { isArticlePinned } from '@types/apiConstants';
+import { isArticlePinned } from '@assets/translations/appOfflineData/apiConstants';
 import Realm, { ObjectSchema } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';

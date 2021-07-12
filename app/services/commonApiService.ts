@@ -2,13 +2,13 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from './../database/schema
 
 import { userRealmCommon } from './../database/dbquery/userRealmCommon';
 import RNFS from 'react-native-fs';
-import { appConfig } from './../types/apiConstants';
+import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 
 import axios, { AxiosResponse } from "axios";
 import { SagaReturnType } from "redux-saga/effects";
 import { RootState, useAppSelector } from "../../App";
 import { commonApiInterface } from "../interface/interface";
-import { finalUrl } from "../types/apiConstants";
+import { finalUrl } from "../assets/translations/appOfflineData/apiConstants";
 import axiosService from "./axiosService";
 import { store } from "../../App";
 import ImageStorage from "../downloadImages/ImageStorage";

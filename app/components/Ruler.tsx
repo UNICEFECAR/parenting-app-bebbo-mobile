@@ -145,10 +145,31 @@ class Ruler extends React.Component<Props, State> {
       props.segmentWidth +
       (props.maximum - props.minimum) * this.snapSegment;
   }
+  // shouldComponentUpdate(nextProps, nextState){
+  //   // console.log(nextProps,"nextProps")
+  //   // console.log(nextState,"nextState")
+   
+  //   if(nextProps.initialValue != nextState.value)
+  //   {
+  //     // if (this.scrollViewRef && this.scrollViewRef.current) {
+  //       this.scrollViewRef.current?.scrollTo({
+  //         x: (nextProps.initialValue - nextProps.minimum) * this.snapSegment,
+  //         y: 0,
+  //         animated: true
+  //       });
+        
+  //       nextProps.onChangeValue(nextProps.initialValue)
+  //     // }
+  //     this.setState({value:nextProps.initialValue})
+  //     return false
+  //   } else{
+  //     return false
+  //   }
+  // }
 
   componentDidMount() {
     const {minimum,initialValue,onChangeValue} = this.props;
-  
+  // console.log(initialValue);
       if (this.scrollViewRef && this.scrollViewRef.current) {
         this.scrollViewRef.current?.scrollTo({
           x: (initialValue - minimum) * this.snapSegment,

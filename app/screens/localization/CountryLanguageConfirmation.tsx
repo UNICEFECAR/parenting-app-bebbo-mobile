@@ -31,9 +31,9 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../../App';
+import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
-import { appConfig } from '../../types/apiConstants';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,

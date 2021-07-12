@@ -72,3 +72,6 @@ export const basicPagesUniqueName = {
     privacypolicy: 'privacy_policy',
 
 }
+export const measurementPlaces = (items:any)=>{
+    return [ {id:0,title:items[0] },{id:1,title:items[1] }]
+}
