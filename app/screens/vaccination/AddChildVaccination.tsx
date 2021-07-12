@@ -1,49 +1,46 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
-    FormContainerFlex,
-    FormDateAction,
-    FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    FormInputText,
-    TextAreaBox
+  FormContainerFlex,
+  FormDateAction,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  FormInputText,
+  TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-    PopupClose,
-    PopupCloseContainer,
-    PopupOverlay
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
-import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
-  Heading2,
-    Heading2w,
-    Heading3,
-    Heading3Center,
-    Heading4Regular,
-    ShiftFromTop15,
-    ShiftFromTopBottom10
+  Heading2, Heading3,
+  Heading3Center,
+  Heading4Regular,
+  ShiftFromTop15,
+  ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Modal,
-    Platform,
-    Pressable,
-    SafeAreaView,
-    Text,
-    TextInput,
-    View
+  Modal,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
@@ -58,6 +55,8 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [isMeasured, setIsMeasured] = useState(false);
+  const [weightValue,setWeightValue] = useState();
+  const [heightValue,setHeightValue] = useState();
   const isMeasuredOptions = [
     {title: t('vcIsMeasuredOption1')},
     {title: t('vcIsMeasuredOption2')},
@@ -75,12 +74,34 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
   };
+  const setInitialWeightValues = (weightValue:any)=>{
+    console.log(weightValue)
+    let w = (weightValue + "").split(".");
+    if(weightValue && w[1].length==1){
+      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
+    } else {
+      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+    }
+    // console.log(weight,weight1)
+  }
+  const setInitialHeightValues = (heightValue:any)=>{
+    console.log(heightValue)
+    let w = (heightValue + "").split(".");
+    if(heightValue && w[1].length==1){
+      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
+    } else {
+      return {height:Number(w[0]) ,height1:(Number(w[1]))}
+    }
+    // console.log(height,height1)
+  }
   React.useEffect(() => {
     if (route.params?.weight) {
-     // console.log(route.params?.weight);
+      console.log(route.params?.weight);
+      setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
-      //console.log(route.params?.height);
+      console.log(route.params?.height);
+      setHeightValue(route.params?.height)
     }
   }, [route.params?.weight,route.params?.height ]);
   return (
@@ -185,12 +206,13 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddChildVaccination",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  weightValue:setInitialWeightValues(weightValue)
                 });
               }}
               >
                 <FlexFDirRowSpace>
-                <Heading3>{t('growthScreenwText')}</Heading3>
+                <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
@@ -201,12 +223,13 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddChildVaccination",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  heightValue:setInitialHeightValues(heightValue)
                 });
               }}
               >
                 <FlexFDirRowSpace>
-                <Heading3>{t('growthScreenhText')}</Heading3>
+                <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
