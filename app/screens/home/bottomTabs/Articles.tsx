@@ -281,9 +281,8 @@ console.log(activeChild,"..activeChild..");
               <DividerArt></DividerArt>
               </FlexCol>
               {filteredData.length> 0 ? 
-                // <View>
+                <View>
                   <FlatList
-                  style={{}}
                     // extraData={filteredData}
                     data={filteredData}
                     initialNumToRender={filteredData.length}
@@ -306,7 +305,7 @@ console.log(activeChild,"..activeChild..");
                     // ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                     // ListFooterComponent={ContentThatGoesBelowTheFlatList}
                   /> 
-                //  </View>
+                </View>
                 : null}
               {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
