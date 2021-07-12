@@ -145,6 +145,23 @@ class Ruler extends React.Component<Props, State> {
       props.segmentWidth +
       (props.maximum - props.minimum) * this.snapSegment;
   }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log(props,state)
+  //   if(props.initialValue!=state.value){
+  //     return {
+  //       value: props.initialValue,
+  //       scrollX: (props.initialValue - props.minimum) * props.snapSegment,
+  //     };
+  //   }
+  //   else return null;
+  // }
+  // UNSAFE_componentWillReceiveProps(nextProps){
+  //   console.log(nextProps.initialValue)
+  //   if(nextProps.initialValue!=this.state.value){
+  //     this.setState({value:nextProps.initialValue})
+  //   }
+
+  // }
   // shouldComponentUpdate(nextProps, nextState){
   //   // console.log(nextProps,"nextProps")
   //   // console.log(nextState,"nextState")
@@ -193,7 +210,10 @@ class Ruler extends React.Component<Props, State> {
 
   componentWillUnmount() {
     // Remove the above listener
-    this.state.scrollX.removeListener(this.scrollListener);
+    if(this.scrollListener){
+      this.state.scrollX.removeListener(this.scrollListener);
+    }
+   
   }
 
   renderRuler(data: number[]) {

@@ -55,21 +55,13 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if(route.params?.weightValue){
-      setInitialValues(route.params?.weightValue)
+      console.log(route.params?.weightValue);
+      (route.params?.weightValue.weight != NaN)?setweight(route.params?.weightValue.weight):setweight(0);
+      (route.params?.weightValue.weight1 != NaN)?setweight1(route.params?.weightValue.weight1):setweight1(0.0);
+      // setInitialValues(route.params?.weightValue)
     }
   }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor,route.params?.weightValue, ]);
-// console.log(weight,"<Weight></Weight>")
-const setInitialValues = (weightValue:any)=>{
-  console.log(weightValue)
-  let w = (weightValue + "").split(".");
-  setweight(Number(w[0]));
-  if(w[1].length==1){
-    setweight1(Number(w[1])*10)
-  } else {
-    setweight1(Number(w[1]))
-  }
-  // console.log(weight,weight1)
-}
+
   const weightModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsWeightModalOpened),
     );
@@ -154,7 +146,7 @@ const setInitialValues = (weightValue:any)=>{
         <View style={{padding: screenPadding, overflow:'hidden'}}>
           <ShiftFromTopBottom20>
           <Heading1Center>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreenkgText')}
+            { weight ?(weight + 0.01 * (weight1? weight1:0)).toFixed(2): 0 } { t('growthScreenkgText') }
           </Heading1Center>
           </ShiftFromTopBottom20>
           <Ruler
@@ -162,7 +154,7 @@ const setInitialValues = (weightValue:any)=>{
             width={width - (screenPadding*2)}
             height={100}
             vertical={false}
-            initialValue={weight} //set value on edit
+            initialValue={route.params?.weightValue.weight} //set value on edit
             onChangeValue={(value) => setweight(value)}
             minimum={0}
             maximum={20}
@@ -186,7 +178,7 @@ const setInitialValues = (weightValue:any)=>{
             width={width - screenPadding - screenPadding}
             height={100}
             vertical={false}
-            initialValue={weight1}
+            initialValue={route.params?.weightValue.weight1}
             onChangeValue={(value) => setweight1(value)}
             minimum={0}
             maximum={100}
