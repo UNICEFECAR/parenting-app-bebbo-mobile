@@ -60,6 +60,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
+import { measurementPlaces } from '../../assets/translations/appOfflineData/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -75,16 +76,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const measurementPlaces = [
-    {title: t('growthScreendoctorMeasurePlace')},
-    {title: t('growthScreenhomeMeasurePlace')},
-  ];
+  const measurePlaces = measurementPlaces([t('growthScreendoctorMeasurePlace'),t('growthScreenhomeMeasurePlace')])
+  const [weightValue,setWeightValue] = useState(10.5);
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
     setmeasureDateShow(Platform.OS === 'ios');
     setmeasureDate(currentDate);
   };
-  const getCheckedGrowthPlace = (checkedItem: typeof measurementPlaces[0]) => {
+  const getCheckedGrowthPlace = (checkedItem: any) => {
     console.log(checkedItem);
   };
   const activeChild = useAppSelector((state: any) =>
@@ -106,7 +105,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   // console.log(minChildGrwothDate);
   React.useEffect(() => {
     if (route.params?.weight) {
-      // console.log(route.params?.weight);
+      console.log(route.params?.weight);
     }
     if (route.params?.height) {
       // console.log(route.params?.height);
@@ -143,7 +142,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         </HeaderRowView>
         <MainContainer>
           <FormInputGroup onPress={() => setmeasureDateShow(true)}>
-            {/* <FormInputText>{t('growthScreendateMeasurementText')}</FormInputText> */}
+            <FormInputText>{t('growthScreendateMeasurementText')}</FormInputText>
             <FormInputBox>
               <FormDateText>
                 <Text>
@@ -158,20 +157,6 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               </FormDateAction>
             </FormInputBox>
           </FormInputGroup>
-          <FormContainer>
-            <FormInputText>
-              <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
-            </FormInputText>
-
-            <ToggleRadios
-              options={measurementPlaces}
-              defaultValue={getDefaultGrowthPlace()}
-              tickbgColor={headerColor}
-              tickColor={'#FFF'}
-              getCheckedItem={getCheckedGrowthPlace}
-            />
-          </FormContainer>
-
           <View>
             {showmeasureDate && (
               <DateTimePicker
@@ -185,6 +170,21 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               />
             )}
           </View>
+          <FormContainer>
+            <FormInputText>
+              <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
+            </FormInputText>
+
+            <ToggleRadios
+              options={measurePlaces}
+              defaultValue={getDefaultGrowthPlace()}
+              tickbgColor={headerColor}
+              tickColor={'#FFF'}
+              getCheckedItem={getCheckedGrowthPlace}
+            />
+          </FormContainer>
+
+
 
           <FormContainer>
             <FormInputText>{t('growthScreenenterMeasuresText')}</FormInputText>
@@ -197,6 +197,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                         prevRoute: 'AddNewChildgrowth',
                         headerColor,
                         backgroundColor,
+                        weightValue:weightValue
                       });
                     }}>
                     <FlexFDirRowSpace>
