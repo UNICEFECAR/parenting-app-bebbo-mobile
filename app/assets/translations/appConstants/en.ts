@@ -157,7 +157,7 @@ const en = {
             developScreentipsText:"Tips from Doctors",
             developScreenmileStone:"Milestone",
             developScreenrelatedArticleText:"View related article",
-            developScreenrelatedAct:"Related activities",
+            developScreenrelatedAct:"Related activity",
             developScreenviewDetails:"View details",
         
             // articleScreen
@@ -343,6 +343,12 @@ const en = {
             deleteWarnTxt:"Do you want to delete child?",
             uploadPhtototxt:"Upload Child Photo",
             cameraOptionsHeader:"Choose",
+            noChildsTxt :"No Data",
+            relationShipTxt:"Relationship with child",
+            parentNameTxt:"Parent Name",
+            parentPlaceNameTxt:"Enter your name",
+            editParentTxt:"Edit Parent Details",
+            notiDelSelected:"Delete Selected ({{count}})",
 
             
     }

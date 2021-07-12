@@ -3,9 +3,9 @@ import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
-import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary,ButtonSecondaryTint,ButtonPrimary, ButtonPrimaryMd, ButtonText } from '@components/shared/ButtonGlobal';
-import { FlexDirCol,FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
+import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useNavigation } from '@react-navigation/native';
@@ -13,7 +13,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PressableStateCallbackType } from 'react-native';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
@@ -182,14 +181,14 @@ const Notifications = () => {
             <>
               <ButtonContainerTwo>
                 <ButtonColTwo>
-                  <ButtonSecondaryTint StateCallbackType onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
-                    <ButtonText>{'Cancel'}</ButtonText>
+                  <ButtonSecondaryTint onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                    <ButtonText>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
                   <ButtonSecondary>
-                    <ButtonText>Delete Selected ({allData.filter(item=>item.isChecked===true).length})</ButtonText>
+                    <ButtonText>{t('notiDelSelected',{count:allData.filter(item=>item.isChecked===true).length})} </ButtonText>
                     </ButtonSecondary>
                     </ButtonColTwo>
                 

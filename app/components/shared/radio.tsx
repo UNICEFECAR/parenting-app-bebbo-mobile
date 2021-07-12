@@ -54,7 +54,7 @@ export const RadioInnerBox = styled.Pressable`
   background:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
   justify-content:flex-start;
-  border-radius:4px
+  border-radius:4px;
   padding:12px 10px;
   height:52px;
 `;
