@@ -77,7 +77,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const measurePlaces = measurementPlaces([t('growthScreendoctorMeasurePlace'),t('growthScreenhomeMeasurePlace')])
-  const [weightValue,setWeightValue] = useState(10.5);
+  const [weightValue,setWeightValue] = useState();
+  const [heightValue,setHeightValue] = useState();
+  //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
     setmeasureDateShow(Platform.OS === 'ios');
@@ -95,7 +97,26 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     return null;
     // if in edit mode return value else return null
   };
-
+  const setInitialWeightValues = (weightValue:any)=>{
+    console.log(weightValue)
+    let w = (weightValue + "").split(".");
+    if(weightValue && w[1].length==1){
+      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
+    } else {
+      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+    }
+    // console.log(weight,weight1)
+  }
+  const setInitialHeightValues = (heightValue:any)=>{
+    console.log(heightValue)
+    let w = (heightValue + "").split(".");
+    if(heightValue && w[1].length==1){
+      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
+    } else {
+      return {height:Number(w[0]) ,height1:(Number(w[1]))}
+    }
+    // console.log(height,height1)
+  }
   const minChildGrwothDate =
     activeChild.birthDate != '' &&
     activeChild.birthDate != null &&
@@ -106,9 +127,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   React.useEffect(() => {
     if (route.params?.weight) {
       console.log(route.params?.weight);
+      setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
-      // console.log(route.params?.height);
+      console.log(route.params?.height);
+      setHeightValue(route.params?.height)
     }
   }, [route.params?.weight, route.params?.height]);
   return (
@@ -197,11 +220,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                         prevRoute: 'AddNewChildgrowth',
                         headerColor,
                         backgroundColor,
-                        weightValue:weightValue
+                        weightValue:setInitialWeightValues(weightValue)
                       });
                     }}>
                     <FlexFDirRowSpace>
-                      <Heading3>{t('growthScreenwText')}</Heading3>
+                      <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
                       <Heading4Regular>
                         {t('growthScreenkgText')}
                       </Heading4Regular>
@@ -215,10 +238,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                         prevRoute: 'AddNewChildgrowth',
                         headerColor,
                         backgroundColor,
+                        heightValue:setInitialHeightValues(heightValue)
                       });
                     }}>
                     <FlexFDirRowSpace>
-                      <Heading3>{t('growthScreenhText')}</Heading3>
+                      <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
                       <Heading4Regular>
                         {t('growthScreencmText')}
                       </Heading4Regular>
