@@ -5,7 +5,6 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
-import { Pressable } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import {
@@ -136,13 +135,7 @@ const DailyHomeNotification = () => {
             <FlexDirRowStart>
               <OuterIconRow>
                 <OuterIconLeft>
-                  <Pressable
-                    onPress={() => {
-                      console.log(records);
-                      getNotification();
-                    }}>
                     <Icon name="ic_sb_loveapp" size={24} color="#fff" />
-                  </Pressable>
                 </OuterIconLeft>
               </OuterIconRow>
               <Flex1>
