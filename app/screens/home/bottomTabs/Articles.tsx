@@ -7,7 +7,7 @@ import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 import Divider,{DividerArt} from '@components/shared/Divider';
 
-import { FDirRow, FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
@@ -24,6 +24,7 @@ import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBo
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  FlatList,View,
   Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
@@ -66,7 +67,8 @@ const Articles = ({route, navigation}: Props) => {
       // pass true to make modal visible every time & reload
     setModalVisible(articleModalOpened)
    });
-  const renderArticleItem = (item: typeof filteredData[0], index: number) => (
+  // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
+  const renderArticleItem = ({item, index}) => (
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
@@ -80,7 +82,7 @@ const Articles = ({route, navigation}: Props) => {
             <ShiftFromTopBottom5>
           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
           </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
+          <Heading3>{item.title} {index}</Heading3>
           </ArticleListContent>
           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
         </ArticleListContainer>
@@ -211,7 +213,7 @@ console.log(activeChild,"..activeChild..");
     //   setfilteredData(articleData);
     // }
   }
-  
+  console.log(filteredData.length,"---length");
   // useFocusEffect(
   //   React.useCallback(() => {
   //     setArticleData(stateArticleData)
@@ -231,6 +233,7 @@ console.log(activeChild,"..activeChild..");
   //   // setArticleData(newArticleData)
   // }
   //code for getting article dynamic data ends here.
+
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
@@ -240,14 +243,14 @@ console.log(activeChild,"..activeChild..");
       style={{flex:1}}
     >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-          <ScrollView nestedScrollEnabled={true}>
+          
           <TabScreenHeader
             title={t('articleScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
           <FlexCol>
-            <SearchBox>
+          <SearchBox>
               <OuterIconRow>
                 <OuterIconLeft15>
                 <Icon
@@ -277,13 +280,39 @@ console.log(activeChild,"..activeChild..");
               <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
               <DividerArt></DividerArt>
               </FlexCol>
-              {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
+              {filteredData.length> 0 ? 
+                // <View>
+                  <FlatList
+                  style={{}}
+                    // extraData={filteredData}
+                    data={filteredData}
+                    initialNumToRender={filteredData.length}
+                    // onRefresh={this.handleRefresh}
+                    // refreshing={this.state.refreshing}
+                    // onEndReachedThreshold={2}
+                    // onEndReached={this.handleLoadMore}
+                    // renderItem={({item, index}) => <Text>{item.title} {index}</Text>}
+                    // renderItem={({item, index}) => renderArticleItem(item, index)}
+                    renderItem={renderArticleItem}
+                    // showsHorizontalScrollIndicator={false}
+                    // showsVerticalScrollIndicator={true}
+                    // keyExtractor={(item, index) => {
+                    //   return index.toString();
+                    // }}
+                    keyExtractor={(item) => item.id.toString()}
+                    // onMomentumScrollBegin={() => {
+                    //   this.onEndReachedCalledDuringMomentum = false;
+                    // }}
+                    // ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+                    // ListFooterComponent={ContentThatGoesBelowTheFlatList}
+                  /> 
+                //  </View>
+                : null}
+              {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
-              }) : setFilteredArticleData([])}
-              
+              }) : setFilteredArticleData([])} */}
               </FlexCol>
-          </ScrollView>
-          <Modal
+              <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible}
@@ -324,6 +353,7 @@ console.log(activeChild,"..activeChild..");
       </Modal>
         </KeyboardAvoidingView>
       </ContainerView>
+              
     </>
   );
 };
