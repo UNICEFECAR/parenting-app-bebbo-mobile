@@ -275,11 +275,11 @@ console.log(activeChild,"..activeChild..");
                 }}
               />
             </SearchBox>
-            <FlexCol>
+            {/* <FlexCol> */}
                 <DividerArt></DividerArt>
               <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
               <DividerArt></DividerArt>
-              </FlexCol>
+              {/* </FlexCol> */}
               {filteredData.length> 0 ? 
                 <View>
                   <FlatList
