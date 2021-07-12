@@ -42,9 +42,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Pressable,
   SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  View
+  ScrollView, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
@@ -381,20 +379,4 @@ const SettingScreen = (props: any) => {
 };
 
 export default SettingScreen;
-const styles = StyleSheet.create({
-  // modalView: {
-  //   backgroundColor: 'white',
-  //   elevation: 5,
-  // },
-  // item: {
-  //   flexDirection: 'column',
-  //   borderBottomColor: '#EEE',
-  //   borderBottomWidth: 2,
-  //   alignItems: 'center',
-  //   padding: 15,
-  // },
-  // modalText: {
-  //   fontWeight: 'bold',
-  //   marginVertical: 15,
-  // },
-});
+

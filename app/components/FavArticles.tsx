@@ -57,7 +57,6 @@ const FavArticles = (props: any) => {
 <Pressable onPress={gotoArticle} key={index}>
       <ArticleListContainer>
       <Image
-          style={styles.cardImage}
          source={item.imagePath}
           resizeMode={'cover'}
          />
