@@ -153,7 +153,7 @@ const Activities = ({navigation}: Props) => {
               borderColor={headerColor}
               backgroundColor={backgroundColor}
             />
-            <View style={{height: 450, marginBottom: 15}}>
+            <View style={{}}>
             <ArticleHeading>
               <FlexDirRowSpace>
                 

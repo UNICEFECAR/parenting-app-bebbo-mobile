@@ -13,6 +13,7 @@ export const FlexDirRowSpace = styled.View`
 flex-direction:row;
 justify-content:space-between;
 align-items:center;
+
 `;
 export const FlexFDirRowSpace = styled(FlexDirRowSpace)`
 flex:1;
@@ -27,6 +28,10 @@ align-items:flex-start;
 export const FlexCol = styled.View`
 flex-direction:column;
 flex:1;
+`;
+
+export const FlexColEnd = styled(FlexCol)`
+alignItems:flex-end
 `;
 
 export const FlexDirCol = styled.View`
@@ -55,6 +60,7 @@ justify-content:flex-end
 export const FDirRow = styled.View`
 flex-direction:row;
 align-items:center;
+
 `;
 
 export const FDirRowStart = styled(FDirRow)`
@@ -79,4 +85,10 @@ flex:5;
 export const Flex6 = styled.View`
 flex:6;
 `;
+
+export const FlexShrink = styled.View`
+flex-shrink:1;padding:0 3px;
+
+`;
+
 
