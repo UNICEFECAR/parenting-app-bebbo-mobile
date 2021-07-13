@@ -6,30 +6,46 @@ import { useAppSelector } from '../../App';
 import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
-let filterArray: string[] = [];
-const getFilterArray = (itemId: any) => {
-  // filterArray.push("78");
-  //   console.log(filterArray,"includes(itemId)--",filterArray.includes(itemId));
-  if (!filterArray.includes(itemId)) {
-    filterArray.push(itemId);
-  } else {
-    filterArray.splice(filterArray.indexOf(itemId), 1);
-  }
-  // filterArray=filterArray;
-  return filterArray;
-};
+import { useFocusEffect } from '@react-navigation/native';
+
+// let filterArraycurr: string[] = [];
+
 const ArticleCategories = (props: ArticleCategoriesProps) => {
+  // let { filterArray } = props;
   const categoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-
-  //   console.log("filterArray on start ",filterArray)
+  const getFilterArray = (itemId: any,filterArray: any[]) => {
+    // filterArray.push("78");
+      // console.log(filterArray,"includes(itemId)--",itemId);
+    if (!filterArray.includes(itemId)) {
+      filterArray.push(itemId);
+    } else {
+      filterArray.splice(filterArray.indexOf(itemId), 1);
+    }
+    // console.log("after update",filterArray);
+    // filterArraycurr=[...filterArray];
+    // filterArray = [...filterArray];
+    props.onFilterArrayChange(filterArray);
+    return filterArray;
+  };
+    console.log("props.filterArray on start ",props.filterArray)
   const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
   );
 const articleBrackets = chunk(activityCategory, 2)
+useFocusEffect(
+  React.useCallback(() => {
+    console.log(props.filterArray.length,"articlecategory usefocuseffect", props);
+    // filterArraycurr = [...props.filterArray];
+    if(props.fromPage == 'Details')
+    {
+      // filterArraycurr = [];
+    }
+  },[])
+);
 //console.log(chunk(articleBrackets, 2));
 //   const articleBrackets = new Array(Math.ceil(activityCategory.length / 3)).fill().map(_ => activityCategory.splice(0, 3))
   
@@ -37,15 +53,15 @@ const articleBrackets = chunk(activityCategory, 2)
 //  console.log(articleBrackets);
   return (
     <>
-      <ArticleFilter>
+      <ArticleFilter key={props.filterArray.length}>
         <FlexDirRow>
           {articleBrackets.map((activityCategoryInner:any[], i:number) => {
              // console.log(activityCategoryInner)
             return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
                 {
                  activityCategoryInner.map((item) => {
-                    return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id))}}>
-                    <FilterBox style={[{backgroundColor:(filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
+                    return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
+                    <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
                        <OuterIconRow>
                          <OuterIconLeft>
                               <Icon 
