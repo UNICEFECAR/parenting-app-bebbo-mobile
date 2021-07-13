@@ -12,7 +12,8 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
     let databaselistener:any;
     let databaseallData:any,databaseData:any;
     // const filterQuery = 'child_age == "'+currentChildData.taxonomyData.id+'" LIMIT(20)';
-    const filterQuery = '(child_age == "'+currentChildData.taxonomyData.id+'" || child_age == "") && (category == "2" || category == "4" || category == "1" || category == "55" || category == "56" || category == "3") LIMIT(20)';
+    // const filterQuery = '(child_age == "'+currentChildData.taxonomyData.id+'" || child_age == "") && (category == "2" || category == "4" || category == "1" || category == "55" || category == "56" || category == "3")';
+    const filterQuery = '(child_age == "'+currentChildData.taxonomyData.id+'" || child_age == "") && (category == "2" || category == "4" || category == "1" || category == "55" || category == "56" || category == "3") LIMIT(50)';
     console.log(filterQuery,"..filterQuery..")
     //actual query to use is below one.
     // const filterQuery = 'parent_gender == "'+currentChildData.parent_gender+'" AND child_age == "'+currentChildData.taxonomyData.id+'"';
@@ -33,7 +34,7 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
             //     })
             // }
         // })
-        // console.log(imageArray,"  db length--",databaseData?.length);
+        console.log(imageArray,"  db length--",databaseData?.length);
         // const imagesDownloadResult = await downloadImages(imageArray);
         // console.log(imagesDownloadResult, "..image result..");
         // console.log(databaseData.map(user => user));

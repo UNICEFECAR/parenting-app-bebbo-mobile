@@ -7,12 +7,15 @@ import { MainContainer } from '@components/shared/Container';
 import { FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
+import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold } from '@styles/typography';
-import React from 'react';
+import { destinationFolder } from '@types/apiConstants';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -29,24 +32,42 @@ type Props = {
 export type RelatedArticlesProps = {
   related_articles?:any,
   category?:any,
-  currentId?:any
+  currentId?:any,
+  headerColor?:any,
+  backgroundColor?:any,
+  listCategoryArray?:any,
+  navigation?:any
 }
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
-  const {headerColor, fromScreen, backgroundColor,detailData} = route.params;
+  const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
   // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
   // console.log(detailData);
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  let filterArray: string[] = [];
+  const [filterArray,setFilterArray] = useState([]);
+  let fromPage = 'Details';
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("details usefocuseffect")
+      // filterArray.length = 0;
+    },[])
+  );
+    
   const setNewFilteredArticleData = (itemId:any) => {
     navigation.navigate({
       name: fromScreen,
       params: {categoryArray:itemId},
       merge: true,
     });
+  }
+  const onFilterArrayChange = (newFilterArray: any) => {
+    // console.log("on filterarray change",newFilterArray);
+    // filterArray = [...newFilterArray];
+    setFilterArray(newFilterArray)
+    // console.log("on filterarray change after",filterArray)
   }
   return (
     <>
@@ -60,7 +81,12 @@ const DetailsScreen = ({route, navigation}: any) => {
           <HeaderIconView>
             <Pressable
               onPress={() => {
-                navigation.goBack();
+                // navigation.goBack();
+                navigation.navigate({
+                  name: fromScreen,
+                  params: {categoryArray:listCategoryArray},
+                  merge: true,
+                });
               }}>
               <Icon name={'ic_back'} color="#000" size={15} />
             </Pressable>
@@ -93,13 +119,13 @@ const DetailsScreen = ({route, navigation}: any) => {
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
-                {/*  <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} />
-                   <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} /> */}
+                 {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
+                   <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} currentId={detailData.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                 
                 <ArticleHeading>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                 </ArticleHeading>
-                <ArticleCategories borderColor={headerColor} filterOnCategory={setNewFilteredArticleData} filterArray={filterArray} />
+                <ArticleCategories borderColor={headerColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}/>
               </View>
             </>
           ) : null}

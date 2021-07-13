@@ -10,8 +10,8 @@ export const ArticleListContent = styled.View`
   padding:10px 10px;
 `;
 export const ArticleListContainer = styled.View`
-  margin:10px 15px;
-  flex:1;
+ margin:10px 15px;
+/* flex:1;*/
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:4px;
   overflow:hidden;

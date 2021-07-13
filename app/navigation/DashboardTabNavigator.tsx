@@ -167,7 +167,7 @@ export default () => {
             },
           })}
         />
-        <DashboardBottomTab.Screen name="Articles" component={Articles}
+        <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{categoryArray: []}}
           options={{
             tabBarLabel: t('tabbarLabel4'),
             tabBarIcon: ({ color, size }) => (
