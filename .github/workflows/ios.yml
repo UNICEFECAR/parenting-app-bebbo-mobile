@@ -1,0 +1,54 @@
+name: iOS
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Cache npm dependencies
+      uses: actions/cache@v2
+      with:
+        path: '~/.npm'
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm ci
+
+    - run: xcode-select -p
+
+    - name: Cache pods
+      uses: actions/cache@v1
+      with:
+        path: ios/Pods
+        key: ${{ runner.OS }}-pods-cache-${{ hashFiles('**/ios/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-pods-cache-
+    - run: pod install
+      working-directory: ios
+      name: Install pod dependencies
+
+    - name: Build iOS (debug)
+      run: "xcodebuild \
+        -workspace ios/ParentBuddyApp.xcworkspace \
+        -scheme ParentBuddyApp \
+        clean archive \
+        -sdk iphoneos \
+        -configuration Debug \
+        -UseModernBuildSystem=NO \
+        -archivePath $PWD/ParentBuddyApp \
+        CODE_SIGNING_ALLOWED=NO"
+
+    - name: Compress .xcarchive
+      run: zip -r -9 ParentBuddyApp.xcarchive.zip $PWD/ParentBuddyApp.xcarchive/
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ios-xarchive
+        path: ParentBuddyApp.xcarchive.zip
