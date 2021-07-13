@@ -79,7 +79,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const measurePlaces = measurementPlaces([t('growthScreendoctorMeasurePlace'),t('growthScreenhomeMeasurePlace')])
   const [weightValue,setWeightValue] = useState();
   const [heightValue,setHeightValue] = useState();
-  const [remarkTxt,handleDoctorRemark]= useState('');
+  const [remarkTxt,handleDoctorRemark]= useState<string>('');
+  const [measurePlace,setMeasurePlace]= useState<number>();
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
@@ -88,12 +89,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   };
   const getCheckedGrowthPlace = (checkedItem: any) => {
     console.log(checkedItem);
+    setMeasurePlace(checkedItem.id)
   };
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+
   const getDefaultGrowthPlace = () => {
     return null;
     // if in edit mode return value else return null
@@ -135,6 +138,20 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       setHeightValue(route.params?.height)
     }
   }, [route.params?.weight, route.params?.height]);
+  const saveChildMeasures = ()=>{
+    const currentActiveChild = activeChild.uuid;
+    const growthValues = {isChildMeasured:true,
+      weight:weightValue,
+      height:heightValue,
+      measurementDate:measureDate,
+      // titleDateInMonth:number
+      didChildGetVaccines:false,
+      vaccineIds:[],
+      doctorComment:remarkTxt,
+      measurementPlace:measurePlace}
+   console.log(growthValues);
+   navigation.goback();
+  }
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -276,8 +293,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
 
         <ButtonContainer>
           <ButtonTertiary
-            onPress={() => {
-              navigation.goBack();
+            onPress={(e) => {
+             saveChildMeasures();
+             e.stopPropagation();
             }}>
             <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonTertiary>
