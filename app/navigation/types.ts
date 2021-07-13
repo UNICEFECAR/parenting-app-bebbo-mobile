@@ -47,6 +47,6 @@ export type DashboardBottomTabParamList = {
   Home: undefined;
   Activities: undefined;
   Tools: undefined;
-  Articles: undefined;
+  Articles: {};
   ChildDevelopment: undefined;
 };
