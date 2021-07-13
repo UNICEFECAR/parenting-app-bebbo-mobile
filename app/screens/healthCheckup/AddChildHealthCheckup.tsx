@@ -3,24 +3,23 @@ import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, Butto
 import {
   FormContainerFlex,
   FormContainerFlex1,
-    FormDateAction,
-    FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    FormInputText,
-    TextAreaBox
+  FormDateAction,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  FormInputText,
+  TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-    PopupClose,
-    PopupCloseContainer,
-    PopupOverlay
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
-import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
@@ -28,24 +27,22 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2,
-    Heading2w,
-    Heading3,
-    Heading3Center,
-    Heading4Regular,
-    ShiftFromTop15,
-    ShiftFromTopBottom10
+  Heading2, Heading3,
+  Heading3Center,
+  Heading4Regular,
+  ShiftFromTop15,
+  ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Modal,
-    Platform,
-    Pressable,
-    SafeAreaView,
-    Text,
-    TextInput,
-    View
+  Modal,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
@@ -64,7 +61,8 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<Date>();
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [weightValue,setWeightValue] = useState();
+  const [heightValue,setHeightValue] = useState();
   const [isMeasured, setIsMeasured] = useState(false);
   const [isVaccineMeasured, setIsVaccineMeasured] = useState(false);
   const isMeasuredOptions = [
@@ -88,12 +86,34 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
   };
+  const setInitialWeightValues = (weightValue:any)=>{
+    console.log(weightValue)
+    let w = (weightValue + "").split(".");
+    if(weightValue && w[1].length==1){
+      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
+    } else {
+      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+    }
+    // console.log(weight,weight1)
+  }
+  const setInitialHeightValues = (heightValue:any)=>{
+    console.log(heightValue)
+    let w = (heightValue + "").split(".");
+    if(heightValue && w[1].length==1){
+      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
+    } else {
+      return {height:Number(w[0]) ,height1:(Number(w[1]))}
+    }
+    // console.log(height,height1)
+  }
   React.useEffect(() => {
     if (route.params?.weight) {
-     // console.log(route.params?.weight);
+      console.log(route.params?.weight);
+      setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
-     // console.log(route.params?.height);
+      console.log(route.params?.height);
+      setHeightValue(route.params?.height)
     }
   }, [route.params?.weight,route.params?.height ]);
   return (
@@ -170,7 +190,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedMeasureItem}
             />
  </FormContainerFlex>
@@ -190,12 +210,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildWeight',{
                   prevRoute:"AddChildHealthCheckup",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  weightValue:setInitialWeightValues(weightValue)
                 });
               }}
              >
                <FlexFDirRowSpace>
-              <Heading3>{t('growthScreenwText')}</Heading3>
+              <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
               <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
@@ -206,12 +227,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 navigation.navigate('AddNewChildHeight',{
                   prevRoute:"AddChildHealthCheckup",
                   headerColor,
-                  backgroundColor
+                  backgroundColor,
+                  heightValue:setInitialHeightValues(heightValue)
                 });
               }}
               >
                 <FlexFDirRowSpace>
-              <Heading3>{t('growthScreenhText')}</Heading3>
+              <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
               <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
               </FlexFDirRowSpace>
             </RadioInnerBox>
@@ -234,7 +256,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedVaccineItem}
             />
 
@@ -318,13 +340,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 <ButtonContainerTwo>
                 <ButtonColTwo>
                   <ButtonSecondaryTint>
-                  <ButtonText>{'Cancel'}</ButtonText>
+                  <ButtonText>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
                   <ButtonPrimary>
-                  <ButtonText>{'Confirm'}</ButtonText>
+                  <ButtonText>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>
                     </ButtonColTwo>
                 

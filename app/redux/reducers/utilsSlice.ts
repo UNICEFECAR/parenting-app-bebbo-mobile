@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { basicPagesUniqueName } from '@types/apiConstants';
+import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
 // import {RootState} from './../../../App';
 
 interface hardcodedDataType {
@@ -69,7 +69,7 @@ export const utilsSlice = createSlice({
   reducers: {
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload");
+        // console.log(action.payload,"actionpayload");
         (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
         if(action.payload.length>0)
         {

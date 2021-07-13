@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Ruler from '@components/Ruler';
-import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonModal, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
@@ -12,7 +12,7 @@ import ModalPopupContainer, {
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading1Center, Heading2w, Heading4Centerr,ShiftFromTopBottom20 } from '@styles/typography';
+import { Heading1Center, Heading2w, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
@@ -32,8 +32,8 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
   const screenPadding = 10;
   const secondScalePrefix =0.01;
   const {height, width} = Dimensions.get('screen');
-  const [weight, setweight] = useState<number>(10);
-  const [weight1, setweight1] = useState<number>(0.46);
+  const [weight, setweight] = useState<any>(0);
+  const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
     let obj = {key: varkey, value: !modalVisible};
@@ -54,8 +54,13 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
       // console.log(route.params?.backgroundColor);
       setTintColor(route.params?.backgroundColor);
     }
-  }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor ]);
-
+    if(route.params?.weightValue){
+      console.log(route.params?.weightValue);
+      (route.params?.weightValue.weight != NaN)?setweight(route.params?.weightValue.weight):setweight(0);
+      (route.params?.weightValue.weight1 != NaN)?setweight1(route.params?.weightValue.weight1):setweight1(0.0);
+      // setInitialValues(route.params?.weightValue)
+    }
+  }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor,route.params?.weightValue, ]);
 
   const weightModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsWeightModalOpened),
@@ -141,7 +146,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
         <View style={{padding: screenPadding, overflow:'hidden'}}>
           <ShiftFromTopBottom20>
           <Heading1Center>
-            {(weight + 0.01 * weight1).toFixed(2)} {t('growthScreenkgText')}
+            { weight ?(weight + 0.01 * (weight1? weight1:0)).toFixed(2): 0 } { t('growthScreenkgText') }
           </Heading1Center>
           </ShiftFromTopBottom20>
           <Ruler
@@ -149,7 +154,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             width={width - (screenPadding*2)}
             height={100}
             vertical={false}
-            initialValue={weight} //set value on edit
+            initialValue={route.params?.weightValue.weight} //set value on edit
             onChangeValue={(value) => setweight(value)}
             minimum={0}
             maximum={20}
@@ -173,7 +178,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             width={width - screenPadding - screenPadding}
             height={100}
             vertical={false}
-            initialValue={weight1/secondScalePrefix}
+            initialValue={route.params?.weightValue.weight1}
             onChangeValue={(value) => setweight1(value)}
             minimum={0}
             maximum={100}

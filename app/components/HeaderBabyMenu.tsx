@@ -9,10 +9,13 @@ import {
   Heading3,
   Heading5,
   Heading5Bold,
-  ShiftFromBottom20
+  Heading5BoldW,
+  ShiftFromBottom10,
+  ShiftFromBottom20,ShiftFromBottom5
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   FlatList,
   Modal,
@@ -21,6 +24,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
   getAllChildren,
@@ -36,7 +41,9 @@ import {
   ButtonTextLine,
   ButtonTextSmLine
 } from './shared/ButtonGlobal';
+import { FlexCol,FDirRow,FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
+import PrematureTag, { PrematureTagDevelopment } from './shared/PrematureTag';
 import {
   ProfileActionView,
   ProfileIconView,
@@ -62,7 +69,7 @@ const HeaderBabyMenu = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const headerColor = props.headerColor;
   const textColor = props.textColor;
-
+  const {t} = useTranslation();
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
@@ -79,18 +86,6 @@ const HeaderBabyMenu = (props: any) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
   );
-  // const allConfigData = useAppSelector((state: any) =>
-  //   state.variableData?.variableData != ''
-  //     ? JSON.parse(state.variableData?.variableData)
-  //     : state.variableData?.variableData,
-  // );
-  // const currentActiveChildId =
-  //   allConfigData?.length > 0
-  //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
-  //     : [];
-  // //  console.log(currentActiveChildId,"..currentActiveChildId")
-  // const currentActiveChild =
-  //   currentActiveChildId?.length > 0 ? currentActiveChildId[0].value : null;
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
@@ -123,11 +118,22 @@ const HeaderBabyMenu = (props: any) => {
                 <Heading5>{genderName}</Heading5>
               </ProfileSectionView>
               <Heading5>
-                Born on{' '}
-                {data.birthDate != null ? formatDate(data.birthDate) : ''}
+              {t('childProfileBornOn', {childdob:data.birthDate != null ? formatDate(data.birthDate) : ''})}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
+              <FlexColEnd>
+
+                {/* Premature Tag Insert Here */}
+                {/* <ShiftFromBottom5>
+            <PrematureTag>
+          <Heading5BoldW>
+              {t('developScreenprematureText')}
+            </Heading5BoldW>
+          </PrematureTag>
+          </ShiftFromBottom5> */}
+          {/* Premature Tag End Here */}
+          <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <TickView>
@@ -135,7 +141,10 @@ const HeaderBabyMenu = (props: any) => {
                   </TickView>
                 </OuterIconLeft>
               </OuterIconRow>
-              <Heading5Bold>Activated</Heading5Bold>
+              
+              <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+              </FDirRow>
+              </FlexColEnd>
             </ProfileActionView>
           </ProfileListViewSelected>
         ) : (
@@ -156,17 +165,30 @@ const HeaderBabyMenu = (props: any) => {
                 <Heading5>{genderName}</Heading5>
               </ProfileSectionView>
               <Heading5>
-                Born on{' '}
-                {data.birthDate != null ? formatDate(data.birthDate) : ''}
+                {t('childProfileBornOn', {childdob:data.birthDate != null ? formatDate(data.birthDate) : ''})}               
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
+            <FlexColEnd>
+
+              {/* Premature Tag Insert Here */}
+              {/* <ShiftFromBottom5>
+              <PrematureTag>
+              <Heading5BoldW>
+              {t('developScreenprematureText')}
+              </Heading5BoldW>
+              </PrematureTag>
+              </ShiftFromBottom5> */}
+              {/* Premature Tag End Here */}
+              <FDirRow >
               <ButtonTextSmLine
                 onPress={() => {
                   setActiveChild(data.uuid, dispatch, child_age);
                 }}>
-                Activate Profile
+               {t('childActivatebtn')}
               </ButtonTextSmLine>
+              </FDirRow>
+              </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
         )}
@@ -200,6 +222,7 @@ const HeaderBabyMenu = (props: any) => {
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
             {SortedchildList.length > 0 ? (
+              <View style={{height:220}}>
               <FlatList
                 nestedScrollEnabled={true}
                 data={SortedchildList}
@@ -209,6 +232,7 @@ const HeaderBabyMenu = (props: any) => {
                 }
                 keyExtractor={(item: {id: any}) => item.id}
               />
+              </View>
             ) : null}
 
             <ButtonContainer>
@@ -221,14 +245,14 @@ const HeaderBabyMenu = (props: any) => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
-                    <ButtonTextLine> Add sister or brother</ButtonTextLine>
+                    <ButtonTextLine>{t('childSetupListaddSiblingBtn')}</ButtonTextLine>
                   </OuterIconRow>
                 </ButtonLinkPress>
               </ShiftFromBottom20>
 
               <ButtonPrimary
                 onPress={() => navigation.navigate('ChildProfileScreen')}>
-                <ButtonText>Manage Profile</ButtonText>
+                <ButtonText>{t('manageProfileTxt')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </TouchableOpacity>
@@ -281,4 +305,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 2,
   },
+  cardcontainer: {
+    flexGrow: 1,
+   },
 });

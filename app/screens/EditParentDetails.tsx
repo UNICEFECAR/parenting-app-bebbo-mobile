@@ -7,7 +7,7 @@ import {
     FormInputBox,
     FormInputGroup,
     LabelText,
-    TextAreaBox
+    TextAreaBox,TextBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
@@ -150,7 +150,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
         </ActionSheet>
           <FormContainer>
             <LabelText>Parent Name</LabelText>
-            <TextAreaBox>
+            <TextBox>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -161,7 +161,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
               
-            /></TextAreaBox>
+            /></TextBox>
           </FormContainer>
           </MainContainer>
           <ShiftFromTop10>

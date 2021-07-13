@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
@@ -16,7 +17,8 @@ import Icon from './shared/Icon';
 const ChilDevelopmentCollapsibleItem = (props: any) => {
   const {item} = props;
   // console.log(item);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const {t}= useTranslation()
   const [isOPen, setIsOPen] = useState<Boolean>(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
@@ -107,7 +109,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                   <Pressable onPress={gotoArticle}>
                     
                     <ButtonTextSmLineL>
-                    View Related Article
+                   {t('developScreenrelatedArticleText')}
                   </ButtonTextSmLineL>
                   
                   </Pressable>
@@ -118,7 +120,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             
               <ShiftFromTopBottom10>
               <ShiftFromBottom5>
-              <Heading4>Related Activity</Heading4>
+              <Heading4>{t('developScreenrelatedAct')}</Heading4>
              </ShiftFromBottom5>
               <FDirRow>
               <Image
@@ -136,7 +138,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                   <Pressable onPress={gotoActivity}>
                     
                     <ButtonTextSmLineL>
-                    View Details
+                   {t('developScreenviewDetails')}
                   </ButtonTextSmLineL>
                   
                   </Pressable>
