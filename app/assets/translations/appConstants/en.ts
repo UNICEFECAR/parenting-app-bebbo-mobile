@@ -157,7 +157,7 @@ const en = {
             developScreentipsText:"Tips from Doctors",
             developScreenmileStone:"Milestone",
             developScreenrelatedArticleText:"View related article",
-            developScreenrelatedAct:"Related activities",
+            developScreenrelatedAct:"Related activity",
             developScreenviewDetails:"View details",
         
             // articleScreen
@@ -331,6 +331,25 @@ const en = {
             tabbarLabel6:"Vaccination",
             tabbarLabel7:"Health Checkup",
             tabbarLabel8:"Child growth",
+
+            //sprint 6 screens after v3 of language file 
+            manageProfileTxt:"Manage Profile",
+            removePhotoTxt:"Remove Photo",
+            removeWarnTxt:"Do you want to remove photo?",
+            removeOption1:"Cancel",
+            removeOption2:"Remove",
+
+            deleteChildTxt:"Delete child",
+            deleteWarnTxt:"Do you want to delete child?",
+            uploadPhtototxt:"Upload Child Photo",
+            cameraOptionsHeader:"Choose",
+            noChildsTxt :"No Data",
+            relationShipTxt:"Relationship with child",
+            parentNameTxt:"Parent Name",
+            parentPlaceNameTxt:"Enter your name",
+            editParentTxt:"Edit Parent Details",
+            notiDelSelected:"Delete Selected ({{count}})",
+
             
     }
 }

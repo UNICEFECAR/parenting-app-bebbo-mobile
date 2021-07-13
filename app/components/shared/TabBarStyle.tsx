@@ -9,6 +9,15 @@ border-radius:4px;
 padding:10px;
 margin:3px;
 `
+
+export const TabBarActive = styled.View`
+border-radius:4px;
+padding:10px;
+margin:3px;
+background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`
+
+
 export const TabBarContainer = styled.View`
 background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex-direction:row;

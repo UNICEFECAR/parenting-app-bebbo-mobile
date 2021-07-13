@@ -9,7 +9,7 @@ import {
     FormInputBox,
     FormInputGroup,
     LabelText,
-    TextAreaBox
+    TextAreaBox,TextBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
@@ -147,7 +147,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
 
           <FormContainer>
             <LabelText>{t('expectPreferNametxt')}</LabelText>
-            <TextAreaBox>
+            <TextBox>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -159,7 +159,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               placeholder={t('expectPreferNamePlacetxt')}
               
             />
-            </TextAreaBox>
+            </TextBox>
           </FormContainer>
           
         </MainContainer>

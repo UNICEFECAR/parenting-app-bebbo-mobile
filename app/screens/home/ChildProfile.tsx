@@ -3,12 +3,14 @@ import {
   ButtonLinkPress, ButtonTextMdLineL,
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
+import { FDirRow, FlexColEnd,FlexCol} from '@components/shared/FlexBoxStyle';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
   TickView
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
+import PrematureTag from '@components/shared/PrematureTag';
 import {
   ParentData, ParentLabel, ParentListView, ParentRowView, ParentSection, ProfileActionView, ProfileContentView, ProfileIconView, ProfileLinkCol,
   ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
@@ -20,7 +22,9 @@ import {
   Heading3,
   Heading5,
   Heading5Bold,
-  Heading6
+  Heading6,
+  ShiftFromBottom5,
+  Heading5BoldW
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext } from 'react';
@@ -133,8 +137,19 @@ const child_age = useAppSelector(
               </ButtonTextSmLine>
             </ProfileLinkView>
           </ProfileTextView>
+          
           <ProfileActionView>
-            
+          <FlexColEnd>
+            {/* Premature Tag Insert Here */}
+          {/* <ShiftFromBottom5>
+          <PrematureTag>
+          <Heading5BoldW>
+          {t('developScreenprematureText')}
+          </Heading5BoldW>
+          </PrematureTag>
+          </ShiftFromBottom5> */}
+          {/* Premature Tag End Here */}
+          <FDirRow>
             <OuterIconRow>
               <OuterIconLeft>
                 <TickView>
@@ -144,7 +159,8 @@ const child_age = useAppSelector(
             </OuterIconRow>
 
             <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
-            
+            </FDirRow>
+            </FlexColEnd>  
           </ProfileActionView>
         </ProfileListViewSelected1>
       ) : (
@@ -189,7 +205,18 @@ const child_age = useAppSelector(
             </ProfileTextView>
             <ProfileActionView>
               {/* Pressable button */}
-              <Text></Text>
+              {/* <Text></Text> */}
+              <FlexColEnd>
+              {/* Premature Tag Insert Here */}
+          {/* <ShiftFromBottom5>
+          <PrematureTag>
+          <Heading5BoldW>
+          {t('developScreenprematureText')}
+          </Heading5BoldW>
+          </PrematureTag>
+          </ShiftFromBottom5> */}
+           {/* Premature Tag End Here */}
+            </FlexColEnd>  
             </ProfileActionView>
           </ProfileListInner>
         </ProfileListDefault>

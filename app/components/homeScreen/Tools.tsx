@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Heading2, Heading3Center, ShiftFromTop10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 
 
@@ -49,22 +48,3 @@ const Tools = () => {
 };
 
 export default Tools;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     backgroundColor: '#FFF',
-//     borderRadius: 5,
-//     // margin: 3,
-//     // padding: 10,
-//     // width: 200,
-//     justifyContent: 'center',
-//     alignItems: 'center'
-//   },
-//   title: {
-//     fontSize: 16,
-//     padding: 5,
-//     width: 100,
-//     fontWeight: 'bold',
-//     textAlign: 'center'
-//   },
-// })

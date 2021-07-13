@@ -4,6 +4,7 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
+import { View,Text} from 'react-native';
 import {
   FDirCol,
   FDirRow,
@@ -17,6 +18,8 @@ import {
 } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import {
+  BubbleContainer,
+  BubbleView,
   DrawerHeadContainer,
   DrawerLinkView,
   NavIconSpacing,
@@ -117,6 +120,8 @@ const CustomDrawerContent = ({navigation}: any) => {
 
             <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
           </DrawerLinkView>
+
+
           <DrawerLinkView
             onPress={() => navigation.navigate('NotificationsScreen')}>
             <OuterIconRow>
@@ -126,7 +131,17 @@ const CustomDrawerContent = ({navigation}: any) => {
             </OuterIconRow>
 
             <Heading4>{t('drawerMenunotiTxt')}</Heading4>
+            <BubbleContainer>
+            <BubbleView>
+              <Heading5>10</Heading5>
+            </BubbleView>
+            </BubbleContainer>
           </DrawerLinkView>
+
+
+
+
+
           <DrawerLinkView style={{backgroundColor:accordvalue ?"#F7F6F4":"#FFF"}} onPress={() => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
@@ -231,6 +246,11 @@ const CustomDrawerContent = ({navigation}: any) => {
             </OuterIconRow>
 
             <Heading4>{t('drawerMenufavTxt')}</Heading4>
+            <BubbleContainer>
+            <BubbleView>
+              <Heading5>10</Heading5>
+            </BubbleView>
+            </BubbleContainer>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
             <OuterIconRow>
