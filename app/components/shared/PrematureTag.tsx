@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 const PrematureTag = styled.View`
-  background:${props => props.theme.colors.SECONDARY_COLOR};
+  background:${props => props.theme.colors.PRIMARY_COLOR};
   padding:4px 8px;
   text-align:center;
   color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};

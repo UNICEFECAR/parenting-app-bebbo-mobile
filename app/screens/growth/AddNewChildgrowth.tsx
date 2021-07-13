@@ -29,6 +29,7 @@ import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
+  ModalPopupContent,
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import {
@@ -322,7 +323,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 </PopupClose>
               </PopupCloseContainer>
               <ShiftFromTopBottom10>
+                <ModalPopupContent>
                 <Heading3Center>{t('growthDeleteWarning')}</Heading3Center>
+                </ModalPopupContent>
               </ShiftFromTopBottom10>
               <ButtonContainerTwo>
                 <ButtonColTwo>

@@ -9,7 +9,9 @@ import {
   Heading3,
   Heading5,
   Heading5Bold,
-  ShiftFromBottom20
+  Heading5BoldW,
+  ShiftFromBottom10,
+  ShiftFromBottom20,ShiftFromBottom5
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
@@ -22,6 +24,8 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
   getAllChildren,
@@ -37,7 +41,9 @@ import {
   ButtonTextLine,
   ButtonTextSmLine
 } from './shared/ButtonGlobal';
+import { FlexCol,FDirRow,FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
+import PrematureTag, { PrematureTagDevelopment } from './shared/PrematureTag';
 import {
   ProfileActionView,
   ProfileIconView,
@@ -116,6 +122,18 @@ const HeaderBabyMenu = (props: any) => {
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
+              <FlexColEnd>
+
+                {/* Premature Tag Insert Here */}
+                {/* <ShiftFromBottom5>
+            <PrematureTag>
+          <Heading5BoldW>
+              {t('developScreenprematureText')}
+            </Heading5BoldW>
+          </PrematureTag>
+          </ShiftFromBottom5> */}
+          {/* Premature Tag End Here */}
+          <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <TickView>
@@ -123,7 +141,10 @@ const HeaderBabyMenu = (props: any) => {
                   </TickView>
                 </OuterIconLeft>
               </OuterIconRow>
+              
               <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+              </FDirRow>
+              </FlexColEnd>
             </ProfileActionView>
           </ProfileListViewSelected>
         ) : (
@@ -148,12 +169,26 @@ const HeaderBabyMenu = (props: any) => {
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
+            <FlexColEnd>
+
+              {/* Premature Tag Insert Here */}
+              {/* <ShiftFromBottom5>
+              <PrematureTag>
+              <Heading5BoldW>
+              {t('developScreenprematureText')}
+              </Heading5BoldW>
+              </PrematureTag>
+              </ShiftFromBottom5> */}
+              {/* Premature Tag End Here */}
+              <FDirRow >
               <ButtonTextSmLine
                 onPress={() => {
                   setActiveChild(data.uuid, dispatch, child_age);
                 }}>
                {t('childActivatebtn')}
               </ButtonTextSmLine>
+              </FDirRow>
+              </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
         )}
@@ -270,4 +305,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 2,
   },
+  cardcontainer: {
+    flexGrow: 1,
+   },
 });
