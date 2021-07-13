@@ -10,6 +10,7 @@ import Divider,{DividerArt} from '@components/shared/Divider';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
+import InfiniteScrollList from '@components/shared/InfiniteScrollList';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -45,7 +46,9 @@ type Props = {
 export type ArticleCategoriesProps = {
   borderColor?:any,
   filterOnCategory?:Function,
-  filterArray?:any
+  filterArray?:any,
+  fromPage?:any,
+  onFilterArrayChange?:Function
 }
 const ContainerView = styled.SafeAreaView`
   flex: 1;
@@ -62,13 +65,16 @@ const Articles = ({route, navigation}: Props) => {
   const articleModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsArticleModalOpened),
     );
+    
    useFocusEffect(()=>{
     //  console.log('weightModalOpened',weightModalOpened);
       // pass true to make modal visible every time & reload
-    setModalVisible(articleModalOpened)
+    setModalVisible(articleModalOpened);    
    });
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
-  const renderArticleItem = ({item, index}) => (
+  const renderArticleItem = ({item, index}) => {
+    // console.log("renderArticleItem-",index)
+    return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
@@ -82,13 +88,14 @@ const Articles = ({route, navigation}: Props) => {
             <ShiftFromTopBottom5>
           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
           </ShiftFromTopBottom5>
-          <Heading3>{item.title} {index}</Heading3>
+          <Heading3>{item.title}</Heading3>
           </ArticleListContent>
           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
         </ArticleListContainer>
       </Pressable>
 
-  );
+  ) 
+};
 
  
   const themeContext = useContext(ThemeContext);
@@ -101,18 +108,21 @@ const Articles = ({route, navigation}: Props) => {
       headerColor:headerColor,
       backgroundColor:backgroundColor,
       detailData:item,
+      listCategoryArray: filterArray
       // setFilteredArticleData: setFilteredArticleData
     });
   };
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
-  let filterArray: string[] = [];
+  // let filterArray: string[] = [];
+  const [filterArray,setFilterArray] = useState([]);
+  const fromPage = 'Articles';
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
-console.log(activeChild,"..activeChild..");
+// console.log(activeChild,"..activeChild..");
 // const allConfigData = useAppSelector((state: any) =>
 // state.variableData?.variableData != ''
 //   ? JSON.parse(state.variableData?.variableData)
@@ -138,7 +148,7 @@ console.log(activeChild,"..activeChild..");
     "parent_gender":activeChild.parent_gender,
     "taxonomyData":activeChild.taxonomyData
   }
-  console.log(currentChildData,"..currentChildData..");
+  // console.log(currentChildData,"..currentChildData..");
   const [loading, setLoading] = useState(false);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -164,9 +174,12 @@ console.log(activeChild,"..activeChild..");
   //   }
   //   fetchData()
   // },[languageCode]);
-  
+  const cleanUpFunction = () => {
+    console.log("cleanUpFunction called");
+  }
   useFocusEffect(
     React.useCallback(() => {
+      console.log("useFocusEffect called");
       setLoading(false);
       setModalVisible(true);
       async function fetchData() {
@@ -181,19 +194,23 @@ console.log(activeChild,"..activeChild..");
           if(route.params?.categoryArray)
           {
             // console.log(route.params?.categoryArray);
+            setFilterArray(route.params?.categoryArray);
             setFilteredArticleData(route.params?.categoryArray);
           }
           else {
+            setFilterArray([]);
             setFilteredArticleData([]);
           }
         // }
       }
       fetchData()
+
+      return () => cleanUpFunction();
     },[languageCode,route.params?.categoryArray])
   );
   
   const setFilteredArticleData = (itemId:any) => {
-    // console.log(itemId,"articleData in filtered ",articleData);
+    console.log(itemId,"articleData in filtered ",articleData);
     if(articleData != '')
     {
       if(itemId.length>0)
@@ -214,6 +231,12 @@ console.log(activeChild,"..activeChild..");
     // }
   }
   console.log(filteredData.length,"---length");
+  const onFilterArrayChange = (newFilterArray: any) => {
+    console.log("on filterarray change",newFilterArray);
+    // filterArray = [...newFilterArray];
+    setFilterArray(newFilterArray)
+    console.log("on filterarray change after",filterArray)
+  }
   // useFocusEffect(
   //   React.useCallback(() => {
   //     setArticleData(stateArticleData)
@@ -277,35 +300,36 @@ console.log(activeChild,"..activeChild..");
             </SearchBox>
             {/* <FlexCol> */}
                 <DividerArt></DividerArt>
-              <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} filterArray={filterArray}/>
+              <ArticleCategories borderColor={headerColor} filterOnCategory={setFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}/>
               <DividerArt></DividerArt>
               {/* </FlexCol> */}
               {filteredData.length> 0 ? 
-                <View>
-                  <FlatList
-                    // extraData={filteredData}
-                    data={filteredData}
-                    initialNumToRender={filteredData.length}
-                    // onRefresh={this.handleRefresh}
-                    // refreshing={this.state.refreshing}
-                    // onEndReachedThreshold={2}
-                    // onEndReached={this.handleLoadMore}
-                    // renderItem={({item, index}) => <Text>{item.title} {index}</Text>}
-                    // renderItem={({item, index}) => renderArticleItem(item, index)}
-                    renderItem={renderArticleItem}
-                    // showsHorizontalScrollIndicator={false}
-                    // showsVerticalScrollIndicator={true}
-                    // keyExtractor={(item, index) => {
-                    //   return index.toString();
-                    // }}
-                    keyExtractor={(item) => item.id.toString()}
-                    // onMomentumScrollBegin={() => {
-                    //   this.onEndReachedCalledDuringMomentum = false;
-                    // }}
-                    // ListHeaderComponent={ContentThatGoesAboveTheFlatList}
-                    // ListFooterComponent={ContentThatGoesBelowTheFlatList}
-                  /> 
-                </View>
+                <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem}/> 
+                // <View>
+                //   <FlatList
+                //     // extraData={filteredData}
+                //     data={filteredData}
+                //     initialNumToRender={filteredData.length}
+                //     // onRefresh={this.handleRefresh}
+                //     // refreshing={this.state.refreshing}
+                //     // onEndReachedThreshold={2}
+                //     // onEndReached={this.handleLoadMore}
+                //     // renderItem={({item, index}) => <Text>{item.title} {index}</Text>}
+                //     // renderItem={({item, index}) => renderArticleItem(item, index)}
+                //     renderItem={renderArticleItem}
+                //     // showsHorizontalScrollIndicator={false}
+                //     // showsVerticalScrollIndicator={true}
+                //     // keyExtractor={(item, index) => {
+                //     //   return index.toString();
+                //     // }}
+                //     keyExtractor={(item) => item.id.toString()}
+                //     // onMomentumScrollBegin={() => {
+                //     //   this.onEndReachedCalledDuringMomentum = false;
+                //     // }}
+                //     // ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+                //     // ListFooterComponent={ContentThatGoesBelowTheFlatList}
+                //   /> 
+                // </View>
                 : null}
               {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);

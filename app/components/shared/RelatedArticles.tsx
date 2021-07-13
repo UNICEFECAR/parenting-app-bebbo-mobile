@@ -4,7 +4,7 @@ import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, StyleSheet } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -53,9 +53,10 @@ const DATA = [
   },
 ];
 
-const RelatedArticles = (props : RelatedArticlesProps) => {
+const RelatedArticles = (props:RelatedArticlesProps) => {
   //console.log(props);
-  const { related_articles, category, currentId } = props;
+  const { related_articles, category, currentId,headerColor,backgroundColor,listCategoryArray, navigation } = props;
+  console.log(props);
   const {t} = useTranslation();
   const relartlength = related_articles.length;
   const articleData = useAppSelector(
@@ -68,7 +69,8 @@ const RelatedArticles = (props : RelatedArticlesProps) => {
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
-      //console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      setrelatedArticleData([]);
       async function fetchData() {
         if(relartlength > 0)
         {
@@ -94,44 +96,60 @@ const RelatedArticles = (props : RelatedArticlesProps) => {
         }
       }
       fetchData()
-    },[])
+    },[currentId])
   );
   //console.log("relatedArticleData---",relatedArticleData);
-
+  const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
+    navigation.navigate('DetailsScreen',
+    {
+      fromScreen:"Articles",
+      headerColor:headerColor,
+      backgroundColor:backgroundColor,
+      detailData:item,
+      listCategoryArray: listCategoryArray
+      // setFilteredArticleData: setFilteredArticleData
+    });
+  };
   const renderDailyReadItem = (item: any, index: number) => {
     return (
-      <RelatedArticleContainer key={index}>
-        <Image 
-        // source={item.imagePath} 
-        // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-        source={require('@assets/trash/defaultArticleImage.png')}
-        style={styles.cardImage}></Image>
-        <ArticleListContent>
-        <ShiftFromTopBottom5>
-        <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold>
-        </ShiftFromTopBottom5>
-        {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
-        <Heading3>{item.title}</Heading3>
-        </ArticleListContent>
-         <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
-       
-      </RelatedArticleContainer>
+      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
+        <RelatedArticleContainer key={index}>
+          <Image 
+          // source={item.imagePath} 
+          // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+          source={require('@assets/trash/defaultArticleImage.png')}
+          style={styles.cardImage}></Image>
+          <ArticleListContent>
+          <ShiftFromTopBottom5>
+          {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
+          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
+          </ShiftFromTopBottom5>
+          {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
+          <Heading3>{item.title}</Heading3>
+          </ArticleListContent>
+          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
+        
+        </RelatedArticleContainer>
+      </Pressable>  
     );
   };
 
   return (
     <>
-      <ContainerView>
-        <ArticleHeading>
-        <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
-        </ArticleHeading>
-        <FlatList
-          data={relatedArticleData}
-          horizontal
-          renderItem={({item, index}) => renderDailyReadItem(item, index)}
-          keyExtractor={(item) => item.id}
-        />
-      </ContainerView>
+    { relatedArticleData.length > 0 ?
+        <ContainerView key={currentId}>
+          <ArticleHeading>
+          <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
+          </ArticleHeading>
+          <FlatList
+            data={relatedArticleData}
+            horizontal
+            renderItem={({item, index}) => renderDailyReadItem(item, index)}
+            keyExtractor={(item) => item.id}
+          />
+        </ContainerView>
+        : null 
+    }
     </>
   );
 };
