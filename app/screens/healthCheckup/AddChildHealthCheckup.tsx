@@ -190,7 +190,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedMeasureItem}
             />
  </FormContainerFlex>
@@ -256,7 +256,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedVaccineItem}
             />
 

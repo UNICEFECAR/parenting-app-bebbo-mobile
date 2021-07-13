@@ -4,7 +4,7 @@ import {
   ButtonText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image } from 'react-native';
@@ -44,9 +44,11 @@ const ChildInfo = () => {
         </ShiftFromTopBottom10>
         <ShiftFromBottom10>
           <ButtonSpacing>
+            <SideSpacing25>
           <ButtonPrimary onPress={() => {}}>
             <ButtonText>{t('homeScreenchildBtnText')}</ButtonText>
           </ButtonPrimary>
+          </SideSpacing25>
           </ButtonSpacing>
         </ShiftFromBottom10>
       

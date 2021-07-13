@@ -31,3 +31,15 @@ export const SubDrawerHead = styled.View`
 margin-left:13px;
 `;
 
+export const BubbleContainer = styled.View`
+margin-left:auto
+`;
+
+export const BubbleView = styled.View`
+width:26px;height:26px;
+justifyContent:center;
+alignItems:center;
+padding:2px;
+background-color:${props => props.theme.colors.SECONDARY_COLOR};
+border-radius:100
+`;
