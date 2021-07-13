@@ -187,6 +187,7 @@ const HeaderBabyMenu = (props: any) => {
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
             {SortedchildList.length > 0 ? (
+              <View style={{height:220}}>
               <FlatList
                 nestedScrollEnabled={true}
                 data={SortedchildList}
@@ -196,6 +197,7 @@ const HeaderBabyMenu = (props: any) => {
                 }
                 keyExtractor={(item: {id: any}) => item.id}
               />
+              </View>
             ) : null}
 
             <ButtonContainer>
