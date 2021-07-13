@@ -27,8 +27,9 @@ import { Alert, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { between, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChild, getCurrentChildAgeInDays } from '../services/childCRUD';
+import { checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -36,7 +37,6 @@ import {
   ShiftFromBottom20,
   ShiftFromTop30
 } from '../styles/typography';
-import { appConfig } from '../types/apiConstants';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
@@ -66,15 +66,15 @@ const ChildSetupList = ({ navigation }: Props) => {
     <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.childName}</ChildListTitle>
-      <Text>Born on {data.birthDate!=null  ? formatDate(data.birthDate):''}</Text>
+      <Text>{t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''})}</Text>
     </ChildColArea1>
     <ChildColArea2>
     {
           childList.length> 1 ? (
-            <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>Delete</TitleLinkSm>
+            <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
             ) :null
           }
-      <TitleLinkSm onPress={() => editRecord(data)}>Edit Profile</TitleLinkSm>
+      <TitleLinkSm onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
     </ChildColArea2>
   </ChildListingBox>
      );
@@ -83,14 +83,14 @@ const ChildSetupList = ({ navigation }: Props) => {
     //console.log("..deleted..");
     // deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
     return new Promise((resolve, reject) => {
-      Alert.alert('Delete Child', "Do you want to delete child?",
+      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'),
         [
           {
-            text: "Cancel",
+            text: t('removeOption1'),
             onPress: () => reject("error"),
             style: "cancel"
           },
-          { text: "Delete", onPress: () => {
+          { text: t('growthScreendelText'), onPress: () => {
             deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
           }
           }
@@ -201,7 +201,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             ) :
             <ChildListingBox>
             <ChildColArea1>
-              <Text>No Data</Text></ChildColArea1>
+              <Text>{t('noChildsTxt')}</Text></ChildColArea1>
             </ChildListingBox>
             }
           </CustomScrollView>

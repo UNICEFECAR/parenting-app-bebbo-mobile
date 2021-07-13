@@ -15,7 +15,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3Regular, ShiftFromTop20, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading3Regular, ShiftFromTop20, ShiftFromTopBottom10, SideSpacing25 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
@@ -69,10 +69,12 @@ const Home = () => {
             <Heading3Regular>{t('homeScreenexpText')}</Heading3Regular>
             </FlexDirRow>
             <ShiftFromTop20>
+              <SideSpacing25>
             <ButtonTertiary
               onPress={() => {}}>
               <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
             </ButtonTertiary>
+            </SideSpacing25>
             </ShiftFromTop20>
             </HomeSurveyBox>
             

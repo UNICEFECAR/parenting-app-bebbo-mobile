@@ -12,7 +12,7 @@ import ModalPopupContainer, {
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1,Heading1Center, Heading2w, Heading4Centerr,ShiftFromTopBottom20 } from '@styles/typography';
+import { Heading1Center, Heading2w, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
@@ -33,7 +33,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
   const screenPadding = 10;
   const secondScalePrefix =0.01;
   const {width} = Dimensions.get('screen');
-  const [heightVal, setheight] = useState<number>(9);
+  const [height, setheight] = useState<number>(9);
   const [height1, setheight1] = useState<number>(0.41);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
@@ -62,7 +62,13 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
       // console.log(route.params?.backgroundColor);
       setTintColor(route.params?.backgroundColor);
     }
-  }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor ]);
+    if(route.params?.heightValue){
+      console.log(route.params?.heightValue);
+      (route.params?.heightValue.weight != NaN)?setheight(route.params?.heightValue.weight):setheight(0);
+      (route.params?.heightValue.weight1 != NaN)?setheight1(route.params?.heightValue.weight1):setheight1(0.0);
+      // setInitialValues(route.params?.weightValue)
+    }
+  }, [route.params?.prevRoute,route.params?.headerColor,route.params?.backgroundColor,route.params?.heightValue]);
 
 
   return (
@@ -139,7 +145,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
         <View style={{padding: screenPadding, overflow:'hidden'}}>
           <ShiftFromTopBottom20>
             <Heading1Center>
-            {(heightVal + 0.01 * height1).toFixed(2)} {t('growthScreencmText')}
+            { height ?(height + 0.01 * (height1? height1:0)).toFixed(2): 0 } { t('growthScreencmText') }
           </Heading1Center>
           </ShiftFromTopBottom20>
           <Ruler
@@ -147,7 +153,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             width={width - (screenPadding*2)}
             height={100}
             vertical={false}
-            initialValue={heightVal}
+            initialValue={route.params?.heightValue.height}
             onChangeValue={(value) => setheight(value)}
             minimum={0}
             maximum={200}
@@ -171,7 +177,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             width={width - screenPadding- screenPadding}
             height={100}
             vertical={false}
-            initialValue={height1/secondScalePrefix}
+            initialValue={route.params?.heightValue.height1}
             onChangeValue={(value) => setheight1(value)}
             minimum={0}
             maximum={100}
@@ -197,7 +203,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             onPress={() => {
               navigation.navigate({
                 name: prevRoute,
-                params: {height:(heightVal + 0.01 * height1).toFixed(2)},
+                params: {height:(height + 0.01 * height1).toFixed(2)},
                 merge: true,
               });
               // route.params.onReturn({height:(heightVal + 0.01 * height1).toFixed(2)});
