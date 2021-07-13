@@ -139,6 +139,10 @@ export const TextAreaBox = styled.View`
 height:75px;
 border-radius:4px;
 `;
+export const TextBox = styled(TextAreaBox)`
+ 
+height:52px;
+`;
 
 
 /*Form Styling*/

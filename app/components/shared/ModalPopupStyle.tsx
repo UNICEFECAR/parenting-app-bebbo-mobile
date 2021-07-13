@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 const ModalPopupContainer = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius: 4px;
-  padding: 20px 15px;
+  padding: 20px 0px;
   align-items: center;
 `;
 
@@ -23,10 +23,18 @@ export const PopupClose = styled.Pressable`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: -15px;
-  margin-bottom: 10px;
+  align-self:center;
+  right:0;
+  top:-20px;
   width: 36px;
   height: 36px;
+  position:absolute;
+  
 `;
+export const ModalPopupContent = styled.View`
+  padding:10px 40px;
+`;
+
+
 
 export default ModalPopupContainer;

@@ -149,6 +149,9 @@ export const Heading5Bold = styled(Heading5)`
   font-family: 'roboto-bold';
 `;
 
+export const Heading5BoldW = styled(Heading5)`
+color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+`;
 
 
 

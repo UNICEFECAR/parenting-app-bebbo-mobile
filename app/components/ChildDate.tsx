@@ -27,6 +27,7 @@ import FormPrematureContainer, {
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
+  ModalPopupContent,
   PopupOverlay
 } from './shared/ModalPopupStyle';
 
@@ -226,9 +227,11 @@ const ChildDate = (props: any) => {
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>
             </PopupCloseContainer>
+            <ModalPopupContent>
             <Heading4Centerr>
               {t('childSetupprematureMessage')}
             </Heading4Centerr>
+            </ModalPopupContent>
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
