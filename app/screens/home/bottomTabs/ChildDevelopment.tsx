@@ -2,9 +2,9 @@ import AgeBrackets from '@components/AgeBrackets';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
-import { BannerContainer, MainContainer } from '@components/shared/Container';
+import { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
-import { FDirCol, FDirRow, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
+import { FDirCol,FlexCol, FDirRow,Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -169,16 +169,14 @@ const ChildDevelopment = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <FlexDirCol>
-         
           <TabScreenHeader
             title={t('developScreenheaderTitle')}
             headerColor={headerColor}
             textColor="#000"
           />
-          <Flex4 style={{backgroundColor: backgroundColor, margin:-3}}>
+          <FlexCol style={{backgroundColor: backgroundColor}}>
             <View>
               <FlatList
                 data={cditems}
@@ -189,9 +187,9 @@ const ChildDevelopment = ({navigation}: Props) => {
                 ListFooterComponent={ContentThatGoesBelowTheFlatList}
               />
             </View>
-          </Flex4>
-          </FlexDirCol>
-      </SafeAreaView>
+          </FlexCol>
+         
+      </SafeAreaContainer>
     </>
   );
 };

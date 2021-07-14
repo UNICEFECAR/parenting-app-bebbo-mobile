@@ -3,7 +3,9 @@ import {
   ButtonLinkPress, ButtonTextMdLineL,
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
+import { MainContainer,AreaContainer } from '@components/shared/Container';
 import { FDirRow, FlexColEnd,FlexCol} from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -226,28 +228,28 @@ const child_age = useAppSelector(
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
+       
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        <HeaderRowView
           style={{
-            flexDirection: 'row',
-            flex: 1,
             backgroundColor: headerColor,
             maxHeight: 50,
           }}>
-          <View style={{flex: 1, padding: 15}}>
-            <Pressable
+          <HeaderIconView>
+          <Pressable
               onPress={(e) => {
                 e.stopPropagation();
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
             </Pressable>
-          </View>
-          <View style={{flex: 9, padding: 7}}>
-            <Heading2w>{t('childProfileHeader')}</Heading2w>
-          </View>
-        </View>
-        <View style={{margin: 15}}>
+          </HeaderIconView>
+          <HeaderTitleView>
+          <Heading2w>{t('childProfileHeader')}</Heading2w>
+          </HeaderTitleView>
+        </HeaderRowView>
+        <FlexCol>
+        <AreaContainer>
           <View style={{flexDirection: 'column'}}>
             <ScrollView style={{height: 'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
@@ -351,9 +353,8 @@ const child_age = useAppSelector(
                   </View>
                 </View> */}
           </View>
-        </View>
-        {/* </ScrollView> */}
-        {/* </View> */}
+        </AreaContainer>
+        </FlexCol>
       </SafeAreaView>
     </>
   );

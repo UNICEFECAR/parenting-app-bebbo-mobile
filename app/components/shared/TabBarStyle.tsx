@@ -5,13 +5,13 @@ export default TabBarStyle;
 
 
 export const TabBarDefault = styled.View`
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 padding:10px;
 margin:3px;
 `
 
 export const TabBarActive = styled.View`
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 padding:10px;
 margin:3px;
 background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -23,7 +23,7 @@ background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex-direction:row;
 padding:2px 3px;
 justify-content:center;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 /*margin-bottom:10px;*/
 border-bottom-width:1px;
 border-color:rgba(0,0,0,0.2)

@@ -41,5 +41,5 @@ justifyContent:center;
 alignItems:center;
 padding:2px;
 background-color:${props => props.theme.colors.SECONDARY_COLOR};
-border-radius:100
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;

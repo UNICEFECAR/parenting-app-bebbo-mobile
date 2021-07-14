@@ -12,6 +12,7 @@ import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import InfiniteScrollList from '@components/shared/InfiniteScrollList';
 import ModalPopupContainer, {
+  ModalPopupContent,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay
@@ -356,12 +357,12 @@ const Articles = ({route, navigation}: Props) => {
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>
             </PopupCloseContainer>
-
-            
+            <ModalPopupContent>
               <Heading4Centerr>
                 {t('articleModalText')}
               </Heading4Centerr>
-              <ShiftFromTop10><Text></Text></ShiftFromTop10>
+              </ModalPopupContent>
+              
               <FDirRow>
               <ButtonModal
                 onPress={() => {
