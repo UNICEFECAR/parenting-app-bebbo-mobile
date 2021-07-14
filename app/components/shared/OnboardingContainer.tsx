@@ -44,7 +44,7 @@ export const LocalizationRow = styled.View`
   min-height:52px;  
   margin-top:0px;
   margin-bottom: 30px;
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const LocalizationCol = styled.View`

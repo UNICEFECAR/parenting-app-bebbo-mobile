@@ -61,7 +61,7 @@ export const ChildListingArea = styled.View`
 
 export const ChildListingBox = styled.View`
   background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
-  border-radius: 4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   padding: 10px;
   flex-direction: row;
   margin-bottom: 15px;
@@ -102,7 +102,7 @@ margin-top:0;
 export const FormInputBox = styled.View`
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius: 4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   align-items:center;
   justify-content:space-between;
   height:52px;
@@ -137,7 +137,7 @@ export const TextAreaBox = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding: 0 15px;
 height:75px;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const TextBox = styled(TextAreaBox)`
  

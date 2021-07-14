@@ -107,7 +107,8 @@ const HeaderBabyMenu = (props: any) => {
               {data.photoUri != '' ? (
                 <ImageIcon
                   source={{uri: 'file://' + CHILDREN_PATH + data.photoUri}}
-                  style={{borderRadius: 20, width: 40, height: 40}}></ImageIcon>
+                  // style={{borderRadius: 20, width: 40, height: 40}}
+                  ></ImageIcon>
               ) : (
                 <Icon name="ic_baby" size={30} color="#000" />
               )}
@@ -153,7 +154,8 @@ const HeaderBabyMenu = (props: any) => {
               {data.photoUri != '' ? (
                 <ImageIcon
                   source={{uri: 'file://' + CHILDREN_PATH + data.photoUri}}
-                  style={{borderRadius: 20, width: 40, height: 40}}></ImageIcon>
+                  // style={{borderRadius: 20, width: 40, height: 40}}
+                  ></ImageIcon>
               ) : (
                 <Icon name="ic_baby" size={30} color="#000" />
               )}

@@ -25,7 +25,7 @@ export const Bullets = styled.Text`
 background:${props => props.theme.colors.HEALTHCHECKUP_COLOR};
 width:7px;
 height:7px;
-border-radius:100px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 margin-top:6px;
 margin-right:7px;
 `;

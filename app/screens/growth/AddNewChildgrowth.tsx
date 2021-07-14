@@ -18,7 +18,7 @@ import {
   TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
-import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexFDirRowSpace,FlexCol } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderIconView,
@@ -182,6 +182,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </Pressable>
           </HeaderActionView>
         </HeaderRowView>
+        <FlexCol>
         <MainContainer>
           <FormInputGroup onPress={() => setmeasureDateShow(true)}>
             <FormInputText>{t('growthScreendateMeasurementText')}</FormInputText>
@@ -221,7 +222,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               options={measurePlaces}
               defaultValue={getDefaultGrowthPlace()}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedGrowthPlace}
             />
           </FormContainer>
@@ -291,7 +292,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             <Text>{t('growthScreennewGrowthBottomText')}</Text>
           </ShiftFromTopBottom10>
         </MainContainer>
-
+        </FlexCol>
         <ButtonContainer>
           <ButtonTertiary
             onPress={(e) => {
