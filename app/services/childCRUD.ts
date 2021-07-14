@@ -52,7 +52,7 @@ if(uuid!="" && uuid!=null && uuid!=undefined){
     if(userParentalRole?.length>0){
       child.parent_gender=  userParentalRole[0].value
     }
-    
+    console.log(child);
     // childId.parent_gender=
     // childId.taxonomydata
     dispatch(setActiveChildData(child));

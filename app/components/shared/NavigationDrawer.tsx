@@ -37,8 +37,8 @@ margin-left:auto
 
 export const BubbleView = styled.View`
 width:26px;height:26px;
-justifyContent:center;
-alignItems:center;
+justify-content:center;
+align-items:center;
 padding:2px;
 background-color:${props => props.theme.colors.SECONDARY_COLOR};
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
