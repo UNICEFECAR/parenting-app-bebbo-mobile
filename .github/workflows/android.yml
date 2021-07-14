@@ -28,8 +28,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build Android App Bundle
-      run: | 
-        ./gradlew bundleRelease --no-daemon
+      run: ./gradlew bundleRelease --no-daemon
       
     - uses: actions/upload-artifact@v2
       with:
