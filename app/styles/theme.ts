@@ -23,6 +23,10 @@ export const appTheme= {
     fonts: {
         ROBOTO_BOLD: 'roboto-bold',
         ROBOTO_REGULAR: 'roboto-regular'
+    },
+    borderRadius:{
+        BORDERRADIUS:'4px',
+        BORDERRADIUS_CIRCLE:'100px'
     }
 };
 

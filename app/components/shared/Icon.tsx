@@ -24,13 +24,13 @@ export const OuterIconRight15 = styled.View`
 export const TickView = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   padding: 4px;
-  border-radius: 100px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 
 export const IconBox = styled.View`
   padding: 15px;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:100px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   margin-right:15px;
 `;
 
@@ -44,7 +44,7 @@ line-height:20px;
 flex-direction:row;
 width:20px;
 height:20px;
-border-radius:100px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 background-color:#009B00;
 justify-content:center;
 

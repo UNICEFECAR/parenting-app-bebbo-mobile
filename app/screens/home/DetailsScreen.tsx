@@ -3,7 +3,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
 import { BgActivityTint } from '@components/shared/BackgroundColors';
-import { MainContainer } from '@components/shared/Container';
+import { MainContainer, SafeAreaContainer } from '@components/shared/Container';
 import { FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
@@ -13,7 +13,7 @@ import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading6Bold } from '@styles/typography';
+import { Heading2, Heading6Bold,ShiftFromBottom5 } from '@styles/typography';
 import { destinationFolder } from '@types/apiConstants';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -71,7 +71,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   }
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexDirRow
           style={{
@@ -108,7 +108,9 @@ const DetailsScreen = ({route, navigation}: any) => {
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
           <ArticleDetailsContainer>
+            <ShiftFromBottom5>
           <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailData.category)[0].name }</Heading6Bold>
+          </ShiftFromBottom5>
           <Heading2>{detailData.title}</Heading2>
           <HTML
             source={{html: detailData.body}}
@@ -152,7 +154,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </>:null
           }
         </ScrollView>
-      </SafeAreaView>
+      </SafeAreaContainer>
     </>
   );
 };

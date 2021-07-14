@@ -10,7 +10,7 @@ justify-content:center;
 align-items:center;
 padding:8px 5px;
 width:100px;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 margin:7px 0 8px;
 `;
 
@@ -27,14 +27,11 @@ flex:1;
 `;
 export const ToolsListOuter = styled.View`
 padding:7px 8px;
-
-
 `;
 export const ToolsListContainer = styled.View`
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 flex-direction:row;
 padding:10px 15px;
-
 `;
 
 export const ToolsIconView = styled.View`
@@ -45,7 +42,6 @@ padding:0 10px;
 `;
 export const ToolsActionView = styled.View`
 align-self:center;
-
 `;
 
 export const ToolsHeadPress = styled.Pressable`

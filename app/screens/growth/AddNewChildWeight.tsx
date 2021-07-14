@@ -2,9 +2,11 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Ruler from '@components/Ruler';
 import { ButtonContainer, ButtonModal, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FDirRow } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
+  ModalPopupContent,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay
@@ -12,7 +14,7 @@ import ModalPopupContainer, {
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1Center, Heading2w, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
+import { Heading1Center, Heading2, Heading2w, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
@@ -94,10 +96,11 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
               </PopupClose>
             </PopupCloseContainer>
 
-            <View>
+            <ModalPopupContent>
               <Heading4Centerr>
                 {t('weightModalText')}
               </Heading4Centerr>
+              </ModalPopupContent>
               <FDirRow>
               <ButtonModal
                 onPress={() => {
@@ -106,13 +109,31 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
                 <ButtonText>{t('continueInModal')}</ButtonText>
               </ButtonModal>
               </FDirRow>
-            </View>
+            
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        <HeaderRowView
+          style={{
+            backgroundColor: headerColor,
+            maxHeight: 50,
+          }}>
+          <HeaderIconView>
+          <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#000" size={15} />
+              </Pressable>
+          </HeaderIconView>
+          <HeaderTitleView>
+          <Heading2>{t('growthScreenaddWeight')}</Heading2>
+          </HeaderTitleView>
+          
+        </HeaderRowView>
+        {/* <View
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -136,11 +157,12 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             </View>
             <View style={{flex: 8, padding: 7}}>
               <Heading2w style={{color: '#000'}}>
-                {t('growthScreenaddWeight')}
+                
               </Heading2w>
             </View>
           </View>
-        </View>
+        </View> */}
+        <FlexCol>
         <MainContainer>
           <View style={{backgroundColor: tintColor,borderRadius:4}}>
         <View style={{padding: screenPadding, overflow:'hidden'}}>
@@ -212,6 +234,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonTertiary>
         </ButtonContainer>
+        </FlexCol>
       </SafeAreaView>
     </>
   );

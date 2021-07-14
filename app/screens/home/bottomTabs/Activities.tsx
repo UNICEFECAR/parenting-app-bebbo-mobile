@@ -184,33 +184,31 @@ const Activities = ({navigation}: Props) => {
 export default Activities;
 
 const styles = StyleSheet.create({
-  item: {
-    height: '100%',
-    backgroundColor: '#FFF',
-    // padding: 20,
-    // marginVertical: 8,
-    // marginHorizontal: 16,
-    // borderRadius: 5,
-    flex: 1,
+  cardImage: {
+    height: 200,
+    width: '100%',
   },
-  title: {
-    fontSize: 16,
-    padding: 10,
-    // flex: 1,
-    color: '#000',
-  },
+
+  // item: {
+  //   height: '100%',
+  //   backgroundColor: '#FFF',
+  //   // padding: 20,
+  //   // marginVertical: 8,
+  //   // marginHorizontal: 16,
+  //   // borderRadius: 5,
+  //   flex: 1,
+  // },
+  // title: {
+  //   fontSize: 16,
+  //   padding: 10,
+  //   // flex: 1,
+  //   color: '#000',
+  // },
   // label: {
   //   // fontSize: 12,
   //   // paddingLeft: 10,
   //   // flex: 1,
   //   // color: '#000',
   // },
-  cardImage: {
-    height: 200,
-    width: '100%',
-    // flex: 1,
-    // alignSelf: 'center',
-    // borderTopRightRadius: 5,
-    // borderTopLeftRadius: 5,
-  },
+
 });

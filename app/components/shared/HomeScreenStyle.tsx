@@ -9,7 +9,7 @@ height:130px;
 background-color:#fff;
 justify-content:center;
 align-items:center;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const FeatureContentBox = styled.View`
@@ -43,7 +43,7 @@ margin:3px;
 justify-content:flex-start;
 align-items:center;
 padding:12px 2px 10px;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 min-height:125px
 `;
 
@@ -53,7 +53,7 @@ margin-top:15px;
 
 export const HomeSurveyBox = styled.Pressable`
 padding:17px;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 background-color: ${props => props.theme.colors.SECONDARY_COLOR};
 `;
 
@@ -84,7 +84,7 @@ padding:10px;
 `;
 export const DailyBox = styled.View`
 background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 margin:0 7px 15px;
 width:285px;
 overflow:hidden;
