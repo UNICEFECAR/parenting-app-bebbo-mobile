@@ -42,7 +42,7 @@ export const WalkthroughSubtext = styled.Text`
 
 export const ButtonTertiary1 = styled.View`
   padding: 15px 30px;
-  border-radius: 4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   font-size: 16px;
   color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};

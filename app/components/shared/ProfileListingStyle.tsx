@@ -18,7 +18,7 @@ export const ProfileListViewSelected = styled(ProfileListView)`
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
-  border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const ProfileIconView = styled.View`
   flex: 1;
@@ -64,7 +64,7 @@ export const ProfileListInner = styled.View`
 `;
 export const ProfileListActiveChild = styled(ProfileListView)`
   align-items: flex-start;
-  border-radius: 4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const ProfileLinkRow = styled.View`
@@ -117,11 +117,12 @@ export const ParentColView = styled.View`
 export const ParentListView = styled.View`
 padding:10px 15px;
 align-items:center;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `
 
 export const ChildListScrollView = styled.View`
-height:350px;margin-top:15px;border-radius:4px;
+height:350px;margin-top:15px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `
 
 /*Manage Profile Screen End*/

@@ -3,7 +3,7 @@ const Radio = styled.Text`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   width: 20px;
   height: 20px;
-  border-radius: 100px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 
 export const RadioActive = styled(Radio)`
@@ -33,7 +33,7 @@ export const RadioItem = styled.View`
   padding: 15px 0;
   border-color: rgba(255, 255, 255, 0.3);
   border-bottom-width: 0.5px;
-  border-radius: 3px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 
 export const RadioBoxContainer = styled.View`
@@ -54,7 +54,7 @@ export const RadioInnerBox = styled.Pressable`
   background:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
   justify-content:flex-start;
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   padding:12px 10px;
   height:52px;
 `;
