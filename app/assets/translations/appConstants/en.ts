@@ -349,6 +349,8 @@ const en = {
             parentPlaceNameTxt:"Enter your name",
             editParentTxt:"Edit Parent Details",
             notiDelSelected:"Delete Selected ({{count}})",
+            onBirthDay:"Birth",
+            month:"month",
 
             
     }
