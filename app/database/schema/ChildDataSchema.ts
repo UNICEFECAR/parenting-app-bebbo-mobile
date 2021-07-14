@@ -5,6 +5,7 @@ export const MeasuresEntitySchema = {
   name: "Measures",
   embedded: true,
   properties: {
+    uuid: { type: "string" },
     isChildMeasured: { type: "bool" },
     /**
      * Kg.
@@ -15,16 +16,12 @@ export const MeasuresEntitySchema = {
      * Centimeters.
      */
      height:{ type: "string" },
-
-    /**
-     * Timestamp in milliseconds.
-     */
-    measurementDate: { type: "date" ,optional:true},
+     measurementDate: { type: "int" ,optional:true},
 
     /**
      * Month in number for all child growth  listtitle 
      */
-    titleDateInMonth: { type: "int" ,optional:true},
+    titleDateInMonth: { type: "string" ,optional:true},
 
     didChildGetVaccines: { type: "bool" },
 
@@ -35,36 +32,37 @@ export const MeasuresEntitySchema = {
 
     doctorComment: { type: "string" ,optional:true},
 
-    measurementPlace: { type: "string" },
+    measurementPlace: { type: "int" },
 
   }
 }
 export type MeasuresEntity = {
+  uuid: string,
   isChildMeasured:boolean,
   weight:string,
   height:string,
-  measurementDate:Date,
-  titleDateInMonth:number
+  measurementDate:number,
+  titleDateInMonth:string
   didChildGetVaccines:boolean,
   vaccineIds:string[],
   doctorComment:string,
-  measurementPlace:string
+  measurementPlace:number
 }
 export const ReminderEntitySchema = {
   name: "Reminder",
   embedded: true,
   properties: {
+    uuid: { type: "string" },
     remiderType:{ type: "string" },
     remiderDate: { type: "date" },
     remiderTime: { type: "date" },
-    uuid: { type: "string" }
   }
 }
 export type ReminderEntity = {
+  uuid: string
   remiderType:remiderType,
   remiderDate: Date,
   remiderTime: Date,
-    uuid: string
 }
 
 export type ChildEntity = {

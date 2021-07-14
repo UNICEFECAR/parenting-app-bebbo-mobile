@@ -9,9 +9,7 @@ import {
   Heading3,
   Heading5,
   Heading5Bold,
-  Heading5BoldW,
-  ShiftFromBottom10,
-  ShiftFromBottom20,ShiftFromBottom5
+  ShiftFromBottom20
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
@@ -24,8 +22,6 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
   getAllChildren,
@@ -41,9 +37,8 @@ import {
   ButtonTextLine,
   ButtonTextSmLine
 } from './shared/ButtonGlobal';
-import { FlexCol,FDirRow,FlexColEnd } from './shared/FlexBoxStyle';
+import { FDirRow, FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
-import PrematureTag, { PrematureTagDevelopment } from './shared/PrematureTag';
 import {
   ProfileActionView,
   ProfileIconView,
@@ -119,12 +114,14 @@ const HeaderBabyMenu = (props: any) => {
                 <Heading5>{genderName}</Heading5>
               </ProfileSectionView>
               <Heading5>
-              {t('childProfileBornOn', {childdob:data.birthDate != null ? formatDate(data.birthDate) : ''})}
+                {t('childProfileBornOn', {
+                  childdob:
+                    data.birthDate != null ? formatDate(data.birthDate) : '',
+                })}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
               <FlexColEnd>
-
                 {/* Premature Tag Insert Here */}
                 {/* <ShiftFromBottom5>
             <PrematureTag>
@@ -133,18 +130,18 @@ const HeaderBabyMenu = (props: any) => {
             </Heading5BoldW>
           </PrematureTag>
           </ShiftFromBottom5> */}
-          {/* Premature Tag End Here */}
-          <FDirRow>
-              <OuterIconRow>
-                <OuterIconLeft>
-                  <TickView>
-                    <Icon name="ic_tick" size={12} color="#009B00" />
-                  </TickView>
-                </OuterIconLeft>
-              </OuterIconRow>
-              
-              <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
-              </FDirRow>
+                {/* Premature Tag End Here */}
+                <FDirRow>
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <TickView>
+                        <Icon name="ic_tick" size={12} color="#009B00" />
+                      </TickView>
+                    </OuterIconLeft>
+                  </OuterIconRow>
+
+                  <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+                </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListViewSelected>
@@ -167,29 +164,31 @@ const HeaderBabyMenu = (props: any) => {
                 <Heading5>{genderName}</Heading5>
               </ProfileSectionView>
               <Heading5>
-                {t('childProfileBornOn', {childdob:data.birthDate != null ? formatDate(data.birthDate) : ''})}               
+                {t('childProfileBornOn', {
+                  childdob:
+                    data.birthDate != null ? formatDate(data.birthDate) : '',
+                })}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
-            <FlexColEnd>
-
-              {/* Premature Tag Insert Here */}
-              {/* <ShiftFromBottom5>
+              <FlexColEnd>
+                {/* Premature Tag Insert Here */}
+                {/* <ShiftFromBottom5>
               <PrematureTag>
               <Heading5BoldW>
               {t('developScreenprematureText')}
               </Heading5BoldW>
               </PrematureTag>
               </ShiftFromBottom5> */}
-              {/* Premature Tag End Here */}
-              <FDirRow >
-              <ButtonTextSmLine
-                onPress={() => {
-                  setActiveChild(data.uuid, dispatch, child_age);
-                }}>
-               {t('childActivatebtn')}
-              </ButtonTextSmLine>
-              </FDirRow>
+                {/* Premature Tag End Here */}
+                <FDirRow>
+                  <ButtonTextSmLine
+                    onPress={() => {
+                      setActiveChild(data.uuid, dispatch, child_age);
+                    }}>
+                    {t('childActivatebtn')}
+                  </ButtonTextSmLine>
+                </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
           </ProfileListView>
@@ -224,16 +223,16 @@ const HeaderBabyMenu = (props: any) => {
             onPress={() => console.log('do nothing')}
             activeOpacity={1}>
             {SortedchildList.length > 0 ? (
-              <View style={{height:220}}>
-              <FlatList
-                nestedScrollEnabled={true}
-                data={SortedchildList}
-                renderItem={({item, index}: any) =>
-                  // return a component using that data
-                  renderChildItem(dispatch, item, index)
-                }
-                keyExtractor={(item: {id: any}) => item.id}
-              />
+              <View style={{height: 220}}>
+                <FlatList
+                  nestedScrollEnabled={true}
+                  data={SortedchildList}
+                  renderItem={({item, index}: any) =>
+                    // return a component using that data
+                    renderChildItem(dispatch, item, index)
+                  }
+                  keyExtractor={(item: {id: any}) => item.id}
+                />
               </View>
             ) : null}
 
@@ -247,7 +246,9 @@ const HeaderBabyMenu = (props: any) => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
-                    <ButtonTextLine>{t('childSetupListaddSiblingBtn')}</ButtonTextLine>
+                    <ButtonTextLine>
+                      {t('childSetupListaddSiblingBtn')}
+                    </ButtonTextLine>
                   </OuterIconRow>
                 </ButtonLinkPress>
               </ShiftFromBottom20>
@@ -309,5 +310,5 @@ const styles = StyleSheet.create({
   },
   cardcontainer: {
     flexGrow: 1,
-   },
+  },
 });

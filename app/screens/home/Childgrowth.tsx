@@ -1,25 +1,51 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText, ButtonTextMdLine } from '@components/shared/ButtonGlobal';
+import {
+  ButtonContainer,
+  ButtonPrimary,
+  ButtonText,
+  ButtonTextMdLine
+} from '@components/shared/ButtonGlobal';
 import { BannerContainer1, BgContainer } from '@components/shared/Container';
-import { Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import {
+  Flex1,
+  Flex2,
+  FlexDirCol,
+  FlexDirColStart,
+  FlexDirRowEnd,
+  FlexDirRowSpace,
+  FlexFDirRowSpace
+} from '@components/shared/FlexBoxStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
-  Heading3, Heading3Centerr, Heading4,
-  Heading4Center, Heading4Regular, Heading5, Heading5Bold, Paragraph, ShiftFromBottom5, ShiftFromTop10, ShiftFromTop20, ShiftFromTopBottom20, SideSpacing10
+  Heading3,
+  Heading3Centerr,
+  Heading4,
+  Heading4Center,
+  Heading4Regular,
+  Heading5,
+  Heading5Bold,
+  Paragraph,
+  ShiftFromBottom5,
+  ShiftFromTop10,
+  ShiftFromTop20,
+  ShiftFromTopBottom20,
+  SideSpacing10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
+import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
-
 type Props = {
   navigation: ChildgrowthNavigationProp,
   'AddNewChildgrowth'
@@ -30,19 +56,34 @@ const Childgrowth = ({navigation}: Props) => {
     {title: t('growthScreenweightForHeight')},
     {title: t('growthScreenheightForAge')},
   ];
-  const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
+  // const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
-  const activeChild = useAppSelector((state: any) =>
-  state.childData.childDataSet.activeChild != ''
-    ? JSON.parse(state.childData.childDataSet.activeChild)
-    : [],
-);
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      setNewChildMeasureUpdates();
+    },[activeChild])
+  );
+
+  const setNewChildMeasureUpdates=()=>{
+   
+    activeChild.measures =  activeChild.measures
+        .filter((item: any) => item.isChildMeasured == true)
+    
+  }
+  
   const isFutureDate = (date: Date) => {
-    return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+    return (
+      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
+    );
   };
   const renderItem = (item: typeof data[0], index: number) => {
     return (
@@ -74,23 +115,36 @@ const Childgrowth = ({navigation}: Props) => {
               padding: 15,
               maxHeight: '100%',
             }}>
-            {childmeasures.length == 0 ? (
+            {activeChild.measures.length == 0 ? (
               <FlexDirCol>
-                <Pressable
-                  onPress={() => {
-                    setChildmeasures([1]);
-                  }}>
-                    <ShiftFromBottom5>
+                <ShiftFromBottom5>
                   <Heading3>
-                    {t('growthScreengrowthDataTitle', {childAge: 3})}
+                    {t('babyNotificationbyAge', {
+                      childName:
+                        activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                          ? activeChild.childName
+                          : '',
+                      ageInMonth:
+                        activeChild.birthDate != null &&
+                        activeChild.birthDate != '' &&
+                        activeChild.birthDate != undefined
+                          ? getCurrentChildAgeInMonths(t, activeChild.birthDate)
+                          : '',
+                    })}
+
+                    {/* {t('growthScreengrowthDataTitle', {childAge: 3})} */}
                   </Heading3>
-                  </ShiftFromBottom5>
-                </Pressable>
-                <Heading3Centerr>
-                  {t('growthScreennoGrowthData')}
-                </Heading3Centerr>
+                </ShiftFromBottom5>
+
+                {activeChild.measures.length == 0 ? (
+                  <Heading3Centerr>
+                    {t('growthScreennoGrowthData')}
+                  </Heading3Centerr>
+                ) : null}
                 <ShiftFromTopBottom20>
-                <Heading4>{t('growthScreennoGrowthDataHelpText')}</Heading4>
+                  <Heading4>{t('growthScreennoGrowthDataHelpText')}</Heading4>
                 </ShiftFromTopBottom20>
               </FlexDirCol>
             ) : (
@@ -100,128 +154,131 @@ const Childgrowth = ({navigation}: Props) => {
                     'In the second year, the growth is intense, but it slows down slightly compared to the first year, so now children gain an average of ten centimeters (1 cm per month). As a result, appetite decreases, which is a normal occurrence.'
                   }
                 </Paragraph>
-                
-          <BannerContainer1>
-            <FlexDirRowSpace>
-              <Heading3>{t('growthScreensubHeading')}</Heading3>
-              <PrematureTagGrowth>
-                <Heading5Bold>
-                  {t('developScreenprematureText')}
-                </Heading5Bold>
-              </PrematureTagGrowth>
-            </FlexDirRowSpace>
-            
-            <FlexFDirRowSpace>
-              <Heading5>
-                {/* {' '} */}
-                {t('growthScreenlastMeasureText', {measureDate: '13th Nov,2019',})}
-              </Heading5>
-              <Pressable
-                onPress={() =>
-                  navigation.navigate('AllChildgrowthMeasures')
-                }>
-                <ButtonTextMdLine>
-                  {t('growthScreenallMeasureHeader')}
-                </ButtonTextMdLine>
-              </Pressable>
-            </FlexFDirRowSpace>
 
-           
-            <ShiftFromTop20>
-            <FlexDirRowSpace>
-              <Flex2> 
-                <FlexDirRowSpace>
-                <FlexDirColStart>
-                  <Heading4Regular>
-                  {t('growthScreenwText')}
-                  </Heading4Regular>
-                  <Heading2>
-                  8 {t('growthScreenkgText')}
-                  </Heading2>
-                </FlexDirColStart>
-               
-                <FlexDirColStart>
-                  <Heading4Regular>
-                  {t('growthScreenhText')}
-                  </Heading4Regular>
-                  <Heading2>
-                  73 {t('growthScreencmText')}
-                  </Heading2>
-                </FlexDirColStart>
-                </FlexDirRowSpace>
-              </Flex2>
-              <Flex1>
-              <Pressable
-                        onPress={() => {
-                          navigation.navigate('AddNewChildgrowth', {
-                            headerTitle: t('growthScreeneditNewBtntxt'),
-                          });
-                        }}>
-                          <FlexDirRowEnd>
-                        <ButtonTextMdLine>
-                          {t('growthScreeneditText')}
-                        </ButtonTextMdLine>
-                        </FlexDirRowEnd>
-                      </Pressable>
-              </Flex1>
-            </FlexDirRowSpace>
-            </ShiftFromTop20>
-          </BannerContainer1>
-                
-                <BgContainer>
-                 
-                    <TabBarContainer
-                      style={{
-                        maxHeight: 50,
-                      }}>
-                      {data.map((item, itemindex) => {
-                        return (
-                          <Pressable
-                            key={itemindex}
-                            style={{flex: 1}}
-                            onPress={() => {
-                              setSelectedIndex(itemindex);
-                            }}>
-                            <TabBarDefault
-                              style={[
-                                {
-                                  backgroundColor:
-                                    itemindex == selectedIndex
-                                      ? headerColor
-                                      : headerColorWhite,
-                                },
-                              ]}>
-                              <Heading4Center>{item.title}</Heading4Center>
-                            </TabBarDefault>
-                          </Pressable>
-                        );
+                <BannerContainer1>
+                  <FlexDirRowSpace>
+                    <Heading3>{t('growthScreensubHeading')}</Heading3>
+                    {activeChild.isPremature === 'true' ? (
+                      <PrematureTagGrowth>
+                        <Heading5Bold>
+                          {t('developScreenprematureText')}
+                        </Heading5Bold>
+                      </PrematureTagGrowth>
+                    ) : null}
+                  </FlexDirRowSpace>
+                  <FlexFDirRowSpace>
+                    <Heading5>
+                      {/* {' '} */}
+                      {t('growthScreenlastMeasureText', {
+                        measureDate:  DateTime.fromJSDate(new Date(
+                          activeChild.measures[activeChild.measures.length-1].measurementDate,
+                        )).toFormat('dd MMM yyyy'),
                       })}
-                    </TabBarContainer>
+                    </Heading5>
+                    <Pressable
+                      onPress={(e) => {
+                        e.stopPropagation();
+                        navigation.navigate('AllChildgrowthMeasures');
+                      }}>
+                      <ButtonTextMdLine>
+                        {t('growthScreenallMeasureHeader')}
+                      </ButtonTextMdLine>
+                    </Pressable>
+                  </FlexFDirRowSpace>
 
-                    <SideSpacing10>
-                      {renderItem(data[selectedIndex], selectedIndex)}
-                      <Heading2>{t('growthScreensumHeading')}</Heading2>
-                      <Paragraph>
-                        [Child growth progress text] [Child growth progress
-                        text] [Child growth progress text] [Child growth
-                        progress text] [Child growth progress text] [Child
-                        growth progress text]
-                      </Paragraph>
-                    </SideSpacing10>
-                  
+                  <ShiftFromTop20>
+                    <FlexDirRowSpace>
+                      <Flex2>
+                        <FlexDirRowSpace>
+                          <FlexDirColStart>
+                            <Heading4Regular>
+                              {t('growthScreenwText')}
+                            </Heading4Regular>
+                            <Heading2>
+                              {activeChild.measures[activeChild.measures.length-1].weight}{' '}
+                              {t('growthScreenkgText')}
+                            </Heading2>
+                          </FlexDirColStart>
+
+                          <FlexDirColStart>
+                            <Heading4Regular>
+                              {t('growthScreenhText')}
+                            </Heading4Regular>
+                            <Heading2>
+                              {activeChild.measures[activeChild.measures.length-1].height}{' '}
+                              {t('growthScreencmText')}
+                            </Heading2>
+                          </FlexDirColStart>
+                        </FlexDirRowSpace>
+                      </Flex2>
+                      <Flex1>
+                        <Pressable
+                          onPress={() => {
+                            // navigation.navigate('AddNewChildgrowth', {
+                            //   headerTitle: t('growthScreeneditNewBtntxt'),
+                            // });
+                          }}>
+                          <FlexDirRowEnd>
+                            <ButtonTextMdLine>
+                              {t('growthScreeneditText')}
+                            </ButtonTextMdLine>
+                          </FlexDirRowEnd>
+                        </Pressable>
+                      </Flex1>
+                    </FlexDirRowSpace>
+                  </ShiftFromTop20>
+                </BannerContainer1>
+
+                <BgContainer>
+                  <TabBarContainer
+                    style={{
+                      maxHeight: 50,
+                    }}>
+                    {data.map((item, itemindex) => {
+                      return (
+                        <Pressable
+                          key={itemindex}
+                          style={{flex: 1}}
+                          onPress={() => {
+                            setSelectedIndex(itemindex);
+                          }}>
+                          <TabBarDefault
+                            style={[
+                              {
+                                backgroundColor:
+                                  itemindex == selectedIndex
+                                    ? headerColor
+                                    : headerColorWhite,
+                              },
+                            ]}>
+                            <Heading4Center>{item.title}</Heading4Center>
+                          </TabBarDefault>
+                        </Pressable>
+                      );
+                    })}
+                  </TabBarContainer>
+
+                  <SideSpacing10>
+                    {renderItem(data[selectedIndex], selectedIndex)}
+                    <Heading2>{t('growthScreensumHeading')}</Heading2>
+                    <Paragraph>
+                      [Child growth progress text] [Child growth progress text]
+                      [Child growth progress text] [Child growth progress text]
+                      [Child growth progress text] [Child growth progress text]
+                    </Paragraph>
+                  </SideSpacing10>
                 </BgContainer>
-                <View style={{flex: 1,padding: 5,marginVertical:10}}>
-                  {/* <RelatedArticles/> */}
+                <View style={{flex: 1, padding: 5, marginVertical: 10}}>
+                  {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
                 </View>
               </View>
             )}
           </ScrollView>
 
-          <ButtonContainer
-            style={{backgroundColor: backgroundColor}}>
+          <ButtonContainer style={{backgroundColor: backgroundColor}}>
             <ShiftFromTop10>
               <ButtonPrimary
-              disabled={isFutureDate(activeChild?.birthDate)}
+                disabled={isFutureDate(activeChild?.birthDate)}
                 style={{backgroundColor: headerColor}}
                 onPress={() => {
                   navigation.navigate('AddNewChildgrowth', {
@@ -230,7 +287,7 @@ const Childgrowth = ({navigation}: Props) => {
                 }}>
                 <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
               </ButtonPrimary>
-              </ShiftFromTop10>
+            </ShiftFromTop10>
           </ButtonContainer>
         </View>
       </SafeAreaView>
