@@ -17,7 +17,7 @@ export const DevelopmentStatus = styled.View`
 export const DevelopmentPercent = styled.View`
   width:64px;
   height:64px;
-  border-radius:100px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   border-width:6px;
   border-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
   justify-content:center;
@@ -33,5 +33,5 @@ export const DevelopmentBox = styled.View`
 background-color:${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
 padding:14px 15px;
 margin-bottom:-10px;
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;

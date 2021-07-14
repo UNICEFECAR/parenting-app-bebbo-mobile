@@ -5,7 +5,7 @@ export const ButtonviewNext = styled.Text`
   margin-top: 10px;
   align-content: center;
   margin-bottom: 10px;
-  border-radius: 100px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   text-align: center;
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
 `;

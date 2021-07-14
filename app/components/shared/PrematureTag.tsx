@@ -4,7 +4,7 @@ const PrematureTag = styled.View`
   padding:4px 8px;
   text-align:center;
   color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export default PrematureTag;
 

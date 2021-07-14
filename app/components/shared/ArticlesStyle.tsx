@@ -13,13 +13,13 @@ export const ArticleListContainer = styled.View`
  margin:10px 15px;
 /* flex:1;*/
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   overflow:hidden;
   
 `;
 export const RelatedArticleContainer = styled(ArticleListContainer)`
   width:300px;
-  margin:10px 15px;
+  margin:10px 5px;
 `;
 
 export const SearchBox = styled.View`
@@ -45,5 +45,6 @@ export const ArticleHeading = styled.View`
 `;
 
 export const ArticleDetailsContainer = styled.View`
-  padding:10px 15px;
+  padding:15px 15px;
+  min-height:145px;
 `;

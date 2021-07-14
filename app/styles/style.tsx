@@ -8,7 +8,7 @@ export const ButtonText = styled.Text`
 `;
 export const SelectionView = styled.View`
   /* border-width: 1px;
-  border-radius: 2px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   border-color: #ddd;
   border-bottom-width: 0; */
   
