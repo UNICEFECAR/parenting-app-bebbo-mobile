@@ -12,19 +12,26 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
+          
   build-android:
     needs: install-and-test
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-      - name: Build Android Release
-        run: |
-          cd android && ./gradlew assembleRelease -Dorg.gradle.logging.level=quiet
+      - name: Cache npm dependencies
+      uses: actions/cache@v2
+      with:
+        path: '~/.npm'
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm ci
+
+    - run: ./gradlew assembleDebug -Dorg.gradle.logging.level=info
+      working-directory: android
+      name: Build Android apk (debug)
+      
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
