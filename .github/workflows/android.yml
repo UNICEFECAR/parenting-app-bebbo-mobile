@@ -26,6 +26,6 @@ jobs:
       name: Build Android apk (debug)
       
     - uses: actions/upload-artifact@v2
-        with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
+      with:
+        name: android-apk
+        path: '**/*.apk'
