@@ -1,127 +1,50 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
-import { FDirRow,FlexCol, Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import ActiveChildMeasureTimeline from '@components/growth/ActiveChildMeasureTimeline';
+import {
+  ButtonContainer,
+  ButtonPrimary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading2w, Heading3, Heading4Regular, Heading5, Paragraph, ShiftFromTop20,ShiftFromTop10 } from '@styles/typography';
+import {
+  Heading2, ShiftFromTop10
+} from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import Timeline from 'react-native-timeline-flatlist';
+import { Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
+
+
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AllChildgrowthMeasures = ({navigation}: Props) => {
+const AllChildgrowthMeasures = ({route, navigation}) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  // const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
-  const DATA = [
-    {
-      duration: '2 Months',
-      measurementDate: new Date(),
-      weight: 5,
-      length: 50,
-    },
-    {
-      duration: 'Birth',
-      measurementDate: new Date(),
-      weight: 3.5,
-      length: 40,
-    },
-  ];
-  const data = [
-    {
-      title: '5 month',
-      weight: 8,
-      height: 73,
-      measureDate: ' 1 may 2020',
-    },
-    {
-      title: '2.5 month',
-      weight: 8,
-      height: 63,
-      measureDate: ' 1 Feb 2020',
-    },
-    {
-      title: '2 month',
-      weight: 8,
-      height: 48,
-      measureDate: ' 14 Jan 2020',
-    },
-    {
-      title: '1 month',
-      weight: 8,
-      height: 39,
-      measureDate: ' 14 Dec 2019',
-    },
-    {
-      title: 'Born',
-      weight: 8,
-      height: 30,
-      measureDate: ' 13 Nov 2019',
-    },
-  ];
-  const renderDetail = (rowData, sectionID, rowID) => {
-    let title = (
-      <FDirRow>
-        <Heading3>{rowData.title}</Heading3>
-        <Heading5>{rowData.measureDate}</Heading5>
-      </FDirRow>
-    );
-
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const isFutureDate = (date: Date) => {
     return (
-      
-      <Flex1>
-        {title}
-        <ShiftFromTop10>
-            <FlexDirRowSpace>
-              <Flex2> 
-                <FlexFDirRowSpace>
-                <FlexDirColStart>
-                  <Heading4Regular>
-                  {t('growthScreenwText')}
-                  </Heading4Regular>
-                  <Heading2>
-                  {rowData.weight} {t('growthScreenkgText')}
-                  </Heading2>
-                </FlexDirColStart>
-               
-                <FlexDirColStart>
-                  <Heading4Regular>
-                  {t('growthScreenhText')}
-                  </Heading4Regular>
-                  <Heading2>
-                  {rowData.height} {t('growthScreencmText')}
-                  </Heading2>
-                </FlexDirColStart>
-                </FlexFDirRowSpace>
-              </Flex2>
-              <Flex1>
-              <Pressable
-              onPress={() => {
-                navigation.navigate('AddNewChildgrowth', {
-                  headerTitle: t('growthScreeneditNewBtntxt'),
-                });
-              }}>
-                          <FlexDirRowEnd>
-                        <ButtonTextMdLine>
-                        {t('growthScreeneditText')}
-                        </ButtonTextMdLine>
-                        </FlexDirRowEnd>
-                      </Pressable>
-              </Flex1>
-            </FlexDirRowSpace>
-            </ShiftFromTop10>
-      </Flex1>
+      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
+  
+
+  
 
   return (
     <>
@@ -177,14 +100,13 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               flex: 9,
               backgroundColor: backgroundColor,
               padding: 20,
-              paddingLeft:5,
+              paddingLeft: 5,
               maxHeight: '100%',
             }}>
-            <Timeline
-              data={data}
+              <ActiveChildMeasureTimeline activeChild={activeChild}/>
+            {/* <Timeline
+              data={activeChild.measures}
               circleSize={20}
-              // circleStyle={{marginTop:13,}}
-              // renderFullLine={true}
               circleColor={headerColor}
               lineColor="#000"
               showTime={false}
@@ -193,13 +115,27 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               renderDetail={renderDetail}
               innerCircle={'icon'}
               iconDefault={<Icon name={'ic_tick'} color="#000" size={10} />}
-              
               eventDetailStyle={{
                 backgroundColor: '#FFF',
                 marginBottom: 10,
-                padding: 15,borderRadius:4,
+                padding: 15,
+                borderRadius: 4,
               }}
-            />
+            /> */}
+            <ButtonContainer style={{backgroundColor: backgroundColor}}>
+              <ShiftFromTop10>
+                <ButtonPrimary
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  style={{backgroundColor: headerColor}}
+                  onPress={() => {
+                    navigation.navigate('AddNewChildgrowth', {
+                      headerTitle: t('growthScreenaddNewBtntxt'),
+                    });
+                  }}>
+                  <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
+                </ButtonPrimary>
+              </ShiftFromTop10>
+            </ButtonContainer>
           </View>
           </FlexCol>
         
@@ -209,15 +145,3 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
 };
 
 export default AllChildgrowthMeasures;
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 20,
-//     paddingTop: 65,
-//     backgroundColor: 'white',
-//   },
-//   title: {
-//     fontSize: 16,
-//     fontWeight: 'bold',
-//   },
-// });

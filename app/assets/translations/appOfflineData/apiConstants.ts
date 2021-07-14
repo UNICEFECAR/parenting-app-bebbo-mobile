@@ -75,3 +75,4 @@ export const basicPagesUniqueName = {
 export const measurementPlaces = (items:any)=>{
     return [ {id:0,title:items[0] },{id:1,title:items[1] }]
 }
+export const maxCharForRemarks = 200
