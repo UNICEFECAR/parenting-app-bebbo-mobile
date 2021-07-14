@@ -4,12 +4,11 @@ const Image = styled.View`
 
 export const ImageFull = styled.View`
   width: 100%;
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const ImageIcon = styled.Image`
   width: 40px;
-  border-radius:20px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   height:40px
 `;
-
 export default Image;

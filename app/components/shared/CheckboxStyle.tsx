@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 const Checkbox = styled.View`
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 export const FormOuterCheckbox = styled.Pressable`

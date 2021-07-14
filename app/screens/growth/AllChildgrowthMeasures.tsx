@@ -1,6 +1,7 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
-import { FDirRow, Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FDirRow,FlexCol, Flex1, Flex2, FlexDirCol, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -126,12 +127,30 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        {/* <View
           style={{
             flexDirection: 'column',
             flex: 1,
+          }}> */}
+            <HeaderRowView
+          style={{
+            backgroundColor: headerColor,
+            maxHeight: 50,
           }}>
-          <View
+          <HeaderIconView>
+          <Pressable
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#000" size={15} />
+              </Pressable>
+          </HeaderIconView>
+          <HeaderTitleView>
+          <Heading2> {t('growthScreenallMeasureHeader')}</Heading2>
+          </HeaderTitleView>
+          
+        </HeaderRowView>
+          {/* <View
             style={{
               flexDirection: 'row',
               flex: 1,
@@ -148,10 +167,11 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2>
-                {t('growthScreenallMeasureHeader')}
+               
               </Heading2>
             </View>
-          </View>
+          </View> */}
+        <FlexCol>
           <View
             style={{
               flex: 9,
@@ -181,7 +201,8 @@ const AllChildgrowthMeasures = ({navigation}: Props) => {
               }}
             />
           </View>
-        </View>
+          </FlexCol>
+        
       </SafeAreaView>
     </>
   );

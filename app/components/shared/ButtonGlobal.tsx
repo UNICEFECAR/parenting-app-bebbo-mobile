@@ -9,7 +9,7 @@ color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
 padding: 14px 18px;
 width:100%;
 font-family: 'roboto-bold';
-border-radius: 4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 height:50px;
 `;
 

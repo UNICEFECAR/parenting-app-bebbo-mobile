@@ -112,13 +112,16 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
   };
   const renderDailyReadItem = (item: any, index: number) => {
     return (
-      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-        <RelatedArticleContainer key={index}>
+      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
+      style={{flexDirection:'row'}}
+      >
+        <RelatedArticleContainer style={{backgroundColor:'#fff'}}  key={index}>
           <Image 
           // source={item.imagePath} 
           // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
           source={require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}></Image>
+          <View style={{minHeight:90,}}>
           <ArticleListContent>
           <ShiftFromTopBottom5>
           {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
@@ -127,8 +130,8 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
           <Heading3>{item.title}</Heading3>
           </ArticleListContent>
+          </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
-        
         </RelatedArticleContainer>
       </Pressable>  
     );
@@ -141,12 +144,14 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           <ArticleHeading>
           <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
           </ArticleHeading>
+          <View style={{paddingLeft:10,}}>
           <FlatList
             data={relatedArticleData}
             horizontal
             renderItem={({item, index}) => renderDailyReadItem(item, index)}
             keyExtractor={(item) => item.id}
           />
+          </View>
         </ContainerView>
         : null 
     }

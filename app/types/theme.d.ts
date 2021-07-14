@@ -22,12 +22,17 @@ declare module 'styled-components/native' {
         ARTICLES_COLOR:string,
         ARTICLES_TINTCOLOR: string,
         PRIMARY_TEXTCOLOR: string,
-        SECONDARY_TEXTCOLOR: String,
-        LIGHTSHADE_COLOR: String,
+        SECONDARY_TEXTCOLOR: string,
+        LIGHTSHADE_COLOR: string,
     },
     fonts:{
       ROBOTO_BOLD: string,
       ROBOTO_REGULAR: string
+    },
+    borderRadius:{
+        BORDERRADIUS: string,
+        BORDERRADIUS_CIRCLE: string,
+        
     }
   }
 }

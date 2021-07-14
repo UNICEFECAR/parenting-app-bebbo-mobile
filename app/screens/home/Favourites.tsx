@@ -12,7 +12,7 @@ import { Pressable, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemeContext } from 'styled-components/native';
-import { TabBarActive, TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
+import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -29,7 +29,6 @@ const Favourites = ({navigation}: Props) => {
   const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
 
-    const isActive: boolean = itemindex == selectedIndex ? true : false;
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [
     {title: t('articleScreenheaderTitle')},
@@ -69,18 +68,7 @@ const Favourites = ({navigation}: Props) => {
                 onPress={() => {
                   setSelectedIndex(itemindex);
                 }}>
-                  {isActive ? (
-              <TabBarActive>
-                <Heading4Centerw>{item.title}</Heading4Centerw>
-              </TabBarActive>
-                
-            ) : (
-              <TabBarDefault>
-                <Heading4Centerw>{item.title}</Heading4Centerw>
-              </TabBarDefault>
-            )}
-
-                {/* <TabBarDefault
+                <TabBarDefault
                   style={[
                     {
                       backgroundColor:
@@ -99,7 +87,7 @@ const Favourites = ({navigation}: Props) => {
                       
                     },
                   ]}>{item.title}</Heading4Centerw>
-                </TabBarDefault> */}
+                </TabBarDefault>
               </Pressable>
             );
           })}

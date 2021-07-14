@@ -18,7 +18,7 @@ export const ArticleFilter = styled.View`
 
 
 export const FilterBox = styled.View`  
-border-radius:4px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 margin:3px;
 flex-direction:row;
 align-items:center;

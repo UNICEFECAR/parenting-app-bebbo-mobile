@@ -186,7 +186,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               options={isMeasuredOptions}
               defaultValue={defaultMeasured}
               tickbgColor={headerColor}
-              tickColor={'#FFF'}
+              tickColor={'#000'}
               getCheckedItem={getCheckedItem}
             />
 

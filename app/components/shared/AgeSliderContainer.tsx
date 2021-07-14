@@ -16,7 +16,7 @@ export const AgeSliderNav = styled.View`
 
   export const AgeSliderBox = styled.View`
   padding:12px 10px;
-  border-radius:4px;
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
   min-width:95px;
   text-align:center;
   margin: 0 5px;
