@@ -25,10 +25,10 @@ jobs:
       run: cd android && ./gradlew clean
 
     - name: Make Gradlew Executable
-      run: chmod +x ./gradlew
+      run: cd android && chmod +x ./gradlew
 
     - name: Build Android App Bundle
-      run: ./gradlew bundleRelease --no-daemon
+      run: cd android && ./gradlew bundleRelease --no-daemon
       
     - uses: actions/upload-artifact@v2
       with:
