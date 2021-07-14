@@ -18,7 +18,7 @@ import {
   TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
-import { FDirRow, FlexFDirRowSpace,FlexCol } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderIconView,
@@ -27,10 +27,8 @@ import {
 } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
-  PopupClose,
-  PopupCloseContainer,
-  ModalPopupContent,
-  PopupOverlay
+  ModalPopupContent, PopupClose,
+  PopupCloseContainer, PopupOverlay
 } from '@components/shared/ModalPopupStyle';
 import {
   RadioBoxContainer,
@@ -48,6 +46,7 @@ import {
   Heading4Regular,
   ShiftFromTopBottom10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -56,14 +55,20 @@ import {
   Pressable,
   SafeAreaView,
   Text,
-  TextInput,
-  View
+  TextInput, View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
-import { measurementPlaces } from '../../assets/translations/appOfflineData/apiConstants';
+import { v4 as uuidv4 } from 'uuid';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import {
+  maxCharForRemarks,
+  measurementPlaces
+} from '../../assets/translations/appOfflineData/apiConstants';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { setActiveChild } from '../../services/childCRUD';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
-
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
@@ -74,54 +79,104 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  const [measureDate, setmeasureDate] = useState<Date>();
+  const [measureDate, setmeasureDate] = useState<DateTime>();
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const measurePlaces = measurementPlaces([t('growthScreendoctorMeasurePlace'),t('growthScreenhomeMeasurePlace')])
-  const [weightValue,setWeightValue] = useState();
-  const [heightValue,setHeightValue] = useState();
-  const [remarkTxt,handleDoctorRemark]= useState<string>('');
-  const [measurePlace,setMeasurePlace]= useState<number>();
+  const [updateduuid,setUpdateduuid] = useState<string>();
+  const measurePlaces = measurementPlaces([
+    t('growthScreendoctorMeasurePlace'),
+    t('growthScreenhomeMeasurePlace'),
+  ]);
+  const [weightValue, setWeightValue] = useState(0);
+  const [heightValue, setHeightValue] = useState(0);
+  const [remarkTxt, handleDoctorRemark] = useState<string>('');
+  const [measurePlace, setMeasurePlace] = useState<number>();
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || measureDate;
+    console.log(DateTime.fromJSDate(selectedDate));
     setmeasureDateShow(Platform.OS === 'ios');
-    setmeasureDate(currentDate);
+    setmeasureDate(DateTime.fromJSDate(selectedDate));
   };
   const getCheckedGrowthPlace = (checkedItem: any) => {
-    console.log(checkedItem);
-    setMeasurePlace(checkedItem.id)
+    // console.log(checkedItem);
+    setMeasurePlace(checkedItem.id);
   };
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+  );
+// console.log(activeChild,"in add new");
   const getDefaultGrowthPlace = () => {
     return null;
     // if in edit mode return value else return null
   };
-  const setInitialWeightValues = (weightValue:any)=>{
-    console.log(weightValue)
-    let w = (weightValue + "").split(".");
-    if(weightValue && w[1].length==1){
-      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
-    } else {
-      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+  const setInitialWeightValues = (weightValue: any) => {
+    // console.log(weightValue,"weightValue")
+    // console.log(weightValue+ ''.indexOf('.'),"indexOf");
+    if( weightValue+ ''.indexOf('.') === -1 ){
+      // console.log("in if")
+      return {weight:weightValue, weight1:0}
+    }else{
+      let w =(weightValue + '').split('.')
+      // console.log(w[1],"w1")
+      if (weightValue && String(w[1]).length == 1) {
+        // console.log("in else if")
+        return {weight: Number(w[0]), weight1: Number(w[1]) * 10};
+      } else {
+        // console.log("in else else")
+        return {weight: Number(w[0]), weight1: (w[1]==undefined? 0 :Number(w[1]))};
+      }
     }
+   
     // console.log(weight,weight1)
-  }
-  const setInitialHeightValues = (heightValue:any)=>{
-    console.log(heightValue)
-    let w = (heightValue + "").split(".");
-    if(heightValue && w[1].length==1){
-      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
+  };
+  const setInitialHeightValues = (heightValue: any) => {
+    // console.log(heightValue);
+    // console.log(heightValue,"heightValue")
+    // console.log(heightValue+ ''.indexOf('.'),"indexOf");
+    if( heightValue+ ''.indexOf('.') === -1 ){
+      // console.log("in if")
+      return {height:heightValue, height1:0}
+    }else{
+    let w = (heightValue + '').split('.');
+    if (heightValue && String(w[1]).length == 1) {
+      return {height: Number(w[0]), height1: Number(w[1]) * 10};
     } else {
-      return {height:Number(w[0]) ,height1:(Number(w[1]))}
+      return {height: Number(w[0]), height1: (w[1]==undefined? 0 :Number(w[1]))};
     }
-    // console.log(height,height1)
   }
+    // console.log(height,height1)
+  };
+  const isFormFilled = () => {
+    if (measureDate) {
+      if (measurePlace!= undefined) {
+        if (measurePlace == 0) {   
+            if (heightValue && weightValue) {
+              return false;
+            } else {
+              return true;
+            }
+        } else {
+          if (heightValue && weightValue) {
+            return false;
+          } else {
+            return true;
+          }
+          // doctor remark not required for measurement at home
+        }
+      }else{
+        return true
+      }
+    } else {
+      return true;
+    }
+  };
   const minChildGrwothDate =
     activeChild.birthDate != '' &&
     activeChild.birthDate != null &&
@@ -131,32 +186,74 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   // console.log(minChildGrwothDate);
   React.useEffect(() => {
     if (route.params?.weight) {
-      console.log(route.params?.weight);
+      console.log(route.params?.weight,"from route");
       setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
       console.log(route.params?.height);
-      setHeightValue(route.params?.height)
+      setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
-  const saveChildMeasures = ()=>{
-    const currentActiveChild = activeChild.uuid;
-    const growthValues = {isChildMeasured:true,
-      weight:weightValue,
-      height:heightValue,
-      measurementDate:measureDate,
-      // titleDateInMonth:number
-      didChildGetVaccines:false,
-      vaccineIds:[],
-      doctorComment:remarkTxt,
-      measurementPlace:measurePlace}
-   console.log(growthValues);
-   navigation.goback();
-  }
+  const saveChildMeasures = async () => {
+    let updateItem = activeChild?.measures.find(item=>{
+      return item ? Math.round(DateTime.fromMillis(item.measurementDate).diff(measureDate, "days").days) == 0 : null
+    });
+    if(updateItem!= null){
+
+     console.log(updateItem.uuid ,"updatethisitem");
+
+     const growthValues = {
+      uuid: updateItem.uuid,
+      isChildMeasured: true,
+      weight: String(weightValue),
+      height: String(heightValue),
+      measurementDate: (measureDate)?.toMillis(),
+      titleDateInMonth: (measureDate)?.toFormat("MM"),
+      didChildGetVaccines: false,
+      vaccineIds: [],
+      doctorComment: remarkTxt,
+      measurementPlace: measurePlace,
+    };
+    console.log(growthValues);
+    let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+      ChildEntitySchema,
+      growthValues,
+      'uuid ="' + activeChild.uuid + '"',
+    );
+    console.log(createresult);
+      setActiveChild(activeChild.uuid,dispatch,child_age);
+      navigation.goBack();
+    }else{
+      const growthValues = {
+        uuid: uuidv4(),
+        isChildMeasured: true,
+        weight: String(weightValue),
+        height: String(heightValue),
+        measurementDate: (measureDate)?.toMillis(),
+        titleDateInMonth: (measureDate)?.toFormat("MM"),
+        didChildGetVaccines: false,
+        vaccineIds: [],
+        doctorComment: remarkTxt,
+        measurementPlace: measurePlace,
+      };
+      console.log(growthValues);
+      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        growthValues,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(createresult);
+      setActiveChild(activeChild.uuid,dispatch,child_age);
+      navigation.goBack();
+    }
+   
+  };
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <ScrollView nestedScrollEnabled={true}>
         <HeaderRowView
           style={{
             backgroundColor: headerColor,
@@ -174,24 +271,26 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             <Heading2>{headerTitle}</Heading2>
           </HeaderTitleView>
           <HeaderActionView>
-            <Pressable
+            {/* <Pressable
               onPress={() => {
                 setModalVisible(true);
               }}>
               <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
+            </Pressable> */}
           </HeaderActionView>
         </HeaderRowView>
         <FlexCol>
         <MainContainer>
           <FormInputGroup onPress={() => setmeasureDateShow(true)}>
-            <FormInputText>{t('growthScreendateMeasurementText')}</FormInputText>
+            <FormInputText>
+              {t('growthScreendateMeasurementText')}
+            </FormInputText>
             <FormInputBox>
               <FormDateText>
                 <Text>
                   {' '}
                   {measureDate
-                    ? measureDate.toDateString()
+                    ? (measureDate).toFormat("dd/MM/yyyy")                    
                     : t('growthScreenenterDateMeasurementText')}
                 </Text>
               </FormDateText>
@@ -227,8 +326,6 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             />
           </FormContainer>
 
-
-
           <FormContainer>
             <FormInputText>{t('growthScreenenterMeasuresText')}</FormInputText>
             <RadioBoxContainer>
@@ -240,11 +337,13 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                         prevRoute: 'AddNewChildgrowth',
                         headerColor,
                         backgroundColor,
-                        weightValue:setInitialWeightValues(weightValue)
+                        weightValue: setInitialWeightValues(weightValue),
                       });
                     }}>
                     <FlexFDirRowSpace>
-                      <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
+                      <Heading3>
+                        {weightValue ? weightValue : t('growthScreenwText')}
+                      </Heading3>
                       <Heading4Regular>
                         {t('growthScreenkgText')}
                       </Heading4Regular>
@@ -258,11 +357,13 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                         prevRoute: 'AddNewChildgrowth',
                         headerColor,
                         backgroundColor,
-                        heightValue:setInitialHeightValues(heightValue)
+                        heightValue: setInitialHeightValues(heightValue),
                       });
                     }}>
                     <FlexFDirRowSpace>
-                      <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
+                      <Heading3>
+                        {heightValue ? heightValue : t('growthScreenhText')}
+                      </Heading3>
                       <Heading4Regular>
                         {t('growthScreencmText')}
                       </Heading4Regular>
@@ -273,21 +374,27 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </RadioBoxContainer>
           </FormContainer>
 
-          <FormContainer>
-            <FormInputText>
-              {t('growthScreenenterDoctorRemarkText')}
-            </FormInputText>
-            <TextAreaBox>
-              <TextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                clearButtonMode="always"
-                defaultValue={remarkTxt}
-                onChangeText={text => handleDoctorRemark(text)}
-                placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
-              />
-            </TextAreaBox>
-          </FormContainer>
+          
+            <FormContainer>
+              <FormInputText>
+                {t('growthScreenenterDoctorRemarkText')}
+              </FormInputText>
+              <TextAreaBox>
+                <TextInput
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  maxLength={maxCharForRemarks}
+                  clearButtonMode="always"
+                  defaultValue={remarkTxt}
+                  multiline={ true }
+                  onChangeText={(text) => handleDoctorRemark(text)}
+                  placeholder={t(
+                    'growthScreenenterDoctorRemarkTextPlaceHolder',
+                  )}
+                />
+              </TextAreaBox>
+            </FormContainer>
+         
           <ShiftFromTopBottom10>
             <Text>{t('growthScreennewGrowthBottomText')}</Text>
           </ShiftFromTopBottom10>
@@ -295,9 +402,12 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         </FlexCol>
         <ButtonContainer>
           <ButtonTertiary
+            disabled={isFormFilled()}
             onPress={(e) => {
-             saveChildMeasures();
-             e.stopPropagation();
+              e.stopPropagation();
+              saveChildMeasures().then(() => {
+               
+              });
             }}>
             <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonTertiary>
@@ -344,6 +454,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        </ScrollView>
+      
       </SafeAreaView>
     </>
   );

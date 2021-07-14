@@ -138,6 +138,49 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async updateChildMeasures<Entity>(entitySchema: ObjectSchema,measures:any,condition:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    console.log(realm);
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                   console.log(obj,obj[0]);
+                   console.log(typeof obj[0].measures)
+                    realm?.write(() => {
+                    if(obj[0].measures.length>0){
+                        let updateItemIndex = obj[0].measures.findIndex(item=>{
+                            return item.uuid==measures.uuid
+                          });
+                          console.log(updateItemIndex)
+                          if(updateItemIndex==0){
+                            obj[0].measures[updateItemIndex]= measures
+                          }else{
+                            obj[0].measures.push(measures);
+                          }
+                    }else{
+                        obj[0].measures.push(measures);
+                    }
+                       
+                        // const abc = obj[0].measures.push(measures);
+                        // obj[0].measures = [...abc]
+                        //obj[0].measures = [...obj[0].measures,measures];
+                        
+                       
+                    });
+                   resolve('success');
+                // console.log("Language is: "+ obj[0].photoUri );
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
+            }
+        });
+    }
     public async updateChild<Entity>(entitySchema: ObjectSchema,records:Entity[]): Promise<Entity[]> {
         return new Promise(async (resolve, reject) => {
             try {
