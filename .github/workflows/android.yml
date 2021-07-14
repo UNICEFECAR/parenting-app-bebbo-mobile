@@ -22,7 +22,7 @@ jobs:
           npm install
       - name: Build Android Release
         run: |
-          cd android && ./gradlew assembleRelease
+          cd android && ./gradlew assembleRelease -Dorg.gradle.logging.level=quiet
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
