@@ -15,6 +15,7 @@ import { VaccinationEntity, VaccinationSchema } from "../database/schema/Vaccina
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
+import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 
 export const addApiDataInRealm = async (response: any) => {
    // console.log(new Date()," response in utils-",response);
@@ -104,11 +105,33 @@ export const addApiDataInRealm = async (response: any) => {
         Entity= Entity as HealthCheckUpsEntity;
         EntitySchema = HealthCheckUpsSchema;
     }
+    else if(response.payload.apiEndpoint == appConfig.standardDeviation)
+    {
+        insertData = response.payload.data;
+        // Entity= Entity as ArticleEntity;
+        EntitySchema = StandardDevWeightForHeightSchema;
+    }
         // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
         if(EntitySchema == ArticleEntitySchema)
         {
             // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
-            let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+            try{
+                let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+            }catch(e) {
+                let errorArr = [];
+                console.log("in insert catch---",response.payload);
+                errorArr.push(response.payload);
+                response.dispatch(receiveAPIFailure(errorArr))
+            }
+        }else if(EntitySchema == StandardDevWeightForHeightSchema) {
+            try{
+                let createresult = await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
+            }catch(e) {
+                let errorArr = [];
+                console.log("in insert catch---",response.payload);
+                errorArr.push(response.payload);
+                response.dispatch(receiveAPIFailure(errorArr))
+            }
         }else {
             try{
                 let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
