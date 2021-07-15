@@ -56,7 +56,7 @@ const DATA = [
 const RelatedArticles = (props:RelatedArticlesProps) => {
   //console.log(props);
   const { related_articles, category, currentId,headerColor,backgroundColor,listCategoryArray, navigation } = props;
-  console.log(props);
+  // console.log(props);
   const {t} = useTranslation();
   const relartlength = related_articles.length;
   const articleData = useAppSelector(
@@ -69,7 +69,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
-      console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
         if(relartlength > 0)
