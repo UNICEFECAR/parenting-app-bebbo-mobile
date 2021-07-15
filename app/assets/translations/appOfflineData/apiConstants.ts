@@ -10,7 +10,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     // if(apiEndpoint==appConfig.sponsors){
     //     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     // }else 
-    if(apiEndpoint==appConfig.taxonomies){
+    if(apiEndpoint==appConfig.taxonomies || apiEndpoint==appConfig.standardDeviation){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
     if(apiEndpoint==appConfig.basicPages){
@@ -42,6 +42,7 @@ export const appConfig = {
     basicPages: 'basic-pages',
     sponsors:'sponsors',
     taxonomies:'taxonomies',
+    standardDeviation:'standard_deviation',
     milestones:'milestones',
     activities:'activities',
     surveys:'surveys',
