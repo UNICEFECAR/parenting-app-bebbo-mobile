@@ -23,12 +23,12 @@ export const PopupClose = styled.Pressable`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-self:center;
+  align-self:center; 
   right:0;
   top:-20px;
   width: 36px;
   height: 36px;
-  position:absolute;
+  /* position:absolute; */
   
 `;
 export const ModalPopupContent = styled.View`

@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonModal, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem
@@ -15,6 +15,12 @@ import {
   FlexDirRowSpace
 } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import {
   SettingHeading,
   SettingOptions,
@@ -28,6 +34,7 @@ import {
   Heading3,
   Heading3Regular,
   Heading4,
+  Heading4Centerr,
   Heading4Regular,
   Heading6,
   ShiftFromBottom10,
@@ -40,6 +47,7 @@ import {
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Modal,
   Pressable,
   SafeAreaView,
   ScrollView, View
@@ -77,6 +85,7 @@ const SettingScreen = (props: any) => {
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
   const actionSheetRef = createRef<any>();
@@ -297,7 +306,7 @@ const SettingScreen = (props: any) => {
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
                 <Pressable
-                  onPress={() => props.navigation.navigate('Localization')}>
+                  onPress={() => setModalVisible(true)}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </Pressable>
               </FlexDirRowSpace>
@@ -373,6 +382,45 @@ const SettingScreen = (props: any) => {
             </BannerContainer>
           </ActionSheet>
         </ScrollView>
+        <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+        onDismiss={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  console.log('close');
+                  setModalVisible(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('localizationChangeModalText')}
+              </Heading4Centerr>
+              </ModalPopupContent>
+              <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  props.navigation.navigate('Localization')
+                }}>
+                <ButtonText>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+              </FDirRow>
+            
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       </SafeAreaView>
     </>
   );

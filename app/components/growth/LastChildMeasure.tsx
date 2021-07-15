@@ -1,6 +1,6 @@
 import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
+import { BannerContainer1 } from '@components/shared/Container';
 import {
-  FDirRow,
   Flex1,
   Flex2,
   FlexDirColStart,
@@ -8,28 +8,29 @@ import {
   FlexDirRowSpace,
   FlexFDirRowSpace
 } from '@components/shared/FlexBoxStyle';
-import Icon from '@components/shared/Icon';
+import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import {
   Heading2,
   Heading3,
   Heading4Regular,
   Heading5,
-  ShiftFromTop10
+  Heading5Bold,
+  ShiftFromTop20
 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
-import Timeline from 'react-native-timeline-flatlist';
 import { ThemeContext } from 'styled-components/native';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
-const ActiveChildMeasureTimeline = (props: any) => {
-  const {activeChild} = props;
+
+const LastChildMeasure = (props: any) => {
+  let {activeChild} = props;
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
+  const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
   const {t} = useTranslation();
   const setNewChildMeasureUpdates = () => {
     let measures = activeChild.measures;
@@ -62,7 +63,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
     allMeasurements = allMeasurements.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
-    setChildmeasures(allMeasurements.reverse());
+    setChildmeasures(allMeasurements);
     // activeChild.measures = allMeasurements;
     // console.log(activeChild.measures, allMeasurements, 'NewMeasures');
   };
@@ -72,58 +73,72 @@ const ActiveChildMeasureTimeline = (props: any) => {
     }, [activeChild]),
   );
 
-  const renderDetail = (rowData, sectionID, rowID) => {
-    // console.log(sectionID,rowID);
-    // console.log(toFormat("DD MMM YYYY"))
-    // console.log(DateTime.fromISO(rowData.measurementDate).toFormat('dd MMM yyyy'))
-    const renderTitle = (key: number, titleDateInMonth: number) => {
-      // if (key === 0) {
-      if (titleDateInMonth === 0) {
-        return t('onBirthDay');
-      } else {
-        return `${titleDateInMonth} ${t('month')}`;
-      }
-    };
-    let title = (
-      <FDirRow>
-        <Heading3>
-          {renderTitle(
-            sectionID,
-            rowData.titleDateInMonth ? rowData.titleDateInMonth : 0,
-          )}{' '}
-        </Heading3>
-        <Heading5>{rowData.measurementDate}</Heading5>
-      </FDirRow>
-    );
+  return (
+    <>
+      <BannerContainer1>
+        <FlexDirRowSpace>
+          <Heading3>{t('growthScreensubHeading')}</Heading3>
+          {activeChild.isPremature === 'true' ? (
+            <PrematureTagGrowth>
+              <Heading5Bold>{t('developScreenprematureText')}</Heading5Bold>
+            </PrematureTagGrowth>
+          ) : null}
+        </FlexDirRowSpace>
+        <FlexFDirRowSpace>
+          <Heading5>
+            {/* {' '} */}
+            {t('growthScreenlastMeasureText', {
+              measureDate:childmeasures[
+                    childmeasures.length - 1
+                  ]?.measurementDate,
+              
+            })}
+          </Heading5>
+          <Pressable
+            onPress={(e) => {
+              e.stopPropagation();
+              navigation.navigate('AllChildgrowthMeasures');
+            }}>
+            <ButtonTextMdLine>
+              {t('growthScreenallMeasureHeader')}
+            </ButtonTextMdLine>
+          </Pressable>
+        </FlexFDirRowSpace>
 
-    return (
-      <Flex1>
-        {title}
-        <ShiftFromTop10>
+        <ShiftFromTop20>
           <FlexDirRowSpace>
             <Flex2>
-              <FlexFDirRowSpace>
+              <FlexDirRowSpace>
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenwText')}</Heading4Regular>
                   <Heading2>
-                    {rowData.weight} {t('growthScreenkgText')}
+                    {
+                      childmeasures[childmeasures.length - 1]
+                        ?.weight
+                    }{' '}
+                    {t('growthScreenkgText')}
                   </Heading2>
                 </FlexDirColStart>
 
                 <FlexDirColStart>
                   <Heading4Regular>{t('growthScreenhText')}</Heading4Regular>
                   <Heading2>
-                    {rowData.height} {t('growthScreencmText')}
+                    {
+                      childmeasures[childmeasures.length - 1]
+                        ?.height
+                    }{' '}
+                    {t('growthScreencmText')}
                   </Heading2>
                 </FlexDirColStart>
-              </FlexFDirRowSpace>
+              </FlexDirRowSpace>
             </Flex2>
             <Flex1>
               <Pressable
                 onPress={() => {
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editGrowthItem :rowData
+                    editGrowthItem:
+                    childmeasures[childmeasures.length - 1],
                   });
                 }}>
                 <FlexDirRowEnd>
@@ -134,31 +149,9 @@ const ActiveChildMeasureTimeline = (props: any) => {
               </Pressable>
             </Flex1>
           </FlexDirRowSpace>
-        </ShiftFromTop10>
-      </Flex1>
-    );
-  };
-  return (
-    <>
-      <Timeline
-        data={childmeasures}
-        circleSize={20}
-        circleColor={headerColor}
-        lineColor="#000"
-        showTime={false}
-        lineWidth={1}
-        descriptionStyle={{color: 'gray'}}
-        renderDetail={renderDetail}
-        innerCircle={'icon'}
-        iconDefault={<Icon name={'ic_tick'} color="#000" size={10} />}
-        eventDetailStyle={{
-          backgroundColor: '#FFF',
-          marginBottom: 10,
-          padding: 15,
-          borderRadius: 4,
-        }}
-      />
+        </ShiftFromTop20>
+      </BannerContainer1>
     </>
   );
 };
-export default ActiveChildMeasureTimeline;
+export default LastChildMeasure;
