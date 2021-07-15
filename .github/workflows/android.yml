@@ -22,7 +22,7 @@ jobs:
     - run: npm ci
 
     - name: Clean Gradle
-      run: cd android && ./gradlew clean && rm -rf android/app/src/main/res/drawable-*
+      run: cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-*
 
     - name: Make Gradlew Executable
       run: cd android && chmod +x ./gradlew
