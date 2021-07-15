@@ -1,6 +1,8 @@
 import { isArticlePinned } from '@assets/translations/appOfflineData/apiConstants';
 import Realm, { ObjectSchema } from 'realm';
 import { dataRealmConfig } from '../config/dataDbConfig';
+import { StandardDevHeightForAgeSchema } from '../schema/StandardDevHeightForAgeSchema';
+import { StandardDevWeightForHeightSchema } from '../schema/StandardDevWeightForHeightSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
 // import { dispatchchildstore2 } from './userRealmListener';
@@ -154,6 +156,38 @@ class DataRealmCommon {
                                     record.isarticle_pinned = articleRelation;
                                     realm?.create<Entity>(entitySchema.name, record);
                                 }
+                            })
+                        }
+
+                        resolve("success");
+                    });
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+                console.error("data insert err", e.message);
+                reject();
+            }
+        });
+    }
+    public async createStandardDev<Entity>(records: Entity[]): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            // console.log(records,"--entity--");
+            try {
+                const realm = await this.openRealm();
+                if (realm) {
+                    realm.write(() => {
+                        const weightforheight = records['weight_for_height'];
+                        const heightforAge = records['height_for_age'];
+                        if (weightforheight?.length > 0) {
+                            weightforheight.forEach((record: any) => {
+                                    realm?.create<Entity>(StandardDevWeightForHeightSchema.name, record);
+                            })
+                        }
+                        if (heightforAge?.length > 0) {
+                            heightforAge.forEach((record: any) => {
+                                    realm?.create<Entity>(StandardDevHeightForAgeSchema.name, record);
                             })
                         }
 
