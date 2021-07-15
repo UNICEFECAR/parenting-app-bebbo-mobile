@@ -9,6 +9,8 @@ import { ConfigSettingsSchema } from "../schema/ConfigSettingsSchema";
 import { DailyHomeMessagesSchema } from "../schema/DailyHomeMessagesSchema";
 import { HealthCheckUpsSchema } from "../schema/HealthCheckUpsSchema";
 import { MilestonesSchema } from "../schema/MilestonesSchema";
+import { StandardDevHeightForAgeSchema } from "../schema/StandardDevHeightForAgeSchema";
+import { StandardDevWeightForHeightSchema, StandDevObj } from "../schema/StandardDevWeightForHeightSchema";
 import { SurveysSchema } from "../schema/SurveysSchema";
 import { TaxonomySchema } from "../schema/TaxonomySchema";
 import { VaccinationSchema } from "../schema/VaccinationSchema";
@@ -31,7 +33,10 @@ export const dataRealmConfig: Realm.Configuration ={
     HealthCheckUpsSchema,
     ChildGrowthSchema,
     SurveysSchema,
-    ActivitiesEntitySchema
+    ActivitiesEntitySchema,
+    StandardDevWeightForHeightSchema,
+    StandDevObj,
+    StandardDevHeightForAgeSchema
   ],
   schemaVersion: 1,
   migration: (oldRealm, newRealm) => {
