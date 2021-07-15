@@ -22,13 +22,13 @@ jobs:
     - run: npm ci
 
     - name: Clean Gradle
-      run: cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-*
+      run: cd android && ./gradlew clean 
 
     - name: Make Gradlew Executable
       run: cd android && chmod +x ./gradlew
 
     - name: Build Android App Bundle
-      run: cd android && ./gradlew bundleRelease --no-daemon
+      run: cd android && rm -rf app/src/main/res/drawable-* && ./gradlew bundleRelease --no-daemon
       
     - uses: actions/upload-artifact@v2
       with:
