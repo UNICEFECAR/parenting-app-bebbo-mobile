@@ -51,7 +51,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   let fromPage = 'Details';
   useFocusEffect(
     React.useCallback(() => {
-      console.log("details usefocuseffect")
+      // console.log("details usefocuseffect")
       // filterArray.length = 0;
     },[])
   );
