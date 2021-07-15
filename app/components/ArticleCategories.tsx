@@ -30,7 +30,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     props.onFilterArrayChange(filterArray);
     return filterArray;
   };
-    console.log("props.filterArray on start ",props.filterArray)
+    // console.log("props.filterArray on start ",props.filterArray)
   const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
@@ -38,7 +38,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
 const articleBrackets = chunk(activityCategory, 2)
 useFocusEffect(
   React.useCallback(() => {
-    console.log(props.filterArray.length,"articlecategory usefocuseffect", props);
+    // console.log(props.filterArray.length,"articlecategory usefocuseffect", props);
     // filterArraycurr = [...props.filterArray];
     if(props.fromPage == 'Details')
     {

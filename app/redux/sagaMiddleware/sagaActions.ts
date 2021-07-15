@@ -26,9 +26,10 @@ export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispat
   navigation:navigation,
 });
 
-export const insertInDB = (apiJsonData:Array<apijsonArray>) => ({
+export const insertInDB = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined) => ({
   type: INSERT_IN_DB,
-  payload:apiJsonData
+  payload:apiJsonData,
+  dispatch:dispatch
 });
 
 

@@ -34,7 +34,7 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
             //     })
             // }
         // })
-        console.log(imageArray,"  db length--",databaseData?.length);
+        // console.log(imageArray,"  db length--",databaseData?.length);
         // const imagesDownloadResult = await downloadImages(imageArray);
         // console.log(imagesDownloadResult, "..image result..");
         // console.log(databaseData.map(user => user));

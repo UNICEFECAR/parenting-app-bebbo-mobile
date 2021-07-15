@@ -176,11 +176,11 @@ const Articles = ({route, navigation}: Props) => {
   //   fetchData()
   // },[languageCode]);
   const cleanUpFunction = () => {
-    console.log("cleanUpFunction called");
+    // console.log("cleanUpFunction called");
   }
   useFocusEffect(
     React.useCallback(() => {
-      console.log("useFocusEffect called");
+      // console.log("useFocusEffect called");
       setLoading(false);
       setModalVisible(true);
       async function fetchData() {
@@ -211,7 +211,7 @@ const Articles = ({route, navigation}: Props) => {
   );
   
   const setFilteredArticleData = (itemId:any) => {
-    console.log(itemId,"articleData in filtered ",articleData);
+    // console.log(itemId,"articleData in filtered ",articleData);
     if(articleData != '')
     {
       if(itemId.length>0)
@@ -233,10 +233,10 @@ const Articles = ({route, navigation}: Props) => {
   }
   console.log(filteredData.length,"---length");
   const onFilterArrayChange = (newFilterArray: any) => {
-    console.log("on filterarray change",newFilterArray);
+    // console.log("on filterarray change",newFilterArray);
     // filterArray = [...newFilterArray];
     setFilterArray(newFilterArray)
-    console.log("on filterarray change after",filterArray)
+    // console.log("on filterarray change after",filterArray)
   }
   // useFocusEffect(
   //   React.useCallback(() => {
