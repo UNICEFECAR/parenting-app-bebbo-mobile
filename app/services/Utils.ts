@@ -14,6 +14,7 @@ import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchem
 import { VaccinationEntity, VaccinationSchema } from "../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
+import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 
 export const addApiDataInRealm = async (response: any) => {
    // console.log(new Date()," response in utils-",response);
@@ -109,7 +110,14 @@ export const addApiDataInRealm = async (response: any) => {
             // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
             let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
         }else {
-            let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+            try{
+                let createresult = await dataRealmCommon.create<typeof Entity>(EntitySchema, insertData);
+            }catch(e) {
+                let errorArr = [];
+                console.log("in insert catch---",response.payload);
+                errorArr.push(response.payload);
+                response.dispatch(receiveAPIFailure(errorArr))
+            }
         }
        // console.log(new Date()," result is ",createresult);
 }

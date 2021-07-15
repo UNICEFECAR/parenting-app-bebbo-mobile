@@ -116,7 +116,7 @@ const InfiniteScrollList = (props : any) => {
             );
         };
     const renderFooter = () => {
-        console.log(isLoading,"---isLoading");
+        // console.log(isLoading,"---isLoading");
         return(
             isLoading ? <ActivityIndicator size="large" /> : null
         )

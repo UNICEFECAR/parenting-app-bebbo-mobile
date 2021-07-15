@@ -8,14 +8,21 @@ let errorarray: WritableDraft<[]> = [];
   export const sagaSlice = createSlice({
     name: 'sagaReducer',
     initialState:{
-      errorObj:""
+      errorObj:[]
     },
     reducers: {
             
             receiveAPIFailure: (state, action) => {
-              // console.log(state);
+              // console.log(state.errorObj.length);
               // console.log("receiveOnloadAPIFailure--",action.payload);
-              state.errorObj = JSON.stringify(action.payload);
+              //write code to check if element already in array.
+              action.payload.map((value:any)=>{
+                const i = state.errorObj.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);
+                if(i == -1){
+                  state.errorObj.push(value) 
+                }
+              });
+              // console.log(state.errorObj.length);
             }
         }
     });

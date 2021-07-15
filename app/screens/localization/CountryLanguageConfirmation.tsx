@@ -71,14 +71,24 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     // i18n.changeLanguage(language.locale);
     //console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
-    dispatch(
-      fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),
-    );
-    // dispatch(onLanguageSelect(language));
     navigation.reset({
       index: 0,
-      routes: [{name: 'Walkthrough'}],
+      routes: [
+        {
+          name: 'LoadingScreen',
+          params: {apiJsonData: apiJsonData, prevPage: 'CountryLanguageSelection'},
+        },
+      ],
     });
+    
+    // dispatch(
+    //   fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),
+    // );
+
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{name: 'Walkthrough'}],
+    // });
     // navigation.reset({
     //   index: 0,
     //   routes: [
