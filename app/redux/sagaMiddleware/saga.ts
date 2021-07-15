@@ -38,8 +38,8 @@ function* onFetchAPI(value: any) {
     response = response.filter((el: any) =>{
       return el != null;
     });
-    console.log(response,"..response..");
-    console.log(errorArr,"..errorArr..");
+    // console.log(response,"..response..");
+    // console.log(errorArr,"..errorArr..");
     if (errorArr.length > 0) {
         yield call(onApiError,payload, prevPage, dispatch, navigation);
     }
@@ -63,15 +63,19 @@ function* onFetchAPI(value: any) {
 function* apiCall(data: apijsonArray,dispatch: any) {
   try{
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
-    console.log(response,"  in apicall")
+    // console.log(response,"  in apicall")
 
     if (response.status != 200) {
       // console.log("in if")
       //code to insert in realm
       errorArr.push(response);
-      console.log("errorArr---",errorArr)
+      // console.log("errorArr---",errorArr)
       // yield put(receiveAPIFailure(errorArr))
     } else {
+      if(data.apiEndpoint == "standard_deviation")
+      {
+        yield put(insertInDB(response,dispatch));
+      }
         if(response.data.status == 200)
         {
           // call realm db insertion code by creating another saga.
@@ -102,7 +106,7 @@ export function* fetchAPISaga() {
 }
 
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any) {
-  console.log("errorArr on redirect--",errorArr);
+  // console.log("errorArr on redirect--",errorArr);
   yield put(receiveAPIFailure(errorArr))
   if (prevPage == 'Terms') {
     //dispatch action for terms page
