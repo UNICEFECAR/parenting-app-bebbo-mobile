@@ -214,7 +214,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
                 normalHeight={20}
                 backgroundColor={'#FFF'}
               />
-              <View style={{marginBottom: 20}}></View>
+              {/* <View style={{marginBottom: 20}}></View> */}
               <Ruler
                 style={{elevation: 3}}
                 width={width - screenPadding - screenPadding}

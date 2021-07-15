@@ -1,49 +1,33 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import LastChildMeasure from '@components/growth/LastChildMeasure';
 import {
   ButtonContainer,
   ButtonPrimary,
-  ButtonText,
-  ButtonTextMdLine
+  ButtonText
 } from '@components/shared/ButtonGlobal';
-import { BannerContainer1, BgContainer } from '@components/shared/Container';
-import {
-  Flex1,
-  Flex2,
-  FlexDirCol,
-  FlexDirColStart,
-  FlexDirRowEnd,
-  FlexDirRowSpace,
-  FlexFDirRowSpace
-} from '@components/shared/FlexBoxStyle';
-import { PrematureTagGrowth } from '@components/shared/PrematureTag';
+import { BgContainer } from '@components/shared/Container';
+import { FlexDirCol } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
   Heading3,
   Heading3Centerr,
   Heading4,
-  Heading4Center,
-  Heading4Regular,
-  Heading5,
-  Heading5Bold,
-  Paragraph,
+  Heading4Center, Paragraph,
   ShiftFromBottom5,
-  ShiftFromTop10,
-  ShiftFromTop20,
-  ShiftFromTopBottom20,
+  ShiftFromTop10, ShiftFromTopBottom20,
   SideSpacing10
 } from '@styles/typography';
-import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -56,7 +40,6 @@ const Childgrowth = ({navigation}: Props) => {
     {title: t('growthScreenweightForHeight')},
     {title: t('growthScreenheightForAge')},
   ];
-  // const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -67,19 +50,6 @@ const Childgrowth = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      setNewChildMeasureUpdates();
-    },[activeChild])
-  );
-
-  const setNewChildMeasureUpdates=()=>{
-   
-    activeChild.measures =  activeChild.measures
-        .filter((item: any) => item.isChildMeasured == true)
-    
-  }
-  
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -155,79 +125,7 @@ const Childgrowth = ({navigation}: Props) => {
                   }
                 </Paragraph>
 
-                <BannerContainer1>
-                  <FlexDirRowSpace>
-                    <Heading3>{t('growthScreensubHeading')}</Heading3>
-                    {activeChild.isPremature === 'true' ? (
-                      <PrematureTagGrowth>
-                        <Heading5Bold>
-                          {t('developScreenprematureText')}
-                        </Heading5Bold>
-                      </PrematureTagGrowth>
-                    ) : null}
-                  </FlexDirRowSpace>
-                  <FlexFDirRowSpace>
-                    <Heading5>
-                      {/* {' '} */}
-                      {t('growthScreenlastMeasureText', {
-                        measureDate:  DateTime.fromJSDate(new Date(
-                          activeChild.measures[activeChild.measures.length-1].measurementDate,
-                        )).toFormat('dd MMM yyyy'),
-                      })}
-                    </Heading5>
-                    <Pressable
-                      onPress={(e) => {
-                        e.stopPropagation();
-                        navigation.navigate('AllChildgrowthMeasures');
-                      }}>
-                      <ButtonTextMdLine>
-                        {t('growthScreenallMeasureHeader')}
-                      </ButtonTextMdLine>
-                    </Pressable>
-                  </FlexFDirRowSpace>
-
-                  <ShiftFromTop20>
-                    <FlexDirRowSpace>
-                      <Flex2>
-                        <FlexDirRowSpace>
-                          <FlexDirColStart>
-                            <Heading4Regular>
-                              {t('growthScreenwText')}
-                            </Heading4Regular>
-                            <Heading2>
-                              {activeChild.measures[activeChild.measures.length-1].weight}{' '}
-                              {t('growthScreenkgText')}
-                            </Heading2>
-                          </FlexDirColStart>
-
-                          <FlexDirColStart>
-                            <Heading4Regular>
-                              {t('growthScreenhText')}
-                            </Heading4Regular>
-                            <Heading2>
-                              {activeChild.measures[activeChild.measures.length-1].height}{' '}
-                              {t('growthScreencmText')}
-                            </Heading2>
-                          </FlexDirColStart>
-                        </FlexDirRowSpace>
-                      </Flex2>
-                      <Flex1>
-                        <Pressable
-                          onPress={() => {
-                            // navigation.navigate('AddNewChildgrowth', {
-                            //   headerTitle: t('growthScreeneditNewBtntxt'),
-                            // });
-                          }}>
-                          <FlexDirRowEnd>
-                            <ButtonTextMdLine>
-                              {t('growthScreeneditText')}
-                            </ButtonTextMdLine>
-                          </FlexDirRowEnd>
-                        </Pressable>
-                      </Flex1>
-                    </FlexDirRowSpace>
-                  </ShiftFromTop20>
-                </BannerContainer1>
+               <LastChildMeasure activeChild={activeChild}/>
 
                 <BgContainer>
                   <TabBarContainer
