@@ -28,7 +28,7 @@ jobs:
       run: cd android && chmod +x ./gradlew
 
     - name: Build Android App Bundle
-      run: cd android && rm -rf app/src/main/res/drawable-* && ./gradlew bundleRelease --no-daemon
+      run: cd android && rm -rf app/src/main/res/drawable-* && rm -rf app/build/* && ./gradlew bundleRelease --no-daemon
       
     - uses: actions/upload-artifact@v2
       with:
