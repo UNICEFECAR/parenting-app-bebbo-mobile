@@ -5,7 +5,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading4Centerw } from '@styles/typography';
+import { Heading4Centerw,Heading4Center, ShiftFromBottom10,ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
@@ -28,6 +28,10 @@ const Favourites = ({navigation}: Props) => {
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  
+  const backgroundBlue = themeContext.colors.SECONDARY_COLOR;
+  const backgroundBlueTint = themeContext.colors.SECONDARY_TINTCOLOR;
+  
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [
@@ -59,7 +63,7 @@ const Favourites = ({navigation}: Props) => {
           textColor="#FFF"
         />
 
-        <TabBarContainer>
+        <TabBarContainer style={{backgroundColor:headerColor}}>
           {data.map((item, itemindex) => {
             return (
               <Pressable
@@ -68,31 +72,35 @@ const Favourites = ({navigation}: Props) => {
                 onPress={() => {
                   setSelectedIndex(itemindex);
                 }}>
+                  <ShiftFromBottom5>
                 <TabBarDefault
                   style={[
                     {
                       backgroundColor:
                         itemindex == selectedIndex
-                          ? headerColor
-                          : headerColorWhite,
+                          ? backgroundBlue
+                          : backgroundBlueTint,
                       
                     },
                   ]}>
-                  <Heading4Centerw style={[
-                    {
-                      color:
-                        itemindex == selectedIndex
-                          ? headerColorWhite
-                          : headerColorBlack,
+                  <Heading4Center 
+                  // style={[
+                  //   {
+                  //     color:
+                  //       itemindex == selectedIndex
+                  //         ? headerColorWhite
+                  //         : headerColorBlack,
                       
-                    },
-                  ]}>{item.title}</Heading4Centerw>
+                  //   },
+                  // ]}
+                  >{item.title}</Heading4Center>
                 </TabBarDefault>
+                </ShiftFromBottom5>
               </Pressable>
             );
           })}
         </TabBarContainer>
-
+       
         <Flex1>
           {renderItem(selectedIndex)}
         </Flex1>
