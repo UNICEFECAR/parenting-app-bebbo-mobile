@@ -35,7 +35,7 @@ const DailyHomeNotification = () => {
       : state.variableData?.variableData,
   );
   // console.log(allConfigData, '..allConfigData..');
-  const setNotiInDB = async (noti) => {
+  const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number; }) => {
     await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
       ConfigSettingsSchema,
       'dailyNotification',
@@ -50,7 +50,7 @@ const DailyHomeNotification = () => {
         : null;
     // console.log(currentNotification, 'currentNotification<>');
     let currentDate = DateTime.local();
-    //.plus({days: 2}); for testing next day noti change
+    // let currentDate = DateTime.local().plus({days: 4});//for testing next day noti change
     if (currentNotification != null || currentNotification != undefined) {
       const currentNotificationVal = currentNotification
         ? JSON.parse(currentNotification?.value)
@@ -101,31 +101,6 @@ const DailyHomeNotification = () => {
       // console.log(updateNotifcation);
     }
   }, []);
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     async function fetchData() {
-  //       let Entity: any;
-  //       // Entity = Entity as DailyHomeMessagesEntity
-  //       const dailyNotiData = await useToGetOfflineData(
-  //         languageCode,
-  //         dispatch,
-  //         DailyHomeMessagesSchema,
-  //         Entity as DailyHomeMessagesEntity,
-  //         dailyHomeNotificationdata,
-  //         setDailyMessagesData,
-  //         'id',
-  //       );
-  //       console.log(dailyNotiData);
-  //     }
-  //     fetchData().then(() => {
-  //       getAllConfigData(dispatch).then(()=>{
-  //         console.log(records, 'inside getAllConfigData,fetchData');
-  //         if(records){getNotification()};
-  //       });
-
-  //     });
-  //   }, [languageCode,records]),
-  // );
 
   return (
     <>

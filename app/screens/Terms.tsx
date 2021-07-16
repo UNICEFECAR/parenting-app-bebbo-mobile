@@ -1,5 +1,3 @@
-import basicPagesData from '@assets/translations/appOfflineData/basicPages';
-import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow, ButtonText
@@ -19,9 +17,7 @@ import HTML from 'react-native-render-html';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
-import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
-import { setAllTermsData } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
 
 
@@ -63,26 +59,14 @@ const Terms = ({navigation}: Props) => {
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
   useFocusEffect(
     React.useCallback(() => {
-      async function fetchData() {
-        let Entity:any;
-        // Entity = Entity as TaxonomyEntity
-        const basicData = await useToGetOfflineData(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
-      // console.log(stateArticleData,"artData--",artData.length);
-        // setArticleData(stateArticleData)
-      // console.log("basicpagesData--",basicData);
-        setLoading(false);
-     
-      }
-      fetchData()
+      setLoading(false);
     },[languageCode])
   );
   const termsdata = useAppSelector(
     (state: any) => state.utilsData.terms.body,
   );
   
-  const privacydata = useAppSelector(
-    (state: any) => state.utilsData.privacypolicy.body,
-  );
+  
   //console.log("termsdata--",termsdata);
   const apiJsonData = [
     {

@@ -3,8 +3,10 @@ import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import commonApiService, { cancelRetryAlert, onChildSetuppiSuccess, onOnLoadApiSuccess, onSponsorApiSuccess, retryAlert } from '../../services/commonApiService';
-import { apijsonArray, fetchAPI, FETCH_API, insertInDB } from './sagaActions';
+import { addApiDataInRealm } from '../../services/Utils';
+import { apijsonArray, fetchAPI, FETCH_API, insertInDB, insertInStore } from './sagaActions';
 import { InsertInDBSaga } from './sagaInsertInDB';
+import { InsertInStoreSaga } from './sagaInsertInStore';
 import { receiveAPIFailure } from './sagaSlice';
 // declare global errorArr;
 let errorArr: any[] = [];
@@ -15,11 +17,13 @@ export default function* rootSaga() {
 }
 
 function* onFetchAPI(value: any) {
-  //console.log(" called ..onFetchAPI..",value);
+  // console.log(new Date()," called ..onFetchAPI..",value);
   const payload = value.payload;
   const prevPage = value.prevPage;
   const dispatch = value.dispatch;
   const navigation = value.navigation;
+  const languageCode = value.languageCode;
+  const activeChild = value.activeChild;
   // console.log("prevPage--",prevPage);
   errorArr = [];
   try {
@@ -32,7 +36,7 @@ function* onFetchAPI(value: any) {
     // const response:commonApiServiceResponse = yield all(payload.forEach((data: apijsonArray) =>  fork(apiCall, data)));
     let response: commonApiServiceResponse = yield all(
       payload.map((data: apijsonArray) =>
-        call(apiCall, data,dispatch)
+        call(apiCall, data,dispatch,languageCode)
       )
     )
     response = response.filter((el: any) =>{
@@ -41,14 +45,14 @@ function* onFetchAPI(value: any) {
     // console.log(response,"..response..");
     // console.log(errorArr,"..errorArr..");
     if (errorArr.length > 0) {
-        yield call(onApiError,payload, prevPage, dispatch, navigation);
+        yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild);
     }
     else {
-        yield call(onApiSuccess, response, prevPage, dispatch, navigation);
+        yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild);
     }
     //yield put(receiveAPISuccess(response));
   } catch (e) {
-    yield call(onApiError,payload, prevPage, dispatch, navigation);
+    yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild);
   }
 }
 // async function* navigateToPage() {
@@ -60,10 +64,11 @@ function* onFetchAPI(value: any) {
 // }
 // async function* fetchUsers() {
 // }
-function* apiCall(data: apijsonArray,dispatch: any) {
+function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
+  // console.log("in api call",new Date());
   try{
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
-    // console.log(response,"  in apicall")
+    // console.log(response,"  in apicall",new Date())
 
     if (response.status != 200) {
       // console.log("in if")
@@ -75,6 +80,9 @@ function* apiCall(data: apijsonArray,dispatch: any) {
       if(data.apiEndpoint == "standard_deviation")
       {
         yield put(insertInDB(response,dispatch));
+        // const response2 = {payload:response,
+        // dispatch:dispatch}
+        // yield call(addApiDataInRealm, response2);
       }
         if(response.data.status == 200)
         {
@@ -84,12 +92,21 @@ function* apiCall(data: apijsonArray,dispatch: any) {
             if (data.saveinDB == true) {
               // console.log("insert started");
               yield put(insertInDB(response,dispatch));
+              // const response2 = {payload:response,
+              //   dispatch:dispatch}
+              //   yield call(addApiDataInRealm, response2);
+              // yield put(insertInStore(response,dispatch,languageCode));
+                // const response3 = {payload:response,
+                // dispatch:dispatch,languageCode:languageCode}
+                // yield call(getAllDataToStore, response3.languageCode,response3.dispatch,response3.payload.apiEndpoint)
             }
           }
           catch (e) {
             // errorArr.push(response);
-            console.log("errorArr after insert---",errorArr)
+            // console.log("errorArr after insert---",errorArr)
           }
+        }else {
+          // yield put(insertInStore(response,dispatch,languageCode));
         }
     }
     return response;
@@ -105,22 +122,22 @@ export function* fetchAPISaga() {
   yield takeEvery(FETCH_API, onFetchAPI);
 }
 
-function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any) {
+function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any) {
   // console.log("errorArr on redirect--",errorArr);
   yield put(receiveAPIFailure(errorArr))
   if (prevPage == 'Terms') {
     //dispatch action for terms page
-    yield call(onOnLoadApiSuccess, response, dispatch, navigation);
+    yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
   } else if (prevPage == 'CountryLanguageSelection') {
     //dispatch action for sponsor page
-    yield call(onSponsorApiSuccess, response, dispatch, navigation)
+    yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
   } else if (prevPage == 'ChilSetup') {
     //dispatch action for before home page
-    yield call(onChildSetuppiSuccess, response, dispatch, navigation)
+    yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
 }
 
-function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: any) {
+function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any) {
   // if (prevPage !== 'CountryLanguageSelection') {
     try {
       const confirm = yield call(retryAlert);
@@ -138,13 +155,13 @@ function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: a
       }
       // console.log("onLoadApiArray--",onLoadApiArray);
       errorArr = [];
-      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation));
+      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode));
     } catch (e) {
       //code of what to fo if user selected cancel.
       try {
         const cancelclicked = yield call(cancelRetryAlert);
-        console.log("in cancel retry ---",errorArr);
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation);
+        // console.log("in cancel retry ---",errorArr);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild);
         // if (prevPage == 'Terms') {
         //   // navigation.navigate('ChildSetup');
         //   const allJsonData = navigateToPage();
@@ -172,10 +189,10 @@ function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: a
         //   });
         // }
       }catch (e) {
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild);
       }
     }
   // }else {
-  //   yield call(onApiSuccess, payload, prevPage, dispatch, navigation);
+  //   yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode);
   // }
 }

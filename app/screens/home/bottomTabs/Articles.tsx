@@ -31,9 +31,6 @@ import {
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { getChildArticleData } from '../../../database/dbquery/getChildArticles';
-import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
-import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
@@ -118,11 +115,11 @@ const Articles = ({route, navigation}: Props) => {
   // let filterArray: string[] = [];
   const [filterArray,setFilterArray] = useState([]);
   const fromPage = 'Articles';
-  const activeChild = useAppSelector((state: any) =>
-  state.childData.childDataSet.activeChild != ''
-    ? JSON.parse(state.childData.childDataSet.activeChild)
-    : [],
-);
+//   const activeChild = useAppSelector((state: any) =>
+//   state.childData.childDataSet.activeChild != ''
+//     ? JSON.parse(state.childData.childDataSet.activeChild)
+//     : [],
+// );
 // console.log(activeChild,"..activeChild..");
 // const allConfigData = useAppSelector((state: any) =>
 // state.variableData?.variableData != ''
@@ -144,11 +141,11 @@ const Articles = ({route, navigation}: Props) => {
 //   );
 // let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
  
-  const currentChildData = {
-    "gender":activeChild.gender,
-    "parent_gender":activeChild.parent_gender,
-    "taxonomyData":activeChild.taxonomyData
-  }
+  // const currentChildData = {
+  //   "gender":activeChild.gender,
+  //   "parent_gender":activeChild.parent_gender,
+  //   "taxonomyData":activeChild.taxonomyData
+  // }
   // console.log(currentChildData,"..currentChildData..");
   const [loading, setLoading] = useState(false);
   const categoryData = useAppSelector(
@@ -164,20 +161,6 @@ const Articles = ({route, navigation}: Props) => {
   );
   const [filteredData,setfilteredData] = useState(articleData);
   
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     let Entity:any;
-  //     // Entity = Entity as TaxonomyEntity
-  //     const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
-  //     console.log(stateArticleData,"artData--",artData.length);
-      
-  //     setLoading(false);
-  //   }
-  //   fetchData()
-  // },[languageCode]);
-  const cleanUpFunction = () => {
-    // console.log("cleanUpFunction called");
-  }
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
@@ -185,13 +168,6 @@ const Articles = ({route, navigation}: Props) => {
       setModalVisible(true);
       async function fetchData() {
         let Entity:any;
-        // Entity = Entity as TaxonomyEntity
-        const artData = await getChildArticleData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,currentChildData);
-        // setArticleData(stateArticleData)
-        // setfilteredData(articleData);
-        // console.log(filteredData,"artData--",artData.length);
-        // if(filteredData != [])
-        // {
           if(route.params?.categoryArray)
           {
             // console.log(route.params?.categoryArray);
@@ -202,11 +178,9 @@ const Articles = ({route, navigation}: Props) => {
             setFilterArray([]);
             setFilteredArticleData([]);
           }
-        // }
       }
       fetchData()
 
-      return () => cleanUpFunction();
     },[languageCode,route.params?.categoryArray])
   );
   

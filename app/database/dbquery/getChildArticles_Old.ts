@@ -66,4 +66,3 @@ export const getChildArticleData = async (languageCode:string,dispatch:any,Schem
 }
 
   
-// export default useToGetOfflineData;
