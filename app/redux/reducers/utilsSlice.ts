@@ -27,6 +27,8 @@ interface hardcodedDataType {
     body:string;
     unique_name:string;
   },
+  weight_for_height:string,
+  height_for_age:string,
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
   IsArticleModalOpened:boolean,
@@ -58,6 +60,8 @@ const initialState: hardcodedDataType = {
     body:'',
     unique_name:''
   },
+  weight_for_height:'',
+  height_for_age:'',
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
   IsArticleModalOpened:true,
@@ -141,7 +145,21 @@ export const utilsSlice = createSlice({
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
         state[action.payload.key]=action.payload.value;
-      }
+      },
+      setStandardDevWFHData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.weight_for_height = action.payload;
+      },
+      setStandardDevHFAData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.height_for_age = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -155,7 +173,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData} = utilsSlice.actions;
+export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -13,16 +13,6 @@ import { HomeDrawerNavigatorStackParamList } from './types';
 const HomeDrawerNavigator =
   createDrawerNavigator<HomeDrawerNavigatorStackParamList>();
 export default () => {
-  // const languageCode = useAppSelector(
-  //   (state: any) => state.selectedCountry.languageCode,
-  // );
-  // const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   let Entity:any;
-  //   // Entity = Entity as TaxonomyEntity
-  //   const artData = useToGetOfflineData(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData);
-  //   console.log("artData--",artData);
-  // },[languageCode]);
   return (
     <HomeDrawerNavigator.Navigator
    lazy
