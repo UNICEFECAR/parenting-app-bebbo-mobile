@@ -18,6 +18,7 @@ import downloadImages from '../downloadImages/ImageStorage';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -32,7 +33,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-  console.log("newurl--", newurl);
+  // console.log("newurl--", newurl);
   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
@@ -60,7 +61,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // }
     });
 }
-export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any) => {
+export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
   //console.log(response, "..response..");
   //console.log(dispatch, "..dispatch..");
@@ -97,16 +98,19 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsors();
   }
-  navigation.reset({
-    index: 0,
-    routes: [{name: 'Walkthrough'}],
-  });
+  const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
+  // console.log(allDatatoStore,"--allDatatoStore");
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Walkthrough'}],
+    });
 }
-export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any) => {
+export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
   // navigation.navigate('ChildSetup');
   //let userEnteredChildData = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   //console.log(userEnteredChildData, "..userEnteredChildData..");
-
+  // console.log("in onOnLoadApiSuccess");
+  const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   if (allJsonData?.length>0) {
     navigation.navigate('ChildSetupList');
@@ -115,8 +119,9 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
     navigation.navigate('ChildSetup');
   }
 }
-export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any) => {
+export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
   // navigation.navigate('HomeDrawerNavigator');
+  const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   navigation.reset({
     index: 0,
     routes: [

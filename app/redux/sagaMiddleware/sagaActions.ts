@@ -7,6 +7,8 @@ export const FETCH_API = 'api/FETCH_API';
 
 export const INSERT_IN_DB = 'api/INSERT_IN_DB';
 
+export const INSERT_IN_STORE = 'api/INSERT_IN_STORE';
+
 export interface apijsonArray{
   apiEndpoint:string,method:string,postdata:any,saveinDB?:boolean
 }
@@ -18,18 +20,26 @@ const setLoginState: ActionCreator<any> = (typeset: string,data:any) => {
   }
   };
   // const dispatchnew: Dispatch<any>;
-export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any) => ({
+export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any) => ({
   type: FETCH_API,
   payload:apiJsonData,
   prevPage:prevPage,
   dispatch:dispatch,
   navigation:navigation,
+  languageCode:languageCode,
+  activeChild:activeChild
 });
 
 export const insertInDB = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined) => ({
   type: INSERT_IN_DB,
   payload:apiJsonData,
   dispatch:dispatch
+});
+export const insertInStore = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined, languageCode?:string) => ({
+  type: INSERT_IN_STORE,
+  payload:apiJsonData,
+  dispatch:dispatch,
+  languageCode:languageCode
 });
 
 
