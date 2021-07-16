@@ -30,32 +30,31 @@ const prevPage  = route.params.prevPage;
       (state: any) => state.selectedCountry.sponsors,
     );
     const netInfo=useNetInfo();
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const activeChild = useAppSelector((state: any) =>
+        state.childData.childDataSet.activeChild != ''
+          ? JSON.parse(state.childData.childDataSet.activeChild)
+          : [],
+      );
     useFocusEffect(
       React.useCallback(() => {
-       // console.log(netInfo,"..netinfo useFocusEffect..",prevPage);
-        // if(netInfo.isConnected){
           callSagaApi();
-        // }
-        // else{
-        //   Alert.alert("No Internet Connection..");
-        // }
-        // setTimeout(()=>{
-        // navigation.navigate('ChildSetup');
-        // },10000)
+        return () => {
+          // console.log("loading screen left");
+        };
       },[])
     );
-   // console.log(sponsors,"..fom loading sponsors..");
-// failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
-// const apiJsonData = [
-// {apiEndpoint:appConfig.articles,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-// // {apiEndpoint:appConfig.artic`les,method:'get',postdata:{childAge:'all',childGender:'all',parentGender:'all',Seasons:'all'}},
-// {apiEndpoint:appConfig.dailyMessages,method:'get',postdata:{}},
-// {apiEndpoint:appConfig.basicPages,method:'get',postdata:{}}
-// ]
 
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
-    dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation))
+    if(prevPage == "ChilSetup")
+    {
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild))
+    }else {
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode))
+    }
   }
   
   const themeContext = useContext(ThemeContext);

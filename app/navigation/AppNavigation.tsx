@@ -1,6 +1,3 @@
-import { dailyHomeNotificationdata } from '@assets/translations/appOfflineData/dailyHomeNotification';
-import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
-import useToGetOfflineData from '@assets/translations/appOfflineData/useToGetOfflineData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
@@ -29,12 +26,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
-import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSchema';
-import {
-  TaxonomyEntity,
-  TaxonomySchema
-} from '../database/schema/TaxonomySchema';
-import { setAllTaxonomyData, setDailyMessagesData } from '../redux/reducers/utilsSlice';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
@@ -59,37 +50,6 @@ export default () => {
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
   const netInfo = useNetInfo();
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    let Entity: any;
-    // Entity = Entity as TaxonomyEntity
-    const taxonomyData = useToGetOfflineData(
-      languageCode,
-      dispatch,
-      TaxonomySchema,
-      Entity as TaxonomyEntity,
-      taxonomydata,
-      setAllTaxonomyData,
-    );
-   setDailyMessagestoStore()
-    //console.log("taxonomyData--",taxonomyData);
-  }, [languageCode]);
-  const setDailyMessagestoStore = async ()=>{
-    let Entity: any;
-    const alldailyNotiData = await useToGetOfflineData(
-      languageCode,
-      dispatch,
-      DailyHomeMessagesSchema,
-      Entity as DailyHomeMessagesEntity,
-      dailyHomeNotificationdata,
-      setDailyMessagesData,
-      'id',
-    );
-    console.log(alldailyNotiData)
-  }
   // useEffect(() => {
   //   async function addDBListener() {
   //     const datarealm = await dataRealmCommon.openRealm();
