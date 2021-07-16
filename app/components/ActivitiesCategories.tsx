@@ -1,6 +1,8 @@
-import Icon from '@components/shared/Icon';
+import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
+import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
+import { FlexDirRow } from './shared/FlexBoxStyle';
 
 const ActivitiesCategories = (props:any) => {
     const buttonData = [
@@ -11,26 +13,55 @@ const ActivitiesCategories = (props:any) => {
       ];
     return (
         <>
-            <View style={{ padding: 10,backgroundColor:props.backgroundColor, minHeight: 120,borderBottomColor: props.borderColor,borderBottomWidth:1,paddingHorizontal:70}}>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
 
+            
+            <View style={{maxWidth:280,width:'100%',marginLeft:'auto',marginRight:'auto', padding: 10,backgroundColor:props.backgroundColor, minHeight: 120, }}>
+                <View style={{ flex: 1, flexDirection: 'row',}}>
                     <View style={styles.item} >
-                        <Icon style={styles.iconStyle} name={buttonData[0].iconName} size={20} color="#000" />
-                        <Text style={styles.title}>{buttonData[0].displayName}</Text>
+                    <FilterBox>
+                    <OuterIconRow>
+                         <OuterIconLeft>
+                         <Icon style={styles.iconStyle} name={buttonData[0].iconName} size={20} color="#000" />
+                         </OuterIconLeft>
+                         </OuterIconRow>
+                        
+                         <FilterText>{buttonData[0].displayName}</FilterText>
+                    </FilterBox>
                     </View>
                     <View style={styles.item} >
-                        <Icon style={styles.iconStyle} name={buttonData[1].iconName} size={20} color="#000" />
-                        <Text style={styles.title}>{buttonData[1].displayName}</Text>
+                    <FilterBox>
+                    <OuterIconRow>
+                         <OuterIconLeft>
+                         <Icon style={styles.iconStyle} name={buttonData[1].iconName} size={20} color="#000" />
+                         </OuterIconLeft>
+                         </OuterIconRow>
+                        
+                         <FilterText>{buttonData[1].displayName}</FilterText>
+                    </FilterBox>
                     </View>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <View style={styles.item}>
-                        <Icon style={styles.iconStyle} name={buttonData[2].iconName} size={20} color="#000" />
-                        <Text style={styles.title}>{buttonData[2].displayName}</Text>
+                <View style={styles.item} >
+                <FilterBox>
+                <OuterIconRow>
+                         <OuterIconLeft>
+                         <Icon style={styles.iconStyle} name={buttonData[2].iconName} size={20} color="#000" />
+                         </OuterIconLeft>
+                         </OuterIconRow>
+                        
+                         <FilterText>{buttonData[2].displayName}</FilterText>
+                    </FilterBox>
                     </View>
-                    <View style={styles.item}>
-                        <Icon style={styles.iconStyle} name={buttonData[3].iconName} size={20} color="#000" />
-                        <Text style={styles.title}>{buttonData[3].displayName}</Text>
+                    <View style={styles.item} >
+                    <FilterBox>
+                    <OuterIconRow>
+                         <OuterIconLeft>
+                         <Icon style={styles.iconStyle} name={buttonData[3].iconName} size={20} color="#000" />
+                         </OuterIconLeft>
+                         </OuterIconRow>
+                        
+                        <FilterText>{buttonData[3].displayName}</FilterText>
+                    </FilterBox>
                     </View>
                 </View>
             </View>
@@ -39,6 +70,10 @@ const ActivitiesCategories = (props:any) => {
 };
 export default ActivitiesCategories;
 const styles = StyleSheet.create({
+     iconStyle:{
+        flex: 1,
+        marginLeft:10
+    },
     item: {
         backgroundColor: '#FFF',
         borderRadius: 5,
@@ -49,17 +84,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection:'row',
     },
-    iconStyle:{
-        flex: 1,
-        marginLeft:10
-    },
-    title: {
-        fontSize: 10,
-        // padding: 5,
-        margin: 0,
-        flex: 2,
-        width: 120,
-        fontWeight: 'bold',
-        justifyContent: 'flex-start'
-    },
+   
+    // title: {
+    //     fontSize: 10,
+    //     // padding: 5,
+    //     margin: 0,
+    //     flex: 2,
+    //     width: 120,
+    //     fontWeight: 'bold',
+    //     justifyContent: 'flex-start'
+    // },
 })

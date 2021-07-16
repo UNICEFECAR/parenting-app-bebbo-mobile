@@ -124,9 +124,8 @@ const child_age = useAppSelector(
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
-              <Heading3>{data.childName}</Heading3>
-              <OuterIconLeft></OuterIconLeft>
-              <Heading6>{genderName}</Heading6>
+              <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5>
+              </Heading3>
             </ProfileSectionView>
             <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
             <ProfileLinkView>
@@ -166,6 +165,7 @@ const child_age = useAppSelector(
           </ProfileActionView>
         </ProfileListViewSelected1>
       ) : (
+        
         <ProfileListDefault
           style={{
             backgroundColor: secopndaryTintColor,
@@ -179,12 +179,12 @@ const child_age = useAppSelector(
             }
             </ProfileIconView>
             <ProfileTextView>
-              <ProfileSectionView>
+              <ProfileSectionView style={{alignItems:'flex-start'}}>
                 <Heading3>
-                  {data.childName}
+                  {data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5>
                 </Heading3>
-                <OuterIconLeft></OuterIconLeft>
-                <Heading6>{genderName}</Heading6>
+                
+                
               </ProfileSectionView>
               <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
               <ProfileLinkView>
@@ -221,10 +221,11 @@ const child_age = useAppSelector(
             </FlexColEnd>  
             </ProfileActionView>
           </ProfileListInner>
-        </ProfileListDefault>
+        </ProfileListDefault>     
       )}
     </View>
   );
+  
   return (
     <>
       <SafeAreaView style={{flex: 1}}>
