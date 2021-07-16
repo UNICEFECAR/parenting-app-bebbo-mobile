@@ -1,0 +1,337 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { VictoryAreaProps } from 'victory-area';
+import { TickLabelProps, VictoryAxisCommonProps } from 'victory-core';
+import { VictoryLineProps } from 'victory-line';
+import {
+  VictoryArea,
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLine,
+  VictoryScatter,
+  VictoryTheme,
+  VictoryTooltip
+} from 'victory-native';
+import { VictoryScatterProps } from 'victory-scatter';
+import { VictoryTooltipProps } from 'victory-tooltip';
+import { convertMeasuresData } from '../../services/growthService';
+import GrowthInterpretation from './GrowthInterpretation';
+export interface LineChartData {
+  x: number;
+  y: number;
+}
+export interface ChartData {
+  measurementDate: number;
+  weight: number;
+  length: number;
+}
+export interface GrowtChartStyles {
+  container?: ViewStyle;
+  contentWrapper?: ViewStyle;
+  chartLegend: ViewStyle;
+  chartLegendItem: ViewStyle;
+  chartHeader: ViewStyle;
+}
+export interface VictoryStyles {
+  VictoryAxis: VictoryAxisCommonProps['style'];
+  VictoryAxisVertical: VictoryAxisCommonProps['style'];
+  VictoryLine: VictoryLineProps['style'];
+  VictoryScatter: VictoryScatterProps['style'];
+  VictoryArea: VictoryAreaProps['style'];
+  axisLabel?: TickLabelProps;
+  VictoryTooltip: VictoryTooltipProps;
+}
+export enum chartTypes {
+  weightForHeight,
+  heightForAge,
+}
+// export enum chartTypes {
+//     heightLength,
+//     lengthAge
+// }
+
+const GrowthChart = (props: any) => {
+  let {activeChild, chartType, bgObj,standardDeviation} = props;
+  const {t} = useTranslation();
+//   console.log(activeChild, chartType, 'heightForAge', bgObj);
+  const childBirthDate = activeChild.birthDate;
+
+  const labelX = chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
+  const labelY = chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
+//   console.log(labelX, labelY);
+//   const [obj, setObj] = useState([]);
+  let windowWidth = Dimensions.get('window').width;
+  let windowHeight = Dimensions.get('window').height;
+  const [showFullscreen, setShowFullscreen] = React.useState(false);
+  let orientation: 'portrait' | 'landscape' =
+    windowWidth > windowHeight ? 'landscape' : 'portrait';
+
+  let chartHeight = showFullscreen
+    ? Dimensions.get('window').height - 120
+    : windowHeight - 300;
+  let convertedMeasures = convertMeasuresData(
+    activeChild.measures,
+    childBirthDate
+  );
+  /* Create line chart array for type chart */
+  let chartData: LineChartData[] = [];
+  convertedMeasures.map((item) => {
+    chartData.push(
+      chartType === chartTypes.weightForHeight
+        ? {x: item.height, y: item.weight}
+        : {x: item.measurementDate / 30, y: item.height},
+    );
+  });
+//   console.log(convertedMeasures, 'convertedMeasures');
+  let {topArea, bottomArea, middleArea} = bgObj;
+  return (
+    <>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        width={windowWidth - 30}
+        height={chartHeight}>
+        {/* ********* AXIS HORIZONTAL ********* */}
+        <VictoryAxis
+          style={victoryStyles.VictoryAxis}
+          label={labelX}
+          axisLabelComponent={<VictoryLabel x={windowWidth - 60} />}
+        />
+
+        {/* ********* AXIS VERTICAL ********* */}
+        <VictoryAxis
+          style={victoryStyles.VictoryAxisVertical}
+          axisLabelComponent={<VictoryLabel y={30} />}
+          dependentAxis
+          label={labelY}
+        />
+
+        {/* ********* TOP AREA ********* */}
+        <VictoryArea
+          interpolation="natural"
+          style={{data: showFullscreen ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          data={topArea}
+        />
+        {/* ********* BOTTOM AREA ********* */}
+        <VictoryArea
+          interpolation="natural"
+          style={{data: showFullscreen ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          data={bottomArea}
+        />
+        {/* ********* MIDDLE AREA ********* */}
+        <VictoryArea
+          interpolation="natural"
+          style={victoryStyles.VictoryArea}
+          data={middleArea}
+        />
+
+        {/* ********* LINE CHART ********* */}
+        {chartData.length < 2 ? null : (
+          <VictoryLine
+            data={chartData}
+            interpolation="natural"
+            style={victoryStyles.VictoryLine}
+          />
+        )}
+
+        {/********** SCATTER ********* */}
+        {/* @ts-ignore */}
+        <VictoryScatter
+          data={chartData}
+          size={9}
+          style={victoryStyles.VictoryScatter}
+          labelComponent={
+            <VictoryTooltip
+              renderInPortal={false}
+              style={victoryStyles.VictoryTooltip.style}
+              flyoutStyle={victoryStyles.VictoryTooltip.flyoutStyle}
+            />
+          }
+          labels={(props) =>
+            props.datum.y +
+            ' ' +
+            labelY +
+            ' / ' +
+            Math.round((props.datum.x + Number.EPSILON) * 100) / 100 +
+            ' ' +
+            labelX
+          }
+          events={[
+            {
+              target: 'data',
+              eventHandlers: {
+                onPressIn: (evt: any, pressedProps: any) => {
+                  const selectedDataIndex = pressedProps.index;
+                  return [
+                    {
+                      eventKey: 'all',
+                      target: 'labels',
+                      mutation: (props: any) => {
+                        let activeState: boolean | null = true;
+                        if (props.active === true) {
+                          activeState = null;
+                        }
+                        return props.index === selectedDataIndex
+                          ? {active: activeState}
+                          : {active: false};
+                      },
+                    },
+                    {
+                      eventKey: 'all',
+                      target: 'data',
+                      mutation: (props: any) => {
+                        const stroke = props.style && props.style.stroke;
+                        let st;
+                        let activeState: boolean | null = true;
+                        if (props.active === true) {
+                          activeState = null;
+                        }
+                        if (stroke === 'orange') {
+                          st = '#ACACAC';
+                        } else {
+                          st = 'orange';
+                        }
+
+                        return props.index === selectedDataIndex
+                          ? {style: {stroke: st, strokeWidth: 3, fill: 'white'}}
+                          : null;
+                      },
+                    },
+                  ];
+                },
+                onPressOut: (evt: any, pressedProps: any) => {
+                  const selectedDataIndex = pressedProps.index;
+                  return [
+                    {
+                      eventKey: 'all',
+                      target: 'labels',
+                      mutation: (props: any) => {
+                        return props.index === selectedDataIndex
+                          ? {active: props.active}
+                          : null;
+                      },
+                    },
+                    {
+                      eventKey: 'all',
+                      target: 'data',
+                      mutation: (props: any) => {
+                        const stroke = props.style && props.style.stroke;
+                        // return stroke === "orange" ? null : { style: { stroke: "orange", strokeWidth: 4, fill: 'white' } };
+                        return props.index === selectedDataIndex
+                          ? {
+                              style: {
+                                fill: 'white',
+                                stroke: props.style.stroke,
+                                strokeWidth: 3,
+                              },
+                            }
+                          : null;
+                      },
+                    },
+                  ];
+                },
+              },
+            },
+          ]}
+        />
+      </VictoryChart>
+      <View style={styles.chartLegend}>
+        <View style={styles.chartLegendItem}>
+          <View
+            style={{
+              width: 27,
+              height: 12,
+              backgroundColor: '#D8D8D8',
+              margin: 10,
+            }}></View>
+          <Text style={{fontSize: 11, opacity: 0.5}}>
+            {t('growthChartLegendSilverLabel')}
+          </Text>
+        </View>
+        {showFullscreen && (
+          <View style={styles.chartLegendItem}>
+            <View
+              style={{
+                width: 27,
+                height: 12,
+                backgroundColor: '#F9C49E',
+                margin: 10,
+              }}></View>
+            <Text style={{fontSize: 11, opacity: 0.5}}>
+              {t('growthChartLegendOrangeLabel')}
+            </Text>
+          </View>
+        )}
+      </View>
+      <GrowthInterpretation  activeChild={activeChild}
+              chartType={chartTypes.weightForHeight}
+              standardDeviation={standardDeviation}/>
+    </>
+  );
+};
+export default GrowthChart;
+const styles = StyleSheet.create<GrowtChartStyles>({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  chartHeader: {
+    flexDirection: 'row',
+    paddingLeft: 20,
+    paddingTop: 20,
+  },
+  contentWrapper: {
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  chartLegend: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'center',
+  },
+  chartLegendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
+const victoryStyles: VictoryStyles = {
+  VictoryAxis: {
+    grid: {stroke: 'transparent'},
+    axis: {stroke: 'none'},
+    // axisLabel: { fontFamily: fontFamily, },
+    // tickLabels: { fontFamily: fontFamily }
+  },
+  VictoryAxisVertical: {
+    grid: {stroke: 'transparent'},
+    axis: {stroke: 'none'},
+    // @ts-ignore
+    axisLabel: {angle: 0},
+    // axisLabel: { angle: 0, fontFamily: fontFamily },
+    // tickLabels: { fontFamily: fontFamily }
+  },
+  VictoryLine: {
+    data: {stroke: '#0C66FF', strokeWidth: 9, strokeLinecap: 'round'},
+  },
+  VictoryScatter: {
+    data: {fill: 'white', stroke: '#ACACAC', strokeWidth: 3},
+    labels: {fill: 'red'},
+    // labels: { fill: "red", fontFamily: fontFamily },
+  },
+  VictoryArea: {
+    data: {fill: '#D8D8D8'},
+  },
+
+  VictoryTooltip: {
+    flyoutStyle: {
+      stroke: 'none',
+      fill: '#262626',
+      opacity: 85,
+    },
+    style: {
+      padding: 15,
+      fill: 'white',
+    },
+  },
+};
