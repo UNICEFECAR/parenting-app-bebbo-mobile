@@ -1,5 +1,8 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
+import GrowthIntroductory from '@components/growth/GrowthIntroductory';
 import LastChildMeasure from '@components/growth/LastChildMeasure';
+import BabyNotification from '@components/homeScreen/BabyNotification';
 import {
   ButtonContainer,
   ButtonPrimary,
@@ -12,13 +15,13 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2,
   Heading3,
   Heading3Centerr,
   Heading4,
-  Heading4Center, Paragraph,
+  Heading4Center,
   ShiftFromBottom5,
-  ShiftFromTop10, ShiftFromTopBottom20,
+  ShiftFromTop10,
+  ShiftFromTopBottom20,
   SideSpacing10
 } from '@styles/typography';
 import React, { useContext } from 'react';
@@ -27,12 +30,13 @@ import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+import { formatDaysData, formatHeightData } from '../../services/growthService';
 
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
-  navigation: ChildgrowthNavigationProp,
-  'AddNewChildgrowth'
+  navigation: ChildgrowthNavigationProp;
+  AddNewChildgrowth;
 };
 const Childgrowth = ({navigation}: Props) => {
   const {t} = useTranslation();
@@ -56,13 +60,76 @@ const Childgrowth = ({navigation}: Props) => {
     );
   };
   const renderItem = (item: typeof data[0], index: number) => {
-    return (
-      <>
-        <View style={{padding: 100}}>
-          <Heading2>Graph for {item.title}</Heading2>
-        </View>
-      </>
-    );
+    if (index == 0) {
+      let obj;
+      let standardDeviation;
+      if (activeChild?.gender == '40' || activeChild?.gender == "") {
+        //boy or no gender added
+        standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
+        const genderBoyData = standardDeviation.filter(
+          (item) => item.growth_type == 6461,
+        );
+        obj = formatHeightData(genderBoyData);
+        console.log(obj, 'new');
+      } else {
+        //girl
+        standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
+        const genderGirlData = standardDeviation.filter(
+          (item) => item.growth_type == 6461,
+        );
+        obj = formatHeightData(genderGirlData);
+      }
+      return (
+        <>
+          <View
+            style={{
+              backgroundColor: 'white',
+              marginBottom: 20,
+            }}>
+            {/* <Heading2>Graph for {item.title}</Heading2> */}
+            <GrowthChart
+              activeChild={activeChild}
+              chartType={chartTypes.weightForHeight}
+              bgObj={obj}
+              standardDeviation={standardDeviation}
+            />
+          </View>
+        </>
+      );
+    } else if (index == 1) {
+      let obj;
+      let standardDeviation;
+      if (activeChild?.gender == '41') {
+        standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
+        const genderBoyData = standardDeviation.filter(
+          (item) => item.growth_type == 6456,
+        );
+        obj = formatDaysData(genderBoyData);
+      } else {
+        standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
+        const genderGirlData = standardDeviation.filter(
+          (item) => item.growth_type == 6456,
+        );
+        obj = formatDaysData(genderGirlData);
+      }
+      return (
+        <>
+          <View
+            style={{
+              backgroundColor: 'white',
+              marginBottom: 20,
+            }}>
+            {/* <Heading2>Graph for {item.title}</Heading2> */}
+            <GrowthChart
+              activeChild={activeChild}
+              chartType={chartTypes.heightForAge}
+              bgObj={obj}
+              standardDeviation={standardDeviation}
+            />
+          </View>
+        </>
+      );
+    }
   };
   return (
     <>
@@ -85,6 +152,7 @@ const Childgrowth = ({navigation}: Props) => {
               padding: 15,
               maxHeight: '100%',
             }}>
+              <BabyNotification/>
             {activeChild.measures.length == 0 ? (
               <FlexDirCol>
                 <ShiftFromBottom5>
@@ -119,14 +187,10 @@ const Childgrowth = ({navigation}: Props) => {
               </FlexDirCol>
             ) : (
               <View>
-                <Paragraph>
-                  {
-                    'In the second year, the growth is intense, but it slows down slightly compared to the first year, so now children gain an average of ten centimeters (1 cm per month). As a result, appetite decreases, which is a normal occurrence.'
-                  }
-                </Paragraph>
+                <GrowthIntroductory activeChild={activeChild} />
 
-               <LastChildMeasure activeChild={activeChild}/>
-
+                <LastChildMeasure activeChild={activeChild} />
+                
                 <BgContainer>
                   <TabBarContainer
                     style={{
@@ -158,14 +222,9 @@ const Childgrowth = ({navigation}: Props) => {
 
                   <SideSpacing10>
                     {renderItem(data[selectedIndex], selectedIndex)}
-                    <Heading2>{t('growthScreensumHeading')}</Heading2>
-                    <Paragraph>
-                      [Child growth progress text] [Child growth progress text]
-                      [Child growth progress text] [Child growth progress text]
-                      [Child growth progress text] [Child growth progress text]
-                    </Paragraph>
                   </SideSpacing10>
                 </BgContainer>
+                
                 <View style={{flex: 1, padding: 5, marginVertical: 10}}>
                   {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
                 </View>
