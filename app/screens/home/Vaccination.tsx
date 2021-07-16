@@ -159,7 +159,7 @@ const Vaccination = ({navigation}: Props) => {
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
-                              : headerColorWhite,
+                              : backgroundColor,
                           
                         },
                       ]}>

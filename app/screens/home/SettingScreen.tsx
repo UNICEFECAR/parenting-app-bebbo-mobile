@@ -5,7 +5,7 @@ import Checkbox, {
   CheckboxItem
 } from '@components/shared/CheckboxStyle';
 import { FormOuterCheckbox } from '@components/shared/ChildSetupStyle';
-import { BannerContainer, MainContainer } from '@components/shared/Container';
+import { BannerContainer, MainContainer, SafeAreaContainer } from '@components/shared/Container';
 import {
   FDirRow,
   FDirRowStart,
@@ -110,7 +110,7 @@ const SettingScreen = (props: any) => {
   }, []);
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -421,7 +421,7 @@ const SettingScreen = (props: any) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      </SafeAreaView>
+      </SafeAreaContainer>
     </>
   );
 };

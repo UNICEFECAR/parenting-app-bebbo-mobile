@@ -1,4 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import { SafeAreaContainer } from '@components/shared/Container';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
 import WalkthroughContainer, {
     Slide,
     WalkthroughContentArea,
@@ -110,7 +112,7 @@ const UserGuide = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
        
         <TabScreenHeader
@@ -119,7 +121,7 @@ const UserGuide = ({navigation}: Props) => {
               textColor="#FFF"
             />
 
-        <View style={{flexDirection: 'column', flex: 1}}>
+        <FlexCol>
           <AppIntroSlider
             keyExtractor={keyExtractor}
             // renderItem={renderItem}
@@ -134,8 +136,8 @@ const UserGuide = ({navigation}: Props) => {
             showNextButton={false}
             data={data}
           />
-        </View>
-      </SafeAreaView>
+        </FlexCol>
+      </SafeAreaContainer>
     </>
   );
 };

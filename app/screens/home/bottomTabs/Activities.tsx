@@ -5,6 +5,7 @@ import { ActivityBox, ArticleHeading, ArticleListContainer, ArticleListContent }
 import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 
 import { MainContainer } from '@components/shared/Container';
+import { DividerAct } from '@components/shared/Divider';
 import { FDirCol, FDirRow, FlexCol, FlexDirRow,FlexDirRowSpace} from '@components/shared/FlexBoxStyle';
 import PrematureTag,{PrematureTagActivity} from '@components/shared/PrematureTag';
 
@@ -149,10 +150,12 @@ const Activities = ({navigation}: Props) => {
               itemColor={backgroundColor}
               activatedItemColor={headerColor}
             />
+            <DividerAct></DividerAct>
             <ActivitiesCategories
               borderColor={headerColor}
               backgroundColor={backgroundColor}
             />
+            <DividerAct></DividerAct>
             <View style={{}}>
             <ArticleHeading>
               <FlexDirRowSpace>

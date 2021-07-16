@@ -29,6 +29,10 @@ export const FlexCol = styled.View`
 flex-direction:column;
 flex:1;
 `;
+export const FlexRow = styled.View`
+flex-direction:row;
+flex:1;
+`;
 
 export const FlexColEnd = styled(FlexCol)`
 alignItems:flex-end

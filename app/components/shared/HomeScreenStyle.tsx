@@ -20,6 +20,7 @@ flex:1;
 `;
 export const FeatureBox = styled.View`
 padding:15px 0;
+/*min-height:150px*/
 
 `;
 
