@@ -146,7 +146,7 @@ const Childgrowth = ({navigation}: Props) => {
                                 backgroundColor:
                                   itemindex == selectedIndex
                                     ? headerColor
-                                    : headerColorWhite,
+                                    : backgroundColor,
                               },
                             ]}>
                             <Heading4Center>{item.title}</Heading4Center>
