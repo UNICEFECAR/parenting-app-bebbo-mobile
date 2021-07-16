@@ -42,6 +42,7 @@ export const ProfileLinkView = styled.View`
   flex-direction: row;
   margin-top: 10px;
   justify-content: space-between;
+ 
 `;
 
 /*Manage Profile Drowpdown End */
@@ -73,6 +74,10 @@ width:100%;
   margin:0;
   padding: 10px;
  margin-bottom:15px;
+ border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+ margin-top:-4px;
+ border-color: rgba(0, 0, 0, 0.1);
+ border-top-width: 1px;
 `;
 
 export const ProfileLinkCol = styled.View`
@@ -80,7 +85,8 @@ export const ProfileLinkCol = styled.View`
   align-items:center;
   justify-content:flex-start;
   flex:1;
-  padding: 0 15px;
+  
+  padding: 0 20px;
   flex-direction:column;
 `;
 export const ProfileContentView = styled.View`

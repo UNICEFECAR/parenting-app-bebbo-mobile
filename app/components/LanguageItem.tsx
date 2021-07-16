@@ -14,7 +14,7 @@ const LanguageItem = ({item, currentItem, setLanguage}) => {
         }}>
         <RadioItem>
         <View>
-            {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#000" /></RadioActive> : <Radio></Radio> } 
+            {isActive ? <RadioActive><Icon name="ic_tick" size={12} color="#fff" /></RadioActive> : <Radio></Radio> } 
             </View>
             <RadioItemText isActive={isActive}>{item.displayName}</RadioItemText>
         </RadioItem>

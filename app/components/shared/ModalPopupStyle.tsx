@@ -26,13 +26,14 @@ export const PopupClose = styled.Pressable`
   align-self:center; 
   right:0;
   top:-20px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   /* position:absolute; */
   
 `;
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
+  margin-top:-35px
 `;
 
 

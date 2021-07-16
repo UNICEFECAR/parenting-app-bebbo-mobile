@@ -15,7 +15,7 @@ const CountryItem = ({item, currentItem, setCountry}) => {
           <View>
             {isActive ? (
               <RadioActive>
-                <Icon name="ic_tick" size={12} color="#000" />
+                <Icon name="ic_tick" size={12} color="#fff" />
               </RadioActive>
             ) : (
               <Radio></Radio>

@@ -196,7 +196,7 @@ const vaccines = [
                           backgroundColor:
                             itemindex == selectedIndex
                               ? headerColor
-                              : headerColorWhite,
+                              : backgroundColor,
                          
                         },
                       ]}>
