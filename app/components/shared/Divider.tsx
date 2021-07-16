@@ -18,6 +18,10 @@ export const DividerArt = styled(Divider)`
 border-color:${(props) => props.theme.colors.ARTICLES_COLOR};
 margin-top:-2px;
 `;
+export const DividerAct = styled(Divider)`
+border-color:${(props) => props.theme.colors.ACTIVITIES_COLOR};
+margin-top:-2px;
+`;
 export const DividerContainer = styled.View`
 padding:0 15px;
 `;

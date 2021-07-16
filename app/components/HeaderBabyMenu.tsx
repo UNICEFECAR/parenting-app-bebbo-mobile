@@ -20,7 +20,8 @@ import {
   Pressable,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  Text
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
@@ -110,8 +111,8 @@ const HeaderBabyMenu = (props: any) => {
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}</Heading3>
-                <Heading5>{genderName}</Heading5>
+                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5></Heading3>
+                
               </ProfileSectionView>
               <Heading5>
                 {t('childProfileBornOn', {
@@ -160,8 +161,8 @@ const HeaderBabyMenu = (props: any) => {
 
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}</Heading3>
-                <Heading5>{genderName}</Heading5>
+                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5></Heading3>
+                
               </ProfileSectionView>
               <Heading5>
                 {t('childProfileBornOn', {

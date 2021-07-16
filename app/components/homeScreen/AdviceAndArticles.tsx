@@ -3,7 +3,7 @@ import {
   ButtonArticles, ButtonText
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FlexDirRow,FlexCol } from '@components/shared/FlexBoxStyle';
 import { FeatureBox, FeatureContentBox, FeatureDivideArea, FeatureImageBox } from '@components/shared/HomeScreenStyle';
 import { useNavigation } from '@react-navigation/native';
 import { Heading2, ShiftFromBottom15 } from '@styles/typography';
@@ -17,6 +17,7 @@ const AdviceAndArticles = () => {
   const {t} = useTranslation();
   return (
     <>
+    <FlexCol>
     <BgArticlesTint>
       <FeatureDivideArea>
         <MainContainer>
@@ -39,7 +40,7 @@ const AdviceAndArticles = () => {
         </MainContainer>
         </FeatureDivideArea>
       </BgArticlesTint>
-
+      </FlexCol>
       
     </>
   );

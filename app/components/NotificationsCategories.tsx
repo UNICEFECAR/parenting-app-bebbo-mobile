@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { FlexRow, FlexDirRow } from './shared/FlexBoxStyle';
 const ButtonItem = (props: any) => {
   return (
     <Pressable
@@ -77,21 +78,26 @@ const NotificationsCategories = (props: any) => {
   };
   return (
     <>
+    <View style={{backgroundColor: backgroundColor,}}>
       <View
         style={{
           padding: 10,
-          backgroundColor: backgroundColor,
+          
           minHeight: 120,
-          paddingHorizontal: 60,
+          maxWidth:280,
+          width:'100%',
+          marginLeft:'auto'
+          ,marginRight:'auto',
         }}>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        <FlexRow>
           <ButtonItem data={products[0]} setbutton={() => handleChange(0)} />
           <ButtonItem data={products[1]} setbutton={() => handleChange(1)} />
-        </View>
-        <View style={{flex: 1, flexDirection: 'row'}}>
+        </FlexRow>
+        <FlexRow>
           <ButtonItem data={products[2]} setbutton={() => handleChange(2)} />
           <ButtonItem data={products[3]} setbutton={() => handleChange(3)} />
-        </View>
+        </FlexRow>
+      </View>
       </View>
     </>
   );
