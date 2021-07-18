@@ -56,7 +56,7 @@ const ChildSetup = ({ navigation }: Props) => {
   );
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
   const actionSheetRef = createRef<any>();
   const dispatch = useAppDispatch();
