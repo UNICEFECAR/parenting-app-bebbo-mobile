@@ -40,7 +40,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const editScreen = childData != null ? true : false;
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
   // console.log(childData,"..childData..");
   let initialData: any = {};

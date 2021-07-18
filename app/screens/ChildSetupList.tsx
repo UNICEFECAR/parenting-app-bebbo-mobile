@@ -29,7 +29,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays } from '../services/childCRUD';
+import { apiJsonDataGet, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -103,33 +103,11 @@ const ChildSetupList = ({ navigation }: Props) => {
     navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListeditSiblingBtn'),childData:data});
   }
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
-  
-  let apiJsonData = [
-    {
-      apiEndpoint: appConfig.articles,
-      method: 'get',
-      postdata: {
-        // childAge: 'all',
-        childGender: 'all',
-        childAge: '43',
-        // childGender: '40',
-        parentGender: 'all',
-        Seasons: 'all',
-      },
-      saveinDB: true,
-    },
-    // {
-    //   apiEndpoint: appConfig.taxonomies,
-    //   method: 'get',
-    //   postdata: {},
-    //   saveinDB: true,
-    // },
-    // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
-  ];
+
  
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   const getAge=()=>{
     let ageData:any=[];
@@ -148,11 +126,12 @@ const ChildSetupList = ({ navigation }: Props) => {
   const childSetup = async () => {
     // if(netInfo.isConnected){
     const Ages=await getAge();
+    let apiJsonData;
     if(Ages?.length>0){
-    apiJsonData[0].postdata.childAge=String(Ages);  
+      apiJsonData=apiJsonDataGet(String(Ages),"all")
     }
     else{
-    apiJsonData[0].postdata.childAge='all';
+      apiJsonData=apiJsonDataGet("all","all")
     }
     console.log(apiJsonData,"..apiJsonData...")
     navigation.reset({

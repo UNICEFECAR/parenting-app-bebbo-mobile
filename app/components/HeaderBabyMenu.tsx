@@ -58,10 +58,11 @@ const HeaderBabyMenu = (props: any) => {
   //     getAllConfigData(dispatch);
   //   }, []),
   // );
-  const genders = useAppSelector(
+
+   const genders = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
-  );
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+     );
   const [modalVisible, setModalVisible] = useState(false);
   const headerColor = props.headerColor;
   const textColor = props.textColor;
@@ -80,7 +81,7 @@ const HeaderBabyMenu = (props: any) => {
   console.log(currentActiveChild, '..currentActiveChild..');
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
@@ -111,7 +112,7 @@ const HeaderBabyMenu = (props: any) => {
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5></Heading3>
+                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5></Heading3>
                 
               </ProfileSectionView>
               <Heading5>
@@ -161,7 +162,7 @@ const HeaderBabyMenu = (props: any) => {
 
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5></Heading3>
+                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5></Heading3>
                 
               </ProfileSectionView>
               <Heading5>
