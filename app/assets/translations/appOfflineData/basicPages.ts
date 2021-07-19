@@ -1,7 +1,7 @@
 const basicPagesData:any = {
     "en": [
         {
-            "id": "4516",
+            "id": 4516,
             "type": "Basic page",
             "title": "About Us",
             "created_at": "Tue, 06/01/2021 - 08:18",
@@ -11,7 +11,7 @@ const basicPagesData:any = {
             "unique_name": "about_us"
         },
         {
-            "id": "4836",
+            "id": 4836,
             "type": "Basic page",
             "title": "Terms and Conditions",
             "created_at": "Tue, 06/01/2021 - 08:18",
@@ -21,7 +21,7 @@ const basicPagesData:any = {
             "unique_name": "terms_and_conditions"
         },
         {
-            "id": "5911",
+            "id": 5911,
             "type": "Basic page",
             "title": "Privacy Policy",
             "created_at": "Tue, 06/01/2021 - 08:18",
@@ -33,7 +33,7 @@ const basicPagesData:any = {
     ],
     "al-sq": [
         {
-            "id": "4516",
+            "id": 4516,
             "type": "Basic page",
             "title": "About Us",
             "created_at": "Tue, 06/01/2021 - 08:18",
@@ -43,7 +43,7 @@ const basicPagesData:any = {
             "unique_name": "about_us"
         },
         {
-            "id": "4836",
+            "id": 4836,
             "type": "Basic page",
             "title": "Terms and Conditions",
             "created_at": "Tue, 06/01/2021 - 08:18",
@@ -53,7 +53,7 @@ const basicPagesData:any = {
             "unique_name": "terms_and_conditions"
         },
         {
-            "id": "5911",
+            "id": 5911,
             "type": "Basic page",
             "title": "Privacy Policy",
             "created_at": "Tue, 06/01/2021 - 08:18",
