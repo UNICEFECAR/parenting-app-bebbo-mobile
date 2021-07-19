@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
 
 
@@ -66,7 +67,10 @@ const Terms = ({navigation}: Props) => {
     (state: any) => state.utilsData.terms.body,
   );
   
-  
+  const acceptTermsFlag = useAppSelector(
+    (state: any) =>
+      state.utilsData.acceptTerms
+     );
   //console.log("termsdata--",termsdata);
   const apiJsonData = [
     {
@@ -170,18 +174,26 @@ const Terms = ({navigation}: Props) => {
   ];
   const acceptTerms = async () => {
    
-    let acceptTermsRes = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "acceptTerms","true");
-    let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
-  
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'LoadingScreen',
-          params: {apiJsonData: apiJsonData, prevPage: 'Terms'},
-        },
-      ],
-    });
+    // let acceptTermsRes = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "acceptTerms","true");
+    // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
+    
+       if(acceptTermsFlag == false)
+       {
+        dispatch(setAcceptTerms(true));
+       }
+       navigation.navigate('LoadingScreen', {
+        apiJsonData: apiJsonData, 
+        prevPage: 'Terms'
+      });
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [
+    //     {
+    //       name: 'LoadingScreen',
+    //       params: {apiJsonData: apiJsonData, prevPage: 'Terms'},
+    //     },
+    //   ],
+    // });
   };
 
   return (
@@ -307,3 +319,4 @@ const Terms = ({navigation}: Props) => {
 };
 
 export default Terms;
+

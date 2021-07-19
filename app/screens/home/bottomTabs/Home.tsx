@@ -14,6 +14,7 @@ import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3Regular, ShiftFromTop20, ShiftFromTopBottom10, SideSpacing25 } from '@styles/typography';
 import React, { useContext } from 'react';
@@ -21,6 +22,8 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
+import { useAppDispatch, useAppSelector } from '../../../../App';
+import { setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: HomeNavigationProp;
@@ -35,6 +38,23 @@ const Home = () => {
 //     ? JSON.parse(state.childData.childDataSet.allChild)
 //     : state.childData.childDataSet.allChild,
 // );
+const dispatch = useAppDispatch();
+const userIsOnboarded = useAppSelector(
+  (state: any) =>
+    state.utilsData.userIsOnboarded
+   );
+   console.log("home focuseffect--",userIsOnboarded);
+useFocusEffect(
+  React.useCallback(() => {
+    
+    
+       if(userIsOnboarded == false)
+       {
+        dispatch(setuserIsOnboarded(true));
+       }
+  },[])
+);
+// let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
 
   return (
     <>
@@ -90,3 +110,4 @@ const Home = () => {
   );
 };
 export default Home;
+

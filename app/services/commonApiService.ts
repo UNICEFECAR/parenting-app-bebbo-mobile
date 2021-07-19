@@ -100,10 +100,11 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   }
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"--allDatatoStore");
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'Walkthrough'}],
-    });
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{name: 'Walkthrough'}],
+    // });
+    navigation.navigate('Walkthrough');
 }
 export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string) => {
   // navigation.navigate('ChildSetup');

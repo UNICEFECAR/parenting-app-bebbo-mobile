@@ -4,6 +4,8 @@ import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiCon
 
 interface hardcodedDataType {
   // name: string;
+  acceptTerms:boolean,
+  userIsOnboarded:boolean,
   taxonomy: { 
     allTaxonomyData: string;
     languageCode: string;
@@ -37,6 +39,8 @@ interface hardcodedDataType {
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
   // name: 'Rest of the world',
+  acceptTerms:false,
+  userIsOnboarded:false,
   taxonomy: { 
     allTaxonomyData: '',
     languageCode: 'en',
@@ -71,6 +75,16 @@ export const utilsSlice = createSlice({
   name: 'utilsData',
   initialState,
   reducers: {
+    setAcceptTerms:(  state,
+      action: PayloadAction<any>,)=>{
+        console.log(action.payload,"actionpayload setAcceptTerms");
+          state.acceptTerms = action.payload;
+    },
+    setuserIsOnboarded:(  state,
+      action: PayloadAction<any>,)=>{
+        console.log(action.payload,"actionpayload setuserIsOnboarded");
+          state.userIsOnboarded = action.payload;
+    },
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
         // console.log(action.payload,"actionpayload");
@@ -79,22 +93,6 @@ export const utilsSlice = createSlice({
         {
           state.dailymessages = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
         }
-          // console.log("dailyMessages data---",state);
-          // const allDailyMessages = action.payload;
-          // let allRecords = allDailyMessages
-          // //console.log(allRecords,"allDailyMessages");
-          // state.dailymessages =allRecords;
-          // (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
-          // console.log(state);
-          // state.dailymessages = action.payload[0];
-          // action.payload.map((x:any)=> {
-          //  console.log(x.id,x.title)
-          // })
-    //  console.log(action.payload,action.payload[0],"--",typeof action.payload);
-    //     if(action.payload[0])
-    //     {
-    //     state.dailymessages = (typeof action.payload[0].dailyMessages == 'object') ? (JSON.stringify(action.payload[0].dailyMessages)) : (action.payload[0].dailyMessages);
-    //     }
     },
     setAllTaxonomyData: (
       state,
@@ -173,7 +171,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
