@@ -66,8 +66,8 @@ const GrowthChart = (props: any) => {
   let windowHeight = Dimensions.get('window').height;
   const [showFullscreen, setShowFullscreen] = React.useState(false);
   let orientation: 'portrait' | 'landscape' =
-    windowWidth > windowHeight ? 'landscape' : 'portrait';
-
+  windowHeight > windowWidth ? 'landscape' : 'portrait';
+console.log(orientation,"orientation");
   let chartHeight = showFullscreen
     ? Dimensions.get('window').height - 120
     : windowHeight - 300;
@@ -90,13 +90,13 @@ const GrowthChart = (props: any) => {
     <>
       <VictoryChart
         theme={VictoryTheme.material}
-        width={windowWidth - 30}
+        width={orientation=='portrait' ? windowWidth - 30 : windowHeight-30}
         height={chartHeight}>
         {/* ********* AXIS HORIZONTAL ********* */}
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          axisLabelComponent={<VictoryLabel x={windowWidth - 60} />}
+          axisLabelComponent={<VictoryLabel x={orientation=='portrait' ? windowWidth - 60 : windowHeight-60} />}
         />
 
         {/* ********* AXIS VERTICAL ********* */}
@@ -265,7 +265,7 @@ const GrowthChart = (props: any) => {
         )}
       </View>
       <GrowthInterpretation  activeChild={activeChild}
-              chartType={chartTypes.weightForHeight}
+              chartType={chartType}
               standardDeviation={standardDeviation}/>
     </>
   );
