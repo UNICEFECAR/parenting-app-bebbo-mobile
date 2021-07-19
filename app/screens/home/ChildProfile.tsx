@@ -51,7 +51,7 @@ const ChildProfile = ({navigation}: Props) => {
   const secopndaryTintColor = themeContext.colors.SECONDARY_TINTCOLOR;
   const genders = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
   const dispatch = useAppDispatch();
   // useFocusEffect(
@@ -73,7 +73,7 @@ const ChildProfile = ({navigation}: Props) => {
 const currentActiveChild =activeChild.uuid;
 const child_age = useAppSelector(
   (state: any) =>
-    JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+  state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
 );
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
@@ -90,7 +90,7 @@ const child_age = useAppSelector(
       : [];
    const relationshipData = useAppSelector(
         (state: any) =>
-          JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+        state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
       );
       console.log(relationshipData,"..relationshipData..")
     let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => String(o.id) === userParentalRoleData[0].value):'';
@@ -124,7 +124,7 @@ const child_age = useAppSelector(
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
-              <Heading3>{data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5>
+              <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
               </Heading3>
             </ProfileSectionView>
             <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
@@ -181,7 +181,7 @@ const child_age = useAppSelector(
             <ProfileTextView>
               <ProfileSectionView style={{alignItems:'flex-start'}}>
                 <Heading3>
-                  {data.childName}, <Heading5 style={{fontWeight:'regular'}}>{genderName}</Heading5>
+                  {data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
                 </Heading3>
                 
                 
@@ -252,7 +252,7 @@ const child_age = useAppSelector(
         <FlexCol>
         <AreaContainer>
           <View style={{flexDirection: 'column'}}>
-            <ScrollView style={{height: 'auto'}} nestedScrollEnabled={true}>
+            <ScrollView style={{maxHeight:'70%',height:'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
                   const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => String(genderset.id) === item.gender).name:item.gender;

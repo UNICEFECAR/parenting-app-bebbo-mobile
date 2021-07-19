@@ -17,6 +17,7 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { formatStringDate } from '../services/Utils';
 import { Heading2w, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,6 +28,8 @@ import {
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
+import { DateTime } from 'luxon';
+import { dobMax } from '@types/types';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -54,7 +57,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
   };
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
@@ -66,7 +69,7 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     setdobShow(true);
   };
   const AddChild = async () => {
-    let insertData: any =await getNewChild( '',"true", plannedTermDate, '',null, '',name, '', '');
+    let insertData: any =await getNewChild( '',"true", null, '',plannedTermDate, '',name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
     addChild(false, 2, childSet, dispatch, navigation,child_age);
@@ -124,7 +127,8 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               <LabelText> {t('expectChildDueDateTxt')}</LabelText>
               <FormInputBox>
                 <FormDateText>
-                  <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text>
+                  {/* <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text> */}
+                  <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
@@ -137,6 +141,8 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             {showdob && (
               <DateTimePicker
                 testID="dobdatePicker"
+                minimumDate={ new Date(DateTime.local().toISODate())}
+                maximumDate={ new Date(dobMax)}  
                 value={new Date()}
                 mode={'date'}
                 display="default"
@@ -166,17 +172,18 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
         <ShiftFromTop10>
         <ButtonContainer>
             <ButtonPrimary
+            disabled={plannedTermDate==null || plannedTermDate==undefined || name==null || name==undefined || name=="" ? true :false}
               onPress={() => {
                 //navigation.navigate('ChildProfileScreen');
-                if(plannedTermDate==null || plannedTermDate==undefined){
-                  Alert.alert('Please enter due date');
-                }
-                else if(name==null || name==undefined || name==""){
-                  Alert.alert('Please enter name');
-                }
-                else{
+                // if(plannedTermDate==null || plannedTermDate==undefined){
+                //   Alert.alert('Please enter due date');
+                // }
+                // else if(name==null || name==undefined || name==""){
+                //   Alert.alert('Please enter name');
+                // }
+                //else{
                 AddChild();
-                }
+               // }
               }}>
               <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
