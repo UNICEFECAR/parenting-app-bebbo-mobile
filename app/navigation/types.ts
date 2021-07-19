@@ -12,6 +12,7 @@ export type RootStackParamList = {
   AddExpectingChildProfile:undefined;
   EditParentDetails:undefined;
   AddNewChildgrowth:undefined;
+  ChartFullScreen:undefined;
   AddNewChildWeight:undefined;
   AddNewChildHeight:undefined;
   AddChildVaccination:undefined;

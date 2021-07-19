@@ -20,8 +20,7 @@ import {
   Pressable,
   StyleSheet,
   TouchableOpacity,
-  View,
-  Text
+  View
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {

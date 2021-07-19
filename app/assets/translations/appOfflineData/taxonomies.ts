@@ -5325,72 +5325,72 @@ export const taxonomydata:any = {
                 {
                     "id": "6466",
                     "name": "At birth",
-                    "vaccination_opens": null
+                    "vaccination_opens": 0
                 },
                 {
                     "id": "6471",
                     "name": "With 1 month",
-                    "vaccination_opens": null
+                    "vaccination_opens": 30
                 },
                 {
                     "id": "6476",
                     "name": "With 2 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 60
                 },
                 {
                     "id": "6481",
                     "name": "With 3.5 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 100
                 },
                 {
                     "id": "6486",
                     "name": "With 5 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 152
                 },
                 {
                     "id": "6491",
                     "name": "With 6 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 182
                 },
                 {
                     "id": "6496",
                     "name": "With 9 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 274
                 },
                 {
                     "id": "6501",
                     "name": "From 12 to 15 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 365
                 },
                 {
                     "id": "6506",
                     "name": "With 18 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 545
                 },
                 {
                     "id": "6511",
                     "name": "Within 3rd year\n(24 - 30 months)",
-                    "vaccination_opens": null
+                    "vaccination_opens": 730
                 },
                 {
                     "id": "6516",
                     "name": "30 - 36 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 900
                 },
                 {
                     "id": "6521",
                     "name": "36 - 48 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 1080
                 },
                 {
                     "id": "6526",
                     "name": "48 - 61 months",
-                    "vaccination_opens": null
+                    "vaccination_opens": 1440
                 },
                 {
                     "id": "6531",
                     "name": "6/7 years",
-                    "vaccination_opens": null
+                    "vaccination_opens": 2160
                 }
             ],
             "growth_type": [

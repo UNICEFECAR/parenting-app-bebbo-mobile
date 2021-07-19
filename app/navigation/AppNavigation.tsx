@@ -11,6 +11,7 @@ import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
 import AddNewChildHeight from '@screens/growth/AddNewChildHeight';
 import AddNewChildWeight from '@screens/growth/AddNewChildWeight';
 import AllChildgrowthMeasures from '@screens/growth/AllChildgrowthMeasures';
+import { ChartFullScreen } from '@screens/growth/ChartFullScreen';
 import AddChildHealthCheckup from '@screens/healthCheckup/AddChildHealthCheckup';
 import DetailsScreen from '@screens/home/DetailsScreen';
 import EditChildProfile from '@screens/home/EditChildProfile';
@@ -24,7 +25,7 @@ import React, { useEffect } from 'react';
 import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
-import { useAppDispatch, useAppSelector } from '../../App';
+import { useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
@@ -109,7 +110,7 @@ export default () => {
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
       <NavigationContainer
-        // initialState={initialState}
+        initialState={initialState}
         onStateChange={(state) =>
           AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
         }>
@@ -210,6 +211,11 @@ export default () => {
             name="AllChildgrowthMeasures"
             options={{headerShown: false}}
             component={AllChildgrowthMeasures}
+          />
+          <RootStack.Screen
+            name="ChartFullScreen"
+            options={{headerShown: false}}
+            component={ChartFullScreen}
           />
           <RootStack.Screen
             name="DetailsScreen"
