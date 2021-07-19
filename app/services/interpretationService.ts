@@ -1,3 +1,4 @@
+import { useAppSelector } from './../../App';
 import { MeasurementEntity } from './../database/schema/measurementDataSchema';
 import { DateTime } from 'luxon';
 export interface InterpretationText {
@@ -7,7 +8,7 @@ export interface InterpretationText {
 }
 export const getInterpretationWeightForHeight = (standardDeviation: any, gender: string, childBirthDate: any, childTaxonomyData:any,lastMeasurements: MeasurementEntity) => {
 const childAgeId = childTaxonomyData.id;
-    
+    // console.log(standardDeviation,"<standardDeviation>")
     let interpretationText: InterpretationText | undefined = {
         name: "",
         text: "",
@@ -16,12 +17,16 @@ const childAgeId = childTaxonomyData.id;
 
     let goodMeasure: boolean | undefined = false;
 
-    let chartData;
-    if (gender == '40' || gender == '') {
-        chartData = require("../assets/translations/appOfflineData/boystandardDeviation.json");
-    } else {
-        chartData = require("../assets/translations/appOfflineData/girlstandardDeviation.json");
-    };
+    let chartData= standardDeviation.filter(
+        (item) => item.growth_type == 6461 && item.growth_type == gender,
+      );
+     
+    // if (gender == '40' || gender == '') {
+    //     chartData = require("../assets/translations/appOfflineData/boystandardDeviation.json");
+    //     // chartData = require("../assets/translations/appOfflineData/boystandardDeviation.json");
+    // } else {
+    //     chartData = require("../assets/translations/appOfflineData/girlstandardDeviation.json");
+    // };
     // console.log(chartData);
     let weight: any = 0.0;
     let height: any = 0.0;
@@ -29,9 +34,13 @@ const childAgeId = childTaxonomyData.id;
         weight = parseFloat(lastMeasurements.weight) / 1000;
         height = Number(lastMeasurements.height).toFixed(1);
     };
-    // console.log(height,"height");
-    let filteredDataForHeight = chartData.find(data =>  {
-        return  (data.name == height &&  data.growth_type==6461)})
+    console.log(height,"height");
+    let filteredDataForHeight = chartData.filter(
+        (item) => (item.name == height  && item.growth_type == 6461),
+      );
+    
+    // .find(data =>  {
+    //       (data.name == height &&  data.growth_type==6461})
     console.log(filteredDataForHeight,"filteredDataForHeight<weightForHeight>");
     let childAgeInDays = 0;
     let measurementDate: DateTime = DateTime.local();
@@ -42,8 +51,13 @@ const childAgeId = childTaxonomyData.id;
 
         if (convertInDays !== undefined) childAgeInDays = Math.round(convertInDays);
     };
-    let allinterpretationData = require("../assets/translations/appOfflineData/interpretation.json");
-    allinterpretationData = allinterpretationData['weight_for_height'];
+    // let allinterpretationData = require("../assets/translations/appOfflineData/interpretation.json");
+    const allinterpretationData = useAppSelector(
+        (state: any) =>
+        JSON.parse(state.utilsData.weight_for_height),
+      );
+      
+    // allinterpretationData = allinterpretationData['weight_for_height'];
     // console.log(allinterpretationData, "allinterpretationData_weight_for_height");
 
     let interpretationData = allinterpretationData?.find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
@@ -125,9 +139,15 @@ export const getInterpretationHeightForAge = (standardDeviation: any, gender: st
     let filteredData = chartData.find(data =>  {
         return  (data.name == days &&  data.growth_type==6456)})
         console.log("filteredData <height>",filteredData)
-    let allinterpretationData = require("../assets/translations/appOfflineData/interpretation.json");
+
+
+        const allinterpretationData = useAppSelector(
+            (state: any) =>
+            JSON.parse(state.utilsData.height_for_age),
+          );
+    // let allinterpretationData = require("../assets/translations/appOfflineData/interpretation.json");
     // allinterpretationData = allinterpretationData['weight_for_height'];
-    allinterpretationData = allinterpretationData['height_for_age'];
+    // allinterpretationData = allinterpretationData['height_for_age'];
     console.log(allinterpretationData, "allinterpretationData_height_for_age");
     // let allinterpretationData = translateData('interpretationLenghtForAge') as (TranslateDataInterpretationLenghtForAge | null)
 

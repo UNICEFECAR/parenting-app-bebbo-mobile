@@ -1,6 +1,5 @@
 import { BgContainer } from '@components/shared/Container';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
 import VaccineItem from './VaccineItem';
 
 const plannedVaccines = [
