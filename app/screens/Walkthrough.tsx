@@ -22,7 +22,7 @@ import WalkthroughContainer, {
   WalkthroughTitle
 } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -173,11 +173,7 @@ const Walkthrough = ({navigation}: Props) => {
   const [showPrevbtn, setShowPrevbtn] = useState(false);
   const [isDotsRequired, setIsDotsRequired] = useState(true);
   const [statubarColor, setstatubarColor] = useState(headerColor);
-  useFocusEffect(
-    React.useCallback(() => {
-     console.log("in walkthrough focus");
-    },[])
-  );
+  
   const onSlideChange = (index: number) => {
     // console.log(index," --index----",lastIndex);
     index == 3 ? setShowPrevbtn(true) : setShowPrevbtn(false);
@@ -192,15 +188,29 @@ const Walkthrough = ({navigation}: Props) => {
       ? setstatubarColor('#FF8D6B')
       : setstatubarColor(headerColor);
   };
+useFocusEffect(
+  React.useCallback(() => {
+    navigation.dispatch(state => {
+      // Remove the home route from the stack
+      const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+    
+      return CommonActions.reset({
+        ...state,
+        routes,
+        index: routes.length - 1,
+      });
+    });
+  },[])
+);
   const onDone = () => {
     // User finished the introduction. Show real app through
     // navigation or simply by controlling state
     // this.setState({ showRealApp: true });
-    // navigation.navigate('Terms');
-    navigation.reset({
-      index: 0,
-      routes: [{name: 'Terms'}],
-    });
+    navigation.navigate('Terms');
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{name: 'Terms'}],
+    // });
   };
 const goBackSlide = ()=>{
   slider?.goToSlide(2, true);

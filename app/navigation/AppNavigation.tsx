@@ -39,11 +39,16 @@ export default () => {
   //   (state: any) => state.selectedCountry.countryId,
   // );
 
-  const childList = useAppSelector((state: any) =>
-    state.childData.childDataSet.allChild != ''
-      ? JSON.parse(state.childData.childDataSet.allChild)
-      : state.childData.childDataSet.allChild,
-  );
+  // const childList = useAppSelector((state: any) =>
+  //   state.childData.childDataSet.allChild != ''
+  //     ? JSON.parse(state.childData.childDataSet.allChild)
+  //     : state.childData.childDataSet.allChild,
+  // );
+  const userIsOnboarded = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsOnboarded
+     );
+     console.log("userIsOnboarded appnav--",userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [initialState, setInitialState] = React.useState();
@@ -104,13 +109,13 @@ export default () => {
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
       <NavigationContainer
-        initialState={initialState}
+        // initialState={initialState}
         onStateChange={(state) =>
           AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
         }>
         <RootStack.Navigator
           initialRouteName={
-            childList?.length > 0 ? 'HomeDrawerNavigator' : 'Localization'
+            userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
           }>
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
