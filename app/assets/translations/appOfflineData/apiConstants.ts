@@ -1,10 +1,9 @@
-//import { apiUrlDevelop } from "react-native-dotenv";
+import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
-const apiUrlDevelop='REMOVED_FACEBOOK_CLIENT_TOKEN2';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     //console.log("in finalurl", apiUrlDevelop);
    
