@@ -352,6 +352,9 @@ const en = {
             onBirthDay:"Birth",
             month:"month",
             localizationChangeModalText:"Once new country is selected, the content might be different,but once new language within a country is chosen, the content should be the same,just in a different language",
+            growthChartLegendSilverLabel:"Typical Values for age",
+            growthChartLegendOrangeLabel:"Typical Values for age",
+            // warningforGenderOnGraph :"Enter child gender",
 
             
     }
