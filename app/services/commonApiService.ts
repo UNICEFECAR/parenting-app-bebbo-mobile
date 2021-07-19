@@ -62,7 +62,13 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     });
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
-  navigation.navigate('ChildProfileScreen'); 
+ response = response[0];
+ console.log(response,"..resonse..")
+ if(response.data && response.data.status && response.data.status == 200)
+ {
+  //let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+  //navigation.navigate('ChildProfileScreen'); 
+ }
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){

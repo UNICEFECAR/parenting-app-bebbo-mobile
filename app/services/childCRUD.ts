@@ -201,7 +201,8 @@ if(diff.years<=0 && diff.months<=0 && diff.days<=0){
   if(diff.months>0){ 
     ageStr+= diff.months + (diff.months>1 ? t('monthstag'):t('monthtag'));
   }
-  if(diff.days>0){ 
+  // if(diff.days>0){ 
+    if(diff.days >0 && diff.months <0 && diff.years <0){ 
     ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ?  t('daystag'):  t('daytag'));
   }
   if(ageStr == ""){
@@ -272,15 +273,16 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
     if(taxonomyData?.length>0){
       apiJsonData=apiJsonDataGet(String(taxonomyData),"all");
       console.log(apiJsonData,"..apiJsonData..");
-      navigation.navigate({
-        index: 0,
-        routes: [
-          {
-            name: 'LoadingScreen',
-            params: { apiJsonData: apiJsonData, prevPage: 'AddEditChild' },
-          },
-        ],
-      });
+   //   console.log(navigation,"..navigation")
+      // navigation.navigate(
+      //        name: 'LoadingScreen',
+      //       params: { apiJsonData: apiJsonData, prevPage: 'AddEditChild' },
+          
+      // );
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: apiJsonData,
+        prevPage: 'AddEditChild'
+        });
     }
   
     }
