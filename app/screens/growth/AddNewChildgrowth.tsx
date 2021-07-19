@@ -135,7 +135,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const dispatch = useAppDispatch();
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   // console.log(activeChild,"in add new");
   const getDefaultGrowthPlace = () => {
