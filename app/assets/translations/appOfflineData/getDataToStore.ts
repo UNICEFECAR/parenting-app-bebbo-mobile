@@ -79,9 +79,10 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
         {
             if(currentChildData && currentChildData != "")
             {
-                const filterQuery = '(child_age == "'+currentChildData.taxonomyData.id+'" || child_age == "") && (category == "2" || category == "4" || category == "1" || category == "55" || category == "56" || category == "3")';
+                const filterQuery = '(child_age == '+currentChildData.taxonomyData.id+' || child_age == 0)';
                 console.log(filterQuery,"..filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse,filterQuery);
+                console.log(databaseData.length);
                 dataToStore = databaseData;
             }else {
                 dataToStore = databaseData2;

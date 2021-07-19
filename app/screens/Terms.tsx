@@ -109,12 +109,12 @@ const Terms = ({navigation}: Props) => {
       postdata: {},
       saveinDB: true,
     },
-    {
-      apiEndpoint: appConfig.childGrowthData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
+    // {
+    //   apiEndpoint: appConfig.childGrowthData,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
     {
       apiEndpoint: appConfig.vaccinations,
       method: 'get',

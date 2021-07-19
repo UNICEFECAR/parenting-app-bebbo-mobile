@@ -4,14 +4,14 @@ export type ChildDevelopmentEntity = {
     id: number,
     type: string,
     title: string,
-    body: string,
-    child_age: string[],
-    boy_article: string,
-    girl_article: string,
+    // body: string,
+    child_age: number[],
+    boy_video_article: number,
+    girl_video_article: number,
     milestone: string,
     created_at: string,
     updated_at: string,
-    mandatory: string,
+    mandatory: number,
   };
 
 
@@ -24,13 +24,13 @@ export type ChildDevelopmentEntity = {
       id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
-      body: { type: 'string' },
-      child_age: { type: 'string[]' },
-      boy_article: { type: 'string' },
-      girl_article: { type: 'string' },
+      // body: { type: 'string' },
+      child_age: { type: 'int[]' },
+      boy_video_article: { type: 'int' },
+      girl_video_article: { type: 'int' },
       milestone: { type: 'string' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
-      mandatory: { type: 'string' },
+      mandatory: { type: 'int' },
     }
   };

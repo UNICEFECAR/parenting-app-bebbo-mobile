@@ -8,12 +8,12 @@ export type MilestonesEntity = {
     created_at: string,
     updated_at: string,
     body: string,
-    child_age: string[],
-    related_activities: string[],
-    related_video_articles: string[],
+    child_age: number[],
+    related_activities: number[],
+    related_video_articles: number[],
     // related_articles: string[],
     
-    mandatory: string,
+    mandatory: number,
   };
 
 
@@ -29,11 +29,11 @@ export type MilestonesEntity = {
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
       body: { type: 'string' },
-      child_age: { type: 'string[]' },
-      related_activities: { type: 'string[]' },
-      related_video_articles: { type: 'string[]' },
+      child_age: { type: 'int[]' },
+      related_activities: { type: 'int[]' },
+      related_video_articles: { type: 'int[]' },
     //   related_articles: { type: 'string[]' },
       
-      mandatory: { type: 'string' },
+      mandatory: { type: 'int' },
     }
   };
