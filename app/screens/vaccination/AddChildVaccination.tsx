@@ -44,6 +44,7 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
+import { getAllPeriods } from '../../services/vacccineService';
 
 const AddChildVaccination = ({route, navigation}: any) => {
   const {t} = useTranslation();
@@ -63,6 +64,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
     {title: t('vcIsMeasuredOption2')},
   ];
   const defaultMeasured = {title: ''};
+  getAllPeriods();
   const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
   //  console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);

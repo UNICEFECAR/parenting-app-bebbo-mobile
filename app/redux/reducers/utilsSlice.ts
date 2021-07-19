@@ -35,6 +35,15 @@ interface hardcodedDataType {
   IsHeightModalOpened:boolean,
   IsArticleModalOpened:boolean,
   dailymessages:string,
+  vaccineData:{
+    id: number,
+    type: string,
+    title: string,
+    pinned_article: string[],
+    growth_period: number,
+    created_at: string,
+    updated_at: string
+  }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -157,7 +166,15 @@ export const utilsSlice = createSlice({
       ) => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.height_for_age = action.payload;
-      }
+      },
+      setAllVaccineData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllVaccineData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.vaccineData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -171,7 +188,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
