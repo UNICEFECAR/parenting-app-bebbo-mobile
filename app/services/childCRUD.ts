@@ -201,8 +201,9 @@ if(diff.years<=0 && diff.months<=0 && diff.days<=0){
   if(diff.months>0){ 
     ageStr+= diff.months + (diff.months>1 ? t('monthstag'):t('monthtag'));
   }
+  console.log(diff,"..diffff...")
   // if(diff.days>0){ 
-    if(diff.days >0 && diff.months <0 && diff.years <0){ 
+    if(diff.days != "" && diff.months == "" && diff.years == ""){ 
     ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ?  t('daystag'):  t('daytag'));
   }
   if(ageStr == ""){
