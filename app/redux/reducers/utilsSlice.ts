@@ -12,19 +12,19 @@ interface hardcodedDataType {
     standardDevData: string;
   },
   aboutus:{
-    id:string;
+    id:number;
     title:string;
     body:string;
     unique_name:string;
   },
   terms:{
-    id:string;
+    id:number;
     title:string;
     body:string;
     unique_name:string;
   },
   privacypolicy:{
-    id:string;
+    id:number;
     title:string;
     body:string;
     unique_name:string;
@@ -47,19 +47,19 @@ const initialState: hardcodedDataType = {
     standardDevData: '',
   },
   aboutus:{
-    id:'',
+    id:0,
     title:'',
     body:'',
     unique_name:''
   },
   terms:{
-    id:'',
+    id:0,
     title:'',
     body:'',
     unique_name:''
   },
   privacypolicy:{
-    id:'',
+    id:0,
     title:'',
     body:'',
     unique_name:''
@@ -157,7 +157,7 @@ export const utilsSlice = createSlice({
       ) => {
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.height_for_age = action.payload;
-      },
+      }
   },
   // extraReducers: (builder) => {
   //   builder
