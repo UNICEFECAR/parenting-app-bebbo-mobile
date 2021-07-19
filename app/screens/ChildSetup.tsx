@@ -11,6 +11,7 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -68,6 +69,20 @@ const ChildSetup = ({ navigation }: Props) => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      navigation.dispatch(state => {
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+      
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
+      });
+    },[])
+  );
 const AddChild=async ()=>{
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
