@@ -1,3 +1,4 @@
+import { onAddEditChildSuccess } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -128,10 +129,15 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   if (prevPage == 'Terms') {
     //dispatch action for terms page
     yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
-  } else if (prevPage == 'CountryLanguageSelection') {
+  } else if (prevPage == 'AddEditChild') {
+    //dispatch action for sponsor page
+    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage)
+  }
+  else if (prevPage == 'CountryLanguageSelection') {
     //dispatch action for sponsor page
     yield call(onSponsorApiSuccess, response, dispatch, navigation, languageCode, prevPage)
-  } else if (prevPage == 'ChilSetup') {
+  }
+   else if (prevPage == 'ChilSetup') {
     //dispatch action for before home page
     yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
