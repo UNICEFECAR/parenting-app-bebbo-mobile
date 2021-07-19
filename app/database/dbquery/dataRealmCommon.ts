@@ -151,6 +151,16 @@ class DataRealmCommon {
                                         obj[0].isarticle_pinned = articleRelation;
                                         // console.log(Array.from(obj),"---obj after");
                                     }
+                                    else{
+                                        record.cover_image = JSON.stringify(record.cover_image);
+                                        if(obj[0].isarticle_pinned != "1"){
+                                        record.isarticle_pinned = articleRelation;
+                                        }
+                                        else{
+                                            record.isarticle_pinned = isArticlePinned;
+                                        }
+                                        realm?.create<Entity>(entitySchema.name, record,"modified");
+                                    }
                                 }else {
                                     record.cover_image = JSON.stringify(record.cover_image);
                                     record.isarticle_pinned = articleRelation;

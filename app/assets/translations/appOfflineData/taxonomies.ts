@@ -5226,18 +5226,15 @@ export const taxonomydata:any = {
             ],
             "child_gender": [
                 {
-                    "id": "40",
-                    "name": "Male"
+                    "id": 40,
+                    "name": "Boy"
                 },
                 {
-                    "id": "41",
-                    "name": "Female"
-                },
-                {
-                    "id": "59",
-                    "name": "Both"
+                    "id": 41,
+                    "name": "Girl"
                 }
             ],
+       
             "growth_introductory": [
                 {
                     "id": "6536",
