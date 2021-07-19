@@ -94,7 +94,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   let genders = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
   genders = genders.map((v) => ({...v, title: v.name}));
   //console.log(genders,"..genders..");
@@ -133,7 +133,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const [destPath, setDestPath] = React.useState<string>('');
   const child_age = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age,
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   const sendData = (data: any) => {
     // the callback. Use a better name
