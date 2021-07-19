@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { VictoryAreaProps } from 'victory-area';
@@ -62,15 +62,61 @@ const GrowthChart = (props: any) => {
   const labelY = chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
 //   console.log(labelX, labelY);
 //   const [obj, setObj] = useState([]);
+
+
+const [deviceOrientation, setDeviceOrientation] = useState(
+  Dimensions.get('window').width < Dimensions.get('window').height
+    ? 'portrait'
+    : 'landscape'
+);
+const [deviceHeight, setDeviceHeight] = useState(
+  Dimensions.get('window').width < Dimensions.get('window').height
+    ? Dimensions.get('window').height
+    : Dimensions.get('window').width
+);
+
+useEffect(() => {
+  const setDeviceHeightAsOrientation = () => {
+    if (Dimensions.get('window').width < Dimensions.get('window').height) {
+      setDeviceHeight(Dimensions.get('window').height);
+    } else {
+      setDeviceHeight(Dimensions.get('window').width);
+    }
+  };
+  Dimensions.addEventListener('change', setDeviceHeightAsOrientation);
+  return () => {
+    //cleanup work
+    Dimensions.removeEventListener('change', setDeviceHeightAsOrientation);
+  };
+});
+
+useEffect(() => {
+  const deviceOrientation = () => {
+    if (Dimensions.get('window').width < Dimensions.get('window').height) {
+      setDeviceOrientation('portrait');
+    } else {
+      setDeviceOrientation('landscape');
+    }
+  };
+  Dimensions.addEventListener('change', deviceOrientation);
+  return () => {
+    //cleanup work
+    Dimensions.removeEventListener('change', deviceOrientation);
+  };
+});
+
+
   let windowWidth = Dimensions.get('window').width;
   let windowHeight = Dimensions.get('window').height;
   const [showFullscreen, setShowFullscreen] = React.useState(false);
-  let orientation: 'portrait' | 'landscape' =
-  windowHeight > windowWidth ? 'landscape' : 'portrait';
-console.log(orientation,"orientation");
-  let chartHeight = showFullscreen
-    ? Dimensions.get('window').height - 120
-    : windowHeight - 300;
+  // let orientation: 'portrait' | 'landscape' =
+  // windowHeight > windowWidth ?  'portrait':'landscape' ;
+
+
+
+
+console.log(deviceOrientation,"orientation");
+
   let convertedMeasures = convertMeasuresData(
     activeChild.measures,
     childBirthDate
@@ -90,19 +136,21 @@ console.log(orientation,"orientation");
     <>
       <VictoryChart
         theme={VictoryTheme.material}
-        width={orientation=='portrait' ? windowWidth - 30 : windowHeight-30}
-        height={chartHeight}>
+        width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
+        height={deviceOrientation === 'portrait' ?
+        windowHeight - 120
+          : windowHeight-50}>
         {/* ********* AXIS HORIZONTAL ********* */}
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          axisLabelComponent={<VictoryLabel x={orientation=='portrait' ? windowWidth - 60 : windowHeight-60} />}
+          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-50 : windowHeight-30} />}
         />
 
         {/* ********* AXIS VERTICAL ********* */}
         <VictoryAxis
           style={victoryStyles.VictoryAxisVertical}
-          axisLabelComponent={<VictoryLabel y={30} />}
+          axisLabelComponent={<VictoryLabel y={deviceOrientation === 'portrait' ? 25 :30} />}
           dependentAxis
           label={labelY}
         />
