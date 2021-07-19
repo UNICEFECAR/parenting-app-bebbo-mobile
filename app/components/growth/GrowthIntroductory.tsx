@@ -6,10 +6,11 @@ import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 
 const GrowthIntroductory = (props: any) => {
   let {activeChild} = props;
-  const growthIntroductoryData = useAppSelector(
+  const taxonomy = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_introductory,
+      (state.utilsData.taxonomy?.allTaxonomyData!="" ? state.utilsData.taxonomy?.allTaxonomyData: {}),
   );
+  const growthIntroductoryData = (taxonomy)?.growth_introductory;
   console.log(growthIntroductoryData,"growthIntroductoryData");
   const childBirthDate = activeChild.birthDate;
   const childGender = activeChild.gender;

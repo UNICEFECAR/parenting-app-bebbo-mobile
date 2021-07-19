@@ -22,13 +22,17 @@ const childAgeId = childTaxonomyData.id;
     } else {
         chartData = require("../assets/translations/appOfflineData/girlstandardDeviation.json");
     };
-    let weight: number = 0;
-    let height: number = 0;
+    // console.log(chartData);
+    let weight: any = 0.0;
+    let height: any = 0.0;
     if (lastMeasurements !== undefined && lastMeasurements.weight && lastMeasurements.height) {
         weight = parseFloat(lastMeasurements.weight) / 1000;
-        height = parseFloat(lastMeasurements.height);
+        height = Number(lastMeasurements.height).toFixed(1);
     };
-    let filteredDataForHeight = chartData.find(data => data.name === height);
+    // console.log(height,"height");
+    let filteredDataForHeight = chartData.find(data =>  {
+        return  (data.name == height &&  data.growth_type==6461)})
+    console.log(filteredDataForHeight,"filteredDataForHeight<weightForHeight>");
     let childAgeInDays = 0;
     let measurementDate: DateTime = DateTime.local();
     if (childBirthDate) {
@@ -42,8 +46,7 @@ const childAgeId = childTaxonomyData.id;
     allinterpretationData = allinterpretationData['weight_for_height'];
     // console.log(allinterpretationData, "allinterpretationData_weight_for_height");
 
-    let interpretationData = allinterpretationData?.
-    find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
+    let interpretationData = allinterpretationData?.find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
 
 // console.log(interpretationData,"filtered");
 
@@ -80,9 +83,8 @@ const childAgeId = childTaxonomyData.id;
         goodMeasure: goodMeasure,
     };
 }
-export const getInterpretationHeightForAge = (standardDeviation: any, gender: string, childBirthDate: any, lastMeasurements: MeasurementEntity) => {
-    const childAgeId = dataRealmStore.getChildAgeTagWithArticles()?.id;
-
+export const getInterpretationHeightForAge = (standardDeviation: any, gender: string, childBirthDate: any,childTaxonomyData:any, lastMeasurements: MeasurementEntity) => {
+    const childAgeId = childTaxonomyData.id;
     let interpretationText: InterpretationText | undefined = {
         name: "",
         text: "",
@@ -120,7 +122,9 @@ export const getInterpretationHeightForAge = (standardDeviation: any, gender: st
 
         if (convertInDays !== undefined) days = Math.round(convertInDays);
     };
-    let filteredData = chartData.find(data => data.name === days);
+    let filteredData = chartData.find(data =>  {
+        return  (data.name == days &&  data.growth_type==6456)})
+        console.log("filteredData <height>",filteredData)
     let allinterpretationData = require("../assets/translations/appOfflineData/interpretation.json");
     // allinterpretationData = allinterpretationData['weight_for_height'];
     allinterpretationData = allinterpretationData['height_for_age'];
@@ -129,7 +133,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, gender: st
 
 
     let interpretationData = allinterpretationData?.
-        find(item => item.predefined_tags.indexOf(childAgeId ? childAgeId : 0) !== -1);
+        find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
 
 
     if (filteredData !== undefined) {
