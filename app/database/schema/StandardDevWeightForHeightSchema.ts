@@ -1,13 +1,14 @@
 import { ObjectSchema } from "realm";
 
 export type StandDevObjEntity = {
+  articleID:number[],
   name:string;
   text:string;
 }
 
 export type StandardDevWeightForHeightEntity = {
     // id: number,
-    child_age: string[],
+    child_age: number[],
     goodText: StandDevObjEntity,
     warrningSmallHeightText: StandDevObjEntity,
     emergencySmallHeightText: StandDevObjEntity,
@@ -32,7 +33,7 @@ export type StandardDevWeightForHeightEntity = {
     // API: https://bit.ly/3f7k9jq
     properties: {
       // id: { type: 'int' },
-      child_age: { type: 'string[]' },
+      child_age: { type: 'int[]' },
       goodText: 'StandDevObj',
       warrningSmallHeightText: 'StandDevObj',
       emergencySmallHeightText: 'StandDevObj',
