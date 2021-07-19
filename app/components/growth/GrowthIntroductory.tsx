@@ -8,7 +8,7 @@ const GrowthIntroductory = (props: any) => {
   let {activeChild} = props;
   const taxonomy = useAppSelector(
     (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData!="" ? state.utilsData.taxonomy?.allTaxonomyData: {}),
+      (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
   );
   const growthIntroductoryData = (taxonomy)?.growth_introductory;
   console.log(growthIntroductoryData,"growthIntroductoryData");
