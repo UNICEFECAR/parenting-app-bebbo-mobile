@@ -12,6 +12,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/C
 import { removeChild, setActiveChildData, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import { DateTime } from 'luxon';
+import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
@@ -130,24 +131,23 @@ export const checkBetween=async (param:any,users:any,child_age:any)=>{
   //  console.log(ageData,"..ageData..")
   return ageData;
 }
-export const getCurrentChildAgeInDays = (birthDayMillis?: number, currentMillis?: number) => {
-  let childBirthDay = birthDayMillis ? birthDayMillis :null;
-  //console.log(childBirthDay,"..childBirthDay..")
-  let timeNow = DateTime.local();
-  if (currentMillis) {
-      timeNow = DateTime.fromMillis(currentMillis);
-  }
-
-  let days: number = 0;
-
-  if (childBirthDay) {
-      let date = DateTime.fromMillis(childBirthDay);
-      // let convertInDays = Math.abs(timeNow.diff(date, "days").toObject().days);
-      const diff = Math.abs(date.diffNow().as('day'));
-      const convertInDays = Math.round(diff);
-      if (convertInDays !== undefined) days = convertInDays;
-  };
-  return days;
+export const getCurrentChildAgeInDays = (birthDayMillis: number) => {
+    let childBirthDay = birthDayMillis;
+    let timeNow:any = DateTime.local().toMillis();
+    timeNow = DateTime.fromMillis(timeNow);
+    let days: number = 0;
+    if (childBirthDay) {
+        let date = DateTime.fromMillis(childBirthDay);
+        let convertInDays = timeNow.diff(date, "days").toObject().days;
+        if (convertInDays !== undefined && convertInDays>0) {
+          days = Math.round(convertInDays);
+        }
+        else{
+          days=0;
+        }
+    };
+   console.log(days,"..days..");
+    return days;
 };
 export const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
@@ -188,20 +188,21 @@ export const getCurrentChildAgeInMonths = (t:any,birthDate:string) => {
 const date1 = DateTime.fromISO(DateTime.local().toISODate());
 const date2 = DateTime.fromISO(birthDate);
 
-const diff:any = date1.diff(date2, ["years", "months", "days"])
+const diff:any = date1.diff(date2, ["years", "months", "days"]);
 console.log(diff.toObject());
 var ageStr = "";
-
-if(diff.years<0 || diff.months<0 || diff.days<0){
+console.log(diff.years,diff.months,diff.days);
+if(diff.years<=0 && diff.months<=0 && diff.days<=0){
   ageStr=t('noBorn');
 } else{
-  if(diff.years != ""){ 
+  if(diff.years>0){ 
     ageStr = diff.years + (diff.years>1 ? t('yearstag'):t('yeartag'));
   }
-  if(diff.months != ""){ 
+  if(diff.months>0){ 
     ageStr+= diff.months + (diff.months>1 ? t('monthstag'):t('monthtag'));
   }
-  if(diff.days != "" && diff.months == "" && diff.years == ""){ 
+  // if(diff.days>0){ 
+    if(diff.days >0 && diff.months <0 && diff.years <0){ 
     ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ?  t('daystag'):  t('daytag'));
   }
   if(ageStr == ""){
@@ -223,6 +224,7 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
   //  console.log("..add child..", data);
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
   }
+  
   if (param == 0) {
     navigation.reset({
       index: 0,
@@ -260,17 +262,67 @@ export const addChild = async (editScreen: boolean, param: number, data: any, di
       setActiveChild(data[0].uuid,dispatch,child_age);
       }
     }  
-    navigation.navigate('ChildProfileScreen');
+    let ageLimit =[];
+    console.log(data[0].birthDate,"..data.birthDate..")
+    if(data[0].birthDate!=null && data[0].birthDate!=undefined && data[0].birthDate!=""){
+    ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis())); 
+    console.log(ageLimit,"..ageLimit..")  
+    const taxonomyData=await checkBetween(0,ageLimit,child_age); 
+    console.log(taxonomyData,"..taxonomydata..");
+    let apiJsonData;
+    if(taxonomyData?.length>0){
+      apiJsonData=apiJsonDataGet(String(taxonomyData),"all");
+      console.log(apiJsonData,"..apiJsonData..");
+   //   console.log(navigation,"..navigation")
+      // navigation.navigate(
+      //        name: 'LoadingScreen',
+      //       params: { apiJsonData: apiJsonData, prevPage: 'AddEditChild' },
+          
+      // );
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: apiJsonData,
+        prevPage: 'AddEditChild'
+        });
+    }
   
+    }
   
-    // 
+    //navigation.navigate('ChildProfileScreen');
   }
   
   // //console.log(new Date()," result is ",createresult);
 
 }
-
-
+export const apiJsonDataGet=(childAge:any,parentGender:any)=>{
+    
+  return [
+    {
+      apiEndpoint: appConfig.articles,
+      method: 'get',
+      postdata: {
+        // childAge: 'all',
+        childGender: 'all',
+        childAge: childAge!="" && childAge!=undefined && childAge!=null ? childAge :"all",
+        // childGender: '40',
+        parentGender: parentGender!="" && parentGender!=undefined && parentGender!=null ? parentGender :"all",
+        Seasons: 'all',
+      },
+      saveinDB: true,
+    },
+    // {
+    //   apiEndpoint: appConfig.taxonomies,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
+    // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
+  ];
+}
+export const updateActiveChild=(child:any,key:any,value:any,dispatch:any)=>{
+  child[key]=value;
+  console.log(child,"..child..");
+  dispatch(setActiveChildData(child));
+}
 export const getAllConfigData = async (dispatch: any) => {
   let databaselistener: any;
   let allJsonDatanew = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);

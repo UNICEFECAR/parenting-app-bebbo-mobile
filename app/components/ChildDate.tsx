@@ -33,13 +33,17 @@ import ModalPopupContainer, {
 
 const ChildDate = (props: any) => {
   const [dateFormat, setDateFormat] = useState("day month year");
-  let birthDate, isPremature, plannedTermDate=null;
+  let birthDate:any, isPremature:any, plannedTermDate:any=null;
   const {childData}=props;
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
 };
       useFocusEffect(
         React.useCallback(() => {
+          if(birthDate=="" ||  birthDate==null ||  birthDate==undefined){ 
+            setdisablePrematureCheck(true);
+          }   
+          console.log(childData,"..childData..");
           if(childData!=null){
             birthDate =childData.birthDate;
             isPremature =childData.isPremature;
@@ -56,7 +60,8 @@ const ChildDate = (props: any) => {
             setdoborExpectedDate(birthDate!=null ? new Date(birthDate) : null);
             setdueDate(plannedTermDate!=null ? new Date(plannedTermDate) : null);
            // console.log(disablePrematureCheck,"..disablePrematureCheck..");
-          }      
+          } 
+            
         }, [])
       );
   //console.log(birthDate,"..birthDate..");
@@ -84,6 +89,7 @@ const ChildDate = (props: any) => {
     }  
   };
   const showdobDatepicker = () => {
+    console.log(birthDate,"..birthDate..");
     setdobShow(true);
   };
   const [modalVisible, setModalVisible] = useState(false);
