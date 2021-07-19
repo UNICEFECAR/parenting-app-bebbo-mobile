@@ -23,7 +23,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
-import { getAllChildren, getAllConfigData } from '../services/childCRUD';
+import { getAllChildren, getAllConfigData, updateActiveChild } from '../services/childCRUD';
 import {
     Heading2w,
     Heading3,
@@ -46,7 +46,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   // const genders = ['Father', 'Mother', 'Other'];
   const relationshipData = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
   );
   let relationshipValue = relationshipData.length>0 && userParentalRoleData!="" ? relationshipData.find((o:any) => String(o.id) === userParentalRoleData):'';
   // console.log(relationshipName,"..relationshipName..");
@@ -65,7 +65,12 @@ const EditParentDetails = ({route,navigation}: Props) => {
  
        },[])
   );
-  const saveParentData=async (relationship:String,parentName:any)=>{
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const saveParentData=async (relationship:any,parentName:any)=>{
     console.log(typeof(relationship),"typeof");
     var relationshipnew:any=relationship;
     if (typeof relationshipnew === 'string' || relationshipnew instanceof String){
@@ -77,7 +82,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName",parentName);
     // console.log(userParentalRole,"..userParentalRole")
-    // console.log(userNames,"..userNames")
+    // console.log(userNames,"..userNames");
+    updateActiveChild(activeChild,"parent_gender",relationship, dispatch);
     navigation.navigate('ChildProfileScreen');
   }
    
