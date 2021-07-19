@@ -11,7 +11,7 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
     } 
-    if(apiEndpoint==appConfig.taxonomies || apiEndpoint==appConfig.standardDeviation){
+    if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
     // if(apiEndpoint==appConfig.basicPages){
