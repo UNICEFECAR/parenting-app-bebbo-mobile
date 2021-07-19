@@ -18,7 +18,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
@@ -55,7 +55,20 @@ const ChildSetupList = ({ navigation }: Props) => {
       getAllConfigData(dispatch);
     },[])
   );
-
+  useFocusEffect(
+    React.useCallback(() => {
+      navigation.dispatch(state => {
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+      
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
+      });
+    },[])
+  );
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
