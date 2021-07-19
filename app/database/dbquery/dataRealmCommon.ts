@@ -108,13 +108,6 @@ class DataRealmCommon {
                     realm.write(() => {
                         if (records?.length > 0) {
                             records.forEach(record => {
-                                if(entitySchema.name == "ActivitiesEntity")
-                                {
-                                    if(record.cover_image == "")
-                                    {
-                                        record.cover_image = {};
-                                    }
-                                }
                                     realm?.create<Entity>(entitySchema.name, record,"modified");
                             })
                         }
@@ -152,7 +145,7 @@ class DataRealmCommon {
                                         // console.log(Array.from(obj),"---obj after");
                                     }
                                     else{
-                                        record.cover_image = JSON.stringify(record.cover_image);
+                                        // record.cover_image = JSON.stringify(record.cover_image);
                                         if(obj[0].isarticle_pinned != "1"){
                                         record.isarticle_pinned = articleRelation;
                                         }
@@ -162,7 +155,7 @@ class DataRealmCommon {
                                         realm?.create<Entity>(entitySchema.name, record,"modified");
                                     }
                                 }else {
-                                    record.cover_image = JSON.stringify(record.cover_image);
+                                    // record.cover_image = JSON.stringify(record.cover_image);
                                     record.isarticle_pinned = articleRelation;
                                     realm?.create<Entity>(entitySchema.name, record);
                                 }

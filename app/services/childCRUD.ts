@@ -12,7 +12,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/C
 import { removeChild, setActiveChildData, setAllChildData } from '../redux/reducers/childSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 import { DateTime } from 'luxon';
-import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, articleCategory } from '@assets/translations/appOfflineData/apiConstants';
 export const getNewChild = async (uuidGet: string,isExpected?:any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
@@ -306,7 +306,7 @@ export const apiJsonDataGet=(childAge:any,parentGender:any)=>{
         childAge: childAge!="" && childAge!=undefined && childAge!=null ? childAge :"all",
         // childGender: '40',
         parentGender: parentGender!="" && parentGender!=undefined && parentGender!=null ? parentGender :"all",
-        Seasons: 'all',
+        category: articleCategory,
       },
       saveinDB: true,
     },

@@ -31,7 +31,7 @@ export const dataRealmConfig: Realm.Configuration ={
     ChildDevelopmentSchema,
     VaccinationSchema,
     HealthCheckUpsSchema,
-    ChildGrowthSchema,
+    // ChildGrowthSchema,
     SurveysSchema,
     ActivitiesEntitySchema,
     StandardDevWeightForHeightSchema,

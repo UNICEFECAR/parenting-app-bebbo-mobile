@@ -1,38 +1,38 @@
-//import { apiUrlDevelop } from "react-native-dotenv";
+import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
 
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
-const apiUrlDevelop='https://dev.bebbo.app/api';
+export const articleCategory = '4,1,55,56,3,2';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     //console.log("in finalurl", apiUrlDevelop);
    
-    // if(apiEndpoint==appConfig.sponsors){
-    //     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
-    // }else 
+    if(apiEndpoint==appConfig.sponsors){
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    } 
     if(apiEndpoint==appConfig.taxonomies || apiEndpoint==appConfig.standardDeviation){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
-    if(apiEndpoint==appConfig.basicPages){
-        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
-    }
+    // if(apiEndpoint==appConfig.basicPages){
+    //     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
+    // }
     if(apiEndpoint==appConfig.vaccinePinnedContent){
-        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/vaccinations';
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/vaccinations';
     }
     if(apiEndpoint==appConfig.childGrowthPinnedContent){
-        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+apiEndpoint;
     }
     if(apiEndpoint==appConfig.childdevGirlPinnedContent){
-        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+apiEndpoint;
     }
     if(apiEndpoint==appConfig.childdevBoyPinnedContent){
-        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+apiEndpoint;
     }
     if(apiEndpoint==appConfig.healthcheckupPinnedContent){
-        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+selectedCountry+'/'+apiEndpoint;
+        return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+apiEndpoint;
     }
-    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+    return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
     // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
 }
 

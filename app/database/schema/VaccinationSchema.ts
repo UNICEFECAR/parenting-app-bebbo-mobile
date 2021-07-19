@@ -4,8 +4,8 @@ export type VaccinationEntity = {
     id: number,
     type: string,
     title: string,
-    pinned_article: string,
-    growth_period: string,
+    pinned_article: number[],
+    growth_period: number,
     created_at: string,
     updated_at: string,
   };
@@ -20,8 +20,8 @@ export type VaccinationEntity = {
       id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
-      pinned_article: { type: 'string' },
-      growth_period: { type: 'string' },
+      pinned_article: { type: 'int[]' },
+      growth_period: { type: 'int' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
     }
