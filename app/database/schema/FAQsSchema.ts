@@ -9,7 +9,7 @@ export type FAQsEntity = {
     body: string,
     chatbot_child_age: string,
     chatbot_sub_category: string,
-    mandatory: string,
+    mandatory: number,
   };
 
 
@@ -27,6 +27,6 @@ export type FAQsEntity = {
       body: { type: 'string' },
       chatbot_child_age: { type: 'string' },
       chatbot_sub_category: { type: 'string' },      
-      mandatory: { type: 'string' },
+      mandatory: { type: 'int' },
     }
   };

@@ -7,7 +7,7 @@ import { ObjectSchema } from "realm";
     created_at: string,
     updated_at: string,
     body: string,
-    mandatory: string,
+    mandatory: number,
     unique_name:string
   };
 
@@ -24,7 +24,7 @@ import { ObjectSchema } from "realm";
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
       body: { type: 'string' },
-      mandatory: { type: 'string' },
+      mandatory: { type: 'int' },
       unique_name: { type: 'string' },
     }
   };

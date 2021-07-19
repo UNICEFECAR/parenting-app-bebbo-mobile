@@ -8,7 +8,7 @@ import { StandDevObjEntity, StandDevObj } from "./StandardDevWeightForHeightSche
 
 export type StandardDevHeightForAgeEntity = {
     // id: number,
-    child_age: string[],
+    child_age: number[],
     goodText: StandDevObjEntity,
     warrningSmallHeightText: StandDevObjEntity,
     emergencySmallHeightText: StandDevObjEntity,
@@ -33,7 +33,7 @@ export type StandardDevHeightForAgeEntity = {
     // API: https://bit.ly/3f7k9jq
     properties: {
       // id: { type: 'int' },
-      child_age: { type: 'string[]' },
+      child_age: { type: 'int[]' },
       goodText: 'StandDevObj',
       warrningSmallHeightText: 'StandDevObj',
       emergencySmallHeightText: 'StandDevObj',
