@@ -19,6 +19,8 @@ import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
+import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
+import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -66,9 +68,25 @@ export const onAddEditChildSuccess = async (response: any, dispatch: any, naviga
  console.log(response,"..resonse..")
  if(response.data && response.data.status && response.data.status == 200)
  {
+ let insertData = response.payload.data.data;
+ let Entity:any;
+  Entity=Entity as ArticleEntity;
+  let EntitySchema = ArticleEntitySchema;
+  let pinnedArticle = "";
   //let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
-  //navigation.navigate('ChildProfileScreen'); 
+  try{
+    let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+    console.log(createresult,"..createresult..");
+    // console.log(new Date(),"in insert success---",response);
+}
+catch(e) {
+    let errorArr = [];
+    console.log("in insert catch---",response.payload);
+    errorArr.push(response.payload);
+    response.dispatch(receiveAPIFailure(errorArr));
+}
  }
+  navigation.navigate('ChildProfileScreen'); 
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
