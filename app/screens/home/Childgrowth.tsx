@@ -99,7 +99,7 @@ const Childgrowth = ({navigation}: Props) => {
               marginBottom: 20,
               flexDirection: 'column',
               // paddingLeft: 20,
-              paddingTop: 20,
+              // paddingTop: 5,
             }}>
             <View style={{flexDirection: 'row'}}>
               <Heading2>{item.title}</Heading2>
@@ -143,7 +143,7 @@ const Childgrowth = ({navigation}: Props) => {
               marginBottom: 20,
               flexDirection: 'column',
               // paddingLeft: 20,
-              paddingTop: 20,
+              // paddingTop: 5,
             }}>
             <View style={{flexDirection: 'row'}}>
               <Heading2>{item.title}</Heading2>
