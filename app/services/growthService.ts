@@ -50,9 +50,9 @@ export const formatDaysData = (data: any) => {
     let bottomArea: singleAreaDataFormat[] = [];
     // console.log("formatDaysData",data)
     data.map(item => {
-        topArea.push({ x: item.name / 30, y: item.sd3, y0: item.sd4 });
-        middleArea.push({ x: item.name / 30, y: item.sd3neg, y0: item.sd3 });
-        bottomArea.push({ x: item.name / 30, y: item.sd3neg, y0: item.sd4neg });
+        topArea.push({ x: Number(item.name) / 30, y: item.sd3, y0: item.sd4 });
+        middleArea.push({ x:Number(item.name) / 30, y: item.sd3neg, y0: item.sd3 });
+        bottomArea.push({ x: Number(item.name) / 30, y: item.sd3neg, y0: item.sd4neg });
     })
 
     obj = {
@@ -72,19 +72,18 @@ export const formatHeightData = (data: any) => {
     let bottomArea: singleAreaDataFormat[] = [];
     // console.log("formatHeightData",data)
     data.map(item => {
-        if (item.name >= 45 && item.name <= 87) {
-            topArea.push({ x: item.name, y: item.sd3, y0: item.sd4 });
-            middleArea.push({ x: item.name, y: item.sd3neg, y0: item.sd3 });
-            bottomArea.push({ x: item.name, y: item.sd3neg, y0: item.sd4neg });
-        }
+        // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
+        //     topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
+        //     middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
+        //     bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+        // }
 
-        if (item.name > 87.0) {
-            topArea.push({ x: item.name, y: item.sd3, y0: item.sd4 });
-            middleArea.push({ x: item.name, y: item.sd3neg, y0: item.sd3 });
-            bottomArea.push({ x: item.name, y: item.sd3neg, y0: item.sd4neg });
-        }
+        // if (Number(item.name) > 87.0) {
+            topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
+            middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
+            bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+        // }
     })
-
     obj = {
         topArea: topArea,
         middleArea: middleArea,
