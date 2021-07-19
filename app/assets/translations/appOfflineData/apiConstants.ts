@@ -60,12 +60,12 @@ export const appConfig = {
 }
 
 export const activityCategory = [
-    {name:'playingAndLearning',id:'55', image:'ic_artl_play'},
-    {name:'healthAndWellbeingid',id:'2', image:'ic_artl_health'},
-    {name:'safetyAndProtection', id:'3', image:'ic_artl_safety'},
-    {name:'responsiveParenting', id:'56',image:'ic_artl_responsive'},
-    {name:'parentingCorner', id:'4',image:'ic_artl_parenting'},
-    {name:'nutritionAndBreastfeeding',id:'1', image:'ic_artl_nutrition'},
+    {name:'playingAndLearning',id:55, image:'ic_artl_play'},
+    {name:'healthAndWellbeingid',id:2, image:'ic_artl_health'},
+    {name:'safetyAndProtection', id:3, image:'ic_artl_safety'},
+    {name:'responsiveParenting', id:56,image:'ic_artl_responsive'},
+    {name:'parentingCorner', id:4,image:'ic_artl_parenting'},
+    {name:'nutritionAndBreastfeeding',id:1, image:'ic_artl_nutrition'},
 ]
 
 export const basicPagesUniqueName = {
