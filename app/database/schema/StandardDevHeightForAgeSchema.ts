@@ -10,12 +10,9 @@ export type StandardDevHeightForAgeEntity = {
     // id: number,
     child_age: number[],
     goodText: StandDevObjEntity,
-    warrningSmallHeightText: StandDevObjEntity,
-    emergencySmallHeightText: StandDevObjEntity,
-    warrningBigHeightText: StandDevObjEntity,
-    emergencyBigHeightText: StandDevObjEntity,
-    // goodText: StandDevObjEntity,
-    
+    warrningSmallLengthText: StandDevObjEntity,
+    emergencySmallLengthText: StandDevObjEntity,
+    warrningBigLengthText: StandDevObjEntity,
   };
 
   // export const StandDevObj: ObjectSchema = {
@@ -35,10 +32,9 @@ export type StandardDevHeightForAgeEntity = {
       // id: { type: 'int' },
       child_age: { type: 'int[]' },
       goodText: 'StandDevObj',
-      warrningSmallHeightText: 'StandDevObj',
-      emergencySmallHeightText: 'StandDevObj',
-      warrningBigHeightText: 'StandDevObj',
-      emergencyBigHeightText: 'StandDevObj',
+      warrningSmallLengthText: 'StandDevObj',
+      emergencySmallLengthText: 'StandDevObj',
+      warrningBigLengthText: 'StandDevObj',
       // goodText: 'StandDevObj',
       
     }

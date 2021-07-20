@@ -52,7 +52,7 @@ const LastChildMeasure = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: measurementDate.toFormat("dd'.'MM'.'yyyy"),
+        measurementDate: measurementDate.toFormat("dd.MM.yyyy"),
         dateToMilis: measurementDate.toMillis(),
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,

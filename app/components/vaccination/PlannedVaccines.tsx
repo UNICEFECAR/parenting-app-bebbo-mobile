@@ -1,45 +1,35 @@
 import { BgContainer } from '@components/shared/Container';
+import { Heading4 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import VaccineItem from './VaccineItem';
-
-const plannedVaccines = [
-  {
-    title:
-      'Diphtheria, tetanus, pertussis, polio, influenzae type b- the second dose',
-    isChecked: false,
-  },
-  {
-    title: 'Bacteria Streptococus pnuemoniae - the second dose',
-    isChecked: false,
-  },
-  {
-    title:
-      'Pneumococcal disease (PCV13) (1st dose) Rotavirus (RV)  ',
-    isChecked: false,
-  },
-  {
-    title: 'Diphtheria, tetanus, and whooping cough (pertussis) (DTaP) (2nd dose)',
-    isChecked: false,
-  },
-];
-
 const PlannedVaccines = (props: any) => {
+  const {currentPeriodVaccines,onPlannedVaccineToggle} = props;
+  const {t} = useTranslation();
+  let allCheckedVaccines:any[] = [];
+  const onToggleVaccine =(id,isVaccineItemChecked)=>{
+    // console.log(id,isVaccineItemChecked);
+    if(isVaccineItemChecked){
+      allCheckedVaccines.push({vaccineid:id,measurementDate:DateTime.now().toMillis()});
+    }else{
+      allCheckedVaccines = allCheckedVaccines.filter((item)=> item.vaccineid !== id);
+    }
+    onPlannedVaccineToggle(allCheckedVaccines);
+    // console.log(allCheckedVaccines)
+  }
   return (
     <>
-      <BgContainer>
-        {plannedVaccines.map((item, index) => {
-          return <VaccineItem key={index} item={item} />;
-        })}
-      </BgContainer>
+      {currentPeriodVaccines.length > 0 ? (
+        <BgContainer>
+          {currentPeriodVaccines.map((item, index) => {
+            return <VaccineItem key={index} item={item} onToggleVaccine={onToggleVaccine}/>;
+          })}
+        </BgContainer>
+      ) : (
+        <Heading4>{t('noVaccinesForPeriod')}</Heading4>
+      )}
     </>
   );
 };
 export default PlannedVaccines;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-//     color: '#000',
-//     backgroundColor: '#FFF',
-//   },
-// });

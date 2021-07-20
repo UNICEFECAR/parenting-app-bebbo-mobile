@@ -1,6 +1,7 @@
 import { BgContainer } from '@components/shared/Container';
+import { DateTime } from 'luxon';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 
 const plannedVaccines = [
@@ -28,22 +29,35 @@ const plannedVaccines = [
 ];
 
 const PrevPlannedVaccines = (props: any) => {
+  const {onPrevPlannedVaccineToggle} = props;
+  let {previousPeriods} = getAllVaccinePeriods() 
+  previousPeriods.shift();
+  //remove first period which is the current period
+  let allPreviousPenddingVaccines:any[] = [];
+  previousPeriods.forEach((period) => {
+    period.vaccines.forEach((vItem:any) => {
+      allPreviousPenddingVaccines.push(vItem)
+    })
+  });
+  let allCheckedVaccines:any[] = [];
+  const onToggleVaccine =(id,isVaccineItemChecked)=>{
+    // console.log(id,isVaccineItemChecked);
+    if(isVaccineItemChecked){
+      allCheckedVaccines.push({vaccineid:id,measurementDate:DateTime.now().toMillis()});
+    }else{
+      allCheckedVaccines = allCheckedVaccines.filter((item)=> item.vaccineid !== id);
+    }
+    onPrevPlannedVaccineToggle(allCheckedVaccines);
+    // console.log(allCheckedVaccines)
+  }
   return (
     <>
       <BgContainer>
-        {plannedVaccines.map((item, index) => {
-          return <VaccineItem key={index} item={item} />;
+        {allPreviousPenddingVaccines.map((item, index) => {
+          return <VaccineItem key={index} item={item} onToggleVaccine={onToggleVaccine}/>;
         })}
       </BgContainer>
     </>
   );
 };
 export default PrevPlannedVaccines;
-
-// const styles = StyleSheet.create({
-//   item: {
-//     padding: 10,
-//     color: '#000',
-//     backgroundColor: '#FFF',
-//   },
-// });
