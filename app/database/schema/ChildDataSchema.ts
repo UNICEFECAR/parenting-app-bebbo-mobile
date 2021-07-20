@@ -7,31 +7,13 @@ export const MeasuresEntitySchema = {
   properties: {
     uuid: { type: "string" },
     isChildMeasured: { type: "bool" },
-    /**
-     * Kg.
-     */
     weight:{ type: "string" },
-
-    /**
-     * Centimeters.
-     */
-     height:{ type: "string" },
-     measurementDate: { type: "int" ,optional:true},
-
-    /**
-     * Month in number for all child growth  listtitle 
-     */
+    height:{ type: "string" },
+    measurementDate: { type: "int" ,optional:true},
     titleDateInMonth: { type: "string" ,optional:true},
-
     didChildGetVaccines: { type: "bool" },
-
-    /**
-     * All received vaccines.
-     */
     vaccineIds:{ type: "string[]" ,optional:true},
-
     doctorComment: { type: "string" ,optional:true},
-
     measurementPlace: { type: "int" },
 
   }
