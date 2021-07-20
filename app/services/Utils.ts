@@ -16,6 +16,7 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema
 import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
+import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
 
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
@@ -31,11 +32,21 @@ export const addApiDataInRealm = async (response: any) => {
                 EntitySchema = ArticleEntitySchema;
                 pinnedArticle = "";
             }
-            else if(response.payload.apiEndpoint == appConfig.pinnedContent)
+            else if(response.payload.apiEndpoint == appConfig.vaccinePinnedContent || 
+                response.payload.apiEndpoint == appConfig.childGrowthPinnedContent || 
+                response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent)
             {
                 insertData = response.payload.data.data;
                 Entity= Entity as ArticleEntity;
                 EntitySchema = ArticleEntitySchema;
+                pinnedArticle = isArticlePinned;
+            }
+            else if(response.payload.apiEndpoint == appConfig.childdevGirlPinnedContent || 
+                response.payload.apiEndpoint == appConfig.childdevBoyPinnedContent)
+            {
+                insertData = response.payload.data.data;
+                Entity= Entity as PinnedChildDevelopmentEntity;
+                EntitySchema = PinnedChildDevelopmentSchema;
                 pinnedArticle = isArticlePinned;
             }
             else if(response.payload.apiEndpoint == appConfig.videoArticles)
@@ -108,12 +119,12 @@ export const addApiDataInRealm = async (response: any) => {
             }
             else if(response.payload.apiEndpoint == appConfig.standardDeviation)
             {
-                insertData = response.payload.data;
+                insertData = response.payload.data.data;
                 // Entity= Entity as ArticleEntity;
                 EntitySchema = StandardDevWeightForHeightSchema;
             }
                 // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
-                if(EntitySchema == ArticleEntitySchema)
+                if(EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema)
                 {
                     // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
                     try{
