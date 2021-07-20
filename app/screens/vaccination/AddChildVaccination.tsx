@@ -44,7 +44,7 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
-import { getAllPeriods } from '../../services/vacccineService';
+// import { getAllPeriods } from '../../services/vacccineService';
 
 const AddChildVaccination = ({route, navigation}: any) => {
   const {t} = useTranslation();
