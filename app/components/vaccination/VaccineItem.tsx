@@ -11,7 +11,7 @@ import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
   const themeContext = useContext(ThemeContext);
-  const navigation =  useNavigation();
+  const navigation = useNavigation();
   const bgColor = themeContext.colors.VACCINATION_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
@@ -22,50 +22,47 @@ const VaccineItem = (props: any) => {
     //   backgroundColor: artBackgroundColor,
     // });
   };
-  const {title, isChecked,key} = props.item;
+  const {item,onToggleVaccine} = props;
+  const {title, id, isChecked} = item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
   return (
     <>
-      <VacItemContainer key={key}
-        >
+      <VacItemContainer>
         <ToolsHeadView>
           <FlexDirRow>
-        <FormOuterCheckbox
-          onPress={() => {
-            setToggleCheckBox(!toggleCheckBox);
-          }}>
-          <CheckboxItem>
-            <View>
-              {toggleCheckBox ? (
-                <CheckboxActive style={{backgroundColor:bgColor}}>
-                  <Icon name="ic_tick" size={12} color="#000" />
-                </CheckboxActive>
-              ) : (
-                <Checkbox style={{borderWidth: 1}}></Checkbox>
-              )}
-            </View>
-          </CheckboxItem> 
-          <Flex1>
-          <LabelText>
-          <Heading4Regular>{title}</Heading4Regular>
-          </LabelText>
-          </Flex1>
-        </FormOuterCheckbox>
-        </FlexDirRow>
-        <Pressable
+            <FormOuterCheckbox
+              onPress={() => {
+                setToggleCheckBox(!toggleCheckBox);
+                onToggleVaccine(id,!toggleCheckBox);
+              }}>
+              <CheckboxItem>
+                <View>
+                  {toggleCheckBox ? (
+                    <CheckboxActive style={{backgroundColor: bgColor}}>
+                      <Icon name="ic_tick" size={12} color="#000" />
+                    </CheckboxActive>
+                  ) : (
+                    <Checkbox style={{borderWidth: 1}}></Checkbox>
+                  )}
+                </View>
+              </CheckboxItem>
+              <Flex1>
+                <LabelText>
+                  <Heading4Regular>{title}</Heading4Regular>
+                </LabelText>
+              </Flex1>
+            </FormOuterCheckbox>
+          </FlexDirRow>
+          <Pressable
             onPress={() => {
               gotoArticle();
             }}>
             <OuterIconRow>
-           <OuterIconRight>
-             
-           <Icon name="ic_info" size={15} color="#000" />
-           
-             </OuterIconRight> 
-            </OuterIconRow>  
-            
+              <OuterIconRight>
+                <Icon name="ic_info" size={15} color="#000" />
+              </OuterIconRight>
+            </OuterIconRow>
           </Pressable>
-        
         </ToolsHeadView>
       </VacItemContainer>
     </>

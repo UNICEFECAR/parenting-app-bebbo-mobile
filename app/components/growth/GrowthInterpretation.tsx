@@ -1,7 +1,7 @@
-import { Heading2, Heading4, Paragraph } from '@styles/typography';
+import { Heading2, Heading4 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions } from 'react-native';
+import HTML from 'react-native-render-html';
 import { getInterpretationHeightForAge, getInterpretationWeightForHeight } from '../../services/interpretationService';
 import { chartTypes } from './GrowthChart';
 
@@ -15,22 +15,18 @@ const GrowthInterpretation = (props: any) => {
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures.sort(
     (a: any, b: any) =>
-      a.measurementDate.toMillis() - b.measurementDate.toMillis(),
+      a.measurementDate - b.measurementDate,
   );
+  // console.table(sortedMeasurements)
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
 
-  let windowWidth = Dimensions.get('window').width;
-  let windowHeight = Dimensions.get('window').height;
   const item:any =  chartTypes.weightForHeight == chartType?
   getInterpretationWeightForHeight(
     standardDeviation,
-    childGender,
-    childBirthDate,
     childTaxonomyData,
     lastMeasurements,
   ) :  getInterpretationHeightForAge(
     standardDeviation,
-    childGender,
     childBirthDate,
     childTaxonomyData,
     lastMeasurements,
@@ -42,8 +38,12 @@ const GrowthInterpretation = (props: any) => {
   return (
     <>
       <Heading2>{t('growthScreensumHeading')}</Heading2>
-      <Heading4> {item?.interpretationText.name}</Heading4>
-      <Paragraph>{item?.interpretationText.text}</Paragraph>
+      <Heading4> {item?.interpretationText?.name}</Heading4>
+      <HTML
+              source={{html: item?.interpretationText?.text}}
+              baseFontStyle={{fontSize: 16}}
+            />
+      {/* <Paragraph>{item?.interpretationText?.text}</Paragraph> */}
     </>
   );
 };

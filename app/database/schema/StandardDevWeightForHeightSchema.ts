@@ -22,6 +22,7 @@ export type StandardDevWeightForHeightEntity = {
     name: "StandDevObj",
     embedded: true,
     properties: {
+      articleID:{ type: 'int[]' },
       name: { type: 'string' },
       text: { type: 'string' },
     }

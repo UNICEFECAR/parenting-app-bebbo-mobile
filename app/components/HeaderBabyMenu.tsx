@@ -232,7 +232,7 @@ const HeaderBabyMenu = (props: any) => {
                     // return a component using that data
                     renderChildItem(dispatch, item, index)
                   }
-                  keyExtractor={(item: {id: any}) => item.id}
+                  keyExtractor={(item: {uuid: any}) => item.uuid}
                 />
               </View>
             ) : null}
