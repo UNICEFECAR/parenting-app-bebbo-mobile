@@ -23,6 +23,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../../App';
 import Icon, { OuterIconDone } from '../../shared/Icon';
 
 const PreviousVaccines = (props: any) => {
@@ -30,10 +31,20 @@ const PreviousVaccines = (props: any) => {
   // console.log(item);
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const [isOPen, setIsOPen] = useState<Boolean>(false);
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
   const themeContext = useContext(ThemeContext);
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const isFutureDate = (date: Date) => {
+    return (
+      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
+    );
+  };
   const gotoArticle = () => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
@@ -64,14 +75,13 @@ const PreviousVaccines = (props: any) => {
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
-              setIsOPen(!isOPen);
+              setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
-              <Heading2>{item.title}</Heading2>
               <Heading2>{item.name}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')},{item.doneVc}{' '}
-                {t('vaccinesDoneTxt')} | {item.vaccines.length - item.doneVc}{' '}
+                {item.vaccines.length} {t('vaccinesTxt')}, {item.doneVc}
+                {t('vaccinesDoneTxt')} | {item.vaccines.length - item.doneVc}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>
@@ -79,13 +89,13 @@ const PreviousVaccines = (props: any) => {
           <ToolsActionView>
             <Icon
               style={{alignSelf: 'center'}}
-              name={isOPen ? 'ic_angle_up' : 'ic_angle_down'}
+              name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
               color="#000"
             />
           </ToolsActionView>
         </ToolsListContainer>
-        {isOPen ? (
+        {isOpen ? (
           <>
             {item.vaccines.map((v, i) => {
               return (
@@ -111,50 +121,9 @@ const PreviousVaccines = (props: any) => {
                 </MainContainer>
               );
             })}
-            {/* <MainContainer>
-              <FDirRowStart>
-                <ToolsIconView>
-                  <OuterIconDone>
-                    <Icon name="ic_tick" size={12} color="#FFF" />
-                  </OuterIconDone>
-                </ToolsIconView>
-                <ToolsHeadingView>
-                  <Heading4Regular>
-                    Diphtheria, tetanus, pertussis, polio, influenzae type b-
-                    the second dose
-                  </Heading4Regular>
-                  <Pressable onPress={gotoArticle}>
-                    <ButtonTextSmLineL
-                      style={{textDecorationLine: 'underline'}}>
-                      {t('vcArticleLink')}
-                    </ButtonTextSmLineL>
-                  </Pressable>
-                </ToolsHeadingView>
-              </FDirRowStart>
-            </MainContainer>
-
-            <MainContainer>
-              <FDirRowStart>
-                <ToolsIconView>
-                  <OuterIconDone>
-                    <Icon name="ic_tick" size={12} color="#FFF" />
-                  </OuterIconDone>
-                </ToolsIconView>
-                <ToolsHeadingView>
-                  <Heading4Regular>
-                    Bacteria Streptococus pnuemoniae - the second dose
-                  </Heading4Regular>
-                  <Pressable onPress={gotoArticle}>
-                    <ButtonTextSmLineL
-                      style={{textDecorationLine: 'underline'}}>
-                      {t('vcArticleLink')}
-                    </ButtonTextSmLineL>
-                  </Pressable>
-                </ToolsHeadingView>
-              </FDirRowStart>
-            </MainContainer> */}
             <ShiftFromTopBottom10>
               <Pressable
+                disabled={isFutureDate(activeChild?.birthDate)}
                 onPress={() =>
                   navigation.navigate('AddChildVaccination', {
                     headerTitle: t('editVcTitle'),

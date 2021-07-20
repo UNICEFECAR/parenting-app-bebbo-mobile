@@ -61,7 +61,7 @@ const Childgrowth = ({navigation}: Props) => {
     (state: any) =>
     JSON.parse(state.utilsData.taxonomy.standardDevData),
   );
-  // console.log(standardDevData)
+  // console.log(standardDevData,"statestandardDevData")
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -84,7 +84,7 @@ const Childgrowth = ({navigation}: Props) => {
         //boy or no gender added
         // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
         const genderBoyData = standardDevData.filter(
-          (item) => item.growth_type == 6456 && item.child_gender == 40
+          (item) => item.growth_type == 6461 && item.child_gender == 40
         )
         standardDeviation = genderBoyData;
         obj = formatHeightData(genderBoyData);
@@ -92,7 +92,7 @@ const Childgrowth = ({navigation}: Props) => {
         //girl
         // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
         const genderGirlData = standardDevData.filter(
-          (item) => item.growth_type == 6456 && item.child_gender == 41,
+          (item) => item.growth_type == 6461 && item.child_gender == 41,
         );
         standardDeviation = genderGirlData;
         obj = formatHeightData(genderGirlData);
@@ -128,17 +128,18 @@ const Childgrowth = ({navigation}: Props) => {
     } else if (index == 1) {
       let obj;
       let standardDeviation;
-      if (activeChild?.gender == '41') {
+      if (activeChild?.gender == '40'  || activeChild?.gender == '') {
         // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
         const genderBoyData = standardDevData.filter(
-          (item) => (item.growth_type == 32786 && item.child_gender == 40),
+          (item) => item.growth_type == 32786 && item.child_gender == 40,
         );
         standardDeviation = genderBoyData;
+        // console.log(standardDeviation,"standardDeviation");
         obj = formatDaysData(genderBoyData);
       } else {
         // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
         const genderGirlData = standardDevData.filter(
-          (item) => (item.growth_type == 32786 && item.child_gender == 41),
+          (item) => item.growth_type == 32786 && item.child_gender == 41,
         );
         standardDeviation = genderGirlData;
         obj = formatDaysData(genderGirlData);
