@@ -355,6 +355,8 @@ const en = {
             growthChartLegendSilverLabel:"Typical Values for age",
             growthChartLegendOrangeLabel:"Typical Values for age",
             noVaccinesForPeriod :"There are no vaccines during this period",
+            defaultPeriodInterpretationText: "Growth charts refer to children 0 to 61 months old and do not contain growth values for older childre. You can find more about growth in this period in relevant articles.",
+
 
             
     }
