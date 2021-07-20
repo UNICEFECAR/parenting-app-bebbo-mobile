@@ -78,13 +78,13 @@ function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
       // console.log("errorArr---",errorArr)
       // yield put(receiveAPIFailure(errorArr))
     } else {
-      if(data.apiEndpoint == "standard_deviation")
-      {
-        yield put(insertInDB(response,dispatch));
-        // const response2 = {payload:response,
-        // dispatch:dispatch}
-        // yield call(addApiDataInRealm, response2);
-      }
+      // if(data.apiEndpoint == "standard_deviation")
+      // {
+      //   yield put(insertInDB(response,dispatch));
+      //   // const response2 = {payload:response,
+      //   // dispatch:dispatch}
+      //   // yield call(addApiDataInRealm, response2);
+      // }
         if(response.data.status == 200)
         {
           // call realm db insertion code by creating another saga.
