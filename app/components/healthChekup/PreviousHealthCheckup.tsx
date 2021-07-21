@@ -1,20 +1,19 @@
 import { MainContainer } from '@components/shared/Container';
 import { Bullets, BulletsView } from '@components/shared/Divider';
-import { FlexDirRow,FDirRowStart } from '@components/shared/FlexBoxStyle';
-import { RadioActive } from '@components/shared/radio';
+import { FDirRowStart, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HealthDesc, ToolsActionView, ToolsHeadingView, ToolsHeadPress, ToolsHeadView, ToolsIconView, ToolsListContainer, ToolsListOuter } from '@components/shared/ToolsStyle';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, Heading4Regular, Heading5, HeadingRegular, Paragraph, ShiftFromTop15,ShiftFromBottom15,ShiftFromTopBottom15, ShiftFromBottom20, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, Heading4, Heading4Regular, Paragraph, ShiftFromBottom15, ShiftFromTop15, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonContainerAuto, ButtonHealth, ButtonPrimary, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL } from '../shared/ButtonGlobal';
+import { ButtonContainerAuto, ButtonHealth, ButtonText, ButtonTextMdLine, ButtonTextSmLine, ButtonTextSmLineL } from '../shared/ButtonGlobal';
 import Icon from '../shared/Icon';
 
 const PreviousHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
-  // console.log(item);
+  console.log(item,"PreviousHealthCheckup");
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
@@ -37,27 +36,27 @@ const PreviousHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.measures ? (
-              item.givenVaccines.length == 0 ? (
+            {/* {item.measures ? (
+              item.givenVaccines.length == 0 ? ( */}
                 <Icon
                   name="ic_incom"
                   size={20}
                   color="#FFF"
                   style={{backgroundColor: 'red', borderRadius: 50}}
                 />
-              ) : (
-                <RadioActive
+              {/* ) : ( */}
+                {/* <RadioActive
                   style={{backgroundColor: 'green', borderRadius: 50}}>
                   <Icon name="ic_tick" size={12} color="#FFF" />
-                </RadioActive>
-              )
-            ) : item.givenVaccines.length > 0 ? (
-              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+                </RadioActive> */}
+              {/* ) */}
+            {/* ) : item.givenVaccines.length > 0 ? ( */}
+              {/* <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
-              </RadioActive>
-            ) : (
-              <Icon name="ic_plus" size={20} color="#000" />
-            )}
+              </RadioActive> */}
+            {/* ) : ( */}
+              {/* <Icon name="ic_plus" size={20} color="#000" /> */}
+            {/* )} */}
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
@@ -66,7 +65,7 @@ const PreviousHealthCheckup = (props: any) => {
               <ToolsHeadingView>
               
               <Heading2>
-              {item.title}
+              {item?.title}
               </Heading2>
               
             </ToolsHeadingView>
@@ -92,21 +91,21 @@ const PreviousHealthCheckup = (props: any) => {
             <ToolsHeadingView>
             <ShiftFromTop5>
               <ShiftFromBottom15>
-              {item.givenVaccines.length > 0 ? (
+              {/* {item.givenVaccines.length > 0 ? ( */}
                       <Heading4Regular>{t('hcVaccineText')}</Heading4Regular>
-                      ) : (
+                      {/* ) : ( */}
                     <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
-                    )}
+                    {/* )} */}
                   </ShiftFromBottom15> 
                   </ShiftFromTop5> 
                   <HealthDesc>
-                  {item.givenVaccines?.map((vaccineItem: any, index: number) => {
+                  {item.vaccines?.map((vaccineItem: any, index: number) => {
                   return (
                     
                        <View key={index} >
                       <BulletsView>
                         <Bullets></Bullets>
-                      <Paragraph>{vaccineItem.title}</Paragraph>
+                      <Paragraph>{vaccineItem?.title}</Paragraph>
                       </BulletsView>
                     </View>
                   );
@@ -121,7 +120,7 @@ const PreviousHealthCheckup = (props: any) => {
             
             <ToolsHeadingView>
             <ShiftFromTop5>
-            {item.measures?.weight ? (
+            {/* {item.measures?.weight ? (
                     <Heading4Regular>
                       {t('hcMeasureText', {
                         weight: item.measures?.weight,
@@ -130,13 +129,13 @@ const PreviousHealthCheckup = (props: any) => {
                     </Heading4Regular>
                   ) : (
                     <Heading4Regular>{t('hcNoMeasureTxt')}</Heading4Regular>
-                  )}
+                  )} */}
                   </ShiftFromTop5>
             </ToolsHeadingView>
             
             </FDirRowStart>
             
-            {item.doctorRemarks ? (
+            {/* {item.doctorRemarks ? ( */}
               <ShiftFromTop15>
             <FDirRowStart>
             <ToolsIconView>
@@ -144,14 +143,14 @@ const PreviousHealthCheckup = (props: any) => {
             </ToolsIconView>
             <ToolsHeadingView>
               
-            <Heading4Regular>{item.doctorRemarks}</Heading4Regular>
+            <Heading4Regular>{item?.doctorRemarks}</Heading4Regular>
             
             </ToolsHeadingView>
             
             </FDirRowStart>
             
             </ShiftFromTop15>
- ) : null}
+ {/* ) : null} */}
  <ShiftFromTop15>
  <Pressable onPress={gotoArticle}>
                   <ButtonTextSmLineL>
@@ -220,9 +219,9 @@ const PreviousHealthCheckup = (props: any) => {
 
             </MainContainer>
 
-            {item.measures?.weight ||
+            {/* {item.measures?.weight ||
                 item.measures?.height ||
-                item.givenVaccines.length > 0 ? (
+                item.givenVaccines.length > 0 ? ( */}
                   <ShiftFromTopBottom10>
            <Pressable
                     onPress={() =>
@@ -235,7 +234,7 @@ const PreviousHealthCheckup = (props: any) => {
                   </ButtonTextMdLine>
                 </Pressable>
                 </ShiftFromTopBottom10>
-                 ) : (
+                 {/* ) : ( */}
                   <ButtonContainerAuto>
                   <ButtonHealth
                     onPress={() =>
@@ -246,7 +245,7 @@ const PreviousHealthCheckup = (props: any) => {
                     <ButtonText>{t('hcNewBtn')}</ButtonText>
                   </ButtonHealth>
                   </ButtonContainerAuto>
-                )}
+                {/* )} */}
 
           </>
         ) : null}

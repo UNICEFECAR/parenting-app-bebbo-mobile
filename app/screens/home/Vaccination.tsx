@@ -20,7 +20,6 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -34,14 +33,10 @@ const Vaccination = ({navigation}: Props) => {
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const [childageInDays, setChildageInDays] = React.useState<number>(0);
   const {t} = useTranslation();
-  const allVaccineData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.vaccineData),
-  );
-let  {sortedlocalgrowthPeriod,upcomingPeriods,previousPeriods} = getAllVaccinePeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
+  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllVaccinePeriods();
   const renderItem = (index: number) => {
-    upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
     if (index === 0) {
       return (
         <View>
@@ -49,6 +44,7 @@ let  {sortedlocalgrowthPeriod,upcomingPeriods,previousPeriods} = getAllVaccinePe
             return (
               <UpcomingVaccines
                 item={item}
+                currentPeriodId={currentPeriod?.periodID}
                 key={itemindex}
                 currentIndex={itemindex}
                 headerColor={headerColor}
@@ -62,7 +58,7 @@ let  {sortedlocalgrowthPeriod,upcomingPeriods,previousPeriods} = getAllVaccinePe
       return (
         <View>
           {previousPeriods.map((item, itemindex) => {
-            if (itemindex != 0) {
+           
               return (
                 <PreviousVaccines
                   item={item}
@@ -71,7 +67,7 @@ let  {sortedlocalgrowthPeriod,upcomingPeriods,previousPeriods} = getAllVaccinePe
                   backgroundColor={backgroundColor}
                 />
               );
-            }
+            
           })}
         </View>
       );
@@ -100,7 +96,7 @@ let  {sortedlocalgrowthPeriod,upcomingPeriods,previousPeriods} = getAllVaccinePe
                 }}>
                 <Pressable onPress={() => setSelectedIndex(0)}>
                   <VacSummaryBox>
-                    <Heading2>{12}</Heading2>
+                    <Heading2>{totalUpcomingVaccines}</Heading2>
                     {/* added 1 for current period */}
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>

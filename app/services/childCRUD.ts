@@ -189,9 +189,9 @@ const date1 = DateTime.fromISO(DateTime.local().toISODate());
 const date2 = DateTime.fromISO(birthDate);
 
 const diff:any = date1.diff(date2, ["years", "months", "days"]);
-console.log(diff.toObject());
+// console.log(diff.toObject());
 var ageStr = "";
-console.log(diff.years,diff.months,diff.days);
+// console.log(diff.years,diff.months,diff.days);
 if(diff.years<=0 && diff.months<=0 && diff.days<=0){
   ageStr=t('noBorn');
 } else{
@@ -201,7 +201,7 @@ if(diff.years<=0 && diff.months<=0 && diff.days<=0){
   if(diff.months>0){ 
     ageStr+= diff.months + (diff.months>1 ? t('monthstag'):t('monthtag'));
   }
-  console.log(diff,"..diffff...")
+  // console.log(diff,"..diffff...")
   // if(diff.days>0){ 
     if(diff.days != "" && diff.months == "" && diff.years == ""){ 
     ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ?  t('daystag'):  t('daytag'));

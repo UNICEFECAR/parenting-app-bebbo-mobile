@@ -4,7 +4,6 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
-import { View,Text} from 'react-native';
 import {
   FDirCol,
   FDirRow,
@@ -42,7 +41,7 @@ const CustomDrawerContent = ({navigation}: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild, '..activeChild..');
+  // console.log(activeChild, '..activeChild..');
   const onShare = async () => {
     try {
       const result = await Share.share({
