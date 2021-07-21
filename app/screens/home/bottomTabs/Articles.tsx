@@ -6,6 +6,7 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 import Divider,{DividerArt} from '@components/shared/Divider';
+import { Image } from 'react-native-elements';
 
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 
@@ -27,12 +28,12 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,View,
-  Image, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput
+   KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, ActivityIndicator
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
-
+import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -76,12 +77,16 @@ const Articles = ({route, navigation}: Props) => {
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-          <Image
+          {/* <Image
             style={styles.cardImage}
-            // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-            source={require('@assets/trash/defaultArticleImage.png')}
+           source={item.cover_image ? {uri : "file://" + destinationFolder + (item.cover_image.url.split('/').pop())}:require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
-          />
+          /> */}
+           <Image
+           source={item.cover_image ? {uri : "file://" + destinationFolder + (item.cover_image.url.split('/').pop())}:require('@assets/trash/defaultArticleImage.png')}
+           style={styles.cardImage}
+  PlaceholderContent={<ActivityIndicator />}
+/> 
           <ArticleListContent>
             <ShiftFromTopBottom5>
           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
