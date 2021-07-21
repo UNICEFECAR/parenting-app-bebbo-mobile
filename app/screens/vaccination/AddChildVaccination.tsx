@@ -63,6 +63,10 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { setActiveChild } from '../../services/childCRUD';
 import {
   setInitialHeightValues,
   setInitialWeightValues
@@ -78,6 +82,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
     editGrowthItem
       ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
       : null,
+  );
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -162,39 +171,35 @@ const AddChildVaccination = ({route, navigation}: any) => {
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
-    // let updateItem = activeChild?.measures.find((item) => {
-    //   return item
-    //     ? Math.round(
-    //         DateTime.fromMillis(item.measurementDate).diff(measureDate, 'days')
-    //           .days,
-    //       ) == 0
-    //     : null;
-    // });
-    // console.log(updateItem);
-    // if (updateItem != null) {
-    //   console.log(updateItem.uuid, 'updatethisitem');
-    //   const growthValues = {
-    //     uuid: updateItem.uuid,
-    //     isChildMeasured: true,
-    //     weight: String(weightValue),
-    //     height: String(heightValue),
-    //     measurementDate: measureDate?.toMillis(),
-    //     titleDateInMonth: measureDate?.toFormat('MM'),
-    //     didChildGetVaccines: false,
-    //     vaccineIds: [],
-    //     doctorComment: remarkTxt,
-    //     measurementPlace: measurePlace,
-    //   };
-    //   console.log(growthValues);
-    //   let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-    //     ChildEntitySchema,
-    //     growthValues,
-    //     'uuid ="' + activeChild.uuid + '"',
-    //   );
-    //   console.log(createresult);
-    //   setActiveChild(activeChild.uuid, dispatch, child_age);
-    //   navigation.goBack();
-    // } else {
+    let updateItem = activeChild?.measures.find((item) => {
+      item.uuid === updateduuid
+      });
+      console.log(updateItem);
+      if (updateItem != null) {
+        console.log(updateItem.uuid, 'updatethisitem');
+  
+        const growthValues = {
+          uuid: updateItem.uuid,
+          isChildMeasured: isMeasured,
+          weight: String(weightValue),
+          height: String(heightValue),
+          measurementDate: measureDate?.toMillis(),
+          titleDateInMonth: measureDate?.toFormat('MM'),
+          didChildGetVaccines: true,
+          vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
+          doctorComment: remarkTxt,
+          measurementPlace: 0,
+        };
+        console.log(growthValues);
+        // let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        //   ChildEntitySchema,
+        //   growthValues,
+        //   'uuid ="' + activeChild.uuid + '"',
+        // );
+        // console.log(createresult);
+        // setActiveChild(activeChild.uuid, dispatch, child_age);
+        // navigation.goBack();
+      } else {
     const growthValues = {
       uuid: updateduuid,
       isChildMeasured: isMeasured,
@@ -208,15 +213,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
       measurementPlace: 0, // vaccination happens at doctor's place
     };
     console.log(growthValues);
-    //   let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-    //     ChildEntitySchema,
-    //     growthValues,
-    //     'uuid ="' + activeChild.uuid + '"',
-    //   );
-    //   console.log(createresult);
-    //   setActiveChild(activeChild.uuid, dispatch, child_age);
-    //   navigation.goBack();
-    // }
+      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        growthValues,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(createresult);
+      setActiveChild(activeChild.uuid, dispatch, child_age);
+      navigation.goBack();
+    }
   };
   return (
     <>
@@ -295,6 +300,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 <Heading3>{t('vcPrev')}</Heading3>
               </FormInputText>
               <PrevPlannedVaccines
+                currentPeriodVaccines={vcPeriod.vaccines}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
             </FormContainerFlex>

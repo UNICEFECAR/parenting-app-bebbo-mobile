@@ -3,14 +3,10 @@ import PreviousHealthCheckup from '@components/healthChekup/PreviousHealthChecku
 import UpcomingHealthCheckup from '@components/healthChekup/UpcomingHealthCheckup';
 import {
   ButtonContainerAuto,
-  ButtonHealth,
-    ButtonPrimary,
-    ButtonText,
-    ButtonTextLine,
-    ButtonTextSmLine
+  ButtonHealth, ButtonText, ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexCol } from '@components/shared/FlexBoxStyle';
+import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -21,6 +17,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
 
 type HealthCheckupsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -33,97 +30,19 @@ const HealthCheckups = ({navigation}: Props) => {
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
+  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllHealthCheckupPeriods();
 
-const vaccines = [
-  {
-    title:
-      'Diphtheria, tetanus, pertussis, polio, influenzae type b- the second dose',
-  },
-  {
-    title: 'Bacteria Streptococus pnuemoniae - the second dose',
-  },
-  {
-    title:
-      'Pneumococcal disease (PCV13) (1st dose) Rotavirus (RV)  ',
-  },
-  {
-    title: 'Diphtheria, tetanus, and whooping cough (pertussis) (DTaP) (2nd dose)',
-  },
-];
-  const upcominghcitems = [
-    {
-      id: 0,
-      title: 'With 3-5 Months',
-      measures: {weight: 5, height: 10},
-      givenVaccines:vaccines,
-      doctorRemarks: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, alias molestiae cum quia reprehenderit nisi dolor enim quibusdam eligendi unde in vel eveniet voluptates dolores maxime. Quos quas cumque eveniet."
-    },
-    {
-      id: 1,
-      title: 'With Full 5 months',
-      measures: {weight: 6.5, height: 11},
-      givenVaccines:[],
-      doctorRemarks: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum vero laborum enim blanditiis sit nam amet eligendi, dignissimos a? Non ex voluptates tenetur dolore aliquid fugit distinctio nam. Odit, ullam!"
-
-    },
-    {
-      id: 2,
-      title: 'With Full 6 months',
-      measures: null,
-      givenVaccines:[],
-      doctorRemarks:""
-    },
-    {
-      id: 3,
-      title: 'With full 9 months',
-      measures: {weight: 8.5, height: 15},
-      givenVaccines:vaccines,
-      doctorRemarks: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dicta consequatur vitae obcaecati, dolore neque? Quaerat, excepturi nihil dicta, ad dolores deleniti similique perferendis quae alias reiciendis suscipit sequi nobis."
-    },
-  ];
-  const prevVcitems = [
-    
-    {
-      id: 2,
-      title: 'With Full 6 months',
-      measures: null,
-      givenVaccines:[],
-      doctorRemarks:""
-    },
-
-    {
-      id: 1,
-      title: 'With Full 5 months',
-      measures: {weight: 6.5, height: 11},
-      givenVaccines:[],
-      doctorRemarks: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum vero laborum enim blanditiis sit nam amet eligendi, dignissimos a? Non ex voluptates tenetur dolore aliquid fugit distinctio nam. Odit, ullam!"
-
-    },
-    {
-      id: 3,
-      title: 'With full 9 months',
-      measures: {weight: 8.5, height: 15},
-      givenVaccines:vaccines,
-      doctorRemarks: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi dicta consequatur vitae obcaecati, dolore neque? Quaerat, excepturi nihil dicta, ad dolores deleniti similique perferendis quae alias reiciendis suscipit sequi nobis."
-    },
-    {
-      id: 0,
-      title: 'With 3-5 Months',
-      measures: {weight: 5, height: 10},
-      givenVaccines:vaccines,
-      doctorRemarks: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, alias molestiae cum quia reprehenderit nisi dolor enim quibusdam eligendi unde in vel eveniet voluptates dolores maxime. Quos quas cumque eveniet."
-    },
-  ];
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
         <View>
-          {upcominghcitems.map((item, itemindex) => {
+          {upcomingPeriods.map((item, itemindex) => {
             return (
               <UpcomingHealthCheckup
                 item={item}
+                currentPeriodId={currentPeriod?.periodID}
                 key={itemindex}
                 headerColor={headerColor}
                 backgroundColor={backgroundColor}
@@ -135,7 +54,7 @@ const vaccines = [
     } else if (index === 1) {
       return (
         <View>
-          {prevVcitems.map((item, itemindex) => {
+          {previousPeriods.map((item, itemindex) => {
             return (
               <PreviousHealthCheckup
                 item={item}
