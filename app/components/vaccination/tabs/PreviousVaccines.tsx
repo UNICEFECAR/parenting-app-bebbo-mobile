@@ -78,10 +78,10 @@ const PreviousVaccines = (props: any) => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
-              <Heading2>{item.name}</Heading2>
+              <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')}, {item.doneVc}
-                {t('vaccinesDoneTxt')} | {item.vaccines.length - item.doneVc}
+                {item.vaccines.length} {t('vaccinesTxt')}, {item.doneVc? 0 :0 }
+                {t('vaccinesDoneTxt')} | {item.vaccines.length - (item.doneVc? 0 :0)}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>
@@ -127,6 +127,7 @@ const PreviousVaccines = (props: any) => {
                 onPress={() =>
                   navigation.navigate('AddChildVaccination', {
                     headerTitle: t('editVcTitle'),
+                    vcPeriod:item
                   })
                 }>
                 <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>

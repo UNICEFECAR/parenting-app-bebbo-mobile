@@ -1,5 +1,6 @@
 import { MainContainer } from '@components/shared/Container';
 import { FDirRowStart } from '@components/shared/FlexBoxStyle';
+import { RadioActive } from '@components/shared/radio';
 import {
   ToolsActionView,
   ToolsHeadingView,
@@ -17,7 +18,7 @@ import {
   Heading5,
   ShiftFromTopBottom10
 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -33,7 +34,8 @@ import {
 import Icon from '../../shared/Icon';
 
 const UpcomingVaccines = (props: any) => {
-  const {item,currentIndex, headerColor, backgroundColor} = props;
+  const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
+    props;
   // console.log(item);
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -52,6 +54,14 @@ const UpcomingVaccines = (props: any) => {
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
+  useEffect(() => {
+    currentPeriodId == item.periodID ? setIsOpen(true) : setIsOpen(false);
+    const yeas = item.vaccines.some((el) => {
+      return el.isMeasured == true;
+    });
+    console.log(yeas, 'isMeasuredyeas');
+    // open first collapsible in upcoming vaccine period
+  }, []);
   const gotoArticle = (v) => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
@@ -67,22 +77,31 @@ const UpcomingVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            <Icon
-              name="ic_incom"
-              size={20}
-              color="#FFF"
-              style={{backgroundColor: 'red', borderRadius: 150}}
-            />
+            {item.vaccines.some((el) => {
+              return el.isMeasured == true;
+            }) ? (
+              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+                <Icon name="ic_tick" size={12} color="#FFF" />
+              </RadioActive>
+            ) : (
+              <Icon
+                name="ic_incom"
+                size={20}
+                color="#FFF"
+                style={{backgroundColor: 'red', borderRadius: 150}}
+              />
+            )}
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
-              <Heading2>{item.name}</Heading2>
+              <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')},{item.doneVc? 0 :0 }{' '}
-                {t('vaccinesDoneTxt')} | {item.vaccines.length}{' '}
+                {item.vaccines.length} {t('vaccinesTxt')},{item.doneVc ? 0 : 0}{' '}
+                {t('vaccinesDoneTxt')} |{' '}
+                {item.vaccines.length - (item.doneVc ? 0 : 0)}{' '}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>
@@ -96,24 +115,31 @@ const UpcomingVaccines = (props: any) => {
             </ToolsActionView>
           </ToolsHeadPress>
         </ToolsListContainer>
-        {(isOpen || currentIndex==0) ? (
+        {isOpen ? (
           <>
             {item.vaccines.map((v, i) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
                     <ToolsIconView>
-                      <Icon
-                        name="ic_incom"
-                        size={20}
-                        color="#FFF"
-                        style={{backgroundColor: 'red', borderRadius: 150}}
-                      />
+                      {v.isMeasured ? (
+                        <RadioActive
+                          style={{backgroundColor: 'green', borderRadius: 50}}>
+                          <Icon name="ic_tick" size={12} color="#FFF" />
+                        </RadioActive>
+                      ) : (
+                        <Icon
+                          name="ic_incom"
+                          size={20}
+                          color="#FFF"
+                          style={{backgroundColor: 'red', borderRadius: 150}}
+                        />
+                      )}
                     </ToolsIconView>
                     <ToolsHeadingView>
-                      <Heading4Regular>{v.title}</Heading4Regular>
+                      <Heading4Regular>{v.title}1</Heading4Regular>
 
-                      <Pressable onPress={()=>gotoArticle(v)}>
+                      <Pressable onPress={() => gotoArticle(v)}>
                         <ButtonTextSmLineL>
                           {t('vcArticleLink')}
                         </ButtonTextSmLineL>
@@ -178,32 +204,41 @@ const UpcomingVaccines = (props: any) => {
                 </ButtonLinkPress> */}
               {/* Set Reminder Link*/}
             </MainContainer>
-            <ShiftFromTopBottom10>
-              <Pressable
-                disabled={isFutureDate(activeChild?.birthDate)}
-                onPress={() =>
-                  navigation.navigate('AddChildVaccination', {
-                    headerTitle: t('editVcTitle'),
-                    vcPeriod:item
-                  })
-                }>
-                <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
-              </Pressable>
-            </ShiftFromTopBottom10> 
-           
-            <ButtonContainerAuto>
-              <ButtonVaccination
-                disabled={isFutureDate(activeChild?.birthDate)}
-                onPress={() =>
-                  navigation.navigate('AddChildVaccination', {
-                    headerTitle: t('addVcTitle'),
-                    vcPeriod:item
-                  })
-                }>
-                <ButtonText>{t('vcAddBtn')}</ButtonText>
-              </ButtonVaccination>
-            </ButtonContainerAuto>
-           
+            {/* remaining add condition for only few vaccines are given in below */}
+            {(currentPeriodId == item.periodID && item.vaccines.some((el) => {
+              return el.isMeasured == true;
+            })) ? (
+              <ShiftFromTopBottom10>
+                <Pressable
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  onPress={() =>
+                    console.log(item)
+                    // navigation.navigate('AddChildVaccination', {
+                    //   headerTitle: t('editVcTitle'),
+                    //   vcPeriod: item,
+                    // })
+                  }>
+                  <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
+                </Pressable>
+              </ShiftFromTopBottom10>
+            ) : null}
+            {/* remaining add condition for all vaccines were not given in below */}
+            {(currentPeriodId == item.periodID && item.vaccines.every((el) => {
+              return el.isMeasured == true;
+            }))? (
+              <ButtonContainerAuto>
+                <ButtonVaccination
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  onPress={() =>
+                    navigation.navigate('AddChildVaccination', {
+                      headerTitle: t('addVcTitle'),
+                      vcPeriod: item,
+                    })
+                  }>
+                  <ButtonText>{t('vcAddBtn')}</ButtonText>
+                </ButtonVaccination>
+              </ButtonContainerAuto>
+            ) : null}
           </>
         ) : null}
       </ToolsListOuter>

@@ -207,7 +207,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         measurementDate: measureDate?.toMillis(),
         titleDateInMonth: measureDate?.toFormat('MM'),
         didChildGetVaccines: false,
-        vaccineIds: [],
+        vaccineIds: '',
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
@@ -229,7 +229,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         measurementDate: measureDate?.toMillis(),
         titleDateInMonth: measureDate?.toFormat('MM'),
         didChildGetVaccines: false,
-        vaccineIds: [],
+        vaccineIds: '',
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
