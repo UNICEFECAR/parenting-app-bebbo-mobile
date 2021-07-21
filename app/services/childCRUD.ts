@@ -358,7 +358,7 @@ export const getAllChildren = async (dispatch: any) => {
       // console.log("name--",name);
       childAllData = [];
       allJsonDatanew.map((value: ChildEntity) => {
-        //console.log(value,"..config value..");
+        console.log(value,"..config value..");
         childAllData.push(value);
       })
      //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
