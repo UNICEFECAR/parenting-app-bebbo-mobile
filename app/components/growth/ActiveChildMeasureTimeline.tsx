@@ -32,7 +32,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
   const setNewChildMeasureUpdates = () => {
-    let measures = activeChild.measures;
+    let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true);
     let measurementDate: DateTime = DateTime.local();
     const timeNow = DateTime.local();
     let allMeasurements = measures.map((item: MeasuresEntity) => {

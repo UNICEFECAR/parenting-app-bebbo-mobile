@@ -2,32 +2,31 @@ import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
-export const getAllVaccinePeriods = () => {
+export const getAllHealthCheckupPeriods = () => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
-//filter measures by didChildGetVaccines
-const vaccineMeasures =activeChild.measures.filter((item) => item.didChildGetVaccines == true);
-let measuredVaccines :any[]= [];
-vaccineMeasures.forEach(measure => {
-  measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
-});
-// const getMeasureInfoForVaccine = (vaccineid :number=56276) => {
-// return vaccineMeasures.filter(measure => JSON.parse(measure.vaccineIds).indexOf(vaccineid) > -1);
-// }
-// console.log(getMeasureInfoForVaccine(),"getMeaasureInfoForVaccine");
-const vaccineMeasuredInfo = (vaccineid:number)=>{
- return (measuredVaccines.find(item => item.vaccineid == vaccineid))
-}
+  console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
+  //filter measures by didChildGetVaccines,isChildMeasured
+  const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
+
+  const vaccineMeasures =activeChild.measures.filter((item) => item.didChildGetVaccines == true);
+  let measuredVaccines :any[]= [];
+  vaccineMeasures.forEach(measure => {
+    measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
+  });
+  const vaccineMeasuredInfo = (vaccineid:number)=>{
+    return (measuredVaccines.find(item => item.vaccineid == vaccineid))
+   }
+
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
   console.log(childAgeIndays, 'childAgeIndays');
-  // const taxonomy = useAppSelector(
+ // const taxonomy = useAppSelector(
   //   (state: any) =>
   //     (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
   // );
@@ -41,31 +40,39 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-  // console.log(allVaccinePeriods);
+  const allHealthCheckupsData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.healthCheckupsData),
+  );
+  const getPeriodTitle = (periodID) => {
+    return allHealthCheckupsData.find(item => item.growth_period == periodID);
+  }
+  console.log(allHealthCheckupsData,"allHealthCheckupsData");
   var group_to_growthPeriod = allVaccinePeriods.reduce(function (obj, item) {
-    // console.log(obj,item, "item");
-    // const checkIfVacineMeasured = isVaccineMeasured(item.vaccineid);
-    // console.log(checkIfVacineMeasured, "checkIfVacineMeasured");
     obj[item.growth_period] = obj[item.growth_period] || [];
     obj[item.growth_period].push({ id: item.id, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
     return obj;
   }, {});
+  console.log("group_to_growthPeriod",group_to_growthPeriod)
   let groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
-    return { periodID: key, vaccines: group_to_growthPeriod[key] };
+    return { periodID: key,vaccines: group_to_growthPeriod[key] };
   });
   groupsForPeriods.forEach((item: any) => {
-    const period = getVaccineInfo(item.periodID);
-    if (period) {
-    item.periodName = period.name;
-    item.vaccination_opens = period.vaccination_opens;
+    const hcItem = getPeriodTitle(item.periodID);
+    if (hcItem) {
+      item.vaccination_opens = getVaccineInfo(item.periodID).vaccination_opens;
+      item.title = hcItem.title;
+      item.pinned_article = hcItem.pinned_article;
+      item.created_at = hcItem.created_at;
+      item.updated_at =hcItem.updated_at;
     }
-    console.log(item?.vaccines);
     item?.vaccines.forEach((vaccine: any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
       console.log(vaccineMeasured, "vaccineMeasured");
       vaccine.isMeasured = vaccineMeasured? true: false;
       vaccine.measurementDate = vaccineMeasured? vaccineMeasured.measurementDate: "";
     })
+   
   })
   console.log(groupsForPeriods, "<groupsForPeriods>");
 
@@ -81,6 +88,7 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
   sortedGroupsForPeriods.forEach((period) => {
     period.isUpComing = isUpComingPeriod(period.vaccination_opens);
     period.isPrevious = isPreviousPeriod(period.vaccination_opens);
+
   });
   let upcomingPeriods = sortedGroupsForPeriods.filter(
     (period: any) => period.vaccination_opens > childAgeIndays,
@@ -107,5 +115,6 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
   // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
 
 
+ 
   return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines,currentPeriod };
 }
