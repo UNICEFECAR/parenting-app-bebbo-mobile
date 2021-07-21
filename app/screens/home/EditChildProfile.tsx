@@ -96,8 +96,11 @@ const EditChildProfile = ({route, navigation}: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
-  genders = genders.map((v) => ({...v, title: v.name}));
-  //console.log(genders,"..genders..");
+  genders = genders.map((v) => ({...v, title: v.name}))
+  // .filter(function (e, i, a) {
+  //   return e.id!=0;
+  // });
+  console.log(genders,"..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   const getDefaultgenderValue = () => {
     return childData?.uuid != ''
