@@ -77,7 +77,7 @@ const HeaderBabyMenu = (props: any) => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-  console.log(currentActiveChild, '..currentActiveChild..');
+  // console.log(currentActiveChild, '..currentActiveChild..');
   const child_age = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],

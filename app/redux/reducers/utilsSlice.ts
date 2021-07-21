@@ -39,7 +39,16 @@ interface hardcodedDataType {
     id: number,
     type: string,
     title: string,
-    pinned_article: string[],
+    pinned_article: number,
+    growth_period: number,
+    created_at: string,
+    updated_at: string
+  }
+  healthCheckupsData:{
+    id: number,
+    type: string,
+    title: string,
+    pinned_article: number,
     growth_period: number,
     created_at: string,
     updated_at: string
@@ -78,7 +87,26 @@ const initialState: hardcodedDataType = {
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
   IsArticleModalOpened:true,
-  dailymessages:''
+  dailymessages:'',
+  vaccineData:{
+    id: 0,
+    type: '',
+    title: '',
+    pinned_article: 0,
+    growth_period: 0,
+    created_at: '',
+    updated_at: ''
+  },
+  healthCheckupsData:{
+    id: 0,
+    type: '',
+    title: '',
+    pinned_article: 0,
+    growth_period: 0,
+    created_at: '',
+    updated_at: ''
+  },
+
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -175,6 +203,14 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.vaccineData = action.payload;
       },
+      setAllHealthCheckupsData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllHealthCheckupsData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.healthCheckupsData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -188,7 +224,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

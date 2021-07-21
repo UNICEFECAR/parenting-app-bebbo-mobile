@@ -1,3 +1,4 @@
+import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
@@ -8,7 +9,7 @@ import { StandardDevWeightForHeightEntity, StandardDevWeightForHeightSchema } fr
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllTaxonomyData, setAllTermsData, setAllVaccineData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { setAllHealthCheckupsData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { appConfig } from "./apiConstants";
 import { articledata } from "./article";
 import basicPagesData from "./basicPages";
@@ -16,6 +17,7 @@ import { dailyHomeNotificationdata } from "./dailyHomeNotification";
 import standardDevData from "./standardDevData";
 import { taxonomydata } from "./taxonomies";
 import {vaccineData} from "./vaccineData";
+import { healthCheckupsData } from './healthCheckupsData';
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:string,activeChild?:any) => {
@@ -41,6 +43,7 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
             const allstanDevWFHData = await getDataToStore(languageCode,dispatch,StandardDevWeightForHeightSchema,Entity as StandardDevWeightForHeightEntity,standardDevData,setStandardDevWFHData);
             const allstanDevHFAData = await getDataToStore(languageCode,dispatch,StandardDevHeightForAgeSchema,Entity as StandardDevHeightForAgeEntity,standardDevData,setStandardDevHFAData);
             const allVaccinesData = await getDataToStore(languageCode,dispatch,VaccinationSchema,Entity as VaccinationEntity,vaccineData,setAllVaccineData);
+            const allHealthCheckupsData = await getDataToStore(languageCode,dispatch,HealthCheckUpsSchema,Entity as HealthCheckUpsEntity,healthCheckupsData,setAllHealthCheckupsData);
 
             resolve("nocall");
         } else if(prevPage == "ChilSetup"){

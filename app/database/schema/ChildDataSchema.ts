@@ -12,7 +12,7 @@ export const MeasuresEntitySchema = {
     measurementDate: { type: "int" ,optional:true},
     titleDateInMonth: { type: "string" ,optional:true},
     didChildGetVaccines: { type: "bool" },
-    vaccineIds:{ type: "string[]" ,optional:true},
+    vaccineIds:{ type: "string" ,optional:true},
     doctorComment: { type: "string" ,optional:true},
     measurementPlace: { type: "int" },
 
@@ -26,7 +26,7 @@ export type MeasuresEntity = {
   measurementDate:number,
   titleDateInMonth:string
   didChildGetVaccines:boolean,
-  vaccineIds:string[],
+  vaccineIds:string,
   doctorComment:string,
   measurementPlace:number
 }
