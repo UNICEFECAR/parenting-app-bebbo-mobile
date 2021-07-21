@@ -1,5 +1,7 @@
+import { destinationFolder } from "@assets/translations/appOfflineData/apiConstants";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { FlatList, View, Text, ActivityIndicator } from "react-native";
+import downloadImages from "../../downloadImages/ImageStorage";
 
 const InfiniteScrollList = (props : any) => {
     const { filteredData , renderArticleItem } = props;
@@ -28,13 +30,31 @@ const InfiniteScrollList = (props : any) => {
         }
     },[filteredData])
 
-    const requestData = (thePage: number) => {
+    const requestData = async (thePage: number) => {
+        console.log(thePage,"..thePage..")
+        let imageArray:any=[];
         if(totalDataCount > 0)
         {
             console.log(filteredData,"--filteredData");
             setIsLoading(true);
             let data = filteredData.slice((thePage - 1) * limit, thePage * limit);
-            console.log('requestData', data);
+            console.log('..requestData..', data);
+            if(data?.length>0){
+                data.map((item: any, index: number) => {
+                if(item['cover_image'] != "")
+                {
+                imageArray.push({
+                    srcUrl: item['cover_image'].url, 
+                    destFolder: destinationFolder, 
+                    destFilename: item['cover_image'].url.split('/').pop()
+                })
+                }
+                });
+                console.log(imageArray,"..imageArray..");
+                const imagesDownloadResult = await downloadImages(imageArray);
+                console.log(imagesDownloadResult,"..imagesDownloadResult..");
+            }
+            
             serverDataLoaded(data);
         }
     }
@@ -43,7 +63,7 @@ const InfiniteScrollList = (props : any) => {
         
         // if(totalDataCount > 0)
         // {
-            requestData(page);
+           // requestData(page);
         // }
     }, []);
 
@@ -77,7 +97,7 @@ const InfiniteScrollList = (props : any) => {
             // setPending_process(true);
         // if(totalDataCount > 0)
         // {
-            requestData(page);
+          //  requestData(page);
         // }
         // }
     }, [page]);
@@ -89,8 +109,9 @@ const InfiniteScrollList = (props : any) => {
             // console.log('totalDataCount', totalDataCount);
             // if (loadmore && !pending_process) {
             if (clientData.length < totalDataCount) {
+                const pagenew=page+1;
                 setPage(page + 1);
-                // requestData(page);
+                requestData(pagenew);
             }
             onEndReachedCalledDuringMomentum = true;
         }
@@ -102,6 +123,7 @@ const InfiniteScrollList = (props : any) => {
             {
                 setClientData([]);
                 setPage(1);
+                requestData(1);
             }else {
                 setRefresh(false);
             }
