@@ -32,6 +32,7 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+import ProgressiveImage from '@components/shared/ProgressiveImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -75,11 +76,17 @@ const Articles = ({route, navigation}: Props) => {
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-          <Image
+        <ProgressiveImage
+          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
+          source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
+          style={styles.cardImage}
+          resizeMode="cover"
+        />
+          {/* <Image
             style={styles.cardImage}
            source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
             resizeMode={'cover'}
-          />
+          /> */}
            {/* <Image
            source={item.cover_image ? {uri : "file://" + destinationFolder + (item.cover_image.url.split('/').pop())}:require('@assets/trash/defaultArticleImage.png')}
            style={styles.cardImage}
