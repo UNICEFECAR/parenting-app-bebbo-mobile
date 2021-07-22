@@ -1,3 +1,4 @@
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow, ButtonText
@@ -10,14 +11,13 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
-import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
 
@@ -32,6 +32,9 @@ type Props = {
   navigation: TermsNavigationProp;
 };
 const Terms = ({navigation}: Props) => {
+  const themeContext = useContext(ThemeContext);
+  const headerColor=themeContext.colors.PRIMARY_COLOR;
+ 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox1, setToggleCheckBox1] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(true);
@@ -198,6 +201,11 @@ const Terms = ({navigation}: Props) => {
 
   return (
     <>
+     <SafeAreaView style={{flex:1}}>
+     <FocusAwareStatusBar
+        animated={true}
+        backgroundColor={headerColor}
+       />
       <OnboardingContainer>
       <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
@@ -314,6 +322,7 @@ const Terms = ({navigation}: Props) => {
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
+      </SafeAreaView>
     </>
   );
 };

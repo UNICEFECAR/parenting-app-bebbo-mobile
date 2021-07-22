@@ -31,14 +31,13 @@ const HealthCheckups = ({navigation}: Props) => {
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
   let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllHealthCheckupPeriods();
-
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods.map((item, itemindex) => {
+          {upcomingPeriods?.map((item, itemindex) => {
             return (
               <UpcomingHealthCheckup
                 item={item}
@@ -54,7 +53,7 @@ const HealthCheckups = ({navigation}: Props) => {
     } else if (index === 1) {
       return (
         <View>
-          {previousPeriods.map((item, itemindex) => {
+          {previousPeriods?.map((item, itemindex) => {
             return (
               <PreviousHealthCheckup
                 item={item}

@@ -9,19 +9,19 @@ export const getAllVaccinePeriods = () => {
       : [],
   );
   // console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
-//filter measures by didChildGetVaccines
-const vaccineMeasures =activeChild.measures.filter((item) => item.didChildGetVaccines == true);
-let measuredVaccines :any[]= [];
-vaccineMeasures.forEach(measure => {
-  measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
-});
-// const getMeasureInfoForVaccine = (vaccineid :number=56276) => {
-// return vaccineMeasures.filter(measure => JSON.parse(measure.vaccineIds).indexOf(vaccineid) > -1);
-// }
-// console.log(getMeasureInfoForVaccine(),"getMeaasureInfoForVaccine");
-const vaccineMeasuredInfo = (vaccineid:number)=>{
- return (measuredVaccines.find(item => item.vaccineid == vaccineid))
-}
+  //filter measures by didChildGetVaccines
+  const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
+  let measuredVaccines: any[] = [];
+  vaccineMeasures.forEach(measure => {
+    measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
+  });
+  // const getMeasureInfoForVaccine = (vaccineid :number=56276) => {
+  // return vaccineMeasures.filter(measure => JSON.parse(measure.vaccineIds).indexOf(vaccineid) > -1);
+  // }
+  // console.log(getMeasureInfoForVaccine(),"getMeaasureInfoForVaccine");
+  const vaccineMeasuredInfo = (vaccineid: number) => {
+    return (measuredVaccines.find(item => item.vaccineid == vaccineid))
+  }
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
@@ -56,15 +56,15 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
   groupsForPeriods.forEach((item: any) => {
     const period = getVaccineInfo(item.periodID);
     if (period) {
-    item.periodName = period.name;
-    item.vaccination_opens = period.vaccination_opens;
+      item.periodName = period.name;
+      item.vaccination_opens = period.vaccination_opens;
     }
     console.log(item?.vaccines);
     item?.vaccines.forEach((vaccine: any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
       console.log(vaccineMeasured, "vaccineMeasured");
-      vaccine.isMeasured = vaccineMeasured? true: false;
-      vaccine.measurementDate = vaccineMeasured? vaccineMeasured.measurementDate: "";
+      vaccine.isMeasured = vaccineMeasured ? true : false;
+      vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
   })
   console.log(groupsForPeriods, "<groupsForPeriods>");
@@ -93,12 +93,12 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
 
-  const totalUpcomingVaccines = upcomingPeriods.map((item) => {
+  const totalUpcomingVaccines = upcomingPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
   });
-  const totalPreviousVaccines = previousPeriods.map((item) => {
+  const totalPreviousVaccines = previousPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
@@ -106,6 +106,21 @@ const vaccineMeasuredInfo = (vaccineid:number)=>{
   console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
   // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
 
+  const doneVCcount = sortedGroupsForPeriods.map((item) => {
+    return item.vaccines.filter((item) => {
+      return item.isMeasured;
+    }).length;
+  }).reduce((accumulator, current) => {
+    return accumulator + current;
+  });
 
-  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines,currentPeriod };
+  const overDuePreviousVCcount = previousPeriods.map((item) => {
+    return item.vaccines.filter((item) => {
+      return !item.isMeasured;
+    }).length;
+  }).reduce((accumulator, current) => {
+    return accumulator + current;
+  });
+  // console.log(doneVCcount,overDueVCcount,"doneVCcount");
+  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines, currentPeriod,overDuePreviousVCcount,doneVCcount };
 }
