@@ -337,7 +337,8 @@ const Articles = ({route, navigation}: Props) => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  // setModalVisible(!modalVisible);
+                  setIsModalOpened('IsArticleModalOpened');
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>

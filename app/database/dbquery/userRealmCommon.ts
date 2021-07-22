@@ -216,6 +216,50 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async updateChildMilestones<Entity>(entitySchema: ObjectSchema,milestoneId:any,condition:any): Promise<Entity[]> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    // console.log(obj,obj[0]);
+                    // console.log(obj[0].checkedMilestones)
+                        realm?.write(() => {
+                            // obj[0].checkedMilestones = [];
+                        if(obj[0].checkedMilestones.length>0){
+                            let updateItemIndex = obj[0].checkedMilestones.findIndex(item=>{
+                                return item==milestoneId
+                            });
+                            // console.log(updateItemIndex)
+                            if(updateItemIndex==-1){
+                                obj[0].checkedMilestones.push(milestoneId);
+                            }else{
+                                obj[0].checkedMilestones.splice(updateItemIndex,1);
+                            }
+                        }else{
+                            obj[0].checkedMilestones.push(milestoneId);
+                        }
+
+                        // console.log(obj[0],"after change");
+                        
+                            // const abc = obj[0].measures.push(measures);
+                            // obj[0].measures = [...abc]
+                            //obj[0].measures = [...obj[0].measures,measures];
+                            
+                        
+                        });
+                   resolve('success');
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+                reject();
+            }
+        });
+    }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
