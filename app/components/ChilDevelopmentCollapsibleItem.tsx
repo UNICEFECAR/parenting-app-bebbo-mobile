@@ -1,9 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
+import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { Text } from 'victory-native';
+import { useAppSelector } from '../../App';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxDevActive, CheckboxItem } from './shared/CheckboxStyle';
 import { MainContainer } from './shared/Container';
@@ -11,12 +14,18 @@ import { DevelopmentBox } from './shared/DevelopmentStyle';
 import { DividerDev } from './shared/Divider';
 import { FDirRow, Flex5 } from './shared/FlexBoxStyle';
 import Icon from './shared/Icon';
+import VideoPlayer from './VideoPlayer';
+import RNFS from 'react-native-fs';
+import downloadImages from '../downloadImages/ImageStorage';
 
+// const videoarticleType = {
 
+// }
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
-  const {item} = props;
+  const {item, VideoArticlesData, ActivitiesData} = props;
   // console.log(item);
+  // console.log(ActivitiesData);
   const navigation = useNavigation();
   const {t}= useTranslation()
   const [isOPen, setIsOPen] = useState<Boolean>(false);
@@ -26,6 +35,31 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  // let selVideoArticleData:any;
+  // let selActivitiesData:any;
+  const [selVideoArticleData, setselVideoArticleData] = useState();
+  const [selActivitiesData, setselActivitiesData] = useState();
+  useFocusEffect(
+    React.useCallback(() => { 
+      console.log("collapsible usefocuseffect");
+      const fetchData = async () => {
+        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item.related_video_articles[0])[0]);
+        setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item.related_activities[0])[0]);
+        if(selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "")
+        {   
+            let imageArray = [];
+            imageArray.push({
+                srcUrl: selActivitiesData?.cover_image.url, 
+                destFolder: RNFS.DocumentDirectoryPath + '/content', 
+                destFilename: selActivitiesData?.cover_image.url.split('/').pop()
+            })
+            const imagesDownloadResult = await downloadImages(imageArray);
+            console.log(imagesDownloadResult,"--imagesDownloadResult");
+        }
+      }
+      fetchData()
+    },[])
+  );
   const gotoArticle =()=>{
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
@@ -92,22 +126,27 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
           <ShiftFromTop5></ShiftFromTop5>
             <ShiftFromTopBottom10>
               <ShiftFromBottom5>
-              <Heading4>Milestone</Heading4>
+              <Heading4>{t('developScreenmileStone')}</Heading4>
              </ShiftFromBottom5>
               <FDirRow>
-                <Image
-                  source={require('@assets/trash/card1.jpeg')}
-                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
-                  resizeMode={'cover'}
-                />
+                
+                {selVideoArticleData && selVideoArticleData?.cover_video && selVideoArticleData?.cover_video?.url != "" ? 
+                  // <Image
+                  //   source={require('@assets/trash/card1.jpeg')}
+                  //   style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
+                  //   resizeMode={'cover'}
+                  // />
+                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+                  // <Heading4Regular style={{flex: 1}}>in if</Heading4Regular>
+                  : null 
+                  }
                 <Flex5>
                 <ShiftFromBottom5>
                   <Heading5>
-                    Often, easily and spontaneously smiles at people near her.
+                    {selVideoArticleData?.title}
                   </Heading5>
                   </ShiftFromBottom5>
                   <Pressable onPress={gotoArticle}>
-                    
                     <ButtonTextSmLineL>
                    {t('developScreenrelatedArticleText')}
                   </ButtonTextSmLineL>
@@ -123,16 +162,19 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
               <Heading4>{t('developScreenrelatedAct')}</Heading4>
              </ShiftFromBottom5>
               <FDirRow>
-              <Image
-                  source={require('@assets/trash/card1.jpeg')}
-                  style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
-                  resizeMode={'cover'}
-                />
+              { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
+                  <Image
+                      // source={require('@assets/trash/card1.jpeg')}
+                      source={{uri : "file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop())}}
+                      style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
+                      resizeMode={'cover'}
+                    />
+                  : <Text>noactivitiesdata</Text>
+              }
                 <Flex5>
                 <ShiftFromBottom5>
                 <Heading5>
-                    Child related content goes here, Child related content goes
-                    here,
+                    {selActivitiesData?.title}
                   </Heading5>
                   </ShiftFromBottom5>
                   <Pressable onPress={gotoActivity}>
