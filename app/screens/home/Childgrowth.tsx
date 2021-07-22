@@ -11,7 +11,6 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { FlexDirCol } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
-import RelatedArticles from '@components/shared/RelatedArticles';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -35,6 +34,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import { formatDaysData, formatHeightData } from '../../services/growthService';
+
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -49,7 +49,6 @@ const Childgrowth = ({navigation}: Props) => {
   ];
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
-  const [relatedArticles, setrelatedArticles] = React.useState<any[]>([]);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -59,7 +58,6 @@ const Childgrowth = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"activeChild");
   const standardDevData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.taxonomy.standardDevData),
   );
@@ -99,19 +97,17 @@ const Childgrowth = ({navigation}: Props) => {
         standardDeviation = genderGirlData;
         obj = formatHeightData(genderGirlData);
       }
-      const uniqueID = uuidv4();
-      console.log(uniqueID,"uniqueID");
       return (
         <>
           <View
+          key={uuidv4()}
             style={{
               marginBottom: 20,
               flexDirection: 'column',
-              backgroundColor: 'white',
               // paddingLeft: 20,
               // paddingTop: 5,
             }}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', backgroundColor: 'white',}}>
               <Heading2>{item.title}</Heading2>
               <Pressable
                 onPress={() =>
@@ -124,30 +120,23 @@ const Childgrowth = ({navigation}: Props) => {
                 <Icon name="ic_fullscreen" size={16} />
               </Pressable>
             </View>
-
+            <View style={{backgroundColor: 'white',}}>
             <GrowthChart
               activeChild={activeChild}
               chartType={chartTypes.weightForHeight}
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
+            </View>
             <GrowthInterpretation
               activeChild={activeChild}
               chartType={chartTypes.weightForHeight}
               standardDeviation={standardDeviation}
-              getrelatedArticles={setrelatedArticles}
+              // getrelatedArticles={setrelatedArticles}
             />
           </View>
           {/* 5 is growth category id */}
-          <RelatedArticles
-            fromScreen={'ChildgrowthTab'}
-            related_articles={relatedArticles}
-            category={5}
-            currentId={uniqueID}
-            headerColor={headerColor}
-            backgroundColor={backgroundColor}
-            navigation={navigation}
-          />
+         
         </>
       );
     } else if (index == 1) {
@@ -169,19 +158,18 @@ const Childgrowth = ({navigation}: Props) => {
         standardDeviation = genderGirlData;
         obj = formatDaysData(genderGirlData);
       }
-      const uniqueID = uuidv4();
-      console.log(uniqueID,"uniqueID");
       return (
         <>
           <View
+          key={uuidv4()}
             style={{
               marginBottom: 20,
               flexDirection: 'column',
-              backgroundColor: 'white',
+              
               // paddingLeft: 20,
               // paddingTop: 5,
             }}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row',backgroundColor: 'white',}}>
               <Heading2>{item.title}</Heading2>
               <Pressable
                 onPress={() =>
@@ -194,29 +182,23 @@ const Childgrowth = ({navigation}: Props) => {
                 <Icon name="ic_fullscreen" size={16} />
               </Pressable>
             </View>
+            <View style={{backgroundColor: 'white',}}>
             <GrowthChart
               activeChild={activeChild}
               chartType={chartTypes.heightForAge}
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
+            </View>
             <GrowthInterpretation
               activeChild={activeChild}
               chartType={chartTypes.heightForAge}
               standardDeviation={standardDeviation}
-              getrelatedArticles={setrelatedArticles}
+              // getrelatedArticles={setrelatedArticles}
             />
           </View>
           {/* 5 is growth category id */}
-          <RelatedArticles
-            fromScreen={'ChildgrowthTab'}
-            related_articles={relatedArticles}
-            category={5}
-            currentId={uniqueID}
-            headerColor={headerColor}
-            backgroundColor={backgroundColor}
-            navigation={navigation}
-          />
+         
 
           {/*  */}
         </>
@@ -231,10 +213,9 @@ const Childgrowth = ({navigation}: Props) => {
             backgroundColor: '#FFF',
             borderRadius: 4,
             alignItems: 'center',
-            margin: 15,
-            padding: 15,
-          }}>
-          <VectorImage source={require('@assets/svg/chart.svg')} />
+            margin:15,
+            padding: 15          }}>
+          <VectorImage source={require('@assets/svg/chart.svg')}/>
         </View>
       </>
     );
@@ -304,7 +285,7 @@ const Childgrowth = ({navigation}: Props) => {
 
                 <LastChildMeasure activeChild={activeChild} />
 
-                <View>
+                <>
                   <TabBarContainer
                     style={{
                       maxHeight: 50,
@@ -333,8 +314,10 @@ const Childgrowth = ({navigation}: Props) => {
                     })}
                   </TabBarContainer>
 
-                  <View>{renderItem(data[selectedIndex], selectedIndex)}</View>
-                </View>
+                  <View>
+                    {renderItem(data[selectedIndex], selectedIndex)}
+                  </View>
+                </>
 
                 <View style={{flex: 1, padding: 5, marginVertical: 10}}>
                   {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
