@@ -43,6 +43,9 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
   // console.log(childData,"..childData..");
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
@@ -71,7 +74,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");
-    addChild(editScreen, 1, childSet, dispatch, navigation,child_age);
+    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age);
 }
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;

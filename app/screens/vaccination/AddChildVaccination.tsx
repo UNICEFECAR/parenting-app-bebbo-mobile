@@ -87,6 +87,9 @@ const AddChildVaccination = ({route, navigation}: any) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -224,7 +227,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
   };
