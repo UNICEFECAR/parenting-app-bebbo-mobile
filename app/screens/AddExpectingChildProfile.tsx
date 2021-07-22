@@ -68,11 +68,14 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
   const showdobDatepicker = () => {
     setdobShow(true);
   };
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const AddChild = async () => {
     let insertData: any =await getNewChild( '',"true", null, '',plannedTermDate, '',name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(false, 2, childSet, dispatch, navigation,child_age);
+    addChild(languageCode,false, 2, childSet, dispatch, navigation,child_age);
   }
   return (
     <>

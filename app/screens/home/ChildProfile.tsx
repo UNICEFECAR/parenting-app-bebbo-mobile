@@ -53,6 +53,9 @@ const ChildProfile = ({navigation}: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const dispatch = useAppDispatch();
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -199,7 +202,7 @@ const child_age = useAppSelector(
                 </View>
                 <ButtonTextSmLine
                   onPress={() => {
-                    setActiveChild(data.uuid,dispatch,child_age);
+                    setActiveChild(languageCode,data.uuid,dispatch,child_age);
                   }}>
                  {t('childActivatebtn')}
                 </ButtonTextSmLine>

@@ -96,11 +96,13 @@ const EditChildProfile = ({route, navigation}: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
-  genders = genders.map((v) => ({...v, title: v.name}))
-  // .filter(function (e, i, a) {
-  //   return e.id!=0;
-  // });
-  console.log(genders,"..genders..");
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
+    return e.id!=59;
+  });
+  //console.log(genders,"..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   const getDefaultgenderValue = () => {
     return childData?.uuid != ''
@@ -294,6 +296,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           text: t('removeOption2'),
           onPress: () => {
             deleteChild(
+              languageCode,
               index,
               dispatch,
               'ChildEntity',
@@ -354,7 +357,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
-    addChild(editScreen, 2, childSet, dispatch, navigation, child_age);
+    addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age);
   };
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
     //console.log(checkedItem);
