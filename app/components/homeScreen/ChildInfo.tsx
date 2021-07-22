@@ -5,7 +5,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import VideoPlayer from '@components/VideoPlayer';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,8 +13,10 @@ import { Image } from 'react-native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 
-const ChildInfo = () => {
+const ChildInfo = (props: any) => {
   const {t} = useTranslation();
+  const navigation = useNavigation();
+  const { headerColor, backgroundColor} = props;
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -49,6 +51,15 @@ useFocusEffect(
     }
   },[])
 );
+
+const goToVideoArticleDetails = () => {
+  navigation.navigate('DetailsScreen', {
+    fromScreen: 'Home',
+    headerColor: headerColor,
+    backgroundColor: backgroundColor,
+    detailData: selectedPinnedArticleData
+  });
+}
   return (
     <>
     <MainContainer key={selectedPinnedArticleData?.id}>
@@ -77,7 +88,7 @@ useFocusEffect(
         <ShiftFromBottom10>
           <ButtonSpacing>
             <SideSpacing25>
-          <ButtonPrimary onPress={() => {}}>
+          <ButtonPrimary onPress={goToVideoArticleDetails}>
             <ButtonText>{t('homeScreenchildBtnText')}</ButtonText>
           </ButtonPrimary>
           </SideSpacing25>

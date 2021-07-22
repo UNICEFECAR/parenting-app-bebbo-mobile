@@ -32,7 +32,7 @@ const Home = () => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
- 
+  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
 //   const dailyMessages = useAppSelector((state: any) =>
 //   state.childData.childDataSet.allChild != ''
 //     ? JSON.parse(state.childData.childDataSet.allChild)
@@ -70,7 +70,7 @@ useFocusEffect(
         <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
         <BabyNotification/>
-          <ChildInfo/>
+          <ChildInfo headerColor={headerColor} backgroundColor={backgroundColor}/>
           <DailyReads/>
           <ChildMilestones/>
           <PlayingTogether/>
