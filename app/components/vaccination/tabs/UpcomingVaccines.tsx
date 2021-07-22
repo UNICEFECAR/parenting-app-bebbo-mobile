@@ -204,7 +204,7 @@ const UpcomingVaccines = (props: any) => {
                 </ButtonLinkPress> */}
               {/* Set Reminder Link*/}
             </MainContainer>
-            {/* remaining add condition for only few vaccines are given in below */}
+            {/* add condition for only few vaccines are given in below */}
             {(currentPeriodId == item.periodID && item.vaccines.some((el) => {
               return el.isMeasured == true;
             })) ? (
@@ -224,7 +224,7 @@ const UpcomingVaccines = (props: any) => {
             ) : null}
             {/* remaining add condition for all vaccines were not given in below */}
             {(currentPeriodId == item.periodID && item.vaccines.every((el) => {
-              return el.isMeasured == true;
+              return el.isMeasured == false;
             }))? (
               <ButtonContainerAuto>
                 <ButtonVaccination

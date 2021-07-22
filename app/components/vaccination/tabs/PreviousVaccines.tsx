@@ -1,9 +1,13 @@
 import {
+  ButtonContainerAuto,
+  ButtonText,
   ButtonTextMdLine,
-  ButtonTextSmLineL
+  ButtonTextSmLineL,
+  ButtonVaccination
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRowStart } from '@components/shared/FlexBoxStyle';
+import { RadioActive } from '@components/shared/radio';
 import {
   ToolsActionView,
   ToolsHeadingView,
@@ -24,7 +28,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
-import Icon, { OuterIconDone } from '../../shared/Icon';
+import Icon from '../../shared/Icon';
 
 const PreviousVaccines = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
@@ -60,10 +64,12 @@ const PreviousVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.totalVc === item.doneVc ? (
-              <OuterIconDone>
+          {item.vaccines.some((el) => {
+              return el.isMeasured == true;
+            }) ? (
+              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
-              </OuterIconDone>
+              </RadioActive>
             ) : (
               <Icon
                 name="ic_incom"
@@ -102,12 +108,19 @@ const PreviousVaccines = (props: any) => {
                 <MainContainer key={i}>
                   <FDirRowStart>
                     <ToolsIconView>
-                      <Icon
-                        name="ic_incom"
-                        size={20}
-                        color="#FFF"
-                        style={{backgroundColor: 'red', borderRadius: 150}}
-                      />
+                    {v.isMeasured ? (
+                        <RadioActive
+                          style={{backgroundColor: 'green', borderRadius: 50}}>
+                          <Icon name="ic_tick" size={12} color="#FFF" />
+                        </RadioActive>
+                      ) : (
+                        <Icon
+                          name="ic_incom"
+                          size={20}
+                          color="#FFF"
+                          style={{backgroundColor: 'red', borderRadius: 150}}
+                        />
+                      )}
                     </ToolsIconView>
                     <ToolsHeadingView>
                       <Heading4Regular>{v.title}</Heading4Regular>
@@ -121,18 +134,41 @@ const PreviousVaccines = (props: any) => {
                 </MainContainer>
               );
             })}
-            <ShiftFromTopBottom10>
-              <Pressable
-                disabled={isFutureDate(activeChild?.birthDate)}
-                onPress={() =>
-                  navigation.navigate('AddChildVaccination', {
-                    headerTitle: t('editVcTitle'),
-                    vcPeriod:item
-                  })
-                }>
-                <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
-              </Pressable>
-            </ShiftFromTopBottom10>
+         {/* add condition for only few vaccines are given in below */}
+         {(item.vaccines.some((el) => {
+              return el.isMeasured == true;
+            })) ? (
+              <ShiftFromTopBottom10>
+                <Pressable
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  onPress={() =>
+                    console.log(item)
+                    // navigation.navigate('AddChildVaccination', {
+                    //   headerTitle: t('editVcTitle'),
+                    //   vcPeriod: item,
+                    // })
+                  }>
+                  <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
+                </Pressable>
+              </ShiftFromTopBottom10>
+            ) : null}
+            {/* remaining add condition for all vaccines were not given in below */}
+            {(item.vaccines.every((el) => {
+              return el.isMeasured == false;
+            }))? (
+              <ButtonContainerAuto>
+                <ButtonVaccination
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  onPress={() =>
+                    navigation.navigate('AddChildVaccination', {
+                      headerTitle: t('addVcTitle'),
+                      vcPeriod: item,
+                    })
+                  }>
+                  <ButtonText>{t('vcAddBtn')}</ButtonText>
+                </ButtonVaccination>
+              </ButtonContainerAuto>
+            ) : null}
           </>
         ) : null}
       </ToolsListOuter>
