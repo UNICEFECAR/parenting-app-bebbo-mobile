@@ -211,4 +211,51 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
       }
 }
 
+    /**
+     * Get YouTube video ID from given url.
+     */
+    export const  getYoutubeId = (url: string): string => {
+        let rval: string = url;
+
+        // https://www.youtube.com/watch?v=LjkSW_j6-hA
+        if (url?.indexOf('youtu.be') === -1) {
+            let re = new RegExp('v=([^&]+)', 'img');
+            let result = re.exec(url)
+
+            if (result && result[1]) {
+                rval = result[1];
+            }
+        }
+
+        // https://youtu.be/uMcgJR8ESRc
+        if (url?.indexOf('youtu.be') !== -1) {
+            let re = new RegExp('youtu.be/([^?]+)', 'img');
+            let result = re.exec(url)
+
+            if (result && result[1]) {
+                rval = result[1];
+            }
+        }
+
+        return rval;
+    }
+
+    /**
+     * Get Vimeo video ID from given url.
+     * 
+     * url = https://vimeo.com/277586602?foo=bar
+     */
+     export const  getVimeoId = (url: string): string => {
+        let rval: string = url;
+
+        let re = new RegExp('vimeo.com/([0-9]+)[^0-9]*', 'img');
+        let result = re.exec(url)
+
+        if (result && result[1]) {
+            rval = result[1];
+        }
+
+        return rval;
+    }
+
  

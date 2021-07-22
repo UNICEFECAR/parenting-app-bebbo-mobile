@@ -10,6 +10,7 @@ import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
+import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -42,7 +43,7 @@ export type RelatedArticlesProps = {
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
   // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
-  // console.log(detailData);
+  console.log(detailData);
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -92,37 +93,46 @@ const DetailsScreen = ({route, navigation}: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2>{detailData.title}</Heading2>
+            <Heading2>{detailData?.title}</Heading2>
           </HeaderTitleView>
         </FlexDirRow>
 
         <ScrollView style={{flex: 4}}>
           <View>
-            <Image
-              resizeMode="cover"
-              resizeMethod="scale"
-              style={{width: '100%', height: 200}}
-              // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-              source={require('@assets/trash/defaultArticleImage.png')}
-            />
+            {fromScreen ==="ChildDevelopment" ?
+              <VideoPlayer selectedPinnedArticleData={detailData}></VideoPlayer>
+            : 
+              <Image
+                resizeMode="cover"
+                resizeMethod="scale"
+                style={{width: '100%', height: 200}}
+                // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+                source={require('@assets/trash/defaultArticleImage.png')}
+              />
+            }
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
           <ArticleDetailsContainer>
             <ShiftFromBottom5>
-          <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailData.category)[0].name }</Heading6Bold>
+          {detailData && detailData?.category && detailData?.category!= 0 ?    
+            <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailData.category)[0].name }</Heading6Bold>
+            : null }
           </ShiftFromBottom5>
-          <Heading2>{detailData.title}</Heading2>
-          <HTML
-            source={{html: detailData.body}}
-            baseFontStyle={{fontSize: 16, color: '#000000'}}
-          />
+          <Heading2>{detailData?.title}</Heading2>
+          {detailData && detailData?.body ?
+            <HTML
+              source={{html: detailData?.body}}
+              baseFontStyle={{fontSize: 16, color: '#000000'}}
+            />
+            : null 
+          }
           </ArticleDetailsContainer>
           {fromScreen === 'Articles' ? (
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
                  {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
-                   <RelatedArticles related_articles={detailData.related_articles} category={detailData.category} currentId={detailData.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                 
                 <ArticleHeading>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>

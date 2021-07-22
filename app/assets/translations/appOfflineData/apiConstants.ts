@@ -5,6 +5,9 @@ export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
+export const videoTypeVimeo = "vimeo";
+export const videoTypeYoutube = "youtube";
+export const videoTypeImage = "novideo";
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     //console.log("in finalurl", apiUrlDevelop);
    
@@ -59,7 +62,7 @@ export const appConfig = {
     healthcheckupPinnedContent:'health_check_ups'
 }
 
-export const activityCategory = [
+export const articleCategoryobj = [
     {name:'playingAndLearning',id:55, image:'ic_artl_play'},
     {name:'healthAndWellbeingid',id:2, image:'ic_artl_health'},
     {name:'safetyAndProtection', id:3, image:'ic_artl_safety'},
