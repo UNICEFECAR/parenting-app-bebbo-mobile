@@ -25,7 +25,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 // }
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
-  const {item, VideoArticlesData, ActivitiesData} = props;
+  const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent} = props;
   // console.log(item);
   // console.log(ActivitiesData);
   const navigation = useNavigation();
@@ -70,7 +70,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
         }
       }
       fetchData()
-    }, [item]);
+    }, []);
   //   },[])
   // );
   const milestoneCheckUncheck = async () => {
@@ -78,6 +78,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
     // console.log("filterQuery--",filterQuery);
     setToggleCheckBox(!toggleCheckBox);
+    sendMileStoneDatatoParent(item,!toggleCheckBox);
     const updatemilestone = await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema,item.id,filterQuery);
   }
   const gotoArticle =()=>{
@@ -166,12 +167,13 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                     {selVideoArticleData?.title}
                   </Heading5>
                   </ShiftFromBottom5>
-                  <Pressable onPress={gotoArticle}>
-                    <ButtonTextSmLineL>
-                   {t('developScreenrelatedArticleText')}
-                  </ButtonTextSmLineL>
-                  
-                  </Pressable>
+                  {/* uncomment this for related article */}
+                    {/* <Pressable onPress={gotoArticle}>
+                      <ButtonTextSmLineL>
+                    {t('developScreenrelatedArticleText')}
+                    </ButtonTextSmLineL>
+                    
+                    </Pressable> */}
                 </Flex5>
               </FDirRow>
             </ShiftFromTopBottom10>
