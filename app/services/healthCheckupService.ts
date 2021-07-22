@@ -33,50 +33,43 @@ export const getAllHealthCheckupPeriods = () => {
   // console.log(taxonomy,taxonomy.growth_period);
   const allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
   console.log(allGrowthPeriods, "taxonomydata_growth_period");
-  const getVaccineInfo = (periodID) => {
+  const getVaccineOpens = (periodID) => {
     return allGrowthPeriods.find(item => item.id == periodID);
   }
   let allVaccinePeriods = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
-  const allHealthCheckupsData = useAppSelector(
+  let allHealthCheckupsData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.healthCheckupsData),
   );
-  const getPeriodTitle = (periodID) => {
-    return allHealthCheckupsData.find(item => item.growth_period == periodID);
+  // const getPeriodTitle = (periodID) => {
+  //   return allHealthCheckupsData.find(item => item.growth_period == periodID);
+  // }
+  const getVaccinesForHCPeriod = (growthPeriodID) => {
+      let vaccinesforHC = allVaccinePeriods.filter(item => item.growth_period == growthPeriodID);
+      vaccinesforHC?.forEach(vaccine => {
+        const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
+        vaccine.isMeasured = vaccineMeasured? true: false;
+        vaccine.measurementDate = vaccineMeasured? vaccineMeasured.measurementDate: "";
+      })
+    
+    return vaccinesforHC;
   }
-  console.log(allHealthCheckupsData,"allHealthCheckupsData");
-  var group_to_growthPeriod = allVaccinePeriods.reduce(function (obj, item) {
-    obj[item.growth_period] = obj[item.growth_period] || [];
-    obj[item.growth_period].push({ id: item.id, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
-    return obj;
-  }, {});
-  console.log("group_to_growthPeriod",group_to_growthPeriod)
-  let groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
-    return { periodID: key,vaccines: group_to_growthPeriod[key] };
-  });
-  groupsForPeriods.forEach((item: any) => {
-    const hcItem = getPeriodTitle(item.periodID);
-    if (hcItem) {
-      item.vaccination_opens = getVaccineInfo(item.periodID).vaccination_opens;
-      item.title = hcItem.title;
-      item.pinned_article = hcItem.pinned_article;
-      item.created_at = hcItem.created_at;
-      item.updated_at =hcItem.updated_at;
-    }
-    item?.vaccines.forEach((vaccine: any) => {
-      const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
-      console.log(vaccineMeasured, "vaccineMeasured");
-      vaccine.isMeasured = vaccineMeasured? true: false;
-      vaccine.measurementDate = vaccineMeasured? vaccineMeasured.measurementDate: "";
-    })
-   
-  })
-  console.log(groupsForPeriods, "<groupsForPeriods>");
 
-  let sortedGroupsForPeriods = [...groupsForPeriods].sort(
+
+  // console.log(allHealthCheckupsData,"allHealthCheckupsData");
+  // console.log(allVaccinePeriods,"allVaccinePeriods");
+  allHealthCheckupsData.forEach((hcItem:any) => {
+   hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period)
+  hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
+  });
+  console.log(allHealthCheckupsData,"modifiedHealthCheckupsData");
+  // console.log(groupsForPeriods, "<groupsForPeriods>");
+//  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
+// push all additional measures to the measures list and sort by date
+  let sortedGroupsForPeriods = [...allHealthCheckupsData].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
   const isUpComingPeriod = (vaccination_opens: number) => {
@@ -101,19 +94,18 @@ export const getAllHealthCheckupPeriods = () => {
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
 
-  const totalUpcomingVaccines = upcomingPeriods.map((item) => {
+  const totalUpcomingVaccines = upcomingPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
   });
-  const totalPreviousVaccines = previousPeriods.map((item) => {
+  const totalPreviousVaccines = previousPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
   });;
-  console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
-  // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
-
+  // console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
+  // console.log(allHealthCheckupsData,"growth_period_uniqueData");
 
  
   return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines,currentPeriod };

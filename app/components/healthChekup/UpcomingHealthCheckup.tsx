@@ -72,26 +72,20 @@ const UpcomingHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {/* {item.measures ? (
-              item.givenVaccines.length == 0 ? ( */}
-            {/* <Icon
-                  name="ic_incom"
-                  size={20}
-                  color="#FFF"
-                  style={{backgroundColor: 'red', borderRadius: 50}}
-                /> */}
-            {/* ) : ( */}
-            <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
-              <Icon name="ic_tick" size={12} color="#FFF" />
-            </RadioActive>
-            {/* )
-            ) : item.givenVaccines.length > 0 ? ( */}
-            {/* <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+            {item.vaccines.some((el) => {
+              return el.isMeasured == true;
+            }) ? (
+              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
-              </RadioActive> */}
-            {/* ) : ( */}
-            {/* <Icon name="ic_plus" size={20} color="#000" /> */}
-            {/* )} */}
+              </RadioActive>
+            ) : (
+              <Icon
+                name="ic_incom"
+                size={20}
+                color="#FFF"
+                style={{backgroundColor: 'red', borderRadius: 150}}
+              />
+            )}
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
@@ -116,59 +110,61 @@ const UpcomingHealthCheckup = (props: any) => {
         {isOpen ? (
           <>
             <MainContainer>
-              <FDirRowStart>
-                <ToolsIconView>
-                  <Icon name="ic_vaccination" size={20} color="#000" />
-                </ToolsIconView>
-                <ToolsHeadingView>
-                  <ShiftFromTop5>
-                    <ShiftFromBottom15>
-                      {item.vaccines.some((el) => {
-                        return el.isMeasured == true;
-                      }) ? (
-                        <Heading4Regular>{t('hcVaccineText')}</Heading4Regular>
-                      ) : null}
-                    </ShiftFromBottom15>
-                  </ShiftFromTop5>
-
-                  <HealthDesc>
-                    {item.vaccines?.map((vaccineItem: any, index: number) => {
-                      if (vaccineItem.isMeasured === true) {
-                        return (
-                          <View key={index}>
-                            <BulletsView>
-                              <Bullets></Bullets>
-                              <Paragraph>{vaccineItem.title}</Paragraph>
-                            </BulletsView>
-                          </View>
-                        );
-                      }
-                    })}
-                  </HealthDesc>
-
-                  <ShiftFromBottom15>
-                      {item.vaccines.some((el) => {
-                        return el.isMeasured == false;
-                      }) ? (
-                        <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
-                      ) : null}
-                    </ShiftFromBottom15>
+              {item.vaccines.length > 0 ? (
+                <FDirRowStart>
+                  <ToolsIconView>
+                    <Icon name="ic_vaccination" size={20} color="#000" />
+                  </ToolsIconView>
+                  <ToolsHeadingView>
+                    {item.vaccines.some((el) => {
+                      return el.isMeasured == true;
+                    }) ? (
+                      <ShiftFromTop5>
+                        <ShiftFromBottom15>
+                          <Heading4Regular>
+                            {t('hcVaccineText')}
+                          </Heading4Regular>
+                        </ShiftFromBottom15>
+                      </ShiftFromTop5>
+                    ) : null}
                     <HealthDesc>
-                    {item.vaccines?.map((vaccineItem: any, index: number) => {
-                      if (vaccineItem.isMeasured === false) {
-                        return (
-                          <View key={index}>
-                            <BulletsView>
-                              <Bullets></Bullets>
-                              <Paragraph>{vaccineItem.title}</Paragraph>
-                            </BulletsView>
-                          </View>
-                        );
-                      }
-                    })}
-                  </HealthDesc>
-                </ToolsHeadingView>
-              </FDirRowStart>
+                      {item.vaccines?.map((vaccineItem: any, index: number) => {
+                        if (vaccineItem.isMeasured === true) {
+                          return (
+                            <View key={index}>
+                              <BulletsView>
+                                <Bullets></Bullets>
+                                <Paragraph>{vaccineItem.title}</Paragraph>
+                              </BulletsView>
+                            </View>
+                          );
+                        }
+                      })}
+                    </HealthDesc>
+                    {item.vaccines.some((el) => {
+                      return el.isMeasured == false;
+                    }) ? (
+                      <ShiftFromBottom15>
+                        <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
+                      </ShiftFromBottom15>
+                    ) : null}
+                    <HealthDesc>
+                      {item.vaccines?.map((vaccineItem: any, index: number) => {
+                        if (vaccineItem.isMeasured === false) {
+                          return (
+                            <View key={index}>
+                              <BulletsView>
+                                <Bullets></Bullets>
+                                <Paragraph>{vaccineItem.title}</Paragraph>
+                              </BulletsView>
+                            </View>
+                          );
+                        }
+                      })}
+                    </HealthDesc>
+                  </ToolsHeadingView>
+                </FDirRowStart>
+              ) : null}
 
               <FDirRowStart>
                 <ToolsIconView>
