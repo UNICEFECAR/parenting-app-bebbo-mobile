@@ -52,7 +52,24 @@ interface hardcodedDataType {
     growth_period: number,
     created_at: string,
     updated_at: string
-  }
+  },
+  ChildDevData:{
+    id: number,
+    type: string,
+    title: string,
+    child_age: number[],
+    boy_video_article: number,
+    girl_video_article: number,
+    milestone: string,
+    created_at: string,
+    updated_at: string,
+    mandatory: number
+  },
+  PinnedChildDevData:{},
+  MileStonesData:{},
+  VideoArticlesData:{},
+  ActivitiesData:{}
+
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -107,6 +124,22 @@ const initialState: hardcodedDataType = {
     updated_at: ''
   },
 
+  ChildDevData:{
+    id: 0,
+    type: '',
+    title: '',
+    child_age: [],
+    boy_video_article: 0,
+    girl_video_article: 0,
+    milestone: '',
+    created_at: '',
+    updated_at: '',
+    mandatory: 0
+  },
+  PinnedChildDevData:{},
+  MileStonesData:{},
+  VideoArticlesData:{},
+  ActivitiesData:{}
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -211,6 +244,46 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.healthCheckupsData = action.payload;
       },
+      setAllChildDevData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllChildDevData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.ChildDevData = action.payload;
+      },
+      setAllPinnedChildDevData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllPinnedChildDevData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.PinnedChildDevData = action.payload;
+      },
+      setAllMileStonesData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllMileStonesData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.MileStonesData = action.payload;
+      },
+      setAllVideoArticlesData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllVideoArticlesData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.VideoArticlesData = action.payload;
+      },
+      setAllActivitiesData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        console.log(action.payload,"setAllActivitiesData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.ActivitiesData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -224,7 +297,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

@@ -1,23 +1,33 @@
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
+import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
 import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../../../database/schema/BasicPagesSchema";
+import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../../../database/schema/ChildDevelopmentSchema";
 import { DailyHomeMessagesSchema, DailyHomeMessagesEntity } from "../../../database/schema/DailyHomeMessagesSchema";
+import { MilestonesEntity, MilestonesSchema } from "../../../database/schema/MilestonesSchema";
+import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../../../database/schema/PinnedChildDevelopmentSchema";
 import { StandardDevHeightForAgeEntity, StandardDevHeightForAgeSchema } from "../../../database/schema/StandardDevHeightForAgeSchema";
 import { StandardDevWeightForHeightEntity, StandardDevWeightForHeightSchema } from "../../../database/schema/StandardDevWeightForHeightSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
+import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllHealthCheckupsData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { setAllHealthCheckupsData, setAllActivitiesData, setAllChildDevData, setAllMileStonesData, setAllPinnedChildDevData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { ActivitiesData } from "./ActivitiesData";
 import { appConfig } from "./apiConstants";
 import { articledata } from "./article";
 import basicPagesData from "./basicPages";
+import { ChildDevelopmentData } from "./ChildDevelopmentData";
 import { dailyHomeNotificationdata } from "./dailyHomeNotification";
+import { MileStonesData } from "./MileStonesData";
+import { PinnedChildDevData } from "./PinnedChildDevData";
 import standardDevData from "./standardDevData";
 import { taxonomydata } from "./taxonomies";
 import {vaccineData} from "./vaccineData";
 import { healthCheckupsData } from './healthCheckupsData';
+import { VideoArticleData } from "./VideoArticleData";
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:string,activeChild?:any) => {
@@ -44,6 +54,11 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
             const allstanDevHFAData = await getDataToStore(languageCode,dispatch,StandardDevHeightForAgeSchema,Entity as StandardDevHeightForAgeEntity,standardDevData,setStandardDevHFAData);
             const allVaccinesData = await getDataToStore(languageCode,dispatch,VaccinationSchema,Entity as VaccinationEntity,vaccineData,setAllVaccineData);
             const allHealthCheckupsData = await getDataToStore(languageCode,dispatch,HealthCheckUpsSchema,Entity as HealthCheckUpsEntity,healthCheckupsData,setAllHealthCheckupsData);
+            const allChildDevlopmentData = await getDataToStore(languageCode,dispatch,ChildDevelopmentSchema,Entity as ChildDevelopmentEntity,ChildDevelopmentData,setAllChildDevData);
+            const allPinnedChildDevlopmentData = await getDataToStore(languageCode,dispatch,PinnedChildDevelopmentSchema,Entity as PinnedChildDevelopmentEntity,PinnedChildDevData,setAllPinnedChildDevData);
+            const allMileStonesData = await getDataToStore(languageCode,dispatch,MilestonesSchema,Entity as MilestonesEntity,MileStonesData,setAllMileStonesData);
+            const allVideoArticlesData = await getDataToStore(languageCode,dispatch,VideoArticleEntitySchema,Entity as VideoArticleEntity,VideoArticleData,setAllVideoArticlesData);
+            const allActivitiesData = await getDataToStore(languageCode,dispatch,ActivitiesEntitySchema,Entity as ActivitiesEntity,ActivitiesData,setAllActivitiesData);
 
             resolve("nocall");
         } else if(prevPage == "ChilSetup"){

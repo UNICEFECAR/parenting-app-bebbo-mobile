@@ -1,4 +1,5 @@
 import AgeBrackets from '@components/AgeBrackets';
+import VideoPlayer from '@components/VideoPlayer';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -11,16 +12,19 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading3Regular, Heading4, Heading5Bold, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Dimensions,
   FlatList,
   Image,
   Pressable,
   SafeAreaView, View
 } from 'react-native';
+import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
-
+import { useAppSelector } from '../../../../App';
+import { useFocusEffect } from '@react-navigation/native';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -65,15 +69,112 @@ const ChildDevelopment = ({navigation}: Props) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const {t} = useTranslation();
+  const ChildDevData = useAppSelector(
+    (state: any) =>
+      state.utilsData.ChildDevData != '' ?JSON.parse(state.utilsData.ChildDevData):[],
+    );
+  const PinnedChildDevData = useAppSelector(
+    (state: any) =>
+      state.utilsData.PinnedChildDevData != '' ?JSON.parse(state.utilsData.PinnedChildDevData):[],
+    );
+    // console.log("PinnedChildDevData--",PinnedChildDevData);
+  const MileStonesData = useAppSelector(
+    (state: any) =>
+      state.utilsData.MileStonesData != '' ?JSON.parse(state.utilsData.MileStonesData):[],
+    );
+    const VideoArticlesData = useAppSelector(
+      (state: any) =>
+        state.utilsData.VideoArticlesData != '' ?JSON.parse(state.utilsData.VideoArticlesData):[],
+      );
+    const ActivitiesData = useAppSelector(
+      (state: any) =>
+        state.utilsData.ActivitiesData != '' ?JSON.parse(state.utilsData.ActivitiesData):[],
+      );
+      console.log("ActivitiesData--",ActivitiesData);
+  const childAge = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+    );
+  const activeChildId = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
+      : [],
+  );
+  const activeChildGender = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild).gender
+      : [],
+  );
+    //  console.log(activeChildGender);
+  const [currentSelectedChildId,setCurrentSelectedChildId] = useState();
+  const [selectedChildDevData,setSelectedChildDevData] = useState();
+  const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
+  const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
+  // let selectedChildDevData:any;
   const onPressInfo = () => {
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'ChildDevelopment',
-    //   headerColor: artHeaderColor,
-    //   backgroundColor: artBackgroundColor,
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'ChildDevelopment',
+      headerColor: artHeaderColor,
+      backgroundColor: artBackgroundColor,
+      detailData: selectedPinnedArticleData
+    });
+
+    // navigation.navigate('DetailsScreen',
+    // {
+    //   fromScreen:"Articles",
+    //   headerColor:headerColor,
+    //   backgroundColor:backgroundColor,
+    //   detailData:item,
+    //   listCategoryArray: filterArray
+    //   // setFilteredArticleData: setFilteredArticleData
     // });
   };
+  const showSelectedBracketData = (item: any) => {
+    // console.log("in showSelectedBracketData--",item);
+    setCurrentSelectedChildId(item.id);
+    let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
+    filteredData = {...filteredData,name:item.name};
+    console.log(filteredData);
+    setSelectedChildDevData(filteredData);
+    let milestonefilteredData = MileStonesData.filter((x:any)=>x.child_age.includes(item.id));
+    console.log(milestonefilteredData);
+    setselectedChildMilestoneData(milestonefilteredData);
+    // if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
+    // {
+    //   // let pinnedVideoartId = selectedChildDevData.boy_video_article;
+    //   let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
+    //   setSelectedPinnedArticleData(filteredPinnedData);
+    // }else if(activeChildGender =="41") //for girl
+    // {
+    //   let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
+    //   setSelectedPinnedArticleData(filteredPinnedData);
+    // }
+  }
+  useFocusEffect(
+    React.useCallback(() => { 
+      console.log("child dev usefocuseffect");
+      const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
+      // console.log("firstChildDevData---",firstChildDevData);
+      showSelectedBracketData(firstChildDevData[0]);
+    },[])
+  );
+  useFocusEffect(
+    React.useCallback(() => { 
+      console.log("selectedChildDevData changed--");
+      if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
+      {
+        // let pinnedVideoartId = selectedChildDevData.boy_video_article;
+        let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
+        setSelectedPinnedArticleData(filteredPinnedData);
+      }else if(activeChildGender =="41") //for girl
+      {
+        let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
+        setSelectedPinnedArticleData(filteredPinnedData);
+      }
+    },[selectedChildDevData])
+  );
   const renderItem = (item: typeof cditems[0]) => (
-    <ChilDevelopmentCollapsibleItem item={item} subItemSaperatorColor={headerColor} />
+    <ChilDevelopmentCollapsibleItem key={item.id} item={item} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (
@@ -84,9 +185,15 @@ const ChildDevelopment = ({navigation}: Props) => {
          
           <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
           <ShiftFromTop10><Heading3Regular>
-            Watch your baby's behaviour and talk to your paediatrician or
-            visiting nurse if you notice that at the end of the first month you
-            baby:
+            {selectedChildDevData?.milestone}
+          {/* {
+            selectedChildDevData?.milestone ? 
+            <HTML
+                source={{html: selectedChildDevData?.milestone}}
+                baseFontStyle={{fontSize: 16}}
+              />
+              : null
+            } */}
           </Heading3Regular></ShiftFromTop10>
           
         
@@ -95,21 +202,25 @@ const ChildDevelopment = ({navigation}: Props) => {
     );
   };
   const ContentThatGoesAboveTheFlatList = () => {
+
     return (
       <>
         <AgeBrackets
           itemColor={backgroundColor}
           activatedItemColor={headerColor}
+          currentSelectedChildId={currentSelectedChildId}
+          showSelectedBracketData={showSelectedBracketData}
         />
         <View>
-          <Image
+          {/* <Image
             source={require('@assets/trash/card2.jpeg')}
             style={{width: '100%'}}
-          />
+          /> */}
+          <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
         </View>
         <ArticleHeading>
           <FlexDirRowSpace>
-          <Heading3>3rd and 4th Month </Heading3>
+          <Heading3>{selectedChildDevData?.name} </Heading3>
           <PrematureTagDevelopment>
           <Heading5Bold>
               {t('developScreenprematureText')}
@@ -119,7 +230,7 @@ const ChildDevelopment = ({navigation}: Props) => {
           <ShiftFromTop5>
           <FlexDirRowSpaceStart>
           <Heading2>
-            The Period of Diverse Experiences
+            {selectedChildDevData?.title}
           </Heading2>
           <Pressable onPress={onPressInfo}>
             <ShiftFromTop5>
@@ -179,7 +290,7 @@ const ChildDevelopment = ({navigation}: Props) => {
           <FlexCol style={{backgroundColor: backgroundColor}}>
             <View>
               <FlatList
-                data={cditems}
+                data={selectedChildMilestoneData}
                 renderItem={({item, index}) => renderItem(item)}
                 keyExtractor={(item) => item.id.toString()}
                 nestedScrollEnabled={true}
