@@ -49,10 +49,11 @@ const prevPage  = route.params.prevPage;
 
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = () => {
-    if(prevPage == "ChilSetup")
+    if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild))
-    }else {
+    }
+    else {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode))
     }
   }

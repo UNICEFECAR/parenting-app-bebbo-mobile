@@ -55,6 +55,9 @@ const ChildSetup = ({ navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const child_age = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
@@ -90,7 +93,7 @@ const AddChild=async ()=>{
   let childSet: Array<any> = [];
   childSet.push(insertData);
   console.log(childSet,"..childSet..");
-  addChild(false, 0, childSet, dispatch, navigation,child_age);
+  addChild(languageCode,false, 0, childSet, dispatch, navigation,child_age);
 }
 
   const themeContext = useContext(ThemeContext);
