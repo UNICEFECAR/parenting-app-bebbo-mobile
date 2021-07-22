@@ -48,7 +48,7 @@ const UpcomingHealthCheckup = (props: any) => {
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = () => {
+  const gotoArticle = (pinned_articleID) => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'Articles',
     //   headerColor: artHeaderColor,
@@ -61,7 +61,7 @@ const UpcomingHealthCheckup = (props: any) => {
     );
   };
   useEffect(() => {
-    currentPeriodId == item.periodID ? setIsOpen(true) : setIsOpen(false);
+    currentPeriodId == item.id ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
   }, []);
   return (
@@ -199,65 +199,69 @@ const UpcomingHealthCheckup = (props: any) => {
                 </FDirRowStart>
               </ShiftFromTop15>
               {/* ) : null} */}
-              <ShiftFromTop15>
-                <Pressable onPress={gotoArticle}>
-                  <ButtonTextSmLineL>{t('hcArticleLink')}</ButtonTextSmLineL>
+              {item?.pinned_article ? (
+                <ShiftFromTop15>
+                  <Pressable onPress={() => gotoArticle(item.pinned_article)}>
+                    <ButtonTextSmLineL>{t('hcArticleLink')}</ButtonTextSmLineL>
+                  </Pressable>
+                </ShiftFromTop15>
+              ) : null}
+            </MainContainer>
+
+            {currentPeriodId == item.periodID ? (
+              <MainContainer>
+                <FDirRowStart>
+                  <ToolsIconView>
+                    <Icon
+                      name="ic_time"
+                      size={20}
+                      color="#FFF"
+                      style={{backgroundColor: reminderColor, borderRadius: 50}}
+                    />
+                  </ToolsIconView>
+                  <ToolsHeadView>
+                    <ToolsHeadingView>
+                      <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
+                      <Heading4>{new Date().toDateString()}</Heading4>
+                    </ToolsHeadingView>
+                    <ToolsActionView>
+                      <Pressable
+                        onPress={() => {
+                          navigation.navigate('AddReminder', {
+                            reminderType: 'HealthCheckup',
+                            headerTitle: t('vcEditReminderHeading'),
+                            buttonTitle: t('hcReminderAddBtn'),
+                            titleTxt: t('hcReminderText'),
+                            warningTxt: t('hcReminderDeleteWarning'),
+                            headerColor: headerColor,
+                          });
+                        }}>
+                        <ButtonTextSmLine>
+                          {t('editCountryLang')}
+                        </ButtonTextSmLine>
+                      </Pressable>
+                    </ToolsActionView>
+                  </ToolsHeadView>
+                </FDirRowStart>
+                {/* Set Reminder Link */}
+
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('AddReminder', {
+                      reminderType: 'HealthCheckup',
+                      headerTitle: t('vcReminderHeading'),
+                      buttonTitle: t('hcReminderAddBtn'),
+                      titleTxt: t('hcReminderText'),
+                      warningTxt: t('hcReminderDeleteWarning'),
+                      headerColor: headerColor,
+                    });
+                  }}>
+                  <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
+                    {t('hcReminderbtn')}
+                  </ButtonTextMdLine>
                 </Pressable>
-              </ShiftFromTop15>
-            </MainContainer>
-
-            <MainContainer>
-              <FDirRowStart>
-                <ToolsIconView>
-                  <Icon
-                    name="ic_time"
-                    size={20}
-                    color="#FFF"
-                    style={{backgroundColor: reminderColor, borderRadius: 50}}
-                  />
-                </ToolsIconView>
-                <ToolsHeadView>
-                  <ToolsHeadingView>
-                    <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
-                    <Heading4>{new Date().toDateString()}</Heading4>
-                  </ToolsHeadingView>
-                  <ToolsActionView>
-                    <Pressable
-                      onPress={() => {
-                        navigation.navigate('AddReminder', {
-                          reminderType: 'HealthCheckup',
-                          headerTitle: t('vcEditReminderHeading'),
-                          buttonTitle: t('hcReminderAddBtn'),
-                          titleTxt: t('hcReminderText'),
-                          warningTxt: t('hcReminderDeleteWarning'),
-                          headerColor: headerColor,
-                        });
-                      }}>
-                      <ButtonTextSmLine>
-                        {t('editCountryLang')}
-                      </ButtonTextSmLine>
-                    </Pressable>
-                  </ToolsActionView>
-                </ToolsHeadView>
-              </FDirRowStart>
-              {/* Set Reminder Link */}
-
-              {/* <Pressable
-                onPress={() => {
-                  navigation.navigate('AddReminder', {
-                    reminderType: 'HealthCheckup',
-                    headerTitle: t('vcReminderHeading'),
-                    buttonTitle: t('hcReminderAddBtn'),
-                    titleTxt: t('hcReminderText'),
-                    warningTxt: t('hcReminderDeleteWarning'),
-                    headerColor: headerColor,
-                  });
-                }}>
-                <Text style={{textDecorationLine: 'underline'}}>
-                  {t('hcReminderbtn')}
-                </Text>
-              </Pressable> */}
-            </MainContainer>
+              </MainContainer>
+            ) : null}
 
             {/* {item.measures?.weight ||
                 item.measures?.height ||
@@ -267,6 +271,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 onPress={() =>
                   navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('editVcTitle'),
+                    // vcPeriod: item,
                   })
                 }>
                 <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
@@ -278,6 +283,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 onPress={() =>
                   navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('hcNewHeaderTitle'),
+                    vcPeriod: item,
                   })
                 }>
                 <ButtonText>{t('hcNewBtn')}</ButtonText>
