@@ -67,6 +67,7 @@ const Articles = ({route, navigation}: Props) => {
    useFocusEffect(()=>{
     //  console.log('weightModalOpened',weightModalOpened);
       // pass true to make modal visible every time & reload
+      console.log(articleModalOpened,"--articleModalOpened");
     setModalVisible(articleModalOpened);    
    });
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
