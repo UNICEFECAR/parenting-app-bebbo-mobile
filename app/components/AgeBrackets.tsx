@@ -1,8 +1,10 @@
 import Icon from '@components/shared/Icon';
+import { useFocusEffect } from '@react-navigation/native';
 import { Heading4 } from '@styles/typography';
-import React, { useRef } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useAppSelector } from '../../App';
 import AgeSliderContainer, { AgeSliderBox, AgeSliderNav } from './shared/AgeSliderContainer';
 
 const DATA = [
@@ -51,13 +53,38 @@ const DATA = [
 const AgeBrackets = (props: any) => {
   const [currentXOffset, setCurrentXOffset] = React.useState(0);
   const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
-
+  const childAge = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+     );
+    //  console.log(childAge.length);
+  // const activeChildId = useAppSelector((state: any) =>
+  //   state.childData.childDataSet.activeChild != ''
+  //     ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
+  //     : [],
+  // );
+  // console.log("activeChild-",activeChildId);
+  // const [currentSelectedChildId,setCurrentSelectedChildId] = useState();
+  // let currentSelectedChildId: any;
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
+  //     console.log("firstChildDevData---",firstChildDevData);
+  //     goToSelectedAgeBrac(firstChildDevData[0]);
+  //   },[])
+  // );
+  // const goToSelectedAgeBrac = (item: any) => {
+  //   currentSelectedChildId = item.id;
+  //   props.showSelectedBracketData(item);
+  // }
   let scrollRef = useRef<ScrollView>();
-  const renderDailyReadItem = (item, index, itemColor, activatedItemColor) => {
+  const renderDailyReadItem = (item: any, index: any, itemColor: any, activatedItemColor: any) => {
     return (
-      <AgeSliderBox key={index} style={[{backgroundColor: itemColor}]}>
-        <Heading4>{item.title}</Heading4>
-      </AgeSliderBox>
+      <Pressable onPress={() => { props.showSelectedBracketData(item)}} key={item.id}>
+        <AgeSliderBox style={{backgroundColor:item.id == props.currentSelectedChildId ? activatedItemColor : itemColor}}>
+          <Heading4>{item.name}</Heading4>
+        </AgeSliderBox>
+      </Pressable>
     );
     // <Item title={item.title} key={index} itemColor={itemColor} activatedItemColor={activatedItemColor}/>
   };
@@ -68,14 +95,14 @@ const AgeBrackets = (props: any) => {
   };
 
   const leftArrow = () => {
-    const eachItemOffset = scrollViewWidth / 10; // Divide by 10 because I have 10 <View> items
+    const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
     const _currentXOffset = currentXOffset - eachItemOffset;
     // console.log(scrollRef);
     scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
   };
 
   const rightArrow = () => {
-    const eachItemOffset = scrollViewWidth / 10; // Divide by 10 because I have 10 <View> items
+    const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
     const _currentXOffset = currentXOffset + eachItemOffset;
     scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
   };
@@ -100,7 +127,7 @@ const AgeBrackets = (props: any) => {
           decelerationRate="fast"
           pagingEnabled
           style={{flex: 9}}>
-          {DATA.map((item, index) => {
+          {childAge.map((item: any, index: any) => {
             return renderDailyReadItem(
               item,
               index,

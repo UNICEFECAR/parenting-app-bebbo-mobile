@@ -1,7 +1,7 @@
-import { activityCategory } from '@assets/translations/appOfflineData/apiConstants';
+import { articleCategoryobj } from '@assets/translations/appOfflineData/apiConstants';
 import { ArticleCategoriesProps } from '@screens/home/bottomTabs/Articles';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useAppSelector } from '../../App';
 import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
@@ -35,7 +35,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
   );
-const articleBrackets = chunk(activityCategory, 2)
+const articleBrackets = chunk(articleCategoryobj, 2)
 useFocusEffect(
   React.useCallback(() => {
     // console.log(props.filterArray.length,"articlecategory usefocuseffect", props);
@@ -55,13 +55,14 @@ useFocusEffect(
     <>
       <ArticleFilter key={props.filterArray.length}>
         <FlexDirRow>
-          {articleBrackets.map((activityCategoryInner:any[], i:number) => {
+          {articleBrackets.map((articleCategoryInner:any[], i:number) => {
              // console.log(activityCategoryInner)
             return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
                 {
-                 activityCategoryInner.map((item) => {
+                 articleCategoryInner.map((item) => {
                     return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
                     <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
+                      {/* <Text>{item.image}</Text> */}
                        <OuterIconRow>
                          <OuterIconLeft>
                               <Icon 
