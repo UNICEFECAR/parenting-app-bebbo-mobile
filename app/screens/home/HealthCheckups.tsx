@@ -41,7 +41,7 @@ const HealthCheckups = ({navigation}: Props) => {
             return (
               <UpcomingHealthCheckup
                 item={item}
-                currentPeriodId={currentPeriod?.periodID}
+                currentPeriodId={currentPeriod?.id}
                 key={itemindex}
                 headerColor={headerColor}
                 backgroundColor={backgroundColor}

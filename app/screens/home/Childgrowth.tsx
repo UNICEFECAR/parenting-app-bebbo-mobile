@@ -1,5 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
+import GrowthInterpretation from '@components/growth/GrowthInterpretation';
 import GrowthIntroductory from '@components/growth/GrowthIntroductory';
 import LastChildMeasure from '@components/growth/LastChildMeasure';
 import BabyNotification from '@components/homeScreen/BabyNotification';
@@ -8,9 +9,9 @@ import {
   ButtonPrimary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
-import { BgContainer } from '@components/shared/Container';
 import { FlexDirCol } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
+import RelatedArticles from '@components/shared/RelatedArticles';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -23,14 +24,14 @@ import {
   Heading4Center,
   ShiftFromBottom5,
   ShiftFromTop10,
-  ShiftFromTopBottom20,
-  SideSpacing10
+  ShiftFromTopBottom20
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
+import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import { formatDaysData, formatHeightData } from '../../services/growthService';
@@ -48,6 +49,7 @@ const Childgrowth = ({navigation}: Props) => {
   ];
 
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+  const [relatedArticles, setrelatedArticles] = React.useState<any[]>([]);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -57,6 +59,7 @@ const Childgrowth = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  console.log(activeChild,"activeChild");
   const standardDevData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.taxonomy.standardDevData),
   );
@@ -96,13 +99,15 @@ const Childgrowth = ({navigation}: Props) => {
         standardDeviation = genderGirlData;
         obj = formatHeightData(genderGirlData);
       }
+      const uniqueID = uuidv4();
+      console.log(uniqueID,"uniqueID");
       return (
         <>
           <View
             style={{
-              backgroundColor: 'white',
               marginBottom: 20,
               flexDirection: 'column',
+              backgroundColor: 'white',
               // paddingLeft: 20,
               // paddingTop: 5,
             }}>
@@ -126,7 +131,23 @@ const Childgrowth = ({navigation}: Props) => {
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
+            <GrowthInterpretation
+              activeChild={activeChild}
+              chartType={chartTypes.weightForHeight}
+              standardDeviation={standardDeviation}
+              getrelatedArticles={setrelatedArticles}
+            />
           </View>
+          {/* 5 is growth category id */}
+          <RelatedArticles
+            fromScreen={'ChildgrowthTab'}
+            related_articles={relatedArticles}
+            category={5}
+            currentId={uniqueID}
+            headerColor={headerColor}
+            backgroundColor={backgroundColor}
+            navigation={navigation}
+          />
         </>
       );
     } else if (index == 1) {
@@ -148,13 +169,15 @@ const Childgrowth = ({navigation}: Props) => {
         standardDeviation = genderGirlData;
         obj = formatDaysData(genderGirlData);
       }
+      const uniqueID = uuidv4();
+      console.log(uniqueID,"uniqueID");
       return (
         <>
           <View
             style={{
-              backgroundColor: 'white',
               marginBottom: 20,
               flexDirection: 'column',
+              backgroundColor: 'white',
               // paddingLeft: 20,
               // paddingTop: 5,
             }}>
@@ -177,7 +200,25 @@ const Childgrowth = ({navigation}: Props) => {
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
+            <GrowthInterpretation
+              activeChild={activeChild}
+              chartType={chartTypes.heightForAge}
+              standardDeviation={standardDeviation}
+              getrelatedArticles={setrelatedArticles}
+            />
           </View>
+          {/* 5 is growth category id */}
+          <RelatedArticles
+            fromScreen={'ChildgrowthTab'}
+            related_articles={relatedArticles}
+            category={5}
+            currentId={uniqueID}
+            headerColor={headerColor}
+            backgroundColor={backgroundColor}
+            navigation={navigation}
+          />
+
+          {/*  */}
         </>
       );
     }
@@ -190,9 +231,10 @@ const Childgrowth = ({navigation}: Props) => {
             backgroundColor: '#FFF',
             borderRadius: 4,
             alignItems: 'center',
-            margin:15,
-            padding: 15          }}>
-          <VectorImage source={require('@assets/svg/chart.svg')}/>
+            margin: 15,
+            padding: 15,
+          }}>
+          <VectorImage source={require('@assets/svg/chart.svg')} />
         </View>
       </>
     );
@@ -262,7 +304,7 @@ const Childgrowth = ({navigation}: Props) => {
 
                 <LastChildMeasure activeChild={activeChild} />
 
-                <BgContainer>
+                <View>
                   <TabBarContainer
                     style={{
                       maxHeight: 50,
@@ -291,10 +333,8 @@ const Childgrowth = ({navigation}: Props) => {
                     })}
                   </TabBarContainer>
 
-                  <SideSpacing10>
-                    {renderItem(data[selectedIndex], selectedIndex)}
-                  </SideSpacing10>
-                </BgContainer>
+                  <View>{renderItem(data[selectedIndex], selectedIndex)}</View>
+                </View>
 
                 <View style={{flex: 1, padding: 5, marginVertical: 10}}>
                   {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}

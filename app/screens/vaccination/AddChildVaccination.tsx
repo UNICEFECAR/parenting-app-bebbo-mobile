@@ -196,14 +196,14 @@ const AddChildVaccination = ({route, navigation}: any) => {
           measurementPlace: 0,
         };
         console.log(growthValues);
-        // let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-        //   ChildEntitySchema,
-        //   growthValues,
-        //   'uuid ="' + activeChild.uuid + '"',
-        // );
-        // console.log(createresult);
-        // setActiveChild(activeChild.uuid, dispatch, child_age);
-        // navigation.goBack();
+        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult);
+        setActiveChild(activeChild.uuid, dispatch, child_age);
+        navigation.goBack();
       } else {
     const growthValues = {
       uuid: updateduuid,

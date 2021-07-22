@@ -17,7 +17,6 @@ import {
 import { VictoryScatterProps } from 'victory-scatter';
 import { VictoryTooltipProps } from 'victory-tooltip';
 import { convertMeasuresData } from '../../services/growthService';
-import GrowthInterpretation from './GrowthInterpretation';
 export interface LineChartData {
   x: number;
   y: number;
@@ -108,6 +107,7 @@ useEffect(() => {
 
   let windowWidth = Dimensions.get('window').width;
   let windowHeight = Dimensions.get('window').height;
+  console.log(windowWidth,windowHeight,"window");
   const [showFullscreen, setShowFullscreen] = React.useState(false);
   // let orientation: 'portrait' | 'landscape' =
   // windowHeight > windowWidth ?  'portrait':'landscape' ;
@@ -117,8 +117,9 @@ useEffect(() => {
 
 console.log(deviceOrientation,"orientation");
 
+const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
   let convertedMeasures = convertMeasuresData(
-    activeChild.measures,
+    growthMeasures,
     childBirthDate
   );
   /* Create line chart array for type chart */
@@ -138,7 +139,7 @@ console.log(deviceOrientation,"orientation");
         theme={VictoryTheme.material}
         width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
-        windowHeight - 120
+        windowHeight - 420
           : windowHeight-50}>
         {/* ********* AXIS HORIZONTAL ********* */}
         <VictoryAxis
@@ -312,9 +313,7 @@ console.log(deviceOrientation,"orientation");
           </View>
         )}
       </View>
-      <GrowthInterpretation  activeChild={activeChild}
-              chartType={chartType}
-              standardDeviation={standardDeviation}/>
+     
     </>
   );
 };

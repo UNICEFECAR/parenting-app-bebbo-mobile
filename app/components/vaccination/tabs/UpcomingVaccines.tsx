@@ -25,6 +25,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
 import {
   ButtonContainerAuto,
+  ButtonLinkPress,
   ButtonText,
   ButtonTextMdLine,
   ButtonTextSmLine,
@@ -62,7 +63,7 @@ const UpcomingVaccines = (props: any) => {
     console.log(yeas, 'isMeasuredyeas');
     // open first collapsible in upcoming vaccine period
   }, []);
-  const gotoArticle = (v) => {
+  const gotoArticle = (pinned_articleID) => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
     //   headerColor: artHeaderColor,
@@ -141,13 +142,14 @@ const UpcomingVaccines = (props: any) => {
                       )}
                     </ToolsIconView>
                     <ToolsHeadingView>
-                      <Heading4Regular>{v.title}1</Heading4Regular>
-
-                      <Pressable onPress={() => gotoArticle(v)}>
+                      <Heading4Regular>{v.title}</Heading4Regular>
+                        {v?.pinned_article ?
+                      <Pressable onPress={() => gotoArticle(v.pinned_article)}>
                         <ButtonTextSmLineL>
                           {t('vcArticleLink')}
                         </ButtonTextSmLineL>
                       </Pressable>
+                      : null}
                     </ToolsHeadingView>
                   </FDirRowStart>
                 </MainContainer>
@@ -155,7 +157,7 @@ const UpcomingVaccines = (props: any) => {
             })}
 
             {/* Set Reminder After Add Time*/}
-            <MainContainer>
+            {currentPeriodId == item.periodID ?   <MainContainer>
               <FDirRowStart>
                 <ToolsIconView>
                   <Icon
@@ -192,7 +194,7 @@ const UpcomingVaccines = (props: any) => {
               </FDirRowStart>
               {/* Set Reminder After Add Time*/}
               {/* Set Reminder Link*/}
-              {/* <ButtonLinkPress onPress={()=>{
+              <ButtonLinkPress onPress={()=>{
                   navigation.navigate('AddReminder', {
                     reminderType:"Vaccination",
                     headerTitle: t('vcReminderHeading'),
@@ -205,9 +207,9 @@ const UpcomingVaccines = (props: any) => {
                   <ButtonTextMdLine>
                     {t('vcSetReminder')}
                   </ButtonTextMdLine>
-                </ButtonLinkPress> */}
+                </ButtonLinkPress>
               {/* Set Reminder Link*/}
-            </MainContainer>
+            </MainContainer> : null}
             {/* add condition for only few vaccines are given in below */}
             {(currentPeriodId == item.periodID && item.vaccines.some((el) => {
               return el.isMeasured == true;
