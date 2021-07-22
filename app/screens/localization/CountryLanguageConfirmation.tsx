@@ -68,7 +68,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   ];
   const {t, i18n} = useTranslation();
   const saveSelection = () => {
-    // i18n.changeLanguage(language.locale);
+    i18n.changeLanguage(language.locale);
     //console.log(i18n.language);
     dispatch(onLocalizationSelect(route.params));
     // navigation.reset({

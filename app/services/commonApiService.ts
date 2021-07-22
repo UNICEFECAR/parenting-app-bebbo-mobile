@@ -63,12 +63,12 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // }
     });
 }
-export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
+export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any) => {
  response = response[0];
  console.log(response,"..resonse..")
  if(response.data && response.data.status && response.data.status == 200)
  {
- let insertData = response.payload.data.data;
+ let insertData = response.data.data;
  let Entity:any;
   Entity=Entity as ArticleEntity;
   let EntitySchema = ArticleEntitySchema;
@@ -77,16 +77,21 @@ export const onAddEditChildSuccess = async (response: any, dispatch: any, naviga
   try{
     let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
     console.log(createresult,"..createresult..");
+    // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
+    // console.log(allDatatoStore,"..allDatatoStore..")
     // console.log(new Date(),"in insert success---",response);
+    navigation.navigate('ChildProfileScreen');
 }
 catch(e) {
     let errorArr = [];
-    console.log("in insert catch---",response.payload);
-    errorArr.push(response.payload);
-    response.dispatch(receiveAPIFailure(errorArr));
+    console.log("in insert catch---",response);
+    errorArr.push(response);
+    navigation.navigate('ChildProfileScreen');
+    dispatch(receiveAPIFailure(errorArr));
+
 }
  }
-  navigation.navigate('ChildProfileScreen'); 
+ 
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
@@ -150,6 +155,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
 export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
   // navigation.navigate('HomeDrawerNavigator');
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
+  console.log(allDatatoStore,"..allDatatoStore..")
   navigation.reset({
     index: 0,
     routes: [
