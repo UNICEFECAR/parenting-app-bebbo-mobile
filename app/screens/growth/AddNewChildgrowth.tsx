@@ -193,8 +193,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   }, [route.params?.weight, route.params?.height]);
   const saveChildMeasures = async () => {
     let updateItem = activeChild?.measures.find((item) => {
-    item.uuid === updateduuid
+      return item
+        ? Math.round(
+            DateTime.fromMillis(item.measurementDate).diff(measureDate, 'days')
+              .days,
+          ) == 0
+        : null;
     });
+    // if date difference is 0 then update else create new
     console.log(updateItem);
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
