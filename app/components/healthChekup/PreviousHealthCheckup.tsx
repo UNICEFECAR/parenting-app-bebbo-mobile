@@ -204,8 +204,9 @@ const PreviousHealthCheckup = (props: any) => {
             <ShiftFromTopBottom10>
               <Pressable
                 onPress={() =>
-                  navigation.navigate('AddChildVaccination', {
+                  navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('editVcTitle'),
+                    vcPeriod: item,
                   })
                 }>
                 <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
@@ -217,6 +218,7 @@ const PreviousHealthCheckup = (props: any) => {
                 onPress={() =>
                   navigation.navigate('AddChildHealthCheckup', {
                     headerTitle: t('hcNewHeaderTitle'),
+                    vcPeriod: item,
                   })
                 }>
                 <ButtonText>{t('hcNewBtn')}</ButtonText>
