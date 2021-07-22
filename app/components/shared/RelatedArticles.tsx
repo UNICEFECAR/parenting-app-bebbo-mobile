@@ -4,7 +4,7 @@ import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -55,7 +55,7 @@ const DATA = [
 
 const RelatedArticles = (props:RelatedArticlesProps) => {
   //console.log(props);
-  const { related_articles, category, currentId,headerColor,backgroundColor,listCategoryArray, navigation } = props;
+  const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
   // console.log(props);
   const {t} = useTranslation();
   const relartlength = related_articles.length;
@@ -77,10 +77,12 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           // const filterQuery = 'id Contains "'+currentChildData.parent_gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
           const filterQuery = related_articles.map((x: any) => `id = '${x}'`).join(' OR ');
           const databaseData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
-          // console.log(databaseData.length);
+          console.log(databaseData.length,"neha");
         //  databaseData.map(user => user
           setrelatedArticleData(databaseData);
         }
+        if(category!=5){
+      // go not calclualte for growth screen
         if(relartlength < maxRelatedArticleSize) {
           const catartlength = maxRelatedArticleSize - relartlength;
           // console.log(articleData)
@@ -95,6 +97,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           // setrelatedArticleData(relatedArticleData.push(...filteredArtData));
         }
       }
+      }
       fetchData()
     },[currentId])
   );
@@ -102,11 +105,11 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
   const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
     navigation.navigate('DetailsScreen',
     {
-      fromScreen:"Articles",
+      fromScreen:fromScreen ? fromScreen :"Articles",
       headerColor:headerColor,
       backgroundColor:backgroundColor,
       detailData:item,
-      listCategoryArray: listCategoryArray
+      listCategoryArray: listCategoryArray ? listCategoryArray: null
       // setFilteredArticleData: setFilteredArticleData
     });
   };

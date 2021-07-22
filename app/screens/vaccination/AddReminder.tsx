@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonColTwo, ButtonContainerTwo, ButtonPrimary, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
   FormDateAction,
   FormDateText,
@@ -13,16 +13,12 @@ import ModalPopupContainer, {
   PopupCloseContainer,
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
-import { ButtonTertiary2 } from '@components/shared/WalkthroughStyle';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2,
-  Heading2w,
-  Heading3Center,
-  Paragraph,
-  ShiftFromTop30,ShiftFromTop20,ShiftFromTopBottom10
+  Heading2, Heading3Center,
+  Paragraph, ShiftFromTop20, ShiftFromTop30, ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +33,7 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
+//  reminder.periodId === doctorVisitPeriod.uuid
 const AddReminder = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle,buttonTitle,titleTxt,warningTxt,headerColor,reminderType} = route.params;

@@ -56,6 +56,13 @@ const PreviousVaccines = (props: any) => {
     //   backgroundColor: artBackgroundColor,
     // });
   };
+  const doneVc = item.vaccines.filter((item) => {
+    return item.isMeasured;
+  })
+  // console.log(doneVc.length,"doneVc");
+  // .reduce((accumulator, current) => {
+  //   return accumulator + current;
+  // });
   return (
     <>
       <ToolsListOuter>
@@ -86,8 +93,8 @@ const PreviousVaccines = (props: any) => {
             <ToolsHeadingView>
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')}, {item.doneVc? 0 :0 }
-                {t('vaccinesDoneTxt')} | {item.vaccines.length - (item.doneVc? 0 :0)}
+                {item.vaccines.length} {t('vaccinesTxt')}{', '}{doneVc? doneVc.length :0 }{' '}
+                {t('vaccinesDoneTxt')} | {item.vaccines.length - (doneVc? doneVc.length :0)}{' '}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>

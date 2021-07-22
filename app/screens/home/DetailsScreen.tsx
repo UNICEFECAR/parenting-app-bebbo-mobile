@@ -14,13 +14,11 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading6Bold,ShiftFromBottom5 } from '@styles/typography';
-import { destinationFolder } from '@types/apiConstants';
+import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppSelector } from '../../../App';
 
 type DetailsScreenNavigationProp =
@@ -37,13 +35,14 @@ export type RelatedArticlesProps = {
   headerColor?:any,
   backgroundColor?:any,
   listCategoryArray?:any,
-  navigation?:any
+  navigation?:any,
+  fromScreen?:any,
 }
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
   // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
-  console.log(detailData);
+  console.log(detailData,"detailData");
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -132,7 +131,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <View style={{backgroundColor: backgroundColor}}>
                 
                  {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
-                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} fromScreen={fromScreen} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                 
                 <ArticleHeading>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -141,6 +140,17 @@ const DetailsScreen = ({route, navigation}: any) => {
               </View>
             </>
           ) : null}
+          {fromScreen === 'ChildgrowthTab' ? (
+            <>
+              <View style={{backgroundColor: backgroundColor}}>
+                
+                 {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
+                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} fromScreen={fromScreen} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                
+              </View>
+            </>
+          ) : null}
+          
           {fromScreen === 'Activities' ? (
             <>
             <MainContainer>
