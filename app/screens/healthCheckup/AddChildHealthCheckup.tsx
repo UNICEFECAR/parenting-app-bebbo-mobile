@@ -33,12 +33,11 @@ import {
   ShiftFromTop15,
   ShiftFromTopBottom10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Modal,
-  Platform,
-  Pressable,
+  Modal, Pressable,
   SafeAreaView,
   Text,
   TextInput,
@@ -46,6 +45,11 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
+import { v4 as uuidv4 } from 'uuid';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { setActiveChild } from '../../services/childCRUD';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -53,58 +57,70 @@ type Props = {
 };
 const AddChildHealthCheckup = ({route, navigation}: any) => {
   const {t} = useTranslation();
-  const {headerTitle} = route.params;
+  const {headerTitle,vcPeriod, editGrowthItem} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
-  const [measureDate, setmeasureDate] = useState<Date>();
-  const [showmeasure, setmeasureShow] = useState<Boolean>(false);
+  const [measureDate, setmeasureDate] = useState<DateTime>(
+    editGrowthItem
+      ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
+      : null,
+  );
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+  );
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [weightValue,setWeightValue] = useState();
-  const [heightValue,setHeightValue] = useState();
   const [isMeasured, setIsMeasured] = useState(false);
   const [isVaccineMeasured, setIsVaccineMeasured] = useState(false);
+  const [plannedVaccine, setPlannedVaccine] = useState([]);
+  const [prevPlannedVaccine, setPrevPlannedVaccine] = useState([]);
+  const [weightValue, setWeightValue] = useState(
+    editGrowthItem ? editGrowthItem.weight : 0,
+  );
+  const [heightValue, setHeightValue] = useState(
+    editGrowthItem ? editGrowthItem.height : 0,
+  );
+  const [remarkTxt, handleDoctorRemark] = useState<string>(
+    editGrowthItem ? editGrowthItem.doctorComment : '',
+  );
+  const [updateduuid, setUpdateduuid] = useState<string>(
+    editGrowthItem ? editGrowthItem.uuid : uuidv4(),
+  );
   const isMeasuredOptions = [
     {title: t('vcIsMeasuredOption1')},
     {title: t('vcIsMeasuredOption2')},
   ];
   const defaultMeasured = {title: ''};
-  const getCheckedMeasureItem = (checkedItem: typeof isMeasuredOptions[0]) => {
-    //console.log(checkedItem);
+
+  const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
+    //  console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
-  const getCheckedVaccineItem = (checkedItem: typeof isMeasuredOptions[0]) => {
-    //console.log(checkedItem);
+  const getCheckedIsVaccineMeaured = (checkedItem: typeof isMeasuredOptions[0]) => {
+    //  console.log(checkedItem);
     setIsVaccineMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
-  const onmeasureChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate || measureDate;
-    setmeasureShow(Platform.OS === 'ios');
-    setmeasureDate(currentDate);
-  };
-  const showmeasureDatepicker = () => {
-    setmeasureShow(true);
-  };
-  const setInitialWeightValues = (weightValue:any)=>{
-    console.log(weightValue)
-    let w = (weightValue + "").split(".");
-    if(weightValue && w[1].length==1){
-      return {weight:Number(w[0]) ,weight1:(Number(w[1])*10)}
-    } else {
-      return {weight:Number(w[0]) ,weight1:(Number(w[1]))}
+  const onmeasureDateChange = (event: any, selectedDate: any) => {
+    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    setmeasureDateShow(false);
+    if (selectedDate) {
+      setmeasureDate(DateTime.fromJSDate(selectedDate));
     }
-    // console.log(weight,weight1)
-  }
-  const setInitialHeightValues = (heightValue:any)=>{
-    console.log(heightValue)
-    let w = (heightValue + "").split(".");
-    if(heightValue && w[1].length==1){
-      return {height:Number(w[0]) ,height1:(Number(w[1])*10)}
-    } else {
-      return {height:Number(w[0]) ,height1:(Number(w[1]))}
-    }
-    // console.log(height,height1)
-  }
+  };
+  const minChildGrwothDate =
+    activeChild.birthDate != '' &&
+    activeChild.birthDate != null &&
+    activeChild.birthDate != undefined
+      ? activeChild.birthDate
+      : new Date();
   React.useEffect(() => {
     if (route.params?.weight) {
       console.log(route.params?.weight);
@@ -115,6 +131,92 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       setHeightValue(route.params?.height)
     }
   }, [route.params?.weight,route.params?.height ]);
+  const isFormDisabled = () => {
+    if (measureDate) {
+      if (plannedVaccine.length > 0 || prevPlannedVaccine.length > 0) {
+        if (isMeasured) {
+          if (heightValue && weightValue) {
+            return false;
+          } else {
+            return true;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+  };
+  const onPlannedVaccineToggle = (checkedVaccineArray: any) => {
+    // console.log(checkedVaccineArray);
+    setPlannedVaccine(checkedVaccineArray);
+  };
+  const onPrevPlannedVaccineToggle = (checkedVaccineArray: any) => {
+    // console.log(checkedVaccineArray);
+    setPrevPlannedVaccine(checkedVaccineArray);
+  };
+  const saveChildMeasures = async () => {
+    let updateItem = activeChild?.measures.find((item) => {
+      return item
+        ? Math.round(
+            DateTime.fromMillis(item.measurementDate).diff(measureDate, 'days')
+              .days,
+          ) == 0
+        : null;
+    });
+    // if date difference is 0 then update else create new
+      console.log(updateItem);
+      if (updateItem != null) {
+        console.log(updateItem.uuid, 'updatethisitem');
+  
+        const growthValues = {
+          uuid: updateItem.uuid,
+          isChildMeasured: isMeasured,
+          weight: String(weightValue),
+          height: String(heightValue),
+          measurementDate: measureDate?.toMillis(),
+          titleDateInMonth: measureDate?.toFormat('MM'),
+          didChildGetVaccines: true,
+          vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
+          doctorComment: remarkTxt,
+          measurementPlace: 0,
+        };
+        console.log(growthValues);
+        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult);
+        setActiveChild(activeChild.uuid, dispatch, child_age);
+        navigation.goBack();
+      } else {
+    const growthValues = {
+      uuid: updateduuid,
+      isChildMeasured: isMeasured,
+      weight: String(weightValue),
+      height: String(heightValue),
+      measurementDate: measureDate?.toMillis(),
+      titleDateInMonth: measureDate?.toFormat('MM'),
+      didChildGetVaccines: true,
+      vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
+      doctorComment: remarkTxt,
+      measurementPlace: 0, // vaccination happens at doctor's place
+    };
+    console.log(growthValues);
+      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        growthValues,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(createresult);
+      setActiveChild(activeChild.uuid, dispatch, child_age);
+      navigation.goBack();
+    }
+  };
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
@@ -149,18 +251,17 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         
         <ScrollView style={{flex: 9}}>
         <MainContainer>
-        <FormInputGroup onPress={showmeasureDatepicker}>
+        <FormInputGroup onPress={() => setmeasureDateShow(true)}>
           {/* <FormInputText>
           <Heading3>{t('hcdateText')}</Heading3>
           </FormInputText> */}
-
-
           <FormInputBox>
             <FormDateText>
               <Text>
-                {measureDate
-                  ? measureDate.toDateString()
-                  : t('hcenterDateText')}
+              {' '}
+                    {measureDate
+                      ? measureDate.toFormat('dd.MM.yyyy')
+                      : t('vcScreenenterDateText')}
               </Text>
             </FormDateText>
             <FormDateAction>
@@ -171,77 +272,86 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         
         
         <View>
-          {showmeasure && (
-            <DateTimePicker
-              testID="measuredatePicker"
-              value={new Date()}
-              mode={'date'}
-              display="default"
-              onChange={onmeasureChange}
-            />
-          )}
-        </View>
+              {showmeasureDate && (
+                <DateTimePicker
+                  testID="measureDatePicker"
+                  value={editGrowthItem ? new Date(measureDate) : new Date()}
+                  mode={'date'}
+                  display="default"
+                  maximumDate={new Date()}
+                  minimumDate={new Date(minChildGrwothDate)}
+                  onChange={onmeasureDateChange}
+                />
+              )}
+            </View>
         <FormContainerFlex>
           <FormInputText>
         <Heading3>{t('vcChildMeasureQ')}</Heading3>
         </FormInputText>
-            <ToggleRadios
-              options={isMeasuredOptions}
-              defaultValue={defaultMeasured}
-              tickbgColor={headerColor}
-              tickColor={'#000'}
-              getCheckedItem={getCheckedMeasureItem}
-            />
+        <ToggleRadios
+                options={isMeasuredOptions}
+                defaultValue={defaultMeasured}
+                tickbgColor={headerColor}
+                tickColor={'#000'}
+                getCheckedItem={getCheckedItem}
+              />
  </FormContainerFlex>
             <View>
               {
                 isMeasured ? <>
-                <View>
                 <ShiftFromTop15>
-                <FormInputText>
-          <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
-          </FormInputText> 
-          <RadioBoxContainer>
-          <FDirRow>
-          <RadioOuter>
-            <RadioInnerBox
-              onPress={() => {
-                navigation.navigate('AddNewChildWeight',{
-                  prevRoute:"AddChildHealthCheckup",
-                  headerColor,
-                  backgroundColor,
-                  weightValue:setInitialWeightValues(weightValue)
-                });
-              }}
-             >
-               <FlexFDirRowSpace>
-              <Heading3>{weightValue ? weightValue :t('growthScreenwText')}</Heading3>
-              <Heading4Regular>{t('growthScreenkgText')}</Heading4Regular>
-              </FlexFDirRowSpace>
-            </RadioInnerBox>
-            </RadioOuter>
-            <RadioOuter>
-            <RadioInnerBox
-              onPress={() => {
-                navigation.navigate('AddNewChildHeight',{
-                  prevRoute:"AddChildHealthCheckup",
-                  headerColor,
-                  backgroundColor,
-                  heightValue:setInitialHeightValues(heightValue)
-                });
-              }}
-              >
-                <FlexFDirRowSpace>
-              <Heading3>{heightValue ? heightValue :t('growthScreenhText')}</Heading3>
-              <Heading4Regular>{t('growthScreencmText')}</Heading4Regular>
-              </FlexFDirRowSpace>
-            </RadioInnerBox>
-            </RadioOuter>
-            </FDirRow>
-          </RadioBoxContainer>
-          </ShiftFromTop15>
-        </View>
-       
+                  <FormInputText>
+                    <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
+                  </FormInputText>
+                  <RadioBoxContainer>
+                    <FDirRow>
+                      <RadioOuter>
+                        <RadioInnerBox
+                          onPress={() => {
+                            navigation.navigate('AddNewChildWeight', {
+                              prevRoute: 'AddChildVaccination',
+                              headerColor,
+                              backgroundColor,
+                              weightValue: setInitialWeightValues(weightValue),
+                            });
+                          }}>
+                          <FlexFDirRowSpace>
+                            <Heading3>
+                              {weightValue
+                                ? weightValue
+                                : t('growthScreenwText')}
+                            </Heading3>
+                            <Heading4Regular>
+                              {t('growthScreenkgText')}
+                            </Heading4Regular>
+                          </FlexFDirRowSpace>
+                        </RadioInnerBox>
+                      </RadioOuter>
+                      <RadioOuter>
+                        <RadioInnerBox
+                          onPress={() => {
+                            navigation.navigate('AddNewChildHeight', {
+                              prevRoute: 'AddChildVaccination',
+                              headerColor,
+                              backgroundColor,
+                              heightValue: setInitialHeightValues(heightValue),
+                            });
+                          }}>
+                          <FlexFDirRowSpace>
+                            <Heading3>
+                              {heightValue
+                                ? heightValue
+                                : t('growthScreenhText')}
+                            </Heading3>
+                            <Heading4Regular>
+                              {t('growthScreencmText')}
+                            </Heading4Regular>
+                          </FlexFDirRowSpace>
+                        </RadioInnerBox>
+                      </RadioOuter>
+                    </FDirRow>
+                  </RadioBoxContainer>
+                </ShiftFromTop15>
                 </>
                 :null
               }
@@ -252,13 +362,12 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         </FormInputText>
         
         <ToggleRadios
-              options={isMeasuredOptions}
-              defaultValue={defaultMeasured}
-              tickbgColor={headerColor}
-              tickColor={'#000'}
-              getCheckedItem={getCheckedVaccineItem}
-            />
-
+                options={isMeasuredOptions}
+                defaultValue={defaultMeasured}
+                tickbgColor={headerColor}
+                tickColor={'#000'}
+                getCheckedItem={getCheckedIsVaccineMeaured}
+              />
         
         </FormContainerFlex>
         {
@@ -268,13 +377,19 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             <FormInputText>
             <Heading3>{t('vcPlanned')}</Heading3>
             </FormInputText>
-          <PlannedVaccines />
+            <PlannedVaccines
+                currentPeriodVaccines={vcPeriod.vaccines}
+                onPlannedVaccineToggle={onPlannedVaccineToggle}
+              />
           </ShiftFromTop15>
           <ShiftFromTop15>
           <FormInputText>
           <Heading3>{t('vcPrev')}</Heading3>
           </FormInputText>
-          <PrevPlannedVaccines />
+          <PrevPlannedVaccines
+                currentPeriodVaccines={vcPeriod.vaccines}
+                onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
+              />
           </ShiftFromTop15>
           </FormContainerFlex1>
           :null
