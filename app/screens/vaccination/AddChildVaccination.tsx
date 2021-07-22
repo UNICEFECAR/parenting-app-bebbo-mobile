@@ -296,7 +296,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 <Heading3>{t('vcPlanned')}</Heading3>
               </FormInputText>
               <PlannedVaccines
-                currentPeriodVaccines={vcPeriod.vaccines}
+                currentPeriodVaccines={vcPeriod?.vaccines}
                 onPlannedVaccineToggle={onPlannedVaccineToggle}
               />
             </FormContainerFlex>
@@ -305,7 +305,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 <Heading3>{t('vcPrev')}</Heading3>
               </FormInputText>
               <PrevPlannedVaccines
-                currentPeriodVaccines={vcPeriod.vaccines}
+                currentPeriodVaccines={vcPeriod?.vaccines}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
             </FormContainerFlex>
