@@ -35,7 +35,7 @@ const Vaccination = ({navigation}: Props) => {
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
-  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllVaccinePeriods();
+  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod,overDuePreviousVCcount,doneVCcount } = getAllVaccinePeriods();
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
@@ -103,13 +103,13 @@ const Vaccination = ({navigation}: Props) => {
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>4</Heading2>
+                    <Heading2>{overDuePreviousVCcount}</Heading2>
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>42</Heading2>
+                    <Heading2>{doneVCcount}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>

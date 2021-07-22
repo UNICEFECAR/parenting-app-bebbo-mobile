@@ -51,7 +51,6 @@ type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
 const AddChildHealthCheckup = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle} = route.params;

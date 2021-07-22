@@ -77,7 +77,6 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
-  // const [measureDate, setmeasureDate] = useState<Date>();
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem
       ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
