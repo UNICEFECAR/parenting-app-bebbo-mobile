@@ -1,11 +1,19 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonModal, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import {
+  ButtonModal,
+  ButtonPrimary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
 import Checkbox, {
   CheckboxActive,
   CheckboxItem
 } from '@components/shared/CheckboxStyle';
 import { FormOuterCheckbox } from '@components/shared/ChildSetupStyle';
-import { BannerContainer, MainContainer, SafeAreaContainer } from '@components/shared/Container';
+import {
+  BannerContainer,
+  MainContainer,
+  SafeAreaContainer
+} from '@components/shared/Container';
 import {
   FDirRow,
   FDirRowStart,
@@ -46,12 +54,7 @@ import {
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Modal,
-  Pressable,
-  SafeAreaView,
-  ScrollView, View
-} from 'react-native';
+import { Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
@@ -141,109 +144,107 @@ const SettingScreen = (props: any) => {
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
-            <SideSpacing10>
-              <FDirRowStart>
-             
-                <FormOuterCheckbox
-                  onPress={() => {
-                    setIsEnabled(!isEnabled);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {isEnabled ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#000" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox style={{borderWidth: 1}}></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                </FormOuterCheckbox>
-                {/* <Switch
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {isEnabled ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                <Flex1>
-                  <Heading4Regular>
-                    {t('settingScreennotiType2')}
-                  </Heading4Regular>
-                </Flex1>
-              </FDirRowStart>
+                  <Flex1>
+                    <Heading4Regular>
+                      {t('settingScreennotiType2')}
+                    </Heading4Regular>
+                  </Flex1>
+                </FDirRowStart>
               </SideSpacing10>
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
-            <SideSpacing10>
-              <FDirRowStart>
-                
-              <FormOuterCheckbox
-                  onPress={() => {
-                    setIsEnabled(!isEnabled);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {isEnabled ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#000" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox style={{borderWidth: 1}}></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                </FormOuterCheckbox>
-                {/* <Switch
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {isEnabled ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                <Flex1>
-                  <Heading4Regular>
-                    {t('settingScreennotiType3')}
-                  </Heading4Regular>
-                </Flex1>
-              </FDirRowStart>
+                  <Flex1>
+                    <Heading4Regular>
+                      {t('settingScreennotiType3')}
+                    </Heading4Regular>
+                  </Flex1>
+                </FDirRowStart>
               </SideSpacing10>
             </ShiftFromBottom10>
 
             <ShiftFromBottom10>
-            <SideSpacing10>
-              <FDirRowStart>
-              <FormOuterCheckbox
-                  onPress={() => {
-                    setIsEnabled(!isEnabled);
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {isEnabled ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#000" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox style={{borderWidth: 1}}></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                </FormOuterCheckbox>
-                {/* <Switch
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {isEnabled ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                <Flex1>
-                  <Heading4Regular>
-                    {t('settingScreennotiType4')}
-                  </Heading4Regular>
-                </Flex1>
-              </FDirRowStart>
+                  <Flex1>
+                    <Heading4Regular>
+                      {t('settingScreennotiType4')}
+                    </Heading4Regular>
+                  </Flex1>
+                </FDirRowStart>
               </SideSpacing10>
             </ShiftFromBottom10>
 
@@ -305,8 +306,7 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable
-                  onPress={() => setModalVisible(true)}>
+                <Pressable onPress={() => setModalVisible(true)}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </Pressable>
               </FlexDirRowSpace>
@@ -383,48 +383,50 @@ const SettingScreen = (props: any) => {
           </ActionSheet>
         </ScrollView>
         <Modal
-        animationType="none"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          // Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}
-        onDismiss={() => {
-          setModalVisible(!modalVisible);
-        }}>
-        <PopupOverlay>
-          <ModalPopupContainer>
-            <PopupCloseContainer>
-              <PopupClose
-                onPress={() => {
-                  console.log('close');
-                  setModalVisible(false);
-                }}>
-                <Icon name="ic_close" size={16} color="#000" />
-              </PopupClose>
-            </PopupCloseContainer>
-            <ModalPopupContent>
-              <Heading4Centerr>
-                {t('localizationChangeModalText')}
-              </Heading4Centerr>
+          animationType="none"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            // Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}
+          onDismiss={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={() => {
+                    console.log('close');
+                    setModalVisible(false);
+                  }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              <ModalPopupContent>
+                <Heading4Centerr>
+                  {t('localizationChangeModalText')}
+                </Heading4Centerr>
               </ModalPopupContent>
               <FDirRow>
-              <ButtonModal
-                onPress={() => {
-                  props.navigation.navigate('Localization')
-                }}>
-                <ButtonText>{t('continueInModal')}</ButtonText>
-              </ButtonModal>
+                <ButtonModal
+                  onPress={() => {
+                    props.navigation.reset({
+                      index: 0,
+                      routes: [{name: 'Localization'}],
+                    });
+                    // props.navigation.navigate('Localization')
+                  }}>
+                  <ButtonText>{t('continueInModal')}</ButtonText>
+                </ButtonModal>
               </FDirRow>
-            
-          </ModalPopupContainer>
-        </PopupOverlay>
-      </Modal>
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
       </SafeAreaContainer>
     </>
   );
 };
 
 export default SettingScreen;
-
