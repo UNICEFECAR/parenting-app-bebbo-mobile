@@ -89,6 +89,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   // if (editGrowthItem) {
   // console.log('editGrowthItem', editGrowthItem);
   // }
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -224,7 +227,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
       const growthValues = {
@@ -246,7 +249,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
     // }

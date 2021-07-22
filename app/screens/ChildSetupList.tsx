@@ -54,6 +54,7 @@ const ChildSetupList = ({ navigation }: Props) => {
       getAllConfigData(dispatch);
     },[])
   );
+  
   useFocusEffect(
     React.useCallback(() => {
       navigation.dispatch(state => {
@@ -71,7 +72,16 @@ const ChildSetupList = ({ navigation }: Props) => {
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
-
+  console.log(childList,"..childList..")
+  const activeChild = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild)
+    : [],
+  );
+  console.log(activeChild,"..activeChild..");
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
    const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number) => {
        
      return (
@@ -103,7 +113,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             style: "cancel"
           },
           { text: t('growthScreendelText'), onPress: () => {
-            deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
+            deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
           }
           }
         ]
