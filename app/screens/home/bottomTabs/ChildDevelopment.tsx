@@ -25,6 +25,9 @@ import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
 import { useFocusEffect } from '@react-navigation/native';
+import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
+import { VictoryPie } from 'victory-native';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -90,22 +93,16 @@ const ChildDevelopment = ({navigation}: Props) => {
       (state: any) =>
         state.utilsData.ActivitiesData != '' ?JSON.parse(state.utilsData.ActivitiesData):[],
       );
-      console.log("ActivitiesData--",ActivitiesData);
+      // console.log("ActivitiesData--",ActivitiesData);
   const childAge = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
     );
-  const activeChildId = useAppSelector((state: any) =>
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
+      ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const activeChildGender = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild).gender
-      : [],
-  );
-    //  console.log(activeChildGender);
   const [currentSelectedChildId,setCurrentSelectedChildId] = useState();
   const [selectedChildDevData,setSelectedChildDevData] = useState();
   const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
@@ -129,31 +126,32 @@ const ChildDevelopment = ({navigation}: Props) => {
     //   // setFilteredArticleData: setFilteredArticleData
     // });
   };
-  const showSelectedBracketData = (item: any) => {
+  const showSelectedBracketData = async (item: any) => {
     // console.log("in showSelectedBracketData--",item);
     setCurrentSelectedChildId(item.id);
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
     filteredData = {...filteredData,name:item.name};
-    console.log(filteredData);
+    // console.log(filteredData);
     setSelectedChildDevData(filteredData);
-    let milestonefilteredData = MileStonesData.filter((x:any)=>x.child_age.includes(item.id));
-    console.log(milestonefilteredData);
+    const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema,'uuid == "'+activeChild.uuid+'"');
+    // console.log("childData--",childData[0].checkedMilestones);
+    let milestonefilteredData = await MileStonesData.filter((x:any)=>x.child_age.includes(item.id));
+    // console.log(milestonefilteredData);
+    childData[0].checkedMilestones.filter((x:any)=> {
+      console.log(x);
+      const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
+      if(i > -1)
+      {
+        milestonefilteredData[i]['toggleCheck'] = true;
+        // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
+      }
+    })
     setselectedChildMilestoneData(milestonefilteredData);
-    // if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
-    // {
-    //   // let pinnedVideoartId = selectedChildDevData.boy_video_article;
-    //   let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
-    //   setSelectedPinnedArticleData(filteredPinnedData);
-    // }else if(activeChildGender =="41") //for girl
-    // {
-    //   let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
-    //   setSelectedPinnedArticleData(filteredPinnedData);
-    // }
   }
   useFocusEffect(
     React.useCallback(() => { 
       console.log("child dev usefocuseffect");
-      const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
+      const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
       // console.log("firstChildDevData---",firstChildDevData);
       showSelectedBracketData(firstChildDevData[0]);
     },[])
@@ -161,12 +159,12 @@ const ChildDevelopment = ({navigation}: Props) => {
   useFocusEffect(
     React.useCallback(() => { 
       console.log("selectedChildDevData changed--");
-      if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
+      if(activeChild?.gender == "" || activeChild?.gender == 0 || activeChild?.gender == 40 || activeChild?.gender == 59) //for boy,other and blank
       {
         // let pinnedVideoartId = selectedChildDevData.boy_video_article;
         let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.boy_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
-      }else if(activeChildGender =="41") //for girl
+      }else if(activeChild?.gender =="41") //for girl
       {
         let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
         setSelectedPinnedArticleData(filteredPinnedData);
@@ -180,24 +178,25 @@ const ChildDevelopment = ({navigation}: Props) => {
     return (
       <>
       <ShiftFromTop20>
-       <MainContainer><BannerContainer>
-        
-         
-          <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
-          <ShiftFromTop10><Heading3Regular>
-            {selectedChildDevData?.milestone}
-          {/* {
-            selectedChildDevData?.milestone ? 
-            <HTML
-                source={{html: selectedChildDevData?.milestone}}
-                baseFontStyle={{fontSize: 16}}
-              />
-              : null
-            } */}
-          </Heading3Regular></ShiftFromTop10>
-          
-        
-        </BannerContainer></MainContainer></ShiftFromTop20>
+       <MainContainer>
+       {selectedChildDevData && selectedChildDevData?.milestone ?
+          <BannerContainer>         
+            <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
+            <ShiftFromTop10><Heading3Regular>
+              {selectedChildDevData?.milestone}
+            {/* {
+              selectedChildDevData?.milestone ? 
+              <HTML
+                  source={{html: selectedChildDevData?.milestone}}
+                  baseFontStyle={{fontSize: 16}}
+                />
+                : null
+              } */}
+            </Heading3Regular></ShiftFromTop10>        
+          </BannerContainer>
+          : null 
+        }
+        </MainContainer></ShiftFromTop20>
       </>
     );
   };
@@ -264,6 +263,16 @@ const ChildDevelopment = ({navigation}: Props) => {
              <DevelopmentPercent>
                 <Heading3>25%</Heading3>
              </DevelopmentPercent>
+             {/* <View style={{width:64,height:64}}> */}
+              {/* <VictoryPie
+                  innerRadius={20}
+                  width={164} height={164}
+                  data={[
+                    { x: "", y: 90 },
+                    { x: "", y: 100-90 },
+                  ]}
+                /> */}
+              {/* </View> */}
             </FlexDirRowSpace>
             </DevelopmentStatus>
             <FDirRow>
@@ -287,18 +296,21 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          <FlexCol style={{backgroundColor: backgroundColor}}>
-            <View>
-              <FlatList
-                data={selectedChildMilestoneData}
-                renderItem={({item, index}) => renderItem(item)}
-                keyExtractor={(item) => item.id.toString()}
-                nestedScrollEnabled={true}
-                ListHeaderComponent={ContentThatGoesAboveTheFlatList}
-                ListFooterComponent={ContentThatGoesBelowTheFlatList}
-              />
-            </View>
-          </FlexCol>
+          {selectedChildMilestoneData && selectedChildMilestoneData?.length > 0 ?
+              <FlexCol style={{backgroundColor: backgroundColor}}>
+                <View>
+                  <FlatList
+                    data={selectedChildMilestoneData}
+                    renderItem={({item, index}) => renderItem(item)}
+                    keyExtractor={(item) => item.id.toString()}
+                    nestedScrollEnabled={true}
+                    ListHeaderComponent={ContentThatGoesAboveTheFlatList}
+                    ListFooterComponent={ContentThatGoesBelowTheFlatList}
+                  />
+                </View>
+              </FlexCol>
+              : null 
+            }
          
       </SafeAreaContainer>
     </>

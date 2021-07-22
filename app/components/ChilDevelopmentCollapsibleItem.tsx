@@ -1,7 +1,7 @@
 import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -17,6 +17,8 @@ import Icon from './shared/Icon';
 import VideoPlayer from './VideoPlayer';
 import RNFS from 'react-native-fs';
 import downloadImages from '../downloadImages/ImageStorage';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 
 // const videoarticleType = {
 
@@ -35,13 +37,23 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  // let selVideoArticleData:any;
-  // let selActivitiesData:any;
+  const activeChilduuid = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild).uuid
+    : [],
+);
   const [selVideoArticleData, setselVideoArticleData] = useState();
   const [selActivitiesData, setselActivitiesData] = useState();
-  useFocusEffect(
-    React.useCallback(() => { 
-      console.log("collapsible usefocuseffect");
+  // useFocusEffect(
+  //   React.useCallback(() => {
+    useEffect(() => {
+      // console.log("collapsible usefocuseffect",item);
+      if(item.toggleCheck == true)
+      {
+        setToggleCheckBox(true);
+      }else {
+        setToggleCheckBox(false);
+      }
       const fetchData = async () => {
         setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item.related_video_articles[0])[0]);
         setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item.related_activities[0])[0]);
@@ -54,12 +66,20 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                 destFilename: selActivitiesData?.cover_image.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
-            console.log(imagesDownloadResult,"--imagesDownloadResult");
+            // console.log(imagesDownloadResult,"--imagesDownloadResult");
         }
       }
       fetchData()
-    },[])
-  );
+    }, [item]);
+  //   },[])
+  // );
+  const milestoneCheckUncheck = async () => {
+    // console.log(activeChilduuid,"--checked mielstone---",item);
+    const filterQuery = 'uuid == "'+activeChilduuid+'"';
+    // console.log("filterQuery--",filterQuery);
+    setToggleCheckBox(!toggleCheckBox);
+    const updatemilestone = await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema,item.id,filterQuery);
+  }
   const gotoArticle =()=>{
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
@@ -76,7 +96,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   }
   return (
     <>
-    <MainContainer>
+    <MainContainer key={item.id}>
     <DevelopmentBox>
     <View style={{flex: 1, flexDirection: 'row'}}>
           <View
@@ -87,7 +107,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             }}>
             <Pressable
               onPress={() => {
-                setToggleCheckBox(!toggleCheckBox);
+                milestoneCheckUncheck();
               }}>
               <CheckboxItem>
                 <View>
