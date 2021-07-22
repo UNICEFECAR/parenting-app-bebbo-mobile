@@ -344,7 +344,9 @@ const en = {
         retryRetryBtn: "Retry",
         cancelRetryPopupTitle : "Warning",
         cancelPopupText: "Data is not downloaded and app will use offline data.",
-        cancelPopUpBtn: "OK"
+        cancelPopUpBtn: "OK",
+        developScreenCompletechartLabel: "Complete",
+        developScreenCompletechartText: "Wow your baby has completed all milestones!!"
 
 
     }
