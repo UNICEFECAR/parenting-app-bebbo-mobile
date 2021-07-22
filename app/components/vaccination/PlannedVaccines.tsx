@@ -20,9 +20,9 @@ const PlannedVaccines = (props: any) => {
   }
   return (
     <>
-      {currentPeriodVaccines.length > 0 ? (
+      {currentPeriodVaccines?.length > 0 ? (
         <BgContainer>
-          {currentPeriodVaccines.map((item, index) => {
+          {currentPeriodVaccines?.map((item, index) => {
             return <VaccineItem key={index} item={item} onToggleVaccine={onToggleVaccine}/>;
           })}
         </BgContainer>
