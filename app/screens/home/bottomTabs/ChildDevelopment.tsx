@@ -15,11 +15,10 @@ import { Heading2, Heading3, Heading3Regular, Heading4, Heading5Bold, ShiftFromT
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Dimensions,
   FlatList,
   Image,
   Pressable,
-  SafeAreaView, View
+  SafeAreaView, Text, View
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -27,7 +26,7 @@ import { useAppSelector } from '../../../../App';
 import { useFocusEffect } from '@react-navigation/native';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
-import { VictoryPie } from 'victory-native';
+import ProgressCircle from 'react-native-progress-circle'
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -107,6 +106,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   const [selectedChildDevData,setSelectedChildDevData] = useState();
   const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
+  const [milestonePercent,setMilestonePercent] = useState(0);
   // let selectedChildDevData:any;
   const onPressInfo = () => {
     navigation.navigate('DetailsScreen', {
@@ -171,8 +171,44 @@ const ChildDevelopment = ({navigation}: Props) => {
       }
     },[selectedChildDevData])
   );
+  useFocusEffect(
+    React.useCallback(() => { 
+      // console.log("selectedChildMilestoneData changed--");
+      calculateMileStone();
+    },[selectedChildMilestoneData])
+  );
+  const sendMileStoneDatatoParent = (item: any,togglevalue: any) => {
+    console.log("sendMileStoneDatatoParent--",item,togglevalue);
+    const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
+    if(i > -1)
+    {
+      let abc = selectedChildMilestoneData[i];
+      abc['toggleCheck'] = togglevalue;
+      setselectedChildMilestoneData([
+          ...selectedChildMilestoneData.slice(0,i),
+          abc,
+          ...selectedChildMilestoneData.slice(i+1)
+        ]
+      );
+      // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
+    }
+  }
+  const calculateMileStone = () => {
+    console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
+    const arrlength = selectedChildMilestoneData?.length;
+    let abc = 0;
+    if(arrlength > 0)
+    {
+      abc = (selectedChildMilestoneData.filter((x:any)=>x.toggleCheck == true)).length;
+    }
+    console.log(arrlength,"---abc--",abc);
+    const percent = Math.round((abc/arrlength) * 100);
+    console.log(percent,"--percent");
+    setMilestonePercent(percent);
+  }
+  console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
   const renderItem = (item: typeof cditems[0]) => (
-    <ChilDevelopmentCollapsibleItem key={item.id} item={item} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
+    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (
@@ -220,11 +256,11 @@ const ChildDevelopment = ({navigation}: Props) => {
         <ArticleHeading>
           <FlexDirRowSpace>
           <Heading3>{selectedChildDevData?.name} </Heading3>
-          <PrematureTagDevelopment>
+          {/* <PrematureTagDevelopment>
           <Heading5Bold>
               {t('developScreenprematureText')}
             </Heading5Bold>
-          </PrematureTagDevelopment>
+          </PrematureTagDevelopment> */}
           </FlexDirRowSpace>
           <ShiftFromTop5>
           <FlexDirRowSpaceStart>
@@ -246,33 +282,62 @@ const ChildDevelopment = ({navigation}: Props) => {
             
             <OuterIconRow>
               <OuterIconLeft>
-              <Icon
-            name="ic_incom"
-            size={24}
-            color="#FFF"
-            style={{backgroundColor: 'red', borderRadius: 150}}
-          />
+              {milestonePercent < 100 ?
+                <Icon
+                  name="ic_incom"
+                  size={24}
+                  color="#FFF"
+                  style={{backgroundColor: 'red', borderRadius: 150}}
+                />
+                : <Icon
+                  name="ic_incom"
+                  size={24}
+                  color="#FFF"
+                  style={{backgroundColor: 'green', borderRadius: 150}}
+                />
+              }
               </OuterIconLeft>
             </OuterIconRow>
-          <Heading4>{t('developScreenchartLabel')}</Heading4>
+            {milestonePercent < 100 ?
+              <Heading4>{t('developScreenchartLabel')}</Heading4>
+              : <Heading4>{t('developScreenCompletechartLabel')}</Heading4>
+            }
           </FDirRow>
           <ShiftFromTop5>
-              <Heading3>{t('developScreenchartText')}</Heading3>
+            {milestonePercent < 100 ?
+                  <Heading3>{t('developScreenchartText')}</Heading3>
+                  : <Heading3>{t('developScreenCompletechartText')}</Heading3> 
+              }
               </ShiftFromTop5>
               </DevelopmentContent>
-             <DevelopmentPercent>
+             {/* <DevelopmentPercent>
                 <Heading3>25%</Heading3>
-             </DevelopmentPercent>
-             {/* <View style={{width:64,height:64}}> */}
-              {/* <VictoryPie
-                  innerRadius={20}
-                  width={164} height={164}
-                  data={[
-                    { x: "", y: 90 },
-                    { x: "", y: 100-90 },
-                  ]}
-                /> */}
-              {/* </View> */}
+             </DevelopmentPercent> */}
+             <ProgressCircle
+                percent={milestonePercent}
+                radius={35}
+                borderWidth={8}
+                color={headerColor}
+                shadowColor="#fff"
+                bgColor="#fff"
+            >
+                <Text style={{ fontSize: 18 }}>{milestonePercent}{'%'}</Text>
+            </ProgressCircle>
+             {/* <VictoryPie
+            // standalone={false}
+            //animate={{ duration: 1000 }}
+            width={160} height={160}
+            data={[{'key': "", 'y': 62}, {'key': "", 'y': (100-62)} ]}
+            innerRadius={20}
+            labels={() => null}
+          />
+          <VictoryLabel
+                  textAnchor="middle" verticalAnchor="middle"
+                  x={80} y={80}
+                  text={`62%`}
+                  style={{ position:'absolute',fontSize: 45 }}
+                />
+              */}
             </FlexDirRowSpace>
             </DevelopmentStatus>
             <FDirRow>

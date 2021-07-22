@@ -98,7 +98,7 @@ const DetailsScreen = ({route, navigation}: any) => {
 
         <ScrollView style={{flex: 4}}>
           <View>
-            {fromScreen ==="ChildDevelopment" ?
+            {fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
               <VideoPlayer selectedPinnedArticleData={detailData}></VideoPlayer>
             : 
               <Image
@@ -168,7 +168,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </>
           ) : null}
           {
-            fromScreen ==="ChildDevelopment"?
+            fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
             <>
             <TrackMilestoneView/>
             </>:null
