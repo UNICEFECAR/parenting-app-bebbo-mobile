@@ -31,6 +31,7 @@ import { VideoArticleData } from "./VideoArticleData";
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:string,activeChild?:any) => {
+    console.log(prevPage,"..prevPage..")
     return new Promise(async (resolve, reject) => {
         // if(apiEndpoint == appConfig.basicPages || apiEndpoint == appConfig.activities || apiEndpoint == appConfig.milestones)
         // console.log("getAllDataToStore--");
@@ -47,7 +48,20 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
             // } catch (e) {
             //     reject();
             // }
-        } else if(prevPage == "Terms"){
+        } 
+        else if(prevPage == "AddEditChild"){
+            let Entity:any;
+            console.log(activeChild,"..currentChildData..")
+            const currentChildData = {
+                "gender":activeChild.gender,
+                "parent_gender":activeChild.parent_gender,
+                "taxonomyData":activeChild.taxonomyData
+              }
+            console.log(currentChildData,"..currentChildData..")
+            const artData = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData);
+            resolve("nocall");
+        }
+        else if(prevPage == "Terms"){
             let Entity:any;
             const alldailyNotiData = await getDataToStore(languageCode,dispatch,DailyHomeMessagesSchema,Entity as DailyHomeMessagesEntity,dailyHomeNotificationdata,setDailyMessagesData,'id');
             const allstanDevWFHData = await getDataToStore(languageCode,dispatch,StandardDevWeightForHeightSchema,Entity as StandardDevWeightForHeightEntity,standardDevData,setStandardDevWFHData);

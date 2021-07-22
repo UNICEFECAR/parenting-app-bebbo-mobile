@@ -77,15 +77,18 @@ const HeaderBabyMenu = (props: any) => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-  // console.log(currentActiveChild, '..currentActiveChild..');
+   console.log(activeChild, '..activeChild..');
   const child_age = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  //console.log(currentActiveChild,"..currentActiveChild..");
+  console.log(currentActiveChild,"..currentActiveChild..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
     const genderLocal =
       genders?.length > 0 && data.gender != ''
@@ -185,7 +188,7 @@ const HeaderBabyMenu = (props: any) => {
                 <FDirRow>
                   <ButtonTextSmLine
                     onPress={() => {
-                      setActiveChild(data.uuid, dispatch, child_age);
+                      setActiveChild(languageCode,data.uuid, dispatch, child_age);
                     }}>
                     {t('childActivatebtn')}
                   </ButtonTextSmLine>
