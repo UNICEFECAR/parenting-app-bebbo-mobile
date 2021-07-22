@@ -49,7 +49,7 @@ const PreviousVaccines = (props: any) => {
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-  const gotoArticle = () => {
+  const gotoArticle = (pinned_articleID) => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'ChildDevelopment',
     //   headerColor: artHeaderColor,
@@ -131,11 +131,13 @@ const PreviousVaccines = (props: any) => {
                     </ToolsIconView>
                     <ToolsHeadingView>
                       <Heading4Regular>{v.title}</Heading4Regular>
-                      <Pressable onPress={gotoArticle}>
+                      {v?.pinned_article ?
+                      <Pressable onPress={() => gotoArticle(v.pinned_article)}>
                         <ButtonTextSmLineL>
                           {t('vcArticleLink')}
                         </ButtonTextSmLineL>
                       </Pressable>
+                      : null}
                     </ToolsHeadingView>
                   </FDirRowStart>
                 </MainContainer>

@@ -1,15 +1,11 @@
-import RelatedArticles from '@components/shared/RelatedArticles';
-import { useNavigation } from '@react-navigation/native';
 import { Heading2, Heading4 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import HTML from 'react-native-render-html';
-import { ThemeContext } from 'styled-components/native';
-import { v4 as uuidv4 } from 'uuid';
 import { getInterpretationHeightForAge, getInterpretationWeightForHeight } from '../../services/interpretationService';
 import { chartTypes } from './GrowthChart';
 const GrowthInterpretation = (props: any) => {
-  let {activeChild, chartType, standardDeviation} = props;
+  let {activeChild, chartType, standardDeviation,getrelatedArticles} = props;
   const {t} = useTranslation();
   //
   // console.log(activeChild, chartType, standardDeviation, 'heightForAge');
@@ -34,13 +30,17 @@ const GrowthInterpretation = (props: any) => {
     childTaxonomyData,
     lastMeasurements,
   ) 
+  useEffect(()=>{
+    props.getrelatedArticles(item?.interpretationText?.articleID)
   console.log(item, 'GrowthInterpretation');
+  },[])
+  
   // chartType == chartTypes.heightForAge
   // chartType == chartTypes.weightForHeight
-const navigation = useNavigation();
-const themeContext = useContext(ThemeContext);
-const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+// const navigation = useNavigation();
+// const themeContext = useContext(ThemeContext);
+// const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
+// const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   return (
     <>
       <Heading2>{t('growthScreensumHeading')}</Heading2>
@@ -50,10 +50,7 @@ const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
               baseFontStyle={{fontSize: 16}}
             />
 
-            {/* 5 is growth category id */}
-            <RelatedArticles fromScreen={'ChildgrowthTab'} related_articles={item?.interpretationText?.articleID} category={5} currentId={uuidv4()} headerColor={headerColor} backgroundColor={backgroundColor} navigation={navigation}/>
-      
-            {/*  */}
+            
       {/* <Paragraph>{item?.interpretationText?.text}</Paragraph> */}
     </>
   );
