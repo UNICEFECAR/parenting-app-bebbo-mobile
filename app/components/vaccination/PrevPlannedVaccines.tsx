@@ -16,7 +16,7 @@ const PrevPlannedVaccines = (props: any) => {
   });
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
   allPreviousPendingVaccines= allPreviousPendingVaccines.filter((vItem: any) => {
-    return !currentPeriodVaccines.find((element) => {
+    return !currentPeriodVaccines?.find((element) => {
       return element.id == vItem.id;
     });
   });

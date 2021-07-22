@@ -1,5 +1,14 @@
+import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonColTwo, ButtonContainer, ButtonContainerTwo, ButtonPrimary, ButtonSecondaryTint, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import {
+  ButtonColTwo,
+  ButtonContainer,
+  ButtonContainerTwo,
+  ButtonPrimary,
+  ButtonSecondaryTint,
+  ButtonTertiary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex,
   FormContainerFlex1,
@@ -11,15 +20,28 @@ import {
   TextAreaBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
-import { FDirRow, FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
-import { HeaderActionView, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import {
+  FDirRow,
+  FlexCol,
+  FlexFDirRowSpace
+} from '@components/shared/FlexBoxStyle';
+import {
+  HeaderActionView,
+  HeaderIconView,
+  HeaderRowView,
+  HeaderTitleView
+} from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
   PopupOverlay
 } from '@components/shared/ModalPopupStyle';
-import { RadioBoxContainer, RadioInnerBox, RadioOuter } from '@components/shared/radio';
+import {
+  RadioBoxContainer,
+  RadioInnerBox,
+  RadioOuter
+} from '@components/shared/radio';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
@@ -27,7 +49,8 @@ import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading2, Heading3,
+  Heading2,
+  Heading3,
   Heading3Center,
   Heading4Regular,
   ShiftFromTop15,
@@ -37,7 +60,8 @@ import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Modal, Pressable,
+  Modal,
+  Pressable,
   SafeAreaView,
   Text,
   TextInput,
@@ -48,8 +72,15 @@ import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import {
+  ChildEntity,
+  ChildEntitySchema
+} from '../../database/schema/ChildDataSchema';
 import { setActiveChild } from '../../services/childCRUD';
+import {
+  setInitialHeightValues,
+  setInitialWeightValues
+} from '../../services/growthService';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -57,7 +88,8 @@ type Props = {
 };
 const AddChildHealthCheckup = ({route, navigation}: any) => {
   const {t} = useTranslation();
-  const {headerTitle,vcPeriod, editGrowthItem} = route.params;
+  const {headerTitle, vcPeriod, editGrowthItem} = route.params;
+  console.log(vcPeriod,"vcPeriod");
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
@@ -67,9 +99,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       : null,
   );
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+  const child_age = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ''
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : [],
   );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -104,7 +137,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     //  console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
-  const getCheckedIsVaccineMeaured = (checkedItem: typeof isMeasuredOptions[0]) => {
+  const getCheckedIsVaccineMeaured = (
+    checkedItem: typeof isMeasuredOptions[0],
+  ) => {
     //  console.log(checkedItem);
     setIsVaccineMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
@@ -128,9 +163,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     }
     if (route.params?.height) {
       console.log(route.params?.height);
-      setHeightValue(route.params?.height)
+      setHeightValue(route.params?.height);
     }
-  }, [route.params?.weight,route.params?.height ]);
+  }, [route.params?.weight, route.params?.height]);
   const isFormDisabled = () => {
     if (measureDate) {
       if (plannedVaccine.length > 0 || prevPlannedVaccine.length > 0) {
@@ -168,45 +203,45 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         : null;
     });
     // if date difference is 0 then update else create new
-      console.log(updateItem);
-      if (updateItem != null) {
-        console.log(updateItem.uuid, 'updatethisitem');
-  
-        const growthValues = {
-          uuid: updateItem.uuid,
-          isChildMeasured: isMeasured,
-          weight: String(weightValue),
-          height: String(heightValue),
-          measurementDate: measureDate?.toMillis(),
-          titleDateInMonth: measureDate?.toFormat('MM'),
-          didChildGetVaccines: true,
-          vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
-          doctorComment: remarkTxt,
-          measurementPlace: 0,
-        };
-        console.log(growthValues);
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-          ChildEntitySchema,
-          growthValues,
-          'uuid ="' + activeChild.uuid + '"',
-        );
-        console.log(createresult);
-        setActiveChild(activeChild.uuid, dispatch, child_age);
-        navigation.goBack();
-      } else {
-    const growthValues = {
-      uuid: updateduuid,
-      isChildMeasured: isMeasured,
-      weight: String(weightValue),
-      height: String(heightValue),
-      measurementDate: measureDate?.toMillis(),
-      titleDateInMonth: measureDate?.toFormat('MM'),
-      didChildGetVaccines: true,
-      vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
-      doctorComment: remarkTxt,
-      measurementPlace: 0, // vaccination happens at doctor's place
-    };
-    console.log(growthValues);
+    console.log(updateItem);
+    if (updateItem != null) {
+      console.log(updateItem.uuid, 'updatethisitem');
+
+      const growthValues = {
+        uuid: updateItem.uuid,
+        isChildMeasured: isMeasured,
+        weight: String(weightValue),
+        height: String(heightValue),
+        measurementDate: measureDate?.toMillis(),
+        titleDateInMonth: measureDate?.toFormat('MM'),
+        didChildGetVaccines: true,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        doctorComment: remarkTxt,
+        measurementPlace: 0,
+      };
+      console.log(growthValues);
+      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        growthValues,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(createresult);
+      setActiveChild(activeChild.uuid, dispatch, child_age);
+      navigation.goBack();
+    } else {
+      const growthValues = {
+        uuid: updateduuid,
+        isChildMeasured: isMeasured,
+        weight: String(weightValue),
+        height: String(heightValue),
+        measurementDate: measureDate?.toMillis(),
+        titleDateInMonth: measureDate?.toFormat('MM'),
+        didChildGetVaccines: true,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        doctorComment: remarkTxt,
+        measurementPlace: 0, // vaccination happens at doctor's place
+      };
+      console.log(growthValues);
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
@@ -222,253 +257,250 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
-        <HeaderRowView
-        style={{
-          backgroundColor: headerColor,
-          maxHeight: 50,
-        }}>
-          
-              <HeaderIconView>
+          <HeaderRowView
+            style={{
+              backgroundColor: headerColor,
+              maxHeight: 50,
+            }}>
+            <HeaderIconView>
               <Pressable
-                  onPress={() => {
-                    navigation.goBack();
-                  }}>
-                  <Icon name={'ic_back'} color="#000" size={15} />
-                </Pressable>
-              </HeaderIconView>
-              <HeaderTitleView>
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Icon name={'ic_back'} color="#000" size={15} />
+              </Pressable>
+            </HeaderIconView>
+            <HeaderTitleView>
               <Heading2>{headerTitle}</Heading2>
-              </HeaderTitleView>
-              <HeaderActionView>
+            </HeaderTitleView>
+            <HeaderActionView>
               <Pressable
-              onPress={() => {
-                setModalVisible(true)
-              }}>
+                onPress={() => {
+                  setModalVisible(true);
+                }}>
                 <Text>{t('growthScreendeletebtnText')}</Text>
               </Pressable>
-              </HeaderActionView>
-              </HeaderRowView>
-        
-        <ScrollView style={{flex: 9}}>
-        <MainContainer>
-        <FormInputGroup onPress={() => setmeasureDateShow(true)}>
-          {/* <FormInputText>
+            </HeaderActionView>
+          </HeaderRowView>
+
+          <ScrollView style={{flex: 9}}>
+            <MainContainer>
+              <FormInputGroup onPress={() => setmeasureDateShow(true)}>
+                {/* <FormInputText>
           <Heading3>{t('hcdateText')}</Heading3>
           </FormInputText> */}
-          <FormInputBox>
-            <FormDateText>
-              <Text>
-              {' '}
-                    {measureDate
-                      ? measureDate.toFormat('dd.MM.yyyy')
-                      : t('vcScreenenterDateText')}
-              </Text>
-            </FormDateText>
-            <FormDateAction>
-              <Icon name="ic_calendar" size={20} color="#000" />
-            </FormDateAction>
-          </FormInputBox>
-        </FormInputGroup>
-        
-        
-        <View>
-              {showmeasureDate && (
-                <DateTimePicker
-                  testID="measureDatePicker"
-                  value={editGrowthItem ? new Date(measureDate) : new Date()}
-                  mode={'date'}
-                  display="default"
-                  maximumDate={new Date()}
-                  minimumDate={new Date(minChildGrwothDate)}
-                  onChange={onmeasureDateChange}
-                />
-              )}
-            </View>
-        <FormContainerFlex>
-          <FormInputText>
-        <Heading3>{t('vcChildMeasureQ')}</Heading3>
-        </FormInputText>
-        <ToggleRadios
-                options={isMeasuredOptions}
-                defaultValue={defaultMeasured}
-                tickbgColor={headerColor}
-                tickColor={'#000'}
-                getCheckedItem={getCheckedItem}
-              />
- </FormContainerFlex>
-            <View>
-              {
-                isMeasured ? <>
-                <ShiftFromTop15>
-                  <FormInputText>
-                    <Heading3>{t('growthScreenenterMeasuresText')}</Heading3>
-                  </FormInputText>
-                  <RadioBoxContainer>
-                    <FDirRow>
-                      <RadioOuter>
-                        <RadioInnerBox
-                          onPress={() => {
-                            navigation.navigate('AddNewChildWeight', {
-                              prevRoute: 'AddChildVaccination',
-                              headerColor,
-                              backgroundColor,
-                              weightValue: setInitialWeightValues(weightValue),
-                            });
-                          }}>
-                          <FlexFDirRowSpace>
-                            <Heading3>
-                              {weightValue
-                                ? weightValue
-                                : t('growthScreenwText')}
-                            </Heading3>
-                            <Heading4Regular>
-                              {t('growthScreenkgText')}
-                            </Heading4Regular>
-                          </FlexFDirRowSpace>
-                        </RadioInnerBox>
-                      </RadioOuter>
-                      <RadioOuter>
-                        <RadioInnerBox
-                          onPress={() => {
-                            navigation.navigate('AddNewChildHeight', {
-                              prevRoute: 'AddChildVaccination',
-                              headerColor,
-                              backgroundColor,
-                              heightValue: setInitialHeightValues(heightValue),
-                            });
-                          }}>
-                          <FlexFDirRowSpace>
-                            <Heading3>
-                              {heightValue
-                                ? heightValue
-                                : t('growthScreenhText')}
-                            </Heading3>
-                            <Heading4Regular>
-                              {t('growthScreencmText')}
-                            </Heading4Regular>
-                          </FlexFDirRowSpace>
-                        </RadioInnerBox>
-                      </RadioOuter>
-                    </FDirRow>
-                  </RadioBoxContainer>
-                </ShiftFromTop15>
-                </>
-                :null
-              }
-            </View>
-            <FormContainerFlex>
-              <FormInputText>
-        <Heading3>{t('hcChildVaccineQ')}</Heading3>
-        </FormInputText>
-        
-        <ToggleRadios
-                options={isMeasuredOptions}
-                defaultValue={defaultMeasured}
-                tickbgColor={headerColor}
-                tickColor={'#000'}
-                getCheckedItem={getCheckedIsVaccineMeaured}
-              />
-        
-        </FormContainerFlex>
-        {
-          isVaccineMeasured? 
-          <FormContainerFlex1>
-            <ShiftFromTop15>
-            <FormInputText>
-            <Heading3>{t('vcPlanned')}</Heading3>
-            </FormInputText>
-            <PlannedVaccines
-                currentPeriodVaccines={vcPeriod.vaccines}
-                onPlannedVaccineToggle={onPlannedVaccineToggle}
-              />
-          </ShiftFromTop15>
-          <ShiftFromTop15>
-          <FormInputText>
-          <Heading3>{t('vcPrev')}</Heading3>
-          </FormInputText>
-          <PrevPlannedVaccines
-                currentPeriodVaccines={vcPeriod.vaccines}
-                onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
-              />
-          </ShiftFromTop15>
-          </FormContainerFlex1>
-          :null
-        }
-        <FormContainerFlex>
-          <FormInputText>
-          <Heading3>{'Doctor Remark or Comment'}}</Heading3>
-          </FormInputText>
-          <TextAreaBox>
-          <TextInput
-            autoCapitalize="none"
-            autoCorrect={false}
-            clearButtonMode="always"
-            value={''}
-            // onChangeText={queryText => handleSearch(queryText)}
-            placeholder={t('growthScreenenterDoctorRemarkTextPlaceHolder')}
-            
-          />
-          </TextAreaBox>
-        </FormContainerFlex>
-        <ShiftFromTopBottom10>
-          <Text>{t('growthScreennewGrowthBottomText')}</Text>
-        </ShiftFromTopBottom10>
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>
+                      {' '}
+                      {measureDate
+                        ? measureDate.toFormat('dd.MM.yyyy')
+                        : t('vcScreenenterDateText')}
+                    </Text>
+                  </FormDateText>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              </FormInputGroup>
 
-       
-        </MainContainer>
-        </ScrollView>
-        <ButtonContainer>
-          <ButtonTertiary
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
-          </ButtonTertiary>
-        </ButtonContainer>
-        
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            // Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
-          }}
-          onDismiss={() => {
-            setModalVisible(!modalVisible);
-          }}>
-          <PopupOverlay>
-            <ModalPopupContainer>
-              <PopupCloseContainer>
-                <PopupClose
-                  onPress={() => {
-                    setModalVisible(!modalVisible);
-                  }}>
-                  <Icon name="ic_close" size={16} color="#000" />
-                </PopupClose>
-              </PopupCloseContainer>
-              
+              <View>
+                {showmeasureDate && (
+                  <DateTimePicker
+                    testID="measureDatePicker"
+                    value={editGrowthItem ? new Date(measureDate) : new Date()}
+                    mode={'date'}
+                    display="default"
+                    maximumDate={new Date()}
+                    minimumDate={new Date(minChildGrwothDate)}
+                    onChange={onmeasureDateChange}
+                  />
+                )}
+              </View>
+              <FormContainerFlex>
+                <FormInputText>
+                  <Heading3>{t('vcChildMeasureQ')}</Heading3>
+                </FormInputText>
+                <ToggleRadios
+                  options={isMeasuredOptions}
+                  defaultValue={defaultMeasured}
+                  tickbgColor={headerColor}
+                  tickColor={'#000'}
+                  getCheckedItem={getCheckedItem}
+                />
+              </FormContainerFlex>
+              <View>
+                {isMeasured ? (
+                  <>
+                    <ShiftFromTop15>
+                      <FormInputText>
+                        <Heading3>
+                          {t('growthScreenenterMeasuresText')}
+                        </Heading3>
+                      </FormInputText>
+                      <RadioBoxContainer>
+                        <FDirRow>
+                          <RadioOuter>
+                            <RadioInnerBox
+                              onPress={() => {
+                                navigation.navigate('AddNewChildWeight', {
+                                  prevRoute: 'AddChildHealthCheckup',
+                                  headerColor,
+                                  backgroundColor,
+                                  weightValue:
+                                    setInitialWeightValues(weightValue),
+                                });
+                              }}>
+                              <FlexFDirRowSpace>
+                                <Heading3>
+                                  {weightValue
+                                    ? weightValue
+                                    : t('growthScreenwText')}
+                                </Heading3>
+                                <Heading4Regular>
+                                  {t('growthScreenkgText')}
+                                </Heading4Regular>
+                              </FlexFDirRowSpace>
+                            </RadioInnerBox>
+                          </RadioOuter>
+                          <RadioOuter>
+                            <RadioInnerBox
+                              onPress={() => {
+                                navigation.navigate('AddNewChildHeight', {
+                                  prevRoute: 'AddChildHealthCheckup',
+                                  headerColor,
+                                  backgroundColor,
+                                  heightValue:
+                                    setInitialHeightValues(heightValue),
+                                });
+                              }}>
+                              <FlexFDirRowSpace>
+                                <Heading3>
+                                  {heightValue
+                                    ? heightValue
+                                    : t('growthScreenhText')}
+                                </Heading3>
+                                <Heading4Regular>
+                                  {t('growthScreencmText')}
+                                </Heading4Regular>
+                              </FlexFDirRowSpace>
+                            </RadioInnerBox>
+                          </RadioOuter>
+                        </FDirRow>
+                      </RadioBoxContainer>
+                    </ShiftFromTop15>
+                  </>
+                ) : null}
+              </View>
+              <FormContainerFlex>
+                <FormInputText>
+                  <Heading3>{t('hcChildVaccineQ')}</Heading3>
+                </FormInputText>
+
+                <ToggleRadios
+                  options={isMeasuredOptions}
+                  defaultValue={defaultMeasured}
+                  tickbgColor={headerColor}
+                  tickColor={'#000'}
+                  getCheckedItem={getCheckedIsVaccineMeaured}
+                />
+              </FormContainerFlex>
+              {isVaccineMeasured ? (
+                <FormContainerFlex1>
+                  <ShiftFromTop15>
+                    <FormInputText>
+                      <Heading3>{t('vcPlanned')}</Heading3>
+                    </FormInputText>
+                    <PlannedVaccines
+                      currentPeriodVaccines={vcPeriod?.vaccines}
+                      onPlannedVaccineToggle={onPlannedVaccineToggle}
+                    />
+                  </ShiftFromTop15>
+                  <ShiftFromTop15>
+                    <FormInputText>
+                      <Heading3>{t('vcPrev')}</Heading3>
+                    </FormInputText>
+                    <PrevPlannedVaccines
+                      currentPeriodVaccines={vcPeriod?.vaccines}
+                      onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
+                    />
+                  </ShiftFromTop15>
+                </FormContainerFlex1>
+              ) : null}
+              <FormContainerFlex>
+              <FormInputText>
+                  {t('growthScreenenterDoctorRemarkText')}
+                </FormInputText>
+                <TextAreaBox>
+                  <TextInput
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    maxLength={maxCharForRemarks}
+                    clearButtonMode="always"
+                    defaultValue={remarkTxt}
+                    multiline={true}
+                    onChangeText={(text) => handleDoctorRemark(text)}
+                    placeholder={t(
+                      'growthScreenenterDoctorRemarkTextPlaceHolder',
+                    )}
+                  />
+                </TextAreaBox>
+              </FormContainerFlex>
               <ShiftFromTopBottom10>
-                <Heading3Center>{t('hcDeleteWarning')}</Heading3Center>
+                <Text>{t('growthScreennewGrowthBottomText')}</Text>
+              </ShiftFromTopBottom10>
+            </MainContainer>
+          </ScrollView>
+          <ButtonContainer>
+            <ButtonTertiary
+              onPress={() => {
+                saveChildMeasures()
+              }}>
+              <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+            </ButtonTertiary>
+          </ButtonContainer>
+
+          <Modal
+            animationType="none"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              // Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}
+            onDismiss={() => {
+              setModalVisible(!modalVisible);
+            }}>
+            <PopupOverlay>
+              <ModalPopupContainer>
+                <PopupCloseContainer>
+                  <PopupClose
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}>
+                    <Icon name="ic_close" size={16} color="#000" />
+                  </PopupClose>
+                </PopupCloseContainer>
+
+                <ShiftFromTopBottom10>
+                  <Heading3Center>{t('hcDeleteWarning')}</Heading3Center>
                 </ShiftFromTopBottom10>
                 <ButtonContainerTwo>
-                <ButtonColTwo>
-                  <ButtonSecondaryTint>
-                  <ButtonText>{t('growthDeleteOption1')}</ButtonText>
-                  </ButtonSecondaryTint>
+                  <ButtonColTwo>
+                    <ButtonSecondaryTint>
+                      <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                    </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                  <ButtonPrimary>
-                  <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                    <ButtonPrimary>
+                      <ButtonText>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>
-                    </ButtonColTwo>
-                
-              </ButtonContainerTwo>
-              
-            </ModalPopupContainer>
-          </PopupOverlay>
-        </Modal>
+                  </ButtonColTwo>
+                </ButtonContainerTwo>
+              </ModalPopupContainer>
+            </PopupOverlay>
+          </Modal>
         </FlexCol>
       </SafeAreaView>
     </>
