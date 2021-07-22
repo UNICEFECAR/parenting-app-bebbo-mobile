@@ -29,11 +29,11 @@ import {
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import { formatDaysData, formatHeightData } from '../../services/growthService';
-
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -46,7 +46,7 @@ const Childgrowth = ({navigation}: Props) => {
     {title: t('growthScreenweightForHeight')},
     {title: t('growthScreenheightForAge')},
   ];
-  
+
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -57,8 +57,7 @@ const Childgrowth = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const standardDevData = useAppSelector(
-    (state: any) =>
+  const standardDevData = useAppSelector((state: any) =>
     JSON.parse(state.utilsData.taxonomy.standardDevData),
   );
   // console.log(standardDevData,"statestandardDevData")
@@ -67,13 +66,13 @@ const Childgrowth = ({navigation}: Props) => {
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
-  const fullScreenChart = (chartType,obj,standardDeviation) => {
+  const fullScreenChart = (chartType, obj, standardDeviation) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
       obj,
-      standardDeviation
+      standardDeviation,
     });
   };
   const renderItem = (item: typeof data[0], index: number) => {
@@ -84,8 +83,8 @@ const Childgrowth = ({navigation}: Props) => {
         //boy or no gender added
         // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
         const genderBoyData = standardDevData.filter(
-          (item) => item.growth_type == 6461 && item.child_gender == 40
-        )
+          (item) => item.growth_type == 6461 && item.child_gender == 40,
+        );
         standardDeviation = genderBoyData;
         obj = formatHeightData(genderBoyData);
       } else {
@@ -110,9 +109,14 @@ const Childgrowth = ({navigation}: Props) => {
             <View style={{flexDirection: 'row'}}>
               <Heading2>{item.title}</Heading2>
               <Pressable
-               
-                onPress={() => fullScreenChart(chartTypes.weightForHeight,obj,standardDeviation)}>
-                <Icon name="ic_fullscreen" size={16}/>
+                onPress={() =>
+                  fullScreenChart(
+                    chartTypes.weightForHeight,
+                    obj,
+                    standardDeviation,
+                  )
+                }>
+                <Icon name="ic_fullscreen" size={16} />
               </Pressable>
             </View>
 
@@ -128,7 +132,7 @@ const Childgrowth = ({navigation}: Props) => {
     } else if (index == 1) {
       let obj;
       let standardDeviation;
-      if (activeChild?.gender == '40'  || activeChild?.gender == '') {
+      if (activeChild?.gender == '40' || activeChild?.gender == '') {
         // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
         const genderBoyData = standardDevData.filter(
           (item) => item.growth_type == 32786 && item.child_gender == 40,
@@ -157,9 +161,14 @@ const Childgrowth = ({navigation}: Props) => {
             <View style={{flexDirection: 'row'}}>
               <Heading2>{item.title}</Heading2>
               <Pressable
-                
-                onPress={() => fullScreenChart(chartTypes.heightForAge,obj,standardDeviation)}>
-                <Icon name="ic_fullscreen" size={16}/>
+                onPress={() =>
+                  fullScreenChart(
+                    chartTypes.heightForAge,
+                    obj,
+                    standardDeviation,
+                  )
+                }>
+                <Icon name="ic_fullscreen" size={16} />
               </Pressable>
             </View>
             <GrowthChart
@@ -172,6 +181,21 @@ const Childgrowth = ({navigation}: Props) => {
         </>
       );
     }
+  };
+  const renderDummyChart = () => {
+    return (
+      <>
+        <View
+          style={{
+            backgroundColor: '#FFF',
+            borderRadius: 4,
+            alignItems: 'center',
+            margin:15,
+            padding: 15          }}>
+          <VectorImage source={require('@assets/svg/chart.svg')}/>
+        </View>
+      </>
+    );
   };
   return (
     <>
@@ -195,37 +219,43 @@ const Childgrowth = ({navigation}: Props) => {
             }}>
             <BabyNotification />
             {activeChild.measures.length == 0 ? (
-              <FlexDirCol>
-                <ShiftFromBottom5>
-                  <Heading3>
-                    {t('babyNotificationbyAge', {
-                      childName:
-                        activeChild.childName != null &&
-                        activeChild.childName != '' &&
-                        activeChild.childName != undefined
-                          ? activeChild.childName
-                          : '',
-                      ageInMonth:
-                        activeChild.birthDate != null &&
-                        activeChild.birthDate != '' &&
-                        activeChild.birthDate != undefined
-                          ? getCurrentChildAgeInMonths(t, activeChild.birthDate)
-                          : '',
-                    })}
+              <>
+                <FlexDirCol>
+                  <ShiftFromBottom5>
+                    <Heading3>
+                      {t('babyNotificationbyAge', {
+                        childName:
+                          activeChild.childName != null &&
+                          activeChild.childName != '' &&
+                          activeChild.childName != undefined
+                            ? activeChild.childName
+                            : '',
+                        ageInMonth:
+                          activeChild.birthDate != null &&
+                          activeChild.birthDate != '' &&
+                          activeChild.birthDate != undefined
+                            ? getCurrentChildAgeInMonths(
+                                t,
+                                activeChild.birthDate,
+                              )
+                            : '',
+                      })}
 
-                    {/* {t('growthScreengrowthDataTitle', {childAge: 3})} */}
-                  </Heading3>
-                </ShiftFromBottom5>
+                      {/* {t('growthScreengrowthDataTitle', {childAge: 3})} */}
+                    </Heading3>
+                  </ShiftFromBottom5>
 
-                {activeChild.measures.length == 0 ? (
-                  <Heading3Centerr>
-                    {t('growthScreennoGrowthData')}
-                  </Heading3Centerr>
-                ) : null}
-                <ShiftFromTopBottom20>
-                  <Heading4>{t('growthScreennoGrowthDataHelpText')}</Heading4>
-                </ShiftFromTopBottom20>
-              </FlexDirCol>
+                  {activeChild.measures.length == 0 ? (
+                    <Heading3Centerr>
+                      {t('growthScreennoGrowthData')}
+                    </Heading3Centerr>
+                  ) : null}
+                  <ShiftFromTopBottom20>
+                    <Heading4>{t('growthScreennoGrowthDataHelpText')}</Heading4>
+                  </ShiftFromTopBottom20>
+                </FlexDirCol>
+                {renderDummyChart()}
+              </>
             ) : (
               <View style={{padding: 15}}>
                 <GrowthIntroductory activeChild={activeChild} />

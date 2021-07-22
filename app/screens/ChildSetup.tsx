@@ -156,7 +156,8 @@ const AddChild=async ()=>{
             <ButtonPrimary
              disabled={!validateForm(0,birthDate,isPremature,relationship,plannedTermDate)}
            
-              onPress={() => {
+              onPress={(e) => {
+                e.stopPropagation();
                 // console.log(birthDate,"..birthDate..");
                 // console.log(isPremature,"..isPremature..");
                 // console.log(plannedTermDate,"..plannedTermDate..");
