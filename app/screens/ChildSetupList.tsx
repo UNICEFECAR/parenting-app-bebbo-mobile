@@ -27,7 +27,6 @@ import { Alert, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
 import { apiJsonDataGet, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
@@ -216,8 +215,8 @@ const ChildSetupList = ({ navigation }: Props) => {
           </ShiftFromBottom20>
          
           <ButtonPrimary
-            onPress={() => {
-              
+            onPress={(e) => {
+              e.stopPropagation();
               childSetup();
             }}>
             <ButtonText>{t('childSetupListcontinueBtnText')}</ButtonText>
