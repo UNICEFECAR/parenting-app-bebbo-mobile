@@ -20,7 +20,7 @@ flex:1;
 `;
 export const FeatureBox = styled.View`
 padding:15px 0;
-/*min-height:150px*/
+min-height:170px;
 
 `;
 
@@ -35,7 +35,6 @@ margin-right:-3px;
 export const FeatureDivideArea = styled.View`
 border-top-width:7px;
 border-color:#fff;
-
 `;
 export const ToolPress = styled.Pressable`
 flex:1;

@@ -1,8 +1,10 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
+import { MainContainer } from '@components/shared/Container';
+import { FlexRow,FlexCol,FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2 } from '@styles/typography';
+import { Heading2,ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, Pressable, ScrollView, View } from 'react-native';
@@ -45,36 +47,35 @@ export const ChartFullScreen = ({route}) => {
     <>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-            padding: 15
-          }}>
+        <FlexCol>
           <ScrollView>
-            <View
+            <MainContainer
               style={{
                 backgroundColor: 'white',
-                marginBottom: 20,
+                
                 flexDirection: 'column',
                 // paddingLeft: 20,
-                paddingTop: 20,
+                
               }}>
-              <View style={{flexDirection: 'row'}}>
+              
+              <ShiftFromTopBottom10>
+              <FlexFDirRowSpace>
                   <Heading2>{chartHeading.title}</Heading2>
                 <Pressable onPress={() => closeFullScreen()}>
                   <Icon name="ic_close" />
                 </Pressable>
-              </View>
+                </FlexFDirRowSpace>
+                </ShiftFromTopBottom10>
+              
               <GrowthChart
                 activeChild={activeChild}
                 chartType={chartTypes.weightForHeight}
                 bgObj={obj}
                 standardDeviation={standardDeviation}
               />
-            </View>
+            </MainContainer>
           </ScrollView>
-        </View>
+        </FlexCol>
       </SafeAreaView>
     </>
   );
