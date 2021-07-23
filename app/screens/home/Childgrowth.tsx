@@ -132,13 +132,14 @@ const Childgrowth = ({navigation}: Props) => {
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
-           </FlexCol>
+           
             <GrowthInterpretation
               activeChild={activeChild}
               chartType={chartTypes.weightForHeight}
               standardDeviation={standardDeviation}
               // getrelatedArticles={setrelatedArticles}
             />
+            </FlexCol>
           </View>
           {/* 5 is growth category id */}
          
@@ -247,7 +248,7 @@ const Childgrowth = ({navigation}: Props) => {
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3>
+                    <Heading3 style={{marginTop:15}}>
                       {t('babyNotificationbyAge', {
                         childName:
                           activeChild.childName != null &&
@@ -317,7 +318,7 @@ const Childgrowth = ({navigation}: Props) => {
                       );
                     })}
                                     </TabBarContainerBrd>
-
+                    
 
                   <SideSpacing10>
                     {renderItem(data[selectedIndex], selectedIndex)}
@@ -325,9 +326,7 @@ const Childgrowth = ({navigation}: Props) => {
                     </BgContainer>
                 </>
                 
-                <View style={{flex: 1, }}>
-                  {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
-                </View>
+              
               </MainContainer>
             )}
           </ScrollView>
