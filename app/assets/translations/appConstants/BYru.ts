@@ -335,7 +335,16 @@ tabbarLabel8: "Рост ребенка",
         noVaccinesForPeriod: "There are no vaccines during this period",
         defaultPeriodInterpretationText: "Growth charts refer to children 0 to 61 months old and do not contain growth values for older childre. You can find more about growth in this period in relevant articles.",
 
-
+        // new text dated on 22 july 2021
+        retryPopupTitle : "Retry",
+        retryPopupText: "All content is not downloaded.Please Retry.",
+        retryCancelPopUpBtn: "Cancel",
+        retryRetryBtn: "Retry",
+        cancelRetryPopupTitle : "Warning",
+        cancelPopupText: "Data is not downloaded and app will use offline data.",
+        cancelPopUpBtn: "OK",
+        developScreenCompletechartLabel: "Complete",
+        developScreenCompletechartText: "Wow your baby has completed all milestones!!"
 
     }
 }
