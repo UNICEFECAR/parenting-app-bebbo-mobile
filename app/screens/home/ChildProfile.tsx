@@ -326,11 +326,11 @@ const child_age = useAppSelector(
               <ProfileContentView>
                 <ParentRowView>
                   <ParentSection>
-                    <ParentLabel>
+                    <ParentLabel style={{fontWeight:'bold'}}>
                       <Text>{t('parentRoleLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
-                      <Text>
+                      <Text style={{marginLeft:15}}>
                         {
                         userParentalRoleData?.length > 0
                           ? relationshipValue.name
@@ -344,7 +344,7 @@ const child_age = useAppSelector(
                       <Text>{t('parentNameLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
-                      <Text>
+                      <Text style={{marginLeft:15}}>
                         {userNameData?.length > 0 ? userNameData[0].value : ''}
                       </Text>
                     </ParentData>
