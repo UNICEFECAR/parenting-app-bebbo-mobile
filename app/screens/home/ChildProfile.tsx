@@ -34,6 +34,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 
@@ -110,8 +111,8 @@ const child_age = useAppSelector(
     if (a.uuid == currentActiveChild) return -1;
   });
   const renderChildProfile = (dispatch: any, data: any, index: number,genderName:string) => (
-    
-    <View key={index}>
+    console.log(genderName,"...ggnme"),
+    <View key={data.uuid}>
       {currentActiveChild != '' &&
       currentActiveChild != null &&
       currentActiveChild != undefined &&
@@ -127,7 +128,7 @@ const child_age = useAppSelector(
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
-              <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
+              <Heading3>{data.childName},<Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
               </Heading3>
             </ProfileSectionView>
             <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
@@ -184,7 +185,7 @@ const child_age = useAppSelector(
             <ProfileTextView>
               <ProfileSectionView style={{alignItems:'flex-start'}}>
                 <Heading3>
-                  {data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
+                  {data.childName},<Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5>
                 </Heading3>
                 
                 
@@ -258,7 +259,10 @@ const child_age = useAppSelector(
             <ScrollView style={{maxHeight:'70%',height:'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
-                  const genderLocal=(genders?.length>0 && item.gender!="")?genders.find(genderset => String(genderset.id) === item.gender).name:item.gender;
+                   console.log(item,"..item..");
+                  // console.log(genders,"..genders..");
+                  const genderLocal=(genders?.length>0 && item.gender!="")? genders.find(genderset => genderset.id == parseInt(item.gender)).name:'';
+                  console.log(genderLocal,"..genderLocal..")
                   return renderChildProfile(dispatch, item, index,genderLocal);
                   })
                 : null}
