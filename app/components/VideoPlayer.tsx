@@ -93,12 +93,12 @@ const VideoPlayer = (props: any) => {
             {videoType == videoTypeImage ?
                 (<Image
                     source={require('@assets/trash/defaultArticleImage.png')}
-                    style={{ width: '100%' }}
+                    style={{ width: '100%',height:'auto',minHeight:250}}
                 />) :
                 (<>{videoType == videoTypeVimeo ?
                     <WebView
                         containerStyle={{
-                            // width: '80%',
+                            //width: '80%',
                             height: 250,
                             aspectRatio: 1.75,
                             alignSelf: 'center',
