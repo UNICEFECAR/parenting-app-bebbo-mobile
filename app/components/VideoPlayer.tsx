@@ -1,12 +1,27 @@
 import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
-import React, { useState } from "react"
+// import { useNetInfo } from "@react-native-community/netinfo";
+import React, { useEffect, useState } from "react"
 import { Image } from "react-native";
 import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { getVimeoId, getYoutubeId } from "../services/Utils";
+import NetInfo from "@react-native-community/netinfo";
+import useNetInfoHook from "../customHooks/useNetInfoHook";
+
 
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
+    // const netInfo = useNetInfo();
+    // useEffect(() => {
+    // const unsubscribe = NetInfo.addEventListener((data) => {
+    //     console.log(data);
+    // });
+    // return () => {
+    //     unsubscribe();
+    // };
+    // }, []);
+    const netInfoval = useNetInfoHook();
+    // console.log(netInfoval,"--netInfo");
     let videoId: string;
     console.log("video player", props.selectedPinnedArticleData);
     let videoType = videoTypeImage;
@@ -90,7 +105,7 @@ const VideoPlayer = (props: any) => {
     }
     return (
         <>
-            {videoType == videoTypeImage ?
+            {videoType == videoTypeImage || netInfoval == false ?
                 (<Image
                     source={require('@assets/trash/defaultArticleImage.png')}
                     style={{ width: '100%',height:'auto',minHeight:250}}
