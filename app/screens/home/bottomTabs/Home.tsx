@@ -33,6 +33,8 @@ const Home = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;	
+  const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
+  const backgroundColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
 //   const dailyMessages = useAppSelector((state: any) =>
 //   state.childData.childDataSet.allChild != ''
 //     ? JSON.parse(state.childData.childDataSet.allChild)
@@ -65,9 +67,9 @@ useFocusEffect(
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
           <FlexCol>
         <BabyNotification/>
-          <ChildInfo/>
+        <ChildInfo headerColor={headerColorChildInfo} backgroundColor={backgroundColorChildInfo}/>
           <DailyReads/>
-          <ChildMilestones/>
+          <ChildMilestones />
           <PlayingTogether/>
           <AdviceAndArticles/>
           <Tools/>
