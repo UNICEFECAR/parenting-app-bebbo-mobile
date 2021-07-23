@@ -107,7 +107,7 @@ useEffect(() => {
 
   let windowWidth = Dimensions.get('window').width;
   let windowHeight = Dimensions.get('window').height;
-  console.log(windowWidth,windowHeight,"window");
+  // console.log(windowWidth,windowHeight,"window");
   const [showFullscreen, setShowFullscreen] = React.useState(false);
   // let orientation: 'portrait' | 'landscape' =
   // windowHeight > windowWidth ?  'portrait':'landscape' ;
@@ -115,7 +115,7 @@ useEffect(() => {
 
 
 
-console.log(deviceOrientation,"orientation");
+// console.log(deviceOrientation,"orientation");
 
 const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
   let convertedMeasures = convertMeasuresData(
