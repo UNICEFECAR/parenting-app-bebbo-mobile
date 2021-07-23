@@ -93,16 +93,17 @@ export const getAllHealthCheckupPeriods = () => {
   const currentPeriod = previousPeriods[0];
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
-
+let totalUpcomingVaccines;
   if(upcomingPeriods?.length > 0) {
-  const totalUpcomingVaccines = upcomingPeriods?.map((item) => {
+   totalUpcomingVaccines = upcomingPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
   });
 }
+let totalPreviousVaccines;
 if(previousPeriods?.length > 0){
-  const totalPreviousVaccines = previousPeriods?.map((item) => {
+   totalPreviousVaccines = previousPeriods?.map((item) => {
     return item.vaccines.length;
   }).reduce((accumulator, current) => {
     return accumulator + current;
@@ -112,5 +113,5 @@ if(previousPeriods?.length > 0){
   // console.log(allHealthCheckupsData,"growth_period_uniqueData");
 
  
-  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, currentPeriod };
+  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods,totalUpcomingVaccines,totalPreviousVaccines, currentPeriod };
 }
