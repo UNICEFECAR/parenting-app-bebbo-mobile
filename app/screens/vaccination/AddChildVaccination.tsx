@@ -65,7 +65,10 @@ import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import {
+  ChildEntity,
+  ChildEntitySchema
+} from '../../database/schema/ChildDataSchema';
 import { setActiveChild } from '../../services/childCRUD';
 import {
   setInitialHeightValues,
@@ -78,14 +81,13 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
-    editGrowthItem
-      ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
-      : null,
+    editGrowthItem ? editGrowthItem.measurementDate : null,
   );
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+  const child_age = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ''
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -182,52 +184,52 @@ const AddChildVaccination = ({route, navigation}: any) => {
         : null;
     });
     // if date difference is 0 then update else create new
-      console.log(updateItem);
-      if (updateItem != null) {
-        console.log(updateItem.uuid, 'updatethisitem');
-  
-        const growthValues = {
-          uuid: updateItem.uuid,
-          isChildMeasured: isMeasured,
-          weight: String(weightValue),
-          height: String(heightValue),
-          measurementDate: measureDate?.toMillis(),
-          titleDateInMonth: measureDate?.toFormat('MM'),
-          didChildGetVaccines: true,
-          vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
-          doctorComment: remarkTxt,
-          measurementPlace: 0,
-        };
-        console.log(growthValues);
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-          ChildEntitySchema,
-          growthValues,
-          'uuid ="' + activeChild.uuid + '"',
-        );
-        console.log(createresult);
-        setActiveChild(activeChild.uuid, dispatch, child_age);
-        navigation.goBack();
-      } else {
-    const growthValues = {
-      uuid: updateduuid,
-      isChildMeasured: isMeasured,
-      weight: String(weightValue),
-      height: String(heightValue),
-      measurementDate: measureDate?.toMillis(),
-      titleDateInMonth: measureDate?.toFormat('MM'),
-      didChildGetVaccines: true,
-      vaccineIds: JSON.stringify([...plannedVaccine,...prevPlannedVaccine]),
-      doctorComment: remarkTxt,
-      measurementPlace: 0, // vaccination happens at doctor's place
-    };
-    console.log(growthValues);
+    console.log(updateItem);
+    if (updateItem != null) {
+      console.log(updateItem.uuid, 'updatethisitem');
+
+      const growthValues = {
+        uuid: updateItem.uuid,
+        isChildMeasured: isMeasured,
+        weight: String(weightValue),
+        height: String(heightValue),
+        measurementDate: measureDate?.toMillis(),
+        titleDateInMonth: measureDate?.toFormat('MM'),
+        didChildGetVaccines: true,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        doctorComment: remarkTxt,
+        measurementPlace: 0,
+      };
+      console.log(growthValues);
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      setActiveChild(activeChild.uuid, dispatch, child_age);
+      navigation.goBack();
+    } else {
+      const growthValues = {
+        uuid: updateduuid,
+        isChildMeasured: isMeasured,
+        weight: String(weightValue),
+        height: String(heightValue),
+        measurementDate: measureDate?.toMillis(),
+        titleDateInMonth: measureDate?.toFormat('MM'),
+        didChildGetVaccines: true,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        doctorComment: remarkTxt,
+        measurementPlace: 0, // vaccination happens at doctor's place
+      };
+      console.log(growthValues);
+      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        growthValues,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(createresult);
+      setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
   };
@@ -272,7 +274,9 @@ const AddChildVaccination = ({route, navigation}: any) => {
                   <Text>
                     {' '}
                     {measureDate
-                      ? measureDate.toFormat('dd.MM.yyyy')
+                      ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                          'dd/MM/yyyy',
+                        )
                       : t('vcScreenenterDateText')}
                   </Text>
                 </FormDateText>
