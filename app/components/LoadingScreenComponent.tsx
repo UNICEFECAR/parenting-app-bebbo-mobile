@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
 const item = {
   image: require('@assets/svg/bebbo_logo_shape.svg'),
-  colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
+  colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
 };
 
 const LoadingScreenComponent = (props: any) => {

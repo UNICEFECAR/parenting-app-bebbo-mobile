@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { ButtonDevelopmentMd, ButtonTextMd } from './ButtonGlobal';
-import { BannerContainer } from './Container';
+import { BannerContainer, MainContainer } from './Container';
 import { Flex1, Flex3, FlexDirRowStart } from './FlexBoxStyle';
 import Icon, { IconBox, OuterIconLeft, OuterIconRow } from './Icon';
 const TrackMilestoneView = () => {
@@ -18,6 +18,7 @@ const TrackMilestoneView = () => {
   return (
     <>
     <ShiftFromBottom15>
+    <MainContainer>
       <BannerContainer style={{backgroundColor: backgroundColor,}}>
         <FlexDirRowStart>
         <Flex1>
@@ -77,6 +78,7 @@ const TrackMilestoneView = () => {
         </View>
       </View> */}
       </BannerContainer> 
+      </MainContainer>
       </ShiftFromBottom15>
     </>
   );
