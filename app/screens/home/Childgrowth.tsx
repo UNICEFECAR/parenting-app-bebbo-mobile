@@ -46,7 +46,7 @@ type Props = {
   navigation: ChildgrowthNavigationProp;
   AddNewChildgrowth;
 };
-const Childgrowth = ({navigation}: Props) => {
+const Childgrowth = ({navigation,route}: Props) => {
   const {t} = useTranslation();
   const data = [
     {title: t('growthScreenweightForHeight')},
@@ -71,6 +71,7 @@ const Childgrowth = ({navigation}: Props) => {
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
+
   const renderDummyChart = () => {
     return (
       <>
@@ -108,7 +109,7 @@ const Childgrowth = ({navigation}: Props) => {
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={{marginTop:15}}>
+                    <Heading3 style={{marginTop: 15}}>
                       {t('babyNotificationbyAge', {
                         childName:
                           activeChild.childName != null &&
@@ -179,12 +180,8 @@ const Childgrowth = ({navigation}: Props) => {
                     </TabBarContainerBrd>
 
                     <SideSpacing10>
-                      {selectedIndex == 0 ? (
-                      <ChartWeightForHeight />
-                      ): null}
-                      {selectedIndex == 1 ? (
-                      <ChartHeightForAge />
-                      ): null}
+                      {selectedIndex == 0 ? <ChartWeightForHeight /> : null}
+                      {selectedIndex == 1 ? <ChartHeightForAge /> : null}
                     </SideSpacing10>
                   </BgContainer>
                 </>

@@ -1,13 +1,13 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
 import { MainContainer } from '@components/shared/Container';
-import { FlexRow,FlexCol,FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2,ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading2, ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Pressable, ScrollView, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -16,7 +16,7 @@ export const ChartFullScreen = ({route}) => {
   const {activeChild, chartType, obj, standardDeviation} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  console.log(activeChild, chartType, obj, standardDeviation);
+  // console.log(activeChild, chartType, obj, standardDeviation);
   const navigation = useNavigation();
   const {t} = useTranslation();
   const chartHeading = chartType == chartTypes.weightForHeight ?  {title: t('growthScreenweightForHeight')} : {title: t('growthScreenheightForAge')};
@@ -40,8 +40,8 @@ export const ChartFullScreen = ({route}) => {
     }, []),
   );
   const closeFullScreen = () => {
-    Orientation.lockToPortrait();
     navigation.goBack();
+    Orientation.lockToPortrait();
   };
   return (
     <>
