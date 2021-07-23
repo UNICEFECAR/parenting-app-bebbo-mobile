@@ -132,7 +132,6 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-
     }
   }
 
@@ -302,10 +301,10 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   else {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
     let ageLimit = [];
-    let startDate = DateTime.fromISO(oldBirthDate)
-    let someDate = DateTime.fromISO(data[0].birthDate)
+    let startDate =new Date(oldBirthDate)
+    let someDate = new Date(data[0].birthDate)
     console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
-    if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "") {
+    if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate)==false) {
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       console.log(ageLimit, "..ageLimit..")
       const taxonomyData = await checkBetween(0, ageLimit, child_age);
@@ -346,10 +345,14 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
 }
 export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any) => {
   console.log(dateTime1, "/", dateTime2)
-  console.log(dateTime1.day, "/", dateTime2.day)
-  console.log(dateTime1.month, "/", dateTime2.month)
-  console.log(dateTime1.year, "/", dateTime2.year)
-  return dateTime1.month === dateTime2.month && dateTime1.day === dateTime2.day;
+  let month1 = dateTime1.getUTCMonth() + 1; //months from 1-12
+  let day1 = dateTime1.getUTCDate();
+  let year1 = dateTime1.getUTCFullYear();
+  let month2 = dateTime2.getUTCMonth() + 1; //months from 1-12
+  let day2 = dateTime2.getUTCDate();
+  let year2 = dateTime2.getUTCFullYear();
+  console.log(year1, "/", year2,month1, "/", month2,day1, "/", day2)
+  return month1 === month2 && year1 === year2 && day1 === day2;
 }
 export const updateActiveChild = (child: any, key: any, value: any, dispatch: any) => {
   child[key] = value;

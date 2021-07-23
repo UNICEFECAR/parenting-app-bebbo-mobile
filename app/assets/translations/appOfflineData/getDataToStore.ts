@@ -114,7 +114,14 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
         {
             if(currentChildData && currentChildData != "")
             {
-                const filterQuery = '(child_age == '+currentChildData.taxonomyData.id+' || child_age == 0)';
+                let filterQuery = '(child_age == '+currentChildData.taxonomyData.id+' || child_age == 0) ';
+                if(currentChildData.parent_gender!=""  && currentChildData.parent_gender!=0 && currentChildData.parent_gender!="0"){
+                filterQuery+='&& (parent_gender=='+currentChildData.parent_gender+' || parent_gender == 60 || parent_gender == "60")';
+                }
+                if(currentChildData.gender!=""  && currentChildData.gender!=0 && currentChildData.gender!="0"){
+                filterQuery+='&& (child_gender=='+currentChildData.gender+' || child_gender == 59 || child_gender == "59")';
+                }
+                //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
                 console.log(filterQuery,"..filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse,filterQuery);
                 console.log(databaseData.length);
