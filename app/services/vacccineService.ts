@@ -92,35 +92,44 @@ export const getAllVaccinePeriods = () => {
   const currentPeriod = previousPeriods[0];
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
-
-  const totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-    return item.vaccines.length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
-  });
-  const totalPreviousVaccines = previousPeriods?.map((item) => {
-    return item.vaccines.length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
-  });;
+  let overDuePreviousVCcount,doneVCcount,totalUpcomingVaccines,totalPreviousVaccines;
+  if(upcomingPeriods?.length > 0) {
+    totalUpcomingVaccines = upcomingPeriods?.map((item) => {
+      return item.vaccines.length;
+    }).reduce((accumulator, current) => {
+        return accumulator + current;
+    });
+  }
+  if(previousPeriods?.length > 0){
+    totalPreviousVaccines = previousPeriods?.map((item) => {
+      return item.vaccines.length;
+    }).reduce((accumulator, current) => {
+        return accumulator + current;
+    });
+  }
   console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
   // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
-
-  const doneVCcount = sortedGroupsForPeriods.map((item) => {
-    return item.vaccines.filter((item) => {
-      return item.isMeasured;
-    }).length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
-  });
-
-  const overDuePreviousVCcount = previousPeriods.map((item) => {
-    return item.vaccines.filter((item) => {
-      return !item.isMeasured;
-    }).length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
-  });
+  
+  if(sortedGroupsForPeriods?.length > 0)
+  {
+    doneVCcount = sortedGroupsForPeriods.map((item) => {
+      return item.vaccines.filter((item) => {
+        return item.isMeasured;
+      }).length;
+    }).reduce((accumulator, current) => {
+      return accumulator + current;
+    });
+  }
+  if(previousPeriods?.length > 0)
+  {
+    overDuePreviousVCcount = previousPeriods.map((item) => {
+      return item.vaccines.filter((item) => {
+        return !item.isMeasured;
+      }).length;
+    }).reduce((accumulator, current) => {
+      return accumulator + current;
+    });
+  }
   // console.log(doneVCcount,overDueVCcount,"doneVCcount");
   return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines, currentPeriod,overDuePreviousVCcount,doneVCcount };
 }
