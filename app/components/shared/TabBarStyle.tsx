@@ -28,3 +28,9 @@ margin-bottom:10px;*/
 border-bottom-width:1px;
 border-color:rgba(0,0,0,0.2)
 `
+
+export const TabBarContainerBrd = styled(TabBarContainer)`
+
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+
+`

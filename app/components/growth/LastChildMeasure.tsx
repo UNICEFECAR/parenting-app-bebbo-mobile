@@ -3,10 +3,13 @@ import { BannerContainer1 } from '@components/shared/Container';
 import {
   Flex1,
   Flex2,
+  Flex3,
   FlexDirColStart,
   FlexDirRowEnd,
   FlexDirRowSpace,
-  FlexFDirRowSpace
+  FlexFDirRowSpace,
+  FlexDirRowSpaceStart,
+  FlexColEnd
 } from '@components/shared/FlexBoxStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -21,7 +24,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable,View,Text } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 
@@ -76,15 +79,10 @@ const LastChildMeasure = (props: any) => {
   return (
     <>
       <BannerContainer1>
-        <FlexDirRowSpace>
+        <FlexDirRowSpaceStart>
+        <Flex3>
+          <View>
           <Heading3>{t('growthScreensubHeading')}</Heading3>
-          {activeChild.isPremature === 'true' ? (
-            <PrematureTagGrowth>
-              <Heading5Bold>{t('developScreenprematureText')}</Heading5Bold>
-            </PrematureTagGrowth>
-          ) : null}
-        </FlexDirRowSpace>
-        <FlexFDirRowSpace>
           <Heading5>
             {/* {' '} */}
             {t('growthScreenlastMeasureText', {
@@ -94,6 +92,17 @@ const LastChildMeasure = (props: any) => {
               
             })}
           </Heading5>
+
+          </View>
+          </Flex3>
+          <Flex2>
+          <FlexColEnd>
+          
+          {activeChild.isPremature === 'true' ? (
+            <PrematureTagGrowth>
+              <Heading5Bold>{t('developScreenprematureText')}</Heading5Bold>
+            </PrematureTagGrowth>
+          ) : null}
           <Pressable
             onPress={(e) => {
               e.stopPropagation();
@@ -103,7 +112,10 @@ const LastChildMeasure = (props: any) => {
               {t('growthScreenallMeasureHeader')}
             </ButtonTextMdLine>
           </Pressable>
-        </FlexFDirRowSpace>
+          </FlexColEnd>
+          </Flex2>
+        </FlexDirRowSpaceStart>
+        
 
         <ShiftFromTop20>
           <FlexDirRowSpace>

@@ -230,7 +230,7 @@ const Terms = ({navigation}: Props) => {
               <View>
                 {toggleCheckBox ? (
                   <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#000" />
+                    <Icon name="ic_tick" size={12} color="#fff" />
                   </CheckboxActive>
                 ) : (
                   <Checkbox></Checkbox>
@@ -247,7 +247,7 @@ const Terms = ({navigation}: Props) => {
               <View>
                 {toggleCheckBox1 ? (
                   <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#000" />
+                    <Icon name="ic_tick" size={12} color="#fff" />
                   </CheckboxActive>
                 ) : (
                   <Checkbox></Checkbox>
@@ -264,7 +264,7 @@ const Terms = ({navigation}: Props) => {
               <View>
                 {toggleCheckBox2 ? (
                   <CheckboxActive>
-                    <Icon name="ic_tick" size={12} color="#000" />
+                    <Icon name="ic_tick" size={12} color="#fff" />
                   </CheckboxActive>
                 ) : (
                   <Checkbox></Checkbox>
