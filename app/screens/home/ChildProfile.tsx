@@ -326,7 +326,7 @@ const child_age = useAppSelector(
               <ProfileContentView>
                 <ParentRowView>
                   <ParentSection>
-                    <ParentLabel style={{fontWeight:'bold'}}>
+                    <ParentLabel>
                       <Text>{t('parentRoleLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
