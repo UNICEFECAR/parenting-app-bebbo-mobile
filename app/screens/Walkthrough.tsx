@@ -48,7 +48,7 @@ const Walkthrough = ({navigation}: Props) => {
     {
       title: t('walkthroughTextstitle0'),
       image: require('@assets/svg/bebbo_logo_shape.svg'),
-      colors: ['#2B2F84', '#00AEEF', '#B3E7FA'],
+      colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
       textcolor: '#FFF',
       subtitle: t('walkthroughTextssubtitle0'),
     },
