@@ -70,7 +70,7 @@ const GrowthInterpretation = (props: any) => {
           baseFontStyle={{fontSize: 16}}
         />
       </ShiftFromTop10>
-      <View style={{backgroundColor:backgroundColor,}}>
+      <View style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
       <RelatedArticles
         fromScreen={'ChildgrowthTab'}
         related_articles={item?.interpretationText?.articleID}
