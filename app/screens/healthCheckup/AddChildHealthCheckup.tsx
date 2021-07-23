@@ -89,7 +89,7 @@ type Props = {
 const AddChildHealthCheckup = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, vcPeriod, editGrowthItem} = route.params;
-  console.log(vcPeriod,"vcPeriod");
+  console.log(vcPeriod, 'vcPeriod');
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
@@ -97,9 +97,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const [measureDate, setmeasureDate] = useState<DateTime>(
-    editGrowthItem
-      ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
-      : null,
+    editGrowthItem ? editGrowthItem.measurementDate : null,
   );
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
@@ -229,7 +227,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
       const growthValues = {
@@ -251,7 +249,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
   };
@@ -297,7 +295,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                     <Text>
                       {' '}
                       {measureDate
-                        ? measureDate.toFormat('dd.MM.yyyy')
+                        ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                            'dd/MM/yyyy',
+                          )
                         : t('vcScreenenterDateText')}
                     </Text>
                   </FormDateText>
@@ -431,7 +431,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 </FormContainerFlex1>
               ) : null}
               <FormContainerFlex>
-              <FormInputText>
+                <FormInputText>
                   {t('growthScreenenterDoctorRemarkText')}
                 </FormInputText>
                 <TextAreaBox>
@@ -457,7 +457,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
           <ButtonContainer>
             <ButtonTertiary
               onPress={() => {
-                saveChildMeasures()
+                saveChildMeasures();
               }}>
               <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
