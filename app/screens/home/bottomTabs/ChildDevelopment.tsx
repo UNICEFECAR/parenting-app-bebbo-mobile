@@ -317,10 +317,10 @@ const ChildDevelopment = ({navigation}: Props) => {
              <ProgressCircle
                 percent={milestonePercent}
                 radius={35}
-                borderWidth={8}
+                borderWidth={6}
                 color={headerColor}
                 shadowColor="#fff"
-                bgColor="#fff"
+                bgColor={backgroundColor}
             >
                 <Text style={{ fontSize: 18 }}>{milestonePercent}{'%'}</Text>
             </ProgressCircle>
