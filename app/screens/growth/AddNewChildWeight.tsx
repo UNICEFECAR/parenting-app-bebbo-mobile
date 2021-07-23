@@ -199,7 +199,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
                 initialValue={route.params?.weightValue.weight} //set value on edit
                 onChangeValue={(value) => setweight(value)}
                 minimum={0}
-                maximum={20}
+                maximum={28}
                 segmentWidth={2}
                 segmentSpacing={20}
                 indicatorColor={headerColor}
