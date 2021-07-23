@@ -3,16 +3,12 @@ import { BannerContainer1 } from '@components/shared/Container';
 import {
   Flex1,
   Flex2,
-  Flex3,
-  FlexDirColStart,
+  Flex3, FlexColEnd, FlexDirColStart,
   FlexDirRowEnd,
-  FlexDirRowSpace,
-  FlexFDirRowSpace,
-  FlexDirRowSpaceStart,
-  FlexColEnd
+  FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Heading2,
   Heading3,
@@ -24,22 +20,29 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable,View,Text } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
 
 const LastChildMeasure = (props: any) => {
-  let {activeChild} = props;
+  // let {activeChild} = props;
+  const {t} = useTranslation();
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
-  const {t} = useTranslation();
-  const setNewChildMeasureUpdates = () => {
+  // const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
+ 
+  // const setNewChildMeasureUpdates = () => {
     let measures = activeChild.measures;
     let measurementDate: DateTime = DateTime.local();
     const timeNow = DateTime.local();
-    let allMeasurements = measures.map((item: MeasuresEntity) => {
+    let childmeasures = measures.map((item: MeasuresEntity) => {
       if (item.measurementDate) {
         measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
       }
@@ -55,7 +58,7 @@ const LastChildMeasure = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: measurementDate.toFormat("dd.MM.yyyy"),
+        measurementDate: measurementDate.toFormat("dd/MM/yyyy"),
         dateToMilis: measurementDate.toMillis(),
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,
@@ -63,18 +66,18 @@ const LastChildMeasure = (props: any) => {
       };
     });
 
-    allMeasurements = allMeasurements.sort(
+    childmeasures = childmeasures.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
-    setChildmeasures(allMeasurements);
+    // setChildmeasures(allMeasurements);
     // activeChild.measures = allMeasurements;
     // console.log(activeChild.measures, allMeasurements, 'NewMeasures');
-  };
-  useFocusEffect(
-    React.useCallback(() => {
-      setNewChildMeasureUpdates();
-    }, [activeChild]),
-  );
+  // };
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     setNewChildMeasureUpdates();
+  //   }, [activeChild]),
+  // );
 
   return (
     <>
@@ -147,11 +150,17 @@ const LastChildMeasure = (props: any) => {
             <Flex1>
               <Pressable
                 onPress={() => {
+                  const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editGrowthItem:
-                    childmeasures[childmeasures.length - 1],
-                  });
+                    editGrowthItem:( {"uuid": lastmeasure.uuid,
+                    "weight": lastmeasure.weight,
+                    "height": lastmeasure.height,
+                    "measurementDate": lastmeasure.dateToMilis,
+                    "titleDateInMonth": lastmeasure.titleDateInMonth,
+                    "measurementPlace": lastmeasure.measurementPlace,
+                    "doctorComment": lastmeasure.doctorComment})
+                  })
                 }}>
                 <FlexDirRowEnd>
                   <ButtonTextMdLine>

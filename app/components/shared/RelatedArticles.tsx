@@ -77,7 +77,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           // const filterQuery = 'id Contains "'+currentChildData.parent_gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
           const filterQuery = related_articles.map((x: any) => `id = '${x}'`).join(' OR ');
           const databaseData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
-          console.log(databaseData.length,"neha");
+          // console.log(databaseData.length,"neha");
         //  databaseData.map(user => user
           setrelatedArticleData(databaseData);
         }

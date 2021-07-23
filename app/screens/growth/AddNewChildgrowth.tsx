@@ -97,7 +97,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem
-      ? DateTime.fromFormat((editGrowthItem.measurementDate),"dd'.'MM'.'yyyy")
+      ? (editGrowthItem.measurementDate)
       : null,
   );
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
@@ -297,7 +297,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                     <Text>
                       {' '}
                       {measureDate
-                        ? measureDate.toFormat("dd.MM.yyyy")
+                        ? DateTime.fromJSDate(new Date(measureDate)).toFormat('dd/MM/yyyy')
                         : t('growthScreenenterDateMeasurementText')}
                     </Text>
                   </FormDateText>

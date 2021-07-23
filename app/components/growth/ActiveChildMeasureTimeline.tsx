@@ -51,7 +51,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: measurementDate.toFormat("dd.MM.yyyy"),
+        measurementDate: measurementDate.toFormat("dd/MM/yyyy"),
         dateToMilis: measurementDate.toMillis(),
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,
@@ -121,10 +121,18 @@ const ActiveChildMeasureTimeline = (props: any) => {
             <Flex1>
               <Pressable
                 onPress={() => {
+                  console.log(rowData);
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editGrowthItem :rowData
-                  });
+                    editGrowthItem: ( {"uuid": rowData.uuid,
+                    "weight": rowData.weight,
+                    "height": rowData.height,
+                    "measurementDate": rowData.dateToMilis,
+                    "titleDateInMonth": rowData.titleDateInMonth,
+                    "measurementPlace": rowData.measurementPlace,
+                    "doctorComment": rowData.doctorComment})
+                  
+                  })
                 }}>
                 <FlexDirRowEnd>
                   <ButtonTextMdLine>
