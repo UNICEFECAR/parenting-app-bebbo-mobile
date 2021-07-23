@@ -1,6 +1,6 @@
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4 } from '@styles/typography';
+import { Heading2, Heading4,ShiftFromTop10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
@@ -62,14 +62,14 @@ const GrowthInterpretation = (props: any) => {
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   return (
     <>
-      <View style={{backgroundColor: 'white', flexDirection: 'column',padding:10}}>
+      <ShiftFromTop10>
         <Heading2>{t('growthScreensumHeading')}</Heading2>
         <Heading4> {item?.interpretationText?.name}</Heading4>
         <HTML
           source={{html: item?.interpretationText?.text}}
           baseFontStyle={{fontSize: 16}}
         />
-      </View>
+      </ShiftFromTop10>
       <RelatedArticles
         fromScreen={'ChildgrowthTab'}
         related_articles={item?.interpretationText?.articleID}

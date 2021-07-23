@@ -40,6 +40,7 @@ type Props = {
   navigation: Walkthrough1NavigationProp;
 };
 
+
 const Walkthrough = ({navigation}: Props) => {
   const {t} = useTranslation();
   let slider = useRef<any>(null);

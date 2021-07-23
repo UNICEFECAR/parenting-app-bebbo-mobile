@@ -16,7 +16,7 @@ const ChildMilestones = () => {
   const {t} = useTranslation();
   return (
     <>
-    <FlexCol>
+   
       <BgDevelopmentTint>
       <FeatureDivideArea>
         <MainContainer>
@@ -41,7 +41,7 @@ const ChildMilestones = () => {
         </MainContainer>
         </FeatureDivideArea>
       </BgDevelopmentTint>
-      </FlexCol>
+      
     </>
   );
 };

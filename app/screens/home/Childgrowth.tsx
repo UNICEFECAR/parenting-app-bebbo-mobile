@@ -9,9 +9,10 @@ import {
   ButtonPrimary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
-import { FlexDirCol } from '@components/shared/FlexBoxStyle';
+import { BgContainer, MainContainer, SafeAreaContainer } from '@components/shared/Container';
+import { FlexCol, FlexDirCol, FlexDirRow, FlexFDirRowSpace, FlexRow } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
-import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
+import { TabBarContainer,TabBarContainerBrd, TabBarDefault } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -23,11 +24,13 @@ import {
   Heading4Center,
   ShiftFromBottom5,
   ShiftFromTop10,
-  ShiftFromTopBottom20
+  ShiftFromTopBottom10,
+  ShiftFromTopBottom20,
+  SideSpacing10
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView,Text, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
@@ -99,15 +102,17 @@ const Childgrowth = ({navigation}: Props) => {
       }
       return (
         <>
-          <View
-          key={uuidv4()}
-            style={{
-              marginBottom: 20,
-              flexDirection: 'column',
-              // paddingLeft: 20,
-              // paddingTop: 5,
+ <View	
+          key={uuidv4()}	
+            style={{	
+              flexDirection: 'column',	
+              
             }}>
-            <View style={{flexDirection: 'row', backgroundColor: 'white',}}>
+<FlexCol>
+            
+            <ShiftFromTopBottom10>
+              <FlexFDirRowSpace >
+         
               <Heading2>{item.title}</Heading2>
               <Pressable
                 onPress={() =>
@@ -119,15 +124,15 @@ const Childgrowth = ({navigation}: Props) => {
                 }>
                 <Icon name="ic_fullscreen" size={16} />
               </Pressable>
-            </View>
-            <View style={{backgroundColor: 'white',}}>
+              </FlexFDirRowSpace>
+            </ShiftFromTopBottom10>
             <GrowthChart
               activeChild={activeChild}
               chartType={chartTypes.weightForHeight}
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
-            </View>
+           </FlexCol>
             <GrowthInterpretation
               activeChild={activeChild}
               chartType={chartTypes.weightForHeight}
@@ -160,16 +165,16 @@ const Childgrowth = ({navigation}: Props) => {
       }
       return (
         <>
-          <View
-          key={uuidv4()}
-            style={{
-              marginBottom: 20,
-              flexDirection: 'column',
+        <View	
+          key={uuidv4()}	
+            style={{	
+              flexDirection: 'column',	
               
-              // paddingLeft: 20,
-              // paddingTop: 5,
             }}>
-            <View style={{flexDirection: 'row',backgroundColor: 'white',}}>
+<FlexCol>
+            
+            <ShiftFromTopBottom10>
+              <FlexFDirRowSpace >
               <Heading2>{item.title}</Heading2>
               <Pressable
                 onPress={() =>
@@ -181,15 +186,15 @@ const Childgrowth = ({navigation}: Props) => {
                 }>
                 <Icon name="ic_fullscreen" size={16} />
               </Pressable>
-            </View>
-            <View style={{backgroundColor: 'white',}}>
+              </FlexFDirRowSpace>
+            </ShiftFromTopBottom10>
             <GrowthChart
               activeChild={activeChild}
               chartType={chartTypes.heightForAge}
               bgObj={obj}
               standardDeviation={standardDeviation}
             />
-            </View>
+            </FlexCol>
             <GrowthInterpretation
               activeChild={activeChild}
               chartType={chartTypes.heightForAge}
@@ -222,13 +227,10 @@ const Childgrowth = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+            <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
-          style={{
-            flexDirection: 'column',
-            flex: 1,
-          }}>
+        <FlexCol>
+
           <TabScreenHeader
             title={t('growthScreenheaderTitle')}
             headerColor={headerColor}
@@ -280,13 +282,15 @@ const Childgrowth = ({navigation}: Props) => {
                 {renderDummyChart()}
               </>
             ) : (
-              <View style={{padding: 15}}>
+              <MainContainer>
+                
                 <GrowthIntroductory activeChild={activeChild} />
 
                 <LastChildMeasure activeChild={activeChild} />
 
                 <>
-                  <TabBarContainer
+                <BgContainer>
+                  <TabBarContainerBrd
                     style={{
                       maxHeight: 50,
                     }}>
@@ -312,17 +316,19 @@ const Childgrowth = ({navigation}: Props) => {
                         </Pressable>
                       );
                     })}
-                  </TabBarContainer>
+                                    </TabBarContainerBrd>
 
-                  <View>
+
+                  <SideSpacing10>
                     {renderItem(data[selectedIndex], selectedIndex)}
-                  </View>
+                    </SideSpacing10>
+                    </BgContainer>
                 </>
-
-                <View style={{flex: 1, padding: 5, marginVertical: 10}}>
+                
+                <View style={{flex: 1, }}>
                   {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
                 </View>
-              </View>
+              </MainContainer>
             )}
           </ScrollView>
 
@@ -340,8 +346,8 @@ const Childgrowth = ({navigation}: Props) => {
               </ButtonPrimary>
             </ShiftFromTop10>
           </ButtonContainer>
-        </View>
-      </SafeAreaView>
+        </FlexCol>
+      </SafeAreaContainer>
     </>
   );
 };

@@ -11,9 +11,9 @@ export const RadioActive = styled(Radio)`
   line-height: 20px;
   flex-direction: row;
   text-align: center;
-  background-color: ${(props) => props.theme.colors.PRIMARY_COLOR};
+  background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
   border-width:1px;
-  border-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR}
+  /*border-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR}*/
 `;
 
 export const RadioItemText = styled.Text`

@@ -9,7 +9,7 @@ import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
 import { ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexDirRow,Flex1} from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -32,7 +32,7 @@ const Home = () => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
-  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;	
 //   const dailyMessages = useAppSelector((state: any) =>
 //   state.childData.childDataSet.allChild != ''
 //     ? JSON.parse(state.childData.childDataSet.allChild)
@@ -46,8 +46,6 @@ const userIsOnboarded = useAppSelector(
    console.log("home focuseffect--",userIsOnboarded);
 useFocusEffect(
   React.useCallback(() => {
-    
-    
        if(userIsOnboarded == false)
        {
         dispatch(setuserIsOnboarded(true));
@@ -55,7 +53,6 @@ useFocusEffect(
   },[])
 );
 // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
-
   return (
     <>
      <SafeAreaView style={{flex:1}}>
@@ -63,22 +60,20 @@ useFocusEffect(
         animated={true}
         backgroundColor={headerColor}
        />
-      <View style={{
-        flexDirection: 'column',
-        flex: 1,
-      }}>
+      
         <TabScreenHeader title={t('homeScreenheaderTitle')} headerColor={headerColor} textColor='#FFF'/>
         <ScrollView style={{ flex: 4,backgroundColor:'#FFF' }}>
+          <FlexCol>
         <BabyNotification/>
-          <ChildInfo headerColor={headerColor} backgroundColor={backgroundColor}/>
+          <ChildInfo/>
           <DailyReads/>
           <ChildMilestones/>
           <PlayingTogether/>
           <AdviceAndArticles/>
           <Tools/>
+          <FlexCol>
           <MainContainer>
             <ShiftFromTopBottom10>
-            
             <HomeSurveyBox>
               <FlexDirRow>
               <OuterIconRow>
@@ -97,17 +92,15 @@ useFocusEffect(
             </SideSpacing25>
             </ShiftFromTop20>
             </HomeSurveyBox>
-            
             </ShiftFromTopBottom10>
-            
           </MainContainer>
             <DailyHomeNotification/>
-         
+            </FlexCol>
+            </FlexCol>
         </ScrollView>
-      </View>
+      
       </SafeAreaView>
     </>
   );
 };
 export default Home;
-
