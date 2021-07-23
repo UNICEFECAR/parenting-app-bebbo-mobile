@@ -33,7 +33,7 @@ const BabyNotification = () => {
 
   return (
     <>
-      {activeChild?.gender != '' ? (
+      {activeChild?.gender == '' ? (
         <>
           <BgSecondary>
             <MainContainer>
