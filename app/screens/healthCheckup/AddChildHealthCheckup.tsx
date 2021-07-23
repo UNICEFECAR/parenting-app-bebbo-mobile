@@ -93,6 +93,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem
       ? DateTime.fromFormat(editGrowthItem.measurementDate, "dd'.'MM'.'yyyy")
@@ -226,7 +229,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
       const growthValues = {
@@ -248,7 +251,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
   };
