@@ -96,20 +96,20 @@ const Vaccination = ({navigation}: Props) => {
                 }}>
                 <Pressable onPress={() => setSelectedIndex(0)}>
                   <VacSummaryBox>
-                    <Heading2>{totalUpcomingVaccines}</Heading2>
+                    <Heading2>{totalUpcomingVaccines?totalUpcomingVaccines:0}</Heading2>
                     {/* added 1 for current period */}
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>{overDuePreviousVCcount}</Heading2>
+                    <Heading2>{overDuePreviousVCcount?overDuePreviousVCcount:0}</Heading2>
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>{doneVCcount}</Heading2>
+                    <Heading2>{doneVCcount?doneVCcount:0}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
