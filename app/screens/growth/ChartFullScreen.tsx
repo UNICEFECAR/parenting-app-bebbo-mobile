@@ -45,10 +45,11 @@ export const ChartFullScreen = ({route}) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1,backgroundColor:'#fff'}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <FlexCol>
+        
           <ScrollView>
+          <FlexCol>
             <MainContainer
               style={{
                 backgroundColor: 'white',
@@ -74,8 +75,9 @@ export const ChartFullScreen = ({route}) => {
                 standardDeviation={standardDeviation}
               />
             </MainContainer>
+            </FlexCol>
           </ScrollView>
-        </FlexCol>
+       
       </SafeAreaView>
     </>
   );
