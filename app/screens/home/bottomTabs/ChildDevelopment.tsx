@@ -3,7 +3,7 @@ import VideoPlayer from '@components/VideoPlayer';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
-import { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
+import Container, { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
 import { FDirCol,FlexCol, FDirRow,Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
@@ -218,17 +218,18 @@ const ChildDevelopment = ({navigation}: Props) => {
        {selectedChildDevData && selectedChildDevData?.milestone ?
           <BannerContainer>         
             <Heading5Bold>{t('developScreentipsText')}</Heading5Bold>
-            <ShiftFromTop10><Heading3Regular>
-              {selectedChildDevData?.milestone}
-            {/* {
+            <ShiftFromTop10>
+              {/* <Text>
+              {selectedChildDevData?.milestone}</Text> */}
+            {
               selectedChildDevData?.milestone ? 
               <HTML
                   source={{html: selectedChildDevData?.milestone}}
-                  baseFontStyle={{fontSize: 16}}
+                  baseFontStyle={{fontSize: 14}}
                 />
                 : null
-              } */}
-            </Heading3Regular></ShiftFromTop10>        
+              }
+           </ShiftFromTop10>        
           </BannerContainer>
           : null 
         }
@@ -246,13 +247,13 @@ const ChildDevelopment = ({navigation}: Props) => {
           currentSelectedChildId={currentSelectedChildId}
           showSelectedBracketData={showSelectedBracketData}
         />
-        <View>
+        <Container>
           {/* <Image
             source={require('@assets/trash/card2.jpeg')}
             style={{width: '100%'}}
           /> */}
-          <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
-        </View>
+          <VideoPlayer style={{width:'100%'}} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
+        </Container>
         <ArticleHeading>
           <FlexDirRowSpace>
           <Heading3>{selectedChildDevData?.name} </Heading3>

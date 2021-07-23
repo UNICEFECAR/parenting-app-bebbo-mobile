@@ -90,10 +90,11 @@ const HeaderBabyMenu = (props: any) => {
   });
   console.log(currentActiveChild,"..currentActiveChild..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
+    console.log(genders,".genders.")
     const genderLocal =
       genders?.length > 0 && data.gender != ''
-        ? genders.find((genderset) => String(genderset.id) === data.gender).name
-        : data.gender;
+        ? genders.find((genderset) => genderset.id === parseInt(data.gender)).name
+        : '';
     const genderName: string = genderLocal;
     return (
       <View key={index}>

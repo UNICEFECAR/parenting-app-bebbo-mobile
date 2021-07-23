@@ -28,11 +28,12 @@ const BabyNotification = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  console.log(activeChild,"..activeChild.gender..")
   const bgColor = themeContext.colors.SECONDARY_COLOR;
 
   return (
     <>
-      {activeChild?.gender == '' ? (
+      {activeChild?.gender != '' ? (
         <>
           <BgSecondary>
             <MainContainer>
