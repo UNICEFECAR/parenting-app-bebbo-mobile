@@ -1,3 +1,4 @@
+import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -7,6 +8,7 @@ import { MainContainer, SafeAreaContainer } from '@components/shared/Container';
 import { FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
+import ProgressiveImage from '@components/shared/ProgressiveImage';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
@@ -101,13 +103,19 @@ const DetailsScreen = ({route, navigation}: any) => {
             {fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
               <VideoPlayer selectedPinnedArticleData={detailData}></VideoPlayer>
             : 
-              <Image
-                resizeMode="cover"
-                resizeMethod="scale"
-                style={{width: '100%', height: 200}}
-                // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-                source={require('@assets/trash/defaultArticleImage.png')}
-              />
+              // <Image
+              //   resizeMode="cover"
+              //   resizeMethod="scale"
+              //   style={{width: '100%', height: 200}}
+              //   // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+              //   source={require('@assets/trash/defaultArticleImage.png')}
+              // />
+              <ProgressiveImage
+              thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
+              source={detailData.cover_image ? {uri : "file://" + destinationFolder + detailData.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
+              style={{width: '100%', height: 200}}
+              resizeMode="cover"
+            />
             }
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
