@@ -54,7 +54,7 @@ const DATA = [
 ];
 
 const RelatedArticles = (props:RelatedArticlesProps) => {
-  //console.log(props);
+  console.log(props);
   const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
   // console.log(props);
   const {t} = useTranslation();
@@ -87,10 +87,17 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           const catartlength = maxRelatedArticleSize - relartlength;
           // console.log(articleData)
           // console.log(relatedArticleData,"--relatedArticleData");
-          const filteredArtData = articleData.filter((x: any)=> {
+          const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
+          console.log(databaseData.length);
+          // console.log(databaseData.filter((x:any)=> console.log(x) ));
+          const filteredArtData = databaseData.filter((x: any)=> {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
             return x.category==category && x.id !==currentId && i == -1
           }).slice(0,catartlength);
+          // const filteredArtData = articleData.filter((x: any)=> {
+          //   const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
+          //   return x.category==category && x.id !==currentId && i == -1
+          // }).slice(0,catartlength);
           // console.log(filteredArtData);
           setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
           // console.log(relatedArticleData);
