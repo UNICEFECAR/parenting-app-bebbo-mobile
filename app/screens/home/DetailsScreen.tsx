@@ -19,10 +19,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Pressable, ScrollView, View } from 'react-native';
+import { Image, Pressable, ScrollView, View,Text } from 'react-native';
 import HTML from 'react-native-render-html';
 import { useAppSelector } from '../../../App';
-
+import downloadImages from '../../downloadImages/ImageStorage';
+import RNFS from 'react-native-fs';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -43,19 +44,41 @@ export type RelatedArticlesProps = {
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
+
   // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
   console.log(detailData,"detailData");
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const [cover_image,setCoverImage]=useState('');
   const [filterArray,setFilterArray] = useState([]);
   let fromPage = 'Details';
   useFocusEffect(
     React.useCallback(() => {
       // console.log("details usefocuseffect")
       // filterArray.length = 0;
-    },[])
+      const fetchData = async () => {
+        let imageArray= [];
+        imageArray.push({
+           srcUrl: detailData.cover_image.url, 
+           destFolder: destinationFolder, 
+           destFilename: detailData.cover_image.url.split('/').pop()
+       })
+         if (await RNFS.exists(destinationFolder + '/' + detailData.cover_image.url.split('/').pop())) {
+          console.log("Image already exists");
+          setCoverImage("file://" + destinationFolder + detailData.cover_image.url.split('/').pop());
+        }else {
+         console.log("Image already exists");
+         console.log(imageArray,"..imageArray..");
+         const imagesDownloadResult = await downloadImages(imageArray);
+         console.log(imagesDownloadResult,"..imagesDownloadResult..");
+         setCoverImage("file://" + destinationFolder + detailData.cover_image.url.split('/').pop());
+        }
+      }
+      fetchData();
+     
+    },[cover_image])
   );
     
   const setNewFilteredArticleData = (itemId:any) => {
@@ -110,9 +133,10 @@ const DetailsScreen = ({route, navigation}: any) => {
               //   // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
               //   source={require('@assets/trash/defaultArticleImage.png')}
               // />
+           
               <ProgressiveImage
               thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-              source={detailData.cover_image ? {uri : "file://" + destinationFolder + detailData.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
+              source={cover_image ? {uri : cover_image}:require('@assets/trash/defaultArticleImage.png')}
               style={{width: '100%', height: 200}}
               resizeMode="cover"
             />
