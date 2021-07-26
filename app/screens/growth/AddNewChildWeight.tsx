@@ -185,7 +185,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
         <FlexCol>
         <MainContainer>
           <View style={{backgroundColor: tintColor, borderRadius: 4}}>
-            <View style={{padding: screenPadding, overflow: 'hidden'}}>
+            <View style={{overflow: 'hidden'}}>
               <ShiftFromTopBottom20>
                 <Heading1Center>
                   {getWeightValue()} {t('growthScreenkgText')}
