@@ -12,25 +12,25 @@ export const localization = [
       },
     ],
   },
-  // {
-  //   name: 'Belarus',
-  //   countryId: 6,
-  //   displayName: 'Belarus (Беларусь)',
-  //   languages: [
-  //     {
-  //       name: 'Belarusian',
-  //       displayName: 'Беларуская мова',
-  //       languageCode: 'by-be',
-  //       locale: 'BYbe',
-  //     },
-  //     {
-  //       name: 'Russian',
-  //       displayName: 'Русский',
-  //       languageCode: 'by-ru',
-  //       locale: 'BYru',
-  //     }
-  //   ],
-  // },
+  {
+    name: 'Belarus',
+    countryId: 106,
+    displayName: 'Belarus (Беларусь)',
+    languages: [
+      {
+        name: 'Belarusian',
+        displayName: 'Беларуская мова',
+        languageCode: 'by-be',
+        locale: 'BYbe',
+      },
+      {
+        name: 'Russian',
+        displayName: 'Русский',
+        languageCode: 'by-ru',
+        locale: 'BYru',
+      }
+    ],
+  },
   {
     name: 'Bulgaria',
     countryId: 11,

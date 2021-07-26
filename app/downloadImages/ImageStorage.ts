@@ -28,7 +28,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
             let downloadResult = await downloadPromise;
           //  console.log(downloadResult,"..downloadResult..")
             if (downloadResult.statusCode === 200) {
-                if (RNFS.exists(args.destFolder + '/' + args.destFilename)) {
+                if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
                     rval = true;
 
                     if (showLog) {
