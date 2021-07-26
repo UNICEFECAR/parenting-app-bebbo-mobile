@@ -1,4 +1,4 @@
-import { maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
+import { destinationFolder, maxRelatedArticleSize } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect } from '@react-navigation/native';
 import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
@@ -9,7 +9,9 @@ import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
+import downloadImages from '../../downloadImages/ImageStorage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
+import ProgressiveImage from './ProgressiveImage';
 import ShareFavButtons from './ShareFavButtons';
 
 const ContainerView = styled.View`
@@ -108,6 +110,32 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       fetchData()
     },[currentId])
   );
+  useFocusEffect(
+    React.useCallback(() => {
+      // console.log("details usefocuseffect")
+      // filterArray.length = 0;
+      const fetchData = async () => { 
+        let imageArraynew:any= [];
+        if(relatedArticleData?.length>0){
+          relatedArticleData.map((item: any, index: number) => {
+          if(item['cover_image'] != "")
+          {
+            imageArraynew.push({
+              srcUrl: item['cover_image'].url, 
+              destFolder: destinationFolder, 
+              destFilename: item['cover_image'].url.split('/').pop()
+          })
+          }
+          });
+          console.log(imageArraynew,"..imageArray..");
+          const imagesDownloadResult = await downloadImages(imageArraynew);
+          console.log(imagesDownloadResult,"..imagesDownloadResult..");
+      }
+      }
+      fetchData();
+     
+    },[relatedArticleData])
+  );
   //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
     navigation.navigate('DetailsScreen',
@@ -126,11 +154,17 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       style={{flexDirection:'row'}}
       >
         <RelatedArticleContainer style={{backgroundColor:'#fff'}}  key={index}>
-          <Image 
+          {/* <Image 
           // source={item.imagePath} 
           // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
           source={require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}></Image>
+          style={styles.cardImage}></Image> */}
+           <ProgressiveImage
+          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
+          source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
+          style={styles.cardImage}
+          resizeMode="cover"
+        />
           <View style={{minHeight:90,}}>
           <ArticleListContent>
           <ShiftFromTopBottom5>
