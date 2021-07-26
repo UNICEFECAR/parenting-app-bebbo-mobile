@@ -1,6 +1,6 @@
 name: iOS
 
-on: [push]
+
 
 jobs:
  install-and-test:
