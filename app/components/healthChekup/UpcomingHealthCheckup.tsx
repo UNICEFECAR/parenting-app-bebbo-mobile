@@ -25,7 +25,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import {
   ButtonContainerAuto,
@@ -93,6 +93,7 @@ const UpcomingHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item.title}</Heading2>
+              {item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
             </ToolsHeadingView>
 
             <ToolsActionView>
@@ -263,10 +264,8 @@ const UpcomingHealthCheckup = (props: any) => {
               </MainContainer>
             ) : null}
 
-            {/* {item.measures?.weight ||
-                item.measures?.height ||
-                item.givenVaccines.length > 0 ? ( */}
-            <ShiftFromTopBottom10>
+{item?.growthMeasures?.uuid ?
+            (<ShiftFromTopBottom10>
               <Pressable
                 onPress={() =>
                   navigation.navigate('AddChildHealthCheckup', {
@@ -277,7 +276,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
               </Pressable>
             </ShiftFromTopBottom10>
-            {/* ) : ( */}
+             ) : ( 
             <ButtonContainerAuto>
               <ButtonHealth
                 onPress={() =>
@@ -289,7 +288,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ButtonText>{t('hcNewBtn')}</ButtonText>
               </ButtonHealth>
             </ButtonContainerAuto>
-            {/* )} */}
+            )} 
           </>
         ) : null}
       </ToolsListOuter>
