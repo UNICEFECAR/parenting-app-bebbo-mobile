@@ -176,6 +176,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
+    let allVaccines:any = [...plannedVaccine, ...prevPlannedVaccine];
+    console.log(allVaccines,"before measurementDate");
+    allVaccines = [...allVaccines].map(v => ({...v, measurementDate: measureDate?.toMillis()}));
+    
+    // ((v:any) => {
+    //   console.log(v);
+    //  return {v.measurementDate =measureDate?.toMillis()}
+    // });
+    console.log(allVaccines,"after measureDateUpdate");
     let updateItem = activeChild?.measures.find((item) => {
       return item
         ? Math.round(
@@ -197,7 +206,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         measurementDate: measureDate?.toMillis(),
         titleDateInMonth: measureDate?.toFormat('MM'),
         didChildGetVaccines: true,
-        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0,
       };
@@ -219,7 +228,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         measurementDate: measureDate?.toMillis(),
         titleDateInMonth: measureDate?.toFormat('MM'),
         didChildGetVaccines: true,
-        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
       };

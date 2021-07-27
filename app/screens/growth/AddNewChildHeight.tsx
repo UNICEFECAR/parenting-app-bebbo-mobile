@@ -96,7 +96,8 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
+                  setIsModalOpened('IsHeightModalOpened');
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>
