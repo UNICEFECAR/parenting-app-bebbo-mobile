@@ -39,9 +39,6 @@ type ChildSetupNavigationProp = StackNavigationProp<
 type Props = {
   navigation: ChildSetupNavigationProp,
 };
-
-
-
 const ChildSetup = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
@@ -89,11 +86,11 @@ const ChildSetup = ({ navigation }: Props) => {
 const AddChild=async ()=>{
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
-  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate, relationship,defaultName);
+  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate,defaultName);
   let childSet: Array<any> = [];
   childSet.push(insertData);
   console.log(childSet,"..childSet..");
-  addChild(languageCode,false, 0, childSet, dispatch, navigation,child_age);
+  addChild(languageCode,false, 0, childSet, dispatch, navigation,child_age,relationship);
 }
 
   const themeContext = useContext(ThemeContext);
