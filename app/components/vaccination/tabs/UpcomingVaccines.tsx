@@ -82,7 +82,7 @@ const UpcomingVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.vaccines.some((el) => {
+            {item.vaccines.every((el) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
