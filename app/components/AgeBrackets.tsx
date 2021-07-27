@@ -1,11 +1,12 @@
 import Icon from '@components/shared/Icon';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4 } from '@styles/typography';
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useAppSelector } from '../../App';
 import AgeSliderContainer, { AgeSliderBox, AgeSliderNav } from './shared/AgeSliderContainer';
+import ScrollingButtonMenu from 'react-native-scroll-menu';
 
 const DATA = [
   {
@@ -51,13 +52,16 @@ const DATA = [
 ];
 
 const AgeBrackets = (props: any) => {
+  const {currentSelectedChildId, showSelectedBracketData} = props;
   const [currentXOffset, setCurrentXOffset] = React.useState(0);
   const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
+  const [selected, setSelected] = React.useState(currentSelectedChildId);
   const childAge = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
-    //  console.log(childAge.length);
+  
+     console.log(childAge,"  child age");
   // const activeChildId = useAppSelector((state: any) =>
   //   state.childData.childDataSet.activeChild != ''
   //     ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
@@ -66,49 +70,64 @@ const AgeBrackets = (props: any) => {
   // console.log("activeChild-",activeChildId);
   // const [currentSelectedChildId,setCurrentSelectedChildId] = useState();
   // let currentSelectedChildId: any;
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
-  //     console.log("firstChildDevData---",firstChildDevData);
-  //     goToSelectedAgeBrac(firstChildDevData[0]);
-  //   },[])
-  // );
+  useLayoutEffect(
+    React.useCallback(() => {
+  //     console.log(currentSelectedChildId,"--props.currentSelectedChildId");
+  // //     const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
+  // //     console.log("firstChildDevData---",firstChildDevData);
+  // //     goToSelectedAgeBrac(firstChildDevData[0]);
+  //     // setSelected(currentSelectedChildId);
+    },[currentSelectedChildId])
+  );
   // const goToSelectedAgeBrac = (item: any) => {
   //   currentSelectedChildId = item.id;
   //   props.showSelectedBracketData(item);
   // }
   let scrollRef = useRef<ScrollView>();
-  const renderDailyReadItem = (item: any, index: any, itemColor: any, activatedItemColor: any) => {
-    return (
-      <Pressable onPress={() => { props.showSelectedBracketData(item)}} key={item.id}>
-        <AgeSliderBox style={{backgroundColor:item.id == props.currentSelectedChildId ? activatedItemColor : itemColor}}>
-          <Heading4>{item.name}</Heading4>
-        </AgeSliderBox>
-      </Pressable>
-    );
-    // <Item title={item.title} key={index} itemColor={itemColor} activatedItemColor={activatedItemColor}/>
-  };
-  const handleScroll = (event) => {
-    // console.log('currentXOffset =', event.nativeEvent.contentOffset.x);
-    const newXOffset = event.nativeEvent.contentOffset.x;
-    setCurrentXOffset(newXOffset);
-  };
+  // const renderDailyReadItem = (item: any, index: any, itemColor: any, activatedItemColor: any) => {
+  //   return (
+  //     <Pressable onPress={() => { props.showSelectedBracketData(item)}} key={item.id}>
+  //       <AgeSliderBox style={{backgroundColor:item.id == props.currentSelectedChildId ? activatedItemColor : itemColor}}>
+  //         <Heading4>{item.name}</Heading4>
+  //       </AgeSliderBox>
+  //     </Pressable>
+  //   );
+  //   // <Item title={item.title} key={index} itemColor={itemColor} activatedItemColor={activatedItemColor}/>
+  // };
+  // const handleScroll = (event) => {
+  //   // console.log('currentXOffset =', event.nativeEvent.contentOffset.x);
+  //   const newXOffset = event.nativeEvent.contentOffset.x;
+  //   setCurrentXOffset(newXOffset);
+  // };
 
-  const leftArrow = () => {
-    const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
-    const _currentXOffset = currentXOffset - eachItemOffset;
-    // console.log(scrollRef);
-    scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
-  };
+  // const leftArrow = () => {
+  //   const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
+  //   const _currentXOffset = currentXOffset - eachItemOffset;
+  //   // console.log(scrollRef);
+  //   scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
+  // };
 
-  const rightArrow = () => {
-    const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
-    const _currentXOffset = currentXOffset + eachItemOffset;
-    scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
-  };
+  // const rightArrow = () => {
+  //   const eachItemOffset = scrollViewWidth / (childAge.length-1); // Divide by 10 because I have 10 <View> items
+  //   const _currentXOffset = currentXOffset + eachItemOffset;
+  //   scrollRef.current?.scrollTo({x: _currentXOffset, y: 0, animated: true});
+  // };
   return (
     <>
-    <AgeSliderContainer>
+    <ScrollingButtonMenu
+                items={childAge}
+                onPress={(item: any) => {
+                    console.log(item,"----onpress");
+                    // this.state.selected = e.id;
+                    // setSelected(item.id)
+                    showSelectedBracketData(item)
+                }}
+                // selected={selected}
+                selected={currentSelectedChildId}
+                activeColor={props.activatedItemColor}
+                // textStyle={{color:'#000',fontWeight:'bold'}}
+            />
+    {/* <AgeSliderContainer>
         <AgeSliderNav>
           <TouchableOpacity onPress={() => leftArrow()}>
             <Icon name="ic_angle_left" size={20} color="#000" />
@@ -144,7 +163,7 @@ const AgeBrackets = (props: any) => {
             <Icon name="ic_angle_right" size={20} color="#000" />
           </TouchableOpacity>
         </AgeSliderNav>
-        </AgeSliderContainer>
+        </AgeSliderContainer> */}
     </>
   );
 };
