@@ -39,7 +39,10 @@ const LastChildMeasure = (props: any) => {
   // const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
  
   // const setNewChildMeasureUpdates = () => {
-    let measures = activeChild.measures;
+    // let measures = activeChild.measures;
+      //filter measures by didChildGetVaccines
+      let measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+
     let measurementDate: DateTime = DateTime.local();
     const timeNow = DateTime.local();
     let childmeasures = measures.map((item: MeasuresEntity) => {
@@ -69,6 +72,7 @@ const LastChildMeasure = (props: any) => {
     childmeasures = childmeasures.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
+    console.log(childmeasures,"childmeasures");
     // setChildmeasures(allMeasurements);
     // activeChild.measures = allMeasurements;
     // console.log(activeChild.measures, allMeasurements, 'NewMeasures');

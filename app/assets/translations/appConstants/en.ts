@@ -179,7 +179,7 @@ const en = {
         growthScreenwText: "Weight",
         growthScreeneditText: "Edit",
         growthScreendelText: "Delete",
-        growthScreenkgText: "Kg",
+        growthScreenkgText: "kg",
         growthScreencmText: "cm",
         growthScreensumHeading: "Summary",
         growthScreenallMeasureHeader: "All measurements",
