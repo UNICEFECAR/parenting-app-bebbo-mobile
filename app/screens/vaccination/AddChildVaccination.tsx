@@ -83,6 +83,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
+  
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -207,7 +208,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(activeChild.uuid, dispatch, child_age);
+      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
       const growthValues = {

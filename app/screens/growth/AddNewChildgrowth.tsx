@@ -215,8 +215,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         height: String(heightValue),
         measurementDate: measureDate?.toMillis(),
         titleDateInMonth: measureDate?.toFormat('MM'),
-        didChildGetVaccines: false,
-        vaccineIds: '',
+        didChildGetVaccines: updateItem.didChildGetVaccines,
+        vaccineIds: updateItem.vaccieIds,
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
