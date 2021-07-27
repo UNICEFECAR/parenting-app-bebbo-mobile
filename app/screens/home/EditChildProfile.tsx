@@ -338,7 +338,6 @@ const EditChildProfile = ({route, navigation}: Props) => {
           plannedTermDate,
           isPremature,
           birthDate,
-          '',
           name,
           photoUri,
           gender,
@@ -349,7 +348,6 @@ const EditChildProfile = ({route, navigation}: Props) => {
           plannedTermDate,
           isPremature,
           birthDate,
-          '',
           name,
           photoUri,
           gender,
@@ -357,18 +355,19 @@ const EditChildProfile = ({route, navigation}: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
-    addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age);
+    addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age,null);
   };
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
     //console.log(checkedItem);
-    if (
-      typeof checkedItem.id === 'string' ||
-      checkedItem.id instanceof String
-    ) {
-      setGender(checkedItem.id);
-    } else {
-      setGender(String(checkedItem.id));
-    }
+    // if (
+    //   typeof checkedItem.id === 'string' ||
+    //   checkedItem.id instanceof String
+    // ) {
+    //   setGender(checkedItem.id);
+    // } else {
+    //   setGender(String(checkedItem.id));
+    // }
+    setGender(checkedItem.id);
   };
   return (
     <>

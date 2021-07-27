@@ -1,5 +1,5 @@
 import { ObjectSchema } from "realm";
-export type ChildGender = "boy" | "girl" | "";
+// export type ChildGender = "boy" | "girl" | "";
 export type remiderType = "vaccine" | "healthCheckup";
 export const MeasuresEntitySchema = {
   name: "Measures",
@@ -7,42 +7,42 @@ export const MeasuresEntitySchema = {
   properties: {
     uuid: { type: "string" },
     isChildMeasured: { type: "bool" },
-    weight:{ type: "string" },
-    height:{ type: "string" },
-    measurementDate: { type: "int" ,optional:true},
-    titleDateInMonth: { type: "string" ,optional:true},
+    weight: { type: "string" },
+    height: { type: "string" },
+    measurementDate: { type: "int", optional: true },
+    titleDateInMonth: { type: "string", optional: true },
     didChildGetVaccines: { type: "bool" },
-    vaccineIds:{ type: "string" ,optional:true},
-    doctorComment: { type: "string" ,optional:true},
+    vaccineIds: { type: "string", optional: true },
+    doctorComment: { type: "string", optional: true },
     measurementPlace: { type: "int" },
 
   }
 }
 export type MeasuresEntity = {
   uuid: string,
-  isChildMeasured:boolean,
-  weight:string,
-  height:string,
-  measurementDate:number,
-  titleDateInMonth:string
-  didChildGetVaccines:boolean,
-  vaccineIds:string,
-  doctorComment:string,
-  measurementPlace:number
+  isChildMeasured: boolean,
+  weight: string,
+  height: string,
+  measurementDate: number,
+  titleDateInMonth: string
+  didChildGetVaccines: boolean,
+  vaccineIds: string,
+  doctorComment: string,
+  measurementPlace: number
 }
 export const ReminderEntitySchema = {
   name: "Reminder",
   embedded: true,
   properties: {
     uuid: { type: "string" },
-    remiderType:{ type: "string" },
+    remiderType: { type: "string" },
     remiderDate: { type: "date" },
     remiderTime: { type: "date" },
   }
 }
 export type ReminderEntity = {
   uuid: string
-  remiderType:remiderType,
+  remiderType: remiderType,
   remiderDate: Date,
   remiderTime: Date,
 }
@@ -50,15 +50,15 @@ export type ReminderEntity = {
 export type ChildEntity = {
   uuid: string;
   childName: string;
-  gender: ChildGender,
+  gender: number,
   photoUri?: string;
   createdAt: Date;
   updatedAt: Date;
   plannedTermDate?: Date | undefined;
   birthDate?: Date | undefined;
-  relationship?:string;
+  //relationship?: string;
   babyRating?: number;
-  measures?: MeasuresEntity[], 
+  measures?: MeasuresEntity[],
   comment?: string;
   checkedMilestones?: number[];
   reminders?: ReminderEntity[],
@@ -80,23 +80,23 @@ export const ChildEntitySchema: ObjectSchema = {
   name: "ChildEntity",
   primaryKey: "uuid",
   properties: {
-      uuid: { type: "string" },
-      childName: { type: "string" },
-      gender: { type: "string" },
-      photoUri: { type: "string", optional: true },
-      createdAt: { type: "date" },
-      updatedAt: { type: "date" },
-      plannedTermDate: { type: "date", optional: true },
-      birthDate: { type: "date", optional: true},
-      babyRating: { type: "int", optional: true },
-      measures: { type: "list", objectType:"Measures",default:[]},
-      comment: { type: "string", optional: true },
-      checkedMilestones: { type: "int[]", optional: true },
-      reminders: {type: "list", objectType:"Reminder",default:[]},
-      measurementPlace: {type: "string", optional: true},
-      isPremature: {type: "string", optional: true},
-      isExpected: {type: "string", optional: true}
-      
+    uuid: { type: "string" },
+    childName: { type: "string" },
+    gender: { type: "int" },
+    photoUri: { type: "string", optional: true },
+    createdAt: { type: "date" },
+    updatedAt: { type: "date" },
+    plannedTermDate: { type: "date", optional: true },
+    birthDate: { type: "date", optional: true },
+    babyRating: { type: "int", optional: true },
+    measures: { type: "list", objectType: "Measures", default: [] },
+    comment: { type: "string", optional: true },
+    checkedMilestones: { type: "int[]", optional: true },
+    reminders: { type: "list", objectType: "Reminder", default: [] },
+    measurementPlace: { type: "string", optional: true },
+    isPremature: { type: "string", optional: true },
+    isExpected: { type: "string", optional: true }
+
   }
 };
 
