@@ -129,6 +129,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   const showSelectedBracketData = async (item: any) => {
     // console.log("in showSelectedBracketData--",item);
     setCurrentSelectedChildId(item.id);
+    // setCurrentSelectedChildId2(item.id);
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
     filteredData = {...filteredData,name:item.name};
     // console.log(filteredData);
@@ -241,12 +242,12 @@ const ChildDevelopment = ({navigation}: Props) => {
 
     return (
       <>
-        <AgeBrackets
+        {/* <AgeBrackets
           itemColor={backgroundColor}
           activatedItemColor={headerColor}
           currentSelectedChildId={currentSelectedChildId}
           showSelectedBracketData={showSelectedBracketData}
-        />
+        /> */}
         <Container>
           {/* <Image
             source={require('@assets/trash/card2.jpeg')}
@@ -362,6 +363,15 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
+          { currentSelectedChildId && currentSelectedChildId != '' ? 
+            <AgeBrackets
+              itemColor={backgroundColor}
+              activatedItemColor={headerColor}
+              currentSelectedChildId={currentSelectedChildId}
+              showSelectedBracketData={showSelectedBracketData}
+            />  
+            : null 
+          }      
           {selectedChildMilestoneData && selectedChildMilestoneData?.length > 0 ?
               <FlexCol style={{backgroundColor: backgroundColor}}>
                 <View>
