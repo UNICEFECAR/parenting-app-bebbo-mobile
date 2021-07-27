@@ -23,6 +23,7 @@ import {
   Heading5,
   ShiftFromTopBottom10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
@@ -130,7 +131,7 @@ const PreviousVaccines = (props: any) => {
                       )}
                     </ToolsIconView>
                     <ToolsHeadingView>
-                      <Heading4Regular>{v.title}</Heading4Regular>
+                      <Heading4Regular>{v.title }{v.isMeasured ? " - " : null} {v.isMeasured ? DateTime.fromJSDate(new Date(v.measurementDate)).toFormat("dd/MM/yyyy") : null}</Heading4Regular>
                       {v?.pinned_article ?
                       <Pressable onPress={() => gotoArticle(v.pinned_article)}>
                         <ButtonTextSmLineL>
