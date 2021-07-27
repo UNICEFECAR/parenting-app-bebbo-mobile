@@ -173,32 +173,32 @@ const UpcomingHealthCheckup = (props: any) => {
 
                 <ToolsHeadingView>
                   <ShiftFromTop5>
-                    {/* {item.measures?.weight ? (
+                    {item?.growthMeasures?.weight ? (
                     <Heading4Regular>
                       {t('hcMeasureText', {
-                        weight: item.measures?.weight,
-                        height: item.measures?.height,
+                        weight: item?.growthMeasures.weight,
+                        height: item?.growthMeasures.height,
                       })}
                     </Heading4Regular>
                   ) : (
                     <Heading4Regular>{t('hcNoMeasureTxt')}</Heading4Regular>
-                  )} */}
+                  )}
                   </ShiftFromTop5>
                 </ToolsHeadingView>
               </FDirRowStart>
 
-              {/* {item.doctorRemarks ? ( */}
+              {item?.growthMeasures?.doctorComment ? (
               <ShiftFromTop15>
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_doctor_chk_up" size={20} color="#000" />
                   </ToolsIconView>
                   <ToolsHeadingView>
-                    <Heading4Regular>{item?.doctorRemarks}</Heading4Regular>
+                    <Heading4Regular>{item?.growthMeasures?.doctorComment}</Heading4Regular>
                   </ToolsHeadingView>
                 </FDirRowStart>
               </ShiftFromTop15>
-              {/* ) : null} */}
+              ) : null} 
               {item?.pinned_article ? (
                 <ShiftFromTop15>
                   <Pressable onPress={() => gotoArticle(item.pinned_article)}>
