@@ -110,7 +110,8 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             <PopupCloseContainer>
               <PopupClose
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
+                  setIsModalOpened('IsWeightModalOpened');
                 }}>
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { DateTime } from "luxon";
@@ -64,8 +65,11 @@ export const getAllHealthCheckupPeriods = () => {
   console.log(allMeasurements, "allMeasurements");
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
   let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach(measure => {
-    measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
+  vaccineMeasures.forEach((measure,index) => {
+    const vaccinesForAmeasure = JSON.parse(measure.vaccineIds);
+    vaccinesForAmeasure.forEach((vaccine,innerindex) => {
+      measuredVaccines.push(vaccine);
+    });
   });
   const vaccineMeasuredInfo = (vaccineid: number) => {
     return (measuredVaccines.find(item => item.vaccineid == vaccineid))
@@ -104,6 +108,7 @@ export const getAllHealthCheckupPeriods = () => {
 
   let additionalMeasures:any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
+    const {t} = useTranslation();
     const periodForMeasure = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
     const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure.vaccination_ends))
     console.log(measure, "allmeasure",measure.length);
@@ -117,12 +122,13 @@ export const getAllHealthCheckupPeriods = () => {
           growth_period: hcItem.growth_period,
           id: hcItem.id,
           pinned_article: hcItem.pinned_article,
-          title: "AAdditional HC",
+          title: t('hcSummaryHeader'),
+          isAdditional:true,
           type: hcItem.type,
           updated_at: hcItem.updated_at,
           vaccination_ends: hcItem.vaccination_ends,
           vaccination_opens: hcItem.vaccination_opens,
-          vaccines:[]
+          vaccines:[],
         }
         console.log(item,"Additonal");
         additionalMeasures.push(item)
@@ -133,9 +139,10 @@ export const getAllHealthCheckupPeriods = () => {
 
 
   }
-
+  let regularMeasure = {...measure[0]};
+  regularMeasure["isAdditional"]=false
   //  calculate is additional measure for the period
-  return measure ? measure[0] : null; // if no measure for the period return null, show pending vaccines
+  return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
   // return  allGrowthPeriods.filter(period => {
   //   return allMeasurements.filter(item => ((item.childAgeInDaysForMeasure >=  period.vaccination_opens) &&(item.childAgeInDaysForMeasure <=    period.vaccination_ends)));
   // });
