@@ -56,7 +56,7 @@ const DATA = [
 ];
 
 const RelatedArticles = (props:RelatedArticlesProps) => {
-  console.log(props);
+  // console.log(props);
   const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
   // console.log(props);
   const {t} = useTranslation();
@@ -90,7 +90,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           // console.log(articleData)
           // console.log(relatedArticleData,"--relatedArticleData");
           const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
-          console.log(databaseData.length);
+          // console.log(databaseData.length);
           // console.log(databaseData.filter((x:any)=> console.log(x) ));
           const filteredArtData = databaseData.filter((x: any)=> {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
