@@ -61,7 +61,6 @@ const AgeBrackets = (props: any) => {
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
   
-     console.log(childAge,"  child age");
   // const activeChildId = useAppSelector((state: any) =>
   //   state.childData.childDataSet.activeChild != ''
   //     ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
