@@ -49,7 +49,7 @@ useFocusEffect(
       let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }
-  },[])
+  },[activeChild.uuid])
 );
 
 const goToVideoArticleDetails = () => {
