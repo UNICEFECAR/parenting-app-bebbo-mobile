@@ -11,10 +11,15 @@ export const getAllVaccinePeriods = () => {
   // console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
   //filter measures by didChildGetVaccines
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
+//  console.log(vaccineMeasures, "vaccineMeasures filter by didChildGetVaccines");
   let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach(measure => {
-    measuredVaccines = [JSON.parse(measure.vaccineIds)[0], ...measuredVaccines];
+  vaccineMeasures.forEach((measure,index) => {
+    const vaccinesForAmeasure = JSON.parse(measure.vaccineIds);
+    vaccinesForAmeasure.forEach((vaccine,innerindex) => {
+      measuredVaccines.push(vaccine);
+    });
   });
+  // console.log(measuredVaccines,"measuredVaccines");
   // const getMeasureInfoForVaccine = (vaccineid :number=56276) => {
   // return vaccineMeasures.filter(measure => JSON.parse(measure.vaccineIds).indexOf(vaccineid) > -1);
   // }

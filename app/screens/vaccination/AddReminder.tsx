@@ -148,7 +148,8 @@ const defaulttimePickerValue =new Date();
               value={defaulttimePickerValue}
               mode={'time'}
               display="default"
-              is24Hour={false}
+              is24Hour={true}
+              minimumDate={new Date()}
               onChange={onmeasureTimeChange}
             />
           )}

@@ -1,6 +1,7 @@
 import { MainContainer } from '@components/shared/Container';
 import { Bullets, BulletsView } from '@components/shared/Divider';
 import { FDirRowStart, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { RadioActive } from '@components/shared/radio';
 import {
   HealthDesc,
   ToolsActionView,
@@ -20,7 +21,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import {
   ButtonContainerAuto,
@@ -55,27 +56,27 @@ const PreviousHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {/* {item.measures ? (
-              item.givenVaccines.length == 0 ? ( */}
-            <Icon
+            {item?.growthMeasures?.uuid ?  (
+            <RadioActive
+                  style={{backgroundColor: 'green', borderRadius: 50}}>
+                  <Icon name="ic_tick" size={12} color="#FFF" />
+                </RadioActive>
+             ) : ( 
+              <Icon name="ic_plus" size={20} color="#000" />
+              )}
+            {/* <Icon
               name="ic_incom"
               size={20}
               color="#FFF"
               style={{backgroundColor: 'red', borderRadius: 50}}
-            />
-            {/* ) : ( */}
-            {/* <RadioActive
-                  style={{backgroundColor: 'green', borderRadius: 50}}>
-                  <Icon name="ic_tick" size={12} color="#FFF" />
-                </RadioActive> */}
-            {/* ) */}
-            {/* ) : item.givenVaccines.length > 0 ? ( */}
-            {/* <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
-                <Icon name="ic_tick" size={12} color="#FFF" />
-              </RadioActive> */}
-            {/* ) : ( */}
-            {/* <Icon name="ic_plus" size={20} color="#000" /> */}
-            {/* )} */}
+            /> */}
+          {/* //   () ? : item.givenVaccines.length > 0 ? ( 
+          //    <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+          //       <Icon name="ic_tick" size={12} color="#FFF" />
+          //     </RadioActive>
+          //  ) : ( 
+          //    <Icon name="ic_plus" size={20} color="#000" />
+          //    )}  */}
           </ToolsIconView>
           <ToolsHeadPress
             onPress={() => {
@@ -83,6 +84,7 @@ const PreviousHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item?.title}</Heading2>
+              {item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
             </ToolsHeadingView>
             <ToolsActionView>
               <FlexDirRow>
@@ -198,9 +200,7 @@ const PreviousHealthCheckup = (props: any) => {
 
             
 
-            {/* {item.measures?.weight ||
-                item.measures?.height ||
-                item.givenVaccines.length > 0 ? ( */}
+            {item?.growthMeasures?.uuid ? (
             <ShiftFromTopBottom10>
               <Pressable
                 onPress={() =>
@@ -212,7 +212,7 @@ const PreviousHealthCheckup = (props: any) => {
                 <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
               </Pressable>
             </ShiftFromTopBottom10>
-            {/* ) : ( */}
+             ) : ( 
             <ButtonContainerAuto>
               <ButtonHealth
                 onPress={() =>
@@ -224,7 +224,7 @@ const PreviousHealthCheckup = (props: any) => {
                 <ButtonText>{t('hcNewBtn')}</ButtonText>
               </ButtonHealth>
             </ButtonContainerAuto>
-            {/* )} */}
+             )} 
           </>
         ) : null}
       </ToolsListOuter>
