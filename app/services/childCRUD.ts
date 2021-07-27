@@ -39,7 +39,7 @@ export const apiJsonDataGet = (childAge: any, parentGender: any) => {
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
   ];
 }
-export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, relationship?: string, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     childName: (name != "" && name != null && name != undefined) ? name : '',
@@ -47,11 +47,11 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
     isPremature: (isPremature != '' && isPremature != null && isPremature != undefined) ? isPremature : "false",
-    gender: gender ? gender : '',
+    gender: gender ? gender : 0,
     createdAt: new Date(),
     updatedAt: new Date(),
     measurementPlace: "doctor",
-    relationship: relationship ? relationship : '',
+    //relationship: relationship ? relationship : '',
     isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false"
   };
 
@@ -250,7 +250,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   return ageStr;
 
 };
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any) => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any,relationship?:any) => {
   let oldBirthDate;
   if (editScreen) {
     //console.log("..update child..", data);
@@ -275,14 +275,14 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       routes: [{ name: 'ChildSetupList' }],
     });
     // console.log(data[0].relationship,"..data[0].relationship..");
-    var relationship = data[0].relationship;
+    let relationshipnew = relationship;
     if (typeof relationship === 'string' || relationship instanceof String) {
-      data[0].relationship = relationship
+     relationshipnew = relationship
     }
     else {
-      data[0].relationship = String(relationship);
+      relationshipnew = String(relationship);
     }
-    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", data[0].relationship);
+    let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
     setActiveChild(languageCode, data[0].uuid, dispatch, child_age);

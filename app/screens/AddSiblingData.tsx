@@ -70,11 +70,11 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
     console.log(defaultName,"..defaultName",editScreen);
-    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,relationship,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,'',defaultName)
+    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName)
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");
-    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age);
+    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null);
 }
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;

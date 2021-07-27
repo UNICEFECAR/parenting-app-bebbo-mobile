@@ -72,10 +72,10 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const AddChild = async () => {
-    let insertData: any =await getNewChild( '',"true", null, '',plannedTermDate, '',name, '', '');
+    let insertData: any =await getNewChild( '',"true", null, '',plannedTermDate,name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode,false, 2, childSet, dispatch, navigation,child_age);
+    addChild(languageCode,false, 2, childSet, dispatch, navigation,child_age,null);
   }
   return (
     <>
