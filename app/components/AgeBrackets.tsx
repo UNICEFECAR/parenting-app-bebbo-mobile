@@ -122,8 +122,11 @@ const AgeBrackets = (props: any) => {
                     showSelectedBracketData(item)
                 }}
                 // selected={selected}
+                
                 selected={currentSelectedChildId}
-                activeColor={props.activatedItemColor}
+                activeBackgroundColor={props.activatedItemColor}
+                activeColor={props.itemColor}
+                buttonStyle={{backgroundColor:props.ItemTintColor}}
                 // textStyle={{color:'#000',fontWeight:'bold'}}
             />
     {/* <AgeSliderContainer>
