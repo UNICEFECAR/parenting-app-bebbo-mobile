@@ -60,7 +60,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   }
   // console.log("detailData--",JSON.stringify(detailData));
-  console.log("fromScreen--",fromScreen);
+  // console.log("fromScreen--",fromScreen);
   const [detailDataToUse,setDetailDataToUse] = useState();
   // let detailDataToUse: any;
   // detailDataToUse = detailData;
@@ -77,13 +77,13 @@ const DetailsScreen = ({route, navigation}: any) => {
           setDetailDataToUse(articleData[0]);
           // detailDataToUse = articleData[0]
           // detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
-          console.log(detailData,"detailData",detailDataToUse);
+          // console.log(detailData,"detailData",detailDataToUse);
         }else {
           // console.log(detailData,"fromScreen--",fromScreen);
           // detailDataToUse = detailData;
           
           setDetailDataToUse(detailData);
-          console.log("detailData--",(detailDataToUse));
+          // console.log("detailData--",(detailDataToUse));
         }
       }
       functionOnLoad();
@@ -109,13 +109,13 @@ const DetailsScreen = ({route, navigation}: any) => {
            destFilename: detailDataToUse?.cover_image?.url.split('/').pop()
        })
          if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
-          console.log("Image already exists");
+          // console.log("Image already exists");
           setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
         }else {
-         console.log("Image already exists");
-         console.log(imageArray,"..imageArray..");
+        //  console.log("Image already exists");
+        //  console.log(imageArray,"..imageArray..");
          const imagesDownloadResult = await downloadImages(imageArray);
-         console.log(imagesDownloadResult,"..imagesDownloadResult..");
+        //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
          setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
         }
       }
