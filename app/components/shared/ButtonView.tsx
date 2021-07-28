@@ -2,9 +2,8 @@ import styled from 'styled-components/native';
 export const ButtonviewNext = styled.Text`
   width: 50px;
   height: 50px;
-  margin-top: 10px;
+  
   align-content: center;
-  margin-bottom: 10px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   text-align: center;
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
@@ -19,11 +18,11 @@ export const ButtonviewPrevious = styled(ButtonviewNext)`
 
 
 export const ButtonviewClick = styled.Pressable`
-  margin-top: 10px;
-  flex-direction: column;
+ 
   justify-content: center;
   height: 50px;
-  align-content: center;
+  width: 50px;
+  align-items: center;
 `;
 
 export const ButtonSection = styled.View`

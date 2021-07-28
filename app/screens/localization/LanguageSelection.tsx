@@ -12,6 +12,7 @@ import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
+import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
@@ -65,33 +66,34 @@ const LanguageSelection = ({route, navigation}: Props) => {
             keyExtractor={(item) => item.languageCode.toString()}
           />
         </SelectionView>
-
-        <BtnMultiple>
-          <ButtonviewNext>
-            <ButtonviewClick onPress={() => navigation.goBack()}>
-              <Icon name="ic_angle_left" size={32} color="#000" />
-            </ButtonviewClick>
-          </ButtonviewNext>
-          {language ? (
+        <ShiftFromTopBottom10>
+          <BtnMultiple>
             <ButtonviewNext>
-              <ButtonviewClick
-                onPress={() =>
-                  navigation.navigate('CountryLanguageConfirmation', {
-                    country,
-                    language,
-                  })
-                }>
-                <Icon name="ic_angle_right" size={32} color="#000" />
+              <ButtonviewClick onPress={() => navigation.goBack()}>
+                <Icon name="ic_angle_left" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
-          ) : <ButtonviewPrevious>
-          <ButtonviewClick
-            onPress={() =>{}
-            }>
-            <Icon name="ic_angle_right" size={32} color="#000" />
-          </ButtonviewClick>
-        </ButtonviewPrevious>}
-        </BtnMultiple>
+            {language ? (
+              <ButtonviewNext>
+                <ButtonviewClick
+                  onPress={() =>
+                    navigation.navigate('CountryLanguageConfirmation', {
+                      country,
+                      language,
+                    })
+                  }>
+                  <Icon name="ic_angle_right" size={32} color="#000" />
+                </ButtonviewClick>
+              </ButtonviewNext>
+            ) : <ButtonviewPrevious>
+            <ButtonviewClick
+              onPress={() =>{}
+              }>
+              <Icon name="ic_angle_right" size={32} color="#000" />
+            </ButtonviewClick>
+          </ButtonviewPrevious>}
+          </BtnMultiple>
+        </ShiftFromTopBottom10>
       </OnboardingContainer>
     </>
   );
