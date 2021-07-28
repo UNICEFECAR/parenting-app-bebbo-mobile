@@ -15,6 +15,7 @@ import {
   SafeAreaContainer
 } from '@components/shared/Container';
 import { FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
+import RelatedArticles from '@components/shared/RelatedArticles';
 import {
   TabBarContainerBrd,
   TabBarDefault
@@ -187,7 +188,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                 </>
 
                 <View style={{flex: 1}}>
-                  {/* <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/> */}
+                  <RelatedArticles related_articles={[]} category={"5"} currentId={0} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={[]} navigation={navigation}/>
                 </View>
               </MainContainer>
             )}
