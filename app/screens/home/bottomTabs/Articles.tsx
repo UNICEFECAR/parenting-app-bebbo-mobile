@@ -31,7 +31,7 @@ import {
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
-import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import ProgressiveImage from '@components/shared/ProgressiveImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
@@ -167,9 +167,11 @@ const Articles = ({route, navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
 
-  const articleData = useAppSelector(
+  let articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  articleData = articleData.filter((x:any)=> articleCategoryArray.includes(x.category))
+  console.log("articleData---",articleData);
   const [filteredData,setfilteredData] = useState(articleData);
   
   useFocusEffect(
