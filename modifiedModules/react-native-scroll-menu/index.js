@@ -143,9 +143,9 @@ export default class ScrollingButtonMenu extends React.Component {
                 styles.scrollArea,
                 containerStyle,
             ]}>
-            <TouchableOpacity style={{padding:9}} onPress={() => this.leftArrow(items)}>
+            <TouchableOpacity style={{padding:11}} onPress={() => this.leftArrow(items)}>
                 {/* <Text>L</Text> */}
-                <Icon name="ic_angle_left" size={20} color="#000" />
+                <Icon name="ic_angle_left" size={16} color="#000" />
             </TouchableOpacity>
                 <ScrollView
                     horizontal={true}
@@ -201,8 +201,8 @@ export default class ScrollingButtonMenu extends React.Component {
                         ))
                     }
                 </ScrollView>
-            <TouchableOpacity style={{padding:9}} onPress={() => this.rightArrow(items)}>
-                <Icon name="ic_angle_right" size={20} color="#000" />
+            <TouchableOpacity style={{padding:11}} onPress={() => this.rightArrow(items)}>
+                <Icon name="ic_angle_right" size={16} color="#000" />
             </TouchableOpacity>
             </View>
         );
@@ -248,30 +248,31 @@ ScrollingButtonMenu.defaultProps = {
 
 const styles = StyleSheet.create({
     scrollArea: {
-        paddingLeft: 20,
-        paddingTop: 20,
+        paddingTop: 15,
+        paddingBottom: 15,
         flexDirection: 'row',
         alignItems:'center'
     },
     scroll: {flex: 9},
     scrollContainer: {},
     tabItem: {
-        borderRadius: 18,
-        borderColor: '#858585',
+        color:'#000',
+        /*borderColor: '#858585',
         borderStyle: 'solid',
-        borderWidth: 1,
-        padding: 6,
+        borderWidth: 1,*/
+        borderRadius:4,
+        padding:12,
         paddingLeft: 15,
         paddingRight: 15,
-        marginRight: 10,
+        marginRight:8,
     },
     tabItemText: {
-        color: '#5d5d5d',
-        fontFamily: 'AvenirNext-Medium',
+        color: '#000000',
+        // fontFamily: 'AvenirNext-Medium',
         fontSize: 14,
-        fontWeight: '500',
+        fontWeight: 'bold',
         fontStyle: 'normal',
-        textAlign: 'left',
+        textAlign: 'center',
         lineHeight: 20,
     },
     tabItemFocused: {
