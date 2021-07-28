@@ -23,10 +23,12 @@ import {
   ShiftFromTop5,
   ShiftFromTopBottom10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
 import {
   ButtonContainerAuto,
   ButtonHealth,
@@ -48,6 +50,14 @@ const UpcomingHealthCheckup = (props: any) => {
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  let reminders = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild).reminders
+      : [],
+  );
+  // console.log(reminders,"UpcomingHealthCheckup-reminders");
+  const healthCheckupReminder = reminders.filter((item)=> item.reminderType == "healthCheckup")[0];
+  // console.log(healthCheckupReminder,"healthCheckupReminder",);
   const gotoArticle = (pinned_articleID) => {
     // navigation.navigate('DetailsScreen', {
     //   fromScreen: 'Articles',
@@ -93,7 +103,9 @@ const UpcomingHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item.title}</Heading2>
-              {item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
+              {item.isAdditional ? (
+                <Text>{item?.growthMeasures?.measurementDate}</Text>
+              ) : null}
             </ToolsHeadingView>
 
             <ToolsActionView>
@@ -175,31 +187,33 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ToolsHeadingView>
                   <ShiftFromTop5>
                     {item?.growthMeasures?.weight ? (
-                    <Heading4Regular>
-                      {t('hcMeasureText', {
-                        weight: item?.growthMeasures.weight,
-                        height: item?.growthMeasures.height,
-                      })}
-                    </Heading4Regular>
-                  ) : (
-                    <Heading4Regular>{t('hcNoMeasureTxt')}</Heading4Regular>
-                  )}
+                      <Heading4Regular>
+                        {t('hcMeasureText', {
+                          weight: item?.growthMeasures.weight,
+                          height: item?.growthMeasures.height,
+                        })}
+                      </Heading4Regular>
+                    ) : (
+                      <Heading4Regular>{t('hcNoMeasureTxt')}</Heading4Regular>
+                    )}
                   </ShiftFromTop5>
                 </ToolsHeadingView>
               </FDirRowStart>
 
               {item?.growthMeasures?.doctorComment ? (
-              <ShiftFromTop15>
-                <FDirRowStart>
-                  <ToolsIconView>
-                    <Icon name="ic_doctor_chk_up" size={20} color="#000" />
-                  </ToolsIconView>
-                  <ToolsHeadingView>
-                    <Heading4Regular>{item?.growthMeasures?.doctorComment}</Heading4Regular>
-                  </ToolsHeadingView>
-                </FDirRowStart>
-              </ShiftFromTop15>
-              ) : null} 
+                <ShiftFromTop15>
+                  <FDirRowStart>
+                    <ToolsIconView>
+                      <Icon name="ic_doctor_chk_up" size={20} color="#000" />
+                    </ToolsIconView>
+                    <ToolsHeadingView>
+                      <Heading4Regular>
+                        {item?.growthMeasures?.doctorComment}
+                      </Heading4Regular>
+                    </ToolsHeadingView>
+                  </FDirRowStart>
+                </ShiftFromTop15>
+              ) : null}
               {item?.pinned_article ? (
                 <ShiftFromTop15>
                   <Pressable onPress={() => gotoArticle(item.pinned_article)}>
@@ -209,9 +223,9 @@ const UpcomingHealthCheckup = (props: any) => {
               ) : null}
             </MainContainer>
 
-            {currentPeriodId == item.periodID ? (
+            {currentPeriodId == item.periodID  ? (
               <MainContainer>
-                <FDirRowStart>
+               {healthCheckupReminder ? <FDirRowStart>
                   <ToolsIconView>
                     <Icon
                       name="ic_time"
@@ -223,18 +237,23 @@ const UpcomingHealthCheckup = (props: any) => {
                   <ToolsHeadView>
                     <ToolsHeadingView>
                       <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
-                      <Heading4>{new Date().toDateString()}</Heading4>
+                      <Heading4>{
+                      DateTime.fromJSDate(new Date(healthCheckupReminder?.reminderDate)).toFormat(
+                        'dd MMM yyyy',)
+                     }{","}{DateTime.fromJSDate(new Date(healthCheckupReminder?.reminderTime)).toFormat(
+                      'hh:mm') }</Heading4>
                     </ToolsHeadingView>
                     <ToolsActionView>
                       <Pressable
                         onPress={() => {
                           navigation.navigate('AddReminder', {
-                            reminderType: 'HealthCheckup',
+                            reminderType: "healthCheckup", // from remiderType
                             headerTitle: t('vcEditReminderHeading'),
                             buttonTitle: t('hcReminderAddBtn'),
                             titleTxt: t('hcReminderText'),
                             warningTxt: t('hcReminderDeleteWarning'),
                             headerColor: headerColor,
+                            editReminderItem: healthCheckupReminder,
                           });
                         }}>
                         <ButtonTextSmLine>
@@ -243,13 +262,10 @@ const UpcomingHealthCheckup = (props: any) => {
                       </Pressable>
                     </ToolsActionView>
                   </ToolsHeadView>
-                </FDirRowStart>
-                {/* Set Reminder Link */}
-
-                <Pressable
+                </FDirRowStart> : <Pressable
                   onPress={() => {
                     navigation.navigate('AddReminder', {
-                      reminderType: 'HealthCheckup',
+                      reminderType: 'healthCheckup', // from remiderType
                       headerTitle: t('vcReminderHeading'),
                       buttonTitle: t('hcReminderAddBtn'),
                       titleTxt: t('hcReminderText'),
@@ -260,35 +276,38 @@ const UpcomingHealthCheckup = (props: any) => {
                   <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
                     {t('hcReminderbtn')}
                   </ButtonTextMdLine>
-                </Pressable>
+                </Pressable>}
+                {/* Set Reminder Link */}
+
+                
               </MainContainer>
             ) : null}
 
-{item?.growthMeasures?.uuid ?
-            (<ShiftFromTopBottom10>
-              <Pressable
-                onPress={() =>
-                  navigation.navigate('AddChildHealthCheckup', {
-                    headerTitle: t('editVcTitle'),
-                    // vcPeriod: item,
-                  })
-                }>
-                <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
-              </Pressable>
-            </ShiftFromTopBottom10>
-             ) : ( 
-            <ButtonContainerAuto>
-              <ButtonHealth
-                onPress={() =>
-                  navigation.navigate('AddChildHealthCheckup', {
-                    headerTitle: t('hcNewHeaderTitle'),
-                    vcPeriod: item,
-                  })
-                }>
-                <ButtonText>{t('hcNewBtn')}</ButtonText>
-              </ButtonHealth>
-            </ButtonContainerAuto>
-            )} 
+            {item?.growthMeasures?.uuid ? (
+              <ShiftFromTopBottom10>
+                <Pressable
+                  onPress={() =>
+                    navigation.navigate('AddChildHealthCheckup', {
+                      headerTitle: t('editVcTitle'),
+                      // vcPeriod: item,
+                    })
+                  }>
+                  <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
+                </Pressable>
+              </ShiftFromTopBottom10>
+            ) : (
+              <ButtonContainerAuto>
+                <ButtonHealth
+                  onPress={() =>
+                    navigation.navigate('AddChildHealthCheckup', {
+                      headerTitle: t('hcNewHeaderTitle'),
+                      vcPeriod: item,
+                    })
+                  }>
+                  <ButtonText>{t('hcNewBtn')}</ButtonText>
+                </ButtonHealth>
+              </ButtonContainerAuto>
+            )}
           </>
         ) : null}
       </ToolsListOuter>
