@@ -162,8 +162,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value:any) => { setParentName(value) }}
-              value={parentName}
+              onChangeText={(value:any) => { setParentName(value.replace(/\s/g, '')) }}
+              value={parentName.replace(/\s/g, '')}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
               
@@ -174,6 +174,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
           <ButtonContainer>
             
             <ButtonPrimary
+             disabled={relationship==null || relationship==undefined || parentName==null || parentName==undefined || parentName=="" ? true :false}
               onPress={() => {
                 saveParentData(relationship,parentName);
              
