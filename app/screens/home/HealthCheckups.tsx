@@ -17,6 +17,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
 import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
 
 type HealthCheckupsNavigationProp =
@@ -33,6 +34,14 @@ const HealthCheckups = ({navigation}: Props) => {
   let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
+  let reminders = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild).reminders
+      : [],
+  );
+  // console.log(reminders,"UpcomingHealthCheckup-reminders");
+  const healthCheckupReminder = reminders.filter((item)=> item.reminderType == "healthCheckup")[0];
+  // console.log(healthCheckupReminder,"healthCheckupReminder",);
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
@@ -82,7 +91,18 @@ const HealthCheckups = ({navigation}: Props) => {
               <ShiftFromBottom20>
                 <Heading2Center>{t('hcSummaryHeader')}</Heading2Center>
                 </ShiftFromBottom20>
-              <ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine>
+                {healthCheckupReminder ? null:
+                <Pressable
+                onPress={() => {
+                  navigation.navigate('AddReminder', {
+                    reminderType: 'healthCheckup', // from remiderType
+                    headerTitle: t('vcReminderHeading'),
+                    buttonTitle: t('hcReminderAddBtn'),
+                    titleTxt: t('hcReminderText'),
+                    warningTxt: t('hcReminderDeleteWarning'),
+                    headerColor: headerColor,
+                  });
+                }}><ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine></Pressable>}
 
               <ButtonContainerAuto>
                 <ButtonHealth
