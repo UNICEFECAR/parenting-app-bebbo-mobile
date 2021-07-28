@@ -25,10 +25,14 @@ import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
-import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
+import {
+  ChildEntity,
+  ChildEntitySchema
+} from '../../../database/schema/ChildDataSchema';
 import { setActiveChild } from '../../../services/childCRUD';
 import {
-  ButtonContainerAuto, ButtonText,
+  ButtonContainerAuto,
+  ButtonText,
   ButtonTextMdLine,
   ButtonTextSmLine,
   ButtonTextSmLineL,
@@ -47,19 +51,6 @@ const UpcomingVaccines = (props: any) => {
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  let activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
-  let reminders =activeChild.reminders;
-  // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const vaccineReminder = reminders.filter((item)=> item.reminderType == "vaccine")[0];
-  let today = DateTime.fromJSDate(new Date());
-  let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
-
-  let days = reminderDate.diff(today, 'days').toObject().days;
-  console.log(Math.round(days),"Days")
   const deleteReminder = async (hcuuid) => {
     const languageCode = useAppSelector(
       (state: any) => state.selectedCountry.languageCode,
@@ -78,9 +69,28 @@ const UpcomingVaccines = (props: any) => {
     // console.log(createresult,"ReminderDeleted");
     setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
-  if (Math.round(days) < 0) {
-    deleteReminder(vaccineReminder.uuid);
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  let reminders = activeChild.reminders;
+  // console.log(reminders,"UpcomingHealthCheckup-reminders");
+  const vaccineReminder = reminders.filter(
+    (item) => item.reminderType == 'vaccine',
+  )[0];
+  if (vaccineReminder) {
+    let today = DateTime.fromJSDate(new Date());
+    let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
+
+    let days = reminderDate.diff(today, 'days').toObject().days;
+    console.log(Math.round(days), 'Days');
+    if (Math.round(days) < 0) {
+      deleteReminder(vaccineReminder.uuid);
+    }
   }
+ 
+
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -97,10 +107,10 @@ const UpcomingVaccines = (props: any) => {
   const gotoArticle = (pinned_articleID) => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'VaccinationTab',
-    headerColor:headerColor,
-    backgroundColor:backgroundColor,
-    detailData:pinned_articleID,
-     });
+      headerColor: headerColor,
+      backgroundColor: backgroundColor,
+      detailData: pinned_articleID,
+    });
   };
   const doneVc = item.vaccines.filter((item) => {
     return item.isMeasured;
