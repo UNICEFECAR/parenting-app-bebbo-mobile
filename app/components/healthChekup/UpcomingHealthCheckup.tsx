@@ -56,21 +56,6 @@ const UpcomingHealthCheckup = (props: any) => {
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  let activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
-  let reminders = activeChild.reminders;
-  // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const healthCheckupReminder = reminders.filter(
-    (item) => item.reminderType == 'healthCheckup',
-  )[0];
-
-  let today = DateTime.fromJSDate(new Date());
-  let reminderDate = DateTime.fromMillis(healthCheckupReminder?.reminderDate);
-
-  let days = reminderDate.diff(today, 'days').toObject().days;
   const deleteReminder = async (hcuuid) => {
     const languageCode = useAppSelector(
       (state: any) => state.selectedCountry.languageCode,
@@ -89,8 +74,24 @@ const UpcomingHealthCheckup = (props: any) => {
     // console.log(createresult,"ReminderDeleted");
     setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
-  if (Math.round(days) < 0) {
-    deleteReminder(healthCheckupReminder.uuid);
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  let reminders = activeChild.reminders;
+  // console.log(reminders,"UpcomingHealthCheckup-reminders");
+  const healthCheckupReminder = reminders.filter(
+    (item) => item.reminderType == 'healthCheckup',
+  )[0];
+  if (healthCheckupReminder) {
+    let today = DateTime.fromJSDate(new Date());
+    let reminderDate = DateTime.fromMillis(healthCheckupReminder?.reminderDate);
+
+    let days = reminderDate.diff(today, 'days').toObject().days;
+    if (Math.round(days) < 0) {
+      deleteReminder(healthCheckupReminder.uuid);
+    }
   }
 
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
