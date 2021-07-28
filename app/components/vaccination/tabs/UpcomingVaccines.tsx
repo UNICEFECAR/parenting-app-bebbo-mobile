@@ -23,7 +23,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../../App';
+import { useAppDispatch, useAppSelector } from '../../../../App';
+import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
+import { setActiveChild } from '../../../services/childCRUD';
 import {
   ButtonContainerAuto, ButtonText,
   ButtonTextMdLine,
@@ -52,6 +55,32 @@ const UpcomingVaccines = (props: any) => {
   let reminders =activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
   const vaccineReminder = reminders.filter((item)=> item.reminderType == "vaccine")[0];
+  let today = DateTime.fromJSDate(new Date());
+  let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
+
+  let days = reminderDate.diff(today, 'days').toObject().days;
+  console.log(Math.round(days),"Days")
+  const deleteReminder = async (hcuuid) => {
+    const languageCode = useAppSelector(
+      (state: any) => state.selectedCountry.languageCode,
+    );
+    const dispatch = useAppDispatch();
+    const child_age = useAppSelector((state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != ''
+        ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+        : [],
+    );
+    let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
+      ChildEntitySchema,
+      hcuuid,
+      'uuid ="' + activeChild.uuid + '"',
+    );
+    // console.log(createresult,"ReminderDeleted");
+    setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+  };
+  if (Math.round(days) < 0) {
+    deleteReminder(vaccineReminder.uuid);
+  }
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
