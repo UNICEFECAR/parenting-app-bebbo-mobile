@@ -53,8 +53,10 @@ export const ButtonTextSmLineL = styled(ButtonTextSmLine)`
   text-align:left;
 `;
 
-export const ButtonTextLinew = styled(ButtonTextLine)`
+export const ButtonTextLinew = styled.Text`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+text-decoration:underline
+text-decoration-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const ButtonLinkText = styled.Text`
