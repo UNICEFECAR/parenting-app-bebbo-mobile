@@ -28,7 +28,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import {
+  ChildEntity,
+  ChildEntitySchema
+} from '../../database/schema/ChildDataSchema';
+import { setActiveChild } from '../../services/childCRUD';
 import {
   ButtonContainerAuto,
   ButtonHealth,
@@ -50,13 +56,43 @@ const UpcomingHealthCheckup = (props: any) => {
   const reminderColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  let reminders = useAppSelector((state: any) =>
+  let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild).reminders
+      ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const healthCheckupReminder = reminders.filter((item)=> item.reminderType == "healthCheckup")[0];
+  const healthCheckupReminder = reminders.filter(
+    (item) => item.reminderType == 'healthCheckup',
+  )[0];
+
+  let today = DateTime.fromJSDate(new Date());
+  let reminderDate = DateTime.fromMillis(healthCheckupReminder?.reminderDate);
+
+  let days = reminderDate.diff(today, 'days').toObject().days;
+  const deleteReminder = async (hcuuid) => {
+    const languageCode = useAppSelector(
+      (state: any) => state.selectedCountry.languageCode,
+    );
+    const dispatch = useAppDispatch();
+    const child_age = useAppSelector((state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != ''
+        ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+        : [],
+    );
+    let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
+      ChildEntitySchema,
+      hcuuid,
+      'uuid ="' + activeChild.uuid + '"',
+    );
+    // console.log(createresult,"ReminderDeleted");
+    setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+  };
+  if (Math.round(days) < 0) {
+    deleteReminder(healthCheckupReminder.uuid);
+  }
+
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
   const gotoArticle = (pinned_articleID) => {
     // navigation.navigate('DetailsScreen', {
@@ -223,63 +259,72 @@ const UpcomingHealthCheckup = (props: any) => {
               ) : null}
             </MainContainer>
 
-            {currentPeriodId == item.periodID  ? (
+            {currentPeriodId == item.periodID ? (
               <MainContainer>
-               {healthCheckupReminder ? <FDirRowStart>
-                  <ToolsIconView>
-                    <Icon
-                      name="ic_time"
-                      size={20}
-                      color="#FFF"
-                      style={{backgroundColor: reminderColor, borderRadius: 50}}
-                    />
-                  </ToolsIconView>
-                  <ToolsHeadView>
-                    <ToolsHeadingView>
-                      <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
-                      <Heading4>{
-                      DateTime.fromJSDate(new Date(healthCheckupReminder?.reminderDate)).toFormat(
-                        'dd MMM yyyy',)
-                     }{","}{DateTime.fromJSDate(new Date(healthCheckupReminder?.reminderTime)).toFormat(
-                      'hh:mm') }</Heading4>
-                    </ToolsHeadingView>
-                    <ToolsActionView>
-                      <Pressable
-                        onPress={() => {
-                          navigation.navigate('AddReminder', {
-                            reminderType: "healthCheckup", // from remiderType
-                            headerTitle: t('vcEditReminderHeading'),
-                            buttonTitle: t('hcReminderAddBtn'),
-                            titleTxt: t('hcReminderText'),
-                            warningTxt: t('hcReminderDeleteWarning'),
-                            headerColor: headerColor,
-                            editReminderItem: healthCheckupReminder,
-                          });
-                        }}>
-                        <ButtonTextSmLine>
-                          {t('editCountryLang')}
-                        </ButtonTextSmLine>
-                      </Pressable>
-                    </ToolsActionView>
-                  </ToolsHeadView>
-                </FDirRowStart> : <Pressable
-                  onPress={() => {
-                    navigation.navigate('AddReminder', {
-                      reminderType: 'healthCheckup', // from remiderType
-                      headerTitle: t('vcReminderHeading'),
-                      buttonTitle: t('hcReminderAddBtn'),
-                      titleTxt: t('hcReminderText'),
-                      warningTxt: t('hcReminderDeleteWarning'),
-                      headerColor: headerColor,
-                    });
-                  }}>
-                  <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
-                    {t('hcReminderbtn')}
-                  </ButtonTextMdLine>
-                </Pressable>}
+                {healthCheckupReminder ? (
+                  <FDirRowStart>
+                    <ToolsIconView>
+                      <Icon
+                        name="ic_time"
+                        size={20}
+                        color="#FFF"
+                        style={{
+                          backgroundColor: reminderColor,
+                          borderRadius: 50,
+                        }}
+                      />
+                    </ToolsIconView>
+                    <ToolsHeadView>
+                      <ToolsHeadingView>
+                        <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
+                        <Heading4>
+                          {DateTime.fromJSDate(
+                            new Date(healthCheckupReminder?.reminderDate),
+                          ).toFormat('dd MMM yyyy')}
+                          {','}
+                          {DateTime.fromJSDate(
+                            new Date(healthCheckupReminder?.reminderTime),
+                          ).toFormat('hh:mm')}
+                        </Heading4>
+                      </ToolsHeadingView>
+                      <ToolsActionView>
+                        <Pressable
+                          onPress={() => {
+                            navigation.navigate('AddReminder', {
+                              reminderType: 'healthCheckup', // from remiderType
+                              headerTitle: t('vcEditReminderHeading'),
+                              buttonTitle: t('hcReminderAddBtn'),
+                              titleTxt: t('hcReminderText'),
+                              warningTxt: t('hcReminderDeleteWarning'),
+                              headerColor: headerColor,
+                              editReminderItem: healthCheckupReminder,
+                            });
+                          }}>
+                          <ButtonTextSmLine>
+                            {t('editCountryLang')}
+                          </ButtonTextSmLine>
+                        </Pressable>
+                      </ToolsActionView>
+                    </ToolsHeadView>
+                  </FDirRowStart>
+                ) : (
+                  <Pressable
+                    onPress={() => {
+                      navigation.navigate('AddReminder', {
+                        reminderType: 'healthCheckup', // from remiderType
+                        headerTitle: t('vcReminderHeading'),
+                        buttonTitle: t('hcReminderAddBtn'),
+                        titleTxt: t('hcReminderText'),
+                        warningTxt: t('hcReminderDeleteWarning'),
+                        headerColor: headerColor,
+                      });
+                    }}>
+                    <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
+                      {t('hcReminderbtn')}
+                    </ButtonTextMdLine>
+                  </Pressable>
+                )}
                 {/* Set Reminder Link */}
-
-                
               </MainContainer>
             ) : null}
 
