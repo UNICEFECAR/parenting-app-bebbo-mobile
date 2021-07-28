@@ -44,9 +44,18 @@ export type RelatedArticlesProps = {
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
-
-  // const {headerColor, fromScreen, backgroundColor,detailData,setFilteredArticleData} = route.params;
-  console.log(detailData,"detailData");
+  console.log("detailData--",JSON.stringify(detailData));
+  let detailDataToUse: any;
+  if(fromScreen == "Vaccine")
+  {
+    const articleData = useAppSelector(
+      (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+    );
+    detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
+  }else {
+    detailDataToUse = detailData;
+  }
+  // console.log(detailData,"detailData",detailDataToUse);
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -61,19 +70,19 @@ const DetailsScreen = ({route, navigation}: any) => {
       const fetchData = async () => {
         let imageArray= [];
         imageArray.push({
-           srcUrl: detailData.cover_image.url, 
+           srcUrl: detailDataToUse?.cover_image.url, 
            destFolder: destinationFolder, 
-           destFilename: detailData.cover_image.url.split('/').pop()
+           destFilename: detailDataToUse?.cover_image.url.split('/').pop()
        })
-         if (await RNFS.exists(destinationFolder + '/' + detailData.cover_image.url.split('/').pop())) {
+         if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image.url.split('/').pop())) {
           console.log("Image already exists");
-          setCoverImage("file://" + destinationFolder + detailData.cover_image.url.split('/').pop());
+          setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image.url.split('/').pop());
         }else {
          console.log("Image already exists");
          console.log(imageArray,"..imageArray..");
          const imagesDownloadResult = await downloadImages(imageArray);
          console.log(imagesDownloadResult,"..imagesDownloadResult..");
-         setCoverImage("file://" + destinationFolder + detailData.cover_image.url.split('/').pop());
+         setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image.url.split('/').pop());
         }
       }
       fetchData();
@@ -108,7 +117,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               onPress={() => {
                 // navigation.goBack();
                 navigation.navigate({
-                  name: fromScreen,
+                  name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
                   params: {categoryArray:listCategoryArray},
                   merge: true,
                 });
@@ -117,20 +126,20 @@ const DetailsScreen = ({route, navigation}: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2>{detailData?.title}</Heading2>
+            <Heading2>{detailDataToUse?.title}</Heading2>
           </HeaderTitleView>
         </FlexDirRow>
 
         <ScrollView style={{flex: 4}}>
           <View>
             {fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
-              <VideoPlayer selectedPinnedArticleData={detailData}></VideoPlayer>
+              <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
             : 
               // <Image
               //   resizeMode="cover"
               //   resizeMethod="scale"
               //   style={{width: '100%', height: 200}}
-              //   // source={detailData.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailData.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
+              //   // source={detailDataToUse.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailDataToUse.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
               //   source={require('@assets/trash/defaultArticleImage.png')}
               // />
            
@@ -145,14 +154,14 @@ const DetailsScreen = ({route, navigation}: any) => {
           <ShareFavButtons  isFavourite={false} backgroundColor={headerColor} />
           <ArticleDetailsContainer>
             <ShiftFromBottom5>
-          {detailData && detailData?.category && detailData?.category!= 0 ?    
-            <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailData.category)[0].name }</Heading6Bold>
+          {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
+            <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailDataToUse.category)[0].name }</Heading6Bold>
             : null }
           </ShiftFromBottom5>
-          <Heading2>{detailData?.title}</Heading2>
-          {detailData && detailData?.body ?
+          <Heading2>{detailDataToUse?.title}</Heading2>
+          {detailDataToUse && detailDataToUse?.body ?
             <HTML
-              source={{html: detailData?.body}}
+              source={{html: detailDataToUse?.body}}
               baseFontStyle={{fontSize: 16, color: '#000000'}}
             />
             : null 
@@ -162,8 +171,8 @@ const DetailsScreen = ({route, navigation}: any) => {
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
-                 {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
-                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} fromScreen={fromScreen} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                 {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
+                   <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                 
                 <ArticleHeading>
                   <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -172,12 +181,12 @@ const DetailsScreen = ({route, navigation}: any) => {
               </View>
             </>
           ) : null}
-          {fromScreen === 'ChildgrowthTab' ? (
+          {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' ? (
             <>
               <View style={{backgroundColor: backgroundColor}}>
                 
-                 {/* <RelatedArticles related_articles={[6781]} category={detailData.category} currentId={detailData.id} /> */}
-                   <RelatedArticles related_articles={detailData?.related_articles} category={detailData?.category} fromScreen={fromScreen} currentId={detailData?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                 {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
+                   <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={headerColor} backgroundColor={backgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                 
               </View>
             </>
