@@ -162,8 +162,8 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value) => { setName(value) }}
-              value={name}
+              onChangeText={(value) => { setName(value.replace(/\s/g, '')) }}
+              value={name.replace(/\s/g, '')}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder={t('expectPreferNamePlacetxt')}
               

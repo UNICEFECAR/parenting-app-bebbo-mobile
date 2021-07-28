@@ -232,9 +232,11 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   } else {
     if (diff.years > 0) {
       ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
+      ageStr +=' ';
     }
     if (diff.months > 0) {
       ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
+      ageStr +=' ';
     }
     // console.log(diff,"..diffff...")
     // if(diff.days>0){ 
