@@ -178,8 +178,8 @@ class UserRealmCommon extends Component {
                         let updateItemIndex = obj[0].reminders.findIndex(item=>{
                             return item.uuid==reminder.uuid
                           });
-                        //   console.log(updateItemIndex)
-                          if(updateItemIndex==0){
+                          console.log(updateItemIndex,"reminderupdateIndex")
+                          if(updateItemIndex!=-1){
                             obj[0].reminders[updateItemIndex]= reminder
                           }else{
                             obj[0].reminders.push(reminder);
