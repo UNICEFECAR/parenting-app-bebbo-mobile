@@ -137,6 +137,7 @@ const ChildDevelopment = ({navigation}: Props) => {
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema,'uuid == "'+activeChild.uuid+'"');
     // console.log("childData--",childData[0].checkedMilestones);
     let milestonefilteredData = await MileStonesData.filter((x:any)=>x.child_age.includes(item.id));
+    milestonefilteredData =milestonefilteredData.map( item => ({ ...item, toggleCheck:false }) )
     // console.log(milestonefilteredData);
     childData[0].checkedMilestones.filter((x:any)=> {
       console.log(x);
@@ -147,7 +148,9 @@ const ChildDevelopment = ({navigation}: Props) => {
         // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
       }
     })
-    setselectedChildMilestoneData(milestonefilteredData);
+    const sortednewArray = milestonefilteredData.sort((x,y)=>{ return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
+    // console.log("sortednewArray--",sortednewArray);
+    setselectedChildMilestoneData([...sortednewArray]);
   }
   useFocusEffect(
     React.useCallback(() => { 
@@ -179,18 +182,22 @@ const ChildDevelopment = ({navigation}: Props) => {
     },[selectedChildMilestoneData])
   );
   const sendMileStoneDatatoParent = (item: any,togglevalue: any) => {
-    console.log("sendMileStoneDatatoParent--",item,togglevalue);
+    // console.log("sendMileStoneDatatoParent--",item,togglevalue);
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if(i > -1)
     {
       let abc = selectedChildMilestoneData[i];
       abc['toggleCheck'] = togglevalue;
-      setselectedChildMilestoneData([
-          ...selectedChildMilestoneData.slice(0,i),
-          abc,
-          ...selectedChildMilestoneData.slice(i+1)
-        ]
-      );
+      const newArray = [
+        ...selectedChildMilestoneData.slice(0,i),
+        abc,
+        ...selectedChildMilestoneData.slice(i+1)
+      ]
+      const sortednewArray = newArray.sort((x,y)=>{ return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
+
+      // console.log(sortednewArray,"newArray---",newArray);
+      setselectedChildMilestoneData([...sortednewArray]);
+      // userArray.sort((a,b) => a.disabled - b.disabled)
       // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
     }
   }
