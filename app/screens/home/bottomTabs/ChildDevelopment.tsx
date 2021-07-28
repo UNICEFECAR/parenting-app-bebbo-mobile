@@ -158,7 +158,7 @@ const ChildDevelopment = ({navigation}: Props) => {
       const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
       // console.log("firstChildDevData---",firstChildDevData);
       showSelectedBracketData(firstChildDevData[0]);
-    },[])
+    },[activeChild?.uuid])
   );
   useFocusEffect(
     React.useCallback(() => { 
