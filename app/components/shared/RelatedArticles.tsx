@@ -57,9 +57,10 @@ const DATA = [
 const RelatedArticles = (props:RelatedArticlesProps) => {
   // console.log(props);
   const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
-  console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
+  // console.log(typeof related_articles);
+  // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const {t} = useTranslation();
-  let relartlength = related_articles?.length;
+  let relartlength = related_articles ? related_articles.length : 0;
   const articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
@@ -73,7 +74,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
-        console.log("relartlength on start--",relartlength);
+        // console.log("relartlength on start--",relartlength);
         if(relartlength > 0)
         {
           let relatedData:any = [];
@@ -87,16 +88,16 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           }
           // console.log("relatedData--",relatedData.length);
           relartlength = relatedData.length;
-          console.log(relartlength,"relartlength--",maxRelatedArticleSize);
+          // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
             const catartlength = maxRelatedArticleSize - relartlength;
-            console.log("catartlength--",catartlength);
+            // console.log("catartlength--",catartlength);
             // console.log("relatedArticleData--",relatedArticleData);
             const filteredArtData = articleData.filter((x: any)=> {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
               return x.category==category && x.id !==currentId && i == -1
             }).slice(0,catartlength);
-            console.log(filteredArtData);
+            // console.log(filteredArtData);
             setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...relatedData ,...filteredArtData]);
           }else {
             setrelatedArticleData(relatedData);
@@ -105,14 +106,14 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
         // if(category!=5){
       // go not calclualte for growth screen
         else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
-          console.log(relartlength,"relartlength--",maxRelatedArticleSize);
+          // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           const catartlength = maxRelatedArticleSize - relartlength;
-          console.log("relatedArticleData--",relatedArticleData);
+          // console.log("relatedArticleData--",relatedArticleData);
           const filteredArtData = articleData.filter((x: any)=> {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
             return x.category==category && x.id !==currentId && i == -1
           }).slice(0,catartlength);
-          console.log(filteredArtData);
+          // console.log(filteredArtData);
           setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
         }
       // }
@@ -120,7 +121,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       fetchData()
     },[currentId])
   );
-  console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
+  // console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
   // const getSameCategoryArticle = () => {
   //   if(relartlength < maxRelatedArticleSize) {
   //     const catartlength = maxRelatedArticleSize - relartlength;
