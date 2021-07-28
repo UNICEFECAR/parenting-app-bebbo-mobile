@@ -463,9 +463,9 @@ const EditChildProfile = ({route, navigation}: Props) => {
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        setName(value);
+                        setName(value.replace(/\s/g, ''));
                       }}
-                      value={name}
+                      value={name.replace(/\s/g, '')}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
                     />
