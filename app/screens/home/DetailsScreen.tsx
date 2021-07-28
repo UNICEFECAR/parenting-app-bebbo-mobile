@@ -19,11 +19,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Pressable, ScrollView, View,Text } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
+import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
 import { useAppSelector } from '../../../App';
 import downloadImages from '../../downloadImages/ImageStorage';
-import RNFS from 'react-native-fs';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -46,16 +46,17 @@ const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
   console.log("detailData--",JSON.stringify(detailData));
   let detailDataToUse: any;
-  if(fromScreen == "Vaccine")
+  if(fromScreen == "VaccinationTab")
   {
     const articleData = useAppSelector(
       (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
     );
     detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
+    console.log(detailData,"detailData",detailDataToUse);
   }else {
     detailDataToUse = detailData;
   }
-  // console.log(detailData,"detailData",detailDataToUse);
+ 
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
