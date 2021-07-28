@@ -27,6 +27,20 @@ export const TickView = styled.View`
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 
+export const IconViewAlert = styled(TickView)`
+  background-color: #FF0A0A;
+  padding:0;
+  
+`;
+export const IconViewSuccess = styled(TickView)`
+  background-color: #009B00;
+  padding:4px
+`;
+export const IconViewReminder = styled(TickView)`
+  background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+  padding:0px
+`;
+
 export const IconBox = styled.View`
   padding: 15px;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};

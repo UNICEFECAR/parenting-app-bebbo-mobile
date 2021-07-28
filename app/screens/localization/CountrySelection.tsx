@@ -13,6 +13,7 @@ import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
+import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
@@ -76,6 +77,7 @@ const CountrySelection = (props: any) => {
         </SelectionView>
         {country ? (
           <ButtonSection>
+            <ShiftFromTopBottom10>
             <ButtonviewNext>
               <ButtonviewClick
                 style={{}}
@@ -85,6 +87,7 @@ const CountrySelection = (props: any) => {
                 <Icon name="ic_angle_right" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
+            </ShiftFromTopBottom10>
           </ButtonSection>
         ) : (
           <ButtonviewPrevious>

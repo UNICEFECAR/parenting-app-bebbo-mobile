@@ -6,7 +6,7 @@ import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import Container, { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
 import { FDirCol,FlexCol, FDirRow,Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { OuterIconLeft, OuterIconRow,IconViewSuccess,IconViewAlert } from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -292,18 +292,19 @@ const ChildDevelopment = ({navigation}: Props) => {
             <OuterIconRow>
               <OuterIconLeft>
               {milestonePercent < 100 ?
+                <IconViewAlert>
                 <Icon
                   name="ic_incom"
                   size={24}
                   color="#FFF"
-                  style={{backgroundColor: 'red', borderRadius: 150}}
-                />
-                : <Icon
-                  name="ic_incom"
-                  size={24}
+                  
+                /></IconViewAlert>
+                : <IconViewSuccess><Icon
+                  name="ic_tick"
+                  size={16}
                   color="#FFF"
-                  style={{backgroundColor: 'green', borderRadius: 150}}
-                />
+                  
+                /></IconViewSuccess>
               }
               </OuterIconLeft>
             </OuterIconRow>
