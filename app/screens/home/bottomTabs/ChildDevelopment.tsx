@@ -141,7 +141,7 @@ const ChildDevelopment = ({navigation}: Props) => {
     milestonefilteredData =milestonefilteredData.map( item => ({ ...item, toggleCheck:false }) )
     // console.log(milestonefilteredData);
     childData[0].checkedMilestones.filter((x:any)=> {
-      console.log(x);
+      // console.log(x);
       const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
       if(i > -1)
       {
@@ -155,7 +155,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => { 
-      console.log("child dev usefocuseffect");
+      // console.log("child dev usefocuseffect");
       const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
       // console.log("firstChildDevData---",firstChildDevData);
       showSelectedBracketData(firstChildDevData[0]);
@@ -163,7 +163,7 @@ const ChildDevelopment = ({navigation}: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => { 
-      console.log("selectedChildDevData changed--");
+      // console.log("selectedChildDevData changed--");
       if(activeChild?.gender == "" || activeChild?.gender == 0 || activeChild?.gender == 40 || activeChild?.gender == 59) //for boy,other and blank
       {
         // let pinnedVideoartId = selectedChildDevData.boy_video_article;
@@ -203,19 +203,19 @@ const ChildDevelopment = ({navigation}: Props) => {
     }
   }
   const calculateMileStone = () => {
-    console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
+    // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
     const arrlength = selectedChildMilestoneData?.length;
     let abc = 0;
     if(arrlength > 0)
     {
       abc = (selectedChildMilestoneData.filter((x:any)=>x.toggleCheck == true)).length;
     }
-    console.log(arrlength,"---abc--",abc);
+    // console.log(arrlength,"---abc--",abc);
     const percent = Math.round((abc/arrlength) * 100);
-    console.log(percent,"--percent");
+    // console.log(percent,"--percent");
     setMilestonePercent(percent);
   }
-  console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
+  // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
   const renderItem = (item: typeof cditems[0]) => (
     <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
   );
