@@ -65,7 +65,8 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any) => {
  response = response[0];
- console.log(response,"..resonse..")
+ console.log(response,"..resonse..");
+ navigation.navigate('ChildProfileScreen');
  if(response.data && response.data.status && response.data.status == 200)
  {
  let insertData = response.data.data;
@@ -74,22 +75,21 @@ export const onAddEditChildSuccess = async (response: any, dispatch: any, naviga
   let EntitySchema = ArticleEntitySchema;
   let pinnedArticle = "";
   //let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
-  try{
-    let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
-    console.log(createresult,"..createresult..");
-    // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
-    // console.log(allDatatoStore,"..allDatatoStore..")
-    // console.log(new Date(),"in insert success---",response);
-    navigation.navigate('ChildProfileScreen');
-}
-catch(e) {
-    let errorArr = [];
-    console.log("in insert catch---",response);
-    errorArr.push(response);
-    navigation.navigate('ChildProfileScreen');
-    dispatch(receiveAPIFailure(errorArr));
-
-}
+//   try{
+//     // let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
+//     // console.log(createresult,"..createresult..");
+//     // // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
+//     // console.log(allDatatoStore,"..allDatatoStore..")
+//     // console.log(new Date(),"in insert success---",response);
+//     navigation.navigate('ChildProfileScreen');
+// }
+// catch(e) {
+//     let errorArr = [];
+//     console.log("in insert catch---",response);
+//     errorArr.push(response);
+//     navigation.navigate('ChildProfileScreen');
+//     dispatch(receiveAPIFailure(errorArr));
+// }
  }
  
 }
