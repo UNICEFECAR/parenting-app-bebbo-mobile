@@ -3,13 +3,13 @@ import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/B
 import {
   FormContainer,
   FormContainerFlex,
-    FormDateAction,
-    FormDateContainer,
-    FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    LabelText,
-    TextAreaBox,TextBox
+  FormDateAction,
+  FormDateContainer,
+  FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  LabelText,
+  TextAreaBox, TextBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
@@ -18,7 +18,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { formatStringDate } from '../services/Utils';
-import { Heading2w, ShiftFromTop10 } from '@styles/typography';
+import { Heading2w, Heading4Regularw, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -27,9 +27,10 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { addChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
+import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
+import { HeaderActionView, HeaderRowView } from '@components/shared/HeaderContainerStyle';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -38,17 +39,17 @@ type ChildSetupNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
+  route: any,
   navigation: ChildSetupNavigationProp;
 };
 
-const AddExpectingChildProfile = ({ navigation }: Props) => {
+const AddExpectingChildProfile = ({ route, navigation }: Props) => {
+  let childData = route.params.childData;
+  //console.log(childData, "..childData..")
+  const editScreen = childData?.uuid != '' ? true : false;
+  console.log(editScreen, "..editScreen..")
   //const [dobDate, setdobDate] = useState();
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch);
-      getAllConfigData(dispatch);
-    },[])
-  );
+
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || plannedTermDate;
@@ -57,13 +58,13 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
   };
   const child_age = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
-     );
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const [name, setName] = React.useState("");
-  const {t} = useTranslation();
-  const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
+  const { t } = useTranslation();
+  const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const showdobDatepicker = () => {
     setdobShow(true);
@@ -71,37 +72,94 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const childList = useAppSelector((state: any) =>
+    state.childData.childDataSet.allChild != ''
+      ? JSON.parse(state.childData.childDataSet.allChild)
+      : state.childData.childDataSet.allChild,
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      getAllConfigData(dispatch);
+      if (childData?.uuid != '') {
+        setName(childData?.childName?childData?.childName:'');
+        setPlannedTermDate(childData?.birthDate != null ? new Date(childData?.birthDate) : null);
+      }
+    }, [])
+  );
   const AddChild = async () => {
-    let insertData: any =await getNewChild( '',"true", null, '',plannedTermDate,name, '', '');
+    let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '') : await getNewChild('', "true", null, '', plannedTermDate, name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    addChild(languageCode,false, 2, childSet, dispatch, navigation,child_age,null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null);
   }
+  const deleteRecord = (index: number, dispatch: any, uuid: string) => {
+    //console.log("..deleted..");
+    // deleteChild(index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"');
+    return new Promise((resolve, reject) => {
+      Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
+        {
+          text: t('removeOption1'),
+          onPress: () => reject('error'),
+          style: 'cancel',
+        },
+        {
+          text: t('removeOption2'),
+          onPress: () => {
+            deleteChild(
+              languageCode,
+              index,
+              dispatch,
+              'ChildEntity',
+              uuid,
+              'uuid ="' + uuid + '"',
+              resolve,
+              reject,
+              child_age,
+            );
+            navigation.navigate('ChildProfileScreen');
+          },
+        },
+      ]);
+    });
+  };
   return (
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <View
-            style={{
-              flexDirection: 'row',
-              flex: 1,
-              backgroundColor: headerColor,
-              maxHeight: 50,
-            }}>
-            <View style={{flex: 1, padding: 15}}>
-              <Pressable
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Icon name={'ic_back'} color="#FFF" size={15} />
-              </Pressable>
-            </View>
-            <View style={{flex: 9, padding: 7}}>
-              <Heading2w>
-                {t('expectChildAddTxt')}
-              </Heading2w>
-            </View>
+          style={{
+            flexDirection: 'row',
+            flex: 1,
+            backgroundColor: headerColor,
+            maxHeight: 50,
+          }}>
+          <View style={{ flex: 1, padding: 15 }}>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={'ic_back'} color="#FFF" size={15} />
+            </Pressable>
           </View>
+          <View style={{ flex: 9, padding: 7 }}>
+          <HeaderRowView>
+            <Heading2w>
+              {t('expectChildAddTxt')}
+            </Heading2w>
+            <HeaderActionView>
+            {childList?.length > 1 && childData && childData?.uuid != '' ? (
+              <Heading4Regularw
+                onPress={() =>
+                  deleteRecord(childData?.index, dispatch, childData?.uuid)
+                }>
+                {t('growthScreendeletebtnText')}
+              </Heading4Regularw>
+            ) : null}
+          </HeaderActionView>
+        </HeaderRowView>
+          </View>
+        </View>
         {/* <View
           style={{
             flexDirection: 'row',
@@ -144,8 +202,8 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
             {showdob && (
               <DateTimePicker
                 testID="dobdatePicker"
-                minimumDate={ new Date(DateTime.local().toISODate())}
-                maximumDate={ new Date(dobMax)}  
+                minimumDate={new Date(DateTime.local().toISODate())}
+                maximumDate={new Date(dobMax)}
                 value={new Date()}
                 mode={'date'}
                 display="default"
@@ -157,25 +215,25 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
           <FormContainer>
             <LabelText>{t('expectPreferNametxt')}</LabelText>
             <TextBox>
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              maxLength={30}
-              clearButtonMode="always"
-              onChangeText={(value) => { setName(value.replace(/\s/g, '')) }}
-              value={name.replace(/\s/g, '')}
-              // onChangeText={queryText => handleSearch(queryText)}
-              placeholder={t('expectPreferNamePlacetxt')}
-              
-            />
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                maxLength={30}
+                clearButtonMode="always"
+                onChangeText={(value) => { setName(value.replace(/\s/g, '')) }}
+                value={name.replace(/\s/g, '')}
+                // onChangeText={queryText => handleSearch(queryText)}
+                placeholder={t('expectPreferNamePlacetxt')}
+
+              />
             </TextBox>
           </FormContainer>
-          
+
         </MainContainer>
         <ShiftFromTop10>
-        <ButtonContainer>
+          <ButtonContainer>
             <ButtonPrimary
-            disabled={plannedTermDate==null || plannedTermDate==undefined || name==null || name==undefined || name=="" ? true :false}
+              disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" ? true : false}
               onPress={() => {
                 //navigation.navigate('ChildProfileScreen');
                 // if(plannedTermDate==null || plannedTermDate==undefined){
@@ -186,12 +244,12 @@ const AddExpectingChildProfile = ({ navigation }: Props) => {
                 // }
                 //else{
                 AddChild();
-               // }
+                // }
               }}>
-              <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+              <ButtonText>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
           </ButtonContainer>
-          </ShiftFromTop10>
+        </ShiftFromTop10>
       </SafeAreaView>
     </>
   );

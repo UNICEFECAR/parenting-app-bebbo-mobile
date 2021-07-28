@@ -37,7 +37,7 @@ const ChildDate = (props: any) => {
   const {childData}=props;
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
-};
+  };
       useFocusEffect(
         React.useCallback(() => {
           if(birthDate=="" ||  birthDate==null ||  birthDate==undefined){ 
