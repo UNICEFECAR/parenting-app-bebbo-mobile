@@ -5,6 +5,7 @@ export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
+export const articleCategoryArray = [4,1,55,56,3,2];
 export const videoTypeVimeo = "vimeo";
 export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
