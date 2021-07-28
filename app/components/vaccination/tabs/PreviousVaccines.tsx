@@ -51,11 +51,12 @@ const PreviousVaccines = (props: any) => {
     );
   };
   const gotoArticle = (pinned_articleID) => {
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'ChildDevelopment',
-    //   headerColor: artHeaderColor,
-    //   backgroundColor: artBackgroundColor,
-    // });
+    navigation.navigate('DetailsScreen', {
+      fromScreen: 'VaccinationTab',
+    headerColor:headerColor,
+    backgroundColor:backgroundColor,
+    detailData:pinned_articleID,
+     });
   };
   const doneVc = item.vaccines.filter((item) => {
     return item.isMeasured;
