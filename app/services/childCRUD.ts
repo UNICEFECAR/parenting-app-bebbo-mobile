@@ -80,7 +80,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       if (userParentalRole?.length > 0) {
         child.parent_gender = userParentalRole[0].value
       }
-      console.log(child);
+      // console.log(child);
       // childId.parent_gender=
       // childId.taxonomydata
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
