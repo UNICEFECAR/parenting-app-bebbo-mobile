@@ -170,6 +170,7 @@ export const formatDate=(dateData:any)=>{
   return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
 }
 export const formatStringDate=(dateData:any)=>{
+    console.log(dateData,"..dateData..")
     return DateTime.fromJSDate(dateData as Date).toFormat('dd LLL yyyy');
   }
 

@@ -1,6 +1,6 @@
 
 import styled from 'styled-components/native';
-
+ 
 /*Button Pressable */
 export const ButtonPrimary = styled.Pressable`
 background: ${props => props.disabled ? props.theme.colors.SECONDARY_COLOR : props.theme.colors.SECONDARY_COLOR};
@@ -140,6 +140,7 @@ export const ButtonActivity = styled(ButtonPrimary)`
 export const ButtonArticles = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.ARTICLES_COLOR};
 `;
+ 
 export const ButtonArticlesTint = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.ARTICLES_TINTCOLOR};
 `;
