@@ -4,51 +4,10 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import styled from 'styled-components/native';
-const Container = styled.View`
-  width: 100%;
-  flex: 1;
-`;
-const MainView = styled.View`
-  justify-content: center;
-  align-content: center;
-  flex: 1;
-`;
-const WrapView = styled.View`
-  justify-content: center;
-  align-content: center;
-  margin-top: 20px;
-`;
+import { FlexDirCol } from './shared/FlexBoxStyle';
+import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 
-const PartnerLogo = styled.Image`
-  width: 200px;
-  height: 80px;
-  margin-top: 30px;
-  align-items: center;
-  resize-mode: contain;
-`;
-const SponsorLogo = styled.Image`
-  width: 50px;
-  height: 50px;
-  margin-top: 30px;
-`;
-const StaticLogo = styled.Image`
-  width: 150px;
-  height: 80px;
-`;
-const LoadingText = styled.Text`
-  color: #fff;
-  font-size: 25px;
-  font-weight: bold;
-`;
-const styles = StyleSheet.create({
-  imagetag: {
-    // width:120,
-    // height:120,
-    // marginTop:10,
-    position: 'absolute',
-    top: 80,
-  },
-});
+
 
 const item = {
   image: require('@assets/svg/bebbo_logo_shape.svg'),
@@ -60,7 +19,7 @@ const LoadingScreenComponent = (props: any) => {
   const sponsors = props.sponsors;
  // console.log(sponsors, '..11sponsors..');
   return (
-    <Container>
+    <LoadingContainer>
       <MainView>
         <LinearGradient
           start={{x: 0, y: 0}}
@@ -71,16 +30,27 @@ const LoadingScreenComponent = (props: any) => {
           }}>
           <View
             style={{
-              flex: 3,
+              flex: 4,
               alignItems: 'center',
-              justifyContent: 'space-around',
+              justifyContent: 'flex-start',
               flexDirection: 'column',
+              marginTop:25,
             }}>
-            <Text style={{marginTop: 25}}>
-              <VectorImage source={item.image} style={styles.imagetag} />
-            </Text>
-            <Text>
-              <PartnerLogo
+              <FlexDirCol>
+            <View>
+              <VectorImage source={item.image} />
+            </View>
+            <View style={{
+                  width:240,height:80,
+                  //backgroundColor:'#000',
+                  alignContent:'center',
+                  marginTop:25,
+                }}>
+              <PartnerLogo 
+              style={{
+                flex: 1,
+  resizeMode: 'contain'
+              }}
                 source={
                   sponsors.length > 0
                     ? {
@@ -93,9 +63,18 @@ const LoadingScreenComponent = (props: any) => {
                     : require('')
                 }
               />
-            </Text>
-            <Text>
+            </View>
+            <View style={{
+                  width:180,height:60,
+                  // backgroundColor:'#000',
+                  alignContent:'center',
+                  marginTop:25,
+                }}>
               <SponsorLogo
+              style={{
+                flex: 1,
+  resizeMode: 'contain'
+              }}
                 source={
                   sponsors.length > 0
                     ? {
@@ -108,13 +87,14 @@ const LoadingScreenComponent = (props: any) => {
                     : require('')
                 }
               />
-            </Text>
+            </View>
             <WrapView>
               {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
               <StaticLogo
                 source={require('../assets/loading/unicef_logo.png')}
               />
             </WrapView>
+            </FlexDirCol>
           </View>
 
           <View
@@ -135,7 +115,7 @@ const LoadingScreenComponent = (props: any) => {
           </View>
         </LinearGradient>
       </MainView>
-    </Container>
+    </LoadingContainer>
   );
 };
 export default LoadingScreenComponent;

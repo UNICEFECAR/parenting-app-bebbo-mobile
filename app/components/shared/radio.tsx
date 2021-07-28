@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-const Radio = styled.Text`
+const Radio = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   width: 20px;
   height: 20px;
@@ -11,9 +11,10 @@ export const RadioActive = styled(Radio)`
   line-height: 20px;
   flex-direction: row;
   text-align: center;
+  justify-content:center;
   background-color: ${(props) => props.theme.colors.PRIMARY_TINTCOLOR};
-  border-width:1px;
-  /*border-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR}*/
+ /* border-width:1px;
+  border-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR}*/
 `;
 
 export const RadioItemText = styled.Text`
