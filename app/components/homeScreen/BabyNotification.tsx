@@ -33,7 +33,7 @@ const BabyNotification = () => {
 
   return (
     <>
-      {/* {activeChild?.gender == '' ? ( */}
+      {activeChild?.gender == '' ? (
         <>
           <BgSecondary>
             <MainContainer>
@@ -93,7 +93,7 @@ const BabyNotification = () => {
             </MainContainer>
           </BgSecondary>
         </>
-      {/* ) : null} */}
+      ) : null}
     </>
   );
 };
