@@ -94,7 +94,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   let genders = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -142,7 +142,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   );
   const sendData = (data: any) => {
     // the callback. Use a better name
-    // console.log("111111")
+    console.log("111111",data)
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
