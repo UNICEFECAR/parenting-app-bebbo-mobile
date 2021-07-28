@@ -124,14 +124,14 @@ export function* fetchAPISaga() {
 }
 
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any) {
-  // console.log("errorArr on redirect--",errorArr);
+  console.log("errorArr on redirect--",errorArr);
   yield put(receiveAPIFailure(errorArr))
   if (prevPage == 'Terms') {
     //dispatch action for terms page
     yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
   } else if (prevPage == 'AddEditChild') {
     //dispatch action for sponsor page
-    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage)
+    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
   else if (prevPage == 'CountryLanguageSelection') {
     //dispatch action for sponsor page
