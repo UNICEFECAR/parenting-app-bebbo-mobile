@@ -256,7 +256,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any,relationship?:any) => {
   let oldBirthDate;
   if (editScreen) {
-    //console.log("..update child..", data);
+    console.log("..update child..", data);
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
     if (oldChild?.length > 0) {
       oldChild = oldChild.map(item => item)[0];
