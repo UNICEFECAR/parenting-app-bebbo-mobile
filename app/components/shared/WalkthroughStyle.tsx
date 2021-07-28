@@ -14,15 +14,15 @@ export const Slide = styled.View`
   padding: 0 25px;
 `;
 
-export const WalkthroughImagebox = styled.Text`
+export const WalkthroughImagebox = styled.View`
   background: #fff;
   padding: 25px;
   border-radius: 20px;
   margin-bottom: 20px;
   width: 200px;
-
   flex-direction: row;
-  align-content: center;
+  align-items: center;
+  justify-content:center;
   text-align: center;
 `;
 
@@ -75,7 +75,4 @@ export const WalkBtn = styled.View`
   flex: 1;
  
 `;
-
-
-
 export default WalkthroughContainer;
