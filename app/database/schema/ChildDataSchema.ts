@@ -35,16 +35,16 @@ export const ReminderEntitySchema = {
   embedded: true,
   properties: {
     uuid: { type: "string" },
-    remiderType: { type: "string" },
-    remiderDate: { type: "date" },
-    remiderTime: { type: "date" },
+    reminderType: { type: "string" },
+    reminderDate: { type: "int" },
+    reminderTime: { type: "int" },
   }
 }
 export type ReminderEntity = {
   uuid: string
-  remiderType: remiderType,
-  remiderDate: Date,
-  remiderTime: Date,
+  reminderType: remiderType,
+  reminderDate: number,
+  reminderTime: number,
 }
 
 export type ChildEntity = {

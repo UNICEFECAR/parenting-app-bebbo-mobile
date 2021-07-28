@@ -138,22 +138,83 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async deleteChildReminders<Entity>(entitySchema: ObjectSchema,reminder:any,condition:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    realm?.write(() => {
+                    if(obj[0].reminders.length>0){
+                        let updateItemIndex = obj[0].reminders.findIndex(item=>{
+                            return item.uuid==reminder.uuid
+                          });
+                          obj[0].reminders.splice(updateItemIndex, 1);
+                        //   console.log(updateItemIndex)
+                          
+                    }
+                    });
+                   resolve('success');
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
+            }
+        });
+    }
+    public async updateChildReminders<Entity>(entitySchema: ObjectSchema,reminder:any,condition:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    realm?.write(() => {
+                    if(obj[0].reminders.length>0){
+                        let updateItemIndex = obj[0].reminders.findIndex(item=>{
+                            return item.uuid==reminder.uuid
+                          });
+                        //   console.log(updateItemIndex)
+                          if(updateItemIndex==0){
+                            obj[0].reminders[updateItemIndex]= reminder
+                          }else{
+                            obj[0].reminders.push(reminder);
+                          }
+                    }else{
+                        obj[0].reminders.push(reminder);
+                    }
+                    });
+                   resolve('success');
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
+            }
+        });
+    }
     public async updateChildMeasures<Entity>(entitySchema: ObjectSchema,measures:any,condition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if(realm)
                 {
-                    console.log(realm);
+                    // console.log(realm);
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                   console.log(obj,obj[0]);
-                   console.log(typeof obj[0].measures)
+                //    console.log(obj,obj[0]);
+                //    console.log(typeof obj[0].measures)
                     realm?.write(() => {
                     if(obj[0].measures.length>0){
                         let updateItemIndex = obj[0].measures.findIndex(item=>{
                             return item.uuid==measures.uuid
                           });
-                          console.log(updateItemIndex)
+                        //   console.log(updateItemIndex)
                           if(updateItemIndex==0){
                             obj[0].measures[updateItemIndex]= measures
                           }else{
