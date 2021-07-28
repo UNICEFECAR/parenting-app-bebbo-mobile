@@ -54,13 +54,12 @@ const DATA = [
     title: 'Picking stuff around',
   },
 ];
-
 const RelatedArticles = (props:RelatedArticlesProps) => {
   // console.log(props);
   const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
-  // console.log(props);
+  console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const {t} = useTranslation();
-  const relartlength = related_articles.length;
+  let relartlength = related_articles?.length;
   const articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
@@ -74,47 +73,73 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
+        console.log("relartlength on start--",relartlength);
         if(relartlength > 0)
         {
-          // const filterQuery = 'id Contains "'+currentChildData.parent_gender+'" AND child_age Contains "'+currentChildData.taxonomyData.id+'"';
-          const filterQuery = related_articles.map((x: any) => `id = '${x}'`).join(' OR ');
-          const databaseData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
+          let relatedData:any = [];
+          if(fromScreen == "ChildgrowthTab")
+          {
+            const filterQuery = JSON.parse(JSON.stringify(related_articles)).map((x: any) => `id = '${x}'`).join(' OR ');
+            relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
+          }else {
           // console.log(databaseData.length,"neha");
-        //  databaseData.map(user => user
-          setrelatedArticleData(databaseData);
+            relatedData = articleData.filter((x:any)=> JSON.parse(JSON.stringify(related_articles)).includes(x.id));
+          }
+          // console.log("relatedData--",relatedData.length);
+          relartlength = relatedData.length;
+          console.log(relartlength,"relartlength--",maxRelatedArticleSize);
+          if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
+            const catartlength = maxRelatedArticleSize - relartlength;
+            console.log("catartlength--",catartlength);
+            // console.log("relatedArticleData--",relatedArticleData);
+            const filteredArtData = articleData.filter((x: any)=> {
+              const i = relatedData.findIndex((_item: any) => _item.id === x.id);
+              return x.category==category && x.id !==currentId && i == -1
+            }).slice(0,catartlength);
+            console.log(filteredArtData);
+            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...relatedData ,...filteredArtData]);
+          }else {
+            setrelatedArticleData(relatedData);
+          }
         }
-        if(category!=5){
+        // if(category!=5){
       // go not calclualte for growth screen
-        if(relartlength < maxRelatedArticleSize) {
+        else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
+          console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           const catartlength = maxRelatedArticleSize - relartlength;
-          // console.log(articleData)
-          // console.log(relatedArticleData,"--relatedArticleData");
-          const databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
-          // console.log(databaseData.length);
-          // console.log(databaseData.filter((x:any)=> console.log(x) ));
-          const filteredArtData = databaseData.filter((x: any)=> {
+          console.log("relatedArticleData--",relatedArticleData);
+          const filteredArtData = articleData.filter((x: any)=> {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
             return x.category==category && x.id !==currentId && i == -1
           }).slice(0,catartlength);
-          // const filteredArtData = articleData.filter((x: any)=> {
-          //   const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-          //   return x.category==category && x.id !==currentId && i == -1
-          // }).slice(0,catartlength);
-          // console.log(filteredArtData);
+          console.log(filteredArtData);
           setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
-          // console.log(relatedArticleData);
-          // setrelatedArticleData(relatedArticleData.push(...filteredArtData));
         }
-      }
+      // }
       }
       fetchData()
     },[currentId])
   );
+  console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
+  // const getSameCategoryArticle = () => {
+  //   if(relartlength < maxRelatedArticleSize) {
+  //     const catartlength = maxRelatedArticleSize - relartlength;
+      
+  //     console.log("relatedArticleData--",relatedArticleData);
+  //     const filteredArtData = articleData.filter((x: any)=> {
+  //       const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
+  //       return x.category==category && x.id !==currentId && i == -1
+  //     }).slice(0,catartlength);
+  //     console.log(filteredArtData);
+  //     setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
+  //   }
+  // }
   useFocusEffect(
     React.useCallback(() => {
       // console.log("details usefocuseffect")
       // filterArray.length = 0;
       const fetchData = async () => { 
+        console.log("relatedArticleData lebgth--",relatedArticleData.length);
         let imageArraynew:any= [];
         if(relatedArticleData?.length>0){
           relatedArticleData.map((item: any, index: number) => {
@@ -127,9 +152,9 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           })
           }
           });
-          console.log(imageArraynew,"..imageArray..");
+          // console.log(imageArraynew,"..imageArray..");
           const imagesDownloadResult = await downloadImages(imageArraynew);
-          console.log(imagesDownloadResult,"..imagesDownloadResult..");
+          // console.log(imagesDownloadResult,"..imagesDownloadResult..");
       }
       }
       fetchData();
@@ -140,7 +165,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
   const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
     navigation.navigate('DetailsScreen',
     {
-      fromScreen:fromScreen ? fromScreen :"Articles",
+      fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
       headerColor:headerColor,
       backgroundColor:backgroundColor,
       detailData:item,
