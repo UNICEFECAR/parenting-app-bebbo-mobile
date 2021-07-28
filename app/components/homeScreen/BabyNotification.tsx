@@ -30,7 +30,9 @@ const BabyNotification = () => {
   );
   console.log(activeChild,"..activeChild.gender..")
   const bgColor = themeContext.colors.SECONDARY_COLOR;
-
+  const isFutureDate = (date: Date) => {
+    return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+  };
   return (
     <>
       {activeChild?.gender == '' ? (
@@ -73,16 +75,28 @@ const BabyNotification = () => {
                 <FDirCol>
                   <ButtonTertiaryMd>
                     <ButtonLinkPress
-                      onPress={() =>
-                        navigation.navigate('EditChildProfile', {
-                          childData:
-                            activeChild != null &&
-                            activeChild != '' &&
-                            activeChild != undefined
-                              ? activeChild
-                              : null,
-                        })
-                      }>
+                      onPress={() =>{
+                      if(isFutureDate(activeChild.birthDate)){
+                          navigation.navigate('AddExpectingChildProfile', {
+                            childData:
+                              activeChild != null &&
+                              activeChild != '' &&
+                              activeChild != undefined
+                                ? activeChild
+                                : null,
+                          })
+                        }
+                        else{
+                          navigation.navigate('EditChildProfile', {
+                            childData:
+                              activeChild != null &&
+                              activeChild != '' &&
+                              activeChild != undefined
+                                ? activeChild
+                                : null,
+                          })
+                        }
+                      }}>
                       <ButtonTextMd>
                         {t('babyNotificationUpdateBtn')}
                       </ButtonTextMd>

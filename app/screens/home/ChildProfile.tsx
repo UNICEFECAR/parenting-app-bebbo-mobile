@@ -74,6 +74,9 @@ const ChildProfile = ({navigation}: Props) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
+const isFutureDate = (date: Date) => {
+  return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+};
 const currentActiveChild =activeChild.uuid;
 const child_age = useAppSelector(
   (state: any) =>
@@ -135,8 +138,15 @@ const child_age = useAppSelector(
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
+                  console.log("..2222..");
                   data.index = index;
-                  navigation.navigate('EditChildProfile', {childData: data});
+                  console.log(isFutureDate(data.birthDate),"..isFutureDate(data.birthDate)..");
+                  if(isFutureDate(data.birthDate)){
+                    navigation.navigate('AddExpectingChildProfile', {childData: data});
+                  }
+                  else{
+                    navigation.navigate('EditChildProfile', {childData: data});
+                  }
                 }}>
                 <Text>{t('editProfileBtn')}</Text>
               </ButtonTextSmLine>
@@ -194,7 +204,14 @@ const child_age = useAppSelector(
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {
+                  data.index = index;
+                  console.log(isFutureDate(data.birthDate),"..isFutureDate(data.birthDate)..");
+                  if(isFutureDate(data.birthDate)){
+                    navigation.navigate('AddExpectingChildProfile', {childData: data});
+                  }
+                  else{
                     navigation.navigate('EditChildProfile', {childData: data});
+                  }
                   }}>
                   <Text>{t('editProfileBtn')}</Text>
                 </ButtonTextSmLine>
@@ -288,7 +305,7 @@ const child_age = useAppSelector(
               <ProfileLinkCol>
                 <ButtonLinkPress
                   onPress={() => {
-                    navigation.navigate('AddExpectingChildProfile');
+                    navigation.navigate('AddExpectingChildProfile',{childData: null});
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
