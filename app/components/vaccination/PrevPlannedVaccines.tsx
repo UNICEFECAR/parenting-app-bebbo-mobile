@@ -1,6 +1,8 @@
 import { BgContainer } from '@components/shared/Container';
+import { Heading4 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
@@ -61,8 +63,10 @@ const PrevPlannedVaccines = (props: any) => {
     // onPrevPlannedVaccineToggle(allCheckedVaccines);
     // console.log(allCheckedVaccines)
   };
+  const {t} = useTranslation();
   return (
     <>
+    {allPreviousPendingVaccines?.length > 0 ?
       <BgContainer>
         {allPreviousPendingVaccines.map((item, index) => {
           return (
@@ -75,6 +79,9 @@ const PrevPlannedVaccines = (props: any) => {
           );
         })}
       </BgContainer>
+      :(
+        <Heading4>{t('noVaccinesForPeriod')}</Heading4>
+      )}
     </>
   );
 };

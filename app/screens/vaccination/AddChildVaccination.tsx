@@ -21,7 +21,6 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import {
-  HeaderActionView,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -263,14 +262,14 @@ const AddChildVaccination = ({route, navigation}: any) => {
           <HeaderTitleView>
             <Heading2>{headerTitle}</Heading2>
           </HeaderTitleView>
-          <HeaderActionView>
+          {/* <HeaderActionView>
             <Pressable
               onPress={() => {
                 setModalVisible(true);
               }}>
               <Text>{t('growthScreendeletebtnText')}</Text>
             </Pressable>
-          </HeaderActionView>
+          </HeaderActionView> */}
         </HeaderRowView>
 
         <ScrollView style={{flex: 9}}>
