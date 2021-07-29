@@ -18,6 +18,7 @@ import {
   ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2w,
@@ -35,7 +36,7 @@ import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
-import { setActiveChild } from '../../services/childCRUD';
+import { getAllChildren, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 
 type NotificationsNavigationProp =
@@ -58,12 +59,12 @@ const ChildProfile = ({navigation}: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const dispatch = useAppDispatch();
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     getAllChildren(dispatch);
-  //     getAllConfigData(dispatch);
-  //   },[])
-  // );
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch);
+      //getAllConfigData(dispatch);
+    },[])
+  );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)

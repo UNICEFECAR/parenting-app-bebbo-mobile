@@ -62,8 +62,12 @@ const Childgrowth = ({navigation,route}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
-
+  console.log(activeChild,"..activeChild..")
+  // const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+  let measures:any=[];
+  if(activeChild?.measures.length>0){
+     measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+    }
   // const standardDevData = useAppSelector((state: any) =>
   //   JSON.parse(state.utilsData.taxonomy.standardDevData),
   // );
