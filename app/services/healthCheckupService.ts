@@ -45,7 +45,7 @@ export const getAllHealthCheckupPeriods = () => {
   // sorting measures by date
   let allMeasurements = allMeasures.map((item: MeasuresEntity) => {
     let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
-    console.log(item.vaccineIds,"item.vaccineIds")
+    // console.log(item.vaccineIds,"item.vaccineIds")
     return {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
