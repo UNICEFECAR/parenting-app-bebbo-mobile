@@ -10,7 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { BackHandler, Pressable, ScrollView } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheetManager } from 'styled-components';
 import { ThemeContext } from 'styled-components/native';
+import { Border } from 'victory-native';
 
 export const ChartFullScreen = ({route}) => {
   const {activeChild, chartType, obj, standardDeviation} = route.params;
@@ -53,27 +55,24 @@ export const ChartFullScreen = ({route}) => {
             <MainContainer
               style={{
                 backgroundColor: 'white',
-                
                 flexDirection: 'column',
-                // paddingLeft: 20,
-                
               }}>
               
-              <ShiftFromTopBottom10>
               <FlexFDirRowSpace>
                   <Heading2>{chartHeading.title}</Heading2>
-                <Pressable onPress={() => closeFullScreen()}>
-                  <Icon name="ic_close" />
+                <Pressable style={{padding:12}}
+                 onPress={() => closeFullScreen()}>
+                  <Icon name="ic_close" size={20} />
                 </Pressable>
                 </FlexFDirRowSpace>
-                </ShiftFromTopBottom10>
-              
-              <GrowthChart
+                
+                <FlexCol>
+                <GrowthChart
                 activeChild={activeChild}
                 chartType={chartTypes.weightForHeight}
                 bgObj={obj}
                 standardDeviation={standardDeviation}
-              />
+              /></FlexCol>
             </MainContainer>
             </FlexCol>
           </ScrollView>
