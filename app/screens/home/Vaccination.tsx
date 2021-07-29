@@ -35,12 +35,21 @@ const Vaccination = ({navigation}: Props) => {
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
-  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod,overDuePreviousVCcount,doneVCcount } = getAllVaccinePeriods();
+  let {
+    upcomingPeriods,
+    previousPeriods,
+    sortedGroupsForPeriods,
+    totalPreviousVaccines,
+    totalUpcomingVaccines,
+    currentPeriod,
+    overDuePreviousVCcount,
+    doneVCcount,
+  } = getAllVaccinePeriods();
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods.map((item, itemindex) => {
+          {upcomingPeriods.length > 0 ? upcomingPeriods.map((item, itemindex) => {
             return (
               <UpcomingVaccines
                 item={item}
@@ -51,14 +60,14 @@ const Vaccination = ({navigation}: Props) => {
                 backgroundColor={backgroundColor}
               />
             );
-          })}
+          }) :  (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
         </View>
       );
     } else if (index === 1) {
-      return (
-        <View>
-          {previousPeriods.map((item, itemindex) => {
-           
+      // if (previousPeriods.length > 0) {
+        return (
+          <View>
+            {previousPeriods.length > 0 ? previousPeriods.map((item, itemindex) => {
               return (
                 <PreviousVaccines
                   item={item}
@@ -67,10 +76,12 @@ const Vaccination = ({navigation}: Props) => {
                   backgroundColor={backgroundColor}
                 />
               );
-            
-          })}
-        </View>
-      );
+            }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
+          </View>
+        );
+      // }else{
+      //   return (<Text></Text>)
+      // }
     }
   };
   return (
@@ -96,20 +107,24 @@ const Vaccination = ({navigation}: Props) => {
                 }}>
                 <Pressable onPress={() => setSelectedIndex(0)}>
                   <VacSummaryBox>
-                    <Heading2>{totalUpcomingVaccines?totalUpcomingVaccines:0}</Heading2>
+                    <Heading2>
+                      {totalUpcomingVaccines ? totalUpcomingVaccines : 0}
+                    </Heading2>
                     {/* added 1 for current period */}
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>{overDuePreviousVCcount?overDuePreviousVCcount:0}</Heading2>
+                    <Heading2>
+                      {overDuePreviousVCcount ? overDuePreviousVCcount : 0}
+                    </Heading2>
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
                 <Pressable onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
-                    <Heading2>{doneVCcount?doneVCcount:0}</Heading2>
+                    <Heading2>{doneVCcount ? doneVCcount : 0}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
                   </VacSummaryBox>
                 </Pressable>
