@@ -1,10 +1,14 @@
 import { BgContainer } from '@components/shared/Container';
 import { DateTime } from 'luxon';
-import React from 'react';
+import React, { useState } from 'react';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
+type VaccineItemProps = {
+  vaccineid: number;
+  measurementDate: number;
+};
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines,fromScreen} = props;
+  const {onPrevPlannedVaccineToggle, currentPeriodVaccines, fromScreen} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   previousPeriods.shift();
   //remove first period which is the current period
@@ -15,26 +19,46 @@ const PrevPlannedVaccines = (props: any) => {
     });
   });
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
-  allPreviousPendingVaccines= allPreviousPendingVaccines.filter((vItem: any) => {
-    return !currentPeriodVaccines?.find((element) => {
-      return element.id == vItem.id;
-    });
-  });
+  allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
+    (vItem: any) => {
+      return !currentPeriodVaccines?.find((element) => {
+        return element.id == vItem.id;
+      });
+    },
+  );
   console.log(allPreviousPendingVaccines);
-  let allCheckedVaccines: any[] = [];
+  // let allCheckedVaccines: any[] = [];
+  const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
+    [],
+  );
+
   const onToggleVaccine = (id, isVaccineItemChecked) => {
     // console.log(id,isVaccineItemChecked);
     if (isVaccineItemChecked) {
-      allCheckedVaccines.push({
-        vaccineid: id,
-        measurementDate: DateTime.now().toMillis(),
-      });
+      const allCheckedVaccines = [
+        ...checkedVaccines,
+        {
+          vaccineid: id,
+          measurementDate: DateTime.now().toMillis(),
+        },
+      ];
+      setCheckedVaccines(allCheckedVaccines);
+      onPrevPlannedVaccineToggle(allCheckedVaccines);
+      // allCheckedVaccines.push({
+      //   vaccineid: id,
+      //   measurementDate: DateTime.now().toMillis(),
+      // });
     } else {
-      allCheckedVaccines = allCheckedVaccines.filter(
+      const allCheckedVaccines = [...checkedVaccines].filter(
         (item) => item.vaccineid !== id,
       );
+      setCheckedVaccines(allCheckedVaccines);
+      onPrevPlannedVaccineToggle(allCheckedVaccines);
+      // allCheckedVaccines = allCheckedVaccines.filter(
+      //   (item) => item.vaccineid !== id,
+      // );
     }
-    onPrevPlannedVaccineToggle(allCheckedVaccines);
+    // onPrevPlannedVaccineToggle(allCheckedVaccines);
     // console.log(allCheckedVaccines)
   };
   return (
