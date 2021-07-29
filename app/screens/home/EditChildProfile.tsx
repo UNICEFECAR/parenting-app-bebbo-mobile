@@ -92,13 +92,14 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const {t} = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   let genders = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
+  
   genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
     return e.id!=59;
   });
@@ -152,7 +153,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
     //console.log("333")
   };
   const [gender, setGender] = React.useState(
-    childData != null ? childData.gender : '',
+    childData != null ? childData.gender : 0,
   );
   useFocusEffect(
     React.useCallback(() => {

@@ -182,7 +182,9 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
       }
       else{
         if(param==0){
-            if(relationship =='' || relationship ==null || relationship ==undefined){
+            console.log(gender,"..gender11..");
+            console.log(relationship,"..relationship11..");
+            if(relationship =='' || relationship ==null || relationship ==undefined || gender =='' || gender ==0 || gender ==null || gender ==undefined){
                 // return 'Please enter relationship.';
                 return false;
             }
@@ -192,10 +194,31 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
                 // return 'Please enter name.';
                 return false;
             }
-            if(gender =='' || gender ==null || gender ==undefined){
+            if(gender =='' || gender ==0 || gender ==null || gender ==undefined){
                 // return 'Please enter gender.';
                 return false;
             }
+        }
+        if(param==2){
+            console.log(gender,"..gender..");
+            if(gender =='' || gender ==0 || gender ==null || gender ==undefined){
+                // return 'Please enter relationship.';
+                return false;
+            }
+        }
+        if(param==3){
+            console.log(gender,"..gender..");
+            if(relationship =='' || relationship ==null || relationship ==undefined){
+                // return 'Please enter relationship.';
+                return false;
+            }
+        }
+        if(param==4){
+            console.log(gender,"..gender..");
+            // if(relationship =='' || relationship ==null || relationship ==undefined){
+            //     // return 'Please enter relationship.';
+            //     return false;
+            // }
         }
         if(isPremature=="true"){
           if(plannedTermDate==null || plannedTermDate==undefined){
@@ -207,6 +230,8 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
           }
         }
         else{
+            console.log(gender,"..gender112..");
+            console.log(relationship,"..relationship112..");
             return true;
         }
       }
