@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-export const ButtonviewNext = styled.Text`
+export const ButtonviewNext = styled.View`
   width: 50px;
   height: 50px;
   
