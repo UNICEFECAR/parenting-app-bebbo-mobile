@@ -1,27 +1,42 @@
 import { BgContainer } from '@components/shared/Container';
 import { Heading4 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import VaccineItem from './VaccineItem';
+type VaccineItemProps = {
+  vaccineid:number,
+  measurementDate:number
+}
 const PlannedVaccines = (props: any) => {
   const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen} = props;
   const {t} = useTranslation();
-  let allCheckedVaccines: any[] = [];
+  const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
+  // let allCheckedVaccines: any[] = [];
   const onToggleVaccine = (id, isVaccineItemChecked) => {
     // console.log(id,isVaccineItemChecked);
     if (isVaccineItemChecked) {
-      allCheckedVaccines.push({
-        vaccineid: id,
-        measurementDate: DateTime.now().toMillis(),
-      });
+      const allCheckedVaccines = [...checkedVaccines, {
+          vaccineid: id,
+          measurementDate: DateTime.now().toMillis(),
+        }];
+      setCheckedVaccines(allCheckedVaccines);
+      // allCheckedVaccines.push({
+      //   vaccineid: id,
+      //   measurementDate: DateTime.now().toMillis(),
+      // });
+      onPlannedVaccineToggle(allCheckedVaccines);
+      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
-      allCheckedVaccines = allCheckedVaccines.filter(
+     const allCheckedVaccines = [...checkedVaccines].filter(
         (item) => item.vaccineid !== id,
       );
+      setCheckedVaccines(allCheckedVaccines);
+      onPlannedVaccineToggle(allCheckedVaccines);
+      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     }
-    onPlannedVaccineToggle(allCheckedVaccines);
-    // console.log(allCheckedVaccines)
+    
+   
   };
   return (
     <>
