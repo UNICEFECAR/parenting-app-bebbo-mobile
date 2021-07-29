@@ -3,7 +3,9 @@ import PreviousHealthCheckup from '@components/healthChekup/PreviousHealthChecku
 import UpcomingHealthCheckup from '@components/healthChekup/UpcomingHealthCheckup';
 import {
   ButtonContainerAuto,
-  ButtonHealth, ButtonText, ButtonTextSmLine
+  ButtonHealth,
+  ButtonText,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
@@ -12,7 +14,12 @@ import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2Center, Heading4Center, ShiftFromBottom20, ShiftFromTopBottom10 } from '@styles/typography';
+import {
+  Heading2Center,
+  Heading4Center,
+  ShiftFromBottom20,
+  ShiftFromTopBottom10
+} from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
@@ -31,7 +38,14 @@ const HealthCheckups = ({navigation}: Props) => {
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
   const {t} = useTranslation();
-  let {upcomingPeriods,previousPeriods,sortedGroupsForPeriods,totalPreviousVaccines,totalUpcomingVaccines,currentPeriod} = getAllHealthCheckupPeriods();
+  let {
+    upcomingPeriods,
+    previousPeriods,
+    sortedGroupsForPeriods,
+    totalPreviousVaccines,
+    totalUpcomingVaccines,
+    currentPeriod,
+  } = getAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   let reminders = useAppSelector((state: any) =>
@@ -39,39 +53,59 @@ const HealthCheckups = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
       : [],
   );
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const isFutureDate = (date: Date) => {
+    return (
+      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
+    );
+  };
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const healthCheckupReminder = reminders.filter((item)=> item.reminderType == "healthCheckup")[0];
+  const healthCheckupReminder = reminders.filter(
+    (item) => item.reminderType == 'healthCheckup',
+  )[0];
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods.length > 0 ? upcomingPeriods?.map((item, itemindex) => {
-            return (
-              <UpcomingHealthCheckup
-                item={item}
-                currentPeriodId={currentPeriod?.id}
-                key={itemindex}
-                headerColor={headerColor}
-                backgroundColor={backgroundColor}
-              />
-            );
-          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
+          {upcomingPeriods.length > 0 ? (
+            upcomingPeriods?.map((item, itemindex) => {
+              return (
+                <UpcomingHealthCheckup
+                  item={item}
+                  currentPeriodId={currentPeriod?.id}
+                  key={itemindex}
+                  headerColor={headerColor}
+                  backgroundColor={backgroundColor}
+                />
+              );
+            })
+          ) : (
+            <Heading4Center>{t('noDataTxt')}</Heading4Center>
+          )}
         </View>
       );
     } else if (index === 1) {
       return (
         <View>
-          {previousPeriods.length > 0 ? previousPeriods?.map((item, itemindex) => {
-            return (
-              <PreviousHealthCheckup
-                item={item}
-                key={itemindex}
-                headerColor={headerColor}
-                backgroundColor={backgroundColor}
-              />
-            );
-          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
+          {previousPeriods.length > 0 ? (
+            previousPeriods?.map((item, itemindex) => {
+              return (
+                <PreviousHealthCheckup
+                  item={item}
+                  key={itemindex}
+                  headerColor={headerColor}
+                  backgroundColor={backgroundColor}
+                />
+              );
+            })
+          ) : (
+            <Heading4Center>{t('noDataTxt')}</Heading4Center>
+          )}
         </View>
       );
     }
@@ -90,27 +124,32 @@ const HealthCheckups = ({navigation}: Props) => {
             <MainContainer style={{backgroundColor: backgroundColor}}>
               <ShiftFromBottom20>
                 <Heading2Center>{t('hcSummaryHeader')}</Heading2Center>
-                </ShiftFromBottom20>
-                {healthCheckupReminder ? null:
-                <Pressable
-                onPress={() => {
-                  navigation.navigate('AddReminder', {
-                    reminderType: 'healthCheckup', // from remiderType
-                    headerTitle: t('vcReminderHeading'),
-                    buttonTitle: t('hcReminderAddBtn'),
-                    titleTxt: t('hcReminderText'),
-                    warningTxt: t('hcReminderDeleteWarning'),
-                    headerColor: headerColor,
-                  });
-                }}><ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine></Pressable>}
+              </ShiftFromBottom20>
+
+              {
+              isFutureDate(activeChild?.birthDate) ? (null) :
+              healthCheckupReminder ? null : 
+                (<Pressable
+                  onPress={() => {
+                    navigation.navigate('AddReminder', {
+                      reminderType: 'healthCheckup', // from remiderType
+                      headerTitle: t('vcReminderHeading'),
+                      buttonTitle: t('hcReminderAddBtn'),
+                      titleTxt: t('hcReminderText'),
+                      warningTxt: t('hcReminderDeleteWarning'),
+                      headerColor: headerColor,
+                    });
+                  }}>
+                  <ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine>
+                </Pressable>)
+              }
 
               <ButtonContainerAuto>
                 <ButtonHealth
-                  
-                  onPress={
-                    () => 
+                  disabled={isFutureDate(activeChild?.birthDate)}
+                  onPress={() =>
                     navigation.navigate('AddChildHealthCheckup', {
-                      headerTitle: t('hcNewHeaderTitle')
+                      headerTitle: t('hcNewHeaderTitle'),
                     })
                   }>
                   <ButtonText>{t('hcNewBtn')}</ButtonText>
@@ -118,8 +157,7 @@ const HealthCheckups = ({navigation}: Props) => {
               </ButtonContainerAuto>
             </MainContainer>
 
-            <TabBarContainer
-              >
+            <TabBarContainer>
               {data.map((item, itemindex) => {
                 return (
                   <Pressable
@@ -135,7 +173,6 @@ const HealthCheckups = ({navigation}: Props) => {
                             itemindex == selectedIndex
                               ? headerColor
                               : backgroundColor,
-                         
                         },
                       ]}>
                       <Heading4Center>{item.title}</Heading4Center>
@@ -145,12 +182,10 @@ const HealthCheckups = ({navigation}: Props) => {
               })}
             </TabBarContainer>
             <ShiftFromTopBottom10>
-            <Flex1>
-              {renderItem(selectedIndex)}
-            </Flex1>
+              <Flex1>{renderItem(selectedIndex)}</Flex1>
             </ShiftFromTopBottom10>
           </ScrollView>
-          </ToolsBgContainer>
+        </ToolsBgContainer>
       </SafeAreaView>
     </>
   );

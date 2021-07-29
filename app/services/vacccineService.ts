@@ -94,8 +94,9 @@ export const getAllVaccinePeriods = () => {
     .filter((period: any) => period.vaccination_opens <= childAgeIndays)
     .reverse();
   // logic to add current period to upcomingPeriods and remove it from previousPeriods
-  const currentPeriod = previousPeriods[0];
+  let currentPeriod;
   if(previousPeriods.length>0){
+  currentPeriod = previousPeriods[0];
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
   }
