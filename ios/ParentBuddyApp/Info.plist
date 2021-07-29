@@ -37,12 +37,22 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
 	<key>NSCameraUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>roboto-bold.ttf</string>
+		<string>roboto-bold.woff</string>
+		<string>roboto-bold.woff2</string>
+		<string>roboto-regular.ttf</string>
+		<string>roboto-regular.woff</string>
+		<string>roboto-regular.woff2</string>
+		<string>fontello.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -57,15 +67,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>roboto-bold.ttf</string>
-		<string>roboto-bold.woff</string>
-		<string>roboto-bold.woff2</string>
-		<string>roboto-regular.ttf</string>
-		<string>roboto-regular.woff</string>
-		<string>roboto-regular.woff2</string>
-		<string>fontello.ttf</string>
-	</array>
 </dict>
 </plist>
