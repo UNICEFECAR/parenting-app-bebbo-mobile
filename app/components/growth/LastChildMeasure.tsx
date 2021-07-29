@@ -3,9 +3,7 @@ import { BannerContainer1 } from '@components/shared/Container';
 import {
   Flex1,
   Flex2,
-  Flex3, FlexColEnd, FlexDirColStart,
-  FlexDirRowEnd,
-  FlexDirRowSpace, FlexDirRowSpaceStart
+  Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useNavigation } from '@react-navigation/native';
@@ -20,7 +18,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
@@ -152,7 +150,8 @@ const LastChildMeasure = (props: any) => {
               </FlexDirRowSpace>
             </Flex2>
             <Flex1>
-              <Pressable
+              <FlexDirRowEnd>
+              <ButtonTextMdLine
                 onPress={() => {
                   const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
@@ -166,12 +165,13 @@ const LastChildMeasure = (props: any) => {
                     "doctorComment": lastmeasure.doctorComment})
                   })
                 }}>
-                <FlexDirRowEnd>
-                  <ButtonTextMdLine>
-                    {t('growthScreeneditText')}
-                  </ButtonTextMdLine>
-                </FlexDirRowEnd>
-              </Pressable>
+                {/* <FlexDirRowEnd>
+                  <ButtonTextMdLine> */}
+                   <Text> {t('growthScreeneditText')}</Text>
+                  {/* </ButtonTextMdLine>
+                </FlexDirRowEnd> */}
+              </ButtonTextMdLine>
+              </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
         </ShiftFromTop20>
@@ -179,4 +179,4 @@ const LastChildMeasure = (props: any) => {
     </>
   );
 };
-export default React.memo(LastChildMeasure);
+export default LastChildMeasure;
