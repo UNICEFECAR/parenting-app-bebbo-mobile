@@ -77,7 +77,7 @@ const UpcomingVaccines = (props: any) => {
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
   const vaccineReminder = reminders.filter(
-    (item) => item.reminderType == 'vaccine',
+    (item) => item?.reminderType == 'vaccine',
   )[0];
   if (vaccineReminder) {
     let today = DateTime.fromJSDate(new Date());
@@ -97,8 +97,8 @@ const UpcomingVaccines = (props: any) => {
     );
   };
   useEffect(() => {
-    currentPeriodId == item.periodID ? setIsOpen(true) : setIsOpen(false);
-    const yeas = item.vaccines.some((el) => {
+    currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
+    const yeas = item?.vaccines.some((el) => {
       return el.isMeasured == true;
     });
     console.log(yeas, 'isMeasuredyeas');
@@ -112,8 +112,8 @@ const UpcomingVaccines = (props: any) => {
       detailData: pinned_articleID,
     });
   };
-  const doneVc = item.vaccines.filter((item) => {
-    return item.isMeasured;
+  const doneVc = item?.vaccines.filter((item) => {
+    return item?.isMeasured;
   });
   // console.log(doneVc.length,"doneVc");
   return (
@@ -124,7 +124,7 @@ const UpcomingVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.vaccines.every((el) => {
+            {item?.vaccines.every((el) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
@@ -144,12 +144,12 @@ const UpcomingVaccines = (props: any) => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
-              <Heading2>{item.periodName}</Heading2>
+              <Heading2>{item?.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')}
+                {item?.vaccines.length} {t('vaccinesTxt')}
                 {', '}
                 {doneVc ? doneVc.length : 0} {t('vaccinesDoneTxt')} |{' '}
-                {item.vaccines.length - (doneVc ? doneVc.length : 0)}{' '}
+                {item?.vaccines.length - (doneVc ? doneVc.length : 0)}{' '}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>
@@ -165,7 +165,7 @@ const UpcomingVaccines = (props: any) => {
         </ToolsListContainer>
         {isOpen ? (
           <>
-            {item.vaccines.map((v, i) => {
+            {item?.vaccines.map((v, i) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
@@ -210,7 +210,7 @@ const UpcomingVaccines = (props: any) => {
             })}
 
             {/* Set Reminder After Add Time*/}
-            {currentPeriodId == item.periodID ? (
+            {currentPeriodId == item?.periodID ? (
               <MainContainer>
                 {vaccineReminder ? (
                   <FDirRowStart>
@@ -335,8 +335,8 @@ const UpcomingVaccines = (props: any) => {
 
             null}
             {/* add condition for only few vaccines are given in below */}
-            {currentPeriodId == item.periodID &&
-            item.vaccines.some((el) => {
+            {currentPeriodId == item?.periodID &&
+            item?.vaccines.some((el) => {
               return el.isMeasured == true;
             }) ? (
               <ShiftFromTopBottom10>
@@ -354,8 +354,8 @@ const UpcomingVaccines = (props: any) => {
               </ShiftFromTopBottom10>
             ) : null}
             {/* remaining add condition for all vaccines were not given in below */}
-            {currentPeriodId == item.periodID &&
-            item.vaccines.every((el) => {
+            {currentPeriodId == item?.periodID &&
+            item?.vaccines.every((el) => {
               return el.isMeasured == false;
             }) ? (
               <ButtonContainerAuto>

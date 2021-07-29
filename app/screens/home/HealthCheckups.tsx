@@ -46,7 +46,7 @@ const HealthCheckups = ({navigation}: Props) => {
     if (index === 0) {
       return (
         <View>
-          {upcomingPeriods?.map((item, itemindex) => {
+          {upcomingPeriods.length > 0 ? upcomingPeriods?.map((item, itemindex) => {
             return (
               <UpcomingHealthCheckup
                 item={item}
@@ -56,13 +56,13 @@ const HealthCheckups = ({navigation}: Props) => {
                 backgroundColor={backgroundColor}
               />
             );
-          })}
+          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
         </View>
       );
     } else if (index === 1) {
       return (
         <View>
-          {previousPeriods?.map((item, itemindex) => {
+          {previousPeriods.length > 0 ? previousPeriods?.map((item, itemindex) => {
             return (
               <PreviousHealthCheckup
                 item={item}
@@ -71,7 +71,7 @@ const HealthCheckups = ({navigation}: Props) => {
                 backgroundColor={backgroundColor}
               />
             );
-          })}
+          }) : (<Heading4Center>{t('noDataTxt')}</Heading4Center>)}
         </View>
       );
     }
