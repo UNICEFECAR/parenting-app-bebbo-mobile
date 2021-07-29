@@ -45,7 +45,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
-import { setActiveChild } from '../../services/childCRUD';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -112,14 +112,19 @@ const AddReminder = ({route, navigation}: any) => {
     setmeasureShowTime(true);
   };
   const deleteReminder =  async () => {
-    
+    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    console.log(allJsonDatanew?.length,"allJsonDatanew");
     let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
-      editReminderItem.uuid,
+      editReminderItem,
       'uuid ="' + activeChild.uuid + '"',
     );
-    // console.log(createresult,"ReminderDeleted");
-    setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+    console.log(createresult?.length,"ReminderDeleted");
+    if(createresult){
+      activeChild.reminders=createresult;
+      dispatch(setActiveChildData(activeChild));
+      }
+    // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
    
   }
   const saveReminder = async() => {
@@ -136,7 +141,11 @@ const AddReminder = ({route, navigation}: any) => {
       'uuid ="' + activeChild.uuid + '"',
     );
     // console.log(createresult);
-    setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+    if(createresult?.length>0){
+      activeChild.reminders=createresult;
+      dispatch(setActiveChildData(activeChild));
+      }
+    // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
     
   };
   return (
