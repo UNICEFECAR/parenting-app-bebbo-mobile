@@ -38,8 +38,9 @@ export const apiJsonDataGet = (childAge: any, parentGender: any) => {
     //   saveinDB: true,
     // },
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
-    console.log(apiJsonDataGet,"..apiJsonDataGet..")
+    
   ];
+  console.log(apiJsonDataGet,"..apiJsonDataGet..")
 }
 export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
   return {
@@ -153,12 +154,19 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
       if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
         if (item.id != "446") {
           if (param == 0) {
-            ageData.push(parseInt(item.id));
+            if(item.age_bracket.length>0){
+            item.age_bracket.map((ages:any)=>{
+              ageData.push(ages);
+            })   
+            }
+            //ageData.push(parseInt(item.id));
           }
           else {
             ageData.push(item);
           }
-
+          console.log(ageData,"..ageData..")
+          ageData = [...new Set(ageData)];  
+        console.log(ageData,"..unique..")
         }
       }
       return ageData;
@@ -392,47 +400,51 @@ export const getAllChildren = async (dispatch: any) => {
   // dispatch(setAllChildData(childAllData));
   //console.log("db length--", allJsonDatanew?.length);
   if (allJsonDatanew?.length > 0) {
-    databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
-      // console.log("changes--",changes);
-      // console.log("name--",name);
       childAllData = [];
       allJsonDatanew.map((value: ChildEntity) => {
         console.log(value, "..config value..");
         childAllData.push(value);
       })
-      console.log(childAllData, "before")
-      childAllData = childAllData.sort((a: any, b: any) => {
-        DateTime.fromISO(a.updatedAt).diff(DateTime.fromISO(b.updatedAt));
-        const keyA = new Date(a.updatedAt),
-          keyB = new Date(b.updatedAt);
-
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      });
-      console.log(childAllData, "after")
-      //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
+      console.log("childAllData--",childAllData);
       dispatch(setAllChildData(childAllData));
-      //}
-    });
+    // databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
+    //   // console.log("changes--",changes);
+    //   // console.log("name--",name);
+    
+    //   console.log(childAllData, "before")
+    //   childAllData = childAllData.sort((a: any, b: any) => {
+    //     DateTime.fromISO(a.updatedAt).diff(DateTime.fromISO(b.updatedAt));
+    //     const keyA = new Date(a.updatedAt),
+    //       keyB = new Date(b.updatedAt);
+
+    //     if (keyA < keyB) return -1;
+    //     if (keyA > keyB) return 1;
+    //     return 0;
+    //   });
+    //   console.log(childAllData, "after")
+    //   //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
+    //   dispatch(setAllChildData(childAllData));
+    //   //}
+    // });
   }
-  else {
-    //console.log("..else loop");
-    // let enteredChildData:any=[{
-    //     key:"userEnteredChildData",
-    //     value:"false",
-    //     createdAt: new Date(),
-    //     updatedAt: new Date(),
-    //   }]
-    //  let updateresult = await dataRealmCommon.update<ConfigSettingsEntity>(ConfigSettingsSchema, enteredChildData);
-    //   let createRelation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, [{
-    //     key:'userParentalRole',
-    //     value:'',
-    //     createdAt:new Date(),
-    //     updatedAt:new Date()
-    //  }]);
-    dispatch(setAllChildData(childAllData));
-  }
+  // else {
+  //   //console.log("..else loop");
+  //   // let enteredChildData:any=[{
+  //   //     key:"userEnteredChildData",
+  //   //     value:"false",
+  //   //     createdAt: new Date(),
+  //   //     updatedAt: new Date(),
+  //   //   }]
+  //   //  let updateresult = await dataRealmCommon.update<ConfigSettingsEntity>(ConfigSettingsSchema, enteredChildData);
+  //   //   let createRelation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, [{
+  //   //     key:'userParentalRole',
+  //   //     value:'',
+  //   //     createdAt:new Date(),
+  //   //     updatedAt:new Date()
+  //   //  }]);
+  //   dispatch(setAllChildData(childAllData));
+  // }
+  
 }
 
 export const deleteChild = async (languageCode: any, index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any) => {

@@ -149,7 +149,7 @@ const en = {
         developScreenheaderTitle: "Child development",
         developScreenprematureText: "Premature",
         developScreenchartLabel: "Pending",
-        developScreenchartText: "Milestones that remain to be reached during the current period",
+        developScreenchartText: "Reached milestones during the current period",
         developScreenmileStoneQ: "Which of the milestones has your child reached?",
         developScreentipsText: "Tips from Doctors",
         developScreenmileStone: "Milestone",

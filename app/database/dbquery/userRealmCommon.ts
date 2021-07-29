@@ -230,7 +230,7 @@ class UserRealmCommon extends Component {
                         
                        
                     });
-                   resolve('success');
+                   resolve(obj[0].measures);
                 // console.log("Language is: "+ obj[0].photoUri );
                 }
                 else {
