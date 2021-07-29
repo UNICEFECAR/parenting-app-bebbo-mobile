@@ -152,8 +152,10 @@ const ChildSetupList = ({ navigation }: Props) => {
   const childSetup = async () => {
     // if(netInfo.isConnected){
     const Ages=await getAge();
+    console.log(Ages,"..Ages..")
     let apiJsonData;
     if(Ages?.length>0){
+      console.log(Ages,"..11Ages..")
       apiJsonData=apiJsonDataGet(String(Ages),"all")
     }
     else{
