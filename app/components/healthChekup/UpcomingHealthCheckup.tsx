@@ -48,7 +48,7 @@ import Icon from '../shared/Icon';
 const UpcomingHealthCheckup = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
     props;
-  // console.log(item);
+  // console.log(currentPeriodId,"currentPeriodId");
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
@@ -82,7 +82,7 @@ const UpcomingHealthCheckup = (props: any) => {
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
   const healthCheckupReminder = reminders.filter(
-    (item) => item.reminderType == 'healthCheckup',
+    (item) => item?.reminderType == 'healthCheckup',
   )[0];
   if (healthCheckupReminder) {
     let today = DateTime.fromJSDate(new Date());
@@ -110,7 +110,7 @@ const UpcomingHealthCheckup = (props: any) => {
     );
   };
   useEffect(() => {
-    currentPeriodId == item.id ? setIsOpen(true) : setIsOpen(false);
+    currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
     // open first collapsible in upcoming vaccine period
   }, []);
   return (
@@ -121,7 +121,7 @@ const UpcomingHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.vaccines.some((el) => {
+            {item?.vaccines.some((el) => {
               return el.isMeasured == true;
             }) ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
@@ -141,8 +141,8 @@ const UpcomingHealthCheckup = (props: any) => {
               setIsOpen(!isOpen);
             }}>
             <ToolsHeadingView>
-              <Heading2>{item.title}</Heading2>
-              {item.isAdditional ? (
+              <Heading2>{item?.title}</Heading2>
+              {item?.isAdditional ? (
                 <Text>{item?.growthMeasures?.measurementDate}</Text>
               ) : null}
             </ToolsHeadingView>
@@ -162,13 +162,13 @@ const UpcomingHealthCheckup = (props: any) => {
         {isOpen ? (
           <>
             <MainContainer>
-              {item.vaccines.length > 0 ? (
+              {item?.vaccines.length > 0 ? (
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
                   </ToolsIconView>
                   <ToolsHeadingView>
-                    {item.vaccines.some((el) => {
+                    {item?.vaccines.some((el) => {
                       return el.isMeasured == true;
                     }) ? (
                       <ShiftFromTop5>
@@ -180,7 +180,7 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ShiftFromTop5>
                     ) : null}
                     <HealthDesc>
-                      {item.vaccines?.map((vaccineItem: any, index: number) => {
+                      {item?.vaccines?.map((vaccineItem: any, index: number) => {
                         if (vaccineItem.isMeasured === true) {
                           return (
                             <View key={index}>
@@ -193,7 +193,7 @@ const UpcomingHealthCheckup = (props: any) => {
                         }
                       })}
                     </HealthDesc>
-                    {item.vaccines.some((el) => {
+                    {item?.vaccines.some((el) => {
                       return el.isMeasured == false;
                     }) ? (
                       <ShiftFromBottom15>
@@ -201,7 +201,7 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ShiftFromBottom15>
                     ) : null}
                     <HealthDesc>
-                      {item.vaccines?.map((vaccineItem: any, index: number) => {
+                      {item?.vaccines?.map((vaccineItem: any, index: number) => {
                         if (vaccineItem.isMeasured === false) {
                           return (
                             <View key={index}>
@@ -255,14 +255,14 @@ const UpcomingHealthCheckup = (props: any) => {
               ) : null}
               {item?.pinned_article ? (
                 <ShiftFromTop15>
-                  <Pressable onPress={() => gotoArticle(item.pinned_article)}>
+                  <Pressable onPress={() => gotoArticle(item?.pinned_article)}>
                     <ButtonTextSmLineL>{t('hcArticleLink')}</ButtonTextSmLineL>
                   </Pressable>
                 </ShiftFromTop15>
               ) : null}
             </MainContainer>
 
-            {currentPeriodId == item.periodID ? (
+            {currentPeriodId == item?.id ? (
               <MainContainer>
                 {healthCheckupReminder ? (
                   <FDirRowStart>
@@ -292,6 +292,7 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ToolsHeadingView>
                       <ToolsActionView>
                         <Pressable
+                         disabled={isFutureDate(activeChild?.birthDate)}
                           onPress={() => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'healthCheckup', // from remiderType
@@ -311,7 +312,9 @@ const UpcomingHealthCheckup = (props: any) => {
                     </ToolsHeadView>
                   </FDirRowStart>
                 ) : (
+                  isFutureDate(activeChild?.birthDate) ? (null) :
                   <Pressable
+                  disabled={isFutureDate(activeChild?.birthDate)}
                     onPress={() => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'healthCheckup', // from remiderType
@@ -326,12 +329,13 @@ const UpcomingHealthCheckup = (props: any) => {
                       {t('hcReminderbtn')}
                     </ButtonTextMdLine>
                   </Pressable>
+                  
                 )}
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-
-            {item?.growthMeasures?.uuid ? (
+ { currentPeriodId == item?.id ?
+            item?.growthMeasures?.uuid ? (
               <ShiftFromTopBottom10>
                 <Pressable
                   onPress={() =>
@@ -344,8 +348,10 @@ const UpcomingHealthCheckup = (props: any) => {
                 </Pressable>
               </ShiftFromTopBottom10>
             ) : (
+              
               <ButtonContainerAuto>
                 <ButtonHealth
+                 disabled={isFutureDate(activeChild?.birthDate)}
                   onPress={() =>
                     navigation.navigate('AddChildHealthCheckup', {
                       headerTitle: t('hcNewHeaderTitle'),
@@ -354,10 +360,10 @@ const UpcomingHealthCheckup = (props: any) => {
                   }>
                   <ButtonText>{t('hcNewBtn')}</ButtonText>
                 </ButtonHealth>
-              </ButtonContainerAuto>
-            )}
+              </ButtonContainerAuto> 
+            ): null }
           </>
-        ) : null}
+        ) : null }
       </ToolsListOuter>
     </>
   );

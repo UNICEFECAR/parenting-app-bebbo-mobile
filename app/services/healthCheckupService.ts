@@ -233,28 +233,31 @@ let previousPeriods = sortedGroupsForPeriods
   .filter((period: any) => period.vaccination_opens <= childAgeIndays)
   .reverse();
 // // logic to add current period to upcomingPeriods and remove it from previousPeriods
-// const currentPeriod = previousPeriods[0];
-// upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
-// previousPeriods.shift();
+let currentPeriod;
+if(previousPeriods.length>0){
+currentPeriod = previousPeriods[0];
+upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
+previousPeriods.shift();
+}
 let totalUpcomingVaccines;
-//   if(upcomingPeriods?.length > 0) {
-//    totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-//     return item.vaccines.length;
-//   }).reduce((accumulator, current) => {
-//     return accumulator + current;
-//   });
-// }
+  if(upcomingPeriods?.length > 0) {
+   totalUpcomingVaccines = upcomingPeriods?.map((item) => {
+    return item.vaccines.length;
+  }).reduce((accumulator, current) => {
+    return accumulator + current;
+  });
+}
 let totalPreviousVaccines;
-// if(previousPeriods?.length > 0){
-//    totalPreviousVaccines = previousPeriods?.map((item) => {
-//     return item.vaccines.length;
-//   }).reduce((accumulator, current) => {
-//     return accumulator + current;
-//   });;
-// }
+if(previousPeriods?.length > 0){
+   totalPreviousVaccines = previousPeriods?.map((item) => {
+    return item.vaccines.length;
+  }).reduce((accumulator, current) => {
+    return accumulator + current;
+  });;
+}
 // console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
 // console.log(allHealthCheckupsData,"growth_period_uniqueData");
 
 
-return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines };
+return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines,currentPeriod };
 }
