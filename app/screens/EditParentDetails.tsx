@@ -58,7 +58,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch);
+      //getAllChildren(dispatch);
       getAllConfigData(dispatch);
      // console.log(relationshipValue.name,"..relationshipValue.name")
       setRelationshipName(relationshipValue!="" && relationshipValue!=null && relationshipValue!=undefined?relationshipValue.name:'');

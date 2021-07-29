@@ -76,6 +76,7 @@ import {
   ChildEntity,
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { setActiveChild } from '../../services/childCRUD';
 import { setInitialHeightValues, setInitialWeightValues } from '../../services/growthService';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -213,7 +214,6 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     // if date difference is 0 then update else create new
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
-
       const growthValues = {
         uuid: updateItem.uuid,
         isChildMeasured: true,
@@ -232,8 +232,12 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         growthValues,
         'uuid ="' + activeChild.uuid + '"',
       );
-      console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      console.log(createresult,"..createresult..");
+      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      if(createresult?.length>0){
+        activeChild.measures=createresult;
+        dispatch(setActiveChildData(activeChild));
+        }
       navigation.goBack();
     } else {
       const growthValues = {
@@ -254,8 +258,12 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         growthValues,
         'uuid ="' + activeChild.uuid + '"',
       );
-      console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      console.log(createresult,"..createresult..");
+      if(createresult?.length>0){
+        activeChild.measures=createresult;
+        dispatch(setActiveChildData(activeChild));
+      }
+      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
     // }
