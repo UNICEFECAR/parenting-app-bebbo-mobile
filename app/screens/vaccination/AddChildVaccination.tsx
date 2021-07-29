@@ -68,7 +68,7 @@ import {
   ChildEntity,
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
-import { setActiveChild } from '../../services/childCRUD';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 import {
   setInitialHeightValues,
   setInitialWeightValues
@@ -221,7 +221,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      if(createresult?.length>0){
+        activeChild.measures=createresult;
+        dispatch(setActiveChildData(activeChild));
+        }
+      // setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
       const growthValues = {
@@ -243,7 +247,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+      if(createresult?.length>0){
+        activeChild.measures=createresult;
+        dispatch(setActiveChildData(activeChild));
+        }
+      // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
   };

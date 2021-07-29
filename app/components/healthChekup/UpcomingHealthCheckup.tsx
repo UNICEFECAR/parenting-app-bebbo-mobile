@@ -34,7 +34,7 @@ import {
   ChildEntity,
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
-import { setActiveChild } from '../../services/childCRUD';
+import { setActiveChildData } from '../../redux/reducers/childSlice';
 import {
   ButtonContainerAuto,
   ButtonHealth,
@@ -72,7 +72,11 @@ const UpcomingHealthCheckup = (props: any) => {
       'uuid ="' + activeChild.uuid + '"',
     );
     // console.log(createresult,"ReminderDeleted");
-    setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
+    if(createresult?.length>0){
+      activeChild.reminders=createresult;
+      dispatch(setActiveChildData(activeChild));
+      }
+    // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
