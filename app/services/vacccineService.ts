@@ -67,7 +67,7 @@ export const getAllVaccinePeriods = () => {
     console.log(item?.vaccines);
     item?.vaccines.forEach((vaccine: any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
-      console.log(vaccineMeasured, "vaccineMeasured");
+      // console.log(vaccineMeasured, "vaccineMeasured");
       vaccine.isMeasured = vaccineMeasured ? true : false;
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
@@ -95,19 +95,21 @@ export const getAllVaccinePeriods = () => {
     .reverse();
   // logic to add current period to upcomingPeriods and remove it from previousPeriods
   const currentPeriod = previousPeriods[0];
+  if(previousPeriods.length>0){
   upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
   previousPeriods.shift();
+  }
   let overDuePreviousVCcount,doneVCcount,totalUpcomingVaccines,totalPreviousVaccines;
   if(upcomingPeriods?.length > 0) {
     totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-      return item.vaccines.length;
+      return item?.vaccines.length;
     }).reduce((accumulator, current) => {
         return accumulator + current;
     });
   }
   if(previousPeriods?.length > 0){
     totalPreviousVaccines = previousPeriods?.map((item) => {
-      return item.vaccines.length;
+      return item?.vaccines.length;
     }).reduce((accumulator, current) => {
         return accumulator + current;
     });
