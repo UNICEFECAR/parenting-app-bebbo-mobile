@@ -1,4 +1,4 @@
-import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexDirRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useNavigation } from '@react-navigation/native';
@@ -73,7 +73,7 @@ const ChartWeightForHeight = () => {
       }}>
       <FlexCol>
         <ShiftFromTopBottom10>
-          <FlexFDirRowSpace>
+          <FlexDirRowEnd>
             <Pressable
               onPress={() =>
                 fullScreenChart(
@@ -84,7 +84,7 @@ const ChartWeightForHeight = () => {
               }>
               <Icon name="ic_fullscreen" size={16} />
             </Pressable>
-          </FlexFDirRowSpace>
+          </FlexDirRowEnd>
         </ShiftFromTopBottom10>
         <GrowthChart
           activeChild={activeChild}

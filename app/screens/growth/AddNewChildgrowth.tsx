@@ -121,12 +121,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [measurePlace, setMeasurePlace] = useState<number>(
     editGrowthItem ? editGrowthItem.measurementPlace : null,
   );
+  const [dateTouched, setDateTouched] = useState<Boolean>(false);
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if(selectedDate){
       setmeasureDate(DateTime.fromJSDate(selectedDate));
+      setDateTouched(true);
     }
    
   };
@@ -205,6 +207,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     });
     // if date difference is 0 then update else create new
     console.log(updateItem);
+  const measurementDateParam =  editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate
+  const titleDateInMonthParam =  editGrowthItem ? ((dateTouched) ? measureDate?.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate?.toFormat('MM')
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
 
