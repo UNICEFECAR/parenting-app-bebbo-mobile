@@ -119,16 +119,17 @@ const AddChildVaccination = ({route, navigation}: any) => {
     {title: t('vcIsMeasuredOption2')},
   ];
   const defaultMeasured = {title: ''};
-
+  const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
     //  console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
+      setDateTouched(true);
     }
   };
   const minChildGrwothDate =
@@ -184,11 +185,15 @@ const AddChildVaccination = ({route, navigation}: any) => {
     //  return {v.measurementDate =measureDate?.toMillis()}
     // });
     console.log(allVaccines,"after measureDateUpdate");
+    const measurementDateParam = editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate?.toMillis()
+    const titleDateInMonthParam = editGrowthItem ? ((dateTouched) ? measureDate.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate.toFormat('MM')
+ 
     let updateItem = activeChild?.measures.find((item) => {
+      // console.log(item.measurementDate);
+      // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-            DateTime.fromMillis(item.measurementDate).diff(measureDate, 'days')
-              .days,
+          DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days
           ) == 0
         : null;
     });
@@ -202,8 +207,8 @@ const AddChildVaccination = ({route, navigation}: any) => {
         isChildMeasured: isMeasured,
         weight: String(weightValue),
         height: String(heightValue),
-        measurementDate: measureDate?.toMillis(),
-        titleDateInMonth: measureDate?.toFormat('MM'),
+        easurementDate: measurementDateParam,
+        titleDateInMonth:titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
@@ -224,8 +229,8 @@ const AddChildVaccination = ({route, navigation}: any) => {
         isChildMeasured: isMeasured,
         weight: String(weightValue),
         height: String(heightValue),
-        measurementDate: measureDate?.toMillis(),
-        titleDateInMonth: measureDate?.toFormat('MM'),
+        easurementDate: measurementDateParam,
+        titleDateInMonth:titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
