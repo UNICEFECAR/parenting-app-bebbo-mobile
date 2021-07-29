@@ -347,7 +347,8 @@ const en = {
         cancelPopUpBtn: "OK",
         developScreenCompletechartLabel: "Complete",
         developScreenCompletechartText: "Wow your baby has completed all milestones!!",
-        noDataTxt:"No data available"
+        noDataTxt:"No data available",
+        hcEditHeaderTitle: "Edit health check-up",
 
 
     }
