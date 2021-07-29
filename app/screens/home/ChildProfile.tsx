@@ -131,7 +131,7 @@ const child_age = useAppSelector(
           </ProfileIconView>
           <ProfileTextView>
             <ProfileSectionView>
-              <Heading3>{data.childName},<Text style={{fontWeight:'normal'}}>{' '+genderName}</Text>
+              <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontWeight:'normal'}}>{', '+genderName}</Text>:null}
               </Heading3>
             </ProfileSectionView>
             <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
@@ -194,10 +194,8 @@ const child_age = useAppSelector(
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView style={{alignItems:'flex-start'}}>
-                <Heading3>
-                  {data.childName},<Text style={{fontWeight:'normal'}}>{' '+genderName}</Text>
-                </Heading3>
-                
+              <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontWeight:'normal'}}>{', '+genderName}</Text>:null}
+              </Heading3>
                 
               </ProfileSectionView>
               <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
