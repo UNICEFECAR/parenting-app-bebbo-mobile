@@ -61,6 +61,12 @@ export const FlexDirRowEnd = styled(FlexDirRow)`
 justify-content:flex-end
 `;
 
+export const FlexRowEnd = styled.View`
+flex-direction:row;
+flex:1;
+justify-content:flex-end
+`;
+
 export const FDirRow = styled.View`
 flex-direction:row;
 align-items:center;
