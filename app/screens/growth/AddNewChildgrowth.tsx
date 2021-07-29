@@ -124,7 +124,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if(selectedDate){
       setmeasureDate(DateTime.fromJSDate(selectedDate));
@@ -197,18 +197,20 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     }
   }, [route.params?.weight, route.params?.height]);
   const saveChildMeasures = async () => {
+    // console.log(dateTouched,"dateTouched",measureDate);
+    const measurementDateParam = editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate?.toMillis()
+    const titleDateInMonthParam = editGrowthItem ? ((dateTouched) ? measureDate.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate.toFormat('MM')
+ 
     let updateItem = activeChild?.measures.find((item) => {
+      // console.log(item.measurementDate);
+      // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-            DateTime.fromMillis(item.measurementDate).diff(measureDate, 'days')
-              .days,
+          DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days
           ) == 0
         : null;
     });
     // if date difference is 0 then update else create new
-    console.log(updateItem);
-  const measurementDateParam =  editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate
-  const titleDateInMonthParam =  editGrowthItem ? ((dateTouched) ? measureDate?.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate?.toFormat('MM')
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
 
@@ -217,8 +219,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         isChildMeasured: true,
         weight: String(weightValue),
         height: String(heightValue),
-        measurementDate: measureDate?.toMillis(),
-        titleDateInMonth: measureDate?.toFormat('MM'),
+        measurementDate: measurementDateParam,
+        titleDateInMonth:titleDateInMonthParam.toString(),
         didChildGetVaccines: updateItem.didChildGetVaccines,
         vaccineIds: updateItem.vaccieIds,
         doctorComment: remarkTxt,
@@ -239,8 +241,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         isChildMeasured: true,
         weight: String(weightValue),
         height: String(heightValue),
-        measurementDate: measureDate?.toMillis(),
-        titleDateInMonth: measureDate?.toFormat('MM'),
+        measurementDate: measurementDateParam,
+        titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: false,
         vaccineIds: '',
         doctorComment: remarkTxt,
