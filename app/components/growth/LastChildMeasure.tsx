@@ -179,4 +179,4 @@ const LastChildMeasure = (props: any) => {
     </>
   );
 };
-export default LastChildMeasure;
+export default React.memo(LastChildMeasure);
