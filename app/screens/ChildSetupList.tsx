@@ -48,6 +48,10 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const genders = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+  );
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
@@ -82,12 +86,13 @@ const ChildSetupList = ({ navigation }: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-   const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number) => {
+   const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number,gender:any) => {
        
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.childName}</ChildListTitle>
+      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text>, {gender}</Text>:null}</ChildListTitle>
+      
       <Text>{t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''})}</Text>
     </ChildColArea1>
     <ChildColArea2>
@@ -197,7 +202,9 @@ const ChildSetupList = ({ navigation }: Props) => {
             {
               childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
-               return renderDailyReadItem(dispatch,item,index);
+                const genderLocal=(genders?.length>0 && item.gender!="")? genders.find(genderset => genderset.id == parseInt(item.gender)).name:'';
+                console.log(genderLocal,"..genderLocal..")
+               return renderDailyReadItem(dispatch,item,index,genderLocal);
               })
             ) :
             <ChildListingBox>

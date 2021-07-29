@@ -38,6 +38,7 @@ export const apiJsonDataGet = (childAge: any, parentGender: any) => {
     //   saveinDB: true,
     // },
     // {apiEndpoint:appConfig.basicPages,method:'get',postdata:{},saveinDB:true}
+    console.log(apiJsonDataGet,"..apiJsonDataGet..")
   ];
 }
 export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
