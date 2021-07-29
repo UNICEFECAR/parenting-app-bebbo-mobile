@@ -45,6 +45,7 @@ export const getAllHealthCheckupPeriods = () => {
   // sorting measures by date
   let allMeasurements = allMeasures.map((item: MeasuresEntity) => {
     let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+    console.log(item.vaccineIds,"item.vaccineIds")
     return {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
@@ -55,7 +56,7 @@ export const getAllHealthCheckupPeriods = () => {
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,
       ),
       titleDateInMonth: item.titleDateInMonth ? item.titleDateInMonth : '',
-      measuredVaccineIds: item.vaccineIds ? JSON.parse(item.vaccineIds) : [],
+      measuredVaccineIds: (item.vaccineIds || item.vaccineIds!='')? JSON.parse(item.vaccineIds) : [],
       didChildGetVaccines: item.didChildGetVaccines,
       isChildMeasured: item.isChildMeasured,
       measurementPlace: item.measurementPlace,
@@ -66,10 +67,14 @@ export const getAllHealthCheckupPeriods = () => {
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
   let measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure,index) => {
-    const vaccinesForAmeasure = JSON.parse(measure.vaccineIds);
+    const vaccinesForAmeasure =  (measure.vaccineIds || measure.vaccineIds!=''|| measure.vaccineIds!=null) ?JSON.parse(measure.vaccineIds): [];
+  //  console.log(vaccinesForAmeasure);
+   if(vaccinesForAmeasure){
     vaccinesForAmeasure.forEach((vaccine,innerindex) => {
       measuredVaccines.push(vaccine);
     });
+   }
+    
   });
   const vaccineMeasuredInfo = (vaccineid: number) => {
     return (measuredVaccines.find(item => item.vaccineid == vaccineid))
