@@ -145,17 +145,29 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    console.log(obj[0],"obj0");
                     realm?.write(() => {
+                        console.log(obj[0].reminders.length,"length")
                     if(obj[0].reminders.length>0){
                         let updateItemIndex = obj[0].reminders.findIndex(item=>{
+                            console.log(reminder.uuid,"reminder.uuid",item.uuid)
                             return item.uuid==reminder.uuid
                           });
+                          console.log(updateItemIndex,"updateItemIndex")
                           obj[0].reminders.splice(updateItemIndex, 1);
                         //   console.log(updateItemIndex)
+                        console.log(obj[0].reminders,"obj[0].reminders1")
+                        // obj[0].reminders.map((item)=>{
+                        //  console.log(item,"inside reminders")   
+                        // })
                           
                     }
                     });
-                   resolve('success');
+                    // obj[0].reminders.map((item)=>{
+                    //     console.log(item,"inside reminders11")   
+                    //    })
+                    console.log(obj[0].reminders,"obj[0].reminders2")
+                   resolve(obj[0].reminders);
                 }
                 else {
                     reject('Fail');
@@ -188,7 +200,7 @@ class UserRealmCommon extends Component {
                         obj[0].reminders.push(reminder);
                     }
                     });
-                   resolve('success');
+                   resolve(obj[0].reminders);
                 }
                 else {
                     reject('Fail');
@@ -215,7 +227,7 @@ class UserRealmCommon extends Component {
                             return item.uuid==measures.uuid
                           });
                         //   console.log(updateItemIndex)
-                          if(updateItemIndex==0){
+                          if(updateItemIndex!=-1){
                             obj[0].measures[updateItemIndex]= measures
                           }else{
                             obj[0].measures.push(measures);
