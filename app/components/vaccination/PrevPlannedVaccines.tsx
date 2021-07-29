@@ -4,7 +4,7 @@ import React from 'react';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines} = props;
+  const {onPrevPlannedVaccineToggle, currentPeriodVaccines,fromScreen} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   previousPeriods.shift();
   //remove first period which is the current period
@@ -43,6 +43,7 @@ const PrevPlannedVaccines = (props: any) => {
         {allPreviousPendingVaccines.map((item, index) => {
           return (
             <VaccineItem
+              fromScreen={fromScreen}
               key={index}
               item={item}
               onToggleVaccine={onToggleVaccine}

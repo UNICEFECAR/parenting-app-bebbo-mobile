@@ -14,7 +14,7 @@ import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
 import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useScrollToTop } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
@@ -22,12 +22,11 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, ScrollView, View } from 'react-native';
 import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
+import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
-import { useScrollToTop } from '@react-navigation/native';
-import { ThemeContext } from 'styled-components/native';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -68,7 +67,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   // fromScreen === 'Activities'
   useEffect(() => {
       const functionOnLoad = async () => {
-        if(fromScreen == "VaccinationTab")
+        if(fromScreen == "VaccinationTab" ||fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination")
         {
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -218,7 +217,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 </View>
               </>
             ) : null}
-            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" ? (
+            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup"? (
               <>
                 <View style={{backgroundColor: newBackgroundColor}}>
                   
