@@ -338,11 +338,11 @@ const UpcomingHealthCheckup = (props: any) => {
             item?.growthMeasures?.uuid ? (
               <ShiftFromTopBottom10>
                 <Pressable
-                  onPress={() =>
-                    navigation.navigate('AddChildHealthCheckup', {
-                      headerTitle: t('editVcTitle'),
-                      // vcPeriod: item,
-                    })
+                  onPress={() =>{}
+                    // navigation.navigate('AddChildHealthCheckup', {
+                    //   headerTitle: t('hcEditHeaderTitle'),
+                    //   // vcPeriod: item,
+                    // })
                   }>
                   <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
                 </Pressable>
