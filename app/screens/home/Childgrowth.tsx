@@ -63,9 +63,11 @@ const Childgrowth = ({navigation,route}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const standardDevData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.taxonomy.standardDevData),
-  );
+  const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+
+  // const standardDevData = useAppSelector((state: any) =>
+  //   JSON.parse(state.utilsData.taxonomy.standardDevData),
+  // );
   // console.log(standardDevData,"statestandardDevData")
   const isFutureDate = (date: Date) => {
     return (
@@ -106,7 +108,7 @@ const Childgrowth = ({navigation,route}: Props) => {
               maxHeight: '100%',
             }}>
             <BabyNotification />
-            {activeChild.measures.length == 0 ? (
+            {measures.length == 0 ? (
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
@@ -133,7 +135,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                     </Heading3>
                   </ShiftFromBottom5>
 
-                  {activeChild.measures.length == 0 ? (
+                  {measures.length == 0 ? (
                     <Heading3Centerr>
                       {t('growthScreennoGrowthData')}
                     </Heading3Centerr>
