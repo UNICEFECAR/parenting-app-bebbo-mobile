@@ -415,6 +415,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       <Heading3>{t('vcPlanned')}</Heading3>
                     </FormInputText>
                     <PlannedVaccines
+                      fromScreen={'AddChildHealthCheckup'}
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPlannedVaccineToggle={onPlannedVaccineToggle}
                     />
@@ -424,6 +425,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       <Heading3>{t('vcPrev')}</Heading3>
                     </FormInputText>
                     <PrevPlannedVaccines
+                      fromScreen={'AddChildHealthCheckup'}
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
                     />
