@@ -10,20 +10,22 @@ import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
+  const {item, onToggleVaccine, fromScreen} = props;
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const bgColor = themeContext.colors.VACCINATION_COLOR;
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const gotoArticle = () => {
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'Articles',
-    //   headerColor: artHeaderColor,
-    //   backgroundColor: artBackgroundColor,
-    // });
+  const headerColor = themeContext.colors.ARTICLES_COLOR;
+  const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
+  const gotoArticle = (pinned_articleID) => {
+    navigation.navigate('DetailsScreen', {
+      fromScreen: fromScreen,
+      headerColor: headerColor,
+      backgroundColor: backgroundColor,
+      detailData: pinned_articleID,
+    });
   };
-  const {item,onToggleVaccine} = props;
-  const {title, id, isChecked} = item;
+
+  const {title, id, isChecked, pinned_article} = item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
   return (
     <>
@@ -33,7 +35,7 @@ const VaccineItem = (props: any) => {
             <FormOuterCheckbox
               onPress={() => {
                 setToggleCheckBox(!toggleCheckBox);
-                onToggleVaccine(id,!toggleCheckBox);
+                onToggleVaccine(id, !toggleCheckBox);
               }}>
               <CheckboxItem>
                 <View>
@@ -55,7 +57,7 @@ const VaccineItem = (props: any) => {
           </FlexDirRow>
           <Pressable
             onPress={() => {
-              gotoArticle();
+              gotoArticle(pinned_article);
             }}>
             <OuterIconRow>
               <OuterIconRight>
