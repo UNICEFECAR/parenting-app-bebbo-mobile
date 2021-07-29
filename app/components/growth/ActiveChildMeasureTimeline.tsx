@@ -121,7 +121,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
             <Flex1>
               <Pressable
                 onPress={() => {
-                  console.log(rowData);
+                  // console.log(rowData);
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
                     editGrowthItem: ( {"uuid": rowData.uuid,

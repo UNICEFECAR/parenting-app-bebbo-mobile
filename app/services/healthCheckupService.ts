@@ -17,7 +17,7 @@ export const getAllHealthCheckupPeriods = () => {
   // );
   // console.log(taxonomy,taxonomy.growth_period);
   let allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
-  console.log(allGrowthPeriods);
+  // console.log(allGrowthPeriods);
   allGrowthPeriods = allGrowthPeriods.map((item, index) => {
     // console.log(index);
     if (index == allGrowthPeriods.length - 1) {
@@ -79,7 +79,7 @@ export const getAllHealthCheckupPeriods = () => {
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
-  console.log(childAgeIndays, 'childAgeIndays');
+  // console.log(childAgeIndays, 'childAgeIndays');
 
   const getVaccineOpens = (periodID) => {
     return allGrowthPeriods.find(item => item.id == periodID);
@@ -130,7 +130,7 @@ export const getAllHealthCheckupPeriods = () => {
           vaccination_opens: hcItem.vaccination_opens,
           vaccines:[],
         }
-        console.log(item,"Additonal");
+        // console.log(item,"Additonal");
         additionalMeasures.push(item)
       }
 // console.log(additionalMeasures, "additionalMeasures");
@@ -176,7 +176,7 @@ allHealthCheckupsData.forEach((hcItem: any, index: number) => {
   //   }
 
 });
-console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
+// console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
 // console.log(groupsForPeriods, "<groupsForPeriods>");
 //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
 // push all additional measures to allHealthCheckupsData
