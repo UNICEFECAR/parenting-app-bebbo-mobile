@@ -5,11 +5,12 @@ import {
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildContentArea, ChildRelationList, ChildSection, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
+  ChildContentArea, ChildRelationList, ChildSection, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
+import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -22,7 +23,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
-import { addChild, getNewChild } from '../services/childCRUD';
+import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -46,7 +47,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
-  const [isExpected,setIsExpected] = useState<string>('false');
+  const [isExpected, setIsExpected] = useState<string>('false');
   // const relationshipData = ['Father', 'Mother', 'Other'];
   const relationshipData = useAppSelector(
     (state: any) =>
@@ -57,9 +58,10 @@ const ChildSetup = ({ navigation }: Props) => {
   );
   const child_age = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
-     );
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const actionSheetRef = createRef<any>();
+  const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   let initialData: any = {};
   const sendData = (data: any) => { // the callback. Use a better name
@@ -69,29 +71,53 @@ const ChildSetup = ({ navigation }: Props) => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
+  let genders = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
+
+  genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
+    return e.id != 59;
+  });
+  console.log(genders, "..genders..");
+  //console.log(childData?.gender,"..childData?.gender..");
+
+
   useFocusEffect(
     React.useCallback(() => {
       navigation.dispatch(state => {
         // Remove the home route from the stack
         const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-      
+
         return CommonActions.reset({
           ...state,
           routes,
           index: routes.length - 1,
         });
       });
-    },[])
+    }, [])
   );
-const AddChild=async ()=>{
-  let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-  let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
-  let insertData: any = await getNewChild('',isExpected, plannedTermDate, isPremature, birthDate,defaultName);
-  let childSet: Array<any> = [];
-  childSet.push(insertData);
-  console.log(childSet,"..childSet..");
-  addChild(languageCode,false, 0, childSet, dispatch, navigation,child_age,relationship);
-}
+  const getCheckedItem = (checkedItem: typeof genders[0]) => {
+    //console.log(checkedItem);
+    // if (
+    //   typeof checkedItem.id === 'string' ||
+    //   checkedItem.id instanceof String
+    // ) {
+    //   setGender(checkedItem.id);
+    // } else {
+    //   setGender(String(checkedItem.id));
+    // }
+    setGender(checkedItem.id);
+  };
+  const AddChild = async () => {
+    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
+    let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender);
+    let childSet: Array<any> = [];
+    childSet.push(insertData);
+    console.log(childSet, "..childSet..");
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship);
+  }
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -111,6 +137,7 @@ const AddChild=async ()=>{
           <ChildContentArea>
             <ChildSection>
               <ChildDate sendData={sendData} />
+
               <FormInputGroup
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
@@ -125,6 +152,17 @@ const AddChild=async ()=>{
                   </FormDateAction>
                 </FormInputBox>
               </FormInputGroup>
+              {
+                birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
+                  <FormContainerFlex>
+                    <ToggleRadios
+                      options={genders}
+                      tickbgColor={headerColor}
+                      tickColor={'#FFF'}
+                      getCheckedItem={getCheckedItem}
+                    />
+                  </FormContainerFlex> : null
+              }
             </ChildSection>
           </ChildContentArea>
 
@@ -135,10 +173,10 @@ const AddChild=async ()=>{
                   <ChildRelationList key={index}>
                     <Pressable
                       onPress={() => {
-                        if (typeof item.id === 'string' || item.id instanceof String){
+                        if (typeof item.id === 'string' || item.id instanceof String) {
                           setRelationship(item.id);
                         }
-                        else{
+                        else {
                           setRelationship(String(item.id));
                         }
                         setRelationshipName(item.name);
@@ -154,8 +192,7 @@ const AddChild=async ()=>{
 
           <ButtonRow>
             <ButtonPrimary
-             disabled={!validateForm(0,birthDate,isPremature,relationship,plannedTermDate)}
-           
+              disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
               onPress={(e) => {
                 e.stopPropagation();
                 // console.log(birthDate,"..birthDate..");
@@ -164,14 +201,21 @@ const AddChild=async ()=>{
                 // console.log(isExpected,"..isExpected..");
                 // AddChild();
                 // console.log(birthDate,"..birthDate..");
-               const validated=validateForm(0,birthDate,isPremature,relationship,plannedTermDate);
-               if(validated==true){
-                AddChild();
-               }
-               else{
-                //  Alert.alert(validated);
-               }
-              
+                let validated:any=false;
+                if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
+                  validated=validateForm(0,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+                }
+                else if(birthDate != null && birthDate != undefined && isFutureDate(birthDate)){
+                  validated=validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender);
+                }
+                console.log(validated, "..validated..");
+                if (validated == true) {
+                  AddChild();
+                }
+                else {
+                  //  Alert.alert(validated);
+                }
+
               }}>
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
             </ButtonPrimary>

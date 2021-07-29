@@ -2,10 +2,11 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
-import { ChildAddTop } from '@components/shared/ChildSetupStyle';
+import { ChildAddTop, FormContainerFlex } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
+import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -46,6 +47,15 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  let genders = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+  );
+  
+  genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
+    return e.id!=59;
+  });
+  console.log(genders,"..genders..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
@@ -59,6 +69,9 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     setIsPremature(myString);
     setIsExpected(String(data.isExpected));
   };
+  const isFutureDate = (date: Date) => {
+    return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
+  };
   useFocusEffect(
     React.useCallback(() => {
     if(childData!=null && childData.uuid!=''){
@@ -70,12 +83,23 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
     console.log(defaultName,"..defaultName",editScreen);
-    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName)
+    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender)
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");
     addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null);
 }
+const [gender, setGender] = React.useState(
+  childData != null ? childData.gender : 0,
+);
+const getDefaultgenderValue = () => {
+  return childData?.uuid != ''
+    ? genders.find((item) => item.id == childData?.gender)
+    : {title: ''};
+};
+const getCheckedItem = (checkedItem: typeof genders[0]) => {
+  setGender(checkedItem.id);
+};
 const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
@@ -97,13 +121,25 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             </ChildAddTop>
           </OnboardingHeading>
           <ChildDate sendData={sendData} childData={childData} />
-
-
+          {
+          birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
+          <FormContainerFlex>
+                <ToggleRadios
+                  options={genders}
+                  defaultValue={getDefaultgenderValue()}
+                  tickbgColor={headerColor}
+                  tickColor={'#FFF'}
+                  getCheckedItem={getCheckedItem}
+                />
+         </FormContainerFlex>
+         :null}
         </View>
 
         <ButtonRow>
           <ButtonPrimary
-            disabled={!validateForm(2,birthDate,isPremature,relationship,plannedTermDate)}
+           disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
+             
+            // disabled={!validateForm(2,birthDate,isPremature,relationship,plannedTermDate,null,gender)}
             onPress={() => {
               // navigation.reset({
               //   index: 0,
@@ -113,7 +149,13 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
               // console.log(isPremature,"..isPremature..");
               // console.log(plannedTermDate,"..plannedTermDate..");
               // console.log(isExpected,"..isExpected..");
-              const validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate);
+              let validated:any=false;
+              if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
+                validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+              }
+              else if(birthDate != null && birthDate != undefined && isFutureDate(birthDate)){
+                validated=validateForm(4,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+              }
               if(validated==true){
                AddChild();
               }
