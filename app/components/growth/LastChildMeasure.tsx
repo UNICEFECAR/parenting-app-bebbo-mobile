@@ -39,7 +39,11 @@ const LastChildMeasure = (props: any) => {
   // const setNewChildMeasureUpdates = () => {
     // let measures = activeChild.measures;
       //filter measures by didChildGetVaccines
-      let measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+
+    let measures:any=[];
+    if(activeChild?.measures.length>0){
+     measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
+    }
 
     let measurementDate: DateTime = DateTime.local();
     const timeNow = DateTime.local();
