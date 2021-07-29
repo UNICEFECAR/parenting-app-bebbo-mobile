@@ -91,8 +91,7 @@ const ChildSetupList = ({ navigation }: Props) => {
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text>, {gender}</Text>:null}</ChildListTitle>
-      
+      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
       <Text>{t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''})}</Text>
     </ChildColArea1>
     <ChildColArea2>
