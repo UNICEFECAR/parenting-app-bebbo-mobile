@@ -11,7 +11,7 @@ export const getAllVaccinePeriods = () => {
   // console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
   //filter measures by didChildGetVaccines
   const vaccineMeasures = activeChild?.measures.filter((item) => item.didChildGetVaccines == true);
- console.log(vaccineMeasures, "vaccineMeasures filter by didChildGetVaccines");
+//  console.log(vaccineMeasures, "vaccineMeasures filter by didChildGetVaccines");
   let measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure,index) => {
     const vaccinesForAmeasure =  (measure.vaccineIds || measure.vaccineIds!=''|| measure.vaccineIds!=null) ?JSON.parse(measure.vaccineIds): [];
