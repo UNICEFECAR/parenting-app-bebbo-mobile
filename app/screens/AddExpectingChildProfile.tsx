@@ -79,7 +79,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch);
+      //getAllChildren(dispatch);
       getAllConfigData(dispatch);
       if (childData?.uuid != '') {
         setName(childData?.childName?childData?.childName:'');

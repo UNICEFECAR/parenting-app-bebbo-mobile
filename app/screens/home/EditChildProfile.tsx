@@ -157,7 +157,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch);
+      //getAllChildren(dispatch);
       getAllConfigData(dispatch);
       console.log(childData, '..childData..');
       // if(photoUri!='' && photoUri!=null && photoUri!=undefined){
