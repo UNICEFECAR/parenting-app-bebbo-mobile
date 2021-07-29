@@ -1,4 +1,4 @@
-import { Paragraph } from '@styles/typography';
+import { Heading4, Paragraph } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -50,7 +50,7 @@ const GrowthIntroductory = (props: any) => {
 
   return (
     <>
-      <Paragraph>{growthPeriod()}</Paragraph>
+      <Heading4>{growthPeriod()}</Heading4>
     </>
   );
 };

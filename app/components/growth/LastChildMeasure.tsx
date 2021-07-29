@@ -151,7 +151,7 @@ const LastChildMeasure = (props: any) => {
             </Flex2>
             <Flex1>
               <FlexDirRowEnd>
-              <ButtonTextMdLine
+              <Pressable
                 onPress={() => {
                   const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
@@ -167,10 +167,10 @@ const LastChildMeasure = (props: any) => {
                 }}>
                 {/* <FlexDirRowEnd>
                   <ButtonTextMdLine> */}
-                   <Text> {t('growthScreeneditText')}</Text>
+                   <ButtonTextMdLine> {t('growthScreeneditText')}</ButtonTextMdLine>
                   {/* </ButtonTextMdLine>
                 </FlexDirRowEnd> */}
-              </ButtonTextMdLine>
+              </Pressable>
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
