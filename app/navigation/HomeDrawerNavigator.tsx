@@ -15,6 +15,9 @@ const HomeDrawerNavigator =
 export default () => {
   return (
     <HomeDrawerNavigator.Navigator
+    screenOptions={{
+      unmountOnBlur:true
+    }}
    lazy
    detachInactiveScreens={true}
     backBehavior={'initialRoute'}

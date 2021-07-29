@@ -13,7 +13,7 @@ const GrowthIntroductory = (props: any) => {
       : {},
   );
   const growthIntroductoryData = taxonomy?.growth_introductory;
-  console.log(growthIntroductoryData, 'growthIntroductoryData');
+  // console.log(growthIntroductoryData, 'growthIntroductoryData');
   const childBirthDate = activeChild.birthDate;
   const childGender = activeChild.gender;
   const childAgeInDays = getCurrentChildAgeInDays(

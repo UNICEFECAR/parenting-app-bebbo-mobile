@@ -31,14 +31,14 @@ export const getAllVaccinePeriods = () => {
   const childAgeIndays = Math.round(
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
-  console.log(childAgeIndays, 'childAgeIndays');
+  // console.log(childAgeIndays, 'childAgeIndays');
   // const taxonomy = useAppSelector(
   //   (state: any) =>
   //     (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
   // );
   // console.log(taxonomy,taxonomy.growth_period);
   const allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
-  console.log(allGrowthPeriods, "taxonomydata_growth_period");
+  // console.log(allGrowthPeriods, "taxonomydata_growth_period");
   const getVaccineInfo = (periodID) => {
     return allGrowthPeriods.find(item => item.id == periodID);
   }
@@ -64,7 +64,7 @@ export const getAllVaccinePeriods = () => {
       item.periodName = period.name;
       item.vaccination_opens = period.vaccination_opens;
     }
-    console.log(item?.vaccines);
+    // console.log(item?.vaccines);
     item?.vaccines.forEach((vaccine: any) => {
       const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
       // console.log(vaccineMeasured, "vaccineMeasured");
@@ -72,7 +72,7 @@ export const getAllVaccinePeriods = () => {
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
   })
-  console.log(groupsForPeriods, "<groupsForPeriods>");
+  // console.log(groupsForPeriods, "<groupsForPeriods>");
 
   let sortedGroupsForPeriods = [...groupsForPeriods].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
@@ -115,7 +115,7 @@ export const getAllVaccinePeriods = () => {
         return accumulator + current;
     });
   }
-  console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
+  // console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
   // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
   
   if(sortedGroupsForPeriods?.length > 0)
