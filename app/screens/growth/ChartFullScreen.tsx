@@ -40,8 +40,8 @@ export const ChartFullScreen = ({route}) => {
     }, []),
   );
   const closeFullScreen = () => {
-    navigation.goBack();
     Orientation.lockToPortrait();
+    navigation.goBack();
   };
   return (
     <>

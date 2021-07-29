@@ -1,4 +1,3 @@
-import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { BottomBarBg, BottomBarList } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
@@ -18,9 +17,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Modal,
   Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity
+  StyleSheet, TouchableOpacity
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { DashboardBottomTabParamList } from './types';

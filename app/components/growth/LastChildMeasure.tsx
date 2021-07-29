@@ -72,7 +72,7 @@ const LastChildMeasure = (props: any) => {
     childmeasures = childmeasures.sort(
       (a: any, b: any) => a.dateToMilis - b.dateToMilis,
     );
-    console.log(childmeasures,"childmeasures");
+    // console.log(childmeasures,"childmeasures");
     // setChildmeasures(allMeasurements);
     // activeChild.measures = allMeasurements;
     // console.log(activeChild.measures, allMeasurements, 'NewMeasures');
