@@ -38,7 +38,7 @@ import {
   ButtonTextSmLineL,
   ButtonVaccination
 } from '../../shared/ButtonGlobal';
-import Icon from '../../shared/Icon';
+import Icon, { IconViewAlert } from '../../shared/Icon';
 
 const UpcomingVaccines = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
@@ -131,12 +131,13 @@ const UpcomingVaccines = (props: any) => {
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
-              <Icon
-                name="ic_incom"
-                size={20}
-                color="#FFF"
-                style={{backgroundColor: 'red', borderRadius: 150}}
-              />
+              <IconViewAlert>
+                          <Icon
+                            name="ic_incom"
+                            size={24}
+                            color="#FFF"
+                          />
+                        </IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress
@@ -176,12 +177,13 @@ const UpcomingVaccines = (props: any) => {
                           <Icon name="ic_tick" size={12} color="#FFF" />
                         </RadioActive>
                       ) : (
-                        <Icon
-                          name="ic_incom"
-                          size={20}
-                          color="#FFF"
-                          style={{backgroundColor: 'red', borderRadius: 150}}
-                        />
+                        <IconViewAlert>
+                          <Icon
+                            name="ic_incom"
+                            size={24}
+                            color="#FFF"
+                          />
+                        </IconViewAlert>
                       )}
                     </ToolsIconView>
                     <ToolsHeadingView>

@@ -43,7 +43,7 @@ import {
   ButtonTextSmLine,
   ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
-import Icon from '../shared/Icon';
+import Icon, { IconViewAlert } from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
@@ -128,12 +128,12 @@ const UpcomingHealthCheckup = (props: any) => {
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
+              <IconViewAlert>
               <Icon
                 name="ic_incom"
-                size={20}
+                size={24}
                 color="#FFF"
-                style={{backgroundColor: 'red', borderRadius: 150}}
-              />
+              /></IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress

@@ -29,7 +29,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
-import Icon from '../../shared/Icon';
+import Icon, { IconViewAlert } from '../../shared/Icon';
 
 const PreviousVaccines = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
@@ -80,12 +80,13 @@ const PreviousVaccines = (props: any) => {
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
-              <Icon
-                name="ic_incom"
-                size={20}
-                color="#FFF"
-                style={{backgroundColor: 'red', borderRadius: 150}}
-              />
+              <IconViewAlert>
+                          <Icon
+                            name="ic_incom"
+                            size={24}
+                            color="#FFF"
+                          />
+                        </IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress
@@ -123,12 +124,13 @@ const PreviousVaccines = (props: any) => {
                           <Icon name="ic_tick" size={12} color="#FFF" />
                         </RadioActive>
                       ) : (
-                        <Icon
-                          name="ic_incom"
-                          size={20}
-                          color="#FFF"
-                          style={{backgroundColor: 'red', borderRadius: 150}}
-                        />
+                        <IconViewAlert>
+                          <Icon
+                            name="ic_incom"
+                            size={24}
+                            color="#FFF"
+                          />
+                        </IconViewAlert>
                       )}
                     </ToolsIconView>
                     <ToolsHeadingView>
