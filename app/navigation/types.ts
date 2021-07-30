@@ -46,8 +46,8 @@ export type HomeDrawerNavigatorStackParamList = {
 
 export type DashboardBottomTabParamList = {
   Home: undefined;
-  Activities: undefined;
+  Activities: {};
   Tools: undefined;
   Articles: {};
-  ChildDevelopment: undefined;
+  ChildDevelopment: {};
 };

@@ -27,6 +27,7 @@ import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
+import RelatedActivities from '@components/shared/RelatedActivities';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -47,7 +48,7 @@ export type RelatedArticlesProps = {
 }
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
-  const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray} = route.params;
+  const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities')
   {
@@ -60,7 +61,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   }
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
-  const [detailDataToUse,setDetailDataToUse] = useState();
+  const [detailDataToUse,setDetailDataToUse] = useState({});
   // let detailDataToUse: any;
   // detailDataToUse = detailData;
   // setDetailDataToUse(detailData);
@@ -86,6 +87,11 @@ const DetailsScreen = ({route, navigation}: any) => {
         }
       }
       functionOnLoad();
+      return () => {
+        setDetailDataToUse({});
+        setCoverImage('');
+        setFilterArray([]);
+      }
   }, [detailData]);
   
   
@@ -130,6 +136,13 @@ const DetailsScreen = ({route, navigation}: any) => {
       merge: true,
     });
   }
+  // const setNewFilteredActivityData = (itemId:any) => {
+  //   navigation.navigate({
+  //     name: fromScreen,
+  //     params: {activityCategoryArray:itemId},
+  //     merge: true,
+  //   });
+  // }
   const onFilterArrayChange = (newFilterArray: any) => {
     // console.log("on filterarray change",newFilterArray);
     // filterArray = [...newFilterArray];
@@ -152,11 +165,31 @@ const DetailsScreen = ({route, navigation}: any) => {
               <Pressable
                 onPress={() => {
                   // navigation.goBack();
-                  navigation.navigate({
-                    name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-                    params: {categoryArray:listCategoryArray},
-                    merge: true,
-                  });
+                  if(fromScreen == "ChildDevelopment")
+                  {
+                    // console.log("detail screen----",currentSelectedChildId);
+                    navigation.navigate({
+                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+                      params: {currentSelectedChildId:currentSelectedChildId},
+                      merge: true,
+                    });
+                  }
+                  else if(fromScreen == "Activities")
+                  {
+                    // console.log("detail screen----",currentSelectedChildId);
+                    navigation.navigate({
+                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+                      params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId},
+                      merge: true,
+                    });
+                  }
+                  else {
+                    navigation.navigate({
+                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+                      params: {categoryArray:listCategoryArray},
+                      merge: true,
+                    });
+                  }
                 }}>
                 <Icon name={'ic_back'} color="#000" size={15} />
               </Pressable>
@@ -233,13 +266,15 @@ const DetailsScreen = ({route, navigation}: any) => {
               <MainContainer>
               <TrackMilestoneView/>
               </MainContainer>
+              <View style={{backgroundColor: newBackgroundColor}}>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+              </View>
               <BgActivityTint>
                 <ArticleHeading>
                   <Heading2>{t('detailScreenActivityHeader')}</Heading2>
                 </ArticleHeading>
                 <ActivitiesCategories
-                  borderColor={newHeaderColor}
-                  backgroundColor={newBackgroundColor}
+                  borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
                 />
                 </BgActivityTint>
               </>
