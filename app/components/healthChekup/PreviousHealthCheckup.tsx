@@ -42,12 +42,14 @@ const PreviousHealthCheckup = (props: any) => {
   const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
   const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinned_articleID) => {
+    if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'HealthCheckupsTab',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
       detailData: pinned_articleID,
     });
+  }
   };
   return (
     <>
@@ -63,7 +65,13 @@ const PreviousHealthCheckup = (props: any) => {
                   <Icon name="ic_tick" size={12} color="#FFF" />
                 </RadioActive>
              ) : ( 
-              <Icon name="ic_plus" size={20} color="#000" />
+              <Icon
+              name="ic_incom"
+              size={20}
+              color="#FFF"
+              style={{backgroundColor: 'red', borderRadius: 50}}
+            /> 
+              // <Icon name="ic_plus" size={20} color="#000" />
               )}
             {/* <Icon
               name="ic_incom"
