@@ -44,7 +44,7 @@ export type ActivitiesEntity = {
     child_age: number[],
     // cover_video?: CoverVideoEntity,
     cover_image?: CoverImageEntity,
-    related_articles: number[],
+    related_milestone: number[],
     mandatory: number,
   };
 
@@ -70,7 +70,7 @@ export type ActivitiesEntity = {
       // cover_video: 'CoverVideo',
       cover_image: 'CoverImage',
       // cover_image: {type: 'object', objectType: 'CoverImage'} ,
-      related_articles: { type: 'int[]' },
+      related_milestone: { type: 'int[]' },
       mandatory: { type: 'int' },
     }
   };

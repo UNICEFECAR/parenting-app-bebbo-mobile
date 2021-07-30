@@ -30,41 +30,11 @@ import ProgressCircle from 'react-native-progress-circle'
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
+  route:any,
   navigation: ChildDevelopmentNavigationProp;
 };
-const ChildDevelopment = ({navigation}: Props) => {
-  const cditems = [
-    {
-      id: 0,
-      title: 'Laughs at a human face',
-    },
-    {
-      id: 1,
-      title: "Carefully observes people's face",
-    },
-    {
-      id: 2,
-      title: 'Shows that she is angry or happy',
-    },
-    {
-      id: 3,
-      title:
-        'Begins a mimic facial movements and expressions, as well as sound',
-    },
-    {
-      id: 4,
-      title: "Carefully observes people's face",
-    },
-    {
-      id: 5,
-      title: 'Shows that she is angry or happy',
-    },
-    {
-      id: 6,
-      title:
-        'Begins a mimic facial movements and expressions, as well as soundy',
-    },
-  ];
+const ChildDevelopment = ({route, navigation}: Props) => {
+  
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
@@ -103,7 +73,7 @@ const ChildDevelopment = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const [currentSelectedChildId,setCurrentSelectedChildId] = useState();
+  const [currentSelectedChildId,setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData,setSelectedChildDevData] = useState();
   const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
@@ -114,7 +84,8 @@ const ChildDevelopment = ({navigation}: Props) => {
       fromScreen: 'ChildDevelopment',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
-      detailData: selectedPinnedArticleData
+      detailData: selectedPinnedArticleData,
+      currentSelectedChildId: currentSelectedChildId
     });
 
     // navigation.navigate('DetailsScreen',
@@ -128,7 +99,7 @@ const ChildDevelopment = ({navigation}: Props) => {
     // });
   };
   const showSelectedBracketData = async (item: any) => {
-    // console.log("in showSelectedBracketData--",item);
+    console.log("in showSelectedBracketData--",item);
     setCurrentSelectedChildId(item.id);
     // setCurrentSelectedChildId2(item.id);
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
@@ -156,10 +127,24 @@ const ChildDevelopment = ({navigation}: Props) => {
   useFocusEffect(
     React.useCallback(() => { 
       // console.log("child dev usefocuseffect");
-      const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
-      // console.log("firstChildDevData---",firstChildDevData);
-      showSelectedBracketData(firstChildDevData[0]);
-    },[activeChild?.uuid])
+      console.log(route.params?.currentSelectedChildId);
+      if(route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0)
+      {
+        // console.log(route.params?.categoryArray);
+        const firstChildDevData = childAge.filter((x:any)=> x.id == route.params?.currentSelectedChildId);
+        // console.log("firstChildDevData---",firstChildDevData);
+        showSelectedBracketData(firstChildDevData[0]);
+      }
+      else {
+        const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
+        // console.log("firstChildDevData---",firstChildDevData);
+        showSelectedBracketData(firstChildDevData[0]);
+      }
+      // const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
+      // // console.log("firstChildDevData---",firstChildDevData);
+      // showSelectedBracketData(firstChildDevData[0]);
+      
+    },[activeChild?.uuid,route.params?.currentSelectedChildId])
   );
   useFocusEffect(
     React.useCallback(() => { 
@@ -216,7 +201,7 @@ const ChildDevelopment = ({navigation}: Props) => {
     setMilestonePercent(percent);
   }
   // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
-  const renderItem = (item: typeof cditems[0]) => (
+  const renderItem = (item: any) => (
     <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
@@ -277,11 +262,14 @@ const ChildDevelopment = ({navigation}: Props) => {
           <Heading2>
             {selectedChildDevData?.title}
           </Heading2>
-          <Pressable onPress={onPressInfo}>
-            <ShiftFromTop5>
-                <Icon name="ic_info" size={15} color="#000" />
-                </ShiftFromTop5>
-            </Pressable>
+          {selectedPinnedArticleData ?
+            <Pressable onPress={onPressInfo}>
+              <ShiftFromTop5>
+                  <Icon name="ic_info" size={15} color="#000" />
+                  </ShiftFromTop5>
+              </Pressable>
+              : null
+          }
           </FlexDirRowSpaceStart>
           </ShiftFromTop5>
           <FDirCol>
@@ -334,21 +322,6 @@ const ChildDevelopment = ({navigation}: Props) => {
             >
                 <Text style={{ fontSize: 18 }}>{milestonePercent}{'%'}</Text>
             </ProgressCircle>
-             {/* <VictoryPie
-            // standalone={false}
-            //animate={{ duration: 1000 }}
-            width={160} height={160}
-            data={[{'key': "", 'y': 62}, {'key': "", 'y': (100-62)} ]}
-            innerRadius={20}
-            labels={() => null}
-          />
-          <VictoryLabel
-                  textAnchor="middle" verticalAnchor="middle"
-                  x={80} y={80}
-                  text={`62%`}
-                  style={{ position:'absolute',fontSize: 45 }}
-                />
-              */}
             </FlexDirRowSpace>
             </DevelopmentStatus>
             <FDirRow>
@@ -372,7 +345,7 @@ const ChildDevelopment = ({navigation}: Props) => {
             headerColor={headerColor}
             textColor="#000"
           />
-          { currentSelectedChildId && currentSelectedChildId != '' ? 
+          { currentSelectedChildId && currentSelectedChildId != 0 ? 
             
             <AgeBrackets
               itemColor={headerColorBlack}

@@ -55,7 +55,7 @@ const AgeBrackets = (props: any) => {
   const {currentSelectedChildId, showSelectedBracketData} = props;
   const [currentXOffset, setCurrentXOffset] = React.useState(0);
   const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
-  const [selected, setSelected] = React.useState(currentSelectedChildId);
+  // const [selected, setSelected] = React.useState(currentSelectedChildId);
   const childAge = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
@@ -116,7 +116,7 @@ const AgeBrackets = (props: any) => {
     <ScrollingButtonMenu
                 items={childAge}
                 onPress={(item: any) => {
-                    console.log(item,"----onpress");
+                    // console.log(item,"----onpress");
                     // this.state.selected = e.id;
                     // setSelected(item.id)
                     showSelectedBracketData(item)
