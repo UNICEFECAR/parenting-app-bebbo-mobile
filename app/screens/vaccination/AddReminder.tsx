@@ -104,8 +104,10 @@ const AddReminder = ({route, navigation}: any) => {
     const currentTime = selectedTime || measureTime;
     // console.log(currentTime,"currentTime");
     setmeasureShowTime(false);
+    if(selectedTime) {
     setmeasureTime(DateTime.fromJSDate(currentTime));
     setTimeTouched(true)
+    }
     // console.log(reminderType, measureDate, measureTime);
   };
   const showmeasureTimepicker = () => {
