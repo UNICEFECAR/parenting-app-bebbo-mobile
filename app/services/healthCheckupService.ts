@@ -26,15 +26,15 @@ export const getAllHealthCheckupPeriods = () => {
       return {
         id: item.id,
         name: item.name,
-        vaccination_opens: item.vaccination_opens,
+        vaccination_opens: item?.vaccination_opens,
         vaccination_ends: 2920,// days in total 8 year,
       };
     } else {
       return {
         id: item.id,
         name: item.name,
-        vaccination_opens: item.vaccination_opens,
-        vaccination_ends: allGrowthPeriods[index + 1].vaccination_opens,
+        vaccination_opens: item?.vaccination_opens,
+        vaccination_ends: allGrowthPeriods[index + 1]?.vaccination_opens,
       };
 
     }
@@ -117,7 +117,8 @@ export const getAllHealthCheckupPeriods = () => {
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
     const {t} = useTranslation();
     const periodForMeasure = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
-    const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure.vaccination_ends))
+    if(periodForMeasure){
+    const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure?.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure?.vaccination_ends))
     // console.log(measure, "allmeasure",measure.length);
     if (measure.length > 1) {
       // console.log("ho<>");
@@ -153,6 +154,7 @@ export const getAllHealthCheckupPeriods = () => {
   // return  allGrowthPeriods.filter(period => {
   //   return allMeasurements.filter(item => ((item.childAgeInDaysForMeasure >=  period.vaccination_opens) &&(item.childAgeInDaysForMeasure <=    period.vaccination_ends)));
   // });
+}
 }
 
 allHealthCheckupsData.forEach((hcItem: any, index: number) => {
@@ -237,10 +239,10 @@ console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
 
 // });
 let upcomingPeriods = sortedGroupsForPeriods.filter(
-  (period: any) => period.vaccination_opens > childAgeIndays,
+  (period: any) => period?.vaccination_opens > childAgeIndays,
 );
 let previousPeriods = sortedGroupsForPeriods
-  .filter((period: any) => period.vaccination_opens <= childAgeIndays)
+  .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
   .reverse();
 // // logic to add current period to upcomingPeriods and remove it from previousPeriods
 let currentPeriod;
