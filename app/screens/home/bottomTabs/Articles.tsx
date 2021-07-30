@@ -177,7 +177,7 @@ const Articles = ({route, navigation}: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
-      setLoading(false);
+      setLoading(true);
       setModalVisible(true);
       async function fetchData() {
         let Entity:any;
@@ -193,7 +193,12 @@ const Articles = ({route, navigation}: Props) => {
           }
       }
       fetchData()
-
+      return () => {
+        setModalVisible(false);
+        setLoading(false);
+        setfilteredData([]);
+        setFilterArray([]);
+      }
     },[languageCode,route.params?.categoryArray])
   );
   

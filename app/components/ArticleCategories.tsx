@@ -36,16 +36,6 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     arr.slice(i * size, i * size + size)
   );
 const articleBrackets = chunk(articleCategoryobj, 2)
-useFocusEffect(
-  React.useCallback(() => {
-    // console.log(props.filterArray.length,"articlecategory usefocuseffect", props);
-    // filterArraycurr = [...props.filterArray];
-    if(props.fromPage == 'Details')
-    {
-      // filterArraycurr = [];
-    }
-  },[])
-);
 //console.log(chunk(articleBrackets, 2));
 //   const articleBrackets = new Array(Math.ceil(activityCategory.length / 3)).fill().map(_ => activityCategory.splice(0, 3))
   
