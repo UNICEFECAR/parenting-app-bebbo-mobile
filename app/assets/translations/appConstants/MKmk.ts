@@ -344,7 +344,10 @@ tabbarLabel8: "Раст на детето",
         cancelPopupText: "Data is not downloaded and app will use offline data.",
         cancelPopUpBtn: "OK",
         developScreenCompletechartLabel: "Complete",
-        developScreenCompletechartText: "Wow your baby has completed all milestones!!"
+        developScreenCompletechartText: "Wow your baby has completed all milestones!!",
+        noDataTxt:"No data available",
+        hcEditHeaderTitle: "Edit health check-up",
+        genderLabel: "Add Gender",
 
     }
 }

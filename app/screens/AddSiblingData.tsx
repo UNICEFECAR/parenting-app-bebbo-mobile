@@ -2,7 +2,7 @@
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
-import { ChildAddTop, FormContainerFlex } from '@components/shared/ChildSetupStyle';
+import { ChildAddTop, FormContainer, FormContainerFlex, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
@@ -123,6 +123,8 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
           <ChildDate sendData={sendData} childData={childData} />
           {
           birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
+          <FormContainer>
+          <LabelText>{t('genderLabel')}</LabelText>
           <FormContainerFlex>
                 <ToggleRadios
                   options={genders}
@@ -132,6 +134,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                   getCheckedItem={getCheckedItem}
                 />
          </FormContainerFlex>
+         </FormContainer>
          :null}
         </View>
 

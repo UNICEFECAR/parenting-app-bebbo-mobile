@@ -5,7 +5,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildContentArea, ChildRelationList, ChildSection, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText
+  ChildContentArea, ChildRelationList, ChildSection, FormContainer, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText, TextBox
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -137,7 +137,20 @@ const ChildSetup = ({ navigation }: Props) => {
           <ChildContentArea>
             <ChildSection>
               <ChildDate sendData={sendData} />
-
+              {
+                birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
+                  <FormContainer>
+                    <LabelText>{t('genderLabel')}</LabelText>
+                    <TextBox>
+                      <ToggleRadios
+                        options={genders}
+                        tickbgColor={headerColor}
+                        tickColor={'#FFF'}
+                        getCheckedItem={getCheckedItem}
+                      /></TextBox>
+                  </FormContainer>
+                  : null
+              }
               <FormInputGroup
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
@@ -152,17 +165,8 @@ const ChildSetup = ({ navigation }: Props) => {
                   </FormDateAction>
                 </FormInputBox>
               </FormInputGroup>
-              {
-                birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
-                  <FormContainerFlex>
-                    <ToggleRadios
-                      options={genders}
-                      tickbgColor={headerColor}
-                      tickColor={'#FFF'}
-                      getCheckedItem={getCheckedItem}
-                    />
-                  </FormContainerFlex> : null
-              }
+
+
             </ChildSection>
           </ChildContentArea>
 
@@ -201,12 +205,12 @@ const ChildSetup = ({ navigation }: Props) => {
                 // console.log(isExpected,"..isExpected..");
                 // AddChild();
                 // console.log(birthDate,"..birthDate..");
-                let validated:any=false;
-                if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
-                  validated=validateForm(0,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+                let validated: any = false;
+                if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
+                  validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender);
                 }
-                else if(birthDate != null && birthDate != undefined && isFutureDate(birthDate)){
-                  validated=validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender);
+                else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
+                  validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender);
                 }
                 console.log(validated, "..validated..");
                 if (validated == true) {
