@@ -113,6 +113,14 @@ const AddReminder = ({route, navigation}: any) => {
   const showmeasureTimepicker = () => {
     setmeasureShowTime(true);
   };
+  const isFormDisabled = () => {
+    if (measureDate && measureTime) {
+      return false;
+    } else{
+      return true;
+    }
+
+  }
   const deleteReminder =  async () => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     console.log(allJsonDatanew?.length,"allJsonDatanew");
@@ -246,7 +254,7 @@ const AddReminder = ({route, navigation}: any) => {
 
           <ShiftFromTop30>
             <ButtonTertiary
-              disabled={!measureDate && !measureTime}
+              disabled={isFormDisabled()}
               onPress={() => {
                 saveReminder().then(()=>{ navigation.goBack();});
                 // navigation.goBack();
