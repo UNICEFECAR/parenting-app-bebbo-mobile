@@ -43,7 +43,7 @@ import {
   ButtonTextSmLine,
   ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
-import Icon, { IconViewAlert } from '../shared/Icon';
+import Icon from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
@@ -101,12 +101,14 @@ const UpcomingHealthCheckup = (props: any) => {
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
 
   const gotoArticle = (pinned_articleID) => {
-    navigation.navigate('DetailsScreen', {
+    if(pinned_articleID!=0){
+      navigation.navigate('DetailsScreen', {
       fromScreen: 'HealthCheckupsTab',
       headerColor: artHeaderColor,
       backgroundColor: artBackgroundColor,
       detailData: pinned_articleID,
     });
+  }
   };
   const isFutureDate = (date: Date) => {
     return (
@@ -132,12 +134,13 @@ const UpcomingHealthCheckup = (props: any) => {
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
-              <IconViewAlert>
-              <Icon
-                name="ic_incom"
-                size={24}
-                color="#FFF"
-              /></IconViewAlert>
+              <Icon name="ic_plus" size={20} color="#000" />
+              // <IconViewAlert>
+              // <Icon
+              //   name="ic_incom"
+              //   size={24}
+              //   color="#FFF"
+              // /></IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress

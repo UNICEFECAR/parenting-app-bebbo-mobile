@@ -17,12 +17,14 @@ const VaccineItem = (props: any) => {
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinned_articleID) => {
+    if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: fromScreen,
       headerColor: headerColor,
       backgroundColor: backgroundColor,
       detailData: pinned_articleID,
     });
+  }
   };
 
   const {title, id, isChecked, pinned_article} = item;
