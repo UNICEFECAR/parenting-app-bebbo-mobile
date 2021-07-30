@@ -291,7 +291,7 @@ const UpcomingHealthCheckup = (props: any) => {
                           {','}
                           {DateTime.fromJSDate(
                             new Date(healthCheckupReminder?.reminderTime),
-                          ).toFormat('hh:mm')}
+                          ).toFormat('hh:mm a')}
                         </Heading4>
                       </ToolsHeadingView>
                       <ToolsActionView>
