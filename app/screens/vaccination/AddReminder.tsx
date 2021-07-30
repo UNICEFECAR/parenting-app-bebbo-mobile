@@ -87,6 +87,19 @@ const AddReminder = ({route, navigation}: any) => {
     ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
     : [],
 );
+// const defaultTimePickerMinValue = ()=>{
+//   var minTime  = new Date();
+//   minTime.getHours()
+//   minTime.getMinutes()
+//   minTime.getSeconds()
+//   return new Date().setHours(new Date().getHours()).setMinutes(new Date().getMinutes())
+// }
+
+//if measureDate is luxon today, then set measureTime to hours,minutes,seconds
+// var maxTime = new Date();
+// maxTime.setHours(22);
+// maxTime.setMinutes(0);
+// maxTime.setMilliseconds(0);
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
     setmeasureShow(false);

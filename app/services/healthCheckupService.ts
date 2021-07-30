@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
@@ -15,7 +16,8 @@ export const getAllHealthCheckupPeriods = () => {
   //   (state: any) =>
   //     (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
   // );
-  // console.log(taxonomy,taxonomy.growth_period);
+  // // console.log(taxonomy,taxonomy.growth_period);
+  // let allGrowthPeriods = taxonomy.growth_period;
   let allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
   // console.log(allGrowthPeriods);
   allGrowthPeriods = allGrowthPeriods.map((item, index) => {
@@ -25,7 +27,7 @@ export const getAllHealthCheckupPeriods = () => {
         id: item.id,
         name: item.name,
         vaccination_opens: item.vaccination_opens,
-        vaccination_ends: 2555,// days in total 7 year,
+        vaccination_ends: 2920,// days in total 8 year,
       };
     } else {
       return {
@@ -156,8 +158,11 @@ export const getAllHealthCheckupPeriods = () => {
 allHealthCheckupsData.forEach((hcItem: any, index: number) => {
   hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
   // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
-  hcItem.vaccination_opens = allGrowthPeriods.find((item) => item.id == hcItem.growth_period).vaccination_opens;
-  hcItem.vaccination_ends = allGrowthPeriods.find((item) => item.id == hcItem.growth_period).vaccination_ends;
+  const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+  if(item){
+  hcItem.vaccination_opens = item?.vaccination_opens;
+  hcItem.vaccination_ends = item?.vaccination_ends;
+  }
   const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
   hcItem.growthMeasures = measuresForHCPeriod;
   // if(measuresForHCPeriod?.length>1){

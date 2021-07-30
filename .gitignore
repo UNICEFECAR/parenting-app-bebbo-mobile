@@ -25,3 +25,5 @@ package-lock.json
 data.realm
 data.realm.management/
 android/gradle.properties
+*.properties
+
