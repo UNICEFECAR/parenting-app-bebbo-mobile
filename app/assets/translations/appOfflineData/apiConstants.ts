@@ -10,7 +10,7 @@ export const videoTypeVimeo = "vimeo";
 export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
-    //console.log("in finalurl", apiUrlDevelop);
+    // console.log("in finalurl", apiUrlDevelop);
    
     if(apiEndpoint==appConfig.sponsors){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
@@ -70,6 +70,12 @@ export const articleCategoryobj = [
     {name:'responsiveParenting', id:56,image:'ic_artl_responsive'},
     {name:'parentingCorner', id:4,image:'ic_artl_parenting'},
     {name:'nutritionAndBreastfeeding',id:1, image:'ic_artl_nutrition'},
+]
+export const activityCategoryobj = [
+    {name:'Socio-emotional',id:6431, image:'ic_act_emotional'},
+    {name:'Language and communication', id:6441,image:'ic_act_language'},
+    {name:'Cognitive', id:6436, image:'ic_act_cognitive'},
+    {name:'Motor',id:6421, image:'ic_act_movement'},
 ]
 
 export const basicPagesUniqueName = {
