@@ -108,6 +108,13 @@ export const FormInputBox = styled.View`
   height:52px;
   padding:5px 12px;
 `;
+
+export const FormInputBox1 = styled.View`
+  background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+  height:52px;
+  padding:5px 12px;
+`;
 export const FormDateText = styled.View`
   /*flex: 4;*/
   /*justify-content: flex-start;
@@ -125,6 +132,7 @@ export const FormDateAction = styled.View`
 
 export const FormInputGroup = styled.Pressable`
   width: 100%;
+  padding:5px 0px;
 `;
 
 export const FormInputText = styled(LabelText)`
