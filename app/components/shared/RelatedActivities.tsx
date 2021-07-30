@@ -21,52 +21,26 @@ const ContainerView = styled.View`
   /* padding: 15px; */
   margin-top: 10px;
 `;
-
-const DATA = [
-  {
-    id: '1',
-    imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'Gripping your filgers',
-  },
-  {
-    id: '2',
-    imagePath: require('@assets/trash/card2.jpeg'),
-    title: 'Molding your hands',
-  },
-  {
-    id: '3',
-    imagePath: require('@assets/trash/card3.jpeg'),
-    title: 'Picking stuff around',
-  },
-  {
-    id: '4',
-    imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'Gripping your filgers',
-  },
-  {
-    id: '5',
-    imagePath: require('@assets/trash/card5.jpeg'),
-    title: 'Molding your hands',
-  },
-  {
-    id: '6',
-    imagePath: require('@assets/trash/card6.jpeg'),
-    title: 'Picking stuff around',
-  },
-];
-const RelatedArticles = (props:RelatedArticlesProps) => {
+type RelatedActivityProps = {
+  selectedChildActivitiesData?:any,
+  currentId?:any,
+  headerColor?:any,
+  backgroundColor?:any,
+  listCategoryArray?:any,
+  navigation?:any,
+  fromScreen?:any,
+}
+const RelatedActivities = (props:RelatedActivityProps) => {
   // console.log(props);
-  const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
+  const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
   // console.log(typeof related_articles);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
+  const activityCategoryData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
+  );
   const {t} = useTranslation();
-  let relartlength = related_articles ? related_articles.length : 0;
-  const articleData = useAppSelector(
-    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
-  );
-  const categoryData = useAppSelector(
-    (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
-  );
+  
   // let relatedArticleData: any[] = [];
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
@@ -75,65 +49,26 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
       setrelatedArticleData([]);
       async function fetchData() {
         // console.log("relartlength on start--",relartlength);
-        if(relartlength > 0)
-        {
-          let relatedData:any = [];
-          if(fromScreen == "ChildgrowthTab")
-          {
-            const filterQuery = JSON.parse(JSON.stringify(related_articles)).map((x: any) => `id = '${x}'`).join(' OR ');
-            relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
-          }else {
-            relatedData = articleData.filter((x:any)=> JSON.parse(JSON.stringify(related_articles)).includes(x.id));
-          }
-          // console.log("relatedData--",relatedData.length);
-          relartlength = relatedData.length;
-          // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
-          if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
-            const catartlength = maxRelatedArticleSize - relartlength;
-            // console.log("catartlength--",catartlength);
-            // console.log("relatedArticleData--",relatedArticleData);
-            const filteredArtData = articleData.filter((x: any)=> {
-              const i = relatedData.findIndex((_item: any) => _item.id === x.id);
-              return x.category==category && x.id !==currentId && i == -1
-            }).slice(0,catartlength);
-            // console.log(filteredArtData);
-            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...relatedData ,...filteredArtData]);
-          }else {
-            setrelatedArticleData(relatedData);
-          }
-        }
+        
         // if(category!=5){
       // go not calclualte for growth screen
-        else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
+        // else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
-          const catartlength = maxRelatedArticleSize - relartlength;
+          const catartlength = maxRelatedArticleSize;
           // console.log("relatedArticleData--",relatedArticleData);
-          const filteredArtData = articleData.filter((x: any)=> {
+          const filteredArtData = selectedChildActivitiesData.filter((x: any)=> {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-            return x.category==category && x.id !==currentId && i == -1
+            return x.id !==currentId && i == -1
           }).slice(0,catartlength);
           // console.log(filteredArtData);
           setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
-        }
+        // }
       // }
       }
       fetchData()
     },[currentId])
   );
-  // console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
-  // const getSameCategoryArticle = () => {
-  //   if(relartlength < maxRelatedArticleSize) {
-  //     const catartlength = maxRelatedArticleSize - relartlength;
-      
-  //     console.log("relatedArticleData--",relatedArticleData);
-  //     const filteredArtData = articleData.filter((x: any)=> {
-  //       const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-  //       return x.category==category && x.id !==currentId && i == -1
-  //     }).slice(0,catartlength);
-  //     console.log(filteredArtData);
-  //     setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
-  //   }
-  // }
+  
   useFocusEffect(
     React.useCallback(() => {
       // console.log("details usefocuseffect")
@@ -194,7 +129,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           <ArticleListContent>
           <ShiftFromTopBottom5>
           {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
-          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
+          <Heading6Bold>{ activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name }</Heading6Bold>
           </ShiftFromTopBottom5>
           {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
           <Heading3>{item.title}</Heading3>
@@ -228,7 +163,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
   );
 };
 
-export default RelatedArticles;
+export default RelatedActivities;
 
 const styles = StyleSheet.create({
   // item: {
