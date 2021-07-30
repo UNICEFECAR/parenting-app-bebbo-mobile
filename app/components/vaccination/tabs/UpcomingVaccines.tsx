@@ -243,7 +243,7 @@ const UpcomingVaccines = (props: any) => {
                           {','}
                           {DateTime.fromJSDate(
                             new Date(vaccineReminder?.reminderTime),
-                          ).toFormat('hh:mm')}
+                          ).toFormat('hh:mm a')}
                         </Heading4>
                       </ToolsHeadingView>
                       <ToolsActionView>
