@@ -406,22 +406,23 @@ export const getAllChildren = async (dispatch: any) => {
         childAllData.push(value);
       })
       console.log("childAllData--",childAllData);
+      console.log(childAllData, "before")
+      childAllData = childAllData.sort((a: any, b: any) => {
+        DateTime.fromISO(a.updatedAt).diff(DateTime.fromISO(b.updatedAt));
+        const keyA = new Date(a.updatedAt),
+          keyB = new Date(b.updatedAt);
+
+        if (keyA < keyB) return -1;
+        if (keyA > keyB) return 1;
+        return 0;
+      });
+      console.log(childAllData, "after")
       dispatch(setAllChildData(childAllData));
     // databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
     //   // console.log("changes--",changes);
     //   // console.log("name--",name);
     
-    //   console.log(childAllData, "before")
-    //   childAllData = childAllData.sort((a: any, b: any) => {
-    //     DateTime.fromISO(a.updatedAt).diff(DateTime.fromISO(b.updatedAt));
-    //     const keyA = new Date(a.updatedAt),
-    //       keyB = new Date(b.updatedAt);
-
-    //     if (keyA < keyB) return -1;
-    //     if (keyA > keyB) return 1;
-    //     return 0;
-    //   });
-    //   console.log(childAllData, "after")
+    
     //   //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
     //   dispatch(setAllChildData(childAllData));
     //   //}
