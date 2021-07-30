@@ -60,8 +60,8 @@ const VideoPlayer = (props: any) => {
         <body style="background-color:black">
             <div style="padding:56.25% 0 0 0;position:relative;">
                 <iframe
-                    src="https://player.vimeo.com/video/${videoId}?autoplay=1&muted=0&loop=0&title=0&byline=0&portrait=0&controls=1"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                    src="https://player.vimeo.com/video/${videoId}?autoplay=0&muted=0&loop=0&title=0&byline=0&portrait=0&controls=1"
+                    style="position:absolute;top:0;left:0;width:90%;height:100%;padding:0 5%"
                     frameborder="0"
                 ></iframe>
             </div>
