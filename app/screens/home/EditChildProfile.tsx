@@ -9,6 +9,7 @@ import {
 import {
   FormContainerFlex,
   FormInputBox,
+  FormInputBox1,
   FormInputGroup,
   LabelText
 } from '@components/shared/ChildSetupStyle';
@@ -457,7 +458,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
               <FormInputGroup>
                 <ShiftFromTop10>
                   <LabelText>{t('childNameTxt')}</LabelText>
-                  <FormInputBox>
+                  <FormInputBox1>
                     <TextInput
                       autoCapitalize="none"
                       autoCorrect={false}
@@ -470,7 +471,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
                     />
-                  </FormInputBox>
+                  </FormInputBox1>
                 </ShiftFromTop10>
               </FormInputGroup>
               <FormContainerFlex>
