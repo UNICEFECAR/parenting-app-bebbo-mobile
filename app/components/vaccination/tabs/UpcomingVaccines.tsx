@@ -109,12 +109,14 @@ const UpcomingVaccines = (props: any) => {
     // open first collapsible in upcoming vaccine period
   }, []);
   const gotoArticle = (pinned_articleID) => {
+    if(pinned_articleID!=0){
     navigation.navigate('DetailsScreen', {
       fromScreen: 'VaccinationTab',
       headerColor: headerColor,
       backgroundColor: backgroundColor,
       detailData: pinned_articleID,
     });
+  }
   };
   const doneVc = item?.vaccines.filter((item) => {
     return item?.isMeasured;
