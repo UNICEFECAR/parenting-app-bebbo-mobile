@@ -368,7 +368,7 @@ class Ruler extends React.Component<Props, State> {
                 },
               },
             ],
-            {useNativeDriver: true},
+            {useNativeDriver: false},
           )}
           onMomentumScrollEnd={() => onChangeValue(this.state.value)}>
           {this.renderRuler(data)}
