@@ -22,7 +22,7 @@ class MediaPicker {
     galleryOptions = {},
     cameraOptions = {}
   ) {
-    this.checkPermission(() => {
+    this.checkPermissionCamera(() => {
       this.showCameraPickerOptions(
         callback,
         pickerTypeCamera,
@@ -39,7 +39,7 @@ class MediaPicker {
     galleryOptions = {},
     cameraOptions = {}
   ) {
-    this.checkPermission(() => {
+    this.checkPermissionGallery(() => {
       this.showGalleryPickerOptions(
         callback,
         pickerTypeCamera,
@@ -62,7 +62,7 @@ class MediaPicker {
     galleryOptions = {},
     cameraOptions = {}
   ) {
-    this.checkPermission(() => {
+    this.checkPermissionCamera(() => {
       this.pickCameraOptions(
         callback,
         pickerTypeCamera,
@@ -102,7 +102,7 @@ class MediaPicker {
     galleryOptions = {},
     cameraOptions = {}
   ) {
-    this.checkPermission(() => {
+    this.checkPermissionGallery(() => {
       this.pickGalleryOptions(
         callback,
         pickerTypeCamera,
@@ -363,37 +363,74 @@ class MediaPicker {
     );
   }
 
-  handlePermissions(triggerFunc:any) {
+  handlePermissionsCamera(triggerFunc:any) {
     request(CAMERA_PERMISSION)
       .then((cameraPermission) => {
         return cameraPermission;
       })
       .then((cameraPermission) => {
-        request(GALLERY_PERMISSION).then((photoPermission) => {
-          if (
-            cameraPermission === RESULTS.GRANTED &&
-            photoPermission === RESULTS.GRANTED
-          ) {
-            triggerFunc();
-          }
-        });
+        if (
+          cameraPermission === RESULTS.GRANTED
+        ) {
+          triggerFunc();
+        }
       });
   }
+  handlePermissionsGallery(triggerFunc:any) {
+    request(GALLERY_PERMISSION).then((photoPermission) => {
+      if (
+        photoPermission === RESULTS.GRANTED
+      ) {
+        triggerFunc();
+      }
+    });
+  }
+  // checkPermission(triggerFunc:any, openSettings = undefined) {
+  //   // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
 
-  checkPermission(triggerFunc:any, openSettings = undefined) {
+  //   Promise.all([
+  //     check(CAMERA_PERMISSION),
+  //     check(GALLERY_PERMISSION),
+  //     // …
+  //   ]).then(([cameraStatus, photoStatus]) => {
+  //     // Alert.alert(cameraStatus,"..cameraStatus..")
+  //     // Alert.alert(photoStatus,"..photoStatus..")
+  //     if (cameraStatus === RESULTS.DENIED || cameraStatus === RESULTS.BLOCKED || photoStatus === RESULTS.BLOCKED || photoStatus === RESULTS.DENIED) {
+  //       this.openSettingModal();
+  //     } else {
+  //       this.handlePermissions(triggerFunc);
+  //     }
+  //   });
+  // }
+  checkPermissionCamera(triggerFunc:any, openSettings = undefined) {
     // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
 
     Promise.all([
-      check(CAMERA_PERMISSION),
-      check(GALLERY_PERMISSION),
+      check(CAMERA_PERMISSION)
       // …
-    ]).then(([cameraStatus, photoStatus]) => {
+    ]).then(([cameraStatus]) => {
       // Alert.alert(cameraStatus,"..cameraStatus..")
       // Alert.alert(photoStatus,"..photoStatus..")
-      if (cameraStatus === RESULTS.DENIED || cameraStatus === RESULTS.BLOCKED || photoStatus === RESULTS.BLOCKED || photoStatus === RESULTS.DENIED) {
+      if (cameraStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
       } else {
-        this.handlePermissions(triggerFunc);
+        this.handlePermissionsCamera(triggerFunc);
+      }
+    });
+  }
+  checkPermissionGallery(triggerFunc:any, openSettings = undefined) {
+    // let permissionAsk = Platform.OS === 'ios' ? 'denied' : 'restricted';
+
+    Promise.all([
+      check(GALLERY_PERMISSION),
+      // …
+    ]).then(([photoStatus]) => {
+     console.log(photoStatus,"..photoStatus..")
+      // Alert.alert(photoStatus,"..photoStatus..")
+      if (photoStatus === RESULTS.BLOCKED) {
+        this.openSettingModal();
+      } else {
+        this.handlePermissionsGallery(triggerFunc);
       }
     });
   }
