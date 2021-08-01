@@ -22,6 +22,15 @@ const ChildInfo = (props: any) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
+const allConfigData = useAppSelector((state: any) =>
+state.variableData?.variableData != ''
+  ? JSON.parse(state.variableData?.variableData)
+  : state.variableData?.variableData,
+);
+const userNameData =
+    allConfigData?.length > 0
+      ? allConfigData.filter((item) => item.key === 'userName')
+      : [];
 const activeChildGender = activeChild.gender;
 // console.log("activeChildGender--",activeChildGender);
 const ChildDevData = useAppSelector(
@@ -66,7 +75,7 @@ const goToVideoArticleDetails = () => {
       
         <ShiftFromBottom10>
         <Heading2Center>
-          {t('homeScreenchildInfoTitle',{childName:"Baby",parentName:"Parent"})} 
+          {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:'Baby',parentName:userNameData?.length > 0 ? 'and '+userNameData[0].value : ''})} 
            {/* if baby found use childInfoTitle */}
         </Heading2Center>
         </ShiftFromBottom10>

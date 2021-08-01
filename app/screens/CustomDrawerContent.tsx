@@ -16,6 +16,7 @@ import {
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
+import { ImageIcon } from '@components/shared/Image';
 import {
   BubbleContainer,
   BubbleView,
@@ -26,6 +27,7 @@ import {
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
 import { Heading3, Heading4, Heading5 } from '@styles/typography';
+import { CHILDREN_PATH } from '@types/types';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, Share } from 'react-native';
@@ -33,8 +35,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { formatDate } from '../services/Utils';
-const CustomDrawerContent = ({navigation}: any) => {
-  const {t} = useTranslation();
+const CustomDrawerContent = ({ navigation }: any) => {
+  const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -79,7 +81,14 @@ const CustomDrawerContent = ({navigation}: any) => {
                     <FlexDirRow>
                       <OuterIconRow>
                         <OuterIconLeft15>
-                          <Icon name="ic_baby" size={25} color="#000" />
+                          {activeChild.photoUri != '' ? (
+                            <ImageIcon
+                              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
+                            // style={{borderRadius: 20, width: 40, height: 40}}
+                            ></ImageIcon>
+                          ) : (
+                            <Icon name="ic_baby" size={25} color='#000' />
+                          )}
                         </OuterIconLeft15>
                       </OuterIconRow>
                       <FDirCol>
@@ -92,8 +101,8 @@ const CustomDrawerContent = ({navigation}: any) => {
                           {t('drawerMenuchildInfo', {
                             childdob:
                               activeChild.birthDate != '' &&
-                              activeChild.birthDate != null &&
-                              activeChild.birthDate != undefined
+                                activeChild.birthDate != null &&
+                                activeChild.birthDate != undefined
                                 ? formatDate(activeChild.birthDate)
                                 : '',
                           })}
@@ -110,7 +119,7 @@ const CustomDrawerContent = ({navigation}: any) => {
           </Flex1>
           <DrawerLinkView
             // onPress={() => navigation.navigate('Home')}
-            onPress={() => navigation.navigate('Home', {screen: 'Home'})}>
+            onPress={() => navigation.navigate('Home', { screen: 'Home' })}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_home" size={25} color="#000" />
@@ -131,9 +140,9 @@ const CustomDrawerContent = ({navigation}: any) => {
 
             <Heading4>{t('drawerMenunotiTxt')}</Heading4>
             <BubbleContainer>
-            <BubbleView>
-              <Heading5>10</Heading5>
-            </BubbleView>
+              <BubbleView>
+                <Heading5>10</Heading5>
+              </BubbleView>
             </BubbleContainer>
           </DrawerLinkView>
 
@@ -141,7 +150,7 @@ const CustomDrawerContent = ({navigation}: any) => {
 
 
 
-          <DrawerLinkView style={{backgroundColor:accordvalue ?"#F7F6F4":"#FFF"}} onPress={() => onChangeaccordvalue(!accordvalue)}>
+          <DrawerLinkView style={{ backgroundColor: accordvalue ? "#F7F6F4" : "#FFF" }} onPress={() => onChangeaccordvalue(!accordvalue)}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_tools" size={25} color="#000" />
@@ -149,7 +158,7 @@ const CustomDrawerContent = ({navigation}: any) => {
             </OuterIconRow>
             <Heading4>{t('drawerMenutoolsTxt')}</Heading4>
             <Icon
-              style={{flex: 1, textAlign: 'right', alignSelf: 'center'}}
+              style={{ flex: 1, textAlign: 'right', alignSelf: 'center' }}
               name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
               color="#000"
@@ -160,7 +169,7 @@ const CustomDrawerContent = ({navigation}: any) => {
             <>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Home', {screen: 'ChildDevelopment'})
+                  navigation.navigate('Home', { screen: 'ChildDevelopment' })
                 }>
                 <FDirRow>
                   <BgDevelopment>
@@ -177,7 +186,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', {screen: 'VaccinationTab'})
+                  navigation.navigate('Tools', { screen: 'VaccinationTab' })
                 }>
                 <FDirRow>
                   <BgVaccination>
@@ -194,7 +203,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', {screen: 'HealthCheckupsTab'})
+                  navigation.navigate('Tools', { screen: 'HealthCheckupsTab' })
                 }>
                 <FDirRow>
                   <BgHealth>
@@ -211,7 +220,7 @@ const CustomDrawerContent = ({navigation}: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', {screen: 'ChildgrowthTab'})
+                  navigation.navigate('Tools', { screen: 'ChildgrowthTab' })
                 }>
                 <FDirRow>
                   <BgGrowth>
@@ -246,9 +255,9 @@ const CustomDrawerContent = ({navigation}: any) => {
 
             <Heading4>{t('drawerMenufavTxt')}</Heading4>
             <BubbleContainer>
-            <BubbleView>
-              <Heading5>10</Heading5>
-            </BubbleView>
+              <BubbleView>
+                <Heading5>10</Heading5>
+              </BubbleView>
             </BubbleContainer>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
@@ -287,7 +296,7 @@ const CustomDrawerContent = ({navigation}: any) => {
             </OuterIconRow>
             <Heading4>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => {}}>
+          <DrawerLinkView onPress={() => { }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
@@ -295,7 +304,7 @@ const CustomDrawerContent = ({navigation}: any) => {
             </OuterIconRow>
             <Heading4>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => {}}>
+          <DrawerLinkView onPress={() => { }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_loveapp" size={25} color="#000" />
