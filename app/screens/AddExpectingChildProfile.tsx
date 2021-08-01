@@ -204,7 +204,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 testID="dobdatePicker"
                 minimumDate={new Date(DateTime.local().toISODate())}
                 maximumDate={new Date(dobMax)}
-                value={new Date()}
+                value={plannedTermDate!=null ? plannedTermDate : new Date()}
                 mode={'date'}
                 display="default"
                 onChange={ondobChange}
