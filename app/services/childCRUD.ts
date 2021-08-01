@@ -1,6 +1,4 @@
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
-
-import { ChildGender } from '../database/schema/ChildDataSchema';
 import { Dispatch } from '@reduxjs/toolkit';
 import { Alert, ToastAndroid } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';

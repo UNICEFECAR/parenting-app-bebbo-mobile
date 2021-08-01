@@ -283,7 +283,15 @@ const HeaderBabyMenu = (props: any) => {
               getAllConfigData(dispatch);
             }
           }}>
-          <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+          {/* <Icon name="ic_baby" size={25} color={props.color || '#FFF'} /> */}
+          {activeChild.photoUri != '' ? (
+                <ImageIcon
+                  source={{uri: 'file://' + CHILDREN_PATH + activeChild.photoUri}}
+                  // style={{borderRadius: 20, width: 40, height: 40}}
+                  ></ImageIcon>
+              ) : (
+                <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+              )}
         </HeaderActionBox>
       </HeaderActionView>
     </>
