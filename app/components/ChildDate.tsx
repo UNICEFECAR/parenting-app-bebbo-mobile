@@ -1,7 +1,7 @@
 import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
-import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
+import { Heading4Centerr, ShiftFromBottom30,ShiftFromTop30,ShiftFromTop15 } from '@styles/typography';
 import { dobMin,minDue,maxDue } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
@@ -126,7 +126,6 @@ const ChildDate = (props: any) => {
           <FormOuterCheckbox
             // disabled={disablePrematureCheck}
             onPress={() => {
-             
               //console.log(disablePrematureCheck,"..click disablePrematureCheck...")
               // if(!disablePrematureCheck){
                
@@ -183,7 +182,7 @@ const ChildDate = (props: any) => {
 
         {toggleCheckBox && !disablePrematureCheck? (
           <>
-            <ShiftFromBottom30>
+            <ShiftFromTop15>
               <FormInputGroup onPress={showdueDatepicker}>
                 <LabelText>{t('childSetupdueLabel')}</LabelText>
                 <FormInputBox>
@@ -195,7 +194,7 @@ const ChildDate = (props: any) => {
                   </FormDateAction>
                 </FormInputBox>
               </FormInputGroup>
-            </ShiftFromBottom30>
+            </ShiftFromTop15>
             <View>
               {showdue && (
                 <DateTimePicker

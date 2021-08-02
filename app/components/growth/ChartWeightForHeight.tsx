@@ -1,4 +1,4 @@
-import { FlexCol, FlexDirRowEnd, FlexRowEnd } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexDirRowEnd, FlexRowEnd,FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useNavigation } from '@react-navigation/native';
@@ -66,27 +66,26 @@ const ChartWeightForHeight = () => {
         )
      console.log(item);
   return (
-    <View
-     
-      style={{
-        flexDirection: 'column',
-      }}>
+    
       <FlexCol>
-       
-          <FlexRowEnd>
-            <Pressable  style={{padding:7,marginTop:5}}
-              onPress={() =>
-                fullScreenChart(
-                  chartTypes.weightForHeight,
-                  obj,
-                  standardDeviation,
-                )
-              }>
-              <Icon name="ic_fullscreen" size={16} />
-            </Pressable>
-          </FlexRowEnd>
+          <FlexCol>
+            <FlexColEnd>
+              <Pressable  style={{padding:7,marginTop:5}}
+                onPress={() =>
+                  fullScreenChart(
+                    chartTypes.weightForHeight,
+                    obj,
+                    standardDeviation,
+                  )
+                }>
+                <Icon name="ic_fullscreen" size={16} />
+              </Pressable>
+            </FlexColEnd>
+          </FlexCol>
+          
+      <FlexCol>
         
-        <GrowthChart
+          <GrowthChart
           activeChild={activeChild}
           chartType={chartTypes.weightForHeight}
           bgObj={obj}
@@ -100,7 +99,9 @@ const ChartWeightForHeight = () => {
           baseFontStyle={{fontSize: 16}}
         />
       </ShiftFromTop10>
-      <View style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
+      </FlexCol>
+        
+      <FlexCol style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
       <RelatedArticles
         fromScreen={'ChildgrowthTab'}
         related_articles={item?.interpretationText?.articleID}
@@ -110,9 +111,9 @@ const ChartWeightForHeight = () => {
         backgroundColor={backgroundColor}
         navigation={navigation}
       />
-      </View>
       </FlexCol>
-    </View>
+      </FlexCol>
+   
   );
 };
 export default ChartWeightForHeight;
