@@ -91,14 +91,16 @@ export const FormContainer = styled.View`
   margin-top:25px;
   
 `;
+export const FormContainer1 = styled(FormContainer)`
+  margin-top:20px;
+  
+`;
 export const FormContainerFlex = styled(FormContainer)`
   flex:1
 `;
 export const FormContainerFlex1 = styled(FormContainerFlex)`
 margin-top:0;
 `;
-
-
 export const FormInputBox = styled.View`
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -108,27 +110,20 @@ export const FormInputBox = styled.View`
   height:52px;
   padding:5px 12px;
 `;
-
 export const FormDateText = styled.View`
   /*flex: 4;*/
   /*justify-content: flex-start;
   flex-direction: row;*/
-  
 `;
-
 export const FormDateAction = styled.View`
  /* flex: 1;
   justify-content: center;
   flex-direction: row;*/
-  
- 
 `;
-
 export const FormInputGroup = styled.Pressable`
   width: 100%;
   padding:5px 0px;
 `;
-
 export const FormInputText = styled(LabelText)`
   color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-size: 16px;
@@ -142,10 +137,10 @@ height:75px;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const TextBox = styled(TextAreaBox)`
- 
 height:52px;
+padding-top:8px;
+padding-bottom:7px;
 `;
-
 
 /*Form Styling*/
 export default ChildSetupContainer;

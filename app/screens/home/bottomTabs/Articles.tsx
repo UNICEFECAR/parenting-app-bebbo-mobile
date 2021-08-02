@@ -382,25 +382,7 @@ const Articles = ({route, navigation}: Props) => {
 
 export default Articles;
 const styles = StyleSheet.create({
-  // item: {
-  //   backgroundColor: '#FFF',
-  //   // padding: 20,
-  //   marginVertical: 8,
-  //   marginHorizontal: 16,
-  //   borderRadius: 5,
-  //   flex: 1,
-  //   overflow:'hidden',
-  // },
-  // title: {
-  //   fontSize: 16,
-  //   padding: 10,
-  //   flex: 1,
-  // },
-  // label: {
-  //   fontSize: 12,
-  //   paddingLeft: 10,
-  //   flex: 1,
-  // },
+  
   cardImage: {
     height: 200,
     width: '100%',
