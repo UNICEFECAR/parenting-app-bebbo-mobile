@@ -198,6 +198,11 @@ const Articles = ({route, navigation}: Props) => {
         setLoading(false);
         setfilteredData([]);
         setFilterArray([]);
+        if(route.params?.categoryArray)
+        {
+          navigation.setParams({categoryArray:[]})
+          // route.params?.currentSelectedChildId = 0;
+        }
       }
     },[languageCode,route.params?.categoryArray])
   );

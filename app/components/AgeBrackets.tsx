@@ -5,8 +5,9 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useAppSelector } from '../../App';
+import ScrollingButtonMenu from '../services';
 import AgeSliderContainer, { AgeSliderBox, AgeSliderNav } from './shared/AgeSliderContainer';
-import ScrollingButtonMenu from 'react-native-scroll-menu';
+// import ScrollingButtonMenu from 'react-native-scroll-menu';
 
 const DATA = [
   {
@@ -52,15 +53,15 @@ const DATA = [
 ];
 
 const AgeBrackets = (props: any) => {
-  const {currentSelectedChildId, showSelectedBracketData} = props;
-  const [currentXOffset, setCurrentXOffset] = React.useState(0);
-  const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
+  const {currentSelectedChildId, showSelectedBracketData, activatedItemColor, itemColor, ItemTintColor} = props;
+  // const [currentXOffset, setCurrentXOffset] = React.useState(0);
+  // const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
   // const [selected, setSelected] = React.useState(currentSelectedChildId);
   const childAge = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
      );
-  
+  // console.log(currentSelectedChildId,"--in age brackets");
   // const activeChildId = useAppSelector((state: any) =>
   //   state.childData.childDataSet.activeChild != ''
   //     ? JSON.parse(state.childData.childDataSet.activeChild).taxonomyData.id
@@ -71,12 +72,12 @@ const AgeBrackets = (props: any) => {
   // let currentSelectedChildId: any;
   useLayoutEffect(
     React.useCallback(() => {
-  //     console.log(currentSelectedChildId,"--props.currentSelectedChildId");
+      console.log(currentSelectedChildId,"--props.currentSelectedChildId");
   // //     const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
   // //     console.log("firstChildDevData---",firstChildDevData);
   // //     goToSelectedAgeBrac(firstChildDevData[0]);
   //     // setSelected(currentSelectedChildId);
-    },[currentSelectedChildId])
+    },[])
   );
   // const goToSelectedAgeBrac = (item: any) => {
   //   currentSelectedChildId = item.id;
@@ -124,9 +125,9 @@ const AgeBrackets = (props: any) => {
                 // selected={selected}
                 
                 selected={currentSelectedChildId}
-                activeBackgroundColor={props.activatedItemColor}
-                activeColor={props.itemColor}
-                buttonStyle={{backgroundColor:props.ItemTintColor}}
+                activeBackgroundColor={activatedItemColor}
+                activeColor={itemColor}
+                buttonStyle={{backgroundColor:ItemTintColor}}
                 // textStyle={{color:'#000',fontWeight:'bold'}}
             />
     {/* <AgeSliderContainer>
