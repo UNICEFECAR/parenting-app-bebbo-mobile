@@ -162,14 +162,15 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
     },[relatedArticleData])
   );
   //console.log("relatedArticleData---",relatedArticleData);
-  const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
-    navigation.navigate('DetailsScreen',
+  const goToArticleDetail = (item:any) => {
+    console.log(item, fromScreen,headerColor, backgroundColor, listCategoryArray);
+    navigation.push('DetailsScreen',
     {
       fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
       headerColor:headerColor,
       backgroundColor:backgroundColor,
       detailData:item,
-      listCategoryArray: listCategoryArray ? listCategoryArray: null
+      listCategoryArray: listCategoryArray ? listCategoryArray: []
       // setFilteredArticleData: setFilteredArticleData
     });
   };
