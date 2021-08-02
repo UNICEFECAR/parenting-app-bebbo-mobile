@@ -115,8 +115,9 @@ const Childgrowth = ({navigation,route}: Props) => {
               <>
                 <FlexDirCol>
                   <ShiftFromBottom5>
-                    <Heading3 style={{marginTop: 15}}>
-                      {t('babyNotificationbyAge', {
+                    <Heading3 style={{marginTop: 15}}>                  
+                      { activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ? 
+                      t('babyNotificationbyAge', {
                         childName:
                           activeChild.childName != null &&
                           activeChild.childName != '' &&
@@ -132,7 +133,8 @@ const Childgrowth = ({navigation,route}: Props) => {
                                 activeChild.birthDate,
                               )
                             : '',
-                      })}
+                      }):t('expectedChildDobLabel')
+                      }
 
                       {/* {t('growthScreengrowthDataTitle', {childAge: 3})} */}
                     </Heading3>
