@@ -71,40 +71,43 @@ const goToVideoArticleDetails = () => {
 }
   return (
     <>
-    <MainContainer key={selectedPinnedArticleData?.id}>
-      
-        <ShiftFromBottom10>
-        <Heading2Center>
-          {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:'Baby',parentName:userNameData?.length > 0 ? 'and '+userNameData[0].value : ''})} 
-           {/* if baby found use childInfoTitle */}
-        </Heading2Center>
-        </ShiftFromBottom10>
-        <ShiftFromBottom10>
-          {/* <Image
-            source={require('@assets/trash/card3.jpeg')}
-            style={{width: '100%', borderRadius: 10}}
-          /> */}
-          <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
-        </ShiftFromBottom10>
-        {/* <Heading3Center>{t('babyNotificationbyAge',{childName:(activeChild.childName!=null && activeChild.childName!="" && activeChild.childName!=undefined)?activeChild.childName:'',ageInMonth:(activeChild.birthDate!=null && activeChild.birthDate!="" && activeChild.birthDate!=undefined)? getCurrentChildAgeInMonths(t,activeChild.birthDate):''})}</Heading3Center> */}
-        <Heading3Center>{selectedPinnedArticleData?.title}</Heading3Center>
+    {selectedPinnedArticleData ?
+      <MainContainer key={selectedPinnedArticleData?.id}>
+        
+          <ShiftFromBottom10>
+          <Heading2Center>
+            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:'Baby',parentName:userNameData?.length > 0 ? 'and '+userNameData[0].value : ''})} 
+            {/* if baby found use childInfoTitle */}
+          </Heading2Center>
+          </ShiftFromBottom10>
+          <ShiftFromBottom10>
+            {/* <Image
+              source={require('@assets/trash/card3.jpeg')}
+              style={{width: '100%', borderRadius: 10}}
+            /> */}
+            <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
+          </ShiftFromBottom10>
+          {/* <Heading3Center>{t('babyNotificationbyAge',{childName:(activeChild.childName!=null && activeChild.childName!="" && activeChild.childName!=undefined)?activeChild.childName:'',ageInMonth:(activeChild.birthDate!=null && activeChild.birthDate!="" && activeChild.birthDate!=undefined)? getCurrentChildAgeInMonths(t,activeChild.birthDate):''})}</Heading3Center> */}
+          <Heading3Center>{selectedPinnedArticleData?.title}</Heading3Center>
 
-        <ShiftFromTopBottom10>
-        <Heading4Centerr>
-          {selectedPinnedArticleData?.body}
-        </Heading4Centerr>
-        </ShiftFromTopBottom10>
-        <ShiftFromBottom10>
-          <ButtonSpacing>
-            <SideSpacing25>
-          <ButtonPrimary onPress={goToVideoArticleDetails}>
-            <ButtonText>{t('homeScreenchildBtnText')}</ButtonText>
-          </ButtonPrimary>
-          </SideSpacing25>
-          </ButtonSpacing>
-        </ShiftFromBottom10>
-      
-      </MainContainer>
+          <ShiftFromTopBottom10>
+          <Heading4Centerr>
+            {selectedPinnedArticleData?.body}
+          </Heading4Centerr>
+          </ShiftFromTopBottom10>
+          <ShiftFromBottom10>
+            <ButtonSpacing>
+              <SideSpacing25>
+            <ButtonPrimary onPress={goToVideoArticleDetails}>
+              <ButtonText>{t('homeScreenchildBtnText')}</ButtonText>
+            </ButtonPrimary>
+            </SideSpacing25>
+            </ButtonSpacing>
+          </ShiftFromBottom10>
+        
+        </MainContainer>
+        : null 
+        }
     </>
   );
 };

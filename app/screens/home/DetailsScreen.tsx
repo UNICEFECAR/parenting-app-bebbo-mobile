@@ -59,6 +59,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     newHeaderColor = themeContext.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   }
+  // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
   const [detailDataToUse,setDetailDataToUse] = useState({});
@@ -73,8 +74,14 @@ const DetailsScreen = ({route, navigation}: any) => {
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
           // );
-          const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,'id == "'+detailData+'"');
-          setDetailDataToUse(articleData[0]);
+          if(typeof detailData == "number")
+          {
+            const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,'id == "'+detailData+'"');
+            setDetailDataToUse(articleData[0]);
+          }else if(typeof detailData == "object")
+          {
+            setDetailDataToUse(detailData);
+          }
           // detailDataToUse = articleData[0]
           // detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
           // console.log(detailData,"detailData",detailDataToUse);
@@ -88,13 +95,13 @@ const DetailsScreen = ({route, navigation}: any) => {
       }
       functionOnLoad();
       return () => {
-        setDetailDataToUse({});
-        setCoverImage('');
-        setFilterArray([]);
+        // setDetailDataToUse({});
+        // setCoverImage('');
+        // setFilterArray([]);
       }
   }, [detailData]);
   
-  
+  // console.log("detailDataToUse--",(detailDataToUse));
   const {t} = useTranslation();
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
@@ -149,8 +156,9 @@ const DetailsScreen = ({route, navigation}: any) => {
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  const ref = React.useRef(null);
-  useScrollToTop(ref);
+  const bodydata = "<p>Planned daily activities for a child should be adjusted to his/her age but also to individual needs. In addition to nutrition, one must think about time for play and physical activity, sleep and periods when the child is sitting but engaged in activities such as: talking to family members, listening to stories, sitting in front of a screen, riding in a car, eating.</p>\n<p><strong>Children aged three and over </strong></p>\n<ul>\n<li>In this age a child should also spend at least 180 minutes throughout the day in a variety of types of physical activities, of which at least <strong><em>60 minutes is moderate to vigorous intensity</em></strong> physical activity.</li>\n<li>The position of relative rest is not recommended to last longer than 1 hour. Use this time for conversation, sightseeing, reading, storytelling. One hour is also the longest screen time for a child with your mandatory supervision of the content watched.</li>\n<li>Sleep time required goes from 10 to 13 hours including both daytime and night time sleep, and periods of night wake-up times. You should not shorten the child`s sleep time because it may be associated with disorders: growth disorder, obesity, emotional regulation disorder, etc.</li>\n</ul>\n<p><strong><em>Light-intensity physical activity </em></strong>includes activities with energy cost 1.5 to 4.0 times the energy expenditure at rest for the child: bathing, slow walking, or other incidental activities; they do not result in the child getting hot.</p>\n<p><strong><em>Moderate- to vigorous-intensity physical activity </em></strong>includes activities 4–7 times energy expenditure at rest for the child: brisk walking, cycling, running and playing ball games, jumping, swimming, dancing etc. during which the child gets hot and breathless.</p>";
+  // const ref = React.useRef(null);
+  // useScrollToTop(ref);
   return (
     <>
     {detailDataToUse ?
@@ -199,7 +207,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </HeaderTitleView>
           </FlexDirRow>
 
-          <ScrollView ref={ref} style={{flex: 4}}>
+          <ScrollView style={{flex: 4}}>
             <View>
               {fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
                 <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
@@ -228,13 +236,13 @@ const DetailsScreen = ({route, navigation}: any) => {
               : null }
             </ShiftFromBottom5>
             <Heading2>{detailDataToUse?.title}</Heading2>
-            {detailDataToUse && detailDataToUse?.body ?
+            {detailDataToUse && detailDataToUse.body ?
               <HTML
-                source={{html: detailDataToUse?.body}}
+                source={{html: detailDataToUse.body}}
                 baseFontStyle={{fontSize: 16, color: '#000000'}}
               />
-              : null 
-            }
+               : null 
+            } 
             </ArticleDetailsContainer>
             {fromScreen === 'Articles' ? (
               <>
