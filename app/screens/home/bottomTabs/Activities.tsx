@@ -78,6 +78,7 @@ const Activities = ({ route,navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+  const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
   const fromPage = 'Activities';
   const childAge = useAppSelector(
     (state: any) =>
@@ -346,18 +347,19 @@ const Activities = ({ route,navigation }: Props) => {
           headerColor={headerColor}
           textColor="#000"
         />
-
+        <FlexCol>
+        <View style={{backgroundColor:'#fff'}}>
         {currentSelectedChildId && currentSelectedChildId != 0 ?
           <AgeBrackets
-            itemColor={backgroundColor}
+            itemColor={headerColorBlack}
             activatedItemColor={headerColor}
             currentSelectedChildId={currentSelectedChildId}
             showSelectedBracketData={showSelectedBracketData}
             ItemTintColor={backgroundColor}
           />
           : null
-        }
-        <FlexCol>
+        }</View>
+        
           <DividerAct></DividerAct>
           <ActivitiesCategories
             borderColor={headerColor}
@@ -368,9 +370,7 @@ const Activities = ({ route,navigation }: Props) => {
           />
           <DividerAct></DividerAct>
 
-          <View>
-          
-                
+          <FlexCol>
                 <FlatList
                   data={otherGames}
                   renderItem={({ item, index }) => renderActivityItem(item, index)}
@@ -379,7 +379,7 @@ const Activities = ({ route,navigation }: Props) => {
                 // ListFooterComponent={ContentThatGoesBelowTheFlatList}
                 />
               
-          </View>
+          </FlexCol>
         </FlexCol>
       </ContainerView>
     </>
@@ -394,28 +394,5 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     alignSelf: 'center',
-
   },
-  // item: {
-  //   height: '100%',
-  //   backgroundColor: '#FFF',
-  //   // padding: 20,
-  //   // marginVertical: 8,
-  //   // marginHorizontal: 16,
-  //   // borderRadius: 5,
-  //   flex: 1,
-  // },
-  // title: {
-  //   fontSize: 16,
-  //   padding: 10,
-  //   // flex: 1,
-  //   color: '#000',
-  // },
-  // label: {
-  //   // fontSize: 12,
-  //   // paddingLeft: 10,
-  //   // flex: 1,
-  //   // color: '#000',
-  // },
-
 });

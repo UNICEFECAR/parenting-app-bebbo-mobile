@@ -1,4 +1,4 @@
-import { Heading4, Paragraph } from '@styles/typography';
+import { Heading4, Heading4Regular, Paragraph, ShiftFromBottom20 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -50,7 +50,9 @@ const GrowthIntroductory = (props: any) => {
 
   return (
     <>
-      <Heading4>{growthPeriod()}</Heading4>
+    <ShiftFromBottom20>
+      <Heading4Regular>{growthPeriod()}</Heading4Regular>
+      </ShiftFromBottom20>
     </>
   );
 };

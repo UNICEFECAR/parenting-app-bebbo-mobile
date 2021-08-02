@@ -5,7 +5,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildContentArea, ChildRelationList, ChildSection, FormContainer, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText, TextBox
+  ChildContentArea, ChildRelationList, ChildSection, FormContainer,FormContainer1, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText, TextBox
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -28,7 +28,9 @@ import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
-  Heading3
+  Heading3,
+  ShiftFromTop30,
+  ShiftFromTop20
 } from '../styles/typography';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
@@ -140,18 +142,19 @@ const ChildSetup = ({ navigation }: Props) => {
               <ChildDate sendData={sendData} dobMax={dobMax}/>
               {
                 birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
-                  <FormContainer>
+                  <FormContainer1>
                     <LabelText>{t('genderLabel')}</LabelText>
-                    <TextBox>
+                    <FormContainerFlex>
                       <ToggleRadios
                         options={genders}
                         tickbgColor={headerColor}
                         tickColor={'#FFF'}
                         getCheckedItem={getCheckedItem}
-                      /></TextBox>
-                  </FormContainer>
+                      /></FormContainerFlex>
+                  </FormContainer1>
                   : null
               }
+              <ShiftFromTop20>
               <FormInputGroup
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
@@ -166,7 +169,7 @@ const ChildSetup = ({ navigation }: Props) => {
                   </FormDateAction>
                 </FormInputBox>
               </FormInputGroup>
-
+              </ShiftFromTop20>
 
             </ChildSection>
           </ChildContentArea>
