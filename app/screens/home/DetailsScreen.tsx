@@ -5,7 +5,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
 import { BgActivityTint } from '@components/shared/BackgroundColors';
 import { MainContainer, SafeAreaContainer } from '@components/shared/Container';
-import { FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ProgressiveImage from '@components/shared/ProgressiveImage';
@@ -246,7 +246,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </ArticleDetailsContainer>
             {fromScreen === 'Articles' ? (
               <>
-                <View style={{backgroundColor: newBackgroundColor}}>
+                <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
@@ -255,17 +255,17 @@ const DetailsScreen = ({route, navigation}: any) => {
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
                   </ArticleHeading>
                   <ArticleCategories borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}/>
-                </View>
+                </FlexCol>
               </>
             ) : null}
             {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup"? (
               <>
-                <View style={{backgroundColor: newBackgroundColor}}>
+                <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
                     <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
                   
-                </View>
+                </FlexCol>
               </>
             ) : null}
             
