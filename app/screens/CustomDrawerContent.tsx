@@ -34,6 +34,7 @@ import { Alert, Pressable, ScrollView, Share } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
+import { isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
@@ -97,15 +98,17 @@ const CustomDrawerContent = ({ navigation }: any) => {
                             ? activeChild.childName
                             : ''}
                         </Heading3>
-                        <Heading5>
-                          {t('drawerMenuchildInfo', {
+                        <Heading5>      
+                          {( activeChild.birthDate != '' &&
+                                activeChild.birthDate != null &&
+                                activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate)) ? t('drawerMenuchildInfo', {
                             childdob:
                               activeChild.birthDate != '' &&
                                 activeChild.birthDate != null &&
                                 activeChild.birthDate != undefined
                                 ? formatDate(activeChild.birthDate)
                                 : '',
-                          })}
+                          }):t('expectedChildDobLabel')}
                         </Heading5>
                       </FDirCol>
                     </FlexDirRow>

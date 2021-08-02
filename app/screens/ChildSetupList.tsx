@@ -28,7 +28,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { apiJsonDataGet, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays } from '../services/childCRUD';
+import { apiJsonDataGet, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -92,7 +92,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     <ChildListingBox key={index}>
     <ChildColArea1>
       <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
-      <Text>{t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''})}</Text>
+      <Text>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}</Text>
     </ChildColArea1>
     <ChildColArea2>
     {

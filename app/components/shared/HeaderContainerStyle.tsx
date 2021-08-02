@@ -5,6 +5,8 @@ export const HeaderRowView = styled.View`
   flex-direction: row;
   flex: 1;
   align-items: center;
+  z-index:99999999;
+  position:relative
 `;
 
 export const HeaderIconView = styled.View`
@@ -21,7 +23,6 @@ flex:1;
 padding:10px;
 align-items:flex-end;
 justify-content:flex-start;
-
 `;
 
 export const HeaderActionBox = styled.Pressable`
@@ -32,6 +33,7 @@ export const HeaderActionBox = styled.Pressable`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  
 `;
 
 // export const ProfileListViewSelected = styled(ProfileListView)`

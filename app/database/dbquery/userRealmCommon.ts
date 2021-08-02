@@ -426,6 +426,27 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async deleteBy(entitySchema: ObjectSchema,Condition:any): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    const allRecords = realm?.objects(entitySchema.name).filtered(Condition);
+                    console.log(allRecords,"..allRecords..")
+                    realm?.write(() => {
+                        realm?.delete(allRecords);
+                        resolve();
+                    });
+                }
+                else {
+                    reject();
+                }  
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
 }
 export const userRealmCommon = UserRealmCommon.getInstance();
 

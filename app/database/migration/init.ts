@@ -48,6 +48,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
       comment: child.comment,
       checkedMilestones:child.checkedMilestones,
       reminders: child.reminders,
+      isMigrated:true,
       isPremature:'false', //calcualte if its premature or not?
       //relationship:''
      };
