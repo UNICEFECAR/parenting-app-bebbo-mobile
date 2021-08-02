@@ -52,6 +52,7 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
     createdAt: new Date(),
     updatedAt: new Date(),
     measurementPlace: "doctor",
+    isMigrated:false,
     //relationship: relationship ? relationship : '',
     isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false"
   };
@@ -262,6 +263,8 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
 };
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any,relationship?:any) => {
   let oldBirthDate;
+  console.log(editScreen,"..editScreen..")
+  console.log(param,"..param..")
   if (editScreen) {
     console.log("..update child..", data);
     let oldChild = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${data[0].uuid}'`);
@@ -292,6 +295,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     else {
       relationshipnew = String(relationship);
     }
+    console.log(data[0].uuid,"..data[0].uuid..");
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
@@ -406,9 +410,9 @@ export const getAllChildren = async (dispatch: any) => {
       console.log("childAllData--",childAllData);
       console.log(childAllData, "before")
       childAllData = childAllData.sort((a: any, b: any) => {
-        DateTime.fromISO(a.updatedAt).diff(DateTime.fromISO(b.updatedAt));
-        const keyA = new Date(a.updatedAt),
-          keyB = new Date(b.updatedAt);
+        DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
+        const keyA = new Date(a.createdAt),
+          keyB = new Date(b.createdAt);
 
         if (keyA < keyB) return -1;
         if (keyA > keyB) return 1;
