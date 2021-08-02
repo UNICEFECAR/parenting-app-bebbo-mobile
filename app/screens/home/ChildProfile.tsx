@@ -135,7 +135,11 @@ const child_age = useAppSelector(
               <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontWeight:'normal'}}>{', '+genderName}</Text>:null}
               </Heading3>
             </ProfileSectionView>
-            <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
+            <Heading5>      
+                          {( data.birthDate != '' &&
+                               data.birthDate != null &&
+                               data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}
+                        </Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
                 onPress={() => {
@@ -199,7 +203,11 @@ const child_age = useAppSelector(
               </Heading3>
                 
               </ProfileSectionView>
-              <Heading5>{t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''})}</Heading5>
+              <Heading5>      
+                          {( data.birthDate != '' &&
+                               data.birthDate != null &&
+                               data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}
+                        </Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
                   onPress={() => {
