@@ -10,6 +10,7 @@ import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
@@ -120,7 +121,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
               </ShiftFromTop5>
             </ChildAddTop>
           </OnboardingHeading>
-          <ChildDate sendData={sendData} childData={childData} />
+          <ChildDate sendData={sendData} childData={childData} dobMax={dobMax}/>
           {
           birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
           <FormContainer>
