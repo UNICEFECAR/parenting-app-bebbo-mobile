@@ -36,11 +36,6 @@ type Props = {
 const ChildDevelopment = ({route, navigation}: Props) => {
   
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const backgroundColor = themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
-  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
-  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
-  const headerColorBlack = themeContext.colors.PRIMARY_TEXTCOLOR;
   const {t} = useTranslation();
   const ChildDevData = useAppSelector(
     (state: any) =>
@@ -73,31 +68,44 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  // let headerColor,backgroundColor,artHeaderColor,artBackgroundColor,headerColorBlack;
+
   const [currentSelectedChildId,setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData,setSelectedChildDevData] = useState();
   const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
   const [milestonePercent,setMilestonePercent] = useState(0);
+  const [componentColors,setComponentColors] = useState({});
   // let selectedChildDevData:any;
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("in childdev focuseffect");
+      setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
+        backgroundColor : themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
+        artHeaderColor : themeContext.colors.ARTICLES_COLOR,
+        artBackgroundColor : themeContext.colors.ARTICLES_TINTCOLOR,
+        headerColorBlack : themeContext.colors.PRIMARY_TEXTCOLOR});
+
+        return () => {
+          console.log("in unmount-",route.params?.currentSelectedChildId);
+          if(route.params?.currentSelectedChildId)
+          {
+            navigation.setParams({currentSelectedChildId:0})
+            // route.params?.currentSelectedChildId = 0;
+          }
+        }
+    },[])
+  );
   const onPressInfo = () => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'ChildDevelopment',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
+      headerColor: componentColors?.artHeaderColor,
+      backgroundColor: componentColors?.artBackgroundColor,
       detailData: selectedPinnedArticleData,
       currentSelectedChildId: currentSelectedChildId
     });
-
-    // navigation.navigate('DetailsScreen',
-    // {
-    //   fromScreen:"Articles",
-    //   headerColor:headerColor,
-    //   backgroundColor:backgroundColor,
-    //   detailData:item,
-    //   listCategoryArray: filterArray
-    //   // setFilteredArticleData: setFilteredArticleData
-    // });
   };
+  
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
     setCurrentSelectedChildId(item.id);
@@ -202,7 +210,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   }
   // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
   const renderItem = (item: any) => (
-    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={headerColor} />
+    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (
@@ -316,9 +324,9 @@ const ChildDevelopment = ({route, navigation}: Props) => {
                 percent={milestonePercent}
                 radius={35}
                 borderWidth={6}
-                color={headerColor}
+                color={componentColors?.headerColor}
                 shadowColor="#fff"
-                bgColor={backgroundColor}
+                bgColor={componentColors?.backgroundColor}
             >
                 <Text style={{ fontSize: 18 }}>{milestonePercent}{'%'}</Text>
             </ProgressCircle>
@@ -339,26 +347,26 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   return (
     <>
       <SafeAreaContainer>
-        <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <FocusAwareStatusBar animated={true} backgroundColor={componentColors?.headerColor} />
           <TabScreenHeader
             title={t('developScreenheaderTitle')}
-            headerColor={headerColor}
+            headerColor={componentColors?.headerColor}
             textColor="#000"
           />
-          { currentSelectedChildId && currentSelectedChildId != 0 ? 
+          { currentSelectedChildId && componentColors != {} && currentSelectedChildId != 0 ? 
             
             <AgeBrackets
-              itemColor={headerColorBlack}
-              activatedItemColor={headerColor}
+              itemColor={componentColors?.headerColorBlack}
+              activatedItemColor={componentColors?.headerColor}
               currentSelectedChildId={currentSelectedChildId}
               showSelectedBracketData={showSelectedBracketData}
-              ItemTintColor={backgroundColor}
+              ItemTintColor={componentColors?.backgroundColor}
             />
              
             : null 
           }      
           {selectedChildMilestoneData && selectedChildMilestoneData?.length > 0 ?
-              <FlexCol style={{backgroundColor: backgroundColor}}>
+              <FlexCol style={{backgroundColor: componentColors?.backgroundColor}}>
                 <View>
                   <FlatList
                     data={selectedChildMilestoneData}
