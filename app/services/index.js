@@ -16,7 +16,8 @@ export default class ScrollingButtonMenu extends React.Component {
         this.dataSourceCords = [];
         this.state = {
             index: '',
-            scrollindex:''
+            scrollindex:'',
+            dataSourceCords2:[]
         };
     }
     // getasyncData = async () => {
@@ -46,11 +47,14 @@ export default class ScrollingButtonMenu extends React.Component {
     //     }
     //   };
     componentDidUpdate(prevProps) {
-        // const {selected} = this.props;
+        const {selected} = this.props;
         // if (this.props.selected != this.state.index) {
         //     this.setState({index: selected}, () => {
         //         console.log("in componentDidUpdate",selected);
-        //         this._scrollTo();
+        //         if(this.dataSourceCords.length > 0)
+        //             {
+        //                 this._scrollTo();
+        //             }
         //     });
         // }
     }
@@ -60,19 +64,19 @@ export default class ScrollingButtonMenu extends React.Component {
         if (selected) {
             this.setState({index: selected}, () => {
                 setTimeout(() => {
-                    // console.log("in componentDidMount",this.state.index);
-                    if(this.dataSourceCords.length > 0)
-                    {
+                    // console.log(this.dataSourceCords,"in componentDidMount",this.state.index);
+                    // if(this.dataSourceCords.length > 0)
+                    // {
                         this._scrollTo();
-                    }
+                    // }
                 }, 0);
             });
         }
     }
 
     _scrollTo() {
-        const {index} = this.state;
-        // console.log("scrolltoindex--",index);
+        const {index, dataSourceCords2} = this.state;
+        // console.log(dataSourceCords2[index],"scrolltoindex--",index);
         // console.log("this.dataSourceCords--",this.dataSourceCords);
         const screen1 = screenWidth / 2;
         const elementOffset = this.dataSourceCords[index];
@@ -180,10 +184,16 @@ export default class ScrollingButtonMenu extends React.Component {
                                     // console.log(this.dataSourceCords,"--layout--",layout);
                                     if(layout){
                                         this.dataSourceCords[route.id] = layout;
-                                        if(this.dataSourceCords)
-                                        {
-                                            // this.savesyncData(JSON.stringify(this.dataSourceCords))
-                                        }
+                                        // this.setState({dataSourceCords2:this.dataSourceCords});
+                                        this.setState({dataSourceCords2: this.dataSourceCords}, () => setTimeout(() => {
+                                            // console.log("in onpress",route.id);
+                                                this._scrollTo();
+                                                // return this.props.onPress(route);
+                                        }, 30),)
+                                        // if(this.dataSourceCords)
+                                        // {
+                                        //     // this.savesyncData(JSON.stringify(this.dataSourceCords))
+                                        // }
                                         // window.localStorage.setItem('dataSourceCords', JSON.stringify(state));
                                         // this._scrollTo();
                                     }

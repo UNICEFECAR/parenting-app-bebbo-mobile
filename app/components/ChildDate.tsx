@@ -2,7 +2,7 @@ import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
-import { dobMin,minDue,maxDue, dobMax } from '@types/types';
+import { dobMin,minDue,maxDue } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,13 +32,22 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 
 const ChildDate = (props: any) => {
+  const {dobMax}=props;
   const [dateFormat, setDateFormat] = useState("day month year");
   let birthDate:any, isPremature:any, plannedTermDate:any=null;
   const {childData}=props;
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
   };
-      useFocusEffect(
+     
+  //console.log(birthDate,"..birthDate..");
+  const { t } = useTranslation();
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isExpected, setIsExpected] = useState(false);
+  const [doborExpectedDate, setdoborExpectedDate] = useState<Date|null>(null);
+  const [showdob, setdobShow] = useState<Boolean>(false);
+  const [disablePrematureCheck, setdisablePrematureCheck] = useState<Boolean>(false);
+   useFocusEffect(
         React.useCallback(() => {
           if(birthDate=="" ||  birthDate==null ||  birthDate==undefined){ 
             setdisablePrematureCheck(true);
@@ -57,21 +66,13 @@ const ChildDate = (props: any) => {
               setIsExpected(false);
             }  
             setToggleCheckBox(isPremature!=null ? JSON.parse(isPremature) : false);
-            setdoborExpectedDate(birthDate!=null ? new Date(birthDate) : null);
+            setdoborExpectedDate(birthDate!=null ? new Date(birthDate) : new Date());
             setdueDate(plannedTermDate!=null ? new Date(plannedTermDate) : null);
            // console.log(disablePrematureCheck,"..disablePrematureCheck..");
           } 
             
         }, [])
       );
-  //console.log(birthDate,"..birthDate..");
-  const { t } = useTranslation();
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
-  const [isExpected, setIsExpected] = useState(false);
-  const [doborExpectedDate, setdoborExpectedDate] = useState<Date|null>(null);
-  const [showdob, setdobShow] = useState<Boolean>(false);
-  const [disablePrematureCheck, setdisablePrematureCheck] = useState<Boolean>(false);
-  
   const ondobChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || doborExpectedDate;
     setdobShow(Platform.OS === 'ios');
@@ -89,7 +90,7 @@ const ChildDate = (props: any) => {
     }  
   };
   const showdobDatepicker = () => {
-    console.log(birthDate,"..birthDate..");
+    //console.log(birthDate,"..birthDate..");
     setdobShow(true);
   };
   const [modalVisible, setModalVisible] = useState(false);
@@ -144,7 +145,6 @@ const ChildDate = (props: any) => {
             }}>
             <CheckboxItem>
               <View>
-                
                 {toggleCheckBox ? (
                   <CheckboxActive  style={disablePrematureCheck?styles.disabledCheckBox:null}>
                     <Icon name="ic_tick" size={12} color="#000" />
@@ -165,13 +165,15 @@ const ChildDate = (props: any) => {
         </FormPrematureContainer>
 
         <View>
+       
           {showdob && (
+           
             <DateTimePicker
               testID="dobdatePicker"
               dateFormat={"day month year"}
               minimumDate={ new Date(dobMin)}
               maximumDate={ new Date(dobMax)}
-              value={new Date()}
+              value={doborExpectedDate !=null ? doborExpectedDate : new Date()}
               mode={'date'}
               display="default"
               onChange={ondobChange}
@@ -198,7 +200,7 @@ const ChildDate = (props: any) => {
               {showdue && (
                 <DateTimePicker
                   testID="duedatePicker"
-                  value={new Date()}
+                  value={dueDate !=null ? dueDate : new Date()}
                   mode={'date'}
                   display="default"
                   minimumDate={new Date(DateTime.fromJSDate(doborExpectedDate as Date).plus({ weeks: minDue }).toISODate())}
