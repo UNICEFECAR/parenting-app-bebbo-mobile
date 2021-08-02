@@ -2,7 +2,7 @@ import Icon from '@components/shared/Icon';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromBottom30 } from '@styles/typography';
-import { dobMin,minDue,maxDue, dobMax } from '@types/types';
+import { dobMin,minDue,maxDue } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
