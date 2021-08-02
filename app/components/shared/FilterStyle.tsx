@@ -15,7 +15,11 @@ export const ArticleFilter = styled.View`
   border-Top-width:1px;*/
   margin-bottom:5px;
 `;
-
+export const ActivityFilter = styled(ArticleFilter)`
+  margin:0px;
+  padding:0;
+  margin-top:-5px;
+`;
 
 export const FilterBox = styled.View`  
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};

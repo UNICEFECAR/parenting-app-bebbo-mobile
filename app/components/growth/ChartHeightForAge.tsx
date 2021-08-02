@@ -70,12 +70,9 @@ const ChartHeightForAge = () => {
   );
      console.log(item);
   return (
-    <View
-      style={{
-        flexDirection: 'column',
-      }}>
+    
       <FlexCol>
-        
+      <FlexCol>
         <FlexRowEnd>
             <Pressable  style={{padding:7,marginTop:5}}
               onPress={() =>
@@ -84,7 +81,8 @@ const ChartHeightForAge = () => {
               <Icon name="ic_fullscreen" size={16} />
             </Pressable>
           </FlexRowEnd>
-       
+          </FlexCol>
+          <FlexCol>
         <GrowthChart
           activeChild={activeChild}
           chartType={chartTypes.heightForAge}
@@ -99,7 +97,8 @@ const ChartHeightForAge = () => {
           baseFontStyle={{fontSize: 16}}
         />
       </ShiftFromTop10>
-      <View style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
+      </FlexCol>
+      <FlexCol style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
       <RelatedArticles
         fromScreen={'ChildgrowthTab'}
         related_articles={item?.interpretationText?.articleID}
@@ -109,10 +108,9 @@ const ChartHeightForAge = () => {
         backgroundColor={backgroundColor}
         navigation={navigation}
       />
-      </View>
+      </FlexCol>
       </FlexCol>
     
-    </View>
   );
 };
 export default ChartHeightForAge;
