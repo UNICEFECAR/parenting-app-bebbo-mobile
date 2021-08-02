@@ -43,6 +43,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
   TextInput,
   View
 } from 'react-native';
@@ -66,7 +67,7 @@ import {
 } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
-
+import { v4 as uuidv4 } from 'uuid';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -120,11 +121,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
-  const [capturedPhoto, setCapturedImage] = React.useState(
-    childData != null && childData.photoUri != ''
-      ? `${CHILDREN_PATH}/${childData.photoUri}`
-      : '',
-  );
+  const [capturedPhoto, setCapturedImage] = React.useState('');
   const [photoUri, setphotoUri] = React.useState('');
   const [tempImage, cleanUPImage] = React.useState('');
   let initialData: any = {};
@@ -169,56 +166,22 @@ const EditChildProfile = ({route, navigation}: Props) => {
       // }
       if (childData != null && childData.uuid != '') {
         setphotoUri(childData.photoUri);
+        console.log(childData.photoUri,"..childData.photoUri..");
+        if(childData.photoUri!='' && childData.photoUri!=null && childData.photoUri!=undefined){
+        setCapturedImage('file://'+`${CHILDREN_PATH}/${childData.photoUri}`);
+        }
         sendData(childData);
       }
     }, []),
   );
-  const onChildPhotoChange = async (
-    child: ChildEntity | undefined,
-    image: ImageObject,
+  const onChildPhotoChange = async (image: ImageObject,
   ) => {
     MediaPicker.cleanupImages();
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
       mkdir(CHILDREN_PATH);
     }
-
-    // Set newFilename
-    let newFilename: string;
-
-    let parts = image.path.split('.');
-    let extension: string | null = null;
-    if (parts.length > 1) {
-      extension = parts[parts.length - 1].toLowerCase();
-    }
-
-    let timestamp = new Date().getTime();
-
-    if (child) {
-      if (extension) {
-        newFilename = `${child.uuid}_${timestamp}.${extension}`;
-      } else {
-        newFilename = child.uuid + '_' + timestamp;
-      }
-
-      // Set destPath
-      let destPath = `${CHILDREN_PATH}/${newFilename}`;
-      setDestPath(destPath);
-      // Delete image if it exists
-      if (await exists(destPath)) {
-        await unlink(destPath);
-      }
-
-      // Copy image
-      await copyFile(image.path, destPath);
-      console.log(image.path);
-      console.log(destPath);
-      setphotoUri(destPath.replace(CHILDREN_PATH, ''));
-      // Save imageUri to realm
-      // userRealmCommon.realm?.write(() => {
-      //     child.photoUri = destPath.replace(DocumentDirectoryPath, '');
-      // });
-    }
+    setCapturedImage(image.path);
   };
   const removePhoto = () => {
     deleteImageFile(capturedPhoto)
@@ -267,18 +230,18 @@ const EditChildProfile = ({route, navigation}: Props) => {
       MediaPicker.showCameraImagePicker((image: any) => {
         // image.path ==>> file path
         // console.log(image,"..image..");
-        cleanUPImage(image);
-        setCapturedImage(image.path);
-        onChildPhotoChange(childData, image);
+        // cleanUPImage(image);
+        // setCapturedImage(image.path);
+        onChildPhotoChange(image);
         // setphotoUri(image.path)
       });
     } else if (index == 2) {
       MediaPicker.showGalleryImagePicker((image: any) => {
         // image.path ==>> file path
         // console.log(image,"..image..");
-        cleanUPImage(image);
-        setCapturedImage(image.path);
-        onChildPhotoChange(childData, image);
+        // cleanUPImage(image);
+        // setCapturedImage(image.path);
+        onChildPhotoChange(image);
         //setphotoUri(image.path);
       });
     }
@@ -331,6 +294,37 @@ const EditChildProfile = ({route, navigation}: Props) => {
 
   //   // askPermissions();
   // }, []);
+  const setPhoto=async (uuid:string)=>{
+    console.log(capturedPhoto,"..capturedPhoto..");
+    let parts = capturedPhoto.split('.');
+    let extension: string | null = null;
+    if (parts.length > 1) {
+      extension = parts[parts.length - 1].toLowerCase();
+    }
+    let newFilename: string;
+    let timestamp = new Date().getTime();
+    if (extension) {
+      newFilename = `${uuid}_${timestamp}.${extension}`;
+    } else {
+      newFilename = uuid + '_' + timestamp;
+    }
+
+    // Set destPath
+    let destPath = `${CHILDREN_PATH}/${newFilename}`;
+    setDestPath(destPath);
+    // Delete image if it exists
+    if (await exists(destPath)) {
+      await unlink(destPath);
+    }
+
+    // Copy image
+    await copyFile(capturedPhoto, destPath);
+    console.log(capturedPhoto,"..imagepath..");
+    console.log(destPath,"..destPath..");
+    console.log(destPath.replace(CHILDREN_PATH, ''),"..destPath..");
+    setphotoUri(destPath.replace(CHILDREN_PATH, ''));
+    return destPath.replace(CHILDREN_PATH, '');
+  }
   const AddChild = async () => {
     let insertData: any = editScreen
       ? await getNewChild(
@@ -344,7 +338,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           gender,
         )
       : await getNewChild(
-          '',
+          uuidv4(),
           isExpected,
           plannedTermDate,
           isPremature,
@@ -354,8 +348,13 @@ const EditChildProfile = ({route, navigation}: Props) => {
           gender,
         );
     let childSet: Array<any> = [];
+    console.log(capturedPhoto,"....capturedPhoto..")
+    if(capturedPhoto!="" && capturedPhoto!=null && capturedPhoto!=undefined){
+    insertData.photoUri=await setPhoto(insertData.uuid);
+    }
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
+    console.log(childSet, '..childSet..');
     addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age,null);
   };
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
@@ -406,13 +405,14 @@ const EditChildProfile = ({route, navigation}: Props) => {
           </HeaderActionView>
         </HeaderRowView>
         <ScrollView style={{flex: 4}}>
+          {/* <Text>{capturedPhoto}</Text> */}
           <FlexCol>
-            {photoUri != '' && photoUri != null && photoUri != undefined ? (
+            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined ? (
               <View style={styles.container}>
                 <ImageBackground
                   source={
-                    photoUri != ''
-                      ? {uri: 'file://' + CHILDREN_PATH + photoUri}
+                    capturedPhoto != ''
+                      ? {uri: capturedPhoto}
                       : null
                   }
                   style={styles.image}>
@@ -484,7 +484,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 />
               </FormContainerFlex>
               <ShiftFromTop10>
-                <ChildDate sendData={sendData} childData={childData} />
+                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()}/>
               </ShiftFromTop10>
             </MainContainer>
           </FlexCol>
@@ -502,15 +502,15 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 {imageOptions.map((item, index) => {
                   console.log(
                     index == 0 &&
-                      (photoUri == '' ||
-                        photoUri == null ||
-                        photoUri == undefined),
+                      (capturedPhoto == '' ||
+                      capturedPhoto == null ||
+                      capturedPhoto == undefined),
                   );
                   if (
                     index == 0 &&
-                    (photoUri == '' ||
-                      photoUri == null ||
-                      photoUri == undefined)
+                    (capturedPhoto == '' ||
+                    capturedPhoto == null ||
+                    capturedPhoto == undefined)
                   ) {
                     return null;
                   } else {

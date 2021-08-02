@@ -189,6 +189,7 @@ const HeaderBabyMenu = (props: any) => {
                 <FDirRow>
                   <ButtonTextSmLine
                     onPress={() => {
+                      setModalVisible(false);
                       setActiveChild(languageCode,data.uuid, dispatch, child_age);
                     }}>
                     {t('childActivatebtn')}
@@ -214,21 +215,23 @@ const HeaderBabyMenu = (props: any) => {
         onDismiss={() => {
           setModalVisible(false);
         }}>
-        <Pressable
+        <View
           style={styles.centeredView}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-            if (modalVisible) {
-              getAllChildren(dispatch);
-              getAllConfigData(dispatch);
-            }
-          }}>
-          <TouchableOpacity
+          // onPress={() => {
+          //   setModalVisible(!modalVisible);
+          //   if (modalVisible) {
+          //     getAllChildren(dispatch);
+          //     getAllConfigData(dispatch);
+          //   }
+          // }}
+          >
+          <View
             style={styles.modalView}
-            onPress={() => console.log('do nothing')}
-            activeOpacity={1}>
+            // onPress={() => console.log('do nothing')}
+            // activeOpacity={1}
+            >
             {SortedchildList.length > 0 ? (
-              <View style={{height: 220}}>
+              <View style={{height: 'auto',maxHeight:125}}>
                 <FlatList
                   nestedScrollEnabled={true}
                   data={SortedchildList}
@@ -263,8 +266,8 @@ const HeaderBabyMenu = (props: any) => {
                 <ButtonText>{t('manageProfileTxt')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
-          </TouchableOpacity>
-        </Pressable>
+          </View>
+        </View>
       </Modal>
 
       <HeaderActionView>
@@ -283,7 +286,15 @@ const HeaderBabyMenu = (props: any) => {
               getAllConfigData(dispatch);
             }
           }}>
-          <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+          {/* <Icon name="ic_baby" size={25} color={props.color || '#FFF'} /> */}
+          {activeChild.photoUri != '' ? (
+                <ImageIcon
+                  source={{uri: 'file://' + CHILDREN_PATH + activeChild.photoUri}}
+                  // style={{borderRadius: 20, width: 40, height: 40}}
+                  ></ImageIcon>
+              ) : (
+                <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+              )}
         </HeaderActionBox>
       </HeaderActionView>
     </>
