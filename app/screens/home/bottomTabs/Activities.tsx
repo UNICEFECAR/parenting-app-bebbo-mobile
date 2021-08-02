@@ -174,6 +174,18 @@ const Activities = ({ route,navigation }: Props) => {
         setotherGames([]);
         setLoading(false);
         setfilteredData([]);
+
+        console.log("in unmount-",route.params?.currentSelectedChildId);
+          if(route.params?.currentSelectedChildId)
+          {
+            navigation.setParams({currentSelectedChildId:0})
+            // route.params?.currentSelectedChildId = 0;
+          }
+          if(route.params?.categoryArray)
+          {
+            navigation.setParams({categoryArray:[]})
+            // route.params?.currentSelectedChildId = 0;
+          }
       };
     }, [activeChild?.uuid,route.params?.currentSelectedChildId])
   );
