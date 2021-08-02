@@ -348,7 +348,8 @@ const RSsr = {
         noDataTxt:"No data available",
         hcEditHeaderTitle: "Edit health check-up",
         genderLabel: "Add Gender",
-
+        removePhotoOption1:'Cancel',
+        removePhotoOption2:'Remove'
     }
     // translation: {
     //     countryLangSelection: 'Odabrali ste zemlju i jezik',

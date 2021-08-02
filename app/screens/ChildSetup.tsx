@@ -14,6 +14,7 @@ import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { dobMax } from '@types/types';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
@@ -136,7 +137,7 @@ const ChildSetup = ({ navigation }: Props) => {
 
           <ChildContentArea>
             <ChildSection>
-              <ChildDate sendData={sendData} />
+              <ChildDate sendData={sendData} dobMax={dobMax}/>
               {
                 birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                   <FormContainer>

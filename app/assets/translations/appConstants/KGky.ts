@@ -348,7 +348,8 @@ tabbarLabel8: "Баланын өсүшү",
         noDataTxt:"No data available",
         hcEditHeaderTitle: "Edit health check-up",
         genderLabel: "Add Gender",
-
+        removePhotoOption1:'Cancel',
+        removePhotoOption2:'Remove'
     }
 }
 export default KGky;
