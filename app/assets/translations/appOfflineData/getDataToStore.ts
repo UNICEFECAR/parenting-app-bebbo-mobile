@@ -91,6 +91,7 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
 }
 const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:ObjectSchema,SchemaEntity:any,jsonData:any,setAllHardcodedData:Function,sortBy?:any,currentChildData?:any) => {
     return new Promise(async (resolve, reject) => {
+        console.log(currentChildData,"..currentChildData..")
         // console.log("getDataToStore--",SchemaToUse);
         let databaselistener:any;
         let dataToStore:any;

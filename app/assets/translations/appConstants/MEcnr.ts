@@ -363,7 +363,9 @@ const MEcnr = {
         hcEditHeaderTitle: "Edit health check-up",
         genderLabel: "Add Gender",
         removePhotoOption1:'Cancel',
-        removePhotoOption2:'Remove'
+        removePhotoOption2:'Remove',
+        expectedChildDobLabel:'Child not born yet',
+        babyNotificationText1: "Child birth data updated",
 
     }
 

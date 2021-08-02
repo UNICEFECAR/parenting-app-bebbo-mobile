@@ -26,6 +26,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import {
   getAllChildren,
   getAllConfigData,
+  isFutureDate,
   setActiveChild
 } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
@@ -58,14 +59,14 @@ const HeaderBabyMenu = (props: any) => {
   //   }, []),
   // );
 
-   const genders = useAppSelector(
+  const genders = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
-     );
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
   const [modalVisible, setModalVisible] = useState(false);
   const headerColor = props.headerColor;
   const textColor = props.textColor;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
       ? JSON.parse(state.childData.childDataSet.allChild)
@@ -77,10 +78,10 @@ const HeaderBabyMenu = (props: any) => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-   console.log(activeChild, '..activeChild..');
+  console.log(activeChild, '..activeChild..');
   const child_age = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -88,9 +89,9 @@ const HeaderBabyMenu = (props: any) => {
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  console.log(currentActiveChild,"..currentActiveChild..");
+  console.log(currentActiveChild, "..currentActiveChild..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
-    console.log(genders,".genders.")
+    console.log(genders, ".genders.")
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset) => genderset.id === parseInt(data.gender)).name
@@ -99,30 +100,35 @@ const HeaderBabyMenu = (props: any) => {
     return (
       <View key={index}>
         {currentActiveChild != '' &&
-        currentActiveChild != null &&
-        currentActiveChild != undefined &&
-        currentActiveChild == data.uuid ? (
+          currentActiveChild != null &&
+          currentActiveChild != undefined &&
+          currentActiveChild == data.uuid ? (
           <ProfileListViewSelected>
             <ProfileIconView>
               {data.photoUri != '' ? (
                 <ImageIcon
-                  source={{uri: 'file://' + CHILDREN_PATH + data.photoUri}}
-                  // style={{borderRadius: 20, width: 40, height: 40}}
-                  ></ImageIcon>
+                  source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
+                // style={{borderRadius: 20, width: 40, height: 40}}
+                ></ImageIcon>
               ) : (
                 <Icon name="ic_baby" size={30} color="#000" />
               )}
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5></Heading3>
-                
+                <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3>
+
               </ProfileSectionView>
-              <Heading5>
+              {/* <Heading5>
                 {t('childProfileBornOn', {
                   childdob:
                     data.birthDate != null ? formatDate(data.birthDate) : '',
                 })}
+              </Heading5> */}
+              <Heading5>
+                {(data.birthDate != '' &&
+                  data.birthDate != null &&
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -155,9 +161,9 @@ const HeaderBabyMenu = (props: any) => {
             <ProfileIconView>
               {data.photoUri != '' ? (
                 <ImageIcon
-                  source={{uri: 'file://' + CHILDREN_PATH + data.photoUri}}
-                  // style={{borderRadius: 20, width: 40, height: 40}}
-                  ></ImageIcon>
+                  source={{ uri: 'file://' + CHILDREN_PATH + data.photoUri }}
+                // style={{borderRadius: 20, width: 40, height: 40}}
+                ></ImageIcon>
               ) : (
                 <Icon name="ic_baby" size={30} color="#000" />
               )}
@@ -165,14 +171,13 @@ const HeaderBabyMenu = (props: any) => {
 
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{fontWeight:'normal'}}>{genderName}</Heading5></Heading3>
-                
+                <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3>
+
               </ProfileSectionView>
               <Heading5>
-                {t('childProfileBornOn', {
-                  childdob:
-                    data.birthDate != null ? formatDate(data.birthDate) : '',
-                })}
+                {(data.birthDate != '' &&
+                  data.birthDate != null &&
+                  data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn', { childdob: data.birthDate != null ? formatDate(data.birthDate) : '' }) : t('expectedChildDobLabel')}
               </Heading5>
             </ProfileTextView>
             <ProfileActionView>
@@ -190,7 +195,7 @@ const HeaderBabyMenu = (props: any) => {
                   <ButtonTextSmLine
                     onPress={() => {
                       setModalVisible(false);
-                      setActiveChild(languageCode,data.uuid, dispatch, child_age);
+                      setActiveChild(languageCode, data.uuid, dispatch, child_age);
                     }}>
                     {t('childActivatebtn')}
                   </ButtonTextSmLine>
@@ -205,6 +210,7 @@ const HeaderBabyMenu = (props: any) => {
   return (
     <>
       <Modal
+        style={styles.mainModal}
         animationType="none"
         transparent={true}
         visible={modalVisible}
@@ -217,29 +223,29 @@ const HeaderBabyMenu = (props: any) => {
         }}>
         <View
           style={styles.centeredView}
-          // onPress={() => {
-          //   setModalVisible(!modalVisible);
-          //   if (modalVisible) {
-          //     getAllChildren(dispatch);
-          //     getAllConfigData(dispatch);
-          //   }
-          // }}
-          >
+        // onPress={() => {
+        //   setModalVisible(!modalVisible);
+        //   if (modalVisible) {
+        //     getAllChildren(dispatch);
+        //     getAllConfigData(dispatch);
+        //   }
+        // }}
+        >
           <View
             style={styles.modalView}
-            // onPress={() => console.log('do nothing')}
-            // activeOpacity={1}
-            >
+          // onPress={() => console.log('do nothing')}
+          // activeOpacity={1}
+          >
             {SortedchildList.length > 0 ? (
-              <View style={{height: 'auto',maxHeight:125}}>
+              <View style={{ height: 'auto', maxHeight: 125 }}>
                 <FlatList
                   nestedScrollEnabled={true}
                   data={SortedchildList}
-                  renderItem={({item, index}: any) =>
+                  renderItem={({ item, index }: any) =>
                     // return a component using that data
                     renderChildItem(dispatch, item, index)
                   }
-                  keyExtractor={(item: {uuid: any}) => item.uuid}
+                  keyExtractor={(item: { uuid: any }) => item.uuid}
                 />
               </View>
             ) : null}
@@ -248,7 +254,7 @@ const HeaderBabyMenu = (props: any) => {
               <ShiftFromBottom20>
                 <ButtonLinkPress
                   onPress={() =>
-                    navigation.navigate('EditChildProfile', {childData: null})
+                    navigation.navigate('EditChildProfile', { childData: null })
                   }>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -273,7 +279,7 @@ const HeaderBabyMenu = (props: any) => {
       <HeaderActionView>
         <HeaderActionBox
           onPress={() => {
-            // console.log(modalVisible);
+             console.log(modalVisible,"..modalVisible..");
             // if (modalVisible) {
             //   setModalVisible(false);
             // } else {
@@ -288,13 +294,13 @@ const HeaderBabyMenu = (props: any) => {
           }}>
           {/* <Icon name="ic_baby" size={25} color={props.color || '#FFF'} /> */}
           {activeChild.photoUri != '' ? (
-                <ImageIcon
-                  source={{uri: 'file://' + CHILDREN_PATH + activeChild.photoUri}}
-                  // style={{borderRadius: 20, width: 40, height: 40}}
-                  ></ImageIcon>
-              ) : (
-                <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
-              )}
+            <ImageIcon
+              source={{ uri: 'file://' + CHILDREN_PATH + activeChild.photoUri }}
+            // style={{borderRadius: 20, width: 40, height: 40}}
+            ></ImageIcon>
+          ) : (
+            <Icon name="ic_baby" size={25} color={props.color || '#FFF'} />
+          )}
         </HeaderActionBox>
       </HeaderActionView>
     </>
@@ -303,19 +309,35 @@ const HeaderBabyMenu = (props: any) => {
 export default HeaderBabyMenu;
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
+     flex: 1,
+     flexDirection:'column',
     justifyContent: 'flex-start',
     // alignItems: 'center',
-    paddingTop: headerHeight,
+    // marginTop: headerHeight,
+    // backgroundColor:'red',
+    // zIndex:999999,
+    // position:'relative',
+    width:'100%',
+    marginTop:headerHeight,
+    left:0,
+    height:'100%'
   },
-
+  mainModal:{
+    // backgroundColor:'blue',
+    // zIndex:999999,
+    // position:'absolute',
+    // width:'100%',
+    // top:headerHeight,
+    // left:0,
+    // height:'100%',
+    // flex: 1,
+  },
   modalView: {
     // margin: 20,
     backgroundColor: 'white',
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
     padding: 0,
-
     borderColor: '#000',
     borderBottomWidth: 2,
   },

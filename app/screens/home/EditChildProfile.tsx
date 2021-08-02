@@ -348,10 +348,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           gender,
         );
     let childSet: Array<any> = [];
-    console.log(capturedPhoto,"....capturedPhoto..")
-    if(capturedPhoto!="" && capturedPhoto!=null && capturedPhoto!=undefined){
     insertData.photoUri=await setPhoto(insertData.uuid);
-    }
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
     console.log(childSet, '..childSet..');
@@ -484,7 +481,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 />
               </FormContainerFlex>
               <ShiftFromTop10>
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()}/>
+                <ChildDate sendData={sendData} childData={childData} />
               </ShiftFromTop10>
             </MainContainer>
           </FlexCol>
@@ -572,7 +569,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
               }
             }}>
             {childData && childData?.uuid != '' ? (
-              <ButtonText>{t('editProfileBtn')}</ButtonText>
+              <ButtonText>{t('babyNotificationUpdateBtn')}</ButtonText>
             ) : (
               <ButtonText>{t('addProfileBtn')}</ButtonText>
             )}

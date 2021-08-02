@@ -35,7 +35,7 @@ const BabyNotification = () => {
   };
   return (
     <>
-      {activeChild?.gender == '' ? (
+      {/* {activeChild?.gender == '' ? ( */}
         <>
           <BgSecondary>
             <MainContainer>
@@ -68,7 +68,7 @@ const BabyNotification = () => {
                               : '',
                         })}
                       </Heading3>
-                      <Heading5>{t('babyNotificationText')}</Heading5>
+                      <Heading5>{(activeChild.gender!="" && activeChild.gender!=null && activeChild.gender!=undefined && activeChild.photoUri!="" && activeChild.photoUri!=null && activeChild.photoUri!=undefined)? t('babyNotificationText1') : t('babyNotificationText')}</Heading5>
                     </FDirCol>
                   </View>
                 </FlexDirRow>
@@ -107,7 +107,7 @@ const BabyNotification = () => {
             </MainContainer>
           </BgSecondary>
         </>
-      ) : null}
+      {/* ) : null} */}
     </>
   );
 };
