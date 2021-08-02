@@ -32,6 +32,7 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 
 const ChildDate = (props: any) => {
+  const {dobMax}=props;
   const [dateFormat, setDateFormat] = useState("day month year");
   let birthDate:any, isPremature:any, plannedTermDate:any=null;
   const {childData}=props;
