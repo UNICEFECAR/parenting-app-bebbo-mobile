@@ -2,10 +2,10 @@ import { localization } from '@assets/data/localization';
 import CountryItem from '@components/CountryItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
-    ButtonSection,
-    ButtonviewClick,
-    ButtonviewNext,
-    ButtonviewPrevious
+  ButtonSection,
+  ButtonviewClick,
+  ButtonviewNext,
+  ButtonviewPrevious
 } from '@components/shared/ButtonView';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
@@ -19,6 +19,8 @@ import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -46,16 +48,27 @@ const CountrySelection = (props: any) => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const userIsOnboarded = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsOnboarded
+  );
+  console.log("userIsOnboarded appnav--", userIsOnboarded);
   useEffect(() => {
     const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
     );
+    const fetchData = async () => {
+      if (userIsOnboarded == false) {
+        let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+      }
+    }
+    fetchData()
     setCountry(selectedCountry);
   }, []);
-  const renderItem = ({item}: any) => (
+  const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   // console.log("-----bj ",i18n);
@@ -78,20 +91,20 @@ const CountrySelection = (props: any) => {
         {country ? (
           <ButtonSection>
             <ShiftFromTopBottom10>
-            <ButtonviewNext>
-              <ButtonviewClick
-                style={{}}
-                onPress={() =>
-                  props.navigation.navigate('LanguageSelection', {country})
-                }>
-                <Icon name="ic_angle_right" size={32} color="#000" />
-              </ButtonviewClick>
-            </ButtonviewNext>
+              <ButtonviewNext>
+                <ButtonviewClick
+                  style={{}}
+                  onPress={() =>
+                    props.navigation.navigate('LanguageSelection', { country })
+                  }>
+                  <Icon name="ic_angle_right" size={32} color="#000" />
+                </ButtonviewClick>
+              </ButtonviewNext>
             </ShiftFromTopBottom10>
           </ButtonSection>
         ) : (
           <ButtonviewPrevious>
-            <ButtonviewClick onPress={() => {}}>
+            <ButtonviewClick onPress={() => { }}>
               <Icon name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>

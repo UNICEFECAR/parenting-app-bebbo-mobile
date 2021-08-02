@@ -65,6 +65,7 @@ export type ChildEntity = {
   measurementPlace: string;
   isPremature?: string;
   isExpected?: string;
+  isMigrated?: Boolean;
 };
 
 /**
@@ -95,8 +96,8 @@ export const ChildEntitySchema: ObjectSchema = {
     reminders: { type: "list", objectType: "Reminder", default: [] },
     measurementPlace: { type: "string", optional: true },
     isPremature: { type: "string", optional: true },
-    isExpected: { type: "string", optional: true }
-
+    isExpected: { type: "string", optional: true },
+    isMigrated: { type: 'bool', optional: true },
   }
 };
 
