@@ -3,7 +3,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAppSelector } from '../../App';
-import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
+import { ActivityFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 
 type ActivityCategoriesProps = {
@@ -48,14 +48,23 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
 
 
             {/* <View style={{maxWidth:280,width:'100%',marginLeft:'auto',marginRight:'auto', padding: 10,backgroundColor:props.backgroundColor, minHeight: 120, }}> */}
-            <ArticleFilter key={props.filterArray.length}>
+            <ActivityFilter key={props.filterArray.length}>
+            <View style={{
+          padding: 10,
+          minHeight: 120,
+          maxWidth:280,
+          width:'100%',
+          marginLeft:'auto'
+          ,marginRight:'auto',
+         
+        }}>
                 <FlexDirRow>
                     {activityBrackets.map((activityCategoryInner: any[], i: number) => {
                         return (<View key={i} style={{ flex: 1, flexDirection: 'column' }} >
                             {
                                 activityCategoryInner.map((item) => {
                                     return (<Pressable style={{ flex: 1, }} key={item.id} onPress={() => { props.filterOnCategory(getFilterArray(item.id, props.filterArray)) }}>
-                                        <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}>
+                                        <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#0FD87E" : "#fff")}]}>
                                             <OuterIconRow>
                                                 <OuterIconLeft>
                                                     <Icon style={styles.iconStyle} name={item.image} size={20} color="#000" />
@@ -70,6 +79,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
                         </View>)
                     })}
                 </FlexDirRow>
+                </View>
                 {/* <View style={{ flex: 1, flexDirection: 'row' }}>
                 <View style={styles.item} >
                 <FilterBox>
@@ -94,7 +104,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
                     </FilterBox>
                     </View>
                 </View> */}
-            </ArticleFilter>
+            </ActivityFilter>
         </>
     );
 };

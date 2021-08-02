@@ -139,7 +139,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         theme={VictoryTheme.material}
         width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
-        windowHeight - 420
+        windowHeight - 340
           : windowHeight-50}>
         {/* ********* AXIS HORIZONTAL ********* */}
         <VictoryAxis

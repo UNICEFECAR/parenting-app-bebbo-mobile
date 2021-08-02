@@ -191,6 +191,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           style={styles.cardImage}
           resizeMode="cover"
         />
+        <View style={{flexDirection:'column',flex:1,justifyContent:'space-between'}}>
           <View style={{minHeight:90,}}>
           <ArticleListContent>
           <ShiftFromTopBottom5>
@@ -202,6 +203,8 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
           </ArticleListContent>
           </View>
           <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
+          
+          </View>
         </RelatedArticleContainer>
       </Pressable>  
     );
