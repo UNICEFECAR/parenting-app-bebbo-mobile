@@ -164,7 +164,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       //     { id: 2, iconName: 'ic_gallery', name:  t('cameraOption3') },
       //   ];
       // }
-      if (childData != null && childData.uuid != '') {
+      if (childData!=undefined && childData != null && childData!='' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
         console.log(childData.photoUri,"..childData.photoUri..");
         if(childData.photoUri!='' && childData.photoUri!=null && childData.photoUri!=undefined){
@@ -348,7 +348,10 @@ const EditChildProfile = ({route, navigation}: Props) => {
           gender,
         );
     let childSet: Array<any> = [];
+    console.log(capturedPhoto, '..capturedPhoto..');
+    if(capturedPhoto!=null && capturedPhoto!=undefined && capturedPhoto!=''){
     insertData.photoUri=await setPhoto(insertData.uuid);
+    }
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
     console.log(childSet, '..childSet..');
