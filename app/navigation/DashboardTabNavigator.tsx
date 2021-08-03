@@ -26,7 +26,9 @@ const DashboardBottomTab =
 const secondStack = createStackNavigator<any>();
 const secondaryRoot=()=> {
     return (
-      <secondStack.Navigator>
+      <secondStack.Navigator
+        initialRouteName="ChildgrowthTab"
+      >
         <secondStack.Screen name="ChildgrowthTab" component={Childgrowth} options={{headerShown: false}} />
         <secondStack.Screen name="VaccinationTab" component={Vaccination} options={{headerShown: false}}/>
         <secondStack.Screen name="HealthCheckupsTab" component={HealthCheckups} options={{headerShown: false}}/>
@@ -48,16 +50,17 @@ export default () => {
         visible={modalVisible}
         onRequestClose={() => {
           // Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
         }}
         onDismiss={() => {
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
         }}>
         <Pressable
           style={styles.centeredView}
           onPress={() => {
-            setModalVisible(!modalVisible);
-          }}>
+            setModalVisible(false);
+          }}
+         >
           <TouchableOpacity
             
             onPress={() => console.log('do nothing')}
@@ -69,7 +72,7 @@ export default () => {
             </Pressable> */}
 
 
-            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
+            <Pressable onPress={()=>{setModalVisible(false);navigation.navigate("Tools", { screen: 'VaccinationTab' })}}>
               <BottomBarList>
               <FDirRow>
               <OuterIconRow>
@@ -81,7 +84,7 @@ export default () => {
               </FDirRow>
               </BottomBarList>
             </Pressable>
-            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
+            <Pressable onPress={()=>{setModalVisible(false);navigation.navigate("Tools", { screen: 'HealthCheckupsTab' })}}>
             <BottomBarList>
             <FDirRow>
             <OuterIconRow>
@@ -94,7 +97,7 @@ export default () => {
               </FDirRow>
               </BottomBarList>
             </Pressable>
-            <Pressable onPress={()=>{setModalVisible(!modalVisible);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
+            <Pressable onPress={()=>{setModalVisible(false);navigation.navigate("Tools", { screen: 'ChildgrowthTab' })}}>
             <BottomBarList>
             <FDirRow>
             <OuterIconRow>
