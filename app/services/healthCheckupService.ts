@@ -11,10 +11,10 @@ export const getAllHealthCheckupPeriods = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(activeChild.measures, "activeChild.measures");
+  // console.log(activeChild, activeChild.measures, "activeChild.measures");
   const taxonomy = useAppSelector(
     (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
+      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
   // // console.log(taxonomy,taxonomy.growth_period);
   let allGrowthPeriods = taxonomy.growth_period;
@@ -58,7 +58,7 @@ export const getAllHealthCheckupPeriods = () => {
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,
       ),
       titleDateInMonth: item.titleDateInMonth ? item.titleDateInMonth : '',
-      measuredVaccineIds: (item.vaccineIds || item.vaccineIds!='')? JSON.parse(item.vaccineIds) : [],
+      measuredVaccineIds: (item.vaccineIds || item.vaccineIds != '') ? JSON.parse(item.vaccineIds) : [],
       didChildGetVaccines: item.didChildGetVaccines,
       isChildMeasured: item.isChildMeasured,
       measurementPlace: item.measurementPlace,
@@ -68,15 +68,15 @@ export const getAllHealthCheckupPeriods = () => {
   // console.log(allMeasurements, "allMeasurements");
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
   let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach((measure,index) => {
-    const vaccinesForAmeasure =  (measure.vaccineIds || measure.vaccineIds!=''|| measure.vaccineIds!=null) ?JSON.parse(measure.vaccineIds): [];
-  //  console.log(vaccinesForAmeasure);
-   if(vaccinesForAmeasure){
-    vaccinesForAmeasure.forEach((vaccine,innerindex) => {
-      measuredVaccines.push(vaccine);
-    });
-   }
-    
+  vaccineMeasures.forEach((measure, index) => {
+    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
+    //  console.log(vaccinesForAmeasure);
+    if (vaccinesForAmeasure) {
+      vaccinesForAmeasure.forEach((vaccine, innerindex) => {
+        measuredVaccines.push(vaccine);
+      });
+    }
+
   });
   const vaccineMeasuredInfo = (vaccineid: number) => {
     return (measuredVaccines.find(item => item.vaccineid == vaccineid))
@@ -112,164 +112,168 @@ export const getAllHealthCheckupPeriods = () => {
   // const getPeriodTitle = (periodID) => {
   //   return allHealthCheckupsData.find(item => item.growth_period == periodID);
   // }
-console.log(allHealthCheckupsData,"allHealthCheckupsData");
-  let additionalMeasures:any[] = [];
+  // console.log(allHealthCheckupsData, "allHealthCheckupsData");
+  let additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const periodForMeasure = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
-    if(periodForMeasure){
-    const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure?.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure?.vaccination_ends))
-    console.log(measure, "allmeasure",measure.length);
-    if (measure.length > 1) {
-      // console.log("ho<>");
-      for (let i = 0; i <= measure.length - 2; i++) {
-        // console.log(measure,"in loop")
-        const item =  {
-          created_at: hcItem.created_at,
-          growthMeasures: measure[i+1],
-          growth_period: hcItem.growth_period,
-          id: hcItem.id,
-          pinned_article: hcItem.pinned_article,
-          title: t('hcSummaryHeader'),
-          isAdditional:true,
-          type: hcItem.type,
-          updated_at: hcItem.updated_at,
-          vaccination_ends: hcItem.vaccination_ends,
-          vaccination_opens: hcItem.vaccination_opens,
-          vaccines:[],
+    // console.log(periodForMeasure, "periodForMeasure");
+    if (periodForMeasure) {
+      const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure?.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure?.vaccination_ends))
+      // console.log(measure, "allmeasure", measure.length);
+      let regularMeasure: any = {};
+      if (measure.length > 1) {
+        // console.log("ho<>");
+        for (let i = 0; i <= measure.length - 2; i++) {
+          // console.log(measure,"in loop")
+          const item = {
+            created_at: hcItem.created_at,
+            growthMeasures: measure[i + 1],
+            growth_period: hcItem.growth_period,
+            id: hcItem.id,
+            pinned_article: hcItem.pinned_article,
+            title: t('hcSummaryHeader'),
+            isAdditional: true,
+            type: hcItem.type,
+            updated_at: hcItem.updated_at,
+            vaccination_ends: hcItem.vaccination_ends,
+            vaccination_opens: hcItem.vaccination_opens,
+            vaccines: [],
+          }
+          // console.log(item,"Additonal");
+          additionalMeasures.push(item)
         }
-        // console.log(item,"Additonal");
-        additionalMeasures.push(item)
+        // console.log(additionalMeasures, "additionalMeasures");
+      } else if (measure.length > 0) {
+        regularMeasure = measure[0];
+        // console.log(regularMeasure, measure[0], "loged");
+        regularMeasure["isAdditional"] = false
+      } else {
+        regularMeasure = {};
+        // console.log(regularMeasure, measure, "loged");
+        regularMeasure["isAdditional"] = false
       }
-// console.log(additionalMeasures, "additionalMeasures");
-
-
-
-
+      //  calculate is additional measure for the period
+      return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
+      // return  allGrowthPeriods.filter(period => {
+      //   return allMeasurements.filter(item => ((item.childAgeInDaysForMeasure >=  period.vaccination_opens) &&(item.childAgeInDaysForMeasure <=    period.vaccination_ends)));
+      // });
+    }
   }
-  let regularMeasure = {...measure[0]};
-  regularMeasure["isAdditional"]=false
-  //  calculate is additional measure for the period
-  return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
-  // return  allGrowthPeriods.filter(period => {
-  //   return allMeasurements.filter(item => ((item.childAgeInDaysForMeasure >=  period.vaccination_opens) &&(item.childAgeInDaysForMeasure <=    period.vaccination_ends)));
-  // });
-}
-}
 
-allHealthCheckupsData.forEach((hcItem: any, index: number) => {
-  hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
-  // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
-  const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
-  if(item){
-  hcItem.vaccination_opens = item?.vaccination_opens;
-  hcItem.vaccination_ends = item?.vaccination_ends;
-  }
-  const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
-  hcItem.growthMeasures = measuresForHCPeriod;
-  // if(measuresForHCPeriod?.length>1){
-  //   console.log("create additional measure entryfor the period");
-  //     return measuresForHCPeriod.map((measure: any) => {
-  //       // hcItem.growthMeasures =  hcItem.growthMeasures[0];
-  //       for(let i=1;i<measuresForHCPeriod.length-1;i++){
-  //         allHealthCheckupsData[index+i].growthMeasures= [(hcItem.growthMeasures[i])]
-  //         allHealthCheckupsData[index+i].created_at=hcItem.created_at;
-  //         allHealthCheckupsData[index+i].growth_period=hcItem.growth_period;
-  //         allHealthCheckupsData[index+i].id=hcItem.id;
-  //         allHealthCheckupsData[index+i].pinned_article=hcItem.pinned_article;
-  //         allHealthCheckupsData[index+i].title="Additional Health checkup";
-  //         allHealthCheckupsData[index+i].type=hcItem.type;
-  //         allHealthCheckupsData[index+i].updated_at=hcItem.updated_at;
-  //         allHealthCheckupsData[index+i].vaccination_ends=hcItem.vaccination_ends;
-  //         allHealthCheckupsData[index+i].vaccination_opens=hcItem.vaccination_opens;
-  //         allHealthCheckupsData[index+i].isAdditionalHC = true;
-  //       }
-  //     })
-  //   }
+  allHealthCheckupsData.forEach((hcItem: any, index: number) => {
+    hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
+    // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
+    const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+    if (item) {
+      hcItem.vaccination_opens = item?.vaccination_opens;
+      hcItem.vaccination_ends = item?.vaccination_ends;
+    }
+    const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
+    hcItem.growthMeasures = measuresForHCPeriod;
+    // if(measuresForHCPeriod?.length>1){
+    //   console.log("create additional measure entryfor the period");
+    //     return measuresForHCPeriod.map((measure: any) => {
+    //       // hcItem.growthMeasures =  hcItem.growthMeasures[0];
+    //       for(let i=1;i<measuresForHCPeriod.length-1;i++){
+    //         allHealthCheckupsData[index+i].growthMeasures= [(hcItem.growthMeasures[i])]
+    //         allHealthCheckupsData[index+i].created_at=hcItem.created_at;
+    //         allHealthCheckupsData[index+i].growth_period=hcItem.growth_period;
+    //         allHealthCheckupsData[index+i].id=hcItem.id;
+    //         allHealthCheckupsData[index+i].pinned_article=hcItem.pinned_article;
+    //         allHealthCheckupsData[index+i].title="Additional Health checkup";
+    //         allHealthCheckupsData[index+i].type=hcItem.type;
+    //         allHealthCheckupsData[index+i].updated_at=hcItem.updated_at;
+    //         allHealthCheckupsData[index+i].vaccination_ends=hcItem.vaccination_ends;
+    //         allHealthCheckupsData[index+i].vaccination_opens=hcItem.vaccination_opens;
+    //         allHealthCheckupsData[index+i].isAdditionalHC = true;
+    //       }
+    //     })
+    //   }
 
-});
-// console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
-// console.log(groupsForPeriods, "<groupsForPeriods>");
-//  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
-// push all additional measures to allHealthCheckupsData
-// allHealthCheckupsData = allHealthCheckupsData.map((hcItem: any,index:number) => {
-//   if(hcItem.growthMeasures.length>0){
-//   return hcItem.growthMeasures.map((measure: any) => {
-//     hcItem.growthMeasures =  hcItem.growthMeasures[0];
-//     for(let i=1;i<hcItem.growthMeasures.length-1;i++){
-//       allHealthCheckupsData[index+i].growthMeasures.push(hcItem.growthMeasures[i])
-//       allHealthCheckupsData[index+i].created_at=hcItem.created_at;
-//       allHealthCheckupsData[index+i].growth_period=hcItem.growth_period;
-//       allHealthCheckupsData[index+i].id=hcItem.id;
-//       allHealthCheckupsData[index+i].pinned_article=hcItem.pinned_article;
-//       allHealthCheckupsData[index+i].title="Additional Health checkup";
-//       allHealthCheckupsData[index+i].type=hcItem.type;
-//       allHealthCheckupsData[index+i].updated_at=hcItem.updated_at;
-//       allHealthCheckupsData[index+i].vaccination_ends=hcItem.vaccination_ends;
-//       allHealthCheckupsData[index+i].vaccination_opens=hcItem.vaccination_opens;
-//       allHealthCheckupsData[index+i].isAdditionalHC = true;
-//     }
-//     // hcItem.growthMeasures.forEach((element,innerIndex) => {
-//     //   allHealthCheckupsData[index].growthMeasures.push(hcItem.growthMeasures[innerIndex+1]);
-//     // });
-
-//   })
-// }else{
-//   allHealthCheckupsData[index].isAdditionalHC = false
-// }
-
-// })
-
-
-let sortedGroupsForPeriods = [...allHealthCheckupsData,...additionalMeasures].sort(
-  (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
-);
-console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
-
-
-// const isUpComingPeriod = (vaccination_opens: number) => {
-//   return vaccination_opens > childAgeIndays ? true : false;
-// };
-// const isPreviousPeriod = (vaccination_opens: number) => {
-//   return vaccination_opens <= childAgeIndays ? true : false;
-// };
-// sortedGroupsForPeriods.forEach((period) => {
-//   period.isUpComing = isUpComingPeriod(period.vaccination_opens);
-//   period.isPrevious = isPreviousPeriod(period.vaccination_opens);
-
-// });
-let upcomingPeriods = sortedGroupsForPeriods.filter(
-  (period: any) => period?.vaccination_opens > childAgeIndays,
-);
-let previousPeriods = sortedGroupsForPeriods
-  .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
-  .reverse();
-// // logic to add current period to upcomingPeriods and remove it from previousPeriods
-let currentPeriod;
-if(previousPeriods.length>0){
-currentPeriod = previousPeriods[0];
-upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
-previousPeriods.shift();
-}
-let totalUpcomingVaccines;
-  if(upcomingPeriods?.length > 0) {
-   totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-    return item.vaccines.length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
   });
-}
-let totalPreviousVaccines;
-if(previousPeriods?.length > 0){
-   totalPreviousVaccines = previousPeriods?.map((item) => {
-    return item.vaccines.length;
-  }).reduce((accumulator, current) => {
-    return accumulator + current;
-  });;
-}
-// console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
-// console.log(allHealthCheckupsData,"growth_period_uniqueData");
+  // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
+  // console.log(groupsForPeriods, "<groupsForPeriods>");
+  //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
+  // push all additional measures to allHealthCheckupsData
+  // allHealthCheckupsData = allHealthCheckupsData.map((hcItem: any,index:number) => {
+  //   if(hcItem.growthMeasures.length>0){
+  //   return hcItem.growthMeasures.map((measure: any) => {
+  //     hcItem.growthMeasures =  hcItem.growthMeasures[0];
+  //     for(let i=1;i<hcItem.growthMeasures.length-1;i++){
+  //       allHealthCheckupsData[index+i].growthMeasures.push(hcItem.growthMeasures[i])
+  //       allHealthCheckupsData[index+i].created_at=hcItem.created_at;
+  //       allHealthCheckupsData[index+i].growth_period=hcItem.growth_period;
+  //       allHealthCheckupsData[index+i].id=hcItem.id;
+  //       allHealthCheckupsData[index+i].pinned_article=hcItem.pinned_article;
+  //       allHealthCheckupsData[index+i].title="Additional Health checkup";
+  //       allHealthCheckupsData[index+i].type=hcItem.type;
+  //       allHealthCheckupsData[index+i].updated_at=hcItem.updated_at;
+  //       allHealthCheckupsData[index+i].vaccination_ends=hcItem.vaccination_ends;
+  //       allHealthCheckupsData[index+i].vaccination_opens=hcItem.vaccination_opens;
+  //       allHealthCheckupsData[index+i].isAdditionalHC = true;
+  //     }
+  //     // hcItem.growthMeasures.forEach((element,innerIndex) => {
+  //     //   allHealthCheckupsData[index].growthMeasures.push(hcItem.growthMeasures[innerIndex+1]);
+  //     // });
+
+  //   })
+  // }else{
+  //   allHealthCheckupsData[index].isAdditionalHC = false
+  // }
+
+  // })
 
 
-return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines,currentPeriod };
+  let sortedGroupsForPeriods = [...allHealthCheckupsData, ...additionalMeasures].sort(
+    (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+  );
+  console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
+
+
+  // const isUpComingPeriod = (vaccination_opens: number) => {
+  //   return vaccination_opens > childAgeIndays ? true : false;
+  // };
+  // const isPreviousPeriod = (vaccination_opens: number) => {
+  //   return vaccination_opens <= childAgeIndays ? true : false;
+  // };
+  // sortedGroupsForPeriods.forEach((period) => {
+  //   period.isUpComing = isUpComingPeriod(period.vaccination_opens);
+  //   period.isPrevious = isPreviousPeriod(period.vaccination_opens);
+
+  // });
+  let upcomingPeriods = sortedGroupsForPeriods.filter(
+    (period: any) => period?.vaccination_opens > childAgeIndays,
+  );
+  let previousPeriods = sortedGroupsForPeriods
+    .filter((period: any) => period?.vaccination_opens <= childAgeIndays)
+    .reverse();
+  // // logic to add current period to upcomingPeriods and remove it from previousPeriods
+  let currentPeriod;
+  if (previousPeriods.length > 0) {
+    currentPeriod = previousPeriods[0];
+    upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
+    previousPeriods.shift();
+  }
+  let totalUpcomingVaccines;
+  if (upcomingPeriods?.length > 0) {
+    totalUpcomingVaccines = upcomingPeriods?.map((item) => {
+      return item.vaccines.length;
+    }).reduce((accumulator, current) => {
+      return accumulator + current;
+    });
+  }
+  let totalPreviousVaccines;
+  if (previousPeriods?.length > 0) {
+    totalPreviousVaccines = previousPeriods?.map((item) => {
+      return item.vaccines.length;
+    }).reduce((accumulator, current) => {
+      return accumulator + current;
+    });;
+  }
+  // console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
+  // console.log(allHealthCheckupsData,"growth_period_uniqueData");
+
+
+  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines, currentPeriod };
 }
