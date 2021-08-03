@@ -5,7 +5,7 @@ import { ThemeContext } from 'styled-components/native';
 const OverlayLoadingComponent = (props: any) =>{
   const {loading} = props;
   const themeContext = useContext(ThemeContext);
-
+  console.log("loading---",loading);
   return (
     <Modal
       transparent={true}
