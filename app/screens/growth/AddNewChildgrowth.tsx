@@ -57,6 +57,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Modal,
+  Platform,
   Pressable,
   SafeAreaView,
   Text,
@@ -77,8 +78,10 @@ import {
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
-import { setActiveChild } from '../../services/childCRUD';
-import { setInitialHeightValues, setInitialWeightValues } from '../../services/growthService';
+import {
+  setInitialHeightValues,
+  setInitialWeightValues
+} from '../../services/growthService';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -97,9 +100,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
-    editGrowthItem
-      ? (editGrowthItem.measurementDate)
-      : null,
+    editGrowthItem ? editGrowthItem.measurementDate : null,
   );
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -127,11 +128,10 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
-    if(selectedDate){
+    if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
     }
-   
   };
   const getCheckedGrowthPlace = (checkedItem: any) => {
     // console.log(checkedItem);
@@ -143,9 +143,10 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       : [],
   );
   const dispatch = useAppDispatch();
-  const child_age = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+  const child_age = useAppSelector((state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != ''
+      ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
+      : [],
   );
   // console.log(activeChild,"in add new");
   const getDefaultGrowthPlace = () => {
@@ -154,7 +155,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       : null;
     // if in edit mode return value else return null
   };
- 
+
   const isFormFilled = () => {
     // console.log(measureDate, measurePlace, heightValue, weightValue);
     if (measureDate) {
@@ -199,15 +200,25 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   }, [route.params?.weight, route.params?.height]);
   const saveChildMeasures = async () => {
     // console.log(dateTouched,"dateTouched",measureDate);
-    const measurementDateParam = editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate?.toMillis()
-    const titleDateInMonthParam = editGrowthItem ? ((dateTouched) ? measureDate.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate.toFormat('MM')
- 
+    const measurementDateParam = editGrowthItem
+      ? dateTouched
+        ? measureDate?.toMillis()
+        : editGrowthItem.measurementDate
+      : measureDate?.toMillis();
+    const titleDateInMonthParam = editGrowthItem
+      ? dateTouched
+        ? measureDate.toFormat('MM')
+        : editGrowthItem.titleDateInMonth
+      : measureDate.toFormat('MM');
+
     let updateItem = activeChild?.measures.find((item) => {
       // console.log(item.measurementDate);
       // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-          DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days
+            DateTime.fromJSDate(new Date(item.measurementDate))
+              .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
+              .toObject().days,
           ) == 0
         : null;
     });
@@ -220,7 +231,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         weight: String(weightValue),
         height: String(heightValue),
         measurementDate: measurementDateParam,
-        titleDateInMonth:titleDateInMonthParam.toString(),
+        titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: updateItem.didChildGetVaccines,
         vaccineIds: updateItem.vaccieIds,
         doctorComment: remarkTxt,
@@ -232,12 +243,12 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         growthValues,
         'uuid ="' + activeChild.uuid + '"',
       );
-      console.log(createresult,"..createresult..");
+      console.log(createresult, '..createresult..');
       //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-      if(createresult?.length>0){
-        activeChild.measures=createresult;
+      if (createresult?.length > 0) {
+        activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        }
+      }
       navigation.goBack();
     } else {
       const growthValues = {
@@ -258,9 +269,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         growthValues,
         'uuid ="' + activeChild.uuid + '"',
       );
-      console.log(createresult,"..createresult..");
-      if(createresult?.length>0){
-        activeChild.measures=createresult;
+      console.log(createresult, '..createresult..');
+      if (createresult?.length > 0) {
+        activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
       }
       //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
@@ -306,22 +317,37 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 <FormInputText>
                   {t('growthScreendateMeasurementText')}
                 </FormInputText>
-                <FormInputBox>
-                  <FormDateText>
-                    <Text>
-                      {' '}
-                      {measureDate
-                        ? DateTime.fromJSDate(new Date(measureDate)).toFormat('dd/MM/yyyy')
-                        : t('growthScreenenterDateMeasurementText')}
-                    </Text>
-                  </FormDateText>
-                  <FormDateAction>
-                    <Icon name="ic_calendar" size={20} color="#000" />
-                  </FormDateAction>
-                </FormInputBox>
-              </FormInputGroup>
-              <View>
-                {showmeasureDate && (
+                {Platform.OS != 'ios' ? (
+                  <FormInputBox>
+                    <FormDateText>
+                      <Text>
+                        {' '}
+                        {measureDate
+                          ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                              'dd/MM/yyyy',
+                            )
+                          : t('growthScreenenterDateMeasurementText')}
+                      </Text>
+                      {showmeasureDate && (
+                        <DateTimePicker
+                          testID="measureDatePicker"
+                          value={
+                            editGrowthItem ? new Date(measureDate) : new Date()
+                          }
+                          mode={'date'}
+                          display="default"
+                          maximumDate={new Date()}
+                          minimumDate={new Date(minChildGrwothDate)}
+                          onChange={onmeasureDateChange}
+                        />
+                      )}
+                    </FormDateText>
+                    <FormDateAction>
+                      <Icon name="ic_calendar" size={20} color="#000" />
+                    </FormDateAction>
+                  </FormInputBox>
+                ) : (
+                  <FormInputBox>
                   <DateTimePicker
                     testID="measureDatePicker"
                     value={editGrowthItem ? new Date(measureDate) : new Date()}
@@ -330,9 +356,16 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                     maximumDate={new Date()}
                     minimumDate={new Date(minChildGrwothDate)}
                     onChange={onmeasureDateChange}
+                    style={{backgroundColor: 'white', flex: 1}}
                   />
+                  <FormDateAction>
+                  <Icon name="ic_calendar" size={20} color="#000" />
+                </FormDateAction>
+                </FormInputBox>
+                 
                 )}
-              </View>
+              </FormInputGroup>
+              <View></View>
               <FormContainer>
                 <FormInputText>
                   <Heading3>{t('growthScreenwhereMeasured')}</Heading3>
