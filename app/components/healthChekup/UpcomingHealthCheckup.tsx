@@ -127,9 +127,9 @@ const UpcomingHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.vaccines.some((el) => {
-              return el.isMeasured == true;
-            }) ? (
+            {item.vaccines?.length>0 &&  item.vaccines.some((el) => {
+                      return el.isMeasured == true;
+                    })  ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
