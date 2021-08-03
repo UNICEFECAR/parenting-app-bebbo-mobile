@@ -355,6 +355,11 @@ const en = {
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
 
+        //new text dated on 2nd August 2021
+        activityModalText: "To find Games, click on the relevant buttons or search using keywords",
+        childDevModalText: "To find Development, click on the relevant buttons or search using keywords",
+
+
     }
 }
 export default en;

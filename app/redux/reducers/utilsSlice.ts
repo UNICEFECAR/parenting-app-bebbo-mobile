@@ -34,6 +34,8 @@ interface hardcodedDataType {
   IsWeightModalOpened:boolean,
   IsHeightModalOpened:boolean,
   IsArticleModalOpened:boolean,
+  IsActivityModalOpened:boolean,
+  IsChildDevModalOpened:boolean,
   dailymessages:string,
   vaccineData:{
     id: number,
@@ -104,6 +106,8 @@ const initialState: hardcodedDataType = {
   IsWeightModalOpened:true,
   IsHeightModalOpened:true,
   IsArticleModalOpened:true,
+  IsActivityModalOpened:true,
+  IsChildDevModalOpened:true,
   dailymessages:'',
   vaccineData:{
     id: 0,

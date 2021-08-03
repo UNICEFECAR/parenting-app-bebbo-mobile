@@ -28,6 +28,8 @@ import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
 import RelatedActivities from '@components/shared/RelatedActivities';
+import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from '@native-html/table-plugin';
+import WebView from "react-native-webview";
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -156,9 +158,34 @@ const DetailsScreen = ({route, navigation}: any) => {
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  const bodydata = "<p>Planned daily activities for a child should be adjusted to his/her age but also to individual needs. In addition to nutrition, one must think about time for play and physical activity, sleep and periods when the child is sitting but engaged in activities such as: talking to family members, listening to stories, sitting in front of a screen, riding in a car, eating.</p>\n<p><strong>Children aged three and over </strong></p>\n<ul>\n<li>In this age a child should also spend at least 180 minutes throughout the day in a variety of types of physical activities, of which at least <strong><em>60 minutes is moderate to vigorous intensity</em></strong> physical activity.</li>\n<li>The position of relative rest is not recommended to last longer than 1 hour. Use this time for conversation, sightseeing, reading, storytelling. One hour is also the longest screen time for a child with your mandatory supervision of the content watched.</li>\n<li>Sleep time required goes from 10 to 13 hours including both daytime and night time sleep, and periods of night wake-up times. You should not shorten the child`s sleep time because it may be associated with disorders: growth disorder, obesity, emotional regulation disorder, etc.</li>\n</ul>\n<p><strong><em>Light-intensity physical activity </em></strong>includes activities with energy cost 1.5 to 4.0 times the energy expenditure at rest for the child: bathing, slow walking, or other incidental activities; they do not result in the child getting hot.</p>\n<p><strong><em>Moderate- to vigorous-intensity physical activity </em></strong>includes activities 4–7 times energy expenditure at rest for the child: brisk walking, cycling, running and playing ball games, jumping, swimming, dancing etc. during which the child gets hot and breathless.</p>";
+  // const bodydata = "<table>\n<tbody>\n<tr>\n<td style='text-align:left'>\n<p>Planned daily activities for a child should be adjusted to his/her age but also to individual needs. In addition to nutrition, one must think about time for play and physical activity, sleep and periods when the child is sitting but engaged in activities such as: talking to family members, listening to stories, sitting in front of a screen, riding in a car, eating.</p>\n<p><strong>Children aged three and over </strong></p>\n<ul>\n<li>In this age a child should also spend at least 180 minutes throughout the day in a variety of types of physical activities, of which at least <strong><em>60 minutes is moderate to vigorous intensity</em></strong> physical activity.</li>\n<li>The position of relative rest is not recommended to last longer than 1 hour. Use this time for conversation, sightseeing, reading, storytelling. One hour is also the longest screen time for a child with your mandatory supervision of the content watched.</li>\n<li>Sleep time required goes from 10 to 13 hours including both daytime and night time sleep, and periods of night wake-up times. You should not shorten the child`s sleep time because it may be associated with disorders: growth disorder, obesity, emotional regulation disorder, etc.</li>\n</ul>\n<p><strong><em>Light-intensity physical activity </em></strong>includes activities with energy cost 1.5 to 4.0 times the energy expenditure at rest for the child: bathing, slow walking, or other incidental activities; they do not result in the child getting hot.</p>\n<p><strong><em>Moderate- to vigorous-intensity physical activity </em></strong>includes activities 4–7 times energy expenditure at rest for the child: brisk walking, cycling, running and playing ball games, jumping, swimming, dancing etc. during which the child gets hot and breathless.</p>\n</td>\n</tr>\n</tbody>\n</table>\n";
   // const ref = React.useRef(null);
   // useScrollToTop(ref);
+  // console.log("bodydata--",bodydata);
+  const cssRules =
+  cssRulesFromSpecs({
+    ...defaultTableStylesSpecs,
+    thOddBackground: 'transparent',
+    thEvenBackground: 'transparent',
+    trOddBackground: 'transparent',
+    trEvenBackground: 'transparent',
+    // fontFamily: '"Open Sans"' // beware to quote font family name!
+  });
+
+  const htmlProps = {
+    WebView,
+    renderers: {
+      table
+    },
+    ignoredTags: IGNORED_TAGS,
+    renderersProps: {
+      table: {
+        cssRules
+        // Put the table config here (previously,
+        // the first argument of makeTableRenderer)
+      }
+    }
+  };
   return (
     <>
     {detailDataToUse ?
@@ -238,7 +265,8 @@ const DetailsScreen = ({route, navigation}: any) => {
             <Heading2>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
               <HTML
-                source={{html: detailDataToUse.body}}
+                source={{html: detailDataToUse.body}} {...htmlProps}
+                // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000'}}
               />
                : null 

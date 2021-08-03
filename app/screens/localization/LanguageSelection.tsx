@@ -31,7 +31,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const {country} = route.params;
   // console.log(country);
   const languages = country.languages;
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -50,6 +50,13 @@ const LanguageSelection = ({route, navigation}: Props) => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const goToConfirmationScreen = () => {
+    i18n.changeLanguage(language.locale);
+    navigation.navigate('CountryLanguageConfirmation', {
+      country,
+      language,
+    })
+  }
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
@@ -76,12 +83,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
-                  onPress={() =>
-                    navigation.navigate('CountryLanguageConfirmation', {
-                      country,
-                      language,
-                    })
-                  }>
+                  onPress={() => goToConfirmationScreen()}>
                   <Icon name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>

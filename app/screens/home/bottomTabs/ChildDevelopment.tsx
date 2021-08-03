@@ -22,11 +22,13 @@ import {
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../../App';
+import { useAppDispatch, useAppSelector } from '../../../../App';
 import { useFocusEffect } from '@react-navigation/native';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 import ProgressCircle from 'react-native-progress-circle'
+import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
+import FirstTimeModal from '@components/shared/FirstTimeModal';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -37,6 +39,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   
   const themeContext = useContext(ThemeContext);
   const {t} = useTranslation();
+  const dispatch = useAppDispatch();
   const ChildDevData = useAppSelector(
     (state: any) =>
       state.utilsData.ChildDevData != '' ?JSON.parse(state.utilsData.ChildDevData):[],
@@ -69,17 +72,28 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       : [],
   );
   // let headerColor,backgroundColor,artHeaderColor,artBackgroundColor,headerColorBlack;
-
+  const childDevModalOpened = useAppSelector((state: any) =>
+    (state.utilsData.IsChildDevModalOpened),
+  );
+  const modalScreenKey = 'IsChildDevModalOpened';
+  const modalScreenText = 'childDevModalText';
+  const [modalVisible, setModalVisible] = useState(false);
   const [currentSelectedChildId,setCurrentSelectedChildId] = useState(0);
   const [selectedChildDevData,setSelectedChildDevData] = useState();
   const [selectedChildMilestoneData,setselectedChildMilestoneData] = useState();
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
   const [milestonePercent,setMilestonePercent] = useState(0);
   const [componentColors,setComponentColors] = useState({});
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+    setModalVisible(!modalVisible);
+  };
   // let selectedChildDevData:any;
   useFocusEffect(
     React.useCallback(() => {
       console.log("in childdev focuseffect");
+      setModalVisible(childDevModalOpened);
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
         backgroundColor : themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
         artHeaderColor : themeContext.colors.ARTICLES_COLOR,
@@ -380,7 +394,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
               </FlexCol>
               : null 
             }
-         
+          <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
       </SafeAreaContainer>
     </>
   );
