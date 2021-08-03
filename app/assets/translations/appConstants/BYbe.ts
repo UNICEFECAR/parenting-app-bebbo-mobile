@@ -351,6 +351,10 @@ tabbarLabel8: "Рост дзіцяці",
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"месяцаў",
+        years5tag:"гады",
+        days5tag:"дзён"
+
     }
 }
 export default BYbe;
