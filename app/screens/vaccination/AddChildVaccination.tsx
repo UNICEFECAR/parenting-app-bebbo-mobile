@@ -51,14 +51,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Modal,
-  Pressable,
-  SafeAreaView,
-  Text,
-  TextInput,
-  View
-} from 'react-native';
+import { Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
@@ -82,7 +75,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
-  
+
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -176,24 +169,37 @@ const AddChildVaccination = ({route, navigation}: any) => {
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
-    let allVaccines:any = [...plannedVaccine, ...prevPlannedVaccine];
-    console.log(allVaccines,"before measurementDate");
-    allVaccines = [...allVaccines].map(v => ({...v, measurementDate: measureDate?.toMillis()}));
-    
+    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine];
+    console.log(allVaccines, 'before measurementDate');
+    allVaccines = [...allVaccines].map((v) => ({
+      ...v,
+      measurementDate: measureDate?.toMillis(),
+    }));
+
     // ((v:any) => {
     //   console.log(v);
     //  return {v.measurementDate =measureDate?.toMillis()}
     // });
-    console.log(allVaccines,"after measureDateUpdate");
-    const measurementDateParam = editGrowthItem ? ((dateTouched) ? measureDate?.toMillis() : editGrowthItem.measurementDate):measureDate?.toMillis()
-    const titleDateInMonthParam = editGrowthItem ? ((dateTouched) ? measureDate.toFormat('MM') : editGrowthItem.titleDateInMonth):measureDate.toFormat('MM')
- 
+    console.log(allVaccines, 'after measureDateUpdate');
+    const measurementDateParam = editGrowthItem
+      ? dateTouched
+        ? measureDate?.toMillis()
+        : editGrowthItem.measurementDate
+      : measureDate?.toMillis();
+    const titleDateInMonthParam = editGrowthItem
+      ? dateTouched
+        ? measureDate.toFormat('MM')
+        : editGrowthItem.titleDateInMonth
+      : measureDate.toFormat('MM');
+
     let updateItem = activeChild?.measures.find((item) => {
       // console.log(item.measurementDate);
       // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-          DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days
+            DateTime.fromJSDate(new Date(item.measurementDate))
+              .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
+              .toObject().days,
           ) == 0
         : null;
     });
@@ -208,7 +214,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         weight: String(weightValue),
         height: String(heightValue),
         easurementDate: measurementDateParam,
-        titleDateInMonth:titleDateInMonthParam.toString(),
+        titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
@@ -221,10 +227,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      if(createresult?.length>0){
-        activeChild.measures=createresult;
+      if (createresult?.length > 0) {
+        activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        }
+      }
       // setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     } else {
@@ -234,7 +240,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         weight: String(weightValue),
         height: String(heightValue),
         easurementDate: measurementDateParam,
-        titleDateInMonth:titleDateInMonthParam.toString(),
+        titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
@@ -247,10 +253,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
         'uuid ="' + activeChild.uuid + '"',
       );
       console.log(createresult);
-      if(createresult?.length>0){
-        activeChild.measures=createresult;
+      if (createresult?.length > 0) {
+        activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        }
+      }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
     }
@@ -291,35 +297,54 @@ const AddChildVaccination = ({route, navigation}: any) => {
               {/* <FormInputText>
                   {t('vcScreenDateText')}
                 </FormInputText> */}
-              <FormInputBox>
-                <FormDateText>
-                  <Text>
-                    {' '}
-                    {measureDate
-                      ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                          'dd/MM/yyyy',
-                        )
-                      : t('vcScreenenterDateText')}
-                  </Text>
-                </FormDateText>
-                <FormDateAction>
-                  <Icon name="ic_calendar" size={20} color="#000" />
-                </FormDateAction>
-              </FormInputBox>
-            </FormInputGroup>
-            <View>
-              {showmeasureDate && (
-                <DateTimePicker
-                  testID="measureDatePicker"
-                  value={editGrowthItem ? new Date(measureDate) : new Date()}
-                  mode={'date'}
-                  display="default"
-                  maximumDate={new Date()}
-                  minimumDate={new Date(minChildGrwothDate)}
-                  onChange={onmeasureDateChange}
-                />
+              {Platform.OS != 'ios' ? (
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>
+                      {' '}
+                      {measureDate
+                        ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                            'dd/MM/yyyy',
+                          )
+                        : t('vcScreenenterDateText')}
+                    </Text>
+                    {showmeasureDate && (
+                      <DateTimePicker
+                        testID="measureDatePicker"
+                        value={
+                          editGrowthItem ? new Date(measureDate) : new Date()
+                        }
+                        mode={'date'}
+                        display="default"
+                        maximumDate={new Date()}
+                        minimumDate={new Date(minChildGrwothDate)}
+                        onChange={onmeasureDateChange}
+                      />
+                    )}
+                  </FormDateText>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              ) : (
+                <FormInputBox>
+                  <DateTimePicker
+                    testID="measureDatePicker"
+                    value={editGrowthItem ? new Date(measureDate) : new Date()}
+                    mode={'date'}
+                    display="default"
+                    maximumDate={new Date()}
+                    minimumDate={new Date(minChildGrwothDate)}
+                    onChange={onmeasureDateChange}
+                    style={{backgroundColor: 'white', flex: 1}}
+                  />
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
               )}
-            </View>
+            </FormInputGroup>
+
             <FormContainerFlex>
               <FormInputText>
                 <Heading3>{t('vcPlanned')}</Heading3>
