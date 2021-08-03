@@ -9,7 +9,7 @@ import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
 import { ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexCol, FlexDirRow,Flex1} from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -19,10 +19,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3Regular, ShiftFromTop20, ShiftFromTopBottom10, SideSpacing25 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
+import { BackHandler, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
+import { useDoubleBackPressExit } from '../../../customHooks/useDoubleBackPressExit';
 import { setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 type HomeNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -40,7 +41,10 @@ const Home = () => {
 //     ? JSON.parse(state.childData.childDataSet.allChild)
 //     : state.childData.childDataSet.allChild,
 // );
-
+useDoubleBackPressExit(() => {
+  // user has pressed "back" twice. Do whatever you want!
+  BackHandler.exitApp();
+});
 const dispatch = useAppDispatch();
 const userIsOnboarded = useAppSelector(
   (state: any) =>
