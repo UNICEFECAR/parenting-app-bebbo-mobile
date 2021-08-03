@@ -16,9 +16,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
-  Modal,
-  Pressable,
-  StyleSheet, View
+  Modal, Pressable, StyleSheet, View
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
@@ -219,23 +217,34 @@ const HeaderBabyMenu = (props: any) => {
         onDismiss={() => {
           setModalVisible(false);
         }}>
-        <Pressable
+        <View
           style={styles.centeredView}
-          onPress={() => {
-            setModalVisible(!modalVisible);
-            if (modalVisible) {
-              getAllChildren(dispatch);
-              getAllConfigData(dispatch);
-            }
-          }}
+          // onPress={() => {
+          //   setModalVisible(!modalVisible);
+          //   if (modalVisible) {
+          //     getAllChildren(dispatch);
+          //     getAllConfigData(dispatch);
+          //   }
+          // }}
           >
+            <View style={{flex:1,backgroundColor:'transparent'}}>
+            <Pressable style={{backgroundColor:'transparent',zIndex:9999,height:headerHeight,position:'absolute',top:0,left:0,width:"100%"}}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                    if (modalVisible) {
+                      getAllChildren(dispatch);
+                      getAllConfigData(dispatch);
+                    }
+
+                }}>
+            </Pressable>
           <View
             style={styles.modalView}
           // onPress={() => console.log('do nothing')}
           // activeOpacity={1}
           >
             {SortedchildList.length > 0 ? (
-              <View style={{ height: 'auto', maxHeight: 125 }}>
+              <View style={{ height: 'auto',maxHeight: 125, backgroundColor:'transparent',zIndex:9999,marginTop:headerHeight,position:'relative',width:"100%"}}>
                 <FlatList
                   nestedScrollEnabled={true}
                   data={SortedchildList}
@@ -271,7 +280,15 @@ const HeaderBabyMenu = (props: any) => {
               </ButtonPrimary>
             </ButtonContainer>
           </View>
+        </View>
+        </View>
+        <View  style={{backgroundColor:'transparent',zIndex:9999,position:'relative',flex:3}} >
+        <Pressable onPress={() => {
+                  setModalVisible(!modalVisible);}}>
+
+
         </Pressable>
+        </View>
       </Modal>
 
       <HeaderActionView>
@@ -316,7 +333,7 @@ const styles = StyleSheet.create({
     // zIndex:999999,
     // position:'relative',
     width:'100%',
-    marginTop:headerHeight,
+    // marginTop:headerHeight,
     left:0,
     height:'100%'
   },
@@ -332,6 +349,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     // margin: 20,
+    // flex: 1,
     backgroundColor: 'white',
     borderBottomLeftRadius: 4,
     borderBottomRightRadius: 4,
