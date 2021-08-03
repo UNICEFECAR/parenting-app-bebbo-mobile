@@ -113,7 +113,10 @@ export default () => {
         </Pressable>
 
       </Modal>
-      <DashboardBottomTab.Navigator  tabBarOptions={{
+      <DashboardBottomTab.Navigator 
+      backBehavior={'firstRoute'}
+      detachInactiveScreens={true}
+      tabBarOptions={{
         activeTintColor: headerColor,
         inactiveTintColor:'#000',
         activeBackgroundColor:'#FFF',

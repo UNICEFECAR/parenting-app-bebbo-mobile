@@ -35,12 +35,13 @@ export const getAllVaccinePeriods = () => {
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
   // console.log(childAgeIndays, 'childAgeIndays');
-  // const taxonomy = useAppSelector(
-  //   (state: any) =>
-  //     (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
-  // );
+  const taxonomy = useAppSelector(
+    (state: any) =>
+      (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
+  );
   // console.log(taxonomy,taxonomy.growth_period);
-  const allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
+  const allGrowthPeriods =taxonomy.growth_period
+  // const allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
   // console.log(allGrowthPeriods, "taxonomydata_growth_period");
   const getVaccineInfo = (periodID) => {
     return allGrowthPeriods.find(item => item.id == periodID);
