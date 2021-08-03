@@ -12,13 +12,13 @@ export const getAllHealthCheckupPeriods = () => {
       : [],
   );
   // console.log(activeChild.measures, "activeChild.measures");
-  // const taxonomy = useAppSelector(
-  //   (state: any) =>
-  //     (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
-  // );
+  const taxonomy = useAppSelector(
+    (state: any) =>
+      (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
+  );
   // // console.log(taxonomy,taxonomy.growth_period);
-  // let allGrowthPeriods = taxonomy.growth_period;
-  let allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
+  let allGrowthPeriods = taxonomy.growth_period;
+  // let allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
   // console.log(allGrowthPeriods);
   allGrowthPeriods = allGrowthPeriods.map((item, index) => {
     // console.log(index);
@@ -112,14 +112,14 @@ export const getAllHealthCheckupPeriods = () => {
   // const getPeriodTitle = (periodID) => {
   //   return allHealthCheckupsData.find(item => item.growth_period == periodID);
   // }
-
+console.log(allHealthCheckupsData,"allHealthCheckupsData");
   let additionalMeasures:any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
     const {t} = useTranslation();
     const periodForMeasure = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
     if(periodForMeasure){
     const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure?.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure?.vaccination_ends))
-    // console.log(measure, "allmeasure",measure.length);
+    console.log(measure, "allmeasure",measure.length);
     if (measure.length > 1) {
       // console.log("ho<>");
       for (let i = 0; i <= measure.length - 2; i++) {

@@ -29,3 +29,5 @@ android/gradle.properties
 
 *.properties
 *.properties
+android/gradle.properties
+*.properties

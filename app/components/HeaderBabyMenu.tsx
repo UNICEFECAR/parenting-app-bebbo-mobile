@@ -18,9 +18,7 @@ import {
   FlatList,
   Modal,
   Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View
+  StyleSheet, View
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
@@ -221,16 +219,16 @@ const HeaderBabyMenu = (props: any) => {
         onDismiss={() => {
           setModalVisible(false);
         }}>
-        <View
+        <Pressable
           style={styles.centeredView}
-        // onPress={() => {
-        //   setModalVisible(!modalVisible);
-        //   if (modalVisible) {
-        //     getAllChildren(dispatch);
-        //     getAllConfigData(dispatch);
-        //   }
-        // }}
-        >
+          onPress={() => {
+            setModalVisible(!modalVisible);
+            if (modalVisible) {
+              getAllChildren(dispatch);
+              getAllConfigData(dispatch);
+            }
+          }}
+          >
           <View
             style={styles.modalView}
           // onPress={() => console.log('do nothing')}
@@ -273,7 +271,7 @@ const HeaderBabyMenu = (props: any) => {
               </ButtonPrimary>
             </ButtonContainer>
           </View>
-        </View>
+        </Pressable>
       </Modal>
 
       <HeaderActionView>
