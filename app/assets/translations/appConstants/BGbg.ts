@@ -199,12 +199,12 @@ const BGbg = {
         // Sprint4 Screens
         noBorn: "Все още неродено",
         noday: "0 дни",
-        yearstag: " години",
-        yeartag: " година",
-        monthstag: " месеци",
-        monthtag: " месец",
-        daystag: " дни",
-        daytag: " ден",
+        yearstag: "години",
+        yeartag: "година",
+        monthstag: "месеца",
+        monthtag: "месец",
+        daystag: "дни",
+        daytag: "ден",
         defaultChildPrefix: "Дете",
         notiOption1: "Изтриване на известието",
         notiOption2: "Отбелязване като прочетено",
@@ -352,6 +352,10 @@ const BGbg = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"месеца",
+        years5tag:"години",
+        days5tag:"дни"
+
     }
 }
 export default BGbg;

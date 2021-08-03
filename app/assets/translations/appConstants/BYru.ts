@@ -203,7 +203,7 @@ yearstag: "года",
 yeartag: "год",
 monthstag: "месяца",
 monthtag: "месяц",
-daystag: "дня ",
+daystag: "дня",
 daytag: "день",
 defaultChildPrefix: "Ребенок",
 notiOption1: "Удалить уведомление",
@@ -352,6 +352,10 @@ tabbarLabel8: "Рост ребенка",
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"месяцев",
+        years5tag:"лет",
+        days5tag:"дней"
+
     }
 }
 export default BYru;
