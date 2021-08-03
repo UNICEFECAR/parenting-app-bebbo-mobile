@@ -240,17 +240,21 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
     ageStr = t('noBorn');
   } else {
     if (diff.years > 0) {
-      ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
+      //ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
+      ageStr+=  diff.years + (diff.years>1 ? (diff.years>=5 ? ' '+t('years5tag'):' '+t('yearstag')):' '+t('yeartag'));
       ageStr +=' ';
     }
     if (diff.months > 0) {
-      ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
-      ageStr +=' ';
+      //ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
+      ageStr+=  diff.months + (diff.months>1 ? (diff.months>=5 ? ' '+t('months5tag'):' '+t('monthstag')):' '+t('monthtag'));
+     
     }
     // console.log(diff,"..diffff...")
     // if(diff.days>0){ 
     if (diff.days != "" && diff.months == "" && diff.years == "") {
-      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
+      //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
+      ageStr+=  Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days)>=5 ? ' '+t('days5tag'):' '+t('daystag')):' '+t('daytag'));
+     
     }
     if (ageStr == "") {
       ageStr = t('noday');

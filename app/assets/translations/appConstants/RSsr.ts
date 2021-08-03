@@ -199,10 +199,10 @@ const RSsr = {
         // Sprint4 Screens
         noBorn: "Još nije rođeno",
  noday: "0 dana",
- yearstag: "godina",
+ yearstag: "godine",
  yeartag: "godina",
- monthstag: "meseci",
- monthtag: "mesec",
+ monthstag: "mjeseca",
+ monthtag: "mjesec",
  daystag: "dana",
  daytag: "dan",
  defaultChildPrefix: "Dete  ",
@@ -352,6 +352,10 @@ const RSsr = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"mjeseci",
+        years5tag:"godina",
+        days5tag:"dana"
+
     }
     // translation: {
     //     countryLangSelection: 'Odabrali ste zemlju i jezik',
