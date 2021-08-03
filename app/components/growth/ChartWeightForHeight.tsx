@@ -27,9 +27,10 @@ const ChartWeightForHeight = () => {
       standardDeviation,
     });
   };
-  const standardDevData = useAppSelector((state: any) =>
-    JSON.parse(state.utilsData.taxonomy.standardDevData),
-  );
+  // const standardDevData = useAppSelector((state: any) =>
+  //   JSON.parse(state.utilsData.taxonomy.standardDevData),
+  // );
+  const standardDevData:any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -40,7 +41,7 @@ const ChartWeightForHeight = () => {
   if (activeChild?.gender == '40' || activeChild?.gender == '') {
     //boy or no gender added
     // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
-    const genderBoyData = standardDevData.filter(
+    const genderBoyData = standardDevData?.filter(
       (item) => item.growth_type == 6461 && item.child_gender == 40,
     );
     standardDeviation = genderBoyData;
@@ -48,7 +49,7 @@ const ChartWeightForHeight = () => {
   } else {
     //girl
     // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
-    const genderGirlData = standardDevData.filter(
+    const genderGirlData = standardDevData?.filter(
       (item) => item.growth_type == 6461 && item.child_gender == 41,
     );
     standardDeviation = genderGirlData;
