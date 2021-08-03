@@ -4,7 +4,7 @@ import { FlatList, View, Text, ActivityIndicator } from "react-native";
 import downloadImages from "../../downloadImages/ImageStorage";
 
 const InfiniteScrollList = (props : any) => {
-    const { filteredData , renderArticleItem } = props;
+    const { filteredData , renderArticleItem, receivedLoadingArticle } = props;
     const [isLoading, setIsLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const limit = 10;
@@ -39,6 +39,7 @@ const InfiniteScrollList = (props : any) => {
             setIsLoading(true);
             let data = filteredData.slice((thePage - 1) * limit, thePage * limit);
             console.log('..requestData..', data);
+            serverDataLoaded(data);
             if(data?.length>0){
                 data.map((item: any, index: number) => {
                 if(item['cover_image'] != "")
@@ -53,54 +54,56 @@ const InfiniteScrollList = (props : any) => {
                 console.log(imageArray,"..imageArray..");
                 const imagesDownloadResult = await downloadImages(imageArray);
                 console.log(imagesDownloadResult,"..imagesDownloadResult..");
+                setIsLoading(false);
+            }else {
+                setIsLoading(false);
             }
             
-            serverDataLoaded(data);
         }
     }
-    useEffect(() => {
-        // console.log(page,'requestData on load',totalDataCount);
+    // useEffect(() => {
+    //     // console.log(page,'requestData on load',totalDataCount);
         
-        // if(totalDataCount > 0)
-        // {
-           // requestData(page);
-        // }
-    }, []);
+    //     // if(totalDataCount > 0)
+    //     // {
+    //        // requestData(page);
+    //     // }
+    // }, []);
 
     useEffect(() => {
-        // console.log('obtained serverData', serverData);
+        console.log('obtained serverData', serverData);
         // if(serverData.length > 0)
         // {
             setRefresh(false);
             setClientData([...clientData, ...serverData]);
-            
+            receivedLoadingArticle(false);
             // setLoadmore(filteredData.length > clientData.length ? true : false);
         //     setPending_process(false);
         // }else {
         //     setLoadmore(false);
         // }
     }, [serverData]);
-    useEffect(() => {
-        console.log("clientData--",clientData);
-        setIsLoading(false)
-        // if(filteredData.length > clientData.length)
-        // {
-        //     setLoadmore(true);
-        // }else {
-        //     setLoadmore(false);
-        // }
-    },[clientData]);
-    useEffect(() => {
-        console.log('load more with page', page);
-        // if(serverData.length === limit || page == 1)
-        // {
-            // setPending_process(true);
-        // if(totalDataCount > 0)
-        // {
-          //  requestData(page);
-        // }
-        // }
-    }, [page]);
+    // useEffect(() => {
+    //     console.log("clientData--",clientData);
+    //     // setIsLoading(false) //commented from here now
+    //     // if(filteredData.length > clientData.length)
+    //     // {
+    //     //     setLoadmore(true);
+    //     // }else {
+    //     //     setLoadmore(false);
+    //     // }
+    // },[clientData]);
+    // useEffect(() => {
+    //     console.log('load more with page', page);
+    //     // if(serverData.length === limit || page == 1)
+    //     // {
+    //         // setPending_process(true);
+    //     // if(totalDataCount > 0)
+    //     // {
+    //       //  requestData(page);
+    //     // }
+    //     // }
+    // }, [page]);
 
     const handleLoadMore = () => {
         if(!onEndReachedCalledDuringMomentum)

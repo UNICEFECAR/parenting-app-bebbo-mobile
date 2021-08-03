@@ -7,6 +7,7 @@ import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 
 import { MainContainer } from '@components/shared/Container';
 import { DividerAct } from '@components/shared/Divider';
+import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FDirCol, FDirRow, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
 import PrematureTag, { PrematureTagActivity } from '@components/shared/PrematureTag';
 import ProgressiveImage from '@components/shared/ProgressiveImage';
@@ -16,7 +17,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
+import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -27,8 +28,9 @@ import {
   StyleSheet, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../../App';
+import { useAppDispatch, useAppSelector } from '../../../../App';
 import downloadImages from '../../../downloadImages/ImageStorage';
+import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -75,6 +77,7 @@ const ContainerView = styled.SafeAreaView`
 
 const Activities = ({ route,navigation }: Props) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -89,6 +92,9 @@ const Activities = ({ route,navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const ActivitiesData = useAppSelector(
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
@@ -97,6 +103,12 @@ const Activities = ({ route,navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const activityModalOpened = useAppSelector((state: any) =>
+    (state.utilsData.IsActivityModalOpened),
+  );
+  const modalScreenKey = 'IsActivityModalOpened';
+  const modalScreenText = 'activityModalText';
+  const [modalVisible, setModalVisible] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
@@ -104,11 +116,18 @@ const Activities = ({ route,navigation }: Props) => {
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredData,setfilteredData] = useState([]);
+
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+    setModalVisible(!modalVisible);
+  };
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
       setLoading(true);
       // setModalVisible(true);
+      setModalVisible(activityModalOpened);
       async function fetchData() {
         // console.log("categoryarray--",route.params?.categoryArray);
           if(route.params?.categoryArray)
@@ -164,10 +183,11 @@ const Activities = ({ route,navigation }: Props) => {
       }
       else {
         const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
-        // console.log("firstChildDevData---",firstChildDevData);
+        console.log("firstChildDevData---",firstChildDevData);
         showSelectedBracketData(firstChildDevData[0]);
       }
       return () => {
+        setModalVisible(false);
         setFilterArray([]);
         setCurrentSelectedChildId(0);
         setSelectedChildActivitiesData([]);
@@ -188,14 +208,14 @@ const Activities = ({ route,navigation }: Props) => {
             // route.params?.currentSelectedChildId = 0;
           }
       };
-    }, [activeChild?.uuid,route.params?.currentSelectedChildId])
+    }, [activeChild?.uuid,languageCode,route.params?.currentSelectedChildId])
   );
   useFocusEffect(
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
       setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0));
       setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0));
-      // console.log("firstChildDevData---",firstChildDevData);
+      console.log("filteredData---",filteredData);
     }, [filteredData])
   );
   const setFilteredActivityData = (itemId:any) => {
@@ -323,14 +343,19 @@ const Activities = ({ route,navigation }: Props) => {
                 renderItem={({ item, index }) => SuggestedActivities(item, index)}
                 keyExtractor={(item) => item.id.toString()}
               />
-              {otherGames && otherGames?.length > 0 ?
+              {/* {otherGames && otherGames?.length > 0 ?
                 <ArticleHeading>
                   <Heading3>{t('actScreenotheracttxt')}</Heading3>
                 </ArticleHeading>
-                :null}
+                :null} */}
             </>
             : null
           }
+          {otherGames && otherGames?.length > 0 ?
+            <ArticleHeading>
+              <Heading3>{t('actScreenotheracttxt')}</Heading3>
+            </ArticleHeading>
+          :null}
         </View>
 
       </>
@@ -378,9 +403,13 @@ const Activities = ({ route,navigation }: Props) => {
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                 // ListFooterComponent={ContentThatGoesBelowTheFlatList}
                 />
+                {suggestedGames?.length == 0 && otherGames?.length == 0 ?
+                  <Heading4Center>{t('noDataTxt')}</Heading4Center>
+                :null}
               
           </FlexCol>
         </FlexCol>
+        <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
       </ContainerView>
     </>
   );
