@@ -34,7 +34,7 @@ import {
   ButtonTextLine,
   ButtonTextSmLine
 } from './shared/ButtonGlobal';
-import { FDirRow, FlexColEnd } from './shared/FlexBoxStyle';
+import { FDirRow, FlexCol, FlexColEnd } from './shared/FlexBoxStyle';
 import { HeaderActionBox, HeaderActionView } from './shared/HeaderContainerStyle';
 import {
   ProfileActionView,
@@ -217,34 +217,14 @@ const HeaderBabyMenu = (props: any) => {
         onDismiss={() => {
           setModalVisible(false);
         }}>
-        <View
-          style={styles.centeredView}
-          // onPress={() => {
-          //   setModalVisible(!modalVisible);
-          //   if (modalVisible) {
-          //     getAllChildren(dispatch);
-          //     getAllConfigData(dispatch);
-          //   }
-          // }}
-          >
-            <View style={{flex:1,backgroundColor:'transparent'}}>
-            <Pressable style={{backgroundColor:'transparent',zIndex:9999,height:headerHeight,position:'absolute',top:0,left:0,width:"100%"}}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                    if (modalVisible) {
-                      getAllChildren(dispatch);
-                      getAllConfigData(dispatch);
-                    }
 
-                }}>
-            </Pressable>
-          <View
+           <View
             style={styles.modalView}
           // onPress={() => console.log('do nothing')}
           // activeOpacity={1}
           >
             {SortedchildList.length > 0 ? (
-              <View style={{ height: 'auto',maxHeight: 125, backgroundColor:'transparent',zIndex:9999,marginTop:headerHeight,position:'relative',width:"100%"}}>
+              <View style={{ height: 'auto',minHeight:100, maxHeight: 150, backgroundColor:'transparent',zIndex:9999,position:'relative',width:"100%"}}>
                 <FlatList
                   nestedScrollEnabled={true}
                   data={SortedchildList}
@@ -280,13 +260,33 @@ const HeaderBabyMenu = (props: any) => {
               </ButtonPrimary>
             </ButtonContainer>
           </View>
+        <View 
+          style={styles.centeredView}
+          // onPress={() => {
+          //   setModalVisible(!modalVisible);
+          //   if (modalVisible) {
+          //     getAllChildren(dispatch);
+          //     getAllConfigData(dispatch);
+          //   }
+          // }}
+          >
+            <View style={{flex:1,backgroundColor:'transparent'}}>
+            <Pressable style={{backgroundColor:'transparent',zIndex:9999,height:headerHeight,position:'absolute',top:0,left:0,width:"100%"}}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                    if (modalVisible) {
+                      getAllChildren(dispatch);
+                      getAllConfigData(dispatch);
+                    }
+
+                }}>
+            </Pressable>
         </View>
         </View>
-        <View  style={{backgroundColor:'transparent',zIndex:9999,position:'relative',flex:3}} >
-        <Pressable onPress={() => {
+        <View style={{backgroundColor:'transparent',opacity:0.5,zIndex:2,position:'absolute',width:'100%',height:'100%'}} >
+        <Pressable style={{backgroundColor:'transparent',width:'100%',height:'100%',position:'relative'}} 
+        onPress={() => {
                   setModalVisible(!modalVisible);}}>
-
-
         </Pressable>
         </View>
       </Modal>
@@ -324,9 +324,9 @@ const HeaderBabyMenu = (props: any) => {
 export default HeaderBabyMenu;
 const styles = StyleSheet.create({
   centeredView: {
-     flex: 1,
-     flexDirection:'column',
-    justifyContent: 'flex-start',
+    //  flex: 1,
+    //  flexDirection:'column',
+    // justifyContent: 'flex-start',
     // alignItems: 'center',
     // marginTop: headerHeight,
     // backgroundColor:'red',
@@ -335,7 +335,9 @@ const styles = StyleSheet.create({
     width:'100%',
     // marginTop:headerHeight,
     left:0,
-    height:'100%'
+    height:'100%',
+    position:'relative',
+    zIndex:1,
   },
   mainModal:{
     // backgroundColor:'blue',
@@ -356,6 +358,11 @@ const styles = StyleSheet.create({
     padding: 0,
     borderColor: '#000',
     borderBottomWidth: 2,
+    position:'relative',
+    zIndex:3,
+    marginTop:headerHeight,
+    // flex:1,
+    // flexDirection:'column',
   },
 
   modalText: {
