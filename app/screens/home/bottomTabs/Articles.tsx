@@ -21,7 +21,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
+import { Heading3, Heading4Center, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -33,6 +33,7 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import ProgressiveImage from '@components/shared/ProgressiveImage';
+import FirstTimeModal from '@components/shared/FirstTimeModal';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -63,13 +64,8 @@ const Articles = ({route, navigation}: Props) => {
   const articleModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsArticleModalOpened),
     );
-    
-   useFocusEffect(()=>{
-    //  console.log('weightModalOpened',weightModalOpened);
-      // pass true to make modal visible every time & reload
-      console.log(articleModalOpened,"--articleModalOpened");
-    setModalVisible(articleModalOpened);    
-   });
+  const modalScreenKey = 'IsArticleModalOpened';
+  const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
   const renderArticleItem = ({item, index}) => {
     // console.log("renderArticleItem-",index)
@@ -126,39 +122,8 @@ const Articles = ({route, navigation}: Props) => {
   // let filterArray: string[] = [];
   const [filterArray,setFilterArray] = useState([]);
   const fromPage = 'Articles';
-//   const activeChild = useAppSelector((state: any) =>
-//   state.childData.childDataSet.activeChild != ''
-//     ? JSON.parse(state.childData.childDataSet.activeChild)
-//     : [],
-// );
-// console.log(activeChild,"..activeChild..");
-// const allConfigData = useAppSelector((state: any) =>
-// state.variableData?.variableData != ''
-//   ? JSON.parse(state.variableData?.variableData)
-//   : state.variableData?.variableData,
-// );
-// const userParentalRoleData =
-// allConfigData?.length > 0
-//   ? allConfigData.filter((item) => item.key === 'userParentalRole')
-//   : [];
-//  console.log(userParentalRoleData,"..userParentalRoleData..")
-// const userNameData =
-// allConfigData?.length > 0
-//   ? allConfigData.filter((item) => item.key === 'userName')
-//   : [];
-// const relationshipData = useAppSelector(
-//     (state: any) =>
-//       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
-//   );
-// let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => o.id === userParentalRoleData[0].value):'';
- 
-  // const currentChildData = {
-  //   "gender":activeChild.gender,
-  //   "parent_gender":activeChild.parent_gender,
-  //   "taxonomyData":activeChild.taxonomyData
-  // }
-  // console.log(currentChildData,"..currentChildData..");
-  const [loading, setLoading] = useState(false);
+
+  const [loadingArticle, setLoadingArticle] = useState(true);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -166,22 +131,26 @@ const Articles = ({route, navigation}: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-
-  let articleData = useAppSelector(
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  articleData = articleData.filter((x:any)=> articleCategoryArray.includes(x.category))
+  const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   console.log("articleData---",articleData);
   const [filteredData,setfilteredData] = useState(articleData);
   
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("useFocusEffect called");
-      setLoading(true);
-      setModalVisible(true);
+      console.log("article useFocusEffect called");
+      //setLoading(true);
+      setModalVisible(articleModalOpened);
       async function fetchData() {
         let Entity:any;
-          if(route.params?.categoryArray)
+          if(route.params?.categoryArray && route.params?.categoryArray.length > 0)
           {
             // console.log(route.params?.categoryArray);
             setFilterArray(route.params?.categoryArray);
@@ -194,32 +163,36 @@ const Articles = ({route, navigation}: Props) => {
       }
       fetchData()
       return () => {
-        setModalVisible(false);
-        setLoading(false);
-        setfilteredData([]);
-        setFilterArray([]);
-        if(route.params?.categoryArray)
+        console.log("in article unmount");
+        // setModalVisible(false);
+        // setLoading(false);
+        // setfilteredData([]);
+        // setFilterArray([]);
+        // if(route.params?.categoryArray)
         {
           navigation.setParams({categoryArray:[]})
           // route.params?.currentSelectedChildId = 0;
         }
       }
-    },[languageCode,route.params?.categoryArray])
+    },[activeChild?.uuid,languageCode,route.params?.categoryArray])
   );
   
   const setFilteredArticleData = (itemId:any) => {
-    // console.log(itemId,"articleData in filtered ",articleData);
+    console.log(itemId,"articleData in filtered ",articleData);
     if(articleData != '')
     {
+      setLoadingArticle(true);
       if(itemId.length>0)
       {
         const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
         setfilteredData(newArticleData);
-        setLoading(false);
+        // setLoadingArticle(false);
+        // setTimeout(function(){setLoading(false)}, 700);
       }else {
         const newArticleData = articleData != '' ? articleData : [];
         setfilteredData(newArticleData);
-        setLoading(false);
+        // setLoadingArticle(false);
+        // setTimeout(function(){setLoading(false)}, 700);
       }
     }
     // if(articleData != '')
@@ -232,32 +205,19 @@ const Articles = ({route, navigation}: Props) => {
   const onFilterArrayChange = (newFilterArray: any) => {
     // console.log("on filterarray change",newFilterArray);
     // filterArray = [...newFilterArray];
+    
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     setArticleData(stateArticleData)
-  //     console.log("stateArticleData",stateArticleData);
-  //   },[stateArticleData])
-  // );
-
-  // const filterOnCategory = (itemId: any) => {
-  //   console.log(itemId,"articleData---");
-  //   if(itemId.length>0)
-  //   {
-  //     const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
-  //   }else {
-  //     const newArticleData = [...articleData];
-  //   }
-  //   // console.log("newArticleData--",newArticleData);
-  //   // setArticleData(newArticleData)
-  // }
+  const receivedLoadingArticle = (value) => {
+    console.log("receivedLoadingArticle--",value);
+    setLoadingArticle(value);
+  }
   //code for getting article dynamic data ends here.
 
   return (
     <>
-      <OverlayLoadingComponent loading={loading} />
+      <OverlayLoadingComponent loading={loadingArticle} />
       <ContainerView>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -302,38 +262,14 @@ const Articles = ({route, navigation}: Props) => {
               <DividerArt></DividerArt>
               {/* </FlexCol> */}
               {filteredData.length> 0 ? 
-                <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem}/> 
-                // <View>
-                //   <FlatList
-                //     // extraData={filteredData}
-                //     data={filteredData}
-                //     initialNumToRender={filteredData.length}
-                //     // onRefresh={this.handleRefresh}
-                //     // refreshing={this.state.refreshing}
-                //     // onEndReachedThreshold={2}
-                //     // onEndReached={this.handleLoadMore}
-                //     // renderItem={({item, index}) => <Text>{item.title} {index}</Text>}
-                //     // renderItem={({item, index}) => renderArticleItem(item, index)}
-                //     renderItem={renderArticleItem}
-                //     // showsHorizontalScrollIndicator={false}
-                //     // showsVerticalScrollIndicator={true}
-                //     // keyExtractor={(item, index) => {
-                //     //   return index.toString();
-                //     // }}
-                //     keyExtractor={(item) => item.id.toString()}
-                //     // onMomentumScrollBegin={() => {
-                //     //   this.onEndReachedCalledDuringMomentum = false;
-                //     // }}
-                //     // ListHeaderComponent={ContentThatGoesAboveTheFlatList}
-                //     // ListFooterComponent={ContentThatGoesBelowTheFlatList}
-                //   /> 
-                // </View>
-                : null}
+                <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
               {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
               }) : setFilteredArticleData([])} */}
               </FlexCol>
-              <Modal
+              <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
+              {/* <Modal
         animationType="none"
         transparent={true}
         visible={modalVisible}
@@ -372,7 +308,7 @@ const Articles = ({route, navigation}: Props) => {
 
           </ModalPopupContainer>
         </PopupOverlay>
-      </Modal>
+      </Modal> */}
         </KeyboardAvoidingView>
       </ContainerView>
               
