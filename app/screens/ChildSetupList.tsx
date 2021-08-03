@@ -33,6 +33,7 @@ import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3Centerw,
+  Heading5,
   ShiftFromBottom20,
   ShiftFromTop30
 } from '../styles/typography';
@@ -91,8 +92,8 @@ const ChildSetupList = ({ navigation }: Props) => {
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
-      <Text>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}</Text>
+      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontSize:12,fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
+      <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}</Heading5>
     </ChildColArea1>
     <ChildColArea2>
     {
