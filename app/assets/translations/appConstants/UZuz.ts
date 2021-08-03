@@ -351,6 +351,9 @@ const UZuz = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"oylar",
+        years5tag:"yillar",
+        days5tag:"kunlar"
 
     }
 }
