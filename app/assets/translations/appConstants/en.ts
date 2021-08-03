@@ -203,10 +203,10 @@ const en = {
         noday: "0 days",
         yearstag: " years",
         yeartag: " year",
-        monthstag: " months",
-        monthtag: " month",
-        daystag: " days",
-        daytag: " day",
+        monthstag: "months",
+        monthtag: "month",
+        daystag: "days",
+        daytag: "day",
         defaultChildPrefix: "Child",
         notiOption1: "Delete notification",
         notiOption2: "Mark as read",
@@ -358,7 +358,9 @@ const en = {
         //new text dated on 2nd August 2021
         activityModalText: "To find Games, click on the relevant buttons or search using keywords",
         childDevModalText: "To find Development, click on the relevant buttons or search using keywords",
-
+        months5tag:"months",
+        years5tag:"years",
+        days5tag:"days"
 
     }
 }
