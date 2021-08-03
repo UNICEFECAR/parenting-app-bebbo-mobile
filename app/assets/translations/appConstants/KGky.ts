@@ -352,6 +352,10 @@ tabbarLabel8: "Баланын өсүшү",
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"months",
+        years5tag:"years",
+        days5tag:"days"
+
     }
 }
 export default KGky;

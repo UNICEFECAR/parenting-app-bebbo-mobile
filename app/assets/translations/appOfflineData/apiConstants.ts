@@ -1,6 +1,6 @@
-import { apiUrlDevelop } from "react-native-dotenv";
+// import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
-
+const apiUrlDevelop='https://staging.bebbo.app/api';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';

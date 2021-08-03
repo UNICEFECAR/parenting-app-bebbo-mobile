@@ -352,6 +352,10 @@ const XKsq = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"muaj",
+        years5tag:"vite",
+        days5tag:"ditë"
+
     }
 }
 export default XKsq;

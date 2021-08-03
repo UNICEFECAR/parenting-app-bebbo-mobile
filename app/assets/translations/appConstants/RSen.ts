@@ -352,6 +352,9 @@ tabbarLabel8: "Child's growth",
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"months",
+        years5tag:"years",
+        days5tag:"days"
 
     }
 }

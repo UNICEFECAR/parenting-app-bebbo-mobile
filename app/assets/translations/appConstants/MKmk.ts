@@ -352,6 +352,10 @@ tabbarLabel8: "Раст на детето",
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        months5tag:"месеци",
+        years5tag:"години",
+        days5tag:"денови"
+
     }
 }
 export default MKmk;
