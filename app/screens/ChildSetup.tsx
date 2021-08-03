@@ -144,13 +144,12 @@ const ChildSetup = ({ navigation }: Props) => {
                 birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                   <FormContainer1>
                     <LabelText>{t('genderLabel')}</LabelText>
-                    <FormContainerFlex>
                       <ToggleRadios
                         options={genders}
                         tickbgColor={headerColor}
                         tickColor={'#FFF'}
                         getCheckedItem={getCheckedItem}
-                      /></FormContainerFlex>
+                      />
                   </FormContainer1>
                   : null
               }
@@ -170,7 +169,6 @@ const ChildSetup = ({ navigation }: Props) => {
                 </FormInputBox>
               </FormInputGroup>
               </ShiftFromTop20>
-
             </ChildSection>
           </ChildContentArea>
 
