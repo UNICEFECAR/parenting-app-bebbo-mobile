@@ -12,7 +12,8 @@ import {
   VictoryLine,
   VictoryScatter,
   VictoryTheme,
-  VictoryTooltip
+  VictoryTooltip,
+  VictoryVoronoiContainer
 } from 'victory-native';
 import { VictoryScatterProps } from 'victory-scatter';
 import { VictoryTooltipProps } from 'victory-tooltip';
@@ -148,7 +149,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
    
   
 
-      <VictoryChart
+      <VictoryChart containerComponent={<VictoryVoronoiContainer />} 
         theme={VictoryTheme.material}
         width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
