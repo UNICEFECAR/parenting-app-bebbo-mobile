@@ -280,7 +280,7 @@ const UpcomingVaccines = (props: any) => {
                       });
                     }}>
                     <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
-                      {t('hcReminderbtn')}
+                      {t('vcSetReminder')}
                     </ButtonTextMdLine>
                   </Pressable>
                 )}
