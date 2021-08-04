@@ -150,6 +150,7 @@ const HealthCheckups = ({navigation}: Props) => {
                   onPress={() =>
                     navigation.navigate('AddChildHealthCheckup', {
                       headerTitle: t('hcNewHeaderTitle'),
+                      vcPeriod: upcomingPeriods[0],
                     })
                   }>
                   <ButtonText>{t('hcNewBtn')}</ButtonText>
