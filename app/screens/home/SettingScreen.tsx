@@ -306,10 +306,9 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                {/* <Pressable onPress={() => setModalVisible(true)}> */}
-                {/* <Pressable>
+                <Pressable onPress={() => setModalVisible(true)}>
                   <Icon name="ic_edit" size={16} color="#000" />
-                </Pressable> */}
+                </Pressable>
               </FlexDirRowSpace>
             </SettingHeading>
             <ShiftFromTopBottom5>
@@ -412,6 +411,7 @@ const SettingScreen = (props: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
+                  disabled={true}
                   onPress={() => {
                     props.navigation.reset({
                       index: 0,
