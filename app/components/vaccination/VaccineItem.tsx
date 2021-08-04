@@ -57,7 +57,7 @@ const VaccineItem = (props: any) => {
               </Flex1>
             </FormOuterCheckbox>
           </FlexDirRow>
-          <Pressable
+         {pinned_article ? <Pressable
             onPress={() => {
               gotoArticle(pinned_article);
             }}>
@@ -66,7 +66,7 @@ const VaccineItem = (props: any) => {
                 <Icon name="ic_info" size={15} color="#000" />
               </OuterIconRight>
             </OuterIconRow>
-          </Pressable>
+          </Pressable> : null}
         </ToolsHeadView>
       </VacItemContainer>
     </>
