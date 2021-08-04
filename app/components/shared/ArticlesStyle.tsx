@@ -26,7 +26,8 @@ export const SearchBox = styled.View`
   flex-direction:row
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
-  padding:0 20px
+  padding:10px 20px;
+  height:50px;
 `;
 
 export const ActivityBox = styled.View`
