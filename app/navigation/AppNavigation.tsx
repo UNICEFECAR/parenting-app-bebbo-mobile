@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,7 +21,6 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
-import { Linking, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import { useAppSelector } from '../../App';
@@ -52,7 +50,7 @@ export default () => {
      );
      console.log("userIsOnboarded appnav--",userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
-  const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
+  // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
@@ -80,41 +78,44 @@ export default () => {
   //   // addDBListener()
   // },[])
   // console.log(netInfo,"..BeforeisConnected..");
+  // useEffect(() => {
+  //   const restoreState = async () => {
+  //     try {
+  //       const initialUrl = await Linking.getInitialURL();
+  //       if (Platform.OS !== 'web' && initialUrl == null) {
+  //         // Only restore state if there's no deep link and we're not on web
+  //         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
+  //         const state = savedStateString ? JSON.parse(savedStateString) : undefined;
+
+  //         if (state !== undefined) {
+  //           setInitialState(state);
+  //         }
+  //       }
+  //     } finally {
+  //       setIsReady(true);
+  //     }
+  //   };
+  //   SplashScreen.hide();
+  //   if (!isReady) {
+  //     restoreState();
+  //   }
+  // }, [isReady]);
+
+  // if (!isReady) {
+  //   return null;
+  // }
   useEffect(() => {
-    const restoreState = async () => {
-      try {
-        const initialUrl = await Linking.getInitialURL();
-        if (Platform.OS !== 'web' && initialUrl == null) {
-          // Only restore state if there's no deep link and we're not on web
-          const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-          const state = savedStateString ? JSON.parse(savedStateString) : undefined;
-
-          if (state !== undefined) {
-            setInitialState(state);
-          }
-        }
-      } finally {
-        setIsReady(true);
-      }
-    };
     SplashScreen.hide();
-    if (!isReady) {
-      restoreState();
-    }
-  }, [isReady]);
-
-  if (!isReady) {
-    return null;
-  }
-
+  },[]);
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
       <NavigationContainer
         // initialState={initialState}
-        onStateChange={(state) =>
-          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-        }>
+        // onStateChange={(state) =>
+        //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+        // }
+        >
         <RootStack.Navigator
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'

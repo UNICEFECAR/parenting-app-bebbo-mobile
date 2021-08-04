@@ -45,6 +45,7 @@ const Vaccination = ({navigation}: Props) => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
+  console.log(totalUpcomingVaccines,"totalUpcomingVaccines");
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
