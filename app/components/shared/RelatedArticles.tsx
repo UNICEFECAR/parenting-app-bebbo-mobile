@@ -143,7 +143,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
         let imageArraynew:any= [];
         if(relatedArticleData?.length>0){
           relatedArticleData.map((item: any, index: number) => {
-          if(item['cover_image'] != "")
+          if(item['cover_image'] != "" && item['cover_image'].url != "")
           {
             imageArraynew.push({
               srcUrl: item['cover_image'].url, 

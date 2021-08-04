@@ -135,7 +135,8 @@ export const addApiDataInRealm = async (response: any) => {
                         let errorArr = [];
                         console.log("in insert catch---",response.payload);
                         errorArr.push(response.payload);
-                        response.dispatch(receiveAPIFailure(errorArr));
+                        let payload = {errorArr:errorArr,fromPage:'OnLoad'}
+                        response.dispatch(receiveAPIFailure(payload));
                         reject();
                     }
                 }else if(EntitySchema == StandardDevWeightForHeightSchema) {
@@ -147,7 +148,8 @@ export const addApiDataInRealm = async (response: any) => {
                         let errorArr = [];
                         console.log("in insert catch---",response.payload);
                         errorArr.push(response.payload);
-                        response.dispatch(receiveAPIFailure(errorArr));
+                        let payload = {errorArr:errorArr,fromPage:'OnLoad'}
+                        response.dispatch(receiveAPIFailure(payload));
                         reject();
                     }
                 }else {
@@ -159,7 +161,8 @@ export const addApiDataInRealm = async (response: any) => {
                         let errorArr = [];
                         console.log("in insert catch---",response.payload);
                         errorArr.push(response.payload);
-                        response.dispatch(receiveAPIFailure(errorArr));
+                        let payload = {errorArr:errorArr,fromPage:'OnLoad'}
+                        response.dispatch(receiveAPIFailure(payload));
                         reject();
                     }
                 }
