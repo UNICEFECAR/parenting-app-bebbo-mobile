@@ -156,7 +156,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
         </ActionSheet>
           <FormContainer>
             <LabelText>Parent Name</LabelText>
-            <TextBox>
+            <FormInputBox>
             <TextInput
               autoCapitalize="none"
               autoCorrect={false}
@@ -167,7 +167,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
               
-            /></TextBox>
+            /></FormInputBox>
           </FormContainer>
           </MainContainer>
           <ShiftFromTop10>

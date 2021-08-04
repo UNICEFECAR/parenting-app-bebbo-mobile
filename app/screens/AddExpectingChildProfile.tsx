@@ -214,7 +214,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
 
           <FormContainer>
             <LabelText>{t('expectPreferNametxt')}</LabelText>
-            <TextBox>
+            <FormInputBox>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -226,7 +226,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 placeholder={t('expectPreferNamePlacetxt')}
 
               />
-            </TextBox>
+            </FormInputBox>
           </FormContainer>
 
         </MainContainer>
