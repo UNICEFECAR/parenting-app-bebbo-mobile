@@ -361,6 +361,7 @@ const styles = StyleSheet.create({
     position:'relative',
     zIndex:3,
     marginTop:headerHeight,
+    top:headerHeight,
     // flex:1,
     // flexDirection:'column',
   },
