@@ -213,7 +213,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         isChildMeasured: isMeasured,
         weight: String(weightValue),
         height: String(heightValue),
-        easurementDate: measurementDateParam,
+        measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
@@ -239,14 +239,14 @@ const AddChildVaccination = ({route, navigation}: any) => {
         isChildMeasured: isMeasured,
         weight: String(weightValue),
         height: String(heightValue),
-        easurementDate: measurementDateParam,
+        measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: true,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
       };
-      console.log(growthValues);
+      console.log(growthValues,"ADD_VACCINATION");
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
