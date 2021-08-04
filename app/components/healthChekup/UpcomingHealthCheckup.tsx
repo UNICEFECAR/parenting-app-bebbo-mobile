@@ -174,21 +174,33 @@ const UpcomingHealthCheckup = (props: any) => {
         {isOpen ? (
           <>
             <MainContainer>
-              {item?.growthMeasures?.didChildGetVaccines ? (
+             
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
                   </ToolsIconView>
                   <ToolsHeadingView>
-                    {item?.growthMeasures?.didChildGetVaccines ? (
+                   
+                  {item?.growthMeasures?.uuid  ? (
                       <ShiftFromTop5>
                         <ShiftFromBottom15>
                           <Heading4Regular>
-                            {t('hcVaccineText')}
+                          {item?.growthMeasures?.didChildGetVaccines ? t('hcVaccineText')  : t('hcNoVaccineTxt')}
                           </Heading4Regular>
                         </ShiftFromBottom15>
                       </ShiftFromTop5>
-                    ) : null}
+                    ) : 
+                    (<ShiftFromTop5>
+                      <ShiftFromBottom15>
+                        <Heading4Regular>
+                        {t('hcNoVaccineTxt')}
+                        </Heading4Regular>
+                      </ShiftFromBottom15>
+                    </ShiftFromTop5>)
+                    }
+                   
+                   {item?.growthMeasures?.didChildGetVaccines ?
+
                     <HealthDesc>
                       {item?.growthMeasures?.measuredVaccineIds?.map(
                         (vaccineItem: any, index: number) => {
@@ -206,10 +218,10 @@ const UpcomingHealthCheckup = (props: any) => {
                           }
                         },
                       )}
-                    </HealthDesc>
+                    </HealthDesc> : null}
                   </ToolsHeadingView>
                 </FDirRowStart>
-              ) : null}
+             
 
               <FDirRowStart>
                 <ToolsIconView>

@@ -1,11 +1,11 @@
-import { FlexCol, FlexDirRowEnd, FlexRowEnd,FlexColEnd } from '@components/shared/FlexBoxStyle';
+import { FlexCol, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
-import { useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, ShiftFromTop10, ShiftFromTopBottom10 } from '@styles/typography';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { Heading2, Heading4, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { ActivityIndicator, Pressable } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -18,19 +18,18 @@ const ChartWeightForHeight = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  const fullScreenChart = (chartType, obj, standardDeviation) => {
+  const fullScreenChart = (chartType, obj) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
     navigation.navigate('ChartFullScreen', {
       activeChild,
       chartType,
       obj,
-      standardDeviation,
     });
   };
   // const standardDevData = useAppSelector((state: any) =>
   //   JSON.parse(state.utilsData.taxonomy.standardDevData),
   // );
-  const standardDevData:any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
+  const standardDevData: any[] = require('../../assets/translations/appOfflineData/standardDeviation.json');
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -61,60 +60,76 @@ const ChartWeightForHeight = () => {
   );
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
   const item: any = getInterpretationWeightForHeight(
-          standardDeviation,
-          childTaxonomyData,
-          lastMeasurements,
-        )
-     console.log(item);
+    standardDeviation,
+    childTaxonomyData,
+    lastMeasurements,
+  );
+  console.log(item);
+  const [isChartVisible, setIsChartVisible] = React.useState(false);
+  useFocusEffect(
+    React.useCallback(() => {
+      setTimeout(() => {
+        setIsChartVisible(true);
+      }, 1000);
+    }, []),
+  );
+
   return (
-    
+    <FlexCol>
       <FlexCol>
-          <FlexCol>
-            <FlexColEnd>
-              <Pressable  style={{padding:7,marginTop:5}}
-                onPress={() =>
-                  fullScreenChart(
-                    chartTypes.weightForHeight,
-                    obj,
-                    standardDeviation,
-                  )
-                }>
-                <Icon name="ic_fullscreen" size={16} />
-              </Pressable>
-            </FlexColEnd>
-          </FlexCol>
-          
+        <FlexColEnd>
+          <Pressable
+            style={{padding: 7, marginTop: 5}}
+            onPress={() => fullScreenChart(chartTypes.weightForHeight, obj)}>
+            <Icon name="ic_fullscreen" size={16} />
+          </Pressable>
+        </FlexColEnd>
+      </FlexCol>
+
       <FlexCol>
-        
+        {isChartVisible ? (
           <GrowthChart
-          activeChild={activeChild}
-          chartType={chartTypes.weightForHeight}
-          bgObj={obj}
-          standardDeviation={standardDeviation}
-        />
+            activeChild={activeChild}
+            chartType={chartTypes.weightForHeight}
+            bgObj={obj}
+            // standardDeviation={standardDeviation}
+          />
+        ) : (
+          <ActivityIndicator size="large" color={headerColor} />
+        )}
         <ShiftFromTop10>
-        <Heading2>{t('growthScreensumHeading')}</Heading2>
-        <Heading4> {item?.interpretationText?.name}</Heading4>
-        <HTML
-          source={{html: item?.interpretationText?.text}}
-          baseFontStyle={{fontSize: 16}}
+          {item?.interpretationText ? (
+            <>
+              <Heading2>{t('growthScreensumHeading')}</Heading2>
+              <Heading4> {item?.interpretationText?.name}</Heading4>
+              {item?.interpretationText?.text ? (
+                <HTML
+                  source={{html: item?.interpretationText?.text}}
+                  baseFontStyle={{fontSize: 16}}
+                />
+              ) : null}
+            </>
+          ) : null}
+        </ShiftFromTop10>
+      </FlexCol>
+
+      <FlexCol
+        style={{
+          backgroundColor: backgroundColor,
+          marginLeft: -20,
+          marginRight: -20,
+        }}>
+        <RelatedArticles
+          fromScreen={'ChildgrowthTab'}
+          related_articles={item?.interpretationText?.articleID}
+          category={5}
+          currentId={chartTypes.weightForHeight}
+          headerColor={headerColor}
+          backgroundColor={backgroundColor}
+          navigation={navigation}
         />
-      </ShiftFromTop10>
       </FlexCol>
-        
-      <FlexCol style={{backgroundColor:backgroundColor,marginLeft:-20,marginRight:-20}}>
-      <RelatedArticles
-        fromScreen={'ChildgrowthTab'}
-        related_articles={item?.interpretationText?.articleID}
-        category={5}
-        currentId={chartTypes.weightForHeight}
-        headerColor={headerColor}
-        backgroundColor={backgroundColor}
-        navigation={navigation}
-      />
-      </FlexCol>
-      </FlexCol>
-   
+    </FlexCol>
   );
 };
 export default ChartWeightForHeight;
