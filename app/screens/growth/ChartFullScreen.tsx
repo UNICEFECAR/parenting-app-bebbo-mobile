@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ActivityIndicator,
   BackHandler,
+  Dimensions,
   Pressable,
   ScrollView
 } from 'react-native';
@@ -53,7 +54,29 @@ export const ChartFullScreen = ({route}) => {
     Orientation.lockToPortrait();
     navigation.goBack();
   };
-
+  // const [deviceOrientation, setDeviceOrientation] = useState(
+  //   Dimensions.get('window').width < Dimensions.get('window').height
+  //     ? 'portrait'
+  //     : 'landscape',
+  // );
+  // let windowWidth = Dimensions.get('window').width;
+  // let windowHeight = Dimensions.get('window').height;
+  // useEffect(() => {
+  //   const deviceOrientation = () => {
+  //     if (Dimensions.get('window').width < Dimensions.get('window').height) {
+  //       setDeviceOrientation('portrait');
+  //     } else {
+  //       setDeviceOrientation('landscape');
+  //     }
+  //   };
+  //   Dimensions.addEventListener('change', deviceOrientation);
+  //   return () => {
+  //     //cleanup work
+  //     Dimensions.removeEventListener('change', deviceOrientation);
+  //   };
+  // }, [deviceOrientation]);
+  let windowWidth = Dimensions.get('window').width;
+  let windowHeight = Dimensions.get('window').height;
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
@@ -81,6 +104,8 @@ export const ChartFullScreen = ({route}) => {
                     activeChild={activeChild}
                     chartType={chartType}
                     bgObj={obj}
+                    windowWidth={windowWidth}
+                    windowHeight={windowHeight}
                   />
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
