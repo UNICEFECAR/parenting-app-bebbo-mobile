@@ -52,14 +52,16 @@ export enum chartTypes {
 // }
 
 const GrowthChart = (props: any) => {
-  let {activeChild, chartType, bgObj,standardDeviation} = props;
+  let {activeChild, chartType, bgObj} = props;
   const {t} = useTranslation();
-//   console.log(activeChild, chartType, 'heightForAge', bgObj);
+  // console.log(chartType, 'chartType0');
   const childBirthDate = activeChild.birthDate;
 
-  const labelX = chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
-  const labelY = chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
-//   console.log(labelX, labelY);
+  // const labelX = props.chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
+  // const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
+  const labelX = props.chartType == chartTypes.weightForHeight ? t('growthScreencmText'):t('month') ;
+  const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
+  // console.log(labelX, labelY);
 //   const [obj, setObj] = useState([]);
 
 
@@ -68,27 +70,37 @@ const [deviceOrientation, setDeviceOrientation] = useState(
     ? 'portrait'
     : 'landscape'
 );
-const [deviceHeight, setDeviceHeight] = useState(
-  Dimensions.get('window').width < Dimensions.get('window').height
-    ? Dimensions.get('window').height
-    : Dimensions.get('window').width
-);
-
-useEffect(() => {
-  const setDeviceHeightAsOrientation = () => {
-    if (Dimensions.get('window').width < Dimensions.get('window').height) {
-      setDeviceHeight(Dimensions.get('window').height);
-    } else {
-      setDeviceHeight(Dimensions.get('window').width);
-    }
-  };
-  Dimensions.addEventListener('change', setDeviceHeightAsOrientation);
-  return () => {
-    //cleanup work
-    Dimensions.removeEventListener('change', setDeviceHeightAsOrientation);
-  };
-});
-
+// const [deviceHeight, setDeviceHeight] = useState(
+//   Dimensions.get('window').width < Dimensions.get('window').height
+//     ? Dimensions.get('window').height
+//     : Dimensions.get('window').width
+// );
+let windowWidth = Dimensions.get('window').width;
+let windowHeight = Dimensions.get('window').height;
+// console.log(windowWidth,windowHeight,"window");
+const [showFullscreen, setShowFullscreen] = React.useState(false);
+// let orientation: 'portrait' | 'landscape' =
+// windowHeight > windowWidth ?  'portrait':'landscape' ;
+// useFocusEffect(
+//   React.useCallback(() => {
+// useEffect(() => {
+//   const setDeviceHeightAsOrientation = () => {
+//     if (Dimensions.get('window').width < Dimensions.get('window').height) {
+//       setDeviceHeight(Dimensions.get('window').height);
+//     } else {
+//       setDeviceHeight(Dimensions.get('window').width);
+//     }
+//   };
+//   Dimensions.addEventListener('change', setDeviceHeightAsOrientation);
+//   return () => {
+//     //cleanup work
+//     Dimensions.removeEventListener('change', setDeviceHeightAsOrientation);
+//   };
+// // });
+// }, []);
+// );
+// useFocusEffect(
+//   React.useCallback(() => {
 useEffect(() => {
   const deviceOrientation = () => {
     if (Dimensions.get('window').width < Dimensions.get('window').height) {
@@ -102,15 +114,12 @@ useEffect(() => {
     //cleanup work
     Dimensions.removeEventListener('change', deviceOrientation);
   };
-});
+// });
+}, [deviceOrientation]);
+// );
 
 
-  let windowWidth = Dimensions.get('window').width;
-  let windowHeight = Dimensions.get('window').height;
-  // console.log(windowWidth,windowHeight,"window");
-  const [showFullscreen, setShowFullscreen] = React.useState(false);
-  // let orientation: 'portrait' | 'landscape' =
-  // windowHeight > windowWidth ?  'portrait':'landscape' ;
+ 
 
 
 
@@ -118,23 +127,27 @@ useEffect(() => {
 // console.log(deviceOrientation,"orientation");
 
 const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
-  let convertedMeasures = convertMeasuresData(
+  let convertedMeasures:any = convertMeasuresData(
     growthMeasures,
     childBirthDate
   );
   /* Create line chart array for type chart */
-  let chartData: LineChartData[] = [];
+  let chartData: any[] = [];
   convertedMeasures.map((item) => {
     chartData.push(
-      chartType === chartTypes.weightForHeight
+      chartType == chartTypes.weightForHeight
         ? {x: item.height, y: item.weight}
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
 //   console.log(convertedMeasures, 'convertedMeasures');
+// console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
     <>
+   
+  
+
       <VictoryChart
         theme={VictoryTheme.material}
         width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
@@ -145,7 +158,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-50 : windowHeight-30} />}
+          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-60 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth: windowHeight-70}/>}
         />
 
         {/* ********* AXIS VERTICAL ********* */}
@@ -159,13 +172,13 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         {/* ********* TOP AREA ********* */}
         <VictoryArea
           interpolation="natural"
-          style={{data: showFullscreen ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          style={{data: deviceOrientation === 'portrait'  ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
           data={topArea}
         />
         {/* ********* BOTTOM AREA ********* */}
         <VictoryArea
           interpolation="natural"
-          style={{data: showFullscreen ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          style={{data: deviceOrientation === 'portrait' ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
           data={bottomArea}
         />
         {/* ********* MIDDLE AREA ********* */}
@@ -298,7 +311,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
             {t('growthChartLegendSilverLabel')}
           </Text>
         </View>
-        {showFullscreen && (
+        {deviceOrientation != 'portrait' && (
           <View style={styles.chartLegendItem}>
             <View
               style={{
@@ -313,8 +326,9 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
           </View>
         )}
       </View>
-     
+      {/* </Suspense> */}
     </>
+   
   );
 };
 export default GrowthChart;
