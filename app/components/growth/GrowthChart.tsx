@@ -53,7 +53,7 @@ export enum chartTypes {
 // }
 
 const GrowthChart = (props: any) => {
-  let {activeChild, chartType, bgObj} = props;
+  let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
   // console.log(chartType, 'chartType0');
   const childBirthDate = activeChild.birthDate;
@@ -76,10 +76,10 @@ const [deviceOrientation, setDeviceOrientation] = useState(
 //     ? Dimensions.get('window').height
 //     : Dimensions.get('window').width
 // );
-let windowWidth = Dimensions.get('window').width;
-let windowHeight = Dimensions.get('window').height;
+// let windowWidth = Dimensions.get('window').width;
+// let windowHeight = Dimensions.get('window').height;
 // console.log(windowWidth,windowHeight,"window");
-const [showFullscreen, setShowFullscreen] = React.useState(false);
+// const [showFullscreen, setShowFullscreen] = React.useState(false);
 // let orientation: 'portrait' | 'landscape' =
 // windowHeight > windowWidth ?  'portrait':'landscape' ;
 // useFocusEffect(
