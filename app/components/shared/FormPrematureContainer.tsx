@@ -7,7 +7,7 @@ const FormPrematureContainer = styled.View`
  /* margin-bottom: 20px;*/
 `;
 
-export const FormInfoLabel = styled.Text`
+export const FormInfoLabel = styled.View`
   flex-direction: row;
   margin-left: 0px;
   margin-top: 3px;
