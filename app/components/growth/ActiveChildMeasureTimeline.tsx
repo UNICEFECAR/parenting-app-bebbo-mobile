@@ -81,7 +81,11 @@ const ActiveChildMeasureTimeline = (props: any) => {
       if (titleDateInMonth === 0) {
         return t('onBirthDay');
       } else {
-        return `${titleDateInMonth} ${t('month')}`;
+       //return `${titleDateInMonth} ${t('month')}`;
+       return titleDateInMonth.toString() + (titleDateInMonth>1)?titleDateInMonth >=5? t('months5tag'):t('month'):t('months');
+        // return ageStr+= diff.years + (diff.years>1 ? (diff.years>=5 ? ' '+t('years5tag'):' '+t('yearstag')):' '+t('yeartag'));
+        
+        
       }
     };
     let title = (
