@@ -9,7 +9,7 @@ interface hardcodedDataType {
   taxonomy: { 
     allTaxonomyData: string;
     languageCode: string;
-    standardDevData: string;
+    // standardDevData: string;
   },
   aboutus:{
     id:number;
@@ -81,7 +81,7 @@ const initialState: hardcodedDataType = {
   taxonomy: { 
     allTaxonomyData: '',
     languageCode: 'en',
-    standardDevData: '',
+    // standardDevData: '',
   },
   aboutus:{
     id:0,
@@ -180,7 +180,7 @@ export const utilsSlice = createSlice({
       {
         state.taxonomy.allTaxonomyData = (typeof action.payload[0].allData == 'object') ? (JSON.stringify(action.payload[0].allData)) : (action.payload[0].allData);
         state.taxonomy.languageCode = action.payload[0].langCode;
-        state.taxonomy.standardDevData = (typeof action.payload[0].standardDevData == 'object') ? (JSON.stringify(action.payload[0].standardDevData)) : (action.payload[0].standardDevData);
+        // state.taxonomy.standardDevData = (typeof action.payload[0].standardDevData == 'object') ? (JSON.stringify(action.payload[0].standardDevData)) : (action.payload[0].standardDevData);
       }
     },
     setAllTermsData: (
