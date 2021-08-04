@@ -72,10 +72,10 @@ const UpcomingHealthCheckup = (props: any) => {
       'uuid ="' + activeChild.uuid + '"',
     );
     // console.log(createresult,"ReminderDeleted");
-    if(createresult?.length>0){
-      activeChild.reminders=createresult;
+    if (createresult?.length > 0) {
+      activeChild.reminders = createresult;
       dispatch(setActiveChildData(activeChild));
-      }
+    }
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
   let activeChild = useAppSelector((state: any) =>
@@ -101,19 +101,25 @@ const UpcomingHealthCheckup = (props: any) => {
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
 
   const gotoArticle = (pinned_articleID) => {
-    if(pinned_articleID!=0){
+    if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
-      fromScreen: 'HealthCheckupsTab',
-      headerColor: artHeaderColor,
-      backgroundColor: artBackgroundColor,
-      detailData: pinned_articleID,
-    });
-  }
+        fromScreen: 'HealthCheckupsTab',
+        headerColor: artHeaderColor,
+        backgroundColor: artBackgroundColor,
+        detailData: pinned_articleID,
+      });
+    }
   };
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
+  };
+  const allVaccineData = useAppSelector((state: any) =>
+    JSON.parse(state.utilsData.vaccineData),
+  );
+  const getVaccineName = (vaccineID) => {
+    return allVaccineData?.find((v) => v.id === vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -127,9 +133,8 @@ const UpcomingHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item.vaccines?.length>0 &&  item.vaccines.some((el) => {
-                      return el.isMeasured == true;
-                    })  ? (
+            {item?.growthMeasures?.didChildGetVaccines ||
+            item?.growthMeasures?.isChildMeasured ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
@@ -169,15 +174,13 @@ const UpcomingHealthCheckup = (props: any) => {
         {isOpen ? (
           <>
             <MainContainer>
-              {item?.vaccines.length > 0 ? (
+              {item?.growthMeasures?.didChildGetVaccines ? (
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
                   </ToolsIconView>
                   <ToolsHeadingView>
-                    {item?.vaccines.some((el) => {
-                      return el.isMeasured == true;
-                    }) ? (
+                    {item?.growthMeasures?.didChildGetVaccines ? (
                       <ShiftFromTop5>
                         <ShiftFromBottom15>
                           <Heading4Regular>
@@ -187,39 +190,22 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ShiftFromTop5>
                     ) : null}
                     <HealthDesc>
-                      {item?.vaccines?.map((vaccineItem: any, index: number) => {
-                        if (vaccineItem.isMeasured === true) {
-                          return (
-                            <View key={index}>
-                              <BulletsView>
-                                <Bullets></Bullets>
-                                <Paragraph>{vaccineItem.title}</Paragraph>
-                              </BulletsView>
-                            </View>
-                          );
-                        }
-                      })}
-                    </HealthDesc>
-                    {item?.vaccines.some((el) => {
-                      return el.isMeasured == false;
-                    }) ? (
-                      <ShiftFromBottom15>
-                        <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
-                      </ShiftFromBottom15>
-                    ) : null}
-                    <HealthDesc>
-                      {item?.vaccines?.map((vaccineItem: any, index: number) => {
-                        if (vaccineItem.isMeasured === false) {
-                          return (
-                            <View key={index}>
-                              <BulletsView>
-                                <Bullets></Bullets>
-                                <Paragraph>{vaccineItem.title}</Paragraph>
-                              </BulletsView>
-                            </View>
-                          );
-                        }
-                      })}
+                      {item?.growthMeasures?.measuredVaccineIds?.map(
+                        (vaccineItem: any, index: number) => {
+                          if (vaccineItem) {
+                            return (
+                              <View key={index}>
+                                <BulletsView>
+                                  <Bullets></Bullets>
+                                  <Paragraph>
+                                    {getVaccineName(vaccineItem?.vaccineid)}
+                                  </Paragraph>
+                                </BulletsView>
+                              </View>
+                            );
+                          }
+                        },
+                      )}
                     </HealthDesc>
                   </ToolsHeadingView>
                 </FDirRowStart>
@@ -232,7 +218,8 @@ const UpcomingHealthCheckup = (props: any) => {
 
                 <ToolsHeadingView>
                   <ShiftFromTop5>
-                    {item?.growthMeasures?.weight ? (
+                    {item?.growthMeasures?.isChildMeasured &&
+                    item?.growthMeasures?.weight ? (
                       <Heading4Regular>
                         {t('hcMeasureText', {
                           weight: item?.growthMeasures.weight,
@@ -299,7 +286,7 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ToolsHeadingView>
                       <ToolsActionView>
                         <Pressable
-                         disabled={isFutureDate(activeChild?.birthDate)}
+                          disabled={isFutureDate(activeChild?.birthDate)}
                           onPress={() => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'healthCheckup', // from remiderType
@@ -318,10 +305,9 @@ const UpcomingHealthCheckup = (props: any) => {
                       </ToolsActionView>
                     </ToolsHeadView>
                   </FDirRowStart>
-                ) : (
-                  isFutureDate(activeChild?.birthDate) ? (null) :
+                ) : isFutureDate(activeChild?.birthDate) ? null : (
                   <Pressable
-                  disabled={isFutureDate(activeChild?.birthDate)}
+                    disabled={isFutureDate(activeChild?.birthDate)}
                     onPress={() => {
                       navigation.navigate('AddReminder', {
                         reminderType: 'healthCheckup', // from remiderType
@@ -336,41 +322,41 @@ const UpcomingHealthCheckup = (props: any) => {
                       {t('hcReminderbtn')}
                     </ButtonTextMdLine>
                   </Pressable>
-                  
                 )}
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
- { currentPeriodId == item?.id ?
-            item?.growthMeasures?.uuid ? (
-              <ShiftFromTopBottom10>
-                <Pressable
-                  onPress={() =>{}
-                    // navigation.navigate('AddChildHealthCheckup', {
-                    //   headerTitle: t('hcEditHeaderTitle'),
-                    //   // vcPeriod: item,
-                    // })
-                  }>
-                  <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
-                </Pressable>
-              </ShiftFromTopBottom10>
-            ) : (
-              
-              <ButtonContainerAuto>
-                <ButtonHealth
-                 disabled={isFutureDate(activeChild?.birthDate)}
-                  onPress={() =>
-                    navigation.navigate('AddChildHealthCheckup', {
-                      headerTitle: t('hcNewHeaderTitle'),
-                      vcPeriod: item,
-                    })
-                  }>
-                  <ButtonText>{t('hcNewBtn')}</ButtonText>
-                </ButtonHealth>
-              </ButtonContainerAuto> 
-            ): null }
+            {currentPeriodId == item?.id ? (
+              item?.growthMeasures?.uuid ? (
+                <ShiftFromTopBottom10>
+                  <Pressable
+                    onPress={
+                      () => {}
+                      // navigation.navigate('AddChildHealthCheckup', {
+                      //   headerTitle: t('hcEditHeaderTitle'),
+                      //   // vcPeriod: item,
+                      // })
+                    }>
+                    <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
+                  </Pressable>
+                </ShiftFromTopBottom10>
+              ) : (
+                <ButtonContainerAuto>
+                  <ButtonHealth
+                    disabled={isFutureDate(activeChild?.birthDate)}
+                    onPress={() =>
+                      navigation.navigate('AddChildHealthCheckup', {
+                        headerTitle: t('hcNewHeaderTitle'),
+                        vcPeriod: item,
+                      })
+                    }>
+                    <ButtonText>{t('hcNewBtn')}</ButtonText>
+                  </ButtonHealth>
+                </ButtonContainerAuto>
+              )
+            ) : null}
           </>
-        ) : null }
+        ) : null}
       </ToolsListOuter>
     </>
   );

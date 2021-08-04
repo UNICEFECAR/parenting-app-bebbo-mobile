@@ -23,6 +23,7 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../../App';
 import {
   ButtonContainerAuto,
   ButtonHealth,
@@ -51,6 +52,13 @@ const PreviousHealthCheckup = (props: any) => {
     });
   }
   };
+  const allVaccineData = useAppSelector(
+      (state: any) =>
+        JSON.parse(state.utilsData.vaccineData),
+    );
+  const getVaccineName = (vaccineID) => {
+    return allVaccineData?.find((v) => v.id === vaccineID)?.title;
+  }
   return (
     <>
       <ToolsListOuter>
@@ -59,9 +67,7 @@ const PreviousHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.growthMeasures?.uuid || (item.vaccines?.length>0 &&  item.vaccines.some((el) => {
-                      return el.isMeasured == true;
-                    }) ) ?  (
+            {item?.growthMeasures?.didChildGetVaccines || item?.growthMeasures?.isChildMeasured ?  (
             <RadioActive
                   style={{backgroundColor: 'green', borderRadius: 50}}>
                   <Icon name="ic_tick" size={12} color="#FFF" />
@@ -112,15 +118,13 @@ const PreviousHealthCheckup = (props: any) => {
         {isOPen ? (
           <>
             <MainContainer>
-            {item.vaccines.length > 0 ? (
+            {item?.growthMeasures?.didChildGetVaccines  ? (
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
                   </ToolsIconView>
                   <ToolsHeadingView>
-                    {item.vaccines.some((el) => {
-                      return el.isMeasured == true;
-                    }) ? (
+                    {item?.growthMeasures?.didChildGetVaccines  ? (
                       <ShiftFromTop5>
                         <ShiftFromBottom15>
                           <Heading4Regular>
@@ -130,34 +134,13 @@ const PreviousHealthCheckup = (props: any) => {
                       </ShiftFromTop5>
                     ) : null}
                     <HealthDesc>
-                      {item.vaccines?.map((vaccineItem: any, index: number) => {
-                        if (vaccineItem.isMeasured === true) {
+                      {item?.growthMeasures?.measuredVaccineIds?.map((vaccineItem: any, index: number) => {
+                        if (vaccineItem) {
                           return (
                             <View key={index}>
                               <BulletsView>
                                 <Bullets></Bullets>
-                                <Paragraph>{vaccineItem.title}</Paragraph>
-                              </BulletsView>
-                            </View>
-                          );
-                        }
-                      })}
-                    </HealthDesc>
-                    {item.vaccines.some((el) => {
-                      return el.isMeasured == false;
-                    }) ? (
-                      <ShiftFromBottom15>
-                        <Heading4Regular>{t('hcNoVaccineTxt')}</Heading4Regular>
-                      </ShiftFromBottom15>
-                    ) : null}
-                    <HealthDesc>
-                      {item.vaccines?.map((vaccineItem: any, index: number) => {
-                        if (vaccineItem.isMeasured === false) {
-                          return (
-                            <View key={index}>
-                              <BulletsView>
-                                <Bullets></Bullets>
-                                <Paragraph>{vaccineItem.title}</Paragraph>
+                                <Paragraph>{getVaccineName(vaccineItem?.vaccineid)}</Paragraph>
                               </BulletsView>
                             </View>
                           );
