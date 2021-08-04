@@ -306,9 +306,10 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable onPress={() => setModalVisible(true)}>
+                {/* <Pressable onPress={() => setModalVisible(true)}> */}
+                {/* <Pressable>
                   <Icon name="ic_edit" size={16} color="#000" />
-                </Pressable>
+                </Pressable> */}
               </FlexDirRowSpace>
             </SettingHeading>
             <ShiftFromTopBottom5>
