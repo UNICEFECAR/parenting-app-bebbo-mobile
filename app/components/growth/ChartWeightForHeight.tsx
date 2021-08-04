@@ -3,9 +3,9 @@ import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading4, ShiftFromTop10 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Pressable } from 'react-native';
+import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -73,7 +73,28 @@ const ChartWeightForHeight = () => {
       }, 1000);
     }, []),
   );
-
+  let windowWidth = Dimensions.get('window').width;
+  let windowHeight = Dimensions.get('window').height;
+  const [deviceOrientation, setDeviceOrientation] = useState(
+    Dimensions.get('window').width < Dimensions.get('window').height
+      ? 'portrait'
+      : 'landscape'
+  );
+  useEffect(() => {
+    const deviceOrientation = () => {
+      if (Dimensions.get('window').width < Dimensions.get('window').height) {
+        setDeviceOrientation('portrait');
+      } else {
+        setDeviceOrientation('landscape');
+      }
+    };
+    Dimensions.addEventListener('change', deviceOrientation);
+    return () => {
+      //cleanup work
+      Dimensions.removeEventListener('change', deviceOrientation);
+    };
+  // });
+  }, [deviceOrientation]);
   return (
     <FlexCol>
       <FlexCol>
@@ -87,15 +108,19 @@ const ChartWeightForHeight = () => {
       </FlexCol>
 
       <FlexCol>
-        {isChartVisible ? (
+        {isChartVisible && deviceOrientation=='portrait' ? (
           <GrowthChart
             activeChild={activeChild}
             chartType={chartTypes.weightForHeight}
             bgObj={obj}
+            windowWidth={windowWidth}
+            windowHeight={windowHeight}
             // standardDeviation={standardDeviation}
           />
         ) : (
+          <View style={{marginTop:50}}>
           <ActivityIndicator size="large" color={headerColor} />
+          </View>
         )}
         <ShiftFromTop10>
           {item?.interpretationText ? (
