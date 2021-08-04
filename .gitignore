@@ -31,3 +31,4 @@ android/gradle.properties
 *.properties
 android/gradle.properties
 *.properties
+*.hprof
