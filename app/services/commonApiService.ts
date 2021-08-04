@@ -21,6 +21,7 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
+import i18n from 'i18next';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -155,7 +156,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
 export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
   // navigation.navigate('HomeDrawerNavigator');
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
-  console.log(allDatatoStore,"..allDatatoStore..")
+  // console.log(allDatatoStore,"..allDatatoStore..")
   navigation.reset({
     index: 0,
     routes: [
@@ -171,24 +172,23 @@ export const onApiFail = (error: any) => {
 }
 export const retryAlert = () => {
   return new Promise((resolve, reject) => {
-    Alert.alert('Retry', "All content is not downloaded.Please Retry.",
+    Alert.alert(i18n.t('retryPopupTitle'), i18n.t('retryPopupText'),
       [
         {
-          text: "Cancel",
+          text: i18n.t('retryCancelPopUpBtn'),
           onPress: () => reject("Retry Cancelled"),
           style: "cancel"
         },
-        { text: "Retry", onPress: () => resolve("Retry success") }
+        { text: i18n.t('retryRetryBtn'), onPress: () => resolve("Retry success") }
       ]
     );
   });
 }
-
 export const cancelRetryAlert = () => {
   return new Promise((resolve, reject) => {
-    Alert.alert('Warning', "Data is not downloaded and app will use offline data.",
+    Alert.alert(i18n.t('cancelRetryPopupTitle'), i18n.t('cancelPopupText'),
       [
-        { text: "OK", onPress: () => resolve("cancelRetry success") }
+        { text: i18n.t('cancelPopUpBtn'), onPress: () => resolve("cancelRetry success") }
       ]
     );
   });

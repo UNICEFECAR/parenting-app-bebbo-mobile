@@ -109,7 +109,7 @@ const LastChildMeasure = (props: any) => {
           
           {activeChild.isPremature === 'true' ? (
             <PrematureTagGrowth>
-              <Heading5Bold>{t('developScreenprematureText')}</Heading5Bold>
+              <Heading5Bold>{t('growthScreenprematureText')}</Heading5Bold>
             </PrematureTagGrowth>
           ) : null}
           <Pressable

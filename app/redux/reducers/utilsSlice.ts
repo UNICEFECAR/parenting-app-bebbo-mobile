@@ -236,7 +236,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllVaccineData");
+        // console.log(action.payload,"setAllVaccineData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.vaccineData = action.payload;
       },
@@ -244,7 +244,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllHealthCheckupsData");
+        // console.log(action.payload,"setAllHealthCheckupsData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.healthCheckupsData = action.payload;
       },
@@ -252,7 +252,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllChildDevData");
+        // console.log(action.payload,"setAllChildDevData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ChildDevData = action.payload;
       },
@@ -260,7 +260,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllPinnedChildDevData");
+        // console.log(action.payload,"setAllPinnedChildDevData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.PinnedChildDevData = action.payload;
       },
@@ -268,7 +268,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllMileStonesData");
+        // console.log(action.payload,"setAllMileStonesData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.MileStonesData = action.payload;
       },
@@ -276,7 +276,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllVideoArticlesData");
+        // console.log(action.payload,"setAllVideoArticlesData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.VideoArticlesData = action.payload;
       },
@@ -284,7 +284,7 @@ export const utilsSlice = createSlice({
         state,
         action: PayloadAction<any>,
       ) => {
-        console.log(action.payload,"setAllActivitiesData");
+        // console.log(action.payload,"setAllActivitiesData");
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ActivitiesData = action.payload;
       },

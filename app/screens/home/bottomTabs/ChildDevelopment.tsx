@@ -11,7 +11,7 @@ import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading3, Heading3Regular, Heading4, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -92,7 +92,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   // let selectedChildDevData:any;
   useFocusEffect(
     React.useCallback(() => {
-      console.log("in childdev focuseffect");
+      console.log("in childdev focuseffect",childDevModalOpened);
       setModalVisible(childDevModalOpened);
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
         backgroundColor : themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
@@ -273,11 +273,14 @@ const ChildDevelopment = ({route, navigation}: Props) => {
         <ArticleHeading>
           <FlexDirRowSpace>
           <Heading3>{selectedChildDevData?.name} </Heading3>
-          {/* <PrematureTagDevelopment>
-          <Heading5Bold>
-              {t('developScreenprematureText')}
-            </Heading5Bold>
-          </PrematureTagDevelopment> */}
+
+          {activeChild.isPremature === 'true' ? (
+            <PrematureTagDevelopment>
+              <Heading5Bold>
+                {t('developScreenprematureText')}
+              </Heading5Bold>
+            </PrematureTagDevelopment>
+          ) : null}
           </FlexDirRowSpace>
           <ShiftFromTop5>
           <FlexDirRowSpaceStart>
@@ -392,7 +395,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
                   />
                 </View>
               </FlexCol>
-              : null 
+              : <Heading4Center>{t('noDataTxt')}</Heading4Center> 
             }
           <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
       </SafeAreaContainer>

@@ -33,7 +33,7 @@ type RelatedActivityProps = {
 const RelatedActivities = (props:RelatedActivityProps) => {
   // console.log(props);
   const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
-  // console.log(typeof related_articles);
+  // console.log("in related article ---",selectedChildActivitiesData);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const activityCategoryData = useAppSelector(
     (state: any) =>
@@ -55,13 +55,16 @@ const RelatedActivities = (props:RelatedActivityProps) => {
         // else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           const catartlength = maxRelatedArticleSize;
-          // console.log("relatedArticleData--",relatedArticleData);
-          const filteredArtData = selectedChildActivitiesData.filter((x: any)=> {
-            const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-            return x.id !==currentId && i == -1
-          }).slice(0,catartlength);
-          // console.log(filteredArtData);
-          setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
+          // console.log(relatedArticleData.length,"--selectedChildActivitiesData--",selectedChildActivitiesData);
+          if(currentId && currentId!="" && selectedChildActivitiesData)
+          {
+            const filteredArtData = selectedChildActivitiesData.filter((x: any)=> {
+              const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
+              return x.id !==currentId && i == -1
+            }).slice(0,catartlength);
+            // console.log(filteredArtData);
+            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
+          }
         // }
       // }
       }
@@ -78,7 +81,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
         let imageArraynew:any= [];
         if(relatedArticleData?.length>0){
           relatedArticleData.map((item: any, index: number) => {
-          if(item['cover_image'] != "")
+          if(item['cover_image'] != "" && item['cover_image'].url != "")
           {
             imageArraynew.push({
               srcUrl: item['cover_image'].url, 
@@ -98,13 +101,14 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   );
   //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item:typeof relatedArticleData[0]) => {
-    navigation.navigate('DetailsScreen',
+    navigation.push('DetailsScreen',
     {
       fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
       headerColor:headerColor,
       backgroundColor:backgroundColor,
       detailData:item,
-      listCategoryArray: listCategoryArray ? listCategoryArray: null
+      listCategoryArray: listCategoryArray ? listCategoryArray: null,
+      selectedChildActivitiesData: selectedChildActivitiesData
       // setFilteredArticleData: setFilteredArticleData
     });
   };

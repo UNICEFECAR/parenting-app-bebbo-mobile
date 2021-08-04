@@ -129,7 +129,7 @@ const Activities = ({ route,navigation }: Props) => {
       // setModalVisible(true);
       setModalVisible(activityModalOpened);
       async function fetchData() {
-        // console.log("categoryarray--",route.params?.categoryArray);
+        console.log("categoryarray--",route.params?.categoryArray);
           if(route.params?.categoryArray)
           {
             // console.log(route.params?.categoryArray);
@@ -147,16 +147,17 @@ const Activities = ({ route,navigation }: Props) => {
   );
 
   const showSelectedBracketData = async (item: any) => {
-    // console.log("in showSelectedBracketData--",item);
+    console.log("in showSelectedBracketData--",item);
     setCurrentSelectedChildId(item.id);
     let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     // filteredData =filteredData.map( item => ({ ...item, name:item.name }) )
+    console.log("filteredData---",filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
     let imageArray:any=[];
     if(filteredData?.length>0){
       filteredData.map((item: any, index: number) => {
-        if(item['cover_image'] != "")
+        if(item['cover_image'] != "" && item['cover_image'].url != "")
         {
           imageArray.push({
               srcUrl: item['cover_image'].url, 
@@ -215,13 +216,14 @@ const Activities = ({ route,navigation }: Props) => {
       // console.log("child dev usefocuseffect");
       setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0));
       setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0));
-      console.log("filteredData---",filteredData);
+      console.log("filteredData inner---",filteredData);
     }, [filteredData])
   );
   const setFilteredActivityData = (itemId:any) => {
-    // console.log(itemId,"articleData in filtered ",articleData);
+    console.log(itemId,"articleData in filtered ",selectedChildActivitiesData);
     if(selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != [])
     {
+      console.log("in if");
       if(itemId.length>0)
       {
         const newArticleData = selectedChildActivitiesData.filter((x:any)=> itemId.includes(x.activity_category));
@@ -233,8 +235,13 @@ const Activities = ({ route,navigation }: Props) => {
         setLoading(false);
       }
     }
+    else {
+      setfilteredData([]);
+        setLoading(false);
+    }
   }
   const goToActivityDetail = (item:typeof filteredData[0]) => {
+      console.log(selectedChildActivitiesData,"--selectedChildActivitiesData");
     navigation.navigate('DetailsScreen',
     {
       fromScreen:"Activities",
@@ -246,15 +253,14 @@ const Activities = ({ route,navigation }: Props) => {
       // setFilteredArticleData: setFilteredArticleData
     });
   };
-  // console.log(selectedChildActivitiesData,"--selectedChildActivitiesData");
   // console.log(filteredData,"--filteredData");
   // console.log(suggestedGames,"--suggestedGames");
   // console.log(otherGames,"--otherGames");
   
   const onFilterArrayChange = (newFilterArray: any) => {
-    // console.log("on filterarray change",newFilterArray);
+    console.log("on filterarray change",newFilterArray);
     // filterArray = [...newFilterArray];
-    setFilterArray(newFilterArray)
+      setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
   const renderActivityItem = (item: any, index: number) => (
@@ -332,9 +338,11 @@ const Activities = ({ route,navigation }: Props) => {
               <ArticleHeading>
                 <FlexDirRowSpace>
                   <Heading3>{t('actScreensugacttxt')}</Heading3>
-                  {/* <PrematureTagActivity>
-                <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
-              </PrematureTagActivity> */}
+                  {activeChild.isPremature === 'true' ? (
+                    <PrematureTagActivity>
+                      <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
+                    </PrematureTagActivity>
+                  ) : null}
                 </FlexDirRowSpace>
               </ArticleHeading>
 
@@ -396,6 +404,9 @@ const Activities = ({ route,navigation }: Props) => {
           <DividerAct></DividerAct>
 
           <FlexCol>
+                {suggestedGames?.length == 0 && otherGames?.length == 0 ?
+                  <Heading4Center>{t('noDataTxt')}</Heading4Center>
+                :null}
                 <FlatList
                   data={otherGames}
                   renderItem={({ item, index }) => renderActivityItem(item, index)}
@@ -403,9 +414,7 @@ const Activities = ({ route,navigation }: Props) => {
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                 // ListFooterComponent={ContentThatGoesBelowTheFlatList}
                 />
-                {suggestedGames?.length == 0 && otherGames?.length == 0 ?
-                  <Heading4Center>{t('noDataTxt')}</Heading4Center>
-                :null}
+                
               
           </FlexCol>
         </FlexCol>
