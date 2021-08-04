@@ -152,6 +152,7 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
     let result = await Promise.all(child_age.map((item: any) => {
       if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
         if (item.id != "446") {
+          console.log(item.age_bracket,"..item.age_bracket..")
           if (param == 0) {
             if(item.age_bracket.length>0){
             item.age_bracket.map((ages:any)=>{
