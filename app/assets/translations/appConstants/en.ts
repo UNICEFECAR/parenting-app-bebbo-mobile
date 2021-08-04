@@ -360,7 +360,12 @@ const en = {
         childDevModalText: "To find Development, click on the relevant buttons or search using keywords",
         months5tag:"months",
         years5tag:"years",
-        days5tag:"days"
+        days5tag:"days",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+
 
     }
 }

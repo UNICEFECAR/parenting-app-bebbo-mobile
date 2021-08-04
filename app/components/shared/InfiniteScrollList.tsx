@@ -42,7 +42,7 @@ const InfiniteScrollList = (props : any) => {
             serverDataLoaded(data);
             if(data?.length>0){
                 data.map((item: any, index: number) => {
-                if(item['cover_image'] != "")
+                if(item['cover_image'] != "" && item['cover_image'].url != "")
                 {
                 imageArray.push({
                     srcUrl: item['cover_image'].url, 

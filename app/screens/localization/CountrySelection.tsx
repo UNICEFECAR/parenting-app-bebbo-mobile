@@ -18,9 +18,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -44,6 +45,7 @@ type localizationType = {
   };
 };
 const CountrySelection = (props: any) => {
+  const dispatch = useAppDispatch();
   const [country, setCountry] = useState<localizationType>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
@@ -60,6 +62,8 @@ const CountrySelection = (props: any) => {
     const fetchData = async () => {
       if (userIsOnboarded == false) {
         let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+        let payload = {errorArr:[],fromPage:'OnLoad'}
+        dispatch(receiveAPIFailure(payload));
       }
     }
     fetchData()
