@@ -91,7 +91,7 @@ const Vaccination = ({navigation}: Props) => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
           <TabScreenHeader
-            title="Vaccination"
+            title={t('drawerMenuvcTxt')}
             headerColor={headerColor}
             textColor="#000"
           />
