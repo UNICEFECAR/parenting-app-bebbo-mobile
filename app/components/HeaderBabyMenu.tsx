@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     position:'relative',
     zIndex:3,
-    ...Platform.select({
+       ...Platform.select({
       ios: {
         top:headerHeight,
         marginTop:headerHeight,
@@ -368,11 +368,7 @@ const styles = StyleSheet.create({
       android: {
         marginTop:headerHeight,
       },
-    }),
-    
-    // top:headerHeight,
-    // flex:1,
-    // flexDirection:'column',
+    })
   },
 
   modalText: {

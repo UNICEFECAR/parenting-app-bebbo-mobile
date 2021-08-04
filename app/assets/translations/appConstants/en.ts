@@ -201,8 +201,8 @@ const en = {
         // Sprint4 Screens
         noBorn: "Not born yet",
         noday: "0 days",
-        yearstag: " years",
-        yeartag: " year",
+        yearstag: "years",
+        yeartag: "year",
         monthstag: "months",
         monthtag: "month",
         daystag: "days",
