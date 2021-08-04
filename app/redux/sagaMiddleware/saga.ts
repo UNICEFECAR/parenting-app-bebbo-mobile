@@ -74,7 +74,7 @@ function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
     if (response.status != 200) {
       // console.log("in if")
       //code to insert in realm
-      errorArr.push(response);
+      errorArr.push(data);
       // console.log("errorArr---",errorArr)
       // yield put(receiveAPIFailure(errorArr))
     } else {
@@ -125,7 +125,11 @@ export function* fetchAPISaga() {
 
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any) {
   console.log("errorArr on redirect--",errorArr);
-  yield put(receiveAPIFailure(errorArr))
+  // if(errorArr && errorArr.length > 0)
+  // {
+    let payload = {errorArr:errorArr,fromPage:prevPage}
+      yield put(receiveAPIFailure(payload))
+  // }
   if (prevPage == 'Terms') {
     //dispatch action for terms page
     yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
@@ -141,6 +145,10 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     //dispatch action for before home page
     yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
+  //  else if (prevPage == 'Home') {
+  //   //dispatch action for before home page
+  //   yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage)
+  // }
 }
 
 function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any) {
@@ -159,7 +167,7 @@ function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: a
       } else {
         onLoadApiArray = apiJsonData;
       }
-      // console.log("onLoadApiArray--",onLoadApiArray);
+      console.log("onLoadApiArray--",onLoadApiArray);
       errorArr = [];
       yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode));
     } catch (e) {

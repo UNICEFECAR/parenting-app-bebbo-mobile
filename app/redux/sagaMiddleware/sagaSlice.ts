@@ -14,14 +14,34 @@ let errorarray: WritableDraft<[]> = [];
             
             receiveAPIFailure: (state, action) => {
               // console.log(state.errorObj.length);
-              // console.log("receiveOnloadAPIFailure--",action.payload);
+              console.log("receiveOnloadAPIFailure--",action.payload);
               //write code to check if element already in array.
-              action.payload.map((value:any)=>{
-                const i = state.errorObj.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);
-                if(i == -1){
-                  state.errorObj.push(value) 
+              // action.payload.errorArr[1].apiEndpoint = "milestones";
+              // console.log("after receiveOnloadAPIFailure--",action.payload);
+              if(action.payload?.fromPage == "OnLoad"){
+                state.errorObj = []
+              }
+              else if(action.payload?.fromPage == "Home")
+              {
+                if(action.payload?.errorArr?.length > 0)
+                {
+                  state.errorObj =action.payload?.errorArr;
+                }else {
+                  state.errorObj = []
                 }
-              });
+              }else {
+                // if(action.payload?.errorArr?.length > 0)
+                // {
+                  action.payload.errorArr.map((value:any)=>{
+                    const i = state.errorObj.findIndex(_item => _item.apiEndpoint === value.apiEndpoint);
+                    if(i == -1){
+                      state.errorObj.push(value) 
+                    }
+                  });
+                // }else {
+                //   state.errorObj = []
+                // }
+              }
               // console.log(state.errorObj.length);
             }
         }
