@@ -16,7 +16,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
-  Modal, Pressable, StyleSheet, View
+  Modal, Platform, Pressable, StyleSheet, View
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
@@ -360,8 +360,17 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     position:'relative',
     zIndex:3,
-    marginTop:headerHeight,
-    top:headerHeight,
+    ...Platform.select({
+      ios: {
+        top:headerHeight,
+        marginTop:headerHeight,
+      },
+      android: {
+        marginTop:headerHeight,
+      },
+    }),
+    
+    // top:headerHeight,
     // flex:1,
     // flexDirection:'column',
   },
