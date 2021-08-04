@@ -186,11 +186,19 @@ const Articles = ({route, navigation}: Props) => {
       {
         const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
         setfilteredData(newArticleData);
+        if(newArticleData.length == 0)
+        {
+          setLoadingArticle(false);
+        }
         // setLoadingArticle(false);
         // setTimeout(function(){setLoading(false)}, 700);
       }else {
         const newArticleData = articleData != '' ? articleData : [];
         setfilteredData(newArticleData);
+        if(newArticleData.length == 0)
+        {
+          setLoadingArticle(false);
+        }
         // setLoadingArticle(false);
         // setTimeout(function(){setLoading(false)}, 700);
       }
