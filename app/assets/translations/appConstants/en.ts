@@ -365,6 +365,9 @@ const en = {
         downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
         downloadOnLoadCancelPopUpBtn: "Cancel",
         downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
 
 
     }

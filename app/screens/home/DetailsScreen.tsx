@@ -19,7 +19,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Alert, Pressable, ScrollView, View } from 'react-native';
 import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -52,7 +52,7 @@ export type RelatedArticlesProps = {
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   let newHeaderColor,newBackgroundColor;
-  if(fromScreen === 'Activities')
+  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
   {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
@@ -61,6 +61,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     newHeaderColor = themeContext.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   }
+  
   // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
@@ -71,7 +72,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   // fromScreen === 'Activities'
   useEffect(() => {
       const functionOnLoad = async () => {
-        if(fromScreen == "VaccinationTab" ||fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination")
+        if(fromScreen == "VaccinationTab" ||fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone")
         {
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -79,7 +80,17 @@ const DetailsScreen = ({route, navigation}: any) => {
           if(typeof detailData == "number")
           {
             const articleData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,'id == "'+detailData+'"');
-            setDetailDataToUse(articleData[0]);
+            if(articleData && articleData.length > 0)
+            {
+              setDetailDataToUse(articleData[0]);
+            }else {
+              //show alert and back function
+              Alert.alert(t('detailScreenNoDataPopupTitle'), t('detailScreenNoDataPopupText'),
+              [
+                { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
+              ]
+            );
+            }
           }else if(typeof detailData == "object")
           {
             setDetailDataToUse(detailData);
@@ -98,7 +109,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       functionOnLoad();
       return () => {
         // setDetailDataToUse({});
-        // setCoverImage('');
+        setCoverImage('');
         // setFilterArray([]);
       }
   }, [detailData]);
@@ -186,6 +197,42 @@ const DetailsScreen = ({route, navigation}: any) => {
       }
     }
   };
+  const onHeaderBack =()=>{
+    if(fromScreen == "ChildDevelopment")
+    {
+      // console.log("detail screen----",currentSelectedChildId);
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {currentSelectedChildId:currentSelectedChildId},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "MileStone" || fromScreen == "MileStoneActivity")
+    {
+      // console.log("detail screen----",currentSelectedChildId);
+      navigation.navigate({
+        name: "ChildDevelopment",
+        params: {currentSelectedChildId:currentSelectedChildId},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "Activities")
+    {
+      console.log("detail screen----",currentSelectedChildId);
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId},
+        merge: true,
+      });
+    }
+    else {
+      navigation.navigate({
+        name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
+        params: {categoryArray:listCategoryArray},
+        merge: true,
+      });
+    }
+  }
   return (
     <>
     {detailDataToUse ?
@@ -198,34 +245,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             }}>
             <HeaderIconView>
               <Pressable
-                onPress={() => {
-                  // navigation.goBack();
-                  if(fromScreen == "ChildDevelopment")
-                  {
-                    // console.log("detail screen----",currentSelectedChildId);
-                    navigation.navigate({
-                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-                      params: {currentSelectedChildId:currentSelectedChildId},
-                      merge: true,
-                    });
-                  }
-                  else if(fromScreen == "Activities")
-                  {
-                    // console.log("detail screen----",currentSelectedChildId);
-                    navigation.navigate({
-                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-                      params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId},
-                      merge: true,
-                    });
-                  }
-                  else {
-                    navigation.navigate({
-                      name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-                      params: {categoryArray:listCategoryArray},
-                      merge: true,
-                    });
-                  }
-                }}>
+                onPress={onHeaderBack}>
                 <Icon name={'ic_back'} color="#000" size={15} />
               </Pressable>
             </HeaderIconView>
@@ -286,7 +306,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 </FlexCol>
               </>
             ) : null}
-            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup"? (
+            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone"? (
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
@@ -313,6 +333,24 @@ const DetailsScreen = ({route, navigation}: any) => {
                   borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
                 />
                 </BgActivityTint>
+              </>
+            ) : null}
+            {fromScreen === 'MileStoneActivity' ? (
+              <>
+              <MainContainer>
+              <TrackMilestoneView/>
+              </MainContainer>
+              <View style={{backgroundColor: newBackgroundColor}}>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+              </View>
+              {/* <BgActivityTint>
+                <ArticleHeading>
+                  <Heading2>{t('detailScreenActivityHeader')}</Heading2>
+                </ArticleHeading>
+                <ActivitiesCategories
+                  borderColor={newHeaderColor} filterOnCategory={setNewFilteredArticleData} fromPage={fromPage} filterArray={filterArray} onFilterArrayChange={onFilterArrayChange}
+                />
+                </BgActivityTint> */}
               </>
             ) : null}
             {

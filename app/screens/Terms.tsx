@@ -112,12 +112,6 @@ const Terms = ({navigation}: Props) => {
       postdata: {},
       saveinDB: true,
     },
-    // {
-    //   apiEndpoint: appConfig.childGrowthData,
-    //   method: 'get',
-    //   postdata: {},
-    //   saveinDB: true,
-    // },
     {
       apiEndpoint: appConfig.vaccinations,
       method: 'get',
@@ -130,12 +124,6 @@ const Terms = ({navigation}: Props) => {
       postdata: {},
       saveinDB: true,
     },
-    // {
-    //   apiEndpoint: appConfig.pinnedContent,
-    //   method: 'get',
-    //   postdata: {},
-    //   saveinDB: true,
-    // },
     {
       apiEndpoint: appConfig.vaccinePinnedContent,
       method: 'get',
@@ -162,6 +150,12 @@ const Terms = ({navigation}: Props) => {
     },
     {
       apiEndpoint: appConfig.healthcheckupPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestoneRelatedArticle,
       method: 'get',
       postdata: {},
       saveinDB: true,

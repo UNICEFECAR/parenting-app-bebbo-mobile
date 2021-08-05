@@ -249,8 +249,8 @@ const Activities = ({ route,navigation }: Props) => {
       backgroundColor:backgroundColor,
       detailData:item,
       listCategoryArray: filterArray,
-      selectedChildActivitiesData: selectedChildActivitiesData
-      // setFilteredArticleData: setFilteredArticleData
+      selectedChildActivitiesData: selectedChildActivitiesData,
+      currentSelectedChildId: currentSelectedChildId
     });
   };
   // console.log(filteredData,"--filteredData");
