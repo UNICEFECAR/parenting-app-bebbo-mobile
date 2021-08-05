@@ -33,7 +33,7 @@ import ModalPopupContainer, {
 } from './shared/ModalPopupStyle';
 
 const ChildDate = (props: any) => {
-  const {dobMax} = props;
+  const {dobMax,prevScreen} = props;
   const [dateFormat, setDateFormat] = useState('day month year');
   let birthDate: any,
     isPremature: any,
@@ -137,7 +137,7 @@ const ChildDate = (props: any) => {
       <FormDateContainer>
         {Platform.OS != 'ios' ? (
           <FormInputGroup onPress={showdobDatepicker}>
-            <LabelText> {t('childSetupdobLabel')}</LabelText>
+            <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText>
             <FormInputBox>
               <FormDateText style={{flexDirection: 'row'}}>
                 <Text>

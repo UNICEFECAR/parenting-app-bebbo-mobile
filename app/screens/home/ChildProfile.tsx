@@ -270,7 +270,7 @@ const child_age = useAppSelector(
           <HeaderIconView>
           <Pressable
               onPress={(e) => {
-                e.stopPropagation();
+                // e.stopPropagation();
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
