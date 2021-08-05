@@ -354,7 +354,8 @@ tabbarLabel8: "Рост ребенка",
         babyNotificationText1: "Child birth data updated",
         months5tag:"месяцев",
         years5tag:"лет",
-        days5tag:"дней"
+        days5tag:"дней",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }

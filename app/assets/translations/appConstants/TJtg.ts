@@ -355,7 +355,15 @@ const TJtg = {
         babyNotificationText1: "Child birth data updated",
         months5tag:"oylar",
         years5tag:"yillar",
-        days5tag:"kunlar"
+        days5tag:"kunlar",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }
