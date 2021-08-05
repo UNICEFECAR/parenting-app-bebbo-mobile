@@ -363,7 +363,7 @@ const RSsr = {
         detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
-
+        editChildDobLabel: "Enter date of birth",
     }
     // translation: {
     //     countryLangSelection: 'Odabrali ste zemlju i jezik',
