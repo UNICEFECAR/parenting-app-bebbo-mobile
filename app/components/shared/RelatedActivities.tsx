@@ -160,7 +160,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
     { relatedArticleData.length > 0 ?
         <ContainerView key={currentId}>
           <ArticleHeading>
-          <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
+          <Heading2>{t('developScreenrelatedAct')}</Heading2>
           </ArticleHeading>
           <View style={{paddingLeft:10,}}>
           <FlatList
