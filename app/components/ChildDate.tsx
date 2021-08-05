@@ -25,6 +25,7 @@ import {
 import FormPrematureContainer, {
   FormInfoLabel
 } from './shared/FormPrematureContainer';
+import { FlexDirRowSpace,FlexFDirRowSpace } from './shared/FlexBoxStyle';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -139,7 +140,7 @@ const ChildDate = (props: any) => {
           <FormInputGroup onPress={showdobDatepicker}>
             <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText>
             <FormInputBox>
-              <FormDateText style={{flexDirection: 'row'}}>
+            <FlexFDirRowSpace>
                 <Text>
                   {doborExpectedDate
                     ? formatStringDate(doborExpectedDate,luxonLocale)
@@ -159,7 +160,7 @@ const ChildDate = (props: any) => {
                     onChange={ondobChange}
                   />
                 )}
-              </FormDateText>
+              </FlexFDirRowSpace>
               <FormDateAction>
                 <Icon name="ic_calendar" size={20} color="#000" />
               </FormDateAction>
