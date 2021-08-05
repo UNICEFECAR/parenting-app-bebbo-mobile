@@ -147,7 +147,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
           </View>
           <View style={{ flex: 9, padding: 7 }}>
           <HeaderRowView>
-            <Heading2w>
+          <Heading2w numberOfLines={1}>
               {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
             </Heading2w>
             <HeaderActionView>
