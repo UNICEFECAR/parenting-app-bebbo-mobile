@@ -243,8 +243,10 @@ const HeaderBabyMenu = (props: any) => {
             <ButtonContainer>
               <ShiftFromBottom20>
                 <ButtonLinkPress
-                  onPress={() =>
+                  onPress={() =>{
+                    setModalVisible(false);
                     navigation.navigate('EditChildProfile', { childData: null })
+                  }
                   }>
                   <OuterIconRow>
                     <OuterIconLeft>
@@ -258,7 +260,10 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom20>
 
               <ButtonPrimary
-                onPress={() => navigation.navigate('ChildProfileScreen')}>
+                onPress={() => {
+                  setModalVisible(false);
+                  navigation.navigate('ChildProfileScreen')
+                  }}>
                 <ButtonText>{t('manageProfileTxt')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
