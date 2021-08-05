@@ -353,7 +353,15 @@ tabbarLabel8: "Рост дзіцяці",
         babyNotificationText1: "Child birth data updated",
         months5tag:"месяцаў",
         years5tag:"гады",
-        days5tag:"дзён"
+        days5tag:"дзён",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }
