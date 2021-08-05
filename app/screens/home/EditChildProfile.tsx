@@ -470,6 +470,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                       value={name.replace(/\s/g, '')}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
+                      allowFontScaling={false} 
                     />
                   </FormInputBox>
                 </ShiftFromTop10>
