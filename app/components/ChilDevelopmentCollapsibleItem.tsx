@@ -64,8 +64,8 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
         setToggleCheckBox(false);
       }
       const fetchData = async () => {
-        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == 2296)[0]);
-        // setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
+        //setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == 2296)[0]);
+        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
         setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0]);
         if(selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "")
         {   
