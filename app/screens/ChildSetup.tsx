@@ -18,7 +18,7 @@ import { dobMax } from '@types/types';
 import { Settings } from 'luxon';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View,ScrollView } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -31,7 +31,8 @@ import {
   Heading1Centerw,
   Heading3,
   ShiftFromTop30,
-  ShiftFromTop20
+  ShiftFromTop20,
+  SideSpacing25
 } from '../styles/typography';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
@@ -135,6 +136,7 @@ const ChildSetup = ({ navigation }: Props) => {
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        <ScrollView contentContainerStyle={{padding:0, paddingTop: 0}}>
         <OnboardingContainer>
           <OnboardingHeading>
             <ChildCenterView>
@@ -178,7 +180,8 @@ const ChildSetup = ({ navigation }: Props) => {
               </ShiftFromTop20>
             </ChildSection>
           </ChildContentArea>
-
+          </OnboardingContainer>
+          </ScrollView>
           <ActionSheet ref={actionSheetRef}>
             <View>
               {relationshipData.map((item, index) => {
@@ -202,7 +205,7 @@ const ChildSetup = ({ navigation }: Props) => {
               })}
             </View>
           </ActionSheet>
-
+              <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
               disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
@@ -233,7 +236,7 @@ const ChildSetup = ({ navigation }: Props) => {
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
             </ButtonPrimary>
           </ButtonRow>
-        </OnboardingContainer>
+          </SideSpacing25>
       </SafeAreaView>
     </>
   );

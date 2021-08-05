@@ -107,7 +107,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               </Pressable>
             </View>
             <View style={{flex: 9, padding: 7}}>
-              <Heading2w>
+              <Heading2w numberOfLines={1}>
                 {'Edit Parent Details'}
               </Heading2w>
             </View>
@@ -167,7 +167,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               value={parentName.replace(/\s/g, '')}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder="Enter your name"
-              
+              allowFontScaling={false} 
             /></FormInputBox>
           </FormContainer>
           </MainContainer>
