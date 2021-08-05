@@ -3,10 +3,11 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading4Centerr, ShiftFromTop15 } from '@styles/typography';
 import { dobMin, maxDue, minDue } from '@types/types';
-import { DateTime } from 'luxon';
+import { DateTime, Settings } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useAppSelector } from '../../App';
 import { formatStringDate } from '../services/Utils';
 import Checkbox, {
   CheckboxActive,
@@ -50,11 +51,14 @@ const ChildDate = (props: any) => {
   const [isExpected, setIsExpected] = useState(false);
   const [doborExpectedDate, setdoborExpectedDate] = useState<Date | null>(null);
   const [showdob, setdobShow] = useState<Boolean>(false);
-  const [disablePrematureCheck, setdisablePrematureCheck] =
-    useState<Boolean>(false);
+  const [disablePrematureCheck, setdisablePrematureCheck] =useState<Boolean>(false);
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   useFocusEffect(
     React.useCallback(() => {
-      if (birthDate == '' || birthDate == null || birthDate == undefined) {
+     
+     if (birthDate == '' || birthDate == null || birthDate == undefined) {
         setdisablePrematureCheck(true);
       }
       console.log(childData, '..childData..');
@@ -127,7 +131,7 @@ const ChildDate = (props: any) => {
   const showdueDatepicker = () => {
     setdueShow(true);
   };
-
+  
   return (
     <>
       <FormDateContainer>
@@ -138,7 +142,7 @@ const ChildDate = (props: any) => {
               <FormDateText style={{flexDirection: 'row'}}>
                 <Text>
                   {doborExpectedDate
-                    ? formatStringDate(doborExpectedDate)
+                    ? formatStringDate(doborExpectedDate,luxonLocale)
                     : t('childSetupdobSelector')}
                 </Text>
                 {showdob && (
@@ -245,7 +249,7 @@ const ChildDate = (props: any) => {
                       <Text>
                         {' '}
                         {dueDate
-                          ? formatStringDate(dueDate)
+                          ? formatStringDate(dueDate,luxonLocale)
                           : t('childSetupdueSelector')}
                       </Text>
                       {showdue && (

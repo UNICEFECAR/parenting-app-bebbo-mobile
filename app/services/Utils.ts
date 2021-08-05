@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+import { DateTime, Settings } from "luxon";
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
@@ -17,6 +17,7 @@ import { appConfig, isArticlePinned } from "../assets/translations/appOfflineDat
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
+import { Alert } from "react-native";
 
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
@@ -170,12 +171,12 @@ export const addApiDataInRealm = async (response: any) => {
             // console.log(new Date()," result is ",createresult);
     });
 }
-export const formatDate=(dateData:any)=>{
-  return DateTime.fromISO(dateData).toFormat('dd LLL yyyy');
+export const formatDate=(dateData:any,luxonLocale:string)=>{
+  return DateTime.fromISO(dateData).setLocale(luxonLocale).toFormat('dd LLL yyyy');
 }
-export const formatStringDate=(dateData:any)=>{
-    console.log(dateData,"..dateData..")
-    return DateTime.fromJSDate(dateData as Date).toFormat('dd LLL yyyy');
+export const formatStringDate=(dateData:any,luxonLocale:string)=>{
+    //new Intl.DateTimeFormat('de-DE', options).format(date)
+    return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('dd LLL yyyy');
   }
 
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
