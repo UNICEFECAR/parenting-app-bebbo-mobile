@@ -34,7 +34,8 @@ export const addApiDataInRealm = async (response: any) => {
             }
             else if(response.payload.apiEndpoint == appConfig.vaccinePinnedContent || 
                 response.payload.apiEndpoint == appConfig.childGrowthPinnedContent || 
-                response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent)
+                response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
+                response.payload.apiEndpoint == appConfig.milestoneRelatedArticle)
             {
                 insertData = response.payload.data.data;
                 Entity= Entity as ArticleEntity;
