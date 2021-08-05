@@ -354,8 +354,15 @@ const GRel = {
         babyNotificationText1: "Child birth data updated",
         months5tag:"μήνες",
         years5tag:"χρόνια",
-        days5tag:"μέρες"
-
+        days5tag:"μέρες",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
     }
 }
 export default GRel;

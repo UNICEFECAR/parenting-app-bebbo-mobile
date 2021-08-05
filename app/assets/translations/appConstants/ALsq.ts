@@ -354,7 +354,15 @@ const ALsq = {
         babyNotificationText1: "Child birth data updated",
         months5tag:"muaj",
         years5tag:"vite",
-        days5tag:"ditë"
+        days5tag:"ditë",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }
