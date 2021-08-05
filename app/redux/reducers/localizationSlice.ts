@@ -5,6 +5,7 @@ interface selectedLocalizationType {
   // name: string;
   countryId: number;
   languageCode: string;
+  luxonLocale:string;
   locale: string;
   sponsors:Array<any>
 }
@@ -13,6 +14,7 @@ const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
   countryId: 1,
   languageCode: 'en',
+  luxonLocale:'en',
   locale: 'en',
   sponsors:[]
 };
@@ -49,6 +51,7 @@ export const localizationSlice = createSlice({
       // state.name = action.payload.name;
       state.countryId = action.payload.country.countryId;
       state.languageCode = action.payload.language.languageCode;
+      state.luxonLocale = action.payload.language.luxonLocale;
       state.locale = action.payload.language.locale;
       
     },

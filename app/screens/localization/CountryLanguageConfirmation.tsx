@@ -27,6 +27,7 @@ import {
     Heading3Centerw,
     Heading3Regular
 } from '@styles/typography';
+import { Settings } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from 'styled-components/native';
@@ -69,7 +70,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {t, i18n} = useTranslation();
   const saveSelection = () => {
     i18n.changeLanguage(language.locale);
-    //console.log(i18n.language);
+    console.log(language,"..language");
+    //Settings.defaultLocale = language.luxonLocale;
     dispatch(onLocalizationSelect(route.params));
     // navigation.reset({
     //   index: 0,

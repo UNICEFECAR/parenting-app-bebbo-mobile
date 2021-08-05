@@ -75,6 +75,9 @@ const ChildProfile = ({navigation}: Props) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
+const luxonLocale = useAppSelector(
+  (state: any) => state.selectedCountry.luxonLocale,
+);
 const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
 };
@@ -138,7 +141,7 @@ const child_age = useAppSelector(
             <Heading5>      
               {( data.birthDate != '' &&
                     data.birthDate != null &&
-                    data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}
+                    data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}
             </Heading5>
             <ProfileLinkView>
               <ButtonTextSmLine
@@ -206,7 +209,7 @@ const child_age = useAppSelector(
               <Heading5>      
                           {( data.birthDate != '' &&
                                data.birthDate != null &&
-                               data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate):''}):t('expectedChildDobLabel')}
+                               data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}
                         </Heading5>
               <ProfileLinkView>
                 <ButtonTextSmLine
