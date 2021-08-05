@@ -159,6 +159,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             <FormInputBox>
             <TextInput
               autoCapitalize="none"
+              style={{width:'100%'}}
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
