@@ -11,6 +11,7 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
@@ -19,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
@@ -55,20 +57,23 @@ const CountrySelection = (props: any) => {
       state.utilsData.userIsOnboarded
   );
   console.log("userIsOnboarded appnav--", userIsOnboarded);
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
     );
     const fetchData = async () => {
       if (userIsOnboarded == false) {
         let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+        dataRealmCommon.deleteAllAtOnce();
         let payload = {errorArr:[],fromPage:'OnLoad'}
         dispatch(receiveAPIFailure(payload));
       }
     }
     fetchData()
     setCountry(selectedCountry);
-  }, []);
+  }, []),
+  );
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
