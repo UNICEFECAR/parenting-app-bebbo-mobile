@@ -43,7 +43,8 @@ export const ModalPopupContent = styled.View`
 
 export const ModalPopupContentVideo = styled.View`
   padding:10px;
-  margin-top:-35px
+  margin-top:-35px;
+  
 `;
 
 export default ModalPopupContainer;
