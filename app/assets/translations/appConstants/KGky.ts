@@ -354,7 +354,15 @@ tabbarLabel8: "Баланын өсүшү",
         babyNotificationText1: "Child birth data updated",
         months5tag:"months",
         years5tag:"years",
-        days5tag:"days"
+        days5tag:"days",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }

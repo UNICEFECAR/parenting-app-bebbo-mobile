@@ -354,7 +354,15 @@ tabbarLabel8: "Раст на детето",
         babyNotificationText1: "Child birth data updated",
         months5tag:"месеци",
         years5tag:"години",
-        days5tag:"денови"
+        days5tag:"денови",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }
