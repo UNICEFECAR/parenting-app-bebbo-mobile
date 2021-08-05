@@ -6,6 +6,11 @@ const ModalPopupContainer = styled.View`
   align-items: center;
 `;
 
+export const ModalPopupContainerVideo = styled(ModalPopupContainer)`
+  background-color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
+  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+
+`;
 export const PopupOverlay = styled.Pressable`
   flex: 1;
   justify-content: center;
@@ -36,6 +41,9 @@ export const ModalPopupContent = styled.View`
   margin-top:-35px
 `;
 
-
+export const ModalPopupContentVideo = styled.View`
+  padding:10px;
+  margin-top:-35px
+`;
 
 export default ModalPopupContainer;
