@@ -187,6 +187,12 @@ const Activities = ({ route,navigation }: Props) => {
         console.log("firstChildDevData---",firstChildDevData);
         showSelectedBracketData(firstChildDevData[0]);
       }
+      
+    }, [activeChild?.uuid,languageCode,route.params?.currentSelectedChildId])
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      
       return () => {
         setModalVisible(false);
         setFilterArray([]);
@@ -209,7 +215,7 @@ const Activities = ({ route,navigation }: Props) => {
             // route.params?.currentSelectedChildId = 0;
           }
       };
-    }, [activeChild?.uuid,languageCode,route.params?.currentSelectedChildId])
+    }, [])
   );
   useFocusEffect(
     React.useCallback(() => {
