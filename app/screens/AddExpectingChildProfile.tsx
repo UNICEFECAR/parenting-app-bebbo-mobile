@@ -69,6 +69,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   const showdobDatepicker = () => {
     setdobShow(true);
   };
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -189,7 +192,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               <FormInputBox>
                 <FormDateText>
                   {/* <Text> {plannedTermDate ? plannedTermDate.toDateString() : null}</Text> */}
-                  <Text>  {plannedTermDate ? formatStringDate(plannedTermDate) : t('expectChildDueDateTxt')}</Text>
+                  <Text>  {plannedTermDate ? formatStringDate(plannedTermDate,luxonLocale) : t('expectChildDueDateTxt')}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />

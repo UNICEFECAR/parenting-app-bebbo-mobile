@@ -11,6 +11,7 @@ import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Settings } from 'luxon';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView, ScrollView, View } from 'react-native';
@@ -76,12 +77,12 @@ const Terms = ({navigation}: Props) => {
      );
   //console.log("termsdata--",termsdata);
   const apiJsonData = [
-    {
-      apiEndpoint: appConfig.videoArticles,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
+    // {
+    //   apiEndpoint: appConfig.videoArticles,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
     {
       apiEndpoint: appConfig.dailyMessages,
       method: 'get',
@@ -136,18 +137,18 @@ const Terms = ({navigation}: Props) => {
       postdata: {},
       saveinDB: true,
     },
-    {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
+    // {
+    //   apiEndpoint: appConfig.childdevGirlPinnedContent,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
+    // {
+    //   apiEndpoint: appConfig.childdevBoyPinnedContent,
+    //   method: 'get',
+    //   postdata: {},
+    //   saveinDB: true,
+    // },
     {
       apiEndpoint: appConfig.healthcheckupPinnedContent,
       method: 'get',
