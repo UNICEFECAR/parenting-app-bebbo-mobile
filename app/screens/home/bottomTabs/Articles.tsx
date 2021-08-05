@@ -120,10 +120,8 @@ const Articles = ({route, navigation}: Props) => {
   const {t} = useTranslation();
   //code for getting article dynamic data starts here.
   // let filterArray: string[] = [];
-  const [filterArray,setFilterArray] = useState([]);
   const fromPage = 'Articles';
 
-  const [loadingArticle, setLoadingArticle] = useState(true);
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -141,13 +139,17 @@ const Articles = ({route, navigation}: Props) => {
   );
   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   console.log("articleData---",articleData);
+
   const [filteredData,setfilteredData] = useState(articleData);
+  const [filterArray,setFilterArray] = useState([]);
+  const [loadingArticle, setLoadingArticle] = useState(true);
+
+
+
   
   useFocusEffect(
     React.useCallback(() => {
-      console.log("article useFocusEffect called");
-      //setLoading(true);
-      setModalVisible(articleModalOpened);
+      console.log("routes changed--",route);
       async function fetchData() {
         let Entity:any;
           if(route.params?.categoryArray && route.params?.categoryArray.length > 0)
@@ -162,21 +164,23 @@ const Articles = ({route, navigation}: Props) => {
           }
       }
       fetchData()
+    },[route.params?.categoryArray,activeChild?.uuid,languageCode])
+  );
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("article useFocusEffect called");
+      //setLoading(true);
+      setModalVisible(articleModalOpened);
+      // fetchData()
       return () => {
         console.log("in article unmount");
-        // setModalVisible(false);
-        // setLoading(false);
-        // setfilteredData([]);
-        // setFilterArray([]);
-        // if(route.params?.categoryArray)
         {
           navigation.setParams({categoryArray:[]})
           // route.params?.currentSelectedChildId = 0;
         }
       }
-    },[activeChild?.uuid,languageCode,route.params?.categoryArray])
+    },[])
   );
-  
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",articleData);
     if(articleData != '')
@@ -203,12 +207,8 @@ const Articles = ({route, navigation}: Props) => {
         // setTimeout(function(){setLoading(false)}, 700);
       }
     }
-    // if(articleData != '')
-    // {
-    //   console.log("in if filterdata");
-    //   setfilteredData(articleData);
-    // }
   }
+  
   console.log(filteredData.length,"---length");
   const onFilterArrayChange = (newFilterArray: any) => {
     // console.log("on filterarray change",newFilterArray);

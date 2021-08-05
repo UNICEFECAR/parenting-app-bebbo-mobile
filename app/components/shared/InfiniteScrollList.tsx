@@ -25,6 +25,7 @@ const InfiniteScrollList = (props : any) => {
         if(page > 1)
         {
             setPage(1);
+            requestData(1);
         }else {
             requestData(page);
         }
@@ -59,6 +60,9 @@ const InfiniteScrollList = (props : any) => {
                 setIsLoading(false);
             }
             
+        }else {
+            receivedLoadingArticle(false);
+            setIsLoading(false);
         }
     }
     // useEffect(() => {
@@ -71,11 +75,16 @@ const InfiniteScrollList = (props : any) => {
     // }, []);
 
     useEffect(() => {
-        console.log('obtained serverData', serverData);
+        // console.log(clientData,'--obtained serverData', serverData,page);
         // if(serverData.length > 0)
         // {
             setRefresh(false);
-            setClientData([...clientData, ...serverData]);
+            if(page == 1)
+            {
+                setClientData(serverData);
+            }else {
+                setClientData([...clientData, ...serverData]);
+            }
             receivedLoadingArticle(false);
             // setLoadmore(filteredData.length > clientData.length ? true : false);
         //     setPending_process(false);
@@ -168,7 +177,7 @@ const InfiniteScrollList = (props : any) => {
             // renderItem={({item, index}) => <Text>{item.title} {index}</Text>}
             // renderItem={({item, index}) => renderArticleItem(item, index)}
             renderItem={renderArticleItem}
-            // renderItem={memoizedValue}
+            // renderItem={renderRow}
             // showsHorizontalScrollIndicator={false}
             // showsVerticalScrollIndicator={true}
             // keyExtractor={(item, index) => {
