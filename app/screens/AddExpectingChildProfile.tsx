@@ -219,6 +219,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             <LabelText>{t('expectPreferNametxt')}</LabelText>
             <FormInputBox>
               <TextInput
+               style={{width:'100%'}}
                 autoCapitalize="none"
                 autoCorrect={false}
                 maxLength={30}
