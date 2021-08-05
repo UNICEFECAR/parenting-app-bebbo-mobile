@@ -5,6 +5,9 @@ import {
   BgVaccination
 } from '@components/shared/BackgroundColors';
 import {
+  ButtonModal, ButtonText
+} from '@components/shared/ButtonGlobal';
+import {
   FDirCol,
   FDirRow,
   Flex1,
@@ -17,6 +20,12 @@ import {
 } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import {
   BubbleContainer,
   BubbleView,
@@ -26,11 +35,16 @@ import {
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
-import { Heading3, Heading4, Heading5 } from '@styles/typography';
+import { useFocusEffect } from '@react-navigation/native';
+import {
+  Heading1Centerr,
+  Heading3, Heading4, Heading5
+} from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, Share } from 'react-native';
+import { Alert, Linking, Modal, Pressable, ScrollView, Share } from 'react-native';
+import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
@@ -44,6 +58,12 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const surveryData = useAppSelector((state: any) =>
+    state.utilsData.surveryData != ''
+      ? JSON.parse(state.utilsData.surveryData)
+      : state.utilsData.surveryData,
+  );
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -66,6 +86,11 @@ const CustomDrawerContent = ({ navigation }: any) => {
       Alert.alert(error.message);
     }
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      setModalVisible(false);
+    }, []),
+  );
 
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.SECONDARY_COLOR;
@@ -302,7 +327,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => { }}>
+          <DrawerLinkView onPress={() => {  setModalVisible(true);}}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
@@ -331,6 +356,50 @@ const CustomDrawerContent = ({ navigation }: any) => {
           </DrawerLinkView>
         </ScrollView>
       </SafeAreaView>
+      <Modal
+          animationType="none"
+          transparent={true}
+          visible={modalVisible === true}
+          onRequestClose={() => {
+            // Alert.alert('Modal has been closed.');
+            setModalVisible(false);
+          }}
+          onDismiss={() => {
+            setModalVisible(false);
+          }}>
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              <ModalPopupContent>
+                <Heading1Centerr>{surveryData[0].title}</Heading1Centerr>
+              
+                {surveryData[0] && surveryData[0].body ?
+                    <HTML
+                      source={{html: surveryData[0].body}}
+                    />
+                    : null 
+                  }
+                
+              </ModalPopupContent>
+              <FDirRow>
+                <ButtonModal
+                  onPress={() => {
+                    setModalVisible(false);
+                    Linking.openURL(surveryData[0].survey_link)
+                  }}>
+                  <ButtonText>{t('continueInModal')}</ButtonText>
+                </ButtonModal>
+              </FDirRow>
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
     </>
   );
 };
