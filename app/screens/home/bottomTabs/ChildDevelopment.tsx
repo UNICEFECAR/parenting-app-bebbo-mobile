@@ -224,7 +224,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   }
   // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
   const renderItem = (item: any) => (
-    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} />
+    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
   );
   const ContentThatGoesBelowTheFlatList = () => {
     return (

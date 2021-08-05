@@ -36,6 +36,9 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.healthcheckupPinnedContent){
         return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/'+apiEndpoint;
     }
+    if(apiEndpoint==appConfig.milestoneRelatedArticle){
+        return apiUrlDevelop+ '/related-article-contents/'+selectedLang+'/milestone';
+    }
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
     // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
 }
@@ -60,7 +63,8 @@ export const appConfig = {
     childdevGirlPinnedContent:'child_development/41',
     childdevBoyPinnedContent:'child_development/40',
     childGrowthPinnedContent:'child_growth',
-    healthcheckupPinnedContent:'health_check_ups'
+    healthcheckupPinnedContent:'health_check_ups',
+    milestoneRelatedArticle:'milestonerelatedarticle'
 }
 
 export const articleCategoryobj = [
