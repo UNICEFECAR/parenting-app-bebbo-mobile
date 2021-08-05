@@ -353,7 +353,15 @@ const XKrs = {
         babyNotificationText1: "Child birth data updated",
         months5tag:"mjeseci",
         years5tag:"godina",
-        days5tag:"dana"
+        days5tag:"dana",
+        downloadOnLoadPopupTitle : "Download Data",
+        downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
+        downloadOnLoadCancelPopUpBtn: "Cancel",
+        downloadOnLoadRetryBtn: "Download",
+        detailScreenNoDataPopupTitle: "Warning",
+        detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
+        detailScreenNoDataOkBtn: "OK",
+        editExpectChildAddTxt: "Edit expected child details",
 
     }
 }
