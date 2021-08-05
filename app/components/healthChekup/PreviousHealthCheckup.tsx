@@ -101,7 +101,8 @@ const PreviousHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item?.title}</Heading2>
-              {item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
+              {item?.growthMeasures?.didChildGetVaccines ||
+            item?.growthMeasures?.isChildMeasured || item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
             </ToolsHeadingView>
             <ToolsActionView>
               <FlexDirRow>
