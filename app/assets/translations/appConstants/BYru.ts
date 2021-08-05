@@ -356,7 +356,7 @@ tabbarLabel8: "Рост ребенка",
         years5tag:"лет",
         days5tag:"дней",
         editExpectChildAddTxt: "Edit expected child details",
-
+        editChildDobLabel: "Enter date of birth",
     }
 }
 export default BYru;
