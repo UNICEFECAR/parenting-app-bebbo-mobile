@@ -321,7 +321,25 @@ class DataRealmCommon {
             }
         });
     }
-
+    public async deleteAllAtOnce(): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if (realm) {
+                realm?.write(() => {
+                  realm.deleteAll();
+                  resolve();
+                });
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+                reject(e);
+            }
+        });
+    
+    }
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {

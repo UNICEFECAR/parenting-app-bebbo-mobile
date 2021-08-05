@@ -15,6 +15,7 @@ import { RootStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
+import { Settings } from 'luxon';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
@@ -84,11 +85,17 @@ const ChildSetup = ({ navigation }: Props) => {
   });
   console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
-
-
+  useFocusEffect(
+    React.useCallback(() => {
+    // const fetchData = async () => {  
+    // }
+    // fetchData();
+}, [])
+);
   useFocusEffect(
     React.useCallback(() => {
       navigation.dispatch(state => {
+        // 
         // Remove the home route from the stack
         const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
 

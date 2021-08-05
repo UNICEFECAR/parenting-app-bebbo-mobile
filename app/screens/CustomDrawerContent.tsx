@@ -44,6 +44,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   // console.log(activeChild, '..activeChild..');
   const onShare = async () => {
     try {
@@ -106,7 +109,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                               activeChild.birthDate != '' &&
                                 activeChild.birthDate != null &&
                                 activeChild.birthDate != undefined
-                                ? formatDate(activeChild.birthDate)
+                                ? formatDate(activeChild.birthDate,luxonLocale)
                                 : '',
                           }):t('expectedChildDobLabel')}
                         </Heading5>
