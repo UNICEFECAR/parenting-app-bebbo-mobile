@@ -8,7 +8,8 @@ import { ButtonDevelopmentMd, ButtonTextMd } from './ButtonGlobal';
 import { BannerContainer, MainContainer } from './Container';
 import { Flex1, Flex3, FlexDirRowStart } from './FlexBoxStyle';
 import Icon, { IconBox, OuterIconLeft, OuterIconRow } from './Icon';
-const TrackMilestoneView = () => {
+const TrackMilestoneView = (props) => {
+  const {currentSelectedChildId} = props;
   const navigation = useNavigation();
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -41,7 +42,12 @@ const TrackMilestoneView = () => {
           <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <ButtonDevelopmentMd
               onPress={() =>
-                navigation.navigate('Home', {screen: 'ChildDevelopment'})
+                // navigation.navigate('Home', {screen: 'ChildDevelopment'})
+                navigation.navigate({
+                  name: "ChildDevelopment",
+                  params: {currentSelectedChildId:currentSelectedChildId ? currentSelectedChildId : 0},
+                  merge: true,
+                })
               }>
               <ButtonTextMd>{t('trackMilestoneViewBtn')}</ButtonTextMd>
             </ButtonDevelopmentMd>
