@@ -1,11 +1,10 @@
 import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10 } from '@styles/typography';
+import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10, Heading4Centerr } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Image, Pressable, StyleSheet, View, Text, Modal } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { Text } from 'victory-native';
 import { useAppSelector } from '../../App';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxDevActive, CheckboxItem } from './shared/CheckboxStyle';
@@ -20,6 +19,12 @@ import downloadImages from '../downloadImages/ImageStorage';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import HTML from 'react-native-render-html';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 
 // const videoarticleType = {
 
@@ -32,6 +37,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   const navigation = useNavigation();
   const {t}= useTranslation()
   const [isOPen, setIsOPen] = useState<Boolean>(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const themeContext = useContext(ThemeContext);
   const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
@@ -48,7 +54,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   // useFocusEffect(
   //   React.useCallback(() => {
     useEffect(() => {
-      console.log("collapsible usefocuseffect",item);
+      // console.log("collapsible usefocuseffect",item);
       if(item?.toggleCheck == true)
       {
         setToggleCheckBox(true);
@@ -56,7 +62,8 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
         setToggleCheckBox(false);
       }
       const fetchData = async () => {
-        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
+        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == 2296)[0]);
+        // setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
         setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0]);
         if(selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "")
         {   
@@ -69,11 +76,25 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             const imagesDownloadResult = await downloadImages(imageArray);
             // console.log(imagesDownloadResult,"--imagesDownloadResult");
         }
+        if(selVideoArticleData && selVideoArticleData?.cover_image && selVideoArticleData?.cover_image?.url != "")
+        {   
+            let imageArray = [];
+            imageArray.push({
+                srcUrl: selVideoArticleData?.cover_image.url, 
+                destFolder: RNFS.DocumentDirectoryPath + '/content', 
+                destFilename: selVideoArticleData?.cover_image.url.split('/').pop()
+            })
+            const imagesDownloadResult = await downloadImages(imageArray);
+            // console.log(imagesDownloadResult,"--imagesDownloadResult");
+        }
+        
       }
       fetchData()
     }, []);
   //   },[])
   // );
+  console.log((selVideoArticleData),"--selActivitiesData---",selActivitiesData);
+  // console.log(encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop())));
   const milestoneCheckUncheck = async () => {
     // console.log(activeChilduuid,"--checked mielstone---",item);
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
@@ -106,6 +127,10 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
       selectedChildActivitiesData: currentSelectedChildId,
       currentSelectedChildId: currentSelectedChildId
     });
+  }
+  const openVideo = (videoArticle) => {
+    console.log("openVideo---",videoArticle);
+    setModalVisible(!modalVisible)
   }
   return (
     <>
@@ -164,12 +189,17 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
               <FDirRow>
                 
                 {selVideoArticleData && selVideoArticleData?.cover_video && selVideoArticleData?.cover_video?.url != "" ? 
-                  // <Image
-                  //   source={require('@assets/trash/card1.jpeg')}
-                  //   style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
-                  //   resizeMode={'cover'}
-                  // />
-                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+                  <>
+                    <Pressable style={{flex: 1, width: '100%', height: 50, marginRight:10}} onPress={() => openVideo(selVideoArticleData)}>
+                      <Image
+                        // source={require('@assets/trash/card1.jpeg')}
+                        source={selVideoArticleData?.cover_image && selVideoArticleData?.cover_video?.url != "" ? {uri : encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop()))} : require('@assets/trash/defaultArticleImage.png')}
+                        style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
+                        resizeMode={'cover'}
+                      />
+                    </Pressable>
+                  </>
+                  // <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
                   // <Heading4Regular style={{flex: 1}}>in if</Heading4Regular>
                   : null 
                   }
@@ -181,7 +211,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                   {item && item.body ?
                     <HTML
                       source={{html: item.body}}
-                      baseFontStyle={{fontSize: 16}}
+                      baseFontStyle={{fontSize: 14}}
                     />
                     : null 
                   }
@@ -205,12 +235,16 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
              </ShiftFromBottom5>
               <FDirRow>
               { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
+              <>
+                {/* <Text>{"file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop())}</Text> */}
                   <Image
                       // source={require('@assets/trash/card1.jpeg')}
-                      source={{uri : "file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop())}}
+                      source={{uri : encodeURI("file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop()))}}
+                      // source={{uri : encodeURI("file:///data/user/0/com.parentbuddyapp/files/content/istra%25C5%25BEivanje%2520u%2520igri%2520konstruktorima.jpg")}}
                       style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                       resizeMode={'cover'}
                     />
+                    </>
                   : null
               }
                 <Flex5>
@@ -233,6 +267,47 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
           </>
         ) : null}
     </DevelopmentBox>
+      <Modal
+            animationType="none"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+                console.log("onRequestClose clicked");
+            // Alert.alert('Modal has been closed.');
+            //   setModalVisible(!modalVisible);
+            }}
+            onDismiss={() => {
+                console.log("onDismiss clicked");
+            //   setModalVisible(!modalVisible);
+            }}>
+            <PopupOverlay>
+            <ModalPopupContainer>
+                <PopupCloseContainer>
+                <PopupClose
+                    onPress={() => {
+                    // setModalVisible(!modalVisible);
+                    console.log("close clicked");
+                    setModalVisible(!modalVisible);
+                    }}>
+                    <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+                </PopupCloseContainer>
+                <ModalPopupContent>
+                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+                </ModalPopupContent>
+                
+                <FDirRow>
+                {/* <ButtonModal
+                    onPress={() => {
+                      setModalVisible(!modalVisible);
+                    }}>
+                    <ButtonText>{t('continueInModal')}</ButtonText>
+                </ButtonModal> */}
+                </FDirRow>
+
+            </ModalPopupContainer>
+            </PopupOverlay>
+        </Modal>
     </MainContainer>
     </>
   );
@@ -252,4 +327,45 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
