@@ -320,7 +320,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             {fromScreen === 'Activities' ? (
               <>
               <MainContainer>
-              <TrackMilestoneView/>
+              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
                 <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
@@ -338,7 +338,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             {fromScreen === 'MileStoneActivity' ? (
               <>
               <MainContainer>
-              <TrackMilestoneView/>
+              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
                 <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
@@ -356,7 +356,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
               <>
-              <TrackMilestoneView/>
+              <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </>:null
             }
           </ScrollView>
