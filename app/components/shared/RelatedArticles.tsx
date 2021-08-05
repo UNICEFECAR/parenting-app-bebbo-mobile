@@ -166,6 +166,7 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
     console.log(item, fromScreen,headerColor, backgroundColor, listCategoryArray);
     navigation.push('DetailsScreen',
     {
+      // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
       fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
       headerColor:headerColor,
       backgroundColor:backgroundColor,
