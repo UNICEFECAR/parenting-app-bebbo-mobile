@@ -30,6 +30,7 @@ import {
 import { Settings } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Alert } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
@@ -82,10 +83,16 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     //     },
     //   ],
     // });
-    navigation.navigate('LoadingScreen', {
-      apiJsonData: apiJsonData, 
-      prevPage: 'CountryLanguageSelection'
-    });
+    if(language.locale=='RSsr' || language.locale=='en'){
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: apiJsonData, 
+        prevPage: 'CountryLanguageSelection'
+      });
+    }
+    else{
+      Alert.alert("No master data available.");
+    }
+   
     // dispatch(
     //   fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),
     // );
