@@ -363,7 +363,7 @@ const XKsq = {
         detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
-
+        editChildDobLabel: "Enter date of birth",
     }
 }
 export default XKsq;
