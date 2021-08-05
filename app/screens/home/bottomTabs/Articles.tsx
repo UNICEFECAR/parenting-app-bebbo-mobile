@@ -262,6 +262,7 @@ const Articles = ({route, navigation}: Props) => {
                 style={{
                   paddingHorizontal: 0,
                 }}
+                allowFontScaling={false} 
               />
             </SearchBox>
             {/* <FlexCol> */}
