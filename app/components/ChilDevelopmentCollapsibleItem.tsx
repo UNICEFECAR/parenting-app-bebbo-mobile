@@ -21,6 +21,8 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import HTML from 'react-native-render-html';
 import ModalPopupContainer, {
   ModalPopupContent,
+  ModalPopupContainerVideo,
+  ModalPopupContentVideo,
   PopupClose,
   PopupCloseContainer,
   PopupOverlay
@@ -281,20 +283,21 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             //   setModalVisible(!modalVisible);
             }}>
             <PopupOverlay>
-            <ModalPopupContainer>
+            <ModalPopupContainerVideo>
                 <PopupCloseContainer>
-                <PopupClose
+                <PopupClose style={{marginTop:10}}
                     onPress={() => {
                     // setModalVisible(!modalVisible);
                     console.log("close clicked");
                     setModalVisible(!modalVisible);
                     }}>
-                    <Icon name="ic_close" size={16} color="#000" />
+                    <Icon name="ic_close" size={16} color="#fff" />
                 </PopupClose>
                 </PopupCloseContainer>
-                <ModalPopupContent>
-                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
-                </ModalPopupContent>
+                <ModalPopupContentVideo style={{maxHeight:230,}}>
+                  
+                  <VideoPlayer style={{}} selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+                </ModalPopupContentVideo>
                 
                 <FDirRow>
                 {/* <ButtonModal
@@ -305,7 +308,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                 </ButtonModal> */}
                 </FDirRow>
 
-            </ModalPopupContainer>
+            </ModalPopupContainerVideo>
             </PopupOverlay>
         </Modal>
     </MainContainer>
