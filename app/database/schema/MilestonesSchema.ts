@@ -11,7 +11,7 @@ export type MilestonesEntity = {
     child_age: number[],
     related_activities: number[],
     related_video_articles: number[],
-    // related_articles: string[],
+    related_articles: number[],
     
     mandatory: number,
   };
@@ -32,7 +32,7 @@ export type MilestonesEntity = {
       child_age: { type: 'int[]' },
       related_activities: { type: 'int[]' },
       related_video_articles: { type: 'int[]' },
-    //   related_articles: { type: 'string[]' },
+      related_articles: { type: 'int[]' },
       
       mandatory: { type: 'int' },
     }

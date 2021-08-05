@@ -19,13 +19,14 @@ import RNFS from 'react-native-fs';
 import downloadImages from '../downloadImages/ImageStorage';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import HTML from 'react-native-render-html';
 
 // const videoarticleType = {
 
 // }
 
 const ChilDevelopmentCollapsibleItem = (props: any) => {
-  const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent} = props;
+  const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId} = props;
   // console.log(item);
   // console.log(ActivitiesData);
   const navigation = useNavigation();
@@ -47,16 +48,16 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
   // useFocusEffect(
   //   React.useCallback(() => {
     useEffect(() => {
-      // console.log("collapsible usefocuseffect",item);
-      if(item.toggleCheck == true)
+      console.log("collapsible usefocuseffect",item);
+      if(item?.toggleCheck == true)
       {
         setToggleCheckBox(true);
       }else {
         setToggleCheckBox(false);
       }
       const fetchData = async () => {
-        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item.related_video_articles[0])[0]);
-        setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item.related_activities[0])[0]);
+        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
+        setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0]);
         if(selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "")
         {   
             let imageArray = [];
@@ -79,21 +80,32 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
     // console.log("filterQuery--",filterQuery);
     setToggleCheckBox(!toggleCheckBox);
     sendMileStoneDatatoParent(item,!toggleCheckBox);
-    const updatemilestone = await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema,item.id,filterQuery);
+    const updatemilestone = await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema,item?.id,filterQuery);
   }
-  const gotoArticle =()=>{
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'ChildDevelopment',
-    //   headerColor: artHeaderColor,
-    //   backgroundColor: artBackgroundColor,
-    // });
+  const gotoArticle =(articleId: any[])=>{
+    // 3626
+    console.log("currentSelectedChildId---",currentSelectedChildId)
+    navigation.navigate('DetailsScreen',
+    {
+      fromScreen:"MileStone",
+      headerColor:artHeaderColor,
+      backgroundColor:artBackgroundColor,
+      detailData:articleId[0],
+      currentSelectedChildId: currentSelectedChildId
+    });
   }
-  const gotoActivity =()=>{
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'ChildDevelopment',
-    //   headerColor: actHeaderColor,
-    //   backgroundColor: actBackgroundColor,
-    // });
+  const gotoActivity =(activityData)=>{
+    console.log("activityData--",activityData);
+    navigation.navigate('DetailsScreen',
+    {
+      fromScreen:"MileStoneActivity", //ChildDevelopment
+      headerColor:actHeaderColor,
+      backgroundColor:actBackgroundColor,
+      detailData:activityData,
+      // listCategoryArray: filterArray,
+      selectedChildActivitiesData: currentSelectedChildId,
+      currentSelectedChildId: currentSelectedChildId
+    });
   }
   return (
     <>
@@ -132,7 +144,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
               setIsOPen(!isOPen);
             }}>
             <Heading4Regular style={[{flex: 7,textAlignVertical:'center'}]}>
-              {item.title}
+              {item?.title}
             </Heading4Regular>
             <Icon
               style={{flex: 1, textAlign: 'right', alignSelf: 'center'}}
@@ -163,17 +175,25 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                   }
                 <Flex5>
                 <ShiftFromBottom5>
-                  <Heading5>
+                  {/* <Heading5>
                     {selVideoArticleData?.title}
-                  </Heading5>
+                  </Heading5> */}
+                  {item && item.body ?
+                    <HTML
+                      source={{html: item.body}}
+                      baseFontStyle={{fontSize: 16}}
+                    />
+                    : null 
+                  }
                   </ShiftFromBottom5>
                   {/* uncomment this for related article */}
-                    {/* <Pressable onPress={gotoArticle}>
+                  {item && item.related_articles && item.related_articles.length > 0 ?
+                    <Pressable onPress={() => gotoArticle(item.related_articles)}>
                       <ButtonTextSmLineL>
-                    {t('developScreenrelatedArticleText')}
-                    </ButtonTextSmLineL>
-                    
-                    </Pressable> */}
+                        {t('developScreenrelatedArticleText')}
+                      </ButtonTextSmLineL>
+                    </Pressable>
+                    : null }
                 </Flex5>
               </FDirRow>
             </ShiftFromTopBottom10>
@@ -191,7 +211,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                       style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                       resizeMode={'cover'}
                     />
-                  : <Text>noactivitiesdata</Text>
+                  : null
               }
                 <Flex5>
                 <ShiftFromBottom5>
@@ -199,13 +219,13 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                     {selActivitiesData?.title}
                   </Heading5>
                   </ShiftFromBottom5>
-                  <Pressable onPress={gotoActivity}>
-                    
-                    <ButtonTextSmLineL>
-                   {t('developScreenviewDetails')}
-                  </ButtonTextSmLineL>
-                  
-                  </Pressable>
+                  {selActivitiesData ?
+                    <Pressable onPress={() => gotoActivity(selActivitiesData)}>
+                      <ButtonTextSmLineL>
+                        {t('developScreenviewDetails')}
+                      </ButtonTextSmLineL>
+                    </Pressable>
+                    : null}
                 </Flex5>
               </FDirRow>
             </ShiftFromTopBottom10>

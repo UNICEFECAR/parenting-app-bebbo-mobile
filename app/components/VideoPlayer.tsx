@@ -25,10 +25,14 @@ const VideoPlayer = (props: any) => {
     let videoId: string;
     console.log("video player", props.selectedPinnedArticleData);
     let videoType = videoTypeImage;
-    if(props.selectedPinnedArticleData)
+    if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
-        videoType = props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
+        videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
     }
+    // if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
+    // {
+    //     if(props.selectedPinnedArticleData.cover_video)
+    // }
     // const videoType = props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage;
     console.log(videoType,"--videoType");
     if (videoType == videoTypeVimeo) {

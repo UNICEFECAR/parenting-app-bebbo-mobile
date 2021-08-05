@@ -2,7 +2,7 @@ import { destinationFolder, maxRelatedArticleSize } from '@assets/translations/a
 import { useFocusEffect } from '@react-navigation/native';
 import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 import styled from 'styled-components/native';
@@ -35,6 +35,10 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
   // console.log("in related article ---",selectedChildActivitiesData);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
+  const ActivitiesData = useAppSelector(
+    (state: any) =>
+      state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
+  );
   const activityCategoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -43,22 +47,28 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   
   // let relatedArticleData: any[] = [];
   const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
       // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
         // console.log("relartlength on start--",relartlength);
-        
+        let actualselectedChildActivitiesData;
+        if(typeof selectedChildActivitiesData == "number")
+        {
+          actualselectedChildActivitiesData = ActivitiesData.filter((x: any) => x.child_age.includes(selectedChildActivitiesData));
+        }else if(typeof selectedChildActivitiesData == "object")
+        {
+          actualselectedChildActivitiesData = selectedChildActivitiesData;
+        }
         // if(category!=5){
       // go not calclualte for growth screen
         // else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           const catartlength = maxRelatedArticleSize;
           // console.log(relatedArticleData.length,"--selectedChildActivitiesData--",selectedChildActivitiesData);
-          if(currentId && currentId!="" && selectedChildActivitiesData)
+          if(currentId && currentId!="" && actualselectedChildActivitiesData)
           {
-            const filteredArtData = selectedChildActivitiesData.filter((x: any)=> {
+            const filteredArtData = actualselectedChildActivitiesData.filter((x: any)=> {
               const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
               return x.id !==currentId && i == -1
             }).slice(0,catartlength);
@@ -69,7 +79,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
       // }
       }
       fetchData()
-    },[currentId])
+    }, [currentId]
   );
   
   useFocusEffect(
