@@ -1,3 +1,4 @@
+import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
@@ -14,7 +15,7 @@ import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/Taxonom
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllHealthCheckupsData, setAllActivitiesData, setAllChildDevData, setAllMileStonesData, setAllPinnedChildDevData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { setAllHealthCheckupsData, setAllActivitiesData, setAllChildDevData, setAllMileStonesData, setAllPinnedChildDevData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData, setAllSurveyData } from "../../../redux/reducers/utilsSlice";
 import { ActivitiesData } from "./ActivitiesData";
 import { appConfig } from "./apiConstants";
 import { articledata } from "./article";
@@ -28,6 +29,8 @@ import { taxonomydata } from "./taxonomies";
 import {vaccineData} from "./vaccineData";
 import { healthCheckupsData } from './healthCheckupsData';
 import { VideoArticleData } from "./VideoArticleData";
+import { SurveysSchema } from '../../../database/schema/SurveysSchema';
+import { SurveyData } from './SurveyData';
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:string,activeChild?:any) => {
@@ -73,6 +76,7 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
             const allMileStonesData = await getDataToStore(languageCode,dispatch,MilestonesSchema,Entity as MilestonesEntity,MileStonesData,setAllMileStonesData);
             const allVideoArticlesData = await getDataToStore(languageCode,dispatch,VideoArticleEntitySchema,Entity as VideoArticleEntity,VideoArticleData,setAllVideoArticlesData);
             const allActivitiesData = await getDataToStore(languageCode,dispatch,ActivitiesEntitySchema,Entity as ActivitiesEntity,ActivitiesData,setAllActivitiesData);
+            const allSurveyData = await getDataToStore(languageCode,dispatch,SurveysSchema,Entity as SurveysEntity,SurveyData,setAllSurveyData);
 
             resolve("nocall");
         } else if(prevPage == "ChilSetup"){

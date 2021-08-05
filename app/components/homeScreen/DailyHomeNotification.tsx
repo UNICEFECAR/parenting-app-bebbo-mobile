@@ -5,7 +5,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../App';
+import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import {
   ConfigSettingsEntity,
@@ -13,14 +13,14 @@ import {
 } from '../../database/schema/ConfigSettingsSchema';
 const DailyHomeNotification = () => {
   const [notification, setNotification] = useState<any>();
-  const dispatch = useAppDispatch();
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
+  // const dispatch = useAppDispatch();
+  // const languageCode = useAppSelector(
+  //   (state: any) => state.selectedCountry.languageCode,
+  // );
   // const records = useAppSelector((state: any) => state.utilsData.dailymessages);
-  const utilsDatarecordConsts = useAppSelector((state: any) =>
-    state.utilsData != '' ? state.utilsData : state.utilsData,
-  );
+  // const utilsDatarecordConsts = useAppSelector((state: any) =>
+  //   state.utilsData != '' ? state.utilsData : state.utilsData,
+  // );
   // console.log(utilsDatarecordConsts, 'utilsDatarecordConsts<>');
   const records = useAppSelector((state: any) =>
     state.utilsData.dailymessages != ''

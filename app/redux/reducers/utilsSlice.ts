@@ -70,7 +70,8 @@ interface hardcodedDataType {
   PinnedChildDevData:{},
   MileStonesData:{},
   VideoArticlesData:{},
-  ActivitiesData:{}
+  ActivitiesData:{},
+  surveryData:{},
 
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
@@ -143,7 +144,8 @@ const initialState: hardcodedDataType = {
   PinnedChildDevData:{},
   MileStonesData:{},
   VideoArticlesData:{},
-  ActivitiesData:{}
+  ActivitiesData:{},
+  surveryData:{},
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -288,6 +290,14 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.ActivitiesData = action.payload;
       },
+      setAllSurveyData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        // console.log(action.payload,"setAllSurveyData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.surveryData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -301,7 +311,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

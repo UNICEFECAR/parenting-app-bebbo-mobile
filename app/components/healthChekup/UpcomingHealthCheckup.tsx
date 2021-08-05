@@ -154,7 +154,8 @@ const UpcomingHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item?.title}</Heading2>
-              {item?.isAdditional ? (
+              { item?.growthMeasures?.didChildGetVaccines ||
+            item?.growthMeasures?.isChildMeasured || item?.isAdditional ? (
                 <Text>{item?.growthMeasures?.measurementDate}</Text>
               ) : null}
             </ToolsHeadingView>
@@ -230,7 +231,7 @@ const UpcomingHealthCheckup = (props: any) => {
 
                 <ToolsHeadingView>
                   <ShiftFromTop5>
-                    {item?.growthMeasures?.isChildMeasured &&
+                    {
                     item?.growthMeasures?.weight ? (
                       <Heading4Regular>
                         {t('hcMeasureText', {

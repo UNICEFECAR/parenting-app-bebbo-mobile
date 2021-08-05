@@ -7,34 +7,47 @@ import DailyHomeNotification from '@components/homeScreen/DailyHomeNotification'
 import DailyReads from '@components/homeScreen/DailyReads';
 import PlayingTogether from '@components/homeScreen/PlayingTogether';
 import Tools from '@components/homeScreen/Tools';
-import { ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
+import {
+  ButtonModal,
+  ButtonTertiary,
+  ButtonText
+} from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading3Regular,
-  ShiftFromTop20,
+  Heading1Centerr,
+  Heading3Regular, ShiftFromTop20,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  BackHandler,
+  BackHandler, Linking, Modal,
   Platform,
   ScrollView,
+  Text,
   ToastAndroid
 } from 'react-native';
+import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -46,6 +59,7 @@ const Home = () => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   const backgroundColorChildInfo =
     themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
   //   const dailyMessages = useAppSelector((state: any) =>
@@ -59,6 +73,11 @@ const Home = () => {
     (state: any) => state.utilsData.userIsOnboarded,
   );
   console.log('home focuseffect--', userIsOnboarded);
+  const surveryData = useAppSelector((state: any) =>
+    state.utilsData.surveryData != ''
+      ? JSON.parse(state.utilsData.surveryData)
+      : state.utilsData.surveryData,
+  );
   let currentCount = 0;
   const onBackPress = () => {
     // console.log(currentCount,0);
@@ -93,11 +112,13 @@ const Home = () => {
   });
   useFocusEffect(
     React.useCallback(() => {
+      setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
       }
     }, []),
   );
+
   // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
   return (
     <>
@@ -112,6 +133,8 @@ const Home = () => {
         <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}>
           <FlexCol>
             <BabyNotification />
+            {console.log(modalVisible)}
+            <Text style={{color: '#000'}}>{modalVisible}</Text>
             <ChildInfo
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
@@ -137,7 +160,10 @@ const Home = () => {
                     </FlexDirRow>
                     <ShiftFromTop20>
                       <SideSpacing25>
-                        <ButtonTertiary onPress={() => {}}>
+                        <ButtonTertiary
+                          onPress={() => {
+                            setModalVisible(true);
+                          }}>
                           <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
                         </ButtonTertiary>
                       </SideSpacing25>
@@ -149,6 +175,50 @@ const Home = () => {
             </FlexCol>
           </FlexCol>
         </ScrollView>
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={modalVisible === true}
+          onRequestClose={() => {
+            // Alert.alert('Modal has been closed.');
+            setModalVisible(false);
+          }}
+          onDismiss={() => {
+            setModalVisible(false);
+          }}>
+          <PopupOverlay>
+            <ModalPopupContainer>
+              <PopupCloseContainer>
+                <PopupClose
+                  onPress={() => {
+                    setModalVisible(false);
+                  }}>
+                  <Icon name="ic_close" size={16} color="#000" />
+                </PopupClose>
+              </PopupCloseContainer>
+              <ModalPopupContent>
+                <Heading1Centerr>{surveryData[0].title}</Heading1Centerr>
+              
+                {surveryData[0] && surveryData[0].body ?
+                    <HTML
+                      source={{html: surveryData[0].body}}
+                    />
+                    : null 
+                  }
+                
+              </ModalPopupContent>
+              <FDirRow>
+                <ButtonModal
+                  onPress={() => {
+                    setModalVisible(false);
+                    Linking.openURL(surveryData[0].survey_link)
+                  }}>
+                  <ButtonText>{t('continueInModal')}</ButtonText>
+                </ButtonModal>
+              </FDirRow>
+            </ModalPopupContainer>
+          </PopupOverlay>
+        </Modal>
       </SafeAreaView>
     </>
   );

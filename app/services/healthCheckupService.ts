@@ -1,7 +1,6 @@
 import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
-import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
@@ -11,39 +10,16 @@ export const getAllHealthCheckupPeriods = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // console.log(activeChild, activeChild.measures, "activeChild.measures");
   const taxonomy = useAppSelector(
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
-  // // console.log(taxonomy,taxonomy.growth_period);
   let allGrowthPeriods = taxonomy.growth_period;
-  // let allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
-  // console.log(allGrowthPeriods);
-  allGrowthPeriods = allGrowthPeriods.map((item, index) => {
-    // console.log(index);
-    if (index == allGrowthPeriods.length - 1) {
-      return {
-        id: item.id,
-        name: item.name,
-        vaccination_opens: item?.vaccination_opens,
-        vaccination_ends: 2920,// days in total 8 year,
-      };
-    } else {
-      return {
-        id: item.id,
-        name: item.name,
-        vaccination_opens: item?.vaccination_opens,
-        vaccination_ends: allGrowthPeriods[index + 1]?.vaccination_opens,
-      };
-
-    }
-
-  });
-  // console.log(allGrowthPeriods, "taxonomydata_growth_period");
-  const allMeasures = activeChild.measures.sort(
+    // filter by measurementPlace  is Doctors and sort by measurementDate
+  const allMeasures = activeChild?.measures.filter((item)=>item.measurementPlace==0).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
+
   // sorting measures by date
   let allMeasurements = allMeasures.map((item: MeasuresEntity) => {
     let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
@@ -109,17 +85,12 @@ export const getAllHealthCheckupPeriods = () => {
     (state: any) =>
       JSON.parse(state.utilsData.healthCheckupsData),
   );
-  // const getPeriodTitle = (periodID) => {
-  //   return allHealthCheckupsData.find(item => item.growth_period == periodID);
-  // }
-  // console.log(allHealthCheckupsData, "allHealthCheckupsData");
+  console.log(allHealthCheckupsData, "allHealthCheckupsData");
   let additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
     const { t } = useTranslation();
-    const periodForMeasure = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
-    // console.log(periodForMeasure, "periodForMeasure");
-    if (periodForMeasure) {
-      const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= periodForMeasure?.vaccination_opens) && (measure.childAgeInDaysForMeasure < periodForMeasure?.vaccination_ends))
+    if (hcItem) {
+      const measure = allMeasurements.filter(measure => (measure.childAgeInDaysForMeasure >= hcItem?.vaccination_opens) && (measure.childAgeInDaysForMeasure < hcItem?.vaccination_ends))
       // console.log(measure, "allmeasure", measure.length);
       let regularMeasure: any = {};
       if (measure.length > 1) {
@@ -143,6 +114,9 @@ export const getAllHealthCheckupPeriods = () => {
           // console.log(item,"Additonal");
           additionalMeasures.push(item)
         }
+        regularMeasure = measure[0];
+        // console.log(regularMeasure, measure[0], "loged");
+        regularMeasure["isAdditional"] = false
         // console.log(additionalMeasures, "additionalMeasures");
       } else if (measure.length > 0) {
         regularMeasure = measure[0];
@@ -155,43 +129,34 @@ export const getAllHealthCheckupPeriods = () => {
       }
       //  calculate is additional measure for the period
       return measure ? regularMeasure : null; // if no measure for the period return null, show pending vaccines
-      // return  allGrowthPeriods.filter(period => {
-      //   return allMeasurements.filter(item => ((item.childAgeInDaysForMeasure >=  period.vaccination_opens) &&(item.childAgeInDaysForMeasure <=    period.vaccination_ends)));
-      // });
     }
   }
 
+  allHealthCheckupsData.map((hcItem: any, index: number) => {
+    hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
+    // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
+    const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+    if (item) {
+      hcItem.vaccination_opens = item?.vaccination_opens;
+    }
+  }).sort(
+    (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+  );
+  // console.log("allHealthCheckupsDatasorted",allHealthCheckupsData);
   allHealthCheckupsData.forEach((hcItem: any, index: number) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
     const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
-      hcItem.vaccination_ends = item?.vaccination_ends;
+      hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? 2920 : allHealthCheckupsData[index + 1]?.vaccination_opens;
     }
     const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
+    // console.log(index, measuresForHCPeriod, "measuresForHCPeriod");
     hcItem.growthMeasures = measuresForHCPeriod;
-    // if(measuresForHCPeriod?.length>1){
-    //   console.log("create additional measure entryfor the period");
-    //     return measuresForHCPeriod.map((measure: any) => {
-    //       // hcItem.growthMeasures =  hcItem.growthMeasures[0];
-    //       for(let i=1;i<measuresForHCPeriod.length-1;i++){
-    //         allHealthCheckupsData[index+i].growthMeasures= [(hcItem.growthMeasures[i])]
-    //         allHealthCheckupsData[index+i].created_at=hcItem.created_at;
-    //         allHealthCheckupsData[index+i].growth_period=hcItem.growth_period;
-    //         allHealthCheckupsData[index+i].id=hcItem.id;
-    //         allHealthCheckupsData[index+i].pinned_article=hcItem.pinned_article;
-    //         allHealthCheckupsData[index+i].title="Additional Health checkup";
-    //         allHealthCheckupsData[index+i].type=hcItem.type;
-    //         allHealthCheckupsData[index+i].updated_at=hcItem.updated_at;
-    //         allHealthCheckupsData[index+i].vaccination_ends=hcItem.vaccination_ends;
-    //         allHealthCheckupsData[index+i].vaccination_opens=hcItem.vaccination_opens;
-    //         allHealthCheckupsData[index+i].isAdditionalHC = true;
-    //       }
-    //     })
-    //   }
 
   });
+  // console.log(allHealthCheckupsData, "allHealthCheckupsDataNew");
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
