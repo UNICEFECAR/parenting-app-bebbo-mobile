@@ -146,7 +146,7 @@ const ChildSetup = ({ navigation }: Props) => {
 
           <ChildContentArea>
             <ChildSection>
-              <ChildDate sendData={sendData} dobMax={dobMax}/>
+              <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding"/>
               {
                 birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                   <FormContainer1>

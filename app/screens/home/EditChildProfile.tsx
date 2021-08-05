@@ -484,7 +484,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 />
               </FormContainerFlex>
               <ShiftFromTop10>
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()}/>
+                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen"/>
               </ShiftFromTop10>
             </MainContainer>
           </FlexCol>

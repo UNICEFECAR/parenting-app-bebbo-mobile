@@ -121,7 +121,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
               </ShiftFromTop5>
             </ChildAddTop>
           </OnboardingHeading>
-          <ChildDate sendData={sendData} childData={childData} dobMax={dobMax}/>
+          <ChildDate sendData={sendData} childData={childData} dobMax={dobMax} prevScreen="Onboarding"/>
           {
           birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
           <FormContainer>

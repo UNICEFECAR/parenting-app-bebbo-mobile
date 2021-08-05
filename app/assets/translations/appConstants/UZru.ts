@@ -363,7 +363,7 @@ tabbarLabel8: "Рост ребенка",
         detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
-
+        editChildDobLabel: "Enter date of birth",
     }
 }
 export default UZru;
