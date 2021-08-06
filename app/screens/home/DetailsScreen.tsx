@@ -284,15 +284,18 @@ const DetailsScreen = ({route, navigation}: any) => {
                 //   style={{width: '100%', height: 200}}
                 //   resizeMode="cover"
                 // />
-                 
+                (detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="")?
                 <ImageLoad
                 style={{width: '100%', height: 200}}
                 placeholderStyle={{width: '100%', height: 200}}
                  loadingStyle={{ size: 'large', color: '#000' }}
                  source={{uri :encodeURI(cover_image)}}
                  />
-               
-              }
+                 :
+                 <Image
+                 style={{width: '100%', height: 200}}
+                 source={require('@assets/trash/defaultArticleImage.png')}/>
+          }
             </View>
             <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} />
             <ArticleDetailsContainer>
