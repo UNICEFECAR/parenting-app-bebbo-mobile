@@ -56,6 +56,7 @@ import {
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { formatStringDate, formatStringTime } from '../../services/Utils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -100,6 +101,9 @@ const AddReminder = ({route, navigation}: any) => {
     state.utilsData.taxonomy.allTaxonomyData != ''
       ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
       : [],
+  );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
   );
   // const defaultTimePickerMinValue = ()=>{
   //   var minTime  = new Date();
@@ -232,9 +236,11 @@ const AddReminder = ({route, navigation}: any) => {
                 <FormDateText>
                   <Text>
                     {measureDate
-                      ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                          'dd/MM/yyyy',
-                        )
+                      ? 
+                      // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                      //     'dd/MM/yyyy',
+                      //   )
+                      formatStringDate(measureDate,luxonLocale)
                       : t('vcReminderDate')}
                   </Text>
                   {showmeasure && (
@@ -280,9 +286,11 @@ const AddReminder = ({route, navigation}: any) => {
                   <FormDateText>
                     <Text>
                       {measureTime
-                        ? DateTime.fromJSDate(new Date(measureTime)).toFormat(
-                            'hh:mm a',
-                          )
+                        ? 
+                        // DateTime.fromJSDate(new Date(measureTime)).toFormat(
+                        //     'hh:mm a',
+                        //   )
+                        formatStringTime(measureTime,luxonLocale)
                         : t('vcReminderTime')}
                     </Text>
                     {showmeasureTime && (
