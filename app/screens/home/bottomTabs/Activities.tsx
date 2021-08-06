@@ -118,9 +118,12 @@ const Activities = ({ route,navigation }: Props) => {
   const [filteredData,setfilteredData] = useState([]);
 
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
-    dispatch(setInfoModalOpened(obj));
-    setModalVisible(!modalVisible);
+    if(modalVisible == true)
+    {
+      let obj = {key: varkey, value: false};
+      dispatch(setInfoModalOpened(obj));
+      setModalVisible(false);
+    }
   };
   useFocusEffect(
     React.useCallback(() => {
