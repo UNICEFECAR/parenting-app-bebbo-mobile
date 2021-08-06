@@ -281,7 +281,7 @@ const AddReminder = ({route, navigation}: any) => {
                     <Text>
                       {measureTime
                         ? DateTime.fromJSDate(new Date(measureTime)).toFormat(
-                            'hh:mm',
+                            'hh:mm a',
                           )
                         : t('vcReminderTime')}
                     </Text>
