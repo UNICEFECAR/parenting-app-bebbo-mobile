@@ -133,8 +133,6 @@ const Home = () => {
         <ScrollView style={{flex: 4, backgroundColor: '#FFF'}}>
           <FlexCol>
             <BabyNotification />
-            {console.log(modalVisible)}
-            <Text style={{color: '#000'}}>{modalVisible}</Text>
             <ChildInfo
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}

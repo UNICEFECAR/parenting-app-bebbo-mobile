@@ -125,12 +125,16 @@ const Activities = ({ route,navigation }: Props) => {
       setModalVisible(false);
     }
   };
+  useFocusEffect(() => {
+    console.log("in activity focuseffect without callback",activityModalOpened);
+    setModalVisible(activityModalOpened);
+  })
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
       setLoading(true);
       // setModalVisible(true);
-      setModalVisible(activityModalOpened);
+      
       async function fetchData() {
         console.log("categoryarray--",route.params?.categoryArray);
           if(route.params?.categoryArray)

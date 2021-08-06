@@ -96,11 +96,15 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     }
   };
   // let selectedChildDevData:any;
+  useFocusEffect(() => {
+    console.log("in childdev focuseffect without callback",childDevModalOpened);
+    setModalVisible(childDevModalOpened);
+  })
   useFocusEffect(
     React.useCallback(() => {
-      console.log("in childdev focuseffect",childDevModalOpened);
+      console.log("in childdev focuseffect");
       // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
-      setModalVisible(childDevModalOpened);
+      
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
         backgroundColor : themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
         artHeaderColor : themeContext.colors.ARTICLES_COLOR,
