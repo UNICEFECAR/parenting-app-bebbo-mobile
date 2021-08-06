@@ -352,6 +352,8 @@ const ALsq = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
+        activityModalText: "To find Games, click on the relevant buttons or search using keywords",
+        childDevModalText: "To find Development, click on the relevant buttons or search using keywords",
         months5tag:"muaj",
         years5tag:"vite",
         days5tag:"ditë",
