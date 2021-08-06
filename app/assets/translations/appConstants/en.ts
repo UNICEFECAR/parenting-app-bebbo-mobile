@@ -370,6 +370,9 @@ const en = {
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
         editChildDobLabel: "Enter date of birth",
+        childInfoBabyText: "Baby",
+        childInfoParentText: "Parent",
+        childInfoAndText: "and",
 
     }
 }

@@ -205,7 +205,7 @@ const RSsr = {
  monthtag: "mjesec",
  daystag: "dana",
  daytag: "dan",
- defaultChildPrefix: "Dete  ",
+ defaultChildPrefix: "Dete",
  notiOption1: "Obrišite obaveštenje",
  notiOption2: "Obeležite kao pročitano",
  continueInModal: "Nastavite",
@@ -366,6 +366,9 @@ const RSsr = {
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
         editChildDobLabel: "Enter date of birth",
+        childInfoBabyText: "Baby",
+        childInfoParentText: "Parent",
+        childInfoAndText: "and",
     }
     // translation: {
     //     countryLangSelection: 'Odabrali ste zemlju i jezik',

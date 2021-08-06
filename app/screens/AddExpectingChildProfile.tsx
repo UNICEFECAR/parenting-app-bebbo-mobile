@@ -205,7 +205,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             {showdob && (
               <DateTimePicker
                 testID="dobdatePicker"
-                minimumDate={new Date(DateTime.local().toISODate())}
+                minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
                 maximumDate={new Date(dobMax)}
                 value={plannedTermDate!=null ? plannedTermDate : new Date()}
                 mode={'date'}
