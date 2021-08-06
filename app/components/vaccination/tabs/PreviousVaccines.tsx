@@ -29,12 +29,13 @@ import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
+import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
 
 const PreviousVaccines = (props: any) => {
-  const {item, headerColor, backgroundColor} = props;
+  const { item, headerColor, backgroundColor } = props;
   // console.log(item);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const [isOpen, setIsOpen] = useState<Boolean>(false);
   const themeContext = useContext(ThemeContext);
@@ -45,19 +46,22 @@ const PreviousVaccines = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
     );
   };
   const gotoArticle = (pinned_articleID) => {
-    if(pinned_articleID!=0){
-    navigation.navigate('DetailsScreen', {
-      fromScreen: 'VaccinationTab',
-    headerColor:headerColor,
-    backgroundColor:backgroundColor,
-    detailData:pinned_articleID,
-     });
+    if (pinned_articleID != 0) {
+      navigation.navigate('DetailsScreen', {
+        fromScreen: 'VaccinationTab',
+        headerColor: headerColor,
+        backgroundColor: backgroundColor,
+        detailData: pinned_articleID,
+      });
     }
   };
   const doneVc = item.vaccines.filter((item) => {
@@ -75,20 +79,20 @@ const PreviousVaccines = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-          {item.vaccines.every((el) => {
+            {item.vaccines.every((el) => {
               return el.isMeasured == true;
             }) ? (
-              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+              <RadioActive style={{ backgroundColor: 'green', borderRadius: 50 }}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
               <IconViewAlert>
-                          <Icon
-                            name="ic_incom"
-                            size={24}
-                            color="#FFF"
-                          />
-                        </IconViewAlert>
+                <Icon
+                  name="ic_incom"
+                  size={24}
+                  color="#FFF"
+                />
+              </IconViewAlert>
             )}
           </ToolsIconView>
           <ToolsHeadPress
@@ -98,15 +102,15 @@ const PreviousVaccines = (props: any) => {
             <ToolsHeadingView>
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')}{', '}{doneVc? doneVc.length :0 }{' '}
-                {t('vaccinesDoneTxt')} | {item.vaccines.length - (doneVc? doneVc.length :0)}{' '}
+                {item.vaccines.length} {t('vaccinesTxt')}{', '}{doneVc ? doneVc.length : 0}{' '}
+                {t('vaccinesDoneTxt')} | {item.vaccines.length - (doneVc ? doneVc.length : 0)}{' '}
                 {t('vaccinesPendingTxt')}
               </Heading5>
             </ToolsHeadingView>
           </ToolsHeadPress>
           <ToolsActionView>
             <Icon
-              style={{alignSelf: 'center'}}
+              style={{ alignSelf: 'center' }}
               name={isOpen ? 'ic_angle_up' : 'ic_angle_down'}
               size={10}
               color="#000"
@@ -120,9 +124,9 @@ const PreviousVaccines = (props: any) => {
                 <MainContainer key={i}>
                   <FDirRowStart>
                     <ToolsIconView>
-                    {v.isMeasured ? (
+                      {v.isMeasured ? (
                         <RadioActive
-                          style={{backgroundColor: 'green', borderRadius: 50}}>
+                          style={{ backgroundColor: 'green', borderRadius: 50 }}>
                           <Icon name="ic_tick" size={12} color="#FFF" />
                         </RadioActive>
                       ) : (
@@ -136,21 +140,21 @@ const PreviousVaccines = (props: any) => {
                       )}
                     </ToolsIconView>
                     <ToolsHeadingView>
-                      <Heading4Regular>{v.title }{v.isMeasured ? " - " : null} {v.isMeasured ? DateTime.fromJSDate(new Date(v.measurementDate)).toFormat("dd/MM/yyyy") : null}</Heading4Regular>
+                      <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
                       {v?.pinned_article ?
-                      <Pressable onPress={() => gotoArticle(v.pinned_article)}>
-                        <ButtonTextSmLineL>
-                          {t('vcArticleLink')}
-                        </ButtonTextSmLineL>
-                      </Pressable>
-                      : null}
+                        <Pressable onPress={() => gotoArticle(v.pinned_article)}>
+                          <ButtonTextSmLineL>
+                            {t('vcArticleLink')}
+                          </ButtonTextSmLineL>
+                        </Pressable>
+                        : null}
                     </ToolsHeadingView>
                   </FDirRowStart>
                 </MainContainer>
               );
             })}
-         {/* add condition for only few vaccines are given in below */}
-         {(item.vaccines.some((el) => {
+            {/* add condition for only few vaccines are given in below */}
+            {(item.vaccines.some((el) => {
               return el.isMeasured == true;
             })) ? (
               <ShiftFromTopBottom10>
@@ -170,7 +174,7 @@ const PreviousVaccines = (props: any) => {
             {/* remaining add condition for all vaccines were not given in below */}
             {(item.vaccines.every((el) => {
               return el.isMeasured == false;
-            }))? (
+            })) ? (
               <ButtonContainerAuto>
                 <ButtonVaccination
                   disabled={isFutureDate(activeChild?.birthDate)}

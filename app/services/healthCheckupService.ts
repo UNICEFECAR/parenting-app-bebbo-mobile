@@ -3,12 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
+import { formatStringDate } from './Utils';
 
 export const getAllHealthCheckupPeriods = () => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
+  );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
   );
   const taxonomy = useAppSelector(
     (state: any) =>
@@ -28,7 +32,7 @@ export const getAllHealthCheckupPeriods = () => {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
       height: item.height ? parseFloat(item.height) : 0,
-      measurementDate: DateTime.fromJSDate(new Date(item.measurementDate)).toFormat("dd/MM/yyyy"),
+      measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
       dateToMilis: item.measurementDate,
       childAgeInDaysForMeasure: Math.round(
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,

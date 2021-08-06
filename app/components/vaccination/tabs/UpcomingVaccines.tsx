@@ -30,6 +30,7 @@ import {
   ChildEntitySchema
 } from '../../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../../redux/reducers/childSlice';
+import { formatStringDate, formatStringTime } from '../../../services/Utils';
 import {
   ButtonContainerAuto,
   ButtonText,
@@ -61,6 +62,7 @@ const UpcomingVaccines = (props: any) => {
         ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
         : [],
     );
+  
     let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
       hcuuid,
@@ -94,7 +96,9 @@ const UpcomingVaccines = (props: any) => {
     }
   }
  
-
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -197,9 +201,11 @@ const UpcomingVaccines = (props: any) => {
                         {v.title}
                         {v.isMeasured ? ' - ' : null}{' '}
                         {v.isMeasured
-                          ? DateTime.fromJSDate(
-                              new Date(v.measurementDate),
-                            ).toFormat('dd/MM/yyyy')
+                          ? 
+                          // DateTime.fromJSDate(
+                          //     new Date(v.measurementDate),
+                          //   ).toFormat('dd/MM/yyyy')
+                          formatStringDate(v.measurementDate,luxonLocale)
                           : null}
                       </Heading4Regular>
 
@@ -237,13 +243,19 @@ const UpcomingVaccines = (props: any) => {
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                         <Heading4>
-                          {DateTime.fromJSDate(
-                            new Date(vaccineReminder?.reminderDate),
-                          ).toFormat('dd MMM yyyy')}
+                          {
+                          // DateTime.fromJSDate(
+                          //   new Date(vaccineReminder?.reminderDate),
+                          // ).toFormat('dd MMM yyyy')
+                          formatStringDate(vaccineReminder?.reminderDate,luxonLocale)
+                          }
                           {','}
-                          {DateTime.fromJSDate(
-                            new Date(vaccineReminder?.reminderTime),
-                          ).toFormat('hh:mm a')}
+                          {
+                             formatStringTime(vaccineReminder?.reminderTime,luxonLocale)
+                          // DateTime.fromJSDate(
+                          //   new Date(vaccineReminder?.reminderTime),
+                          // ).toFormat('hh:mm a')
+                          }
                         </Heading4>
                       </ToolsHeadingView>
                       <ToolsActionView>

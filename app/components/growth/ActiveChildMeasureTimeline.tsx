@@ -24,6 +24,7 @@ import { Pressable } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import { ThemeContext } from 'styled-components/native';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
+import { formatStringDate } from '../../services/Utils';
 const ActiveChildMeasureTimeline = (props: any) => {
   const {activeChild} = props;
   const navigation = useNavigation();
@@ -31,6 +32,9 @@ const ActiveChildMeasureTimeline = (props: any) => {
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const [childmeasures, setChildmeasures] = React.useState<any[]>([]);
   const {t} = useTranslation();
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const setNewChildMeasureUpdates = () => {
     let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true);
     let measurementDate: DateTime = DateTime.local();
@@ -51,7 +55,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: measurementDate.toFormat("dd/MM/yyyy"),
+        measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
         dateToMilis: measurementDate.toMillis(),
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,

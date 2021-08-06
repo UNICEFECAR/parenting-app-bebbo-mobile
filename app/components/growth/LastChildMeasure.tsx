@@ -22,6 +22,7 @@ import { Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
+import { formatStringDate } from '../../services/Utils';
 
 const LastChildMeasure = (props: any) => {
   // let {activeChild} = props;
@@ -34,6 +35,9 @@ const LastChildMeasure = (props: any) => {
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   // const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
  
   // const setNewChildMeasureUpdates = () => {
@@ -63,7 +67,7 @@ const LastChildMeasure = (props: any) => {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
-        measurementDate: measurementDate.toFormat("dd/MM/yyyy"),
+        measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
         dateToMilis: measurementDate.toMillis(),
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,
