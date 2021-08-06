@@ -35,6 +35,7 @@ import {
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { formatStringDate, formatStringTime } from '../../services/Utils';
 import {
   ButtonContainerAuto,
   ButtonHealth,
@@ -61,6 +62,7 @@ const UpcomingHealthCheckup = (props: any) => {
       (state: any) => state.selectedCountry.languageCode,
     );
     const dispatch = useAppDispatch();
+   
     const child_age = useAppSelector((state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != ''
         ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
@@ -82,6 +84,9 @@ const UpcomingHealthCheckup = (props: any) => {
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
+  );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
   );
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
@@ -288,13 +293,19 @@ const UpcomingHealthCheckup = (props: any) => {
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                         <Heading4>
-                          {DateTime.fromJSDate(
-                            new Date(healthCheckupReminder?.reminderDate),
-                          ).toFormat('dd MMM yyyy')}
+                          {
+                          // DateTime.fromJSDate(
+                          //   new Date(healthCheckupReminder?.reminderDate),
+                          // ).toFormat('dd MMM yyyy')
+                          formatStringDate(healthCheckupReminder?.reminderDate,luxonLocale)
+                          }
                           {','}
-                          {DateTime.fromJSDate(
-                            new Date(healthCheckupReminder?.reminderTime),
-                          ).toFormat('hh:mm a')}
+                          {
+                          // DateTime.fromJSDate(
+                          //   new Date(healthCheckupReminder?.reminderTime),
+                          // ).toFormat('hh:mm a')
+                          formatStringTime(healthCheckupReminder?.reminderTime,luxonLocale)
+                          }
                         </Heading4>
                       </ToolsHeadingView>
                       <ToolsActionView>

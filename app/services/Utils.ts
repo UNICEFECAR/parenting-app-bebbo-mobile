@@ -178,7 +178,10 @@ export const formatStringDate=(dateData:any,luxonLocale:string)=>{
     //new Intl.DateTimeFormat('de-DE', options).format(date)
     return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('dd LLL yyyy');
   }
-
+  export const formatStringTime=(dateData:any,luxonLocale:string)=>{
+    //new Intl.DateTimeFormat('de-DE', options).format(date)
+    return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
+  }
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
     if(birthDate==null || birthDate==undefined){

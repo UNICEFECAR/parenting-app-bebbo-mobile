@@ -82,6 +82,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
+import { formatStringDate } from '../../services/Utils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -147,6 +148,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     state.utilsData.taxonomy.allTaxonomyData != ''
       ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age
       : [],
+  );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
   );
   // console.log(activeChild,"in add new");
   const getDefaultGrowthPlace = () => {
@@ -323,9 +327,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                       <Text>
                         {' '}
                         {measureDate
-                          ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                              'dd/MM/yyyy',
-                            )
+                          ? 
+                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                          //     'dd/MM/yyyy',
+                          //   )
+                          formatStringDate(measureDate,luxonLocale)
                           : t('growthScreenenterDateMeasurementText')}
                       </Text>
                       {showmeasureDate && (
