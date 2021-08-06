@@ -461,6 +461,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                     </FormInputText>
                     <PlannedVaccines
                       fromScreen={'AddChildHealthCheckup'}
+                      backgroundActiveColor={headerColor}
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPlannedVaccineToggle={onPlannedVaccineToggle}
                     />
@@ -471,6 +472,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                     </FormInputText>
                     <PrevPlannedVaccines
                       fromScreen={'AddChildHealthCheckup'}
+                      backgroundActiveColor={headerColor}
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
                     />
@@ -493,6 +495,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                     placeholder={t(
                       'growthScreenenterDoctorRemarkTextPlaceHolder',
                     )}
+                    allowFontScaling={false} 
                   />
                 </TextAreaBox>
               </FormContainerFlex>

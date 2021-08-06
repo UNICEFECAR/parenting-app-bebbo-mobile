@@ -10,10 +10,10 @@ import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import Checkbox, { CheckboxActive, CheckboxItem } from '../shared/CheckboxStyle';
 const VaccineItem = (props: any) => {
-  const {item, onToggleVaccine, fromScreen} = props;
+  const {item, onToggleVaccine, fromScreen,backgroundActiveColor} = props;
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  const bgColor = themeContext.colors.VACCINATION_COLOR;
+  // const bgColor = themeContext.colors.VACCINATION_COLOR;
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const gotoArticle = (pinned_articleID) => {
@@ -42,7 +42,7 @@ const VaccineItem = (props: any) => {
               <CheckboxItem>
                 <View>
                   {toggleCheckBox ? (
-                    <CheckboxActive style={{backgroundColor: bgColor}}>
+                    <CheckboxActive style={{backgroundColor: backgroundActiveColor}}>
                       <Icon name="ic_tick" size={12} color="#000" />
                     </CheckboxActive>
                   ) : (

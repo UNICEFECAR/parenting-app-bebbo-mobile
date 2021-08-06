@@ -30,8 +30,6 @@ const TrackMilestoneView = (props) => {
         </IconBox>
             </OuterIconLeft>
           </OuterIconRow>
-          
-       
         </Flex1>
         <Flex3>
           <ShiftFromBottom15>
