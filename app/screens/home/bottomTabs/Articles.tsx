@@ -2,7 +2,7 @@ import { articledata } from '@assets/translations/appOfflineData/article';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-
+import RNFS from 'react-native-fs';
 import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 import Divider,{DividerArt} from '@components/shared/Divider';
@@ -34,6 +34,7 @@ import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import ProgressiveImage from '@components/shared/ProgressiveImage';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
+import ImageLoad from '../../../services/ImageLoad';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -76,12 +77,24 @@ const Articles = ({route, navigation}: Props) => {
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-        <ProgressiveImage
+          {
+        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        <ImageLoad
+   style={styles.cardImage}
+   placeholderStyle={styles.cardImage}
+    loadingStyle={{ size: 'large', color: '#000' }}
+    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    />:<Image
+    style={styles.cardImage}
+    source={require('@assets/trash/defaultArticleImage.png')}/>
+          }
+        {/* <ProgressiveImage
           thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
           source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}
           resizeMode="cover"
-        />
+        /> */}
           {/* <Image
             style={styles.cardImage}
            source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
