@@ -446,6 +446,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                     placeholder={t(
                       'growthScreenenterDoctorRemarkTextPlaceHolder',
                     )}
+                    allowFontScaling={false} 
                   />
                 </TextAreaBox>
               </FormContainer>
