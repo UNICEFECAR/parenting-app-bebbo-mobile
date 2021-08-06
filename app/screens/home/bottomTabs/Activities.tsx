@@ -4,7 +4,7 @@ import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ActivityBox, ArticleHeading, ArticleListContainer, ArticleListContent } from '@components/shared/ArticlesStyle';
 import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
-
+import RNFS from 'react-native-fs';
 import { MainContainer } from '@components/shared/Container';
 import { DividerAct } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
@@ -20,6 +20,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import ImageLoad from '../../../services/ImageLoad';
 import {
   FlatList,
   Image,
@@ -161,21 +162,25 @@ const Activities = ({ route,navigation }: Props) => {
     console.log("filteredData---",filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
-    let imageArray:any=[];
     if(filteredData?.length>0){
-      filteredData.map((item: any, index: number) => {
-        if(item['cover_image'] != "" && item['cover_image'].url != "")
-        {
+      filteredData.map(async (item: any, index: number) => {
+        if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+          if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+          }
+          else{
+          let imageArray:any=[];
           imageArray.push({
               srcUrl: item['cover_image'].url, 
               destFolder: destinationFolder, 
               destFilename: item['cover_image'].url.split('/').pop()
           })
+          const imagesDownloadResult = await downloadImages(imageArray);
+          console.log(imagesDownloadResult,"..imagesDownloadResult..");
+        }
         }
         });
         // console.log(imageArray,"..imageArray..");
-        const imagesDownloadResult = await downloadImages(imageArray);
-        console.log(imagesDownloadResult,"..imagesDownloadResult..");
+       
   }
   }
   useFocusEffect(
@@ -284,12 +289,24 @@ const Activities = ({ route,navigation }: Props) => {
           source={item.imagePath}
           resizeMode={'cover'}
         /> */}
-        <ProgressiveImage
+        {/* <ProgressiveImage
           thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
           source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}
           resizeMode="cover"
-        />
+        /> */}
+         {
+        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        <ImageLoad
+   style={styles.cardImage}
+   placeholderStyle={styles.cardImage}
+    loadingStyle={{ size: 'large', color: '#000' }}
+    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    source={{uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}}
+    />:<Image
+    style={styles.cardImage}
+    source={require('@assets/trash/defaultArticleImage.png')}/>
+          }
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -309,12 +326,24 @@ const Activities = ({ route,navigation }: Props) => {
           source={require('@assets/trash/card5.jpeg')}
           resizeMode={'cover'}
         /> */}
-        <ProgressiveImage
+        {/* <ProgressiveImage
           thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
           source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}
           resizeMode="cover"
-        />
+        /> */}
+        {
+        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        <ImageLoad
+   style={styles.cardImage}
+   placeholderStyle={styles.cardImage}
+    loadingStyle={{ size: 'large', color: '#000' }}
+    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    />:<Image
+    style={styles.cardImage}
+    source={require('@assets/trash/defaultArticleImage.png')}/>
+          }
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
