@@ -81,6 +81,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
+import { formatStringDate } from '../../services/Utils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -109,6 +110,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
+  );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
   );
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -320,9 +324,11 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       <Text>
                         {' '}
                         {measureDate
-                          ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                              'dd/MM/yyyy',
-                            )
+                          ? 
+                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                          //     'dd/MM/yyyy',
+                          //   )
+                          formatStringDate(measureDate,luxonLocale)
                           : t('vcScreenenterDateText')}
                       </Text>
                       {showmeasureDate && (
