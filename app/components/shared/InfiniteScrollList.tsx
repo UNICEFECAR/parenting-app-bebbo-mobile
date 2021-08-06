@@ -2,7 +2,7 @@ import { destinationFolder } from "@assets/translations/appOfflineData/apiConsta
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { FlatList, View, Text, ActivityIndicator } from "react-native";
 import downloadImages from "../../downloadImages/ImageStorage";
-
+import RNFS from 'react-native-fs';
 const InfiniteScrollList = (props : any) => {
     const { filteredData , renderArticleItem, receivedLoadingArticle } = props;
     const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,6 @@ const InfiniteScrollList = (props : any) => {
 
     const requestData = async (thePage: number) => {
         console.log(thePage,"..thePage..")
-        let imageArray:any=[];
         if(totalDataCount > 0)
         {
             console.log(filteredData,"--filteredData");
@@ -42,19 +41,24 @@ const InfiniteScrollList = (props : any) => {
             console.log('..requestData..', data);
             serverDataLoaded(data);
             if(data?.length>0){
-                data.map((item: any, index: number) => {
-                if(item['cover_image'] != "" && item['cover_image'].url != "")
-                {
+                data.map(async (item: any, index: number) => {
+                    if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+                        if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+                        }
+                        else{
+                            let imageArray:any=[];
                 imageArray.push({
                     srcUrl: item['cover_image'].url, 
                     destFolder: destinationFolder, 
                     destFilename: item['cover_image'].url.split('/').pop()
                 })
-                }
-                });
                 console.log(imageArray,"..imageArray..");
                 const imagesDownloadResult = await downloadImages(imageArray);
                 console.log(imagesDownloadResult,"..imagesDownloadResult..");
+            }
+                }
+                });
+               
                 setIsLoading(false);
             }else {
                 setIsLoading(false);
