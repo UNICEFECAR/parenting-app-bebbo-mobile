@@ -70,7 +70,7 @@ const ChartWeightForHeight = () => {
     React.useCallback(() => {
       setTimeout(() => {
         setIsChartVisible(true);
-      }, 1000);
+      }, 2000);
     }, []),
   );
   let windowWidth = Dimensions.get('window').width;
