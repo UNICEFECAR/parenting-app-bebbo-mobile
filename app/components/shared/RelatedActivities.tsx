@@ -13,7 +13,8 @@ import downloadImages from '../../downloadImages/ImageStorage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ProgressiveImage from './ProgressiveImage';
 import ShareFavButtons from './ShareFavButtons';
-
+import ImageLoad from '../../services/ImageLoad';
+import RNFS from 'react-native-fs';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -90,18 +91,23 @@ const RelatedActivities = (props:RelatedActivityProps) => {
         console.log("relatedArticleData lebgth--",relatedArticleData.length);
         let imageArraynew:any= [];
         if(relatedArticleData?.length>0){
-          relatedArticleData.map((item: any, index: number) => {
-          if(item['cover_image'] != "" && item['cover_image'].url != "")
-          {
+          relatedArticleData.map(async (item: any, index: number) => {
+            if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+              if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+              }
+              else{
+           let imageArraynew:any= [];
             imageArraynew.push({
               srcUrl: item['cover_image'].url, 
               destFolder: destinationFolder, 
               destFilename: item['cover_image'].url.split('/').pop()
           })
+          const imagesDownloadResult = await downloadImages(imageArraynew);
+        }
           }
           });
           // console.log(imageArraynew,"..imageArray..");
-          const imagesDownloadResult = await downloadImages(imageArraynew);
+         
           // console.log(imagesDownloadResult,"..imagesDownloadResult..");
       }
       }
@@ -133,12 +139,24 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
           source={require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}></Image> */}
-           <ProgressiveImage
+           {/* <ProgressiveImage
           thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
           source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}
           resizeMode="cover"
-        />
+        /> */}
+         {
+        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        <ImageLoad
+   style={styles.cardImage}
+   placeholderStyle={styles.cardImage}
+    loadingStyle={{ size: 'large', color: '#000' }}
+    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+    />:<Image
+    style={styles.cardImage}
+    source={require('@assets/trash/defaultArticleImage.png')}/>
+          }
           <View style={{minHeight:90,}}>
           <ArticleListContent>
           <ShiftFromTopBottom5>

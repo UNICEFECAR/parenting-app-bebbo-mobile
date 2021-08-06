@@ -13,7 +13,8 @@ import downloadImages from '../../downloadImages/ImageStorage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ProgressiveImage from './ProgressiveImage';
 import ShareFavButtons from './ShareFavButtons';
-
+import ImageLoad from '../../services/ImageLoad';
+import RNFS from 'react-native-fs';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -54,12 +55,12 @@ const DATA = [
     title: 'Picking stuff around',
   },
 ];
-const RelatedArticles = (props:RelatedArticlesProps) => {
+const RelatedArticles = (props: RelatedArticlesProps) => {
   // console.log(props);
-  const { related_articles, category, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
+  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation } = props;
   // console.log(typeof related_articles);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   let relartlength = related_articles ? related_articles.length : 0;
   const articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -68,63 +69,61 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
   // let relatedArticleData: any[] = [];
-  const [relatedArticleData,setrelatedArticleData] = useState<any>([]);
+  const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
     React.useCallback(() => {
       // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
       setrelatedArticleData([]);
       async function fetchData() {
         // console.log("relartlength on start--",relartlength);
-        if(relartlength > 0)
-        {
-          let relatedData:any = [];
-          if(fromScreen == "ChildgrowthTab")
-          {
+        if (relartlength > 0) {
+          let relatedData: any = [];
+          if (fromScreen == "ChildgrowthTab") {
             const filterQuery = JSON.parse(JSON.stringify(related_articles)).map((x: any) => `id = '${x}'`).join(' OR ');
-            relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema,filterQuery);
-          }else {
-            relatedData = articleData.filter((x:any)=> JSON.parse(JSON.stringify(related_articles)).includes(x.id));
+            relatedData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
+          } else {
+            relatedData = articleData.filter((x: any) => JSON.parse(JSON.stringify(related_articles)).includes(x.id));
           }
           // console.log("relatedData--",relatedData.length);
           relartlength = relatedData.length;
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
-          if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
+          if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
             const catartlength = maxRelatedArticleSize - relartlength;
             // console.log("catartlength--",catartlength);
             // console.log("relatedArticleData--",relatedArticleData);
-            const filteredArtData = articleData.filter((x: any)=> {
+            const filteredArtData = articleData.filter((x: any) => {
               const i = relatedData.findIndex((_item: any) => _item.id === x.id);
-              return x.category==category && x.id !==currentId && i == -1
-            }).slice(0,catartlength);
+              return x.category == category && x.id !== currentId && i == -1
+            }).slice(0, catartlength);
             // console.log(filteredArtData);
-            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...relatedData ,...filteredArtData]);
-          }else {
+            setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData, ...relatedData, ...filteredArtData]);
+          } else {
             setrelatedArticleData(relatedData);
           }
         }
         // if(category!=5){
-      // go not calclualte for growth screen
-        else if(relartlength < maxRelatedArticleSize && fromScreen!="ChildgrowthTab") {
+        // go not calclualte for growth screen
+        else if (relartlength < maxRelatedArticleSize && fromScreen != "ChildgrowthTab") {
           // console.log(relartlength,"relartlength--",maxRelatedArticleSize);
           const catartlength = maxRelatedArticleSize - relartlength;
           // console.log("relatedArticleData--",relatedArticleData);
-          const filteredArtData = articleData.filter((x: any)=> {
+          const filteredArtData = articleData.filter((x: any) => {
             const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
-            return x.category==category && x.id !==currentId && i == -1
-          }).slice(0,catartlength);
+            return x.category == category && x.id !== currentId && i == -1
+          }).slice(0, catartlength);
           // console.log(filteredArtData);
-          setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
+          setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData, ...filteredArtData]);
         }
-      // }
+        // }
       }
       fetchData()
-    },[currentId])
+    }, [currentId])
   );
   // console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
   // const getSameCategoryArticle = () => {
   //   if(relartlength < maxRelatedArticleSize) {
   //     const catartlength = maxRelatedArticleSize - relartlength;
-      
+
   //     console.log("relatedArticleData--",relatedArticleData);
   //     const filteredArtData = articleData.filter((x: any)=> {
   //       const i = relatedArticleData.findIndex((_item: any) => _item.id === x.id);
@@ -138,97 +137,114 @@ const RelatedArticles = (props:RelatedArticlesProps) => {
     React.useCallback(() => {
       // console.log("details usefocuseffect")
       // filterArray.length = 0;
-      const fetchData = async () => { 
-        console.log("relatedArticleData lebgth--",relatedArticleData.length);
-        let imageArraynew:any= [];
-        if(relatedArticleData?.length>0){
-          relatedArticleData.map((item: any, index: number) => {
-          if(item['cover_image'] != "" && item['cover_image'].url != "")
-          {
-            imageArraynew.push({
-              srcUrl: item['cover_image'].url, 
-              destFolder: destinationFolder, 
-              destFilename: item['cover_image'].url.split('/').pop()
-          })
-          }
+      const fetchData = async () => {
+        console.log("relatedArticleData lebgth--", relatedArticleData.length);
+        let imageArraynew: any = [];
+        if (relatedArticleData?.length > 0) {
+          relatedArticleData.map(async (item: any, index: number) => {
+            if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+              if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+              }
+              else {
+                let imageArraynew: any = [];
+                imageArraynew.push({
+                  srcUrl: item['cover_image'].url,
+                  destFolder: destinationFolder,
+                  destFilename: item['cover_image'].url.split('/').pop()
+                })
+                const imagesDownloadResult = await downloadImages(imageArraynew);
+              }
+            }
           });
           // console.log(imageArraynew,"..imageArray..");
-          const imagesDownloadResult = await downloadImages(imageArraynew);
+
           // console.log(imagesDownloadResult,"..imagesDownloadResult..");
-      }
+        }
       }
       fetchData();
-     
-    },[relatedArticleData])
+
+    }, [relatedArticleData])
   );
   //console.log("relatedArticleData---",relatedArticleData);
-  const goToArticleDetail = (item:any) => {
-    console.log(item, fromScreen,headerColor, backgroundColor, listCategoryArray);
+  const goToArticleDetail = (item: any) => {
+    console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
     navigation.push('DetailsScreen',
-    {
-      // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
-      fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) :"Articles",
-      headerColor:headerColor,
-      backgroundColor:backgroundColor,
-      detailData:item,
-      listCategoryArray: listCategoryArray ? listCategoryArray: []
-      // setFilteredArticleData: setFilteredArticleData
-    });
+      {
+        // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
+        fromScreen: fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : fromScreen) : "Articles",
+        headerColor: headerColor,
+        backgroundColor: backgroundColor,
+        detailData: item,
+        listCategoryArray: listCategoryArray ? listCategoryArray : []
+        // setFilteredArticleData: setFilteredArticleData
+      });
   };
   const renderDailyReadItem = (item: any, index: number) => {
     return (
-      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
-      style={{flexDirection:'row'}}
+      <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
+        style={{ flexDirection: 'row' }}
       >
-        <RelatedArticleContainer style={{backgroundColor:'#fff'}}  key={index}>
+        <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>
           {/* <Image 
           // source={item.imagePath} 
           // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
           source={require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}></Image> */}
-           <ProgressiveImage
+          {/* <ProgressiveImage
           thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
           source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
           style={styles.cardImage}
           resizeMode="cover"
-        />
-        <View style={{flexDirection:'column',flex:1,justifyContent:'space-between'}}>
-          <View style={{minHeight:90,}}>
-          <ArticleListContent>
-          <ShiftFromTopBottom5>
-          {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
-          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
-          </ShiftFromTopBottom5>
-          {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
-          <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-          </View>
-          <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
-          
+        /> */}
+          {
+            (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) ?
+              <ImageLoad
+                style={styles.cardImage}
+                placeholderStyle={styles.cardImage}
+                loadingStyle={{ size: 'large', color: '#000' }}
+                //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+                source={{ uri: encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()) }}
+              /> : <Image
+                style={styles.cardImage}
+                source={require('@assets/trash/defaultArticleImage.png')} />
+          }
+          <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+            <View style={{ minHeight: 90, }}>
+              <ArticleListContent>
+                <ShiftFromTopBottom5>
+                  {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
+                  <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
+                </ShiftFromTopBottom5>
+                {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
+                <Heading3>{item.title}</Heading3>
+              </ArticleListContent>
+            </View>
+            <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
+
           </View>
         </RelatedArticleContainer>
-      </Pressable>  
+      </Pressable>
     );
   };
 
   return (
     <>
-    { relatedArticleData.length > 0 ?
+      {relatedArticleData.length > 0 ?
         <ContainerView key={currentId}>
           <ArticleHeading>
-          <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
+            <Heading2>{t('growthScreenrelatedArticle')}</Heading2>
           </ArticleHeading>
-          <View style={{paddingLeft:10,}}>
-          <FlatList
-            data={relatedArticleData}
-            horizontal
-            renderItem={({item, index}) => renderDailyReadItem(item, index)}
-            keyExtractor={(item) => item.id}
-          />
+          <View style={{ paddingLeft: 10, }}>
+            <FlatList
+              data={relatedArticleData}
+              horizontal
+              renderItem={({ item, index }) => renderDailyReadItem(item, index)}
+              keyExtractor={(item) => item.id}
+            />
           </View>
         </ContainerView>
-        : null 
-    }
+        : null
+      }
     </>
   );
 };
@@ -237,9 +253,9 @@ export default RelatedArticles;
 
 const styles = StyleSheet.create({
   // item: {
- 
+
   //  width: 300,
-  
+
   // },
   // btn: {
   //   width: 150,
