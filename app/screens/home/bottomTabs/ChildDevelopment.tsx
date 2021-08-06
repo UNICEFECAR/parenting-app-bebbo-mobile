@@ -84,15 +84,22 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
   const [milestonePercent,setMilestonePercent] = useState(0);
   const [componentColors,setComponentColors] = useState({});
+  const flatListRef = React.useRef()
+
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
-    dispatch(setInfoModalOpened(obj));
-    setModalVisible(!modalVisible);
+    console.log("modalVisible--",modalVisible);
+    if(modalVisible == true)
+    {
+      let obj = {key: varkey, value: false};
+      dispatch(setInfoModalOpened(obj));
+      setModalVisible(false);
+    }
   };
   // let selectedChildDevData:any;
   useFocusEffect(
     React.useCallback(() => {
       console.log("in childdev focuseffect",childDevModalOpened);
+      // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
       setModalVisible(childDevModalOpened);
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
         backgroundColor : themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR,
@@ -119,9 +126,13 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       currentSelectedChildId: currentSelectedChildId
     });
   };
-  
+  const toTop = () => {
+    // use current
+    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+}
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
+    toTop();
     setCurrentSelectedChildId(item.id);
     // setCurrentSelectedChildId2(item.id);
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
@@ -386,6 +397,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
               <FlexCol style={{backgroundColor: componentColors?.backgroundColor}}>
                 <View>
                   <FlatList
+                    ref={flatListRef}
                     data={selectedChildMilestoneData}
                     renderItem={({item, index}) => renderItem(item)}
                     keyExtractor={(item) => item.id.toString()}
