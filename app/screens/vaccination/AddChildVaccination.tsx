@@ -90,6 +90,9 @@ const AddChildVaccination = ({route, navigation}: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [isMeasured, setIsMeasured] = useState(false);
@@ -303,9 +306,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
                     <Text>
                       {' '}
                       {measureDate
-                        ? DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                            'dd/MM/yyyy',
-                          )
+                        ? 
+                        // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                        //     'dd/MM/yyyy',
+                        //   )
+                        formatStringDate(measureDate,luxonLocale)
                         : t('vcScreenenterDateText')}
                     </Text>
                     {showmeasureDate && (
