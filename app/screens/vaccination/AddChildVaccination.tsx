@@ -66,6 +66,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
+import { formatStringDate } from '../../services/Utils';
 const AddChildVaccination = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, vcPeriod, editGrowthItem} = route.params;
