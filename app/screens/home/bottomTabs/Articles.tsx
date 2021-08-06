@@ -57,9 +57,12 @@ const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
-    dispatch(setInfoModalOpened(obj));
-    setModalVisible(!modalVisible);
+    if(modalVisible == true)
+    {
+      let obj = {key: varkey, value: false};
+      dispatch(setInfoModalOpened(obj));
+      setModalVisible(false);
+    }
   };
   const articleModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsArticleModalOpened),
