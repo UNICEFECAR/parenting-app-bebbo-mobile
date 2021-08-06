@@ -296,6 +296,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
         ) : null}
     </DevelopmentBox>
       <Modal
+      style={{padding:0}}
             animationType="none"
             transparent={true}
             visible={modalVisible}
@@ -309,7 +310,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             //   setModalVisible(!modalVisible);
             }}>
             <PopupOverlay>
-            <ModalPopupContainerVideo>
+            <ModalPopupContainer>
                 <PopupCloseContainer>
                 <PopupClose style={{marginTop:10}}
                     onPress={() => {
@@ -317,12 +318,11 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                     console.log("close clicked");
                     setModalVisible(!modalVisible);
                     }}>
-                    <Icon name="ic_close" size={16} color="#fff" />
+                    <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
                 </PopupCloseContainer>
-                <ModalPopupContentVideo style={{maxHeight:230,}}>
-                  
-                  <VideoPlayer style={{}} selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+                <ModalPopupContentVideo style={{ }}>
+                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
                 </ModalPopupContentVideo>
                 
                 <FDirRow>
@@ -334,7 +334,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                 </ButtonModal> */}
                 </FDirRow>
 
-            </ModalPopupContainerVideo>
+            </ModalPopupContainer>
             </PopupOverlay>
         </Modal>
     </MainContainer>
