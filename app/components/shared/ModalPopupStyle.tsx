@@ -16,7 +16,7 @@ export const PopupOverlay = styled.Pressable`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
+  padding:20px;
 `;
 
 export const PopupCloseContainer = styled.Pressable`
@@ -39,12 +39,14 @@ export const PopupClose = styled.Pressable`
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
   margin-top:-35px
-`;
 
+`;
 export const ModalPopupContentVideo = styled.View`
-  padding:10px;
-  margin-top:-35px;
-  
+ width:100%;
+  margin-top:-15px;
+max-height:180px;
+  min-width:320px;
+  padding:0 15px;
 `;
 
 export default ModalPopupContainer;
