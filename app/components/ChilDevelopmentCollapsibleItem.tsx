@@ -251,42 +251,46 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                 </Flex5>
               </FDirRow>
             </ShiftFromTopBottom10>
-            <DividerDev></DividerDev>
-            
-              <ShiftFromTopBottom10>
-              <ShiftFromBottom5>
-              <Heading4>{t('developScreenrelatedAct')}</Heading4>
-             </ShiftFromBottom5>
-              <FDirRow>
-              { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
+            { selActivitiesData ?
               <>
-                {/* <Text>{selActivityImage}</Text> */}
-                  <Image
-                      // source={require('@assets/trash/card1.jpeg')}
-                      // source={{uri : encodeURI("file:///data/user/0/com.parentbuddyapp/files/content/%25C5%25A0ta%2520je%252C%2520kako%2520se%2520zove%2520-%2520aktivno%2520%25C4%258Ditanje%2520i%2520pri%25C4%258Danje.jpg")}}
-                      source={selActivityImage != "" ? {uri : selActivityImage} : require('@assets/trash/defaultArticleImage.png')}
-                      style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
-                      resizeMode={'cover'}
-                    />
-                    </>
-                  : null
-              }
-                <Flex5>
-                <ShiftFromBottom5>
-                <Heading5>
-                    {selActivitiesData?.title}
-                  </Heading5>
-                  </ShiftFromBottom5>
-                  {selActivitiesData ?
-                    <Pressable onPress={() => gotoActivity(selActivitiesData)}>
-                      <ButtonTextSmLineL>
-                        {t('developScreenviewDetails')}
-                      </ButtonTextSmLineL>
-                    </Pressable>
-                    : null}
-                </Flex5>
-              </FDirRow>
-            </ShiftFromTopBottom10>
+                  <DividerDev></DividerDev>
+                
+                  <ShiftFromTopBottom10>
+                  <ShiftFromBottom5>
+                  <Heading4>{t('developScreenrelatedAct')}</Heading4>
+                </ShiftFromBottom5>
+                  <FDirRow>
+                  { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
+                  <>
+                    {/* <Text>{selActivityImage}</Text> */}
+                      <Image
+                          // source={require('@assets/trash/card1.jpeg')}
+                          // source={{uri : encodeURI("file:///data/user/0/com.parentbuddyapp/files/content/%25C5%25A0ta%2520je%252C%2520kako%2520se%2520zove%2520-%2520aktivno%2520%25C4%258Ditanje%2520i%2520pri%25C4%258Danje.jpg")}}
+                          source={selActivityImage != "" ? {uri : selActivityImage} : require('@assets/trash/defaultArticleImage.png')}
+                          style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
+                          resizeMode={'cover'}
+                        />
+                        </>
+                      : null
+                  }
+                    <Flex5>
+                    <ShiftFromBottom5>
+                    <Heading5>
+                        {selActivitiesData?.title}
+                      </Heading5>
+                      </ShiftFromBottom5>
+                      {selActivitiesData ?
+                        <Pressable onPress={() => gotoActivity(selActivitiesData)}>
+                          <ButtonTextSmLineL>
+                            {t('developScreenviewDetails')}
+                          </ButtonTextSmLineL>
+                        </Pressable>
+                        : null}
+                    </Flex5>
+                  </FDirRow>
+                </ShiftFromTopBottom10>
+                </> 
+                : null }
             
           </>
         ) : null}
