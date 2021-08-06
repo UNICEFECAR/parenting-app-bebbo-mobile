@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Image } from 'react-native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+import HTML from 'react-native-render-html';
 
 const ChildInfo = (props: any) => {
   const {t} = useTranslation();
@@ -91,9 +92,13 @@ const goToVideoArticleDetails = () => {
           <Heading3Center>{selectedPinnedArticleData?.title}</Heading3Center>
 
           <ShiftFromTopBottom10>
-          <Heading4Centerr>
-            {selectedPinnedArticleData?.body}
-          </Heading4Centerr>
+          
+            {/* {selectedPinnedArticleData && selectedPinnedArticleData?.body ? 
+              <HTML
+                source={{html: selectedPinnedArticleData?.body}}
+                baseFontStyle={{fontSize: 14}}
+              />
+              : null} */}
           </ShiftFromTopBottom10>
           <ShiftFromBottom10>
             <ButtonSpacing>
