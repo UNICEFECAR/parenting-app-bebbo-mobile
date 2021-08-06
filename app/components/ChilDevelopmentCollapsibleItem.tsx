@@ -53,6 +53,8 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
 );
   const [selVideoArticleData, setselVideoArticleData] = useState();
   const [selActivitiesData, setselActivitiesData] = useState();
+  const [selVideoImage, setselVideoImage] = useState('');
+  const [selActivityImage, setselActivityImage] = useState('');
   // useFocusEffect(
   //   React.useCallback(() => {
     useEffect(() => {
@@ -65,17 +67,27 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
       }
       const fetchData = async () => {
         //setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == 2296)[0]);
+        setselVideoImage('');
         setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
-        setselActivitiesData(ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0]);
-        if(selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "")
+        const currActivityData = ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0];
+        setselActivitiesData(currActivityData);
+        console.log(currActivityData?.cover_image?.url,"----url");
+        if(currActivityData && currActivityData?.cover_image && currActivityData?.cover_image?.url != "")
         {   
             let imageArray = [];
             imageArray.push({
-                srcUrl: selActivitiesData?.cover_image.url, 
+                srcUrl: currActivityData?.cover_image.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: selActivitiesData?.cover_image.url.split('/').pop()
+                destFilename: currActivityData?.cover_image.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
+            if (await RNFS.exists(destinationFolder + '/' + currActivityData?.cover_image?.url.split('/').pop())) {
+              console.log("selActivityImage in if ",selActivityImage);
+              setselActivityImage("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop());
+            }else {
+             console.log("selActivityImage in else ",selActivityImage);
+            setselActivityImage('');
+            }
             // console.log(imagesDownloadResult,"--imagesDownloadResult");
         }
         if(selVideoArticleData && selVideoArticleData?.cover_image && selVideoArticleData?.cover_image?.url != "")
@@ -87,6 +99,13 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                 destFilename: selVideoArticleData?.cover_image.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
+            if (await RNFS.exists(destinationFolder + '/' + selVideoArticleData?.cover_image?.url.split('/').pop())) {
+              // console.log("Image already exists");
+              setselVideoImage(encodeURI("file://" + destinationFolder + selVideoArticleData?.cover_image?.url.split('/').pop()));
+            }else {
+            //  console.log("Image already exists");
+              setselVideoImage('');
+            }
             // console.log(imagesDownloadResult,"--imagesDownloadResult");
         }
         
@@ -95,7 +114,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
     }, []);
   //   },[])
   // );
-  console.log((selVideoArticleData),"--selActivitiesData---",selActivitiesData);
+  // console.log((selVideoArticleData),"--selActivitiesData---",selActivitiesData);
   // console.log(encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop())));
   const milestoneCheckUncheck = async () => {
     // console.log(activeChilduuid,"--checked mielstone---",item);
@@ -195,7 +214,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                     <Pressable style={{flex: 1, width: '100%', height: 50, marginRight:10}} onPress={() => openVideo(selVideoArticleData)}>
                       <Image
                         // source={require('@assets/trash/card1.jpeg')}
-                        source={selVideoArticleData?.cover_image && selVideoArticleData?.cover_video?.url != "" ? {uri : encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop()))} : require('@assets/trash/defaultArticleImage.png')}
+                        source={selVideoArticleData.cover_image && selVideoArticleData?.cover_image?.url != "" ? {uri : encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop()))} : require('@assets/trash/defaultArticleImage.png')}
                         style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                         resizeMode={'cover'}
                       />
@@ -238,11 +257,11 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
               <FDirRow>
               { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
               <>
-                {/* <Text>{"file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop())}</Text> */}
+                {/* <Text>{selActivityImage}</Text> */}
                   <Image
                       // source={require('@assets/trash/card1.jpeg')}
-                      source={{uri : encodeURI("file://" + destinationFolder + (selActivitiesData?.cover_image?.url.split('/').pop()))}}
-                      // source={{uri : encodeURI("file:///data/user/0/com.parentbuddyapp/files/content/istra%25C5%25BEivanje%2520u%2520igri%2520konstruktorima.jpg")}}
+                      // source={{uri : encodeURI("file:///data/user/0/com.parentbuddyapp/files/content/%25C5%25A0ta%2520je%252C%2520kako%2520se%2520zove%2520-%2520aktivno%2520%25C4%258Ditanje%2520i%2520pri%25C4%258Danje.jpg")}}
+                      source={selActivityImage != "" ? {uri : selActivityImage} : require('@assets/trash/defaultArticleImage.png')}
                       style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                       resizeMode={'cover'}
                     />
