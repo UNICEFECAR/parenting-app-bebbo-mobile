@@ -35,7 +35,7 @@ export const ChartFullScreen = ({route}) => {
       Orientation.lockToLandscape();
       setTimeout(() => {
         setIsChartVisible(true);
-      }, 1000);
+      }, 2000);
       BackHandler.addEventListener('hardwareBackPress', function () {
         closeFullScreen();
         /**

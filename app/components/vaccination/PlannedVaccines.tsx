@@ -9,7 +9,7 @@ type VaccineItemProps = {
   measurementDate:number
 }
 const PlannedVaccines = (props: any) => {
-  const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen} = props;
+  const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
   // let allCheckedVaccines: any[] = [];
@@ -46,6 +46,7 @@ const PlannedVaccines = (props: any) => {
             return (
               <VaccineItem
               fromScreen={fromScreen}
+              backgroundActiveColor={backgroundActiveColor}
                 key={index}
                 item={item}
                 onToggleVaccine={onToggleVaccine}
