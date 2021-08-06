@@ -105,7 +105,10 @@ const Articles = ({route, navigation}: Props) => {
   ) 
 };
 
- 
+useFocusEffect(() => {
+  console.log("in article focuseffect without callback",articleModalOpened);
+  setModalVisible(articleModalOpened);
+})
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ARTICLES_COLOR;
   const backgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
@@ -171,9 +174,9 @@ const Articles = ({route, navigation}: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      console.log("article useFocusEffect called");
+      // console.log("article useFocusEffect called--",articleModalOpened);
       //setLoading(true);
-      setModalVisible(articleModalOpened);
+      
       // fetchData()
       return () => {
         console.log("in article unmount");
