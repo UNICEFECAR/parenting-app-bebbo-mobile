@@ -173,13 +173,13 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         {/* ********* TOP AREA ********* */}
         <VictoryArea
           interpolation="natural"
-          style={{data: deviceOrientation === 'portrait'  ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          style={{data: deviceOrientation !== 'portrait'  ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
           data={topArea}
         />
         {/* ********* BOTTOM AREA ********* */}
         <VictoryArea
           interpolation="natural"
-          style={{data: deviceOrientation === 'portrait' ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
+          style={{data: deviceOrientation !== 'portrait' ? {fill: '#F9C49E'} : {fill: '#D8D8D8'}}}
           data={bottomArea}
         />
         {/* ********* MIDDLE AREA ********* */}

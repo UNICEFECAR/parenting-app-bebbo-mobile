@@ -42,10 +42,13 @@ export const IconViewReminder = styled(TickView)`
 `;
 
 export const IconBox = styled.View`
-  padding: 15px;
+  width:48px;
+  height:48px;
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
   margin-right:15px;
+  justify-content:center;
+  align-items:center;
 `;
 
 export const OuterIconSpace = styled.View`
