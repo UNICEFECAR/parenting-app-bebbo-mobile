@@ -68,7 +68,9 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
       const fetchData = async () => {
         //setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == 2296)[0]);
         setselVideoImage('');
-        setselVideoArticleData(VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0]);
+        setselActivityImage('')
+        const currVideoArtData = VideoArticlesData.filter((x:any) => x.id == item?.related_video_articles[0])[0];
+        setselVideoArticleData(currVideoArtData);
         const currActivityData = ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0];
         setselActivitiesData(currActivityData);
         console.log(currActivityData?.cover_image?.url,"----url");
@@ -83,25 +85,25 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
             const imagesDownloadResult = await downloadImages(imageArray);
             if (await RNFS.exists(destinationFolder + '/' + currActivityData?.cover_image?.url.split('/').pop())) {
               console.log("selActivityImage in if ",selActivityImage);
-              setselActivityImage("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop());
+              setselActivityImage(encodeURI("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop()));
             }else {
              console.log("selActivityImage in else ",selActivityImage);
             setselActivityImage('');
             }
             // console.log(imagesDownloadResult,"--imagesDownloadResult");
         }
-        if(selVideoArticleData && selVideoArticleData?.cover_image && selVideoArticleData?.cover_image?.url != "")
+        if(currVideoArtData && currVideoArtData?.cover_image && currVideoArtData?.cover_image?.url != "")
         {   
             let imageArray = [];
             imageArray.push({
-                srcUrl: selVideoArticleData?.cover_image.url, 
+                srcUrl: currVideoArtData?.cover_image.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: selVideoArticleData?.cover_image.url.split('/').pop()
+                destFilename: currVideoArtData?.cover_image.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
-            if (await RNFS.exists(destinationFolder + '/' + selVideoArticleData?.cover_image?.url.split('/').pop())) {
+            if (await RNFS.exists(destinationFolder + '/' + currVideoArtData?.cover_image?.url.split('/').pop())) {
               // console.log("Image already exists");
-              setselVideoImage(encodeURI("file://" + destinationFolder + selVideoArticleData?.cover_image?.url.split('/').pop()));
+              setselVideoImage(encodeURI("file://" + destinationFolder + currVideoArtData?.cover_image?.url.split('/').pop()));
             }else {
             //  console.log("Image already exists");
               setselVideoImage('');
@@ -214,7 +216,8 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                     <Pressable style={{flex: 1, width: '100%', height: 50, marginRight:10}} onPress={() => openVideo(selVideoArticleData)}>
                       <Image
                         // source={require('@assets/trash/card1.jpeg')}
-                        source={selVideoArticleData.cover_image && selVideoArticleData?.cover_image?.url != "" ? {uri : encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop()))} : require('@assets/trash/defaultArticleImage.png')}
+                        // source={selVideoArticleData.cover_image && selVideoArticleData?.cover_image?.url != "" ? {uri : encodeURI("file://" + destinationFolder + (selVideoArticleData?.cover_image?.url.split('/').pop()))} : require('@assets/trash/defaultArticleImage.png')}
+                        source={selVideoImage != "" ? {uri : selVideoImage} : require('@assets/trash/defaultArticleImage.png')}
                         style={{flex: 1, width: '100%', height: 50, borderRadius: 5, marginRight:10}}
                         resizeMode={'cover'}
                       />
