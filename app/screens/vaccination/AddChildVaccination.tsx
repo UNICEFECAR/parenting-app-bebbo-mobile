@@ -352,6 +352,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               <PlannedVaccines
                 fromScreen={'AddChildVaccination'}
                 currentPeriodVaccines={vcPeriod?.vaccines}
+                backgroundActiveColor={headerColor}
                 onPlannedVaccineToggle={onPlannedVaccineToggle}
               />
             </FormContainerFlex>
@@ -362,6 +363,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               <PrevPlannedVaccines
                 fromScreen={'AddChildVaccination'}
                 currentPeriodVaccines={vcPeriod?.vaccines}
+                backgroundActiveColor={headerColor}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
             </FormContainerFlex>
@@ -450,6 +452,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                   defaultValue={remarkTxt}
                   onChangeText={(text) => handleDoctorRemark(text)}
                   placeholder={t('vcDoctorRemarkPlaceHolder')}
+                  allowFontScaling={false} 
                 />
               </TextAreaBox>
             </FormContainer>

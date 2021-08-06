@@ -10,7 +10,7 @@ type VaccineItemProps = {
   measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines, fromScreen} = props;
+  const {onPrevPlannedVaccineToggle, currentPeriodVaccines, fromScreen,backgroundActiveColor} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   previousPeriods.shift();
   //remove first period which is the current period
@@ -72,6 +72,7 @@ const PrevPlannedVaccines = (props: any) => {
           return (
             <VaccineItem
               fromScreen={fromScreen}
+              backgroundActiveColor={backgroundActiveColor}
               key={index}
               item={item}
               onToggleVaccine={onToggleVaccine}

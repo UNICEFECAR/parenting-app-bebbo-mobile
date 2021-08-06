@@ -101,7 +101,7 @@ const Home = () => {
       // console.log(currentCount,4);
       currentCount = 0;
       // console.log(currentCount,5);
-    }, 2000);
+    }, 5000);
   };
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
