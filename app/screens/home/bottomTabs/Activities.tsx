@@ -297,12 +297,13 @@ const Activities = ({ route,navigation }: Props) => {
         /> */}
          {
         (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+       
         <ImageLoad
    style={styles.cardImage}
    placeholderStyle={styles.cardImage}
     loadingStyle={{ size: 'large', color: '#000' }}
     //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    source={{uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}}
+    source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
     />:<Image
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>

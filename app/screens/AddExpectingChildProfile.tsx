@@ -31,7 +31,7 @@ import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } 
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import { HeaderActionView, HeaderRowView } from '@components/shared/HeaderContainerStyle';
-
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -51,7 +51,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   //const [dobDate, setdobDate] = useState();
 
   const [showdob, setdobShow] = useState(false);
-  const ondobChange = (event: any, selectedDate: any) => {
+  const ondobChange = (selectedDate: any) => {
     const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
     setPlannedTermDate(currentDate);
@@ -65,9 +65,13 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   const [name, setName] = React.useState("");
   const { t } = useTranslation();
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date | null>(null);
+  const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const showdobDatepicker = () => {
     setdobShow(true);
+    if(Platform.OS == 'ios'){
+      setDobDatePickerVisibility(true);
+    }
   };
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
@@ -80,6 +84,11 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
+  const handleDobConfirm = (date:any) => {
+    console.log("A date has been picked: ", date);
+    ondobChange(date);
+    setDobDatePickerVisibility(false);
+  };
   useFocusEffect(
     React.useCallback(() => {
       //getAllChildren(dispatch);
@@ -203,6 +212,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
 
           <View>
             {showdob && (
+              Platform.OS != 'ios' ? (
               <DateTimePicker
                 testID="dobdatePicker"
                 minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
@@ -211,6 +221,19 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 mode={'date'}
                 display="default"
                 onChange={ondobChange}
+              />
+              ):
+              <DateTimePickerModal
+              isVisible={isDobDatePickerVisible}
+              mode="date"
+              onConfirm={handleDobConfirm}
+              date={plannedTermDate!=null ? plannedTermDate : new Date()}
+              onCancel={() => {
+                // Alert.alert('Modal has been closed.');
+                setDobDatePickerVisibility(false);
+              }}
+              minimumDate={new Date(DateTime.local().plus({ days: 1 }).toISODate())}
+              maximumDate={new Date(dobMax)}
               />
             )}
           </View>

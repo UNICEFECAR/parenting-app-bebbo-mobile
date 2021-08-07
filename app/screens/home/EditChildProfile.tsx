@@ -176,7 +176,6 @@ const EditChildProfile = ({route, navigation}: Props) => {
   );
   const onChildPhotoChange = async (image: ImageObject,
   ) => {
-    MediaPicker.cleanupImages();
     // Create Documents/children folder if it doesnt exist
     if (!(await exists(CHILDREN_PATH))) {
       mkdir(CHILDREN_PATH);
@@ -237,6 +236,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       });
     } else if (index == 2) {
       MediaPicker.showGalleryImagePicker((image: any) => {
+        console.log(image)
         // image.path ==>> file path
         // console.log(image,"..image..");
         // cleanUPImage(image);
