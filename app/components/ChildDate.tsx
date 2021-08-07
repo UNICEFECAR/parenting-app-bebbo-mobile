@@ -32,6 +32,7 @@ import ModalPopupContainer, {
   PopupCloseContainer,
   PopupOverlay
 } from './shared/ModalPopupStyle';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const ChildDate = (props: any) => {
   const {dobMax,prevScreen} = props;
@@ -40,6 +41,8 @@ const ChildDate = (props: any) => {
     isPremature: any,
     plannedTermDate: any = null;
   const {childData} = props;
+  const [isDobDatePickerVisible, setDobDatePickerVisibility] = useState(false);
+  const [isDueDatePickerVisible, setDueDatePickerVisibility] = useState(false);
   const isFutureDate = (date: Date) => {
     return (
       new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
@@ -85,7 +88,17 @@ const ChildDate = (props: any) => {
       }
     }, []),
   );
-  const ondobChange = (event: any, selectedDate: any) => {
+  const handleDobConfirm = (date:any) => {
+    console.log("A date has been picked: ", date);
+    ondobChange(date);
+    setDobDatePickerVisibility(false);
+  };
+  const handleDueConfirm = (date:any) => {
+    console.log("A date has been picked: ", date);
+    ondueDateChange(date);
+    setDueDatePickerVisibility(false);
+  };
+  const ondobChange = (selectedDate: any) => {
     const currentDate = selectedDate || doborExpectedDate;
     setdobShow(Platform.OS === 'ios');
     const inFuture = isFutureDate(currentDate);
@@ -113,11 +126,14 @@ const ChildDate = (props: any) => {
   const showdobDatepicker = () => {
     //console.log(birthDate,"..birthDate..");
     setdobShow(true);
+    if(Platform.OS == 'ios'){
+    setDobDatePickerVisibility(true);
+    }
   };
   const [modalVisible, setModalVisible] = useState(false);
   const [dueDate, setdueDate] = useState<Date | null>(null);
   const [showdue, setdueShow] = useState<Boolean>(false);
-  const ondueDateChange = (event: any, selectedDate: any) => {
+  const ondueDateChange = (selectedDate: any) => {
     const currentDate = selectedDate;
     //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
@@ -131,6 +147,9 @@ const ChildDate = (props: any) => {
   };
   const showdueDatepicker = () => {
     setdueShow(true);
+    if(Platform.OS == 'ios'){
+      setDueDatePickerVisibility(true);
+    }
   };
   
   return (
@@ -168,28 +187,49 @@ const ChildDate = (props: any) => {
           </FormInputGroup>
         ) : (
           <FormInputGroup onPress={showdobDatepicker}>
-            <LabelText> {t('childSetupdobLabel')}</LabelText>
-            <FormInputBox>
-              {/* <FormDateText style={{flexDirection: 'row'}}></FormDateText> */}
-              <DateTimePicker
-                testID="dobdatePicker"
-                dateFormat={'day month year'}
+          <LabelText>{prevScreen=='EditScreen'? t('editChildDobLabel'):t('childSetupdobLabel')}</LabelText>
+          <FormInputBox>
+          <FlexFDirRowSpace>
+              <Text>
+                {doborExpectedDate
+                  ? formatStringDate(doborExpectedDate,luxonLocale)
+                  : t('childSetupdobSelector')}
+              </Text>
+              {showdob && (
+                // <DateTimePicker
+                //   testID="dobdatePicker"
+                //   dateFormat={'day month year'}
+                //   minimumDate={new Date(dobMin)}
+                //   maximumDate={new Date(dobMax)}
+                //   value={
+                //     doborExpectedDate != null ? doborExpectedDate : new Date()
+                //   }
+                //   mode={'date'}
+                //   display="default"
+                //   onChange={ondobChange}
+                // />
+                <DateTimePickerModal
+                isVisible={isDobDatePickerVisible}
+                mode="date"
+                date={
+                    doborExpectedDate != null ? doborExpectedDate : new Date()
+                }
+                onConfirm={handleDobConfirm}
+                onCancel={() => {
+                  // Alert.alert('Modal has been closed.');
+                  setDobDatePickerVisibility(false);
+                }}
                 minimumDate={new Date(dobMin)}
                 maximumDate={new Date(dobMax)}
-                value={
-                  doborExpectedDate != null ? doborExpectedDate : new Date()
-                }
-                mode={'date'}
-                display="default"
-                onChange={ondobChange}
-                style={{backgroundColor: 'white', flex: 1}}
-              />
-              <FormDateAction>
-                <Icon name="ic_calendar" size={20} color="#000" />
-              </FormDateAction>
-            </FormInputBox>
-          </FormInputGroup>
-        )}
+                />
+              )}
+            </FlexFDirRowSpace>
+            <FormDateAction>
+              <Icon name="ic_calendar" size={20} color="#000" />
+            </FormDateAction>
+          </FormInputBox>
+        </FormInputGroup>
+       )}
 
         <FormPrematureContainer>
           <FormOuterCheckbox
@@ -286,13 +326,25 @@ const ChildDate = (props: any) => {
                 </FormInputGroup>
               ) : (
                 <FormInputGroup onPress={showdueDatepicker}>
-                  <LabelText>{t('childSetupdueLabel')}</LabelText>
-                  <FormInputBox>
-                    <DateTimePicker
-                      testID="duedatePicker"
-                      value={dueDate != null ? dueDate : new Date()}
-                      mode={'date'}
-                      display="default"
+                <LabelText>{t('childSetupdueLabel')}</LabelText>
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>
+                      {' '}
+                      {dueDate
+                        ? formatStringDate(dueDate,luxonLocale)
+                        : t('childSetupdueSelector')}
+                    </Text>
+                    {showdue && (
+                     <DateTimePickerModal
+                      isVisible={isDueDatePickerVisible}
+                      mode="date"
+                      date={dueDate != null ? dueDate : new Date()}
+                      onConfirm={handleDueConfirm}
+                      onCancel={() => {
+                        // Alert.alert('Modal has been closed.');
+                        setDueDatePickerVisibility(false);
+                      }}
                       minimumDate={
                         new Date(
                           DateTime.fromJSDate(doborExpectedDate as Date)
@@ -307,14 +359,15 @@ const ChildDate = (props: any) => {
                             .toISODate(),
                         )
                       }
-                      onChange={ondueDateChange}
-                      style={{backgroundColor: 'white', flex: 1}}
                     />
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
-                </FormInputGroup>
+                    )}
+                  </FormDateText>
+                  <FormDateAction>
+                    <Icon name="ic_calendar" size={20} color="#000" />
+                  </FormDateAction>
+                </FormInputBox>
+              </FormInputGroup>
+     
               )}
             </ShiftFromTop15>
           </>
