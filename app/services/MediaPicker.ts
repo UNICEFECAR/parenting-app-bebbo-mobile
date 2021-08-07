@@ -150,7 +150,8 @@ class MediaPicker {
 
     // clean all images
     //this.cleanupImages();
-
+    setTimeout(()=>{
+      console.log("342334timeout")
     ImagePicker.openCamera({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -166,6 +167,7 @@ class MediaPicker {
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
+    },350);
   }
 
   /**
@@ -180,7 +182,8 @@ class MediaPicker {
 
     // clean all images
     //this.cleanupImages();
-
+    setTimeout(()=>{
+      console.log("342334timeout")
     ImagePicker.openCamera({
       width: options.width,
       height: options.height,
@@ -198,6 +201,7 @@ class MediaPicker {
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
+    },350);
   }
 
   /**
@@ -212,7 +216,8 @@ class MediaPicker {
 
     // clean all images
     //this.cleanupImages();
-
+    setTimeout(()=>{
+      console.log("342334timeout")
     ImagePicker.openPicker({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -228,6 +233,7 @@ class MediaPicker {
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
+    },350);
   }
 
   /**
@@ -242,7 +248,8 @@ class MediaPicker {
 
     // clean all images
     //this.cleanupImages();
-
+    setTimeout(()=>{
+      console.log("11342334timeout")
     ImagePicker.openPicker({
       // width: options.width,
       // height: options.height,
@@ -262,6 +269,7 @@ class MediaPicker {
         callback && callback(imageData);
       })
       .catch((e) => this.handleError(e));
+    },350);
   }
 
   /**
@@ -378,9 +386,12 @@ class MediaPicker {
   }
   handlePermissionsGallery(triggerFunc:any) {
     request(GALLERY_PERMISSION).then((photoPermission) => {
+      console.log(photoPermission,"..photoPermission")
+      console.log(triggerFunc,"..triggerFunc")
       if (
         photoPermission === RESULTS.GRANTED
       ) {
+        console.log(photoPermission,"..11photoPermission")
         triggerFunc();
       }
     });

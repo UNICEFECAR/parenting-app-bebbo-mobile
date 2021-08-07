@@ -5,7 +5,8 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading4, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
+import { ActivityIndicator, Dimensions, Pressable, View ,Text} from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -108,6 +109,7 @@ const ChartWeightForHeight = () => {
       </FlexCol>
 
       <FlexCol>
+        <Text>{deviceOrientation}Hii</Text>
         {isChartVisible && deviceOrientation=='portrait' ? (
           <GrowthChart
             activeChild={activeChild}

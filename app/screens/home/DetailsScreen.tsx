@@ -120,7 +120,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  const [cover_image,setCoverImage]=useState('');
+  const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
   const [showImageLoader,setImageLoader] = useState(false);
   let fromPage = 'Details';
@@ -129,11 +129,12 @@ const DetailsScreen = ({route, navigation}: any) => {
       // console.log("details usefocuseffect")
       // filterArray.length = 0;
       const fetchData = async () => {
-        console.log("322Image already exists");
+        console.log("322Image already exists","file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
         console.log(await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop()));
          if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
-          console.log("Image already exists");
-          setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
+          console.log("Image already exists11");
+          console.log("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())
+          setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
           setImageLoader(false);
         }else {
            console.log("11Image already exists");
@@ -147,7 +148,7 @@ const DetailsScreen = ({route, navigation}: any) => {
        })
          const imagesDownloadResult = await downloadImages(imageArray);
         //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
-         setCoverImage("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
+         setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
          setImageLoader(false);
         }
       }
@@ -289,7 +290,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 style={{width: '100%', height: 200}}
                 placeholderStyle={{width: '100%', height: 200}}
                  loadingStyle={{ size: 'large', color: '#000' }}
-                 source={{uri :encodeURI(cover_image)}}
+                 source={{uri :cover_image}}
                  />
                  :
                  <Image
