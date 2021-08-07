@@ -32,6 +32,7 @@ export const ChartFullScreen = ({route}) => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {
+      Orientation.unlockAllOrientations();
       Orientation.lockToLandscape();
       setTimeout(() => {
         setIsChartVisible(true);
@@ -51,6 +52,7 @@ export const ChartFullScreen = ({route}) => {
     }, []),
   );
   const closeFullScreen = () => {
+    Orientation.unlockAllOrientations();
     Orientation.lockToPortrait();
     navigation.goBack();
   };
