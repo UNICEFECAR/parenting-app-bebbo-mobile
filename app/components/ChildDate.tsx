@@ -88,17 +88,19 @@ const ChildDate = (props: any) => {
       }
     }, []),
   );
-  const handleDobConfirm = (date:any) => {
-    console.log("A date has been picked: ", date);
-    ondobChange(date);
+  const handleDobConfirm = (event:any) => {
+    console.log("A date has been picked: ", event);
+    const date=event;
+    ondobChange(event,date);
     setDobDatePickerVisibility(false);
   };
-  const handleDueConfirm = (date:any) => {
-    console.log("A date has been picked: ", date);
-    ondueDateChange(date);
+  const handleDueConfirm = (event:any) => {
+    console.log("A date has been picked: ", event);
+    const date=event;
+    ondueDateChange(event,date);
     setDueDatePickerVisibility(false);
   };
-  const ondobChange = (selectedDate: any) => {
+  const ondobChange = (event:any,selectedDate: any) => {
     const currentDate = selectedDate || doborExpectedDate;
     setdobShow(Platform.OS === 'ios');
     const inFuture = isFutureDate(currentDate);
@@ -133,7 +135,7 @@ const ChildDate = (props: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [dueDate, setdueDate] = useState<Date | null>(null);
   const [showdue, setdueShow] = useState<Boolean>(false);
-  const ondueDateChange = (selectedDate: any) => {
+  const ondueDateChange = (event:any,selectedDate: any) => {
     const currentDate = selectedDate;
     //console.log(currentDate,"..currentDate..")
     setdueShow(Platform.OS === 'ios');
