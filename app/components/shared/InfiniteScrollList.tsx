@@ -46,7 +46,7 @@ const InfiniteScrollList = (props : any) => {
                         if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
                         }
                         else{
-                            let imageArray:any=[];
+                let imageArray:any=[];
                 imageArray.push({
                     srcUrl: item['cover_image'].url, 
                     destFolder: destinationFolder, 
@@ -55,7 +55,7 @@ const InfiniteScrollList = (props : any) => {
                 console.log(imageArray,"..imageArray..");
                 const imagesDownloadResult = await downloadImages(imageArray);
                 console.log(imagesDownloadResult,"..imagesDownloadResult..");
-            }
+                }
                 }
                 });
                
