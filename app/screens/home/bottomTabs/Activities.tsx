@@ -10,8 +10,6 @@ import { DividerAct } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FDirCol, FDirRow, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
 import PrematureTag, { PrematureTagActivity } from '@components/shared/PrematureTag';
-import ProgressiveImage from '@components/shared/ProgressiveImage';
-
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -20,25 +18,24 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ImageLoad from '../../../services/ImageLoad';
+import Image from '../../../services/ImageLoad';
 import {
   FlatList,
-  Image,
   Pressable,
   ScrollView,
-  StyleSheet, View
+  StyleSheet, Text, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import downloadImages from '../../../downloadImages/ImageStorage';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
+import { DefaultImage } from '@components/shared/Image';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   route:any
   navigation: ActivitiesNavigationProp;
 };
-
 const DATA = [
   {
     id: '1',
@@ -104,6 +101,7 @@ const Activities = ({ route,navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const activityModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsActivityModalOpened),
   );
@@ -298,16 +296,32 @@ const Activities = ({ route,navigation }: Props) => {
          {
         (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
        
-        <ImageLoad
-   style={styles.cardImage}
-   placeholderStyle={styles.cardImage}
-    loadingStyle={{ size: 'large', color: '#000' }}
-    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    />:<Image
+  //       <ImageLoad
+  //  style={styles.cardImage}
+  //  placeholderStyle={styles.cardImage}
+  //   loadingStyle={{ size: 'large', color: '#000' }}
+  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   />
+  <Image 
+  renderIndicator={renderIndicator}
+  source={{uri :  "file://" + destinationFolder + item.cover_image.url.split('/').pop()}}
+  indicator={null}
+  renderError={(err:any) => {
+    console.log(err,"..err")
+     return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+}}
+  indicatorProps={{
+    size: 'large',
+    borderWidth: 0,
+    color: '#000',
+  }}
+  style={styles.cardImage}
+  />
+    :<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
-          }
+   }
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -335,16 +349,34 @@ const Activities = ({ route,navigation }: Props) => {
         /> */}
         {
         (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-        <ImageLoad
-   style={styles.cardImage}
-   placeholderStyle={styles.cardImage}
-    loadingStyle={{ size: 'large', color: '#000' }}
-    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    />:<Image
+  //       <ImageLoad
+  //  style={styles.cardImage}
+  //  placeholderStyle={styles.cardImage}
+  //   loadingStyle={{ size: 'large', color: '#000' }}
+  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   />
+ 
+  <Image 
+  renderIndicator={renderIndicator}
+  source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  indicator={null}
+  renderError={(err:any) => { 
+    console.log(err,"..err")
+    return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+}}
+  indicatorProps={{
+    size: 'large',
+    borderWidth: 0,
+    color: '#000',
+  }}
+  style={styles.cardImage}
+  />
+    :
+    <DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
-          }
+   }
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
