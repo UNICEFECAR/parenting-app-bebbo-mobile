@@ -26,15 +26,15 @@ import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,View,
-   KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, ActivityIndicator, Image
+   KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, ActivityIndicator
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
-import ProgressiveImage from '@components/shared/ProgressiveImage';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import ImageLoad from '../../../services/ImageLoad';
+import Image from '../../../services/ImageLoad';
+import { DefaultImage } from '@components/shared/Image';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -57,6 +57,8 @@ const ContainerView = styled.SafeAreaView`
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
+  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
+
   const setIsModalOpened = async (varkey: any) => {
     if(modalVisible == true)
     {
@@ -79,13 +81,28 @@ const Articles = ({route, navigation}: Props) => {
         <ArticleListContainer>
           {
         (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-        <ImageLoad
-   style={styles.cardImage}
-   placeholderStyle={styles.cardImage}
-    loadingStyle={{ size: 'large', color: '#000' }}
-    //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-    />:<Image
+  //       <Image
+  //  style={styles.cardImage}
+  //  placeholderStyle={styles.cardImage}
+  //   loadingStyle={{ size: 'large', color: '#000' }}
+  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  //   />
+  <Image 
+  renderIndicator={renderIndicator}
+  source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  indicator={null}
+  renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+  }}
+  indicatorProps={{
+    size: 'large',
+    borderWidth: 0,
+    color: '#000',
+  }}
+  resizeMode="cover"
+  style={styles.cardImage}
+  />
+    :<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
           }

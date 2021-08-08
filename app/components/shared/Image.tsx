@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
 const Image = styled.View`
 `;
-
+export const DefaultImage = styled.Image`
+`;
 export const ImageFull = styled.View`
   width: 100%;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};

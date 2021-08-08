@@ -8,7 +8,6 @@ import { MainContainer, SafeAreaContainer } from '@components/shared/Container';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
-import ProgressiveImage from '@components/shared/ProgressiveImage';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
@@ -19,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator, Image } from 'react-native';
+import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text  } from 'react-native';
 import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -30,7 +29,8 @@ import downloadImages from '../../downloadImages/ImageStorage';
 import RelatedActivities from '@components/shared/RelatedActivities';
 import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from '@native-html/table-plugin';
 import WebView from "react-native-webview";
-import ImageLoad from '../../services/ImageLoad';
+import Image from '../../services/ImageLoad';
+import { DefaultImage } from '@components/shared/Image';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -123,6 +123,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
   const [showImageLoader,setImageLoader] = useState(false);
+  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   let fromPage = 'Details';
   useFocusEffect(
     React.useCallback(() => {
@@ -286,14 +287,27 @@ const DetailsScreen = ({route, navigation}: any) => {
                 //   resizeMode="cover"
                 // />
                 (detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="")?
-                <ImageLoad
+                // <ImageLoad
+                // style={{width: '100%', height: 200}}
+                // placeholderStyle={{width: '100%', height: 200}}
+                //  loadingStyle={{ size: 'large', color: '#000' }}
+                //  source={{uri :cover_image}}
+                //  />
+                <Image 
+                renderIndicator={renderIndicator}
+                source={{uri :cover_image}}
+                indicator={null}
+                renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={{width: '100%', height: 200}} />) 
+  }}
+                indicatorProps={{
+                  size: 'large',
+                  borderWidth: 0,
+                  color: '#000',
+                }}
                 style={{width: '100%', height: 200}}
-                placeholderStyle={{width: '100%', height: 200}}
-                 loadingStyle={{ size: 'large', color: '#000' }}
-                 source={{uri :cover_image}}
-                 />
+                />
                  :
-                 <Image
+                 <DefaultImage
                  style={{width: '100%', height: 200}}
                  source={require('@assets/trash/defaultArticleImage.png')}/>
           }
