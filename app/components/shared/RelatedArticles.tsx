@@ -4,17 +4,17 @@ import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View,Text  } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
-import ProgressiveImage from './ProgressiveImage';
 import ShareFavButtons from './ShareFavButtons';
-import ImageLoad from '../../services/ImageLoad';
+import Image from '../../services/ImageLoad';
 import RNFS from 'react-native-fs';
+import { DefaultImage } from './Image';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -68,6 +68,8 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
+ 
   // let relatedArticleData: any[] = [];
   const [relatedArticleData, setrelatedArticleData] = useState<any>([]);
   useFocusEffect(
@@ -198,13 +200,27 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         /> */}
           {
             (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) ?
-              <ImageLoad
-                style={styles.cardImage}
-                placeholderStyle={styles.cardImage}
-                loadingStyle={{ size: 'large', color: '#000' }}
-                //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-                source={{ uri: encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()) }}
-              /> : <Image
+              // <ImageLoad
+              //   style={styles.cardImage}
+              //   placeholderStyle={styles.cardImage}
+              //   loadingStyle={{ size: 'large', color: '#000' }}
+              //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+              //   source={{ uri: encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()) }}
+              // /> 
+              <Image 
+              renderIndicator={renderIndicator}
+  source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  indicator={null}
+  renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+  }}
+  indicatorProps={{
+    size: 'large',
+    borderWidth: 0,
+    color: '#000',
+  }}
+  style={styles.cardImage}
+  />
+              : <DefaultImage
                 style={styles.cardImage}
                 source={require('@assets/trash/defaultArticleImage.png')} />
           }
