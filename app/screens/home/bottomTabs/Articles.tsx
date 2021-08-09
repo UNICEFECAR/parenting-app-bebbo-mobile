@@ -35,6 +35,7 @@ import { destinationFolder, articleCategoryArray } from '@assets/translations/ap
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import Image from '../../../services/ImageLoad';
 import { DefaultImage } from '@components/shared/Image';
+import ProgressiveImage from '../../../services/ProgressiveFastImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -88,19 +89,36 @@ const Articles = ({route, navigation}: Props) => {
   //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
   //   source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
   //   />
-  <Image 
-  renderIndicator={renderIndicator}
-  source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  indicator={null}
-  renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-  }}
-  indicatorProps={{
-    size: 'large',
-    borderWidth: 0,
-    color: '#000',
-  }}
-  resizeMode="cover"
+  // <Image 
+  // renderIndicator={renderIndicator}
+  // source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  // indicator={null}
+  // renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+  // }}
+  // indicatorProps={{
+  //   size: 'large',
+  //   borderWidth: 0,
+  //   color: '#000',
+  // }}
+  // resizeMode="cover"
+  // style={styles.cardImage}
+  // />
+  <ProgressiveImage 
+  thumbnailSource={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
+  source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
+  imageAnimationDuration={10000}
   style={styles.cardImage}
+  blurRadius={0}
+  loadingImageComponent={<ActivityIndicator size="large" color="#000" style={{ 
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center"}}/>}
+  errorSource={require('@assets/trash/defaultArticleImage.png')}
   />
     :<DefaultImage
     style={styles.cardImage}
