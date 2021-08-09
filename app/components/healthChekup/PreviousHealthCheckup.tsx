@@ -1,6 +1,6 @@
 import { MainContainer } from '@components/shared/Container';
 import { Bullets, BulletsView } from '@components/shared/Divider';
-import { FDirRowStart, FlexDirRow } from '@components/shared/FlexBoxStyle';
+import { FDirRowStart, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { RadioActive } from '@components/shared/radio';
 import {
   HealthDesc,
@@ -61,6 +61,7 @@ const PreviousHealthCheckup = (props: any) => {
   }
   return (
     <>
+     <FlexCol>
       <ToolsListOuter>
         <ToolsListContainer
           style={{
@@ -231,7 +232,9 @@ const PreviousHealthCheckup = (props: any) => {
              )} 
           </>
         ) : null}
+
       </ToolsListOuter>
+      </FlexCol>
     </>
   );
 };

@@ -8,7 +8,7 @@ import {
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1 } from '@components/shared/FlexBoxStyle';
+import { Flex1,FlexCol } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -71,7 +71,7 @@ const HealthCheckups = ({navigation}: Props) => {
   const renderItem = (index: number) => {
     if (index === 0) {
       return (
-        <View>
+        <FlexCol>
           {upcomingPeriods.length > 0 ? (
             upcomingPeriods?.map((item, itemindex) => {
               return (
@@ -87,26 +87,28 @@ const HealthCheckups = ({navigation}: Props) => {
           ) : (
             <Heading4Center>{t('noDataTxt')}</Heading4Center>
           )}
-        </View>
+        </FlexCol>
       );
     } else if (index === 1) {
       return (
-        <View>
+        <FlexCol>
           {previousPeriods.length > 0 ? (
             previousPeriods?.map((item, itemindex) => {
               return (
+                <View style={{flex:1,flexDirection:'column'}}>
                 <PreviousHealthCheckup
                   item={item}
                   key={itemindex}
                   headerColor={headerColor}
                   backgroundColor={backgroundColor}
                 />
+                </View>
               );
             })
           ) : (
             <Heading4Center>{t('noDataTxt')}</Heading4Center>
           )}
-        </View>
+        </FlexCol>
       );
     }
   };
@@ -183,7 +185,7 @@ const HealthCheckups = ({navigation}: Props) => {
               })}
             </TabBarContainer>
             <ShiftFromTopBottom10>
-              <Flex1>{renderItem(selectedIndex)}</Flex1>
+              <FlexCol>{renderItem(selectedIndex)}</FlexCol>
             </ShiftFromTopBottom10>
           </ScrollView>
         </ToolsBgContainer>

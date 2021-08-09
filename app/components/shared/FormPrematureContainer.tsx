@@ -11,7 +11,10 @@ export const FormInfoLabel = styled.View`
   flex-direction: row;
   margin-left: 0px;
   margin-top: 3px;
+
+`;
+export const FormInfoPress = styled.Pressable`
+
   padding: 10px 10px;
 `;
-
 export default FormPrematureContainer;
