@@ -164,7 +164,7 @@ const AddReminder = ({route, navigation}: any) => {
   const showmeasureTimepicker = () => {
     setmeasureShowTime(true);
     if(Platform.OS == 'ios'){
-      setMeasureDatePickerVisibility(true);
+      setMeasureTimePickerVisibility(true);
       }
   };
   const isFormDisabled = () => {
