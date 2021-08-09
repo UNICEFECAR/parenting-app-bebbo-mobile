@@ -176,16 +176,13 @@ useFocusEffect(() => {
   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   console.log("articleData---",articleData);
 
-  const [filteredData,setfilteredData] = useState(articleData);
+  const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
-
-
-
   
   useFocusEffect(
     React.useCallback(() => {
-      console.log("routes changed--",route);
+      console.log(filteredData,"routes changed--",route);
       async function fetchData() {
         let Entity:any;
           if(route.params?.categoryArray && route.params?.categoryArray.length > 0)
@@ -199,7 +196,10 @@ useFocusEffect(() => {
             setFilteredArticleData([]);
           }
       }
-      fetchData()
+      if(route.params?.backClicked != 'yes')
+      {
+        fetchData()
+      }
     },[route.params?.categoryArray,activeChild?.uuid,languageCode])
   );
   useFocusEffect(
@@ -219,6 +219,10 @@ useFocusEffect(() => {
   );
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",articleData);
+    if(route.params?.backClicked == 'yes')
+    {
+      navigation.setParams({backClicked:'no'})
+    }
     if(articleData != '')
     {
       setLoadingArticle(true);
