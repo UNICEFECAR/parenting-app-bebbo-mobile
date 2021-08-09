@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text  } from 'react-native';
+import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler  } from 'react-native';
 import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -71,6 +71,19 @@ const DetailsScreen = ({route, navigation}: any) => {
   // detailDataToUse = detailData;
   // setDetailDataToUse(detailData);
   // fromScreen === 'Activities'
+  useEffect(() => {
+    const backAction = () => {
+      onHeaderBack()
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
   useEffect(() => {
       const functionOnLoad = async () => {
         if(fromScreen == "VaccinationTab" ||fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone")
@@ -210,6 +223,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     }
   };
   const onHeaderBack =()=>{
+    // console.log("onHeaderBack called");
     if(fromScreen == "ChildDevelopment")
     {
       // console.log("detail screen----",currentSelectedChildId);
