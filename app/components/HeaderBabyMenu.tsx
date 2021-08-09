@@ -370,10 +370,10 @@ const styles = StyleSheet.create({
     position:'relative',
     zIndex:3,
        ...Platform.select({
-      ios: {
-        top:getStatusBarHeight(0)>20?headerHeight:37,
-        marginTop:getStatusBarHeight(0)>20?headerHeight:37,
-      },
+        ios: {
+          top:getStatusBarHeight(0)>20?headerHeight:37,
+          marginTop:getStatusBarHeight(0)>20?headerHeight:37
+        },
       android: {
         marginTop:headerHeight,
       },
