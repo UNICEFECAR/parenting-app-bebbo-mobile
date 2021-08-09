@@ -1,45 +1,80 @@
-name: iOS
-
-
+name: iOS Staging
+on:
+  create:
+    tags:
+      - v*
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build description'
 
 jobs:
- install-and-test:
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js v14
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
+  build:
+    runs-on: macOS-latest
+    # timeout-minutes: 30
 
-    - name: Cache npm dependencies
-      uses: actions/cache@v2
-      with:
-        path: '~/.npm'
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - run: npm ci
+    steps:
     
- build-ios:
-    needs: install-and-test
-    runs-on: [self-hosted, macos]
-    steps: 
-      - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: |
-          npm install
-      - name: Install pod dependencies
-        run: |
-          cd ios && pod install
-      - name: Build app
-        run: |       
-          xcodebuild -workspace ParentBuddyApp.xcworkspace -scheme ParentBuddyApp archive -archivePath ParentBuddyApp.xcarchive -allowProvisioningUpdates
-          xcodebuild -exportArchive -archivePath ./ParentBuddyApp.xcarchive -exportPath . -exportOptionsPlist ParentBuddyApp/Info.plist
-          mv ParentBuddyApp.ipa ../ParentBuddyApp.ipa
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Node modules cache
+        uses: actions/cache@v2
         with:
-          name: ParentBuddyApp.ipa
-          path: ios/build/
-          
+          path: '**/node_modules'
+          key: [Put a hash key here based on yarn.lock]
+
+      - name: Ruby cache
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: [Put a hash key here based on gemfile.lock]
+
+      - name: Use Node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Install firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Decode cert file
+        run: echo -n "$P12_CODE_SIGNING_CERT_BASE64" | base64 -d > ./cert.p12
+        env:
+          P12_CODE_SIGNING_CERT_BASE64: $
+
+      - name: Decode adhoc prov file
+        run: echo -n "$MOBILEPROVISION_ADHOC_BASE64" | base64 -d > ./mobileProvisionAdhoc.mobileprovision
+        env:
+          MOBILEPROVISION_ADHOC_BASE64: $
+      
+      - name: Decode appstore prov file
+        run: echo -n "$MOBILEPROVISION_APPSTORE_BASE64" | base64 -d > ./mobileProvisionAppstore.mobileprovision
+        env:
+          MOBILEPROVISION_APPSTORE_BASE64: $
+      
+      - name: Decode widget adhoc prov file
+        run: echo -n "$MOBILEPROVISION_WIDGET_ADHOC_BASE64" | base64 -d > ./mobileProvisionWidgetAdhoc.mobileprovision
+        env:
+          MOBILEPROVISION_WIDGET_ADHOC_BASE64: $
+      
+      - name: Decode widget appstore prov file
+        run: echo -n "$MOBILEPROVISION_WIDGET_APPSTORE_BASE64" | base64 -d > ./mobileProvisionWidgetAppstore.mobileprovision
+        env:
+          MOBILEPROVISION_WIDGET_APPSTORE_BASE64: $
+
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle check || bundle install
+
+      - name: Fastlane
+        run: bundle exec fastlane ios distribute_staging
+        env:
+          FIREBASE_TOKEN: $
