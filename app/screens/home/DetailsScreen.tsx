@@ -31,6 +31,7 @@ import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from 
 import WebView from "react-native-webview";
 import Image from '../../services/ImageLoad';
 import { DefaultImage } from '@components/shared/Image';
+import ProgressiveImage from '../../services/ProgressiveFastImage';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -148,7 +149,7 @@ const DetailsScreen = ({route, navigation}: any) => {
          if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
           console.log("Image already exists11");
           console.log("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())
-          setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
+          //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
           setImageLoader(false);
         }else {
            console.log("11Image already exists");
@@ -162,7 +163,7 @@ const DetailsScreen = ({route, navigation}: any) => {
        })
          const imagesDownloadResult = await downloadImages(imageArray);
         //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
-         setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
+         //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
          setImageLoader(false);
         }
       }
@@ -308,19 +309,36 @@ const DetailsScreen = ({route, navigation}: any) => {
                 //  loadingStyle={{ size: 'large', color: '#000' }}
                 //  source={{uri :cover_image}}
                 //  />
-                <Image 
-                renderIndicator={renderIndicator}
-                source={{uri :cover_image}}
-                indicator={null}
-                renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={{width: '100%', height: 200}} />) 
-  }}
-                indicatorProps={{
-                  size: 'large',
-                  borderWidth: 0,
-                  color: '#000',
-                }}
-                style={{width: '100%', height: 200}}
-                />
+  //               <Image 
+  //               renderIndicator={renderIndicator}
+  //               source={{uri :cover_image}}
+  //               indicator={null}
+  //               renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={{width: '100%', height: 200}} />) 
+  // }}
+  //               indicatorProps={{
+  //                 size: 'large',
+  //                 borderWidth: 0,
+  //                 color: '#000',
+  //               }}
+  //               style={{width: '100%', height: 200}}
+  //               />
+                <ProgressiveImage 
+thumbnailSource={{uri:encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}} 
+source={{uri:encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}} 
+imageAnimationDuration={10000}
+style={{width: '100%', height: 200}}
+blurRadius={0}
+loadingImageComponent={<ActivityIndicator size="large" color="#000" style={{ 
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  position: "absolute",
+  alignItems: "center",
+  alignSelf: "center",
+  justifyContent: "center"}}/>}
+errorSource={require('@assets/trash/defaultArticleImage.png')}
+/>
                  :
                  <DefaultImage
                  style={{width: '100%', height: 200}}
