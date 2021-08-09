@@ -76,6 +76,7 @@ const ContainerView = styled.SafeAreaView`
 const Activities = ({ route,navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const flatListRef = React.useRef()
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -115,7 +116,7 @@ const Activities = ({ route,navigation }: Props) => {
   const [otherGames, setotherGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredData,setfilteredData] = useState([]);
-
+  const [showNoData,setshowNoData] = useState(false);
   const setIsModalOpened = async (varkey: any) => {
     if(modalVisible == true)
     {
@@ -128,14 +129,18 @@ const Activities = ({ route,navigation }: Props) => {
     console.log("in activity focuseffect without callback",activityModalOpened);
     setModalVisible(activityModalOpened);
   })
+
+  const toTop = () => {
+    // use current
+    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+}
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
       setLoading(true);
       // setModalVisible(true);
-      
+      console.log("in usefocuseffect ",route.params);
       async function fetchData() {
-        console.log("categoryarray--",route.params?.categoryArray);
           if(route.params?.categoryArray)
           {
             // console.log(route.params?.categoryArray);
@@ -147,13 +152,20 @@ const Activities = ({ route,navigation }: Props) => {
             setFilteredActivityData([]);
           }
       }
-      fetchData()
+      if(route.params?.backClicked != 'yes')
+      {
+        fetchData()
+      }
 
     },[selectedChildActivitiesData,route.params?.categoryArray])
   );
 
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
+    if(route.params?.backClicked == 'yes')
+    {
+      navigation.setParams({backClicked:'no'})
+    }
     setCurrentSelectedChildId(item.id);
     let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     // filteredData =filteredData.map( item => ({ ...item, name:item.name }) )
@@ -179,23 +191,27 @@ const Activities = ({ route,navigation }: Props) => {
         });
         // console.log(imageArray,"..imageArray..");
        
-  }
+    }
   }
   useFocusEffect(
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
-      console.log(route.params?.currentSelectedChildId);
-      if(route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0)
+      console.log("in usefocuseffect ",route.params);
+      if(route.params?.backClicked != 'yes')
       {
-        // console.log(route.params?.categoryArray);
-        const firstChildDevData = childAge.filter((x:any)=> x.id == route.params?.currentSelectedChildId);
-        // console.log("firstChildDevData---",firstChildDevData);
-        showSelectedBracketData(firstChildDevData[0]);
-      }
-      else {
-        const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
-        console.log("firstChildDevData---",firstChildDevData);
-        showSelectedBracketData(firstChildDevData[0]);
+        setshowNoData(false);
+        if(route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0)
+        {
+          // console.log(route.params?.categoryArray);
+          const firstChildDevData = childAge.filter((x:any)=> x.id == route.params?.currentSelectedChildId);
+          // console.log("firstChildDevData---",firstChildDevData);
+          showSelectedBracketData(firstChildDevData[0]);
+        }
+        else {
+          const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
+          console.log("firstChildDevData---",firstChildDevData);
+          showSelectedBracketData(firstChildDevData[0]);
+        }
       }
       
     }, [activeChild?.uuid,languageCode,route.params?.currentSelectedChildId])
@@ -204,16 +220,17 @@ const Activities = ({ route,navigation }: Props) => {
     React.useCallback(() => {
       
       return () => {
-        setModalVisible(false);
-        setFilterArray([]);
-        setCurrentSelectedChildId(0);
-        setSelectedChildActivitiesData([]);
-        setsuggestedGames([]);
-        setotherGames([]);
-        setLoading(false);
-        setfilteredData([]);
-
+        // setModalVisible(false);
+        // setFilterArray([]);
+        // setCurrentSelectedChildId(0);
+        // setSelectedChildActivitiesData([]);
+        // setsuggestedGames([]);
+        // setotherGames([]);
+        // setLoading(false);
+        // setfilteredData([]);
+        // setshowNoData(false);
         console.log("in unmount-",route.params?.currentSelectedChildId);
+        navigation.setParams({backClicked:'no'})
           if(route.params?.currentSelectedChildId)
           {
             navigation.setParams({currentSelectedChildId:0})
@@ -237,6 +254,10 @@ const Activities = ({ route,navigation }: Props) => {
   );
   const setFilteredActivityData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",selectedChildActivitiesData);
+    if(route.params?.backClicked == 'yes')
+    {
+      navigation.setParams({backClicked:'no'})
+    }
     if(selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != [])
     {
       console.log("in if");
@@ -245,16 +266,26 @@ const Activities = ({ route,navigation }: Props) => {
         const newArticleData = selectedChildActivitiesData.filter((x:any)=> itemId.includes(x.activity_category));
         setfilteredData(newArticleData);
         setLoading(false);
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 2000);
       }else {
         const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
         setfilteredData(newArticleData);
         setLoading(false);
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 2000);
       }
     }
     else {
       setfilteredData([]);
         setLoading(false);
+        setTimeout(() => {
+          setshowNoData(true);
+        }, 2000);
     }
+    toTop();
   }
   const goToActivityDetail = (item:typeof filteredData[0]) => {
       console.log(selectedChildActivitiesData,"--selectedChildActivitiesData");
@@ -457,7 +488,7 @@ const Activities = ({ route,navigation }: Props) => {
         />
         <FlexCol>
         <View style={{backgroundColor:'#fff'}}>
-        {currentSelectedChildId && currentSelectedChildId != 0 ?
+        {/* {currentSelectedChildId && currentSelectedChildId != 0 ? */}
           <AgeBrackets
             itemColor={headerColorBlack}
             activatedItemColor={headerColor}
@@ -465,8 +496,8 @@ const Activities = ({ route,navigation }: Props) => {
             showSelectedBracketData={showSelectedBracketData}
             ItemTintColor={backgroundColor}
           />
-          : null
-        }</View>
+          {/* : null} */}
+          </View>
         
           <DividerAct></DividerAct>
           <ActivitiesCategories
@@ -479,10 +510,11 @@ const Activities = ({ route,navigation }: Props) => {
           <DividerAct></DividerAct>
 
           <FlexCol>
-                {suggestedGames?.length == 0 && otherGames?.length == 0 ?
+                { showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
                   <Heading4Center>{t('noDataTxt')}</Heading4Center>
                 :null}
                 <FlatList
+                  ref={flatListRef}
                   data={otherGames}
                   renderItem={({ item, index }) => renderActivityItem(item, index)}
                   keyExtractor={(item) => item.id.toString()}

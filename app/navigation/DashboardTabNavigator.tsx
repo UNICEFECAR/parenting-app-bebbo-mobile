@@ -135,7 +135,7 @@ export default () => {
             ),
             unmountOnBlur:true,
           }} />
-        <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{categoryArray: [],currentSelectedChildId:0}}
+        <DashboardBottomTab.Screen name="Activities" component={Activities} initialParams={{categoryArray: [],currentSelectedChildId:0,backClicked:'no'}}
           options={{
             tabBarLabel: t('tabbarLabel2'),
             tabBarIcon: ({ color, size }) => (
@@ -170,7 +170,7 @@ export default () => {
             },
           })}
         />
-        <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{categoryArray: []}}
+        <DashboardBottomTab.Screen name="Articles" component={Articles} initialParams={{categoryArray: [],backClicked:'no'}}
           options={{
             tabBarLabel: t('tabbarLabel4'),
             tabBarIcon: ({ color, size }) => (

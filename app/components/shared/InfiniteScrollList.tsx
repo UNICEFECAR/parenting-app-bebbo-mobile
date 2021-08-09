@@ -86,6 +86,7 @@ const InfiniteScrollList = (props : any) => {
             if(page == 1)
             {
                 setClientData(serverData);
+                toTop();
             }else {
                 setClientData([...clientData, ...serverData]);
             }
@@ -132,7 +133,10 @@ const InfiniteScrollList = (props : any) => {
             onEndReachedCalledDuringMomentum = true;
         }
     };
-
+    const toTop = () => {
+        // use current
+        flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    }
     const onRefresh = () => {
             setRefresh(true);
             if(page != 1)
