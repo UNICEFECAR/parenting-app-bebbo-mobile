@@ -22,7 +22,9 @@ export const PopupOverlay = styled.Pressable`
 export const PopupCloseContainer = styled.Pressable`
   flex-direction: row;
   justify-content: flex-end;
-  width: 100%;
+  width: 100%;;
+  position:relative;
+  z-index:111;
 `;
 export const PopupClose = styled.Pressable`
   flex-direction: row;
@@ -38,7 +40,7 @@ export const PopupClose = styled.Pressable`
 `;
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
-  margin-top:-35px
+  margin-top:-25px
 
 `;
 export const ModalPopupContentVideo = styled.View`
