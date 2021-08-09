@@ -157,8 +157,10 @@ const Childgrowth = ({navigation,route}: Props) => {
 
                 <LastChildMeasure />
 
-                <>
+                <> 
+                <FlexCol>
                   <BgContainer>
+                    <FlexCol>
                     <TabBarContainerBrd
                       style={{
                         maxHeight: 50,
@@ -186,12 +188,17 @@ const Childgrowth = ({navigation,route}: Props) => {
                         );
                       })}
                     </TabBarContainerBrd>
-
+                    </FlexCol>
+                    <FlexCol>
                     <SideSpacing10>
+                      <FlexCol>
                       {selectedIndex == 0 ? <ChartWeightForHeight /> : null}
                       {selectedIndex == 1 ? <ChartHeightForAge /> : null}
+                      </FlexCol>
                     </SideSpacing10>
+                    </FlexCol>
                   </BgContainer>
+                  </FlexCol>
                 </>
 
                

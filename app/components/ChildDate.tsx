@@ -23,7 +23,7 @@ import {
   LabelText
 } from './shared/ChildSetupStyle';
 import FormPrematureContainer, {
-  FormInfoLabel
+  FormInfoLabel,FormInfoPress
 } from './shared/FormPrematureContainer';
 import { FlexDirRowSpace,FlexFDirRowSpace } from './shared/FlexBoxStyle';
 import ModalPopupContainer, {
@@ -275,9 +275,9 @@ const ChildDate = (props: any) => {
           </FormOuterCheckbox>
 
           <FormInfoLabel>
-            <Pressable onPress={() => setModalVisible(true)}>
+            <FormInfoPress onPress={() => setModalVisible(true)}>
               <Icon name="ic_info" size={15} color="#FFF" />
-            </Pressable>
+            </FormInfoPress>
           </FormInfoLabel>
         </FormPrematureContainer>
 
