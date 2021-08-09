@@ -86,10 +86,10 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
         visible={modalVisible}
         onRequestClose={() => {
           // Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
         }}
         onDismiss={() => {
-          setModalVisible(!modalVisible);
+          setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
