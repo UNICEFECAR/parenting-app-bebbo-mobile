@@ -139,7 +139,7 @@ const Activities = ({ route,navigation }: Props) => {
       // console.log("useFocusEffect called");
       setLoading(true);
       // setModalVisible(true);
-      console.log("in usefocuseffect ",route.params);
+      console.log("in usefocuseffect 2",route.params);
       async function fetchData() {
           if(route.params?.categoryArray)
           {
@@ -162,10 +162,10 @@ const Activities = ({ route,navigation }: Props) => {
 
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
-    if(route.params?.backClicked == 'yes')
-    {
-      navigation.setParams({backClicked:'no'})
-    }
+    // if(route.params?.backClicked == 'yes')
+    // {
+    //   navigation.setParams({backClicked:'no'})
+    // }
     setCurrentSelectedChildId(item.id);
     let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     // filteredData =filteredData.map( item => ({ ...item, name:item.name }) )
@@ -196,7 +196,7 @@ const Activities = ({ route,navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
-      console.log("in usefocuseffect ",route.params);
+      console.log("in usefocuseffect 1",route.params);
       if(route.params?.backClicked != 'yes')
       {
         setshowNoData(false);
@@ -211,6 +211,11 @@ const Activities = ({ route,navigation }: Props) => {
           const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
           console.log("firstChildDevData---",firstChildDevData);
           showSelectedBracketData(firstChildDevData[0]);
+        }
+      }else{
+        if(route.params?.backClicked == 'yes')
+        {
+          navigation.setParams({backClicked:'no'})
         }
       }
       
@@ -254,10 +259,10 @@ const Activities = ({ route,navigation }: Props) => {
   );
   const setFilteredActivityData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",selectedChildActivitiesData);
-    if(route.params?.backClicked == 'yes')
-    {
-      navigation.setParams({backClicked:'no'})
-    }
+    // if(route.params?.backClicked == 'yes')
+    // {
+    //   navigation.setParams({backClicked:'no'})
+    // }
     if(selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != [])
     {
       console.log("in if");
