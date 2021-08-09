@@ -164,7 +164,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const setNewFilteredArticleData = (itemId:any) => {
     navigation.navigate({
       name: fromScreen,
-      params: {categoryArray:itemId},
+      params: {categoryArray:itemId,backClicked:'no'},
       merge: true,
     });
   }
@@ -233,14 +233,15 @@ const DetailsScreen = ({route, navigation}: any) => {
       console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId},
+        params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
         merge: true,
       });
     }
     else {
+      // navigation.goBack();
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
-        params: {categoryArray:listCategoryArray},
+        params: {categoryArray:listCategoryArray,backClicked:'yes'},
         merge: true,
       });
     }
