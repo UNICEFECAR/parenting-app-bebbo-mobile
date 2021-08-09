@@ -52,10 +52,10 @@ jobs:
         run: yarn
 
       - name: Decode keystore file
-        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./my-release-key.keystore
+        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
         working-directory: ./android/app
         env:
-          ANDROID_KEYSTORE_FILE: $
+          ANDROID_KEYSTORE_FILE: ${{ secrets.MYAPP_UPLOAD_STORE_FILE }
 
       - name: Bundle install
         run: |
@@ -65,7 +65,7 @@ jobs:
       - name: Fastlane
         run: bundle exec fastlane android distribute_staging
         env:
-          MYAPP_RELEASE_STORE_PASSWORD: $
-          MYAPP_RELEASE_KEY_ALIAS: $
-          MYAPP_RELEASE_KEY_PASSWORD: $
-          FIREBASE_TOKEN: $
+          MYAPP_RELEASE_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+          MYAPP_RELEASE_KEY_ALIAS: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
+          MYAPP_RELEASE_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+          FIREBASE_TOKEN: ${{ secrets.SuperSecret }}
