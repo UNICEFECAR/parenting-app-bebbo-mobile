@@ -83,6 +83,7 @@ import {
   setInitialWeightValues
 } from '../../services/growthService';
 import { formatStringDate } from '../../services/Utils';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -97,6 +98,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
+  const handleMeasureConfirm = (event:any) => {
+    const date=event;
+    console.log("A date has been picked: ", date);
+    onmeasureDateChange(event,date);
+    setMeasureDatePickerVisibility(false);
+  };
+
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
@@ -317,7 +326,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           </HeaderRowView>
           <FlexCol>
             <MainContainer>
-              <FormInputGroup onPress={() => setmeasureDateShow(true)}>
+              <FormInputGroup onPress={() => {
+                if(Platform.OS == 'ios'){
+                  setMeasureDatePickerVisibility(true);
+                }
+                else{
+                  setmeasureDateShow(true);
+                }
+                }}>
                 <FormInputText>
                   {t('growthScreendateMeasurementText')}
                 </FormInputText>
@@ -354,7 +370,18 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   </FormInputBox>
                 ) : (
                   <FormInputBox>
-                  <DateTimePicker
+                        <FormDateText>
+                      <Text>
+                        {' '}
+                        {measureDate
+                          ? 
+                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                          //     'dd/MM/yyyy',
+                          //   )
+                          formatStringDate(measureDate,luxonLocale)
+                          : t('growthScreenenterDateMeasurementText')}
+                      </Text>
+                  {/* <DateTimePicker
                     testID="measureDatePicker"
                     value={editGrowthItem ? new Date(measureDate) : new Date()}
                     mode={'date'}
@@ -363,7 +390,21 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                     minimumDate={new Date(minChildGrwothDate)}
                     onChange={onmeasureDateChange}
                     style={{backgroundColor: 'white', flex: 1}}
-                  />
+                  /> */}
+                     <DateTimePickerModal
+              isVisible={isMeasureDatePickerVisible}
+              mode="date"
+              onConfirm={handleMeasureConfirm}
+              date={editGrowthItem ? new Date(measureDate) : new Date()}
+              onCancel={() => {
+                // Alert.alert('Modal has been closed.');
+                setMeasureDatePickerVisibility(false);
+              }}
+           maximumDate={new Date()}
+           minimumDate={new Date(minChildGrwothDate)}
+              />
+</FormDateText>
+
                   <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
