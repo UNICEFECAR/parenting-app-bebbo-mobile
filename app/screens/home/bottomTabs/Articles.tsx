@@ -22,7 +22,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4Center, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,View,
@@ -58,7 +58,7 @@ const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
-
+  const flatListRef = useRef(null);
   const setIsModalOpened = async (varkey: any) => {
     if(modalVisible == true)
     {
@@ -222,6 +222,10 @@ useFocusEffect(() => {
       }
     },[])
   );
+  const toTop = () => {
+    // use current
+    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+}
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",articleData);
     // if(route.params?.backClicked == 'yes')
@@ -235,20 +239,23 @@ useFocusEffect(() => {
       {
         const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
         setfilteredData(newArticleData);
-        if(newArticleData.length == 0)
-        {
-          setLoadingArticle(false);
-        }
-        // setLoadingArticle(false);
+        // if(newArticleData.length == 0)
+        // {
+        //   setLoadingArticle(false);
+        // }
+        setLoadingArticle(false);
+        toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }else {
         const newArticleData = articleData != '' ? articleData : [];
         setfilteredData(newArticleData);
-        if(newArticleData.length == 0)
-        {
-          setLoadingArticle(false);
-        }
-        // setLoadingArticle(false);
+        // if(newArticleData.length == 0)
+        // {
+        //   setLoadingArticle(false);
+        // }
+
+        setLoadingArticle(false);
+        toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }
     }
@@ -316,7 +323,14 @@ useFocusEffect(() => {
               <DividerArt></DividerArt>
               {/* </FlexCol> */}
               {filteredData.length> 0 ? 
-                <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                <FlatList
+                  ref={flatListRef}
+                  data={filteredData}
+                  initialNumToRender={10}
+                  renderItem={renderArticleItem}
+                  keyExtractor={(item) => item.id.toString()}
+                  />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
               {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
