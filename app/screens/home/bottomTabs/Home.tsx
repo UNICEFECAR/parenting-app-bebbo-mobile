@@ -85,11 +85,21 @@ const Home = () => {
       currentCount++;
       // console.log(currentCount,1);
       if (Platform.OS === 'android') {
-        ToastAndroid.show('Press again to close!', ToastAndroid.SHORT);
-        // console.log(currentCount,2);
+        ToastAndroid.show('Press again to close!', 6000);
+        console.log("in condition",currentCount);
+        setTimeout(() => {
+          console.log("in settimeout",currentCount);
+          currentCount = 0;
+          // console.log(currentCount,5);
+        }, 2000);
         return true;
       } else {
         Alert.alert('Press again to close!');
+        setTimeout(() => {
+          console.log("in settimeout",currentCount);
+          currentCount = 0;
+          // console.log(currentCount,5);
+        }, 2000);
         return true;
       }
     } else {
@@ -97,11 +107,7 @@ const Home = () => {
       // exit the app here using
       BackHandler.exitApp();
     }
-    setTimeout(() => {
-      // console.log(currentCount,4);
-      currentCount = 0;
-      // console.log(currentCount,5);
-    }, 5000);
+    
   };
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
