@@ -17,6 +17,7 @@ export default class ScrollingButtonMenu extends React.Component {
         this.state = {
             index: '',
             scrollindex:'',
+            scrollindexarrow:'',
             dataSourceCords2:[]
         };
     }
@@ -75,32 +76,36 @@ export default class ScrollingButtonMenu extends React.Component {
     }
 
     _scrollTo() {
-        const {index, dataSourceCords2} = this.state;
+        const {index,scrollindex, dataSourceCords2} = this.state;
         // console.log(dataSourceCords2[index],"scrolltoindex--",index);
         // console.log("this.dataSourceCords--",this.dataSourceCords);
-        const screen1 = screenWidth / 2;
-        const elementOffset = this.dataSourceCords[index];
-        // console.log(this.dataSourceCords,"elementOffset--",elementOffset);
-        if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
-            let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
-            this.scroll.scrollTo({
-                y: 0,
-                x: x,
-                animated: true,
-            });
-            this.setState({scrollindex : index});
+        console.log(index,"--scrollindex--",scrollindex);
+        if(index != scrollindex)
+        {
+            const screen1 = screenWidth / 2;
+            const elementOffset = this.dataSourceCords[index];
+            console.log(this.dataSourceCords,"elementOffset--",elementOffset);
+            if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
+                let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
+                this.scroll.scrollTo({
+                    y: 0,
+                    x: x,
+                    animated: true,
+                });
+                this.setState({scrollindex : index});
+                this.setState({scrollindexarrow : index});
+            }
         }
-
     }
 
     rightArrow(items) {
-        const {scrollindex} = this.state;
+        const {scrollindexarrow} = this.state;
         let newindex;
-        if(scrollindex == '' || scrollindex == 0)
+        if(scrollindexarrow == '' || scrollindexarrow == 0)
         {
             newindex = items[0 + 2].id;
         }else {
-            let innerindex = ((items.findIndex(x => x.id == scrollindex) + 2) < items.length) ? (items.findIndex(x => x.id == scrollindex) + 2) : (items.length - 1)
+            let innerindex = ((items.findIndex(x => x.id == scrollindexarrow) + 2) < items.length) ? (items.findIndex(x => x.id == scrollindexarrow) + 2) : (items.length - 1)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
@@ -112,17 +117,17 @@ export default class ScrollingButtonMenu extends React.Component {
                 x: x,
                 animated: true,
             });
-            this.setState({scrollindex : newindex});
+            this.setState({scrollindexarrow : newindex});
         }
     }
     leftArrow(items) {
-        const {scrollindex} = this.state;
+        const {scrollindexarrow} = this.state;
         let newindex;
-        if(scrollindex == '' || scrollindex == 0)
+        if(scrollindexarrow == '' || scrollindexarrow == 0)
         {
             newindex = items[0].id;
         }else {
-            let innerindex = ((items.findIndex(x => x.id == scrollindex) - 2) >= 0) ? (items.findIndex(x => x.id == scrollindex) - 2) : (0)
+            let innerindex = ((items.findIndex(x => x.id == scrollindexarrow) - 2) >= 0) ? (items.findIndex(x => x.id == scrollindexarrow) - 2) : (0)
             newindex = items[innerindex].id
         }
         const screen1 = screenWidth / 2;
@@ -134,7 +139,7 @@ export default class ScrollingButtonMenu extends React.Component {
                 x: x,
                 animated: true,
             });
-            this.setState({scrollindex : newindex});
+            this.setState({scrollindexarrow : newindex});
         }
     }
 
@@ -176,7 +181,7 @@ export default class ScrollingButtonMenu extends React.Component {
                                     // console.log("in onpress",route.id);
                                         this._scrollTo();
                                         return this.props.onPress(route);
-                                    }, 30),
+                                    }, 0),
                                 )}
                                 onLayout={(event) => {
                                     // console.log("event--",event);
@@ -189,7 +194,7 @@ export default class ScrollingButtonMenu extends React.Component {
                                             // console.log("in onpress",route.id);
                                                 this._scrollTo();
                                                 // return this.props.onPress(route);
-                                        }, 30),)
+                                        }, 0),)
                                         // if(this.dataSourceCords)
                                         // {
                                         //     // this.savesyncData(JSON.stringify(this.dataSourceCords))
