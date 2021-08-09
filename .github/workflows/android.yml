@@ -1,36 +1,71 @@
 name: Android
 
-on: [push]
+on:
+  create:
+    tags:
+      - v*
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Build description'
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    container:
+      image: docker://fabernovel/android:api-29-v1.1.0
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js v14
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
+      - name: Checkout
+        uses : actions/checkout@v2
 
-    - name: Cache npm dependencies
-      uses: actions/cache@v2
-      with:
-        path: '~/.npm'
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-    - run: npm ci
+      - name: Node modules cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: [Put a hash key here based on yarn.lock]
 
-    - name: Clean Gradle
-      run: cd android && ./gradlew clean 
+      - name: Ruby cache
+        uses: actions/cache@v1.2.0
+        with:
+          path: vendor/bundle
+          key: [Put a hash key here based on gemfile.lock]
 
-    - name: Make Gradlew Executable
-      run: cd android && chmod +x ./gradlew
+      - name: Gradle cache
+        uses: actions/cache@v1.2.0
+        with:
+          path: /root/.gradle
+          key: [Put a hash key here based on *.gradle]
 
-    - name: Build Android App Bundle
-      run: cd android && rm -rf app/src/main/res/drawable-* && rm -rf app/build/* && ./gradlew bundleRelease --no-daemon
-      
-    - uses: actions/upload-artifact@v2
-      with:
-        name: android-apk
-        path: '**/*.apk'
+      - name: Use Node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Install firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Decode keystore file
+        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./my-release-key.keystore
+        working-directory: ./android/app
+        env:
+          ANDROID_KEYSTORE_FILE: $
+
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle check || bundle install
+
+      - name: Fastlane
+        run: bundle exec fastlane android distribute_staging
+        env:
+          MYAPP_RELEASE_STORE_PASSWORD: $
+          MYAPP_RELEASE_KEY_ALIAS: $
+          MYAPP_RELEASE_KEY_PASSWORD: $
+          FIREBASE_TOKEN: $
