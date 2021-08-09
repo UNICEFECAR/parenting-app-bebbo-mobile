@@ -323,11 +323,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
           <ScrollView style={{flex: 9}}>
             <MainContainer>
               <FormInputGroup onPress={() => {
+                setmeasureDateShow(true);
                 if(Platform.OS == 'ios'){
                   setMeasureDatePickerVisibility(true);
-                }
-                else{
-                  setmeasureDateShow(true);
                 }
               }}>
                 {/* <FormInputText>

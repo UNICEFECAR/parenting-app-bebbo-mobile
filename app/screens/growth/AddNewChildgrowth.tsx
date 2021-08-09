@@ -327,11 +327,9 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           <FlexCol>
             <MainContainer>
               <FormInputGroup onPress={() => {
+                setmeasureDateShow(true);
                 if(Platform.OS == 'ios'){
-                  setMeasureDatePickerVisibility(true);
-                }
-                else{
-                  setmeasureDateShow(true);
+                setMeasureDatePickerVisibility(true);
                 }
                 }}>
                 <FormInputText>

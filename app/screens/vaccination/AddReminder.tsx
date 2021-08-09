@@ -57,6 +57,8 @@ import {
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -86,6 +88,9 @@ const AddReminder = ({route, navigation}: any) => {
   const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [timeTouched, setTimeTouched] = useState<Boolean>(false);
+  const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
+  const [isMeasureTimePickerVisible, setMeasureTimePickerVisibility] = useState(false);
+
   // const defaultDatePickerValue = new Date();
   // const defaulttimePickerValue = new Date();
   const languageCode = useAppSelector(
@@ -128,6 +133,21 @@ const AddReminder = ({route, navigation}: any) => {
   };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
+    if(Platform.OS == 'ios'){
+      setMeasureDatePickerVisibility(true);
+    }
+  };
+  const handleMeasureDateConfirm = (event:any) => {
+    const date=event;
+    console.log("A date has been picked: ", date);
+    onmeasureChange(event,date);
+    setMeasureDatePickerVisibility(false);
+  };
+  const handleMeasureTimeConfirm = (event:any) => {
+    const time=event;
+    console.log("A date has been picked: ", time);
+    onmeasureTimeChange(event,time);
+    setMeasureTimePickerVisibility(false);
   };
 
   const onmeasureTimeChange = (event: any, selectedTime: any) => {
@@ -143,6 +163,9 @@ const AddReminder = ({route, navigation}: any) => {
   };
   const showmeasureTimepicker = () => {
     setmeasureShowTime(true);
+    if(Platform.OS == 'ios'){
+      setMeasureDatePickerVisibility(true);
+      }
   };
   const isFormDisabled = () => {
     if (measureDate && measureTime) {
@@ -263,7 +286,17 @@ const AddReminder = ({route, navigation}: any) => {
               </FormInputBox>
             ) : (
               <FormInputBox>
-                <DateTimePicker
+                <FormDateText>
+                  <Text>
+                    {measureDate
+                      ? 
+                      // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                      //     'dd/MM/yyyy',
+                      //   )
+                      formatStringDate(measureDate,luxonLocale)
+                      : t('vcReminderDate')}
+                  </Text>
+                {/* <DateTimePicker
                   testID="measuredatePicker"
                   value={editReminderItem ? new Date(measureDate) : new Date()}
                   mode={'date'}
@@ -272,7 +305,20 @@ const AddReminder = ({route, navigation}: any) => {
                   // maximumDate => childDOB +72 weeks
                   onChange={onmeasureChange}
                   style={{backgroundColor: 'white', flex: 1}}
-                />
+                /> */}
+              <DateTimePickerModal
+              isVisible={isMeasureDatePickerVisible}
+              mode="date"
+              onConfirm={handleMeasureDateConfirm}
+              date={editReminderItem ? new Date(measureDate) : new Date()}
+              onCancel={() => {
+                // Alert.alert('Modal has been closed.');
+                setMeasureDatePickerVisibility(false);
+              }}
+              minimumDate={new Date()}
+              />
+
+                </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_calendar" size={20} color="#000" />
                 </FormDateAction>
@@ -318,18 +364,28 @@ const AddReminder = ({route, navigation}: any) => {
                 </FormInputBox>
               ) : (
                 <FormInputBox>
-                  <DateTimePicker
-                    testID="measuretimePicker"
-                    value={
-                      editReminderItem ? new Date(measureTime) : new Date()
-                    }
-                    mode={'time'}
-                    display="default"
-                    is24Hour={true}
-                    minimumDate={new Date()}
-                    onChange={onmeasureTimeChange}
-                    style={{backgroundColor: 'white', flex: 1}}
-                  />
+                  <FormDateText>
+                    <Text>
+                      {measureTime
+                        ? 
+                        // DateTime.fromJSDate(new Date(measureTime)).toFormat(
+                        //     'hh:mm a',
+                        //   )
+                        formatStringTime(measureTime,luxonLocale)
+                        : t('vcReminderTime')}
+                    </Text>
+                   <DateTimePickerModal
+              isVisible={isMeasureTimePickerVisible}
+              mode="time"
+              onConfirm={handleMeasureTimeConfirm}
+              date={ editReminderItem ? new Date(measureTime) : new Date()}
+              onCancel={() => {
+                // Alert.alert('Modal has been closed.');
+                setMeasureTimePickerVisibility(false);
+              }}
+              minimumDate={new Date()}
+              />
+                  </FormDateText>
                   <FormDateAction>
                     <Icon
                       name="ic_time"
