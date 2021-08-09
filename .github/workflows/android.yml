@@ -53,9 +53,10 @@ jobs:
 
       - name: Decode keystore file
         run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
-        working-directory: ./android/app
+        working-directory: ./android
         env:
-          ANDROID_KEYSTORE_FILE: ${{ secrets.MYAPP_UPLOAD_STORE_FILE }
+          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
       - name: Bundle install
         run: |
@@ -68,4 +69,4 @@ jobs:
           MYAPP_RELEASE_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_RELEASE_KEY_ALIAS: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
           MYAPP_RELEASE_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-          FIREBASE_TOKEN: ${{ secrets.SuperSecret }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
