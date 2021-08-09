@@ -4,7 +4,7 @@ import { RelatedArticlesProps } from '@screens/home/DetailsScreen';
 import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Pressable, StyleSheet, View,Text  } from 'react-native';
+import { FlatList, Pressable, StyleSheet, View,Text, ActivityIndicator  } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -15,6 +15,7 @@ import ShareFavButtons from './ShareFavButtons';
 import Image from '../../services/ImageLoad';
 import RNFS from 'react-native-fs';
 import { DefaultImage } from './Image';
+import ProgressiveImage from '../../services/ProgressiveFastImage';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -207,19 +208,36 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
               //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
               //   source={{ uri: encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()) }}
               // /> 
-              <Image 
-              renderIndicator={renderIndicator}
-  source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  indicator={null}
-  renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-  }}
-  indicatorProps={{
-    size: 'large',
-    borderWidth: 0,
-    color: '#000',
-  }}
-  style={styles.cardImage}
-  />
+  //             <Image 
+  //             renderIndicator={renderIndicator}
+  // source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
+  // indicator={null}
+  // renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
+  // }}
+  // indicatorProps={{
+  //   size: 'large',
+  //   borderWidth: 0,
+  //   color: '#000',
+  // }}
+  // style={styles.cardImage}
+  // />
+  <ProgressiveImage 
+thumbnailSource={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
+source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
+imageAnimationDuration={10000}
+style={styles.cardImage}
+blurRadius={0}
+loadingImageComponent={<ActivityIndicator size="large" color="#000" style={{ 
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  position: "absolute",
+  alignItems: "center",
+  alignSelf: "center",
+  justifyContent: "center"}}/>}
+errorSource={require('@assets/trash/defaultArticleImage.png')}
+/>
               : <DefaultImage
                 style={styles.cardImage}
                 source={require('@assets/trash/defaultArticleImage.png')} />
