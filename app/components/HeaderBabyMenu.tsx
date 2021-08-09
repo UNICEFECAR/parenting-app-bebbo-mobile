@@ -16,7 +16,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
-  Modal, Platform, Pressable, StyleSheet, View
+  Modal, Platform, Pressable, StyleSheet, View,StatusBar
 } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import {
@@ -25,6 +25,7 @@ import {
   isFutureDate,
   setActiveChild
 } from '../services/childCRUD';
+import { getStatusBarHeight } from '../services/StatusBarHeight';
 import { formatDate } from '../services/Utils';
 import {
   ButtonContainer,
@@ -88,7 +89,7 @@ const HeaderBabyMenu = (props: any) => {
   const SortedchildList = [...childList].sort((a: any, b: any) => {
     if (a.uuid == currentActiveChild) return -1;
   });
-  console.log(currentActiveChild, "..currentActiveChild..");
+  console.log(getStatusBarHeight(0), "..getStatusBarHeight..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
     console.log(genders, ".genders.")
     const genderLocal =
@@ -370,8 +371,8 @@ const styles = StyleSheet.create({
     zIndex:3,
        ...Platform.select({
       ios: {
-        top:headerHeight,
-        marginTop:headerHeight,
+        top:getStatusBarHeight(0)>20?headerHeight:37,
+        marginTop:getStatusBarHeight(0)>20?headerHeight:37,
       },
       android: {
         marginTop:headerHeight,

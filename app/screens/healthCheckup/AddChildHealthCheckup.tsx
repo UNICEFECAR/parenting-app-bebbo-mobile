@@ -82,6 +82,7 @@ import {
   setInitialWeightValues
 } from '../../services/growthService';
 import { formatStringDate } from '../../services/Utils';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -114,6 +115,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
+  const handleMeasureConfirm = (event:any) => {
+    const date=event;
+    console.log("A date has been picked: ", date);
+    onmeasureDateChange(event,date);
+    setMeasureDatePickerVisibility(false);
+  };
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [isMeasured, setIsMeasured] = useState(false);
@@ -314,7 +322,14 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
 
           <ScrollView style={{flex: 9}}>
             <MainContainer>
-              <FormInputGroup onPress={() => setmeasureDateShow(true)}>
+              <FormInputGroup onPress={() => {
+                if(Platform.OS == 'ios'){
+                  setMeasureDatePickerVisibility(true);
+                }
+                else{
+                  setmeasureDateShow(true);
+                }
+              }}>
                 {/* <FormInputText>
           <Heading3>{t('hcdateText')}</Heading3>
           </FormInputText> */}
@@ -351,7 +366,18 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                   </FormInputBox>
                 ) : (
                   <FormInputBox>
-                    <DateTimePicker
+                     <FormDateText>
+                      <Text>
+                        {' '}
+                        {measureDate
+                          ? 
+                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                          //     'dd/MM/yyyy',
+                          //   )
+                          formatStringDate(measureDate,luxonLocale)
+                          : t('vcScreenenterDateText')}
+                      </Text>
+                    {/* <DateTimePicker
                       testID="measureDatePicker"
                       value={
                         editGrowthItem ? new Date(measureDate) : new Date()
@@ -362,7 +388,21 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       minimumDate={new Date(minChildGrwothDate)}
                       onChange={onmeasureDateChange}
                       style={{backgroundColor: 'white', flex: 1}}
-                    />
+                    /> */}
+                      <DateTimePickerModal
+              isVisible={isMeasureDatePickerVisible}
+              mode="date"
+              onConfirm={handleMeasureConfirm}
+              date={editGrowthItem ? new Date(measureDate) : new Date()}
+              onCancel={() => {
+                // Alert.alert('Modal has been closed.');
+                setMeasureDatePickerVisibility(false);
+              }}
+              maximumDate={new Date()}
+              minimumDate={new Date(minChildGrwothDate)}
+              />
+
+                    </FormDateText>
                     <FormDateAction>
                       <Icon name="ic_calendar" size={20} color="#000" />
                     </FormDateAction>

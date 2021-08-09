@@ -109,7 +109,6 @@ const ChartWeightForHeight = () => {
       </FlexCol>
 
       <FlexCol>
-        <Text>{deviceOrientation}Hii</Text>
         {isChartVisible && deviceOrientation=='portrait' ? (
           <GrowthChart
             activeChild={activeChild}

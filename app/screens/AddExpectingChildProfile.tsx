@@ -51,7 +51,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   //const [dobDate, setdobDate] = useState();
 
   const [showdob, setdobShow] = useState(false);
-  const ondobChange = (selectedDate: any) => {
+  const ondobChange = (event:any,selectedDate: any) => {
     const currentDate = selectedDate || plannedTermDate;
     setdobShow(Platform.OS === 'ios');
     setPlannedTermDate(currentDate);
@@ -84,9 +84,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       ? JSON.parse(state.childData.childDataSet.allChild)
       : state.childData.childDataSet.allChild,
   );
-  const handleDobConfirm = (date:any) => {
-    console.log("A date has been picked: ", date);
-    ondobChange(date);
+  const handleDobConfirm = (event:any) => {
+    console.log("A date has been picked: ", event);
+    const date=event;
+    ondobChange(event,date);
     setDobDatePickerVisibility(false);
   };
   useFocusEffect(
