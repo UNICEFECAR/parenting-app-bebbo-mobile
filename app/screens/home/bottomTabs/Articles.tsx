@@ -199,6 +199,11 @@ useFocusEffect(() => {
       if(route.params?.backClicked != 'yes')
       {
         fetchData()
+      }else {
+        if(route.params?.backClicked == 'yes')
+        {
+          navigation.setParams({backClicked:'no'})
+        }
       }
     },[route.params?.categoryArray,activeChild?.uuid,languageCode])
   );
@@ -219,10 +224,10 @@ useFocusEffect(() => {
   );
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",articleData);
-    if(route.params?.backClicked == 'yes')
-    {
-      navigation.setParams({backClicked:'no'})
-    }
+    // if(route.params?.backClicked == 'yes')
+    // {
+    //   navigation.setParams({backClicked:'no'})
+    // }
     if(articleData != '')
     {
       setLoadingArticle(true);
