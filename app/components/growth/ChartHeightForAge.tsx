@@ -97,7 +97,7 @@ useEffect(() => {
     Dimensions.removeEventListener('change', deviceOrientation);
   };
 // });
-}, [deviceOrientation]);
+}, []);
   return (
     <FlexCol>
       <FlexCol>
