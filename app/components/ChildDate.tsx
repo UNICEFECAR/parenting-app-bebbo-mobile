@@ -153,7 +153,6 @@ const ChildDate = (props: any) => {
       setDueDatePickerVisibility(true);
     }
   };
-  
   return (
     <>
       <FormDateContainer>
@@ -165,7 +164,7 @@ const ChildDate = (props: any) => {
                 <Text>
                   {doborExpectedDate
                     ? formatStringDate(doborExpectedDate,luxonLocale)
-                    : t('childSetupdobSelector')}
+                    : prevScreen=='EditScreen'?  t('childSetupdobText'):t('childSetupdobSelector')}
                 </Text>
                 {showdob && (
                   <DateTimePicker
@@ -195,7 +194,7 @@ const ChildDate = (props: any) => {
               <Text>
                 {doborExpectedDate
                   ? formatStringDate(doborExpectedDate,luxonLocale)
-                  : t('childSetupdobSelector')}
+                 : prevScreen=='EditScreen'?t('childSetupdobText'):t('childSetupdobSelector')}
               </Text>
               {showdob && (
                 // <DateTimePicker
