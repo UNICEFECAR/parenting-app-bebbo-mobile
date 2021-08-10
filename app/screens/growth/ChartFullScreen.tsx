@@ -32,7 +32,7 @@ export const ChartFullScreen = ({route}) => {
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {
-      Orientation.unlockAllOrientations();
+     // Orientation.unlockAllOrientations();
       Orientation.lockToLandscape();
       setTimeout(() => {
         setIsChartVisible(true);
@@ -52,7 +52,7 @@ export const ChartFullScreen = ({route}) => {
     }, []),
   );
   const closeFullScreen = () => {
-    Orientation.unlockAllOrientations();
+    //Orientation.unlockAllOrientations();
     Orientation.lockToPortrait();
     navigation.goBack();
   };
@@ -106,8 +106,8 @@ export const ChartFullScreen = ({route}) => {
                     activeChild={activeChild}
                     chartType={chartType}
                     bgObj={obj}
-                    windowWidth={windowWidth}
-                    windowHeight={windowHeight}
+                    windowWidth={windowHeight}
+                    windowHeight={windowWidth}
                   />
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
