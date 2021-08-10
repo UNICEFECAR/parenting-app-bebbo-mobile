@@ -330,8 +330,8 @@ const BGbg = {
         onBirthDay: "Birth",
         month: "month",
         localizationChangeModalText: "Once new country is selected, the content might be different,but once new language within a country is chosen, the content should be the same,just in a different language",
-        growthChartLegendSilverLabel: "Typical Values for age",
-        growthChartLegendOrangeLabel: "Typical Values for age",
+        growthChartLegendSilverLabel: "-Typical values for age",
+        growthChartLegendOrangeLabel: "-Suboptimal values for age",
         noVaccinesForPeriod: "There are no vaccines during this period",
         defaultPeriodInterpretationText: "Growth charts refer to children 0 to 61 months old and do not contain growth values for older childre. You can find more about growth in this period in relevant articles.",
 
@@ -352,9 +352,13 @@ const BGbg = {
         removePhotoOption2:'Remove',
         expectedChildDobLabel:'Child not born yet',
         babyNotificationText1: "Child birth data updated",
-        months5tag:"месеца",
-        years5tag:"години",
-        days5tag:"дни",
+
+        //new text dated on 2nd August 2021
+        activityModalText: "To find Games, click on the relevant buttons or search using keywords",
+        childDevModalText: "To find Development, click on the relevant buttons or search using keywords",
+        months5tag:"months",
+        years5tag:"years",
+        days5tag:"days",
         downloadOnLoadPopupTitle : "Download Data",
         downloadOnLoadPopupText: "All content is not downloaded.Please download data.",
         downloadOnLoadCancelPopUpBtn: "Cancel",
@@ -363,7 +367,11 @@ const BGbg = {
         detailScreenNoDataPopupText: "No Data available for Selected Article/Activity",
         detailScreenNoDataOkBtn: "OK",
         editExpectChildAddTxt: "Edit expected child details",
-        editChildDobLabel: "Enter date of birth",
+        editChildDobLabel: "Child date of birth",
+        childSetupdobText: "Enter date of birth",
+        childInfoBabyText: "Baby",
+        childInfoParentText: "Parent",
+        childInfoAndText: "and",
     }
 }
 export default BGbg;
