@@ -348,7 +348,7 @@ const AddReminder = ({route, navigation}: any) => {
                         mode={'time'}
                         display="default"
                         is24Hour={true}
-                        minimumDate={new Date()}
+                        minimumDate={new Date(measureDate)}
                         onChange={onmeasureTimeChange}
                       />
                     )}
@@ -383,7 +383,7 @@ const AddReminder = ({route, navigation}: any) => {
                 // Alert.alert('Modal has been closed.');
                 setMeasureTimePickerVisibility(false);
               }}
-              minimumDate={new Date()}
+              minimumDate={new Date(measureDate)}
               />
                   </FormDateText>
                   <FormDateAction>
