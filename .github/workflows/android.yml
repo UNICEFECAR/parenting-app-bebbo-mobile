@@ -19,24 +19,7 @@ jobs:
       - name: Checkout
         uses : actions/checkout@v2
 
-      - name: Node modules cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: [Put a hash key here based on yarn.lock]
-
-      - name: Ruby cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: vendor/bundle
-          key: [Put a hash key here based on gemfile.lock]
-
-      - name: Gradle cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: /root/.gradle
-          key: [Put a hash key here based on *.gradle]
-
+    
       - name: Use Node 14
         uses: actions/setup-node@v2
         with:
