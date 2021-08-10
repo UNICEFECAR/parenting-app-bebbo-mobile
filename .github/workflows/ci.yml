@@ -28,11 +28,13 @@ jobs:
         
         
       - uses: actions/setup-node@master
-      - uses: c-hive/gha-yarn-cache@v1
-
+#      - uses: c-hive/gha-yarn-cache@v1
+      
+      - name: Install yarn
+        run: npm install -g yarn
+        
       - name: Install node modules
-        run: |
-          yarn install
+        run: | yarn install
 
       - name: Run test
         run: |
