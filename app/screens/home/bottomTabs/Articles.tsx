@@ -35,6 +35,7 @@ import { destinationFolder, articleCategoryArray } from '@assets/translations/ap
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { DefaultImage } from '@components/shared/Image';
 import Image from '../../../services/ProgressImage';
+import downloadImages from '../../../downloadImages/ImageStorage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
