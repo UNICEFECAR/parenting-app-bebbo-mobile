@@ -57,7 +57,7 @@ const DATA = [
 ];
 const RelatedArticles = (props: RelatedArticlesProps) => {
   // console.log(props);
-  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation } = props;
+  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   // console.log(typeof related_articles);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const { t } = useTranslation();
@@ -177,7 +177,8 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         headerColor: headerColor,
         backgroundColor: backgroundColor,
         detailData: item,
-        listCategoryArray: listCategoryArray ? listCategoryArray : []
+        listCategoryArray: listCategoryArray ? listCategoryArray : [],
+        currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
         // setFilteredArticleData: setFilteredArticleData
       });
   };

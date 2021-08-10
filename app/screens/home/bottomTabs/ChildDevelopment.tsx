@@ -12,7 +12,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
@@ -96,13 +96,9 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     }
   };
   // let selectedChildDevData:any;
-  useFocusEffect(() => {
-    console.log("in childdev focuseffect without callback",childDevModalOpened);
-    setModalVisible(childDevModalOpened);
-  })
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log("in childdev focuseffect");
+  useEffect(() => {
+      console.log("in childdev focuseffect",childDevModalOpened);
+      setModalVisible(childDevModalOpened);
       // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
       
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
@@ -112,15 +108,16 @@ const ChildDevelopment = ({route, navigation}: Props) => {
         headerColorBlack : themeContext.colors.PRIMARY_TEXTCOLOR});
 
         return () => {
-          console.log("in unmount-",route.params?.currentSelectedChildId);
+          console.log("in unmount dev-",route.params?.currentSelectedChildId);
           if(route.params?.currentSelectedChildId)
           {
             navigation.setParams({currentSelectedChildId:0})
+            console.log(route.params?.currentSelectedChildId,"--after unmount");
             // route.params?.currentSelectedChildId = 0;
           }
         }
-    },[])
-  );
+    },[]);
+
   const onPressInfo = () => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'ChildDevelopment',
@@ -161,10 +158,9 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     // console.log("sortednewArray--",sortednewArray);
     setselectedChildMilestoneData([...sortednewArray]);
   }
-  useFocusEffect(
-    React.useCallback(() => { 
+  useEffect(() => {
       // console.log("child dev usefocuseffect");
-      console.log(route.params?.currentSelectedChildId);
+      console.log("in childdev useeffect",route.params?.currentSelectedChildId);
       if(route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0)
       {
         // console.log(route.params?.categoryArray);
@@ -181,7 +177,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       // // console.log("firstChildDevData---",firstChildDevData);
       // showSelectedBracketData(firstChildDevData[0]);
       
-    },[activeChild?.uuid,route.params?.currentSelectedChildId])
+    },[activeChild?.uuid,route.params?.currentSelectedChildId]
   );
   useFocusEffect(
     React.useCallback(() => { 
