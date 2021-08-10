@@ -67,7 +67,7 @@ const GrowthChart = (props: any) => {
 
 
 const [deviceOrientation, setDeviceOrientation] = useState(
-  Dimensions.get('window').width < Dimensions.get('window').height
+  windowWidth < windowHeight
     ? 'portrait'
     : 'landscape'
 );
@@ -104,7 +104,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
 //   React.useCallback(() => {
 useEffect(() => {
   const deviceOrientation = () => {
-    if (Dimensions.get('window').width < Dimensions.get('window').height) {
+    if (windowWidth < windowHeight) {
       setDeviceOrientation('portrait');
     } else {
       setDeviceOrientation('landscape');
@@ -118,12 +118,6 @@ useEffect(() => {
 // });
 }, [deviceOrientation]);
 // );
-
-
- 
-
-
-
 
 // console.log(deviceOrientation,"orientation");
 
@@ -146,12 +140,14 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
     <>
-   
-  
-
-      <VictoryChart containerComponent={<VictoryVoronoiContainer />} 
+   <View style={{flexDirection:'column',alignItems:'center',}}>
+      <VictoryChart 
+      
+      containerComponent={<VictoryVoronoiContainer />}
+       
         theme={VictoryTheme.material}
-        width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
+        
+        width={deviceOrientation === 'portrait' ? windowWidth-20 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
         windowHeight - 340
           : windowHeight-50}>
@@ -159,13 +155,13 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-60 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth: windowHeight-70}/>}
+          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-52 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-98: windowHeight-70}/>}
         />
 
         {/* ********* AXIS VERTICAL ********* */}
         <VictoryAxis
           style={victoryStyles.VictoryAxisVertical}
-          axisLabelComponent={<VictoryLabel y={deviceOrientation === 'portrait' ? 25 :30} />}
+          axisLabelComponent={<VictoryLabel  y={deviceOrientation === 'portrait' ? 15 :30} />}
           dependentAxis
           label={labelY}
         />
@@ -299,6 +295,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
           ]}
         />
       </VictoryChart>
+      
       <View style={styles.chartLegend}>
         <View style={styles.chartLegendItem}>
           <View
@@ -327,6 +324,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
           </View>
         )}
       </View>
+      </View>
       {/* </Suspense> */}
     </>
    
@@ -338,6 +336,7 @@ const styles = StyleSheet.create<GrowtChartStyles>({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    
   },
   chartHeader: {
     flexDirection: 'row',
@@ -347,6 +346,7 @@ const styles = StyleSheet.create<GrowtChartStyles>({
   contentWrapper: {
     paddingLeft: 15,
     paddingRight: 15,
+    
   },
   chartLegend: {
     flexDirection: 'row',
@@ -356,6 +356,7 @@ const styles = StyleSheet.create<GrowtChartStyles>({
   chartLegendItem: {
     flexDirection: 'row',
     alignItems: 'center',
+    
   },
 });
 const victoryStyles: VictoryStyles = {
@@ -368,6 +369,7 @@ const victoryStyles: VictoryStyles = {
   VictoryAxisVertical: {
     grid: {stroke: 'transparent'},
     axis: {stroke: 'none'},
+    
     // @ts-ignore
     axisLabel: {angle: 0},
     // axisLabel: { angle: 0, fontFamily: fontFamily },
