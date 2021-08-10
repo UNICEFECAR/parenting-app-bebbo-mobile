@@ -24,9 +24,15 @@ jobs:
     - uses: actions/setup-node@master
 #     - uses: c-hive/gha-yarn-cache@v1
 
+
+    - name: Install node modules
+      run: |
+        npm install -g yarn
+        
     - name: Install node modules
       run: |
         yarn install
+        
     - name: Run test-a
       run: |
         yarn test
