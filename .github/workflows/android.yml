@@ -36,7 +36,7 @@ jobs:
 
       - uses: actions/checkout@v2
       - name: Decrypt large secret
-        run: cd ./android && chmod +x decrypt_secret.sh && decrypt_secret.sh
+        run: cd ./android && chmod +x decrypt_secret.sh && ./decrypt_secret.sh
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
       # This command is just an example to show your secret being printed
