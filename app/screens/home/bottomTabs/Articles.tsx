@@ -33,11 +33,9 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import Image from '../../../services/ImageLoad';
 import { DefaultImage } from '@components/shared/Image';
-import LoadableImage from '../../../services/LoadableImage';
+import Image from '../../../services/ProgressImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
-
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -103,8 +101,14 @@ const Articles = ({route, navigation}: Props) => {
   // resizeMode="cover"
   // style={styles.cardImage}
   // />
-  <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
-    :<DefaultImage
+  // <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
+  <Image
+  source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())?encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()):null}} 
+  indicator={<ActivityIndicator color="red" size="large"/>}
+  style={styles.cardImage}
+  onLoaded={() => console.log('Image was loaded!')}
+/>
+  :<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
           }
@@ -224,6 +228,34 @@ useFocusEffect(() => {
       }
     },[])
   );
+  useFocusEffect(
+    React.useCallback(() => {
+      // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+      async function fetchData() {
+      if(filteredData?.length>0){
+      filteredData.map(async (item: any, index: number) => {
+          if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+                  if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+                  }
+                  else{
+          let imageArray:any=[];
+          imageArray.push({
+              srcUrl: item['cover_image'].url, 
+              destFolder: destinationFolder, 
+              destFilename: item['cover_image'].url.split('/').pop()
+          })
+          console.log(imageArray,"..imageArray..");
+          const imagesDownloadResult = await downloadImages(imageArray);
+          console.log(imagesDownloadResult,"..imagesDownloadResult..");
+          }
+          }
+          });
+      }else {
+      }
+    }
+      fetchData()
+    }, [filteredData])
+  );
   const toTop = () => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
@@ -251,6 +283,7 @@ useFocusEffect(() => {
       }else {
         const newArticleData = articleData != '' ? articleData : [];
         setfilteredData(newArticleData);
+        
         // if(newArticleData.length == 0)
         // {
         //   setLoadingArticle(false);
@@ -329,7 +362,8 @@ useFocusEffect(() => {
                 <FlatList
                   ref={flatListRef}
                   data={filteredData}
-                  initialNumToRender={10}
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
                   renderItem={renderArticleItem}
                   keyExtractor={(item) => item.id.toString()}
                   />

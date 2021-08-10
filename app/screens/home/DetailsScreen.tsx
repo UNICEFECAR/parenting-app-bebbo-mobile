@@ -29,9 +29,8 @@ import downloadImages from '../../downloadImages/ImageStorage';
 import RelatedActivities from '@components/shared/RelatedActivities';
 import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from '@native-html/table-plugin';
 import WebView from "react-native-webview";
-import Image from '../../services/ImageLoad';
 import { DefaultImage } from '@components/shared/Image';
-import LoadableImage from '../../services/LoadableImage';
+import Image from '../../services/ProgressImage';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -134,6 +133,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
   const [showImageLoader,setImageLoader] = useState(false);
@@ -322,7 +322,12 @@ const DetailsScreen = ({route, navigation}: any) => {
   //               }}
   //               style={{width: '100%', height: 200}}
   //               />
-  <LoadableImage style={{width: '100%', height: 200}} url={encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}/>
+  <Image
+  source={{uri:encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())?encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()):null}} 
+  indicator={<ActivityIndicator color="red" size="large"/>}
+  style={{width: '100%', height: 200}}
+  onLoaded={() => console.log('Image was loaded!')}
+/>
                  :
                  <DefaultImage
                  style={{width: '100%', height: 200}}

@@ -12,10 +12,9 @@ import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/Articl
 import downloadImages from '../../downloadImages/ImageStorage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
-import Image from '../../services/ImageLoad';
 import RNFS from 'react-native-fs';
 import { DefaultImage } from './Image';
-import LoadableImage from '../../services/LoadableImage';
+import Image from '../../services/ProgressImage';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -222,7 +221,13 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   // }}
   // style={styles.cardImage}
   // />
-  <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
+  // <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
+  <Image
+  source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())?encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()):null}} 
+  indicator={<ActivityIndicator color="red" size="large"/>}
+  style={styles.cardImage}
+  onLoaded={() => console.log('Image was loaded!')}
+/>
               : <DefaultImage
                 style={styles.cardImage}
                 source={require('@assets/trash/defaultArticleImage.png')} />
