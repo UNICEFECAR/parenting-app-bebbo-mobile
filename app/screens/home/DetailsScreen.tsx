@@ -31,8 +31,7 @@ import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from 
 import WebView from "react-native-webview";
 import Image from '../../services/ImageLoad';
 import { DefaultImage } from '@components/shared/Image';
-import ProgressiveImage from '../../services/ProgressiveFastImage';
-
+import LoadableImage from '../../services/LoadableImage';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -322,23 +321,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   //               }}
   //               style={{width: '100%', height: 200}}
   //               />
-                <ProgressiveImage 
-thumbnailSource={{uri:encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}} 
-source={{uri:encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}} 
-imageAnimationDuration={10000}
-style={{width: '100%', height: 200}}
-blurRadius={0}
-loadingImageComponent={<ActivityIndicator size="large" color="#000" style={{ 
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  position: "absolute",
-  alignItems: "center",
-  alignSelf: "center",
-  justifyContent: "center"}}/>}
-errorSource={require('@assets/trash/defaultArticleImage.png')}
-/>
+  <LoadableImage style={{width: '100%', height: 200}} url={encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}/>
                  :
                  <DefaultImage
                  style={{width: '100%', height: 200}}
