@@ -34,12 +34,17 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Decode keystore file
-        run: echo -n ${{ secrets.ANDROID_KEYSTORE_FILE }} | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
-        working-directory: ./android
+      - uses: actions/checkout@v2
+      - name: Decrypt large secret
+        run: ./android/decrypt_secret.sh
         env:
-          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
           LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      # This command is just an example to show your secret being printed
+      # Ensure you remove any print statements of your secrets. GitHub does
+      # not hide secrets that use this workaround.
+      - name: Test printing your secret (Remove this step in production)
+        run: cat ./android/pbdebug.keystore
+        
 
       - name: Bundle install
         run: |
