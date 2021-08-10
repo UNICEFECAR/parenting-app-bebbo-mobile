@@ -49,6 +49,7 @@ export const ModalPopupContentVideo = styled.View`
 max-height:180px;
   min-width:320px;
   padding:0 15px;
+  flex:1;
 `;
 
 export default ModalPopupContainer;
