@@ -295,7 +295,8 @@ const HeaderBabyMenu = (props: any) => {
         <View style={{backgroundColor:'transparent',opacity:0.5,zIndex:2,position:'absolute',width:'100%',height:'100%'}} >
         <Pressable style={{backgroundColor:'transparent',width:'100%',height:'100%',position:'relative'}} 
         onPress={() => {
-                  setModalVisible(!modalVisible);}}>
+          setModalVisible(false);
+        }}>
         </Pressable>
         </View>
       </Modal>
@@ -371,8 +372,8 @@ const styles = StyleSheet.create({
     zIndex:3,
        ...Platform.select({
         ios: {
-          top:getStatusBarHeight(0)>20?headerHeight:37,
-          marginTop:getStatusBarHeight(0)>20?headerHeight:37
+          top:getStatusBarHeight(0)>20?headerHeight-2:35,
+          marginTop:getStatusBarHeight(0)>20?headerHeight-2:35
         },
       android: {
         marginTop:headerHeight,
