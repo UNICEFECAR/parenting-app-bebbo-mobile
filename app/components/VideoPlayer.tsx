@@ -112,13 +112,13 @@ const VideoPlayer = (props: any) => {
             {videoType == videoTypeImage || netInfoval == false ?
                 (<Image
                     source={require('@assets/trash/defaultArticleImage.png')}
-                    style={{ width: '100%',height:'auto',minHeight:250}}
+                    style={{ width: '100%',height:'auto',minHeight:200}}
                 />) :
                 (<>{videoType == videoTypeVimeo ?
                     <WebView
                         containerStyle={{
                             //width: '80%',
-                            height: 250,
+                            height: 200,
                             aspectRatio: 1.75,
                             alignSelf: 'center',
                             // aspectRatio: this.state.aspectRatio,
@@ -142,7 +142,7 @@ const VideoPlayer = (props: any) => {
                         // volume={50}
                         // webViewStyle={{borderWidth:3, borderColor:'red'}}
                         // @ts-ignore
-                        height={250}
+                        height={200}
                         webViewProps={{
                             // allowsFullscreenVideo: false
                             allowsInlineMediaPlayback: false,
