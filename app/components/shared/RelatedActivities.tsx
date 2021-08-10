@@ -15,7 +15,7 @@ import ShareFavButtons from './ShareFavButtons';
 import Image from '../../services/ImageLoad';
 import RNFS from 'react-native-fs';
 import { DefaultImage } from './Image';
-import ProgressiveImage from '../../services/ProgressiveFastImage';
+import LoadableImage from '../../services/LoadableImage';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -169,23 +169,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
   // }}
   // style={styles.cardImage}
   // />
-  <ProgressiveImage 
-thumbnailSource={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
-source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
-imageAnimationDuration={10000}
-style={styles.cardImage}
-blurRadius={0}
-loadingImageComponent={<ActivityIndicator size="large" color="#000" style={{ 
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  position: "absolute",
-  alignItems: "center",
-  alignSelf: "center",
-  justifyContent: "center"}}/>}
-errorSource={require('@assets/trash/defaultArticleImage.png')}
-/>
+  <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
     :<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
