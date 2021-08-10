@@ -35,7 +35,7 @@ jobs:
         run: yarn
 
       - name: Decode keystore file
-        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
+        run: echo -n ${{ secrets.ANDROID_KEYSTORE_FILE }} | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
         working-directory: ./android
         env:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
