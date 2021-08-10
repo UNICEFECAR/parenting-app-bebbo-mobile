@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Image from '../../../services/ImageLoad';
+
 import {
   ActivityIndicator,
   FlatList,
@@ -31,7 +31,7 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import downloadImages from '../../../downloadImages/ImageStorage';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { DefaultImage } from '@components/shared/Image';
-import LoadableImage from '../../../services/LoadableImage';
+import Image from '../../../services/ProgressImage';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -111,6 +111,7 @@ const Activities = ({ route,navigation }: Props) => {
   const modalScreenKey = 'IsActivityModalOpened';
   const modalScreenText = 'activityModalText';
   const [modalVisible, setModalVisible] = useState(false);
+  const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
@@ -356,7 +357,14 @@ const Activities = ({ route,navigation }: Props) => {
 //   }}
 //   style={styles.cardImage}
 //   />
-<LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>:<DefaultImage
+<Image
+source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
+indicator={<ActivityIndicator color="red" size="large"/>}
+style={styles.cardImage}
+onLoaded={() => console.log('Image was loaded!')}
+/>
+        :
+<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
    }
@@ -388,7 +396,15 @@ const Activities = ({ route,navigation }: Props) => {
         /> */}
         {
         (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-    <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>:<DefaultImage
+    // <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
+
+    <Image
+    source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())?encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()):null}} 
+    indicator={<ActivityIndicator color="red" size="large"/>}
+    style={styles.cardImage}
+    onLoaded={() => console.log('Image was loaded!')}
+  />
+    :<DefaultImage
     style={styles.cardImage}
     source={require('@assets/trash/defaultArticleImage.png')}/>
    }
@@ -438,6 +454,8 @@ const Activities = ({ route,navigation }: Props) => {
 
               <FlatList
                 data={suggestedGames}
+                initialNumToRender={4} // Reduce initial render amount
+                maxToRenderPerBatch={4} // Reduce number in each render batch
                 renderItem={({ item, index }) => SuggestedActivities(item, index)}
                 keyExtractor={(item) => item.id.toString()}
               />
@@ -500,6 +518,8 @@ const Activities = ({ route,navigation }: Props) => {
                 <FlatList
                   ref={flatListRef}
                   data={otherGames}
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
                   renderItem={({ item, index }) => renderActivityItem(item, index)}
                   keyExtractor={(item) => item.id.toString()}
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}
