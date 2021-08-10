@@ -27,10 +27,9 @@ jobs:
     - name: Install node modules
       run: |
         yarn install
-    - name: Run test
+    - name: Run test-a
       run: |
-        yarn test-ci
-          
+        yarn test
           
     - name: Cache Gradle Wrapper
       uses: actions/cache@v2
@@ -53,6 +52,35 @@ jobs:
       run: |
         cd android && ./gradlew bundleRelease --no-daemon
           
+          
+          
+    - name: Sign App Bundle
+      id: sign_app
+      uses: r0adkll/sign-android-release@v1
+      with:
+        releaseDirectory: android/app/build/outputs/bundle/release
+        signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+        alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
+        keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Signed App Bundle
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+
+    - name: Deploy to Play Store (BETA)
+      uses: r0adkll/upload-google-play@v1
+      with:
+        serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
+        packageName: com.testedapp
+        releaseFile: a${{steps.sign_app.outputs.signedReleaseFile}}
+        track: beta
+        inAppUpdatePriority: 3
+        userFraction: 0.5
+        whatsNewDirectory: android/release-notes/
+        # mappingFile: android/app/build/outputs/mapping/release/mapping.txt
       # Runs a single command using the runners shell
 #      - name: Run a one-line script
  #       run: echo Hello, world!
