@@ -19,24 +19,7 @@ jobs:
       - name: Checkout
         uses : actions/checkout@v2
 
-      - name: Node modules cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: [Put a hash key here based on yarn.lock]
-
-      - name: Ruby cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: vendor/bundle
-          key: [Put a hash key here based on gemfile.lock]
-
-      - name: Gradle cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: /root/.gradle
-          key: [Put a hash key here based on *.gradle]
-
+    
       - name: Use Node 14
         uses: actions/setup-node@v2
         with:
@@ -51,11 +34,17 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Decode keystore file
-        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./ ${{ secrets.MYAPP_UPLOAD_STORE_FILE }}
-        working-directory: ./android/app
+      - uses: actions/checkout@v2
+      - name: Decrypt large secret
+        run: cd ./android && chmod +x decrypt_secret.sh && ./decrypt_secret.sh
         env:
-          ANDROID_KEYSTORE_FILE: ${{ secrets.MYAPP_UPLOAD_STORE_FILE }
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
+      # This command is just an example to show your secret being printed
+      # Ensure you remove any print statements of your secrets. GitHub does
+      # not hide secrets that use this workaround.
+      - name: Test printing your secret (Remove this step in production)
+        run: cat ./android/pbdebug.keystore
+        
 
       - name: Bundle install
         run: |
@@ -68,4 +57,4 @@ jobs:
           MYAPP_RELEASE_STORE_PASSWORD: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
           MYAPP_RELEASE_KEY_ALIAS: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
           MYAPP_RELEASE_KEY_PASSWORD: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
-          FIREBASE_TOKEN: ${{ secrets.SuperSecret }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
