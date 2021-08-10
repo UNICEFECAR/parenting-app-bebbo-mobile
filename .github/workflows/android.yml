@@ -32,7 +32,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Install dependencies
-        run: yarn && brew install gnupg
+        run: yarn && apt-get install gnupg
 
       - uses: actions/checkout@v2
       - name: Decrypt large secret
