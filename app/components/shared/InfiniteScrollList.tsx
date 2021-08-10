@@ -42,7 +42,7 @@ const InfiniteScrollList = (props : any) => {
             serverDataLoaded(data);
             if(data?.length>0){
                 data.map(async (item: any, index: number) => {
-                    if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+                if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
                         if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
                         }
                         else{
