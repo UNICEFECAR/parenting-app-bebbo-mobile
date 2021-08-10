@@ -30,10 +30,11 @@ type RelatedActivityProps = {
   listCategoryArray?:any,
   navigation?:any,
   fromScreen?:any,
+  currentSelectedChildId?:any
 }
 const RelatedActivities = (props:RelatedActivityProps) => {
   // console.log(props);
-  const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation } = props;
+  const { selectedChildActivitiesData, currentId,fromScreen,headerColor,backgroundColor,listCategoryArray, navigation,currentSelectedChildId } = props;
   // console.log("in related article ---",selectedChildActivitiesData);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const ActivitiesData = useAppSelector(
@@ -125,7 +126,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
       backgroundColor:backgroundColor,
       detailData:item,
       listCategoryArray: listCategoryArray ? listCategoryArray: null,
-      selectedChildActivitiesData: selectedChildActivitiesData
+      selectedChildActivitiesData: selectedChildActivitiesData,
+      currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
       // setFilteredArticleData: setFilteredArticleData
     });
   };

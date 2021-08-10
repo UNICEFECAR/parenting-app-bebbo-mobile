@@ -47,6 +47,7 @@ export type RelatedArticlesProps = {
   listCategoryArray?:any,
   navigation?:any,
   fromScreen?:any,
+  currentSelectedChildId?:any
 }
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
@@ -355,7 +356,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                   
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -369,7 +370,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                   
                 </FlexCol>
               </>
@@ -381,7 +382,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>
               <BgActivityTint>
                 <ArticleHeading>
@@ -399,7 +400,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>
               {/* <BgActivityTint>
                 <ArticleHeading>
