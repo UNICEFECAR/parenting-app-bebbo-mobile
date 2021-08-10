@@ -145,7 +145,7 @@ const VideoPlayer = (props: any) => {
                         height={200}
                         webViewProps={{
                             // allowsFullscreenVideo: false
-                            allowsInlineMediaPlayback: false,
+                            allowsInlineMediaPlayback: true,
                             allowsFullscreenVideo: true,
                             androidLayerType: 'hardware',
                         }}
