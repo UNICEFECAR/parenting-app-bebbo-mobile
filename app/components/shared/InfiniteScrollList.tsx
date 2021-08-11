@@ -41,23 +41,23 @@ const InfiniteScrollList = (props : any) => {
             console.log('..requestData..', data);
             serverDataLoaded(data);
             if(data?.length>0){
-                data.map(async (item: any, index: number) => {
-                if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-                        if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-                        }
-                        else{
-                let imageArray:any=[];
-                imageArray.push({
-                    srcUrl: item['cover_image'].url, 
-                    destFolder: destinationFolder, 
-                    destFilename: item['cover_image'].url.split('/').pop()
-                })
-                console.log(imageArray,"..imageArray..");
-                const imagesDownloadResult = await downloadImages(imageArray);
-                console.log(imagesDownloadResult,"..imagesDownloadResult..");
-                }
-                }
-                });
+                // data.map(async (item: any, index: number) => {
+                // if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+                //         if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+                //         }
+                //         else{
+                // let imageArray:any=[];
+                // imageArray.push({
+                //     srcUrl: item['cover_image'].url, 
+                //     destFolder: destinationFolder, 
+                //     destFilename: item['cover_image'].url.split('/').pop()
+                // })
+                // console.log(imageArray,"..imageArray..");
+                // const imagesDownloadResult = await downloadImages(imageArray);
+                // console.log(imagesDownloadResult,"..imagesDownloadResult..");
+                // }
+                // }
+                // });
                
                 setIsLoading(false);
             }else {
