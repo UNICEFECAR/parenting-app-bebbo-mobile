@@ -69,9 +69,9 @@ jobs:
       with:
         releaseDirectory: android/app/build/outputs/bundle/release
         signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-        alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
-        keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
-        keyPassword: ${{ secrets.ANDROID_SIGNING_KEY_PASSWORD }}
+        alias: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
+        keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
@@ -79,16 +79,16 @@ jobs:
         name: Signed App Bundle
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
-    - name: Deploy to Play Store (BETA)
-      uses: r0adkll/upload-google-play@v1
-      with:
-        serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
-        packageName: com.testedapp
-        releaseFile: a${{steps.sign_app.outputs.signedReleaseFile}}
-        track: beta
-        inAppUpdatePriority: 3
-        userFraction: 0.5
-        whatsNewDirectory: android/release-notes/
+  #  - name: Deploy to Play Store (BETA)
+   #   uses: r0adkll/upload-google-play@v1
+    #  with:
+     #   serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
+      #  packageName: com.testedapp
+#        releaseFile: a${{steps.sign_app.outputs.signedReleaseFile}}
+ #       track: beta
+  #      inAppUpdatePriority: 3
+   #     userFraction: 0.5
+    #    whatsNewDirectory: android/release-notes/
         # mappingFile: android/app/build/outputs/mapping/release/mapping.txt
       # Runs a single command using the runners shell
 #      - name: Run a one-line script
