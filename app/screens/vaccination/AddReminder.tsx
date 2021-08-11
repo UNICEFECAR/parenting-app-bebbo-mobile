@@ -130,6 +130,9 @@ const AddReminder = ({route, navigation}: any) => {
       setmeasureDate(DateTime.fromJSDate(currentDate));
       setDateTouched(true);
     }
+    if(String(new Date(currentDate).toDateString())==String(new Date().toDateString())){
+      setmeasureTime(DateTime.fromJSDate(new Date()));
+    }
   };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
@@ -141,9 +144,6 @@ const AddReminder = ({route, navigation}: any) => {
     const date=event;
     console.log("A date has been picked: ", date);
     onmeasureChange(event,date);
-    if(String(new Date(date).toDateString())==String(new Date().toDateString())){
-    setmeasureTime(DateTime.fromJSDate(new Date()));
-    }
     setMeasureDatePickerVisibility(false);
   };
   const handleMeasureTimeConfirm = (event:any) => {
@@ -351,7 +351,7 @@ const AddReminder = ({route, navigation}: any) => {
                         mode={'time'}
                         display="default"
                         is24Hour={true}
-                        minimumDate={new Date(measureDate)}
+                        minimumDate={String(new Date(measureDate).toDateString())==String(new Date().toDateString())? new Date():undefined}
                         onChange={onmeasureTimeChange}
                       />
                     )}

@@ -74,8 +74,8 @@ const LoadableImage = (props:any) => {
         imageState=='loading'?
         <ActivityIndicator style={style} size="large" color="#000"/>
         :noImage==false?<FastImage  
-        onError={() => { setNoImage(true) }}
-        style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()),priority: FastImage.priority.normal}} 
+         onError={() => { setNoImage(true) }}
+         style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()),priority: FastImage.priority.normal}} 
          resizeMode={FastImage.resizeMode.cover}/>:<DefaultImage
          style={style}
          source={require('@assets/trash/defaultArticleImage.png')}/> 
