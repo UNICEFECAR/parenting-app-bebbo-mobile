@@ -85,6 +85,9 @@ const AddReminder = ({route, navigation}: any) => {
   const [measureTime, setmeasureTime] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderTime : null,
   );
+  const [minmeasureTime, setminmeasureTime] = useState<any>(
+    editReminderItem ? new Date(editReminderItem.reminderDate) : new Date(),
+  );
   const [showmeasureTime, setmeasureShowTime] = useState<Boolean>(false);
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [timeTouched, setTimeTouched] = useState<Boolean>(false);
@@ -125,14 +128,29 @@ const AddReminder = ({route, navigation}: any) => {
   // maxTime.setMilliseconds(0);
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
+    console.log(selectedDate,"..selectedDate..")
+    console.log(currentDate,"..currentDate..")
     setmeasureShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(currentDate));
       setDateTouched(true);
+      console.log(new Date(selectedDate).toDateString(),"/",new Date().toDateString());
+      if(new Date(selectedDate).toDateString()==new Date().toDateString()){
+        setminmeasureTime(new Date(currentDate));
+        console.log(currentDate,"..11currentDatenew")
+        setmeasureTime(DateTime.fromJSDate(new Date(currentDate)));
+      }
+      else{
+        // console.log(currentDate,"..currentDatenew");
+        // console.log(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
+        const currentDatenew=new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+        console.log(currentDatenew,"..currentDatenew")
+        setminmeasureTime(new Date(currentDatenew));
+        //setminmeasureTime(DateTime.fromJSDate(currentDate));
+      }
+     
     }
-    if(String(new Date(currentDate).toDateString())==String(new Date().toDateString())){
-      setmeasureTime(DateTime.fromJSDate(new Date()));
-    }
+  
   };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
@@ -195,7 +213,13 @@ const AddReminder = ({route, navigation}: any) => {
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
   const saveReminder = async () => {
-    console.log(reminderType, measureDate, measureTime);
+    let measureTimeNew;
+    if (typeof measureTime === 'number' || measureTime instanceof Number){
+      measureTimeNew=measureTime;
+    }
+    else{
+      measureTimeNew=measureTime.toMillis();
+    }
     const reminderValues = {
       uuid: editReminderItem ? editReminderItem.uuid : uuidv4(),
       reminderType: reminderType,
@@ -206,9 +230,9 @@ const AddReminder = ({route, navigation}: any) => {
         : measureDate?.toMillis(),
       reminderTime: editReminderItem
         ? timeTouched
-          ? measureTime?.toMillis()
-          : measureTime
-        : measureTime?.toMillis(),
+          ? measureTimeNew
+          : measureTimeNew
+        : measureTimeNew,
     };
     let createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
       ChildEntitySchema,
@@ -351,7 +375,7 @@ const AddReminder = ({route, navigation}: any) => {
                         mode={'time'}
                         display="default"
                         is24Hour={true}
-                        minimumDate={String(new Date(measureDate).toDateString())==String(new Date().toDateString())? new Date():undefined}
+                        minimumDate={minmeasureTime}
                         onChange={onmeasureTimeChange}
                       />
                     )}
@@ -386,7 +410,7 @@ const AddReminder = ({route, navigation}: any) => {
                 // Alert.alert('Modal has been closed.');
                 setMeasureTimePickerVisibility(false);
               }}
-              minimumDate={String(new Date(measureDate).toDateString())==String(new Date().toDateString())? new Date():undefined}
+              minimumDate={minmeasureTime}
               />
 
                   </FormDateText>

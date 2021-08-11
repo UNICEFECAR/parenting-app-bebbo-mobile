@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
 import 'react-native-gesture-handler';
+import Orientation from 'react-native-orientation-locker';
 import { MenuProvider } from 'react-native-popup-menu';
 import { enableScreens } from 'react-native-screens';
 import SplashScreen from 'react-native-splash-screen';
@@ -64,6 +65,7 @@ const CustomFallback = (props: {error: Error; resetError: Function}) => (
 
 const App = () => {
   React.useEffect(() => {
+    Orientation.lockToPortrait();
     SplashScreen.hide();
   });
   return (
