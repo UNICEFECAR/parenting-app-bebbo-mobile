@@ -130,6 +130,9 @@ const AddReminder = ({route, navigation}: any) => {
       setmeasureDate(DateTime.fromJSDate(currentDate));
       setDateTouched(true);
     }
+    if(String(new Date(currentDate).toDateString())==String(new Date().toDateString())){
+      setmeasureTime(DateTime.fromJSDate(new Date()));
+    }
   };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
@@ -348,7 +351,7 @@ const AddReminder = ({route, navigation}: any) => {
                         mode={'time'}
                         display="default"
                         is24Hour={true}
-                        minimumDate={new Date(measureDate)}
+                        minimumDate={String(new Date(measureDate).toDateString())==String(new Date().toDateString())? new Date():undefined}
                         onChange={onmeasureTimeChange}
                       />
                     )}
@@ -374,7 +377,7 @@ const AddReminder = ({route, navigation}: any) => {
                         formatStringTime(measureTime,luxonLocale)
                         : t('vcReminderTime')}
                     </Text>
-                   <DateTimePickerModal
+              <DateTimePickerModal
               isVisible={isMeasureTimePickerVisible}
               mode="time"
               onConfirm={handleMeasureTimeConfirm}
@@ -383,8 +386,9 @@ const AddReminder = ({route, navigation}: any) => {
                 // Alert.alert('Modal has been closed.');
                 setMeasureTimePickerVisibility(false);
               }}
-              minimumDate={new Date(measureDate)}
+              minimumDate={String(new Date(measureDate).toDateString())==String(new Date().toDateString())? new Date():undefined}
               />
+
                   </FormDateText>
                   <FormDateAction>
                     <Icon

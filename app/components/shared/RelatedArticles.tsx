@@ -10,12 +10,9 @@ import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../database/schema/ArticleSchema';
 import downloadImages from '../../downloadImages/ImageStorage';
+import LoadableImage from '../../services/LoadableImage';
 import { ArticleHeading, ArticleListContent, RelatedArticleContainer } from './ArticlesStyle';
 import ShareFavButtons from './ShareFavButtons';
-import Image from '../../services/ImageLoad';
-import RNFS from 'react-native-fs';
-import { DefaultImage } from './Image';
-import LoadableImage from '../../services/LoadableImage';
 const ContainerView = styled.View`
   flex: 1;
   flex-direction: column;
@@ -58,7 +55,7 @@ const DATA = [
 ];
 const RelatedArticles = (props: RelatedArticlesProps) => {
   // console.log(props);
-  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation } = props;
+  const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
   // console.log(typeof related_articles);
   // console.log(JSON.parse(JSON.stringify(related_articles)),"---related_articles");
   const { t } = useTranslation();
@@ -136,38 +133,38 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   //     setrelatedArticleData((relatedArticleData: any) => [...relatedArticleData , ...filteredArtData]);
   //   }
   // }
-  useFocusEffect(
-    React.useCallback(() => {
-      // console.log("details usefocuseffect")
-      // filterArray.length = 0;
-      const fetchData = async () => {
-        console.log("relatedArticleData lebgth--", relatedArticleData.length);
-        let imageArraynew: any = [];
-        if (relatedArticleData?.length > 0) {
-          relatedArticleData.map(async (item: any, index: number) => {
-            if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-              if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-              }
-              else {
-                let imageArraynew: any = [];
-                imageArraynew.push({
-                  srcUrl: item['cover_image'].url,
-                  destFolder: destinationFolder,
-                  destFilename: item['cover_image'].url.split('/').pop()
-                })
-                const imagesDownloadResult = await downloadImages(imageArraynew);
-              }
-            }
-          });
-          // console.log(imageArraynew,"..imageArray..");
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // console.log("details usefocuseffect")
+  //     // filterArray.length = 0;
+  //     const fetchData = async () => {
+  //       console.log("relatedArticleData lebgth--", relatedArticleData.length);
+  //       let imageArraynew: any = [];
+  //       if (relatedArticleData?.length > 0) {
+  //         relatedArticleData.map(async (item: any, index: number) => {
+  //           if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+  //             if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+  //             }
+  //             else {
+  //               let imageArraynew: any = [];
+  //               imageArraynew.push({
+  //                 srcUrl: item['cover_image'].url,
+  //                 destFolder: destinationFolder,
+  //                 destFilename: item['cover_image'].url.split('/').pop()
+  //               })
+  //               const imagesDownloadResult = await downloadImages(imageArraynew);
+  //             }
+  //           }
+  //         });
+  //         // console.log(imageArraynew,"..imageArray..");
 
-          // console.log(imagesDownloadResult,"..imagesDownloadResult..");
-        }
-      }
-      fetchData();
+  //         // console.log(imagesDownloadResult,"..imagesDownloadResult..");
+  //       }
+  //     }
+  //     fetchData();
 
-    }, [relatedArticleData])
-  );
+  //   }, [relatedArticleData])
+  // );
   //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item: any) => {
     console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
@@ -178,7 +175,8 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         headerColor: headerColor,
         backgroundColor: backgroundColor,
         detailData: item,
-        listCategoryArray: listCategoryArray ? listCategoryArray : []
+        listCategoryArray: listCategoryArray ? listCategoryArray : [],
+        currentSelectedChildId: currentSelectedChildId ? currentSelectedChildId : 0
         // setFilteredArticleData: setFilteredArticleData
       });
   };
@@ -187,45 +185,8 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
         style={{ flexDirection: 'row' }}
       >
-        <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>
-          {/* <Image 
-          // source={item.imagePath} 
-          // source={item.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(item.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-          source={require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}></Image> */}
-          {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-          {
-            (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) ?
-              // <ImageLoad
-              //   style={styles.cardImage}
-              //   placeholderStyle={styles.cardImage}
-              //   loadingStyle={{ size: 'large', color: '#000' }}
-              //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-              //   source={{ uri: encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()) }}
-              // /> 
-  //             <Image 
-  //             renderIndicator={renderIndicator}
-  // source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  // indicator={null}
-  // renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-  // }}
-  // indicatorProps={{
-  //   size: 'large',
-  //   borderWidth: 0,
-  //   color: '#000',
-  // }}
-  // style={styles.cardImage}
-  // />
-  <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
-              : <DefaultImage
-                style={styles.cardImage}
-                source={require('@assets/trash/defaultArticleImage.png')} />
-          }
+        <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
+        <LoadableImage style={styles.cardImage} item={item}/>
           <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
             <View style={{ minHeight: 90, }}>
               <ArticleListContent>
