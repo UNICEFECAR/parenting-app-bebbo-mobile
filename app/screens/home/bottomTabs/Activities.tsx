@@ -28,10 +28,8 @@ import {
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import downloadImages from '../../../downloadImages/ImageStorage';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
-import { DefaultImage } from '@components/shared/Image';
-import Image from '../../../services/ProgressImage';
+import LoadableImage from '../../../services/LoadableImage';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -175,26 +173,26 @@ const Activities = ({ route,navigation }: Props) => {
     console.log("filteredData---",filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
-    if(filteredData?.length>0){
-      filteredData.map(async (item: any, index: number) => {
-        if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-          if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-          }
-          else{
-          let imageArray:any=[];
-          imageArray.push({
-              srcUrl: item['cover_image'].url, 
-              destFolder: destinationFolder, 
-              destFilename: item['cover_image'].url.split('/').pop()
-          })
-          const imagesDownloadResult = await downloadImages(imageArray);
-          console.log(imagesDownloadResult,"..imagesDownloadResult..");
-        }
-        }
-        });
-        // console.log(imageArray,"..imageArray..");
+    // if(filteredData?.length>0){
+    //   filteredData.map(async (item: any, index: number) => {
+    //     if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+    //       if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+    //       }
+    //       else{
+    //       let imageArray:any=[];
+    //       imageArray.push({
+    //           srcUrl: item['cover_image'].url, 
+    //           destFolder: destinationFolder, 
+    //           destFilename: item['cover_image'].url.split('/').pop()
+    //       })
+    //       const imagesDownloadResult = await downloadImages(imageArray);
+    //       console.log(imagesDownloadResult,"..imagesDownloadResult..");
+    //     }
+    //     }
+    //     });
+    //     // console.log(imageArray,"..imageArray..");
        
-    }
+    // }
   }
   useFocusEffect(
     React.useCallback(() => {
@@ -321,54 +319,7 @@ const Activities = ({ route,navigation }: Props) => {
   const renderActivityItem = (item: any, index: number) => (
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
-        {/* <Image
-          style={styles.cardImage}
-          source={item.imagePath}
-          resizeMode={'cover'}
-        /> */}
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-         {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-       
-  //       <ImageLoad
-  //  style={styles.cardImage}
-  //  placeholderStyle={styles.cardImage}
-  //   loadingStyle={{ size: 'large', color: '#000' }}
-  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   />
-//   <Image 
-//   renderIndicator={renderIndicator}
-//   source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-//   indicator={null}
-//   renderError={(err:any) => {
-//     console.log(err,"..err")
-//      return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-// }}
-//   indicatorProps={{
-//     size: 'large',
-//     borderWidth: 0,
-//     color: '#000',
-//   }}
-//   style={styles.cardImage}
-//   />
-<Image
-source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}} 
-indicator={<ActivityIndicator color="red" size="large"/>}
-style={styles.cardImage}
-onLoaded={() => console.log('Image was loaded!')}
-/>
-        :
-<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-   }
- 
+      <LoadableImage style={styles.cardImage} item={item}/>
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -383,31 +334,7 @@ onLoaded={() => console.log('Image was loaded!')}
   const SuggestedActivities = (item: any, index: number) => (
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
-        {/* <Image
-          style={styles.cardImage}
-          source={require('@assets/trash/card5.jpeg')}
-          resizeMode={'cover'}
-        /> */}
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-        {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-    // <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
-
-    <Image
-    source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())?encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()):null}} 
-    indicator={<ActivityIndicator color="red" size="large"/>}
-    style={styles.cardImage}
-    onLoaded={() => console.log('Image was loaded!')}
-  />
-    :<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-   }
+        <LoadableImage style={styles.cardImage} item={item}/>
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
