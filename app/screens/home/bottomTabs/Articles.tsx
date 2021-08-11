@@ -33,9 +33,7 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import { DefaultImage } from '@components/shared/Image';
-import Image from '../../../services/ProgressImage';
-import downloadImages from '../../../downloadImages/ImageStorage';
+import LoadableImage from '../../../services/LoadableImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -79,56 +77,7 @@ const Articles = ({route, navigation}: Props) => {
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-          {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-  //       <Image
-  //  style={styles.cardImage}
-  //  placeholderStyle={styles.cardImage}
-  //   loadingStyle={{ size: 'large', color: '#000' }}
-  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   />
-  // <Image 
-  // renderIndicator={renderIndicator}
-  // source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  // indicator={null}
-  // renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-  // }}
-  // indicatorProps={{
-  //   size: 'large',
-  //   borderWidth: 0,
-  //   color: '#000',
-  // }}
-  // resizeMode="cover"
-  // style={styles.cardImage}
-  // />
-  // <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>
-  <Image
-  source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())?encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()):null}} 
-  indicator={<ActivityIndicator color="red" size="large"/>}
-  style={styles.cardImage}
-  onLoaded={() => console.log('Image was loaded!')}
-/>
-  :<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-          }
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-          {/* <Image
-            style={styles.cardImage}
-           source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
-            resizeMode={'cover'}
-          /> */}
-           {/* <Image
-           source={item.cover_image ? {uri : "file://" + destinationFolder + (item.cover_image.url.split('/').pop())}:require('@assets/trash/defaultArticleImage.png')}
-           style={styles.cardImage}
-  PlaceholderContent={<ActivityIndicator />}
-/>  */}
+         <LoadableImage style={styles.cardImage} item={item}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
@@ -229,34 +178,34 @@ useFocusEffect(() => {
       }
     },[])
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
-      async function fetchData() {
-      if(filteredData?.length>0){
-      filteredData.map(async (item: any, index: number) => {
-          if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-                  if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-                  }
-                  else{
-          let imageArray:any=[];
-          imageArray.push({
-              srcUrl: item['cover_image'].url, 
-              destFolder: destinationFolder, 
-              destFilename: item['cover_image'].url.split('/').pop()
-          })
-          console.log(imageArray,"..imageArray..");
-          const imagesDownloadResult = await downloadImages(imageArray);
-          console.log(imagesDownloadResult,"..imagesDownloadResult..");
-          }
-          }
-          });
-      }else {
-      }
-    }
-      fetchData()
-    }, [filteredData])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+  //     async function fetchData() {
+  //     // if(filteredData?.length>0){
+  //     // filteredData.map(async (item: any, index: number) => {
+  //     //     if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+  //     //             if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+  //     //             }
+  //     //             else{
+  //     //     let imageArray:any=[];
+  //     //     imageArray.push({
+  //     //         srcUrl: item['cover_image'].url, 
+  //     //         destFolder: destinationFolder, 
+  //     //         destFilename: item['cover_image'].url.split('/').pop()
+  //     //     })
+  //     //     console.log(imageArray,"..imageArray..");
+  //     //     const imagesDownloadResult = await downloadImages(imageArray);
+  //     //     console.log(imagesDownloadResult,"..imagesDownloadResult..");
+  //     //     }
+  //     //     }
+  //     //     });
+  //     // }else {
+  //     // }
+  //   }
+  //     fetchData()
+  //   }, [filteredData])
+  // );
   const toTop = () => {
     // use current
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
