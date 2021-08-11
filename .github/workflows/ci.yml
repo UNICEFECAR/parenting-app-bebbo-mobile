@@ -31,10 +31,14 @@ jobs:
         
     - name: Install node modules
       run: |
-        yarn install
+        yarn install 
         
+    - name: upgrade yarn
+      run:  yarn info && yarn upgrade
+      
     - name: Run test-a
-      run:  yarn add yarn && yarn test
+      run:  yarn add yarn
+#      && yarn test
           
     - name: Cache Gradle Wrapper
       uses: actions/cache@v2
