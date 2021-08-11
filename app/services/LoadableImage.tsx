@@ -1,50 +1,95 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Image, ActivityIndicator } from 'react-native';
-
-export default class LoadableImage extends Component<any,any> {
-  state = {
-    loading: true,
-    noImage:false
-  }
-
-  render() {
-    const { url,style } = this.props
-    console.log(url,"..url..")
-    return (
-      <View style={styles.container}>
-         <Image
-          style={style}
-          onLoadEnd={this._onLoadEnd}
-          onError={this._onLoadError}
-          //onError={(e) => { this.props.source = { uri: 'https://example.domain.com/no-photo.png'}}}
-          source={{ uri: url }}
-        />
-        <ActivityIndicator
-        size="large"
-        color="red"
-          style={styles.activityIndicator}
-          animating={this.state.loading}
-        />
-       </View>
-    )
-  }
-
-  _onLoadEnd = () => {
-    console.log("loading false");
-    this.setState({
-      loading: false
-    })
-  }
-  _onLoadError = () => {
-    console.log("errr");
-      this.setState({
-        noImage:true,
-        loading: false
-      })
+import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
+import React, { Component, useEffect, useState } from 'react';
+import { StyleSheet, View, Image, ActivityIndicator, Text } from 'react-native';
+import downloadImages from '../downloadImages/ImageStorage';
+import RNFS from 'react-native-fs';
+import { useFocusEffect } from '@react-navigation/native';
+import { DefaultImage } from '@components/shared/Image';
+import FastImage from 'react-native-fast-image';
+const LoadableImage = (props:any) => {
+  const [imageState, setImageState] = useState('');
+  const [noImage, setNoImage] = useState(false);
+    const { style,item } = props
+    console.log(item.id, "..id..")
+    const downloadImage = async (item:any) => {
+      console.log(item['cover_image'],"..item..");
+      if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+        console.log(item,"..11item..");
+        if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+          console.log("..22item..");
+          setImageState('loaded');
+        }
+        else {
+          console.log(item,"..33item..");
+          setImageState('loading');
+          let imageArray: any = [];
+          imageArray.push({
+            srcUrl: item['cover_image'].url,
+            destFolder: destinationFolder,
+            destFilename: item['cover_image'].url.split('/').pop()
+          })
+          console.log(imageArray, "..imageArray..");
+          const imagesDownloadResult = await downloadImages(imageArray);
+          setTimeout(()=>{
+            setImageState('loaded');
+          },350)
+         
+          console.log(imagesDownloadResult, "..imagesDownloadResult..");
+        }
+      }
+    }
+    const onLoadEnd = () => {
+      console.log("loading false");
+      // setLoading(false);
+    }
+    const onLoadError = () => {
+      // setNoImage(true)
+  
+    }
+    useFocusEffect(
+      React.useCallback(() => {
+        async function fetchData() {
+          console.log("..11111.......")
+          // setImageState('loading');
+          downloadImage(item)
+        }
+        fetchData()
+        
+      },[imageState])
+    );
+    useEffect(() => {
+     return () => {
+        setImageState(''); // This worked for me
+        setNoImage(true);
+      };
+  }, []);
     
-  }
+    return (
+      <>
+        <View style={styles.container}>
+        {
+        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        
+      (
+        imageState=='loading'?
+        <ActivityIndicator style={style} size="large" color="#000"/>
+        :noImage==false?<FastImage  
+         onError={() => { setNoImage(true) }}
+         style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()),priority: FastImage.priority.normal}} 
+         resizeMode={FastImage.resizeMode.cover}/>:<DefaultImage
+         style={style}
+         source={require('@assets/trash/defaultArticleImage.png')}/> 
+         )
+        :
+        <DefaultImage
+        style={style}
+        source={require('@assets/trash/defaultArticleImage.png')}/>   
+        }
+        </View>        
+      </>
+    );
 }
-
+export default LoadableImage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -56,4 +101,4 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
   }
-})
+});

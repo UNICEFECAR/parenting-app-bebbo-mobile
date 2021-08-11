@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Image from '../../../services/ImageLoad';
+
 import {
   ActivityIndicator,
   FlatList,
@@ -28,9 +28,7 @@ import {
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import downloadImages from '../../../downloadImages/ImageStorage';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
-import { DefaultImage } from '@components/shared/Image';
 import LoadableImage from '../../../services/LoadableImage';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -111,6 +109,7 @@ const Activities = ({ route,navigation }: Props) => {
   const modalScreenKey = 'IsActivityModalOpened';
   const modalScreenText = 'activityModalText';
   const [modalVisible, setModalVisible] = useState(false);
+  const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [filterArray, setFilterArray] = useState([]);
   const [currentSelectedChildId, setCurrentSelectedChildId] = useState(0);
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
@@ -174,26 +173,26 @@ const Activities = ({ route,navigation }: Props) => {
     console.log("filteredData---",filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
-    if(filteredData?.length>0){
-      filteredData.map(async (item: any, index: number) => {
-        if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-          if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-          }
-          else{
-          let imageArray:any=[];
-          imageArray.push({
-              srcUrl: item['cover_image'].url, 
-              destFolder: destinationFolder, 
-              destFilename: item['cover_image'].url.split('/').pop()
-          })
-          const imagesDownloadResult = await downloadImages(imageArray);
-          console.log(imagesDownloadResult,"..imagesDownloadResult..");
-        }
-        }
-        });
-        // console.log(imageArray,"..imageArray..");
+    // if(filteredData?.length>0){
+    //   filteredData.map(async (item: any, index: number) => {
+    //     if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+    //       if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+    //       }
+    //       else{
+    //       let imageArray:any=[];
+    //       imageArray.push({
+    //           srcUrl: item['cover_image'].url, 
+    //           destFolder: destinationFolder, 
+    //           destFilename: item['cover_image'].url.split('/').pop()
+    //       })
+    //       const imagesDownloadResult = await downloadImages(imageArray);
+    //       console.log(imagesDownloadResult,"..imagesDownloadResult..");
+    //     }
+    //     }
+    //     });
+    //     // console.log(imageArray,"..imageArray..");
        
-    }
+    // }
   }
   useFocusEffect(
     React.useCallback(() => {
@@ -320,47 +319,7 @@ const Activities = ({ route,navigation }: Props) => {
   const renderActivityItem = (item: any, index: number) => (
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
-        {/* <Image
-          style={styles.cardImage}
-          source={item.imagePath}
-          resizeMode={'cover'}
-        /> */}
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-         {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-       
-  //       <ImageLoad
-  //  style={styles.cardImage}
-  //  placeholderStyle={styles.cardImage}
-  //   loadingStyle={{ size: 'large', color: '#000' }}
-  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   />
-//   <Image 
-//   renderIndicator={renderIndicator}
-//   source={{uri :  encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-//   indicator={null}
-//   renderError={(err:any) => {
-//     console.log(err,"..err")
-//      return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-// }}
-//   indicatorProps={{
-//     size: 'large',
-//     borderWidth: 0,
-//     color: '#000',
-//   }}
-//   style={styles.cardImage}
-//   />
-<LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>:<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-   }
- 
+      <LoadableImage style={styles.cardImage} item={item}/>
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -375,23 +334,7 @@ const Activities = ({ route,navigation }: Props) => {
   const SuggestedActivities = (item: any, index: number) => (
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
-        {/* <Image
-          style={styles.cardImage}
-          source={require('@assets/trash/card5.jpeg')}
-          resizeMode={'cover'}
-        /> */}
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? { uri: "file://" + destinationFolder + item.cover_image.url.split('/').pop() } : require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-        {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-    <LoadableImage style={styles.cardImage} url={encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}/>:<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-   }
+        <LoadableImage style={styles.cardImage} item={item}/>
         <ArticleListContent>
           <ShiftFromTopBottom5>
             <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -438,6 +381,8 @@ const Activities = ({ route,navigation }: Props) => {
 
               <FlatList
                 data={suggestedGames}
+                initialNumToRender={4} // Reduce initial render amount
+                maxToRenderPerBatch={4} // Reduce number in each render batch
                 renderItem={({ item, index }) => SuggestedActivities(item, index)}
                 keyExtractor={(item) => item.id.toString()}
               />
@@ -500,6 +445,8 @@ const Activities = ({ route,navigation }: Props) => {
                 <FlatList
                   ref={flatListRef}
                   data={otherGames}
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
                   renderItem={({ item, index }) => renderActivityItem(item, index)}
                   keyExtractor={(item) => item.id.toString()}
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}

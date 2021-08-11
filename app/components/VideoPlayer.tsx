@@ -31,13 +31,12 @@ const VideoPlayer = (props: any) => {
     // }, []);
     const displaySpinner=()=>{
         return (
-          <View>
-            {/* Your spinner code goes here. 
-              This one commes from react-native-material-kit library */}
-            <ActivityIndicator size="large" color="red" />
-          </View>
+            <View style={{height:200}}><ActivityIndicator size="large" color="#000" style={{
+                position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
+            }}/></View>
         );
       }
+
     const netInfoval = useNetInfoHook();
     // console.log(netInfoval,"--netInfo");
     let videoId: string;

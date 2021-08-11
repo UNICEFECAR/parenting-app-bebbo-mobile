@@ -19,7 +19,6 @@ import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler  } from 'react-native';
-import RNFS from 'react-native-fs';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -29,9 +28,8 @@ import downloadImages from '../../downloadImages/ImageStorage';
 import RelatedActivities from '@components/shared/RelatedActivities';
 import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from '@native-html/table-plugin';
 import WebView from "react-native-webview";
-import Image from '../../services/ImageLoad';
-import { DefaultImage } from '@components/shared/Image';
 import LoadableImage from '../../services/LoadableImage';
+import { DefaultImage } from '@components/shared/Image';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -48,6 +46,7 @@ export type RelatedArticlesProps = {
   listCategoryArray?:any,
   navigation?:any,
   fromScreen?:any,
+  currentSelectedChildId?:any
 }
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
@@ -133,46 +132,47 @@ const DetailsScreen = ({route, navigation}: any) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
   const [showImageLoader,setImageLoader] = useState(false);
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   let fromPage = 'Details';
-  useFocusEffect(
-    React.useCallback(() => {
-      // console.log("details usefocuseffect")
-      // filterArray.length = 0;
-      const fetchData = async () => {
-        console.log("322Image already exists","file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
-        console.log(await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop()));
-         if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
-          console.log("Image already exists11");
-          console.log("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())
-          //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
-          setImageLoader(false);
-        }else {
-           console.log("11Image already exists");
-        // 
-        //  console.log(imageArray,"..imageArray..");
-        let imageArray= [];
-        imageArray.push({
-           srcUrl: detailDataToUse?.cover_image?.url, 
-           destFolder: destinationFolder, 
-           destFilename: detailDataToUse?.cover_image?.url.split('/').pop()
-       })
-         const imagesDownloadResult = await downloadImages(imageArray);
-        //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
-         //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
-         setImageLoader(false);
-        }
-      }
-      if (detailDataToUse?.cover_image != "" && detailDataToUse?.cover_image!= null && detailDataToUse?.cover_image != undefined && detailDataToUse?.cover_image?.url != "" && detailDataToUse?.cover_image?.url != null && detailDataToUse?.cover_image?.url != undefined) {
-        console.log(detailDataToUse)
-        fetchData();
-      }
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // console.log("details usefocuseffect")
+  //     // filterArray.length = 0;
+  //     const fetchData = async () => {
+  //       console.log("322Image already exists","file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop());
+  //       console.log(await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop()));
+  //        if (await RNFS.exists(destinationFolder + '/' + detailDataToUse?.cover_image?.url.split('/').pop())) {
+  //         console.log("Image already exists11");
+  //         console.log("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())
+  //         //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
+  //         setImageLoader(false);
+  //       }else {
+  //          console.log("11Image already exists");
+  //       // 
+  //       //  console.log(imageArray,"..imageArray..");
+  //       let imageArray= [];
+  //       imageArray.push({
+  //          srcUrl: detailDataToUse?.cover_image?.url, 
+  //          destFolder: destinationFolder, 
+  //          destFilename: detailDataToUse?.cover_image?.url.split('/').pop()
+  //      })
+  //        const imagesDownloadResult = await downloadImages(imageArray);
+  //       //  console.log(imagesDownloadResult,"..imagesDownloadResult..");
+  //        //setCoverImage(encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop()));
+  //        setImageLoader(false);
+  //       }
+  //     }
+  //     if (detailDataToUse?.cover_image != "" && detailDataToUse?.cover_image!= null && detailDataToUse?.cover_image != undefined && detailDataToUse?.cover_image?.url != "" && detailDataToUse?.cover_image?.url != null && detailDataToUse?.cover_image?.url != undefined) {
+  //       console.log(detailDataToUse)
+  //       fetchData();
+  //     }
      
-    },[detailDataToUse?.cover_image?.url])
-  );
+  //   },[detailDataToUse?.cover_image?.url])
+  // );
     
   const setNewFilteredArticleData = (itemId:any) => {
     navigation.navigate({
@@ -285,48 +285,14 @@ const DetailsScreen = ({route, navigation}: any) => {
             <View>
               {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
-                <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
-              : 
-                // <Image
-                //   resizeMode="cover"
-                //   resizeMethod="scale"
-                //   style={{width: '100%', height: 200}}
-                //   // source={detailDataToUse.cover_image ? {uri : "file://" + destinationFolder + ((JSON.parse(detailDataToUse.cover_image).url).split('/').pop())} : require('@assets/trash/defaultArticleImage.png')}
-                //   source={require('@assets/trash/defaultArticleImage.png')}
-                // />
-                //   showImageLoader ?  
-                //   <ActivityIndicator size="small" color="#0000ff"   style={{width: '100%', height: 200}}/> : 
-                //   <Image
-                //   source={cover_image?{uri :cover_image}:require('@assets/trash/defaultArticleImage.png')}
-                //   style={{width: '100%', height: 200}}
-                //   resizeMode="cover"
-                // />
-                (detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="")?
-                // <ImageLoad
-                // style={{width: '100%', height: 200}}
-                // placeholderStyle={{width: '100%', height: 200}}
-                //  loadingStyle={{ size: 'large', color: '#000' }}
-                //  source={{uri :cover_image}}
-                //  />
-  //               <Image 
-  //               renderIndicator={renderIndicator}
-  //               source={{uri :cover_image}}
-  //               indicator={null}
-  //               renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={{width: '100%', height: 200}} />) 
-  // }}
-  //               indicatorProps={{
-  //                 size: 'large',
-  //                 borderWidth: 0,
-  //                 color: '#000',
-  //               }}
-  //               style={{width: '100%', height: 200}}
-  //               />
-  <LoadableImage style={{width: '100%', height: 200}} url={encodeURI("file://" + destinationFolder + detailDataToUse?.cover_image?.url.split('/').pop())}/>
-                 :
-                 <DefaultImage
-                 style={{width: '100%', height: 200}}
-                 source={require('@assets/trash/defaultArticleImage.png')}/>
-          }
+              <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
+              :
+              detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
+              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse}/>):
+              <DefaultImage
+              style={{width: '100%', height: 200}} 
+              source={require('@assets/trash/defaultArticleImage.png')}/>   
+              }
             </View>
             <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} />
             <ArticleDetailsContainer>
@@ -350,7 +316,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                   
                   <ArticleHeading>
                     <Heading2>{t('detailScreenArticleHeader')}</Heading2>
@@ -364,7 +330,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
                   {/* <RelatedArticles related_articles={[6781]} category={detailDataToUse.category} currentId={detailDataToUse.id} /> */}
-                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                    <RelatedArticles related_articles={detailDataToUse?.related_articles} category={detailDataToUse?.category} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
                   
                 </FlexCol>
               </>
@@ -376,7 +342,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>
               <BgActivityTint>
                 <ArticleHeading>
@@ -394,7 +360,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
-                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation}/>
+                <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>
               {/* <BgActivityTint>
                 <ArticleHeading>
