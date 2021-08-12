@@ -234,9 +234,11 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     setMilestonePercent(percent);
   }
   // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
-  const renderItem = (item: any) => (
-    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
-  );
+  const RenderItem = React.memo(({item, index}) => {
+    return (
+      <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
+    );
+  });
   const ContentThatGoesBelowTheFlatList = () => {
     return (
       <>
@@ -401,7 +403,8 @@ const ChildDevelopment = ({route, navigation}: Props) => {
                   <FlatList
                     ref={flatListRef}
                     data={selectedChildMilestoneData}
-                    renderItem={({item, index}) => renderItem(item)}
+                    // renderItem={({item, index}) => renderItem(item)}
+                    renderItem={({item, index}) => <RenderItem item={item} index={index} />  }
                     keyExtractor={(item) => item.id.toString()}
                     nestedScrollEnabled={true}
                     ListHeaderComponent={ContentThatGoesAboveTheFlatList}
