@@ -71,25 +71,24 @@ const Articles = ({route, navigation}: Props) => {
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
-  const renderArticleItem = ({item, index}) => {
-    // console.log("renderArticleItem-",index)
+  const RenderArticleItem = React.memo(({item, index}) => {
+    console.log("renderArticleItem-",index)
     return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-        {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-         <LoadableImage style={styles.cardImage} item={item}/>
-          <ArticleListContent>
-            <ShiftFromTopBottom5>
-          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
-          </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-          <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
-        </ArticleListContainer>
-      </Pressable>
+          <LoadableImage style={styles.cardImage} item={item}/> 
+           <ArticleListContent>
+             <ShiftFromTopBottom5>
+           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
+           </ShiftFromTopBottom5>
+           <Heading3>{item.title}</Heading3>
+           </ArticleListContent>
+           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
+         </ArticleListContainer>
+       </Pressable>
 
   ) 
-};
+});
 
 useFocusEffect(() => {
   console.log("in article focuseffect without callback",articleModalOpened);
@@ -312,9 +311,12 @@ useFocusEffect(() => {
                 <FlatList
                   ref={flatListRef}
                   data={filteredData}
+                  removeClippedSubviews={true} // Unmount components when outside of window 
                   initialNumToRender={4} // Reduce initial render amount
                   maxToRenderPerBatch={4} // Reduce number in each render batch
-                  renderItem={renderArticleItem}
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  renderItem={({item, index}) => <RenderArticleItem item={item} index={index} />  }
                   keyExtractor={(item) => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}

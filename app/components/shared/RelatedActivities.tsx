@@ -129,8 +129,9 @@ const RelatedActivities = (props:RelatedActivityProps) => {
       // setFilteredArticleData: setFilteredArticleData
     });
   };
-  const renderDailyReadItem = (item: any, index: number) => {
-    return (
+  const RenderActivityItem = React.memo(({item, index}) => {
+    console.log("RenderActivityItem",item.id);
+    return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
       style={{flexDirection:'row'}}
       >
@@ -149,8 +150,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'}/>
         </RelatedArticleContainer>
       </Pressable>  
-    );
-  };
+   ) 
+  });
 
   return (
     <>
@@ -163,7 +164,13 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           <FlatList
             data={relatedArticleData}
             horizontal
-            renderItem={({item, index}) => renderDailyReadItem(item, index)}
+            // renderItem={({item, index}) => renderDailyReadItem(item, index)}
+            removeClippedSubviews={true} // Unmount components when outside of window 
+              initialNumToRender={4} // Reduce initial render amount
+              maxToRenderPerBatch={4} // Reduce number in each render batch
+              updateCellsBatchingPeriod={100} // Increase time between renders
+              windowSize={7} // Reduce the window size
+            renderItem={({item, index}) => <RenderActivityItem item={item} index={index} />  }
             keyExtractor={(item) => item.id}
           />
           </View>

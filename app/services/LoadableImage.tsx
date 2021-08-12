@@ -7,7 +7,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { DefaultImage } from '@components/shared/Image';
 import FastImage from 'react-native-fast-image';
 const LoadableImage = (props:any) => {
-  const [imageState, setImageState] = useState('');
+  const [imageState, setImageState] = useState('loading');
   const [noImage, setNoImage] = useState(false);
     const { style,item } = props
     console.log(item.id, "..id..")
@@ -49,13 +49,13 @@ const LoadableImage = (props:any) => {
     useFocusEffect(
       React.useCallback(() => {
         async function fetchData() {
-          console.log("..11111.......")
+          console.log("..11111.......",item.id)
           // setImageState('loading');
           downloadImage(item)
         }
         fetchData()
         
-      },[imageState])
+      },[])
     );
     useEffect(() => {
      return () => {
@@ -89,7 +89,8 @@ const LoadableImage = (props:any) => {
       </>
     );
 }
-export default LoadableImage;
+export default React.memo(LoadableImage);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
