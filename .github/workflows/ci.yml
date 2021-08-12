@@ -76,8 +76,11 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: Signed App Bundle
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+#        name: Signed App Bundle
+ #       path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        name: android-apk
+        path: '**/*.apk'
+
 
   #  - name: Deploy to Play Store (BETA)
    #   uses: r0adkll/upload-google-play@v1
