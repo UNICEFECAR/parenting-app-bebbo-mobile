@@ -316,7 +316,9 @@ const Activities = ({ route,navigation }: Props) => {
       setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  const renderActivityItem = (item: any, index: number) => (
+  const RenderActivityItem = React.memo(({item, index}) => {
+    console.log("RenderActivityItem",item.id);
+    return(
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
       <LoadableImage style={styles.cardImage} item={item}/>
@@ -330,8 +332,11 @@ const Activities = ({ route,navigation }: Props) => {
         <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
       </ArticleListContainer>
     </Pressable>
-  );
-  const SuggestedActivities = (item: any, index: number) => (
+  ) 
+});
+  const SuggestedActivities = React.memo(({item, index}) => {
+    console.log("SuggestedActivities",item.id);
+    return(
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
         <LoadableImage style={styles.cardImage} item={item}/>
@@ -360,7 +365,8 @@ const Activities = ({ route,navigation }: Props) => {
         <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
       </ArticleListContainer>
     </Pressable>
-  );
+  ) 
+});
   const ContentThatGoesAboveTheFlatList = () => {
 
     return (
@@ -381,9 +387,13 @@ const Activities = ({ route,navigation }: Props) => {
 
               <FlatList
                 data={suggestedGames}
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                renderItem={({ item, index }) => SuggestedActivities(item, index)}
+                removeClippedSubviews={true} // Unmount components when outside of window 
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                // renderItem={({ item, index }) => SuggestedActivities(item, index)}
+                renderItem={({item, index}) => <SuggestedActivities item={item} index={index} />  }
                 keyExtractor={(item) => item.id.toString()}
               />
               {/* {otherGames && otherGames?.length > 0 ?
@@ -445,9 +455,13 @@ const Activities = ({ route,navigation }: Props) => {
                 <FlatList
                   ref={flatListRef}
                   data={otherGames}
+                  removeClippedSubviews={true} // Unmount components when outside of window 
                   initialNumToRender={4} // Reduce initial render amount
                   maxToRenderPerBatch={4} // Reduce number in each render batch
-                  renderItem={({ item, index }) => renderActivityItem(item, index)}
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  // renderItem={({ item, index }) => renderActivityItem(item, index)}
+                  renderItem={({item, index}) => <RenderActivityItem item={item} index={index} />  }
                   keyExtractor={(item) => item.id.toString()}
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                 // ListFooterComponent={ContentThatGoesBelowTheFlatList}
