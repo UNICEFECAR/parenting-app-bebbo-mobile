@@ -6,7 +6,7 @@ import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import Container, { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
 import { FDirCol,FlexCol, FDirRow,Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow,IconViewSuccess,IconViewAlert } from '@components/shared/Icon';
+import Icon, { OuterIconLeft, OuterIconRow,IconViewSuccess,IconViewAlert,IconAreaPress} from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -295,17 +295,19 @@ const ChildDevelopment = ({route, navigation}: Props) => {
           </FlexDirRowSpace>
           <ShiftFromTop5>
           <FlexDirRowSpaceStart>
+            <Flex1>
           <Heading2>
             {selectedChildDevData?.title}
           </Heading2>
+          </Flex1>
           {selectedPinnedArticleData ?
-            <Pressable onPress={onPressInfo}>
+            <IconAreaPress onPress={onPressInfo}>
               <ShiftFromTop5>
                   <Icon name="ic_info" size={15} color="#000" />
                   </ShiftFromTop5>
-              </Pressable>
+              </IconAreaPress>
               : null
-          }
+            }
           </FlexDirRowSpaceStart>
           </ShiftFromTop5>
           <FDirCol>
