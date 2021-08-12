@@ -153,7 +153,8 @@ const VideoPlayer = (props: any) => {
                         renderLoading={displaySpinner}
                     />
                     :
-                    <>{loading ? <View style={{height:200}}><ActivityIndicator size="large" color="#000" style={{
+                    <>
+                    {loading ? <View style={{height:200}}><ActivityIndicator size="large" color="#000" style={{
                         position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
                     }}/></View>: null}
                     <YoutubePlayer
@@ -161,7 +162,7 @@ const VideoPlayer = (props: any) => {
                         // height={this.state.containerWidth / this.state.aspectRatio}
                         videoId={videoId}
                         play={playing}
-                        height={loading ? 0 : 200}
+                        height={200}
                         onReady={onReady}
                         onError={onError}
                         //   onChangeState={onStateChange}
