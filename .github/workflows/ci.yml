@@ -63,15 +63,15 @@ jobs:
           
           
           
-    - name: Sign App Bundle
-      id: sign_app
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: android/app/build/outputs/bundle/release
-        signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-        alias: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
-        keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
-        keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
+#    - name: Sign App Bundle
+ #     id: sign_app
+  #    uses: r0adkll/sign-android-release@v1
+   #   with:
+    #    releaseDirectory: android/app/build/outputs/bundle/release
+     #   signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+      #  alias: ${{ secrets.MYAPP_UPLOAD_KEY_ALIAS }}
+       # keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
+        #keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
