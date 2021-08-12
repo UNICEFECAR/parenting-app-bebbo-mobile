@@ -162,7 +162,7 @@ const VideoPlayer = (props: any) => {
                         // height={this.state.containerWidth / this.state.aspectRatio}
                         videoId={videoId}
                         play={playing}
-                        height={200}
+                        height={loading ? 10 : 200}
                         onReady={onReady}
                         onError={onError}
                         //   onChangeState={onStateChange}
