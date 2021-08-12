@@ -8,7 +8,11 @@ import { MainContainer } from '@components/shared/Container';
 import {
   FDirCol,
   FlexDirRow,
-  FlexDirRowSpace
+  FlexDirRowSpace,
+  Flex1,
+  Flex2,
+  Flex3,
+  Flex4,
 } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
@@ -37,12 +41,14 @@ const BabyNotification = () => {
   };
   return (
     <>
-      {/* {activeChild?.gender == '' ? ( */}
+      {/* {(activeChild?.gender != '' && activeChild.photoUri != '' && activeChild.birthDate != '' && activeChild.childName != '')? ( */}
+      
       <>
         <BgSecondary>
           <MainContainer>
             <FlexDirRowSpace>
-              <FlexDirRow>
+              <Flex3>
+                <FlexDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
                     {/* <Icon name="ic_baby" size={36} color="#000" /> */}
@@ -84,10 +90,12 @@ const BabyNotification = () => {
                     <Heading5>{(activeChild.gender != "" && activeChild.gender != null && activeChild.gender != undefined && activeChild.photoUri != "" && activeChild.photoUri != null && activeChild.photoUri != undefined) ? t('babyNotificationText1') : t('babyNotificationText')}</Heading5>
                   </FDirCol>
                 </View>
-              </FlexDirRow>
-              <FDirCol>
+                </FlexDirRow>
+              </Flex3>
+              <Flex2>
+                <View style={{marginLeft:5}}>
                 <ButtonTertiaryMd>
-                  <ButtonLinkPress
+                  <ButtonLinkPress 
                     onPress={() => {
                       if (isFutureDate(activeChild.birthDate)) {
                         navigation.navigate('AddExpectingChildProfile', {
@@ -110,17 +118,19 @@ const BabyNotification = () => {
                         })
                       }
                     }}>
-                    <ButtonTextMd>
+                    <ButtonTextMd style={{flex:1,lineHeight:16,}}>
                       {t('babyNotificationUpdateBtn')}
+
                     </ButtonTextMd>
                   </ButtonLinkPress>
                 </ButtonTertiaryMd>
-              </FDirCol>
+                </View>
+              </Flex2>
             </FlexDirRowSpace>
           </MainContainer>
         </BgSecondary>
       </>
-      {/* ) : null} */}
+       {/* ) : null}  */}
     </>
   );
 };
