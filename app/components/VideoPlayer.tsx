@@ -142,6 +142,7 @@ const VideoPlayer = (props: any) => {
                             // aspectRatio: this.state.aspectRatio,
                             // borderWidth: 5, borderColor: 'blue',
                         }}
+                        allowsInlineMediaPlayback={true}
                         originWhitelist={['*']}
                         source={{ html: getVimeoHtml() }}
                         onMessage={(event) => {
