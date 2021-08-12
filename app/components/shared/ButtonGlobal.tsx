@@ -16,6 +16,7 @@ height:50px;
 export const ButtonPrimaryMd = styled(ButtonPrimary)`
 padding: 10px 4px;
 height:40px;
+min-height:40px;
 `;
 
 /*Button Text */
@@ -127,8 +128,11 @@ export const ButtonTertiary = styled(ButtonPrimary)`
 `;
 export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-  padding-left:6px;
-  padding-right:6px;
+  padding-left:4px;
+  padding-right:4px;
+  height:auto;
+  padding:4px;
+  justify-content:center;
 `;
 
 

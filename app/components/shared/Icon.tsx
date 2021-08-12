@@ -67,6 +67,11 @@ justify-content:center;
 
 `;
 
+export const IconAreaPress = styled.Pressable`
+padding:5px 8px;
+
+`;
+
 
 
 export default Icon;
