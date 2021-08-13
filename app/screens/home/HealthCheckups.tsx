@@ -142,7 +142,7 @@ const HealthCheckups = ({navigation}: Props) => {
                       headerColor: headerColor,
                     });
                   }}>
-                  <ButtonTextSmLine>{t('hcReminderbtn')}</ButtonTextSmLine>
+                  <ButtonTextSmLine numberOfLines={2}>{t('hcReminderbtn')}</ButtonTextSmLine>
                 </Pressable>)
               }
 
@@ -155,7 +155,7 @@ const HealthCheckups = ({navigation}: Props) => {
                       vcPeriod: upcomingPeriods[0],
                     })
                   }>
-                  <ButtonText>{t('hcNewBtn')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('hcNewBtn')}</ButtonText>
                 </ButtonHealth>
               </ButtonContainerAuto>
             </MainContainer>
@@ -169,7 +169,7 @@ const HealthCheckups = ({navigation}: Props) => {
                     onPress={() => {
                       setSelectedIndex(itemindex);
                     }}>
-                    <TabBarDefault
+                    <TabBarDefault 
                       style={[
                         {
                           backgroundColor:
@@ -178,7 +178,7 @@ const HealthCheckups = ({navigation}: Props) => {
                               : backgroundColor,
                         },
                       ]}>
-                      <Heading4Center>{item.title}</Heading4Center>
+                      <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
                     </TabBarDefault>
                   </Pressable>
                 );
