@@ -32,7 +32,7 @@ const AdviceAndArticles = () => {
             </ShiftFromBottom15>
               <ButtonArticles
                 onPress={() => navigation.navigate('Articles')}>
-                <ButtonText>{t('homeScreenexpButton')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('homeScreenexpButton')}</ButtonText>
               </ButtonArticles>
           </FeatureContentBox>
           </FlexDirRow>

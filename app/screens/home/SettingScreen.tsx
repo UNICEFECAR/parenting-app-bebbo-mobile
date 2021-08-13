@@ -288,7 +288,7 @@ const SettingScreen = (props: any) => {
             </Heading6>
             <ShiftFromTop10>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreendownldupdateBtn')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
             <ShiftFromTop20>
@@ -297,7 +297,7 @@ const SettingScreen = (props: any) => {
             </ShiftFromTop20>
             <ShiftFromTop10>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreendownldallBtn')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
           </MainContainer>
@@ -342,12 +342,12 @@ const SettingScreen = (props: any) => {
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
-                <ButtonText>{t('settingScreenexportBtnText')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
               <ButtonPrimary onPress={() => {}}>
-                <ButtonText>{t('settingScreenimportBtnText')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTopBottom10>
           </MainContainer>
@@ -419,7 +419,7 @@ const SettingScreen = (props: any) => {
                     });
                     // props.navigation.navigate('Localization')
                   }}>
-                  <ButtonText>{t('continueInModal')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
               </FDirRow>
             </ModalPopupContainer>
