@@ -154,15 +154,15 @@ const VideoPlayer = (props: any) => {
                     />
                     :
                     <>
-                    {loading ? <View style={{height:200}}><ActivityIndicator size="large" color="#000" style={{
-                        position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
+                    <View style={{flex:1,flexDirection:'column',height:200,overflow:'hidden'}}>
+                    {loading ? <View style={{height:200,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
                     }}/></View>: null}
                     <YoutubePlayer
                         // width={width}
                         // height={this.state.containerWidth / this.state.aspectRatio}
                         videoId={videoId}
                         play={playing}
-                        height={loading ? 10 : 200}
+                        height={200}
                         onReady={onReady}
                         onError={onError}
                         //   onChangeState={onStateChange}
@@ -185,7 +185,9 @@ const VideoPlayer = (props: any) => {
                     // webViewStyle={{
                     //   width,
                     // }}
-                    /></>
+                    />
+                    </View>
+                    </>
                 }</>)
             }
         </>
