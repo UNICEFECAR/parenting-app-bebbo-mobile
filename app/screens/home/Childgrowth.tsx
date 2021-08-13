@@ -110,7 +110,7 @@ const Childgrowth = ({navigation,route}: Props) => {
               backgroundColor: backgroundColor,
               maxHeight: '100%',
             }}>
-            <BabyNotification />
+           {(activeChild?.gender == '') ?  <BabyNotification /> : null}
             {measures.length == 0 ? (
               <>
                 <FlexDirCol>
