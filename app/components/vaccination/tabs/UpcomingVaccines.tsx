@@ -39,7 +39,7 @@ import {
   ButtonTextSmLineL,
   ButtonVaccination
 } from '../../shared/ButtonGlobal';
-import Icon, { IconViewAlert } from '../../shared/Icon';
+import Icon, { IconViewAlert, IconViewBg } from '../../shared/Icon';
 
 const UpcomingVaccines = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
@@ -229,15 +229,14 @@ const UpcomingVaccines = (props: any) => {
                 {vaccineReminder ? (
                   <FDirRowStart>
                     <ToolsIconView>
+                    <IconViewBg>
                       <Icon
                         name="ic_time"
                         size={20}
                         color="#FFF"
-                        style={{
-                          backgroundColor: reminderColor,
-                          borderRadius: 50,
-                        }}
+                        
                       />
+                      </IconViewBg>
                     </ToolsIconView>
                     <ToolsHeadView>
                       <ToolsHeadingView>
