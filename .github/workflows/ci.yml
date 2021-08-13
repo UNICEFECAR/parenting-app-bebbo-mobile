@@ -60,8 +60,12 @@ jobs:
     - name: Build Android App Bundle
       run: |
         cd android && ./gradlew bundleRelease --no-daemon
-          
-          
+        
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: android-apk
+        path: '**/*.apk'        
           
 #    - name: Sign App Bundle
  #     id: sign_app
@@ -73,13 +77,11 @@ jobs:
        # keyStorePassword: ${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}
         #keyPassword: ${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
+#    - name: Upload Artifact
+ #     uses: actions/upload-artifact@v2
+  #    with:
 #        name: Signed App Bundle
  #       path: ${{steps.sign_app.outputs.signedReleaseFile}}
-        name: android-apk
-        path: '**/*.apk'
 
 
   #  - name: Deploy to Play Store (BETA)
