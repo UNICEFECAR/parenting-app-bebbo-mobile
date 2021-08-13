@@ -19,21 +19,21 @@ const TrackMilestoneView = (props) => {
   return (
     <>
     <ShiftFromBottom15>
-    <MainContainer>
+    <MainContainer style={{flex:1}}>
       <BannerContainer style={{backgroundColor: backgroundColor,}}>
         <FlexDirRowStart>
         <Flex1>
           <OuterIconRow>
             <OuterIconLeft>
             <IconBox>
-        <Icon name="ic_milestone" size={25} color="#000" />
-        </IconBox>
+              <Icon name="ic_milestone" size={25} color="#000" />
+            </IconBox>
             </OuterIconLeft>
           </OuterIconRow>
         </Flex1>
         <Flex3>
           <ShiftFromBottom15>
-        <Heading3>
+          <Heading3>
            {t('trackMilestoneViewHeader')}
           </Heading3>
           </ShiftFromBottom15>
@@ -47,7 +47,7 @@ const TrackMilestoneView = (props) => {
                   merge: true,
                 })
               }>
-              <ButtonTextMd>{t('trackMilestoneViewBtn')}</ButtonTextMd>
+              <ButtonTextMd numberOfLines={2}>{t('trackMilestoneViewBtn')}</ButtonTextMd>
             </ButtonDevelopmentMd>
           </Pressable>
         </Flex3>

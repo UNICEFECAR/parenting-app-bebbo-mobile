@@ -216,7 +216,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                     headerTitle: t('growthScreenaddNewBtntxt'),
                   });
                 }}>
-                <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('growthScreenaddNewBtntxt')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
           </ButtonContainer>

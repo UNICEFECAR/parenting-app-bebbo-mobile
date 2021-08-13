@@ -168,7 +168,7 @@ const Home = () => {
                           onPress={() => {
                             setModalVisible(true);
                           }}>
-                          <ButtonText>{t('homeScreenexpBtnText')}</ButtonText>
+                          <ButtonText numberOfLines={2}>{t('homeScreenexpBtnText')}</ButtonText>
                         </ButtonTertiary>
                       </SideSpacing25>
                     </ShiftFromTop20>
@@ -217,7 +217,7 @@ const Home = () => {
                     setModalVisible(false);
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
-                  <ButtonText>{t('continueInModal')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
               </FDirRow>
             </ModalPopupContainer>

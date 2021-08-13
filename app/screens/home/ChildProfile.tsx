@@ -309,7 +309,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL  numberOfLines={2}>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
               <ProfileLinkCol>
@@ -323,7 +323,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL numberOfLines={2}>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
             </ProfileLinkRow>

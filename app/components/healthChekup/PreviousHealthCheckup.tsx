@@ -226,7 +226,7 @@ const PreviousHealthCheckup = (props: any) => {
                     vcPeriod: item,
                   })
                 }>
-                <ButtonText>{t('hcNewBtn')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('hcNewBtn')}</ButtonText>
               </ButtonHealth>
             </ButtonContainerAuto>
              )} 

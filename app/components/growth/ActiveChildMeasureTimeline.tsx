@@ -145,7 +145,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
                   })
                 }}>
                 <FlexDirRowEnd>
-                  <ButtonTextMdLine>
+                  <ButtonTextMdLine numberOfLines={2}>
                     {t('growthScreeneditText')}
                   </ButtonTextMdLine>
                 </FlexDirRowEnd>
