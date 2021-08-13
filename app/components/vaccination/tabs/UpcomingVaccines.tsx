@@ -291,7 +291,7 @@ const UpcomingVaccines = (props: any) => {
                         headerColor: headerColor,
                       });
                     }}>
-                    <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
+                    <ButtonTextMdLine numberOfLines={2}>
                       {t('vcSetReminder')}
                     </ButtonTextMdLine>
                   </Pressable>
@@ -387,7 +387,9 @@ const UpcomingVaccines = (props: any) => {
                       vcPeriod: item,
                     })
                   }>
-                  <ButtonText>{t('vcAddBtn')}</ButtonText>
+                  <ButtonText numberOfLines={2}>
+                  {t('vcAddBtn')}
+                  </ButtonText>
                 </ButtonVaccination>
               </ButtonContainerAuto>
             ) : null}

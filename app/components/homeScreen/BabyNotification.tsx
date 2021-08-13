@@ -118,9 +118,9 @@ const BabyNotification = () => {
                         })
                       }
                     }}>
-                    <ButtonTextMd style={{flex:1,lineHeight:16,}}>
+                    <ButtonTextMd numberOfLines={2}>
                       {t('babyNotificationUpdateBtn')}
-
+                      
                     </ButtonTextMd>
                   </ButtonLinkPress>
                 </ButtonTertiaryMd>

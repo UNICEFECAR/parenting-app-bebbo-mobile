@@ -32,7 +32,7 @@ const PlayingTogether = () => {
             </ShiftFromBottom15>
               <ButtonActivity
                 onPress={() => navigation.navigate('Activities')}>
-                <ButtonText>{t('homeScreenptButton')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('homeScreenptButton')}</ButtonText>
               </ButtonActivity>
           </FeatureContentBox>
           </FlexDirRow>

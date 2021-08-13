@@ -192,7 +192,7 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                  <ButtonTextSmLine
+                  <ButtonTextSmLine  numberOfLines={2}
                     onPress={() => {
                       setModalVisible(false);
                       setActiveChild(languageCode, data.uuid, dispatch, child_age);
@@ -265,7 +265,7 @@ const HeaderBabyMenu = (props: any) => {
                   setModalVisible(false);
                   navigation.navigate('ChildProfileScreen')
                   }}>
-                <ButtonText>{t('manageProfileTxt')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('manageProfileTxt')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>
