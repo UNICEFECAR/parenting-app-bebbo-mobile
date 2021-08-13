@@ -119,7 +119,9 @@ export default () => {
         <RootStack.Navigator
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
-          }>
+          }
+          screenOptions={{ animationEnabled: false }}
+          >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
             name="Localization"
