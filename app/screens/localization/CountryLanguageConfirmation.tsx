@@ -161,7 +161,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
             </LocalizationRow>
             <Flex1>
               <ButtonPrimary onPress={() => saveSelection()}>
-                <ButtonText>{t('continueCountryLang')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('continueCountryLang')}</ButtonText>
               </ButtonPrimary>
             </Flex1>
           </LocalizationContainer>
