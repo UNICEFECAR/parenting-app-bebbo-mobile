@@ -33,7 +33,8 @@ const ChildMilestones = () => {
             </ShiftFromBottom15>
               <ButtonDevelopment
                 onPress={() => navigation.navigate('ChildDevelopment')}>
-                <ButtonText>{t('homeScreencdButton')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('homeScreencdButton')}</ButtonText>
+                
               </ButtonDevelopment>
           </FeatureContentBox>
           </FlexDirRow>

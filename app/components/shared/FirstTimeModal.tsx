@@ -52,7 +52,7 @@ const FirstTimeModal = (props : any) => {
                     onPress={() => {
                     setIsModalOpened(modalScreenKey);
                     }}>
-                    <ButtonText>{t('continueInModal')}</ButtonText>
+                    <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
                 </FDirRow>
 
