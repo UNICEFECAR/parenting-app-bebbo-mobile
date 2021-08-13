@@ -41,6 +41,7 @@ const HealthCheckups = ({navigation}: Props) => {
   let {
     upcomingPeriods,
     previousPeriods,
+    childAgeIndays,
     sortedGroupsForPeriods,
     totalPreviousVaccines,
     totalUpcomingVaccines,
@@ -77,6 +78,7 @@ const HealthCheckups = ({navigation}: Props) => {
               return (
                 <UpcomingHealthCheckup
                   item={item}
+                  childAgeIndays={childAgeIndays}
                   currentPeriodId={currentPeriod?.id}
                   key={itemindex}
                   headerColor={headerColor}
