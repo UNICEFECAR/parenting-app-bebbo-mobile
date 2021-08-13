@@ -47,8 +47,9 @@ import {
 import Icon, { IconViewBg, IconViewBorder } from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
-  const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
+  const {item, currentIndex,childAgeIndays, headerColor, backgroundColor, currentPeriodId} =
     props;
+    console.log(childAgeIndays,item.vaccination_opens,item.vaccination_ends)
   // console.log(currentPeriodId,"currentPeriodId");
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -274,7 +275,7 @@ const UpcomingHealthCheckup = (props: any) => {
               ) : null}
             </MainContainer>
 
-            {currentPeriodId == item?.id ? (
+            {currentPeriodId == item?.id  ? (
               <MainContainer>
                 {healthCheckupReminder ? (
                   <FDirRowStart>
@@ -349,7 +350,9 @@ const UpcomingHealthCheckup = (props: any) => {
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-            {currentPeriodId == item?.id ? (
+
+            {/* // perios's open and end contains curent child age in daays */}
+            { item?.vaccination_opens<childAgeIndays && item?.vaccination_ends>childAgeIndays ? (
               item?.growthMeasures?.uuid ? (
                 <ShiftFromTopBottom10>
                   <Pressable
