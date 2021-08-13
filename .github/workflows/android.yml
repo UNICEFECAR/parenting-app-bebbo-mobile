@@ -1,71 +1,70 @@
-name: Android
+name: Android Build
 
+# Controls when the workflow will run
 on:
-  create:
-    tags:
-      - v*
+  # Triggers the workflow on push or pull request events but only for the main branch
+  
+  pull_request:
+    branches:
+      - main
+  
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      message:
-        description: 'Build description'
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  test:
+    name: Tests
     runs-on: ubuntu-latest
-    container:
-      image: docker://fabernovel/android:api-29-v1.1.0
-
     steps:
-      - name: Checkout
-        uses : actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+#     - uses: c-hive/gha-yarn-cache@v1
 
-      - name: Node modules cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: [Put a hash key here based on yarn.lock]
 
-      - name: Ruby cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: vendor/bundle
-          key: [Put a hash key here based on gemfile.lock]
+    - name: Install node modules
+      run: |
+        npm install -g yarn
+        
+    - name: Install node modules
+      run: |
+        yarn install 
+        
+    - name: upgrade yarn
+      run:  yarn info && yarn upgrade
+      
+    - name: Run test-a
+      run:  yarn add yarn
+#      && yarn test
+          
+    - name: Cache Gradle Wrapper
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
 
-      - name: Gradle cache
-        uses: actions/cache@v1.2.0
-        with:
-          path: /root/.gradle
-          key: [Put a hash key here based on *.gradle]
+    - name: Cache Gradle Dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-caches-
+          
+    - name: Make Gradlew Executable
+      run: cd android && chmod +x ./gradlew
 
-      - name: Use Node 14
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Build Android App Bundle
+      run: |      
+        cd android && ./gradlew clean && ./gradlew assembleRelease --no-daemon
+# cd android && ./gradlew assembleRelease --no-daemon #  :app:bundleRelease
+#        cd android && ./gradlew bundleRelease --no-daemon
 
-      - name: Install yarn
-        run: npm install -g yarn
 
-      - name: Install firebase CLI
-        run: npm install -g firebase-tools
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Decode keystore file
-        run: echo -n "$ANDROID_KEYSTORE_FILE" | base64 -d > ./my-release-key.keystore
-        working-directory: ./android/app
-        env:
-          ANDROID_KEYSTORE_FILE: $
-
-      - name: Bundle install
-        run: |
-          bundle config path vendor/bundle
-          bundle check || bundle install
-
-      - name: Fastlane
-        run: bundle exec fastlane android distribute_staging
-        env:
-          MYAPP_RELEASE_STORE_PASSWORD: $
-          MYAPP_RELEASE_KEY_ALIAS: $
-          MYAPP_RELEASE_KEY_PASSWORD: $
-          FIREBASE_TOKEN: $
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: Bebbo_Debug.apk
+        path: android/app/build/outputs/apk/
+        
