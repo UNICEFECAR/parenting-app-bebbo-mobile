@@ -182,7 +182,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                                       : backgroundColor,
                                 },
                               ]}>
-                              <Heading4Center>{item.title}</Heading4Center>
+                              <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
                             </TabBarDefault>
                           </Pressable>
                         );
@@ -205,7 +205,6 @@ const Childgrowth = ({navigation,route}: Props) => {
               </MainContainer>
             )}
           </ScrollView>
-
           <ButtonContainer style={{backgroundColor: backgroundColor}}>
             <ShiftFromTop10>
               <ButtonPrimary
@@ -216,7 +215,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                     headerTitle: t('growthScreenaddNewBtntxt'),
                   });
                 }}>
-                <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('growthScreenaddNewBtntxt')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
           </ButtonContainer>

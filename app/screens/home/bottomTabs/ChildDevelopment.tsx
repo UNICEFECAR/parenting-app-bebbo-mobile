@@ -6,13 +6,13 @@ import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import Container, { BannerContainer, MainContainer,SafeAreaContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
 import { FDirCol,FlexCol, FDirRow,Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow,IconViewSuccess,IconViewAlert } from '@components/shared/Icon';
+import Icon, { OuterIconLeft, OuterIconRow,IconViewSuccess,IconViewAlert,IconAreaPress} from '@components/shared/Icon';
 import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,
@@ -96,13 +96,9 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     }
   };
   // let selectedChildDevData:any;
-  useFocusEffect(() => {
-    console.log("in childdev focuseffect without callback",childDevModalOpened);
-    setModalVisible(childDevModalOpened);
-  })
-  useFocusEffect(
-    React.useCallback(() => {
-      console.log("in childdev focuseffect");
+  useEffect(() => {
+      console.log("in childdev focuseffect",childDevModalOpened);
+      setModalVisible(childDevModalOpened);
       // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
       
       setComponentColors({headerColor :themeContext.colors.CHILDDEVELOPMENT_COLOR,
@@ -112,15 +108,16 @@ const ChildDevelopment = ({route, navigation}: Props) => {
         headerColorBlack : themeContext.colors.PRIMARY_TEXTCOLOR});
 
         return () => {
-          console.log("in unmount-",route.params?.currentSelectedChildId);
+          console.log("in unmount dev-",route.params?.currentSelectedChildId);
           if(route.params?.currentSelectedChildId)
           {
             navigation.setParams({currentSelectedChildId:0})
+            console.log(route.params?.currentSelectedChildId,"--after unmount");
             // route.params?.currentSelectedChildId = 0;
           }
         }
-    },[])
-  );
+    },[]);
+
   const onPressInfo = () => {
     navigation.navigate('DetailsScreen', {
       fromScreen: 'ChildDevelopment',
@@ -161,10 +158,9 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     // console.log("sortednewArray--",sortednewArray);
     setselectedChildMilestoneData([...sortednewArray]);
   }
-  useFocusEffect(
-    React.useCallback(() => { 
+  useEffect(() => {
       // console.log("child dev usefocuseffect");
-      console.log(route.params?.currentSelectedChildId);
+      console.log("in childdev useeffect",route.params?.currentSelectedChildId);
       if(route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0)
       {
         // console.log(route.params?.categoryArray);
@@ -181,7 +177,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       // // console.log("firstChildDevData---",firstChildDevData);
       // showSelectedBracketData(firstChildDevData[0]);
       
-    },[activeChild?.uuid,route.params?.currentSelectedChildId])
+    },[activeChild?.uuid,route.params?.currentSelectedChildId]
   );
   useFocusEffect(
     React.useCallback(() => { 
@@ -238,9 +234,11 @@ const ChildDevelopment = ({route, navigation}: Props) => {
     setMilestonePercent(percent);
   }
   // console.log("selectedChildMilestoneData------",selectedChildMilestoneData);
-  const renderItem = (item: any) => (
-    <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
-  );
+  const RenderItem = React.memo(({item, index}) => {
+    return (
+      <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />
+    );
+  });
   const ContentThatGoesBelowTheFlatList = () => {
     return (
       <>
@@ -299,17 +297,19 @@ const ChildDevelopment = ({route, navigation}: Props) => {
           </FlexDirRowSpace>
           <ShiftFromTop5>
           <FlexDirRowSpaceStart>
+            <Flex1>
           <Heading2>
             {selectedChildDevData?.title}
           </Heading2>
+          </Flex1>
           {selectedPinnedArticleData ?
-            <Pressable onPress={onPressInfo}>
+            <IconAreaPress onPress={onPressInfo}>
               <ShiftFromTop5>
                   <Icon name="ic_info" size={15} color="#000" />
                   </ShiftFromTop5>
-              </Pressable>
+              </IconAreaPress>
               : null
-          }
+            }
           </FlexDirRowSpaceStart>
           </ShiftFromTop5>
           <FDirCol>
@@ -403,7 +403,8 @@ const ChildDevelopment = ({route, navigation}: Props) => {
                   <FlatList
                     ref={flatListRef}
                     data={selectedChildMilestoneData}
-                    renderItem={({item, index}) => renderItem(item)}
+                    // renderItem={({item, index}) => renderItem(item)}
+                    renderItem={({item, index}) => <RenderItem item={item} index={index} />  }
                     keyExtractor={(item) => item.id.toString()}
                     nestedScrollEnabled={true}
                     ListHeaderComponent={ContentThatGoesAboveTheFlatList}

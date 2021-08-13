@@ -183,13 +183,13 @@ const Notifications = () => {
               <ButtonContainerTwo>
                 <ButtonColTwo>
                   <ButtonSecondaryTint onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
-                    <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                    <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
                   <ButtonSecondary>
-                    <ButtonText>{t('notiDelSelected',{count:allData.filter(item=>item.isChecked===true).length})} </ButtonText>
+                    <ButtonText numberOfLines={2}>{t('notiDelSelected',{count:allData.filter(item=>item.isChecked===true).length})} </ButtonText>
                     </ButtonSecondary>
                     </ButtonColTwo>
                 

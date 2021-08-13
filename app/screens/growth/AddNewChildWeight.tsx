@@ -127,7 +127,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
                   onPress={() => {
                     setIsModalOpened('IsWeightModalOpened');
                   }}>
-                  <ButtonText>{t('continueInModal')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
               </FDirRow>
             
@@ -254,7 +254,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
               // route.params.onReturn({weight:(weight + 0.01 * weight1).toFixed(2)});
               // navigation.goBack();
             }}>
-            <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
+            <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonTertiary>
         </ButtonContainer>
         </FlexCol>

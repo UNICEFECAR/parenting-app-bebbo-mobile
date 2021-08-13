@@ -112,7 +112,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
                 onPress={() => {
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
-                <ButtonText>{t('continueInModal')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
               </ButtonModal>
               </FDirRow>
             
@@ -211,7 +211,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
               // route.params.onReturn({height:(heightVal + 0.01 * height1).toFixed(2)});
               // navigation.goBack();
             }}>
-            <ButtonText>{t('growthScreensaveMeasuresDetails')}</ButtonText>
+            <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
           </ButtonPrimary>
           </ButtonContainer>
       

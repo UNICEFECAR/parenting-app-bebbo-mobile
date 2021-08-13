@@ -21,6 +21,7 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import { useAppSelector } from '../../App';
@@ -119,7 +120,9 @@ export default () => {
         <RootStack.Navigator
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
-          }>
+          }
+          screenOptions={{ animationEnabled: Platform.OS=='ios'?true:false }}
+          >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
             name="Localization"

@@ -6,8 +6,11 @@ export default TabBarStyle;
 
 export const TabBarDefault = styled.View`
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
-padding:10px;
+padding:4px 8px;
 margin:3px;
+height:auto;
+min-height:43px;
+justify-content:center;
 `
 
 export const TabBarActive = styled.View`
@@ -21,7 +24,7 @@ background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 export const TabBarContainer = styled.View`
 background-color:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 flex-direction:row;
-padding:2px 3px;
+padding:0px 3px;
 justify-content:center;
 /*border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 margin-bottom:10px;*/

@@ -121,7 +121,7 @@ const LastChildMeasure = (props: any) => {
               e.stopPropagation();
               navigation.navigate('AllChildgrowthMeasures');
             }}>
-            <ButtonTextMdLine>
+            <ButtonTextMdLine numberOfLines={2}>
               {t('growthScreenallMeasureHeader')}
             </ButtonTextMdLine>
           </Pressable>
@@ -175,7 +175,7 @@ const LastChildMeasure = (props: any) => {
                 }}>
                 {/* <FlexDirRowEnd>
                   <ButtonTextMdLine> */}
-                   <ButtonTextMdLine> {t('growthScreeneditText')}</ButtonTextMdLine>
+                   <ButtonTextMdLine numberOfLines={2}> {t('growthScreeneditText')}</ButtonTextMdLine>
                   {/* </ButtonTextMdLine>
                 </FlexDirRowEnd> */}
               </Pressable>

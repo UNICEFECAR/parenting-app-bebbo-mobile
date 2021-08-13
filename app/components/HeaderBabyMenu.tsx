@@ -192,7 +192,7 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                  <ButtonTextSmLine
+                  <ButtonTextSmLine  numberOfLines={2}
                     onPress={() => {
                       setModalVisible(false);
                       setActiveChild(languageCode, data.uuid, dispatch, child_age);
@@ -253,7 +253,7 @@ const HeaderBabyMenu = (props: any) => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
-                    <ButtonTextLine>
+                    <ButtonTextLine numberOfLines={2}>
                       {t('childSetupListaddSiblingBtn')}
                     </ButtonTextLine>
                   </OuterIconRow>
@@ -265,7 +265,7 @@ const HeaderBabyMenu = (props: any) => {
                   setModalVisible(false);
                   navigation.navigate('ChildProfileScreen')
                   }}>
-                <ButtonText>{t('manageProfileTxt')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('manageProfileTxt')}</ButtonText>
               </ButtonPrimary>
             </ButtonContainer>
           </View>
@@ -295,7 +295,8 @@ const HeaderBabyMenu = (props: any) => {
         <View style={{backgroundColor:'transparent',opacity:0.5,zIndex:2,position:'absolute',width:'100%',height:'100%'}} >
         <Pressable style={{backgroundColor:'transparent',width:'100%',height:'100%',position:'relative'}} 
         onPress={() => {
-                  setModalVisible(!modalVisible);}}>
+          setModalVisible(false);
+        }}>
         </Pressable>
         </View>
       </Modal>
@@ -371,8 +372,8 @@ const styles = StyleSheet.create({
     zIndex:3,
        ...Platform.select({
         ios: {
-          top:getStatusBarHeight(0)>20?headerHeight:37,
-          marginTop:getStatusBarHeight(0)>20?headerHeight:37
+          top:getStatusBarHeight(0)>20?headerHeight-2:35,
+          marginTop:getStatusBarHeight(0)>20?headerHeight-2:35
         },
       android: {
         marginTop:headerHeight,

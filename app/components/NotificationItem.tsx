@@ -93,7 +93,7 @@ const NotificationItem = (props:any) => {
         </ShiftFromTop5>
         <ShiftFromTop10>
         <Pressable onPress={() => gotoPage(item.type)}>
-              <ButtonTextSmLineL>{getButtonname(item.type)}</ButtonTextSmLineL>
+              <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
             </Pressable></ShiftFromTop10>
         </NotifiContent>
 
