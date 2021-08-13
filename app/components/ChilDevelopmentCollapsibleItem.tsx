@@ -243,7 +243,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                   {/* uncomment this for related article */}
                   {item && item.related_articles && item.related_articles.length > 0 ?
                     <Pressable onPress={() => gotoArticle(item.related_articles)}>
-                      <ButtonTextSmLineL>
+                      <ButtonTextSmLineL numberOfLines={2}>
                         {t('developScreenrelatedArticleText')}
                       </ButtonTextSmLineL>
                     </Pressable>
@@ -281,7 +281,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
                       </ShiftFromBottom5>
                       {selActivitiesData ?
                         <Pressable onPress={() => gotoActivity(selActivitiesData)}>
-                          <ButtonTextSmLineL>
+                          <ButtonTextSmLineL numberOfLines={2}>
                             {t('developScreenviewDetails')}
                           </ButtonTextSmLineL>
                         </Pressable>

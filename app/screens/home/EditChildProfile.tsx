@@ -573,9 +573,9 @@ const EditChildProfile = ({route, navigation}: Props) => {
               }
             }}>
             {childData && childData?.uuid != '' ? (
-              <ButtonText>{t('babyNotificationUpdateBtn')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('babyNotificationUpdateBtn')}</ButtonText>
             ) : (
-              <ButtonText>{t('addProfileBtn')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('addProfileBtn')}</ButtonText>
             )}
           </ButtonPrimary>
         </ButtonContainer>

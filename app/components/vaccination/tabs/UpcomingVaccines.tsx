@@ -212,7 +212,7 @@ const UpcomingVaccines = (props: any) => {
                       {v?.pinned_article ? (
                         <Pressable
                           onPress={() => gotoArticle(v.pinned_article)}>
-                          <ButtonTextSmLineL>
+                          <ButtonTextSmLineL numberOfLines={2}>
                             {t('vcArticleLink')}
                           </ButtonTextSmLineL>
                         </Pressable>
@@ -271,7 +271,7 @@ const UpcomingVaccines = (props: any) => {
                               editReminderItem: vaccineReminder,
                             });
                           }}>
-                          <ButtonTextSmLine>
+                          <ButtonTextSmLine numberOfLines={2}>
                             {t('editCountryLang')}
                           </ButtonTextSmLine>
                         </Pressable>
@@ -369,7 +369,7 @@ const UpcomingVaccines = (props: any) => {
                     //   vcPeriod: item,
                     // })
                   }>
-                  <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
+                  <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
                 </Pressable>
               </ShiftFromTopBottom10>
             ) : null}

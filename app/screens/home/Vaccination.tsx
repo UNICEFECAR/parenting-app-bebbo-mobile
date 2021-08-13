@@ -152,7 +152,7 @@ const Vaccination = ({navigation}: Props) => {
                               : backgroundColor,
                         },
                       ]}>
-                      <Heading4Center>{item.title}</Heading4Center>
+                      <Heading4Center numberOfLines={2}>{item.title}</Heading4Center>
                     </TabBarDefault>
                   </Pressable>
                 );
