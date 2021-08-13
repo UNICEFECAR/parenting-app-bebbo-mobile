@@ -6,16 +6,19 @@ export const ButtonPrimary = styled.Pressable`
 background: ${props => props.disabled ? props.theme.colors.SECONDARY_COLOR : props.theme.colors.SECONDARY_COLOR};
 opacity: ${props => props.disabled ? 0.5 : 1};
 color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
-padding: 14px 18px;
+padding: 5px 15px;
 width:100%;
 font-family: 'roboto-bold';
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
-height:50px;
+min-height:50px;
+height:auto;
+justify-content:center;
 `;
 
 export const ButtonPrimaryMd = styled(ButtonPrimary)`
-padding: 10px 4px;
-height:40px;
+padding: 6px 4px;
+height:auto;
+min-height:40px;
 `;
 
 /*Button Text */
@@ -40,6 +43,7 @@ export const ButtonTextSm = styled(ButtonText)`
 
 export const ButtonTextMd = styled(ButtonText)`
   font-size:14px;
+  line-height:16px;
 `;
 
 export const ButtonTextMdLine = styled(ButtonTextLine)`
@@ -127,8 +131,11 @@ export const ButtonTertiary = styled(ButtonPrimary)`
 `;
 export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
-  padding-left:6px;
-  padding-right:6px;
+  padding-left:4px;
+  padding-right:4px;
+  height:auto;
+  padding:4px;
+  justify-content:center;
 `;
 
 
@@ -175,5 +182,6 @@ flex-direction:row;width:50%;padding:0px 5px;
 
 
 export const ButtonModal = styled(ButtonPrimary)`
-width:auto; padding:14px 30px;margin: 15px auto 0;
+width:auto; padding:5px 25px;margin: 15px 20px 0;
+min-width:150px;
 `;

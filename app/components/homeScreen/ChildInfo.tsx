@@ -106,7 +106,8 @@ const goToVideoArticleDetails = () => {
             <ButtonSpacing>
               <SideSpacing25>
             <ButtonPrimary onPress={goToVideoArticleDetails}>
-              <ButtonText>{t('homeScreenchildBtnText')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('homeScreenchildBtnText')}</ButtonText>
+             
             </ButtonPrimary>
             </SideSpacing25>
             </ButtonSpacing>

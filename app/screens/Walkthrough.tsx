@@ -26,7 +26,7 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -121,7 +121,7 @@ const Walkthrough = ({navigation}: Props) => {
                   {item.subtitle}
                 </WalkthroughSubtext>
 
-                {index == 3 ? (
+                {/* {index == 3 ? (
                   <WalkBtn style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
                   <ButtonContainerTwo>
                     <ButtonColTwo>
@@ -137,7 +137,7 @@ const Walkthrough = ({navigation}: Props) => {
                     </ButtonColTwo>
                   </ButtonContainerTwo>
                   </WalkBtn>
-                ) : null}
+                ) : null} */}
               </WalkthroughContentArea>
             </Slide>
           </LinearGradient>
@@ -150,7 +150,7 @@ const Walkthrough = ({navigation}: Props) => {
     return (
       <WalkthroughButton>
         <ButtonTertiary1>
-          <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
+          <ButtonText numberOfLines={2}>{t('walkthroughButtonNext')}</ButtonText>
         </ButtonTertiary1>
       </WalkthroughButton>
     );
@@ -159,7 +159,7 @@ const Walkthrough = ({navigation}: Props) => {
     return (
       <WalkthroughButton>
         <ButtonTertiary2>
-          <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
+          <ButtonText numberOfLines={2}>{t('walkthroughButtonBack')}</ButtonText>
         </ButtonTertiary2>
       </WalkthroughButton>
     );
@@ -216,6 +216,47 @@ useFocusEffect(
 const goBackSlide = ()=>{
   slider?.goToSlide(2, true);
 }
+const _renderPagination = (activeIndex: number) => {
+  return (
+    <View style={styles.paginationContainer}>
+      <SafeAreaView>
+      {activeIndex != 3 ? (
+        <View style={styles.paginationDots}>
+          {data.length > 1 &&
+            data.map((_, i) => (
+              <TouchableOpacity
+                key={i}
+                style={[
+                  styles.dot,
+                  i === activeIndex
+                    ? getDotStyle('black')
+                    :getDotStyle('white'),
+                ]}
+                onPress={() => slider?.goToSlide(i, true)}
+              />
+            ))}
+        </View>):null}
+        {activeIndex == 3 ? (
+                  <WalkBtn style={{flex:1,flexDirection:'column',justifyContent:'flex-end'}}>
+                  <ButtonContainerTwo>
+                    <ButtonColTwo>
+                      <ButtonArticlesTint onPress={goBackSlide}>
+                        <ButtonText numberOfLines={2}>{t('walkthroughButtonBack')}</ButtonText>
+                      </ButtonArticlesTint>
+                    </ButtonColTwo>
+
+                    <ButtonColTwo>
+                      <ButtonTertiary onPress={onDone}>
+                        <ButtonText numberOfLines={2}>{t('walkthroughButtonNext')}</ButtonText>
+                      </ButtonTertiary>
+                    </ButtonColTwo>
+                  </ButtonContainerTwo>
+                  </WalkBtn>
+                ) : null}
+      </SafeAreaView>
+    </View>
+  );
+};
   const keyExtractor = (item: Item) => item.title;
   
   return (
@@ -234,6 +275,7 @@ const goBackSlide = ()=>{
         data={data}
         onDone={onDone}
         onSlideChange={onSlideChange}
+        renderPagination={_renderPagination}
         ref={(ref) => (slider = ref!)}
         // renderDoneButton={renderDoneButton}
         // renderPrevButton={renderPrevButton}
@@ -251,7 +293,61 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-bold',
     marginBottom: 20,
   },
-
+  slide: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'blue',
+  },
+  image: {
+    width: 320,
+    height: 320,
+    marginVertical: 32,
+  },
+  text: {
+    color: 'rgba(255, 255, 255, 0.8)',
+    textAlign: 'center',
+  },
+  title1: {
+    fontSize: 22,
+    color: 'white',
+    textAlign: 'center',
+  },
+  paginationContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16,
+  },
+  paginationDots: {
+    height: 16,
+    margin: 16,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 4,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginHorizontal: 24,
+  },
+  button: {
+    flex: 1,
+    paddingVertical: 20,
+    marginHorizontal: 8,
+    borderRadius: 24,
+    backgroundColor: '#1cb278',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
   title: {
     padding: 5,
     // width: 100,

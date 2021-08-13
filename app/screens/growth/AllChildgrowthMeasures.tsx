@@ -132,7 +132,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
                       headerTitle: t('growthScreenaddNewBtntxt'),
                     });
                   }}>
-                  <ButtonText>{t('growthScreenaddNewBtntxt')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('growthScreenaddNewBtntxt')}</ButtonText>
                 </ButtonPrimary>
               </ShiftFromTop10>
             </ButtonContainer>

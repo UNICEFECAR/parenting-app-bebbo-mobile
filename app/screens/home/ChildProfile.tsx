@@ -144,7 +144,7 @@ const child_age = useAppSelector(
                     data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}
             </Heading5>
             <ProfileLinkView>
-              <ButtonTextSmLine
+              <ButtonTextSmLine numberOfLines={2}
                 onPress={() => {
                   console.log("..2222..");
                   data.index = index;
@@ -212,7 +212,7 @@ const child_age = useAppSelector(
                                data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}
                         </Heading5>
               <ProfileLinkView>
-                <ButtonTextSmLine
+                <ButtonTextSmLine numberOfLines={2}
                   onPress={() => {
                   data.index = index;
                   console.log(isFutureDate(data.birthDate),"..isFutureDate(data.birthDate)..");
@@ -228,7 +228,7 @@ const child_age = useAppSelector(
                 <View>
                   <Text>|</Text>
                 </View>
-                <ButtonTextSmLine
+                <ButtonTextSmLine numberOfLines={2}
                   onPress={() => {
                     setActiveChild(languageCode,data.uuid,dispatch,child_age);
                   }}>
@@ -309,7 +309,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL  numberOfLines={2}>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
               <ProfileLinkCol>
@@ -323,7 +323,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL numberOfLines={2}>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
               </ProfileLinkCol>
             </ProfileLinkRow>
@@ -345,7 +345,7 @@ const child_age = useAppSelector(
                           userNameData?.length > 0 ? userNameData[0].value : '',
                       });
                     }}>
-                    <ButtonTextSmLine>{t('editProfileBtn')}</ButtonTextSmLine>
+                    <ButtonTextSmLine numberOfLines={2}>{t('editProfileBtn')}</ButtonTextSmLine>
                   </ButtonLinkPress>
                 </ProfileActionView>
               </ProfileContentView>

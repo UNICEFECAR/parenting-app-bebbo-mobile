@@ -504,7 +504,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               saveChildMeasures().then(() => {});
               // navigation.goBack();
             }}>
-            <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+            <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonTertiary>
         </ButtonContainer>
 
@@ -535,13 +535,13 @@ const AddChildVaccination = ({route, navigation}: any) => {
               <ButtonContainerTwo>
                 <ButtonColTwo>
                   <ButtonSecondaryTint>
-                    <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                    <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                 </ButtonColTwo>
 
                 <ButtonColTwo>
                   <ButtonSecondary>
-                    <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                    <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                   </ButtonSecondary>
                 </ButtonColTwo>
               </ButtonContainerTwo>
