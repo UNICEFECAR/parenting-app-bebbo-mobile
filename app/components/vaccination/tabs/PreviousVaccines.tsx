@@ -143,7 +143,7 @@ const PreviousVaccines = (props: any) => {
                       <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
                       {v?.pinned_article ?
                         <Pressable onPress={() => gotoArticle(v.pinned_article)}>
-                          <ButtonTextSmLineL>
+                          <ButtonTextSmLineL numberOfLines={2}>
                             {t('vcArticleLink')}
                           </ButtonTextSmLineL>
                         </Pressable>
@@ -167,7 +167,7 @@ const PreviousVaccines = (props: any) => {
                     //   vcPeriod: item,
                     // })
                   }>
-                  <ButtonTextMdLine>{t('vcEditDataBtn')}</ButtonTextMdLine>
+                  <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
                 </Pressable>
               </ShiftFromTopBottom10>
             ) : null}
@@ -184,7 +184,7 @@ const PreviousVaccines = (props: any) => {
                       vcPeriod: item,
                     })
                   }>
-                  <ButtonText>{t('vcAddBtn')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('vcAddBtn')}</ButtonText>
                 </ButtonVaccination>
               </ButtonContainerAuto>
             ) : null}

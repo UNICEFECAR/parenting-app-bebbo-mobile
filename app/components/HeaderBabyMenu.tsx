@@ -253,7 +253,7 @@ const HeaderBabyMenu = (props: any) => {
                     <OuterIconLeft>
                       <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
-                    <ButtonTextLine>
+                    <ButtonTextLine numberOfLines={2}>
                       {t('childSetupListaddSiblingBtn')}
                     </ButtonTextLine>
                   </OuterIconRow>

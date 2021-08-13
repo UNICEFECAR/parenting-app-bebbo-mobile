@@ -83,7 +83,7 @@ const Favourites = ({navigation}: Props) => {
                       
                     },
                   ]}>
-                  <Heading4Center 
+                  <Heading4Center numberOfLines={2}
                   // style={[
                   //   {
                   //     color:

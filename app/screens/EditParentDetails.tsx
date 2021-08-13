@@ -180,7 +180,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
                 saveParentData(relationship,parentName);
              
               }}>
-              <ButtonText>Save Data</ButtonText>
+              <ButtonText numberOfLines={2}>Save Data</ButtonText>
             </ButtonPrimary>
           </ButtonContainer>
           </ShiftFromTop10>

@@ -150,7 +150,7 @@ const Walkthrough = ({navigation}: Props) => {
     return (
       <WalkthroughButton>
         <ButtonTertiary1>
-          <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
+          <ButtonText numberOfLines={2}>{t('walkthroughButtonNext')}</ButtonText>
         </ButtonTertiary1>
       </WalkthroughButton>
     );
@@ -159,7 +159,7 @@ const Walkthrough = ({navigation}: Props) => {
     return (
       <WalkthroughButton>
         <ButtonTertiary2>
-          <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
+          <ButtonText numberOfLines={2}>{t('walkthroughButtonBack')}</ButtonText>
         </ButtonTertiary2>
       </WalkthroughButton>
     );
@@ -241,13 +241,13 @@ const _renderPagination = (activeIndex: number) => {
                   <ButtonContainerTwo>
                     <ButtonColTwo>
                       <ButtonArticlesTint onPress={goBackSlide}>
-                        <ButtonText>{t('walkthroughButtonBack')}</ButtonText>
+                        <ButtonText numberOfLines={2}>{t('walkthroughButtonBack')}</ButtonText>
                       </ButtonArticlesTint>
                     </ButtonColTwo>
 
                     <ButtonColTwo>
                       <ButtonTertiary onPress={onDone}>
-                        <ButtonText>{t('walkthroughButtonNext')}</ButtonText>
+                        <ButtonText numberOfLines={2}>{t('walkthroughButtonNext')}</ButtonText>
                       </ButtonTertiary>
                     </ButtonColTwo>
                   </ButtonContainerTwo>

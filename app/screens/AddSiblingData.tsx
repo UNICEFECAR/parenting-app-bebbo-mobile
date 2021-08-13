@@ -169,7 +169,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
               
             
             }}>
-            <ButtonText>{t('childSetupListsaveBtnText')}</ButtonText>
+            <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
