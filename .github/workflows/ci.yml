@@ -62,10 +62,11 @@ jobs:
         cd android && ./gradlew bundleRelease --no-daemon
         
 
-    - uses: actions/upload-artifact@v2
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
       with:
-        name: android-apk
-        path: '**/*.apk'        
+        name: Bebbo_Debug.apk
+        path: android/app/build/outputs/apk/release/
           
 #    - name: Sign App Bundle
  #     id: sign_app
