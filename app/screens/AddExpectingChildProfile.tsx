@@ -274,7 +274,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 AddChild();
                 // }
               }}>
-              <ButtonText>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
+              <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>
             </ButtonPrimary>
           </ButtonContainer>
         </ShiftFromTop10>

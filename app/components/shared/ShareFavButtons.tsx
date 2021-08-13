@@ -39,37 +39,37 @@ const ShareFavButtons = (props: any) => {
   return (
     <>
       <ShareFavBox style={{backgroundColor: backgroundColor}}>
-        <Pressable onPress={() => {}}>
+        <Pressable onPress={() => {}} style={{flex:1}}>
           <FDirRow>
             <OuterIconRow>
               <OuterIconLeft>
                 <Icon name="ic_sb_shareapp" size={20} color="#000" />
               </OuterIconLeft>
             </OuterIconRow>
-            <Heading4>{t('actScreenshareText')}</Heading4>
+            <Heading4 numberOfLines={1}>{t('actScreenshareText')}</Heading4>
           </FDirRow>
         </Pressable>
 
         {isFavourite ? (
-          <Pressable onPress={() => {}}>
+          <Pressable onPress={() => {}} style={{flex:1, alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_trash" size={20} color="#000" />
                 </OuterIconLeft>
               </OuterIconRow>
-              <Heading4>{t('actScreenremovetoFavText')}</Heading4>
+              <Heading4 numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
             </FDirRow>
           </Pressable>
         ) : (
-          <Pressable onPress={() => {}}>
+          <Pressable onPress={() => {}} style={{flex:1, alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_sb_favorites" size={20} color="#000" />
                 </OuterIconLeft>
               </OuterIconRow>
-              <Heading4>{t('actScreenaddtoFavText')}</Heading4>
+              <Heading4 numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
             </FDirRow>
           </Pressable>
         )}

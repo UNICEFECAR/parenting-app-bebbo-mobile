@@ -231,7 +231,7 @@ const ChildSetupList = ({ navigation }: Props) => {
                 <OuterIconLeft>
                   <Icon name="ic_plus" size={20} color="#FFF" />
                 </OuterIconLeft>
-                <ButtonTextLinew> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
+                <ButtonTextLinew numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
             </ButtonLinkPress>
           </ShiftFromBottom20>
@@ -241,7 +241,7 @@ const ChildSetupList = ({ navigation }: Props) => {
               e.stopPropagation();
               childSetup();
             }}>
-            <ButtonText>{t('childSetupListcontinueBtnText')}</ButtonText>
+            <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
           </ButtonPrimary>
    
         </ButtonRow>
