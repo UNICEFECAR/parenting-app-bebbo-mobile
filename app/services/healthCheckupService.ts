@@ -219,10 +219,29 @@ export const getAllHealthCheckupPeriods = () => {
     .reverse();
   // // logic to add current period to upcomingPeriods and remove it from previousPeriods
   let currentPeriod;
-  if (previousPeriods.length > 0) {
-    currentPeriod = previousPeriods[0];
-    upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
-    previousPeriods.shift();
+  console.log(previousPeriods,upcomingPeriods,"old")
+  if (upcomingPeriods.length > 0) {
+    currentPeriod = upcomingPeriods[0];
+    //currentPEriod is childAgeIndays fall in open and end
+    //if there are no additionalMeasures in previperiod[0] then
+//     If HCU has data, will be shown under previous
+// Next period will become upcoming HC period.
+// Once the age period of child matches the upcoming HC period, only then Add button will be displayed
+    // if(previousPeriods[0]?.isAdditional != true){
+    //   upcomingPeriods = [previouss
+    // }
+    if(previousPeriods.length>0){
+    if(!('uuid' in previousPeriods[0]?.growthMeasures)){
+      upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
+      currentPeriod = upcomingPeriods[0];
+      previousPeriods.shift();
+    }
+    }
+    // if(upcomingPeriods[0].growthMeasures?.uuid){
+    //   previousPeriods = [upcomingPeriods[0], ...previousPeriods];
+    //   previousPeriods.unshift();
+    // }
+
   }
   let totalUpcomingVaccines;
   if (upcomingPeriods?.length > 0) {
@@ -244,5 +263,5 @@ export const getAllHealthCheckupPeriods = () => {
   // console.log(allHealthCheckupsData,"growth_period_uniqueData");
 
 
-  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines, currentPeriod };
+  return { upcomingPeriods, previousPeriods,childAgeIndays, sortedGroupsForPeriods, totalUpcomingVaccines, totalPreviousVaccines, currentPeriod };
 }
