@@ -112,7 +112,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
                 onPress={() => {
                   setIsModalOpened('IsHeightModalOpened');
                 }}>
-                <ButtonText>{t('continueInModal')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
               </ButtonModal>
               </FDirRow>
             
