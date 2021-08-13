@@ -9,6 +9,7 @@
 
 import { Action, ThunkAction } from '@reduxjs/toolkit';
 import React from 'react';
+import { Dimensions } from 'react-native';
 import {
   ActivityIndicator,
   Pressable,
@@ -65,7 +66,15 @@ const CustomFallback = (props: {error: Error; resetError: Function}) => (
 
 const App = () => {
   React.useEffect(() => {
-    Orientation.lockToPortrait();
+    Dimensions.addEventListener('change', (dimensions) => {
+      // you get:
+      //  dimensions.window.width
+      //  dimensions.window.height
+      //  dimensions.screen.width
+      //  dimensions.screen.height
+       Orientation.lockToPortrait();
+    });
+   
     SplashScreen.hide();
   });
   return (
