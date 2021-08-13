@@ -394,7 +394,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                     setModalVisible(false);
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
-                  <ButtonText>{t('continueInModal')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
               </FDirRow>
             </ModalPopupContainer>

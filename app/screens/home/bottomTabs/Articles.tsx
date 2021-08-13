@@ -22,7 +22,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4Center, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FlatList,View,
@@ -33,10 +33,8 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import Image from '../../../services/ImageLoad';
-import { DefaultImage } from '@components/shared/Image';
+import LoadableImage from '../../../services/LoadableImage';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
-
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
@@ -58,7 +56,7 @@ const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
-
+  const flatListRef = useRef(null);
   const setIsModalOpened = async (varkey: any) => {
     if(modalVisible == true)
     {
@@ -73,67 +71,24 @@ const Articles = ({route, navigation}: Props) => {
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
-  const renderArticleItem = ({item, index}) => {
-    // console.log("renderArticleItem-",index)
+  const RenderArticleItem = React.memo(({item, index}) => {
+    console.log("renderArticleItem-",index)
     return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-        {/* <Text>{{item.cover_image}}</Text> */}
         <ArticleListContainer>
-          {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
-  //       <Image
-  //  style={styles.cardImage}
-  //  placeholderStyle={styles.cardImage}
-  //   loadingStyle={{ size: 'large', color: '#000' }}
-  //   //source={{uri : encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  //   />
-  <Image 
-  renderIndicator={renderIndicator}
-  source={{uri :encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop())}}
-  indicator={null}
-  renderError={(err:any) => { return (<DefaultImage source={require('@assets/trash/defaultArticleImage.png')} style={styles.cardImage} />) 
-  }}
-  indicatorProps={{
-    size: 'large',
-    borderWidth: 0,
-    color: '#000',
-  }}
-  resizeMode="cover"
-  style={styles.cardImage}
-  />
-    :<DefaultImage
-    style={styles.cardImage}
-    source={require('@assets/trash/defaultArticleImage.png')}/>
-          }
-        {/* <ProgressiveImage
-          thumbnailSource={require('@assets/trash/defaultArticleImage.png')}
-          source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
-          style={styles.cardImage}
-          resizeMode="cover"
-        /> */}
-          {/* <Image
-            style={styles.cardImage}
-           source={item.cover_image ? {uri : "file://" + destinationFolder + item.cover_image.url.split('/').pop()}:require('@assets/trash/defaultArticleImage.png')}
-            resizeMode={'cover'}
-          /> */}
-           {/* <Image
-           source={item.cover_image ? {uri : "file://" + destinationFolder + (item.cover_image.url.split('/').pop())}:require('@assets/trash/defaultArticleImage.png')}
-           style={styles.cardImage}
-  PlaceholderContent={<ActivityIndicator />}
-/>  */}
-          <ArticleListContent>
-            <ShiftFromTopBottom5>
-          <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
-          </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-          <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
-        </ArticleListContainer>
-      </Pressable>
+          <LoadableImage style={styles.cardImage} item={item}/> 
+           <ArticleListContent>
+             <ShiftFromTopBottom5>
+           <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
+           </ShiftFromTopBottom5>
+           <Heading3>{item.title}</Heading3>
+           </ArticleListContent>
+           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
+         </ArticleListContainer>
+       </Pressable>
 
   ) 
-};
+});
 
 useFocusEffect(() => {
   console.log("in article focuseffect without callback",articleModalOpened);
@@ -222,6 +177,38 @@ useFocusEffect(() => {
       }
     },[])
   );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // console.log(categoryData,"--in relatedarticle focuseffect",relartlength);
+  //     async function fetchData() {
+  //     // if(filteredData?.length>0){
+  //     // filteredData.map(async (item: any, index: number) => {
+  //     //     if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
+  //     //             if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+  //     //             }
+  //     //             else{
+  //     //     let imageArray:any=[];
+  //     //     imageArray.push({
+  //     //         srcUrl: item['cover_image'].url, 
+  //     //         destFolder: destinationFolder, 
+  //     //         destFilename: item['cover_image'].url.split('/').pop()
+  //     //     })
+  //     //     console.log(imageArray,"..imageArray..");
+  //     //     const imagesDownloadResult = await downloadImages(imageArray);
+  //     //     console.log(imagesDownloadResult,"..imagesDownloadResult..");
+  //     //     }
+  //     //     }
+  //     //     });
+  //     // }else {
+  //     // }
+  //   }
+  //     fetchData()
+  //   }, [filteredData])
+  // );
+  const toTop = () => {
+    // use current
+    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+}
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered ",articleData);
     // if(route.params?.backClicked == 'yes')
@@ -235,20 +222,24 @@ useFocusEffect(() => {
       {
         const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
         setfilteredData(newArticleData);
-        if(newArticleData.length == 0)
-        {
-          setLoadingArticle(false);
-        }
-        // setLoadingArticle(false);
+        // if(newArticleData.length == 0)
+        // {
+        //   setLoadingArticle(false);
+        // }
+        setLoadingArticle(false);
+        toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }else {
         const newArticleData = articleData != '' ? articleData : [];
         setfilteredData(newArticleData);
-        if(newArticleData.length == 0)
-        {
-          setLoadingArticle(false);
-        }
-        // setLoadingArticle(false);
+        
+        // if(newArticleData.length == 0)
+        // {
+        //   setLoadingArticle(false);
+        // }
+
+        setLoadingArticle(false);
+        toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }
     }
@@ -316,7 +307,18 @@ useFocusEffect(() => {
               <DividerArt></DividerArt>
               {/* </FlexCol> */}
               {filteredData.length> 0 ? 
-                <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                <FlatList
+                  ref={flatListRef}
+                  data={filteredData}
+                  removeClippedSubviews={true} // Unmount components when outside of window 
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  renderItem={({item, index}) => <RenderArticleItem item={item} index={index} />  }
+                  keyExtractor={(item) => item.id.toString()}
+                  />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
               {/* {filteredData.length> 0 ? filteredData.map((item: any, index: number) => {
                 return renderArticleItem(item, index);
@@ -356,7 +358,7 @@ useFocusEffect(() => {
                 onPress={() => {
                   setIsModalOpened('IsArticleModalOpened');
                 }}>
-                <ButtonText>{t('continueInModal')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
               </ButtonModal>
               </FDirRow>
 

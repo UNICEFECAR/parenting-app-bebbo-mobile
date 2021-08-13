@@ -553,7 +553,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               onPress={() => {
                 saveChildMeasures();
               }}>
-              <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
           </ButtonContainer>
 
@@ -585,13 +585,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                 <ButtonContainerTwo>
                   <ButtonColTwo>
                     <ButtonSecondaryTint>
-                      <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
                     <ButtonPrimary>
-                      <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>
                   </ButtonColTwo>
                 </ButtonContainerTwo>

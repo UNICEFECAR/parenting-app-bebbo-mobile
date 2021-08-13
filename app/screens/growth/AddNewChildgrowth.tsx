@@ -508,7 +508,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                 e.stopPropagation();
                 saveChildMeasures().then(() => {});
               }}>
-              <ButtonText>{t('growthScreensaveMeasures')}</ButtonText>
+              <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
           </ButtonContainer>
           <Modal
@@ -543,7 +543,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                       onPress={() => {
                         setModalVisible(false);
                       }}>
-                      <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
