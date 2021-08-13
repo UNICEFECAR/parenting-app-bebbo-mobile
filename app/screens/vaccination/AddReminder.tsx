@@ -19,7 +19,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconViewBorder } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -381,12 +381,13 @@ const AddReminder = ({route, navigation}: any) => {
                     )}
                   </FormDateText>
                   <FormDateAction>
+                    <IconViewBorder>
                     <Icon
                       name="ic_time"
                       size={20}
                       color="#000"
-                      style={{borderWidth: 1, borderRadius: 50}}
                     />
+                    </IconViewBorder>
                   </FormDateAction>
                 </FormInputBox>
               ) : (

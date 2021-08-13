@@ -44,7 +44,7 @@ import {
   ButtonTextSmLine,
   ButtonTextSmLineL
 } from '../shared/ButtonGlobal';
-import Icon from '../shared/Icon';
+import Icon, { IconViewBg, IconViewBorder } from '../shared/Icon';
 
 const UpcomingHealthCheckup = (props: any) => {
   const {item, currentIndex, headerColor, backgroundColor, currentPeriodId} =
@@ -279,15 +279,14 @@ const UpcomingHealthCheckup = (props: any) => {
                 {healthCheckupReminder ? (
                   <FDirRowStart>
                     <ToolsIconView>
+                    <IconViewBg>
                       <Icon
                         name="ic_time"
                         size={20}
                         color="#FFF"
-                        style={{
-                          backgroundColor: reminderColor,
-                          borderRadius: 50,
-                        }}
+                        
                       />
+                      </IconViewBg>
                     </ToolsIconView>
                     <ToolsHeadView>
                       <ToolsHeadingView>
