@@ -24,6 +24,7 @@ import {
   FlatList,
   Pressable,
   ScrollView,
+  SectionList,
   StyleSheet, Text, View
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
@@ -76,7 +77,8 @@ const ContainerView = styled.SafeAreaView`
 const Activities = ({ route,navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const flatListRef = React.useRef()
+  const flatListRef = React.useRef();
+  let sectionListRef;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -133,7 +135,13 @@ const Activities = ({ route,navigation }: Props) => {
 
   const toTop = () => {
     // use current
-    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    sectionListRef.scrollToLocation(
+      {
+        sectionIndex: 0,
+        itemIndex: 0
+      }
+    );
 }
   useFocusEffect(
     React.useCallback(() => {
@@ -334,8 +342,8 @@ const Activities = ({ route,navigation }: Props) => {
     </Pressable>
   ) 
 });
-  const SuggestedActivities = React.memo(({item, index}) => {
-    console.log("SuggestedActivities",item.id);
+  const SuggestedActivities = React.memo(({item, section, index}) => {
+    console.log(section,"SuggestedActivities",item.id);
     return(
     <Pressable onPress={() => { goToActivityDetail(item)}} key={index}>
       <ArticleListContainer>
@@ -346,27 +354,43 @@ const Activities = ({ route,navigation }: Props) => {
           </ShiftFromTopBottom5>
           <Heading3>{item.title}</Heading3>
           {/* keep below code ActivityBox for future use */}
-          {/* <ActivityBox>
-          <View>
-            <Heading6Bold>
-              {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
-            </Heading6Bold>
-            <ShiftFromTop5>
-            <Heading4>{'Laugh at Human face'}</Heading4>
-            </ShiftFromTop5>
-          </View>
-          <View>
-            <ButtonTextSmLine>
-              {t('actScreentrack')} {t('actScreenmilestones')}
-            </ButtonTextSmLine>
-          </View>
-        </ActivityBox> */}
+          {/* {section == 1 ? 
+            <ActivityBox>
+            <View>
+              <Heading6Bold>
+                {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
+              </Heading6Bold>
+              <ShiftFromTop5>
+              <Heading4>{'Laugh at Human face'}</Heading4>
+              </ShiftFromTop5>
+            </View>
+            <View>
+              <ButtonTextSmLine>
+                {t('actScreentrack')} {t('actScreenmilestones')}
+              </ButtonTextSmLine>
+            </View>
+          </ActivityBox>
+        : null
+        } */}
         </ArticleListContent>
         <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
       </ArticleListContainer>
     </Pressable>
   ) 
 });
+
+const DATA = [
+  {
+    id:1,
+    title: t('actScreensugacttxt'),
+    data: suggestedGames
+  },
+  {
+    id:2,
+    title: t('actScreenotheracttxt'),
+    data: otherGames
+  }
+];
   const ContentThatGoesAboveTheFlatList = () => {
 
     return (
@@ -414,6 +438,20 @@ const Activities = ({ route,navigation }: Props) => {
       </>
     );
   };
+  const HeadingComponent = React.memo(({ section }) => {
+    return(
+      <ArticleHeading>
+        <FlexDirRowSpace>
+          <Heading3>{section.title}</Heading3>
+          {section?.id == 1 && activeChild.isPremature === 'true' ? (
+            <PrematureTagActivity>
+              <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
+            </PrematureTagActivity>
+          ) : null}
+        </FlexDirRowSpace>
+      </ArticleHeading>
+    )
+  });
   
   return (
     <>
@@ -452,7 +490,7 @@ const Activities = ({ route,navigation }: Props) => {
                 { showNoData == true && suggestedGames?.length == 0 && otherGames?.length == 0 ?
                   <Heading4Center>{t('noDataTxt')}</Heading4Center>
                 :null}
-                <FlatList
+                {/* <FlatList
                   ref={flatListRef}
                   data={otherGames}
                   removeClippedSubviews={true} // Unmount components when outside of window 
@@ -465,8 +503,28 @@ const Activities = ({ route,navigation }: Props) => {
                   keyExtractor={(item) => item.id.toString()}
                   ListHeaderComponent={ContentThatGoesAboveTheFlatList}
                 // ListFooterComponent={ContentThatGoesBelowTheFlatList}
-                />
-                
+                /> */}
+                <SectionList
+                    sections={DATA}
+                    // ref={flatListRef}
+                    ref={ref => (sectionListRef = ref)}
+                    keyExtractor={(item, index) => item + index}
+                    // initialNumToRender={4}
+                    // renderItem={({ item, title }) => <Item item={item} title={title}/>}
+                    removeClippedSubviews={true} // Unmount components when outside of window 
+                    initialNumToRender={4} // Reduce initial render amount
+                    maxToRenderPerBatch={4} // Reduce number in each render batch
+                    updateCellsBatchingPeriod={100} // Increase time between renders
+                    windowSize={7} // Reduce the window size
+                    renderItem={({item, section, index}) => <SuggestedActivities item={item} section={section.id} index={index} />  }
+                    // renderItem={({ section, item }) => renderItem(section.id, item) }
+                    renderSectionHeader={({ section }) => (
+                      section.data.length > 0 ? 
+                      <HeadingComponent  section={section}/>
+                      // <Text style={styles.header}>{section.title}</Text> 
+                      : null
+                    )}
+                  />
               
           </FlexCol>
         </FlexCol>
