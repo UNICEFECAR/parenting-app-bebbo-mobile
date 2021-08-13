@@ -439,7 +439,7 @@ const AddReminder = ({route, navigation}: any) => {
                 });
                 // navigation.goBack();
               }}>
-              <ButtonText>{buttonTitle}</ButtonText>
+              <ButtonText numberOfLines={2}>{buttonTitle}</ButtonText>
             </ButtonTertiary>
           </ShiftFromTop30>
           <Modal
@@ -470,7 +470,7 @@ const AddReminder = ({route, navigation}: any) => {
                   <ButtonColTwo>
                     <ButtonSecondaryTint
                       onPress={() => setModalVisible(!modalVisible)}>
-                      <ButtonText>{t('growthDeleteOption1')}</ButtonText>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
@@ -482,7 +482,7 @@ const AddReminder = ({route, navigation}: any) => {
                           navigation.goBack();
                         });
                       }}>
-                      <ButtonText>{t('growthDeleteOption2')}</ButtonText>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonSecondary>
                   </ButtonColTwo>
                 </ButtonContainerTwo>

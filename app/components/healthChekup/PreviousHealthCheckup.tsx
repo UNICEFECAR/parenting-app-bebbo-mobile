@@ -197,7 +197,7 @@ const PreviousHealthCheckup = (props: any) => {
               {item?.pinned_article ? (
                 <ShiftFromTop15>
                   <Pressable onPress={() => gotoArticle(item.pinned_article)}>
-                    <ButtonTextSmLineL>{t('hcArticleLink')}</ButtonTextSmLineL>
+                    <ButtonTextSmLineL numberOfLines={2}>{t('hcArticleLink')}</ButtonTextSmLineL>
                   </Pressable>
                 </ShiftFromTop15>
               ) : null}
@@ -214,7 +214,7 @@ const PreviousHealthCheckup = (props: any) => {
                   //   vcPeriod: item,
                   // })
                 }>
-                <ButtonTextMdLine>{t('hcEditBtn')}</ButtonTextMdLine>
+                <ButtonTextMdLine numberOfLines={2}>{t('hcEditBtn')}</ButtonTextMdLine>
               </Pressable>
             </ShiftFromTopBottom10>
              ) : ( 
