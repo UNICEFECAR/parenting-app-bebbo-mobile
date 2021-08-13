@@ -109,12 +109,12 @@ const ChildDevelopment = ({route, navigation}: Props) => {
 
         return () => {
           console.log("in unmount dev-",route.params?.currentSelectedChildId);
-          if(route.params?.currentSelectedChildId)
-          {
+          // if(route.params?.currentSelectedChildId)
+          // {
             navigation.setParams({currentSelectedChildId:0})
             console.log(route.params?.currentSelectedChildId,"--after unmount");
             // route.params?.currentSelectedChildId = 0;
-          }
+          // }
         }
     },[]);
 
