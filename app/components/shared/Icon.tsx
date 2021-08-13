@@ -69,9 +69,19 @@ justify-content:center;
 
 export const IconAreaPress = styled.Pressable`
 padding:5px 8px;
-
 `;
 
+export const IconViewBorder = styled.View`
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+border-width:1px;
+width:24px;
+height:24px;
+`;
+export const IconViewBg = styled(IconViewBorder)`
+background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
+border-width:0px;
+
+`;
 
 
 export default Icon;
