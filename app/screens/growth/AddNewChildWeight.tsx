@@ -127,7 +127,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
                   onPress={() => {
                     setIsModalOpened('IsWeightModalOpened');
                   }}>
-                  <ButtonText>{t('continueInModal')}</ButtonText>
+                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
               </FDirRow>
             

@@ -342,7 +342,7 @@ const UpcomingHealthCheckup = (props: any) => {
                         headerColor: headerColor,
                       });
                     }}>
-                    <ButtonTextMdLine style={{textDecorationLine: 'underline'}}>
+                    <ButtonTextMdLine numberOfLines={2}>
                       {t('hcReminderbtn')}
                     </ButtonTextMdLine>
                   </Pressable>
