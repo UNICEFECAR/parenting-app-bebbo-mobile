@@ -49,7 +49,7 @@ import Icon, { IconViewBg, IconViewBorder } from '../shared/Icon';
 const UpcomingHealthCheckup = (props: any) => {
   const {item, currentIndex,childAgeIndays, headerColor, backgroundColor, currentPeriodId} =
     props;
-    console.log(childAgeIndays,item.vaccination_opens,item.vaccination_ends)
+    // console.log(childAgeIndays,item.vaccination_opens,item.vaccination_ends,item.title)
   // console.log(currentPeriodId,"currentPeriodId");
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -352,7 +352,7 @@ const UpcomingHealthCheckup = (props: any) => {
             ) : null}
 
             {/* // perios's open and end contains curent child age in daays */}
-            { item?.vaccination_opens<childAgeIndays && item?.vaccination_ends>childAgeIndays ? (
+            { item?.vaccination_opens<=childAgeIndays && item?.vaccination_ends>childAgeIndays ? (
               item?.growthMeasures?.uuid ? (
                 <ShiftFromTopBottom10>
                   <Pressable
