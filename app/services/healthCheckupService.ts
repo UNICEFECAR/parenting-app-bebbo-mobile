@@ -146,7 +146,7 @@ export const getAllHealthCheckupPeriods = () => {
   }).sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  // console.log("allHealthCheckupsDatasorted",allHealthCheckupsData);
+  console.log("allHealthCheckupsDatasorted",allHealthCheckupsData);
   allHealthCheckupsData.forEach((hcItem: any, index: number) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
@@ -160,7 +160,7 @@ export const getAllHealthCheckupPeriods = () => {
     hcItem.growthMeasures = measuresForHCPeriod;
 
   });
-  // console.log(allHealthCheckupsData, "allHealthCheckupsDataNew");
+  console.log(allHealthCheckupsData, "allHealthCheckupsDataNew");
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
@@ -235,6 +235,7 @@ export const getAllHealthCheckupPeriods = () => {
       upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
       currentPeriod = upcomingPeriods[0];
       previousPeriods.shift();
+      console.log(currentPeriod,"currentPeriod")
     }
     }
     // if(upcomingPeriods[0].growthMeasures?.uuid){

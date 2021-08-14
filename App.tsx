@@ -66,15 +66,7 @@ const CustomFallback = (props: {error: Error; resetError: Function}) => (
 
 const App = () => {
   React.useEffect(() => {
-    Dimensions.addEventListener('change', (dimensions) => {
-      // you get:
-      //  dimensions.window.width
-      //  dimensions.window.height
-      //  dimensions.screen.width
-      //  dimensions.screen.height
-       Orientation.lockToPortrait();
-    });
-   
+    Orientation.lockToPortrait();
     SplashScreen.hide();
   });
   return (
