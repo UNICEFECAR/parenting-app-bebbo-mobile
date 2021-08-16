@@ -102,17 +102,29 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
         let offlineData:any;
         if(SchemaToUse.name == StandardDevWeightForHeightSchema.name)
         {
-            offlineData = jsonData[languageCode][0].weight_for_height;
+            offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
             // console.log(offlineData);
+            if(offlineData == undefined || offlineData == ""  || offlineData == {})
+            {
+                offlineData = jsonData['en'][0].weight_for_height;
+            }
         }
         else if(SchemaToUse.name == StandardDevHeightForAgeSchema.name)
         {
-            offlineData = jsonData[languageCode][0].height_for_age;
+            offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
             // console.log(offlineData);
+            if(offlineData == undefined || offlineData == ""  || offlineData == {})
+            {
+                offlineData = jsonData['en'][0].height_for_age;
+            }
         }
         else {
             offlineData = jsonData[languageCode];
             // console.log(offlineData);
+            if(offlineData == undefined || offlineData == ""  || offlineData == {})
+            {
+                offlineData = jsonData['en'];
+            }
         }
         let databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse,sortBy);
         if(SchemaToUse.name == ArticleEntitySchema.name)
