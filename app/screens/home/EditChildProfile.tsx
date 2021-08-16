@@ -183,9 +183,11 @@ const EditChildProfile = ({route, navigation}: Props) => {
     setCapturedImage(image.path);
   };
   const removePhoto = () => {
+    
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
-        //console.log(data,"..deleted..");
+        console.log(childData,"..deleted..");
+        if(childData && childData.uuid!="" && childData.uuid!=null){
         let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(
           ChildEntitySchema,
           '',
@@ -199,6 +201,12 @@ const EditChildProfile = ({route, navigation}: Props) => {
         } else {
           Alert.alert('Try again...');
         }
+      }
+      else{
+        MediaPicker.cleanupImages();
+        setphotoUri('');
+        setCapturedImage('');
+      }
       })
       .catch((error: any) => {
         Alert.alert('Try again..');
