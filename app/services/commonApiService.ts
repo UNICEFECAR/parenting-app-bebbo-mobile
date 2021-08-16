@@ -112,17 +112,41 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
       // let obj=[];
       // type:val.type,title:val.title,id:val.id,
       const sponsorObj = response.data.data.map((val: any) => {
-        return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
+        if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
+        {
+          return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
+        }else {
+          return null;
+        }
       })
       const partnerObj = response.data.data.map((val: any) => {
-        return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+        if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+        {
+          return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+        }else {
+          return null;
+        }
       })
       const logoObj = response.data.data.map((val: any) => {
-        return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+        if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+        {
+          return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+        }else {
+          return null;
+        }
       })
-      ImageArray.push(logoObj[0].country_national_partner)
-      ImageArray.push(partnerObj[0].country_sponsor_logo)
-      ImageArray.push(sponsorObj[0].country_flag)
+      if(logoObj && logoObj != null && logoObj[0])
+      {
+        ImageArray.push(logoObj[0].country_national_partner)
+      }
+      if(partnerObj && partnerObj != null && partnerObj[0])
+      {
+        ImageArray.push(partnerObj[0].country_sponsor_logo)
+      }
+      if(sponsorObj && sponsorObj != null && sponsorObj[0])
+      {
+        ImageArray.push(sponsorObj[0].country_flag)
+      }
 
       const imagesDownloadResult = await downloadImages(ImageArray);
     // console.log(imagesDownloadResult, "..image result..");
