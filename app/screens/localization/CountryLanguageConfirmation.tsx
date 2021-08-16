@@ -83,15 +83,15 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     //     },
     //   ],
     // });
-    if(language.locale=='RSsr' || language.locale=='en'){
+    // if(language.locale=='RSsr' || language.locale=='en'){
       navigation.navigate('LoadingScreen', {
         apiJsonData: apiJsonData, 
         prevPage: 'CountryLanguageSelection'
       });
-    }
-    else{
-      Alert.alert("No master data available.");
-    }
+    // }
+    // else{
+    //   Alert.alert("No master data available.");
+    // }
    
     // dispatch(
     //   fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),
