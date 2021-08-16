@@ -13,7 +13,8 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     // console.log("in finalurl", apiUrlDevelop);
    
     if(apiEndpoint==appConfig.sponsors){
-        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+       // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
     } 
     if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
