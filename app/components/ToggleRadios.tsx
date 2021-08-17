@@ -37,11 +37,12 @@ const ToggleRadios = (props: any) => {
                       )}
                     </View>
                   </CheckboxItem>
-                  <View>
+                  
+                  <View style={{flexDirection:'row',flex:1}}>
                   {(checkedItem?.title && checkedItem.title == item.title) ? (
-                      <Heading3>{item.title}</Heading3>
+                      <Heading3 style={{flexShrink:1}} numberOfLines={2}>{item.title} </Heading3>
                     ) : (
-                      <Heading3Regular>{item.title}</Heading3Regular>
+                      <Heading3Regular style={{flexShrink:1}} numberOfLines={2}>{item.title} </Heading3Regular>
                     )}
                   </View>
                 </RadioInnerBox>
