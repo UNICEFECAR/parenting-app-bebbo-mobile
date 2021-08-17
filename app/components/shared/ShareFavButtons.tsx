@@ -26,9 +26,9 @@ const ShareFavButtons = (props: any) => {
       if (result.action === Share.sharedAction) {
         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
         if(isAdvice){
-          await analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
+           analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
         }else{
-          await analytics().logEvent(GAME_SHARED, {game_id:item?.id});
+           analytics().logEvent(GAME_SHARED, {game_id:item?.id});
         }
         if (result.activityType) {
           // shared with activity type of result.activityType
@@ -42,11 +42,11 @@ const ShareFavButtons = (props: any) => {
       Alert.alert(error.message);
     }
   };
-  const onFavClick = async()=>{
+  const onFavClick = ()=>{
     if(isAdvice){
-    await analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
+     analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
   }else{
-    await analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
+     analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
   }
 
     
