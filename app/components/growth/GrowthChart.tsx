@@ -121,13 +121,14 @@ useEffect(() => {
 
 // console.log(deviceOrientation,"orientation");
 
-const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
+    let growthMeasures = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
+    // const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured == true);
   let convertedMeasures:any = convertMeasuresData(
     growthMeasures,
     childBirthDate
   );
-  console.log(convertedMeasures,"convertedMeasures");
-  /* Create line chart array for type chart */
+  console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
+  /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
     chartData.push(
@@ -136,7 +137,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-  console.log(convertedMeasures, 'new convertedMeasures');
+  console.log(chartType,chartData, 'new convertedMeasures');
 // console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
