@@ -47,11 +47,14 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+import crashlytics from '@react-native-firebase/crashlytics';
 enableScreens();
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-const CustomFallback = (props: {error: Error; resetError: Function}) => (
+const CustomFallback = (props: {error: Error; resetError: Function}) =>{
+  crashlytics().recordError(props.error);
+  return(
   <View>
     <Text>Something happened!</Text>
     <Text>{props.error.toString()}</Text>
@@ -63,6 +66,7 @@ const CustomFallback = (props: {error: Error; resetError: Function}) => (
     </Pressable>
   </View>
 );
+}
 
 const App = () => {
   React.useEffect(() => {
