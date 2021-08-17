@@ -34,6 +34,7 @@ import LoadableImage from '../../../services/LoadableImage';
 
 import analytics from '@react-native-firebase/analytics';
 import { GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -120,7 +121,7 @@ const Activities = ({ route,navigation }: Props) => {
   const [selectedChildActivitiesData, setSelectedChildActivitiesData] = useState([]);
   const [suggestedGames, setsuggestedGames] = useState([]);
   const [otherGames, setotherGames] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filteredData,setfilteredData] = useState([]);
   const [showNoData,setshowNoData] = useState(false);
   const setIsModalOpened = async (varkey: any) => {
@@ -287,14 +288,14 @@ const Activities = ({ route,navigation }: Props) => {
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 2000);
+        }, 500);
       }else {
         const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
         setfilteredData(newArticleData);
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 2000);
+        }, 500);
       }
     }
     else {
@@ -302,7 +303,7 @@ const Activities = ({ route,navigation }: Props) => {
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 2000);
+        }, 500);
     }
     toTop();
   }
@@ -460,6 +461,7 @@ const DATA = [
   
   return (
     <>
+    <OverlayLoadingComponent loading={loading} />
       <ContainerView>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <ScrollView nestedScrollEnabled={true}> */}
