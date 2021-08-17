@@ -34,10 +34,11 @@ import {
   ShiftFromTop10
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { createRef, useContext } from 'react';
+import React, { createRef, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  BackHandler,
   ImageBackground,
   Pressable,
   SafeAreaView,
@@ -365,6 +366,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
     console.log(childSet, '..childSet..');
     addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age,null);
   };
+  
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
     //console.log(checkedItem);
     // if (
