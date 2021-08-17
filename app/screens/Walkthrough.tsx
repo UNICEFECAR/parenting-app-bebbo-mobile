@@ -292,6 +292,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'roboto-bold',
     marginBottom: 20,
+    lineHeight:52,
   },
   slide: {
     flex: 1,
@@ -353,5 +354,6 @@ const styles = StyleSheet.create({
     // width: 100,
     fontWeight: 'bold',
     textAlign: 'center',
+    
   },
 });
