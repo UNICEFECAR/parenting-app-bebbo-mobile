@@ -177,6 +177,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   );
   useEffect(() => {
     const backAction = () => {
+      navigation.goBack();
       return true;
     };
 
