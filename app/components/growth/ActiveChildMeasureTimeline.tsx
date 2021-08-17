@@ -37,7 +37,7 @@ const ActiveChildMeasureTimeline = (props: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   const setNewChildMeasureUpdates = () => {
-    let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true);
+    let measures = activeChild.measures.filter((item)=>item.isChildMeasured== true && item.weight>0 && item.height>0);
     let measurementDate: DateTime = DateTime.local();
     const timeNow = DateTime.local();
     let allMeasurements = measures.map((item: MeasuresEntity) => {
