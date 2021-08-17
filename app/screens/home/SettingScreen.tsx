@@ -88,7 +88,7 @@ const SettingScreen = (props: any) => {
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => {
-    // await analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
+    //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
     setIsEnabled((previousState) => !previousState);}
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');

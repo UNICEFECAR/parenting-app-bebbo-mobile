@@ -100,9 +100,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               setDetailDataToUse(articleData[0]);
               if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
               {
-                await analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
+                 analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
               }else{
-                await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
+                 analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
               }
             }else {
               //show alert and back function
@@ -117,9 +117,9 @@ const DetailsScreen = ({route, navigation}: any) => {
             setDetailDataToUse(detailData);
             if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
             {
-              await analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
+               analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
-              await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+               analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
           }
           // detailDataToUse = articleData[0]
@@ -132,9 +132,9 @@ const DetailsScreen = ({route, navigation}: any) => {
           setDetailDataToUse(detailData);
           if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
             {
-              await analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
+               analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
-              await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+               analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
           // console.log("detailData--",(detailDataToUse));
         }

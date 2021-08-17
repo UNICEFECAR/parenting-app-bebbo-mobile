@@ -173,10 +173,10 @@ const Activities = ({ route,navigation }: Props) => {
     },[selectedChildActivitiesData,route.params?.categoryArray])
   );
 
-  const showSelectedBracketData = async (item: any) => {
+  const showSelectedBracketData =  (item: any) => {
     console.log("in showSelectedBracketData--",item);
 
-    await analytics().logEvent(GAME_AGEGROUP_SELECTED, {age_id:item.id});
+     analytics().logEvent(GAME_AGEGROUP_SELECTED, {age_id:item.id});
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})

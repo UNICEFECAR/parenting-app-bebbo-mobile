@@ -168,7 +168,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     else{
       apiJsonData=apiJsonDataGet("all","all")
     }
-    await analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
+     analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
     // await analytics().setUserProperties({ageid,is_premature,child_gender,relationship_with_child}) relationship_with_child:monther/father
 
     console.log(apiJsonData,"..apiJsonData...")

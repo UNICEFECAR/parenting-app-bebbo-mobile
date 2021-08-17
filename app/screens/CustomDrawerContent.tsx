@@ -76,7 +76,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         message: t('appShareText'),
       });
       if (result.action === Share.sharedAction) {
-        await analytics().logEvent(APP_SHARE);
+         analytics().logEvent(APP_SHARE);
         if (result.activityType) {
           // shared with activity type of result.activityType
         } else {
@@ -393,9 +393,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  onPress={async() => {
+                  onPress={() => {
                     setModalVisible(false);
-                    await analytics().logEvent(FEEDBACK_SUBMIT)
+                     analytics().logEvent(FEEDBACK_SUBMIT)
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
