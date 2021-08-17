@@ -17,12 +17,12 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  const getFilterArray = async(itemId: any,filterArray: any[]) => {
+  const getFilterArray = (itemId: any,filterArray: any[]) => {
     // filterArray.push("78");
       // console.log(filterArray,"includes(itemId)--",itemId);
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
-      await analytics().logEvent(ADVICE_CATEGORY_SELECTED, {advise_category_id:itemId});
+       analytics().logEvent(ADVICE_CATEGORY_SELECTED, {advise_category_id:itemId});
 
     } else {
       filterArray.splice(filterArray.indexOf(itemId), 1);
