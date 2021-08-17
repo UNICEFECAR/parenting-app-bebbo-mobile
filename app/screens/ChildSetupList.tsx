@@ -41,6 +41,8 @@ type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
 >;
+import analytics from '@react-native-firebase/analytics';
+import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
@@ -155,6 +157,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   }
   const childSetup = async () => {
     // if(netInfo.isConnected){
+      
     const Ages=await getAge();
     console.log(Ages,"..Ages..")
     let apiJsonData;
@@ -165,6 +168,9 @@ const ChildSetupList = ({ navigation }: Props) => {
     else{
       apiJsonData=apiJsonDataGet("all","all")
     }
+    await analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
+    // await analytics().setUserProperties({ageid,is_premature,child_gender,relationship_with_child}) relationship_with_child:monther/father
+
     console.log(apiJsonData,"..apiJsonData...")
     navigation.reset({
       index: 0,
