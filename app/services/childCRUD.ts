@@ -12,6 +12,7 @@ import { getVariableData } from '../redux/reducers/variableSlice';
 import { DateTime } from 'luxon';
 import { appConfig, articleCategory } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
+import analytics from '@react-native-firebase/analytics';
 export const apiJsonDataGet = (childAge: any, parentGender: any) => {
 
   return [
@@ -87,6 +88,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
+      await analytics().setUserProperties({ageid:child.taxonomyData.id,is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+
 
     }
     else {
@@ -109,6 +112,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log(allDatatoStore, "..allDatatoStore..")
         dispatch(setActiveChildData(child));
+        await analytics().setUserProperties({ageid:child.taxonomyData.id,is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
 
       }
     }
@@ -134,6 +138,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
+      await analytics().setUserProperties({ageid:child.taxonomyData.id,is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+console.log({ageid:child.taxonomyData.id,is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"},"abcd") // relationship_with_child:monther/father)
     }
   }
 
@@ -376,10 +382,12 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any) => {
   console.log(year1, "/", year2,month1, "/", month2,day1, "/", day2)
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any) => {
+export const updateActiveChild = async(child: any, key: any, value: any, dispatch: any) => {
   child[key] = value;
   console.log(child, "..child..");
   dispatch(setActiveChildData(child));
+  await analytics().setUserProperties({ageid:child.taxonomyData.id,is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+
 }
 export const getAllConfigData = async (dispatch: any) => {
   let databaselistener: any;

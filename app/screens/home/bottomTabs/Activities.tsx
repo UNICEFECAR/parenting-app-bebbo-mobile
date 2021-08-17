@@ -31,6 +31,9 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
+
+import analytics from '@react-native-firebase/analytics';
+import { GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -171,6 +174,8 @@ const Activities = ({ route,navigation }: Props) => {
 
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
+
+    await analytics().logEvent(GAME_AGEGROUP_SELECTED, {age_id:item.id});
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
@@ -337,7 +342,7 @@ const Activities = ({ route,navigation }: Props) => {
           <Heading3>{item.title}</Heading3>
         </ArticleListContent>
 
-        <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
+        <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false}/>
       </ArticleListContainer>
     </Pressable>
   ) 
@@ -373,7 +378,7 @@ const Activities = ({ route,navigation }: Props) => {
         : null
         } */}
         </ArticleListContent>
-        <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
+        <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false}/>
       </ArticleListContainer>
     </Pressable>
   ) 

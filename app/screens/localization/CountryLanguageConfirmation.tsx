@@ -21,6 +21,7 @@ import OnboardingContainer, {
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import analytics from '@react-native-firebase/analytics';
 import {
     Heading2Centerw,
     Heading3,
@@ -69,11 +70,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     },
   ];
   const {t, i18n} = useTranslation();
-  const saveSelection = () => {
+  const saveSelection = async() => {
     i18n.changeLanguage(language.locale);
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
     dispatch(onLocalizationSelect(route.params));
+    await analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
     // navigation.reset({
     //   index: 0,
     //   routes: [
