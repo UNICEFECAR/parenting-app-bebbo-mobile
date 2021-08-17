@@ -50,7 +50,7 @@ const VaccineItem = (props: any) => {
                   )}
                 </View>
               </CheckboxItem>
-              <Flex1>
+              <Flex1 >
                 <LabelText>
                   <Heading4Regular>{title}</Heading4Regular>
                 </LabelText>
