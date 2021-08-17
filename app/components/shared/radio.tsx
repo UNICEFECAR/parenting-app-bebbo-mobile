@@ -58,8 +58,9 @@ export const RadioInnerBox = styled.Pressable`
   align-items:center;
   justify-content:flex-start;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
-  padding:12px 10px;
+  padding:5px 10px;
   height:52px;
+  
 `;
 export const RadioLabelText = styled.Text`
   color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};

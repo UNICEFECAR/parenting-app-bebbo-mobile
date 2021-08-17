@@ -28,15 +28,15 @@ export const WalkthroughImagebox = styled.View`
 
 export const WalkthroughTitle = styled.Text`
   font-size: 24px;
-  margin-top: 30px;
+  margin-top: 10px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 `;
 export const WalkthroughSubtext = styled.Text`
   font-size: 20px;
   text-align: center;
-  padding: 0 25px;
+  padding: 0 5px;
   font-family: roboto-regular;
 `;
 
