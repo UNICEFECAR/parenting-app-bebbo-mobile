@@ -22,10 +22,10 @@ export const AreaContainer = styled.View`
 
 export const VacItemContainer = styled.View`
   width: 100%;
-  padding:15px 15px 8px;
+  padding:10px 15px 12px;
   border-bottom-width:1px;
   border-color:rgba(0,0,0,0.2)
-  
+  min-height:52px;
 `;
 
 export const BannerContainer = styled.View`
