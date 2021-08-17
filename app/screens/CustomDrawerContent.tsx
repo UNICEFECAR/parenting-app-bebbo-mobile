@@ -4,6 +4,7 @@ import {
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
+import analytics from '@react-native-firebase/analytics';
 import {
   ButtonModal, ButtonText
 } from '@components/shared/ButtonGlobal';
@@ -50,6 +51,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
+import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -74,6 +76,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         message: t('appShareText'),
       });
       if (result.action === Share.sharedAction) {
+        await analytics().logEvent(APP_SHARE);
         if (result.activityType) {
           // shared with activity type of result.activityType
         } else {
@@ -390,8 +393,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  onPress={() => {
+                  onPress={async() => {
                     setModalVisible(false);
+                    await analytics().logEvent(FEEDBACK_SUBMIT)
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>

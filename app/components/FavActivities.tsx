@@ -68,7 +68,7 @@ const FavActivities = (props: any) => {
           <Heading3>{item.title}</Heading3>
           </ArticleListContent>
         
-          <ShareFavButtons  isFavourite={true} backgroundColor={'#FFF'}/>
+          <ShareFavButtons  isFavourite={true} backgroundColor={'#FFF'} item={item} isAdvice={false}/>
       </ArticleListContainer>
     </Pressable>
 
