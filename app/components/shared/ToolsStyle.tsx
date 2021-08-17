@@ -5,14 +5,20 @@ const ToolsStyle = styled.View`
 export default ToolsStyle;
 
 export const VacSummaryBox = styled.View`
-background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+
 justify-content:center;
 align-items:center;
+`;
+
+export const VacSummaryPress = styled.Pressable`
+background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+
 padding:8px 5px;
 width:100px;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 margin:7px 0 8px;
 `;
+
 
 export const VacSummaryOuter = styled.View`
 flex-direction:row;
@@ -39,6 +45,8 @@ padding:4px 0
 `;
 export const ToolsHeadingView = styled.View`
 padding:0 10px;
+
+align-self:center;
 `;
 export const ToolsActionView = styled.View`
 align-self:center;
