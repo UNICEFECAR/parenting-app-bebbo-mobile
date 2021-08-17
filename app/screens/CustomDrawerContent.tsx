@@ -336,7 +336,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4>{t('drawerMenufeedbackTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => { }}>
             <OuterIconRow>
@@ -344,7 +344,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_loveapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4>{t('drawerMenurateTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenurateTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView
             onPress={() => {
@@ -355,7 +355,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_privacy" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4>{t('drawerMenuPrivacyTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuPrivacyTxt')}</Heading4>
           </DrawerLinkView>
         </ScrollView>
       </SafeAreaView>
