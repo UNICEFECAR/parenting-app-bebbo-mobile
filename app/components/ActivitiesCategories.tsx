@@ -19,12 +19,12 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
         (state: any) =>
             JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
     );
-    const getFilterArray = async(itemId: any, filterArray: any[]) => {
+    const getFilterArray = (itemId: any, filterArray: any[]) => {
         // filterArray.push("78");
         // console.log(filterArray,"includes(itemId)--",itemId);
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
-              await analytics().logEvent(GAME_CATEGORY_SELECTED, {game_category_id:itemId});
+               analytics().logEvent(GAME_CATEGORY_SELECTED, {game_category_id:itemId});
                                       
         } else {
             filterArray.splice(filterArray.indexOf(itemId), 1);
