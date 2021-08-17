@@ -1,500 +1,349 @@
 export const articledata:any = {
     "en":[  
         {
-        "id": 8136,
-        "type": "Article",
-        "title": "Test Article",
-        "created_at": "Fri, 07/02/2021 - 09:45",
-        "updated_at": "Fri, 07/02/2021 - 09:59",
-        "body": "<p>Test Article</p>\n",
-        "category": "6",
-        "child_age": [
-            "43",
-            "44"
-        ],
-        "child_gender": "40",
-        "parent_gender": "37",
-        "keywords": [
-            "5901"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/5%252B%2520photo%2520s%2520djalic%25202.JPG",
-            "name": "5 years",
-            "alt": "5 years"
+            "id": 6,
+            "type": "Article",
+            "title": "Playing with newborns",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Play is important for overall newborn development, learning, wellbeing and bonding.\nPlaying with your newborn is about interacting with your baby.\nNewborn play ideas include smiling at your baby, blowing raspberries and having tummy time.\n",
+            "body": "<h1>Playing with newborns: why it’s important</h1>\n<h2><strong>Play is essential for your baby’s overall development</strong>, learning and wellbeing.</h2>\n<p>Through play, your newborn learns about the world around him and how he can interact with it. New play experiences also help parts of your newborn’s brain connect and grow. And play that gets your newborn moving builds muscle strength as well as gross motor skills and fine motor skills.</p>\n<p>Playing with your newborn helps her learn to <strong>talk and understand words</strong>. You might not always have time to stop everything and play, but you can still chat to your newborn about what’s going on – for example, while cooking dinner, shopping or folding clothes.</p>\n<p>Playing together helps you and your newborn get to <strong>know each other</strong>. That’s because play can tell you a lot about your newborn’s personality. Rough and silly or quiet and calm, you’ll soon know what your newborn likes.</p>\n<table>\n<tbody>\n<tr>\n<td>When you play with your newborn, your newborn learns to trust and depend on you, and the bond between you and your newborn gets stronger. This helps your newborn feel loved and secure.</td>\n</tr>\n</tbody>\n</table>\n<h2>Play ideas for newborn babies</h2>\n<p>Playing with your newborn is about the <strong>interactions between you and your newborn</strong>, not about games and toys. This means that all you need to get started with newborn play is yourself and your baby.</p>\n<p>Here are some play ideas for newborn babies:</p>\n<ul type=\"disc\">\n<li>Sing, chat, tickle, count toes, blow raspberries – simple things are best for newborns. Babies also love nursery rhymes that involve touch like ‘Round and round the garden’. Sharing nursery rhymes or traditional songs from your own culture and language is great too.</li>\n<li>Make faces, smile, laugh, roll your eyes or poke out your tongue. Your newborn loves watching your face. Nappy-changing is a great time for <strong>face-to-face play</strong>.</li>\n<li>Give your newborn different objects to feel – soft toys, rattles or cloth books with pages of different textures are lots of fun for your newborn. Feeling different things helps your newborn learn about the world.</li>\n<li>Give your newborn different things to look at – outside, inside, different people or different rooms.</li>\n<li>Give your newborn tummy time each day. This gives your newborn practice holding up his head and lets him see things from a different point of view. Always watch your newborn during tummy time and put him on his back to sleep.</li>\n<li>Talk or make sounds with your newborn, and wait for her to respond. It might take a little while but you’ll be surprised at how much your newborn has to ‘say’. This shows your newborn that conversations are about taking turns, listening and responding.</li>\n<li>Try reading with your baby. It’s never too early to start, but remember to hold the book close – newborns can see only about 20-30 cm in front of them.</li>\n</ul>\n<table>\n<tbody>\n<tr>\n<td>And remember to <strong>enjoy yourselves</strong>. It’s only play if it’s fun.</td>\n</tr>\n</tbody>\n</table>\n<p>Follow your baby’s cues. Even babies with lots of energy need downtime and might feel overwhelmed if you keep trying to play with them when they’re tired. If your newborn baby seems startled or upset, try playing a quieter game a bit later.</p>\n",
+            "category": 55,
+            "child_age": [
+                45,
+                44,
+                43
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                91,
+                86,
+                81,
+                76,
+                71
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN045588.jpg",
+                "name": "© UNICEF/UN045588/Kim",
+                "alt": "Mother playing with her newborn baby."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "1",
-        "premature": "1",
-        "mandatory": "1"
-    },
-    {
-        "id": 6791,
-        "type": "Article",
-        "title": "Baby and young child behaviors that may worry you: shyness",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>Young children may resort to hiding behind their parents, avoid engaging in play with peers or adults, or refuse to talk when spoken to by people unfamiliar to them.</p>\n\n<p>The child will mostly \"warm up\" as he/she spends time with the person, or becomes familiar with the situation in which he/she finds him/herself. Sometimes, shyness will not disappear completely, but the child will be increasingly at ease and confident when communicating with others.</p>\n\n<p><em>What can you do?</em></p>\n\n<ul><li>give your baby or young child time to feel comfortable. Do not insist on contact (either physical - picking him/her up, kissing, hugging, shaking hands, or verbal - answering questions);</li>\n\t<li>let the child know that his/her feelings are okay, name them and make it clear that together you will find a way to make the child feel more comfortable (for example, you can say: \"I see that you are a little afraid because you don't know these children. Let's first go together and see what's there\");</li>\n\t<li>be with the baby or young child in new situations or situations that require interaction (such as playgrounds, playrooms). During this time, support the child in exploring the space, toys. Always praise \"brave\" behaviors - when a child responds, looks at a person, tries something new, makes contact or plays away from you or with someone;</li>\n\t<li>be calm and restrained - do not reject the child, but do not comfort him/her too much. Try to present the situation as a normal one, while at the same time showing that you understand that the child feels uncomfortable and that you are there to find a way to make him/her feel better together. Set an example for the child, so that he/she can learn by observing your reactions, adjustments and behavior (for example, when someone addresses you - respond);</li>\n\t<li>\"Take your child's side.\" If someone calls him/her shy in his/her presence, feel free to correct him/her in front of the child: \"He/she needs some time to warm up and get to know everyone. As soon as he/she is more comfortable, he/she will join the game.\" This sends a message to the child that you understand how he/she feels, you accept him/her and you are sure that he/she will handle this situation skillfully.</li>\n</ul><p>When is shyness a problem? Sometimes shyness can develop into anxiety - excessive worry. If the child has pronounced shyness that interferes with his/her and your functioning (he/she cannot go to certain places, avoids situations that require contact, shows fear or discomfort on playgrounds, in playrooms, etc.) and there is no change, seek professional advice.</p>",
-        "category": "56",
-        "child_age": [
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51",
-            "52",
-            "57"
-        ],
-        "child_gender": "",
-        "parent_gender": "",
-        "keywords": [
-            "4866"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/toplotni-udar.jpg",
-            "name": "\"\"",
-            "alt": "dete rukama štiti oči od sunca"
+        {
+            "id": 11,
+            "type": "Article",
+            "title": "Newborn sleep routines",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Flexibility is the key when it comes to baby and newborn sleep routines.\n",
+            "body": "<h1>Newborn sleep: some basics</h1>\n<p>Newborns spend most of their time asleep. They’re programmed to sleep in short bursts of about 2-3 hours between feeds, night and day.</p>\n<p>Your baby will need your attention during the night for feeding and settling for up to the first six months. Some babies keep waking even after this.</p>\n<p><strong>Newborn sleep routines can be as varied as they are for babies and parents. </strong>The approach you take will depend on the choices you make about things like where your baby sleeps – for example, in her own bed or in a side-car crib next to your bed.</p>\n<p>Some parents opt for little or no routine at all, and are comfortable with following their baby’s lead. Others find that a very simple, flexible routine seems to help their baby, and helps them to feel more in control.</p>\n<p>This isn’t the time for rigid plans. You might find your baby won’t fit into even the best-laid plans anyway! In the first few months of your baby’s life, <strong>it’s best to go slowly</strong> – get to know each other, and work out what’s best for baby and for you.</p>\n<h2>Feed, play and sleep: a simple newborn sleep routine</h2>\n<p>With a newborn, <strong>it helps to be flexible about when your baby sleeps and feeds</strong>. But many infant health experts believe that, when it feels right for you, it can also help to begin doing things in a similar order each day – feed, play, sleep.</p>\n<p>When your baby wakes up, you could try this:</p>\n<ul>\n<li>Offer a feed.</li>\n<li>Change your baby’s nappy.</li>\n<li>Take time for talk and play.</li>\n<li>Put your baby back down for sleep.</li>\n</ul>\n<p>At night, you might choose not to play and instead focus on settling your baby straight back to sleep.</p>\n<p>For young babies, playtime might just be a quiet cuddle or some time stretching out and kicking on a blanket. You might find about 10-20 minutes of play is enough. Some newborn babies get tired after being awake for about 1-1½ hours. Some newborns are happy to play for longer than this.</p>\n<p>You can watch your baby’s tired signs and body language to see when it’s time to stop.</p>\n<p>The key is to follow your baby’s lead about when to feed, play and sleep, but to start doing these things in a similar order through the day.</p>\n<h2>Daytime sleep for newborns</h2>\n<p>Keeping your baby awake all day won’t help your baby sleep better at night. Daytime sleep is important too. But it’s best not to let your baby sleep longer than four hours in one stretch during the day. After that, babies need to feed.</p>\n<h2>Feeding and sleep for newborns</h2>\n<p>Generally, newborns need to be fed every 2-4 hours. Your baby will sleep better after a good feed.</p>\n<h2>Settling and newborns</h2>\n<p>Newborns need your help when they’re unsettled. If they’ve been fed in the last two hours, cuddling and comfort are in order. You could also try topping up your baby with a feed to help send your baby to sleep.</p>\n<table>\n<tbody>\n<tr>\n<td>Wrapping your newborn in lightweight cotton or muslin can help with settling. Wrapping or swaddling can reduce crying and waking because it helps keep babies stable on their backs and stops their arms flapping. However, make sure that the baby is always on his or her back when swaddled. The swaddle should not be too tight or make it hard for the baby to breathe or move his or her hips. When your baby looks like he or she is trying to roll over, you should stop swaddling.</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n",
+            "category": 2,
+            "child_age": [
+                45,
+                44,
+                43
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                106,
+                101,
+                96,
+                71
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/beba%2520-%2520samostalna%2520igra%2520u%2520krevetcu.jpg",
+                "name": "©UNICEF Srbija/Szabo",
+                "alt": "beba leši na boku u krevetcu i igra se samosalno"
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6896,
-        "type": "Article",
-        "title": "Regular preventive pediatric examination before starting school",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<h2><strong>Preparing for the visit </strong></h2>\n\n<ul><li>Talk to your child about the upcoming visit to the pediatrician and explain to him/her why it is important to properly prepare for school and have a health check.  </li>\n\t<li>Bring a book or thing your child likes to keep him/her busy while waiting.</li>\n\t<li>Check if you have any medical records of your child that needs to be taken to the pediatrician.</li>\n</ul><h2><strong>Contents of the preventive visit</strong></h2>\n\n<h3><strong>Growth monitoring</strong></h3>\n\n<p>The child will be measured in his/her underwear and the body height and body weight measurements will be entered in the growth charts (graphs). At this age, the body mass index can already be calculated and the ratio of body mass (weight) to body height can be assessed, which can also be entered in the growth chart.  </p>\n\n<h3><strong>Introductory interview</strong></h3>\n\n<ul><li>The pediatrician will check your child's growth and assess whether he/she is growing in line with the started growth curve.</li>\n\t<li>Of course, the pediatrician will be interested in: the child's nutrition, physical activity, interests, behavior...</li>\n\t<li>It is important to discuss the possible risks to the child's health, as this is also an opportunity to get a useful recommendation in case some changes in the child's behavior are needed.</li>\n</ul><h3><strong>Pediatric examination and developmental assessment</strong></h3>\n\n<ul><li>The pediatrician will perform a regular examination of your child in the usual order: skin, head, nose, mouth, neck, nodes in the neck; then he/she will listen to the heart and lungs, palpate the abdomen, check the condition of the genitals, check the posture. He/she will measure the blood pressure and perform an electrocardiogram.</li>\n\t<li>During the examination, you can make observations, ask questions and seek advice.   </li>\n</ul><h3><strong>Additional examinations</strong></h3>\n\n<ul><li>At this time, it is necessary to perform a more detailed examination of the status of the senses: sight, hearing, speech development, check the condition of the teeth and the planned protection, check the posture. Therefore, the pediatrician will refer the child to an ear, nose and throat specialist, an eye doctor, a speech therapist, a dentist and a physiatrist.</li>\n\t<li>He/she will order a complete blood count and a urine test.  </li>\n\t<li>If you already got these referrals at a previous visit, bring the received specialist reports and laboratory findings to the examination.</li>\n</ul><h2>Vaccination</h2>\n\n<p>At this age, your child receives the fifth dose (second revaccination) of the diphtheria, tetanus, whooping cough (DTaP) and polio (IPV) vaccine as a combined tetravalent vaccine* and the second dose of the trivalent vaccine against measles, mumps and rubella (MMR).</p>\n\n<h2><strong>Final opinion</strong></h2>\n\n<p>The final opinion and health certificate for enrollment in the first grade of primary school will be issued by the pediatrician on the basis of all the data collected as part of the preparation: medical history, clinical examination, specialist reports, laboratory findings and vaccination.  </p>\n\n<p>In the event that a deviation from the usual findings is observed during a more detailed assessment, he/she will continue to monitor and check the child's progress until he/she transfers to the school doctor. </p>\n\n<blockquote>\n<p>Your child is about to take a big step in life. Try to understand him/her, respect his/her feelings and try not to pass on your fears to him/her, but rather provide encouragement and support. If you have any doubts, use this opportunity to exchange opinions with health professionals.</p>\n</blockquote>",
-        "category": "7",
-        "child_age": [
-            "58"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "62",
-            "136"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/UN038676.jpg",
-            "name": "© UNICEF/UN038676/Pirozzi",
-            "alt": "Boy (4 years) in a playroom at Children’s Development Center (nightcare) for children coming from disadvantaged families or abandoned children."
+        {
+            "id": 16,
+            "type": "Article",
+            "title": "Safe sleeping: 11 tips",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "It’s natural to find yourself checking your sleeping newborn to make sure everything is OK. You can also take simple and effective safe sleeping steps to minimize the risk of sudden unexpected death in infancy (SUDI) including sudden infant death syndrome (SIDS) and fatal sleeping accidents.\n",
+            "body": "<h1>SUDI including SIDS and fatal sleeping accidents: risk factors</h1>\n<p>When a baby dies unexpectedly and for no obvious reason, it’s often described as sudden unexpected death in infancy (SUDI). SUDI is a broad term that includes SIDS and fatal sleeping accidents.</p>\n<p>Deaths from SUDI including SIDS and fatal sleeping accidents have decreased a lot in Australia. This is because we understand more about safe sleeping practices for our babies, and we’ve been following these practices. These <strong>safe sleeping practices can reduce the risk of SUDI </strong>including SIDS and fatal sleeping accidents.</p>\n<h2>Safe sleeping steps to reduce the risk of SUDI</h2>\n<p><strong>1. Put babies to sleep on their backs</strong><br />\nThis is the safest position for healthy babies. Babies are more likely to die of SUDI including SIDS and fatal sleeping accidents if they sleep on their sides or tummies.</p>\n<p>Once your baby can roll over (at around 4-6 months), keep putting him to sleep on his back, but let him find his own sleeping position.</p>\n<p><strong>2. Make sure babies’ heads or faces can’t get covered while they’re sleeping</strong><br />\nPut your baby low down in the cot, so her feet are near the bottom end. Tuck in the bed sheets securely so they can’t cover your baby’s head. You could use a safe infant sleeping bag instead of blankets. Sleeping bags with a fitted neck and armholes and no hood are the safest.</p>\n<p><strong>3. Avoid smoking</strong><br />\nThere’s strong evidence that exposure to second-hand smoke harms babies, and that smoking during pregnancy and after birth increases the risk of SUDI including SIDS and fatal sleeping accidents. The link between SUDI and smoking is strong even when parents smoke away from their babies.</p>\n<p><strong>4. Use a cot that meets safety standards</strong><br />\nOnly well-maintained cots built to strict safety standards are good enough for your baby. Cots that don’t meet the standards have many risks, including lead paint, gaps that a young child can get caught in, and sides that are too low and that your child could climb over.</p>\n<p><strong>5. Share a room</strong><br />\nHave your baby in a cot in your room for the first 6-12 months.</p>\n<p><strong>6. Breastfeed your baby if you can</strong><br />\nBreastfeeding reduces by more than half the risk of SUDI including SIDS and fatal sleeping accidents. And regardless of whether your baby is breastfed or bottle-fed, it’s still very important to follow safe sleeping practices.</p>\n<p><strong>7. Avoid cot bumpers, soft toys and pillows</strong><br />\nBabies have been suffocated by rolling into or being covered by these soft objects. It’s safest to keep them out of your baby’s cot.</p>\n<p><strong>8. Use a firm and well-fitting mattress</strong><br />\nMake sure there are no gaps between the mattress and the edge of the cot, where a baby’s head could get jammed.  If you’re using a portable cot, use only the firm, thin, well-fitting mattress that comes with it. Don’t add a second mattress.</p>\n<p><strong>9. Avoid baby sleeping on couches or makeshift bedding</strong><br />\nSleeping on a couch, with or without someone else, is very dangerous for babies. Also take care with makeshift bedding. Some situations where your baby might be in danger include getting wedged between a mattress and a wall, getting stuck between pillows or cushions, or slipping down until his head is covered by blankets.</p>\n<p><strong>10. Dress your baby in clothing that’s warm, but not hot</strong><br />\nOverheating is a risk factor for SUDI including SIDS and fatal sleeping accidents. Ask yourself what you would wear to bed and use that as a guide. Keep your baby’s head uncovered indoors – this allows your baby to cool and not overheat. Don’t worry if your baby’s hands and feet feel cool – that’s normal.</p>\n<p><strong>11. Make sure your baby’s carers know how to protect against SUDI</strong><br />\nIt’s best not to assume that other people know about safe sleeping practices, even professional child carers. Have a look at the planned sleeping arrangements, and make sure yourself that your baby will be positioned safely for sleep. For example, it isn’t recommended to leave a baby sleeping in a pram unsupervised.</p>\n",
+            "category": 3,
+            "child_age": [
+                46,
+                45,
+                44,
+                43
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                116,
+                111
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN0146999.jpg",
+                "name": "© UNICEF/UN0146999/Voronin",
+                "alt": "Newborn baby in Kyrgyzstan"
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6856,
-        "type": "Article",
-        "title": "Usual behavior of a preschooler (3-6 years): What to expect?",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>This is why it's important to allow them enough time for it: go for a walk or leave for your destination early, to allow your child to discover without hindrance. In addition, it is common for a child of this age to want more independence in both behavior and decision-making. They really need your support, as well as opportunities to do things independently, or to make decisions about things important to them (eg. what to give a friend as a birthday present, what to wear to kindergarten, where to go for a walk in the afternoon, etc.). Both your support and these opportunities build the child's feeling of self-confidence, so with positive attention, praise and a sense of security with you - they become great opportunities for practicing skills and exploring new ones.</p>\n\n<p>At this age, play is very rich and imaginative. While playing, the child skillfully explores further and experiences the situations he/she encounters every day, attributes human behavior to animals and dolls, analyzes different relationships and behaviors and draws conclusions about it in play - tries out various consequences, enacts feelings and the like.</p>\n\n<p>At this age, children continue to learn very quickly. There are very stimulating learning opportunities in the usual home routines (for example in preparing meals, shopping, planning leisure time, visits and socializing, setting the table...); they rely on the child's participation and positive attention - parents' skills to support and expand the child's experience, praise the child's engagement, curiosity, dexterity...</p>\n\n<p>Children at this age experience many positive effects of joint activities with peers. Playing with peers, especially in mixed groups (groups of different ages), offers numerous opportunities to explore and learn about themselves and the world, especially interpersonal relationships. For this reason, it is important for children to start kindergarten at this age. When your child starts kindergarten, keep in mind that he/she will need your support to understand and accept his/her new role, new routines, to get to know the adults and peers around him/her and to make daily transitions from the \"kindergarten reality\" to the home reality and routines.</p>\n\n<blockquote>\n<p>Your child's emotions are very strong at this age, they change quickly and the child is still learning to understand and manage them. Hence, it can still be very challenging for the child to regulate his/her behavior in challenging situations - when there is a source of frustration, fear or anger. You can help him/her with this big and important task by talking openly about feelings: expressing and naming your different feelings, as well as offering the child a name for his/her or a peer's feelings.</p>\n</blockquote>",
-        "category": "56",
-        "child_age": [
-            "52",
-            "57",
-            "58"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "4921",
-            "6401",
-            "2546"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/jessica-rockowitz-lMLG68e4wYk-unsplash.jpg",
-            "name": "© Jessica Rockowits",
-            "alt": "Boy playing costumes."
+        {
+            "id": 26,
+            "type": "Article",
+            "title": "Benefits of breastfeeding during COVID19",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Does breastfeeding protect my baby? \nBreastfeeding saves lives. Research shows that, by increasing breastfeeding rates, we could save the lives of more than 820,000 children worldwide every year. Breast milk provides antibodies that give babies everywhere a healthy boost and protect them against many infections. Antibodies and bio-active factors in breast milk may fight against COVID-19 infection, if baby is exposed. In addition, the corona virus has not been found in breast milk, and transmission via breastfeeding has not been demonstrated.\n",
+            "body": "<h2><strong>Does breastfeeding protect my baby? </strong></h2>\n<p>Breastfeeding saves lives. Research shows that, by increasing breastfeeding rates, we could save the lives of more than 820,000 children worldwide every year. Breast milk provides antibodies that give babies everywhere a healthy boost and protect them against many infections. Antibodies and bio-active factors in breast milk may fight against COVID-19 infection, if baby is exposed. In addition, the corona virus has not been found in breast milk, and transmission via breastfeeding has not been demonstrated.</p>\n<p>Breastfeeding is globally recommended by World Health Organization (WHO) and UNICEF and is part of  national recommendations for infant and young child feeding:</p>\n<ul>\n<li>Breast milk provides all the food and water that your baby needs during the first 6 months of life.</li>\n<li>Do not give anything else, not even water, during your baby’s first 6 months.</li>\n<li>Giving your baby anything else (any foods, cow’s milk, juice, tea or even water)  will cause him/her to suckle less and will reduce the amount of breast milk that you produce.  This  may make your baby sick and prevent your baby from growing well.</li>\n<li>You can give medicines to the baby if they are recommended by your health provider.</li>\n</ul>\n",
+            "category": 1,
+            "child_age": [
+                50,
+                49,
+                48,
+                47,
+                46,
+                45,
+                44,
+                43
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                151,
+                146
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN041252.jpg",
+                "name": "© UNICEF/UN041252/Pirozzi",
+                "alt": "Mother breastfeeding her baby."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6901,
-        "type": "Article",
-        "title": "Regular preventive pediatric examination: fourth year",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<h2><strong>Preparing for the visit </strong></h2>\n\n<ul><li>Check if you have any new medical documentation for your child and take it with you to be reviewed by the pediatrician.  </li>\n\t<li>Always bring a toy your child likes or a children's book so that he/she can enjoy playing or reading while waiting.   </li>\n</ul><h2><strong>Contents of the preventive visit</strong></h2>\n\n<p><strong>Growth monitoring</strong></p>\n\n<p>With a warm word or two, the nurse will measure your child in his/her underwear and enter the body height and body weight measurements in the growth charts (graphs).</p>\n\n<p><strong>Introductory interview</strong></p>\n\n<p>A visit to the pediatrician always begins with an appropriate conversation. He/she will check how the child has grown since the previous visit, how he/she eats, how physically active he/she is, how he/she sleeps, how he/she likes to play most, whether there have been any changes in the family environment in the meantime, whether he/she attends kindergarten, etc.  </p>\n\n<p><strong>Pediatric examination and developmental assessment</strong></p>\n\n<ul><li>The pediatrician will perform a regular examination of your child, in the order you are already familiar with. He/she will examine: skin, head, nose, mouth, neck, nodes in the neck, then he/she will listen to the heart and lungs, palpate the abdomen, check the genital region if necessary, check the condition of the skeletal system, posture. He/she will measure blood pressure.</li>\n\t<li>You have learned to follow your child's development more precisely, so you can share your observations about the child's development and behavior with the pediatrician and seek advice if necessary.   </li>\n</ul><h2><strong>Additional examinations</strong></h2>\n\n<ul><li>Since your child already communicates well enough, his/her visual acuity can be determined at this age, so the pediatrician will refer him to an ophthalmologist. He/she will also be referred to a speech therapist to check speech development and, if necessary, to a physiatrist to detect and address the most common bone- and joint-related problems of the feet and spine in a timely manner. He/she will remind you to visit a dentist. </li>\n\t<li>If necessary, the pediatrician will refer the child to other specialists or health associates (in the development counseling unit), depending on the assessed condition. </li>\n\t<li>He/she will order a complete blood count for your child.   </li>\n</ul><h2>Vaccination</h2>\n\n<p>There is no planned vaccination at this age, but the child's vaccination status is checked and, in case a vaccination is missed, it will be administered on this occasion.</p>\n\n<h2><strong>Final opinion</strong></h2>\n\n<p>At the end of the examination, the pediatrician will inform you of his/her findings from the preventive examination and will summarize the next steps. You may receive some written material to support your child's further development. He/she will inform you about the next preventive visit.</p>\n\n<blockquote>\n<p>A preventive examination in the fourth year of life is another opportunity to assess in more detail the growth and development of your child; this is a time when it is still possible to catch up on any milestones missed or remedy or alleviate an observed delay. Take this opportunity!</p>\n\n<p> </p>\n</blockquote>",
-        "category": "7",
-        "child_age": [
-            "52"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "62",
-            "1051",
-            "2516"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/Razvojno%2520savetovaliste.jpg",
-            "name": "© UNICEF Srbija/Pancic",
-            "alt": "u razvojnom savetovalistu"
+        {
+            "id": 31,
+            "type": "Article",
+            "title": "Singing in a second language: activity for children 0-6 years",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Singing is a fun way to help your child learn a second language and be bilingual.\nFor younger children, choose simple and familiar songs to start with.\nFor older children, you can look for pop songs in the second language.\n",
+            "body": "<h2>Singing in a second language: why it’s good for children</h2>\n<p>Being bilingual--understanding and speaking two languages--benefits children's development. Singing is <strong>a fun way to help your child learn and remember words and sentence structure</strong> in a second language.</p>\n<p>When your child sings songs with repeated words or choruses, he gets lots of practice with new words and sentence structures. This helps your child remember these new words.</p>\n<p>Songs with a cultural or personal significance – for example, songs passed down in your family – can have extra meaning for your child.</p>\n<h2>What you need to sing with your child in a second language</h2>\n<p>Choose a simple song in your second language to sing with your child.</p>\n<p>If you don’t know any good songs, you could look for CDs and DVDs at your public library, or search online.</p>\n<h2>How to sing with your child in a second language</h2>\n<p>Here are some <strong>ideas to get you singing</strong> with your child:</p>\n<ul>\n<li>Choose songs with hand movements, or make up some movements. Hand movements help your child remember what the song means, even if she doesn’t understand all the words.</li>\n<li>Sing the song to your child. Don’t worry about what you sound like. Your child will love the sound of your voice, even if you’re off-key.</li>\n<li>Choose songs your child already knows in his first language, like ‘Happy birthday’.</li>\n<li>Put lots of expression into your voice and face as you sing.</li>\n<li>Praise your child when she sings the words or copies the actions with you. Your child might remember only one or two words to begin with.</li>\n<li>Explain what the song is about. You don’t have to translate every word.</li>\n<li>Try to use some of the words and phrases from songs in everyday conversation with your child. It can be fun to sing parts of the song if you can fit them into what you’re saying.</li>\n</ul>\n<h2>Singing in a second language: adapting for children of different ages</h2>\n<p>You can sing songs in different languages to <strong>your baby</strong> as soon as he’s born or even before. You don’t have to wait until he starts to talk or until he’s fluent in one language. Children can learn two or more languages at the same time.</p>\n<p>A catchy pop song can be a good way for <strong>your older child</strong> to learn a language. Your child might recognise only one or two words or phrases, but if she likes it enough she’ll keep listening until she understands more. You might want to check the lyrics to make sure the content is suitable.</p>\n",
+            "category": 55,
+            "child_age": [
+                58,
+                57,
+                52,
+                51,
+                50,
+                49,
+                48,
+                47,
+                46,
+                45,
+                44
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                166,
+                161,
+                156
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN0202878.jpg",
+                "name": "© UNICEF/UN0202878/Serbia",
+                "alt": "Father singing with his toddler daughter."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6761,
-        "type": "Article",
-        "title": "How to read with a child?",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>You can read with a child from the earliest days of a baby's life. Here are some guidelines on how to read with a child, regardless of age:</p>\n\n<ul><li>the book, time and place for reading are chosen by the child. For this reason, the books that are available to the child at home should be appropriate to the child's interests and skills. Their size should be such that the child can hold them in his/her hands, pass them from hand to hand, turn them, carry them, etc. The illustrations should also be appropriate to the child. For example, baby books are usually black and white or in contrasting colors, with one large shape on a white background;</li>\n\t<li>the book is positioned facing the child, and the adult and the child are face to face. This allows the child to explore the book, and the parent - to observe the child's behavior, facial expressions, movements, vocalization (or speech) - initiatives that show how he/she wants to explore or participate in reading;</li>\n\t<li>reading is an invitation to play - with words or characters. You can help your child stay focused by changing your facial expression, tempo of speech, tone. Name what the child sees, but be sure to ask broad, open-ended questions - who, what, how, where...</li>\n\t<li>reading is a conversation with the child. So, give your child a chance to think of something to say. Wait for the child to answer when you ask a question. Meanwhile, watch the child's facial expression, look at him/her with interest. When the child answers and shows that he/she is ready to participate further - show approval, a cheerful face, curiosity to find out what the child thinks, discovers, says, asks;</li>\n\t<li>reading is an opportunity to connect with the child. So, try to speak in a warm voice, to be authentically interested in exploration together with the child. Smile, enjoy with the child and show him/her that he/she is loved, accepted and important.</li>\n</ul><blockquote>\n<p>You can read with your child anytime and anywhere. You can read about anything - you can talk about pictures, read recipes, analyze photos, read stories. Read with your child every day!</p>\n</blockquote>",
-        "category": "56",
-        "child_age": [
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "5996",
-            "4216",
-            "4171"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/picsea-EQlTyDZRx7U-unsplash.jpg",
-            "name": "© Picsea",
-            "alt": "Father reading to his baby."
+        {
+            "id": 36,
+            "type": "Article",
+            "title": "Physical activity for young children",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Physical activity can start very early in life as part of everyday play.\nWhen you’re choosing activities for young children, focus on fun and play.\nAt least 30 minutes of tummy time each day helps babies grow and develop.\nChildren aged 1-5 years need physical activity for at least three hours each day, including some energetic play.\n",
+            "body": "<h2>Daily physical activity: focusing on fun</h2>\n<p>When you’re choosing physical activity for babies, toddlers and preschoolers, <strong>focus on activities that are fun</strong>.</p>\n<p>If children enjoy what they’re doing, they’re more likely to want to keep doing it. And physical activities that children enjoy will increase their confidence and ability to move well.</p>\n<p>Physical activity is vital to your child’s healthy growth and development. And it can start very early in life as part of your child’s everyday play.</p>\n<h2>Physical activity for children 0-2 years</h2>\n<p><strong>Before baby can walk</strong></p>\n<p>Even tiny babies like to stretch and play. A large blanket on the floor (or on the grass outside) for tummy time can be a safe, clean and welcoming place for babies to practise lifting their heads. This helps them develop strong muscles.</p>\n<p>A blanket on the ground or floor is also a great place for baby to learn to roll, creep, crawl and sit. Put a toy or object just out of reach for the fun of trying to get it.</p>\n<p>Things to grab and hold, like old boxes, make tummy time fun. Bright colours, drawings of dots, squares or stars, shiny surfaces, changing textures and different sounds can also interest your child.</p>\n<p>You can also encourage your baby to look, clap, reach or move to sound – try talking, singing, rhyming or action games like pat-a-cake and peekaboo.</p>\n<p>If you’re putting your baby on the floor, just remember to look for potential hazards down at baby’s level. Stay with your baby to keep things safe.</p>\n<h3><strong>When baby starts to walk</strong></h3>\n<p>Once your child is walking, you can encourage her just by letting her move often.</p>\n<p>This is a great time to look for objects and activities that encourage movement – for example, climbing steps at home (with supervision!).</p>\n<table>\n<tbody>\n<tr>\n<td>Playing with your child and praising him as he learns to run, jump, dance and throw encourages him to keep going.</td>\n</tr>\n</tbody>\n</table>\n<h2>Physical activity for children 2-5 years</h2>\n<p>Toddlers and preschoolers need plenty of free time and space to just run around and play, at home, in your neighborhood, anywhere safe, supervised and fun.</p>\n<p>Here are some ideas for <strong>keeping physical activity fun</strong>:</p>\n<ul type=\"disc\">\n<li>Use large, soft balls to practise catching, hitting, bouncing and kicking. When spaces aren’t safe for balls, some rolled-up socks can be good for this activity.</li>\n<li>Make up games that involve different types of movement--chasing, walking a chalk line, jumping over puddles.</li>\n<li>Play different kinds of music, or make sounds with your voice or instruments.</li>\n<li>You could play guess the animal games, where you run like a monkey, jump like a bunny, flap like a bird and so on.</li>\n<li>When your child is ready, let her try learning to ride a bike, scooter or tricycle – under your supervision, of course. She might also enjoy playing with push toys like trucks, doll prams and toy lawn mowers.</li>\n</ul>\n<table>\n<tbody>\n<tr>\n<td>How much physical activity does your child need? Toddlers and preschoolers should be physically active every day for at least three hours, spread throughout the day. All children need to play energetically each day, and children over three years need at least an hour of energetic play each day.</td>\n</tr>\n</tbody>\n</table>\n",
+            "category": 55,
+            "child_age": [
+                57,
+                52,
+                51,
+                50,
+                49,
+                48,
+                47,
+                46,
+                45,
+                44
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                186,
+                181,
+                176,
+                171,
+                76
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN040846.jpg",
+                "name": "© UNICEF/UN040846/Shubuckl",
+                "alt": "A family is playing in their front yard – father Zoran, mother Zorica and their children David (4 years old) and Aleksandra (9 years old)."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6861,
-        "type": "Article",
-        "title": "Self-regulation skills in children",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<h2>Self-regulation includes the skills to:</h2>\n\n<ul><li>recognize and regulate feelings of excitement and frustration</li>\n\t<li>calm down after an interesting or disturbing event</li>\n\t<li>focus on the task</li>\n\t<li>shift focus on another task</li>\n\t<li>control impulses and postpone needs</li>\n\t<li>learn behaviors that are useful in interacting with other people.</li>\n</ul><h2>Self-regulation skills are important:  </h2>\n\n<ul><li>for learning (focusing on the teacher and the task, for example),</li>\n\t<li>for managing relationships with others (socializing relies on the skill of engaging in joint play and activities, taking turns, expressing feelings in an acceptable way, for example),</li>\n\t<li>for behaving in an acceptable way (controlling our impulses and postponing some needs),</li>\n\t<li>for being more independent (making decisions and managing our behavior),</li>\n\t<li>for successfully coping with stress and strong negative emotions.</li>\n</ul><p>Self-regulation develops from the earliest days: babies suck their thumbs to calm down, or look away from you when they need a break from talking to you, but it develops most intensively after the second year of life and beyond, until adulthood. Thus, children up to the age of 3 can already briefly postpone the need for food, but they still readily snatch a toy that they like on the playground, or throw tantrums when they express dissatisfaction and frustration.</p>\n\n<p>Children aged 3-6 will be more and more skilled in playing together with their peers - they will be better able to balance their wishes and ideas with those of others. Also, they are more willing to follow some rules of conduct - e.g. to whisper in the cinema. At the same time, they still find it difficult to focus completely on their task, or to manage strong feelings such as anger or jealousy. As they start school, they become more and more skilled in understanding the perspective of others and arguing their opinion; they get better at expressing disagreement without quarreling.</p>\n\n<p>Self-regulation develops in warm, supportive and stimulating relationships; therefore:</p>\n\n<ul><li>talk to the child about how he/she feels and analyze the behavior related to the feelings (eg. why he/she got angry and how he/she behaved then, what else he/she could have done)</li>\n\t<li>when a child is struggling with a strong emotion (usually fear or anger), help him/her name the feeling. It helps if this conversation takes place when the child calms down.</li>\n\t<li>help your child find a good way to calm down and offer to help him/her calm down when he is struggling with strong feelings</li>\n\t<li>set an example for the child, name what you do when you are upset or frustrated by something</li>\n\t<li>use positive attention and always praise and emphasize the child's success in self-regulation (you waited in line very well, I liked it when you asked for a toy and waited for him to be done playing…)</li>\n\t<li>try to adjust your expectations to the child's skills; this way, you help the child become capable of resolving the challenges he/she faces </li>\n\t<li>be very patient, it is very difficult for young children to understand and cope with a flood of emotions.</li>\n</ul><h2><strong>When to be concerned?</strong></h2>\n\n<p>Some behaviors related to self-regulation may require you to consult a professional. Be sure to do this if:</p>\n\n<ul><li>your child has tantrums and finds it difficult to cope with strong feelings more often than other children of the same age</li>\n\t<li>the older he/she is, the more difficult it is for your child to cope with strong feelings</li>\n\t<li>when overwhelmed by strong emotions, your child's behaviors endanger him/her or others</li>\n\t<li>you can't find a good strategy to help your child manage his/her behavior and reactions</li>\n\t<li>your child becomes very withdrawn and shows fewer social skills compared to his/her peers.</li>\n</ul>",
-        "category": "56",
-        "child_age": [
-            "50",
-            "51",
-            "52",
-            "57",
-            "58"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "2546",
-            "4531"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/UN0303583.jpg",
-            "name": "© UNICEF/UN0303583/Herwig",
-            "alt": "toddler crying"
+        {
+            "id": 41,
+            "type": "Article",
+            "title": "Thinking and play: babies",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Right from the start of her life, your baby’s brain is hard at work as she makes sense of the world and herself. Even when it looks like simple play, your baby is learning all the time. Here are simple and fun play ideas to support your baby’s cognitive development.\n",
+            "body": "<h2>About baby play and cognitive development</h2>\n<p>Babies are active and curious learners, busy watching, thinking and trying to work things out. They learn and grow through <strong>new experiences</strong>, especially new play experiences.</p>\n<p>Through play, babies develop the skills to think, understand, communicate, remember, imagine and work out what might happen next. These skills are all part of your baby’s cognitive development.</p>\n<p>For babies, play is mostly about <strong>back-and-forth interactions </strong>with you. When you interact with your baby during play, you give your baby important information that he uses to understand the world. For example, a simple game of peekaboo helps your baby learn that when dad disappears, he comes back too.</p>\n<h2>What to expect: baby cognitive development</h2>\n<p>Your baby is likely to:</p>\n<ul>\n<li>look at things when you name them, from about eight months</li>\n<li>talk to you in ‘coos’ and expect you to respond</li>\n<li>be fascinated by older children</li>\n<li>enjoy repetitive games and hearing the same story over and over</li>\n<li>recognise people that she sees at least once a week</li>\n<li>respond to your facial expressions – for example, if your baby sees a new toy and you smile, this tells her that the toy is safe and fun</li>\n<li>explore new objects by putting them in her mouth.</li>\n</ul>\n<p>From <strong>8-12 months</strong>, your baby might look like he’s experimenting during play. For example, he might throw a bowl towards the floor and watch it fall, push over the rubbish bin, or throw toys at the wall to figure out how things work. He’ll test all toys and any objects within reach – cups, saucers and even pets.</p>\n<p>This isn’t being naughty. It’s your baby learning about cause and effect – that is, ‘If I do this, that will happen’. It’s not surprising that your baby enjoys cause-and-effect toys – playing with them means she can push a button and something happens.</p>\n<p>If your baby has lots of opportunities to <strong>test out the environment</strong>, he has the chance to learn more and more every day. If you set up a safe environment and always supervise your baby, he can roam and learn with freedom.</p>\n<h2>Play ideas for encouraging baby cognitive development</h2>\n<h3><strong>At 3-6 months</strong></h3>\n<p>Here are some fun and simple play ideas for you and your baby:</p>\n<ul>\n<li>Read books, sing songs, and recite nursery rhymes together. Babies enjoy cloth books with different textures, flaps and puppets.</li>\n<li>Teach your baby how to hold, drop and roll different balls. This helps your baby learn about how things move.</li>\n<li>Play with rattles, bells and other toys that make noise.</li>\n<li>Put toys around your baby to encourage her to move.</li>\n</ul>\n<h3><strong>At 6-12 months</strong></h3>\n<p>From this age, you and your baby can explore more ways to play:</p>\n<ul>\n<li>Provide lots of <strong>fun bath toys </strong>for dunking, measuring, floating and pouring. Plastic milk bottles and food containers work just as well as shop-bought toys.</li>\n<li>Give your baby toys that let him push a button to make something happen, or try activities like shaking or banging objects.</li>\n<li>Play with stacking blocks and toys that your baby can roll or push across the floor.</li>\n<li>When reading with your baby, use different voices for different characters or make the sounds of different animals.</li>\n</ul>\n<p>You can give your baby a few play options to choose from, but <strong>don’t overwhelm her </strong>with too many. Let her take her time choosing what she wants to do.</p>\n<p>It’s also good to <strong>step back</strong> and give your child the chance to work things out on his own sometimes. You can still help your baby’s learning by describing what he’s doing. For example, ‘That pot makes a big noise when you bang it!’</p>\n<p>It’s also good to respond to <strong>your baby’s interests</strong> and share her delight when she discovers new things, however small they might seem. For example, ‘Wow! Look how the little red boat floats in your bath’.</p>\n<table>\n<tbody>\n<tr>\n<td>All babies are unique and<strong> </strong>develop at their own pace. If you’re concerned about any aspect of your child’s development, it’s a good idea to visit your child and family health nurse or GP. If your child goes to an early childhood education and care service, you could also talk with your child’s educators.</td>\n</tr>\n</tbody>\n</table>\n",
+            "category": 55,
+            "child_age": [
+                48,
+                47,
+                46,
+                45
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                156,
+                81,
+                76
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UNI220327.jpg",
+                "name": "© UNICEF/UNI220327/Pancic",
+                "alt": "Mother and her baby are spending time together, playing and learning."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6936,
-        "type": "Article",
-        "title": "37-48 months- Asking questions",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h1><strong>Child development in the period from the 37th to the 48th month</strong></h1>\n\n<p> </p>\n\n<h2><strong>Communicating.  </strong></h2>\n\n<h3><strong>What’s New?  </strong></h3>\n\n<p>From the third to the fourth birthday is an intensive time for your child’s speech to develop.  She will learn many <strong>new words</strong> by listening to you and other adults, and also by listening to stories.  At this age, she is more interested in all kinds of communication.  She is eager to just <strong>tell you stories</strong> or describe things that happen.  You can see how much she enjoys your conversations. During this period, she will <strong>understand most of the things you say</strong> to her, and may be able to guess what some new words mean.  You will also notice that, by the end of this year, your child’s sentences will be longer.  She will also be able to follow more <strong>complex instructions </strong>with two or three parts, such as “Please close the door and come with me.”</p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>As always, listen to your child and have enjoyable conversations at all times of the day.  You will find that at this age, your child has a lot to talk about!  Involve her in whatever you are doing and use this as an opportunity to playfully give her instructions or introduce interesting new words into the conversation.   Read and tell stories with your child every day.  You can ask her about the story—what does she think will happen next? </p>\n\n<p> </p>\n\n<h2><strong>Feelings.  </strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>The period from the third to the fourth birthday is very important for your child’s emotional development. During this period, she learns how <strong>to identify different emotions</strong>.  At this age, she may be able to recognize basic feelings such as happiness, sadness, fear and anger.  You might see her show some other emotions such as fear of imaginary things, concern or worry about how others behave, or love and attachment to people she feels close to.</p>\n\n<p>If she has the opportunity you will see your child making her <strong>first friends</strong> during this year.  Now she will probably begin to <strong>play more cooperatively</strong> with others, in small groups.   Sharing is becoming easier—though not always—as she has some understanding of “mine” and “hers.” </p>\n\n<h3>               <strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Continue to create a secure environment for your child.  This makes it easier for her to express and regulate or control her feelings.  As when she was younger, predictable daily routines help create that sense of security.  Help your child know what happens next and what the typical pattern of the day will be.  If she feels safe, it will be.</p>\n\n<p>Because these first friendships are important to your child, try to create opportunities for play with other children.  But stay close to the children, because the child’s social skills at this age are still not well developed, and misunderstandings or conflicts may happen.  You will help by reacting calmly and reasonably.</p>\n\n<p> </p>\n\n<h2><strong>Thinking.  </strong></h2>\n\n<h3><strong><em>What’s New?  </em></strong></h3>\n\n<p>Play is still the dominant way in which a child of this age learns and explores herself and the world around her, but now your child’s “playful learning”  is becoming <strong>much more imaginative</strong>.  She might have a tea party or pretend to be a doctor with a sick baby.  Some children have imaginary friends at this age.  For the most part, although she loves to pretend, she knows what it real and what’s make-believe.  This is also a period of intense <strong>fascination with the world</strong> around your child.  <strong>Questions, questions, questions</strong> help her learn—who?  What?  why?  She is probably very interested in her own body and others’ bodies. </p>\n\n<p>This year your child will also develop ideas about  opposites such as big / small, and more/less, as well as  other <strong>concepts</strong> such as “on”, “in,” and “below.”  Her memory is developing, allowing her to  learn short songs and sing them later. She will also begin to point to and name <strong>some letters and numbers</strong>.   By her fourth birthday, she’ll probably count as many as four objects and group different objects by their similar color and shape.</p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Accept your child’s many questions as her important efforts to learn about the world.  Try to answer simply and honestly without giving too complex  explanations.  If you do not know something, say so.  Show your child ways to find out information—for example, if she asks about birds that she sees, you may find a book or talk with a neighbor who knows all about birds.  Always offer to find the answer together in books or other sources of information.</p>\n\n<p> </p>\n\n<h2><strong>Moving.</strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Between the age of three and four, your child is <strong>very physically active</strong>.  You can see how much she enjoys all kinds of movements.  She has become better at running, climbing, jumping, and balancing on one leg.  She can catch a ball that’s bounced to her, most of the time.  If there are stairs in her environment, she’s better at going up them. </p>\n\n<p>In other ways, your child is becoming <strong>more independent</strong>. She eats on her own, mostly is able to dress herself, uses the toilet independently, and washes herself. </p>\n\n<p> </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Supervise and help with parts of her personal care that are still difficult, like brushing teeth.  Watch carefully as she climbs, allowing her independence but monitoring her safety.  Give your child the opportunity to try different kinds of activities – those with a lot of movement, and those that are calmer such as drawing and looking at books.  Teach your child traditional outdoor games; dance with her and copy her movements as she can copy yours.  Support activities that your child enjoys.</p>\n\n<p>To find many more ways on how to support child development through play, go to <strong>Playing Together</strong> section.</p>\n\n<p> </p>\n\n<h2><strong> Parents’ concerns about development in the period from the 37th to the 48th month</strong></h2>\n\n<p> </p>\n\n<p>Because each child develops in her own particular way, it’s impossible to predict exactly when or how your own child will perfect a certain skill. <strong>The abilities (developmental milestones)</strong> expected and listed for this period give you only a general idea of the changes you might expect as your child gets older.  Please don’t be worried if her development takes a slightly different path.</p>\n\n<p>However, to be sure, do talk with your pediatrician [or other health provider] if your child displays any of the following signs of possible developmental delay, if your child seems to have lost some of the skills she had at an earlier age, or if you have other reasons to be concerned:</p>\n\n<ul><li>Shows no interest in playing games with others or playing make-believe/pretend games</li>\n\t<li>Ignores other children or does not respond to people outside the family</li>\n\t<li>Can't jump in place</li>\n\t<li>Has difficulty scribbling (making marks on paper)</li>\n\t<li>Does not follow an instruction that has three parts</li>\n\t<li>Can't tell a favorite story</li>\n</ul><p> </p>\n\n<p> </p>\n\n<p> </p>",
-        "category": "6",
-        "child_age": [
-            "52"
-        ],
-        "child_gender": "41",
-        "parent_gender": "60",
-        "keywords": [],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/3%252B%2520photo%2520s%2520djalic.JPG",
-            "name": "3 years",
-            "alt": "3 years"
+        {
+            "id": 46,
+            "type": "Article",
+            "title": "Talking and play: toddlers",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "As a toddler, your child is starting to master language. You can encourage toddler talking skills with everyday play ideas – listening to your child, chatting together, singing and telling stories.\n",
+            "body": "<h2>About toddler talking</h2>\n<p>Your toddler’s language will start to ‘explode’ soon, although your child has been learning about words, sounds and back-and-forth conversations since birth.</p>\n<p>You can keep encouraging toddler talking by singing, saying nursery rhymes, talking, reading and telling stories.</p>\n<h2>What to expect: toddler talking</h2>\n<p>Your toddler will probably start to:</p>\n<ul>\n<li>speak in correct sentences from 24-30 months</li>\n<li>be understood more by strangers from 26-36 months</li>\n<li>use pronouns (I, you, me, we, they) and some plurals from 26-36 months</li>\n<li>understand most of what adults say by about three years.</li>\n</ul>\n<p>By <strong>birthday number two</strong>, your toddler will probably enjoy naming everyday things, like ‘doggie’ and ‘drink’. She’ll also be able to understand and follow a simple request, like ‘Bring me your book’ or ‘Wave bye-bye’.</p>\n<p>By the <strong>age of three</strong>, your child will probably move on to simple sentences, like ‘Where doggie gone?’ By now strangers will probably be able to understand most of what your child says, even though he’ll still struggle to express some words clearly.</p>\n<p>Talking can be frustrating for toddlers – they can have so much to tell you but <strong>can’t quite get the words out</strong>. If you give your toddler time, she’ll get there eventually. Trying and making mistakes are important parts of learning.</p>\n<p>Toddlers respond best to encouragement and interest, rather than correction or being made fun of, so try to <strong>avoid correcting your toddler’s mistakes</strong> too often.</p>\n<table>\n<tbody>\n<tr>\n<td>Learning to talk is a complex skill. When you’re helping your child express himself, try to focus on having fun together, rather than seeing it as just a teaching opportunity.</td>\n</tr>\n</tbody>\n</table>\n<h2>Play ideas to encourage toddler talking</h2>\n<p>The more words you expose your child to, the more words she’ll learn. Here are some play ideas to encourage toddler talking:</p>\n<ul>\n<li>Read with your child.</li>\n<li>Talk about the ordinary things you do each day – for example, ‘I’m hanging these clothes to dry outside because it’s a nice day’.</li>\n<li>Respond to and talk about your child’s interests. For example, if your child is pretending to drive a car, ask him where he’s going.</li>\n<li>Recite nursery rhymes and sing songs. Play rhymes, stories and songs in the car.</li>\n<li>Copy your child’s attempts at words to encourage two-way conversation. Also build on basic words – for example, when your toddler says ‘train’, you can say, ‘Yes, it’s a big red train’.</li>\n<li>When your child is ‘talking’, show that you’re listening by smiling and looking at her. Also praise your child’s efforts to talk.</li>\n<li>Leave time after you talk to give your child a chance to reply. He might not always have the right words, but he’ll still try to respond. This helps children learn about conversation.</li>\n<li>Point to and name body parts, or make it into a game – for example, ‘Where is your mouth?’</li>\n</ul>\n<h3><strong>Screen time and toddler talking</strong></h3>\n<p>Screen time isn’t recommended for children under 18 months, other than video-chatting. After 18 months, your child can have some screen time, but it’s best to watch or play with your child.</p>\n<p>Long periods of screen time have been associated with a range of health issues in toddlers and preschoolers, as well as the <strong>slower development of language skills</strong>, short-term memory and poorer social skills.</p>\n<h2>Concerns about toddler talking</h2>\n<p>If at 18 months your toddler isn’t babbling often, isn’t using meaningful words or doesn’t seem to hear you or listen when others are talking, it’s a good idea to see a GP, paediatrician or child and family health nurse. You might also want to see a child health professional or talk to your child’s carer or early childhood educator if you can’t understand your child’s speech by the time she’s three, or if she still isn’t speaking much by this age.</p>\n",
+            "category": 55,
+            "child_age": [
+                51,
+                50
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                206,
+                201,
+                196,
+                191
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UNI154619.jpg",
+                "name": "© UNICEF/UNI154619/Pirozzi",
+                "alt": "A young girl reads a picture book aloud with her father, at the public library."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6766,
-        "type": "Article",
-        "title": "Why is play important for a child?",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>The best way for a child to play is unstructured or free play. This play happens spontaneously and only depends on what the child is showing interest in at the moment. It enables the child to use his/her imagination and adapt the environment to him/herself - to his/her own pace, interests and the exploration modality that attracts him/her. When we think of free play, imagination and pretend games (dressing up in costumes, \"as if\" situations) usually come to mind. Free play also includes making hiding places out of blankets or boxes, cities out of boxes, playing music on real or imagined instruments and the like. Adults may or may not participate in this play.</p>\n\n<p>Structured play is different. It has pre-agreed rules and organization, and is often run by adults (in families). Examples are board games, sports, role play, puzzles and the like.</p>\n\n<p>Play changes with the child's age: the choice of toys, the type of play, the participation of peers and adults in play and the like change. Play will require more and more space as the child grows.</p>\n\n<p>It is important for parents to keep in mind that, from the child's perspective, play means any research, combination, opportunities to change how things are used, to be anyone (e.g. a cook, an astronaut), at least for a short time. In that respect, from the child's perspective, play is not a planned activity that takes place at the agreed, dedicated time. The child lives play and conquers the world by playing.</p>",
-        "category": "56",
-        "child_age": [
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "76",
-            "2426",
-            "4121"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/RAZVOJ%252025-36%2520MESEC_Moment%25206.jpg",
-            "name": "Vodič za roditelje",
-            "alt": "Porodične igre sa braćom i sestrama"
+        {
+            "id": 51,
+            "type": "Article",
+            "title": "Teaching your child how to get dressed",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Getting dressed is an important skill for children to learn – but it can be hard.\nIt helps to break getting dressed into small steps. Teaching the last step first can work well.\nKeep in mind that every child is different and will develop skills at different rates.\n",
+            "body": "<h2>Why your child needs to learn how to get dressed</h2>\n<p>Learning to get dressed builds your child’s confidence and independence and gives your child a sense of achievement. And once your child can dress himself, helping him get dressed is one less thing for you to do.</p>\n<p>Also, getting dressed <strong>helps your child develop many other skills</strong>, including:</p>\n<ul type=\"disc\">\n<li>fine motor skills as she learns to fasten buttons and zips</li>\n<li>gross motor skills as she stands on one leg to pull on a pair of pants</li>\n<li>cognitive skills as she remembers which bits of clothing go on first, and builds the patience and attention to finish the task</li>\n<li>language as she names types of clothes, colours and sizes</li>\n<li>awareness of time and space as she learns to dress for certain occasions and weather conditions.</li>\n</ul>\n<h2>Getting started with getting dressed</h2>\n<p>Often very young children start to be aware of clothing by pulling off easy-to-remove things like socks, shoes or hats. Sometimes they try to put them on again. You can build on this early awareness by <strong>naming the clothes</strong> your child has taken off and the body parts they go on.</p>\n<p>You can start to include your older baby or toddler in getting dressed by <strong>giving him a limited choice of clothes</strong>, and naming them as you put them on him.</p>\n<p>When you decide it’s time for your child to really start learning this skill, it can help to <strong>have some easy clothes on hand</strong>. These might include:</p>\n<ul type=\"disc\">\n<li>loose, elastic-waisted pants</li>\n<li>clothes with velcro or large buttons and button holes</li>\n<li>jumpers, t-shirts and underwear with pictures on the front to help your child work out front from back</li>\n<li>clothes that are easy and comfortable for your child to move in.</li>\n</ul>\n<h2>Getting dressed: breaking down the steps</h2>\n<p>Getting dressed can have a lot of steps. It helps to break it down into smaller steps – for example, putting on underwear, then t-shirt, shorts, socks and shoes.</p>\n<p>You can also break down each of the steps in getting dressed, depending on your child’s skill and age. For example, you could break down the steps for putting on shorts like this:</p>\n<ul type=\"disc\">\n<li>Face shorts the right way.</li>\n<li>Hold onto the front of the waistband.</li>\n<li>Push one leg at a time through the leg holes while also holding pants.</li>\n<li>Pull the shorts up.</li>\n</ul>\n<p>Talking your child through each step helps her know what to do. In the early stages, simple words or phrases are OK – for example, ‘Shirt on’. You can say more as your child’s language develops – for example, ‘Push your arm through the sleeve’.</p>\n<table>\n<tbody>\n<tr>\n<td>When your child can almost dress himself (usually from three years and up), you can check whether he understands the steps by asking, ‘What’s the first thing you need to put on?’ If he can’t remember, you can help him get started by reminding him.</td>\n</tr>\n</tbody>\n</table>\n<h2>Getting dressed: teaching the steps backwards</h2>\n<p>A good way to teach your child how to get dressed is to break down each task into small steps and teach her the last step first. Once your child can do the last step of the task, teach her the second-last step, then the third-last step and so on.</p>\n<p>For example, when putting on shorts, you might help your child face the shorts the right way, hold the waistband and put his legs through the leg holes. <strong>Then teach your child the last step</strong> – pulling up the shorts to his waist by himself.</p>\n<p>Once your child can do this, teach her to put her legs through the leg holes and pull her shorts up. <strong>You can keep working your way backwards through the steps</strong> until your child has mastered them all and can put her shorts on for herself.</p>\n<p>A big advantage of this approach is that often the most rewarding thing about a task is getting it finished – and your child gets to this reward sooner when he can do the last step first.</p>\n<table>\n<tbody>\n<tr>\n<td>If your child is having trouble, it can be tempting to jump in to help. But give your child a chance to work it out for herself, and cheer her on as she tries – she’ll get a real confidence boost when she does it on her own. Step in only when your child really needs your help.</td>\n</tr>\n</tbody>\n</table>\n<h2>Tips for helping your child learn to get dressed</h2>\n<p>If you can be positive and supportive, your child is more likely to cooperate. So a lot of praise will go a long way, even if your child has put his pants on backwards! Here are some practical tips to help.</p>\n<h3><strong>Making time</strong></h3>\n<ul type=\"disc\">\n<li>Allow a realistic amount of time for getting dressed.</li>\n<li>If you’re often rushed in the morning, try choosing clothes with your child the night before.</li>\n<li>When you’re in a hurry, let your child do the easy tasks and help her with the difficult tasks.</li>\n<li>Practise getting dressed when you and your child aren’t in a hurry or tired.</li>\n</ul>\n<h3><strong>Choosing appropriate clothes</strong></h3>\n<ul type=\"disc\">\n<li>Let your younger child choose from a couple of options, like two t-shirts. Older or more mature children might be able to choose their own clothing.</li>\n<li>Talk about the weather when you and your child are choosing clothes. Ask your child whether it’s hot or cold, raining or sunny.</li>\n<li>Teach your child the difference between dirty and clean clothes – for example, ‘Dirty clothes go in the laundry basket. You can wear them again when they’re back in the drawer’. You can use some simple guidelines, like wearing clean underwear and socks every day.</li>\n</ul>\n<h3><strong>Making it easier</strong></h3>\n<ul type=\"disc\">\n<li>Have your child sit down for dressing tasks. Sitting on the floor might be easier than sitting on a chair or bed for some children.</li>\n<li>Store clothing in drawers and cupboards that your child can get to easily. Label clothing drawers with a picture or word to describe the clothing that’s in the drawer.</li>\n<li>Wear clothes that have clear front and back clues – for example, a picture on the front and a tag on the back.</li>\n<li>Teach undressing first – it’s easier than dressing. Being able to undress by himself will boost your child’s confidence.</li>\n</ul>\n<table>\n<tbody>\n<tr>\n<td>Tying up shoelaces is a skill that most five-year-olds are still learning. </td>\n</tr>\n</tbody>\n</table>\n<h2>Teaching children with disability or developmental delay to get dressed</h2>\n<p>Some children with disability or developmental delays can have trouble getting dressed. Some children with autism spectrum disorder (ASD) have sensory sensitivities that make it hard for them to cope with the texture of different materials on their skin.</p>\n<p>If you’re having trouble teaching your child with disability or development delay to get dressed, an occupational therapist who works specifically with children might be able to help. OTs can give you strategies to teach your child to dress, or suggest equipment that can make the process easier.</p>\n<h2>Development of skills for getting dressed</h2>\n<p>Here’s a rough guide to dressing skills at different ages. Keep in mind that every child is different and will develop skills at different rates.</p>\n<p>At <strong>one year</strong> children can usually:</p>\n<ul>\n<li>hold their arms out for sleeves and put their feet up for shoes</li>\n<li>push their arms through sleeves and legs through pants</li>\n<li>pull socks and shoes off.</li>\n</ul>\n<p>At <strong>two years</strong> children can usually:</p>\n<ul>\n<li>take off unfastened coats</li>\n<li>take off shoes when the laces are untied</li>\n<li>help push down pants</li>\n<li>find armholes in t-shirts.</li>\n</ul>\n<p>At <strong>2½ years</strong> children can usually:</p>\n<ul>\n<li>pull down pants with elastic waists</li>\n<li>try to put on socks</li>\n<li>put on front-buttoned shirts, without doing up buttons</li>\n<li>unbutton large buttons.</li>\n</ul>\n<p>At <strong>three years</strong> children can usually:</p>\n<ul>\n<li>put on t-shirts with little help</li>\n<li>put on shoes without fastening – they might put them on the wrong feet</li>\n<li>put on socks – they might have trouble getting their heels in the right place</li>\n<li>pull down pants by themselves</li>\n<li>zip and unzip without joining or separating zippers</li>\n<li>take off t-shirts without help</li>\n<li>button large front buttons.</li>\n</ul>\n<p>At <strong>four years</strong> children can usually:</p>\n<ul>\n<li>take off t-shirts by themselves</li>\n<li>buckle shoes or belts</li>\n<li>connect jacket zippers and zip them up</li>\n<li>put on socks the right way</li>\n<li>put on shoes with little help</li>\n<li>know the front and back of clothing.</li>\n</ul>\n<p>At <strong>4½ years</strong> children can usually:</p>\n<ul>\n<li>step into pants and pull them up</li>\n<li>thread belts through buckles.</li>\n</ul>\n<p>At <strong>five years</strong> children can usually:</p>\n<ul>\n<li>dress without your help or supervision</li>\n<li>put on t-shirts or jumpers the right way each time.</li>\n</ul>\n",
+            "category": 55,
+            "child_age": [
+                57,
+                52,
+                51,
+                50,
+                49
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                216,
+                211,
+                206,
+                86,
+                81
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UNI220735.jpg",
+                "name": "© UNICEF/UNI220735/Kaliyev",
+                "alt": "Zhansulu (5 years) os showing her dress."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
         },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6866,
-        "type": "Article",
-        "title": "Genital care for boys",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h2>Genital care for boys</h2>\n\n<p>In boys, the foreskin covering the head of the penis should be pulled back gently, as far as possible, to wipe off the white discharge. Wipe with a cotton pad soaked in warm water. The white discharge is normal, you have no reason to worry. It is produced by sebaceous glands. Boys up to the age of three have physiological phimosis, ie. narrowing, and the foreskin cannot be fully retracted. The foreskin is pulled back only as far as it will go without pain. Then rinse with warm water and pull the foreskin back over the head of the penis.</p>",
-        "category": "2",
-        "child_age": [
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49"
-        ],
-        "child_gender": "",
-        "parent_gender": "",
-        "keywords": [
-            "6051"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/hygiene-and-daily-care-for-babies-pip-8.gif",
-            "name": "© raisingchildren.net",
-            "alt": "Hygiene and daily care for babies"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6941,
-        "type": "Article",
-        "title": "61 to 72 Months – Readiness for new environments",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h1><strong>Child development in the period from the 61st to the 72nd month </strong></h1>\n\n<p> </p>\n\n<h2><strong>Communicating.  </strong></h2>\n\n<p> </p>\n\n<h3><strong>What’s New?  </strong></h3>\n\n<p>At this age, your child probably <strong>talks a lot</strong>, with other people and even when he is alone in the room. You will now hear your child use <strong>full complex sentences.</strong>  Sometimes he can lead a conversation almost like an adult, but sometimes he still has a hard time explaining complex ideas or complex events. Now he understands jokes and riddles.  You’ll notice how many <strong>new words</strong> your child is learning every day.  He likes to use these words, but his brain sometimes works faster than he can say them—that’s all right, he’ll catch up soon. </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Continue to have conversations with your child every day.  His new experiences and interests give you a lot to talk about together.  If he struggles with how to explain or pronounce something, gently help him out without criticizing his efforts. </p>\n\n<p> </p>\n\n<h2><strong>Feeling.  </strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Your child continues to love pretending, but now his <strong>make-believe is much more complex</strong> and dramatic.  Much of his play will be with friends, working together—for example, to make one big sand castle or a pretend house in the garden. He’ll usually be able to share his things, although he won’t always get along with his playmates.  Children may say that others are not following the rules of a game, or other conflicts may happen.  But now your child may be able to <strong>try to solve these conflicts</strong>.  Your child manages his emotions better than at earlier ages, is <strong>more patient and reasonable</strong>, and you’ll see fewer outbursts of anger or overflows of grief.  Disagreements will be fewer and more easily resolved.    </p>\n\n<p>As your child grows and his understanding of the world gets better, <strong>certain fears</strong> may arise. This age is characterized by fears of supernatural beings (ghosts), criticism, failure, physical injury or threat.</p>\n\n<h3>               <strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>During this period, your child may need your support to understand more complex feelings such as frustration or jealousy.  This is important in his understanding of some of the challenges that will come up in preschool/school and in dealing with friendships.  Stories from books or your own experience may help.</p>\n\n<p>Your child is trying hard to be independent.  You can help in encouraging him to make many small decisions (what to wear, what to eat for breakfast, etc.).  Although your child may seem to be very independent in this period, he still needs to connect with you and have your love, care and attention. He is proud of what he is able to do, but he still looks for your approval and probably still finds it difficult to bear criticism and discipline.</p>\n\n<p> </p>\n\n<h2><strong>Thinking.  </strong></h2>\n\n<h3><strong><em>What’s New?  </em></strong></h3>\n\n<p>Your child is now able to <strong>sustain attention to tasks</strong> for longer periods, at home or in preschool/school if he has begun preschool/school at this time.   He understands simple concepts such as time (present, future, past), knows the seasons, recognizes <strong>some letters of the alphabet</strong> and tries to read them, and can write a word such as his name.  Some children can already read at this age.  He can tell you his age, and he’s probably able to count ten objects.  As his thinking develops, you’ll see that he is able to <strong>see things from others’ points of view</strong>.  This can help him make friends (“My friend likes animals, so let’s pretend to be horses”).  He is also able to use these thinking skills to feel what another person is feeling (empathy)—“I’m sad because my father looks sad.” </p>\n\n<p> </p>\n\n<p><strong><em>And What Can You Do to Help?</em></strong></p>\n\n<p>Play continues to be the most important way that your child learns new things.  Read and tell stories together to develop love of words and understanding of reading.  Let him use pencils to write or pretend-write shopping lists or letters to grandparents.  Count objects as you do everyday tasks.  Some children are beginning preschool/school at this time.  If this is your child’s first experience, it will open a whole new social world, and with it a whole set of new rules to learn. This can be challenging for your child.  He may be worried or upset; you can help by reassuring him, telling positive stories about preschool/school, and—if you see the need—sharing your concerns with your child’s teacher.</p>\n\n<p> </p>\n\n<h2><strong>Moving.</strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Your child’s <strong>movements are more coordinated</strong> now.  Depending on your environment, he may learn to ride a bike, jump over a rope, jump, and skillfully catch a ball. </p>\n\n<p>Sometimes it may seem to you that your child never rests - he may <strong>wiggle and fidget</strong> while watching TV, eating at the table and even while sleeping.  He has lots of energy at this age! Your child’s <strong>fine motor skills are also becoming more precise</strong> - now he can fasten shoelaces, button, zip up a comb his hair, and so on. </p>\n\n<p> </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Within your community environment, find ways for your child to learn and practice new physical skills by himself or with friends.  You may have some traditional games that your family can teach him.  Find many ways for him to use that physical energy in safe, appropriate ways.  Encourage him to use his fine motor skills not only in dressing himself but perhaps in helping a younger brother or sister.  He will enjoy feeling important.</p>\n\n<p> </p>\n\n<p>To find many more ways on how to support child development through play, go to <strong>Playing Together</strong> section.</p>\n\n<p> </p>\n\n<h2><strong> Parents’ concerns about development in the period from the 61st to the 72nd month</strong></h2>\n\n<p>Because each child develops in his own particular way, it’s impossible to predict exactly when or how your own child will perfect a certain skill. <strong>The abilities (developmental milestones)</strong> expected and listed for this period give you only a general idea of the changes you might expect as your child gets older.  Please don’t be worried if his development takes a slightly different path.</p>\n\n<p>However, to be sure, do talk with your pediatrician [or other health provider] if your child displays any of the following signs of possible developmental delay, if your child seems to have lost some of the skills he had at an earlier age, or if you have other reasons to be concerned:</p>\n\n<ul><li>Has a very short attention span</li>\n\t<li>Is not at all interested in letters, numbers, reading or writing</li>\n\t<li>Seems not to hear well</li>\n\t<li>Doesn’t speak clearly in sentences of 5 or more words</li>\n\t<li>Doesn’t tell longer stories using complete sentences</li>\n\t<li>Doesn’t dress and use toilet without help</li>\n\t<li>Can’t take part in conversations</li>\n\t<li>Can’t play in more than one way</li>\n\t<li>Can’t give his name and address</li>\n\t<li>Can’t stand or hop on one foot</li>\n</ul><p>This is a period in which you can probably worry about whether some of the listed behaviors are related to spending time in front of the screen. Be sure to limit the time in front of the screen to a maximum of one hour a day and make sure you spend every moment in front of the screen with your child to guide him through that experience. </p>\n\n<p> </p>",
-        "category": "6",
-        "child_age": [
-            "58"
-        ],
-        "child_gender": "40",
-        "parent_gender": "60",
-        "keywords": [],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/5%252B%2520photo%2520s%2520djalic%25202.JPG",
-            "name": "5 years",
-            "alt": "5 years"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6771,
-        "type": "Article",
-        "title": "Adult participation in children&amp;#039;s play",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>Here are some guidelines for playing with your child:</p>\n\n<h2><strong>Enable playing, let the child design it</strong></h2>\n\n<blockquote>\n<ul><li>for babies, this can mean setting aside one-on-one time to cuddle or talk; the baby will show initiative and start playing - by a movement, look, vocalization</li>\n\t<li>for older children, this means providing them with opportunities to freely manage their time and activities</li>\n</ul></blockquote>\n\n<h2><strong>Follow the child's interests and offer encouragement</strong></h2>\n\n<blockquote>\n<ul><li>toys, as well as other materials for the child to  play with; these can be boxes, leaves, stones, tin and cardboard plates, old cooking pots…</li>\n\t<li>make them available so that the child can take them whenever he/she wants</li>\n</ul></blockquote>\n\n<h2><strong>Introduce something new from time to time</strong></h2>\n\n<blockquote>\n<ul><li>it doesn't have to be a new toy at all: dress the old one differently, put it in a standing or sitting position or inside something; when you pass by it, say something - give to toy a \"voice\"</li>\n\t<li>offer new experiences as a source of play ideas: include the child in routines (cooking, shopping), talk about some things you see during a walk, explore a part of the city, learn more about an animal he/she likes, pick up interesting things during a walk - branches, leaves, fruits…</li>\n</ul></blockquote>\n\n<h2><strong>Respect the child's initiative and leadership</strong></h2>\n\n<blockquote>\n<ul><li>keep in mind that play in itself makes sense to a child, even though it may seem otherwise to you</li>\n\t<li>accept the child, his/her skills, the way he/she sees the world, how he/she imagines and draws conclusion, and understand how he/she shows what interests him/her and what he/she wants to explore</li>\n</ul></blockquote>\n\n<h2><strong>Work with your child to develop play</strong></h2>\n\n<blockquote>\n<ul><li>sometimes adults try to \"fix\" play or define a scenario for playing, to get a character's costume or figure or behavior \"right\"</li>\n\t<li>the golden rule of play is: let the child determine the behavior, plot, course and outcome of play</li>\n\t<li>do not interrupt play</li>\n\t<li>keep in mind that play is not about a goal or achievement: to make a bridge of building blocks, but rather about what happens as we try to conceive a goal and search for a way of achieving it: who wanted to build a bridge, what was the bridge made of, what was happening while the bridge was being built, who came to build the bridge</li>\n\t<li>be there for the child to name what is happening, what the child and the characters in play are doing, how they are feeling, what they are experiencing</li>\n\t<li>be a \"mirror\" for the child, so that he/she can check his/her ideas, change and develop them.</li>\n</ul></blockquote>",
-        "category": "56",
-        "child_age": [
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48",
-            "49",
-            "50",
-            "51",
-            "52",
-            "57",
-            "58"
-        ],
-        "child_gender": "",
-        "parent_gender": "",
-        "keywords": [
-            "76",
-            "2426",
-            "4831"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/igre%2520prljavim%2520materijalima%2520-%2520tatina%2520podr%25C5%25A1ka.jpg",
-            "name": "© UNICEF Srbija/Pancic",
-            "alt": "dečak sa roditeljima u igri sa plastelinom, tata i dečak u interakciji"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6876,
-        "type": "Article",
-        "title": "Why you should be careful when cleaning your baby&amp;#039;s ears",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<p>In newborn babies, there is always a small amount of foreign matter (amniotic fluid content) in the outer ear canal, which you do not need to remove. Earwax is yellowish in babies, it does not need to be cleaned, it has its functions (it moisturizes the skin of the ear and at the same time binds dirt and dust), it contains indispensable antibacterial substances. Always maintain ear hygiene after bathing, by wiping the outer ears gently with the tip of a cotton towel to clean them as far as you can reach. Avoid cotton buds (do not even use those with a stopper), as they can injure the baby or cause an infection. Wipe the area behind the outer ear with a cotton pad soaked in warm water every night because milk will trickle behind the ear during feeding.</p>\n\n<blockquote>\n<p>If you notice that your baby often accumulates a lot of earwax, consult a pediatrician.</p>\n</blockquote>",
-        "category": "2",
-        "child_age": [
-            "446"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "326",
-            "6041"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/Hygiene-and-daily-care-for-babies-PIP-2.gif",
-            "name": "© raisingchildren.net",
-            "alt": "Hygiene and daily care for babies"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6946,
-        "type": "Article",
-        "title": "61 to 72 Months – Readiness for new environments",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h1><strong>Child development in the period from the 61st to the 72nd month</strong></h1>\n\n<p> </p>\n\n<h2><strong>Communicating.  </strong></h2>\n\n<p> </p>\n\n<h3><strong>What’s New?  </strong></h3>\n\n<p>At this age, your child probably <strong>talks a lot</strong>, with other people and even when she is alone in the room. You will now hear your child use <strong>full complex sentences.</strong>  Sometimes she can lead a conversation almost like an adult, but sometimes she still has a hard time explaining complex ideas or complex events. Now she understands jokes and riddles.  You’ll notice how many <strong>new words</strong> your child is learning every day.  She likes to use these words, but her brain sometimes works faster than she can say them—that’s all right, she’ll catch up soon. </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Continue to have conversations with your child every day.  Her new experiences and interests give you a lot to talk about together.  If she struggles with how to explain or pronounce something, gently help her out without criticizing her efforts. </p>\n\n<p> </p>\n\n<h2><strong>Feeling.  </strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Your child continues to love pretending, but now her <strong>make-believe is much more complex</strong> and dramatic.  Much of her play will be with friends, working together—for example, to make one big sand castle or a pretend house in the garden. She’ll usually be able to share her things, although she won’t always get along with her playmates.  Children may say that others are not following the rules of a game, or other conflicts may happen.  But now your child may be able to <strong>try to solve these conflicts</strong>.  Your child manages her emotions better than at earlier ages, is <strong>more patient and reasonable</strong>, and you’ll see fewer outbursts of anger or overflows of grief.  Disagreements will be fewer and more easily resolved.    </p>\n\n<p>As your child grows and her understanding of the world gets better, <strong>certain fears</strong> may arise. This age is characterized by fears of supernatural beings (ghosts), criticism, failure, physical injury or threat.</p>\n\n<p> </p>\n\n<p>               <strong><em>And What Can You Do to Help?</em></strong></p>\n\n<p>During this period, your child may need your support to understand more complex feelings such as frustration or jealousy.  This is important in her understanding of some of the challenges that will come up in preschool/school and in dealing with friendships.  Stories from books or your own experience may help.</p>\n\n<p>Your child is trying hard to be independent.  You can help in encouraging her to make many small decisions (what to wear, what to eat for breakfast, etc.)  Although your child may seem to be very independent in this period, she still needs to connect with you and have your love, care and attention. She is proud of what she is able to do, but she still looks for your approval and probably still finds it difficult to bear criticism and discipline.</p>\n\n<p> </p>\n\n<h2><strong>Thinking.  </strong></h2>\n\n<h3><strong><em>What’s New?  </em></strong></h3>\n\n<p>Your child is now able to <strong>sustain attention to tasks</strong> for longer periods, at home or in preschool/school if she has begun preschool/school at this time.   She understands simple concepts such as time (present, future, past), knows the seasons, recognizes <strong>some letters of the alphabet</strong> and tries to read them, and can write a word such as her name.  Some children can already read at this age.  She can tell you her age, and she’s probably able to count ten objects.  As her thinking develops, you’ll see that she is able to <strong>see things from others’ points of view</strong>.  This can help her make friends (“My friend likes animals, so let’s pretend to be horses”).  She is also able to use these thinking skills to feel what another person is feeling (empathy)—“I’m sad because my father looks sad.” </p>\n\n<h3> </h3>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Play continues to be the most important way that your child learns new things.  Read and tell stories together to develop love of words and understanding of reading.  Let her use pencils to write or pretend-write shopping lists or letters to grandparents.  Count objects as you do everyday tasks.  Some children are beginning preschool/school at this time.  If this is your child’s first experience, it will open a whole new social world, and with it a whole set of new rules to learn. This can be challenging for your child.  She may be worried or upset; you can help by reassuring her, telling positive stories about preschool/school, and—if you see the need—sharing your concerns with your child’s teacher.</p>\n\n<p> </p>\n\n<h2><strong>Moving.</strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Your child’s <strong>movements are more coordinated</strong> now.  Depending on your environment, she may learn to ride a bike, jump over a rope, jump, and skillfully catch a ball. </p>\n\n<p>Sometimes it may seem to you that your child never rests - she may <strong>wiggle and fidget</strong> while watching TV, eating at the table and even while sleeping.  She has lots of energy at this age! Your child’s <strong>fine motor skills are also becoming more precise</strong>-- - now she can fasten shoelaces, button, zip up a comb her hair, and so on. </p>\n\n<p> </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Within your community environment, find ways for your child to learn and practice new physical skills by herself or with friends.  You may have some traditional games that your family can teach her.  Find many ways for her to use that physical energy in safe, appropriate ways.  Encourage her to use her fine motor skills not only in dressing herself but perhaps in helping a younger brother or sister.  She will enjoy feeling important.</p>\n\n<p> </p>\n\n<p>To find many more ways on how to support child development through play, go to <strong>Playing Together</strong> section.</p>\n\n<p> </p>\n\n<h2><strong> Parents’ concerns about development in the period from the 61st to the 72nd month </strong></h2>\n\n<p>Because each child develops in her own particular way, it’s impossible to predict exactly when or how your own child will perfect a certain skill. <strong>The abilities (developmental milestones)</strong> expected and listed for this period give you only a general idea of the changes you might expect as your child gets older.  Please don’t be worried if her development takes a slightly different path.</p>\n\n<p>However, to be sure, do talk with your pediatrician [or other health provider] if your child displays any of the following signs of possible developmental delay, if your child seems to have lost some of the skills she had at an earlier age, or if you have other reasons to be concerned:</p>\n\n<ul><li>Has a very short attention span</li>\n\t<li>Is not at all interested in letters, numbers, reading or writing</li>\n\t<li>Seems not to hear well</li>\n\t<li>Doesn’t speak clearly in sentences of 5 or more words</li>\n\t<li>Doesn’t tell longer stories using complete sentences</li>\n\t<li>Doesn’t dress and use toilet without help</li>\n\t<li>Can’t take part in conversations</li>\n\t<li>Can’t play in more than one way</li>\n\t<li>Can’t give her name and address</li>\n\t<li>Can’t stand or hop on one foot</li>\n</ul><p>This is a period in which you can probably worry about whether some of the listed behaviors are related to spending time in front of the screen. Be sure to limit the time in front of the screen to a maximum of one hour a day and make sure you spend every moment in front of the screen with your child to guide her through that experience. </p>\n\n<p> </p>",
-        "category": "6",
-        "child_age": [
-            "58"
-        ],
-        "child_gender": "41",
-        "parent_gender": "60",
-        "keywords": [],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/5%252B%2520photo%2520s%2520djalic%25202.JPG",
-            "name": "5 years",
-            "alt": "5 years"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6776,
-        "type": "Article",
-        "title": "Outdoor play",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:09",
-        "body": "<p>Outdoor games tend to be less structured. The natural environment - meadows, forests - require the child to think of a way to explore it and have fun with it. This kind of encouragement is great for children. Likewise, where possible, outdoor games can include the child's participation in routines - tending the garden, yard, flowers and so on. A simple walk to a park can encourage the child to learn about safety, talk about the environment, observe and analyze people's behaviors and the like.</p>\n\n<p>The first thing that comes to mind when we think of outdoor play is - significantly less restriction on moving. Even young children, who are only learning to walk or practicing the skill of walking, and even those who crawl - can get plenty of opportunities to enjoy such occasions.</p>\n\n<p>For very young babies, being outside means a lot of new smells, sounds, a lot of opportunities to explore different surfaces by touch, and so on. So, have a picnic with your baby - let him/her enjoy the playing while lying on a blanket on his/her tummy, crawl on the blanket and grass, watch leaves move, rustle his/her feet through leaves, or grab leaves with his/her hands . Don't forget - in these adventures, half the joy comes from the relationship with you: talk to the baby, carry him/her, help him/her reach what he/she wants, recognize his/her interest or experience and name it, encourage the baby to talk, cuddle.</p>",
-        "category": "55",
-        "child_age": [
-            "446"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [
-            "76",
-            "4316",
-            "4321",
-            "4341"
-        ],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/ISZ_4603.jpg",
-            "name": "©UNICEF Srbija/Szabo",
-            "alt": "igre provlačenja napolju"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6881,
-        "type": "Article",
-        "title": "How to clean a baby&amp;#039;s nose",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h2>Baby's nose</h2>\n\n<p>The baby's nose cleans itself, as mucus binds the dirt and removes it. Additional nose care is needed only if the nose secretes too much mucus, which happens when the baby catches a cold. Saline solution is used for rinsing the nose: </p>\n\n<ul><li>lay the baby on his/her side, </li>\n\t<li>put a few drops of saline solution in the upper nostril or spray the same solution in,</li>\n\t<li>elevate the baby slightly, with his/her head facing down, supporting him/her with your arm, and pat him/her lightly on the back so that the mucus flows out or becomes visible,</li>\n\t<li>if the mucus can be heard but not seen, put the saline solution in his/her nose again,</li>\n\t<li>turn the baby face down and, when the mucus becomes visible, pull it out with a twisted corner of a cloth diaper or a dry cotton bud,</li>\n\t<li>after a few minutes, repeat the procedure in the other nostril, with the baby lying on the other side,</li>\n\t<li>if necessary, nose cleaning can be performed before each breastfeeding session.</li>\n</ul><blockquote>\n<p>Cotton buds should never be inserted in the nostril. Do not use pumps and aspirators to clean a heathy child's nose - only use them when the baby is sick and has a lot of mucus. If your baby is struggling to breastfeed or refuses to breastfeed due to a stuffy nose, consult a pediatrician.</p>\n</blockquote>",
-        "category": "2",
-        "child_age": [
-            "446"
-        ],
-        "child_gender": "",
-        "parent_gender": "60",
-        "keywords": [],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/shalev-cohen-e8KDw2_Ej38-unsplash.jpg",
-            "name": "Shalev Cohen",
-            "alt": "Playful bath time"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    },
-    {
-        "id": 6951,
-        "type": "Article",
-        "title": "49th to 60th month – Joy of association",
-        "created_at": "Tue, 06/01/2021 - 08:02",
-        "updated_at": "Tue, 06/01/2021 - 08:02",
-        "body": "<h1><strong>Child development in the period from the 49th to the 60th month </strong></h1>\n\n<p> </p>\n\n<h2><strong>Communicating.  </strong></h2>\n\n<p> </p>\n\n<h3><strong>What’s New?  </strong></h3>\n\n<p>This is a period of rapid speech development, exciting to you and your child.  At this age, your child probably <strong>loves telling stories and enjoys conversations</strong>.  Your child may often talk about how he feels, tell about his ideas, and ask questions. </p>\n\n<p>At the beginning of this year, he may know several hundred words and can use sentences of at least five or six words.  Usually you'll understand what he is saying.  And by his fifth birthday, his sentences will be longer and even more complex, with <strong>many more words</strong> available to him.</p>\n\n<p> </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Every child is different—your child may be  talkative or more quiet.  Whatever his style, always encourage his verbal expression. If you talk to him in everyday conversation, he will want to talk to you more.  If he sees that you enjoy talking with him, he'll begin to enjoy it too. Be patient--your child will still not be able to express himself well, so sometimes you'll need to help a bit: „Oh, is that what you played with your friend?  What else did you do?  Did you throw the ball?“ Talk about ordinary things that happen - what we do, where we have been, what we plan, what we like and what we don't. While reading books or telling stories, you can ask questions about what is happening.  Drawing and playing pretend are other ways to communicate and may support children who are sometimes unwilling to talk.</p>\n\n<p> </p>\n\n<h2><strong>Feelings.  </strong></h2>\n\n<p><strong>What’s New?</strong></p>\n\n<p>During this period, your child begins to learn how to <strong>express different feelings </strong>in an appropriate way.  He can find more and more ways to express emotions–  speech, explanation, gestures, or  play. Increasingly, he will be able to say what bothers him instead of yelling or hitting. </p>\n\n<p>During this period, children usually like to be <strong>surrounded by other people</strong>. You may see your child wanting to please his friends and wanting to be just like them.  Imaginary friends may still be an important part of your child's growing up, although real friends are the most important to him.  He is beginning to get along better and better with others.  You're likely to see him apologize, accept rules, wait for turns, and enjoy it when nice things happen to others.  Even though he can still be rather demanding or impatient, he more often <strong>cooperates and wants to help</strong> others.  At the same time, he may <strong>worry about new experiences</strong>, such as beginning preschool or playing with new children.</p>\n\n<h3>               <strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>Encourage your child to be involved in various activities such as family routines, play, and socializing with other children. Share his enjoyment.  Create opportunities in which the child will feel useful and important- a little help while doing household chores, followed by praise, will encourage him to develop self-confidence. Avoid criticism, and praise the effort. If help is needed, give clear instructions and explanations.</p>\n\n<p>If he avoids trying something new or is already afraid of starting preschool, let him become familiar with the new situation and give it a try when he is ready.</p>\n\n<p> </p>\n\n<h2><strong>Thinking.  </strong></h2>\n\n<p> </p>\n\n<h3><strong><em>What’s New?  </em></strong></h3>\n\n<p> </p>\n\n<p>Play is still a way for a child to learn about himself and about the world around him.   At this age your child will use his<strong> imagination</strong> intensively.  He will probably love to sing, dance, and pretend.  He is better able to know the difference between what is pretend and what is real.   However, at the same time he may <strong>hide the truth</strong> from his parents if he has done something he knows they do not like.  In his play, he may try <strong>different roles and behaviors</strong> - such as a doctor or a teacher.  During this period he may become more aware of his gender and gender roles.  </p>\n\n<p>Your child's learning also includes learning about his own body and other's bodies—including curiosity about boys' and girls' bodies.  Interest and curiosity about the body continues - both theirs and other people's bodies. You can find a child of this age watching his genitals or the genitals of other children with interest. </p>\n\n<p><strong> Concepts </strong>develop rapidly in this period and are foundational for later learning.  Your child in understanding more about  opposites (for example, low / high), and he can usually name quite a few <strong>letters and numbers</strong>, and print some of them.  He can correctly count objects up to 10.  His memory's getting better.  He probably remembers his address or phone number.  He may know the difference between left and right. </p>\n\n<p> </p>\n\n<h3><strong><em>And What Can You Do to Help?</em></strong></h3>\n\n<p>In conversation and daily routines, talk about time concepts (morning, evening, today, etc. and days of the week), as well as other interesting concepts.  Use stories and children’s books to explore other concepts.  Enrich story reading or storytelling by asking your child what he thinks might happen next. Take walks around the community to explore sights and sounds that stimulate his thinking.  Create opportunities to use letters and numbers in daily activities, such as writing a note to help you remember foods to buy at the market. </p>\n\n<p> </p>\n\n<h2><strong>Moving.</strong></h2>\n\n<h3><strong>What’s New?</strong></h3>\n\n<p>Your child is <strong>more and more physically skilled</strong> – now he can throw, catch, swing and climb, and build a tower with several small objects.  He can probably hop and perhaps even skip.  He finds it easier to <strong>dress himself</strong> now.  He's also able <strong>take care of more of his own needs</strong>.  For example, he may feed himself using a spoon or other utensils.  He may use the toilet independently and can brush his teeth wash himself without much help. </p>\n\n<p><strong><em>And What Can You Do to Help?</em></strong></p>\n\n<p>Remind him of safety rules and be sure to supervise physical activities as needed.  Create opportunities for your child to be active outdoors and teach him skills as he becomes eager to learn them.  Encourage him fine motor skills by providing simple materials for him to put together, and to draw pictures. </p>\n\n<p>To find many more ways on how to support child development through play, go to <strong>Playing Together</strong> section.</p>\n\n<p> </p>\n\n<h2><strong> Parents’ concerns about development in the period from the 49th to the 60th month </strong></h2>\n\n<p> </p>\n\n<p>Because each child develops in his own particular way, it is impossible to predict exactly when or how your own child will perfect a certain skill. <strong>The abilities (developmental milestones)</strong> expected and listed for this period  give you only a general idea of the changes you might expect as your child gets older.  Please do not be worried if his development takes a slightly different path.</p>\n\n<p>However, to be sure, do talk with your pediatrician [or other health provider] if your child displays any of the following signs of possible developmental delay, if your child seems to have lost some of the skills he had at an earlier age, or if you have other reasons to be concerned:</p>\n\n<ul><li>Can't confidently walk, run, climb, jump or use stairs </li>\n\t<li>Can't answer simple questions (What's your name? Who is your family? What's your favorite story?)</li>\n\t<li>Can't follow a two-part direction (Put a cup on the table! Or Take the ball under the bed!) </li>\n\t<li>Can't perform daily routines such as eating or dressing on his own </li>\n\t<li>Seems to have difficulty holding a pencil</li>\n\t<li>Shows extreme behavior  (such as extremely fearful ,or aggressive, or sad)</li>\n\t<li>Doesn’t talk about daily activities</li>\n\t<li>Doesn't show interest in interacting with either adults or children</li>\n</ul><p>This is a period in which you can probably worry about whether some of the listed behaviors are related to spending time in front of the screen. Be sure to limit the time in front of the screen to a maximum of one hour a day and make sure you spend every moment in front of the screen with your child to guide him through that experience. </p>",
-        "category": "6",
-        "child_age": [
-            "57"
-        ],
-        "child_gender": "40",
-        "parent_gender": "60",
-        "keywords": [],
-        "cover_image": {
-            "url": "http://parentbuddy2uyawgitzuw.devcloud.acquia-sites.com/sites/default/files/2021-06/4%2520%252B%2520photo%2520s%2520djalic%2520%25282%2529.JPG",
-            "name": "4 years",
-            "alt": "4 years"
-        },
-        "related_articles": [],
-        "licensed": "0",
-        "premature": "0",
-        "mandatory": "1"
-    }],
+        {
+            "id": 56,
+            "type": "Article",
+            "title": "Winter activities to keep children active",
+            "created_at": "Thu, 08/12/2021 - 21:23",
+            "updated_at": "Thu, 08/12/2021 - 21:23",
+            "summary": "Your child can still be physically active even if it’s cold or wet outside. You can go to the beach in wild weather, jump in puddles or fly a kite. If you’re staying indoors, you can make up physically active games, dances and activities. Other options include indoor play centres and winter sports.\n",
+            "body": "<h2>Free outdoor winter activities</h2>\n<p>Even when it’s cold and wet outside, you and your child can still be active around your home and neighbourhood. There are plenty of free or low-cost things you can do:</p>\n<ul type=\"disc\">\n<li>Put on coats, hats and gloves and head outside. Show your child what the beach looks like in wild weather, or visit parks and gardens when the plants are all wet and glossy.</li>\n<li>Take your child to see how the flow of rivers, creeks and streams changes after rain.</li>\n<li>When it’s wet, dress up in gumboots and raincoats. Look for some big puddles to jump in. An umbrella can be fun to take along too. Your child might have fun opening and closing it a few times.</li>\n<li>If it’s darker, let your child play with a torch when you go out for a walk.</li>\n<li>Gather leaves, sticks, shells and stones from outside. You can take them inside and use them for sorting, painting or building.</li>\n<li>On a windy day, you can try flying kites, chasing leaves – or helping them ‘fly’ – and trying to find places to hide from the wind outside.</li>\n</ul>\n<h2>Free indoor winter activities</h2>\n<p>If you can’t face the cold and wet, here are some ideas for winter activities you and your child can do inside at home:</p>\n<ul type=\"disc\">\n<li>Line up some empty plastic bottles inside and use an old pair of socks to play indoor ‘bowling’. Make it harder by adding some weight (like sand or water) inside the bottles. Your child could recycle the socks to play other games like soccer or tennis, or even puppet plays.</li>\n<li>Encourage your child to throw a scarf up in the air and catch it on an arm, leg, knee or head. Or let your child kick a balloon up as high as possible and then use a fly swat or plastic bat to hit the balloon.</li>\n<li>Move to music, make up dances and play dress-ups. Maybe your child could act out a new adventure based on a favourite superhero or cartoon character.</li>\n<li>Set up an indoor treasure hunt.</li>\n<li>If you have space, use chairs, blankets and boxes to build a fort or set up an obstacle course.</li>\n<li>Use an old mattress as an indoor trampoline and get your child to try funny running styles, or practise jumping, landing and tumbling.</li>\n</ul>\n<h2>Winter activities you need to pay for</h2>\n<p>As a special treat, your child might enjoy some of these paid activities:</p>\n<ul type=\"disc\">\n<li>Indoor play centres, swimming, trampolining, ice-skating and ten-pin bowling can keep your child active inside.</li>\n<li>Traditional winter team sports like football, hockey, netball or rugby can be great for children when they’re old enough and want to play. Look for sports where the rules have been modified so they’re fun and safe for young children.</li>\n<li>If it’s not too far or expensive, a trip to the snow can be great fun for snow play or tobogganing.</li>\n</ul>\n",
+            "category": 55,
+            "child_age": [
+                58,
+                57,
+                52,
+                51,
+                50,
+                49
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                226,
+                221,
+                81,
+                76
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/2021-08/UN0280770.jpg",
+                "name": "© UNICEF/UN0280770/",
+                "alt": "Boy playing in the snow."
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0
+        }
+],
     "rs-sr":[
         {
             "id": 7141,
