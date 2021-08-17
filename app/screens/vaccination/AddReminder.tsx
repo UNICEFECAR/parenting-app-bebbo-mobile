@@ -246,10 +246,11 @@ const AddReminder = ({route, navigation}: any) => {
       activeChild.reminders = createresult;
       dispatch(setActiveChildData(activeChild));
       if(reminderType == 'vaccine'){
-        await analytics().logEvent(VACCINE_REMINDER_SET)
+         analytics().logEvent(VACCINE_REMINDER_SET)
       }else{
-        await analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
+         analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
       }
+      navigation.goBack();
     }
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
@@ -452,7 +453,7 @@ const AddReminder = ({route, navigation}: any) => {
               disabled={isFormDisabled()}
               onPress={() => {
                 saveReminder().then(() => {
-                  navigation.goBack();
+                 
                 });
                 // navigation.goBack();
               }}>
