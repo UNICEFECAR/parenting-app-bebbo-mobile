@@ -13,6 +13,7 @@ import { DateTime } from 'luxon';
 import { appConfig, articleCategory } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
+import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
 export const apiJsonDataGet = (childAge: any, parentGender: any) => {
 
   return [
