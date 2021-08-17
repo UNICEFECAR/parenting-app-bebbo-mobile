@@ -74,6 +74,7 @@ padding:5px 8px;
 export const IconViewBorder = styled.View`
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 border-width:1px;
+border-color:#000;
 width:24px;
 height:24px;
 `;
