@@ -13,20 +13,31 @@ import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { ToolsBgContainer } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2Center,
   Heading4Center,
+  Heading4Centerr,
   ShiftFromBottom20,
   ShiftFromTopBottom10
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import { Modal, Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import { getAllHealthCheckupPeriods } from '../../services/healthCheckupService';
-
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
+import Icon from '@components/shared/Icon';
+import { ButtonModal } from '@components/shared/ButtonGlobal';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
 type HealthCheckupsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -49,6 +60,20 @@ const HealthCheckups = ({navigation}: Props) => {
   } = getAllHealthCheckupPeriods();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
+  const [modalVisible, setModalVisible] = React.useState(true);
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+  };
+  const hcuModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsHCUModalOpened),
+    );
+   useFocusEffect(()=>{
+    // console.log('vaccineModalOpened',vaccineModalOpened);
+    // pass true to make modal visible every time & reload
+    setModalVisible(hcuModalOpened)
+   })
   let reminders = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild).reminders
@@ -116,6 +141,45 @@ const HealthCheckups = ({navigation}: Props) => {
   };
   return (
     <>
+    <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                  setIsModalOpened('IsHCUModalOpened');
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('hcModalText')}
+              </Heading4Centerr>
+              </ModalPopupContent>
+              <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  setIsModalOpened('IsHCUModalOpened');
+                }}>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+              </FDirRow>
+            
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
