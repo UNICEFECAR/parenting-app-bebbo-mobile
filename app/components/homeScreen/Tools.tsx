@@ -17,7 +17,7 @@ const Tools = () => {
     <FeatureDivideArea>
         <MainContainer>
           <ShiftFromTop10>
-          <Heading2>Tools</Heading2>
+          <Heading2>{t('walkthroughTextstitle2')}</Heading2>
           </ShiftFromTop10>
           <ToolBox>
           
