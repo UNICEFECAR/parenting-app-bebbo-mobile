@@ -23,8 +23,8 @@ import i18n, {
   import XKsq from '@assets/translations/appConstants/XKsq';
   import XKrs from '@assets/translations/appConstants/XKrs';
   import RSen from '@assets/translations/appConstants/RSen';
-  // import BYbe from '@assets/translations/appConstants/BYbe';
-  // import BYru from '@assets/translations/appConstants/BYru';
+  import BYbe from '@assets/translations/appConstants/BYbe';
+  import BYru from '@assets/translations/appConstants/BYru';
 
   export const AVAILABLE_LANGUAGES = {
     en,
@@ -44,8 +44,8 @@ import i18n, {
     XKsq,
     XKrs,
     RSen,
-    // BYbe,
-    // BYru
+    BYbe,
+    BYru
   };
  // console.log(AVAILABLE_LANGUAGES,"----");
   const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
