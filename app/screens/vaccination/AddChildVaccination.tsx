@@ -272,9 +272,9 @@ const AddChildVaccination = ({route, navigation}: any) => {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
         if(isMeasured){
-        await analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
+         analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
       }
-        await analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:allVaccines})
+         analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:allVaccines})
 
       }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);

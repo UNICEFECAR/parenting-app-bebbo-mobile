@@ -89,7 +89,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      await analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+       analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
 
 
     }
@@ -113,7 +113,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log(allDatatoStore, "..allDatatoStore..")
         dispatch(setActiveChildData(child));
-        await analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+         analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
 
       }
     }
@@ -139,7 +139,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      await analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+       analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
     }
   }
 
@@ -294,7 +294,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   else {
     console.log("..add child..", data);
     if(data[0].isExpected== true || data[0].isExpected == 'true'){
-      await analytics().logEvent(EXPECTED_CHILD_ENTERED)
+       analytics().logEvent(EXPECTED_CHILD_ENTERED)
     }
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
   }
@@ -385,11 +385,11 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any) => {
   console.log(year1, "/", year2,month1, "/", month2,day1, "/", day2)
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const updateActiveChild = async(child: any, key: any, value: any, dispatch: any) => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any) => {
   child[key] = value;
   // console.log(child, "..child..");
   dispatch(setActiveChildData(child));
-  await analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
+   analytics().setUserProperties({ageid:String(child.taxonomyData.id),is_premature:child.isPremature,child_gender:child.gender==40?"Boy":"Girl",relationship_with_child:child.parent_gender==36?"Father":"Mother"}) // relationship_with_child:monther/father
 
 }
 export const getAllConfigData = async (dispatch: any) => {
