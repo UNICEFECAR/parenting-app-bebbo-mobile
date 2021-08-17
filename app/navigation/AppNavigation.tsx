@@ -128,7 +128,7 @@ export default () => {
              screen_name: currentRouteName,
              screen_class: currentRouteName,
            });
-         
+           await analytics().logEvent(currentRouteName+"_opened");
           //  await analytics().logEvent('product_view', {
           //   id: '1234',
           // });
