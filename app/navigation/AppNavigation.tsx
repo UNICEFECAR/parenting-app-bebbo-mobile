@@ -29,6 +29,7 @@ import useRealmListener from '../database/dbquery/userRealmListener';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
+import analytics from '@react-native-firebase/analytics';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -108,10 +109,32 @@ export default () => {
   useEffect(() => {
     SplashScreen.hide();
   },[]);
+  const routeNameRef = React.useRef<any>();
+  const navigationRef = React.useRef<any>();
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
       <NavigationContainer
+       ref={navigationRef}
+       onReady={() => {
+         routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+       }}
+       onStateChange={async () => {
+         const previousRouteName = routeNameRef.current;
+         const currentRouteName = navigationRef.current.getCurrentRoute().name;
+ 
+         if (previousRouteName !== currentRouteName) {
+           await analytics().logScreenView({
+             screen_name: currentRouteName,
+             screen_class: currentRouteName,
+           });
+         
+          //  await analytics().logEvent('product_view', {
+          //   id: '1234',
+          // });
+         }
+         routeNameRef.current = currentRouteName;
+       }}
         // initialState={initialState}
         // onStateChange={(state) =>
         //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))

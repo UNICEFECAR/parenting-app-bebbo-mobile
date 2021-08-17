@@ -7,7 +7,8 @@ import { ArticleFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './shared/Icon';
 import { useFocusEffect } from '@react-navigation/native';
-
+import { ADVICE_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
+import analytics from '@react-native-firebase/analytics';
 // let filterArraycurr: string[] = [];
 
 const ArticleCategories = (props: ArticleCategoriesProps) => {
@@ -16,11 +17,13 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  const getFilterArray = (itemId: any,filterArray: any[]) => {
+  const getFilterArray = async(itemId: any,filterArray: any[]) => {
     // filterArray.push("78");
       // console.log(filterArray,"includes(itemId)--",itemId);
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
+      await analytics().logEvent(ADVICE_CATEGORY_SELECTED, {advise_category_id:itemId});
+
     } else {
       filterArray.splice(filterArray.indexOf(itemId), 1);
     }
@@ -50,7 +53,9 @@ const articleBrackets = chunk(articleCategoryobj, 2)
             return (<View key={i} style={{flex: 1, flexDirection: 'column'}}>
                 {
                  articleCategoryInner.map((item) => {
-                    return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
+                    return (<Pressable style={{flex:1,}} key={item.id} onPress={()=>{
+                      // await analytics().logEvent(ADVICE_CATEGORY_SELECTED, {advise_category_id:item?.id});
+                      props.filterOnCategory(getFilterArray(item.id,props.filterArray))}}>
                     <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#FF8D6B" : "#fff")}]}  >
                       {/* <Text>{item.image}</Text> */}
                        <OuterIconRow>

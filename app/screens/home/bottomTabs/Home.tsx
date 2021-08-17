@@ -12,6 +12,7 @@ import {
   ButtonTertiary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
+import analytics from '@react-native-firebase/analytics';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
@@ -47,6 +48,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -213,8 +215,11 @@ const Home = () => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  onPress={() => {
+                  onPress={async() => {
                     setModalVisible(false);
+                    
+                    await analytics().logEvent(SURVEY_SUBMIT)
+                    
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>

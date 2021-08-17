@@ -14,6 +14,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import analytics from '@react-native-firebase/analytics';
 import {
   FlatList,
   Image,
@@ -29,6 +31,7 @@ import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDa
 import ProgressCircle from 'react-native-progress-circle'
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
+import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -134,6 +137,8 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
     toTop();
+    await analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, {age_id:item.id});
+
     setCurrentSelectedChildId(item.id);
     // setCurrentSelectedChildId2(item.id);
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(item.id))[0];
@@ -200,8 +205,11 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       calculateMileStone();
     },[selectedChildMilestoneData])
   );
-  const sendMileStoneDatatoParent = (item: any,togglevalue: any) => {
+  const sendMileStoneDatatoParent = async(item: any,togglevalue: any) => {
     // console.log("sendMileStoneDatatoParent--",item,togglevalue);
+    if(togglevalue== true){
+      await analytics().logEvent(CHILD_MILESTONE_TRACKED,{age_id: currentSelectedChildId});   
+    }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if(i > -1)
     {
