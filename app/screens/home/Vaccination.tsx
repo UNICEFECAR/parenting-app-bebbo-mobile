@@ -7,20 +7,33 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import PreviousVaccines from '@components/vaccination/tabs/PreviousVaccines';
 import UpcomingVaccines from '@components/vaccination/tabs/UpcomingVaccines';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
   Heading3,
   Heading4Center,
+  Heading4Centerr,
   Heading4Regular,
   ShiftFromTopBottom10,
   ShiftFromTopBottom5
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import { Modal, Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
+import Icon from '@components/shared/Icon';
+import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
 type VaccinationNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -34,6 +47,20 @@ const Vaccination = ({navigation}: Props) => {
   const [childageInDays, setChildageInDays] = React.useState<number>(0);
   const {t} = useTranslation();
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+  const [modalVisible, setModalVisible] = React.useState(true);
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+  };
+  const vaccineModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsVaccineModalOpened),
+    );
+   useFocusEffect(()=>{
+    // console.log('vaccineModalOpened',vaccineModalOpened);
+    // pass true to make modal visible every time & reload
+    setModalVisible(vaccineModalOpened)
+   })
   const data = [{title: t('vcTab1')}, {title: t('vcTab2')}];
   let {
     upcomingPeriods,
@@ -87,6 +114,45 @@ const Vaccination = ({navigation}: Props) => {
   };
   return (
     <>
+     <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                  setIsModalOpened('IsVaccineModalOpened');
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('vaccineModalText')}
+              </Heading4Centerr>
+              </ModalPopupContent>
+              <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  setIsModalOpened('IsVaccineModalOpened');
+                }}>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+              </FDirRow>
+            
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       <SafeAreaView style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
