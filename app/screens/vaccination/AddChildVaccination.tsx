@@ -68,7 +68,8 @@ import {
 } from '../../services/growthService';
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
+import analytics from '@react-native-firebase/analytics';
+import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 const AddChildVaccination = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, vcPeriod, editGrowthItem} = route.params;
@@ -270,6 +271,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
+        if(isMeasured){
+        await analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
+      }
+        await analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:allVaccines})
+
       }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();

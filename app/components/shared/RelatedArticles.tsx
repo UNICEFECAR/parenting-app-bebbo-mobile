@@ -199,7 +199,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
                 <Heading3>{item.title}</Heading3>
               </ArticleListContent>
             </View>
-            <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} />
+            <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/>
 
           </View>
         </RelatedArticleContainer>

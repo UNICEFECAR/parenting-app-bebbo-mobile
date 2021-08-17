@@ -83,7 +83,7 @@ const Articles = ({route, navigation}: Props) => {
            </ShiftFromTopBottom5>
            <Heading3>{item.title}</Heading3>
            </ArticleListContent>
-           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'}/>
+           <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/>
          </ArticleListContainer>
        </Pressable>
 

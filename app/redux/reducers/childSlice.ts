@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { store } from '../../../App';
 // import {RootState} from './../../../App';
-
+import analytics from '@react-native-firebase/analytics';
 interface childDataType {
   // name: string;
   childDataSet: { 
@@ -28,7 +29,7 @@ export const childSlice = createSlice({
     // console.log("child data length---",action.payload);
       (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
       (typeof action.payload == 'object') ? state.childDataSet.activeChild = JSON.stringify(action.payload) : state.childDataSet.activeChild = action.payload;
-     
+
     },
     setAllChildData: (
       state,

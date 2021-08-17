@@ -30,6 +30,8 @@ import table, { IGNORED_TAGS, cssRulesFromSpecs, defaultTableStylesSpecs } from 
 import WebView from "react-native-webview";
 import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
+import analytics from '@react-native-firebase/analytics';
+import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -80,7 +82,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       "hardwareBackPress",
       backAction,
     );
-
+  
     return () => backHandler.remove();
   }, []);
   useEffect(() => {
@@ -96,6 +98,12 @@ const DetailsScreen = ({route, navigation}: any) => {
             if(articleData && articleData.length > 0)
             {
               setDetailDataToUse(articleData[0]);
+              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
+              {
+                await analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
+              }else{
+                await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
+              }
             }else {
               //show alert and back function
               Alert.alert(t('detailScreenNoDataPopupTitle'), t('detailScreenNoDataPopupText'),
@@ -107,6 +115,12 @@ const DetailsScreen = ({route, navigation}: any) => {
           }else if(typeof detailData == "object")
           {
             setDetailDataToUse(detailData);
+            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
+            {
+              await analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
+            }else{
+              await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+            }
           }
           // detailDataToUse = articleData[0]
           // detailDataToUse = articleData.filter((x:any)=>x.id == detailData) ? articleData.filter((x:any)=>x.id == detailData)[0] : [];
@@ -116,6 +130,12 @@ const DetailsScreen = ({route, navigation}: any) => {
           // detailDataToUse = detailData;
           
           setDetailDataToUse(detailData);
+          if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity')
+            {
+              await analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
+            }else{
+              await analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+            }
           // console.log("detailData--",(detailDataToUse));
         }
       }
@@ -294,7 +314,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               source={require('@assets/trash/defaultArticleImage.png')}/>   
               }
             </View>
-            <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} />
+            <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} item={detailDataToUse} isAdvice={fromScreen === 'Activities' || fromScreen === 'MileStoneActivity'?false:true}/>
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
             {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
