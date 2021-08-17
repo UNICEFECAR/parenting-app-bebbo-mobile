@@ -88,7 +88,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   // }
   // console.log(childData,"..childData..");
   // console.log(childData.birthDate,"..birthObject..");
-  const editScreen = childData?.uuid != '' ? true : false;
+  const editScreen = childData && childData.uuid != '' ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
@@ -175,6 +175,19 @@ const EditChildProfile = ({route, navigation}: Props) => {
       }
     }, []),
   );
+  useEffect(() => {
+    const backAction = () => {
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const onChildPhotoChange = async (image: ImageObject,
   ) => {
     // Create Documents/children folder if it doesnt exist

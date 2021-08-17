@@ -45,8 +45,8 @@ type Props = {
 
 const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   let childData = route.params.childData;
-  //console.log(childData, "..childData..")
-  const editScreen = childData?.uuid != '' ? true : false;
+  console.log(childData, "..childData..")
+  const editScreen = childData && childData.uuid != '' ? true : false;
   console.log(editScreen, "..editScreen..")
   //const [dobDate, setdobDate] = useState();
 
@@ -104,6 +104,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '') : await getNewChild('', "true", null, '', plannedTermDate, name, '', '');
     let childSet: Array<any> = [];
     childSet.push(insertData);
+    console.log(childData,"..childData")
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string) => {
