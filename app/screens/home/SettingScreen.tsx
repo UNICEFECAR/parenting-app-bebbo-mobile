@@ -87,7 +87,9 @@ const SettingScreen = (props: any) => {
   const thumbFalseColor = '#9598BE';
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const toggleSwitch = () => {
+    // await analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
+    setIsEnabled((previousState) => !previousState);}
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');

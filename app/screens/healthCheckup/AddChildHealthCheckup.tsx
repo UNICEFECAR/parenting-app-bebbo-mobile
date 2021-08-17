@@ -1,5 +1,6 @@
 import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import analytics from '@react-native-firebase/analytics';
 import {
   ButtonColTwo,
   ButtonContainer,
@@ -83,6 +84,7 @@ import {
 } from '../../services/growthService';
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { GROWTH_MEASUREMENT_ADDED, HEALTH_CHECKUP_ENTERED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -243,7 +245,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: isVaccineMeasured,
         vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
         doctorComment: remarkTxt,
         measurementPlace: 0,
@@ -269,7 +271,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: isVaccineMeasured,
         vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
@@ -284,6 +286,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
+        if(isMeasured){
+          await analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
+        }
+        if(isVaccineMeasured){
+        await analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:[...plannedVaccine, ...prevPlannedVaccine]})
+        }
+        await analytics().logEvent(HEALTH_CHECKUP_ENTERED, {age_id:activeChild?.taxonomyData?.id})
       }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();

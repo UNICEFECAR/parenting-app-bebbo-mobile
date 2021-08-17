@@ -1,0 +1,25 @@
+export const ONBOARDING_CHILD_COUNT="no_of_childsetup_onboarding"; //child_count
+export const GROWTH_MEASUREMENT_ADDED="child_measurement_entered";
+export const VACCINE_ADDED="child_vaccine_entered";
+export const ADVICE_CATEGORY_SELECTED="advise_category_selected";
+
+export const GAME_CATEGORY_SELECTED="game_category_selected"; //{game_category_id: 'P12453',}
+export const ADVICE_DETAILS_OPENED="advise_details_opened"; //,{advise_id: 'P12453',advice_catergory_id}
+export const GAME_DETAILS_OPENED="game_details_opened"; //{game_id: 'P12453',game_category_id}
+export const CHILD_MILESTONE_TRACKED="child_milestone_tracked"; //,{age_id: 'P12453'}
+export const VACCINE_REMINDER_SET="child_vaccine_reminder_set";
+export const HEALTH_CHECKUP_ENTERED="child_health_checkup_entered";//,{age_id: 'P12453"}
+export const GAME_AGEGROUP_SELECTED="game_age_group_selected"//,{age_id: 'P12453"}
+export const CHILD_DEVELOPMENT_AGEGROUP_SELECTED="child_development_age_group_selected"//,{age_id: 'P12453"}
+export const HEALTH_CHECKUP_REMINDER_SET="child_health_checkup_reminder_set ";
+export const EXPECTED_CHILD_ENTERED="expected_child_entered";
+export const FEEDBACK_SUBMIT="feedback_submitted";
+export const SURVEY_SUBMIT="survey_submitted";
+export const APP_SHARE="app_shared";
+export const ADVICE_SHARED="advice_shared";
+export const GAME_SHARED="game_shared";
+export const FAVOURITE_ADVICE_ADDED ="favourite_advise_added";// advise_id
+export const FAVOURITE_GAME_ADDED ="favourite_game_added";//game_id
+export const DEVELOPMENT_NOTIFICATION="development_notification";//,enabled:true/false
+export const GROWTH_NOTIFICATION="growth_notification"; //,enabled:true/false
+export const VACCINE_HEALTHCHECKUP_NOTIFICATION="vaccination_healthcheckup_notification";//enabled:true/false
