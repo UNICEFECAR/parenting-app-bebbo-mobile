@@ -19,10 +19,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { formatStringDate } from '../services/Utils';
 import { Heading2w, Heading4Regularw, ShiftFromTop10 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  BackHandler,
   Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -93,13 +94,28 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       //getAllChildren(dispatch);
-      getAllConfigData(dispatch);
+      // getAllConfigData(dispatch);
       if (childData?.uuid != '') {
         setName(childData?.childName?childData?.childName:'');
         setPlannedTermDate(childData?.birthDate != null ? new Date(childData?.birthDate) : null);
       }
     }, [])
   );
+  useEffect(() => {
+    const backAction = () => {
+      console.log("11")
+      navigation.goBack();
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+  
+    return () => {
+      backHandler.remove();
+    }
+  }, []);
   const AddChild = async () => {
     let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '') : await getNewChild('', "true", null, '', plannedTermDate, name, '', '');
     let childSet: Array<any> = [];
