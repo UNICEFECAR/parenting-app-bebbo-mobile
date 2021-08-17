@@ -70,12 +70,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     },
   ];
   const {t, i18n} = useTranslation();
-  const saveSelection = async() => {
+  const saveSelection = () => {
     i18n.changeLanguage(language.locale);
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
     dispatch(onLocalizationSelect(route.params));
-    await analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
+     analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
     // navigation.reset({
     //   index: 0,
     //   routes: [

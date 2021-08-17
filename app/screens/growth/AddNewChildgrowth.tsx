@@ -289,7 +289,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        await analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:measurePlace==0?'doctor':'home'})
+         analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:measurePlace==0?'doctor':'home'})
       }
       //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();

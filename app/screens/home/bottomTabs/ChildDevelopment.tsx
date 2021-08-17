@@ -137,7 +137,7 @@ const ChildDevelopment = ({route, navigation}: Props) => {
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--",item);
     toTop();
-    await analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, {age_id:item.id});
+     analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, {age_id:item.id});
 
     setCurrentSelectedChildId(item.id);
     // setCurrentSelectedChildId2(item.id);
@@ -205,10 +205,10 @@ const ChildDevelopment = ({route, navigation}: Props) => {
       calculateMileStone();
     },[selectedChildMilestoneData])
   );
-  const sendMileStoneDatatoParent = async(item: any,togglevalue: any) => {
+  const sendMileStoneDatatoParent = (item: any,togglevalue: any) => {
     // console.log("sendMileStoneDatatoParent--",item,togglevalue);
     if(togglevalue== true){
-      await analytics().logEvent(CHILD_MILESTONE_TRACKED,{age_id: currentSelectedChildId});   
+       analytics().logEvent(CHILD_MILESTONE_TRACKED,{age_id: currentSelectedChildId});   
     }
     const i = selectedChildMilestoneData.findIndex((_item: any) => _item.id === item.id);
     if(i > -1)
