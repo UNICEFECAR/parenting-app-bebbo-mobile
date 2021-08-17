@@ -242,6 +242,8 @@ useFocusEffect(() => {
         toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }
+    }else {
+      setLoadingArticle(false);
     }
   }
   
