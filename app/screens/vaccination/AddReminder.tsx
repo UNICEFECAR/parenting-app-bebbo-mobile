@@ -415,13 +415,22 @@ const AddReminder = ({route, navigation}: any) => {
               />
 
                   </FormDateText>
-                  <FormDateAction>
+                  {/* <FormDateAction>
                     <Icon
                       name="ic_time"
                       size={20}
                       color="#000"
                       style={{borderWidth: 1, borderRadius: 50}}
                     />
+                  </FormDateAction> */}
+                  <FormDateAction>
+                    <IconViewBorder>
+                    <Icon
+                      name="ic_time"
+                      size={20}
+                      color="#000"
+                    />
+                    </IconViewBorder>
                   </FormDateAction>
                 </FormInputBox>
               )}
