@@ -5,7 +5,8 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAppSelector } from '../../App';
 import { ActivityFilter, FilterBox, FilterText } from './shared/FilterStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
-
+import analytics from '@react-native-firebase/analytics';
+import { GAME_CATEGORY_SELECTED } from '@assets/data/firebaseEvents';
 type ActivityCategoriesProps = {
     borderColor?: any,
     filterOnCategory?: Function,
@@ -18,11 +19,13 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
         (state: any) =>
             JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
     );
-    const getFilterArray = (itemId: any, filterArray: any[]) => {
+    const getFilterArray = async(itemId: any, filterArray: any[]) => {
         // filterArray.push("78");
         // console.log(filterArray,"includes(itemId)--",itemId);
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
+              await analytics().logEvent(GAME_CATEGORY_SELECTED, {game_category_id:itemId});
+                                      
         } else {
             filterArray.splice(filterArray.indexOf(itemId), 1);
         }
@@ -63,7 +66,8 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
                         return (<View key={i} style={{ flex: 1, flexDirection: 'column' }} >
                             {
                                 activityCategoryInner.map((item) => {
-                                    return (<Pressable style={{ flex: 1, }} key={item.id} onPress={() => { props.filterOnCategory(getFilterArray(item.id, props.filterArray)) }}>
+                                    return (<Pressable style={{ flex: 1, }} key={item.id} onPress={async() => {
+                                        props.filterOnCategory(getFilterArray(item.id, props.filterArray)) }}>
                                         <FilterBox style={[{backgroundColor:(props.filterArray.includes(item.id) ? "#0FD87E" : "#fff")}]}>
                                             <OuterIconRow>
                                                 <OuterIconLeft>
