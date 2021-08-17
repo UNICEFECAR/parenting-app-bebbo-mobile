@@ -126,6 +126,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
     growthMeasures,
     childBirthDate
   );
+  console.log(convertedMeasures,"convertedMeasures");
   /* Create line chart array for type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
@@ -135,7 +136,7 @@ const growthMeasures =activeChild.measures.filter((item) => item.isChildMeasured
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-//   console.log(convertedMeasures, 'convertedMeasures');
+  console.log(convertedMeasures, 'new convertedMeasures');
 // console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
