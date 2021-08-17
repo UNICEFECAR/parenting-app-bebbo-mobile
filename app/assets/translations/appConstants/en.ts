@@ -366,8 +366,12 @@ const en = {
         editChildDobLabel: "Enter date of birth",
         childInfoBabyText: "Baby",
         childInfoParentText: "Parent",
-        childInfoAndText: "and"
+        childInfoAndText: "and",
         // translation replacement closed till above
+
+        growthModalText:"Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
+        vaccineModalText:"Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
+        hcModalText:"Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
     }
 }
 export default en;
