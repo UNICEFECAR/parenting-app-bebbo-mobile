@@ -7,6 +7,7 @@ import {
   ButtonTertiary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
+import analytics from '@react-native-firebase/analytics';
 import {
   FormDateAction,
   FormDateText,
@@ -58,6 +59,7 @@ import {
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { HEALTH_CHECKUP_REMINDER_SET, VACCINE_REMINDER_SET } from '@assets/data/firebaseEvents';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -243,6 +245,11 @@ const AddReminder = ({route, navigation}: any) => {
     if (createresult?.length > 0) {
       activeChild.reminders = createresult;
       dispatch(setActiveChildData(activeChild));
+      if(reminderType == 'vaccine'){
+        await analytics().logEvent(VACCINE_REMINDER_SET)
+      }else{
+        await analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
+      }
     }
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
@@ -415,13 +422,22 @@ const AddReminder = ({route, navigation}: any) => {
               />
 
                   </FormDateText>
-                  <FormDateAction>
+                  {/* <FormDateAction>
                     <Icon
                       name="ic_time"
                       size={20}
                       color="#000"
                       style={{borderWidth: 1, borderRadius: 50}}
                     />
+                  </FormDateAction> */}
+                  <FormDateAction>
+                    <IconViewBorder>
+                    <Icon
+                      name="ic_time"
+                      size={20}
+                      color="#000"
+                    />
+                    </IconViewBorder>
                   </FormDateAction>
                 </FormInputBox>
               )}

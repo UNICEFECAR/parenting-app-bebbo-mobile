@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "185520625819",
+    "project_id": "ecaro-bebbo",
+    "storage_bucket": "ecaro-bebbo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185520625819:android:73c12146f7fd1fccf30e3e",
+        "android_client_info": {
+          "package_name": "com.parentbuddyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185520625819-g23qpmm4v35et550u4uq9aj5638g836d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGUFyklyP0LrzuoV-teh3Wz6uUEFVq4Qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185520625819-g23qpmm4v35et550u4uq9aj5638g836d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "185520625819-fcdc8edjttcc2u48uusvh2mcq0ah6ap5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.datamatics.bebbo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
