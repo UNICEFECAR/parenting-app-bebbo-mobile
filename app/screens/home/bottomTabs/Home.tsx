@@ -215,10 +215,10 @@ const Home = () => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  onPress={async() => {
+                  onPress={() => {
                     setModalVisible(false);
                     
-                    await analytics().logEvent(SURVEY_SUBMIT)
+                     analytics().logEvent(SURVEY_SUBMIT)
                     
                     Linking.openURL(surveryData[0].survey_link)
                   }}>
