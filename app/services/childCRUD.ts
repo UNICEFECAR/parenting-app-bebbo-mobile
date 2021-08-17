@@ -394,19 +394,19 @@ export const getAllConfigData = async (dispatch: any) => {
   allJsonDatanew.removeAllListeners();
   let configAllData: any = [];
   //console.log("db length--", allJsonDatanew?.length);
-  if (allJsonDatanew?.length > 0) {
-    databaselistener = allJsonDatanew.addListener((changes: any, name: any) => {
-      configAllData = [];
+  // if (allJsonDatanew?.length > 0) {
+  //   databaselistener = allJsonDatanew.addListener((changes: any, name: any) => {
+  //     configAllData = [];
       allJsonDatanew.map((value: ConfigSettingsEntity) => {
         configAllData.push(value);
       })
       dispatch(getVariableData(configAllData));
-    });
-  }
-  else {
+  //   });
+  // }
+  // else {
     //console.log("..else loop");
-    dispatch(getVariableData(configAllData));
-  }
+  //   dispatch(getVariableData(configAllData));
+  // }
 }
 export const getAllChildren = async (dispatch: any) => {
   let databaselistener: any;
