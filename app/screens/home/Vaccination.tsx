@@ -2,7 +2,7 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { MainContainer } from '@components/shared/Container';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
-import { ToolsBgContainer, VacSummaryBox } from '@components/shared/ToolsStyle';
+import { ToolsBgContainer, VacSummaryBox,VacSummaryPress } from '@components/shared/ToolsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import PreviousVaccines from '@components/vaccination/tabs/PreviousVaccines';
 import UpcomingVaccines from '@components/vaccination/tabs/UpcomingVaccines';
@@ -106,7 +106,7 @@ const Vaccination = ({navigation}: Props) => {
                   flexDirection: 'row',
                   justifyContent: 'space-around',
                 }}>
-                <Pressable onPress={() => setSelectedIndex(0)}>
+                <VacSummaryPress onPress={() => setSelectedIndex(0)}>
                   <VacSummaryBox>
                     <Heading2>
                       {totalUpcomingVaccines ? totalUpcomingVaccines : 0}
@@ -114,21 +114,21 @@ const Vaccination = ({navigation}: Props) => {
                     {/* added 1 for current period */}
                     <Heading4Regular>{t('vcStatus1')}</Heading4Regular>
                   </VacSummaryBox>
-                </Pressable>
-                <Pressable onPress={() => setSelectedIndex(1)}>
+                </VacSummaryPress>
+                <VacSummaryPress onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>
                       {overDuePreviousVCcount ? overDuePreviousVCcount : 0}
                     </Heading2>
                     <Heading4Regular>{t('vcStatus2')}</Heading4Regular>
                   </VacSummaryBox>
-                </Pressable>
-                <Pressable onPress={() => setSelectedIndex(1)}>
+                </VacSummaryPress>
+                <VacSummaryPress onPress={() => setSelectedIndex(1)}>
                   <VacSummaryBox>
                     <Heading2>{doneVCcount ? doneVCcount : 0}</Heading2>
                     <Heading4Regular>{t('vcStatus3')}</Heading4Regular>
                   </VacSummaryBox>
-                </Pressable>
+                </VacSummaryPress>
               </View>
             </MainContainer>
             <TabBarContainer

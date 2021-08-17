@@ -119,6 +119,7 @@ export const FormDateAction = styled.View`
  /* flex: 1;
   justify-content: center;
   flex-direction: row;*/
+  margin-left:5px;
 `;
 export const FormInputGroup = styled.Pressable`
   width: 100%;
