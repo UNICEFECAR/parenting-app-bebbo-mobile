@@ -30,13 +30,13 @@ import {
   Heading5BoldW
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { BackHandler, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
-import { getAllChildren, setActiveChild } from '../../services/childCRUD';
+import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
 import { formatDate } from '../../services/Utils';
 
 type NotificationsNavigationProp =
@@ -62,7 +62,7 @@ const ChildProfile = ({navigation}: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch);
-      //getAllConfigData(dispatch);
+      getAllConfigData(dispatch);
     },[])
   );
   const childList = useAppSelector((state: any) =>
@@ -75,6 +75,21 @@ const ChildProfile = ({navigation}: Props) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
 );
+useEffect(() => {
+  const backAction = () => {
+    console.log("11")
+    navigation.goBack();
+    return true;
+  };
+  const backHandler = BackHandler.addEventListener(
+    "hardwareBackPress",
+    backAction,
+  );
+
+  return () => {
+    backHandler.remove();
+  }
+}, []);
 const luxonLocale = useAppSelector(
   (state: any) => state.selectedCountry.luxonLocale,
 );

@@ -153,10 +153,23 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const [gender, setGender] = React.useState(
     childData != null ? childData.gender : 0,
   );
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
   useFocusEffect(
     React.useCallback(() => {
       //getAllChildren(dispatch);
-      getAllConfigData(dispatch);
+      // getAllConfigData(dispatch);
       console.log(childData, '..childData..');
       // if(photoUri!='' && photoUri!=null && photoUri!=undefined){
       //   imageOptions = [
@@ -175,19 +188,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       }
     }, []),
   );
-  useEffect(() => {
-    const backAction = () => {
-      navigation.goBack();
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction,
-    );
-
-    return () => backHandler.remove();
-  }, []);
+ 
 
   const onChildPhotoChange = async (image: ImageObject,
   ) => {

@@ -14,8 +14,9 @@ import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { createRef, useContext, useState } from 'react';
+import React, { createRef, useContext, useEffect, useState } from 'react';
 import {
+  BackHandler,
     Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -59,12 +60,27 @@ const EditParentDetails = ({route,navigation}: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       //getAllChildren(dispatch);
-      getAllConfigData(dispatch);
+      // getAllConfigData(dispatch);
      // console.log(relationshipValue.name,"..relationshipValue.name")
       setRelationshipName(relationshipValue!="" && relationshipValue!=null && relationshipValue!=undefined?relationshipValue.name:'');
  
        },[])
   );
+  useEffect(() => {
+    const backAction = () => {
+      console.log("11")
+      navigation.goBack();
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+  
+    return () => {
+      backHandler.remove();
+    }
+  }, []);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
