@@ -292,7 +292,10 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     console.log(createresult1, "...createresult1getData..")
   }
   else {
-    //  console.log("..add child..", data);
+    console.log("..add child..", data);
+    if(data[0].isExpected== true || data[0].isExpected == 'true'){
+      await analytics().logEvent(EXPECTED_CHILD_ENTERED)
+    }
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
   }
 
