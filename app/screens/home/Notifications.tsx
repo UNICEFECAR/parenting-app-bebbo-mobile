@@ -30,7 +30,10 @@ const Notifications = () => {
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
-  
+  // use syntax for google analytics=> await analytics().logEvent(GAME_AGEGROUP_SELECTED, {age_id:item.id});
+//   event_name:"development_notification,enabled:true/false
+// event_name:"growth_notification,enabled:true/false
+// event_name:"vaccination_healthcheckup_notification,enabled:true/false
   const DATA = [
     {
       id: 0,
