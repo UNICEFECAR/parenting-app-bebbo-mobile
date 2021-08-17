@@ -82,8 +82,10 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
+import analytics from '@react-native-firebase/analytics';
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { GROWTH_MEASUREMENT_ADDED } from '@assets/data/firebaseEvents';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -213,6 +215,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   }, [route.params?.weight, route.params?.height]);
   const saveChildMeasures = async () => {
     // console.log(dateTouched,"dateTouched",measureDate);
+    
     const measurementDateParam = editGrowthItem
       ? dateTouched
         ? measureDate?.toMillis()
@@ -286,6 +289,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
+        await analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:measurePlace==0?'doctor':'home'})
       }
       //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
       navigation.goBack();
