@@ -124,11 +124,11 @@ export default () => {
          const currentRouteName = navigationRef.current.getCurrentRoute().name;
  
          if (previousRouteName !== currentRouteName) {
-           await analytics().logScreenView({
+            analytics().logScreenView({
              screen_name: currentRouteName,
              screen_class: currentRouteName,
            });
-           await analytics().logEvent(currentRouteName+"_opened");
+            analytics().logEvent(currentRouteName+"_opened");
           //  await analytics().logEvent('product_view', {
           //   id: '1234',
           // });
