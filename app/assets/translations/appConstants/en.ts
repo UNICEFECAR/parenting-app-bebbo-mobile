@@ -115,7 +115,7 @@ const en = {
         // homeScreen
         homeScreenheaderTitle: "Bebbo",
         homeScreenchildBtnText: "Read more ",
-        homeScreenchildInfoTitle: "Welcome {{childName}} {{parentName}}",
+        homeScreenchildInfoTitle: "Welcome {{childName}} and {{parentName}}",
         homeScreendailyReadsTitle: "Daily reads ",
         homeScreentodayarticle: "Today's advice",
         homeScreentodaygame: "Today's game",
@@ -127,7 +127,7 @@ const en = {
         homeScreencdButton: "Start tracking ",
         homeScreenptHeader: "Playing together",
         homeScreenptButton: "Start playing",
-        homeScreenexpHeader: "Expert advices",
+        homeScreenexpHeader: "Expert advice",
         homeScreenexpButton: "Start reading",
         homeScreentoolsHeader: "Tools",
         homeScreenvc: "Vaccination",
@@ -157,9 +157,9 @@ const en = {
         developScreenrelatedAct: "Related games ",
         developScreenviewDetails: "View details",
         // articleScreen
-        articleScreenheaderTitle: "Advices ",
+        articleScreenheaderTitle: "Advice ",
         articleScreensearchPlaceHolder: "Search for keywords",
-        articleScreennoSearchResult: "No advices found",
+        articleScreennoSearchResult: "No advice found",
         articleScreenshareText: "Share",
         articleScreenaddtoFavText: "Add to favourites",
         // growthScreen
@@ -197,24 +197,24 @@ const en = {
         growthScreenaddWeight: "Add weight",
         growthScreenaddHeight: "Add height",
         growthScreennewGrowthBottomText: "Measuring a child at home is less accurate than measuring at the doctor's and can affect the accuracy of the growth chart.",
-        growthScreenrelatedArticle: "Related advices ",
+        growthScreenrelatedArticle: "Related advice ",
         // Sprint4 Screens
         noBorn: "Not born yet",
         noday: "0 days",
-        yearstag: "years",
-        yeartag: "year",
-        monthstag: "months",
-        monthtag: "month",
-        daystag: "days",
-        daytag: "day",
+        yearstag: " years",
+        yeartag: " year",
+        monthstag: " months",
+        monthtag: " month",
+        daystag: " days",
+        daytag: " day",
         defaultChildPrefix: "Child",
         notiOption1: "Delete notification",
         notiOption2: "Mark as read",
         continueInModal: "Continue",
         weightModalText: "Move the ruler to select your child's weight",
         heightModalText: "Move the ruler to select your child's height",
-        articleModalText: "To find advices, click on the relevant buttons or search using keywords",
-        detailScreenArticleHeader: "Choose Advices ",
+        articleModalText: "To find advice, click on the relevant buttons or search using keywords",
+        detailScreenArticleHeader: "Choose Advice ",
         detailScreenActivityHeader: "Choose Games ",
         trackMilestoneViewHeader: "Please update your child's milestones.",
         trackMilestoneViewBtn: "Track your child's milestone",
@@ -306,11 +306,12 @@ const en = {
         tabbarLabel1: "Home",
         tabbarLabel2: "Games ",
         tabbarLabel3: "Tools",
-        tabbarLabel4: "Advices ",
+        tabbarLabel4: "Advice ",
         tabbarLabel5: "Development ",
         tabbarLabel6: "Vaccinations",
         tabbarLabel7: "Health check-ups",
         tabbarLabel8: "Child's growth",
+        // translation replacement closed till above
         //sprint 6 screens after v3 of language file 
         manageProfileTxt: "Manage profile",
         removePhotoTxt: "Remove photo",
@@ -334,6 +335,8 @@ const en = {
         growthChartLegendOrangeLabel: "-Suboptimal values for age",
         noVaccinesForPeriod: "There are no vaccines during this period",
         defaultPeriodInterpretationText: "Growth charts refer to children 0 to 61 months old and do not contain growth values for older children. You can find more about growth in this period under relevant advice.",
+
+        // new text dated on 22 july 2021
         retryPopupTitle: "Retry",
         retryPopupText: "Please retry. Not all content  has been downloaded.",
         retryCancelPopUpBtn: "Cancel",
@@ -350,6 +353,8 @@ const en = {
         removePhotoOption2: "Remove",
         expectedChildDobLabel: "Child not born yet",
         babyNotificationText1: "Child birth data updated",
+
+        //new text dated on 2nd August 2021
         activityModalText: "To find Games related to specific domain of development, click on the relevant button",
         childDevModalText: "Check if your child has reached skills expected to develop during this period and see how to support development through play",
         months5tag: "months",
@@ -368,10 +373,10 @@ const en = {
         childInfoParentText: "Parent",
         childInfoAndText: "and",
         // translation replacement closed till above
-
-        growthModalText:"Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
-        vaccineModalText:"Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
-        hcModalText:"Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
+        childSetupdobText: "Enter date of birth",
+        growthModalText: "Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
+        vaccineModalText: "Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
+        hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
     }
 }
 export default en;
