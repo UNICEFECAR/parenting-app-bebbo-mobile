@@ -12,7 +12,7 @@ padding:12px 15px;
 flex-direction:row;
 align-items:center;
 border-bottom-width:1px;
-border-color:#ddd
+border-color:#ddd;
 `;
 export const SubDrawerLinkView = styled(DrawerLinkView)`
 padding:0px;
