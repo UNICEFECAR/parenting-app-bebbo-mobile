@@ -215,7 +215,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           setphotoUri('');
           setCapturedImage('');
         } else {
-          Alert.alert('Try again...');
+          Alert.alert(t('tryText'));
         }
       }
       else{
@@ -225,7 +225,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       }
       })
       .catch((error: any) => {
-        Alert.alert('Try again..');
+        Alert.alert(t('tryText'));
       });
   };
   const handleImageOptionClick = async (index: number) => {
@@ -293,6 +293,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
               resolve,
               reject,
               child_age,
+              t
             );
             navigation.navigate('ChildProfileScreen');
           },
