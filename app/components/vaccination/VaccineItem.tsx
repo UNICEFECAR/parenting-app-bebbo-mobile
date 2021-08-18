@@ -1,4 +1,4 @@
-import { FormOuterCheckbox, LabelText } from '@components/shared/ChildSetupStyle';
+import { FormOuterCheckbox, LabelText, LabelTextVac } from '@components/shared/ChildSetupStyle';
 import { VacItemContainer } from '@components/shared/Container';
 import { Flex1, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconRight, OuterIconRow } from '@components/shared/Icon';
@@ -50,8 +50,8 @@ const VaccineItem = (props: any) => {
                   )}
                 </View>
               </CheckboxItem>
-              <Flex1 >
-                <LabelText>
+              <Flex1>
+                <LabelText style={{minHeight:24,}}>
                   <Heading4Regular>{title}</Heading4Regular>
                 </LabelText>
               </Flex1>
