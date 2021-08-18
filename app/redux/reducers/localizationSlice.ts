@@ -62,11 +62,11 @@ export const localizationSlice = createSlice({
       // console.log("state data---",state);
       // console.log("sponsor data---",state.sponsors);
       // console.log(action.payload);
-      let sponsors:any=[];
-      action.payload.map((value:any)=>{
-      sponsors.push(value.args)
-      })
-      state.sponsors = sponsors;
+      // let sponsors:any=[];
+      // action.payload.map((value:any)=>{
+      // sponsors.push(value)
+      // })
+      state.sponsors = action.payload;
       // state.countryId = action.payload.countryId;
     },
     setChildStore: (
