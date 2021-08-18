@@ -146,6 +146,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               resolve,
               reject,
               child_age,
+              t
             );
             navigation.navigate('ChildProfileScreen');
           },
