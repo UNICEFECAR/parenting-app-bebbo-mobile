@@ -64,7 +64,7 @@ const articleBrackets = chunk(articleCategoryobj, 2)
                               style={styles.iconStyle} name={item.image} size={20} color="#000" />
                          </OuterIconLeft>
                          </OuterIconRow>
-                       <FilterText>{categoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
+                       <FilterText numberOfLines={2}>{categoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
                    </FilterBox>
                    </Pressable>)
                  })  
