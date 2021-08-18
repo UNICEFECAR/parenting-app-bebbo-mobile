@@ -8,6 +8,7 @@ import {
   ChildColArea1,
   ChildColArea2,
   ChildContentArea,
+  ChildListAction,
   ChildListingArea,
   ChildListingBox,
   ChildListTitle,
@@ -101,12 +102,17 @@ const ChildSetupList = ({ navigation }: Props) => {
       <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}</Heading5>
     </ChildColArea1>
     <ChildColArea2>
+    
     {
           childList.length> 1 ? (
+            <ChildListAction>
             <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+            </ChildListAction>
             ) :null
           }
+          <ChildListAction>
       <TitleLinkSm onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+      </ChildListAction>
     </ChildColArea2>
   </ChildListingBox>
      );
