@@ -189,14 +189,14 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
         <LoadableImage style={styles.cardImage} item={item}/>
           <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-            <View style={{ minHeight: 90, }}>
+            <View style={{ minHeight: 80, }}>
               <ArticleListContent>
                 <ShiftFromTopBottom5>
                   {/* <Heading6Bold>Nutrition and BreastFeeding</Heading6Bold> */}
                   <Heading6Bold>{categoryData.filter((x: any) => x.id == item.category)[0].name}</Heading6Bold>
                 </ShiftFromTopBottom5>
                 {/* <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold> */}
-                <Heading3>{item.title}</Heading3>
+                <Heading3 numberOfLines={2}>{item.title}</Heading3>
               </ArticleListContent>
             </View>
             <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/>
