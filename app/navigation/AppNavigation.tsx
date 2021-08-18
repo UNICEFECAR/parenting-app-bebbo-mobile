@@ -24,12 +24,13 @@ import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
-import { useAppSelector } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
 import useRealmListener from '../database/dbquery/userRealmListener';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import analytics from '@react-native-firebase/analytics';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -57,6 +58,8 @@ export default () => {
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
   const netInfo = useNetInfo();
+  const dispatch = useAppDispatch();
+  
   // useEffect(() => {
   //   async function addDBListener() {
   //     const datarealm = await dataRealmCommon.openRealm();
@@ -109,6 +112,13 @@ export default () => {
   useEffect(() => {
     SplashScreen.hide();
   },[]);
+  useEffect(() => {
+    if(userIsOnboarded == true)
+    {
+      let obj = {key: 'showDownloadPopup', value: true};
+      dispatch(setInfoModalOpened(obj));
+    }
+  },[userIsOnboarded]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
   return (
