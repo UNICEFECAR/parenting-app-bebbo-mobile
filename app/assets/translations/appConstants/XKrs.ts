@@ -96,7 +96,7 @@ const XKrs = {
               settingScreenlocalizationHeader: "Država i jezik",
               settingScreenieHeader: "Uvoz / izvoz podataka",
               settingScreenexportBtnText: "Izvoz svih sačuvanih podataka",
-              settingScreenimportBtnText: "\"settingScreenimportBtnText\: \"Uvoz svih sačuvanih podataka\",",
+              settingScreenimportBtnText: "Uvoz svih sačuvanih podataka",
               settingScreenexportOptionHeader: "Izvoz podataka o",
               settingScreenshareBtntxt: "Podeli",
               settingScreengdriveBtntxt: "Google drive",
