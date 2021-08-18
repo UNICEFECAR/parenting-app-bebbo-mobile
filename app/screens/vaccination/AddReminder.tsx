@@ -5,7 +5,9 @@ import {
   ButtonSecondary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLine,
+  ButtonDelPress
 } from '@components/shared/ButtonGlobal';
 import analytics from '@react-native-firebase/analytics';
 import {
@@ -272,16 +274,16 @@ const AddReminder = ({route, navigation}: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2>{headerTitle}</Heading2>
+            <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
           {editReminderItem ? (
             <HeaderActionView>
-              <Pressable
+              <ButtonDelPress
                 onPress={() => {
                   setModalVisible(true);
                 }}>
-                <Text>{t('growthScreendeletebtnText')}</Text>
-              </Pressable>
+                <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+              </ButtonDelPress>
             </HeaderActionView>
           ) : null}
         </HeaderRowView>
