@@ -32,7 +32,7 @@ import ModalPopupContainer, {
 
 // }
 
-const ChilDevelopmentCollapsibleItem = (props: any) => {
+const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
   const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId} = props;
   // console.log(item);
   // console.log(ActivitiesData);
@@ -340,7 +340,7 @@ const ChilDevelopmentCollapsibleItem = (props: any) => {
     </MainContainer>
     </>
   );
-};
+});
 export default ChilDevelopmentCollapsibleItem;
 
 const styles = StyleSheet.create({
