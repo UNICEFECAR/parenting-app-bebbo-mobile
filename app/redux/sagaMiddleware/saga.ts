@@ -1,4 +1,4 @@
-import { onAddEditChildSuccess } from './../../services/commonApiService';
+import { onAddEditChildSuccess, onHomeapiSuccess } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -25,6 +25,7 @@ function* onFetchAPI(value: any) {
   const navigation = value.navigation;
   const languageCode = value.languageCode;
   const activeChild = value.activeChild;
+  const oldErrorObj = value.oldErrorObj;
   // console.log("prevPage--",prevPage);
   errorArr = [];
   try {
@@ -46,14 +47,14 @@ function* onFetchAPI(value: any) {
     // console.log(response,"..response..");
     // console.log(errorArr,"..errorArr..");
     if (errorArr.length > 0) {
-        yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild);
+        yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
     }
     else {
-        yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild);
+        yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
     }
     //yield put(receiveAPISuccess(response));
   } catch (e) {
-    yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild);
+    yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
   }
 }
 // async function* navigateToPage() {
@@ -106,7 +107,8 @@ function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
             // errorArr.push(response);
             // console.log("errorArr after insert---",errorArr)
           }
-        }else {
+        }
+        else {
           // yield put(insertInStore(response,dispatch,languageCode));
         }
     }
@@ -123,7 +125,7 @@ export function* fetchAPISaga() {
   yield takeEvery(FETCH_API, onFetchAPI);
 }
 
-function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any) {
+function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any) {
   console.log("errorArr on redirect--",errorArr);
   // if(errorArr && errorArr.length > 0)
   // {
@@ -145,13 +147,13 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     //dispatch action for before home page
     yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
-  //  else if (prevPage == 'Home') {
-  //   //dispatch action for before home page
-  //   yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage)
-  // }
+   else if (prevPage == 'Home') {
+    //dispatch action for before home page
+    yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
+  }
 }
 
-function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any) {
+function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any, oldErrorObj: any) {
   // if (prevPage !== 'CountryLanguageSelection') {
     try {
       const confirm = yield call(retryAlert);
@@ -169,13 +171,13 @@ function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: a
       }
       console.log("onLoadApiArray--",onLoadApiArray);
       errorArr = [];
-      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode));
+      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode,activeChild,oldErrorObj));
     } catch (e) {
       //code of what to fo if user selected cancel.
       try {
         const cancelclicked = yield call(cancelRetryAlert);
         // console.log("in cancel retry ---",errorArr);
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild, oldErrorObj);
         // if (prevPage == 'Terms') {
         //   // navigation.navigate('ChildSetup');
         //   const allJsonData = navigateToPage();
@@ -203,7 +205,7 @@ function * onApiError(payload:any,prevPage: string, dispatch: any, navigation: a
         //   });
         // }
       }catch (e) {
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
       }
     }
   // }else {

@@ -1,5 +1,5 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonDelPress, ButtonPrimary, ButtonText, ButtonTextSmLineW } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
   FormContainerFlex,
@@ -31,7 +31,12 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
-import { HeaderActionView, HeaderRowView } from '@components/shared/HeaderContainerStyle';
+import {
+  HeaderActionView,
+  HeaderIconView,
+  HeaderRowView,
+  HeaderTitleView
+} from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -146,6 +151,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               resolve,
               reject,
               child_age,
+              t
             );
             navigation.navigate('ChildProfileScreen');
           },
@@ -157,7 +163,36 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     <>
       <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        <HeaderRowView
+          style={{
+            backgroundColor: headerColor,
+            maxHeight: 50,
+          }}>
+          <HeaderIconView>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={'ic_back'} color="#FFF" size={15} />
+            </Pressable>
+          </HeaderIconView>
+          <HeaderTitleView>
+          <Heading2w numberOfLines={1}>
+              {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
+            </Heading2w>
+          </HeaderTitleView>
+          <HeaderActionView>
+            {childList?.length > 1 && childData && childData?.uuid != '' ? (
+              <ButtonDelPress
+                onPress={() =>
+                  deleteRecord(childData?.index, dispatch, childData?.uuid)
+                }>
+                <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
+              </ButtonDelPress>
+            ) : null}
+          </HeaderActionView>
+        </HeaderRowView>
+        {/* <View
           style={{
             flexDirection: 'row',
             flex: 1,
@@ -179,38 +214,18 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             </Heading2w>
             <HeaderActionView>
             {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              <Heading4Regularw
+              <ButtonDelPress
                 onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
-                {t('growthScreendeletebtnText')}
-              </Heading4Regularw>
+                <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+              </ButtonDelPress>
             ) : null}
           </HeaderActionView>
         </HeaderRowView>
           </View>
-        </View>
-        {/* <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: headerColor,
-            maxHeight: 50,
-            borderBottomColor: 'gray',
-            borderBottomWidth: 2,
-          }}>
-          <View style={{ flex: 1 }}>
-            <Pressable
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <Text>Back</Text>
-            </Pressable>
-          </View>
-          <View style={{ flex: 3 }}>
-            <Text> {'Add Expecting Child Details'}</Text>
-          </View>
         </View> */}
+       
 
         <MainContainer>
           <FormDateContainer>

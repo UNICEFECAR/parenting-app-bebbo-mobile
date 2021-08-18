@@ -3,10 +3,12 @@ import {
   ButtonColTwo,
   ButtonContainer,
   ButtonContainerTwo,
+  ButtonDelPress,
   ButtonPrimary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLineW
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -315,16 +317,16 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
               </Pressable>
             </HeaderIconView>
             <HeaderTitleView>
-              <Heading2>{headerTitle}</Heading2>
+              <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
             </HeaderTitleView>
             {editGrowthItem ? (
               <HeaderActionView>
-                <Pressable
+                <ButtonDelPress
                   onPress={() => {
                     setModalVisible(true);
                   }}>
-                  <Text>{t('growthScreendeletebtnText')}</Text>
-                </Pressable>
+                  <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
+                </ButtonDelPress>
               </HeaderActionView>
             ) : null}
           </HeaderRowView>

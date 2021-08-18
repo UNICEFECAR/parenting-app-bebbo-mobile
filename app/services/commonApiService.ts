@@ -18,10 +18,11 @@ import downloadImages from '../downloadImages/ImageStorage';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
-import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
+import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -155,6 +156,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsors();
   }
+  console.log("in commonapi sponsor ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"--allDatatoStore");
     // navigation.reset({
@@ -168,6 +170,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
   //let userEnteredChildData = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   //console.log(userEnteredChildData, "..userEnteredChildData..");
   // console.log("in onOnLoadApiSuccess");
+  console.log("in commonapi onOnLoadApiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   if (allJsonData?.length>0) {
@@ -179,6 +182,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
 }
 export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
   // navigation.navigate('HomeDrawerNavigator');
+  console.log("in commonapi onChildSetuppiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   // console.log(allDatatoStore,"..allDatatoStore..")
   navigation.reset({
@@ -189,6 +193,87 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
       },
     ],
   });
+}
+export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+  // navigation.navigate('HomeDrawerNavigator');
+  console.log(response,"--oldErrorObj---",oldErrorObj);
+  // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
+  // console.log(allDatatoStore,"..allDatatoStore..")
+  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
+      if(x.apiEndpoint == appConfig.sponsors){
+        const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
+        const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
+        if(sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
+        {
+          const ImageArray = [];
+          // let obj=[];
+          // type:val.type,title:val.title,id:val.id,
+          const sponsorObj = sponsorrespnew.data.data.map((val: any) => {
+            if(val['country_flag'] && val['country_flag'] != null && val['country_flag'].url != "")
+            {
+              return ({ country_flag: { srcUrl: val['country_flag'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_flag'].name } })
+            }else {
+              return null;
+            }
+          })
+          const partnerObj = sponsorrespnew.data.data.map((val: any) => {
+            if(val['country_sponsor_logo'] && val['country_sponsor_logo'] != null && val['country_sponsor_logo'].url != "")
+            {
+              return ({ country_sponsor_logo: { srcUrl: val['country_sponsor_logo'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_sponsor_logo'].name } })
+            }else {
+              return null;
+            }
+          })
+          const logoObj = sponsorrespnew.data.data.map((val: any) => {
+            if(val['country_national_partner'] && val['country_national_partner'] != null && val['country_national_partner'].url != "")
+            {
+              return ({ country_national_partner: { srcUrl: val['country_national_partner'].url, destFolder: RNFS.DocumentDirectoryPath + '/content', destFilename: val['country_national_partner'].name } })
+            }else {
+              return null;
+            }
+          })
+          if(logoObj && logoObj != null && logoObj[0])
+          {
+            ImageArray.push(logoObj[0].country_national_partner)
+          }
+          if(partnerObj && partnerObj != null && partnerObj[0])
+          {
+            ImageArray.push(partnerObj[0].country_sponsor_logo)
+          }
+          if(sponsorObj && sponsorObj != null && sponsorObj[0])
+          {
+            ImageArray.push(sponsorObj[0].country_flag)
+          }
+
+          const imagesDownloadResult = await downloadImages(ImageArray);
+        // console.log(imagesDownloadResult, "..image result..");
+          dispatch(setSponsorStore(imagesDownloadResult));
+          return imagesDownloadResult;
+        }else {
+          return "success";
+        }
+      }else {
+        const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
+        return allDatatoStore;
+      }
+  })
+  const results = await Promise.all(resolvedPromises);
+  console.log("done--",results);
+  // navigation.setParams({fromPage:'Loading'});
+  dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
+  navigation.reset({
+    index: 0,
+    routes: [
+      {
+        name: 'HomeDrawerNavigator',
+      },
+    ],
+  });
+  // navigation.navigate('Home',
+  //   {
+  //     screen:"Home",
+  //     params:{fromPage:"Loading"},
+  //   });
 }
 export const onApiFail = (error: any) => {
   console.log(error, "..error..");

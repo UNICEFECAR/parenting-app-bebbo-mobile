@@ -1,6 +1,6 @@
 const MKmk = {
-    translation: {
-        countryLangSelection: "Одбравте земја и јазик",
+        translation: {
+                countryLangSelection: "Одбравте земја и јазик",
 editCountryLang: "Променете",
 continueCountryLang: "Продолжете",
 selectYourCountry: "Одберете земја",
@@ -10,9 +10,9 @@ goToConfirm: "Потврдете",
 checkonce: "Проверете пред да продолжите",
 country: "Земја",
 language: "Јазик",
-
-        // walkthroughTexts
-        walkthroughTextstitle0: "Добредојдовте родители!",
+        
+                // walkthroughTexts
+                walkthroughTextstitle0: "Добредојдовте родители!",
 walkthroughTextssubtitle0: "Откријте ја Bebbo - се што треба да знаете како родител за да го поддржите растот и развојот на вашето дете",
 walkthroughTextstitle1: "Игри",
 walkthroughTextssubtitle1: "За да му помогнете на вашето дете да учи нови нешта секој ден",
@@ -22,41 +22,41 @@ walkthroughTextstitle3: "Совети",
 walkthroughTextssubtitle3: "За вашите прашања соодветни за возраста на вашето дете",
 walkthroughButtonBack: "Назад",
 walkthroughButtonNext: "Следно",
-
-        // t&C
-        tNcheader: "Услови за користење",
-tNccheckbox1: "Ги прочитав, ги разбирам и ги прифаќам условите за користење на Bebbo апликацијата",
-tNccheckbox2: "Ги прочитав, ги разбирам и ги прифаќам ",
-tNcprivacyPolicy: "Политика за приватност на Bebbo апликацијата",
-tNccheckbox3: "Прифаќам дека анонимизираните податоци од моето користење на апликацијата ќе бидат користени за подобрување на Bebbo апликацијата",
-tNcprivacyPolicyTitle: "Политика за приватност",
-tNcacceptbtn: "Ги прифаќам условите за користење",
-
-        // Loading
-        loadingText: "Податоците се вчитуваат...",
-
-        // childSetup
-        childSetupheader: "Ве молиме одвоете време да ја персонализирате вашата апликација",
-childSetupdobLabel: "Датум на раѓање на детето/очекуван датум на раѓање",
-childSetupdobSelector: "Внесете датум на раѓање/очекуван датум на раѓање",
-childSetupdueLabel: "Очекуван датум на раѓање",
-childSetupdueSelector: "Внесете очекуван датум на раѓање",
-childSetupprematureLabel: "Предвремено родено дете",
-childSetupprematureMessage: "Дете родено пред 37 недела од бременост се смета за предвремено родено",
-childSetuprelationSelectTitle: "Роднинска врска со детето",
-childSetuprelationSelectText: "Одберете",
-childSetupcontinueBtnText: "Продолжете",
-
-        // childSetupList
-        childSetupListheader: "Профилот на вашето дете е успешно креиран!",
+        
+                // t&C
+                tNcheader: "Услови за користење",
+                tNccheckbox1: "Ги прочитав, ги разбирам и ги прифаќам условите за користење на Bebbo апликацијата",
+                tNccheckbox2: "Ги прочитав, ги разбирам и ги прифаќам ",
+                tNcprivacyPolicy: "Политика за приватност на Bebbo апликацијата",
+                tNccheckbox3: "Прифаќам дека анонимизираните податоци од моето користење на апликацијата ќе бидат користени за подобрување на Bebbo апликацијата",
+                tNcprivacyPolicyTitle: "Политика за приватност",
+                tNcacceptbtn: "Ги прифаќам условите за користење",
+        
+                // Loading
+                loadingText: "Податоците се вчитуваат...",
+        
+                // childSetup
+                childSetupheader: "Ве молиме одвоете време да ја персонализирате вашата апликација",
+                childSetupdobLabel: "Датум на раѓање на детето/очекуван датум на раѓање",
+                childSetupdobSelector: "Внесете датум на раѓање/очекуван датум на раѓање",
+                childSetupdueLabel: "Очекуван датум на раѓање",
+                childSetupdueSelector: "Внесете очекуван датум на раѓање",
+                childSetupprematureLabel: "Предвремено родено дете",
+                childSetupprematureMessage: "Дете родено пред 37 недела од бременост се смета за предвремено родено",
+                childSetuprelationSelectTitle: "Роднинска врска со детето",
+                childSetuprelationSelectText: "Одберете",
+                childSetupcontinueBtnText: "Продолжете",
+        
+                // childSetupList
+                childSetupListheader: "Профилот на вашето дете е успешно креиран!",
 childSetupListsubHeader: "Ве молиме проверете ги деталите за вашето дете пред да продолжите!",
 childSetupListaddSiblingBtn: "Додадете брат или сестра",
 childSetupListeditSiblingBtn: "Проверете ги податоците за детето",
 childSetupListcontinueBtnText: "Продолжете",
 childSetupListsaveBtnText: "Сочувајте ги податоците",
-
-        // drawerMenu
-        drawerMenuchildInfo: "роден/а на",
+        
+                // drawerMenu
+                drawerMenuchildInfo: "роден/а на",
 drawerMenuhomeTxt: "Почетна страна",
 drawerMenunotiTxt: "Известувања",
 drawerMenutoolsTxt: "Алатки",
@@ -73,11 +73,11 @@ drawerMenushareTxt: "Споделете",
 drawerMenufeedbackTxt: "Ваши искуства",
 drawerMenurateTxt: "Ви се допаѓа Bebbo? Оценете ја!",
 drawerMenuPrivacyTxt: "Политика за приватност",
-        // notiScreen
-        notiScreenheaderTitle: "Известувања",
-
-        // settingScreen
-        settingScreenheaderTitle: "Подесувања",
+                // notiScreen
+                notiScreenheaderTitle: "Известувања",
+        
+                // settingScreen
+                settingScreenheaderTitle: "Подесувања",
 settingScreennotiHeaderText: "Известувања",
 settingScreennotiType1: "Сакам да добивам известувања од Bebbo",
 settingScreennotiType2: "Сакам да добивам известувања во врска со растот на моето дете",
@@ -100,40 +100,40 @@ settingScreenimportBtnText: "Импортирајте ги сите снимен
 settingScreenexportOptionHeader: "Снимете ги податоците на",
 settingScreenshareBtntxt: "Споделете",
 settingScreengdriveBtntxt: "Google drive",
-
-        // userGuide
-        userGuideheaderTitle: "Упатство за користење",
-
-        // aboutUsScreen
-        aboutUsScreenheaderTitle: "За нас",
-        // supportScreen
-        supportScreenheaderTitle: "Поставете прашање",
-supportScreenheader1text: "Наскоро!",
-supportScreenheader2text: "Функцијата не е достапна во моментот",
-        // homeScreen
-        homeScreenheaderTitle: "Bebbo",
-homeScreenchildBtnText: "Прочитајте повеќе",
-homeScreenchildInfoTitle: "Добредојдовте {{childName}} и {{parentName}}",
-homeScreendailyReadsTitle: "Што да прочитате денес",
-homeScreentodayarticle: "Денешен совет",
-homeScreentodaygame: "Игра за денес",
-homeScreenshareText: "Споделете",
-homeScreenviewDetailsText: "Детали",
-homeScreenexpText: "Какво е вашето искуство како родител?",
-homeScreenexpBtnText: "Учествувајте во кратко истражување",
-homeScreencdHeader: "Развој на вашето дете",
-homeScreencdButton: "Почнете да следите",
-homeScreenptHeader: "Играме заедно",
-homeScreenptButton: "Почнете да играте",
-homeScreenexpHeader: "Совети од експерти",
-homeScreenexpButton: "Почнете да читате",
-homeScreentoolsHeader: "Алатки",
-homeScreenvc: "Вакцинација",
-homeScreenhc: "Здравствени прегледи",
-homeScreencg: "Раст на детето",
-
-        // actScreen
-        actScreenheaderTitle: "Игри",
+        
+                // userGuide
+                userGuideheaderTitle: "Упатство за користење",
+        
+                // aboutUsScreen
+                aboutUsScreenheaderTitle: "За нас",
+                // supportScreen
+                supportScreenheaderTitle: "Поставете прашање",
+                supportScreenheader1text: "Наскоро!",
+                supportScreenheader2text: "Функцијата не е достапна во моментот",
+                // homeScreen
+                homeScreenheaderTitle: "Bebbo",
+                homeScreenchildBtnText: "Прочитајте повеќе",
+                homeScreenchildInfoTitle: "Добредојдовте {{childName}} и {{parentName}}",
+                homeScreendailyReadsTitle: "Што да прочитате денес",
+                homeScreentodayarticle: "Денешен совет",
+                homeScreentodaygame: "Игра за денес",
+                homeScreenshareText: "Споделете",
+                homeScreenviewDetailsText: "Детали",
+                homeScreenexpText: "Какво е вашето искуство како родител?",
+                homeScreenexpBtnText: "Учествувајте во кратко истражување",
+                homeScreencdHeader: "Развој на вашето дете",
+                homeScreencdButton: "Почнете да следите",
+                homeScreenptHeader: "Играме заедно",
+                homeScreenptButton: "Почнете да играте",
+                homeScreenexpHeader: "Совети од експерти",
+                homeScreenexpButton: "Почнете да читате",
+                homeScreentoolsHeader: "Алатки",
+                homeScreenvc: "Вакцинација",
+                homeScreenhc: "Здравствени прегледи",
+                homeScreencg: "Раст на детето",
+        
+                // actScreen
+                actScreenheaderTitle: "Игри",
 actScreensugacttxt: "Предлог игри",
 actScreenotheracttxt: "Други игри",
 actScreenpendingMilestone: "Незавршено",
@@ -143,25 +143,25 @@ actScreenmilestones: "Развојни постигнувања",
 actScreenprematureText: "Предвремено родено",
 actScreenshareText: "Споделете",
 actScreenaddtoFavText: "Додадете во омилени",
-        // developScreen
-        developScreenheaderTitle: "Развој на детето",
+                // developScreen
+                developScreenheaderTitle: "Развој на детето",
 developScreenprematureText: "Предвремено родено",
 developScreenchartLabel: "Незавршено",
-developScreenchartText: "Развојни постигнувања кои треба да се достигнат во овој период",
+developScreenchartText: "Постигнати развојни постигнувања за дадениот период",
 developScreenmileStoneQ: "Кои развојни постигнувања ги има постигнато вашето дете?",
 developScreentipsText: "Совети од доктори",
 developScreenmileStone: "Развојно постигнување",
 developScreenrelatedArticleText: "Прочитајте поврзани совети",
 developScreenrelatedAct: "Поврзани игри",
 developScreenviewDetails: "Прочитајте детали",
-        // articleScreen
-        articleScreenheaderTitle: "Совети",
+                // articleScreen
+                articleScreenheaderTitle: "Совети",
 articleScreensearchPlaceHolder: "Пребарувајте според клучни зборови",
 articleScreennoSearchResult: "Не е пронајден совет",
 articleScreenshareText: "Споделете",
 articleScreenaddtoFavText: "Додадете во омилени",
-        // growthScreen
-        growthScreenheaderTitle: "Раст на детето",
+                // growthScreen
+                growthScreenheaderTitle: "Раст на детето",
 growthScreengrowthDataTitle: "Детето {{child name}} има ... месеци",
 growthScreennoGrowthData: "Податоците за раст на вашето дете не се внесени",
 growthScreennoGrowthDataHelpText: "Ова ќе ви помогне да го следите растот на вашето дете",
@@ -177,8 +177,8 @@ growthScreenhText: "Висина",
 growthScreenwText: "Тежина",
 growthScreeneditText: "Променете",
 growthScreendelText: "Избришете",
-growthScreenkgText: "Кг",
-growthScreencmText: "Цм",
+growthScreenkgText: "кг",
+growthScreencmText: "цм",
 growthScreensumHeading: "Накратко",
 growthScreenallMeasureHeader: "Сите мерења",
 growthScreendeletebtnText: "Избришете",
@@ -196,8 +196,8 @@ growthScreenaddWeight: "Додадете тежина",
 growthScreenaddHeight: "Додадете висина",
 growthScreennewGrowthBottomText: "Мерењето на детето дома е помалку сигурно отколку мерењето кај доктор и може да има влијание на точноста на графиконот на раст",
 growthScreenrelatedArticle: "Поврзани совети",
-        // Sprint4 Screens
-        noBorn: "Не е уште родено",
+                // Sprint4 Screens
+                noBorn: "Не е уште родено",
 noday: "0 денови",
 yearstag: "години",
 yeartag: "година",
@@ -300,8 +300,8 @@ hcDeleteWarning: "Дали сакате да ги избришетедетали
 hcdateText: "Датум на преглед",
 hcenterDateText: "Внесете датум на здравствен преглед",
 hcChildVaccineQ: "Дали детето прими вакцина?",
-        /// sprin5 screens
-        tabbarLabel1: "Почетна страна",
+                /// sprin5 screens
+                tabbarLabel1: "Почетна страна",
 tabbarLabel2: "Игри",
 tabbarLabel3: "Алатки",
 tabbarLabel4: "Совети",
@@ -309,8 +309,9 @@ tabbarLabel5: "Развој",
 tabbarLabel6: "Вакцинација",
 tabbarLabel7: "Здравствен преглед",
 tabbarLabel8: "Раст на детето",
- //sprint 6 screens after v3 of language file 
-manageProfileTxt: "Управувајте со профилот",
+                // translation replacement closed till above
+                //sprint 6 screens after v3 of language file 
+                manageProfileTxt: "Управувајте со профилот",
 removePhotoTxt: "Отстранете ја фотографијата",
 removeWarnTxt: "Сакате ли да ја отстраните фотографијата?",
 removeOption1: "Откажи",
@@ -365,7 +366,14 @@ editChildDobLabel: "Внесете датум на раѓање",
 childInfoBabyText: "Бебе",
 childInfoParentText: "Родител",
 childInfoAndText: "и",
-        // translation replacement closed till above
-    }
+                // translation replacement closed till above
+                childSetupdobText: "Enter date of birth",
+                growthModalText: "Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
+                vaccineModalText: "Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
+                hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
+                tryText: 'Try again...',
+                deleteSuccess:"User Deleted Succesfully",
+          deleteError:"User Delete Error.Please try again.."    
+        }
 }
 export default MKmk;
