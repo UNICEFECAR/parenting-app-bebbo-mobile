@@ -17,7 +17,7 @@ const item = {
 const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
- // console.log(sponsors, '..11sponsors..');
+  console.log(sponsors, '..11sponsors..');
   return (
     <LoadingContainer>
       <MainView>
@@ -49,16 +49,12 @@ const LoadingScreenComponent = (props: any) => {
               <PartnerLogo 
               style={{
                 flex: 1,
-  resizeMode: 'contain'
+                resizeMode: 'contain'
               }}
                 source={
-                  sponsors.length > 0
+                  sponsors?.country_national_partner!=null
                     ? {
-                        uri:
-                          'file://' +
-                          sponsors[0].destFolder +
-                          '/' +
-                          sponsors[0].destFilename,
+                        uri:sponsors?.country_national_partner
                       }
                     : require('')
                 }
@@ -73,16 +69,12 @@ const LoadingScreenComponent = (props: any) => {
               <SponsorLogo
               style={{
                 flex: 1,
-  resizeMode: 'contain'
+                resizeMode: 'contain'
               }}
                 source={
-                  sponsors.length > 0
+                  sponsors?.country_sponsor_logo!=null
                     ? {
-                        uri:
-                          'file://' +
-                          sponsors[1].destFolder +
-                          '/' +
-                          sponsors[1].destFilename,
+                        uri:sponsors?.country_sponsor_logo
                       }
                     : require('')
                 }
