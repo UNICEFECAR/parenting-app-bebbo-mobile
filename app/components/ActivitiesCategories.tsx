@@ -75,7 +75,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
                                                 </OuterIconLeft>
                                             </OuterIconRow>
 
-                                            <FilterText>{activityCategoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
+                                            <FilterText numberOfLines={2}>{activityCategoryData.filter((x: any) => x.id==item.id)[0].name }</FilterText>
                                         </FilterBox>
                                     </Pressable>)
                                 })
