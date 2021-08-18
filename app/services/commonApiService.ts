@@ -109,7 +109,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
     response = response[0];
     if(response.data && response.data.status && response.data.status == 200)
     {
-      const ImageArray = [];
+      
       // let obj=[];
       // type:val.type,title:val.title,id:val.id,
       const sponsorObj = response.data.data.map((val: any) => {
@@ -136,22 +136,56 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
           return null;
         }
       })
+      let sponsarsObj:any={};
       if(logoObj && logoObj != null && logoObj[0])
       {
+        const ImageArray = [];
         ImageArray.push(logoObj[0].country_national_partner)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_national_partner=null;
+        }
+      }
+      else{
+        sponsarsObj.country_national_partner=null;
       }
       if(partnerObj && partnerObj != null && partnerObj[0])
       {
+        const ImageArray = [];
         ImageArray.push(partnerObj[0].country_sponsor_logo)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_sponsor_logo=null;
+        }
       }
-      if(sponsorObj && sponsorObj != null && sponsorObj[0])
-      {
-        ImageArray.push(sponsorObj[0].country_flag)
-      }
+      else{
+         sponsarsObj.country_sponsor_logo=null;
+       }
+      // if(sponsorObj && sponsorObj != null && sponsorObj[0])
+      // {
+      //   const ImageArray = [];
+      //   ImageArray.push(sponsorObj[0].country_flag)
+      //   const imagesDownloadResult = await downloadImages(ImageArray);
+      //   if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+      //     sponsarsObj.country_flag='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+      //   }
+      //   else{
+      //     sponsarsObj.country_flag=null;
+      //   }
+      // }
+      // else{
+      //   sponsarsObj.country_flag=null;
+      // }
 
-      const imagesDownloadResult = await downloadImages(ImageArray);
-    // console.log(imagesDownloadResult, "..image result..");
-      dispatch(setSponsorStore(imagesDownloadResult));
+    
+      console.log(sponsarsObj, "..sponsarsObj..");
+      dispatch(setSponsorStore(sponsarsObj));
     }
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsors();
@@ -205,7 +239,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
         if(sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
         {
-          const ImageArray = [];
+          // const ImageArray = [];
           // let obj=[];
           // type:val.type,title:val.title,id:val.id,
           const sponsorObj = sponsorrespnew.data.data.map((val: any) => {
@@ -232,23 +266,54 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
               return null;
             }
           })
-          if(logoObj && logoObj != null && logoObj[0])
-          {
-            ImageArray.push(logoObj[0].country_national_partner)
-          }
-          if(partnerObj && partnerObj != null && partnerObj[0])
-          {
-            ImageArray.push(partnerObj[0].country_sponsor_logo)
-          }
-          if(sponsorObj && sponsorObj != null && sponsorObj[0])
-          {
-            ImageArray.push(sponsorObj[0].country_flag)
-          }
+      let sponsarsObj:any={};
+      if(logoObj && logoObj != null && logoObj[0])
+      {
+        const ImageArray = [];
+        ImageArray.push(logoObj[0].country_national_partner)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_national_partner='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_national_partner=null;
+        }
+      }
+      else{
+        sponsarsObj.country_national_partner=null;
+      }
+      if(partnerObj && partnerObj != null && partnerObj[0])
+      {
+        const ImageArray = [];
+        ImageArray.push(partnerObj[0].country_sponsor_logo)
+        const imagesDownloadResult = await downloadImages(ImageArray);
+        if(imagesDownloadResult && imagesDownloadResult[0].success==true){
+          sponsarsObj.country_sponsor_logo='file://' +imagesDownloadResult[0].args.destFolder +'/' +imagesDownloadResult[0].args.destFilename; 
+        }
+        else{
+          sponsarsObj.country_sponsor_logo=null;
+        }
+      }
+      else{
+         sponsarsObj.country_sponsor_logo=null;
+       }
+          // if(logoObj && logoObj != null && logoObj[0])
+          // {
+          //   ImageArray.push(logoObj[0].country_national_partner)
+          // }
+          // if(partnerObj && partnerObj != null && partnerObj[0])
+          // {
+          //   ImageArray.push(partnerObj[0].country_sponsor_logo)
+          // }
+          // if(sponsorObj && sponsorObj != null && sponsorObj[0])
+          // {
+          //   ImageArray.push(sponsorObj[0].country_flag)
+          // }
 
-          const imagesDownloadResult = await downloadImages(ImageArray);
+          //const imagesDownloadResult = await downloadImages(ImageArray);
         // console.log(imagesDownloadResult, "..image result..");
-          dispatch(setSponsorStore(imagesDownloadResult));
-          return imagesDownloadResult;
+          dispatch(setSponsorStore(sponsarsObj));
+          return sponsarsObj;
         }else {
           return "success";
         }
