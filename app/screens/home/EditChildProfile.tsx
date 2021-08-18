@@ -3,8 +3,10 @@ import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
 import {
   ButtonContainer,
+  ButtonDelPress,
   ButtonPrimary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLineW
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainerFlex,
@@ -215,7 +217,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           setphotoUri('');
           setCapturedImage('');
         } else {
-          Alert.alert('Try again...');
+          Alert.alert(t('tryText'));
         }
       }
       else{
@@ -225,7 +227,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       }
       })
       .catch((error: any) => {
-        Alert.alert('Try again..');
+        Alert.alert(t('tryText'));
       });
   };
   const handleImageOptionClick = async (index: number) => {
@@ -293,6 +295,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
               resolve,
               reject,
               child_age,
+              t
             );
             navigation.navigate('ChildProfileScreen');
           },
@@ -420,12 +423,12 @@ const EditChildProfile = ({route, navigation}: Props) => {
           </HeaderTitleView>
           <HeaderActionView>
             {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              <Heading4Regularw
+              <ButtonDelPress
                 onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
-                {t('growthScreendeletebtnText')}
-              </Heading4Regularw>
+                <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
+              </ButtonDelPress>
             ) : null}
           </HeaderActionView>
         </HeaderRowView>
