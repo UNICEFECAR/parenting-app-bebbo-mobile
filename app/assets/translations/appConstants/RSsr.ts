@@ -371,7 +371,10 @@ childInfoAndText: "i",
               growthModalText: "Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
               vaccineModalText: "Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
               hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
-          }
+              tryText: 'Try again...',
+              deleteSuccess:"User Deleted Succesfully",
+        deleteError:"User Delete Error.Please try again.."  
+       }
 
 }
 export default RSsr;
