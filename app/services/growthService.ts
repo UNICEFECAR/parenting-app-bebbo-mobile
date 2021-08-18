@@ -128,9 +128,9 @@ export const formatHeightData = (data: any) => {
     // }
 
     // if (Number(item.name) > 87.0) {
-    topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
-    middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
-    bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+    topArea.push({ x: Number(item.name)/30, y: item.sd3, y0: item.sd4 });
+    middleArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd3 });
+    bottomArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd4neg });
     // }
   })
   obj = {
