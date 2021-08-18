@@ -4,6 +4,7 @@ import {
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import { MainContainer,AreaContainer } from '@components/shared/Container';
+import { VerticalDivider } from '@components/shared/Divider';
 import { FDirRow, FlexColEnd,FlexCol} from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, {
@@ -240,9 +241,9 @@ const child_age = useAppSelector(
                   }}>
                   <Text>{t('editProfileBtn')}</Text>
                 </ButtonTextSmLine>
-                <View>
+                <VerticalDivider>
                   <Text>|</Text>
-                </View>
+                </VerticalDivider>
                 <ButtonTextSmLine numberOfLines={2}
                   onPress={() => {
                     setActiveChild(languageCode,data.uuid,dispatch,child_age);
@@ -292,7 +293,7 @@ const child_age = useAppSelector(
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-          <Heading2w>{t('childProfileHeader')}</Heading2w>
+          <Heading2w numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
           </HeaderTitleView>
         </HeaderRowView>
         <FlexCol>

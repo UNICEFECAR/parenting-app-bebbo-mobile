@@ -299,7 +299,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2>{headerTitle}</Heading2>
+            <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
           {/* <HeaderActionView>
             <Pressable
@@ -444,10 +444,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
                             });
                           }}>
                           <FlexFDirRowSpace>
-                            <Heading3>
+                            <Heading3 style={{flexShrink:1}} numberOfLines={2}>
                               {weightValue
                                 ? weightValue
                                 : t('growthScreenwText')}
+                                
                             </Heading3>
                             <Heading4Regular>
                               {t('growthScreenkgText')}
@@ -466,7 +467,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                             });
                           }}>
                           <FlexFDirRowSpace>
-                            <Heading3>
+                          <Heading3 style={{flexShrink:1}} numberOfLines={2}>
                               {heightValue
                                 ? heightValue
                                 : t('growthScreenhText')}

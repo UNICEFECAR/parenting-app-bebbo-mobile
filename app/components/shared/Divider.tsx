@@ -37,6 +37,10 @@ margin-right:7px;
 export const BulletsView = styled.View`
 flex-direction:row;
 `;
+export const VerticalDivider = styled.View`
+margin:0 4px;
+`;
+
 
 
 
