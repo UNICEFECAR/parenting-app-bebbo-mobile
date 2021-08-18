@@ -15,6 +15,7 @@ import {
   FormContainerFlex1,
   FormDateAction,
   FormDateText,
+  FormDateText1,
   FormInputBox,
   FormInputGroup,
   FormInputText,
@@ -342,7 +343,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
           </FormInputText> */}
                 {Platform.OS != 'ios' ? (
                   <FormInputBox>
-                    <FormDateText>
+                    <FormDateText1>
                       <Text>
                         {' '}
                         {measureDate
@@ -366,14 +367,14 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                           onChange={onmeasureDateChange}
                         />
                       )}
-                    </FormDateText>
+                    </FormDateText1>
                     <FormDateAction>
                       <Icon name="ic_calendar" size={20} color="#000" />
                     </FormDateAction>
                   </FormInputBox>
                 ) : (
                   <FormInputBox>
-                     <FormDateText>
+                     <FormDateText1>
                       <Text>
                         {' '}
                         {measureDate
@@ -409,7 +410,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               minimumDate={new Date(minChildGrwothDate)}
               />
 
-                    </FormDateText>
+                    </FormDateText1>
                     <FormDateAction>
                       <Icon name="ic_calendar" size={20} color="#000" />
                     </FormDateAction>

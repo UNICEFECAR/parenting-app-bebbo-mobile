@@ -8,7 +8,7 @@ import {
   ButtonSecondaryTint,
   ButtonTertiary,
   ButtonText,
-  ButtonTextSmLineW
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -325,7 +325,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   onPress={() => {
                     setModalVisible(true);
                   }}>
-                  <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
+                  <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
                 </ButtonDelPress>
               </HeaderActionView>
             ) : null}
