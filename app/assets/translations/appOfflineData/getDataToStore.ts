@@ -93,6 +93,86 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
 
 
 }
+
+export const getAllDataOnRetryToStore = async (apiEndpoint:string,languageCode:string,dispatch:any,prevPage:string,activeChild?:any) => {
+    return new Promise(async (resolve, reject) => {
+        let Entity:any;
+        if(apiEndpoint == appConfig.basicPages)
+        {
+            const basicData = await getDataToStore(languageCode,dispatch,BasicPagesSchema,Entity as BasicPagesEntity,basicPagesData,setAllTermsData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.taxonomies)
+        {
+            const taxonomyData = await getDataToStore(languageCode,dispatch,TaxonomySchema,Entity as TaxonomyEntity,taxonomydata,setAllTaxonomyData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.dailyMessages)
+        {
+            const alldailyNotiData = await getDataToStore(languageCode,dispatch,DailyHomeMessagesSchema,Entity as DailyHomeMessagesEntity,dailyHomeNotificationdata,setDailyMessagesData,'id');
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.standardDeviation)
+        {
+            const allstanDevWFHData = await getDataToStore(languageCode,dispatch,StandardDevWeightForHeightSchema,Entity as StandardDevWeightForHeightEntity,standardDevData,setStandardDevWFHData);
+            const allstanDevHFAData = await getDataToStore(languageCode,dispatch,StandardDevHeightForAgeSchema,Entity as StandardDevHeightForAgeEntity,standardDevData,setStandardDevHFAData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.vaccinations)
+        {
+            const allVaccinesData = await getDataToStore(languageCode,dispatch,VaccinationSchema,Entity as VaccinationEntity,vaccineData,setAllVaccineData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.healthCheckupData)
+        {
+            const allHealthCheckupsData = await getDataToStore(languageCode,dispatch,HealthCheckUpsSchema,Entity as HealthCheckUpsEntity,healthCheckupsData,setAllHealthCheckupsData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.childDevelopmentData)
+        {
+            const allChildDevlopmentData = await getDataToStore(languageCode,dispatch,ChildDevelopmentSchema,Entity as ChildDevelopmentEntity,ChildDevelopmentData,setAllChildDevData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.childdevBoyPinnedContent || apiEndpoint == appConfig.childdevGirlPinnedContent)
+        {
+            const allPinnedChildDevlopmentData = await getDataToStore(languageCode,dispatch,PinnedChildDevelopmentSchema,Entity as PinnedChildDevelopmentEntity,PinnedChildDevData,setAllPinnedChildDevData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.milestones)
+        {
+            const allMileStonesData = await getDataToStore(languageCode,dispatch,MilestonesSchema,Entity as MilestonesEntity,MileStonesData,setAllMileStonesData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.videoArticles)
+        {
+            const allVideoArticlesData = await getDataToStore(languageCode,dispatch,VideoArticleEntitySchema,Entity as VideoArticleEntity,VideoArticleData,setAllVideoArticlesData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.activities)
+        {
+            const allActivitiesData = await getDataToStore(languageCode,dispatch,ActivitiesEntitySchema,Entity as ActivitiesEntity,ActivitiesData,setAllActivitiesData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.surveys)
+        {
+            const allSurveyData = await getDataToStore(languageCode,dispatch,SurveysSchema,Entity as SurveysEntity,SurveyData,setAllSurveyData);
+            resolve("success");
+        }
+        else if(apiEndpoint == appConfig.articles)
+        {
+            const currentChildData = {
+                "gender":activeChild.gender,
+                "parent_gender":activeChild.parent_gender,
+                "taxonomyData":activeChild.taxonomyData
+              }
+            const artData = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData);
+            resolve("success");
+        }else {
+            resolve("fail");
+        }
+    });
+}
+
 const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:ObjectSchema,SchemaEntity:any,jsonData:any,setAllHardcodedData:Function,sortBy?:any,currentChildData?:any) => {
     return new Promise(async (resolve, reject) => {
         console.log(currentChildData,"..currentChildData..")
@@ -150,8 +230,8 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
         else {
             dataToStore = databaseData2;
         }
-            databaseData2.removeAllListeners();
-            databaselistener = databaseData2.addListener(() => {
+            // databaseData2.removeAllListeners();
+            // databaselistener = databaseData2.addListener(() => {
                 // console.log("listener called");
                 if(dataToStore?.length > 0)
                 {
@@ -163,7 +243,7 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
                     dispatch(setAllHardcodedData(JSON.stringify(offlineData)));
                     resolve(offlineData);
                 }
-            });
+            // });
     });
 }
 
