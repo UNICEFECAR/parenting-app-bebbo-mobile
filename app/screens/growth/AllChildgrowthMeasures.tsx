@@ -121,7 +121,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
                 padding: 15,
                 borderRadius: 4,
               }}
-            /> */}
+            /> */}</View>
             <ButtonContainer style={{backgroundColor: backgroundColor}}>
               <ShiftFromTop10>
                 <ButtonPrimary
@@ -136,7 +136,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
                 </ButtonPrimary>
               </ShiftFromTop10>
             </ButtonContainer>
-          </View>
+          
           </FlexCol>
         
       </SafeAreaView>
