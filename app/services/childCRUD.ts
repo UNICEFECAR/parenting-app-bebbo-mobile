@@ -469,7 +469,7 @@ export const getAllChildren = async (dispatch: any) => {
   
 }
 
-export const deleteChild = async (languageCode: any, index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any) => {
+export const deleteChild = async (languageCode: any, index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any,t:any) => {
   //setActiveChild(data.uuid,dispatch,child_age);
   let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
@@ -481,9 +481,9 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
       if (currentActiveChildId == recordId) {
         setActiveChild(languageCode, '', dispatch, child_age);
       }
-    }
+    }    
     ToastAndroid.showWithGravityAndOffset(
-      "User Deleted Succesfully",
+      t('deleteSuccess'),
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM,
       25,
@@ -492,14 +492,14 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
     resolve("success");
   }
   else {
-    reject("error");
     ToastAndroid.showWithGravityAndOffset(
-      "User Delete Error.Please try again..",
+      t('deleteError'),
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM,
       25,
       50
     );
+    reject("error");
   }
   // reject("error");
 
