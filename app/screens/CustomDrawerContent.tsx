@@ -160,7 +160,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenuhomeTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuhomeTxt')}</Heading4>
           </DrawerLinkView>
 
 
@@ -172,7 +172,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenunotiTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenunotiTxt')}</Heading4>
             <BubbleContainer>
               <BubbleView>
                 <Heading5>10</Heading5>
@@ -190,7 +190,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_tools" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4>{t('drawerMenutoolsTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenutoolsTxt')}</Heading4>
             <Icon
               style={{ flex: 1, textAlign: 'right', alignSelf: 'center' }}
               name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'}
@@ -214,7 +214,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4>{t('drawerMenucdTxt')}</Heading4>
+                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenucdTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -231,7 +231,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4>{t('drawerMenuvcTxt')}</Heading4>
+                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenuvcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -248,7 +248,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4>{t('drawerMenuhcTxt')}</Heading4>
+                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenuhcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -265,7 +265,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4>{t('drawerMenucgTxt')}</Heading4>
+                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenucgTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -278,7 +278,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenuchatTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('Favourites')}>
             <OuterIconRow>
@@ -287,7 +287,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenufavTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenufavTxt')}</Heading4>
             <BubbleContainer>
               <BubbleView>
                 <Heading5>10</Heading5>
@@ -301,7 +301,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenuabtTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuabtTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('UserGuide')}>
             <OuterIconRow>
@@ -310,7 +310,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenuugTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuugTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('SettingsScreen')}>
             <OuterIconRow>
@@ -319,7 +319,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4>{t('drawerMenusetTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenusetTxt')}</Heading4>
           </DrawerLinkView>
 
           <DrawerLinkView onPress={() => onShare()}>
@@ -328,7 +328,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4>{t('drawerMenushareTxt')}</Heading4>
+            <Heading4 style={{flexShrink: 1}}>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => {  setModalVisible(true);}}>
             <OuterIconRow>

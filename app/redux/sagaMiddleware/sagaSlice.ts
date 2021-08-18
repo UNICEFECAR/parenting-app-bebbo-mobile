@@ -16,7 +16,7 @@ let errorarray: WritableDraft<[]> = [];
               // console.log(state.errorObj.length);
               console.log("receiveOnloadAPIFailure--",action.payload);
               //write code to check if element already in array.
-              // action.payload.errorArr[1].apiEndpoint = "milestones";
+              // action.payload.errorArr[0].apiEndpoint = "activities";
               // console.log("after receiveOnloadAPIFailure--",action.payload);
               if(action.payload?.fromPage == "OnLoad"){
                 state.errorObj = []
