@@ -1,42 +1,42 @@
 const KGky = {
-    translation: {
-        countryLangSelection: "Өлкөнү жана тилди тандадыңыз",
-editCountryLang: "Редакциялоо",
+        translation: {
+                countryLangSelection: "Өлкөнү жана тилди тандадыңыз",
+editCountryLang: " Түзөтүү",
 continueCountryLang: "Улантуу",
 selectYourCountry: "Өлкөнү тандаңыз",
 selectYourLang: "Тилди тандаңыз",
 goToLanguageSelection: "Тилди тандоого өтүү",
 goToConfirm: "Тастыктоого өтүү",
-checkonce: "Улантуудан мурун тандаңыз",
+checkonce: "Улантуудан мурун текшериңиз",
 country: "Өлкө",
 language: "Тил",
-
-        // walkthroughTexts
-        walkthroughTextstitle0: "Кош келиңиздер, ата-энелер!",
-walkthroughTextssubtitle0: "Беббо сиздин жардамчыңыз, бул жерден балаңыздын өнүгүүсү жөнүндө керек маалыматты табасыз.",
-walkthroughTextstitle1: "Оюндар",
-walkthroughTextssubtitle1: "балаңызга жаңы нерселерди үйрөнгөнгө жардам берет",
-walkthroughTextstitle2: "Инструменттер",
-walkthroughTextssubtitle2: "баланын өсүүсүн, иммунизацияны жана ден-соолугун көзөмөлдөө үчүн.",
-walkthroughTextstitle3: "Кеңеш",
-walkthroughTextssubtitle3: "Балаңызга керек болгон нерселер боюнча суроолорго жооп катары.",
-walkthroughButtonBack: "Артка",
-walkthroughButtonNext: "Кийинки",
-
-        // t&C
-        tNcheader: "Шарттар",
+        
+                // walkthroughTexts
+                walkthroughTextstitle0: "Кош келиңиздер, ата-энелер!",
+                walkthroughTextssubtitle0: "Беббо сиздин жардамчыңыз, бул жерден балаңыздын өнүгүүсү жөнүндө керек маалыматты табасыз.",
+                walkthroughTextstitle1: "Оюндар",
+                walkthroughTextssubtitle1: "балаңызга жаңы нерселерди үйрөнгөнгө жардам берет",
+                walkthroughTextstitle2: "Куралдар",
+                walkthroughTextssubtitle2: "баланын өсүүсүн, иммунизацияны жана ден-соолугун көзөмөлдөө үчүн.",
+                walkthroughTextstitle3: "Кеңеш",
+                walkthroughTextssubtitle3: "Балаңызга керек болгон нерселер боюнча суроолорго жооп катары.",
+                walkthroughButtonBack: "Артка",
+                walkthroughButtonNext: "Кийинки",
+        
+                // t&C
+                tNcheader: "Жоболор жана шарттар",
 tNccheckbox1: "Беббо тиркемесин колдонуу боюнча шарттар менен тааныштым, түшүндүм жана кабыл алдым",
 tNccheckbox2: "Тааныштым, түшүндүм жана кабыл алдым",
 tNcprivacyPolicy: "Беббо тиркемесинин купуялык саясатын",
 tNccheckbox3: "Тиркемени колдонуу жөнүндө анонимдүү маалыматтар анын иштешин жакшыртуу максатында чогултулат деп макулмун (милдеттүү эмес)",
 tNcprivacyPolicyTitle: "Купуялык саясаты",
 tNcacceptbtn: "Мен шарттарды кабыл алам",
-
-        // Loading
-        loadingText: "Маалыматтар жүктөлүүдө ...",
-
-        // childSetup
-        childSetupheader: "Тиркемени орнотуп алалы",
+        
+                // Loading
+                loadingText: "Маалыматтар жүктөлүүдө ...",
+        
+                // childSetup
+                childSetupheader: "Тиркемени орнотуп алалы",
 childSetupdobLabel: "Баланын туулган күнү / болжолдуу төрөлүү күнү",
 childSetupdobSelector: "Туулган күнүн/болжолдуу төрөлүү күнүн киргизиңиз",
 childSetupdueLabel: "Баштапкы болжолдуу төрөлүү күнү",
@@ -46,38 +46,38 @@ childSetupprematureMessage: "37-жумасына чейин төрөлгөн б�
 childSetuprelationSelectTitle: "Балага ким болосуз?",
 childSetuprelationSelectText: "Тандоо",
 childSetupcontinueBtnText: "Улантуу",
-
-        // childSetupList
-        childSetupListheader: "Сиз балаңыздын профилин түздүңүз!",
-childSetupListsubHeader: "Улантуудан мурун балаңыздын толук маалыматтарын текшериңиз!",
-childSetupListaddSiblingBtn: "Эжесин же агасын кошуңуз",
-childSetupListeditSiblingBtn: "Бала тураалуу маалыматты түзөтүңүз",
-childSetupListcontinueBtnText: "Улантуу",
-childSetupListsaveBtnText: "Маалыматтарды сактоо",
-
-        // drawerMenu
-        drawerMenuchildInfo: "туулган күнү: {{childdob}}",
-drawerMenuhomeTxt: "башкы бет",
-drawerMenunotiTxt: "Эскертмелер",
-drawerMenutoolsTxt: "Инструменттер",
-drawerMenucdTxt: "Баланын өнүгүшү",
-drawerMenuvcTxt: "Эмдөө",
-drawerMenuhcTxt: "Профилактикалык медициналык текшерүүдөн өткөрүү",
-drawerMenucgTxt: "Баланын өсүшү",
-drawerMenuchatTxt: "Баарлашуу",
-drawerMenufavTxt: "Тандалмалар",
-drawerMenuabtTxt: "Биз жөнүндө",
-drawerMenuugTxt: "Колдонуучунун колдонмосу",
-drawerMenusetTxt: "Орнотуулар",
-drawerMenushareTxt: "Бөлүшүү",
-drawerMenufeedbackTxt: "Кайтарым байланыш",
-drawerMenurateTxt: "Сизге Беббо жактыбы? Баалаңыз!",
-drawerMenuPrivacyTxt: "Купуялык саясаты",
-        // notiScreen
-        notiScreenheaderTitle: "Эскертмелер",
-
-        // settingScreen
-        settingScreenheaderTitle: "Орнотуулар",
+        
+                // childSetupList
+                childSetupListheader: "Сиз балаңыздын профилин түздүңүз!",
+                childSetupListsubHeader: "Улантуудан мурун балаңыздын толук маалыматтарын текшериңиз!",
+                childSetupListaddSiblingBtn: "Эжесин же агасын кошуңуз",
+                childSetupListeditSiblingBtn: "Бала тураалуу маалыматты түзөтүңүз",
+                childSetupListcontinueBtnText: "Улантуу",
+                childSetupListsaveBtnText: "Маалыматтарды сактоо",
+        
+                // drawerMenu
+                drawerMenuchildInfo: "туулган күнү: {{childdob}}",
+                drawerMenuhomeTxt: "башкы бет",
+                drawerMenunotiTxt: "Эскертмелер",
+                drawerMenutoolsTxt: "Инструменттер",
+                drawerMenucdTxt: "Баланын өнүгүшү",
+                drawerMenuvcTxt: "Эмдөө",
+                drawerMenuhcTxt: "Профилактикалык медициналык текшерүүдөн өткөрүү",
+                drawerMenucgTxt: "Баланын өсүшү",
+                drawerMenuchatTxt: "Баарлашуу",
+                drawerMenufavTxt: "Тандалмалар",
+                drawerMenuabtTxt: "Биз жөнүндө",
+                drawerMenuugTxt: "Колдонуучу көрсөтмөсү",
+                drawerMenusetTxt: "Орнотуулар",
+                drawerMenushareTxt: "Бөлүшүү",
+                drawerMenufeedbackTxt: "Кайтарым байланыш",
+                drawerMenurateTxt: "Сизге Беббо жактыбы? Баалаңыз!",
+                drawerMenuPrivacyTxt: "Купуялык саясаты",
+                // notiScreen
+                notiScreenheaderTitle: "Эскертмелер",
+        
+                // settingScreen
+                settingScreenheaderTitle: "Орнотуулар",
 settingScreennotiHeaderText: "Эскертмелер",
 settingScreennotiType1: "Эскертмелерди Bebbo аркылуу алгым келет",
 settingScreennotiType2: "Баламдын өсүшү жөнүндө эскертмелерди алгым келет",
@@ -91,7 +91,7 @@ settingScreendownldSubHeaderText: "Акыркы жаңыланган маалы�
 settingScreendownldSubHeader2Text: "Тиркемедеги бардык маалыматтарды жүктөп алыңыз",
 settingScreendownldSubHeader3Text: "Тиркемени оффлайн режиминде колдонуу үчүн бардык маалыматтарды жүктөп алыңыз",
 settingScreendownldlast: "Акыркы жүктөө {{downloadDate}}",
-settingScreendownldupdateBtn: "Жаңыланган маалыматты жүктөө",
+settingScreendownldupdateBtn: "Жаңыртууну жүктөө",
 settingScreendownldallBtn: "Бардык маалыматтарды жүктөп алыңыз",
 settingScreenlocalizationHeader: "Өлкө жана тил",
 settingScreenieHeader: "Маалыматтарды импорттоо / экспорттоо",
@@ -100,18 +100,18 @@ settingScreenimportBtnText: "Бардык сакталган маалыматт�
 settingScreenexportOptionHeader: "Маалыматтарды экспорттоо",
 settingScreenshareBtntxt: "Бөлүшүү",
 settingScreengdriveBtntxt: "Google диск",
-
-        // userGuide
-        userGuideheaderTitle: "Колдонуучунун колдонмосу",
-
-        // aboutUsScreen
-        aboutUsScreenheaderTitle: "Биз жөнүндө",
-        // supportScreen
-        supportScreenheaderTitle: "Баарлашуу",
+        
+                // userGuide
+                userGuideheaderTitle: "Колдонуучунун колдонмосу",
+        
+                // aboutUsScreen
+                aboutUsScreenheaderTitle: "Биз жөнүндө",
+                // supportScreen
+                supportScreenheaderTitle: "Баарлашуу",
 supportScreenheader1text: "Жакында!",
 supportScreenheader2text: "Баарлашуу учурда жеткиликсиз",
-        // homeScreen
-        homeScreenheaderTitle: "Беббо",
+                // homeScreen
+                homeScreenheaderTitle: "Беббо",
 homeScreenchildBtnText: "Андан ары окуу",
 homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}},",
 homeScreendailyReadsTitle: "Күнүмдүк материалдар",
@@ -131,20 +131,20 @@ homeScreentoolsHeader: "Инструменттер",
 homeScreenvc: "Эмдөө",
 homeScreenhc: "Профилактикалык медициналык текшерүүдөн өтүү",
 homeScreencg: "Баланын өсүшү",
-
-        // actScreen
-        actScreenheaderTitle: "Оюндар",
-actScreensugacttxt: "Сунушталган оюндар",
-actScreenotheracttxt: "Башка оюндар",
-actScreenpendingMilestone: "Процессте",
-actScreencompleteMilestone: "Аякталды",
-actScreentrack: "Көзөмөлдөө",
-actScreenmilestones: "Өнүгүү баскычтары",
-actScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
-actScreenshareText: "Бөлүшүү",
-actScreenaddtoFavText: "Тандалмаларга кошуу",
-        // developScreen
-        developScreenheaderTitle: "Баланын өнүгүшү",
+        
+                // actScreen
+                actScreenheaderTitle: "Оюндар",
+                actScreensugacttxt: "Сунушталган оюндар",
+                actScreenotheracttxt: "Башка оюндар",
+                actScreenpendingMilestone: "Процессте",
+                actScreencompleteMilestone: "Аякталды",
+                actScreentrack: "Көзөмөлдөө",
+                actScreenmilestones: "Өнүгүү баскычтары",
+                actScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
+                actScreenshareText: "Бөлүшүү",
+                actScreenaddtoFavText: "Тандалмаларга кошуу",
+                // developScreen
+                developScreenheaderTitle: "Баланын өнүгүшү",
 developScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
 developScreenchartLabel: "Процессте",
 developScreenchartText: "Ушул мезгилге чейин  жетишүүгө керек болгон өнүгүү этаптары",
@@ -154,50 +154,50 @@ developScreenmileStone: "Өнүгүү баскычтары",
 developScreenrelatedArticleText: "Тема боюнча кеңеш",
 developScreenrelatedAct: "Тема боюнча оюндар",
 developScreenviewDetails: "Көбүрөөк маалымат",
-        // articleScreen
-        articleScreenheaderTitle: "Кеңештер",
+                // articleScreen
+                articleScreenheaderTitle: "Кеңештер",
 articleScreensearchPlaceHolder: "Негизги сөздөр боюнча издөө",
 articleScreennoSearchResult: "Кеңеш табылбады",
 articleScreenshareText: "Бөлүшүү",
 articleScreenaddtoFavText: "Тандалмаларга кошуу",
-        // growthScreen
-        growthScreenheaderTitle: "Баланын өсүшү",
-growthScreengrowthDataTitle: "Бала {{child name}} айлык",
-growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
-growthScreennoGrowthDataHelpText: "Бул балаңыздын өсүшүн көзөмөлдөөгө жардам берет.",
-growthScreenaddNewBtntxt: "Жаңы маалыматтарды кошуңуз",
-growthScreeneditNewBtntxt: "Маалыматтарды түзөтүү",
-growthScreenweightForHeight: "Боюна жараша салмагы",
-growthScreenheightForAge: "Жашына жараша бою",
-growthScreensubHeading: "Параметрлерди өлчөө",
-growthScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
-growthScreenlastMeasureText: "Акыркы өлчөө {{measureDate}}",
-growthScreenallMeasurements: "Бардык жыйынтыктар",
-growthScreenhText: "Бою",
-growthScreenwText: "Салмагы",
-growthScreeneditText: "Түзөтүү",
-growthScreendelText: "Өчүрүү",
-growthScreenkgText: "кг",
-growthScreencmText: "см",
-growthScreensumHeading: "Кыскача маалымат",
-growthScreenallMeasureHeader: "Бардык жыйынтыктар",
-growthScreendeletebtnText: "Өчүрүү",
-growthScreendateMeasurementText: "Өлчөө күнү",
-growthScreenenterDateMeasurementText: "Өлчөө күнүн киргизиңиз",
-growthScreenwhereMeasured: "Өлчөө кайда жүргүзүлдү?",
-growthScreendoctorMeasurePlace: "Дарыгердин бөлмөсүндө",
-growthScreenhomeMeasurePlace: "Үйдө",
-growthScreenenterMeasuresText: "Салмагын жана боюн киргизиңиз",
-growthScreenenterDoctorRemarkText: "Дарыгердин комментарийи",
-growthScreenenterDoctorRemarkTextPlaceHolder: "Дарыгердин комментарийин киргизүү",
-growthScreensaveMeasures: "Маалыматтарды сактоо",
-growthScreensaveMeasuresDetails: "Деталдарды сактоо",
-growthScreenaddWeight: "Салмагын кошуңуз",
-growthScreenaddHeight: "Боюн кошуңуз",
-growthScreennewGrowthBottomText: "Үйдө баланын бою жана салмагын өлчөө дарыгердин өлчөөсүнө караганда анча ишенимдүү эмес жана өсүү схемасынын тактыгына таасирин тийгизиши мүмкүн.",
-growthScreenrelatedArticle: "Тема боюнча кеңештер",
-        // Sprint4 Screens
-        noBorn: "Азырынча төрөлө элек",
+                // growthScreen
+                growthScreenheaderTitle: "Баланын өсүшү",
+                growthScreengrowthDataTitle: "Бала {{child name}} айлык",
+                growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
+                growthScreennoGrowthDataHelpText: "Бул балаңыздын өсүшүн көзөмөлдөөгө жардам берет.",
+                growthScreenaddNewBtntxt: "Жаңы маалыматтарды кошуңуз",
+                growthScreeneditNewBtntxt: "Маалыматтарды түзөтүү",
+                growthScreenweightForHeight: "Боюна жараша салмагы",
+                growthScreenheightForAge: "Жашына жараша бою",
+                growthScreensubHeading: "Параметрлерди өлчөө",
+                growthScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
+                growthScreenlastMeasureText: "Акыркы өлчөө {{measureDate}}",
+                growthScreenallMeasurements: "Бардык жыйынтыктар",
+                growthScreenhText: "Бою",
+                growthScreenwText: "Салмагы",
+                growthScreeneditText: "Түзөтүү",
+                growthScreendelText: "Өчүрүү",
+                growthScreenkgText: "кг",
+                growthScreencmText: "см",
+                growthScreensumHeading: "Кыскача маалымат",
+                growthScreenallMeasureHeader: "Бардык жыйынтыктар",
+                growthScreendeletebtnText: "Өчүрүү",
+                growthScreendateMeasurementText: "Өлчөө күнү",
+                growthScreenenterDateMeasurementText: "Өлчөө күнүн киргизиңиз",
+                growthScreenwhereMeasured: "Өлчөө кайда жүргүзүлдү?",
+                growthScreendoctorMeasurePlace: "Дарыгердин бөлмөсүндө",
+                growthScreenhomeMeasurePlace: "Үйдө",
+                growthScreenenterMeasuresText: "Салмагын жана боюн киргизиңиз",
+                growthScreenenterDoctorRemarkText: "Дарыгердин комментарийи",
+                growthScreenenterDoctorRemarkTextPlaceHolder: "Дарыгердин комментарийин киргизүү",
+                growthScreensaveMeasures: "Маалыматтарды сактоо",
+                growthScreensaveMeasuresDetails: "Маалыматты сактоо",
+                growthScreenaddWeight: "Салмагын кошуңуз",
+                growthScreenaddHeight: "Боюн кошуңуз",
+                growthScreennewGrowthBottomText: "Үйдө баланын бою жана салмагын өлчөө дарыгердин өлчөөсүнө караганда анча ишенимдүү эмес жана өсүү схемасынын тактыгына таасирин тийгизиши мүмкүн.",
+                growthScreenrelatedArticle: "Тема боюнча кеңештер",
+                // Sprint4 Screens
+                noBorn: "Азырынча төрөлө элек",
 noday: "0 күн",
 yearstag: "жыл",
 yeartag: "жыл",
@@ -300,8 +300,8 @@ hcDeleteWarning: "Медициналык текшерүүнүн маалымат
 hcdateText: "Медициналык текшерүүдөн өткөн күн",
 hcenterDateText: "Медициналык текшерүүдөн өткөн күндү киргизиңиз",
 hcChildVaccineQ: "Бала эмдөөдөн өттүбү ?",
-        /// sprin5 screens
-        tabbarLabel1: "Башкы бет",
+                /// sprin5 screens
+                tabbarLabel1: "Башкы бет",
 tabbarLabel2: "Оюндар",
 tabbarLabel3: "Инструменттер",
 tabbarLabel4: "Кеңештер",
@@ -309,8 +309,9 @@ tabbarLabel5: "Өнүгүү",
 tabbarLabel6: "Эмдөө",
 tabbarLabel7: "Медициналык текшерүүлөр",
 tabbarLabel8: "Баланын өсүшү",
- //sprint 6 screens after v3 of language file 
-manageProfileTxt: "Профилди башкаруу",
+                // translation replacement closed till above
+                //sprint 6 screens after v3 of language file 
+                manageProfileTxt: "Профилди башкаруу",
 removePhotoTxt: "Сүрөттү жок кылуу",
 removeWarnTxt: "Сүрөттү жок кылгыңыз келеби?",
 removeOption1: "Жокко чыгаруу",
@@ -365,7 +366,14 @@ editChildDobLabel: "Туулган күндү киргизиңиз",
 childInfoBabyText: "Ымыркай",
 childInfoParentText: "Ата-эне",
 childInfoAndText: "жана",
-        // translation replacement closed till above
-    }
+                // translation replacement closed till above
+                childSetupdobText: "Enter date of birth",
+                growthModalText: "Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
+                vaccineModalText: "Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
+                hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
+                tryText: 'Try again...',
+                deleteSuccess:"User Deleted Succesfully",
+          deleteError:"User Delete Error.Please try again.."   
+        }
 }
 export default KGky;
