@@ -122,11 +122,17 @@ export const FormInputBox = styled.View`
   justify-content:space-between;
   height:52px;
   padding:5px 12px;
+
 `;
 export const FormDateText = styled.View`
   /*flex: 4;*/
   /*justify-content: flex-start;
   flex-direction: row;*/
+   
+`;
+export const FormDateText1 = styled.View`
+  flex:1
+   
 `;
 export const FormDateAction = styled.View`
  /* flex: 1;
