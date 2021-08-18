@@ -41,9 +41,9 @@ const prevPage  = route.params.prevPage;
     useFocusEffect(
       React.useCallback(() => {
           callSagaApi();
-        return () => {
-          // console.log("loading screen left");
-        };
+          return () => {
+            // console.log("loading screen left");
+          };
       },[])
     );
 
@@ -51,10 +51,14 @@ const prevPage  = route.params.prevPage;
   const callSagaApi = () => {
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+    }
+    else if(prevPage == "Home")
+    {
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
     else {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
   }
   

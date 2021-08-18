@@ -47,15 +47,17 @@ import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+import { setInfoModalOpened, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
+import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
+  route:any;
   navigation: HomeNavigationProp;
 };
-const Home = () => {
+const Home = ({route,navigation}: Props) => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
@@ -74,7 +76,15 @@ const Home = () => {
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded,
   );
-  console.log('home focuseffect--', userIsOnboarded);
+  const errorObj = useAppSelector(
+    (state: any) =>
+      state.failedOnloadApiObjReducer.errorObj
+     );
+  const showDownloadPopup = useAppSelector((state: any) =>
+    (state.utilsData.showDownloadPopup),
+  );
+  const netInfoval = useNetInfoHook();
+  console.log(netInfoval,'--home focuseffect--', userIsOnboarded);
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
@@ -124,9 +134,33 @@ const Home = () => {
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
       }
-    }, []),
+      console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
+       if(netInfoval && showDownloadPopup && errorObj.length > 0)
+       {
+        // Alert.alert('Download Data', "All content is not downloaded.Please download data.",
+          Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
+            [
+              {
+                text: t('downloadOnLoadCancelPopUpBtn'),
+                onPress: () => {dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}))},
+                style: "cancel"
+              },
+              { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
+            ]
+          );
+       }
+    }, [netInfoval]),
   );
-
+  const callFailedApis = () => {
+    console.log("Download Pressed",errorObj);
+    if(errorObj && errorObj.length > 0)
+    {
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: errorObj, 
+        prevPage: 'Home'
+      });
+    }
+  }
   // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
   return (
     <>
