@@ -144,22 +144,20 @@ useEffect(() => {
     <>
    <View style={{flexDirection:'column',alignItems:'center',}}>
       <VictoryChart 
-      
       containerComponent={<VictoryVoronoiContainer />}
-       
         theme={VictoryTheme.material}
-        
-        width={deviceOrientation === 'portrait' ? windowWidth-20 : windowWidth-60}
+        width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
-        windowHeight - 340
+        windowWidth - 60
           : windowHeight-50}>
+           
         {/* ********* AXIS HORIZONTAL ********* */}
+        
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
           axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-52 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-98: windowHeight-70}/>}
         />
-
         {/* ********* AXIS VERTICAL ********* */}
         <VictoryAxis
           style={victoryStyles.VictoryAxisVertical}
@@ -167,7 +165,6 @@ useEffect(() => {
           dependentAxis
           label={labelY}
         />
-
         {/* ********* TOP AREA ********* */}
         <VictoryArea
           interpolation="natural"

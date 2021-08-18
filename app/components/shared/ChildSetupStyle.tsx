@@ -92,10 +92,10 @@ export const TitleLinkSm = styled.Text`
 `;
 export const ChildListAction = styled.View`
   flex:1;
-  justify-content:center;
+  justify-content:flex-end;
   align-items:center;
+  max-width:140px;
   padding: 0 2px;
-  
   flex-direction:row;
 `;
 
