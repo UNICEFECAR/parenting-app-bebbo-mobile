@@ -106,12 +106,12 @@ const ChildSetupList = ({ navigation }: Props) => {
     {
           childList.length> 1 ? (
             <ChildListAction>
-            <TitleLinkSm onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+            <TitleLinkSm numberOfLines={2} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
             </ChildListAction>
             ) :null
           }
           <ChildListAction>
-      <TitleLinkSm onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+      <TitleLinkSm numberOfLines={2} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
       </ChildListAction>
     </ChildColArea2>
   </ChildListingBox>

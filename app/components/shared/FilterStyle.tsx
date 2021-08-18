@@ -27,7 +27,7 @@ margin:3px;
 flex-direction:row;
 align-items:center;
 justify-content:center;
-padding:2px 0;
+padding:2px 5px 2px 0;
 flex:1;
 `;
 
@@ -36,6 +36,7 @@ font-size:10px;
 flex:1;
 font-weight:bold;
 color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
+flex-shrink:1;
 `;
 
 
