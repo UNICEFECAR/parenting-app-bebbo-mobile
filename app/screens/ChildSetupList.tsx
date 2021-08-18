@@ -123,7 +123,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             style: "cancel"
           },
           { text: t('growthScreendelText'), onPress: () => {
-            deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age);
+            deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age,t);
           }
           }
         ]
