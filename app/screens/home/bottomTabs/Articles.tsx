@@ -155,6 +155,7 @@ useFocusEffect(() => {
       {
         fetchData()
       }else {
+        setLoadingArticle(false);
         if(route.params?.backClicked == 'yes')
         {
           navigation.setParams({backClicked:'no'})
