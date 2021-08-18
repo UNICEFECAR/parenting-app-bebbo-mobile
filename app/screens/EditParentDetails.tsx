@@ -15,6 +15,7 @@ import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { createRef, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
     Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
@@ -55,6 +56,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const actionSheetRef = createRef<any>();
   const themeContext = useContext(ThemeContext);
   const dispatch=useAppDispatch();
+  const {t} = useTranslation();
   const [parentName, setParentName] = React.useState(parentEditName?parentEditName:"");
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   useFocusEffect(
@@ -124,7 +126,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             </View>
             <View style={{flex: 9, padding: 7}}>
               <Heading2w numberOfLines={1}>
-                {'Edit Parent Details'}
+              {t('editParentTxt')}
               </Heading2w>
             </View>
           </View>
@@ -134,7 +136,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               onPress={() => {
                 actionSheetRef.current?.setModalVisible();
               }}>
-              <LabelText>Relationship with child</LabelText>
+              <LabelText>{t('relationShipTxt')}</LabelText>
 
               <FormInputBox>
                 <FormDateText>
@@ -171,7 +173,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
           </View>
         </ActionSheet>
           <FormContainer>
-            <LabelText>Parent Name</LabelText>
+            <LabelText>{t('parentNameTxt')}</LabelText>
             <FormInputBox>
             <TextInput
               autoCapitalize="none"
@@ -182,7 +184,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               onChangeText={(value:any) => { setParentName(value.replace(/\s/g, '')) }}
               value={parentName.replace(/\s/g, '')}
               // onChangeText={queryText => handleSearch(queryText)}
-              placeholder="Enter your name"
+              placeholder={t('parentPlaceNameTxt')}
               allowFontScaling={false} 
             /></FormInputBox>
           </FormContainer>
@@ -196,7 +198,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
                 saveParentData(relationship,parentName);
              
               }}>
-              <ButtonText numberOfLines={2}>Save Data</ButtonText>
+              <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
             </ButtonPrimary>
           </ButtonContainer>
           </ShiftFromTop10>
