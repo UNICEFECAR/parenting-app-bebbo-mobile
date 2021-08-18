@@ -42,11 +42,13 @@ export const ChildContentArea = styled.View`
   flex: 1;
   flex-direction: row;
 `;
-export const LabelText = styled.Text`
+
+export const LabelTextVac = styled.Text`
   color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
   font-size: 16px;
+`;
+export const LabelText = styled(LabelTextVac)`
   margin-bottom: 7px;
-  
 `;
 export const ChildSection = styled.View`
   flex: 1;
@@ -79,11 +81,22 @@ export const ChildColArea2 = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  margin-left:5px;
 `;
 export const TitleLinkSm = styled.Text`
   font-size: 12px;
   font-weight: bold;
-  padding: 0 5px;
+ text-align:center;
+  flex-shrink:1;
+  
+`;
+export const ChildListAction = styled.View`
+  flex:1;
+  justify-content:flex-end;
+  align-items:center;
+  max-width:140px;
+  padding: 0 2px;
+  flex-direction:row;
 `;
 
 /*Form Styling*/

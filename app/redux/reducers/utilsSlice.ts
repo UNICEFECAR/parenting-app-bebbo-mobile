@@ -39,6 +39,7 @@ interface hardcodedDataType {
   IsGrowthModalOpened:boolean,
   IsVaccineModalOpened:boolean,
   IsHCUModalOpened:boolean,
+  showDownloadPopup:boolean,
   dailymessages:string,
   vaccineData:{
     id: number,
@@ -115,6 +116,7 @@ const initialState: hardcodedDataType = {
   IsGrowthModalOpened:true,
   IsVaccineModalOpened:true,
   IsHCUModalOpened:true,
+  showDownloadPopup:true,
   dailymessages:'',
   vaccineData:{
     id: 0,

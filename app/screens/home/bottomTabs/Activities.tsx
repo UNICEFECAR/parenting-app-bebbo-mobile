@@ -168,6 +168,8 @@ const Activities = ({ route,navigation }: Props) => {
       if(route.params?.backClicked != 'yes')
       {
         fetchData()
+      }else {
+        setLoading(false);
       }
 
     },[selectedChildActivitiesData,route.params?.categoryArray])
@@ -228,6 +230,7 @@ const Activities = ({ route,navigation }: Props) => {
           showSelectedBracketData(firstChildDevData[0]);
         }
       }else{
+        setLoading(false);
         if(route.params?.backClicked == 'yes')
         {
           navigation.setParams({backClicked:'no'})

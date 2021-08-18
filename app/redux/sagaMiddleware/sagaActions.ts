@@ -20,14 +20,15 @@ const setLoginState: ActionCreator<any> = (typeset: string,data:any) => {
   }
   };
   // const dispatchnew: Dispatch<any>;
-export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any) => ({
+export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any,oldErrorObj:Array<apijsonArray>) => ({
   type: FETCH_API,
   payload:apiJsonData,
   prevPage:prevPage,
   dispatch:dispatch,
   navigation:navigation,
   languageCode:languageCode,
-  activeChild:activeChild
+  activeChild:activeChild,
+  oldErrorObj: oldErrorObj
 });
 
 export const insertInDB = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined) => ({

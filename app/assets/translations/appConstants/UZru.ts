@@ -1,6 +1,6 @@
 const UZru = {
-    translation: {
-        countryLangSelection: "Вы выбрали страну и язык",
+        translation: {
+                countryLangSelection: "Вы выбрали страну и язык",
 editCountryLang: "Редактировать",
 continueCountryLang: "Продолжить",
 selectYourCountry: "Выберите страну",
@@ -10,9 +10,9 @@ goToConfirm: "Продолжить и подтвердить",
 checkonce: "Выберите, прежде чем продолжить",
 country: "Страна",
 language: "Язык",
-
-        // walkthroughTexts
-        walkthroughTextstitle0: "Привет, родители!",
+        
+                // walkthroughTexts
+                walkthroughTextstitle0: "Привет, родители!",
 walkthroughTextssubtitle0: "Перед вами Беббо — все, что вам нужно знать о росте и развитии вашего ребенка",
 walkthroughTextstitle1: "Занятия  ",
 walkthroughTextssubtitle1: "помогающие вашему ребенку узнавать новое каждый день",
@@ -22,21 +22,21 @@ walkthroughTextstitle3: "Советы",
 walkthroughTextssubtitle3: "в ответ на ваши вопросы о том, что нужно вашему ребенку в его возрасте",
 walkthroughButtonBack: "Назад",
 walkthroughButtonNext: "Далее",
-
-        // t&C
-        tNcheader: "Условия и положения",
+        
+                // t&C
+                tNcheader: "Условия и положения",
 tNccheckbox1: "Условия и положения пользования приложением Беббо мною прочитаны, поняты и принимаются",
 tNccheckbox2: "Мною прочитана, понята и принимается",
 tNcprivacyPolicy: "Политика конфиденциальности приложения Беббо ",
 tNccheckbox3: "Я принимаю положение о том, что анонимные данные о моём использовании приложения будут собираться с целью улучшения его работы (не обязательно)",
 tNcprivacyPolicyTitle: "Политика конфиденциальности",
 tNcacceptbtn: "Я принимаю условия и положения",
-
-        // Loading
-        loadingText: "Загрузка данных…",
-
-        // childSetup
-        childSetupheader: "Давайте настроим приложение",
+        
+                // Loading
+                loadingText: "Загрузка данных…",
+        
+                // childSetup
+                childSetupheader: "Давайте настроим приложение",
 childSetupdobLabel: "Дата рождения ребёнка/предполагаемая дата родов",
 childSetupdobSelector: "Введите дату рождения/предполагаемую дату родов",
 childSetupdueLabel: "Первоначально предполагаемый срок",
@@ -46,38 +46,38 @@ childSetupprematureMessage: "Ребенок, родившийся до 37-й н�
 childSetuprelationSelectTitle: "Кем вы приходитесь ребёнку? ",
 childSetuprelationSelectText: "Выбрать",
 childSetupcontinueBtnText: "Продолжить",
-
-        // childSetupList
-        childSetupListheader: "Вы создали профиль вашего ребенка!",
-childSetupListsubHeader: "Пожалуйста, проверьте все данные ребёнка, прежде чем продолжить!",
-childSetupListaddSiblingBtn: "Добавить сестру или брата",
-childSetupListeditSiblingBtn: "Редактировать данные ребенка",
-childSetupListcontinueBtnText: "Продолжить",
-childSetupListsaveBtnText: "Сохранить данные",
-
-        // drawerMenu
-        drawerMenuchildInfo: "дата рождения: {{childdob}}",
-drawerMenuhomeTxt: "В начало",
-drawerMenunotiTxt: "Уведомления",
-drawerMenutoolsTxt: "Инструменты",
-drawerMenucdTxt: "Развитие ребенка",
-drawerMenuvcTxt: "Вакцинация",
-drawerMenuhcTxt: "Медосмотры",
-drawerMenucgTxt: "Рост ребенка",
-drawerMenuchatTxt: "Чат",
-drawerMenufavTxt: "Избранное",
-drawerMenuabtTxt: "О нас",
-drawerMenuugTxt: "Руководство пользователя",
-drawerMenusetTxt: "Настройки",
-drawerMenushareTxt: "Поделиться",
-drawerMenufeedbackTxt: "Обратная связь",
-drawerMenurateTxt: "Понравилось Беббо? Поставьте оценку!",
-drawerMenuPrivacyTxt: "Политика конфиденциальности",
-        // notiScreen
-        notiScreenheaderTitle: "Уведомления",
-
-        // settingScreen
-        settingScreenheaderTitle: "Настройки",
+        
+                // childSetupList
+                childSetupListheader: "Вы создали профиль вашего ребенка!",
+                childSetupListsubHeader: "Пожалуйста, проверьте все данные ребёнка, прежде чем продолжить!",
+                childSetupListaddSiblingBtn: "Добавить сестру или брата",
+                childSetupListeditSiblingBtn: "Редактировать данные ребенка",
+                childSetupListcontinueBtnText: "Продолжить",
+                childSetupListsaveBtnText: "Сохранить данные",
+        
+                // drawerMenu
+                drawerMenuchildInfo: "дата рождения: {{childdob}}",
+                drawerMenuhomeTxt: "В начало",
+                drawerMenunotiTxt: "Уведомления",
+                drawerMenutoolsTxt: "Инструменты",
+                drawerMenucdTxt: "Развитие ребенка",
+                drawerMenuvcTxt: "Вакцинация",
+                drawerMenuhcTxt: "Медосмотры",
+                drawerMenucgTxt: "Рост ребенка",
+                drawerMenuchatTxt: "Чат",
+                drawerMenufavTxt: "Избранное",
+                drawerMenuabtTxt: "О нас",
+                drawerMenuugTxt: "Руководство пользователя",
+                drawerMenusetTxt: "Настройки",
+                drawerMenushareTxt: "Поделиться",
+                drawerMenufeedbackTxt: "Обратная связь",
+                drawerMenurateTxt: "Понравилось Беббо? Поставьте оценку!",
+                drawerMenuPrivacyTxt: "Политика конфиденциальности",
+                // notiScreen
+                notiScreenheaderTitle: "Уведомления",
+        
+                // settingScreen
+                settingScreenheaderTitle: "Настройки",
 settingScreennotiHeaderText: "Уведомления",
 settingScreennotiType1: "Хочу получать уведомления через Беббо",
 settingScreennotiType2: "Хочу получать уведомления о росте ребенка",
@@ -100,18 +100,18 @@ settingScreenimportBtnText: "Импорт всех сохранённых дан
 settingScreenexportOptionHeader: "Экспорт данных",
 settingScreenshareBtntxt: "Поделиться",
 settingScreengdriveBtntxt: "Google диск ",
-
-        // userGuide
-        userGuideheaderTitle: "Руководство пользователя",
-
-        // aboutUsScreen
-        aboutUsScreenheaderTitle: "О нас",
-        // supportScreen
-        supportScreenheaderTitle: "Чат",
+        
+                // userGuide
+                userGuideheaderTitle: "Руководство пользователя",
+        
+                // aboutUsScreen
+                aboutUsScreenheaderTitle: "О нас",
+                // supportScreen
+                supportScreenheaderTitle: "Чат",
 supportScreenheader1text: "Скоро!",
 supportScreenheader2text: "В настоящее время чат недоступен",
-        // homeScreen
-        homeScreenheaderTitle: "Беббо",
+                // homeScreen
+                homeScreenheaderTitle: "Беббо",
 homeScreenchildBtnText: "Читать далее ",
 homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}},",
 homeScreendailyReadsTitle: "Ежедневные материалы",
@@ -131,9 +131,9 @@ homeScreentoolsHeader: "Инструменты",
 homeScreenvc: "Вакцинация",
 homeScreenhc: "Медосмотры",
 homeScreencg: "Рост ребенка",
-
-        // actScreen
-        actScreenheaderTitle: "Занятия",
+        
+                // actScreen
+                actScreenheaderTitle: "Занятия",
 actScreensugacttxt: "Предлагаемые занятия",
 actScreenotheracttxt: "Другие занятия",
 actScreenpendingMilestone: "В процессе",
@@ -143,25 +143,25 @@ actScreenmilestones: "Этапы развития",
 actScreenprematureText: "Недоношенный ребенок ",
 actScreenshareText: "Поделиться",
 actScreenaddtoFavText: "Добавить в избранное",
-        // developScreen
-        developScreenheaderTitle: "Развитие ребенка",
+                // developScreen
+                developScreenheaderTitle: "Развитие ребенка",
 developScreenprematureText: "Недоношенный ребенок ",
 developScreenchartLabel: "В процессе",
-developScreenchartText: "Этапы развития, которые ещё предстоит достичь в данный период ",
+developScreenchartText: "Достигнутые вехи развития в наcтоящий период ",
 developScreenmileStoneQ: "Какие этапы развития достигнуты вашим ребенком?",
 developScreentipsText: "Советы врачей",
 developScreenmileStone: "Этапы развития",
 developScreenrelatedArticleText: "Советы по теме",
 developScreenrelatedAct: "Занятия по теме",
 developScreenviewDetails: "Подробнее",
-        // articleScreen
-        articleScreenheaderTitle: "Советы",
+                // articleScreen
+                articleScreenheaderTitle: "Советы",
 articleScreensearchPlaceHolder: "Поиск по ключевым словам",
 articleScreennoSearchResult: "Нет советов",
 articleScreenshareText: "Поделиться",
 articleScreenaddtoFavText: "Добавить в избранное",
-        // growthScreen
-        growthScreenheaderTitle: "Рост ребенка",
+                // growthScreen
+                growthScreenheaderTitle: "Рост ребенка",
 growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
@@ -177,8 +177,8 @@ growthScreenhText: "Рост",
 growthScreenwText: "Вес",
 growthScreeneditText: "Редактировать",
 growthScreendelText: "Удалить",
-growthScreenkgText: "Кг",
-growthScreencmText: "См",
+growthScreenkgText: "кг",
+growthScreencmText: "см",
 growthScreensumHeading: "Резюме",
 growthScreenallMeasureHeader: "Все результаты",
 growthScreendeletebtnText: "Удалить",
@@ -196,14 +196,14 @@ growthScreenaddWeight: "Добавить вес ",
 growthScreenaddHeight: "Добавить рост ",
 growthScreennewGrowthBottomText: "Измерения роста и веса ребенка, полученные дома, менее достоверны, чем измерение у врача, и могут повлиять на точность графика роста.",
 growthScreenrelatedArticle: "Советы по теме",
-        // Sprint4 Screens
-        noBorn: "Еще не родился",
+                // Sprint4 Screens
+                noBorn: "Еще не родился",
 noday: "0 дня",
 yearstag: "года",
 yeartag: "год",
-monthstag: "месяца",
+monthstag: "месяцы",
 monthtag: "месяц",
-daystag: "дня",
+daystag: "дни",
 daytag: "день",
 defaultChildPrefix: "Ребенок",
 notiOption1: "Удалить уведомление",
@@ -300,8 +300,8 @@ hcDeleteWarning: "Вы уверены, что хотите удалить дан
 hcdateText: "Дата медосмотра",
 hcenterDateText: "Введите дату медосмотра",
 hcChildVaccineQ: "Получил ли ребенок прививку?",
-        /// sprin5 screens
-        tabbarLabel1: "В начало",
+                /// sprin5 screens
+                tabbarLabel1: "В начало",
 tabbarLabel2: "Занятия ",
 tabbarLabel3: "Инструменты",
 tabbarLabel4: "Советы ",
@@ -309,8 +309,9 @@ tabbarLabel5: "Развитие ",
 tabbarLabel6: "Вакцинация",
 tabbarLabel7: "Медосмотры",
 tabbarLabel8: "Рост ребенка",
- //sprint 6 screens after v3 of language file 
-manageProfileTxt: "Управление профилем",
+                // translation replacement closed till above
+                //sprint 6 screens after v3 of language file 
+                manageProfileTxt: "Управление профилем",
 removePhotoTxt: "Удалить фото",
 removeWarnTxt: "Хотите удалить фото?",
 removeOption1: "Отмена",
@@ -365,7 +366,14 @@ editChildDobLabel: "Введите дату рождения",
 childInfoBabyText: "Малыш",
 childInfoParentText: "Родитель",
 childInfoAndText: "и",
-        // translation replacement closed till above
-    }
+                // translation replacement closed till above
+                childSetupdobText: "Enter date of birth",
+                growthModalText: "Here you can track your child’s growth by entering and updating your child’s weight and height and learn how to support her/his growth even better",
+                vaccineModalText: "Here you can register, track, and find out more about each vaccine recommended by the national immunization calendar. Set reminders for your child’s vaccinations and receive notifications!",
+                hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
+                tryText: 'Try again...',
+                deleteSuccess:"User Deleted Succesfully",
+          deleteError:"User Delete Error.Please try again.."   
+        }
 }
 export default UZru;
