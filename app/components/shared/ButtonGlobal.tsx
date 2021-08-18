@@ -35,6 +35,10 @@ export const ButtonTextLine = styled(ButtonText)`
 `;
 export const ButtonTextSmLine = styled(ButtonTextLine)`
   font-size:12px;
+  line-height:16px;
+`;
+export const ButtonTextSmLineW = styled(ButtonTextSmLine)`
+color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
 export const ButtonTextSm = styled(ButtonText)`
@@ -136,6 +140,14 @@ export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   height:auto;
   padding:4px;
   justify-content:center;
+`;
+export const ButtonDelPress = styled.Pressable`
+  min-width:65px;
+  margin-left:5px;
+  min-height:32px;
+  justify-content:flex-end;
+  flex-direction:row;
+  align-items:center;
 `;
 
 
