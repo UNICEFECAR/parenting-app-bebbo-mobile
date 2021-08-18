@@ -21,25 +21,36 @@ import {
 } from '@components/shared/TabBarStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading3,
   Heading3Centerr,
   Heading4,
   Heading4Center,
+  Heading4Centerr,
   ShiftFromBottom5,
   ShiftFromTop10,
   ShiftFromTopBottom20,
   SideSpacing10
 } from '@styles/typography';
+import ModalPopupContainer, {
+  ModalPopupContent,
+  PopupClose,
+  PopupCloseContainer,
+  PopupOverlay
+} from '@components/shared/ModalPopupStyle';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Modal, Pressable, ScrollView, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
-
+import Icon from '@components/shared/Icon';
+import { ButtonModal } from '@components/shared/ButtonGlobal';
+import { FDirRow } from '@components/shared/FlexBoxStyle';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -57,6 +68,21 @@ const Childgrowth = ({navigation,route}: Props) => {
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
   const headerColorWhite = themeContext.colors.SECONDARY_TEXTCOLOR;
+  const [modalVisible, setModalVisible] = React.useState(true);
+  const dispatch = useAppDispatch();
+  const setIsModalOpened = async (varkey: any) => {
+    let obj = {key: varkey, value: !modalVisible};
+    dispatch(setInfoModalOpened(obj));
+  };
+  const growthModalOpened = useAppSelector((state: any) =>
+      (state.utilsData.IsGrowthModalOpened),
+    );
+   useFocusEffect(()=>{
+    // console.log('growthModalOpened',growthModalOpened);
+    // pass true to make modal visible every time & reload
+    setModalVisible(growthModalOpened)
+   })
+  
   let activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -96,6 +122,45 @@ const Childgrowth = ({navigation,route}: Props) => {
   };
   return (
     <>
+    <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                  setIsModalOpened('IsGrowthModalOpened');
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('growthModalText')}
+              </Heading4Centerr>
+              </ModalPopupContent>
+              <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  setIsModalOpened('IsGrowthModalOpened');
+                }}>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+              </FDirRow>
+            
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       <SafeAreaContainer>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
