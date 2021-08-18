@@ -9,9 +9,15 @@ import analytics from '@react-native-firebase/analytics';
 import { ADVICE_SHARED, APP_SHARE, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
 export const ShareFavBox = styled.View`
   flex-direction: row;
-  padding: 13px 10px;
+  padding: 5px 10px 0;
   justify-content: space-between;
   align-items: center;
+
+`;
+export const ShareFavPress = styled.Pressable`
+  flex:1;
+
+padding:12px 0px;
 `;
 
 const ShareFavButtons = (props: any) => {
@@ -57,39 +63,39 @@ const ShareFavButtons = (props: any) => {
   return (
     <>
       <ShareFavBox style={{backgroundColor: backgroundColor}}>
-        <Pressable onPress={() => onShare()} style={{flex:1}}>
+        <ShareFavPress onPress={() => onShare()} >
           <FDirRow>
             <OuterIconRow>
               <OuterIconLeft>
                 <Icon name="ic_sb_shareapp" size={20} color="#000" />
               </OuterIconLeft>
             </OuterIconRow>
-            <Heading4 numberOfLines={1}>{t('actScreenshareText')}</Heading4>
+            <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenshareText')}</Heading4>
           </FDirRow>
-        </Pressable>
+        </ShareFavPress>
 
         {isFavourite ? (
-          <Pressable onPress={() => unFavHandler()} style={{flex:1, alignItems:'flex-end'}}>
+          <ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_trash" size={20} color="#000" />
                 </OuterIconLeft>
               </OuterIconRow>
-              <Heading4 numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
+              <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
             </FDirRow>
-          </Pressable>
+          </ShareFavPress>
         ) : (
-          <Pressable onPress={() =>onFavClick()} style={{flex:1, alignItems:'flex-end'}}>
+          <ShareFavPress onPress={() =>onFavClick()} style={{alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
                   <Icon name="ic_sb_favorites" size={20} color="#000" />
                 </OuterIconLeft>
               </OuterIconRow>
-              <Heading4 numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
+              <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
             </FDirRow>
-          </Pressable>
+          </ShareFavPress>
         )}
       </ShareFavBox>
     </>
