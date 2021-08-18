@@ -108,6 +108,10 @@ function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
             // console.log("errorArr after insert---",errorArr)
           }
         }
+        // else if(response.data.status == 400){
+        //   console.log("11in apiCall catch");
+        //   errorArr.push(data);
+        // }
         else {
           // yield put(insertInStore(response,dispatch,languageCode));
         }
