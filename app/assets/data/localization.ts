@@ -9,7 +9,7 @@ export const localization = [
         displayName: 'Shqip',
         languageCode: 'al-sq',
         locale: 'ALsq',
-        luxonLocale:'sq'
+        luxonLocale:'sq-AL'
       },
     ],
   },
@@ -23,14 +23,14 @@ export const localization = [
         displayName: 'Беларуская мова',
         languageCode: 'by-be',
         locale: 'BYbe',
-        luxonLocale:'be'
+        luxonLocale:'be-BY'
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'by-ru',
         locale: 'BYru',
-        luxonLocale:'ru'
+        luxonLocale:'ru-BY'
       }
     ],
   },
@@ -44,7 +44,7 @@ export const localization = [
         displayName: 'Български',
         languageCode: 'bg-bg',
         locale: 'BGbg',
-        luxonLocale:'bg'
+        luxonLocale:'bg'//pending to verify
       },
     ],
   },
@@ -58,7 +58,7 @@ export const localization = [
         displayName: 'Ελληνικά',
         languageCode: 'gr-el',
         locale: 'GRel',
-        luxonLocale:'el'
+        luxonLocale:'el-GR'
       },
     ],
   },
@@ -72,14 +72,14 @@ export const localization = [
         displayName: 'Shqip',
         languageCode: 'xk-sq',
         locale: 'XKsq',
-        luxonLocale:'sq'
+        luxonLocale:'sq-XK'
       },
       {
         name: 'Serbian',
         displayName: 'Srpski',
         languageCode: 'xk-rs',
         locale: 'XKrs',
-        luxonLocale:'sr'
+        luxonLocale:'sr-Latn-XK'
       },
     ],
   },
@@ -93,14 +93,14 @@ export const localization = [
         displayName: 'Кыргызча',
         languageCode: 'kg-ky',
         locale: 'KGky',
-        luxonLocale:'ky'
+        luxonLocale:'ky-KG'
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'kg-ru',
         locale: 'KGru',
-        luxonLocale:'ru'
+        luxonLocale:'ru-KG'
       },
     ],
   },
@@ -114,7 +114,7 @@ export const localization = [
         displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
-        luxonLocale:'sr'
+        luxonLocale:'sr-Cyrl-ME'//need to be verified
       },
     ],
   },
@@ -128,14 +128,14 @@ export const localization = [
         displayName: 'Македонски',
         languageCode: 'mk-mk',
         locale: 'MKmk',
-        luxonLocale:'mk'
+        luxonLocale:'mk-MK'
       },
       {
         name: 'Albanian',
         displayName: 'Shqip',
         languageCode: 'mk-sq',
         locale: 'MKsq',
-        luxonLocale:'sq'
+        luxonLocale:'sq-MK'
       },
     ],
   },
@@ -149,14 +149,14 @@ export const localization = [
         displayName: 'Srpski',
         languageCode: 'rs-sr',
         locale: 'RSsr',
-        luxonLocale:'sr'
+        luxonLocale:'sr-Latn-RS'
       },
       {
         name: 'English',
         displayName: 'English',
         languageCode: 'rs-en',
         locale: 'RSen',
-        luxonLocale:'en'
+        luxonLocale:'en'//need to be verified
       },
     ],
   },
@@ -170,14 +170,14 @@ export const localization = [
         displayName: 'Тоҷикӣ',
         languageCode: 'tj-tg',
         locale: 'TJtg',
-        luxonLocale:'ta'
+        luxonLocale:'tg-TJ'//need to be verified
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'tj-ru',
         locale: 'TJru',
-        luxonLocale:'ru'
+        luxonLocale:'ru-RU'//need to be verified
       },
     ],
   },
@@ -191,14 +191,14 @@ export const localization = [
         displayName: "Oʻzbekcha",
         languageCode: 'uz-uz',
         locale: 'UZuz',
-        luxonLocale:'uz'
+        luxonLocale:'uz-Latn-UZ'
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'uz-ru',
         locale: 'UZru',
-        luxonLocale:'ru'
+        luxonLocale:'ru-RU'//need to be verified
       },
     ],
   },
@@ -217,3 +217,4 @@ export const localization = [
     ],
   },
 ];
+
