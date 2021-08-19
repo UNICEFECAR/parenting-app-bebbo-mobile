@@ -44,7 +44,7 @@ export const localization = [
         displayName: 'Български',
         languageCode: 'bg-bg',
         locale: 'BGbg',
-        luxonLocale:'bg-BG'//pending to verify
+        luxonLocale:'bg'//pending to verify
       },
     ],
   },
