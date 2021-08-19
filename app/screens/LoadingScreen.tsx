@@ -8,7 +8,10 @@ import { Dimensions } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
+import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
+import { apiJsonDataGet, getAge } from '../services/childCRUD';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -24,7 +27,14 @@ type Props = {
 const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
-  const apiJsonData  = route.params.apiJsonData;
+  let apiJsonData  = route.params.apiJsonData;
+  const child_age = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+  );
+  const childList = useAppSelector(
+    (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
+  );
 const prevPage  = route.params.prevPage;
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
@@ -48,13 +58,33 @@ const prevPage  = route.params.prevPage;
     );
 
 //console.log(apiJsonData,"..apiJsonData..");
-  const callSagaApi = () => {
+  const callSagaApi = async () => {
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
     else if(prevPage == "Home")
     {
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+    }
+    else if(prevPage == "CountryLangChange")
+    {
+      const Ages=await getAge(childList,child_age);
+      console.log(Ages,"..Ages..")
+      let apiJsonDataarticle;
+      if(Ages?.length>0){
+        console.log(Ages,"..11Ages..")
+        apiJsonDataarticle=apiJsonDataGet(String(Ages),"all")
+      }
+      else{
+        apiJsonDataarticle=apiJsonDataGet("all","all")
+      }
+      apiJsonData.push(apiJsonDataarticle[0]);
+      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+
+      dataRealmCommon.deleteAllAtOnce();
+      let payload = {errorArr:[],fromPage:'OnLoad'}
+      dispatch(receiveAPIFailure(payload));
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
     else {
