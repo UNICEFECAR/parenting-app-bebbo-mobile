@@ -156,7 +156,7 @@ export const localization = [
         displayName: 'English',
         languageCode: 'rs-en',
         locale: 'RSen',
-        luxonLocale:'en'//need to be verified
+        luxonLocale:'en-US'//need to be verified
       },
     ],
   },
