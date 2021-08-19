@@ -18,7 +18,7 @@ import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
 import { Alert } from "react-native";
-
+const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
         // console.log(new Date()," response in utils-",response);
@@ -171,16 +171,37 @@ export const addApiDataInRealm = async (response: any) => {
             // console.log(new Date()," result is ",createresult);
     });
 }
+// export const formatDate=(dateData:any,luxonLocale:string)=>{
+//   return DateTime.fromISO(dateData).setLocale(luxonLocale).toFormat('dd LLL yyyy');
+// }
+// export const formatStringDate=(dateData:any,luxonLocale:string)=>{
+//     //new Intl.DateTimeFormat('de-DE', options).format(date)
+//     return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('dd LLL yyyy');
+//   }
 export const formatDate=(dateData:any,luxonLocale:string)=>{
-  return DateTime.fromISO(dateData).setLocale(luxonLocale).toFormat('dd LLL yyyy');
+    // return new IntlPolyfill.DateTimeFormat(luxonLocale, {day:'2-digit', month: 'short',year:'numeric' }).format(new Date(dateData))
+ let day=new IntlPolyfill.DateTimeFormat(luxonLocale, {day:'2-digit'}).format(new Date(dateData));
+ let month=new IntlPolyfill.DateTimeFormat(luxonLocale, {month:'short'}).format(new Date(dateData));
+ let year=new IntlPolyfill.DateTimeFormat(luxonLocale, {year:'numeric'}).format(new Date(dateData));
+ let dateView=day+" "+month+" "+year;
+ return dateView;
 }
 export const formatStringDate=(dateData:any,luxonLocale:string)=>{
-    //new Intl.DateTimeFormat('de-DE', options).format(date)
-    return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('dd LLL yyyy');
-  }
+ let day=new IntlPolyfill.DateTimeFormat(luxonLocale, {day:'2-digit'}).format(new Date(dateData));
+ let month=new IntlPolyfill.DateTimeFormat(luxonLocale, {month:'short'}).format(new Date(dateData));
+ let year=new IntlPolyfill.DateTimeFormat(luxonLocale, {year:'numeric'}).format(new Date(dateData));
+ let dateView=day+" "+month+" "+year;
+ return dateView;
+ }
+
   export const formatStringTime=(dateData:any,luxonLocale:string)=>{
-    //new Intl.DateTimeFormat('de-DE', options).format(date)
-    return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
+    let hour=new IntlPolyfill.DateTimeFormat(luxonLocale, {hour:'2-digit'}).format(new Date(dateData));
+    let minute=new IntlPolyfill.DateTimeFormat(luxonLocale, {minute:'2-digit',hour12: true}).format(new Date(dateData));
+    let period=new IntlPolyfill.DateTimeFormat(luxonLocale, {hour:"numeric",minute:'numeric',second:"numeric",hour12: true}).format(new Date(dateData)).split(" ")[1];
+    let timeView=hour+":"+minute+" "+period;
+     return timeView;
+   // return new IntlPolyfill.DateTimeFormat(luxonLocale, {hour: 'numeric', minute: 'numeric',hour12: true}).format(new Date(dateData));
+    //return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
   }
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
