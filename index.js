@@ -10,11 +10,10 @@
  // import 'intl';
  // import 'intl/locale-data/jsonp/en';
  import 'intl';
- 
  import 'intl/locale-data/jsonp/sq-AL';
  import 'intl/locale-data/jsonp/be-BY';
  import 'intl/locale-data/jsonp/ru-BY';
- import 'intl/locale-data/jsonp/bg-BG';
+ import 'intl/locale-data/jsonp/bg';
  import 'intl/locale-data/jsonp/el-GR';
  import 'intl/locale-data/jsonp/sq-XK';
  import 'intl/locale-data/jsonp/sr-Latn-XK';
@@ -26,6 +25,7 @@
  import 'intl/locale-data/jsonp/sr-Latn-RS';
  import 'intl/locale-data/jsonp/uz-Latn-UZ';
  import 'intl/locale-data/jsonp/ru-RU';
+ 
  // import 'intl/locale-data/jsonp/be';
  // import 'intl/locale-data/jsonp/be';
  //sq,ru
