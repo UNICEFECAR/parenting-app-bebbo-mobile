@@ -33,7 +33,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
@@ -48,6 +48,10 @@ type Props = {
 const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const {country, language} = route.params;
   const dispatch = useAppDispatch();
+  const userIsOnboarded = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsOnboarded
+  );
   //console.log(country, language);
   const apiJsonData = [
     {
@@ -69,6 +73,116 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       saveinDB: true,
     },
   ];
+  const apiJsonDataOnboarded = [
+    {
+      apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.videoArticles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.dailyMessages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.activities,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.surveys,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestones,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childDevelopmentData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinations,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthCheckupData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinePinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childGrowthPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevGirlPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevBoyPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthcheckupPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestoneRelatedArticle,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+        apiEndpoint: appConfig.standardDeviation,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+    }
+  ];
   const {t, i18n} = useTranslation();
   const saveSelection = () => {
     i18n.changeLanguage(language.locale);
@@ -76,42 +190,10 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     //Settings.defaultLocale = language.luxonLocale;
     dispatch(onLocalizationSelect(route.params));
      analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'LoadingScreen',
-    //       params: {apiJsonData: apiJsonData, prevPage: 'CountryLanguageSelection'},
-    //     },
-    //   ],
-    // });
-    // if(language.locale=='RSsr' || language.locale=='en'){
       navigation.navigate('LoadingScreen', {
-        apiJsonData: apiJsonData, 
-        prevPage: 'CountryLanguageSelection'
+        apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
+        prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
       });
-    // }
-    // else{
-    //   Alert.alert("No master data available.");
-    // }
-   
-    // dispatch(
-    //   fetchAPI(apiJsonData, 'CountryLanguageSelection', dispatch, navigation),
-    // );
-
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{name: 'Walkthrough'}],
-    // });
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'HomeDrawerNavigator',
-    //     },
-    //   ],
-    // });
-    // navigation.navigate('Walkthrough');
   };
 
   const themeContext = useContext(ThemeContext);

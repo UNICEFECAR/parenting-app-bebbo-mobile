@@ -17,7 +17,7 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
+import { BackHandler, FlatList } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -47,6 +47,9 @@ type localizationType = {
   };
 };
 const CountrySelection = (props: any) => {
+  const { t,i18n } = useTranslation();
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   const dispatch = useAppDispatch();
   const [country, setCountry] = useState<localizationType>();
   const countryId = useAppSelector(
@@ -56,9 +59,23 @@ const CountrySelection = (props: any) => {
     (state: any) =>
       state.utilsData.userIsOnboarded
   );
+  const locale = useAppSelector(
+    (state: any) => state.selectedCountry.locale,
+  );
   console.log("userIsOnboarded appnav--", userIsOnboarded);
   useFocusEffect(
     React.useCallback(() => {
+      const backAction = () => {
+        if (userIsOnboarded == true) {
+          i18n.changeLanguage(locale);
+          props.navigation.goBack()
+        }
+        return true;
+      };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
     const selectedCountry: any = localization.find(
       (country) => country.countryId === countryId,
     );
@@ -72,14 +89,14 @@ const CountrySelection = (props: any) => {
     }
     fetchData()
     setCountry(selectedCountry);
+
+    return () => backHandler.remove();
   }, []),
   );
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
-  const { t } = useTranslation();
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  
   // console.log("-----bj ",i18n);
   return (
     <>

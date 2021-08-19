@@ -29,7 +29,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { apiJsonDataGet, checkBetween, deleteChild, getAllChildren, getAllConfigData, getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
+import { apiJsonDataGet, checkBetween, deleteChild, getAge, getAllChildren, getAllConfigData, getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -147,24 +147,11 @@ const ChildSetupList = ({ navigation }: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
-  const getAge=()=>{
-    let ageData:any=[];
-    if(childList.length> 0){
-    var promises = childList.map((item:any)=>{
-      if(item.birthDate!=null && item.birthDate!=undefined && item.birthDate!=""){
-      return getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(item.birthDate)).toMillis());   
-      }  
-    })
-    return Promise.all(promises).then(async (results:any)=>{
-        const data=await checkBetween(0,results,child_age); 
-        return data;
-    })
-  }
-  }
+  
   const childSetup = async () => {
     // if(netInfo.isConnected){
       
-    const Ages=await getAge();
+    const Ages=await getAge(childList,child_age);
     console.log(Ages,"..Ages..")
     let apiJsonData;
     if(Ages?.length>0){
