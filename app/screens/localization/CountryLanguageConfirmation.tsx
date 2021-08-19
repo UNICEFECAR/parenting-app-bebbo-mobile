@@ -31,12 +31,13 @@ import {
 import { Settings } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert } from 'react-native';
+import { Alert, Text } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
+import { formatStringDate } from '../../services/Utils';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -218,6 +219,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     <>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
+      {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
           <OnboardingshiftHead>

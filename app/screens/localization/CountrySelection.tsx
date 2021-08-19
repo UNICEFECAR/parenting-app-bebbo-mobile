@@ -17,13 +17,14 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, FlatList } from 'react-native';
+import { BackHandler, FlatList, Text } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
+import { formatStringDate } from '../../services/Utils';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -101,6 +102,7 @@ const CountrySelection = (props: any) => {
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourCountry').toString()}
