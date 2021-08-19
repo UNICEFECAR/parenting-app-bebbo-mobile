@@ -102,7 +102,7 @@ const CountrySelection = (props: any) => {
   return (
     <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-      {/* <Text>{formatStringDate(new Date(),"be-BY")}</Text> */}
+      {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
       <OnboardingContainer>
         <OnboardingStyle
           title={t('selectYourCountry').toString()}
