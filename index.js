@@ -13,7 +13,7 @@
  import 'intl/locale-data/jsonp/sq-AL';
  import 'intl/locale-data/jsonp/be-BY';
  import 'intl/locale-data/jsonp/ru-BY';
- import 'intl/locale-data/jsonp/bg';
+//  import 'intl/locale-data/jsonp/bg-BG';
  import 'intl/locale-data/jsonp/el-GR';
  import 'intl/locale-data/jsonp/sq-XK';
  import 'intl/locale-data/jsonp/sr-Latn-XK';
