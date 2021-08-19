@@ -519,6 +519,7 @@ const DATA = [
                     // ref={flatListRef}
                     ref={ref => (sectionListRef = ref)}
                     keyExtractor={(item, index) => item + index}
+                    stickySectionHeadersEnabled={false}
                     // initialNumToRender={4}
                     // renderItem={({ item, title }) => <Item item={item} title={title}/>}
                     removeClippedSubviews={true} // Unmount components when outside of window 
