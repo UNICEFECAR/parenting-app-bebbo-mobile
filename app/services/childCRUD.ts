@@ -152,6 +152,20 @@ export const between = (x: any, min: any, max: any) => {
 const notEmpty = (value: any) => {
   return value !== null && value !== undefined;
 }
+export const getAge=(childList:any,child_age:any)=>{
+  let ageData:any=[];
+  if(childList.length> 0){
+  var promises = childList.map((item:any)=>{
+    if(item.birthDate!=null && item.birthDate!=undefined && item.birthDate!=""){
+    return getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(item.birthDate)).toMillis());   
+    }  
+  })
+  return Promise.all(promises).then(async (results:any)=>{
+      const data=await checkBetween(0,results,child_age); 
+      return data;
+  })
+}
+}
 export const checkBetween = async (param: any, users: any, child_age: any) => {
   let ageData: any = [];
   await Promise.all(users.map(async (itemset: any) => {

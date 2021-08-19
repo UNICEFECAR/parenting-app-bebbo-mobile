@@ -308,7 +308,11 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable onPress={() => setModalVisible(true)}>
+                <Pressable onPress={() => 
+                  {
+                    console.log("icon clicked");
+                    setModalVisible(true)
+                  }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </Pressable>
               </FlexDirRowSpace>
@@ -413,11 +417,18 @@ const SettingScreen = (props: any) => {
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  disabled={true}
+                  //disabled={true}
                   onPress={() => {
-                    props.navigation.reset({
-                      index: 0,
-                      routes: [{name: 'Localization'}],
+                    console.log('close');
+                    setModalVisible(false);
+                    // props.navigation.reset({
+                    //   index: 0,
+                    //   routes: [{name: 'Localization'}],
+                    // });
+                    props.navigation.navigate('Localization',
+                    {
+                      screen:"CountrySelection",
+                      // params:{fromPage:"Loading"},
                     });
                     // props.navigation.navigate('Localization')
                   }}>
