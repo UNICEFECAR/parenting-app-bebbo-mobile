@@ -52,6 +52,10 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     (state: any) =>
       state.utilsData.userIsOnboarded
   );
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
+  );
+  console.log(country,"---country",countryId);
   //console.log(country, language);
   const apiJsonData = [
     {
@@ -188,12 +192,24 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     i18n.changeLanguage(language.locale);
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
-    dispatch(onLocalizationSelect(route.params));
-     analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
-      navigation.navigate('LoadingScreen', {
-        apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
-        prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
+    if(userIsOnboarded == true && (country.countryId == countryId))
+    {
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'HomeDrawerNavigator',
+          },
+        ],
       });
+    }else {
+      dispatch(onLocalizationSelect(route.params));
+      analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
+        navigation.navigate('LoadingScreen', {
+          apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
+          prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
+        });
+    }
   };
 
   const themeContext = useContext(ThemeContext);
