@@ -88,6 +88,8 @@ const getAllDataToStore = async (languageCode:string,dispatch:any,prevPage:strin
               }
             const artData = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData);
             resolve("nocall");
+        }else {
+            resolve("fail");
         }
     });
 
