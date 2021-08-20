@@ -51,6 +51,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
             <HTML
               source={{html: privacydata}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
+              ignoredStyles={['color', 'font-size', 'font-family']}
             />
             : null 
           }
