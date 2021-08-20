@@ -23,6 +23,8 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { deleteImageFile } from '../../downloadImages/ImageStorage';
+import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
 import { formatStringDate } from '../../services/Utils';
 type CountrySelectionNavigationProp = StackNavigationProp<
@@ -63,8 +65,13 @@ const CountrySelection = (props: any) => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
+  const sponsors = useAppSelector(
+    (state: any) => state.selectedCountry.sponsors,
+  );
+  console.log("...sponsors..", sponsors);
   console.log("userIsOnboarded appnav--", userIsOnboarded);
   useEffect(() => {
+
       const backAction = () => {
         if (userIsOnboarded == true) {
           i18n.changeLanguage(locale);
@@ -98,6 +105,13 @@ const CountrySelection = (props: any) => {
       if (userIsOnboarded == false) {
         let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
         dataRealmCommon.deleteAllAtOnce();
+        // if(sponsors.country_national_partner!=undefined && sponsors.country_national_partner!="" && sponsors?.country_national_partner!=null){
+        //   deleteImageFile(sponsors?.country_national_partner);
+        // }
+        // if(sponsors.country_sponsor_logo!=undefined && sponsors.country_sponsor_logo!="" && sponsors?.country_sponsor_logo!=null){
+        //   deleteImageFile(sponsors?.country_sponsor_logo);
+        // }
+        dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
         let payload = {errorArr:[],fromPage:'OnLoad'}
         dispatch(receiveAPIFailure(payload));
       }
