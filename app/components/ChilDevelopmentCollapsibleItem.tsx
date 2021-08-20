@@ -236,6 +236,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
                     <HTML
                       source={{html: item.body}}
                       baseFontStyle={{fontSize: 14}}
+                      ignoredStyles={['color', 'font-size', 'font-family']}
                     />
                     : null 
                   }
