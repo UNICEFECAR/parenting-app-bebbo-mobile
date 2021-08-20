@@ -25,7 +25,7 @@
  import 'intl/locale-data/jsonp/uz-Latn-UZ';
  import 'intl/locale-data/jsonp/ru-RU';
  import 'intl/locale-data/jsonp/en-US';
- import 'intl/locale-data/jsonp/bg-BG';
+ import '@assets/customLocale/bg-BG';
  // import 'intl/locale-data/jsonp/be';
  // import 'intl/locale-data/jsonp/be';
  //sq,ru
