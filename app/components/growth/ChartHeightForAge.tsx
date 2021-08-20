@@ -134,6 +134,7 @@ useEffect(() => {
                 <HTML
                   source={{html: item?.interpretationText?.text}}
                   baseFontStyle={{fontSize: 16}}
+                  ignoredStyles={['color', 'font-size', 'font-family']}
                 />
               ) : null}
             </>
