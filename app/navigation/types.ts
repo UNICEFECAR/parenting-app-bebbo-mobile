@@ -23,7 +23,7 @@ export type RootStackParamList = {
 };
 
 export type LocalizationStackParamList = {
-  CountrySelection: undefined;
+  CountrySelection: {};
   LanguageSelection: undefined;
   CountryLanguageConfirmation: undefined;
 };
