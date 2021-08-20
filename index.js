@@ -26,6 +26,7 @@
  import 'intl/locale-data/jsonp/ru-RU';
  import 'intl/locale-data/jsonp/en-US';
  import '@assets/customLocale/bg-BG';
+ import '@assets/customLocale/tg-TJ';
  // import 'intl/locale-data/jsonp/be';
  // import 'intl/locale-data/jsonp/be';
  //sq,ru
