@@ -112,7 +112,7 @@ export const formatDaysData = (data: any) => {
 
   return obj;
 }
-export const formatHeightData = (data: any) => {
+export const formatHeightData = (data: any,param:any) => {
   let obj: chartAreaDataFormat;
   // console.log(JSON.stringify(data, null, 4), "data")
 
@@ -120,19 +120,37 @@ export const formatHeightData = (data: any) => {
   let middleArea: singleAreaDataFormat[] = [];
   let bottomArea: singleAreaDataFormat[] = [];
   // console.log("formatHeightData",data)
-  data.map(item => {
-    // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
-    //     topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
-    //     middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
-    //     bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
-    // }
-
-    // if (Number(item.name) > 87.0) {
-    topArea.push({ x: Number(item.name)/30, y: item.sd3, y0: item.sd4 });
-    middleArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd3 });
-    bottomArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd4neg });
-    // }
-  })
+  if(param=='height'){
+    data.map(item => {
+      // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
+      //     topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
+      //     middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
+      //     bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+      // }
+  
+      // if (Number(item.name) > 87.0) {
+      topArea.push({ x: Number(item.name)/30, y: item.sd3, y0: item.sd4 });
+      middleArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd3 });
+      bottomArea.push({ x: Number(item.name)/30, y: item.sd3neg, y0: item.sd4neg });
+      // }
+    })
+  }
+  else{
+    data.map(item => {
+      // if (Number(item.name) >= 45 && Number(item.name) <= 87) {
+      //     topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
+      //     middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
+      //     bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+      // }
+  
+      // if (Number(item.name) > 87.0) {
+      topArea.push({ x: Number(item.name), y: item.sd3, y0: item.sd4 });
+      middleArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd3 });
+      bottomArea.push({ x: Number(item.name), y: item.sd3neg, y0: item.sd4neg });
+      // }
+    })
+  }
+  
   obj = {
     topArea: topArea,
     middleArea: middleArea,
