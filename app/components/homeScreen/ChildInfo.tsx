@@ -77,7 +77,7 @@ const goToVideoArticleDetails = () => {
         
           <ShiftFromBottom10>
           <Heading2Center>
-            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? t('childInfoAndText')+' '+userNameData[0].value : t('childInfoAndText')+' ' +t('childInfoParentText')})} 
+            {t('homeScreenchildInfoTitle',{childName:(activeChild.childName!='' && activeChild.childName!=null)?activeChild.childName:t('childInfoBabyText'),parentName:userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')})} 
             {/* if baby found use childInfoTitle */}
           </Heading2Center>
           </ShiftFromBottom10>
