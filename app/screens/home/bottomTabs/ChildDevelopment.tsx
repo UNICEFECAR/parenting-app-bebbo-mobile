@@ -266,6 +266,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                       <HTML
                         source={{ html: selectedChildDevData?.milestone }}
                         baseFontStyle={{ fontSize: 14 }}
+                        ignoredStyles={['color', 'font-size', 'font-family']}
                       />
                       : null
                   }
