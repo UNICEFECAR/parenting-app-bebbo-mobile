@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler  } from 'react-native';
+import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions  } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -327,6 +327,8 @@ const DetailsScreen = ({route, navigation}: any) => {
                 source={{html: detailDataToUse.body}} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000'}}
+                ignoredStyles={['color', 'font-size', 'font-family']}
+                tagsStyles={{img: {maxWidth:Dimensions.get('window').width} }}
               />
                : null 
             } 
