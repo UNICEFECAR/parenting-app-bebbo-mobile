@@ -4,7 +4,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -55,6 +55,8 @@ const Aboutus = ({navigation}: Props) => {
             <HTML
               source={{html: aboutusdata}}
               baseFontStyle={{fontSize: 16, color: '#000'}}
+              ignoredStyles={['color', 'font-size', 'font-family']}
+              tagsStyles={{img: {maxWidth:Dimensions.get('window').width} }}
             />
             : null 
           }
