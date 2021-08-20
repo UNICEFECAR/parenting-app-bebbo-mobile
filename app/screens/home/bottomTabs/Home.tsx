@@ -242,6 +242,7 @@ const Home = ({route,navigation}: Props) => {
                 {surveryData[0] && surveryData[0].body ?
                     <HTML
                       source={{html: surveryData[0].body}}
+                      ignoredStyles={['color', 'font-size', 'font-family']}
                     />
                     : null 
                   }
