@@ -28,16 +28,30 @@ type Props = {
 };
 const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
-  const {country} = route.params;
-  // console.log(country);
+  const {country,languagenew} = route.params;
+  console.log(languagenew,"--languagenew--");
   const languages = country.languages;
   const {t, i18n} = useTranslation();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const userIsOnboarded = useAppSelector(
+    (state: any) =>
+      state.utilsData.userIsOnboarded
+  );
   useEffect(() => {
-    const selectedLanguage = languages.find(
-      (lang) => lang.languageCode === languageCode,
+    let newLanguageId: any,selectedLanguage;
+    // if(userIsOnboarded == true){
+      if(languagenew && languagenew != null){
+        newLanguageId = languagenew.languageCode;
+      }else {
+        newLanguageId = languageCode;
+      }
+    // }else {
+    //   newLanguageId = languageCode;
+    // }
+    selectedLanguage = languages.find(
+      (lang) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
   }, []);

@@ -69,12 +69,15 @@ const CountrySelection = (props: any) => {
     (state: any) => state.selectedCountry.sponsors,
   );
   console.log("...sponsors..", sponsors);
-  useFocusEffect(
-    React.useCallback(() => {
+  console.log("userIsOnboarded appnav--", userIsOnboarded);
+  useEffect(() => {
+
       const backAction = () => {
         if (userIsOnboarded == true) {
           i18n.changeLanguage(locale);
           props.navigation.goBack()
+        }else {
+          BackHandler.exitApp();
         }
         return true;
       };
@@ -82,9 +85,22 @@ const CountrySelection = (props: any) => {
       "hardwareBackPress",
       backAction,
     );
-    const selectedCountry: any = localization.find(
-      (country) => country.countryId === countryId,
+    
+    // console.log(props.route.params.country,"---",countryId,"---onboard",userIsOnboarded)
+      let newCountryId: any,selectedCountry;
+    if(userIsOnboarded == true){
+      if(props.route.params.country && props.route.params.country != null){
+        newCountryId = props.route.params.country.countryId;
+      }else {
+        newCountryId = countryId;
+      }
+    }else {
+      newCountryId = countryId;
+    }
+    selectedCountry = localization.find(
+      (country) => country.countryId === newCountryId,
     );
+    console.log(selectedCountry,"---selectedCountry");
     const fetchData = async () => {
       if (userIsOnboarded == false) {
         let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
@@ -104,8 +120,7 @@ const CountrySelection = (props: any) => {
     setCountry(selectedCountry);
 
     return () => backHandler.remove();
-  }, []),
-  );
+  }, []);
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
@@ -135,7 +150,7 @@ const CountrySelection = (props: any) => {
                 <ButtonviewClick
                   style={{}}
                   onPress={() =>
-                    props.navigation.navigate('LanguageSelection', { country })
+                    props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
                   }>
                   <Icon name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
