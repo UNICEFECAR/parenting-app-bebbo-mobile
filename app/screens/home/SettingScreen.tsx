@@ -427,8 +427,8 @@ const SettingScreen = (props: any) => {
                     // });
                     props.navigation.navigate('Localization',
                     {
-                      screen:"CountrySelection",
-                      // params:{fromPage:"Loading"},
+                      screen:'CountrySelection',
+                      params:{country:null,language:null}
                     });
                     // props.navigation.navigate('Localization')
                   }}>
