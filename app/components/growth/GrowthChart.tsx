@@ -157,7 +157,8 @@ useEffect(() => {
         <VictoryAxis
           style={victoryStyles.VictoryAxis}
           label={labelX}
-          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-52 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-98: windowHeight-70}/>}
+          // axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-52 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-98: windowHeight-70}/>}
+          axisLabelComponent={<VictoryLabel x={deviceOrientation === 'portrait' ? windowWidth-180 : windowHeight-30} y={deviceOrientation === 'portrait' ? windowWidth-75: windowHeight-70}/>}
         />
         {/* ********* AXIS VERTICAL ********* */}
         <VictoryAxis
