@@ -291,14 +291,14 @@ const Activities = ({ route,navigation }: Props) => {
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 1000);
+        }, 200);
       }else {
         const newArticleData = selectedChildActivitiesData.length > 0 ? selectedChildActivitiesData : [];
         setfilteredData(newArticleData);
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 1000);
+        }, 200);
       }
     }
     else {
@@ -306,7 +306,7 @@ const Activities = ({ route,navigation }: Props) => {
         setLoading(false);
         setTimeout(() => {
           setshowNoData(true);
-        }, 1000);
+        }, 200);
     }
     toTop();
   }
