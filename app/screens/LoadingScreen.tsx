@@ -9,6 +9,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
@@ -81,8 +82,8 @@ const prevPage  = route.params.prevPage;
       }
       apiJsonData.push(apiJsonDataarticle[0]);
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
-
       dataRealmCommon.deleteAllAtOnce();
+      dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
