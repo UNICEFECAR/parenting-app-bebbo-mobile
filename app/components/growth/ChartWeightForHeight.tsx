@@ -45,7 +45,7 @@ const ChartWeightForHeight = () => {
       (item) => item.growth_type == 6461 && item.child_gender == 40,
     );
     standardDeviation = genderBoyData;
-    obj = formatHeightData(genderBoyData);
+    obj = formatHeightData(genderBoyData,'weight');
   } else {
     //girl
     // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
@@ -53,7 +53,7 @@ const ChartWeightForHeight = () => {
       (item) => item.growth_type == 6461 && item.child_gender == 41,
     );
     standardDeviation = genderGirlData;
-    obj = formatHeightData(genderGirlData);
+    obj = formatHeightData(genderGirlData,'weight');
   }
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures.sort(

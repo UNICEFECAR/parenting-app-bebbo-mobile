@@ -45,7 +45,7 @@ const ChartHeightForAge = () => {
       (item) => item.growth_type == 32786 && item.child_gender == 40,
     );
     standardDeviation = genderBoyData;
-    obj = formatHeightData(genderBoyData);
+    obj = formatHeightData(genderBoyData,'height');
   } else {
     //girl
     // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
@@ -53,7 +53,7 @@ const ChartHeightForAge = () => {
       (item) => item.growth_type == 32786 && item.child_gender == 41,
     );
     standardDeviation = genderGirlData;
-    obj = formatHeightData(genderGirlData);
+    obj = formatHeightData(genderGirlData,'height');
   }
   const childBirthDate = activeChild.birthDate;
   const childTaxonomyData = activeChild.taxonomyData;
