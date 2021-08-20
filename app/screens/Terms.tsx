@@ -211,6 +211,7 @@ const Terms = ({navigation}: Props) => {
             <HTML
               source={{html: termsdata}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
+              ignoredStyles={['color', 'font-size', 'font-family']}
             />
             : null
           }
