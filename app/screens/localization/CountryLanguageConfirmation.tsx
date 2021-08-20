@@ -212,7 +212,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
         });
     }
   };
-
+  
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
@@ -251,7 +251,10 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
 
               <LocalizationAction>
                 <ButtonLinkText
-                  onPress={() => navigation.navigate('CountrySelection')}>
+                  onPress={() => {
+                    console.log(language,"country--",country);
+                    navigation.navigate('CountrySelection',{country:country,language:language})
+                  }}>
                   <OuterIconRow>
                     <OuterIconLeft>
                       <Icon name="ic_edit" size={16} color="#000" />
