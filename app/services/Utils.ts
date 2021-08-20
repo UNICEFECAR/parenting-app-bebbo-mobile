@@ -197,11 +197,11 @@ export const formatStringDate=(dateData:any,luxonLocale:string)=>{
     // let hour=new IntlPolyfill.DateTimeFormat(luxonLocale, {hour:'2-digit'}).format(new Date(dateData));
     // let minute=new IntlPolyfill.DateTimeFormat(luxonLocale, {minute:'2-digit',hour12: true}).format(new Date(dateData));
     // let period=new IntlPolyfill.DateTimeFormat(luxonLocale, {hour:"numeric",minute:'numeric',second:"numeric",hour12: true}).format(new Date(dateData)).split(" ")[1];
-    // console.log(period,"..period")
+    // // console.log(period,"..period")
     // let timeView=hour+":"+minute+" "+period;
-    //  return timeView;
-   // return new IntlPolyfill.DateTimeFormat(luxonLocale, {hour: 'numeric', minute: 'numeric',hour12: true}).format(new Date(dateData));
-    return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
+    //   return timeView;
+    return new IntlPolyfill.DateTimeFormat(luxonLocale, {hour: 'numeric', minute: 'numeric',hour12: true}).format(new Date(dateData));
+   // return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
   }
 export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:any,plannedTermDate:any,name?:any,gender?:any)=>{
    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
