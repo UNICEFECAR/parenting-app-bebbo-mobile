@@ -131,6 +131,7 @@ useEffect(() => {
   /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
+    //console.log(item.measurementDate,"..item.measurementDate..");
     chartData.push(
       chartType == chartTypes.weightForHeight
         ? {x: item.height, y: item.weight}
