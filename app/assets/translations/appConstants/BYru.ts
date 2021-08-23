@@ -373,7 +373,8 @@ childInfoAndText: "и",
                 hcModalText: "Here you can enter records from your child’s health check-ups and find out more about their content. Set reminders for future health check-ups and receive notifications!",
                 tryText: 'Try again...',
                 deleteSuccess:"User Deleted Succesfully",
-          deleteError:"User Delete Error.Please try again.."
+          deleteError:"User Delete Error.Please try again..",
+          reminderalertText:"Reminder Date is before current Date Time",
         }
 }
 export default BYru;

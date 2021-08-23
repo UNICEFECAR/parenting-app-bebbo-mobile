@@ -14,7 +14,8 @@ import {
   FormDateAction,
   FormDateText,
   FormInputBox,
-  FormInputGroup
+  FormInputGroup,
+  LabelText
 } from '@components/shared/ChildSetupStyle';
 import {
   HeaderActionView,
@@ -62,6 +63,7 @@ import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { HEALTH_CHECKUP_REMINDER_SET, VACCINE_REMINDER_SET } from '@assets/data/firebaseEvents';
+import { Alert } from 'react-native';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -217,6 +219,9 @@ const AddReminder = ({route, navigation}: any) => {
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
   const saveReminder = async () => {
+    // check if reminderdate and time are less than current time show error alert
+    // else allow saving
+   
     let measureTimeNew;
     if (typeof measureTime === 'number' || measureTime instanceof Number){
       measureTimeNew=measureTime;
@@ -224,6 +229,24 @@ const AddReminder = ({route, navigation}: any) => {
     else{
       measureTimeNew=measureTime.toMillis();
     }
+    const hours = new Date(editReminderItem
+      ? timeTouched
+        ? measureTimeNew
+        : measureTimeNew
+      : measureTimeNew).getHours();
+      const mins = new Date(editReminderItem
+        ? timeTouched
+          ? measureTimeNew
+          : measureTimeNew
+        : measureTimeNew).getMinutes()
+    let finalReminderDate = new Date(editReminderItem
+      ? dateTouched
+        ? measureDate?.toMillis()
+        : measureDate
+      : measureDate?.toMillis())
+      finalReminderDate.setHours(hours);
+      finalReminderDate.setMinutes(mins);
+      if(DateTime.fromJSDate(finalReminderDate).toMillis()>DateTime.fromJSDate(new Date()).toMillis()){
     const reminderValues = {
       uuid: editReminderItem ? editReminderItem.uuid : uuidv4(),
       reminderType: reminderType,
@@ -247,13 +270,18 @@ const AddReminder = ({route, navigation}: any) => {
     if (createresult?.length > 0) {
       activeChild.reminders = createresult;
       dispatch(setActiveChildData(activeChild));
+      navigation.goBack();
       if(reminderType == 'vaccine'){
          analytics().logEvent(VACCINE_REMINDER_SET)
       }else{
          analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
       }
-      navigation.goBack();
     }
+    }else{
+      Alert.alert(t('reminderalertText'))
+    }
+
+    // reminderalertText:"Reminder Date is before current Date Time"
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
   return (
