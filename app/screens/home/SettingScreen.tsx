@@ -289,7 +289,7 @@ const SettingScreen = (props: any) => {
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: formatStringDate('17 dec 2020 02:32pm',luxonLocale),
+                downloadDate: formatStringDate(new Date(),luxonLocale),
               })}
             </Heading6>
             <ShiftFromTop10>
