@@ -91,17 +91,30 @@ const UpcomingHealthCheckup = (props: any) => {
   );
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const healthCheckupReminder = reminders.filter(
+  let hcReminder;
+  const healthCheckupReminders = reminders.filter(
     (item) => item?.reminderType == 'healthCheckup',
-  )[0];
-  if (healthCheckupReminder) {
-    let today = DateTime.fromJSDate(new Date());
-    let reminderDate = DateTime.fromMillis(healthCheckupReminder?.reminderDate);
-
-    let days = reminderDate.diff(today, 'days').toObject().days;
-    if (Math.round(days) < 0) {
-      deleteReminder(healthCheckupReminder.uuid);
-    }
+  );
+  if (healthCheckupReminders.length>0) {
+    healthCheckupReminders.forEach((healthCheckupReminder)=>{
+      let today = DateTime.fromJSDate(new Date());
+      // let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
+      let reminderDate = new Date(DateTime.fromMillis(healthCheckupReminder?.reminderDate));
+      
+      // let reminderTime = DateTime.fromMillis(healthCheckupReminder?.reminderTime);
+      const hours = new Date(healthCheckupReminder?.reminderTime).getHours()
+      const mins = new Date(healthCheckupReminder?.reminderTime).getMinutes()
+      reminderDate.setHours(hours);
+      reminderDate.setMinutes(mins);
+      
+      // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
+      // console.log(days,"days")
+      if (today.toMillis()<DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
+        console.log('healthCheckupReminder',healthCheckupReminder);
+        hcReminder = healthCheckupReminder
+      }
+    })
+    
   }
 
   // console.log(healthCheckupReminder,"healthCheckupReminder",);
@@ -277,7 +290,7 @@ const UpcomingHealthCheckup = (props: any) => {
 
             {currentPeriodId == item?.id  ? (
               <MainContainer>
-                {healthCheckupReminder ? (
+                {hcReminder ? (
                   <FDirRowStart>
                     <ToolsIconView>
                     <IconViewBg>
@@ -297,14 +310,14 @@ const UpcomingHealthCheckup = (props: any) => {
                           // DateTime.fromJSDate(
                           //   new Date(healthCheckupReminder?.reminderDate),
                           // ).toFormat('dd MMM yyyy')
-                          formatStringDate(healthCheckupReminder?.reminderDate,luxonLocale)
+                          formatStringDate(hcReminder?.reminderDate,luxonLocale)
                           }
                           {','}
                           {
                           // DateTime.fromJSDate(
                           //   new Date(healthCheckupReminder?.reminderTime),
                           // ).toFormat('hh:mm a')
-                          formatStringTime(healthCheckupReminder?.reminderTime,luxonLocale)
+                          formatStringTime(hcReminder?.reminderTime,luxonLocale)
                           }
                         </Heading4>
                       </ToolsHeadingView>
@@ -319,7 +332,7 @@ const UpcomingHealthCheckup = (props: any) => {
                               titleTxt: t('hcReminderText'),
                               warningTxt: t('hcReminderDeleteWarning'),
                               headerColor: headerColor,
-                              editReminderItem: healthCheckupReminder,
+                              editReminderItem: hcReminder,
                             });
                           }}>
                           <ButtonTextSmLine numberOfLines={2}>
