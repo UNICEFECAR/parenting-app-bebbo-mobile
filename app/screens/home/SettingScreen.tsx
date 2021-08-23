@@ -61,6 +61,7 @@ import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
+import { formatStringDate } from '../../services/Utils';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -87,6 +88,9 @@ const SettingScreen = (props: any) => {
   const thumbFalseColor = '#9598BE';
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const toggleSwitch = () => {
     //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
     setIsEnabled((previousState) => !previousState);}
@@ -285,7 +289,7 @@ const SettingScreen = (props: any) => {
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: '17 dec 2020 02:32pm',
+                downloadDate: formatStringDate('17 dec 2020 02:32pm',luxonLocale),
               })}
             </Heading6>
             <ShiftFromTop10>
