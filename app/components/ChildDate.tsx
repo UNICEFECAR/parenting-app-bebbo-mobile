@@ -80,9 +80,9 @@ const ChildDate = (props: any) => {
         setToggleCheckBox(
           isPremature != null ? JSON.parse(isPremature) : false,
         );
-        if(new Date(birthDate) < new Date(dobMin)){
-          birthDate = new Date(dobMin);
-        }
+        // if(new Date(birthDate) < new Date(dobMin)){
+        //   birthDate = new Date(dobMin);
+        // }
         setdoborExpectedDate(
           birthDate != null ? new Date(birthDate) : new Date(),
         );

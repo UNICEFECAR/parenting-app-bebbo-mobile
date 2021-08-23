@@ -113,7 +113,7 @@ supportScreenheader2text: "В настоящее время чат недост�
                 // homeScreen
                 homeScreenheaderTitle: "Беббо",
 homeScreenchildBtnText: "Читать далее ",
-homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}},",
+homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}}",
 homeScreendailyReadsTitle: "Ежедневные материалы",
 homeScreentodayarticle: "Совет дня",
 homeScreentodaygame: "Игра дня",
