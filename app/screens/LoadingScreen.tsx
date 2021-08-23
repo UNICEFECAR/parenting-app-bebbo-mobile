@@ -97,20 +97,35 @@ const prevPage  = route.params.prevPage;
       apiJsonData.push(apiJsonDataarticle[0]);
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
-      dataRealmCommon.deleteAll(ArticleEntitySchema);
-      dataRealmCommon.deleteAll(PinnedChildDevelopmentSchema);
-      dataRealmCommon.deleteAll(VideoArticleEntitySchema);
-      dataRealmCommon.deleteAll(DailyHomeMessagesSchema);
-      dataRealmCommon.deleteAll(BasicPagesSchema);
-      dataRealmCommon.deleteAll(TaxonomySchema);
-      dataRealmCommon.deleteAll(MilestonesSchema);
-      dataRealmCommon.deleteAll(ChildDevelopmentSchema);
-      dataRealmCommon.deleteAll(VaccinationSchema);
-      dataRealmCommon.deleteAll(HealthCheckUpsSchema);
-      dataRealmCommon.deleteAll(SurveysSchema);
-      dataRealmCommon.deleteAll(ActivitiesEntitySchema);
-      dataRealmCommon.deleteAll(StandardDevHeightForAgeSchema);
-      dataRealmCommon.deleteAll(StandardDevWeightForHeightSchema);
+      dataRealmCommon.deleteOneByOne([ArticleEntitySchema,
+        PinnedChildDevelopmentSchema,
+        VideoArticleEntitySchema,
+        DailyHomeMessagesSchema,
+        BasicPagesSchema,
+        TaxonomySchema,
+        MilestonesSchema,
+        ChildDevelopmentSchema,
+        VaccinationSchema,
+        HealthCheckUpsSchema,
+        SurveysSchema,
+        ActivitiesEntitySchema,
+        StandardDevHeightForAgeSchema,
+        StandardDevWeightForHeightSchema
+      ]);
+      // dataRealmCommon.deleteAll(ArticleEntitySchema);
+      // dataRealmCommon.deleteAll(PinnedChildDevelopmentSchema);
+      // dataRealmCommon.deleteAll(VideoArticleEntitySchema);
+      // dataRealmCommon.deleteAll(DailyHomeMessagesSchema);
+      // dataRealmCommon.deleteAll(BasicPagesSchema);
+      // dataRealmCommon.deleteAll(TaxonomySchema);
+      // dataRealmCommon.deleteAll(MilestonesSchema);
+      // dataRealmCommon.deleteAll(ChildDevelopmentSchema);
+      // dataRealmCommon.deleteAll(VaccinationSchema);
+      // dataRealmCommon.deleteAll(HealthCheckUpsSchema);
+      // dataRealmCommon.deleteAll(SurveysSchema);
+      // dataRealmCommon.deleteAll(ActivitiesEntitySchema);
+      // dataRealmCommon.deleteAll(StandardDevHeightForAgeSchema);
+      // dataRealmCommon.deleteAll(StandardDevWeightForHeightSchema);
       dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
