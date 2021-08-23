@@ -82,19 +82,41 @@ const UpcomingVaccines = (props: any) => {
   );
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  const vaccineReminder = reminders.filter(
+  let vcReminder;
+  const vaccineReminders = reminders.filter(
     (item) => item?.reminderType == 'vaccine',
-  )[0];
-  if (vaccineReminder) {
-    let today = DateTime.fromJSDate(new Date());
-    let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
-
-    let days = reminderDate.diff(today, 'days').toObject().days;
-    console.log(Math.round(days), 'Days');
-    if (Math.round(days) < 0) {
-      deleteReminder(vaccineReminder.uuid);
-    }
+  );
+  if (vaccineReminders.length>0) {
+    vaccineReminders.forEach((vaccineReminder)=>{
+      let today = DateTime.fromJSDate(new Date());
+      // let reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
+      let reminderDate = new Date(DateTime.fromMillis(vaccineReminder?.reminderDate));
+      
+      // let reminderTime = DateTime.fromMillis(vaccineReminder?.reminderTime);
+      const hours = new Date(vaccineReminder?.reminderTime).getHours()
+      const mins = new Date(vaccineReminder?.reminderTime).getMinutes()
+      reminderDate.setHours(hours);
+      reminderDate.setMinutes(mins);
+      
+      // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
+      // console.log(days,"days")
+      if (today.toMillis()<DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
+        console.log('vaccineReminder',vaccineReminder);
+        vcReminder = vaccineReminder
+      }
+    })
+    
   }
+  // if (vaccineReminder) {
+  //   let today = DateTime.fromJSDate(new Date());
+  //   let reminderDate = DateTime.fromMillis(vaccineReminder?.reminderDate);
+
+  //   let days = reminderDate.diff(today, 'days').toObject().days;
+  //   console.log(Math.round(days), 'Days');
+  //   if (Math.round(days) < 0) {
+  //     deleteReminder(vaccineReminder.uuid);
+  //   }
+  // }
  
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
@@ -226,7 +248,7 @@ const UpcomingVaccines = (props: any) => {
             {/* Set Reminder After Add Time*/}
             {currentPeriodId == item?.periodID ? (
               <MainContainer>
-                {vaccineReminder ? (
+                {vcReminder ? (
                   <FDirRowStart>
                     <ToolsIconView>
                     <IconViewBg>
@@ -246,11 +268,11 @@ const UpcomingVaccines = (props: any) => {
                           // DateTime.fromJSDate(
                           //   new Date(vaccineReminder?.reminderDate),
                           // ).toFormat('dd MMM yyyy')
-                          formatStringDate(vaccineReminder?.reminderDate,luxonLocale)
+                          formatStringDate(vcReminder?.reminderDate,luxonLocale)
                           }
                           {','}
                           {
-                             formatStringTime(vaccineReminder?.reminderTime,luxonLocale)
+                             formatStringTime(vcReminder?.reminderTime,luxonLocale)
                           // DateTime.fromJSDate(
                           //   new Date(vaccineReminder?.reminderTime),
                           // ).toFormat('hh:mm a')
@@ -267,7 +289,7 @@ const UpcomingVaccines = (props: any) => {
                               titleTxt: t('vcReminderText'),
                               warningTxt: t('vcReminderDeleteWarning'),
                               headerColor: headerColor,
-                              editReminderItem: vaccineReminder,
+                              editReminderItem: vcReminder,
                             });
                           }}>
                           <ButtonTextSmLine numberOfLines={2}>
