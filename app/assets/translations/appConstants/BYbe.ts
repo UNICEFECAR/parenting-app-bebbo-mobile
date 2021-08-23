@@ -113,7 +113,7 @@ const BYbe = {
                 // homeScreen
                 homeScreenheaderTitle: "Беба",
                 homeScreenchildBtnText: "Чытаць далей",
-                homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}},",
+                homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}}",
                 homeScreendailyReadsTitle: "Штодзённыя матэрыялы",
                 homeScreentodayarticle: "Парада дня",
                 homeScreentodaygame: "Гульня дня",
