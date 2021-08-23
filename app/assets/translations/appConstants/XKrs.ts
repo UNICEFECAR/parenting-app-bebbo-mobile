@@ -273,7 +273,7 @@ const XKrs = {
               childNamePlaceTxt: "Uneti ime vašeg deteta",
               editProfileBtn: "Uredi profil deteta",
               addProfileBtn: "Dodaj profil",
-              childProfileBornOn: "Rođeno dana  {{childdob}}",
+              childProfileBornOn: "Rođeno dana {{childdob}}",
               childActivatedtxt: "Aktivirano",
               childActivatebtn: "Aktiviraj profil",
               childProfileHeader: "Profil deteta i roditelja",
