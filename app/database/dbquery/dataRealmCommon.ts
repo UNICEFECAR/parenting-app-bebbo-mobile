@@ -340,26 +340,17 @@ class DataRealmCommon {
         });
     
     }
-    public async deleteOneByOne(entitySchemaArray: any): Promise<void> {
+    public async deleteOneByOne(entitySchema: ObjectSchema): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
                 if (realm) {
-                    const resolvedPromises =  entitySchemaArray.map(async (x:any) => {
-                        const allRecords = realm?.objects(x.name);
-                        realm?.write(() => {
-                            realm?.delete(allRecords);
-                            return "success";
-                            // resolve();
-                        });
+                    const allRecords = realm?.objects(entitySchema.name);
+
+                    realm?.write(() => {
+                        realm?.delete(allRecords);
+                        resolve();
                     });
-                    const results = await Promise.all(resolvedPromises);
-                    console.log("done--",results);
-                    // const allRecords = realm?.objects(entitySchema.name);
-                    // realm?.write(() => {
-                    //     realm?.delete(allRecords);
-                    //     // resolve();
-                    // });
                 }
                 else {
                     reject();
