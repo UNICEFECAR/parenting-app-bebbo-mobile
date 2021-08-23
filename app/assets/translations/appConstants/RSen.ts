@@ -374,7 +374,9 @@ childInfoAndText: "and",
                 tryText: 'Try again...',
                 deleteSuccess:"User Deleted Succesfully",
           deleteError:"User Delete Error.Please try again..",
-          reminderalertText:"Reminder Date is before current Date Time",    
+          reminderalertText:"Reminder Date is before current Date Time",  
+          noRecentGrowthMeasure:"Your child's measurement was measured very long time age. Update your child growth measurement now",
+  
         }
 }
 export default RSen;

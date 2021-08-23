@@ -126,9 +126,9 @@ useEffect(() => {
         )}
 
         <ShiftFromTop10>
-          {item?.interpretationText ? (
+          {item ? (
             <>
-              <Heading2>{t('growthScreensumHeading')}</Heading2>
+             {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null} 
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <HTML
