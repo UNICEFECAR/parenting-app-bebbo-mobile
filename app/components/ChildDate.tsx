@@ -80,6 +80,9 @@ const ChildDate = (props: any) => {
         setToggleCheckBox(
           isPremature != null ? JSON.parse(isPremature) : false,
         );
+        if(new Date(birthDate) < new Date(dobMin)){
+          birthDate = new Date(dobMin);
+        }
         setdoborExpectedDate(
           birthDate != null ? new Date(birthDate) : new Date(),
         );
@@ -101,6 +104,9 @@ const ChildDate = (props: any) => {
     setDueDatePickerVisibility(false);
   };
   const ondobChange = (event:any,selectedDate: any) => {
+    if(new Date(selectedDate) < new Date(dobMin)){
+      selectedDate = new Date(dobMin);
+    }
     const currentDate = selectedDate || doborExpectedDate;
     setdobShow(Platform.OS === 'ios');
     const inFuture = isFutureDate(currentDate);
