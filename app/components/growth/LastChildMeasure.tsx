@@ -32,6 +32,7 @@ const LastChildMeasure = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  console.log(activeChild,"LastChildMeasureactiveChild")
   const navigation = useNavigation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -89,6 +90,15 @@ const LastChildMeasure = (props: any) => {
   //   }, [activeChild]),
   // );
 
+ let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+    childmeasures.length - 1
+  ]?.dateToMilis)
+  let date = DateTime.fromISO(activeChild.birthDate);
+  // console.log(date,"DOB");
+  let convertInDays = lastmeasurementDate.diff(date, "days").days;
+  let days = 0;
+  if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+  console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
   return (
     <>
       <BannerContainer1>
@@ -182,6 +192,7 @@ const LastChildMeasure = (props: any) => {
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
+          {(days< activeChild.taxonomyData.days_from) ?<Text>{t('noRecentGrowthMeasure')}</Text>:null}
         </ShiftFromTop20>
       </BannerContainer1>
     </>
