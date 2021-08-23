@@ -30,7 +30,7 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
             JSON.parse(state.utilsData.weight_for_height),
     );
     let filteredDataForHeight = standardDeviation.find(data => data.name === height);
-    console.log(filteredDataForHeight,"<weightforheight>",height)
+    // console.log(filteredDataForHeight,"<weightforheight>",height)
     let interpretationData = allinterpretationData?.find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     // console.log(filteredDataForHeight,interpretationData,"filtered");
     if (filteredDataForHeight) {
@@ -81,23 +81,31 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         length = parseFloat(lastMeasurements.height);
     };
 
+    // const date1 = DateTime.fromMillis(lastMeasurements.measurementDate);
+//   const date2 = DateTime.fromISO(childBirthDate);
+
+//   const diff: any = date1.diff(date2, "days");
+
+//   console.log("helllo",diff)
     const childBirthDay = childBirthDate;
     let measurementDate: DateTime = DateTime.local();
-
+    // console.log(lastMeasurements.measurementDate,"lastMeasurements.measurementDate",childBirthDate)
     if (lastMeasurements !== undefined && lastMeasurements.measurementDate) {
-        measurementDate = DateTime.fromJSDate(new Date(lastMeasurements.measurementDate));
+        measurementDate = DateTime.fromMillis(lastMeasurements.measurementDate);
     }
     let days = 0;
-
+// console.log(measurementDate,"measurementDate",childBirthDay)
     if (childBirthDay) {
-        let date = DateTime.fromJSDate(childBirthDay);
-        let convertInDays = measurementDate.diff(date, "days").toObject().days;
+        let date = DateTime.fromISO(childBirthDay);
+        // console.log(date,"DOB");
+        let convertInDays = measurementDate.diff(date, "days").days;
+        // console.log(measurementDate.diff(date, "days"),"convertInDays")
 
-
-        if (convertInDays !== undefined) days = Math.round(convertInDays);
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
     };
+    // console.log(chartData,"chartData")
     let filteredData = chartData.find(data => data.name === days);
-    console.log(filteredData,"<FileterData>",days)
+    // console.log(filteredData,"<FileterData>",days)
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.height_for_age),
@@ -106,7 +114,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
     let interpretationData = allinterpretationData?.
         find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
 
-    console.log(interpretationData, "interpretationData");
+    // console.log(interpretationData, "interpretationData");
     if (filteredData !== undefined) {
         if (length >= filteredData.sd2neg && length <= filteredData.sd3) {
             interpretationText = interpretationData?.goodText;
