@@ -196,7 +196,7 @@ const LastChildMeasure = (props: any) => {
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
-          <ShiftFromTop20>
+         {(days< activeChild.taxonomyData.days_from) ? <ShiftFromTop20>
           <FDirRowStart>
           <OuterIconRow>
                         <OuterIconLeft>
@@ -208,9 +208,10 @@ const LastChildMeasure = (props: any) => {
                               /></IconViewAlert>
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <Heading4 style={{flexShrink:1}}> {(days< activeChild.taxonomyData.days_from) ?<Text>{t('noRecentGrowthMeasure')}</Text>:null}</Heading4>
+                      <Heading4 style={{flexShrink:1}}>{t('noRecentGrowthMeasure')}</Heading4>
           </FDirRowStart>
           </ShiftFromTop20>
+          :null}
         </ShiftFromTop20>
       </BannerContainer1>
     </>
