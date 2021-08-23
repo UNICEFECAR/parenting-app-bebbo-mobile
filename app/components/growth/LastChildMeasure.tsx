@@ -1,15 +1,19 @@
 import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
 import { BannerContainer1 } from '@components/shared/Container';
 import {
+  FDirRow,
+  FDirRowStart,
   Flex1,
   Flex2,
   Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
+import Icon, {  OuterIconLeft, OuterIconRow,  IconViewAlert } from '@components/shared/Icon';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useNavigation } from '@react-navigation/native';
 import {
   Heading2,
   Heading3,
+  Heading4,
   Heading4Regular,
   Heading5,
   Heading5Bold,
@@ -192,7 +196,21 @@ const LastChildMeasure = (props: any) => {
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>
-          {(days< activeChild.taxonomyData.days_from) ?<Text>{t('noRecentGrowthMeasure')}</Text>:null}
+          <ShiftFromTop20>
+          <FDirRowStart>
+          <OuterIconRow>
+                        <OuterIconLeft>
+                            <IconViewAlert>
+                              <Icon
+                                name="ic_incom"
+                                size={24}
+                                color="#FFF"
+                              /></IconViewAlert>
+                        </OuterIconLeft>
+                      </OuterIconRow>
+                      <Heading4 style={{flexShrink:1}}> {(days< activeChild.taxonomyData.days_from) ?<Text>{t('noRecentGrowthMeasure')}</Text>:null}</Heading4>
+          </FDirRowStart>
+          </ShiftFromTop20>
         </ShiftFromTop20>
       </BannerContainer1>
     </>
