@@ -113,7 +113,7 @@ supportScreenheader2text: "Баарлашуу учурда жеткиликси�
                 // homeScreen
                 homeScreenheaderTitle: "Беббо",
 homeScreenchildBtnText: "Андан ары окуу",
-homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}},",
+homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}}",
 homeScreendailyReadsTitle: "Күнүмдүк материалдар",
 homeScreentodayarticle: "Күндүн кеңеши",
 homeScreentodaygame: "Күндүн оюну",
