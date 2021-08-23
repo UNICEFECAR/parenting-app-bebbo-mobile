@@ -220,7 +220,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', { screen: 'VaccinationTab' })
+                  { navigation.navigate('Home', {
+                    screen: 'Tools',
+                    params: {
+                      screen: 'VaccinationTab',
+                    },
+                  });}
+                  // navigation.navigate('Home', { screen: 'VaccinationTab' })
                 }>
                 <FDirRow>
                   <BgVaccination>
@@ -237,7 +243,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', { screen: 'HealthCheckupsTab' })
+                 { navigation.navigate('Home', {
+                    screen: 'Tools',
+                    params: {
+                      screen: 'HealthCheckupsTab',
+                    },
+                  });}
+                  // navigation.navigate('Home', { screen: 'HealthCheckupsTab' })
                 }>
                 <FDirRow>
                   <BgHealth>
@@ -254,7 +266,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </SubDrawerLinkView>
               <SubDrawerLinkView
                 onPress={() =>
-                  navigation.navigate('Tools', { screen: 'ChildgrowthTab' })
+                  { navigation.navigate('Home', {
+                    screen: 'Tools',
+                    params: {
+                      screen: 'ChildgrowthTab',
+                    },
+                  });}
+                  // navigation.navigate('Home', { screen: 'ChildgrowthTab' })
                 }>
                 <FDirRow>
                   <BgGrowth>
