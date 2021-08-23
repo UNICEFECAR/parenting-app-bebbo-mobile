@@ -113,7 +113,7 @@ childSetupcontinueBtnText: "Продолжить",
                 // homeScreen
                 homeScreenheaderTitle: "Беббо",
 homeScreenchildBtnText: "Читать далее ",
-homeScreenchildInfoTitle: "Привет ",
+homeScreenchildInfoTitle: "Привет {{childName}} и {{parentName}}",
 homeScreendailyReadsTitle: "Ежедневные материалы",
 homeScreentodayarticle: "Совет дня",
 homeScreentodaygame: "Игра дня",
