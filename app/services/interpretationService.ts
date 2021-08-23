@@ -8,7 +8,7 @@ export interface InterpretationText {
 }
 export const getInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity) => {
     const childAgeId = childTaxonomyData.id;
-    // console.log(childAgeId, "<childAgeId>");
+    console.log(childAgeId, "<childAgeId>");
     // console.log(standardDeviation, "<standardDeviation>")
     let interpretationText: InterpretationText | undefined = {
         name: "",
@@ -22,14 +22,15 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
     // console.log(lastMeasurements,"<lastMeasurements>");
     if (lastMeasurements !== undefined && lastMeasurements.weight) {
         weight = Number(lastMeasurements.weight).toFixed(1);
-        height = Number(lastMeasurements.height).toFixed(1)
+        height = Number(lastMeasurements.height)
     };
     // console.log(chartData,"chartData");
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.weight_for_height),
     );
-    let filteredDataForHeight = standardDeviation.find(data => data.name === childAgeId);
+    let filteredDataForHeight = standardDeviation.find(data => data.name === height);
+    console.log(filteredDataForHeight,"<weightforheight>",height)
     let interpretationData = allinterpretationData?.find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     // console.log(filteredDataForHeight,interpretationData,"filtered");
     if (filteredDataForHeight) {
@@ -96,6 +97,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         if (convertInDays !== undefined) days = Math.round(convertInDays);
     };
     let filteredData = chartData.find(data => data.name === days);
+    console.log(filteredData,"<FileterData>",days)
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.height_for_age),
