@@ -25,10 +25,12 @@ class GoogleAuth {
      */
     public configure() {
         GoogleSignin.configure({
-            scopes: [
-                'https://www.googleapis.com/auth/drive.file',
-            ],
-        });
+            // scopes: [
+            //     'https://www.googleapis.com/auth/drive.file',
+            // ],
+            scopes: ['https://www.googleapis.com/auth/drive.file'], // what API you want to access on behalf of the user, default is email and profile
+      });
+        
     }
 
     public async signIn() {
@@ -37,7 +39,7 @@ class GoogleAuth {
         try {
             await GoogleSignin.hasPlayServices();
             user = await GoogleSignin.signIn();
-            console.log(user, "user")
+            console.log(user, "11user")
         } catch (error) {
             console.log(error, "error")
             // utils.setMyDebbugTxt(JSON.stringify(error, null, 4));

@@ -48,6 +48,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 import crashlytics from '@react-native-firebase/crashlytics';
+import { googleAuth } from './app/services/googleAuth';
 enableScreens();
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -72,6 +73,7 @@ const App = () => {
   React.useEffect(() => {
     Orientation.lockToPortrait();
     SplashScreen.hide();
+    googleAuth.configure();
   });
   return (
     <ErrorBoundary FallbackComponent={CustomFallback}>

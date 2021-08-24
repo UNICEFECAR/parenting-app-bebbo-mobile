@@ -2,6 +2,7 @@
 import GDrive from "react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { DownloadResult } from "react-native-fs";
+import { Alert } from "react-native";
 
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 
@@ -137,6 +138,16 @@ class GoogleDrive {
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
         // Set Google access token
+        // GDrive.files.createFileMultipart(
+        //     res,
+        //     "'image/jpg'", {
+        //     parents: ["root"], //or any path
+        //     name: "photo.jpg"
+        //   },
+        //     true)              //make it true because you are passing base64 string otherwise the uploaded file will be not supported
+        //      .then(a=>{
+        //     console.log(a);
+        //   });
         const isAccessTokenSet = await this.setAccessToken();
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
@@ -144,12 +155,28 @@ class GoogleDrive {
 
         // Create folder
         try {
-            const id: string = await GDrive.files.safeCreateFolder({
+            // const id: string = await GDrive.files.safeCreateFolder({
+            //     name: args.name,
+            //     parents: [args.parentFolderId]
+            // });
+            // if(GDrive.isInitialized()){
+            //     Alert.alert("Google Drive is Initialized Now!!")
+                // const id: string = await  GDrive.files.createFileMultipart(
+                //      '',
+                //      "base64", {
+                //        parents: [args.parentFolderId],
+                //        name: args.name,
+                //      },
+                //      false);
+                //      return id;
+                  const id: string = await GDrive.files.createFileMultipart({
                 name: args.name,
                 parents: [args.parentFolderId]
             });
-
             return id;
+                // this.createAFile();
+             // }
+           
         } catch (e) {
             return new Error('GDrive folder was not created');
         }
