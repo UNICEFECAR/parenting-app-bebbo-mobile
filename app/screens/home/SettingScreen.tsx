@@ -54,7 +54,7 @@ import {
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, ScrollView, View } from 'react-native';
+import { ActivityIndicator, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
@@ -88,9 +88,24 @@ const SettingScreen = (props: any) => {
   const thumbFalseColor = '#9598BE';
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const [isExportRunning, setIsExportRunning] = useState(false);
+  const [isImportRunning, setIsImportRunning] = useState(false);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const importAllData=(userRealmContext: UserRealmContextValue)=>{
+    // this.setState({ isImportRunning: true, });
+    setIsImportRunning(true);
+    const importResponse = await backup.import(userRealmContext);
+    // this.setState({ isImportRunning: false, });
+    setIsImportRunning(false);
+
+    if (importResponse instanceof Error) {
+       console.log(importResponse.message,"..importResponse.message..");
+    } else {
+      console.log("..success..");
+    }
+}
   const toggleSwitch = () => {
     //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
     setIsEnabled((previousState) => !previousState);}
@@ -348,17 +363,47 @@ const SettingScreen = (props: any) => {
               <Heading1>{t('settingScreenieHeader')}</Heading1>
             </SettingHeading>
             <ShiftFromTopBottom10>
-              <ButtonPrimary
+              {/* <ButtonPrimary
                 onPress={() => {
                   actionSheetRef.current?.setModalVisible();
                 }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
-              </ButtonPrimary>
+              </ButtonPrimary> */}
+              <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
+                                    <RoundedButton
+                                        text={'Export Data New'}
+                                        iconName="file-export"
+                                        disabled={isExportRunning || isImportRunning}
+                                        onPress={() => { exportAllData() }}
+                                        style={{ flex: 1 }}
+                                    />
+
+                                    {isExportRunning && (
+                                        <ActivityIndicator animating={true} />
+                                    )}
+                                </View>
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
-              <ButtonPrimary onPress={() => {}}>
+              {/* <ButtonPrimary onPress={() => {}}>
                 <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
-              </ButtonPrimary>
+              </ButtonPrimary> */}
+               <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
+                                    <UserRealmConsumer>
+                                        {(userRealmContext: UserRealmContextValue) => (
+                                            <RoundedButton
+                                                text={'Import Button New'}
+                                                iconName="file-import"
+                                                disabled={isExportRunning || isImportRunning}
+                                                onPress={() => { importAllData(userRealmContext) }}
+                                                style={{ flex: 1 }}
+                                            />
+                                        )}
+                                    </UserRealmConsumer>
+
+                                    {this.state.isImportRunning && (
+                                        <ActivityIndicator animating={true} style={{ marginLeft: scale(20) }} />
+                                    )}
+                                </View>
             </ShiftFromTopBottom10>
           </MainContainer>
 
