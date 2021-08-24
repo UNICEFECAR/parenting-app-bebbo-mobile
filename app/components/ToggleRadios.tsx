@@ -1,5 +1,6 @@
+import { useFocusEffect } from '@react-navigation/core';
 import { Heading3, Heading3Regular } from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FDirRow } from './shared/FlexBoxStyle';
@@ -8,9 +9,15 @@ import { RadioBoxContainer, RadioInnerBox, RadioOuter } from './shared/radio';
 
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
-  //console.log(defaultValue,"..defaultValue..")
   const [checkedItem, setCheckedItem] = useState(defaultValue?defaultValue:null);
- 
+  // useEffect(()=>{
+  //     setCheckedItem(defaultValue);
+  // },[defaultValue])
+  useFocusEffect(
+    React.useCallback(() => {
+      setCheckedItem(defaultValue);
+    }, [defaultValue])
+  );
   return (
     <>
     <RadioBoxContainer>

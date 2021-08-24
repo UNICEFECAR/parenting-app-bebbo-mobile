@@ -58,6 +58,7 @@ import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
   Modal,
   Platform,
   Pressable,
@@ -88,6 +89,7 @@ import analytics from '@react-native-firebase/analytics';
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { GROWTH_MEASUREMENT_ADDED } from '@assets/data/firebaseEvents';
+import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -125,6 +127,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     t('growthScreendoctorMeasurePlace'),
     t('growthScreenhomeMeasurePlace'),
   ]);
+  // measurePlaces =  measurePlaces.map((v) => ({ ...v, title: v.title }))
   const [weightValue, setWeightValue] = useState(
     editGrowthItem ? editGrowthItem.weight : 0,
   );
@@ -137,19 +140,87 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [measurePlace, setMeasurePlace] = useState<number>(
     editGrowthItem ? editGrowthItem.measurementPlace : null,
   );
+  const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(
+    editGrowthItem
+    ? measurePlaces[editGrowthItem.measurementPlace]
+    : null
+  );
+  
+ 
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
+      if(editGrowthItem){
+        if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+          //data already exist, reset measuredate it to edit measures’ date
+          Alert.alert("Alert",
+        "Measures already exist for this date",
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+              setmeasureDate(editGrowthItem.measurementDate)
+            },
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false,
+          // onDismiss: () =>
+          //   Alert.alert(
+          //     "This alert was dismissed by tapping outside of the alert dialog."
+          //   ),
+        })
+        }else{
+          //if editing existing measure where only vacccines were added.
+        if(isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+          // allow adding growth values for that vaccine measure
+          console.log("in else only if vaccines exist")
+        }else{
+          // add new measure
+        }
+      }
+      }else{
+      if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+        Alert.alert("Alert",
+        "Selecting this date will modify existing Measures",
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+             const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate),activeChild)
+             console.log(existingMeasure);
+             setMeasurePlace(existingMeasure.measurementPlace)
+             setWeightValue(existingMeasure.weight)
+             setHeightValue(existingMeasure.height)
+             handleDoctorRemark(existingMeasure.doctorComment)
+             setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace])
+            },
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false,
+          // onDismiss: () =>
+          //   Alert.alert(
+          //     "This alert was dismissed by tapping outside of the alert dialog."
+          //   ),
+        })
+      }
+    }
+      
+     
     }
   };
   const getCheckedGrowthPlace = (checkedItem: any) => {
     // console.log(checkedItem);
     setMeasurePlace(checkedItem.id);
+    // setDefaultMeasurePlace(measurePlaces[checkedItem.id])
   };
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -166,12 +237,13 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   // console.log(activeChild,"in add new");
-  const getDefaultGrowthPlace = () => {
-    return editGrowthItem
-      ? measurePlaces[editGrowthItem.measurementPlace]
-      : null;
-    // if in edit mode return value else return null
-  };
+  // const getDefaultGrowthPlace = () => {
+  //   return editGrowthItem
+  //     ? measurePlaces[editGrowthItem.measurementPlace]
+  //     : measurePlaces[measurePlace];
+      
+  //   // if in edit mode return value else return null
+  // };
 
   const isFormFilled = () => {
     // console.log(measureDate, measurePlace, heightValue, weightValue);
@@ -243,6 +315,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     // if date difference is 0 then update else create new
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
+      //if updating anything from growth,vaccine details goes as it is without change
       const growthValues = {
         uuid: updateItem.uuid,
         isChildMeasured: true,
@@ -424,7 +497,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
 
                 <ToggleRadios
                   options={measurePlaces}
-                  defaultValue={getDefaultGrowthPlace()}
+                  defaultValue={defaultMeasurePlace}
                   tickbgColor={headerColor}
                   tickColor={'#000'}
                   getCheckedItem={getCheckedGrowthPlace}
