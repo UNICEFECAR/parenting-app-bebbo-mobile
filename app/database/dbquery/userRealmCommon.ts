@@ -407,48 +407,48 @@ class UserRealmCommon extends Component {
             }
         });
     }
-    public async getAllChildren(context?: UserRealmContextValue): Promise<Child[]> {
-        let allChildren = context ?
-            context.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child) :
-            userRealmStore.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child);
-            let currentChild:any=null;
-        // let currentChild = this.getCurrentChild()?.uuid;
-        let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-        if (currentActiveChildId?.length > 0) {
-            currentChild = currentActiveChildId[0].value;
-        }
-        let allChildrenList: Child[] = [];
+    // public async getAllChildren(context?: UserRealmContextValue): Promise<Child[]> {
+    //     let allChildren = context ?
+    //         context.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child) :
+    //         userRealmStore.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child);
+    //         let currentChild:any=null;
+    //     // let currentChild = this.getCurrentChild()?.uuid;
+    //     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    //     if (currentActiveChildId?.length > 0) {
+    //         currentChild = currentActiveChildId[0].value;
+    //     }
+    //     let allChildrenList: Child[] = [];
     
-        if (allChildren) {
+    //     if (allChildren) {
     
-            allChildrenList = allChildren?.map(child => {
-                let birthDay = child.birthDate ?
-                    DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
+    //         allChildrenList = allChildren?.map(child => {
+    //             let birthDay = child.birthDate ?
+    //                 DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
     
-                let imgUrl = child.photoUri ? utils.addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
-                let isCurrentActive = false;
+    //             let imgUrl = child.photoUri ? utils.addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
+    //             let isCurrentActive = false;
     
-                if (currentChild) {
-                    if (currentChild === child.uuid) {
-                        isCurrentActive = true;
-                    }
-                };
+    //             if (currentChild) {
+    //                 if (currentChild === child.uuid) {
+    //                     isCurrentActive = true;
+    //                 }
+    //             };
     
-                return {
-                    childId: child.uuid,
-                    birthDay: birthDay,
-                    name: child.name,
-                    photo: imgUrl,
-                    gender: child.gender,
-                    isCurrentActive: isCurrentActive,
-                    id: child.uuid,
-                };
-            });
-        };
+    //             return {
+    //                 childId: child.uuid,
+    //                 birthDay: birthDay,
+    //                 name: child.name,
+    //                 photo: imgUrl,
+    //                 gender: child.gender,
+    //                 isCurrentActive: isCurrentActive,
+    //                 id: child.uuid,
+    //             };
+    //         });
+    //     };
     
     
-        return allChildrenList;
-    };
+    //     return allChildrenList;
+    // };
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
