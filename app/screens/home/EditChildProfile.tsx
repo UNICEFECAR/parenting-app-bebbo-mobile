@@ -524,8 +524,8 @@ const EditChildProfile = ({route, navigation}: Props) => {
               </ArticleHeading>
               <View
                 style={{
-                  justifyContent: 'flex-start',
-                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'flex-start',
                   flexDirection: 'row',
                 }}>
                 {imageOptions.map((item, index) => {
@@ -550,6 +550,9 @@ const EditChildProfile = ({route, navigation}: Props) => {
                           justifyContent: 'center',
                           flexDirection: 'row',
                           padding: 16,
+                          
+                          flex:1,
+                         
                         }}>
                         <Pressable
                           style={{alignItems: 'center'}}
@@ -558,7 +561,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                             handleImageOptionClick(index);
                           }}>
                           <Icon name={item.iconName} size={50} color="#000" />
-                          <Heading4>{item.name}</Heading4>
+                          <Heading4 style={{flexShrink:1,textAlign:'center',marginTop:10}}>{item.name}</Heading4>
                         </Pressable>
                       </View>
                     );
