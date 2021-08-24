@@ -9,6 +9,8 @@ export const articleCategoryArray = [4,1,55,56,3,2];
 export const videoTypeVimeo = "vimeo";
 export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
+export const backupGDriveFolderName= 'ParentBuddy';
+export const backupGDriveFileName= 'my.backup';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log("in finalurl", apiUrlDevelop);
    
