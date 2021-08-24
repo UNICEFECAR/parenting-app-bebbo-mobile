@@ -148,7 +148,17 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     {title: t('vcIsMeasuredOption1')},
     {title: t('vcIsMeasuredOption2')},
   ];
-  const defaultMeasured = {title: ''};
+  const [defaultMeasured, setDefaultMeasured] = useState<any>(
+    editGrowthItem
+    ? editGrowthItem.isChildMeasured ? isMeasuredOptions[0] :isMeasuredOptions[1]
+    : {title: ''}
+  );
+  const [defaultVaccineMeasured, setDefaultVaccineMeasured] = useState<any>(
+    editGrowthItem
+    ? editGrowthItem.didChildGetVaccines ? isMeasuredOptions[0] :isMeasuredOptions[1]
+    : {title: ''}
+  );
+  // const defaultMeasured = {title: ''};
 
   const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
     //  console.log(checkedItem);
@@ -501,7 +511,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
 
                 <ToggleRadios
                   options={isMeasuredOptions}
-                  defaultValue={defaultMeasured}
+                  defaultValue={defaultVaccineMeasured}
                   tickbgColor={headerColor}
                   tickColor={'#000'}
                   getCheckedItem={getCheckedIsVaccineMeaured}
