@@ -1,3 +1,4 @@
+import { backUpPath } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonModal,
@@ -36,6 +37,7 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -61,7 +63,10 @@ import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
+import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
+import RNFS from 'react-native-fs';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -93,10 +98,10 @@ const SettingScreen = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const importAllData=(userRealmContext: UserRealmContextValue)=>{
+  const importAllData=async ()=>{
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
-    const importResponse = await backup.import(userRealmContext);
+    const importResponse = await backup.import();
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
 
@@ -106,6 +111,44 @@ const SettingScreen = (props: any) => {
       console.log("..success..");
     }
 }
+const exportFile=async ()=>{
+// write the file
+setIsExportRunning(true);
+const userRealmPath = userRealmCommon.realm?.path;
+console.log(userRealmPath,"..userRealmPath")
+if (!userRealmPath) return false;
+const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+console.log(realmContent,"..11realmContent")
+RNFS.writeFile(backUpPath, realmContent, 'utf8')
+  .then((success:any) => {
+    console.log('FILE WRITTEN!');
+    setIsExportRunning(false);
+    //actionSheetRef.current?.setModalVisible(false); 
+  })
+  .catch((err:any) => {
+    console.log(err.message);
+    setIsExportRunning(false);
+   // actionSheetRef.current?.setModalVisible(false); 
+  });
+  
+}
+const exportToDrive=async ()=>{
+  setIsExportRunning(true);
+  const exportIsSuccess = await backup.export();
+  setIsExportRunning(false);
+  if (!exportIsSuccess) {
+    console.log('settingsButtonExportError')
+  } else {
+    console.log('success export')
+  };
+ 
+ // actionSheetRef.current?.setModalVisible(false); 
+}
+const exportAllData=async ()=>{
+  
+  actionSheetRef.current?.setModalVisible(); 
+ 
+};
   const toggleSwitch = () => {
     //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
     setIsEnabled((previousState) => !previousState);}
@@ -363,31 +406,25 @@ const SettingScreen = (props: any) => {
               <Heading1>{t('settingScreenieHeader')}</Heading1>
             </SettingHeading>
             <ShiftFromTopBottom10>
-              {/* <ButtonPrimary
-                onPress={() => {
-                  actionSheetRef.current?.setModalVisible();
-                }}>
+              <ButtonPrimary
+               disabled={isExportRunning || isImportRunning}
+               onPress={() => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
-              </ButtonPrimary> */}
-              <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
-                                    <RoundedButton
-                                        text={'Export Data New'}
-                                        iconName="file-export"
-                                        disabled={isExportRunning || isImportRunning}
-                                        onPress={() => { exportAllData() }}
-                                        style={{ flex: 1 }}
-                                    />
-
-                                    {isExportRunning && (
+              </ButtonPrimary>
+              {isExportRunning && (
                                         <ActivityIndicator animating={true} />
                                     )}
-                                </View>
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
-              {/* <ButtonPrimary onPress={() => {}}>
-                <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
-              </ButtonPrimary> */}
-               <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
+              <ButtonPrimary  disabled={isExportRunning || isImportRunning} onPress={() => {
+                importAllData()
+              }}>
+              <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
+              </ButtonPrimary>
+              {isImportRunning && (
+              <ActivityIndicator animating={true}/>
+              )}
+               {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
                                     <UserRealmConsumer>
                                         {(userRealmContext: UserRealmContextValue) => (
                                             <RoundedButton
@@ -400,10 +437,8 @@ const SettingScreen = (props: any) => {
                                         )}
                                     </UserRealmConsumer>
 
-                                    {this.state.isImportRunning && (
-                                        <ActivityIndicator animating={true} style={{ marginLeft: scale(20) }} />
-                                    )}
-                                </View>
+                                    
+                                </View> */}
             </ShiftFromTopBottom10>
           </MainContainer>
 
@@ -415,14 +450,25 @@ const SettingScreen = (props: any) => {
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
+                  <Pressable onPress={() => 
+                  {
+                    console.log("icon clicked");
+                    exportFile()
+                  }}>
                     <Icon name="ic_sb_shareapp" size={30} color="#000" />
                     <ShiftFromTopBottom5>
                       <Heading4Regular>
                         {t('settingScreenshareBtntxt')}
                       </Heading4Regular>
                     </ShiftFromTopBottom5>
+                    </Pressable>
                   </SettingOptions>
                   <SettingOptions>
+                  <Pressable onPress={() => 
+                  {
+                    console.log("icon clicked");
+                    exportToDrive()
+                  }}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
                     />
@@ -431,6 +477,7 @@ const SettingScreen = (props: any) => {
                         {t('settingScreengdriveBtntxt')}
                       </Heading4Regular>
                     </ShiftFromTopBottom5>
+                    </Pressable>
                   </SettingOptions>
                 </FDirRow>
               </SettingShareData>

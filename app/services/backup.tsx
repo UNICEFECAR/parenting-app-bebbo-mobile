@@ -1,11 +1,12 @@
 import { googleAuth } from "./googleAuth";
 import { googleDrive } from "./googleDrive";
 import RNFS from 'react-native-fs';
-import { UserRealmContextValue } from "../stores/UserRealmContext";
 import { backupGDriveFileName,backupGDriveFolderName} from "@assets/translations/appOfflineData/apiConstants";
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
+import { getAllChildren } from "./childCRUD";
+import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 
 /**
  * Export / import user realm to GDrive in order to create backup.
@@ -33,11 +34,12 @@ class Backup {
 
         // Get userRealmPath
         const userRealmPath = userRealmCommon.realm?.path;
+        console.log(userRealmPath,"..userRealmPath")
         if (!userRealmPath) return false;
-
+      
         // Get realmContent
         const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-
+         console.log(realmContent,"..11realmContent")
         // Get backupFolderId
         let backupFolderId = await googleDrive.safeCreateFolder({
             name: backupGDriveFolderName,
@@ -45,6 +47,7 @@ class Backup {
         });
        
         if (backupFolderId instanceof Error) {
+            console.log(backupFolderId,"..backupFolderId..")
             return false;
         }
 
@@ -54,7 +57,7 @@ class Backup {
         const backupFiles = await googleDrive.list({
             filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
-
+        console.log(backupFiles,"..backupFiles")
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
         }
@@ -81,12 +84,14 @@ class Backup {
         return true;
     }
 
-    public async import(userRealmContext: UserRealmContextValue): Promise<void|Error> {
+    public async import(): Promise<void|Error> {
+        
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
         if (!tokens) {
             const user = await googleAuth.signIn();
+            console.log(user,"..backupFiles")
             if (!user) return new Error('loginCanceled');
         }
 
@@ -116,7 +121,7 @@ class Backup {
         }
 
         // Close user realm
-        userRealmContext.closeRealm();
+        userRealmCommon.closeRealm();
 
         // Download file from GDrive
         await googleDrive.download({
@@ -125,14 +130,19 @@ class Backup {
         });
 
         // Open user realm
-        await userRealmContext.openRealm();
-
+        await userRealmCommon.openRealm();
+        let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+        allJsonDatanew.map((item:any)=>{
+            console.log(item,"..item..");
+        })
+        // console.log(,"..allJsonDatanew..")
+        // const allChildren:any =getAllChildren();
         // Set current child to first child
-        const allChildren:any = userRealmCommon.getAllChildren();
-        if (allChildren) {
-            let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",  allChildren[0].id);
+        // const allChildren:any = userRealmCommon.getAllChildren();
+        // if (allChildren) {
+        //     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId",  allChildren[0].id);
    
-        }
+        // }
 
         return;
     }
