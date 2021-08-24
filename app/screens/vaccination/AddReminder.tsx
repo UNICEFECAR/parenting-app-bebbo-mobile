@@ -143,8 +143,9 @@ const AddReminder = ({route, navigation}: any) => {
       console.log(new Date(selectedDate).toDateString(),"/",new Date().toDateString());
       if(new Date(selectedDate).toDateString()==new Date().toDateString()){
         setminmeasureTime(new Date(currentDate));
-        console.log(currentDate,"..11currentDatenew")
-        setmeasureTime(DateTime.fromJSDate(new Date(currentDate)));
+        console.log(currentDate,"..11currentDatenew",)
+        setmeasureTime(new Date(currentDate).setMinutes(new Date().getMinutes()<59?new Date().getMinutes()+1:0))
+        // .setMinutes(new Date().getMinutes()<60?new Date().getMinutes()+1:00)
       }
       else{
         // console.log(currentDate,"..currentDatenew");
