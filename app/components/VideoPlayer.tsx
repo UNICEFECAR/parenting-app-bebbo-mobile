@@ -1,7 +1,7 @@
 import { videoTypeImage, videoTypeVimeo, videoTypeYoutube } from "@assets/translations/appOfflineData/apiConstants";
 // import { useNetInfo } from "@react-native-community/netinfo";
 import React, { useCallback, useEffect, useState } from "react"
-import { ActivityIndicator, Image, Text, View } from "react-native";
+import { ActivityIndicator, Dimensions, Image, Text, View } from "react-native";
 import WebView from "react-native-webview";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { getVimeoId, getYoutubeId } from "../services/Utils";
@@ -19,7 +19,8 @@ const VideoPlayer = (props: any) => {
     const onError = useCallback(() => {
       setLoading(false);
     }, []);
-  
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
     // const netInfo = useNetInfo();
     // useEffect(() => {
     // const unsubscribe = NetInfo.addEventListener((data) => {
@@ -31,8 +32,10 @@ const VideoPlayer = (props: any) => {
     // }, []);
     const displaySpinner=()=>{
         return (
-            <View style={{height:200}}><ActivityIndicator size="large" color="#000" style={{
-                position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
+            // <View style={{height:windowWidth*0.60}}><ActivityIndicator size="large" color="#000" style={{
+            //     position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
+            // }}/></View>
+            <View style={{height:windowWidth*0.60,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
             }}/></View>
         );
       }
@@ -135,8 +138,8 @@ const VideoPlayer = (props: any) => {
                     <WebView
                         startInLoadingState={true}
                         containerStyle={{
-                            width: '80%',
-                            height: 200,
+                            width: '100%',
+                            height: windowWidth*0.60,
                             aspectRatio: 1.75,
                             alignSelf: 'center',
                             // aspectRatio: this.state.aspectRatio,
@@ -154,15 +157,15 @@ const VideoPlayer = (props: any) => {
                     />
                     :
                     <>
-                    <View style={{flex:1,flexDirection:'column',height:200,overflow:'hidden'}}>
-                    {loading ? <View style={{height:200,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
+                    <View style={{flex:1,flexDirection:'column',height:windowWidth*0.60,overflow:'hidden'}}>
+                    {loading ? <View style={{height:windowWidth*0.60,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
                     }}/></View>: null}
                     <YoutubePlayer
                         // width={width}
                         // height={this.state.containerWidth / this.state.aspectRatio}
                         videoId={videoId}
                         play={playing}
-                        height={200}
+                        height={windowWidth*0.60}
                         onReady={onReady}
                         onError={onError}
                         //   onChangeState={onStateChange}
