@@ -52,7 +52,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
+import { Alert, Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
@@ -71,6 +71,7 @@ import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import analytics from '@react-native-firebase/analytics';
 import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
+import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 const AddChildVaccination = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, vcPeriod, editGrowthItem} = route.params;
@@ -80,7 +81,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
-
+  
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -119,7 +120,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
     {title: t('vcIsMeasuredOption1')},
     {title: t('vcIsMeasuredOption2')},
   ];
-  const defaultMeasured = {title: ''};
+  // const defaultMeasured = {title: ''};
+  const [defaultMeasured, setDefaultMeasured] = useState<any>();
+  // editGrowthItem
+  // ? editGrowthItem.isChildMeasured ?{ title:isMeasuredOptions[0]} : {title:isMeasuredOptions[1]}
+  // :
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const handleMeasureConfirm = (event:any) => {
@@ -139,6 +144,66 @@ const AddChildVaccination = ({route, navigation}: any) => {
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
+      if(editGrowthItem){
+        // if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+          //data already exist, reset measuredate it to edit measures’ date
+        //   Alert.alert("Alert",
+        // "Measures already exist for this date",
+        // [
+        //   {
+        //     text: "Ok",
+        //     onPress: () => {
+        //       setmeasureDate(editGrowthItem.measurementDate)
+        //     },
+        //     style: "cancel",
+        //   },
+        // ],
+        // {
+        //   cancelable: false,
+        //   // onDismiss: () =>
+        //   //   Alert.alert(
+        //   //     "This alert was dismissed by tapping outside of the alert dialog."
+        //   //   ),
+        // })
+        // }else{
+        //   //if editing existing measure where only vacccines were added.
+        // if(isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+        //   // allow adding growth values for that vaccine measure
+        //   console.log("in else only if vaccines exist")
+        // }else{
+        //   // add new measure
+        // }
+      // }
+      }else{
+      if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+        Alert.alert("Alert",
+        "Selecting this date will modify existing Measures",
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+             const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate),activeChild)
+             console.log(existingMeasure,"existingMeasure");
+             setWeightValue(existingMeasure.weight)
+             setHeightValue(existingMeasure.height)
+             handleDoctorRemark(existingMeasure.doctorComment)
+             setIsMeasured(existingMeasure.isChildMeasured);
+             setDefaultMeasured(existingMeasure.isChildMeasured==true?isMeasuredOptions[0]: isMeasuredOptions[1])
+            //  setDefaultMeasured(existingMeasure.isChildMeasured)
+            //  setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace])
+            },
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false,
+          // onDismiss: () =>
+          //   Alert.alert(
+          //     "This alert was dismissed by tapping outside of the alert dialog."
+          //   ),
+        })
+      }
+    }
     }
   };
   const minChildGrwothDate =
