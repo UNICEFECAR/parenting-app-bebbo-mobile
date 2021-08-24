@@ -22,14 +22,16 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
     // console.log(lastMeasurements,"<lastMeasurements>");
     if (lastMeasurements !== undefined && lastMeasurements.weight) {
         weight = Number(lastMeasurements.weight).toFixed(1);
-        height = Number(lastMeasurements.height)
+        height = (Number(lastMeasurements.height) % 1 !== 0) ? Number(lastMeasurements.height).toFixed(1) :Number(lastMeasurements.height);
+        //if lastMeasurements.height is 0.0 then 
     };
     // console.log(chartData,"chartData");
+    // console.log(weight,height,"<formatted>")
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.weight_for_height),
     );
-    let filteredDataForHeight = standardDeviation.find(data => data.name === height);
+    let filteredDataForHeight = standardDeviation.find(data => data.name == height);
     // console.log(filteredDataForHeight,"<weightforheight>",height)
     let interpretationData = allinterpretationData?.find(item => item.child_age.indexOf(childAgeId ? childAgeId : 0) !== -1);
     // console.log(filteredDataForHeight,interpretationData,"filtered");
@@ -104,7 +106,7 @@ export const getInterpretationHeightForAge = (standardDeviation: any, childBirth
         if (convertInDays !== undefined) {days = Math.round(convertInDays)};
     };
     // console.log(chartData,"chartData")
-    let filteredData = chartData.find(data => data.name === days);
+    let filteredData = chartData.find(data => data.name == days);
     // console.log(filteredData,"<FileterData>",days)
     const allinterpretationData = useAppSelector(
         (state: any) =>
