@@ -9,7 +9,6 @@ import NetInfo from "@react-native-community/netinfo";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { color } from "react-native-reanimated";
 
-
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -39,7 +38,6 @@ const VideoPlayer = (props: any) => {
             }}/></View>
         );
       }
-
     const netInfoval = useNetInfoHook();
     // console.log(netInfoval,"--netInfo");
     let videoId: string;
@@ -67,7 +65,6 @@ const VideoPlayer = (props: any) => {
     //     }
     //   }, []);
     // const {width} = Dimensions.get('screen');
-
     const getVimeoHtml = () => {
         // const screenParams = this.props.navigation.state.params!;
         // allow="autoplay; fullscreen"
@@ -196,5 +193,4 @@ const VideoPlayer = (props: any) => {
         </>
     )
 }
-
 export default VideoPlayer
