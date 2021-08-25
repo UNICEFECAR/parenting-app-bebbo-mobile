@@ -56,6 +56,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   console.log(country,"---country",countryId);
   //console.log(country, language);
   const apiJsonData = [
@@ -193,7 +196,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     i18n.changeLanguage(language.locale);
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
-    if(userIsOnboarded == true && (country.countryId == countryId))
+    if(userIsOnboarded == true && (language.languageCode == languageCode))
     {
       navigation.reset({
         index: 0,
