@@ -367,5 +367,9 @@ export const cancelRetryAlert = () => {
     );
   });
 }
-
+export const deleteArticleNotPinned= async () => {
+  let createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
+  return createresult;
+  // let createresult = await userRealmCommon.delete(ArticleEntitySchema, recordId, filterCondition);
+}
 export default commonApiService;

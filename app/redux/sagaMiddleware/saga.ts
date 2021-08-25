@@ -151,7 +151,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     //dispatch action for before home page
     yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
   }
-   else if (prevPage == 'Home' || prevPage == 'CountryLangChange') {
+   else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'ImportScreen') {
     //dispatch action for before home page
     yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
