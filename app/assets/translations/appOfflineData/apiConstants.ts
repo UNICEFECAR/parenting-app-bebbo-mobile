@@ -13,7 +13,6 @@ export const backupGDriveFileName= 'my.backup';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log("in finalurl", apiUrlDevelop);
-   
     if(apiEndpoint==appConfig.sponsors){
        // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
