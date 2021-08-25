@@ -141,7 +141,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   );
   const checkIfMeasuredVaccineExistsForLocale = (vaccineIds) => {
     // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
-    return vaccineIds.filter(vcId => {
+    return vaccineIds?.filter(vcId => {
       return allVaccinePeriods.some(el => {
         return vcId.vaccineid === el.uuid;
       });
@@ -176,7 +176,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                   setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
                   let existingMeasuredVaccines = (existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [];
                   console.log(existingMeasuredVaccines, "existingMeasuredVaccines")
-                  if (existingMeasuredVaccines.length > 0) {
+                  if (existingMeasuredVaccines?.length > 0) {
                     existingMeasuredVaccines.forEach(element => {
                       console.log(element);
                       console.log(allVaccinePeriods.find(item => item.uuid == element.vaccineid))
