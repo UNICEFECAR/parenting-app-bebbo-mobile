@@ -284,7 +284,7 @@ const HeaderBabyMenu = (props: any) => {
                 onPress={() => {
                   setModalVisible(!modalVisible);
                     if (modalVisible) {
-                      getAllChildren(dispatch);
+                      getAllChildren(dispatch,child_age);
                       getAllConfigData(dispatch);
                     }
 
@@ -313,7 +313,7 @@ const HeaderBabyMenu = (props: any) => {
             // }
             setModalVisible(!modalVisible);
             if (modalVisible) {
-              getAllChildren(dispatch);
+              getAllChildren(dispatch,child_age);
               getAllConfigData(dispatch);
             }
           }}>

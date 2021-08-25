@@ -138,41 +138,17 @@ class GoogleDrive {
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
         // Set Google access token
-        // GDrive.files.createFileMultipart(
-        //     res,
-        //     "'image/jpg'", {
-        //     parents: ["root"], //or any path
-        //     name: "photo.jpg"
-        //   },
-        //     true)              //make it true because you are passing base64 string otherwise the uploaded file will be not supported
-        //      .then(a=>{
-        //     console.log(a);
-        //   });
-        const isAccessTokenSet = await this.setAccessToken();
+       const isAccessTokenSet = await this.setAccessToken();
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
-
         // Create folder
         try {
-            // const id: string = await GDrive.files.safeCreateFolder({
-            //     name: args.name,
-            //     parents: [args.parentFolderId]
-            // });
-            // if(GDrive.isInitialized()){
-            //     Alert.alert("Google Drive is Initialized Now!!")
-                // const id: string = await  GDrive.files.createFileMultipart(
-                //      '',
-                //      "base64", {
-                //        parents: [args.parentFolderId],
-                //        name: args.name,
-                //      },
-                //      false);
-                //      return id;
-                  const id: string = await GDrive.files.createFileMultipart({
-                name: args.name,
+            const id: string = await GDrive.files.safeCreateFolder({
+                name:args.name,
                 parents: [args.parentFolderId]
             });
+            console.log(id,"..id..")
             return id;
                 // this.createAFile();
              // }
@@ -334,6 +310,7 @@ class GoogleDrive {
             let downloadResult = await response.promise;
 
             if (downloadResult.statusCode === 200) {
+                console.log(args.filePath,"..args.filePat..")
                 return args.filePath;
             } else {
                 return new Error('File was not downloaded');

@@ -36,6 +36,7 @@ class UserRealmCommon extends Component {
             if (this.realm) {
             //     this.closeRealm();
             // }
+                // this.realm.addListener('change', this.onRealmChange);
                 resolve(this.realm);
             } else {
                 // Delete realm file
@@ -46,8 +47,9 @@ class UserRealmCommon extends Component {
                 // Open realm file
                 Realm.open(userRealmConfig)
                     .then(realm => {
-                       // console.log("open realm");
+                        console.log("open realm");
                         this.realm = realm;
+                     //   this.realm.addListener('change', this.onRealmChange);
                         resolve(realm);
                     })
                     .catch(error => {
@@ -56,6 +58,9 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    // private onRealmChange() {
+    //      this.forceUpdate();
+    // }
     public closeRealm() {
         if (this.realm) {
            // console.log("closed");
