@@ -7,10 +7,10 @@ import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
   vaccineid: number;
-  measurementDate: number;
+  // measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines, fromScreen,backgroundActiveColor} = props;
+  const {onPrevPlannedVaccineToggle, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   previousPeriods.shift();
   //remove first period which is the current period
@@ -27,6 +27,12 @@ const PrevPlannedVaccines = (props: any) => {
         return element.id == vItem.id;
       });
     },
+  ).filter(
+    (vItem: any) => {
+      return !takenVaccine?.find((element) => {
+        return element.id == vItem.id;
+      });
+    },
   );
   console.log(allPreviousPendingVaccines);
   // let allCheckedVaccines: any[] = [];
@@ -39,10 +45,8 @@ const PrevPlannedVaccines = (props: any) => {
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [
         ...checkedVaccines,
-        {
-          vaccineid: id,
-          measurementDate: DateTime.now().toMillis(),
-        },
+        {  vaccineid: id,}
+          // measurementDate: DateTime.now().toMillis(),
       ];
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
