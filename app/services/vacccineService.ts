@@ -15,10 +15,10 @@ export const getAllVaccinePeriods = () => {
   let measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure,index) => {
     const vaccinesForAmeasure =  (measure.vaccineIds || measure.vaccineIds!=''|| measure.vaccineIds!=null) ?JSON.parse(measure.vaccineIds): [];
-    //  console.log(vaccinesForAmeasure);
+    //  console.log(vaccinesForAmeasure,"vaccinesForAmeasure");
      if(vaccinesForAmeasure){
     vaccinesForAmeasure.forEach((vaccine,innerindex) => {
-      measuredVaccines.push(vaccine);
+      measuredVaccines.push({vaccineid: vaccine.vaccineid,measurementDate:measure.measurementDate});
     });
   }
   });
@@ -27,8 +27,9 @@ export const getAllVaccinePeriods = () => {
   // return vaccineMeasures.filter(measure => JSON.parse(measure.vaccineIds).indexOf(vaccineid) > -1);
   // }
   // console.log(getMeasureInfoForVaccine(),"getMeaasureInfoForVaccine");
-  const vaccineMeasuredInfo = (vaccineid: number) => {
-    return (measuredVaccines.find(item => item.vaccineid == vaccineid))
+  const vaccineMeasuredInfo = (vaccine) => {
+    // console.log(measuredVaccines,vaccine,"vaccineid")
+    return (measuredVaccines.find(item => String(item.vaccineid) == String(vaccine.uuid)))
   }
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
   const childAgeIndays = Math.round(
@@ -56,7 +57,7 @@ export const getAllVaccinePeriods = () => {
     // const checkIfVacineMeasured = isVaccineMeasured(item.vaccineid);
     // console.log(checkIfVacineMeasured, "checkIfVacineMeasured");
     obj[item.growth_period] = obj[item.growth_period] || [];
-    obj[item.growth_period].push({ id: item.id, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
+    obj[item.growth_period].push({ id: item.id,uuid: item.uuid,title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
     return obj;
   }, {});
   let groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
@@ -68,11 +69,12 @@ export const getAllVaccinePeriods = () => {
       item.periodName = period.name;
       item.vaccination_opens = period.vaccination_opens;
     }
-    // console.log(item?.vaccines);
     item?.vaccines.forEach((vaccine: any) => {
-      const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
+      // console.log(vaccine)
+      const vaccineMeasured = vaccineMeasuredInfo(vaccine);
       // console.log(vaccineMeasured, "vaccineMeasured");
       vaccine.isMeasured = vaccineMeasured ? true : false;
+      // console.log(vaccine)
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
   })

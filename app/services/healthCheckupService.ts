@@ -23,11 +23,24 @@ export const getAllHealthCheckupPeriods = () => {
   const allMeasures = activeChild?.measures.filter((item)=>item.measurementPlace==0).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
-
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
+  // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
+ return vaccineIds.filter( vcId => {
+    return allVaccinePeriods.some( el => {
+      return vcId.vaccineid === el.uuid;
+    });
+  });
+}
   // sorting measures by date
   let allMeasurements = allMeasures.map((item: MeasuresEntity) => {
     let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
     // console.log(item.vaccineIds,"item.vaccineIds")
+    const filteredVaccinesForLocale = (item.vaccineIds || item.vaccineIds != '') ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(item.vaccineIds)):[]
+  //  console.log(filteredVaccinesForLocale,"filteredVaccinesForLocale");
     return {
       uuid: item.uuid,
       weight: item.weight ? parseFloat(item.weight) : 0,
@@ -38,8 +51,9 @@ export const getAllHealthCheckupPeriods = () => {
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,
       ),
       titleDateInMonth: item.titleDateInMonth ? item.titleDateInMonth : '',
-      measuredVaccineIds: (item.vaccineIds || item.vaccineIds != '') ? JSON.parse(item.vaccineIds) : [],
-      didChildGetVaccines: item.didChildGetVaccines,
+      // remove vaccineids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
+      measuredVaccineIds: filteredVaccinesForLocale,
+      didChildGetVaccines: filteredVaccinesForLocale.length>0 ? item.didChildGetVaccines: false,
       isChildMeasured: item.isChildMeasured,
       measurementPlace: item.measurementPlace,
       doctorComment: item.doctorComment
@@ -49,7 +63,8 @@ export const getAllHealthCheckupPeriods = () => {
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
   let measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure, index) => {
-    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
+    // remove vaccineids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
+    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(measure.vaccineIds)) : [];
     //  console.log(vaccinesForAmeasure);
     if (vaccinesForAmeasure) {
       vaccinesForAmeasure.forEach((vaccine, innerindex) => {
@@ -67,14 +82,6 @@ export const getAllHealthCheckupPeriods = () => {
     DateTime.fromJSDate(new Date()).diff(birthDay, 'days').days,
   );
   // console.log(childAgeIndays, 'childAgeIndays');
-
-  const getVaccineOpens = (periodID) => {
-    return allGrowthPeriods.find(item => item.id == periodID);
-  }
-  let allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.vaccineData),
-  );
   const getVaccinesForHCPeriod = (growthPeriodID) => {
     let vaccinesforHC = allVaccinePeriods.filter(item => item.growth_period == growthPeriodID);
     vaccinesforHC?.forEach(vaccine => {
@@ -103,7 +110,7 @@ export const getAllHealthCheckupPeriods = () => {
           // console.log(measure,"in loop")
           const item = {
             created_at: hcItem.created_at,
-            growthMeasures: measure[i + 1],
+            growthMeasures: measure[i + 1], 
             growth_period: hcItem.growth_period,
             id: hcItem.id,
             pinned_article: hcItem.pinned_article,
@@ -113,17 +120,17 @@ export const getAllHealthCheckupPeriods = () => {
             updated_at: hcItem.updated_at,
             vaccination_ends: hcItem.vaccination_ends,
             vaccination_opens: hcItem.vaccination_opens,
-            vaccines: [],
+            vaccines: [], // no vaccines planned for additional health checkup
           }
           // console.log(item,"Additonal");
           additionalMeasures.push(item)
         }
-        regularMeasure = measure[0];
+        regularMeasure = measure[0]; 
         // console.log(regularMeasure, measure[0], "loged");
         regularMeasure["isAdditional"] = false
         // console.log(additionalMeasures, "additionalMeasures");
       } else if (measure.length > 0) {
-        regularMeasure = measure[0];
+        regularMeasure = measure[0]; 
         // console.log(regularMeasure, measure[0], "loged");
         regularMeasure["isAdditional"] = false
       } else {

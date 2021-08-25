@@ -287,6 +287,64 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
+const deleteGrowth = async(measure)=>{
+  const measurementDateParam = editGrowthItem
+  ? dateTouched
+    ? measureDate?.toMillis()
+    : editGrowthItem.measurementDate
+  : measureDate?.toMillis();
+const titleDateInMonthParam = editGrowthItem
+  ? dateTouched
+    ? measureDate.toFormat('MM')
+    : editGrowthItem.titleDateInMonth
+  : measureDate.toFormat('MM');
+    if(measure.didChildGetVaccines == true){
+        //delete weight,height,doctorComment and mark isChildMeasured false
+        const growthValues = {
+          uuid: editGrowthItem.uuid,
+          isChildMeasured: false,
+          weight: '',
+          height: '',
+          measurementDate: measurementDateParam,
+          titleDateInMonth: titleDateInMonthParam.toString(),
+          didChildGetVaccines: editGrowthItem.didChildGetVaccines,
+          vaccineIds: editGrowthItem.vaccieIds,
+          doctorComment: remarkTxt,
+          measurementPlace: measurePlace,
+        };
+        console.log(growthValues);
+        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult, '..createresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (createresult?.length > 0) {
+          activeChild.measures = createresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
+    }else{
+        //delete measure obj
+        let createresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          editGrowthItem,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult, '..createresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (createresult?.length > 0) {
+          activeChild.measures = createresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
+        
+    }
+
+}
   const saveChildMeasures = async () => {
     // console.log(dateTouched,"dateTouched",measureDate);
     
@@ -629,7 +687,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   <ButtonColTwo>
                     <ButtonPrimary
                       onPress={() => {
-                        setModalVisible(false);
+                        deleteGrowth(editGrowthItem);
                       }}>
                       <ButtonText>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>

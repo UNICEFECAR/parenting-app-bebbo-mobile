@@ -61,6 +61,7 @@ import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
   Modal,
   Platform,
   Pressable,
@@ -86,14 +87,16 @@ import {
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { GROWTH_MEASUREMENT_ADDED, HEALTH_CHECKUP_ENTERED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
+import TakenVaccines from '@components/vaccination/TakenVaccines';
+import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-const AddChildHealthCheckup = ({route, navigation}: any) => {
-  const {t} = useTranslation();
-  const {headerTitle, vcPeriod, editGrowthItem} = route.params;
+const AddChildHealthCheckup = ({ route, navigation }: any) => {
+  const { t } = useTranslation();
+  const { headerTitle, vcPeriod, editGrowthItem } = route.params;
   console.log(vcPeriod, 'vcPeriod');
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
@@ -104,6 +107,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
+  const [takenVaccine, setTakenVaccine] = useState([]);
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -119,10 +123,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
-  const handleMeasureConfirm = (event:any) => {
-    const date=event;
+  const handleMeasureConfirm = (event: any) => {
+    const date = event;
     console.log("A date has been picked: ", date);
-    onmeasureDateChange(event,date);
+    onmeasureDateChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
@@ -145,18 +149,14 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   );
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const isMeasuredOptions = [
-    {title: t('vcIsMeasuredOption1')},
-    {title: t('vcIsMeasuredOption2')},
+    { title: t('vcIsMeasuredOption1') },
+    { title: t('vcIsMeasuredOption2') },
   ];
-  const [defaultMeasured, setDefaultMeasured] = useState<any>(
-    editGrowthItem
-    ? editGrowthItem.isChildMeasured ? isMeasuredOptions[0] :isMeasuredOptions[1]
-    : {title: ''}
-  );
+  const [defaultMeasured, setDefaultMeasured] = useState<any>();
   const [defaultVaccineMeasured, setDefaultVaccineMeasured] = useState<any>(
     editGrowthItem
-    ? editGrowthItem.didChildGetVaccines ? isMeasuredOptions[0] :isMeasuredOptions[1]
-    : {title: ''}
+      ? editGrowthItem.didChildGetVaccines ? isMeasuredOptions[0] : isMeasuredOptions[1]
+      : { title: '' }
   );
   // const defaultMeasured = {title: ''};
 
@@ -170,6 +170,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
     //  console.log(checkedItem);
     setIsVaccineMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
   };
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
@@ -177,11 +181,66 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
     }
+    if (editGrowthItem) {
+      //form edit not allowed
+     } else {
+       if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
+         Alert.alert("Alert",
+           "Selecting this date will modify existing Measures",
+           [
+             {
+               text: "Ok",
+               onPress: () => {
+                 const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
+                 console.log(existingMeasure, "existingMeasure");
+                 setWeightValue(existingMeasure.weight)
+                 setHeightValue(existingMeasure.height)
+                 handleDoctorRemark(existingMeasure.doctorComment)
+                 setIsMeasured(existingMeasure.isChildMeasured);
+                 setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+                 let existingMeasuredVaccines = (existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [];
+                 if(existingMeasuredVaccines.length>0){
+                  existingMeasuredVaccines.forEach(element => {
+                    console.log(element);
+                    console.log(allVaccinePeriods.find(item=>item.uuid==element.uuid))
+                    element['id'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).id
+                    element['uuid'] = element.vaccineid
+                    element['title'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).title
+                    element['isChecked']= true
+                    element['pinned_article'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).pinned_article
+                  });
+                  console.log(existingMeasuredVaccines,"existingMeasuredVaccines");
+                  setTakenVaccine(existingMeasuredVaccines);
+                 }
+                
+               },
+               style: "cancel",
+             },
+           ],
+           {
+             cancelable: false,
+             // onDismiss: () =>
+             //   Alert.alert(
+             //     "This alert was dismissed by tapping outside of the alert dialog."
+             //   ),
+           })
+       } else {
+         setWeightValue(0);
+         setHeightValue(0);
+         handleDoctorRemark('');
+         setIsMeasured(false);
+         setDefaultMeasured(null);
+       }
+     }
+  };
+  const onTakenVaccineToggle = (checkedVaccineArray: any) => {
+    // console.log(checkedVaccineArray);
+    setTakenVaccine(checkedVaccineArray);
   };
   const minChildGrwothDate =
     activeChild.birthDate != '' &&
-    activeChild.birthDate != null &&
-    activeChild.birthDate != undefined
+      activeChild.birthDate != null &&
+      activeChild.birthDate != undefined
       ? activeChild.birthDate
       : new Date();
   React.useEffect(() => {
@@ -238,10 +297,10 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-            DateTime.fromJSDate(new Date(item.measurementDate))
-              .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
-              .toObject().days,
-          ) == 0
+          DateTime.fromJSDate(new Date(item.measurementDate))
+            .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
+            .toObject().days,
+        ) == 0
         : null;
     });
     // if date difference is 0 then update else create new
@@ -297,13 +356,13 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        if(isMeasured){
-           analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
+        if (isMeasured) {
+          analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
         }
-        if(isVaccineMeasured){
-         analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:[...plannedVaccine, ...prevPlannedVaccine]})
+        if (isVaccineMeasured) {
+          analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, vaccine_id: [...plannedVaccine, ...prevPlannedVaccine] })
         }
-         analytics().logEvent(HEALTH_CHECKUP_ENTERED, {age_id:activeChild?.taxonomyData?.id})
+        analytics().logEvent(HEALTH_CHECKUP_ENTERED, { age_id: activeChild?.taxonomyData?.id })
       }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
       navigation.goBack();
@@ -311,7 +370,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <HeaderRowView
@@ -340,11 +399,11 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
             </HeaderActionView> */}
           </HeaderRowView>
 
-          <ScrollView style={{flex: 9}}>
+          <ScrollView style={{ flex: 9 }}>
             <MainContainer>
               <FormInputGroup onPress={() => {
                 setmeasureDateShow(true);
-                if(Platform.OS == 'ios'){
+                if (Platform.OS == 'ios') {
                   setMeasureDatePickerVisibility(true);
                 }
               }}>
@@ -357,11 +416,11 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       <Text>
                         {' '}
                         {measureDate
-                          ? 
+                          ?
                           // DateTime.fromJSDate(new Date(measureDate)).toFormat(
                           //     'dd/MM/yyyy',
                           //   )
-                          formatStringDate(measureDate,luxonLocale)
+                          formatStringDate(measureDate, luxonLocale)
                           : t('vcScreenenterDateText')}
                       </Text>
                       {showmeasureDate && (
@@ -384,18 +443,18 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                   </FormInputBox>
                 ) : (
                   <FormInputBox>
-                     <FormDateText1>
+                    <FormDateText1>
                       <Text>
                         {' '}
                         {measureDate
-                          ? 
+                          ?
                           // DateTime.fromJSDate(new Date(measureDate)).toFormat(
                           //     'dd/MM/yyyy',
                           //   )
-                          formatStringDate(measureDate,luxonLocale)
+                          formatStringDate(measureDate, luxonLocale)
                           : t('vcScreenenterDateText')}
                       </Text>
-                    {/* <DateTimePicker
+                      {/* <DateTimePicker
                       testID="measureDatePicker"
                       value={
                         editGrowthItem ? new Date(measureDate) : new Date()
@@ -408,17 +467,17 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                       style={{backgroundColor: 'white', flex: 1}}
                     /> */}
                       <DateTimePickerModal
-              isVisible={isMeasureDatePickerVisible}
-              mode="date"
-              onConfirm={handleMeasureConfirm}
-              date={editGrowthItem ? new Date(measureDate) : new Date()}
-              onCancel={() => {
-                // Alert.alert('Modal has been closed.');
-                setMeasureDatePickerVisibility(false);
-              }}
-              maximumDate={new Date()}
-              minimumDate={new Date(minChildGrwothDate)}
-              />
+                        isVisible={isMeasureDatePickerVisible}
+                        mode="date"
+                        onConfirm={handleMeasureConfirm}
+                        date={editGrowthItem ? new Date(measureDate) : new Date()}
+                        onCancel={() => {
+                          // Alert.alert('Modal has been closed.');
+                          setMeasureDatePickerVisibility(false);
+                        }}
+                        maximumDate={new Date()}
+                        minimumDate={new Date(minChildGrwothDate)}
+                      />
 
                     </FormDateText1>
                     <FormDateAction>
@@ -519,6 +578,18 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
               </FormContainerFlex>
               {isVaccineMeasured ? (
                 <FormContainerFlex1>
+                  {takenVaccine?.length > 0 ?
+                    (<ShiftFromTop15>
+                      <FormInputText>
+                        <Heading3>{t('vctaken')}</Heading3>
+                      </FormInputText>
+                      <TakenVaccines
+                        fromScreen={'AddChildHealthCheckup'}
+                        takenVaccines={takenVaccine}
+                        backgroundActiveColor={headerColor}
+                        onTakenVaccineToggle={onTakenVaccineToggle}
+                      />
+                    </ShiftFromTop15>) : null}
                   <ShiftFromTop15>
                     <FormInputText>
                       <Heading3>{t('vcPlanned')}</Heading3>
@@ -559,7 +630,7 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
                     placeholder={t(
                       'growthScreenenterDoctorRemarkTextPlaceHolder',
                     )}
-                    allowFontScaling={false} 
+                    allowFontScaling={false}
                   />
                 </TextAreaBox>
               </FormContainerFlex>
@@ -570,7 +641,9 @@ const AddChildHealthCheckup = ({route, navigation}: any) => {
           </ScrollView>
           <ButtonContainer>
             <ButtonTertiary
-              onPress={() => {
+              disabled={isFormDisabled()}
+              onPress={(e) => {
+                e.stopPropagation();
                 saveChildMeasures();
               }}>
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
