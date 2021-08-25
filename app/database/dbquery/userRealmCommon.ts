@@ -211,6 +211,46 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async deleteChildMeasures<Entity>(entitySchema: ObjectSchema,measure:any,condition:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    console.log(obj[0],"obj0");
+                    realm?.write(() => {
+                        console.log(obj[0].measures.length,"length")
+                    if(obj[0].measures.length>0){
+                        let updateItemIndex = obj[0].measures.findIndex(item=>{
+                            console.log(measure.uuid,"measure.uuid",item.uuid)
+                            return item.uuid==measure.uuid
+                          });
+                          console.log(updateItemIndex,"updateItemIndex")
+                          obj[0].measures.splice(updateItemIndex, 1);
+                        //   console.log(updateItemIndex)
+                        console.log(obj[0].measures,"obj[0].measures1")
+                        // obj[0].reminders.map((item)=>{
+                        //  console.log(item,"inside reminders")   
+                        // })
+                          
+                    }
+                    });
+                    // obj[0].reminders.map((item)=>{
+                    //     console.log(item,"inside reminders11")   
+                    //    })
+                    console.log(obj[0].measures,"obj[0].measures2")
+                   resolve(obj[0].measures);
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
+            }
+        });
+    }
     public async updateChildMeasures<Entity>(entitySchema: ObjectSchema,measures:any,condition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {

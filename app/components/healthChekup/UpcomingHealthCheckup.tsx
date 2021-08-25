@@ -138,7 +138,7 @@ const UpcomingHealthCheckup = (props: any) => {
     JSON.parse(state.utilsData.vaccineData),
   );
   const getVaccineName = (vaccineID) => {
-    return allVaccineData?.find((v) => v.id === vaccineID)?.title;
+    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -153,7 +153,7 @@ const UpcomingHealthCheckup = (props: any) => {
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.didChildGetVaccines ||
-            item?.growthMeasures?.isChildMeasured ? (
+            item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>

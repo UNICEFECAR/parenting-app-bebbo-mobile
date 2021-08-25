@@ -27,7 +27,7 @@ const VaccineItem = (props: any) => {
   }
   };
 
-  const {title, id, isChecked, pinned_article} = item;
+  const {title, id,uuid, isChecked, pinned_article} = item;
   const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
   return (
     <>
@@ -37,7 +37,7 @@ const VaccineItem = (props: any) => {
             <FormOuterCheckbox
               onPress={() => {
                 setToggleCheckBox(!toggleCheckBox);
-                onToggleVaccine(id, !toggleCheckBox);
+                onToggleVaccine(uuid, !toggleCheckBox);
               }}>
               <CheckboxItem>
                 <View>

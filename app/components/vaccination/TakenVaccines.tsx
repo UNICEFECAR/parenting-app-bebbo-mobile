@@ -4,36 +4,37 @@ import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import VaccineItem from './VaccineItem';
-type VaccineItemProps = {
-  vaccineid:number,
-  // measurementDate:number
-}
-const PlannedVaccines = (props: any) => {
-  const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;
-  console.log(currentPeriodVaccines,"currentPeriodVaccines")
+// type VaccineItemProps = {
+//   vaccineid:number,
+//   // measurementDate:number
+// }
+const TakenVaccines = (props: any) => {
+  const {takenVaccines, onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
+  console.log(takenVaccines,"takenVaccines")
+ 
   const {t} = useTranslation();
-  const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
+  const [checkedVaccines,setCheckedVaccines] = useState<any[]>(takenVaccines);
   // let allCheckedVaccines: any[] = [];
   const onToggleVaccine = (id, isVaccineItemChecked) => {
-    console.log(id,isVaccineItemChecked);
+    // console.log(id,isVaccineItemChecked);
     if (isVaccineItemChecked) {
-      const allCheckedVaccines = [...checkedVaccines,
-         {  vaccineid: id,}
+      const allCheckedVaccines = [...checkedVaccines, {
+          vaccineid: id,
           // measurementDate: DateTime.now().toMillis(),
-        ];
+        }];
       setCheckedVaccines(allCheckedVaccines);
       // allCheckedVaccines.push({
       //   vaccineid: id,
       //   measurementDate: DateTime.now().toMillis(),
       // });
-      onPlannedVaccineToggle(allCheckedVaccines);
+      onTakenVaccineToggle(allCheckedVaccines);
       // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
      const allCheckedVaccines = [...checkedVaccines].filter(
         (item) => item.vaccineid !== id,
       );
       setCheckedVaccines(allCheckedVaccines);
-      onPlannedVaccineToggle(allCheckedVaccines);
+      onTakenVaccineToggle(allCheckedVaccines);
       // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     }
     
@@ -41,9 +42,8 @@ const PlannedVaccines = (props: any) => {
   };
   return (
     <>
-      {currentPeriodVaccines?.length > 0 ? (
         <BgContainer>
-          {currentPeriodVaccines?.map((item, index) => {
+          {takenVaccines?.map((item, index) => {
             return (
               <VaccineItem
               fromScreen={fromScreen}
@@ -55,10 +55,8 @@ const PlannedVaccines = (props: any) => {
             );
           })}
         </BgContainer>
-      ) : (
-        <Heading4>{t('noVaccinesForPeriod')}</Heading4>
-      )}
+      
     </>
   );
 };
-export default PlannedVaccines;
+export default TakenVaccines;

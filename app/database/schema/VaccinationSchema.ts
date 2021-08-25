@@ -2,6 +2,7 @@ import { ObjectSchema } from "realm";
 
 export type VaccinationEntity = {
     id: number,
+    uuid: string,
     type: string,
     title: string,
     pinned_article: number,
@@ -20,6 +21,7 @@ export type VaccinationEntity = {
       id: { type: 'int' },
       type: { type: 'string' },
       title: { type: 'string' },
+      uuid: { type: 'string' },
       pinned_article: { type: 'int' },
       growth_period: { type: 'int' },
       created_at: { type: 'string' },
