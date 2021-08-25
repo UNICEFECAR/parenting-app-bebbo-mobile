@@ -56,7 +56,7 @@ import {
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Modal, Pressable, ScrollView, View } from 'react-native';
+import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
@@ -145,9 +145,10 @@ const exportToDrive=async ()=>{
   const exportIsSuccess = await backup.export();
   setIsExportRunning(false);
   if (!exportIsSuccess) {
-    console.log('settingsButtonExportError')
+    Alert.alert('settingsButtonExportError')
+    // ToastAndroid.show(t('settingExportError'), 6000);
   } else {
-    console.log('success export')
+    Alert.alert(t('settingExportSuccess'));
   };
  
  // actionSheetRef.current?.setModalVisible(false); 
