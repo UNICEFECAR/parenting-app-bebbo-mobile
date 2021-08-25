@@ -43,6 +43,7 @@ interface hardcodedDataType {
   dailymessages:string,
   vaccineData:{
     id: number,
+    uuid: string,
     type: string,
     title: string,
     pinned_article: number,
@@ -120,6 +121,7 @@ const initialState: hardcodedDataType = {
   dailymessages:'',
   vaccineData:{
     id: 0,
+    uuid:'',
     type: '',
     title: '',
     pinned_article: 0,
