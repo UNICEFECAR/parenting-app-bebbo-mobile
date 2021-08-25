@@ -58,9 +58,12 @@ const ActiveChildMeasureTimeline = (props: any) => {
         height: item.height ? parseFloat(item.height) : 0,
         measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
         dateToMilis: measurementDate.toMillis(),
+        isChildMeasured:item.isChildMeasured,
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,
-        doctorComment:item.doctorComment
+        doctorComment:item.doctorComment,
+        didChildGetVaccines:item.didChildGetVaccines,
+        vaccineIds:item.vaccineIds,
       };
     });
 
@@ -139,8 +142,11 @@ const ActiveChildMeasureTimeline = (props: any) => {
                     "height": rowData.height,
                     "measurementDate": rowData.dateToMilis,
                     "titleDateInMonth": rowData.titleDateInMonth,
+                    "isChildMeasured":rowData.isChildMeasured,
                     "measurementPlace": rowData.measurementPlace,
-                    "doctorComment": rowData.doctorComment})
+                    "doctorComment": rowData.doctorComment,
+                    "didChildGetVaccines":rowData.didChildGetVaccines,
+                    "vaccineIds":rowData.vaccineIds})
                   
                   })
                 }}>

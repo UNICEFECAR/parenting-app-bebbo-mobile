@@ -98,9 +98,9 @@ type Props = {
 const AddNewChildgrowth = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, editGrowthItem} = route.params;
-  // if (editGrowthItem) {
-  // console.log('editGrowthItem', editGrowthItem);
-  // }
+  if (editGrowthItem) {
+  console.log('editGrowthItem', editGrowthItem);
+  }
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -287,7 +287,8 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
-const deleteGrowth = async(measure)=>{
+const deleteGrowth = async()=>{
+  console.log(editGrowthItem,"deleteGrowth")
   const measurementDateParam = editGrowthItem
   ? dateTouched
     ? measureDate?.toMillis()
@@ -298,45 +299,45 @@ const titleDateInMonthParam = editGrowthItem
     ? measureDate.toFormat('MM')
     : editGrowthItem.titleDateInMonth
   : measureDate.toFormat('MM');
-    if(measure.didChildGetVaccines == true){
+    if(editGrowthItem.didChildGetVaccines == true){
         //delete weight,height,doctorComment and mark isChildMeasured false
         const growthValues = {
           uuid: editGrowthItem.uuid,
           isChildMeasured: false,
-          weight: '',
-          height: '',
+          weight: "",
+          height: "",
           measurementDate: measurementDateParam,
           titleDateInMonth: titleDateInMonthParam.toString(),
           didChildGetVaccines: editGrowthItem.didChildGetVaccines,
           vaccineIds: editGrowthItem.vaccieIds,
-          doctorComment: remarkTxt,
-          measurementPlace: measurePlace,
+          doctorComment: "",
+          measurementPlace: editGrowthItem.measurementPlace,
         };
-        console.log(growthValues);
-        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+        console.log(growthValues,'updateInDeleteMeasure');
+        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        console.log(updateresult, '..updateresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-        if (createresult?.length > 0) {
-          activeChild.measures = createresult;
+        if (updateresult?.length>0) {
+          activeChild.measures = updateresult;
           dispatch(setActiveChildData(activeChild));
           setModalVisible(false);
         }
         navigation.goBack();
     }else{
         //delete measure obj
-        let createresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
           ChildEntitySchema,
           editGrowthItem,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        console.log(deleteresult, '..deleteresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-        if (createresult?.length > 0) {
-          activeChild.measures = createresult;
+        if (deleteresult) {
+          activeChild.measures = deleteresult;
           dispatch(setActiveChildData(activeChild));
           setModalVisible(false);
         }
@@ -687,7 +688,7 @@ const titleDateInMonthParam = editGrowthItem
                   <ButtonColTwo>
                     <ButtonPrimary
                       onPress={() => {
-                        deleteGrowth(editGrowthItem);
+                        deleteGrowth();
                       }}>
                       <ButtonText>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>

@@ -10,14 +10,14 @@ import { RadioBoxContainer, RadioInnerBox, RadioOuter } from './shared/radio';
 const ToggleRadios = (props: any) => {
   const {options,tickColor,tickbgColor,defaultValue} = props;
   const [checkedItem, setCheckedItem] = useState(defaultValue?defaultValue:null);
-  // useEffect(()=>{
-  //     setCheckedItem(defaultValue);
-  // },[defaultValue])
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(()=>{
       setCheckedItem(defaultValue);
-    }, [defaultValue])
-  );
+  },[defaultValue])
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     setCheckedItem(defaultValue);
+  //   }, [defaultValue])
+  // );
   return (
     <>
     <RadioBoxContainer>

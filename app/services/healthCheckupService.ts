@@ -29,8 +29,8 @@ export const getAllHealthCheckupPeriods = () => {
   );
 const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
- return vaccineIds.filter( vcId => {
-    return allVaccinePeriods.some( el => {
+ return vaccineIds?.filter( vcId => {
+    return allVaccinePeriods?.some( el => {
       return vcId.vaccineid === el.uuid;
     });
   });
@@ -53,7 +53,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
       titleDateInMonth: item.titleDateInMonth ? item.titleDateInMonth : '',
       // remove vaccineids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
       measuredVaccineIds: filteredVaccinesForLocale,
-      didChildGetVaccines: filteredVaccinesForLocale.length>0 ? item.didChildGetVaccines: false,
+      didChildGetVaccines: filteredVaccinesForLocale?.length>0 ? item.didChildGetVaccines: false,
       isChildMeasured: item.isChildMeasured,
       measurementPlace: item.measurementPlace,
       doctorComment: item.doctorComment
