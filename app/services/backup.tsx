@@ -84,7 +84,7 @@ class Backup {
         return true;
     }
 
-    public async import(): Promise<void|Error> {
+    public async import(navigation:any,langCode:any,dispatch:any,child_age:any): Promise<void|Error> {
         
         const tokens = await googleAuth.getTokens();
 
@@ -100,7 +100,7 @@ class Backup {
             name: backupGDriveFolderName,
             parentFolderId: 'root'
         });
-
+         console.log(backupFolderId,"..backupFolderId..")
         if (backupFolderId instanceof Error) {
             return new Error('Backup folder doesnt exist on GDrive');
         }
@@ -111,11 +111,12 @@ class Backup {
         const backupFiles = await googleDrive.list({
             filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
         });
+        console.log(backupFiles,"..backupFiles")
        
         if (Array.isArray(backupFiles) && backupFiles.length > 0) {
             backupFileId = backupFiles[0].id;
         }
-
+        console.log(backupFileId,"..backupFileId")
         if (!backupFileId) {
             return new Error("..Error coming..");
         }
@@ -124,17 +125,23 @@ class Backup {
         userRealmCommon.closeRealm();
 
         // Download file from GDrive
-        await googleDrive.download({
+       const downloadres= await googleDrive.download({
             fileId: backupFileId,
             filePath: RNFS.DocumentDirectoryPath + '/' + 'user.realm',
         });
-
+        console.log(downloadres,"..downloadres..")
         // Open user realm
         await userRealmCommon.openRealm();
-        let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-        allJsonDatanew.map((item:any)=>{
-            console.log(item,"..item..");
-        })
+        getAllChildren(dispatch,child_age);
+        navigation.navigate('LoadingScreen', {
+            apiJsonData:[], 
+            prevPage: 'ImportScreen'
+        });
+        // let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+        // allJsonDatanew.map((item:any)=>{
+        //     console.log(item,"..1111111item..");
+
+        // })
         // console.log(,"..allJsonDatanew..")
         // const allChildren:any =getAllChildren();
         // Set current child to first child
