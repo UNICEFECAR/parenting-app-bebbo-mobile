@@ -67,16 +67,18 @@ const LastChildMeasure = (props: any) => {
         let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
         month = Math.round(measurementDate.diff(birthDay, 'month').months);
       }
-
       return {
         uuid:item.uuid,
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
         measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
         dateToMilis: measurementDate.toMillis(),
+        isChildMeasured:item.isChildMeasured,
         titleDateInMonth: month,
         measurementPlace:item.measurementPlace,
-        doctorComment:item.doctorComment
+        doctorComment:item.doctorComment,
+        didChildGetVaccines:item.didChildGetVaccines,
+        vaccineIds:item.vaccineIds,
       };
     });
 
@@ -184,7 +186,10 @@ const LastChildMeasure = (props: any) => {
                     "measurementDate": lastmeasure.dateToMilis,
                     "titleDateInMonth": lastmeasure.titleDateInMonth,
                     "measurementPlace": lastmeasure.measurementPlace,
-                    "doctorComment": lastmeasure.doctorComment})
+                    "isChildMeasured":lastmeasure.isChildMeasured,
+                    "doctorComment": lastmeasure.doctorComment,
+                    "didChildGetVaccines":lastmeasure.didChildGetVaccines,
+                    "vaccineIds":lastmeasure.vaccineIds})
                   })
                 }}>
                 {/* <FlexDirRowEnd>
