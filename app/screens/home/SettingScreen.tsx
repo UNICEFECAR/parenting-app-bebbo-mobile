@@ -61,7 +61,7 @@ import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
 import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
@@ -91,6 +91,11 @@ const SettingScreen = (props: any) => {
   const trackFalseColor = '#C8D6EE';
   const thumbTrueColor = primaryColor;
   const thumbFalseColor = '#9598BE';
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
@@ -98,10 +103,13 @@ const SettingScreen = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const importAllData=async ()=>{
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
-    const importResponse = await backup.import();
+    const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age);
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
 
@@ -158,11 +166,6 @@ const exportAllData=async ()=>{
   const actionSheetRef = createRef<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
-  );
-
-  // console.log(countryId);
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
   );
   useEffect(() => {
     const selectedCountry: any = localization.find(
