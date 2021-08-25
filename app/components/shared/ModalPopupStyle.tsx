@@ -8,8 +8,8 @@ const ModalPopupContainer = styled.View`
 
 export const ModalPopupContainerVideo = styled(ModalPopupContainer)`
   background-color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
-  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
-
+   border-radius:0px;
+  /*  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};*/
 `;
 export const PopupOverlay = styled.Pressable`
   flex: 1;
@@ -17,6 +17,9 @@ export const PopupOverlay = styled.Pressable`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   padding:20px;
+`;
+export const PopupOverlayVideo = styled(PopupOverlay)`
+  padding:0px;
 `;
 
 export const PopupCloseContainer = styled.Pressable`
@@ -45,10 +48,10 @@ export const ModalPopupContent = styled.View`
 `;
 export const ModalPopupContentVideo = styled.View`
  width:100%;
-  margin-top:-15px;
-  max-height:180px;
-  min-width:320px;
-  padding:0 15px;
+ 
+  max-height:250px;
+  min-width:100%;
+  max-width:100%;
   flex:1
 `;
 
