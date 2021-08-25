@@ -309,7 +309,7 @@ const titleDateInMonthParam = editGrowthItem
           measurementDate: measurementDateParam,
           titleDateInMonth: titleDateInMonthParam.toString(),
           didChildGetVaccines: editGrowthItem.didChildGetVaccines,
-          vaccineIds: editGrowthItem.vaccieIds,
+          vaccineIds: editGrowthItem.vaccineIds,
           doctorComment: "",
           measurementPlace: editGrowthItem.measurementPlace,
         };
