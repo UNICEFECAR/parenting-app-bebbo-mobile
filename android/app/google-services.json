@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "185520625819-28tfc28j803gkc8j00avc93uus5uek1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parentbuddyapp",
+            "certificate_hash": "4121df99e99b65dfc331ba3ea806a5ad19ed7f73"
+          }
+        },
+        {
+          "client_id": "185520625819-ca8pinumif29d1gj1cmb9jm3814n7g55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parentbuddyapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "185520625819-g23qpmm4v35et550u4uq9aj5638g836d.apps.googleusercontent.com",
           "client_type": 3
         }
