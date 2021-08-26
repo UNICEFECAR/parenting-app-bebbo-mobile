@@ -77,7 +77,10 @@ interface hardcodedDataType {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
-
+  userOnboardedDate:number,
+  weeklyDownloadDate:number,
+  monthlyDownloadDate:number,
+  bufferDataDownloadFlag:boolean,
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -156,6 +159,10 @@ const initialState: hardcodedDataType = {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
+  userOnboardedDate:0,
+  weeklyDownloadDate:0,
+  monthlyDownloadDate:0,
+  bufferDataDownloadFlag:false,
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -170,6 +177,11 @@ export const utilsSlice = createSlice({
       action: PayloadAction<any>,)=>{
         console.log(action.payload,"actionpayload setuserIsOnboarded");
           state.userIsOnboarded = action.payload;
+    },
+    setSyncDate:( state:any,
+      action: PayloadAction<any>,)=>{
+        console.log(action.payload,"actionpayload setSyncDate");
+        state[action.payload.key]=action.payload.value;
     },
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
@@ -321,7 +333,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

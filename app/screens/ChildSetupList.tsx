@@ -58,7 +58,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch);
+      getAllChildren(dispatch,child_age);
       getAllConfigData(dispatch);
     },[])
   );
