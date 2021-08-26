@@ -120,24 +120,25 @@ const SettingScreen = (props: any) => {
     }
 }
 const exportFile=async ()=>{
+  Alert.alert('Coming Soon');
 // write the file
-setIsExportRunning(true);
-const userRealmPath = userRealmCommon.realm?.path;
-console.log(userRealmPath,"..userRealmPath")
-if (!userRealmPath) return false;
-const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-console.log(realmContent,"..11realmContent")
-RNFS.writeFile(backUpPath, realmContent, 'utf8')
-  .then((success:any) => {
-    console.log('FILE WRITTEN!');
-    setIsExportRunning(false);
-    //actionSheetRef.current?.setModalVisible(false); 
-  })
-  .catch((err:any) => {
-    console.log(err.message);
-    setIsExportRunning(false);
-   // actionSheetRef.current?.setModalVisible(false); 
-  });
+// setIsExportRunning(true);
+// const userRealmPath = userRealmCommon.realm?.path;
+// console.log(userRealmPath,"..userRealmPath")
+// if (!userRealmPath) return false;
+// const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+// console.log(realmContent,"..11realmContent")
+// RNFS.writeFile(backUpPath, realmContent, 'utf8')
+//   .then((success:any) => {
+//     console.log('FILE WRITTEN!');
+//     setIsExportRunning(false);
+//     //actionSheetRef.current?.setModalVisible(false); 
+//   })
+//   .catch((err:any) => {
+//     console.log(err.message);
+//     setIsExportRunning(false);
+//    // actionSheetRef.current?.setModalVisible(false); 
+//   });
   
 }
 const exportToDrive=async ()=>{
