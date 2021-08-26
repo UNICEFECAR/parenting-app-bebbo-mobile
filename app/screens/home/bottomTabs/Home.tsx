@@ -47,9 +47,11 @@ import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { setInfoModalOpened, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
+import { DateTime } from 'luxon';
+import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -91,6 +93,7 @@ const Home = ({route,navigation}: Props) => {
       : state.utilsData.surveryData,
   );
   let currentCount = 0;
+  let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets} = getAllPeriodicSyncData();
   const onBackPress = () => {
     // console.log(currentCount,0);
     if (currentCount === 0) {
@@ -122,21 +125,45 @@ const Home = ({route,navigation}: Props) => {
     
   };
   useEffect(() => {
+    const currentDate = DateTime.now().plus({days:-8}).toMillis();
+    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
+    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       onBackPress,
     );
     return () => backHandler.remove();
-  });
+  },[]);
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
+        const currentDate = DateTime.now().toMillis();
+        dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
+        dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+        dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
       }
+      console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
-       if(netInfoval && showDownloadPopup && errorObj.length > 0)
-       {
+      console.log(downloadWeeklyData,"--downloadWeeklyData-- and month",downloadMonthlyData);
+      if(netInfoval && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
+      {
+        let flagtext = 'downloadBufferData '+downloadBufferData+' downloadWeeklyData '+downloadWeeklyData+' downloadMonthlyData '+downloadMonthlyData;
+        Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText') + ' '+flagtext ,
+          [
+            {
+              text: t('downloadOnLoadCancelPopUpBtn'),
+              onPress: () => {dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}))},
+              style: "cancel"
+            },
+            { text: t('downloadOnLoadRetryBtn'), onPress: () => downloadApis() }
+          ]
+        );
+      }
+      else if(netInfoval && showDownloadPopup && errorObj.length > 0)
+      {
         // Alert.alert('Download Data', "All content is not downloaded.Please download data.",
           Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
             [
@@ -148,9 +175,23 @@ const Home = ({route,navigation}: Props) => {
               { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
             ]
           );
-       }
+      }
     }, [netInfoval]),
   );
+  const downloadApis = () => {
+    console.log("Download Pressed",apiJsonData);
+    // if(apiJsonData && apiJsonData.length > 0)
+    // {
+      navigation.navigate('LoadingScreen', {
+        apiJsonData: apiJsonData, 
+        prevPage: 'PeriodicSync',
+        downloadWeeklyData: downloadWeeklyData,
+        downloadMonthlyData: downloadMonthlyData,
+        downloadBufferData: downloadBufferData,
+        ageBrackets: ageBrackets,
+      });
+    // }
+  }
   const callFailedApis = () => {
     console.log("Download Pressed",errorObj);
     if(errorObj && errorObj.length > 0)
