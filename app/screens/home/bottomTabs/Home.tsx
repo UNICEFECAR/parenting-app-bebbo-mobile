@@ -125,9 +125,9 @@ const Home = ({route,navigation}: Props) => {
     
   };
   useEffect(() => {
-    const currentDate = DateTime.now().plus({days:-8}).toMillis();
+    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
     // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
     // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
