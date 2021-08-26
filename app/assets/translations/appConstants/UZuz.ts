@@ -377,6 +377,8 @@ childInfoAndText: "va",
         reminderalertText:"Reminder Date is before current Date Time",  
         noRecentGrowthMeasure:"Your child's measurement was measured very long time age. Update your child growth measurement now",
         vcTaken: "Taken vaccines",
+        settingExportError:'Export Error',
+        settingExportSuccess:'Export Success',
        }
 }
 export default UZuz;
