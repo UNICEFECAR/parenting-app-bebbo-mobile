@@ -371,6 +371,7 @@ const titleDateInMonthParam = editGrowthItem
           ) == 0
         : null;
     });
+    console.log(updateItem);
     // if date difference is 0 then update else create new
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
@@ -383,7 +384,7 @@ const titleDateInMonthParam = editGrowthItem
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: updateItem.didChildGetVaccines,
-        vaccineIds: updateItem.vaccieIds,
+        vaccineIds: updateItem.vaccineIds,
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
@@ -413,7 +414,7 @@ const titleDateInMonthParam = editGrowthItem
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
-      console.log(growthValues);
+      console.log(growthValues,'addthisitem');
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
