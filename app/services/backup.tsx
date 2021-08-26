@@ -5,8 +5,10 @@ import { backupGDriveFileName,backupGDriveFolderName} from "@assets/translations
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
-import { getAllChildren } from "./childCRUD";
+import { addPrefixForAndroidPaths, getAllChildren, getCurrentChild, setActiveChild } from "./childCRUD";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
+import { Child } from "../interface/interface";
+import { DateTime } from "luxon";
 
 /**
  * Export / import user realm to GDrive in order to create backup.
@@ -83,6 +85,7 @@ class Backup {
 
         return true;
     }
+  
 
     public async import(navigation:any,langCode:any,dispatch:any,child_age:any): Promise<void|Error> {
         
@@ -132,7 +135,43 @@ class Backup {
         console.log(downloadres,"..downloadres..")
         // Open user realm
         await userRealmCommon.openRealm();
-        getAllChildren(dispatch,child_age);
+        let allChildren=await getAllChildren(dispatch,child_age);
+        console.log(allChildren,"..allChildren..")
+        let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+        let allChildrenList: Child[] = [];
+        if (allChildren) {
+            allChildrenList = allChildren?.map((child:any) => {
+                let birthDay = child.birthDate ?
+                    DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
+                let imgUrl = child.photoUri ? addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
+                let isCurrentActive = false;
+                if (childId?.length > 0) {
+                    childId = childId[0].value;
+                    if (childId === child.uuid) {
+                        setActiveChild(langCode, child.uuid, dispatch, child_age);
+                        isCurrentActive = true;
+                    }
+                };
+console.log({
+    childId: child.uuid,
+    birthDay: birthDay,
+    name: child.name,
+    photo: imgUrl,
+    gender: child.gender,
+    isCurrentActive: isCurrentActive,
+    id: child.uuid,
+},"1111")
+                return {
+                    childId: child.uuid,
+                    birthDay: birthDay,
+                    name: child.name,
+                    photo: imgUrl,
+                    gender: child.gender,
+                    isCurrentActive: isCurrentActive,
+                    id: child.uuid,
+                };
+            });
+        };
         navigation.navigate('LoadingScreen', {
             apiJsonData:[], 
             prevPage: 'ImportScreen'
