@@ -113,6 +113,9 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
+      const currentDate = DateTime.now().toMillis();
+      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
       dispatch(setDownloadedBufferAgeBracket([]))
       console.log("called fetchapi after delete");
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
