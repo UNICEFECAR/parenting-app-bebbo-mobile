@@ -1,9 +1,12 @@
 import { AnyAction } from '@reduxjs/toolkit';
+import { DateTime } from 'luxon';
 
 import { Component } from 'react';
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { userRealmConfig } from '../config/dbConfig';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../schema/ConfigSettingsSchema';
+import { dataRealmCommon } from './dataRealmCommon';
 // import { dispatchchildstore2 } from './userRealmListener';
 // import userRealm from '../config/dbConfig'
 // export const userRealmInstance = getUserRealm();
@@ -33,6 +36,7 @@ class UserRealmCommon extends Component {
             if (this.realm) {
             //     this.closeRealm();
             // }
+                // this.realm.addListener('change', this.onRealmChange);
                 resolve(this.realm);
             } else {
                 // Delete realm file
@@ -43,8 +47,9 @@ class UserRealmCommon extends Component {
                 // Open realm file
                 Realm.open(userRealmConfig)
                     .then(realm => {
-                       // console.log("open realm");
+                        console.log("open realm");
                         this.realm = realm;
+                     //   this.realm.addListener('change', this.onRealmChange);
                         resolve(realm);
                     })
                     .catch(error => {
@@ -53,6 +58,9 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    // private onRealmChange() {
+    //      this.forceUpdate();
+    // }
     public closeRealm() {
         if (this.realm) {
            // console.log("closed");
@@ -375,6 +383,7 @@ class UserRealmCommon extends Component {
             }
         });
     }
+  
     public async delete(Schema:string,record: any,filterCondition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -404,7 +413,48 @@ class UserRealmCommon extends Component {
             }
         });
     }
-
+    // public async getAllChildren(context?: UserRealmContextValue): Promise<Child[]> {
+    //     let allChildren = context ?
+    //         context.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child) :
+    //         userRealmStore.realm?.objects<ChildEntity>(ChildEntitySchema.name).map(child => child);
+    //         let currentChild:any=null;
+    //     // let currentChild = this.getCurrentChild()?.uuid;
+    //     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+    //     if (currentActiveChildId?.length > 0) {
+    //         currentChild = currentActiveChildId[0].value;
+    //     }
+    //     let allChildrenList: Child[] = [];
+    
+    //     if (allChildren) {
+    
+    //         allChildrenList = allChildren?.map(child => {
+    //             let birthDay = child.birthDate ?
+    //                 DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
+    
+    //             let imgUrl = child.photoUri ? utils.addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
+    //             let isCurrentActive = false;
+    
+    //             if (currentChild) {
+    //                 if (currentChild === child.uuid) {
+    //                     isCurrentActive = true;
+    //                 }
+    //             };
+    
+    //             return {
+    //                 childId: child.uuid,
+    //                 birthDay: birthDay,
+    //                 name: child.name,
+    //                 photo: imgUrl,
+    //                 gender: child.gender,
+    //                 isCurrentActive: isCurrentActive,
+    //                 id: child.uuid,
+    //             };
+    //         });
+    //     };
+    
+    
+    //     return allChildrenList;
+    // };
     public async deleteAll(entitySchema: ObjectSchema): Promise<void> {
         return new Promise(async (resolve, reject) => {
             try {
@@ -448,6 +498,7 @@ class UserRealmCommon extends Component {
         });
     }
 }
+
 export const userRealmCommon = UserRealmCommon.getInstance();
 
 // export default userRealmCommon;
