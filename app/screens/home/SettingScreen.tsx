@@ -1,3 +1,4 @@
+import { backUpPath } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonModal,
@@ -36,6 +37,7 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -54,14 +56,17 @@ import {
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, ScrollView, View } from 'react-native';
+import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
+import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
+import RNFS from 'react-native-fs';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -86,11 +91,74 @@ const SettingScreen = (props: any) => {
   const trackFalseColor = '#C8D6EE';
   const thumbTrueColor = primaryColor;
   const thumbFalseColor = '#9598BE';
+  const dispatch = useAppDispatch();
+  const child_age = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const [isExportRunning, setIsExportRunning] = useState(false);
+  const [isImportRunning, setIsImportRunning] = useState(false);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const importAllData=async ()=>{
+    // this.setState({ isImportRunning: true, });
+    setIsImportRunning(true);
+    const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age);
+    // this.setState({ isImportRunning: false, });
+    setIsImportRunning(false);
+
+    if (importResponse instanceof Error) {
+       console.log(importResponse.message,"..importResponse.message..");
+    } else {
+      console.log("..success..");
+    }
+}
+const exportFile=async ()=>{
+  Alert.alert('Coming Soon');
+// write the file
+// setIsExportRunning(true);
+// const userRealmPath = userRealmCommon.realm?.path;
+// console.log(userRealmPath,"..userRealmPath")
+// if (!userRealmPath) return false;
+// const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+// console.log(realmContent,"..11realmContent")
+// RNFS.writeFile(backUpPath, realmContent, 'utf8')
+//   .then((success:any) => {
+//     console.log('FILE WRITTEN!');
+//     setIsExportRunning(false);
+//     //actionSheetRef.current?.setModalVisible(false); 
+//   })
+//   .catch((err:any) => {
+//     console.log(err.message);
+//     setIsExportRunning(false);
+//    // actionSheetRef.current?.setModalVisible(false); 
+//   });
+  
+}
+const exportToDrive=async ()=>{
+  setIsExportRunning(true);
+  const exportIsSuccess = await backup.export();
+  setIsExportRunning(false);
+  if (!exportIsSuccess) {
+    Alert.alert('settingsButtonExportError')
+    // ToastAndroid.show(t('settingExportError'), 6000);
+  } else {
+    Alert.alert(t('settingExportSuccess'));
+  };
+ 
+ // actionSheetRef.current?.setModalVisible(false); 
+}
+const exportAllData=async ()=>{
+  
+  actionSheetRef.current?.setModalVisible(); 
+ 
+};
   const toggleSwitch = () => {
     //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
     setIsEnabled((previousState) => !previousState);}
@@ -100,11 +168,6 @@ const SettingScreen = (props: any) => {
   const actionSheetRef = createRef<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
-  );
-
-  // console.log(countryId);
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
   );
   useEffect(() => {
     const selectedCountry: any = localization.find(
@@ -349,16 +412,38 @@ const SettingScreen = (props: any) => {
             </SettingHeading>
             <ShiftFromTopBottom10>
               <ButtonPrimary
-                onPress={() => {
-                  actionSheetRef.current?.setModalVisible();
-                }}>
+               disabled={isExportRunning || isImportRunning}
+               onPress={() => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
+              {isExportRunning && (
+                                        <ActivityIndicator animating={true} />
+                                    )}
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
-              <ButtonPrimary onPress={() => {}}>
-                <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
+              <ButtonPrimary  disabled={isExportRunning || isImportRunning} onPress={() => {
+                importAllData()
+              }}>
+              <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
+              {isImportRunning && (
+              <ActivityIndicator animating={true}/>
+              )}
+               {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
+                                    <UserRealmConsumer>
+                                        {(userRealmContext: UserRealmContextValue) => (
+                                            <RoundedButton
+                                                text={'Import Button New'}
+                                                iconName="file-import"
+                                                disabled={isExportRunning || isImportRunning}
+                                                onPress={() => { importAllData(userRealmContext) }}
+                                                style={{ flex: 1 }}
+                                            />
+                                        )}
+                                    </UserRealmConsumer>
+
+                                    
+                                </View> */}
             </ShiftFromTopBottom10>
           </MainContainer>
 
@@ -370,14 +455,25 @@ const SettingScreen = (props: any) => {
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
+                  <Pressable onPress={() => 
+                  {
+                    console.log("icon clicked");
+                    exportFile()
+                  }}>
                     <Icon name="ic_sb_shareapp" size={30} color="#000" />
                     <ShiftFromTopBottom5>
                       <Heading4Regular>
                         {t('settingScreenshareBtntxt')}
                       </Heading4Regular>
                     </ShiftFromTopBottom5>
+                    </Pressable>
                   </SettingOptions>
                   <SettingOptions>
+                  <Pressable onPress={() => 
+                  {
+                    console.log("icon clicked");
+                    exportToDrive()
+                  }}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
                     />
@@ -386,6 +482,7 @@ const SettingScreen = (props: any) => {
                         {t('settingScreengdriveBtntxt')}
                       </Heading4Regular>
                     </ShiftFromTopBottom5>
+                    </Pressable>
                   </SettingOptions>
                 </FDirRow>
               </SettingShareData>
