@@ -303,21 +303,32 @@ class DataRealmCommon {
         });
     }
 
-    public async delete(record: any): Promise<void> {
+    public async delete(Schema:string,filterCondition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
                 const realm = await this.openRealm();
-                if (realm) {
-                    realm.write(() => {
-                        realm?.delete(record);
-                        resolve();
+                if(realm)
+                {
+                    realm?.write(() => {
+                        if (
+                            realm.objects(Schema).filtered(filterCondition)
+                              .length > 0
+                          ) {
+                            //let collectionPages = Object.assign([], realm.objects(Schema));
+                            realm.delete(
+                              realm.objects(Schema).filtered(filterCondition)
+                            );
+                        }
+                        // realm?.delete(realm.objectForPrimaryKey(Schema, record));
+                        resolve('success');
                     });
                 }
                 else {
-                    reject();
-                }
-            } catch (e) {
-                reject();
+                    reject('error');
+                }  
+            } catch (e:any) {
+               // console.log(e.message,"..error in delete..");
+                reject('error');
             }
         });
     }

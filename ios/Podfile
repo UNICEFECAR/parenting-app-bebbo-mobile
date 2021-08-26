@@ -27,10 +27,8 @@ target 'ParentBuddyApp' do
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
   pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
-
-
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   target 'ParentBuddyAppTests' do
     inherit! :complete
