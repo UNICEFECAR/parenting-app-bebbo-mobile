@@ -1,6 +1,5 @@
 import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
-
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
@@ -9,11 +8,13 @@ export const articleCategoryArray = [4,1,55,56,3,2];
 export const videoTypeVimeo = "vimeo";
 export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
+export const backupGDriveFolderName= 'ParentBuddy';
+export const backupGDriveFileName= 'my.backup';
+export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log("in finalurl", apiUrlDevelop);
-   
     if(apiEndpoint==appConfig.sponsors){
        // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
