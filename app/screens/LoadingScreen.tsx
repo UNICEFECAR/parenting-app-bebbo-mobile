@@ -3,6 +3,7 @@ import { RootStackParamList } from '@navigation/types';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { Dimensions } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -23,7 +24,9 @@ import { SurveysSchema } from '../database/schema/SurveysSchema';
 import { TaxonomySchema } from '../database/schema/TaxonomySchema';
 import { VaccinationSchema } from '../database/schema/VaccinationSchema';
 import { VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
+import { setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
+import { setSyncDate } from '../redux/reducers/utilsSlice';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
@@ -43,7 +46,7 @@ type Props = {
 const LoadingScreen = ({route, navigation }: Props) => {
   //console.log(props,"..props..");
   const dispatch = useAppDispatch();
-  let apiJsonData  = route.params.apiJsonData;
+  // let apiJsonData  = route.params.apiJsonData;
   const child_age = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
@@ -51,7 +54,8 @@ const LoadingScreen = ({route, navigation }: Props) => {
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
-const prevPage  = route.params.prevPage;
+// const prevPage  = route.params.prevPage;
+const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets} = route.params;
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
     );
@@ -98,23 +102,90 @@ const prevPage  = route.params.prevPage;
       apiJsonData.push(apiJsonDataarticle[0]);
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
-      dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
-      dataRealmCommon.deleteOneByOne(PinnedChildDevelopmentSchema);
-      dataRealmCommon.deleteOneByOne(VideoArticleEntitySchema);
-      dataRealmCommon.deleteOneByOne(DailyHomeMessagesSchema);
-      dataRealmCommon.deleteOneByOne(BasicPagesSchema);
-      dataRealmCommon.deleteOneByOne(TaxonomySchema);
-      dataRealmCommon.deleteOneByOne(MilestonesSchema);
-      dataRealmCommon.deleteOneByOne(ChildDevelopmentSchema);
-      dataRealmCommon.deleteOneByOne(VaccinationSchema);
-      dataRealmCommon.deleteOneByOne(HealthCheckUpsSchema);
-      dataRealmCommon.deleteOneByOne(SurveysSchema);
-      dataRealmCommon.deleteOneByOne(ActivitiesEntitySchema);
-      dataRealmCommon.deleteOneByOne(StandardDevHeightForAgeSchema);
-      dataRealmCommon.deleteOneByOne(StandardDevWeightForHeightSchema);
+      var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
+        BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
+        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+        const resolvedPromises =  schemaarray.map(async schema => {
+          await dataRealmCommon.deleteOneByOne(schema);
+        })
+        const results = await Promise.all(resolvedPromises);
+        console.log("delete done--",results);
       dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
+      dispatch(setDownloadedBufferAgeBracket([]))
+      console.log("called fetchapi after delete");
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+    }
+    else if(prevPage == "PeriodicSync")
+    {
+      let allAgeBrackets:any = [];
+      console.log(downloadMonthlyData,"--downloadMonthlyData--",downloadWeeklyData,downloadBufferData);
+      if(downloadBufferData == true)
+      {
+        if(ageBrackets?.length>0){
+          console.log(ageBrackets,"..11Ages..");
+          ageBrackets.map((ages:any)=>{
+            allAgeBrackets.push(ages);
+          })
+        }
+        // await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
+        var schemaarray = [ArticleEntitySchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadBufferData done--",results);
+      }
+      if(downloadWeeklyData == true)
+      {
+        const Ages=await getAge(childList,child_age);
+        console.log(Ages,"..Ages..")
+        if(Ages?.length>0){
+          console.log(Ages,"..11Ages..");
+          Ages.map((age:any)=>{
+            allAgeBrackets.push(age);
+          })
+        }
+        var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,TaxonomySchema,
+          ActivitiesEntitySchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadWeeklyData done--",results);
+        dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
+      }
+      if(downloadMonthlyData == true)
+      {
+        var schemaarray = [DailyHomeMessagesSchema,BasicPagesSchema,MilestonesSchema,ChildDevelopmentSchema,
+          VaccinationSchema,HealthCheckUpsSchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadMonthlyData done--",results);
+        dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
+
+      }
+      allAgeBrackets = [...new Set(allAgeBrackets)];
+      console.log(allAgeBrackets,"---in loading");
+      let apiJsonDataarticle;
+      if(allAgeBrackets.length > 0){
+        apiJsonDataarticle=apiJsonDataGet(String(allAgeBrackets),"all")
+      }else {
+        apiJsonDataarticle=apiJsonDataGet("all","all")
+      }
+      apiJsonData.push(apiJsonDataarticle[0]);
+      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+      // dataRealmCommon.deleteAllAtOnce();
+      dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
+      let payload = {errorArr:[],fromPage:'OnLoad'}
+      dispatch(receiveAPIFailure(payload));
+      if(allAgeBrackets.length > 0) {
+        // dispatch(setDownloadedBufferAgeBracket([]))
+        dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
+      }
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
     else if(prevPage == "ImportScreen")
@@ -132,7 +203,8 @@ const prevPage  = route.params.prevPage;
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
-      const deletArticles=await deleteArticleNotPinned();
+      const deleteArticles=await deleteArticleNotPinned();
+      console.log(deleteArticles,"..deleteArticles..");
       dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle))
     }
     else {
