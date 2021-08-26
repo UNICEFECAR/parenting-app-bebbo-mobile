@@ -101,23 +101,18 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       apiJsonData.push(apiJsonDataarticle[0]);
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
-      await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
-      await dataRealmCommon.deleteOneByOne(PinnedChildDevelopmentSchema);
-      await dataRealmCommon.deleteOneByOne(VideoArticleEntitySchema);
-      await dataRealmCommon.deleteOneByOne(DailyHomeMessagesSchema);
-      await dataRealmCommon.deleteOneByOne(BasicPagesSchema);
-      await dataRealmCommon.deleteOneByOne(TaxonomySchema);
-      await dataRealmCommon.deleteOneByOne(MilestonesSchema);
-      await dataRealmCommon.deleteOneByOne(ChildDevelopmentSchema);
-      await dataRealmCommon.deleteOneByOne(VaccinationSchema);
-      await dataRealmCommon.deleteOneByOne(HealthCheckUpsSchema);
-      await dataRealmCommon.deleteOneByOne(SurveysSchema);
-      await dataRealmCommon.deleteOneByOne(ActivitiesEntitySchema);
-      await dataRealmCommon.deleteOneByOne(StandardDevHeightForAgeSchema);
-      await dataRealmCommon.deleteOneByOne(StandardDevWeightForHeightSchema);
+      var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
+        BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
+        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+        const resolvedPromises =  schemaarray.map(async schema => {
+          await dataRealmCommon.deleteOneByOne(schema);
+        })
+        const results = await Promise.all(resolvedPromises);
+        console.log("delete done--",results);
       dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
+      dispatch(setDownloadedBufferAgeBracket([]))
       console.log("called fetchapi after delete");
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
     }
@@ -133,7 +128,13 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             allAgeBrackets.push(ages);
           })
         }
-        await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
+        // await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
+        var schemaarray = [ArticleEntitySchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadBufferData done--",results);
       }
       if(downloadWeeklyData == true)
       {
@@ -145,24 +146,24 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             allAgeBrackets.push(age);
           })
         }
-        await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
-        await dataRealmCommon.deleteOneByOne(PinnedChildDevelopmentSchema);
-        await dataRealmCommon.deleteOneByOne(VideoArticleEntitySchema);
-        await dataRealmCommon.deleteOneByOne(TaxonomySchema);
-        await dataRealmCommon.deleteOneByOne(ActivitiesEntitySchema);
+        var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,TaxonomySchema,
+          ActivitiesEntitySchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadWeeklyData done--",results);
         dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
       }
       if(downloadMonthlyData == true)
       {
-        await dataRealmCommon.deleteOneByOne(DailyHomeMessagesSchema);
-        await dataRealmCommon.deleteOneByOne(BasicPagesSchema);
-        await dataRealmCommon.deleteOneByOne(MilestonesSchema);
-        await dataRealmCommon.deleteOneByOne(ChildDevelopmentSchema);
-        await dataRealmCommon.deleteOneByOne(VaccinationSchema);
-        await dataRealmCommon.deleteOneByOne(HealthCheckUpsSchema);
-        // dataRealmCommon.deleteOneByOne(SurveysSchema);
-        await dataRealmCommon.deleteOneByOne(StandardDevHeightForAgeSchema);
-        await dataRealmCommon.deleteOneByOne(StandardDevWeightForHeightSchema);
+        var schemaarray = [DailyHomeMessagesSchema,BasicPagesSchema,MilestonesSchema,ChildDevelopmentSchema,
+          VaccinationSchema,HealthCheckUpsSchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+          console.log("delete downloadMonthlyData done--",results);
         dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
 
       }
