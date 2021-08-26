@@ -76,6 +76,36 @@ export const getTaxonomyData=async (param:any,birthDate:any,child_age:any)=>{
     }
   }
 }
+export const addPrefixForAndroidPaths=(path: string): string=>{
+  let finalPath = path;
+  
+  if (finalPath && Platform.OS === 'android') {
+      let re = new RegExp('^file:');
+      let match = finalPath.match(re);
+      if (!match) {
+          finalPath = 'file://' + finalPath;
+      };
+  };
+
+  return finalPath;
+}
+// export const getCurrentChild = async () => {
+//   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+//   console.log(childId,"..childId..");
+//   if (childId) {
+//     let child = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${childId}'`);
+//     console.log(child,"..child..");
+//     return child.map((item: any) => item)[0];
+//  } else {
+//       let child =  await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+//       child=child.find((record: any, index: number) => index === 0);
+//       console.log(child,"..child..");
+//       if (child) {
+//           let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", child.uuid);
+//           return child;
+//       }
+//   };
+// };
 export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, child_age: any) => {
 
   //console.log(child_age,"..child_age..");
@@ -531,8 +561,9 @@ export const getAllChildren = async (dispatch: any,child_age:any) => {
         if (keyA > keyB) return 1;
         return 0;
       });
-      console.log(childAllData, "after")
+      console.log(childAllData, "after");
       dispatch(setAllChildData(childAllData));
+      return childAllData;
   }
 
   
