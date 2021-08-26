@@ -383,6 +383,7 @@ class UserRealmCommon extends Component {
             }
         });
     }
+  
     public async delete(Schema:string,record: any,filterCondition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {
