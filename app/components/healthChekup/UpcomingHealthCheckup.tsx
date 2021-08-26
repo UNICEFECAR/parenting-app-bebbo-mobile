@@ -363,7 +363,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-
+{/* <Text>{item?.vaccination_opens},{item?.vaccination_ends},{childAgeIndays}</Text> */}
             {/* // perios's open and end contains curent child age in daays */}
             { item?.vaccination_opens<=childAgeIndays && item?.vaccination_ends>childAgeIndays ? (
               item?.growthMeasures?.uuid ? (
