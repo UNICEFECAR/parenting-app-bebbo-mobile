@@ -58,7 +58,7 @@ import {
   ShiftFromTopBottom10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -96,7 +96,7 @@ type Props = {
 };
 const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const { t } = useTranslation();
-  const { headerTitle, vcPeriod, editGrowthItem } = route.params;
+  const { headerTitle, vcPeriod, editGrowthItem ,editMeasurementDate} = route.params;
   console.log(vcPeriod, 'vcPeriod');
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
@@ -107,6 +107,38 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
+  useEffect(()=>{
+    // console.log(editMeasurementDate,"editMeasurementDate");
+    if(editMeasurementDate){
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)),activeChild)
+      // console.log(existingMeasure,"existingMeasure");
+      setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
+      setIsMeasured(existingMeasure?.isChildMeasured)
+      setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+      setWeightValue(existingMeasure?.weight)
+      setHeightValue(existingMeasure?.height)
+      handleDoctorRemark(existingMeasure?.doctorComment)
+     const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale((existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [])
+    //  console.log(existingMeasuredVaccines);
+     if (existingMeasuredVaccines?.length > 0) {
+      existingMeasuredVaccines.forEach(element => {
+        console.log(element);
+        console.log(allVaccinePeriods.find(item => item.uuid == element.uuid))
+        element['id'] = allVaccinePeriods.find(item => item.uuid == element.uuid).id
+        element['uuid'] = element.uuid
+        element['title'] = allVaccinePeriods.find(item => item.uuid == element.uuid).title
+        element['isMeasured'] = true
+        element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element.uuid).pinned_article
+      });
+      console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
+      setTakenVaccine(existingMeasuredVaccines);
+      setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
+      setIsVaccineMeasured(existingMeasuredVaccines?.length>0 ? true : false);
+      setDefaultVaccineMeasured(existingMeasuredVaccines?.length>0 ? isMeasuredOptions[0] : isMeasuredOptions[1])
+
+    }
+    }
+  },[editMeasurementDate])
   const [takenVaccine, setTakenVaccine] = useState([]);
   const [takenVaccineForPrevPeriod, setTakenVaccineForPrevPeriod] = useState([]);
   const dispatch = useAppDispatch();
@@ -175,7 +207,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
     return vaccineIds?.filter(vcId => {
       return allVaccinePeriods.some(el => {
-        return vcId.vaccineid === el.uuid;
+        return vcId.uuid === el.uuid;
       });
     });
   }
@@ -207,12 +239,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                  if(existingMeasuredVaccines.length>0){
                   existingMeasuredVaccines.forEach(element => {
                     console.log(element);
-                    console.log(allVaccinePeriods.find(item=>item.uuid==element.vaccineid))
-                    element['id'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).id
-                    element['uuid'] = element.vaccineid
-                    element['title'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).title
-                    element['isChecked']= true
-                    element['pinned_article'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).pinned_article
+                    console.log(allVaccinePeriods.find(item=>item.uuid==element.uuid))
+                    element['id'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).id
+                    element['uuid'] = element.uuid
+                    element['title'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).title
+                    element['isMeasured']= true
+                    element['pinned_article'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).pinned_article
                   });
                   console.log(existingMeasuredVaccines,"existingMeasuredVaccines");
                   setTakenVaccine(existingMeasuredVaccines);
@@ -245,7 +277,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     console.log(checkedVaccineArray, "onTakenVaccineToggle");
     setTakenVaccine(checkedVaccineArray);
     if (checkedVaccineArray.every((el) => {
-      return el.isChecked == false;
+      return el.isMeasured == false;
     })) {
       setmeasureDate(null)
       setTakenVaccine([]);
@@ -302,8 +334,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   };
   const saveChildMeasures = async () => {
     const modifiedTakenVaccines = takenVaccine.filter(
-      item => item['isChecked'] == true
-    ).map(({ vaccineid }) => ({ vaccineid }))
+      item => item['isMeasured'] == true
+    ).map(({ uuid }) => ({ uuid }))
     console.log(modifiedTakenVaccines);
     let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
     const measurementDateParam = editGrowthItem
