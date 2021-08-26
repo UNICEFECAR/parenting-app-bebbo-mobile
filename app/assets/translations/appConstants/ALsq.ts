@@ -376,7 +376,8 @@ const ALsq = {
         deleteError:"User Delete Error.Please try again..",
         reminderalertText:"Reminder Date is before current Date Time",
         noRecentGrowthMeasure:"Your child's measurement was measured very long time age. Update your child growth measurement now",
-
+        settingExportError:'Export Error',
+        settingExportSuccess:'Export Success',
        }
 }
 export default ALsq;
