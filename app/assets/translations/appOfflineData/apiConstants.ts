@@ -11,6 +11,8 @@ export const videoTypeImage = "novideo";
 export const backupGDriveFolderName= 'ParentBuddy';
 export const backupGDriveFileName= 'my.backup';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
+export const firstPeriodicSyncDays = 7;
+export const secondPeriodicSyncDays = 30;
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
