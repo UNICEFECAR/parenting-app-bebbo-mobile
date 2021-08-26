@@ -30,6 +30,7 @@ import { setSyncDate } from '../redux/reducers/utilsSlice';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
+import { deleteArticleNotPinned } from '../services/commonApiService';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -189,6 +190,25 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
       }
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+    }
+    else if(prevPage == "ImportScreen")
+    {
+      const Ages=await getAge(childList,child_age);
+      console.log(Ages,"..Ages..")
+      let apiJsonDataarticle;
+      if(Ages?.length>0){
+        console.log(Ages,"..11Ages..")
+        apiJsonDataarticle=apiJsonDataGet(String(Ages),"all")
+      }
+      else{
+        apiJsonDataarticle=apiJsonDataGet("all","all")
+      }
+      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+      // dataRealmCommon.deleteAllAtOnce();
+      //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
+      const deleteArticles=await deleteArticleNotPinned();
+      console.log(deleteArticles,"..deleteArticles..");
+      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle))
     }
     else {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
