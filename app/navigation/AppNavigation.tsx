@@ -31,6 +31,7 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import analytics from '@react-native-firebase/analytics';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
+import { getAllChildren } from '../services/childCRUD';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -51,6 +52,10 @@ export default () => {
     (state: any) =>
       state.utilsData.userIsOnboarded
      );
+    const child_age = useAppSelector(
+      (state: any) =>
+        state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+    );
      console.log("userIsOnboarded appnav--",userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
@@ -115,8 +120,10 @@ export default () => {
   useEffect(() => {
     if(userIsOnboarded == true)
     {
+      console.log("calculated");
       let obj = {key: 'showDownloadPopup', value: true};
       dispatch(setInfoModalOpened(obj));
+      getAllChildren(dispatch,child_age);
     }
   },[userIsOnboarded]);
   const routeNameRef = React.useRef<any>();
