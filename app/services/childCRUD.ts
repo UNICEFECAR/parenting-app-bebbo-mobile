@@ -60,6 +60,22 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
   };
 
 }
+export const getTaxonomyData=async (param:any,birthDate:any,child_age:any)=>{
+  if (birthDate != null && birthDate != undefined && birthDate != "") {
+    let ageLimit = [];
+    ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(birthDate)).toMillis()));
+     console.log(ageLimit,"..ageLimit..")  
+    const taxonomyData = await checkBetween(param, ageLimit, child_age);
+     console.log(taxonomyData,"..taxonomyData..")
+    if (taxonomyData?.length > 0) {
+      // child.taxonomyData = taxonomyData[0];
+      return taxonomyData[0];
+    }
+    else{
+      return [];
+    }
+  }
+}
 export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any, child_age: any) => {
 
   //console.log(child_age,"..child_age..");
@@ -426,60 +442,99 @@ export const getAllConfigData = async (dispatch: any) => {
   //   dispatch(getVariableData(configAllData));
   // }
 }
-export const getAllChildren = async (dispatch: any) => {
+// export const getAllChildren = async (dispatch: any) => {
+//   let databaselistener: any;
+//   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+//   allJsonDatanew.removeAllListeners();
+//   let childAllData: any = [];
+//   let isChanged: boolean = false;
+//   // dispatch(setAllChildData(childAllData));
+//   //console.log("db length--", allJsonDatanew?.length);
+//   if (allJsonDatanew?.length > 0) {
+//       childAllData = [];
+//       allJsonDatanew.map((value: ChildEntity) => {
+//         console.log(value, "..config value..");
+//         childAllData.push(value);
+//       })
+//       console.log("childAllData--",childAllData);
+//       console.log(childAllData, "before")
+//       childAllData = childAllData.sort((a: any, b: any) => {
+//         DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
+//         const keyA = new Date(a.createdAt),
+//           keyB = new Date(b.createdAt);
+
+//         if (keyA < keyB) return -1;
+//         if (keyA > keyB) return 1;
+//         return 0;
+//       });
+//       console.log(childAllData, "after")
+//       dispatch(setAllChildData(childAllData));
+//     // databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
+//     //   // console.log("changes--",changes);
+//     //   // console.log("name--",name);
+    
+    
+//     //   //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
+//     //   dispatch(setAllChildData(childAllData));
+//     //   //}
+//     // });
+//   }
+//   // else {
+//   //   //console.log("..else loop");
+//   //   // let enteredChildData:any=[{
+//   //   //     key:"userEnteredChildData",
+//   //   //     value:"false",
+//   //   //     createdAt: new Date(),
+//   //   //     updatedAt: new Date(),
+//   //   //   }]
+//   //   //  let updateresult = await dataRealmCommon.update<ConfigSettingsEntity>(ConfigSettingsSchema, enteredChildData);
+//   //   //   let createRelation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, [{
+//   //   //     key:'userParentalRole',
+//   //   //     value:'',
+//   //   //     createdAt:new Date(),
+//   //   //     updatedAt:new Date()
+//   //   //  }]);
+//   //   dispatch(setAllChildData(childAllData));
+//   // }
+  
+// }
+export const calc = async (value:any,child_age:any) => {
+  console.log(value,"..  before taxonomy..");
+  value.taxonomyData=await getTaxonomyData(1, value.birthDate, child_age);
+  console.log(value,"after taxonomy");
+  return value;
+};
+export const getAllChildren = async (dispatch: any,child_age:any) => {
   let databaselistener: any;
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   allJsonDatanew.removeAllListeners();
   let childAllData: any = [];
   let isChanged: boolean = false;
-  // dispatch(setAllChildData(childAllData));
-  //console.log("db length--", allJsonDatanew?.length);
   if (allJsonDatanew?.length > 0) {
       childAllData = [];
-      allJsonDatanew.map((value: ChildEntity) => {
-        console.log(value, "..config value..");
+      const p = allJsonDatanew.map(async (n:any) => {
+        const value=await calc(n,child_age);
+        console.log(value," returned value")
         childAllData.push(value);
-      })
+        return value;
+      });
+      console.log(p,"..p")
+      const results = await Promise.all(p);
+      console.log(results,"..results..",childAllData);
       console.log("childAllData--",childAllData);
       console.log(childAllData, "before")
       childAllData = childAllData.sort((a: any, b: any) => {
         DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
         const keyA = new Date(a.createdAt),
-          keyB = new Date(b.createdAt);
-
+        keyB = new Date(b.createdAt);
         if (keyA < keyB) return -1;
         if (keyA > keyB) return 1;
         return 0;
       });
       console.log(childAllData, "after")
       dispatch(setAllChildData(childAllData));
-    // databaselistener = allJsonDatanew.addListener(async (changes: any, name: any) => {
-    //   // console.log("changes--",changes);
-    //   // console.log("name--",name);
-    
-    
-    //   //if(changes.insertion.length || changes.deletion.length || changes.modifications.length){
-    //   dispatch(setAllChildData(childAllData));
-    //   //}
-    // });
   }
-  // else {
-  //   //console.log("..else loop");
-  //   // let enteredChildData:any=[{
-  //   //     key:"userEnteredChildData",
-  //   //     value:"false",
-  //   //     createdAt: new Date(),
-  //   //     updatedAt: new Date(),
-  //   //   }]
-  //   //  let updateresult = await dataRealmCommon.update<ConfigSettingsEntity>(ConfigSettingsSchema, enteredChildData);
-  //   //   let createRelation = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, [{
-  //   //     key:'userParentalRole',
-  //   //     value:'',
-  //   //     createdAt:new Date(),
-  //   //     updatedAt:new Date()
-  //   //  }]);
-  //   dispatch(setAllChildData(childAllData));
-  // }
+
   
 }
 
