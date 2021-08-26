@@ -60,17 +60,22 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("bufferAgeBracket",action.payload);
+     console.log("bufferAgeBracket",action.payload.length);
     console.log("state.bufferAgeBracket---",state.childDataSet.bufferAgeBracket);
       // state.bufferAgeBracket = action.payload;
       // if(state.childDataSet.bufferAgeBracket)
       // {
-        action.payload.map((value:any)=>{
-          const i = state.childDataSet.bufferAgeBracket.findIndex(_item => _item === value);
-          if(i == -1){
-            state.childDataSet.bufferAgeBracket.push(value) 
-          }
-        });
+        if(action.payload.length > 0)
+        {
+          action.payload.map((value:any)=>{
+            const i = state.childDataSet.bufferAgeBracket.findIndex(_item => _item === value);
+            if(i == -1){
+              state.childDataSet.bufferAgeBracket.push(value) 
+            }
+          });
+        }else {
+          state.childDataSet.bufferAgeBracket = [];
+        }
       // }else {
       //   state.childDataSet.bufferAgeBracket = action.payload;
       // }
