@@ -230,7 +230,7 @@ const UpcomingHealthCheckup = (props: any) => {
                                 <BulletsView>
                                   <Bullets></Bullets>
                                   <Paragraph>
-                                    {getVaccineName(vaccineItem?.vaccineid)}
+                                    {getVaccineName(vaccineItem?.uuid)}
                                   </Paragraph>
                                 </BulletsView>
                               </View>
