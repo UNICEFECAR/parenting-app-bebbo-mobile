@@ -9,33 +9,53 @@ import VaccineItem from './VaccineItem';
 //   // measurementDate:number
 // }
 const TakenVaccines = (props: any) => {
-  const {takenVaccines, onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
+  const {onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
+  let {takenVaccines} = props;
   console.log(takenVaccines,"takenVaccines")
- 
+
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<any[]>(takenVaccines);
   // let allCheckedVaccines: any[] = [];
   const onToggleVaccine = (id, isVaccineItemChecked) => {
-    // console.log(id,isVaccineItemChecked);
+    console.log(id,isVaccineItemChecked,"onToggleVaccine");
     if (isVaccineItemChecked) {
-      const allCheckedVaccines = [...checkedVaccines, {
-          vaccineid: id,
-          // measurementDate: DateTime.now().toMillis(),
-        }];
-      setCheckedVaccines(allCheckedVaccines);
+      // const allCheckedVaccines = [...checkedVaccines, {
+      //     vaccineid: id,
+      //     // measurementDate: DateTime.now().toMillis(),
+      //   }];
+      // takenVaccines.map(x => (x.vaccineid == id ? { ...x, isChecked: true } : x));
+      console.log(takenVaccines,"inTrue");
+      // takenVaccines.forEach((vcItem)=>{
+      //   vcItem.isChecked = vcItem.vaccineid == id ?  true : false;
+      // })
+      let updatedItem =  takenVaccines.find(el => el.vaccineid === id)
+      updatedItem.isChecked= true;
+      takenVaccines[takenVaccines.findIndex(el => el.vaccineid === id)]=updatedItem;
+      console.log(updatedItem,"updatedItem")
+      setCheckedVaccines(takenVaccines);
       // allCheckedVaccines.push({
       //   vaccineid: id,
       //   measurementDate: DateTime.now().toMillis(),
       // });
-      onTakenVaccineToggle(allCheckedVaccines);
+      onTakenVaccineToggle(takenVaccines);
       // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
-     const allCheckedVaccines = [...checkedVaccines].filter(
-        (item) => item.vaccineid !== id,
-      );
-      setCheckedVaccines(allCheckedVaccines);
-      onTakenVaccineToggle(allCheckedVaccines);
-      // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
+      console.log(checkedVaccines,"checkedVaccines");
+      takenVaccines.map(x => (x.vaccineid == id ? { ...x, isChecked: false } : x));
+      console.log(takenVaccines,"inFalse");
+      let updatedItem =  takenVaccines.find(el => el.vaccineid === id)
+      updatedItem.isChecked= false;
+      takenVaccines[takenVaccines.findIndex(el => el.vaccineid === id)]=updatedItem;
+      console.log(updatedItem,"updatedItem")
+      // takenVaccines.forEach((vcItem)=>{
+      //   vcItem.isChecked = vcItem.vaccineid == id ?  false : true;
+      // })
+      // takenVaccines = takenVaccines?.find(
+      //   (item) => item.vaccineid == String(id),
+      // )?.isChecked = false;
+      setCheckedVaccines(takenVaccines);
+      onTakenVaccineToggle(takenVaccines);
+      console.log(takenVaccines,checkedVaccines,"allCheckedVaccines")
     }
     
    

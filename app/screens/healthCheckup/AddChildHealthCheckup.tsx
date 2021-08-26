@@ -108,6 +108,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
   const [takenVaccine, setTakenVaccine] = useState([]);
+  const [takenVaccineForPrevPeriod, setTakenVaccineForPrevPeriod] = useState([]);
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -153,11 +154,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     { title: t('vcIsMeasuredOption2') },
   ];
   const [defaultMeasured, setDefaultMeasured] = useState<any>();
-  const [defaultVaccineMeasured, setDefaultVaccineMeasured] = useState<any>(
-    editGrowthItem
-      ? editGrowthItem.didChildGetVaccines ? isMeasuredOptions[0] : isMeasuredOptions[1]
-      : { title: '' }
-  );
+  const [defaultVaccineMeasured, setDefaultVaccineMeasured] = useState<any>();
   // const defaultMeasured = {title: ''};
 
   const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
@@ -174,6 +171,14 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     (state: any) =>
       JSON.parse(state.utilsData.vaccineData),
   );
+  const checkIfMeasuredVaccineExistsForLocale = (vaccineIds) => {
+    // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
+    return vaccineIds?.filter(vcId => {
+      return allVaccinePeriods.some(el => {
+        return vcId.vaccineid === el.uuid;
+      });
+    });
+  }
   const onmeasureDateChange = (event: any, selectedDate: any) => {
     // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
@@ -202,15 +207,18 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                  if(existingMeasuredVaccines.length>0){
                   existingMeasuredVaccines.forEach(element => {
                     console.log(element);
-                    console.log(allVaccinePeriods.find(item=>item.uuid==element.uuid))
-                    element['id'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).id
+                    console.log(allVaccinePeriods.find(item=>item.uuid==element.vaccineid))
+                    element['id'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).id
                     element['uuid'] = element.vaccineid
-                    element['title'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).title
+                    element['title'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).title
                     element['isChecked']= true
-                    element['pinned_article'] = allVaccinePeriods.find(item=>item.uuid==element.uuid).pinned_article
+                    element['pinned_article'] = allVaccinePeriods.find(item=>item.uuid==element.vaccineid).pinned_article
                   });
                   console.log(existingMeasuredVaccines,"existingMeasuredVaccines");
                   setTakenVaccine(existingMeasuredVaccines);
+                  setTakenVaccineForPrevPeriod(existingMeasuredVaccines);
+                  setIsVaccineMeasured(existingMeasuredVaccines?.length>0 ? true : false);
+                  setDefaultVaccineMeasured(existingMeasuredVaccines?.length>0 ? isMeasuredOptions[0] : isMeasuredOptions[1])
                  }
                 
                },
@@ -234,8 +242,20 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
      }
   };
   const onTakenVaccineToggle = (checkedVaccineArray: any) => {
-    // console.log(checkedVaccineArray);
+    console.log(checkedVaccineArray, "onTakenVaccineToggle");
     setTakenVaccine(checkedVaccineArray);
+    if (checkedVaccineArray.every((el) => {
+      return el.isChecked == false;
+    })) {
+      setmeasureDate(null)
+      setTakenVaccine([]);
+      setTakenVaccineForPrevPeriod([])
+      setWeightValue(0);
+      setHeightValue(0);
+      handleDoctorRemark('');
+      setIsMeasured(false);
+      setDefaultMeasured(null);
+    }
   };
   const minChildGrwothDate =
     activeChild.birthDate != '' &&
@@ -281,6 +301,11 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
+    const modifiedTakenVaccines = takenVaccine.filter(
+      item => item['isChecked'] == true
+    ).map(({ vaccineid }) => ({ vaccineid }))
+    console.log(modifiedTakenVaccines);
+    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
     const measurementDateParam = editGrowthItem
       ? dateTouched
         ? measureDate?.toMillis()
@@ -315,8 +340,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: isVaccineMeasured,
-        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine,...takenVaccine]),
         doctorComment: remarkTxt,
         measurementPlace: 0,
       };
@@ -341,8 +366,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: isVaccineMeasured,
-        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine]),
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
+        vaccineIds: JSON.stringify([...plannedVaccine, ...prevPlannedVaccine,...takenVaccine]),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
       };
@@ -581,7 +606,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   {takenVaccine?.length > 0 ?
                     (<ShiftFromTop15>
                       <FormInputText>
-                        <Heading3>{t('vctaken')}</Heading3>
+                        <Heading3>{t('vcTaken')}</Heading3>
                       </FormInputText>
                       <TakenVaccines
                         fromScreen={'AddChildHealthCheckup'}
@@ -590,7 +615,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                         onTakenVaccineToggle={onTakenVaccineToggle}
                       />
                     </ShiftFromTop15>) : null}
-                  <ShiftFromTop15>
+                    {takenVaccine?.length == 0 ? <ShiftFromTop15>
                     <FormInputText>
                       <Heading3>{t('vcPlanned')}</Heading3>
                     </FormInputText>
@@ -600,7 +625,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPlannedVaccineToggle={onPlannedVaccineToggle}
                     />
-                  </ShiftFromTop15>
+                  </ShiftFromTop15> :null}
                   <ShiftFromTop15>
                     <FormInputText>
                       <Heading3>{t('vcPrev')}</Heading3>
@@ -608,6 +633,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                     <PrevPlannedVaccines
                       fromScreen={'AddChildHealthCheckup'}
                       backgroundActiveColor={headerColor}
+                      takenVaccine={takenVaccineForPrevPeriod}
                       currentPeriodVaccines={vcPeriod?.vaccines}
                       onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
                     />

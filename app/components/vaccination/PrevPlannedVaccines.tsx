@@ -24,17 +24,17 @@ const PrevPlannedVaccines = (props: any) => {
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       return !currentPeriodVaccines?.find((element) => {
-        return element.id == vItem.id;
+        return element.uuid == vItem.uuid;
       });
     },
   ).filter(
     (vItem: any) => {
       return !takenVaccine?.find((element) => {
-        return element.id == vItem.id;
+        return element.uuid == vItem.uuid;
       });
     },
   );
-  console.log(allPreviousPendingVaccines);
+  // console.log(allPreviousPendingVaccines);
   // let allCheckedVaccines: any[] = [];
   const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
     [],
