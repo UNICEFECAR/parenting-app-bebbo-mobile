@@ -230,7 +230,16 @@ const UpcomingVaccines = (props: any) => {
                           formatStringDate(v.measurementDate,luxonLocale)
                           : null}
                       </Heading4Regular>
-
+                      {v.isMeasured ? <Pressable onPress={() => 
+                      navigation.navigate('AddChildVaccination', {
+                        headerTitle: t('editVcTitle'),
+                        vcPeriod: item,
+                        editVaccineDate:v.measurementDate,
+                      })}>
+                          <ButtonTextSmLineL numberOfLines={2}>
+                            {t('growthScreeneditText')}
+                          </ButtonTextSmLineL>
+                        </Pressable>: null}
                       {v?.pinned_article ? (
                         <Pressable
                           onPress={() => gotoArticle(v.pinned_article)}>
@@ -319,64 +328,9 @@ const UpcomingVaccines = (props: any) => {
                 )}
                 {/* Set Reminder Link */}
               </MainContainer>
-            ) : //  <MainContainer>
-            //   <FDirRowStart>
-            //     <ToolsIconView>
-            //       <Icon
-            //         name="ic_time"
-            //         size={20}
-            //         color="#FFF"
-            //         style={{backgroundColor: reminderColor, borderRadius: 50}}
-            //       />
-            //     </ToolsIconView>
-            //     <ToolsHeadView>
-            //       <ToolsHeadingView>
-            //         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
-            //         <Heading4>{new Date().toDateString()}</Heading4>
-            //       </ToolsHeadingView>
-            //       <ToolsActionView>
-            //         <Pressable
-            //           disabled={isFutureDate(activeChild?.birthDate)}
-            //           onPress={() => {
-            //             navigation.navigate('AddReminder', {
-            //               reminderType: 'vaccine', // from remiderType
-            //               headerTitle: t('vcEditReminderHeading'),
-            //               buttonTitle: t('vcReminderAddBtn'),
-            //               titleTxt: t('vcReminderText'),
-            //               warningTxt: t('vcReminderDeleteWarning'),
-            //               headerColor: headerColor,
-            //               // editReminderItem: item,
-            //             });
-            //           }}>
-            //           <ButtonTextSmLine>
-            //             {t('editCountryLang')}
-            //           </ButtonTextSmLine>
-            //         </Pressable>
-            //       </ToolsActionView>
-            //     </ToolsHeadView>
-            //   </FDirRowStart>
-            //   {/* Set Reminder After Add Time*/}
-            //   {/* Set Reminder Link*/}
-            //   <ButtonLinkPress onPress={()=>{
-            //       navigation.navigate('AddReminder', {
-            //         reminderType:"Vaccination",
-            //         headerTitle: t('vcReminderHeading'),
-            //         buttonTitle:t('vcReminderAddBtn'),
-            //         titleTxt:t('vcReminderText'),
-            //         warningTxt:t('vcReminderDeleteWarning'),
-            //         headerColor:headerColor,
-            //       })
-            //     }}>
-            //       <ButtonTextMdLine>
-            //         {t('vcSetReminder')}
-            //       </ButtonTextMdLine>
-            //     </ButtonLinkPress>
-            //   {/* Set Reminder Link*/}
-            // </MainContainer>
-
-            null}
+            ) : null}
             {/* add condition for only few vaccines are given in below */}
-            {currentPeriodId == item?.periodID &&
+            {/* {currentPeriodId == item?.periodID &&
             item?.vaccines.some((el) => {
               return el.isMeasured == true;
             }) ? (
@@ -393,10 +347,10 @@ const UpcomingVaccines = (props: any) => {
                   <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
                 </Pressable>
               </ShiftFromTopBottom10>
-            ) : null}
+            ) : null} */}
             {/* remaining add condition for all vaccines were not given in below */}
             {currentPeriodId == item?.periodID &&
-            item?.vaccines.every((el) => {
+            item?.vaccines.some((el) => {
               return el.isMeasured == false;
             }) ? (
               <ButtonContainerAuto>
