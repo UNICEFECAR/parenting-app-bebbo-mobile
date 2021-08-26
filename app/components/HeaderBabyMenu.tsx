@@ -116,8 +116,10 @@ const HeaderBabyMenu = (props: any) => {
             </ProfileIconView>
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3>
-
+                {/* <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3> */}
+                <Heading3>{data.childName}
+                {genderName!='' && genderName!=null && genderName!=undefined ?<Heading5 style={{fontWeight:'normal'}}>{', '+genderName}</Heading5>:null}
+              </Heading3>
               </ProfileSectionView>
               {/* <Heading5>
                 {t('childProfileBornOn', {
@@ -171,8 +173,11 @@ const HeaderBabyMenu = (props: any) => {
 
             <ProfileTextView>
               <ProfileSectionView>
-                <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3>
-
+                {/* <Heading3>{data.childName}, <Heading5 style={{ fontWeight: 'normal' }}>{genderName}</Heading5></Heading3> */}
+                <Heading3>{data.childName}
+                {genderName!='' && genderName!=null && genderName!=undefined ?<Heading5 style={{fontWeight:'normal'}}>{', '+genderName}</Heading5>:null}
+              </Heading3>
+           
               </ProfileSectionView>
               <Heading5>
                 {(data.birthDate != '' &&
