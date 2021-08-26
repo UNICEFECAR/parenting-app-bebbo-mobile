@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
-  vaccineid: number;
+  uuid: string;
   // measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
@@ -40,28 +40,28 @@ const PrevPlannedVaccines = (props: any) => {
     [],
   );
 
-  const onToggleVaccine = (id, isVaccineItemChecked) => {
+  const onToggleVaccine = (uuid, isVaccineItemChecked) => {
     // console.log(id,isVaccineItemChecked);
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [
         ...checkedVaccines,
-        {  vaccineid: id,}
+        {  uuid: uuid,}
           // measurementDate: DateTime.now().toMillis(),
       ];
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
       // allCheckedVaccines.push({
-      //   vaccineid: id,
+      //   uuid: uuid,
       //   measurementDate: DateTime.now().toMillis(),
       // });
     } else {
       const allCheckedVaccines = [...checkedVaccines].filter(
-        (item) => item.vaccineid !== id,
+        (item) => item.uuid !== uuid,
       );
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
       // allCheckedVaccines = allCheckedVaccines.filter(
-      //   (item) => item.vaccineid !== id,
+      //   (item) => item.uuid !== uuid,
       // );
     }
     // onPrevPlannedVaccineToggle(allCheckedVaccines);
@@ -72,7 +72,11 @@ const PrevPlannedVaccines = (props: any) => {
     <>
     {allPreviousPendingVaccines?.length > 0 ?
       <BgContainer>
-        {allPreviousPendingVaccines.map((item, index) => {
+        {allPreviousPendingVaccines?.filter(
+    (vItem: any) => {
+      return vItem.isMeasured == false
+    },
+  )?.map((item, index) => {
           return (
             <VaccineItem
               fromScreen={fromScreen}

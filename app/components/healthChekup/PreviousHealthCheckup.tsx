@@ -34,7 +34,7 @@ import Icon from '../shared/Icon';
 
 const PreviousHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
-  // console.log(item, 'PreviousHealthCheckup');
+  console.log(item, 'PreviousHealthCheckup');
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
@@ -151,7 +151,7 @@ const PreviousHealthCheckup = (props: any) => {
                             <View key={index}>
                               <BulletsView>
                                 <Bullets></Bullets>
-                                <Paragraph>{getVaccineName(vaccineItem?.vaccineid)}</Paragraph>
+                                <Paragraph>{getVaccineName(vaccineItem?.uuid)}</Paragraph>
                               </BulletsView>
                             </View>
                           );
@@ -208,11 +208,12 @@ const PreviousHealthCheckup = (props: any) => {
             {item?.growthMeasures?.uuid ? (
             <ShiftFromTopBottom10>
               <Pressable
-                onPress={() =>{}
-                  // navigation.navigate('AddChildHealthCheckup', {
-                  //   headerTitle: t('hcEditHeaderTitle'),
-                  //   vcPeriod: item,
-                  // })
+                onPress={() =>
+                  navigation.navigate('AddChildHealthCheckup', {
+                    headerTitle: t('hcEditHeaderTitle'),
+                    vcPeriod: item,
+                    editMeasurementDate:item?.growthMeasures?.dateToMilis,
+                  })
                 }>
                 <ButtonTextMdLine numberOfLines={2}>{t('hcEditBtn')}</ButtonTextMdLine>
               </Pressable>
