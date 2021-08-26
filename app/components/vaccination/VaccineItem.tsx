@@ -51,7 +51,7 @@ const VaccineItem = (props: any) => {
                 </View>
               </CheckboxItem>
               <Flex1>
-                <LabelText style={{minHeight:24,}}>
+                <LabelText>
                   <Heading4Regular>{title}</Heading4Regular>
                 </LabelText>
               </Flex1>

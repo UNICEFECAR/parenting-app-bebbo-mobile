@@ -106,6 +106,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const [plannedVaccine, setPlannedVaccine] = useState([]);
   const [prevPlannedVaccine, setPrevPlannedVaccine] = useState([]);
   const [takenVaccine, setTakenVaccine] = useState([]);
+  const [takenVaccineForPrevPeriod, setTakenVaccineForPrevPeriod] = useState([]);
   const [weightValue, setWeightValue] = useState(
     editGrowthItem ? editGrowthItem.weight : 0,
   );
@@ -188,6 +189,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                     });
                     console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
                     setTakenVaccine(existingMeasuredVaccines);
+                    setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
                   }
 
                 },
@@ -254,10 +256,19 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     setPlannedVaccine(checkedVaccineArray);
   };
   const onTakenVaccineToggle = (checkedVaccineArray: any) => {
-    // console.log(checkedVaccineArray);
+    console.log(checkedVaccineArray, "onTakenVaccineToggle");
     setTakenVaccine(checkedVaccineArray);
-    if(checkedVaccineArray.length==0){
+    if (checkedVaccineArray.every((el) => {
+      return el.isChecked == false;
+    })) {
       setmeasureDate(null)
+      setTakenVaccine([]);
+      setTakenVaccineForPrevPeriod([])
+      setWeightValue(0);
+      setHeightValue(0);
+      handleDoctorRemark('');
+      setIsMeasured(false);
+      setDefaultMeasured(null);
     }
   };
   const onPrevPlannedVaccineToggle = (checkedVaccineArray: any) => {
@@ -265,7 +276,11 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
-    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...takenVaccine];
+    const modifiedTakenVaccines = takenVaccine.filter(
+      item => item['isChecked'] == true
+    ).map(({ vaccineid }) => ({ vaccineid }))
+    console.log(modifiedTakenVaccines);
+    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
     console.log(allVaccines, 'before measurementDate');
     // allVaccines = [...allVaccines].map((v) => ({
     //   ...v,
@@ -276,7 +291,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     //   console.log(v);
     //  return {v.measurementDate =measureDate?.toMillis()}
     // });
-    console.log(allVaccines, 'after measureDateUpdate');
+    // console.log(allVaccines, 'after measureDateUpdate');
     const measurementDateParam = editGrowthItem
       ? dateTouched
         ? measureDate?.toMillis()
@@ -311,7 +326,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0,
@@ -337,7 +352,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
@@ -501,7 +516,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               <PrevPlannedVaccines
                 fromScreen={'AddChildVaccination'}
                 currentPeriodVaccines={vcPeriod?.vaccines}
-                takenVaccine={takenVaccine}
+                takenVaccine={takenVaccineForPrevPeriod}
                 backgroundActiveColor={headerColor}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
