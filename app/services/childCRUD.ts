@@ -1,6 +1,6 @@
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { Dispatch } from '@reduxjs/toolkit';
-import { Alert, ToastAndroid } from 'react-native';
+import { Alert, Platform, ToastAndroid } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
@@ -550,7 +550,8 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
       if (currentActiveChildId == recordId) {
         setActiveChild(languageCode, '', dispatch, child_age);
       }
-    }    
+    }   
+    if(Platform.OS === 'android' ){
     ToastAndroid.showWithGravityAndOffset(
       t('deleteSuccess'),
       ToastAndroid.LONG,
@@ -558,9 +559,14 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
       25,
       50
     );
+    }
+    else{
+      Alert.alert(t('deleteSuccess'))
+    }
     resolve("success");
   }
   else {
+    if(Platform.OS === 'android' ){
     ToastAndroid.showWithGravityAndOffset(
       t('deleteError'),
       ToastAndroid.LONG,
@@ -568,6 +574,10 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
       25,
       50
     );
+    }
+    else{
+      Alert.alert(t('deleteError'));
+    }
     reject("error");
   }
   // reject("error");
