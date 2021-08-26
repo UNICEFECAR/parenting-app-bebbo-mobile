@@ -27,8 +27,8 @@ const VaccineItem = (props: any) => {
   }
   };
 
-  const {title, id,uuid, isChecked, pinned_article} = item;
-  const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
+  const {title, id,uuid, isMeasured, pinned_article} = item;
+  const [toggleCheckBox, setToggleCheckBox] = useState(isMeasured);
   return (
     <>
       <VacItemContainer>

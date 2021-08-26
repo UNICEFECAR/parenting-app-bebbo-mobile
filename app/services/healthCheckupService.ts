@@ -31,7 +31,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
  return vaccineIds?.filter( vcId => {
     return allVaccinePeriods?.some( el => {
-      return vcId.vaccineid === el.uuid;
+      return vcId.uuid === el.uuid;
     });
   });
 }
@@ -51,7 +51,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
         DateTime.fromJSDate(new Date(item.measurementDate)).diff(birthDay, 'days').days,
       ),
       titleDateInMonth: item.titleDateInMonth ? item.titleDateInMonth : '',
-      // remove vaccineids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
+      // remove uuids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
       measuredVaccineIds: filteredVaccinesForLocale,
       didChildGetVaccines: filteredVaccinesForLocale?.length>0 ? item.didChildGetVaccines: false,
       isChildMeasured: item.isChildMeasured,
@@ -63,7 +63,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   const vaccineMeasures = activeChild.measures.filter((item) => item.didChildGetVaccines == true);
   let measuredVaccines: any[] = [];
   vaccineMeasures.forEach((measure, index) => {
-    // remove vaccineids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
+    // remove uuids from array if does not exist for a countrylocale, update  measuredVaccineIds,didChildGetVaccines accordingly
     const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(measure.vaccineIds)) : [];
     //  console.log(vaccinesForAmeasure);
     if (vaccinesForAmeasure) {
@@ -73,8 +73,8 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     }
 
   });
-  const vaccineMeasuredInfo = (vaccineid: number) => {
-    return (measuredVaccines.find(item => item.vaccineid == vaccineid))
+  const vaccineMeasuredInfo = (uuid: number) => {
+    return (measuredVaccines.find(item => item.uuid == uuid))
   }
 
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
