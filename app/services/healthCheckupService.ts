@@ -143,7 +143,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     }
   }
 
-  allHealthCheckupsData.map((hcItem: any, index: number) => {
+  allHealthCheckupsData.map((hcItem: any) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
     const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
@@ -153,11 +153,12 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   }).sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  console.log("allHealthCheckupsDatasorted",allHealthCheckupsData);
-  allHealthCheckupsData.forEach((hcItem: any, index: number) => {
+  console.log("allHealthCheckupsDatasorted",allHealthCheckupsData,allHealthCheckupsData.length);
+  allHealthCheckupsData.reverse().forEach((hcItem: any, index: number) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
     const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+    console.log(item,"hcItem",index)
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
       hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? 2920 : allHealthCheckupsData[index + 1]?.vaccination_opens;
@@ -167,7 +168,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     hcItem.growthMeasures = measuresForHCPeriod;
 
   });
-  console.log(allHealthCheckupsData, "allHealthCheckupsDataNew");
+  console.log(allHealthCheckupsData, "allHealthCheckupsDataNew",allHealthCheckupsData.length);
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
