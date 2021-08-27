@@ -656,17 +656,17 @@ const titleDateInMonthParam = editGrowthItem
             visible={modalVisible}
             onRequestClose={() => {
               // Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}
             onDismiss={() => {
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
                     onPress={() => {
-                      setModalVisible(!modalVisible);
+                      setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
                   </PopupClose>
