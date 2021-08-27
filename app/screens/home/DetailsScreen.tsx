@@ -360,9 +360,8 @@ const DetailsScreen = ({route, navigation}: any) => {
             
             {fromScreen === 'Activities' ? (
               <>
-              <MainContainer>
+              
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
-              </MainContainer>
               <View style={{backgroundColor: newBackgroundColor}}>
                 <RelatedActivities selectedChildActivitiesData={selectedChildActivitiesData} fromScreen={fromScreen} currentId={detailDataToUse?.id} headerColor={newHeaderColor} backgroundColor={newBackgroundColor} listCategoryArray={listCategoryArray} navigation={navigation} currentSelectedChildId={currentSelectedChildId}/>
               </View>

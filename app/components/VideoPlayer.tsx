@@ -31,10 +31,10 @@ const VideoPlayer = (props: any) => {
     // }, []);
     const displaySpinner=()=>{
         return (
-            // <View style={{height:windowWidth*0.60}}><ActivityIndicator size="large" color="#000" style={{
+            // <View style={{height:windowWidth*0.563}}><ActivityIndicator size="large" color="#000" style={{
             //     position:'absolute',top:0,left:0,bottom:50,right:0,alignItems:'center',justifyContent:'center'
             // }}/></View>
-            <View style={{height:windowWidth*0.60,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
+            <View style={{height:windowWidth*0.563,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
             }}/></View>
         );
       }
@@ -136,7 +136,7 @@ const VideoPlayer = (props: any) => {
                         startInLoadingState={true}
                         containerStyle={{
                             width: '100%',
-                            height: windowWidth*0.60,
+                            height: windowWidth*0.565,
                             aspectRatio: 1.75,
                             alignSelf: 'center',
                             // aspectRatio: this.state.aspectRatio,
@@ -154,15 +154,15 @@ const VideoPlayer = (props: any) => {
                     />
                     :
                     <>
-                    <View style={{flex:1,flexDirection:'column',height:windowWidth*0.60,overflow:'hidden'}}>
-                    {loading ? <View style={{height:windowWidth*0.60,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
+                    <View style={{flex:1,flexDirection:'column',height:windowWidth*0.563,overflow:'hidden'}}>
+                    {loading ? <View style={{height:windowWidth*0.565,alignItems:'center',justifyContent:'center'}}><ActivityIndicator size="large" color="#000" style={{
                     }}/></View>: null}
                     <YoutubePlayer
                         // width={width}
                         // height={this.state.containerWidth / this.state.aspectRatio}
                         videoId={videoId}
                         play={playing}
-                        height={windowWidth*0.60}
+                        height={windowWidth*0.563}
                         onReady={onReady}
                         onError={onError}
                         //   onChangeState={onStateChange}
