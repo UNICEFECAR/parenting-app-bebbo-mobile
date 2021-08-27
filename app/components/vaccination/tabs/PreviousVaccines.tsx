@@ -141,6 +141,16 @@ const PreviousVaccines = (props: any) => {
                     </ToolsIconView>
                     <ToolsHeadingView>
                       <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
+                      {v.isMeasured ? <Pressable onPress={() => 
+                      navigation.navigate('AddChildVaccination', {
+                        headerTitle: t('editVcTitle'),
+                        vcPeriod: item,
+                        editVaccineDate:v.measurementDate,
+                      })}>
+                          <ButtonTextSmLineL numberOfLines={2}>
+                            {t('growthScreeneditText')}
+                          </ButtonTextSmLineL>
+                        </Pressable>: null}
                       {v?.pinned_article ?
                         <Pressable onPress={() => gotoArticle(v.pinned_article)}>
                           <ButtonTextSmLineL numberOfLines={2}>
@@ -154,7 +164,7 @@ const PreviousVaccines = (props: any) => {
               );
             })}
             {/* add condition for only few vaccines are given in below */}
-            {(item.vaccines.some((el) => {
+            {/* {(item.vaccines.some((el) => {
               return el.isMeasured == true;
             })) ? (
               <ShiftFromTopBottom10>
@@ -170,9 +180,9 @@ const PreviousVaccines = (props: any) => {
                   <ButtonTextMdLine numberOfLines={2}>{t('vcEditDataBtn')}</ButtonTextMdLine>
                 </Pressable>
               </ShiftFromTopBottom10>
-            ) : null}
+            ) : null} */}
             {/* remaining add condition for all vaccines were not given in below */}
-            {(item.vaccines.every((el) => {
+            {(item.vaccines.some((el) => {
               return el.isMeasured == false;
             })) ? (
               <ButtonContainerAuto>
