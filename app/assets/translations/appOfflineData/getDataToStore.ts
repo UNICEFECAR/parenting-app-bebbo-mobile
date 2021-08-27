@@ -175,7 +175,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint:string,languageCode:s
     });
 }
 
-const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:ObjectSchema,SchemaEntity:any,jsonData:any,setAllHardcodedData:Function,sortBy?:any,currentChildData?:any) => {
+export const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:ObjectSchema,SchemaEntity:any,jsonData:any,setAllHardcodedData:Function,sortBy?:any,currentChildData?:any,queryText?:any) => {
     return new Promise(async (resolve, reject) => {
         console.log(currentChildData,"..currentChildData..")
         // console.log("getDataToStore--",SchemaToUse);
@@ -220,6 +220,10 @@ const getDataToStore = async (languageCode:string,dispatch:any,SchemaToUse:Objec
                 if(currentChildData.gender!=""  && currentChildData.gender!=0 && currentChildData.gender!="0"){
                 filterQuery+='&& (child_gender=='+parseInt(currentChildData.gender)+' || child_gender == 59 || child_gender == "59"  || child_gender == 0)';
                 }
+                if(queryText!="" && queryText!=null && queryText!=undefined){
+                    filterQuery+=' && title CONTAINS "'+queryText+'" || summary CONTAINS "'+queryText+'" || body CONTAINS "'+queryText+'"';
+                }
+               // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
                 console.log(filterQuery,"..filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse,filterQuery);
