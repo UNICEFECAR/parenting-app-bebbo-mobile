@@ -28,6 +28,7 @@ import {
   FlexFDirRowSpace
 } from '@components/shared/FlexBoxStyle';
 import {
+  HeaderActionView,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -89,6 +90,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { GROWTH_MEASUREMENT_ADDED, HEALTH_CHECKUP_ENTERED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
+import { forModalPresentationIOS } from '@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 
 type Props = {
@@ -107,6 +109,27 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
+  const deleteHealthCheckup = async()=>{
+    if(editMeasurementDate){
+      // console.log(vcPeriod,"vcPeriod?.vaccines")
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)),activeChild)
+      // console.log(existingMeasure.uuid)
+       //delete measure obj
+       let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        existingMeasure,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(deleteresult, '..deleteresult..');
+      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      if (deleteresult) {
+        activeChild.measures = deleteresult;
+        dispatch(setActiveChildData(activeChild));
+        setModalVisible(false);
+      }
+      navigation.goBack();
+    }
+  }
   useEffect(()=>{
     // console.log(editMeasurementDate,"editMeasurementDate");
     if(editMeasurementDate){
@@ -446,14 +469,15 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             <HeaderTitleView>
               <Heading2>{headerTitle}</Heading2>
             </HeaderTitleView>
-            {/* <HeaderActionView>
+            {editMeasurementDate ? 
+            <HeaderActionView>
               <Pressable
                 onPress={() => {
                   setModalVisible(true);
                 }}>
                 <Text>{t('growthScreendeletebtnText')}</Text>
               </Pressable>
-            </HeaderActionView> */}
+            </HeaderActionView>:null}
           </HeaderRowView>
 
           <ScrollView style={{ flex: 9 }}>
@@ -714,17 +738,17 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             visible={modalVisible}
             onRequestClose={() => {
               // Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}
             onDismiss={() => {
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
                     onPress={() => {
-                      setModalVisible(!modalVisible);
+                      setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
                   </PopupClose>
@@ -735,13 +759,17 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </ShiftFromTopBottom10>
                 <ButtonContainerTwo>
                   <ButtonColTwo>
-                    <ButtonSecondaryTint>
+                    <ButtonSecondaryTint onPress={() => {
+                        setModalVisible(false);
+                      }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                    <ButtonPrimary>
+                    <ButtonPrimary onPress={() => {
+                        deleteHealthCheckup();
+                      }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>
                   </ButtonColTwo>
