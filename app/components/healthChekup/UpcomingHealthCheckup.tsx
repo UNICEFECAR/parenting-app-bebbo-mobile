@@ -138,7 +138,7 @@ const UpcomingHealthCheckup = (props: any) => {
     JSON.parse(state.utilsData.vaccineData),
   );
   const getVaccineName = (vaccineID) => {
-    return allVaccineData?.find((v) => v.id === vaccineID)?.title;
+    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
   };
   useEffect(() => {
     currentPeriodId == item?.id ? setIsOpen(true) : setIsOpen(false);
@@ -153,7 +153,7 @@ const UpcomingHealthCheckup = (props: any) => {
           }}>
           <ToolsIconView>
             {item?.growthMeasures?.didChildGetVaccines ||
-            item?.growthMeasures?.isChildMeasured ? (
+            item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ? (
               <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
@@ -230,7 +230,7 @@ const UpcomingHealthCheckup = (props: any) => {
                                 <BulletsView>
                                   <Bullets></Bullets>
                                   <Paragraph>
-                                    {getVaccineName(vaccineItem?.vaccineid)}
+                                    {getVaccineName(vaccineItem?.uuid)}
                                   </Paragraph>
                                 </BulletsView>
                               </View>
@@ -363,7 +363,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 {/* Set Reminder Link */}
               </MainContainer>
             ) : null}
-
+{/* <Text>{item?.vaccination_opens},{item?.vaccination_ends},{childAgeIndays}</Text> */}
             {/* // perios's open and end contains curent child age in daays */}
             { item?.vaccination_opens<=childAgeIndays && item?.vaccination_ends>childAgeIndays ? (
               item?.growthMeasures?.uuid ? (
