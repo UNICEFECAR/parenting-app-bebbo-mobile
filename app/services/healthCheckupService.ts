@@ -20,7 +20,12 @@ export const getAllHealthCheckupPeriods = () => {
   );
   let allGrowthPeriods = taxonomy.growth_period;
     // filter by measurementPlace  is Doctors and sort by measurementDate
-  const allMeasures = activeChild?.measures.filter((item)=>item.measurementPlace==0).sort(
+    // getall doctor's place measures
+  const allMeasures = activeChild?.measures.filter((item)=>(item.measurementPlace==0)).sort(
+    (a: any, b: any) => a.measurementDate - b.measurementDate,
+  );
+   // getall measures where child received vaccines but growth data marked as measured at home
+  const vcMeasures = activeChild?.measures.filter((item)=>(item.measurementPlace==1 && item.didChildGetVaccines==true)).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
   let allVaccinePeriods = useAppSelector(
@@ -36,7 +41,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   });
 }
   // sorting measures by date
-  let allMeasurements = allMeasures.map((item: MeasuresEntity) => {
+  let allMeasurements = [...allMeasures,...vcMeasures].map((item: MeasuresEntity) => {
     let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
     // console.log(item.vaccineIds,"item.vaccineIds")
     const filteredVaccinesForLocale = (item.vaccineIds || item.vaccineIds != '') ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(item.vaccineIds)):[]
