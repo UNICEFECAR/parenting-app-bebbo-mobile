@@ -497,17 +497,17 @@ const AddReminder = ({route, navigation}: any) => {
             visible={modalVisible}
             onRequestClose={() => {
               // Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}
             onDismiss={() => {
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
                     onPress={() => {
-                      setModalVisible(!modalVisible);
+                      setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
                   </PopupClose>
@@ -518,7 +518,7 @@ const AddReminder = ({route, navigation}: any) => {
                 <ButtonContainerTwo>
                   <ButtonColTwo>
                     <ButtonSecondaryTint
-                      onPress={() => setModalVisible(!modalVisible)}>
+                      onPress={() => setModalVisible(false)}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
@@ -526,8 +526,8 @@ const AddReminder = ({route, navigation}: any) => {
                   <ButtonColTwo>
                     <ButtonSecondary
                       onPress={() => {
-                        setModalVisible(!modalVisible);
                         deleteReminder().then(() => {
+                          setModalVisible(false);
                           navigation.goBack();
                         });
                       }}>
