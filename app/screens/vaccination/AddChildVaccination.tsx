@@ -107,26 +107,27 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   useEffect(()=>{
     // console.log(editVaccineDate,"editVaccineDate");
     if(editVaccineDate){
+      setShowDelete(true)
       // console.log(vcPeriod,"vcPeriod?.vaccines")
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)),activeChild)
       // console.log(existingMeasure,"existingMeasure");
       setmeasureDate(DateTime.fromJSDate(new Date(editVaccineDate)));
       setIsMeasured(existingMeasure?.isChildMeasured)
-      setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+      setDefaultMeasured(existingMeasure?.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
       setWeightValue(existingMeasure?.weight)
       setHeightValue(existingMeasure?.height)
       handleDoctorRemark(existingMeasure?.doctorComment)
-     const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale((existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [])
+     const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale((existingMeasure?.vaccineIds && existingMeasure?.vaccineIds != '' && existingMeasure?.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure?.vaccineIds)) : [])
     //  console.log(existingMeasuredVaccines);
      if (existingMeasuredVaccines?.length > 0) {
-      existingMeasuredVaccines.forEach(element => {
+      existingMeasuredVaccines?.forEach(element => {
         console.log(element);
-        console.log(allVaccinePeriods.find(item => item.uuid == element.uuid))
-        element['id'] = allVaccinePeriods.find(item => item.uuid == element.uuid).id
-        element['uuid'] = element.uuid
-        element['title'] = allVaccinePeriods.find(item => item.uuid == element.uuid).title
+        console.log(allVaccinePeriods.find(item => item.uuid == element?.uuid))
+        element['id'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.id
+        element['uuid'] = element?.uuid
+        element['title'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.title
         element['isMeasured'] = true
-        element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element.uuid).pinned_article
+        element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.pinned_article
       });
       console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
       setTakenVaccine(existingMeasuredVaccines);
@@ -152,6 +153,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   const [showmeasureDate, setmeasureDateShow] = useState<Boolean>(false);
+  const [showDelete, setShowDelete] = useState<Boolean>(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [isMeasured, setIsMeasured] = useState(false);
   const [plannedVaccine, setPlannedVaccine] = useState([]);
@@ -221,22 +223,22 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 onPress: () => {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
-                  setWeightValue(existingMeasure.weight)
-                  setHeightValue(existingMeasure.height)
-                  handleDoctorRemark(existingMeasure.doctorComment)
-                  setIsMeasured(existingMeasure.isChildMeasured);
-                  setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
-                  let existingMeasuredVaccines = (existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [];
+                  setWeightValue(existingMeasure?.weight)
+                  setHeightValue(existingMeasure?.height)
+                  handleDoctorRemark(existingMeasure?.doctorComment)
+                  setIsMeasured(existingMeasure?.isChildMeasured);
+                  setDefaultMeasured(existingMeasure?.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+                  let existingMeasuredVaccines = (existingMeasure?.vaccineIds && existingMeasure?.vaccineIds != '' && existingMeasure?.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure?.vaccineIds)) : [];
                   console.log(existingMeasuredVaccines, "existingMeasuredVaccines")
                   if (existingMeasuredVaccines?.length > 0) {
-                    existingMeasuredVaccines.forEach(element => {
+                    existingMeasuredVaccines?.forEach(element => {
                       console.log(element);
-                      console.log(allVaccinePeriods.find(item => item.uuid == element.uuid))
-                      element['id'] = allVaccinePeriods.find(item => item.uuid == element.uuid).id
+                      console.log(allVaccinePeriods.find(item => item.uuid == element?.uuid))
+                      element['id'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.id
                       element['uuid'] = element.uuid
-                      element['title'] = allVaccinePeriods.find(item => item.uuid == element.uuid).title
+                      element['title'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.title
                       element['isMeasured'] = true
-                      element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element.uuid).pinned_article
+                      element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element?.uuid)?.pinned_article
                     });
                     console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
                     setTakenVaccine(existingMeasuredVaccines);
@@ -261,6 +263,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           setIsMeasured(false);
           setDefaultMeasured(null);
           setTakenVaccine([]);
+          setTakenVaccineForPrevPeriod([])
+          setShowDelete(false)
+          //change title to add and remove delete
         }
       }
     }
@@ -309,8 +314,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const onTakenVaccineToggle = (checkedVaccineArray: any) => {
     console.log(checkedVaccineArray, "onTakenVaccineToggle");
     setTakenVaccine(checkedVaccineArray);
+    setTakenVaccineForPrevPeriod(checkedVaccineArray);
     if (checkedVaccineArray.every((el) => {
-      return el.isMeasured == false;
+      return el?.isMeasured == false;
     })) {
       setmeasureDate(null)
       setTakenVaccine([]);
@@ -446,9 +452,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
             </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-            <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
+            <Heading2 numberOfLines={1}>{showDelete ? t('editVcTitle'): t('addVcTitle')}</Heading2>
           </HeaderTitleView>
-          {editVaccineDate ?  <HeaderActionView>
+          {showDelete ?  <HeaderActionView>
             <Pressable
               onPress={() => {
                 setModalVisible(true);
