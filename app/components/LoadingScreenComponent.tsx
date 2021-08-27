@@ -34,7 +34,7 @@ const LoadingScreenComponent = (props: any) => {
               alignItems: 'center',
               justifyContent: 'flex-start',
               flexDirection: 'column',
-              marginTop:50,
+              marginTop:45,
             }}>
               <FlexDirCol>
             <View>
@@ -44,7 +44,7 @@ const LoadingScreenComponent = (props: any) => {
                   width:240,height:80,
                   //backgroundColor:'#000',
                   alignContent:'center',
-                  marginTop:10,
+                  marginTop:20,
                 }}>
               <PartnerLogo 
               style={{
@@ -91,7 +91,7 @@ const LoadingScreenComponent = (props: any) => {
 
           <View
             style={{
-              marginBottom: 20,
+              marginBottom: 15,
               marginTop:25,
               flex: 1,
               flexDirection: 'column',
