@@ -9,7 +9,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image } from 'react-native';
+import { Dimensions, Image } from 'react-native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
 import HTML from 'react-native-render-html';
@@ -28,6 +28,10 @@ state.variableData?.variableData != ''
   ? JSON.parse(state.variableData?.variableData)
   : state.variableData?.variableData,
 );
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const userNameData =
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
@@ -83,7 +87,7 @@ const goToVideoArticleDetails = () => {
           </ShiftFromBottom10>
           {selectedPinnedArticleData ?
           <>
-          <ShiftFromBottom10>
+          <ShiftFromBottom10 style={{height:windowWidth*0.563-17}}>
             {/* <Image
               source={require('@assets/trash/card3.jpeg')}
               style={{width: '100%', borderRadius: 10}}
