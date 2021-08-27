@@ -121,6 +121,7 @@ const PreviousHealthCheckup = (props: any) => {
           <>
             <MainContainer>
             {/* {item?.growthMeasures?.uuid  ? ( */}
+              {/* <Text>{item?.vaccination_opens},{item?.vaccination_ends}</Text> */}
                 <FDirRowStart>
                   <ToolsIconView>
                     <Icon name="ic_vaccination" size={20} color="#000" />
