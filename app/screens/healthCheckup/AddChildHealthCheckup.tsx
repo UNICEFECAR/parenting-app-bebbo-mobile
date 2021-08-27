@@ -245,11 +245,11 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       //form edit not allowed
      } else {
        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
-         Alert.alert("Alert",
-           "Selecting this date will modify existing Measures",
-           [
-             {
-               text: "Ok",
+        Alert.alert(t('alertForModifyMeasures'),
+        t('alertForModifyMeasuresTitle'),
+        [
+          {
+            text: t('alertForModifyMeasuresOk'),
                onPress: () => {
                  const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                  console.log(existingMeasure, "existingMeasure");

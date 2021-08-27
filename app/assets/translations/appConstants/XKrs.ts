@@ -379,6 +379,9 @@ const XKrs = {
         vcTaken: "Taken vaccines",
         settingExportError:'Export Error',
         settingExportSuccess:'Export Success',
+        alertForModifyMeasures:'Alert',
+        alertForModifyMeasuresTitle:'Selecting this date will modify existing Measures',
+        alertForModifyMeasuresOk:'Ok',
        }
 }
 export default XKrs;
