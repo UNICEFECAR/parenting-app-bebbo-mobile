@@ -211,8 +211,12 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
-      if (editGrowthItem) {
+      if (editVaccineDate) {
+        console.log('in editVaccineDate')
         //form edit not allowed
+        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
+
+        }
       } else {
         if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
           Alert.alert(t('alertForModifyMeasures'),
@@ -223,6 +227,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 onPress: () => {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
+                  setShowDelete(true)
                   setWeightValue(existingMeasure?.weight)
                   setHeightValue(existingMeasure?.height)
                   handleDoctorRemark(existingMeasure?.doctorComment)
@@ -326,6 +331,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
       handleDoctorRemark('');
       setIsMeasured(false);
       setDefaultMeasured(null);
+      setShowDelete(false)
     }
   };
   const onPrevPlannedVaccineToggle = (checkedVaccineArray: any) => {
