@@ -388,6 +388,11 @@ const XKrs = {
         SyncOnLoadPopupText: "Do you wish to Sync data now?",
         SyncOnLoadCancelPopUpBtn: "Cancel",
         SyncOnLoadRetryBtn: "Sync",
+        cdNoti1:"Track development of your child",
+        cdNoti2:"Check which milestones have your child reached in this period",
+        gwNoti1:"Update growth measures",
+        hcNoti1:"Schedule a visit to the doctor",
+        vcNoti1:"In this period (child name) should receive vaccine:",
        }
 }
 export default XKrs;
