@@ -27,8 +27,8 @@ const VaccineItem = (props: any) => {
   }
   };
 
-  const {title, id, isChecked, pinned_article} = item;
-  const [toggleCheckBox, setToggleCheckBox] = useState(isChecked);
+  const {title, id,uuid, isMeasured, pinned_article} = item;
+  const [toggleCheckBox, setToggleCheckBox] = useState(isMeasured);
   return (
     <>
       <VacItemContainer>
@@ -37,7 +37,7 @@ const VaccineItem = (props: any) => {
             <FormOuterCheckbox
               onPress={() => {
                 setToggleCheckBox(!toggleCheckBox);
-                onToggleVaccine(id, !toggleCheckBox);
+                onToggleVaccine(uuid, !toggleCheckBox);
               }}>
               <CheckboxItem>
                 <View>
@@ -51,7 +51,7 @@ const VaccineItem = (props: any) => {
                 </View>
               </CheckboxItem>
               <Flex1>
-                <LabelText style={{minHeight:24,}}>
+                <LabelText>
                   <Heading4Regular>{title}</Heading4Regular>
                 </LabelText>
               </Flex1>

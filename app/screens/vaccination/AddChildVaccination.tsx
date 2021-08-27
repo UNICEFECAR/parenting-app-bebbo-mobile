@@ -22,6 +22,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import {
+  HeaderActionView,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -50,9 +51,9 @@ import {
   ShiftFromTopBottom10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
+import { Alert, Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
@@ -71,16 +72,68 @@ import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import analytics from '@react-native-firebase/analytics';
 import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
-const AddChildVaccination = ({route, navigation}: any) => {
-  const {t} = useTranslation();
-  const {headerTitle, vcPeriod, editGrowthItem} = route.params;
+import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
+import TakenVaccines from '@components/vaccination/TakenVaccines';
+const AddChildVaccination = ({ route, navigation }: any) => {
+  const { t } = useTranslation();
+  const { headerTitle, vcPeriod, editGrowthItem ,editVaccineDate} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
-
+  const deleteVaccination = async()=>{
+    if(editVaccineDate){
+      // console.log(vcPeriod,"vcPeriod?.vaccines")
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)),activeChild)
+      // console.log(existingMeasure.uuid)
+       //delete measure obj
+       let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        existingMeasure,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(deleteresult, '..deleteresult..');
+      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      if (deleteresult) {
+        activeChild.measures = deleteresult;
+        dispatch(setActiveChildData(activeChild));
+        setModalVisible(false);
+      }
+      navigation.goBack();
+    }
+  }
+  useEffect(()=>{
+    // console.log(editVaccineDate,"editVaccineDate");
+    if(editVaccineDate){
+      // console.log(vcPeriod,"vcPeriod?.vaccines")
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)),activeChild)
+      // console.log(existingMeasure,"existingMeasure");
+      setmeasureDate(DateTime.fromJSDate(new Date(editVaccineDate)));
+      setIsMeasured(existingMeasure?.isChildMeasured)
+      setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+      setWeightValue(existingMeasure?.weight)
+      setHeightValue(existingMeasure?.height)
+      handleDoctorRemark(existingMeasure?.doctorComment)
+     const existingMeasuredVaccines = checkIfMeasuredVaccineExistsForLocale((existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [])
+    //  console.log(existingMeasuredVaccines);
+     if (existingMeasuredVaccines?.length > 0) {
+      existingMeasuredVaccines.forEach(element => {
+        console.log(element);
+        console.log(allVaccinePeriods.find(item => item.uuid == element.uuid))
+        element['id'] = allVaccinePeriods.find(item => item.uuid == element.uuid).id
+        element['uuid'] = element.uuid
+        element['title'] = allVaccinePeriods.find(item => item.uuid == element.uuid).title
+        element['isMeasured'] = true
+        element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element.uuid).pinned_article
+      });
+      console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
+      setTakenVaccine(existingMeasuredVaccines);
+      setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
+    }
+    }
+  },[editVaccineDate])
   const dispatch = useAppDispatch();
   const child_age = useAppSelector((state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != ''
@@ -103,6 +156,8 @@ const AddChildVaccination = ({route, navigation}: any) => {
   const [isMeasured, setIsMeasured] = useState(false);
   const [plannedVaccine, setPlannedVaccine] = useState([]);
   const [prevPlannedVaccine, setPrevPlannedVaccine] = useState([]);
+  const [takenVaccine, setTakenVaccine] = useState([]);
+  const [takenVaccineForPrevPeriod, setTakenVaccineForPrevPeriod] = useState([]);
   const [weightValue, setWeightValue] = useState(
     editGrowthItem ? editGrowthItem.weight : 0,
   );
@@ -116,19 +171,34 @@ const AddChildVaccination = ({route, navigation}: any) => {
     editGrowthItem ? editGrowthItem.uuid : uuidv4(),
   );
   const isMeasuredOptions = [
-    {title: t('vcIsMeasuredOption1')},
-    {title: t('vcIsMeasuredOption2')},
+    { title: t('vcIsMeasuredOption1') },
+    { title: t('vcIsMeasuredOption2') },
   ];
-  const defaultMeasured = {title: ''};
+  // const defaultMeasured = {title: ''};
+  const [defaultMeasured, setDefaultMeasured] = useState<any>();
+  // editGrowthItem
+  // ? editGrowthItem.isChildMeasured ?{ title:isMeasuredOptions[0]} : {title:isMeasuredOptions[1]}
+  // :
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
-  const handleMeasureConfirm = (event:any) => {
-    const date=event;
+  const handleMeasureConfirm = (event: any) => {
+    const date = event;
     console.log("A date has been picked: ", date);
-    onmeasureDateChange(event,date);
+    onmeasureDateChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
-
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+  const checkIfMeasuredVaccineExistsForLocale = (vaccineIds) => {
+    // console.log(vaccineIds,"checkIfMeasuredVaccineExistsForLocale",allVaccinePeriods)
+    return vaccineIds?.filter(vcId => {
+      return allVaccinePeriods.some(el => {
+        return vcId.uuid === el.uuid;
+      });
+    });
+  }
   const getCheckedItem = (checkedItem: typeof isMeasuredOptions[0]) => {
     //  console.log(checkedItem);
     setIsMeasured(checkedItem == isMeasuredOptions[0] ? true : false);
@@ -139,27 +209,83 @@ const AddChildVaccination = ({route, navigation}: any) => {
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
+      if (editGrowthItem) {
+        //form edit not allowed
+      } else {
+        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
+          Alert.alert("Alert",
+            "Selecting this date will modify existing Measures",
+            [
+              {
+                text: "Ok",
+                onPress: () => {
+                  const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
+                  console.log(existingMeasure, "existingMeasure");
+                  setWeightValue(existingMeasure.weight)
+                  setHeightValue(existingMeasure.height)
+                  handleDoctorRemark(existingMeasure.doctorComment)
+                  setIsMeasured(existingMeasure.isChildMeasured);
+                  setDefaultMeasured(existingMeasure.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
+                  let existingMeasuredVaccines = (existingMeasure.vaccineIds || existingMeasure.vaccineIds != '' || existingMeasure.vaccineIds != null) ? checkIfMeasuredVaccineExistsForLocale(JSON.parse(existingMeasure.vaccineIds)) : [];
+                  console.log(existingMeasuredVaccines, "existingMeasuredVaccines")
+                  if (existingMeasuredVaccines?.length > 0) {
+                    existingMeasuredVaccines.forEach(element => {
+                      console.log(element);
+                      console.log(allVaccinePeriods.find(item => item.uuid == element.uuid))
+                      element['id'] = allVaccinePeriods.find(item => item.uuid == element.uuid).id
+                      element['uuid'] = element.uuid
+                      element['title'] = allVaccinePeriods.find(item => item.uuid == element.uuid).title
+                      element['isMeasured'] = true
+                      element['pinned_article'] = allVaccinePeriods.find(item => item.uuid == element.uuid).pinned_article
+                    });
+                    console.log(existingMeasuredVaccines, "existingMeasuredVaccines");
+                    setTakenVaccine(existingMeasuredVaccines);
+                    setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
+                  }
+
+                },
+                style: "cancel",
+              },
+            ],
+            {
+              cancelable: false,
+              // onDismiss: () =>
+              //   Alert.alert(
+              //     "This alert was dismissed by tapping outside of the alert dialog."
+              //   ),
+            })
+        } else {
+          setWeightValue(0);
+          setHeightValue(0);
+          handleDoctorRemark('');
+          setIsMeasured(false);
+          setDefaultMeasured(null);
+          setTakenVaccine([]);
+        }
+      }
     }
   };
   const minChildGrwothDate =
     activeChild.birthDate != '' &&
-    activeChild.birthDate != null &&
-    activeChild.birthDate != undefined
+      activeChild.birthDate != null &&
+      activeChild.birthDate != undefined
       ? activeChild.birthDate
       : new Date();
   React.useEffect(() => {
     if (route.params?.weight) {
       console.log(route.params?.weight);
+      setIsMeasured(true);
       setWeightValue(route.params?.weight);
     }
     if (route.params?.height) {
       console.log(route.params?.height);
+      setIsMeasured(true);
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
   const isFormDisabled = () => {
     if (measureDate) {
-      if (plannedVaccine.length > 0 || prevPlannedVaccine.length > 0) {
+      if (plannedVaccine.length > 0 || prevPlannedVaccine.length > 0 || takenVaccine.length > 0) {
         if (isMeasured) {
           if (heightValue && weightValue) {
             return false;
@@ -177,26 +303,46 @@ const AddChildVaccination = ({route, navigation}: any) => {
     }
   };
   const onPlannedVaccineToggle = (checkedVaccineArray: any) => {
-    // console.log(checkedVaccineArray);
+    console.log(checkedVaccineArray);
     setPlannedVaccine(checkedVaccineArray);
   };
+  const onTakenVaccineToggle = (checkedVaccineArray: any) => {
+    console.log(checkedVaccineArray, "onTakenVaccineToggle");
+    setTakenVaccine(checkedVaccineArray);
+    if (checkedVaccineArray.every((el) => {
+      return el.isMeasured == false;
+    })) {
+      setmeasureDate(null)
+      setTakenVaccine([]);
+      setTakenVaccineForPrevPeriod([])
+      setWeightValue(0);
+      setHeightValue(0);
+      handleDoctorRemark('');
+      setIsMeasured(false);
+      setDefaultMeasured(null);
+    }
+  };
   const onPrevPlannedVaccineToggle = (checkedVaccineArray: any) => {
-    // console.log(checkedVaccineArray);
+    console.log(checkedVaccineArray);
     setPrevPlannedVaccine(checkedVaccineArray);
   };
   const saveChildMeasures = async () => {
-    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine];
+    const modifiedTakenVaccines = takenVaccine.filter(
+      item => item['isMeasured'] == true
+    ).map(({ uuid }) => ({ uuid }))
+    console.log(modifiedTakenVaccines);
+    let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
     console.log(allVaccines, 'before measurementDate');
-    allVaccines = [...allVaccines].map((v) => ({
-      ...v,
-      measurementDate: measureDate?.toMillis(),
-    }));
+    // allVaccines = [...allVaccines].map((v) => ({
+    //   ...v,
+    //   measurementDate: measureDate?.toMillis(),
+    // }));
 
     // ((v:any) => {
     //   console.log(v);
     //  return {v.measurementDate =measureDate?.toMillis()}
     // });
-    console.log(allVaccines, 'after measureDateUpdate');
+    // console.log(allVaccines, 'after measureDateUpdate');
     const measurementDateParam = editGrowthItem
       ? dateTouched
         ? measureDate?.toMillis()
@@ -213,10 +359,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
       // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
       return item
         ? Math.round(
-            DateTime.fromJSDate(new Date(item.measurementDate))
-              .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
-              .toObject().days,
-          ) == 0
+          DateTime.fromJSDate(new Date(item.measurementDate))
+            .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
+            .toObject().days,
+        ) == 0
         : null;
     });
     // if date difference is 0 then update else create new
@@ -231,7 +377,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0,
@@ -257,12 +403,12 @@ const AddChildVaccination = ({route, navigation}: any) => {
         height: String(heightValue),
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: true,
+        didChildGetVaccines: allVaccines.length > 0 ? true : false,
         vaccineIds: JSON.stringify(allVaccines),
         doctorComment: remarkTxt,
         measurementPlace: 0, // vaccination happens at doctor's place
       };
-      console.log(growthValues,"ADD_VACCINATION");
+      console.log(growthValues, "ADD_VACCINATION");
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
@@ -272,10 +418,10 @@ const AddChildVaccination = ({route, navigation}: any) => {
       if (createresult?.length > 0) {
         activeChild.measures = createresult;
         dispatch(setActiveChildData(activeChild));
-        if(isMeasured){
-         analytics().logEvent(GROWTH_MEASUREMENT_ADDED, {age_id:activeChild?.taxonomyData?.id,measured_at:'doctor'})
-      }
-         analytics().logEvent(VACCINE_ADDED, {age_id:activeChild?.taxonomyData?.id,vaccine_id:allVaccines})
+        if (isMeasured) {
+          analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
+        }
+        analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines })
 
       }
       // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
@@ -284,7 +430,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -302,26 +448,26 @@ const AddChildVaccination = ({route, navigation}: any) => {
           <HeaderTitleView>
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
-          {/* <HeaderActionView>
+          {editVaccineDate ?  <HeaderActionView>
             <Pressable
               onPress={() => {
                 setModalVisible(true);
               }}>
               <Text>{t('growthScreendeletebtnText')}</Text>
             </Pressable>
-          </HeaderActionView> */}
+          </HeaderActionView>:null}
         </HeaderRowView>
 
-        <ScrollView style={{flex: 9}}>
+        <ScrollView style={{ flex: 9 }}>
           <MainContainer>
             <FormInputGroup onPress={() => {
               // setmeasureDateShow(true)
               setmeasureDateShow(true);
-              if(Platform.OS == 'ios'){
+              if (Platform.OS == 'ios') {
                 setMeasureDatePickerVisibility(true);
               }
             }}
-              >
+            >
               {/* <FormInputText>
                   {t('vcScreenDateText')}
                 </FormInputText> */}
@@ -331,11 +477,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
                     <Text>
                       {' '}
                       {measureDate
-                        ? 
+                        ?
                         // DateTime.fromJSDate(new Date(measureDate)).toFormat(
                         //     'dd/MM/yyyy',
                         //   )
-                        formatStringDate(measureDate,luxonLocale)
+                        formatStringDate(measureDate, luxonLocale)
                         : t('vcScreenenterDateText')}
                     </Text>
                     {showmeasureDate && (
@@ -362,25 +508,25 @@ const AddChildVaccination = ({route, navigation}: any) => {
                     <Text>
                       {' '}
                       {measureDate
-                        ? 
+                        ?
                         // DateTime.fromJSDate(new Date(measureDate)).toFormat(
                         //     'dd/MM/yyyy',
                         //   )
-                        formatStringDate(measureDate,luxonLocale)
+                        formatStringDate(measureDate, luxonLocale)
                         : t('vcScreenenterDateText')}
                     </Text>
-                  <DateTimePickerModal
-              isVisible={isMeasureDatePickerVisible}
-              mode="date"
-              onConfirm={handleMeasureConfirm}
-              date={editGrowthItem ? new Date(measureDate) : new Date()}
-              onCancel={() => {
-                // Alert.alert('Modal has been closed.');
-                setMeasureDatePickerVisibility(false);
-              }}
-              maximumDate={new Date()}
-              minimumDate={new Date(minChildGrwothDate)}
-              />
+                    <DateTimePickerModal
+                      isVisible={isMeasureDatePickerVisible}
+                      mode="date"
+                      onConfirm={handleMeasureConfirm}
+                      date={editGrowthItem ? new Date(measureDate) : new Date()}
+                      onCancel={() => {
+                        // Alert.alert('Modal has been closed.');
+                        setMeasureDatePickerVisibility(false);
+                      }}
+                      maximumDate={new Date()}
+                      minimumDate={new Date(minChildGrwothDate)}
+                    />
 
                   </FormDateText1>
                   <FormDateAction>
@@ -389,18 +535,31 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 </FormInputBox>
               )}
             </FormInputGroup>
-
-            <FormContainerFlex>
-              <FormInputText>
-                <Heading3>{t('vcPlanned')}</Heading3>
-              </FormInputText>
-              <PlannedVaccines
-                fromScreen={'AddChildVaccination'}
-                currentPeriodVaccines={vcPeriod?.vaccines}
-                backgroundActiveColor={headerColor}
-                onPlannedVaccineToggle={onPlannedVaccineToggle}
-              />
-            </FormContainerFlex>
+            {takenVaccine?.length > 0 ?
+              <FormContainerFlex>
+                <FormInputText>
+                  <Heading3>{t('vcTaken')}</Heading3>
+                </FormInputText>
+                <TakenVaccines
+                  fromScreen={'AddChildVaccination'}
+                  takenVaccines={takenVaccine}
+                  backgroundActiveColor={headerColor}
+                  onTakenVaccineToggle={onTakenVaccineToggle}
+                /></FormContainerFlex>
+              : null}
+            {takenVaccine?.length == 0 ?
+              <FormContainerFlex>
+                <FormInputText>
+                  <Heading3>{t('vcPlanned')}</Heading3>
+                </FormInputText>
+                <PlannedVaccines
+                  fromScreen={'AddChildVaccination'}
+                  currentPeriodVaccines={vcPeriod?.vaccines}
+                  backgroundActiveColor={headerColor}
+                  onPlannedVaccineToggle={onPlannedVaccineToggle}
+                />
+              </FormContainerFlex>
+              : null}
             <FormContainerFlex>
               <FormInputText>
                 <Heading3>{t('vcPrev')}</Heading3>
@@ -408,6 +567,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
               <PrevPlannedVaccines
                 fromScreen={'AddChildVaccination'}
                 currentPeriodVaccines={vcPeriod?.vaccines}
+                takenVaccine={takenVaccineForPrevPeriod}
                 backgroundActiveColor={headerColor}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
@@ -445,11 +605,11 @@ const AddChildVaccination = ({route, navigation}: any) => {
                             });
                           }}>
                           <FlexFDirRowSpace>
-                            <Heading3 style={{flexShrink:1}} numberOfLines={2}>
+                            <Heading3 style={{ flexShrink: 1 }} numberOfLines={2}>
                               {weightValue
                                 ? weightValue
                                 : t('growthScreenwText')}
-                                
+
                             </Heading3>
                             <Heading4Regular>
                               {t('growthScreenkgText')}
@@ -468,7 +628,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
                             });
                           }}>
                           <FlexFDirRowSpace>
-                          <Heading3 style={{flexShrink:1}} numberOfLines={2}>
+                            <Heading3 style={{ flexShrink: 1 }} numberOfLines={2}>
                               {heightValue
                                 ? heightValue
                                 : t('growthScreenhText')}
@@ -493,12 +653,12 @@ const AddChildVaccination = ({route, navigation}: any) => {
                 <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={{height: 40}}
+                  style={{ height: 40 }}
                   clearButtonMode="always"
                   defaultValue={remarkTxt}
                   onChangeText={(text) => handleDoctorRemark(text)}
                   placeholder={t('vcDoctorRemarkPlaceHolder')}
-                  allowFontScaling={false} 
+                  allowFontScaling={false}
                 />
               </TextAreaBox>
             </FormContainer>
@@ -509,7 +669,7 @@ const AddChildVaccination = ({route, navigation}: any) => {
             disabled={isFormDisabled()}
             onPress={(e) => {
               e.stopPropagation();
-              saveChildMeasures().then(() => {});
+              saveChildMeasures().then(() => { });
               // navigation.goBack();
             }}>
             <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
@@ -522,17 +682,17 @@ const AddChildVaccination = ({route, navigation}: any) => {
           visible={modalVisible}
           onRequestClose={() => {
             // Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}
           onDismiss={() => {
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}>
           <PopupOverlay>
             <ModalPopupContainer>
               <PopupCloseContainer>
                 <PopupClose
                   onPress={() => {
-                    setModalVisible(!modalVisible);
+                    setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
@@ -542,13 +702,17 @@ const AddChildVaccination = ({route, navigation}: any) => {
               </ShiftFromTopBottom10>
               <ButtonContainerTwo>
                 <ButtonColTwo>
-                  <ButtonSecondaryTint>
+                  <ButtonSecondaryTint onPress={() => {
+                        setModalVisible(false);
+                      }}>
                     <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                 </ButtonColTwo>
 
                 <ButtonColTwo>
-                  <ButtonSecondary>
+                  <ButtonSecondary onPress={() => {
+                        deleteVaccination();
+                      }}>
                     <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                   </ButtonSecondary>
                 </ButtonColTwo>

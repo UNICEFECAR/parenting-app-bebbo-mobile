@@ -34,7 +34,7 @@ import Icon from '../shared/Icon';
 
 const PreviousHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
-  // console.log(item, 'PreviousHealthCheckup');
+  console.log(item, 'PreviousHealthCheckup');
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
@@ -57,7 +57,7 @@ const PreviousHealthCheckup = (props: any) => {
         JSON.parse(state.utilsData.vaccineData),
     );
   const getVaccineName = (vaccineID) => {
-    return allVaccineData?.find((v) => v.id === vaccineID)?.title;
+    return allVaccineData?.find((v) => v.uuid == vaccineID)?.title;
   }
   return (
     <>
@@ -68,7 +68,7 @@ const PreviousHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.growthMeasures?.didChildGetVaccines || item?.growthMeasures?.isChildMeasured ?  (
+            {item?.growthMeasures?.didChildGetVaccines || item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ?  (
             <RadioActive
                   style={{backgroundColor: 'green', borderRadius: 50}}>
                   <Icon name="ic_tick" size={12} color="#FFF" />
@@ -151,7 +151,7 @@ const PreviousHealthCheckup = (props: any) => {
                             <View key={index}>
                               <BulletsView>
                                 <Bullets></Bullets>
-                                <Paragraph>{getVaccineName(vaccineItem?.vaccineid)}</Paragraph>
+                                <Paragraph>{getVaccineName(vaccineItem?.uuid)}</Paragraph>
                               </BulletsView>
                             </View>
                           );
@@ -208,11 +208,12 @@ const PreviousHealthCheckup = (props: any) => {
             {item?.growthMeasures?.uuid ? (
             <ShiftFromTopBottom10>
               <Pressable
-                onPress={() =>{}
-                  // navigation.navigate('AddChildHealthCheckup', {
-                  //   headerTitle: t('hcEditHeaderTitle'),
-                  //   vcPeriod: item,
-                  // })
+                onPress={() =>
+                  navigation.navigate('AddChildHealthCheckup', {
+                    headerTitle: t('hcEditHeaderTitle'),
+                    vcPeriod: item,
+                    editMeasurementDate:item?.growthMeasures?.dateToMilis,
+                  })
                 }>
                 <ButtonTextMdLine numberOfLines={2}>{t('hcEditBtn')}</ButtonTextMdLine>
               </Pressable>

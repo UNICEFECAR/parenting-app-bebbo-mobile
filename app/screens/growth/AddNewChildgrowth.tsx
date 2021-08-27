@@ -58,6 +58,7 @@ import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
   Modal,
   Platform,
   Pressable,
@@ -88,6 +89,7 @@ import analytics from '@react-native-firebase/analytics';
 import { formatStringDate } from '../../services/Utils';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { GROWTH_MEASUREMENT_ADDED } from '@assets/data/firebaseEvents';
+import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -96,9 +98,9 @@ type Props = {
 const AddNewChildgrowth = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, editGrowthItem} = route.params;
-  // if (editGrowthItem) {
-  // console.log('editGrowthItem', editGrowthItem);
-  // }
+  if (editGrowthItem) {
+  console.log('editGrowthItem', editGrowthItem);
+  }
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -125,6 +127,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     t('growthScreendoctorMeasurePlace'),
     t('growthScreenhomeMeasurePlace'),
   ]);
+  // measurePlaces =  measurePlaces.map((v) => ({ ...v, title: v.title }))
   const [weightValue, setWeightValue] = useState(
     editGrowthItem ? editGrowthItem.weight : 0,
   );
@@ -137,19 +140,87 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
   const [measurePlace, setMeasurePlace] = useState<number>(
     editGrowthItem ? editGrowthItem.measurementPlace : null,
   );
+  const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(
+    editGrowthItem
+    ? measurePlaces[editGrowthItem.measurementPlace]
+    : null
+  );
+  
+ 
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    // console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
+      if(editGrowthItem){
+        if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+          //data already exist, reset measuredate it to edit measures’ date
+          Alert.alert("Alert",
+        "Measures already exist for this date",
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+              setmeasureDate(editGrowthItem.measurementDate)
+            },
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false,
+          // onDismiss: () =>
+          //   Alert.alert(
+          //     "This alert was dismissed by tapping outside of the alert dialog."
+          //   ),
+        })
+        }else{
+          //if editing existing measure where only vacccines were added.
+        if(isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+          // allow adding growth values for that vaccine measure
+          console.log("in else only if vaccines exist")
+        }else{
+          // add new measure
+        }
+      }
+      }else{
+      if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
+        Alert.alert("Alert",
+        "Selecting this date will modify existing Measures",
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+             const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate),activeChild)
+             console.log(existingMeasure);
+             setMeasurePlace(existingMeasure.measurementPlace)
+             setWeightValue(existingMeasure.weight)
+             setHeightValue(existingMeasure.height)
+             handleDoctorRemark(existingMeasure.doctorComment)
+             setDefaultMeasurePlace(measurePlaces[existingMeasure.measurementPlace])
+            },
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false,
+          // onDismiss: () =>
+          //   Alert.alert(
+          //     "This alert was dismissed by tapping outside of the alert dialog."
+          //   ),
+        })
+      }
+    }
+      
+     
     }
   };
   const getCheckedGrowthPlace = (checkedItem: any) => {
     // console.log(checkedItem);
     setMeasurePlace(checkedItem.id);
+    // setDefaultMeasurePlace(measurePlaces[checkedItem.id])
   };
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -166,12 +237,13 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   // console.log(activeChild,"in add new");
-  const getDefaultGrowthPlace = () => {
-    return editGrowthItem
-      ? measurePlaces[editGrowthItem.measurementPlace]
-      : null;
-    // if in edit mode return value else return null
-  };
+  // const getDefaultGrowthPlace = () => {
+  //   return editGrowthItem
+  //     ? measurePlaces[editGrowthItem.measurementPlace]
+  //     : measurePlaces[measurePlace];
+      
+  //   // if in edit mode return value else return null
+  // };
 
   const isFormFilled = () => {
     // console.log(measureDate, measurePlace, heightValue, weightValue);
@@ -215,6 +287,65 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       setHeightValue(route.params?.height);
     }
   }, [route.params?.weight, route.params?.height]);
+const deleteGrowth = async()=>{
+  console.log(editGrowthItem,"deleteGrowth")
+  const measurementDateParam = editGrowthItem
+  ? dateTouched
+    ? measureDate?.toMillis()
+    : editGrowthItem.measurementDate
+  : measureDate?.toMillis();
+const titleDateInMonthParam = editGrowthItem
+  ? dateTouched
+    ? measureDate.toFormat('MM')
+    : editGrowthItem.titleDateInMonth
+  : measureDate.toFormat('MM');
+    if(editGrowthItem.didChildGetVaccines == true){
+        //delete weight,height,doctorComment and mark isChildMeasured false
+        const growthValues = {
+          uuid: editGrowthItem.uuid,
+          isChildMeasured: false,
+          weight: "",
+          height: "",
+          measurementDate: measurementDateParam,
+          titleDateInMonth: titleDateInMonthParam.toString(),
+          didChildGetVaccines: editGrowthItem.didChildGetVaccines,
+          vaccineIds: editGrowthItem.vaccineIds,
+          doctorComment: "",
+          measurementPlace: editGrowthItem.measurementPlace,
+        };
+        console.log(growthValues,'updateInDeleteMeasure');
+        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(updateresult, '..updateresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (updateresult?.length>0) {
+          activeChild.measures = updateresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
+    }else{
+        //delete measure obj
+        let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          editGrowthItem,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(deleteresult, '..deleteresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (deleteresult) {
+          activeChild.measures = deleteresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
+        
+    }
+
+}
   const saveChildMeasures = async () => {
     // console.log(dateTouched,"dateTouched",measureDate);
     
@@ -240,9 +371,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           ) == 0
         : null;
     });
+    console.log(updateItem);
     // if date difference is 0 then update else create new
     if (updateItem != null) {
       console.log(updateItem.uuid, 'updatethisitem');
+      //if updating anything from growth,vaccine details goes as it is without change
       const growthValues = {
         uuid: updateItem.uuid,
         isChildMeasured: true,
@@ -251,7 +384,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         measurementDate: measurementDateParam,
         titleDateInMonth: titleDateInMonthParam.toString(),
         didChildGetVaccines: updateItem.didChildGetVaccines,
-        vaccineIds: updateItem.vaccieIds,
+        vaccineIds: updateItem.vaccineIds,
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
@@ -281,7 +414,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
         doctorComment: remarkTxt,
         measurementPlace: measurePlace,
       };
-      console.log(growthValues);
+      console.log(growthValues,'addthisitem');
       let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
         ChildEntitySchema,
         growthValues,
@@ -424,7 +557,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
 
                 <ToggleRadios
                   options={measurePlaces}
-                  defaultValue={getDefaultGrowthPlace()}
+                  defaultValue={defaultMeasurePlace}
                   tickbgColor={headerColor}
                   tickColor={'#000'}
                   getCheckedItem={getCheckedGrowthPlace}
@@ -523,17 +656,17 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
             visible={modalVisible}
             onRequestClose={() => {
               // Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}
             onDismiss={() => {
-              setModalVisible(!modalVisible);
+              setModalVisible(false);
             }}>
             <PopupOverlay>
               <ModalPopupContainer>
                 <PopupCloseContainer>
                   <PopupClose
                     onPress={() => {
-                      setModalVisible(!modalVisible);
+                      setModalVisible(false);
                     }}>
                     <Icon name="ic_close" size={16} color="#000" />
                   </PopupClose>
@@ -556,7 +689,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
                   <ButtonColTwo>
                     <ButtonPrimary
                       onPress={() => {
-                        setModalVisible(false);
+                        deleteGrowth();
                       }}>
                       <ButtonText>{t('growthDeleteOption2')}</ButtonText>
                     </ButtonPrimary>

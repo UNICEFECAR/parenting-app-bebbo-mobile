@@ -122,7 +122,7 @@ const HealthCheckups = ({navigation}: Props) => {
           {previousPeriods.length > 0 ? (
             previousPeriods?.map((item, itemindex) => {
               return (
-                <View style={{flex:1,flexDirection:'column'}}>
+                <View style={{flex:1,flexDirection:'column'}} key={itemindex}>
                 <PreviousHealthCheckup
                   item={item}
                   key={itemindex}
