@@ -388,6 +388,12 @@ const en = {
         alertForModifyMeasures:'Alert',
         alertForModifyMeasuresTitle:'Selecting this date will modify existing Measures',
         alertForModifyMeasuresOk:'Ok',
+
+        //new data added on 27th Aug
+        SyncOnLoadPopupTitle: "Sync data",
+        SyncOnLoadPopupText: "Do you wish to Sync data now?",
+        SyncOnLoadCancelPopUpBtn: "Cancel",
+        SyncOnLoadRetryBtn: "Sync",
     }
 }
 export default en;
