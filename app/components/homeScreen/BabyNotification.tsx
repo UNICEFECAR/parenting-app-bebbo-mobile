@@ -63,8 +63,8 @@ const BabyNotification = () => {
                   </OuterIconLeft>
                 </OuterIconRow>
                 <View
-                  style={{ flexShrink: 1, paddingRight: 4, paddingLeft: 4 }}>
-                  <FDirCol>
+                  style={{ flexShrink: 1, paddingLeft: 4 }}>
+                  <FDirCol style={{ flexShrink: 1,paddingRight: 7,}}>
                     <Heading3>
                       {
                         activeChild.birthDate != null && activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate) ?
