@@ -22,6 +22,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import {
+  HeaderActionView,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -82,6 +83,27 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editGrowthItem ? editGrowthItem.measurementDate : null,
   );
+  const deleteVaccination = async()=>{
+    if(editVaccineDate){
+      // console.log(vcPeriod,"vcPeriod?.vaccines")
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)),activeChild)
+      // console.log(existingMeasure.uuid)
+       //delete measure obj
+       let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+        ChildEntitySchema,
+        existingMeasure,
+        'uuid ="' + activeChild.uuid + '"',
+      );
+      console.log(deleteresult, '..deleteresult..');
+      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+      if (deleteresult) {
+        activeChild.measures = deleteresult;
+        dispatch(setActiveChildData(activeChild));
+        setModalVisible(false);
+      }
+      navigation.goBack();
+    }
+  }
   useEffect(()=>{
     // console.log(editVaccineDate,"editVaccineDate");
     if(editVaccineDate){
@@ -426,14 +448,14 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           <HeaderTitleView>
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
-          {/* <HeaderActionView>
+          {editVaccineDate ?  <HeaderActionView>
             <Pressable
               onPress={() => {
                 setModalVisible(true);
               }}>
               <Text>{t('growthScreendeletebtnText')}</Text>
             </Pressable>
-          </HeaderActionView> */}
+          </HeaderActionView>:null}
         </HeaderRowView>
 
         <ScrollView style={{ flex: 9 }}>
@@ -660,17 +682,17 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           visible={modalVisible}
           onRequestClose={() => {
             // Alert.alert('Modal has been closed.');
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}
           onDismiss={() => {
-            setModalVisible(!modalVisible);
+            setModalVisible(false);
           }}>
           <PopupOverlay>
             <ModalPopupContainer>
               <PopupCloseContainer>
                 <PopupClose
                   onPress={() => {
-                    setModalVisible(!modalVisible);
+                    setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
@@ -680,13 +702,17 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               </ShiftFromTopBottom10>
               <ButtonContainerTwo>
                 <ButtonColTwo>
-                  <ButtonSecondaryTint>
+                  <ButtonSecondaryTint onPress={() => {
+                        setModalVisible(false);
+                      }}>
                     <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                   </ButtonSecondaryTint>
                 </ButtonColTwo>
 
                 <ButtonColTwo>
-                  <ButtonSecondary>
+                  <ButtonSecondary onPress={() => {
+                        deleteVaccination();
+                      }}>
                     <ButtonText numberOfLines={2}>{t('growthDeleteOption2')}</ButtonText>
                   </ButtonSecondary>
                 </ButtonColTwo>
