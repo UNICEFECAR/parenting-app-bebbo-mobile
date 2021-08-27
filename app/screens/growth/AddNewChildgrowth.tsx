@@ -158,11 +158,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       if(editGrowthItem){
         if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
           //data already exist, reset measuredate it to edit measures’ date
-          Alert.alert("Alert",
-        "Measures already exist for this date",
+          Alert.alert(t('alertForModifyMeasures'),
+        t('alertForModifyMeasuresTitle'),
         [
           {
-            text: "Ok",
+            text: t('alertForModifyMeasuresOk'),
             onPress: () => {
               setmeasureDate(editGrowthItem.measurementDate)
             },
@@ -187,11 +187,11 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       }
       }else{
       if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
-        Alert.alert("Alert",
-        "Selecting this date will modify existing Measures",
+        Alert.alert(t('alertForModifyMeasures'),
+        t('alertForModifyMeasuresTitle'),
         [
           {
-            text: "Ok",
+            text: t('alertForModifyMeasuresOk'),
             onPress: () => {
              const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate),activeChild)
              console.log(existingMeasure);
