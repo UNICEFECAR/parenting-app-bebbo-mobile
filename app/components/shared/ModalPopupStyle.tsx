@@ -7,9 +7,10 @@ const ModalPopupContainer = styled.View`
 `;
 
 export const ModalPopupContainerVideo = styled(ModalPopupContainer)`
-  background-color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
-   border-radius:0px;
-  /*  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};*/
+border-radius:0px;
+background-color: transparent;
+  /*background-color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
+   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};*/
 `;
 export const PopupOverlay = styled.Pressable`
   flex: 1;
@@ -48,8 +49,7 @@ export const ModalPopupContent = styled.View`
 `;
 export const ModalPopupContentVideo = styled.View`
  width:100%;
- 
-  max-height:250px;
+background-color:#fff;
   min-width:100%;
   max-width:100%;
   flex:1
