@@ -5,7 +5,7 @@ import { backupGDriveFileName,backupGDriveFolderName} from "@assets/translations
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
-import { addPrefixForAndroidPaths, getAllChildren, getCurrentChild, setActiveChild } from "./childCRUD";
+import { addPrefixForAndroidPaths, getAllChildren, setActiveChild } from "./childCRUD";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 import { Child } from "../interface/interface";
 import { DateTime } from "luxon";
