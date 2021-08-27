@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
 import VaccineItem from './VaccineItem';
 type VaccineItemProps = {
-  vaccineid: number;
-  measurementDate: number;
+  uuid: string;
+  // measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines, fromScreen,backgroundActiveColor} = props;
+  const {onPrevPlannedVaccineToggle, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   previousPeriods.shift();
   //remove first period which is the current period
@@ -24,40 +24,44 @@ const PrevPlannedVaccines = (props: any) => {
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       return !currentPeriodVaccines?.find((element) => {
-        return element.id == vItem.id;
+        return element.uuid == vItem.uuid;
+      });
+    },
+  ).filter(
+    (vItem: any) => {
+      return !takenVaccine?.find((element) => {
+        return element.uuid == vItem.uuid;
       });
     },
   );
-  console.log(allPreviousPendingVaccines);
+  // console.log(allPreviousPendingVaccines);
   // let allCheckedVaccines: any[] = [];
   const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
     [],
   );
 
-  const onToggleVaccine = (id, isVaccineItemChecked) => {
+  const onToggleVaccine = (uuid, isVaccineItemChecked) => {
     // console.log(id,isVaccineItemChecked);
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [
         ...checkedVaccines,
-        {
-          vaccineid: id,
-          measurementDate: DateTime.now().toMillis(),
-        },
+        {  uuid: uuid,}
+          // measurementDate: DateTime.now().toMillis(),
       ];
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
       // allCheckedVaccines.push({
-      //   vaccineid: id,
+      //   uuid: uuid,
       //   measurementDate: DateTime.now().toMillis(),
       // });
     } else {
       const allCheckedVaccines = [...checkedVaccines].filter(
-        (item) => item.vaccineid !== id,
+        (item) => item.uuid !== uuid,
       );
       setCheckedVaccines(allCheckedVaccines);
       onPrevPlannedVaccineToggle(allCheckedVaccines);
       // allCheckedVaccines = allCheckedVaccines.filter(
-      //   (item) => item.vaccineid !== id,
+      //   (item) => item.uuid !== uuid,
       // );
     }
     // onPrevPlannedVaccineToggle(allCheckedVaccines);
@@ -68,7 +72,11 @@ const PrevPlannedVaccines = (props: any) => {
     <>
     {allPreviousPendingVaccines?.length > 0 ?
       <BgContainer>
-        {allPreviousPendingVaccines.map((item, index) => {
+        {allPreviousPendingVaccines?.filter(
+    (vItem: any) => {
+      return vItem.isMeasured == false
+    },
+  )?.map((item, index) => {
           return (
             <VaccineItem
               fromScreen={fromScreen}
