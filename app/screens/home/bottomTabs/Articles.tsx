@@ -8,7 +8,7 @@ import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, 
 import Divider,{DividerArt} from '@components/shared/Divider';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 
-import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
+import Icon, { OuterIconLeft15, OuterIconRight15, OuterIconRow } from '@components/shared/Icon';
 import InfiniteScrollList from '@components/shared/InfiniteScrollList';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -34,6 +34,9 @@ import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import LoadableImage from '../../../services/LoadableImage';
+import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
+import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
+import {getDataToStore} from '@assets/translations/appOfflineData/getDataToStore';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -54,6 +57,7 @@ const ContainerView = styled.SafeAreaView`
 `;
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [queryText,searchQueryText] = useState('');
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const flatListRef = useRef(null);
@@ -128,8 +132,8 @@ useFocusEffect(() => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  console.log("articleData---",articleData);
+  let articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
+  //console.log("articleData---",articleData);
 
   const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
@@ -216,7 +220,7 @@ useFocusEffect(() => {
     // {
     //   navigation.setParams({backClicked:'no'})
     // }
-    if(articleData != '')
+    if(articleData != '' && articleData != null && articleData != undefined)
     {
       setLoadingArticle(true);
       if(itemId.length>0)
@@ -261,7 +265,27 @@ useFocusEffect(() => {
     setLoadingArticle(value);
   }
   //code for getting article dynamic data ends here.
-
+const searchList=async (queryText)=>{
+  console.log(queryText,"..queryText")
+  setLoadingArticle(true);
+  const currentChildData = {
+    "gender":activeChild.gender,
+    "parent_gender":activeChild.parent_gender,
+    "taxonomyData":activeChild.taxonomyData
+  }
+  console.log(currentChildData,"..currentChildData..");
+  // console.log(route.params?.categoryArray,"..route.params?.categoryArray..")
+  let Entity:any;
+  const artData:any = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData,queryText);
+  artData.map((item)=>{
+    console.log(item,"..search item")
+  });
+  articleData = artData;
+  console.log(articleData,"1111..articleData..",filterArray);
+  //setLoadingArticle(false);
+  // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
+  setFilteredArticleData(filterArray);
+}
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
@@ -271,7 +295,6 @@ useFocusEffect(() => {
       style={{flex:1}}
     >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-          
           <TabScreenHeader
             title={t('articleScreenheaderTitle')}
             headerColor={headerColor}
@@ -279,23 +302,18 @@ useFocusEffect(() => {
           />
           <FlexCol>
           <SearchBox>
-              <OuterIconRow>
-                <OuterIconLeft15>
-                <Icon
-                name="ic_search"
-                size={20}
-                color="#000"
-                
-              />
-                </OuterIconLeft15>
-              </OuterIconRow>
-              
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                value={''}
-                // onChangeText={queryText => handleSearch(queryText)}
+                onChangeText={async (queryText:any)=>{
+                  searchQueryText(queryText);
+                }}
+                value={queryText}
+                onSubmitEditing = {(event) =>{
+                  searchQueryText(queryText)
+                }}
+                multiline={false}
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
                 style={{
@@ -303,6 +321,22 @@ useFocusEffect(() => {
                 }}
                 allowFontScaling={false} 
               />
+                    <OuterIconRow>
+                <OuterIconRight15>
+                <Pressable onPress={() => {
+                 searchList(queryText)
+                }}>
+                <Icon
+                name="ic_search"
+                size={20}
+                color="#000"
+                
+              />
+              </Pressable>
+                </OuterIconRight15>
+              </OuterIconRow>
+              
+        
             </SearchBox>
             {/* <FlexCol> */}
                 <DividerArt></DividerArt>
