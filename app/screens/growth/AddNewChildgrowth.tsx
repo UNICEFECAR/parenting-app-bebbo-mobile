@@ -55,7 +55,7 @@ import {
   ShiftFromTopBottom10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -98,9 +98,10 @@ type Props = {
 const AddNewChildgrowth = ({route, navigation}: any) => {
   const {t} = useTranslation();
   const {headerTitle, editGrowthItem} = route.params;
-  if (editGrowthItem) {
-  console.log('editGrowthItem', editGrowthItem);
-  }
+  // if (editGrowthItem) {
+  // console.log('editGrowthItem', editGrowthItem);
+  // }
+  const [showDelete, setShowDelete] = useState<Boolean>(false);
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -145,7 +146,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
     ? measurePlaces[editGrowthItem.measurementPlace]
     : null
   );
-  
+  useEffect(()=>{
+    // console.log(editVaccineDate,"editVaccineDate");
+    if(editGrowthItem){
+      setShowDelete(true)
+    }
+  },[editGrowthItem])
+
+
  
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   //set initvalue here for edit
@@ -156,6 +164,7 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
       if(editGrowthItem){
+        setShowDelete(true)
         if(isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
           //data already exist, reset measuredate it to edit measures’ date
           Alert.alert(t('alertForModifyMeasures'),
@@ -177,6 +186,14 @@ const AddNewChildgrowth = ({route, navigation}: any) => {
           //   ),
         })
         }else{
+
+             setMeasurePlace(null)
+             setWeightValue(0)
+             setHeightValue(0)
+             handleDoctorRemark('')
+             setDefaultMeasurePlace(null)
+             setShowDelete(false)
+             //change title to add and remove delete
           //if editing existing measure where only vacccines were added.
         if(isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate),activeChild)){
           // allow adding growth values for that vaccine measure
@@ -450,9 +467,9 @@ const titleDateInMonthParam = editGrowthItem
               </Pressable>
             </HeaderIconView>
             <HeaderTitleView>
-              <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
+            <Heading2 numberOfLines={1}>{showDelete ? t('growthScreeneditNewBtntxt'): t('growthScreenaddNewBtntxt')}</Heading2>
             </HeaderTitleView>
-            {editGrowthItem ? (
+            {showDelete ? (
               <HeaderActionView>
                 <ButtonDelPress
                   onPress={() => {
