@@ -151,14 +151,14 @@ const Home = ({route,navigation}: Props) => {
       if(netInfoval && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
       {
         let flagtext = 'downloadBufferData '+downloadBufferData+' downloadWeeklyData '+downloadWeeklyData+' downloadMonthlyData '+downloadMonthlyData;
-        Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText') + ' '+flagtext ,
+        Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText') + ' '+flagtext ,
           [
             {
-              text: t('downloadOnLoadCancelPopUpBtn'),
+              text: t('SyncOnLoadCancelPopUpBtn'),
               onPress: () => {dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}))},
               style: "cancel"
             },
-            { text: t('downloadOnLoadRetryBtn'), onPress: () => downloadApis() }
+            { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
           ]
         );
       }
