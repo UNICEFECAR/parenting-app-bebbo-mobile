@@ -9,9 +9,20 @@ import { utilsSlice } from './utilsSlice';
 import { variableSlice } from './variableSlice';
 import { createRealmPersistStorage } from './realmPersistor';
 import {notificationSlice} from './notificationSlice';
+import { createMigrate } from 'redux-persist';
 
 // import {createRealmPersistStorage} from '@bankify/redux-persist-realm';
-
+const migrations = {  
+  0: (state: any) => {    
+      return {      ...
+    state,      
+    childDataSet: {        ...
+      state.childDataSet,        
+      bufferAgeBracket:[]
+    }    
+  }  
+  }
+}
 const countryConfig = {
   key: 'country',
   storage: createRealmPersistStorage(),
@@ -30,7 +41,10 @@ const utilConfig = {
 };
 const childConfig = {
   key: 'childData',
-  storage: createRealmPersistStorage()
+  storage: createRealmPersistStorage(),
+  version: 0,
+  debug: true,
+  migrate: createMigrate(migrations, { debug: true }) 
 };
 const articleConfig = {
   key: 'articlesData',
