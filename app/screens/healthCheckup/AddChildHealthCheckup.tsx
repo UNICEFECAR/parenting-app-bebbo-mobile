@@ -318,6 +318,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       handleDoctorRemark('');
       setIsMeasured(false);
       setDefaultMeasured(null);
+      setShowDelete(false)
     }
   };
   const minChildGrwothDate =
