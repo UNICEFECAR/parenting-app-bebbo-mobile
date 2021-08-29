@@ -1,17 +1,11 @@
 // @ts-ignore
-
-import {
-    GDrive,
-    MimeTypes,
-    ListQueryBuilder
-  } from "@robinbobin/react-native-google-drive-api-wrapper";
+import GDrive from "react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { DownloadResult } from "react-native-fs";
-import RNFS from 'react-native-fs';
-import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-const _urlFiles = "https://www.googleapis.com/drive/v3/files";
+import { Alert } from "react-native";
+
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
-const gdrive = new GDrive();
+
 /**
  * Access Google drive API.
  */
@@ -28,16 +22,15 @@ class GoogleDrive {
     }
 
     private async setAccessToken() {
-        let rval: any = false;
+        let rval: boolean = false;
         const tokens = await googleAuth.getTokens();
 
         if (tokens && tokens.accessToken) {
-            // GDrive.setAccessToken(tokens.accessToken);
-            // GDrive.accessToken =tokens.accessToken;
-            gdrive.accessToken =tokens.accessToken;
-            // GDrive.init();
-            rval = tokens.accessToken;
+            GDrive.setAccessToken(tokens.accessToken);
+            GDrive.init();
+            rval = true;
         }
+
         return rval;
     }
 
@@ -62,32 +55,22 @@ class GoogleDrive {
 
         try {
             // CREATE: https://bit.ly/3atW5DJ
-            // const response: Response = await gdrive.files.createFileMultipart(
-            //     args.content,
-            //     args.contentType,
-            //     {
-            //         parents: [args.parentFolderId],
-            //         name: args.name
-            //     },
-            //     args.isBase64,
-            // );
-            const response: any  = (
-                await gdrive.files
-                  .newMultipartUploader()
-                  .setData(args.content, args.contentType)
-                  .setRequestBody({
-                    name: args.name,
-                    mimeType:args.contentType,
-                    parents: [args.parentFolderId],   // folderId , if you want to upload to folder
-                  })
-                  .setIsBase64(true)
-                  .execute()
-              ).id;
-            console.log(response,"..11response")
-            if (response!="" && response!=null && response!=undefined) {
-                return response;
+            const response: Response = await GDrive.files.createFileMultipart(
+                args.content,
+                args.contentType,
+                {
+                    parents: [args.parentFolderId],
+                    name: args.name
+                },
+                args.isBase64,
+            );
+
+            let responseJson = await response.json();
+
+            if (response.status === 200) {
+                return responseJson?.id;
             } else {
-                return new Error('GDrive file was not created');
+                return new Error(responseJson?.error?.message);
             }
         } catch (e) {
             return new Error('GDrive file was not created');
@@ -133,21 +116,19 @@ class GoogleDrive {
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
-        const response: Response = await gdrive.files.delete(fileId);
-        console.log(response,"..response");
-        return true;
+
         // Delete file
-        // try {
-          
-            
-        //     if (response.status >= 200 && response.status < 300) {
-        //         return true;
-        //     } else {
-        //         return new Error('GDrive file was not deleted');
-        //     }
-        // } catch (e) {
-        //     return new Error('GDrive file was not deleted');
-        // }
+        try {
+            const response: Response = await GDrive.files.delete(fileId);
+
+            if (response.status >= 200 && response.status < 300) {
+                return true;
+            } else {
+                return new Error('GDrive file was not deleted');
+            }
+        } catch (e) {
+            return new Error('GDrive file was not deleted');
+        }
     }
 
     /**
@@ -157,45 +138,24 @@ class GoogleDrive {
      */
     public async safeCreateFolder(args: SafeCreateFolderArgs): Promise<string | Error> {
         // Set Google access token
-       
        const isAccessTokenSet = await this.setAccessToken();
-       console.log(isAccessTokenSet,"..isAccessTokenSet")
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
-            try {
-            const filenew = await gdrive.files.createIfNotExists({
-                q: new ListQueryBuilder()
-                  .e("name", backupGDriveFolderName)
-                  .and()
-                  .e("trashed", false)
-                  .and()
-                  .e("mimeType", MimeTypes.FOLDER)
-                  .and()
-                  .in("root", "parents")
-              },
-                gdrive.files.newMetadataOnlyUploader()
-                  .setRequestBody({
-                    name: backupGDriveFolderName,
-                    mimeType: MimeTypes.FOLDER,
-                    parents: ["root"]
-                  }
-                )
-              )
-              console.log(filenew,"..filenew..")
-            if(filenew.result && filenew.result.id!='' && filenew.result.id!=null &&  filenew.result.id!=undefined){
-            return filenew.result.id;
-            }
-              else{
-                return new Error('GDrive folder was not created');
-              }
-            //   console.log("22idset..",file)
-            //   console.log(await gdrive.files.list());
-            //   return id;
-            } catch (e) {
-                return new Error('GDrive folder was not created');
-            }
-     
+        // Create folder
+        try {
+            const id: string = await GDrive.files.safeCreateFolder({
+                name:args.name,
+                parents: [args.parentFolderId]
+            });
+            console.log(id,"..id..")
+            return id;
+                // this.createAFile();
+             // }
+           
+        } catch (e) {
+            return new Error('GDrive folder was not created');
+        }
     }
 
     /**
@@ -215,7 +175,7 @@ class GoogleDrive {
 
         // Get file
         try {
-            const response = await gdrive.files.get(
+            const response = await GDrive.files.get(
                 fileId,
                 // Fields: https://bit.ly/3eIpXzG
                 { 'fields': fields }, // query params
@@ -245,7 +205,7 @@ class GoogleDrive {
 
         // Get ID
         try {
-            const id: string = await gdrive.files.getId(
+            const id: string = await GDrive.files.getId(
                 args.name, // name
                 [args.parentFolderId], // parents
                 args.mimeType, // mimeType
@@ -280,7 +240,6 @@ class GoogleDrive {
      */
     public async list(args: ListArgs = {}): Promise<FileMetadata[] | Error> {
         // Default args
-       
         if (!args.filter) {
             args.filter = `trashed=false`;
         }
@@ -294,13 +253,11 @@ class GoogleDrive {
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
+
         // List files metadata
         try {
             // LIST: https://bit.ly/2xGQw7T
-            // await gdrive.files.list({
-            //     q: "trashed=false and (name contains 'my.backup') and ('1CIjwbhxqlC98IyKw0OwdlQF_g-xzg6Dv' in parents)",
-            //     });
-            const response: Response =await gdrive.files.list({
+            const response: Response = await GDrive.files.list({
                 // Fields: https://bit.ly/3eIpXzG
                 fields: `files(${FILE_METADATA_FIELDS})`,
                 // fields: '*', // Use only during development!
@@ -312,9 +269,10 @@ class GoogleDrive {
                 // Order: https://bit.ly/34ZczTf
                 orderBy: args.orderBy,
             });
-            console.log(response,"..old response..")
-            let results:any = await response;
-            if (results && results.files.length>0) {
+
+            let results = await response.json();
+
+            if (response.status === 200) {
                 return results.files;
             } else {
                 return new Error('Error listing files: ' + results?.error?.message);
@@ -322,24 +280,12 @@ class GoogleDrive {
         } catch (e) {
             return new Error('Can not list files');
         }
-      
     }
-    //   static _stringifyQueryParams(queryParams, prefix = "?", separator = "&", quoteIfString) {
-    //     const array = [];
-      
-    //     Object.keys(queryParams).forEach(key => array.push(
-    //        `${key}=${StaticUtils.safeQuoteIfString(queryParams[key], quoteIfString)}`));
-        
-    //     return new ArrayStringifier(array)
-    //        .setPrefix(prefix)
-    //        .setSeparator(separator)
-    //        .process();
-    //   }
-  
+
     /**
      * Download GDrive file to given local path.
      */
-     public async download(args: DownloadArgs): Promise<string | Error> {
+    public async download(args: DownloadArgs): Promise<string | Error> {
         // Set Google access token
         const isAccessTokenSet = await this.setAccessToken();
         if (!isAccessTokenSet) {
@@ -348,7 +294,7 @@ class GoogleDrive {
 
         // Download file
         try {
-            let response: { jobId: number, promise: Promise<DownloadResult> } =await gdrive.files.download(
+            let response: { jobId: number, promise: Promise<DownloadResult> } = GDrive.files.download(
                 // File ID
                 args.fileId,
 
@@ -362,7 +308,7 @@ class GoogleDrive {
             );
 
             let downloadResult = await response.promise;
-console.log(downloadResult,"..11downloadResult")
+
             if (downloadResult.statusCode === 200) {
                 console.log(args.filePath,"..args.filePat..")
                 return args.filePath;
