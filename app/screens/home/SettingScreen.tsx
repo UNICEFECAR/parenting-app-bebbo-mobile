@@ -112,13 +112,14 @@ const SettingScreen = (props: any) => {
     const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age);
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
-
+    console.log(importResponse,"..importResponse")
     if (importResponse instanceof Error) {
        console.log(importResponse.message,"..importResponse.message..");
     } else {
       console.log("..success..");
     }
 }
+
 const exportFile=async ()=>{
   Alert.alert('Coming Soon');
 // write the file

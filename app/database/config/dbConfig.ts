@@ -12,9 +12,9 @@ export const userRealmConfig: Realm.Configuration ={
   ],
   schemaVersion: 1,
   migration: (oldRealm, newRealm) => {
-   // console.log("..migration..");
+   console.log("..user migration..");
     //0
-   // console.log(oldRealm.schemaVersion)
+   console.log(oldRealm.schemaVersion)
     //1
    // console.log(newRealm.schemaVersion)
     //realm old version was 0 and new version is 1.
