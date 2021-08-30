@@ -137,16 +137,19 @@ const ActiveChildMeasureTimeline = (props: any) => {
                   // console.log(rowData);
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editGrowthItem: ( {"uuid": rowData.uuid,
-                    "weight": rowData.weight,
-                    "height": rowData.height,
-                    "measurementDate": rowData.dateToMilis,
-                    "titleDateInMonth": rowData.titleDateInMonth,
-                    "isChildMeasured":rowData.isChildMeasured,
-                    "measurementPlace": rowData.measurementPlace,
-                    "doctorComment": rowData.doctorComment,
-                    "didChildGetVaccines":rowData.didChildGetVaccines,
-                    "vaccineIds":rowData.vaccineIds})
+                    editMeasurementDate: rowData.dateToMilis,
+                    // editGrowthItem: ( {
+                    //   "uuid": rowData.uuid,
+                    // "weight": rowData.weight,
+                    // "height": rowData.height,
+                    // "measurementDate": rowData.dateToMilis,
+                    // "titleDateInMonth": rowData.titleDateInMonth,
+                    // "isChildMeasured":rowData.isChildMeasured,
+                    // "measurementPlace": rowData.measurementPlace,
+                    // "doctorComment": rowData.doctorComment,
+                    // "didChildGetVaccines":rowData.didChildGetVaccines,
+                    // "vaccineIds":rowData.vaccineIds
+                  // })
                   
                   })
                 }}>
