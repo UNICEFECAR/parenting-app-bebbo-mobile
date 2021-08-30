@@ -1,0 +1,1 @@
+declare module '@robinbobin/react-native-google-drive-api-wrapper';
