@@ -74,6 +74,7 @@ import analytics from '@react-native-firebase/analytics';
 import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import TakenVaccines from '@components/vaccination/TakenVaccines';
+import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 const AddChildVaccination = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const { headerTitle, vcPeriod, editGrowthItem ,editVaccineDate} = route.params;
@@ -659,12 +660,14 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={{ height: 40 }}
+                  maxLength={maxCharForRemarks}
                   clearButtonMode="always"
                   defaultValue={remarkTxt}
+                  multiline={true}
                   onChangeText={(text) => handleDoctorRemark(text)}
                   placeholder={t('vcDoctorRemarkPlaceHolder')}
                   allowFontScaling={false}
+                  
                 />
               </TextAreaBox>
             </FormContainer>
