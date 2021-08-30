@@ -29,7 +29,7 @@ import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setSyncDate } from '../redux/reducers/utilsSlice';
 import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
-import { apiJsonDataGet, getAge } from '../services/childCRUD';
+import { apiJsonDataGet, getAge, getAllChildren } from '../services/childCRUD';
 import { deleteArticleNotPinned } from '../services/commonApiService';
 
 type ChildSetupNavigationProp = StackNavigationProp<
