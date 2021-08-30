@@ -124,19 +124,21 @@ class Backup {
         }
         //const downloadres="dd";
         // Download file from GDrive
+        userRealmCommon.closeRealm();
         const downloadres = await googleDrive.downloadAndReadFile({
             fileId: backupFileId,
             filePath: RNFS.DocumentDirectoryPath + '/' + 'user.realm',
         });
-        console.log(downloadres, "..downloadres..")
-        try{
+        console.log(downloadres, "..downloadres..");
+        userRealmCommon.openRealm();
+        // try{
         if(downloadres && downloadres.statusCode==200){
         let allChildren=await getAllChildren(dispatch,child_age);
         console.log(allChildren,"..allChildren..")
         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
         let allChildrenList: Child[] = [];
         if (allChildren.length>0) {
-            allChildrenList = allChildren.map((child:any) => {
+           allChildren.map((child:any) => {
                 if (childId?.length > 0) {
                     childId = childId[0].value;
                     if (childId === child.uuid) {
@@ -165,13 +167,15 @@ class Backup {
                     return downloadres;
                 }
             });
-        };
-       
+        }
+        else{
+           return downloadres; 
+        }
         }  
-       
-    } catch (e) {
-        return new Error('file not downloaded..');
-    }
+      
+    // } catch (e) {
+    //     return new Error('file not downloaded..');
+    // }
         // Open user realm  
         // return downloadres;
     }

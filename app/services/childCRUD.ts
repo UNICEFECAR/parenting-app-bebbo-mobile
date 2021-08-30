@@ -604,8 +604,7 @@ export const getAllChildren = async (dispatch: any,child_age:any) => {
   if (allJsonDatanew?.length > 0) {
       childAllData = [];
       const p = allJsonDatanew.map(async (n:any) => {
-        // const value=await calc(n,child_age);
-        const value=n;
+        const value=await calc(n,child_age);
         console.log(value," returned value")
         childAllData.push(value);
         return value;

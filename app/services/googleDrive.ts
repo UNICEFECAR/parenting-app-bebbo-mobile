@@ -7,7 +7,7 @@ import {
   } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
 import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-import { PermissionsAndroid } from "react-native";
+import { PermissionsAndroid, Platform } from "react-native";
 const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
@@ -73,7 +73,8 @@ class GoogleDrive {
         })
     }
     private constructor() {
-        this.checkPermission();
+        
+       
      }
      public configureGetOptions(){
         const headers = new Headers()
@@ -94,6 +95,9 @@ class GoogleDrive {
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
      downloadAndReadFile = async (args:any) => {
+        if(Platform.OS=="android"){
+            this.checkPermission();
+        }
         const fromUrl = this.downloadFile(args.fileId)
         let downloadFileOptions:any = {
             fromUrl: fromUrl,
