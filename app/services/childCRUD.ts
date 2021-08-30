@@ -1,6 +1,6 @@
 import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { Dispatch } from '@reduxjs/toolkit';
-import { Alert, Platform, ToastAndroid } from 'react-native';
+import { Alert, PermissionsAndroid, Platform, ToastAndroid } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
@@ -534,6 +534,67 @@ export const calc = async (value:any,child_age:any) => {
   console.log(value,"after taxonomy");
   return value;
 };
+// async function requestWriteStoragePermission() {
+//   try {
+//       const granted = await PermissionsAndroid.request(
+//           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+//           {
+//               'title': 'Write your android storage Permission',
+//               'message': 'Write your android storage to save your data'
+//           }
+//       )
+//       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//           console.log("You can write storage")
+//       } else {
+//           console.log("Write Storage permission denied")
+//       }
+//   } catch (err) {
+//       console.warn(err)
+//   }
+// }
+
+
+/**
+* * require read storage permission
+*/
+// export const requestWriteStoragePermission=async ()=>{
+//   try {
+//     const granted:any = await PermissionsAndroid.request(
+//         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+//         {
+//             'title': 'Write your android storage Permission',
+//             'message': 'Write your android storage to save your data'
+//         }
+//     )
+//     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//         console.log("You can write storage")
+//     } else {
+//         console.log("Write Storage permission denied")
+//     }
+// } catch (err) {
+//     console.warn(err)
+// }
+// }
+
+// export const requestReadStoragePermission=async ()=>{
+//   try {
+//       const granted:any = await PermissionsAndroid.request(
+//           PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+//           {
+//               'title': 'Read your android storage Permission',
+//               'message': 'Read your android storage to save your data'
+//           }
+//       )
+//       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//           console.log("You can Read storage")
+//       } else {
+//           console.log("Read Storage permission denied")
+//       }
+//   } catch (err) {
+//       console.warn(err)
+//   }
+// }
+
 export const getAllChildren = async (dispatch: any,child_age:any) => {
   let databaselistener: any;
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
@@ -543,7 +604,8 @@ export const getAllChildren = async (dispatch: any,child_age:any) => {
   if (allJsonDatanew?.length > 0) {
       childAllData = [];
       const p = allJsonDatanew.map(async (n:any) => {
-        const value=await calc(n,child_age);
+        // const value=await calc(n,child_age);
+        const value=n;
         console.log(value," returned value")
         childAllData.push(value);
         return value;
