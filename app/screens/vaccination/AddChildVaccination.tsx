@@ -1,3 +1,4 @@
+import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -11,9 +12,7 @@ import {
 import {
   FormContainer,
   FormContainerFlex,
-  FormDateAction,
-  FormDateText,
-  FormDateText1,
+  FormDateAction, FormDateText1,
   FormInputBox,
   FormInputGroup,
   FormInputText,
@@ -41,7 +40,9 @@ import {
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
+import TakenVaccines from '@components/vaccination/TakenVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import analytics from '@react-native-firebase/analytics';
 import {
   Heading2,
   Heading3,
@@ -55,6 +56,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -68,20 +70,16 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
-import { formatStringDate } from '../../services/Utils';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import analytics from '@react-native-firebase/analytics';
-import { GROWTH_MEASUREMENT_ADDED, VACCINE_ADDED } from '@assets/data/firebaseEvents';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
-import TakenVaccines from '@components/vaccination/TakenVaccines';
+import { formatStringDate } from '../../services/Utils';
 const AddChildVaccination = ({ route, navigation }: any) => {
   const { t } = useTranslation();
-  const { headerTitle, vcPeriod, editGrowthItem ,editVaccineDate} = route.params;
+  const { headerTitle, vcPeriod, editVaccineDate} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
   const [measureDate, setmeasureDate] = useState<DateTime>(
-    editGrowthItem ? editGrowthItem.measurementDate : null,
+    editVaccineDate ? editVaccineDate : null,
   );
   const deleteVaccination = async()=>{
     if(editVaccineDate){
@@ -160,27 +158,15 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const [prevPlannedVaccine, setPrevPlannedVaccine] = useState([]);
   const [takenVaccine, setTakenVaccine] = useState([]);
   const [takenVaccineForPrevPeriod, setTakenVaccineForPrevPeriod] = useState([]);
-  const [weightValue, setWeightValue] = useState(
-    editGrowthItem ? editGrowthItem.weight : 0,
-  );
-  const [heightValue, setHeightValue] = useState(
-    editGrowthItem ? editGrowthItem.height : 0,
-  );
-  const [remarkTxt, handleDoctorRemark] = useState<string>(
-    editGrowthItem ? editGrowthItem.doctorComment : '',
-  );
-  const [updateduuid, setUpdateduuid] = useState<string>(
-    editGrowthItem ? editGrowthItem.uuid : uuidv4(),
-  );
+  const [weightValue, setWeightValue] = useState(0);
+  const [heightValue, setHeightValue] = useState(0);
+  const [remarkTxt, handleDoctorRemark] = useState<string>('');
   const isMeasuredOptions = [
     { title: t('vcIsMeasuredOption1') },
     { title: t('vcIsMeasuredOption2') },
   ];
   // const defaultMeasured = {title: ''};
   const [defaultMeasured, setDefaultMeasured] = useState<any>();
-  // editGrowthItem
-  // ? editGrowthItem.isChildMeasured ?{ title:isMeasuredOptions[0]} : {title:isMeasuredOptions[1]}
-  // :
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const handleMeasureConfirm = (event: any) => {
@@ -212,10 +198,32 @@ const AddChildVaccination = ({ route, navigation }: any) => {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
       setDateTouched(true);
       if (editVaccineDate) {
+        setShowDelete(true)
         console.log('in editVaccineDate')
-        //form edit not allowed
-        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
+        //form edit not allowed 
+        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(selectedDate)), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(selectedDate)), activeChild)) {
+          // Measure data is already available for this date, you can not select this date
+          Alert.alert(t('alertForModifyMeasures'),
+            t('alertForExistingMeasuresTitle'),
+            [
+              {
+                text: t('alertForModifyMeasuresOk'),
+                onPress: () => {
+                  setmeasureDate(editVaccineDate)
+                },
+                style: "cancel",
+              },
+            ],
+            {
+              cancelable: false,
+              // onDismiss: () =>
+              //   Alert.alert(
+              //     "This alert was dismissed by tapping outside of the alert dialog."
+              //   ),
+            })
 
+        }else{
+          //allow editing measuredate
         }
       } else {
         if (isGrowthMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
@@ -262,15 +270,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               //   ),
             })
         } else {
-          setWeightValue(0);
-          setHeightValue(0);
-          handleDoctorRemark('');
-          setIsMeasured(false);
-          setDefaultMeasured(null);
-          setTakenVaccine([]);
-          setTakenVaccineForPrevPeriod([])
-          setShowDelete(false)
-          //change title to add and remove delete
+          //this is first time add vaccination date selection
         }
       }
     }
@@ -294,8 +294,16 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     }
   }, [route.params?.weight, route.params?.height]);
   const isFormDisabled = () => {
+    console.log(plannedVaccine,prevPlannedVaccine,takenVaccine,"vac")
     if (measureDate) {
-      if (plannedVaccine.length > 0 || prevPlannedVaccine.length > 0 || takenVaccine.length > 0) {
+      console.log("here")
+      const modifiedTakenVaccines = takenVaccine.filter(
+        item => item['isMeasured'] == true
+      ).map(({ uuid }) => ({ uuid }))
+      console.log(modifiedTakenVaccines,"modifiedTakenVaccines isFormDisabled");
+      let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
+      console.log(allVaccines,"allVaccines isFormDisabled")
+      if (allVaccines.length > 0) {
         if (isMeasured) {
           if (heightValue && weightValue) {
             return false;
@@ -320,19 +328,19 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     console.log(checkedVaccineArray, "onTakenVaccineToggle");
     setTakenVaccine(checkedVaccineArray);
     setTakenVaccineForPrevPeriod(checkedVaccineArray);
-    if (checkedVaccineArray.every((el) => {
-      return el?.isMeasured == false;
-    })) {
-      setmeasureDate(null)
-      setTakenVaccine([]);
-      setTakenVaccineForPrevPeriod([])
-      setWeightValue(0);
-      setHeightValue(0);
-      handleDoctorRemark('');
-      setIsMeasured(false);
-      setDefaultMeasured(null);
-      setShowDelete(false)
-    }
+    // if (checkedVaccineArray.every((el) => {
+    //   return el?.isMeasured == false;
+    // })) {
+    //   setmeasureDate(null)
+    //   setTakenVaccine([]);
+    //   setTakenVaccineForPrevPeriod([])
+    //   setWeightValue(0);
+    //   setHeightValue(0);
+    //   handleDoctorRemark('');
+    //   setIsMeasured(false);
+    //   setDefaultMeasured(null);
+    //   setShowDelete(false)
+    // }
   };
   const onPrevPlannedVaccineToggle = (checkedVaccineArray: any) => {
     console.log(checkedVaccineArray);
@@ -340,7 +348,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   };
   const saveChildMeasures = async () => {
     const modifiedTakenVaccines = takenVaccine.filter(
-      item => item['isMeasured'] == true
+      item => item['isMeasured']  == true
     ).map(({ uuid }) => ({ uuid }))
     console.log(modifiedTakenVaccines);
     let allVaccines: any = [...plannedVaccine, ...prevPlannedVaccine, ...modifiedTakenVaccines];
@@ -355,89 +363,127 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     //  return {v.measurementDate =measureDate?.toMillis()}
     // });
     // console.log(allVaccines, 'after measureDateUpdate');
-    const measurementDateParam = editGrowthItem
+    const measurementDateParam = editVaccineDate
       ? dateTouched
         ? measureDate?.toMillis()
-        : editGrowthItem.measurementDate
+        : editVaccineDate
       : measureDate?.toMillis();
-    const titleDateInMonthParam = editGrowthItem
+    const titleDateInMonthParam = editVaccineDate
       ? dateTouched
         ? measureDate.toFormat('MM')
-        : editGrowthItem.titleDateInMonth
+        : measureDate.toFormat('MM')
       : measureDate.toFormat('MM');
-
-    let updateItem = activeChild?.measures.find((item) => {
-      // console.log(item.measurementDate);
-      // console.log(DateTime.fromJSDate(new Date(item.measurementDate)).diff(DateTime.fromJSDate(new Date(measureDate)), 'days').toObject().days);
-      return item
-        ? Math.round(
-          DateTime.fromJSDate(new Date(item.measurementDate))
-            .diff(DateTime.fromJSDate(new Date(measureDate)), 'days')
-            .toObject().days,
-        ) == 0
-        : null;
-    });
-    // if date difference is 0 then update else create new
-    console.log(updateItem);
-    if (updateItem != null) {
-      console.log(updateItem.uuid, 'updatethisitem');
-
-      const growthValues = {
-        uuid: updateItem.uuid,
-        isChildMeasured: isMeasured,
-        weight: String(weightValue),
-        height: String(heightValue),
-        measurementDate: measurementDateParam,
-        titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: allVaccines.length > 0 ? true : false,
-        vaccineIds: JSON.stringify(allVaccines),
-        doctorComment: remarkTxt,
-        measurementPlace: 0,
-      };
-      console.log(growthValues);
-      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-        ChildEntitySchema,
-        growthValues,
-        'uuid ="' + activeChild.uuid + '"',
-      );
-      console.log(createresult);
-      if (createresult?.length > 0) {
-        activeChild.measures = createresult;
-        dispatch(setActiveChildData(activeChild));
-      }
-      // setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-      navigation.goBack();
-    } else {
-      const growthValues = {
-        uuid: updateduuid,
-        isChildMeasured: isMeasured,
-        weight: String(weightValue),
-        height: String(heightValue),
-        measurementDate: measurementDateParam,
-        titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: allVaccines.length > 0 ? true : false,
-        vaccineIds: JSON.stringify(allVaccines),
-        doctorComment: remarkTxt,
-        measurementPlace: 0, // vaccination happens at doctor's place
-      };
-      console.log(growthValues, "ADD_VACCINATION");
-      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-        ChildEntitySchema,
-        growthValues,
-        'uuid ="' + activeChild.uuid + '"',
-      );
-      console.log(createresult);
-      if (createresult?.length > 0) {
-        activeChild.measures = createresult;
-        dispatch(setActiveChildData(activeChild));
-        if (isMeasured) {
-          analytics().logEvent(GROWTH_MEASUREMENT_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
+      if(allVaccines.length == 0){
+        Alert.alert(t('alertForModifyMeasures'),
+            t('alertForNoTakenVaccinesSelectTitle'),
+            [
+              {
+                text: t('alertForModifyMeasuresOk'),
+                onPress: () => {
+                  setmeasureDate(editVaccineDate)
+                },
+                style: "cancel",
+              },
+            ],
+            {
+              cancelable: false,
+              // onDismiss: () =>
+              //   Alert.alert(
+              //     "This alert was dismissed by tapping outside of the alert dialog."
+              //   ),
+            })
+      }else{
+      if (editVaccineDate) {
+        const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)
+        // if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)) {
+          // existingMeasure.uuid
+          const growthValues = {
+            uuid: existingMeasure.uuid,
+            isChildMeasured: isMeasured,
+            weight: String(weightValue),
+            height: String(heightValue),
+            measurementDate: measurementDateParam,
+            titleDateInMonth: titleDateInMonthParam.toString(),
+            didChildGetVaccines: allVaccines.length > 0 ? true : false,
+            vaccineIds: allVaccines.length > 0 ? JSON.stringify(allVaccines):'',
+            doctorComment: remarkTxt,
+            measurementPlace: 0,
+          };
+          console.log(growthValues, 'updateInDeleteMeasure');
+          let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+            ChildEntitySchema,
+            growthValues,
+            'uuid ="' + activeChild.uuid + '"',
+          );
+          console.log(updateresult, '..updateresult..');
+          //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+          if (updateresult?.length > 0) {
+            activeChild.measures = updateresult;
+            dispatch(setActiveChildData(activeChild));
+            setModalVisible(false);
+          }
+          navigation.goBack();
+        // }
+      } else{
+        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
+          const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
+          console.log(existingMeasure, "inEdit");
+  
+          const growthValues = {
+            uuid: existingMeasure.uuid,
+            isChildMeasured: isMeasured,
+            weight: String(weightValue),
+            height: String(heightValue),
+            measurementDate: measurementDateParam,
+            titleDateInMonth: titleDateInMonthParam.toString(),
+            didChildGetVaccines: allVaccines.length > 0 ? true : false,
+            vaccineIds: allVaccines.length > 0 ? JSON.stringify(allVaccines):'',
+            doctorComment: remarkTxt,
+            measurementPlace: 0,
+          };
+          console.log(growthValues);
+          let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+            ChildEntitySchema,
+            growthValues,
+            'uuid ="' + activeChild.uuid + '"',
+          );
+          console.log(createresult, '..createresult..');
+          //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+          if (createresult?.length > 0) {
+            activeChild.measures = createresult;
+            dispatch(setActiveChildData(activeChild));
+          }
+          navigation.goBack();
+  
+        } else {
+          const growthValues = {
+            uuid: uuidv4(),
+            isChildMeasured: isMeasured,
+            weight: String(weightValue),
+            height: String(heightValue),
+            measurementDate: measurementDateParam,
+            titleDateInMonth: titleDateInMonthParam.toString(),
+            didChildGetVaccines: allVaccines.length > 0 ? true : false,
+            vaccineIds: JSON.stringify(allVaccines),
+            doctorComment: remarkTxt,
+            measurementPlace: 0,
+          };
+          console.log(growthValues, 'addthisitem');
+          let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+            ChildEntitySchema,
+            growthValues,
+            'uuid ="' + activeChild.uuid + '"',
+          );
+          console.log(createresult, '..createresult..');
+          if (createresult?.length > 0) {
+            activeChild.measures = createresult;
+            dispatch(setActiveChildData(activeChild));
+            analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, measured_at: 'doctor' })
+          }
+          //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+          navigation.goBack();
         }
-        analytics().logEvent(VACCINE_ADDED, { age_id: activeChild?.taxonomyData?.id, vaccine_id: allVaccines })
-
       }
-      // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
-      navigation.goBack();
     }
   };
   return (
@@ -500,7 +546,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                       <DateTimePicker
                         testID="measureDatePicker"
                         value={
-                          editGrowthItem ? new Date(measureDate) : new Date()
+                          editVaccineDate ? new Date(editVaccineDate) : new Date()
                         }
                         mode={'date'}
                         display="default"
@@ -531,7 +577,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                       isVisible={isMeasureDatePickerVisible}
                       mode="date"
                       onConfirm={handleMeasureConfirm}
-                      date={editGrowthItem ? new Date(measureDate) : new Date()}
+                      date={editVaccineDate ? new Date(editVaccineDate) : new Date()}
                       onCancel={() => {
                         // Alert.alert('Modal has been closed.');
                         setMeasureDatePickerVisibility(false);
