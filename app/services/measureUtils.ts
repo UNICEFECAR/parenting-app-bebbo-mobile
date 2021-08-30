@@ -17,6 +17,7 @@ export const isVaccineMeasureExistForDate = (selectedMeasureDate,activeChild) =>
     })
     return filteredMeasures.length > 0 ? true : false
 }
+
 export const getMeasuresForDate = (measureDate,activeChild)=>{
   return  activeChild?.measures.find(measureitem=>Math.round(DateTime.fromMillis(measureitem.measurementDate).diff((measureDate), "days").days) == 0 )
 }
