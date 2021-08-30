@@ -265,7 +265,7 @@ useFocusEffect(() => {
     setLoadingArticle(value);
   }
   //code for getting article dynamic data ends here.
-const searchList=async (queryText)=>{
+const searchList=async (queryText:any)=>{
   console.log(queryText,"..queryText")
   setLoadingArticle(true);
   const currentChildData = {
@@ -310,8 +310,9 @@ const searchList=async (queryText)=>{
                   searchQueryText(queryText);
                 }}
                 value={queryText}
-                onSubmitEditing = {(event) =>{
-                  searchQueryText(queryText)
+                onSubmitEditing = {async (event) =>{
+                  console.log("11")
+                  const data=await searchList(queryText)
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
@@ -323,8 +324,8 @@ const searchList=async (queryText)=>{
               />
                     <OuterIconRow>
                 <OuterIconRight15>
-                <Pressable onPress={() => {
-                 searchList(queryText)
+                <Pressable onPress={async () => {
+                 const data=await searchList(queryText)
                 }}>
                 <Icon
                 name="ic_search"
