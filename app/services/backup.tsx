@@ -122,57 +122,58 @@ class Backup {
         if (!backupFileId) {
             return new Error("..Error coming..");
         }
-
+        //const downloadres="dd";
         // Download file from GDrive
-        const downloadres = await googleDrive.download({
+        const downloadres = await googleDrive.downloadAndReadFile({
             fileId: backupFileId,
             filePath: RNFS.DocumentDirectoryPath + '/' + 'user.realm',
         });
-        console.log(downloadres,"..downloadres..")
-        // Open user realm
-        await userRealmCommon.openRealm();
+        console.log(downloadres, "..downloadres..")
+        try{
+        if(downloadres && downloadres.statusCode==200){
         let allChildren=await getAllChildren(dispatch,child_age);
         console.log(allChildren,"..allChildren..")
         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
         let allChildrenList: Child[] = [];
-        if (allChildren) {
-            allChildrenList = allChildren?.map((child:any) => {
-                let birthDay = child.birthDate ?
-                    DateTime.fromJSDate(child.birthDate).toFormat("dd'.'MM'.'yyyy") : "";
-                let imgUrl = child.photoUri ? addPrefixForAndroidPaths(`${RNFS.DocumentDirectoryPath}/${child.photoUri}`) : null;
-                let isCurrentActive = false;
+        if (allChildren.length>0) {
+            allChildrenList = allChildren.map((child:any) => {
                 if (childId?.length > 0) {
                     childId = childId[0].value;
                     if (childId === child.uuid) {
                         setActiveChild(langCode, child.uuid, dispatch, child_age);
-                        isCurrentActive = true;
+                        navigation.navigate('LoadingScreen', {
+                            apiJsonData:[], 
+                            prevPage: 'ImportScreen'
+                        });
+                        return downloadres;
                     }
-                };
-console.log({
-    childId: child.uuid,
-    birthDay: birthDay,
-    name: child.name,
-    photo: imgUrl,
-    gender: child.gender,
-    isCurrentActive: isCurrentActive,
-    id: child.uuid,
-},"1111")
-                return {
-                    childId: child.uuid,
-                    birthDay: birthDay,
-                    name: child.name,
-                    photo: imgUrl,
-                    gender: child.gender,
-                    isCurrentActive: isCurrentActive,
-                    id: child.uuid,
-                };
+                    else{
+                        setActiveChild(langCode,'', dispatch, child_age);
+                        navigation.navigate('LoadingScreen', {
+                            apiJsonData:[], 
+                            prevPage: 'ImportScreen'
+                        });
+                        return downloadres;
+                    }
+                }
+                else{
+                    setActiveChild(langCode,'', dispatch, child_age);
+                    navigation.navigate('LoadingScreen', {
+                        apiJsonData:[], 
+                        prevPage: 'ImportScreen'
+                    });
+                    return downloadres;
+                }
             });
         };
-        navigation.navigate('LoadingScreen', {
-            apiJsonData:[], 
-            prevPage: 'ImportScreen'
-        });
-        return;
+       
+        }  
+       
+    } catch (e) {
+        return new Error('file not downloaded..');
+    }
+        // Open user realm  
+        // return downloadres;
     }
 }
 

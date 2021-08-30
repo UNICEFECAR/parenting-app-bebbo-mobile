@@ -6,20 +6,115 @@ import {
     ListQueryBuilder
   } from "@robinbobin/react-native-google-drive-api-wrapper";
 import { googleAuth } from "./googleAuth";
-import { DownloadResult } from "react-native-fs";
-import RNFS from 'react-native-fs';
 import { backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
-const _urlFiles = "https://www.googleapis.com/drive/v3/files";
+import { PermissionsAndroid } from "react-native";
+const _urlFiles = "https://www.googleapis.com/drive/v3";
 const FILE_METADATA_FIELDS = 'id,name,mimeType,kind,parents,trashed,version,originalFilename,fileExtension';
 const gdrive = new GDrive();
+import RNFS from 'react-native-fs';
 /**
  * Access Google drive API.
  */
+ async function requestWriteStoragePermission() {
+    try {
+        const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+            {
+                'title': 'Write your android storage Permission',
+                'message': 'Write your android storage to save your data'
+            }
+        )
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log("You can write storage")
+        } else {
+            console.log("Write Storage permission denied")
+        }
+    } catch (err) {
+        console.warn(err)
+    }
+}
+
+
+/**
+ * * require read storage permission
+ */
+async function requestReadStoragePermission() {
+    try {
+        const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+            {
+                'title': 'Read your android storage Permission',
+                'message': 'Read your android storage to save your data'
+            }
+        )
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log("You can Read storage")
+        } else {
+            console.log("Read Storage permission denied")
+        }
+    } catch (err) {
+        console.warn(err)
+    }
+}
 class GoogleDrive {
     private static instance: GoogleDrive;
+    checkPermission = () => {
+        PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted) => {
+            console.log('writeGranted', writeGranted)
+            if (!writeGranted) {
+                requestWriteStoragePermission()
+            }
+            PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted) => {
+                console.log('readGranted', readGranted)
+                if (!readGranted) {
+                    requestReadStoragePermission()
+                }
+            })
+        })
+    }
+    private constructor() {
+        this.checkPermission();
+     }
+     public configureGetOptions(){
+        const headers = new Headers()
+        headers.append('Authorization', `Bearer ${gdrive.apiToken}`)
+        return {
+            method: 'GET',
+            headers,
+        }
+    }
+    
+    /**
+     * create download url based on id
+     */
+     public downloadFile=(fileId:any)=>{
+        const options = this.configureGetOptions()
+        console.log(fileId)
+        if (!fileId) throw new Error('Didn\'t provide a valid file id.')
+        return `${_urlFiles}/files/${fileId}?alt=media`
+    }
+     downloadAndReadFile = async (args:any) => {
+        const fromUrl = this.downloadFile(args.fileId)
+        let downloadFileOptions:any = {
+            fromUrl: fromUrl,
+            toFile: args.filePath,
+        }
+        downloadFileOptions.headers = Object.assign({
+            "Authorization": `Bearer ${gdrive.accessToken}`
+        }, downloadFileOptions.headers);
 
-    private constructor() { }
-
+        console.log('downloadFileOptions', downloadFileOptions)
+        let fileresult= RNFS.downloadFile(downloadFileOptions);
+        let downloadResult = await fileresult.promise;
+        return downloadResult;
+        // RNFS.downloadFile(downloadFileOptions).promise.then((res: any) => {
+        //     console.log(res,"..res");
+        //     return "success";
+        // }).catch((err: any) => {
+        //     console.log('error', err)
+        //     return "2error";
+        // });
+    }
     static getInstance(): GoogleDrive {
         if (!GoogleDrive.instance) {
             GoogleDrive.instance = new GoogleDrive();
@@ -339,40 +434,6 @@ class GoogleDrive {
     /**
      * Download GDrive file to given local path.
      */
-     public async download(args: DownloadArgs): Promise<string | Error> {
-        // Set Google access token
-        const isAccessTokenSet = await this.setAccessToken();
-        if (!isAccessTokenSet) {
-            return new ErrorAccessTokenNotSet();
-        }
-
-        // Download file
-        try {
-            let response: { jobId: number, promise: Promise<DownloadResult> } =await gdrive.files.download(
-                // File ID
-                args.fileId,
-
-                // Download file options: https://bit.ly/2S5CeEu
-                {
-                    toFile: args.filePath
-                },
-
-                // Query params
-                {},
-            );
-
-            let downloadResult = await response.promise;
-console.log(downloadResult,"..11downloadResult")
-            if (downloadResult.statusCode === 200) {
-                console.log(args.filePath,"..args.filePat..")
-                return args.filePath;
-            } else {
-                return new Error('File was not downloaded');
-            }
-        } catch (e) {
-            return new Error('Could not download file');
-        }
-    }
 }
 
 class ErrorAccessTokenNotSet extends Error {

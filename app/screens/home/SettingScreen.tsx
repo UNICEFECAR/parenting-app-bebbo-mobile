@@ -67,6 +67,11 @@ import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { addPrefixForAndroidPaths, getAllChildren, setActiveChild } from '../../services/childCRUD';
+import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { setAllChildData } from '../../redux/reducers/childSlice';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -107,17 +112,12 @@ const SettingScreen = (props: any) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const importAllData=async ()=>{
+    console.log(userRealmCommon.realm?.path,"..path")
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
     const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age);
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
-    console.log(importResponse,"..importResponse")
-    if (importResponse instanceof Error) {
-       console.log(importResponse.message,"..importResponse.message..");
-    } else {
-      console.log("..success..");
-    }
 }
 
 const exportFile=async ()=>{
