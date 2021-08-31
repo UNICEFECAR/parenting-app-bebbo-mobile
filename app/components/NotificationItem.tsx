@@ -26,10 +26,12 @@ const NotificationItem = (props:any) => {
   // console.log(item,itemIndex);
   const isDeleteEnabled = props.isDeleteEnabled;  
   const themeContext = useContext(ThemeContext);
+  const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const geticonname = (type: string) => {
+    // console.log(type)
     return type == 'growth'
       ? 'ic_growth'
       : type == 'development'
@@ -60,15 +62,27 @@ const NotificationItem = (props:any) => {
       : type == 'development'
       ? navigation.navigate('Home', {screen: 'ChildDevelopment'})
       : type == 'vaccination'
-      ? navigation.navigate('AddChildVaccination', {
-          headerTitle: t('growthScreeneditNewBtntxt'),
-        })
+      ?  navigation.navigate('Home', {
+        screen: 'Tools',
+        params: {
+          screen: 'VaccinationTab',
+        },
+      })
       : type == 'healthchkp'
-      ? navigation.navigate('AddChildHealthCheckup', {
-          headerTitle: t('growthScreeneditNewBtntxt'),
-        })
+      ? navigation.navigate('AddReminder', {
+        reminderType: 'healthCheckup', // from remiderType
+        headerTitle: t('vcReminderHeading'),
+        buttonTitle: t('hcReminderAddBtn'),
+        titleTxt: t('hcReminderText'),
+        warningTxt: t('hcReminderDeleteWarning'),
+        headerColor: hcheaderColor,
+      })
       : '';
   };
+  const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
+  const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
+  const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
+  const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const {t} = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   return (
@@ -76,7 +90,7 @@ const NotificationItem = (props:any) => {
   <NotificationListContainer>
     <FlexDirRowStart>
         <NotifIcon style={{
-              backgroundColor: item.bgColor,
+              backgroundColor: item.type == 'growth' ? growthColor : item.type == 'development' ? cdColor : item.type == 'vaccination' ? vaccinationColor : item.type == 'healthchkp' ? hkColor : '#fff',
             }}>
           
           <Icon
@@ -89,7 +103,7 @@ const NotificationItem = (props:any) => {
         <NotifiContent>
         <Heading4Regular>{item.title}</Heading4Regular>
         <ShiftFromTop5>
-        <Heading6>{item.timeStamp}</Heading6>
+        <Heading6>{item.days_from},{item.days_to}</Heading6>
         </ShiftFromTop5>
         <ShiftFromTop10>
         <Pressable onPress={() => gotoPage(item.type)}>
