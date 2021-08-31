@@ -17,6 +17,9 @@ import { appConfig, isArticlePinned } from "../assets/translations/appOfflineDat
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
+import { ChildEntity } from "../database/schema/ChildDataSchema";
+import { CHILDREN_PATH } from "@types/types";
+import RNFS from 'react-native-fs';
 const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
@@ -269,6 +272,7 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
     /**
      * Get YouTube video ID from given url.
      */
+    
     export const  getYoutubeId = (url: string): string => {
         let rval: string = url;
 
@@ -312,5 +316,52 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
 
         return rval;
     }
+const isAnyKeyValueFalse = (o: { [x: string]: any; }) => !!Object.keys(o).find(k => !o[k]);
 
- 
+//child data get
+export const getChild = async (child:any,genders:any) => {
+    const photoUri=await RNFS.exists(CHILDREN_PATH + child.photoUri);
+    console.log(photoUri,"..photoUri..");
+    console.log(child,"..childname..");
+    console.log("name" in child,"..child.hasOwnProperty..");
+    //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
+    const childName:any=("name" in child)=== true  ? child.name : ("childName" in child)=== true ? child.childName : ""
+    console.log(childName,"..childname..");
+    let genderValue:any=child.gender;
+    console.log(typeof genderValue,"..typeof genderValue")
+    if (typeof genderValue === 'string' || genderValue instanceof String){
+    console.log(typeof genderValue,"..11typeof genderValue")
+        // console.log(genders.find((genderset:any) => genderset.name == child.gender).id,"/idset");
+    if(genders.length>0 && genderValue!=""){
+     genderValue= genders.find((genderset) => genderset.name.toLowerCase() == child.gender.toLowerCase()).id
+    }
+    else{
+     genderValue=0;
+    }
+    console.log(genderValue,"..22typeof genderValue")   
+    }
+    console.log(genderValue,"..genderValue..");        
+    //child.isExpected?child.isExpected:"false"
+    //mayur
+    return {
+      uuid: child.uuid,
+      childName: childName,
+      gender: genderValue,
+      photoUri: photoUri?child.photoUri:"",
+      createdAt: child.createdAt,
+      updatedAt: child.updatedAt,
+      plannedTermDate: child.plannedTermDate,
+      birthDate: child.birthDate,
+      babyRating:child.babyRating,
+      //mayur
+      measures: [],
+      comment: child.comment,
+      checkedMilestones:child.checkedMilestones,
+      //mayur
+      reminders: [],
+      isMigrated:true,
+      isPremature:'false', //calcualte if its premature or not?
+      isExpected:'false'
+      //relationship:''
+     };
+  }
