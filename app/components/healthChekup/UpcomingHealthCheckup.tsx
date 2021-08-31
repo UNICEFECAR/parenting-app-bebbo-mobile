@@ -91,7 +91,7 @@ const UpcomingHealthCheckup = (props: any) => {
   );
   let reminders = activeChild.reminders;
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
-  let hcReminder;
+  let hcReminder:any;
   const healthCheckupReminders = reminders.filter(
     (item) => item?.reminderType == 'healthCheckup',
   );
