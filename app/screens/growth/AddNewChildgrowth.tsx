@@ -316,49 +316,49 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         // allow adding growth values for that vaccine measure
 
         const growthValues = {
-              uuid: existingMeasure.uuid,
-              isChildMeasured: false,
-              weight: "",
-              height: "",
-              measurementDate: measurementDateParam,
-              titleDateInMonth: titleDateInMonthParam.toString(),
-              didChildGetVaccines: existingMeasure.didChildGetVaccines,
-              vaccineIds: existingMeasure.vaccineIds,
-              doctorComment: "",
-              measurementPlace: existingMeasure.measurementPlace,
-            };
-            console.log(growthValues, 'updateInDeleteMeasure');
-            let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-              ChildEntitySchema,
-              growthValues,
-              'uuid ="' + activeChild.uuid + '"',
-            );
-            console.log(updateresult, '..updateresult..');
-            //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-            if (updateresult?.length > 0) {
-              activeChild.measures = updateresult;
-              dispatch(setActiveChildData(activeChild));
-              setModalVisible(false);
-            }
-            navigation.goBack();
+          uuid: existingMeasure.uuid,
+          isChildMeasured: false,
+          weight: "",
+          height: "",
+          measurementDate: measurementDateParam,
+          titleDateInMonth: titleDateInMonthParam.toString(),
+          didChildGetVaccines: existingMeasure.didChildGetVaccines,
+          vaccineIds: existingMeasure.vaccineIds,
+          doctorComment: "",
+          measurementPlace: existingMeasure.measurementPlace,
+        };
+        console.log(growthValues, 'updateInDeleteMeasure');
+        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(updateresult, '..updateresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (updateresult?.length > 0) {
+          activeChild.measures = updateresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
 
         console.log("in else only if vaccines exist")
       } else {
         // delete measure
-         //delete measure obj
-      let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
-        ChildEntitySchema,
-        existingMeasure,
-        'uuid ="' + activeChild.uuid + '"',
-      );
-      console.log(deleteresult, '..deleteresult..');
-      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-      if (deleteresult) {
-        activeChild.measures = deleteresult;
-        dispatch(setActiveChildData(activeChild));
-        setModalVisible(false);
-      }
-      navigation.goBack();
+        //delete measure obj
+        let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          existingMeasure,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(deleteresult, '..deleteresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (deleteresult) {
+          activeChild.measures = deleteresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        navigation.goBack();
       }
     } else {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
@@ -431,32 +431,86 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
     if (editMeasurementDate) {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
       console.log(existingMeasure, "inEdit");
-
-      const growthValues = {
-        uuid: existingMeasure.uuid,
-        isChildMeasured: true,
-        weight: String(weightValue),
-        height: String(heightValue),
-        measurementDate: measurementDateParam,
-        titleDateInMonth: titleDateInMonthParam.toString(),
-        didChildGetVaccines: existingMeasure.didChildGetVaccines,
-        vaccineIds: existingMeasure.vaccineIds,
-        doctorComment: remarkTxt,
-        measurementPlace: measurePlace,
-      };
-      console.log(growthValues);
-      let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
-        ChildEntitySchema,
-        growthValues,
-        'uuid ="' + activeChild.uuid + '"',
-      );
-      console.log(createresult, '..createresult..');
-      //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
-      if (createresult?.length > 0) {
-        activeChild.measures = createresult;
-        dispatch(setActiveChildData(activeChild));
+      // if editMeasurementDate is not existingMeasure.mesurementDate , then remove growth from existingMeasure and add it to newMeasure
+      if (editMeasurementDate != measureDate.toMillis() && existingMeasure.didChildGetVaccines == true) {
+        const growthValues = {
+          uuid: uuidv4(),
+          isChildMeasured: true,
+          weight: String(weightValue),
+          height: String(heightValue),
+          measurementDate: measurementDateParam,
+          titleDateInMonth: titleDateInMonthParam.toString(),
+          didChildGetVaccines: false,
+          vaccineIds: '',
+          doctorComment: remarkTxt,
+          measurementPlace: measurePlace,
+        };
+        console.log(growthValues, 'add new SaveMeasure');
+        let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(updateresult, '..updateresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (updateresult?.length > 0) {
+          activeChild.measures = updateresult;
+          dispatch(setActiveChildData(activeChild));
+          setModalVisible(false);
+        }
+        const growthValuesForVaccineMeasured = {
+          uuid: existingMeasure.uuid,
+          isChildMeasured: false,
+          weight: '',
+          height: '',
+          measurementDate: existingMeasure.measurementDate,
+          titleDateInMonth: existingMeasure.titleDateInMonth,
+          didChildGetVaccines: existingMeasure.didChildGetVaccines,
+          vaccineIds: existingMeasure.vaccineIds,
+          doctorComment: existingMeasure.doctorComment,
+          measurementPlace: existingMeasure.measurementPlace,
+        };
+        console.log(growthValues);
+        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValuesForVaccineMeasured,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult, '..createresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (createresult?.length > 0) {
+          activeChild.measures = createresult;
+          dispatch(setActiveChildData(activeChild));
+        }
+        navigation.goBack();
+      } else {
+        const growthValues = {
+          uuid: existingMeasure.uuid,
+          isChildMeasured: true,
+          weight: String(weightValue),
+          height: String(heightValue),
+          measurementDate: measurementDateParam,
+          titleDateInMonth: titleDateInMonthParam.toString(),
+          didChildGetVaccines: existingMeasure.didChildGetVaccines,
+          vaccineIds: existingMeasure.vaccineIds,
+          doctorComment: remarkTxt,
+          measurementPlace: measurePlace,
+        };
+        console.log(growthValues);
+        let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
+          ChildEntitySchema,
+          growthValues,
+          'uuid ="' + activeChild.uuid + '"',
+        );
+        console.log(createresult, '..createresult..');
+        //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
+        if (createresult?.length > 0) {
+          activeChild.measures = createresult;
+          dispatch(setActiveChildData(activeChild));
+        }
+        navigation.goBack();
       }
-      navigation.goBack();
+
     } else {
 
       if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
