@@ -1,14 +1,17 @@
+import { articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import { BgSecondaryTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import { useFocusEffect } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { setDailyArticleGamesCategory } from '../../redux/reducers/articlesSlice';
 
 
 const DATA = [
@@ -46,7 +49,12 @@ const DATA = [
 
 const DailyReads = () => {
   const {t} = useTranslation();
-  const renderDailyReadItem = (item: typeof DATA[0], index: number) => {
+  const dispatch = useAppDispatch();
+  const articleDataall = useAppSelector(
+    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
+  const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
+  const RenderDailyReadItem = React.memo(({item, index}) => {
     return (
       <View>
       <DailyBox key={index}>
@@ -88,8 +96,44 @@ const DailyReads = () => {
       </DailyBox>
       </View>
     );
-  };
+  });
+  const ActivitiesData = useAppSelector(
+    (state: any) =>
+      state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
+  );
+  const activityCategoryArray = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
+  );
+  const dailyDataCategory = useAppSelector(
+    (state: any) => state.articlesData.dailyDataCategory,
+  );
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log(dailyDataCategory,"--articleCategoryArray--",articleCategoryArray);
+      // console.log(articleData,"--activityCategoryData--",ActivitiesData);
 
+      if(dailyDataCategory){
+        const currentIndex = articleCategoryArray.findIndex((_item: any) => _item === dailyDataCategory.advice);
+        const nextIndex = (currentIndex + 1) % articleCategoryArray.length;
+        const categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArray[nextIndex]);
+        console.log(categoryArticleData,"--arr--",articleCategoryArray[nextIndex]);
+        const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
+        console.log("articleDataToShow---",articleDataToShow);
+
+        const currentIndex2 = activityCategoryArray.findIndex((_item: any) => _item.id === dailyDataCategory.games);
+        const nextIndex2 = (currentIndex2 + 1) % activityCategoryArray.length;
+        const categoryActivityData = ActivitiesData.filter((x:any)=>x.activity_category == activityCategoryArray[nextIndex2].id);
+        console.log(categoryActivityData,"--arr--",activityCategoryArray[nextIndex2]);
+        const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
+        console.log("activityDataToShow---",activityDataToShow);
+        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArray[nextIndex] , games: activityCategoryArray[nextIndex2].id}));
+
+      }
+
+    }, [])
+  );
   return (
     <>
       <BgSecondaryTint>
@@ -101,7 +145,8 @@ const DailyReads = () => {
         <FlatList
           data={DATA}
           horizontal
-          renderItem={({item, index}) => renderDailyReadItem(item, index)}
+          renderItem={({item, index}) => <RenderDailyReadItem item={item} index={index} />}
+          // renderItem={({item, index}) => renderDailyReadItem(item, index)}
           keyExtractor={(item) => item.id}
         />
         </View>
