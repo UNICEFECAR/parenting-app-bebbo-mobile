@@ -180,18 +180,20 @@ const LastChildMeasure = (props: any) => {
                   const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
                     headerTitle: t('growthScreeneditNewBtntxt'),
-                    editGrowthItem:( {"uuid": lastmeasure.uuid,
-                    "weight": lastmeasure.weight,
-                    "height": lastmeasure.height,
-                    "measurementDate": lastmeasure.dateToMilis,
-                    "titleDateInMonth": lastmeasure.titleDateInMonth,
-                    "measurementPlace": lastmeasure.measurementPlace,
-                    "isChildMeasured":lastmeasure.isChildMeasured,
-                    "doctorComment": lastmeasure.doctorComment,
-                    "didChildGetVaccines":lastmeasure.didChildGetVaccines,
-                    "vaccineIds":lastmeasure.vaccineIds})
+                    editMeasurementDate: lastmeasure.dateToMilis,
+                  //   editGrowthItem:( {"uuid": lastmeasure.uuid,
+                  //   "weight": lastmeasure.weight,
+                  //   "height": lastmeasure.height,
+                  //   "measurementDate": lastmeasure.dateToMilis,
+                  //   "titleDateInMonth": lastmeasure.titleDateInMonth,
+                  //   "measurementPlace": lastmeasure.measurementPlace,
+                  //   "isChildMeasured":lastmeasure.isChildMeasured,
+                  //   "doctorComment": lastmeasure.doctorComment,
+                  //   "didChildGetVaccines":lastmeasure.didChildGetVaccines,
+                  //   "vaccineIds":lastmeasure.vaccineIds})
                   })
-                }}>
+                }}
+                >
                 {/* <FlexDirRowEnd>
                   <ButtonTextMdLine> */}
                    <ButtonTextMdLine numberOfLines={2}> {t('growthScreeneditText')}</ButtonTextMdLine>
