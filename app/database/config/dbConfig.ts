@@ -12,17 +12,22 @@ export const userRealmConfig: Realm.Configuration ={
   ],
   schemaVersion: 1,
   migration: (oldRealm, newRealm) => {
-   console.log("..user migration..");
+   console.log("..user migration new..");
     //0
-   console.log(oldRealm.schemaVersion)
+   console.log(oldRealm.schemaVersion,"..old schema version")
     //1
-   // console.log(newRealm.schemaVersion)
+   console.log(newRealm.schemaVersion,"..new schema version")
     //realm old version was 0 and new version is 1.
+    const oldObjects = oldRealm.objects('ChildEntity');
+    const newObjects = newRealm.objects('ChildEntity');
+   console.log("oldobj---",oldObjects);
+   console.log("newObjects---",newObjects);
     if(oldRealm.schemaVersion < 1){
-      const oldObjects = oldRealm.objects('ChildEntity');
-      const newObjects = newRealm.objects('ChildEntity');
+      console.log("inner lopp..")
+    //   const oldObjects = oldRealm.objects('ChildEntity');
+    //   const newObjects = newRealm.objects('ChildEntity');
     //  console.log("oldobj---",oldObjects);
-     // console.log("newObjects---",newObjects);
+    //  console.log("newObjects---",newObjects);
       // console.log("MeasurementEntity obj---",Array.from(newRealm.objects('MeasurementEntity')));
        migrateuserRealm(oldRealm,newRealm);
       // loop through all objects and set the _id property in the new schema

@@ -1,3 +1,4 @@
+import { getChild } from '../../services/Utils';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from './../schema/ConfigSettingsSchema';
 
@@ -17,7 +18,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
     // let deleteresult = newRealm.deleteAll();
     oldChildrenData.map((item: any) => {
      // console.log(getChild(item),"..item..");
-    let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
+    //let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
       //console.log(createresult,".....createresult...");
     });
 
@@ -33,26 +34,7 @@ export const migrateuserRealm = async (oldRealm:any,newRealm: any) => {
     //console.log("latest data  ",newRealm.objects(MeasurementEntitySchema.name))
 
   }
-  const getChild = (child:ChildEntity) => {
-    return {
-      uuid: child.uuid,
-      name: child.childName,
-      gender: child.gender,
-      photoUri: child.photoUri,
-      createdAt: child.createdAt,
-      updatedAt: child.updatedAt,
-      plannedTermDate: child.plannedTermDate,
-      birthDate: child.birthDate,
-      babyRating:child.babyRating,
-      measures: child.measures,
-      comment: child.comment,
-      checkedMilestones:child.checkedMilestones,
-      reminders: child.reminders,
-      isMigrated:true,
-      isPremature:'false', //calcualte if its premature or not?
-      //relationship:''
-     };
-  }
+  
   export const migrateConfigSettings = async (oldRealm:any,newRealm: any) => {
     //console.log(oldRealm,"------",newRealm);
     const oldObjects = oldRealm.objects('VariableEntity').filtered("key=='currentActiveChildId' OR key=='userParentalRole' OR key=='userName'  OR key=='userEnteredChildData'");
