@@ -78,7 +78,25 @@ class UserRealmCommon extends Component {
 
         return rval;
     }
-
+    public async deleteAllAtOnce(): Promise<void> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if (realm) {
+                realm?.write(() => {
+                  realm.deleteAll();
+                  resolve();
+                });
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+                reject(e);
+            }
+        });
+    
+    }
     public async getObjectLength<Entity>(entitySchema: ObjectSchema): Promise<Number> {
         return new Promise(async (resolve, reject) => {
             try {
