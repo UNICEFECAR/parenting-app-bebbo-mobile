@@ -1,3 +1,4 @@
+import { notiConfig } from '../../services/notificationConfig';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import NotificationItem from '@components/NotificationItem';
@@ -12,11 +13,13 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
+import { getAllNotifications } from '../../services/notificationService';
+import { useAppSelector } from '../../../App';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
@@ -29,11 +32,27 @@ const Notifications = () => {
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const {t} = useTranslation();
   const navigation = useNavigation();
+  const [notifications, setNotifications] = useState([]);
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
-  // use syntax for google analytics=>  analytics().logEvent(GAME_AGEGROUP_SELECTED, {age_id:item.id});
-//   event_name:"development_notification,enabled:true/false
-// event_name:"growth_notification,enabled:true/false
-// event_name:"vaccination_healthcheckup_notification,enabled:true/false
+  let allHealthCheckupsData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.healthCheckupsData),
+  );
+  const taxonomy = useAppSelector(
+    (state: any) =>
+      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  );
+  let allGrowthPeriods = taxonomy.growth_period;
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+  useEffect(()=>{
+    const allnotis= getAllNotifications(t,childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+    console.log(allnotis);
+  
+    setNotifications(allnotis); 
+  },[])
   const DATA = [
     {
       id: 0,
@@ -118,14 +137,19 @@ const Notifications = () => {
       isChecked:false,
     },
   ];
-  const [allData, setallData] = useState(DATA);
+  let childAge = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
+  console.log(childAge,"childAge")
+  // const [allData, setallData] = useState(DATA);
   const onCategorychange = (selectedCategories) => {
     console.log(selectedCategories);
   };
   const onNotiItemChecked =(itemIndex:number,isChecked:boolean)=>{
-    const newArray = [...allData];
-    newArray[itemIndex].isChecked=isChecked;
-    setallData(newArray);
+    const newArray = [...notifications];
+    // newArray[itemIndex].isChecked=isChecked;
+    setNotifications(newArray);
   }
   
 
@@ -166,7 +190,7 @@ const Notifications = () => {
             <View style={{marginVertical: 0}}>
               {
                
-              allData.map((item, index) => {
+               notifications.map((item, index) => {
                 return (
                   <View key={index}>
                     <NotificationItem
@@ -192,7 +216,7 @@ const Notifications = () => {
 
                   <ButtonColTwo>
                   <ButtonSecondary>
-                    <ButtonText numberOfLines={2}>{t('notiDelSelected',{count:allData.filter(item=>item.isChecked===true).length})} </ButtonText>
+                    <ButtonText numberOfLines={2}>{t('notiDelSelected',{count:notifications.filter(item=>item.isChecked===true).length})} </ButtonText>
                     </ButtonSecondary>
                     </ButtonColTwo>
                 
