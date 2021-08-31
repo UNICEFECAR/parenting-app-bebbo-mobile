@@ -251,7 +251,7 @@ const UpcomingHealthCheckup = (props: any) => {
                 <ToolsHeadingView>
                   <ShiftFromTop5>
                     {
-                    item?.growthMeasures?.weight ? (
+                    item?.growthMeasures?.weight  && item?.growthMeasures?.measurementPlace==0 ? (
                       <Heading4Regular>
                         {t('hcMeasureText', {
                           weight: item?.growthMeasures.weight,
