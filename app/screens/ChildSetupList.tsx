@@ -56,15 +56,19 @@ const ChildSetupList = ({ navigation }: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(dispatch,child_age);
-      getAllConfigData(dispatch);
-    },[])
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const child_age = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
   
+
   useFocusEffect(
     React.useCallback(() => {
+      getAllChildren(languageCode,dispatch,child_age);
+      getAllConfigData(dispatch);
       navigation.dispatch(state => {
         // Remove the home route from the stack
         const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
@@ -90,9 +94,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     : [],
   );
   console.log(activeChild,"..activeChild..");
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
+  
    const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number,gender:any) => {
        
      return (
@@ -143,10 +145,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   // failedApiObj = failedApiObj != "" ? JSON.parse(failedApiObj) : [];
 
  
-  const child_age = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
-  );
+  
   
   const childSetup = async () => {
     // if(netInfo.isConnected){
