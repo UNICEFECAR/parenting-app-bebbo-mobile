@@ -40,7 +40,6 @@ import {
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
-import TakenVaccines from '@components/vaccination/TakenVaccines';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
 import {
@@ -72,6 +71,8 @@ import {
 } from '../../services/growthService';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
+import TakenVaccines from '@components/vaccination/TakenVaccines';
+import { maxCharForRemarks } from '@assets/translations/appOfflineData/apiConstants';
 const AddChildVaccination = ({ route, navigation }: any) => {
   const { t } = useTranslation();
   const { headerTitle, vcPeriod, editVaccineDate} = route.params;
@@ -711,12 +712,14 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 <TextInput
                   autoCapitalize="none"
                   autoCorrect={false}
-                  style={{ height: 40 }}
+                  maxLength={maxCharForRemarks}
                   clearButtonMode="always"
                   defaultValue={remarkTxt}
+                  multiline={true}
                   onChangeText={(text) => handleDoctorRemark(text)}
                   placeholder={t('vcDoctorRemarkPlaceHolder')}
                   allowFontScaling={false}
+                  
                 />
               </TextAreaBox>
             </FormContainer>
