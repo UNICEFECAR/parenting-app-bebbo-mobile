@@ -3,8 +3,12 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface articleDataType {
   // name: string;
-  article: { 
+  article: {
     articles: string;
+  },
+  dailyDataCategory: {
+    advice:number,
+    games:number
   }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
@@ -12,6 +16,10 @@ const initialState: articleDataType = {
   // name: 'Rest of the world',
   article: { 
     articles: '',
+  },
+  dailyDataCategory: {
+    advice:0,
+    games:0
   }
 };
 export const articlesSlice = createSlice({
@@ -30,6 +38,19 @@ export const articlesSlice = createSlice({
       // {
       //   state.article.articles = JSON.stringify(action.payload);
       // }
+    },
+    setDailyArticleGamesCategory: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+     console.log("Daily data---",state);
+      console.log(action.payload);
+      // console.log(action.payload.map(user => user));
+      // dailyDataCategory
+      // if(action.payload)
+      // {
+        state.dailyDataCategory = action.payload;
+      // }
     }
   },
   // extraReducers: (builder) => {
@@ -44,7 +65,7 @@ export const articlesSlice = createSlice({
   // },
 });
 
-export const {setAllArticleData} = articlesSlice.actions;
+export const {setAllArticleData, setDailyArticleGamesCategory} = articlesSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`

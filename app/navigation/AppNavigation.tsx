@@ -56,6 +56,9 @@ export default () => {
       (state: any) =>
         state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
     );
+    const languageCode = useAppSelector(
+      (state: any) => state.selectedCountry.languageCode,
+    );
      console.log("userIsOnboarded appnav--",userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
@@ -123,7 +126,7 @@ export default () => {
       console.log("calculated");
       let obj = {key: 'showDownloadPopup', value: true};
       dispatch(setInfoModalOpened(obj));
-      getAllChildren(dispatch,child_age);
+      getAllChildren(languageCode,dispatch,child_age);
     }
   },[userIsOnboarded]);
   const routeNameRef = React.useRef<any>();
