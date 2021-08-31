@@ -392,6 +392,8 @@ childInfoAndText: "Και",
         gwNoti1:"Update growth measures",
         hcNoti1:"Schedule a visit to the doctor",
         vcNoti1:"In this period (child name) should receive vaccine:",
+        alertForExistingMeasuresTitle:"Measure data is already available for this date, you can not select this date",
+        alertForNoTakenVaccinesSelectTitle:"Please select some vaccines",
 }
 }
 export default GRel;
