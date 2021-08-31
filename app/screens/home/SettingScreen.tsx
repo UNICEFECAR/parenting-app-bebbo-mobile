@@ -101,6 +101,10 @@ const SettingScreen = (props: any) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
+  const genders = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  );
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
@@ -115,7 +119,8 @@ const SettingScreen = (props: any) => {
     console.log(userRealmCommon.realm?.path,"..path")
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
-    const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age);
+    const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age,genders);
+    console.log(importResponse,"..importResponse");
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
 }
