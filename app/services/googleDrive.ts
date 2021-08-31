@@ -95,9 +95,9 @@ class GoogleDrive {
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
      downloadAndReadFile = async (args:any) => {
-        if(Platform.OS=="android"){
-            this.checkPermission();
-        }
+        // if(Platform.OS=="android"){
+        //     this.checkPermission();
+        // }
         const fromUrl = this.downloadFile(args.fileId)
         let downloadFileOptions:any = {
             fromUrl: fromUrl,
