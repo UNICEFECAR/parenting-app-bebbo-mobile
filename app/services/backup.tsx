@@ -8,12 +8,15 @@ import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
 import { Child } from "../interface/interface";
 import { getAllChildren, addPrefixForAndroidPaths, setActiveChild } from "./childCRUD";
-
+import Realm, { ObjectSchema, Collection } from 'realm';
+import { getChild } from "./Utils";
+import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
 class Backup {
     private static instance: Backup;
+    importedrealm?: Realm;
 
     private constructor() { }
 
@@ -86,9 +89,16 @@ class Backup {
         return true;
     }
 
+    public closeImportedRealm() {
+        if (this.importedrealm) {
+            // console.log("closed");
+            this.importedrealm.close();
+            delete this.importedrealm;
+        }
+    }
 
-    public async import(navigation: any, langCode: any, dispatch: any, child_age: any): Promise<any> {
-
+    public async import(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
+        // await googleAuth.signOut();
         const tokens = await googleAuth.getTokens();
 
         // Sign in if neccessary
@@ -124,58 +134,110 @@ class Backup {
         }
         //const downloadres="dd";
         // Download file from GDrive
-        userRealmCommon.closeRealm();
+        console.log(userRealmCommon.realm?.schemaVersion, "..old userRealmCommon.");
+        // userRealmCommon.closeRealm();
         const downloadres = await googleDrive.downloadAndReadFile({
             fileId: backupFileId,
-            filePath: RNFS.DocumentDirectoryPath + '/' + 'user.realm',
+            filePath: RNFS.DocumentDirectoryPath + '/' + 'user1.realm',
         });
         console.log(downloadres, "..downloadres..");
-        userRealmCommon.openRealm();
+        userRealmCommon.closeRealm();
         // try{
-        if(downloadres && downloadres.statusCode==200){
-        let allChildren=await getAllChildren(dispatch,child_age);
-        console.log(allChildren,"..allChildren..")
-        let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-        let allChildrenList: Child[] = [];
-        if (allChildren.length>0) {
-           allChildren.map((child:any) => {
-                if (childId?.length > 0) {
-                    childId = childId[0].value;
-                    if (childId === child.uuid) {
-                        setActiveChild(langCode, child.uuid, dispatch, child_age);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData:[], 
-                            prevPage: 'ImportScreen'
-                        });
-                        return downloadres;
-                    }
-                    else{
-                        setActiveChild(langCode,'', dispatch, child_age);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData:[], 
-                            prevPage: 'ImportScreen'
-                        });
-                        return downloadres;
-                    }
-                }
-                else{
-                    setActiveChild(langCode,'', dispatch, child_age);
-                    navigation.navigate('LoadingScreen', {
-                        apiJsonData:[], 
-                        prevPage: 'ImportScreen'
+        if (downloadres && downloadres.statusCode == 200) {
+            this.closeImportedRealm();
+            this.importedrealm = await new Realm({ path: 'user1.realm' });
+            if (this.importedrealm) {
+                await userRealmCommon.openRealm();
+                userRealmCommon.deleteAllAtOnce();
+                console.log("111111Realm is located at: " + this.importedrealm.path);
+                this.closeImportedRealm();
+                this.importedrealm = await new Realm({ path: 'user1.realm' });
+                const user1Path = this.importedrealm.path;
+                const oldChildrenData = this.importedrealm.objects('ChildEntity');
+                console.log("Realm is located at: " + this.importedrealm.path);
+                console.log("11Realm is located at: " + oldChildrenData);
+                if (oldChildrenData?.length > 0) {
+                    const resolvedPromises = oldChildrenData.map(async (item: any) => {
+                        console.log(item, "..item..");
+                        const itemnew = await getChild(item, genders);
+                        let childData: any = [];
+                        childData.push(itemnew);
+                        console.log(childData, "..childData..");
+                        let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                        console.log(createresult, "..createresult");
+                        // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
+                        //console.log(createresult,".....createresult...");
                     });
-                    return downloadres;
+                    await Promise.all(resolvedPromises).then(async item => {
+                        console.log(userRealmCommon.realm?.schemaVersion, "..new userRealmCommon schema version.");
+
+                        //this.importedrealm?.deleteAll();
+                        // RNFS.exists(user1Path)
+                        // .then((res) => {
+                        //   if (res) {
+                        //     RNFS.unlink(user1Path)
+                        //       .then(() => console.log('FILE DELETED'))
+                        //   }
+                        // }) 
+                        let allChildren = await getAllChildren(dispatch, child_age);
+                        console.log(allChildren, "..allChildren..")
+                        let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+                        let allChildrenList: Child[] = [];
+                        this.closeImportedRealm();
+                            try {
+                                Realm.deleteFile({ path: 'user1.realm' });
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        if (allChildren.length > 0) {
+                            allChildren.map((child: any) => {
+                                if (childId?.length > 0) {
+                                    childId = childId[0].value;
+                                    if (childId === child.uuid) {
+                                        setActiveChild(langCode, child.uuid, dispatch, child_age);
+                                        navigation.navigate('LoadingScreen', {
+                                            apiJsonData: [],
+                                            prevPage: 'ImportScreen'
+                                        });
+                                        return "Imported";
+                                    }
+                                    else {
+                                        setActiveChild(langCode, '', dispatch, child_age);
+                                        navigation.navigate('LoadingScreen', {
+                                            apiJsonData: [],
+                                            prevPage: 'ImportScreen'
+                                        });
+                                        return "Imported";
+                                    }
+                                }
+                                else {
+                                    setActiveChild(langCode, '', dispatch, child_age);
+                                    navigation.navigate('LoadingScreen', {
+                                        apiJsonData: [],
+                                        prevPage: 'ImportScreen'
+                                    });
+                                    return "Imported";
+                                }
+                            });
+                        }
+                        else {
+                            return new Error('No Data');
+                        }
+                    }).catch(error => {
+                        return new Error('No Import Succeded');
+                    })
+
+
                 }
-            });
+            }
+
+            // return downloadres;
+
         }
-        else{
-           return downloadres; 
-        }
-        }  
-      
-    // } catch (e) {
-    //     return new Error('file not downloaded..');
-    // }
+
+        // } catch (e) {
+        //     return new Error('file not downloaded..');
+        // }
         // Open user realm  
         // return downloadres;
     }
