@@ -595,40 +595,48 @@ export const calc = async (value:any,child_age:any) => {
 //   }
 // }
 
-export const getAllChildren = async (dispatch: any,child_age:any) => {
+export const getAllChildren = async (langCode:any,dispatch: any, child_age: any) => {
   let databaselistener: any;
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   allJsonDatanew.removeAllListeners();
   let childAllData: any = [];
   let isChanged: boolean = false;
   if (allJsonDatanew?.length > 0) {
-      childAllData = [];
-      const p = allJsonDatanew.map(async (n:any) => {
-        const value=await calc(n,child_age);
-        console.log(value," returned value")
-        childAllData.push(value);
-        return value;
-      });
-      console.log(p,"..p")
-      const results = await Promise.all(p);
-      console.log(results,"..results..",childAllData);
-      console.log("childAllData--",childAllData);
-      console.log(childAllData, "before")
-      childAllData = childAllData.sort((a: any, b: any) => {
-        DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
-        const keyA = new Date(a.createdAt),
-        keyB = new Date(b.createdAt);
-        if (keyA < keyB) return -1;
-        if (keyA > keyB) return 1;
-        return 0;
-      });
-      console.log(childAllData, "after");
-      dispatch(setAllChildData(childAllData));
-      return childAllData;
+  childAllData = [];
+  const p = allJsonDatanew.map(async (n: any) => {
+  const value = await calc(n, child_age);
+  if (childId?.length > 0) {
+  childId = childId[0].value;
+  if (childId === n.uuid) {
+  // setActiveChild(langCode, n.uuid, dispatch, child_age);
+  dispatch(setActiveChildData(value));
   }
-
+  }
+  console.log(value, " returned value")
+  childAllData.push(value);
+  return value;
+  });
+  console.log(p, "..p")
+  const results = await Promise.all(p);
+  console.log(results, "..results..", childAllData);
+  console.log("childAllData--", childAllData);
+  console.log(childAllData, "before")
+  childAllData = childAllData.sort((a: any, b: any) => {
+  DateTime.fromISO(a.createdAt).diff(DateTime.fromISO(b.createdAt));
+  const keyA = new Date(a.createdAt),
+  keyB = new Date(b.createdAt);
+  if (keyA < keyB) return -1;
+  if (keyA > keyB) return 1;
+  return 0;
+  });
+  console.log(childAllData, "after");
+  dispatch(setAllChildData(childAllData));
+  return childAllData;
+  }
   
-}
+ }
+
 
 export const deleteChild = async (languageCode: any, index: number, dispatch: any, schemaName: string, recordId: any, filterCondition: any, resolve: any, reject: any, child_age: any,t:any) => {
   //setActiveChild(data.uuid,dispatch,child_age);
