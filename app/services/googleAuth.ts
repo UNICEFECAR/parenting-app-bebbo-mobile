@@ -28,7 +28,7 @@ class GoogleAuth {
             // scopes: [
             //     'https://www.googleapis.com/auth/drive.file',
             // ],
-            scopes: ['https://www.googleapis.com/auth/drive.file'], // what API you want to access on behalf of the user, default is email and profile
+            scopes: ['https://www.googleapis.com/auth/drive'], // what API you want to access on behalf of the user, default is email and profile
       });
         
     }
