@@ -373,9 +373,9 @@ const formatImportedReminders = (reminders)=>{
 //child data get
 export const getChild = async (child:any,genders:any) => {
     const photoUri=await RNFS.exists(CHILDREN_PATH + child.photoUri);
-    const childmeasures = await formatImportedMeasures(child.measures)
-    const childreminders = await formatImportedReminders(child.reminders)
-    console.log(photoUri,"..photoUri..",childreminders,childmeasures);
+    // const childmeasures = await formatImportedMeasures(child.measures)
+    // const childreminders = await formatImportedReminders(child.reminders)
+    console.log(photoUri,"..photoUri..");
     console.log(child,"..childname..");
     console.log("name" in child,"..child.hasOwnProperty..");
     //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
@@ -408,11 +408,11 @@ export const getChild = async (child:any,genders:any) => {
       birthDate: child.birthDate,
       babyRating:child.babyRating,
       //mayur
-      measures:childmeasures,
+      measures:[],
       comment: child.comment,
       checkedMilestones:child.checkedMilestones,
       //mayur
-      reminders: childreminders,
+      reminders: [],
       isMigrated:true,
       isPremature:'false', //calcualte if its premature or not?
       isExpected:'false'
