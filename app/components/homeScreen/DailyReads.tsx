@@ -7,11 +7,13 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { useFocusEffect } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { setDailyArticleGamesCategory } from '../../redux/reducers/articlesSlice';
+import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
+import LoadableImage from '../../services/LoadableImage';
 
 
 const DATA = [
@@ -58,7 +60,10 @@ const DailyReads = () => {
     return (
       <View>
       <DailyBox key={index}>
-        <ImageBackground source={item.imagePath} style={styles.cardImage}>
+        <LoadableImage style={styles.cardImage} item={item}>
+        {/* <ImageBackground source={{
+          uri: item.cover_image.url,
+        }} style={styles.cardImage}> */}
           <DailyArtTitle>
           <Heading3w>{item.title}</Heading3w>
           </DailyArtTitle>
@@ -68,10 +73,11 @@ const DailyReads = () => {
           </Text>
           </LinearGradient>
           </OverlayFaded>
-        </ImageBackground>
+          </LoadableImage>
+        {/* </ImageBackground> */}
         {/*Tag*/ }
         <DailyTag >
-        <DailyTagText>{t('homeScreentodaygame') || t('homeScreentodayarticle')}</DailyTagText>
+        <DailyTagText>{item.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
         </DailyTag>
         {/*Parent Share , View Details*/ }
         <DailyAction>
@@ -108,28 +114,64 @@ const DailyReads = () => {
   const dailyDataCategory = useAppSelector(
     (state: any) => state.articlesData.dailyDataCategory,
   );
-  
+  const showedDailyDataCategory = useAppSelector(
+    (state: any) => state.articlesData.showedDailyDataCategory,
+  );
+  const [dataToShowInList,setDataToShowInList] = useState([]);
   useFocusEffect(
     React.useCallback(() => {
-      console.log(dailyDataCategory,"--articleCategoryArray--",articleCategoryArray);
-      // console.log(articleData,"--activityCategoryData--",ActivitiesData);
+      console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
+      // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
 
       if(dailyDataCategory){
         const currentIndex = articleCategoryArray.findIndex((_item: any) => _item === dailyDataCategory.advice);
+        // const currentIndex = articleCategoryArray.findIndex((_item: any) => _item === 1);
         const nextIndex = (currentIndex + 1) % articleCategoryArray.length;
-        const categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArray[nextIndex]);
-        console.log(categoryArticleData,"--arr--",articleCategoryArray[nextIndex]);
+        let categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArray[nextIndex]);
+        // let obj1 = categoryArticleData.filter( ( el:any ) => !showedDailyDataCategory.advice.includes( el.id ) );
+        let obj1 = categoryArticleData.filter((i:any) => !showedDailyDataCategory.advice.find((f:any) => f === i.id));
+        let advicearray:any=[];
+        console.log(obj1,"--hello");
+        // advicearray = [...showedDailyDataCategory.advice];
+        if(obj1.length == 0){
+          // advicearray = showedDailyDataCategory.advice.filter( ( el:any ) => !categoryArticleData.includes( el.id ) );
+          let abc = showedDailyDataCategory.advice.filter((i:any) => !categoryArticleData.find((f:any)=>f.id === i));
+          advicearray = [...abc]
+        }else {
+          advicearray = [...showedDailyDataCategory.advice]
+        }
+        console.log("advicearray---",advicearray);
+        categoryArticleData = categoryArticleData.filter((i:any) => !advicearray.find((f:any) => f === i.id));
+        console.log(categoryArticleData,"--arr1--",articleCategoryArray[nextIndex]);
         const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
-        console.log("articleDataToShow---",articleDataToShow);
+        console.log(advicearray,"--articleDataToShow---",articleDataToShow);
 
         const currentIndex2 = activityCategoryArray.findIndex((_item: any) => _item.id === dailyDataCategory.games);
         const nextIndex2 = (currentIndex2 + 1) % activityCategoryArray.length;
-        const categoryActivityData = ActivitiesData.filter((x:any)=>x.activity_category == activityCategoryArray[nextIndex2].id);
+        let categoryActivityData = ActivitiesData.filter((x:any)=>x.activity_category == activityCategoryArray[nextIndex2].id);
+        let obj2 = categoryActivityData.filter((i:any) => !showedDailyDataCategory.games.find((f:any) => f === i.id));
+        let gamesarray:any=[];
+        if(obj2.length == 0){
+          let abc = showedDailyDataCategory.games.filter((i:any) => !categoryActivityData.find((f:any)=>f.id === i));
+          gamesarray = [...abc]
+        }else {
+          gamesarray = [...showedDailyDataCategory.games]
+        }
+        console.log("gamesarray---",gamesarray);
+        categoryActivityData = categoryActivityData.filter((i:any) => !gamesarray.find((f:any) => f === i.id));
         console.log(categoryActivityData,"--arr--",activityCategoryArray[nextIndex2]);
         const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
         console.log("activityDataToShow---",activityDataToShow);
+        advicearray.push(articleDataToShow.id);
+        gamesarray.push(activityDataToShow.id);
+        console.log(gamesarray,"--updatedAdviceArr--",advicearray);
+        var data:any = [];
+        data.push(articleDataToShow);
+        data.push(activityDataToShow);
+        setDataToShowInList(data);
         dispatch(setDailyArticleGamesCategory({advice: articleCategoryArray[nextIndex] , games: activityCategoryArray[nextIndex2].id}));
-
+        dispatch(setShowedDailyDataCategory({advice: advicearray , games: gamesarray}));
+        console.log(dataToShowInList);
       }
 
     }, [])
@@ -143,7 +185,7 @@ const DailyReads = () => {
         </ShiftFromTopBottom10>
         <View style={{marginLeft:-7,marginRight:-7}}>
         <FlatList
-          data={DATA}
+          data={dataToShowInList}
           horizontal
           renderItem={({item, index}) => <RenderDailyReadItem item={item} index={index} />}
           // renderItem={({item, index}) => renderDailyReadItem(item, index)}
