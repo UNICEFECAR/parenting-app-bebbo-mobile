@@ -26,9 +26,16 @@ export const SearchBox = styled.View`
   flex-direction:row
   background:${props => props.theme.colors.SECONDARY_TEXTCOLOR};
   align-items:center;
-  padding:0 20px;
+  padding:0;
   height:50px;
+
+  width:100%;
 `;
+export const SearchInput = styled.TextInput`
+  flex:1;
+  padding:0 15px;
+`;
+
 
 export const ActivityBox = styled.View`
   flex-direction:row
