@@ -67,7 +67,7 @@ import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import { addPrefixForAndroidPaths, getAllChildren, setActiveChild } from '../../services/childCRUD';
+import { addPrefixForAndroidPaths, setActiveChild } from '../../services/childCRUD';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
