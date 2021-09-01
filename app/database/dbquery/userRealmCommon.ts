@@ -3,6 +3,7 @@ import { DateTime } from 'luxon';
 
 import { Component } from 'react';
 import Realm, { ObjectSchema, Collection } from 'realm';
+import { getDiffinDays } from '../../services/childCRUD';
 import { userRealmConfig } from '../config/dbConfig';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../schema/ConfigSettingsSchema';
@@ -246,7 +247,7 @@ class UserRealmCommon extends Component {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     console.log(obj[0],"obj0");
                     realm?.write(() => {
-                        console.log(obj[0].measures.length,"length")
+                    console.log(obj[0].measures.length,"length")
                     if(obj[0].measures.length>0){
                         let updateItemIndex = obj[0].measures.findIndex(item=>{
                             console.log(measure.uuid,"measure.uuid",item.uuid)
@@ -552,6 +553,75 @@ class UserRealmCommon extends Component {
                 }  
             } catch (e) {
                 reject(e);
+            }
+        });
+    }
+    public async deleteNestedMeasures<Entity>(entitySchema: ObjectSchema,param:any,condition:any): Promise<String>{
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    console.log(obj[0],"obj0");
+                    realm?.write(() => {
+                    console.log(obj[0].measures,"length")
+                    if(obj[0].measures.length>0){
+                         let updateItemIndex = obj[0].measures.findIndex(async (item,index)=>{
+                            console.log("measure.uuid",);
+                            const measuredays=await getDiffinDays(param,item.measurementDate);
+                            console.log(measuredays,"..measuredays")
+                            return measuredays<0?index:0;
+                          });
+                           console.log(updateItemIndex,"..measureupdateItemIndex")
+                           obj[0].measures.splice(updateItemIndex, 1);
+                       }
+                    });
+                    resolve(obj[0].measures);
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
+            }
+        });
+    }
+    public async deleteNestedReminders<Entity>(entitySchema: ObjectSchema,param:any,condition:any): Promise<any>{
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    console.log(obj[0],"obj0");
+                    realm?.write(() => {
+                    console.log(obj[0].reminders,"length")
+                      if(obj[0].reminders.length>0){
+                        let updateItemIndex = obj[0].reminders.findIndex(async item=>{
+                            let reminderDate:any = DateTime.fromMillis(item.reminderDate);
+                            let newreminderDate:any=new Date(reminderDate);
+                            // let reminderTime = DateTime.fromMillis(vaccineReminder?.reminderTime);
+                            const hours = new Date(item.reminderTime).getHours()
+                            const mins = new Date(item.reminderTime).getMinutes()
+                            newreminderDate.setHours(hours);
+                            newreminderDate.setMinutes(mins);
+                            console.log(newreminderDate,"..newreminderDate")
+                            return DateTime.fromJSDate(new Date(newreminderDate)).toMillis()<param;
+                         });
+                         console.log(updateItemIndex,"..updateItemIndex")
+                         obj[0].reminders.splice(updateItemIndex, 1);
+                      }
+                    });
+                    resolve(obj[0].reminders);
+                }
+                else {
+                    reject('Fail');
+                }
+            } catch (e) {
+               console.log("realm error-",e.message);
+               reject('Fail');
             }
         });
     }

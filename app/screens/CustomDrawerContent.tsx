@@ -60,6 +60,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  console.log(activeChild,"..draweractiveChild")
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
