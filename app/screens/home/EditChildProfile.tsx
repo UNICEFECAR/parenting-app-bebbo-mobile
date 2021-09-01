@@ -64,7 +64,6 @@ import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import {
   addChild,
   deleteChild,
-  getAllChildren,
   getAllConfigData,
   getNewChild
 } from '../../services/childCRUD';
@@ -170,7 +169,6 @@ const EditChildProfile = ({route, navigation}: Props) => {
   }, []);
   useFocusEffect(
     React.useCallback(() => {
-      //getAllChildren(dispatch);
       // getAllConfigData(dispatch);
       console.log(childData, '..childData..');
       // if(photoUri!='' && photoUri!=null && photoUri!=undefined){
