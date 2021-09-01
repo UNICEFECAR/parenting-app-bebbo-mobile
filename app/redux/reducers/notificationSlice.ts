@@ -3,24 +3,13 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 export type notiType = "growth"|"vaccine" | "healthCheckup" | "development";
 interface articleDataType {
   // name: string;
-  notifications: { 
-    timestamp:number;
-    notiType:notiType;
-    title:string;
-    isRead:boolean;
-    isDeleted:boolean;
+  notifications: {
   }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: articleDataType = {
   // name: 'Rest of the world',
-  notifications: { 
-    timestamp:0,
-    notiType:'growth',
-    title:'',
-    isRead:false,
-    isDeleted:false,
-  }
+  notifications: {}
 };
 export const notificationSlice = createSlice({
   name: 'notificationData',

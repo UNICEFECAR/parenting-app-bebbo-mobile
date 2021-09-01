@@ -101,9 +101,9 @@ const NotificationItem = (props:any) => {
           />
         </NotifIcon>
         <NotifiContent>
-        <Heading4Regular>{item.title}</Heading4Regular>
+        <Heading4Regular>{t(item.title)}</Heading4Regular>
         <ShiftFromTop5>
-        <Heading6>{item.days_from},{item.days_to}</Heading6>
+        {/* <Heading6>{item.days_from},{item.days_to}</Heading6> */}
         </ShiftFromTop5>
         <ShiftFromTop10>
         <Pressable onPress={() => gotoPage(item.type)}>
