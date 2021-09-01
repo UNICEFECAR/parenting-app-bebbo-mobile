@@ -1,4 +1,4 @@
-import { notiConfig } from '../../services/notificationConfig';
+
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
 import NotificationItem from '@components/NotificationItem';
@@ -20,6 +20,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { getAllNotifications } from '../../services/notificationService';
 import { useAppSelector } from '../../../App';
+import { getCurrentChildAgeInDays } from '../../services/childCRUD';
+import { DateTime } from 'luxon';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
@@ -34,24 +36,44 @@ const Notifications = () => {
   const navigation = useNavigation();
   const [notifications, setNotifications] = useState([]);
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
-  let allHealthCheckupsData = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.healthCheckupsData),
+  let allnotis = useAppSelector((state: any) =>
+  (state.notificationData.notifications!= "" ?   JSON.parse(state.notificationData.notifications):[]
+  ));
+  allnotis= allnotis.sort(function (a, b) {
+    return a.days_from - b.days_from;
+  });
+  console.log(allnotis,"allnotis");
+  let activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
   );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  console.log(activeChild,"..activeChild..")
+  const childAgeInDays = getCurrentChildAgeInDays(
+    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  let allGrowthPeriods = taxonomy.growth_period;
-  let allVaccinePeriods = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.vaccineData),
-  );
+  console.log(childAgeInDays,"childAgeInDays");
+
+  // let allHealthCheckupsData = useAppSelector(
+  //   (state: any) =>
+  //     JSON.parse(state.utilsData.healthCheckupsData),
+  // );
+  // const taxonomy = useAppSelector(
+  //   (state: any) =>
+  //     (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  // );
+  // let allGrowthPeriods = taxonomy.growth_period;
+  // let allVaccinePeriods = useAppSelector(
+  //   (state: any) =>
+  //     JSON.parse(state.utilsData.vaccineData),
+  // );
   useEffect(()=>{
-    const allnotis= getAllNotifications(t,childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-    console.log(allnotis);
-  
-    setNotifications(allnotis); 
+
+    // const allnotis= getAllNotifications(t,childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+    // console.log(allnotis);
+    const filteredallnotis = allnotis.filter((item)=>item.days_from<=childAgeInDays).reverse();
+  console.log(filteredallnotis,"all notis till prev and current date")
+    setNotifications(filteredallnotis); 
   },[])
   const DATA = [
     {
@@ -137,11 +159,11 @@ const Notifications = () => {
       isChecked:false,
     },
   ];
-  let childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
-  console.log(childAge,"childAge")
+  // let childAge = useAppSelector(
+  //   (state: any) =>
+  //     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  // );
+  // console.log(childAge,"childAge")
   // const [allData, setallData] = useState(DATA);
   const onCategorychange = (selectedCategories) => {
     console.log(selectedCategories);
