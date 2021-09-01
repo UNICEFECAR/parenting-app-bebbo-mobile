@@ -23,6 +23,7 @@ import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSc
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
+import { CommonActions } from '@react-navigation/native';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -326,19 +327,32 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   console.log("done--",results);
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
-  navigation.reset({
-    index: 0,
-    routes: [
-      {
-        name: 'HomeDrawerNavigator',
-      },
-    ],
-  });
-  // navigation.navigate('Home',
-  //   {
-  //     screen:"Home",
-  //     params:{fromPage:"Loading"},
-  //   });
+  // navigation.reset({
+  //   index: 0,
+  //   routes: [
+  //     {
+  //       name: 'HomeDrawerNavigator',
+  //       // params: {prevPage}
+  //     },
+  //   ],
+  // });
+  // navigation.dispatch(
+  //   CommonActions.reset({
+  //     index: 0,
+  //     routes: [
+  //       // { name: 'Home' },
+  //       {
+  //         name: 'HomeDrawerNavigator',
+  //         params: { prevPage: prevPage },
+  //       },
+  //     ],
+  //   })
+  // );
+  navigation.navigate('Home',
+    {
+      screen:"Home",
+      params:{prevPage:prevPage},
+    });
 }
 export const onApiFail = (error: any) => {
   console.log(error, "..error..");
