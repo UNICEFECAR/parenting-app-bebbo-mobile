@@ -25,7 +25,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
-import { getAllChildren, getAllConfigData, updateActiveChild } from '../services/childCRUD';
+import { updateActiveChild } from '../services/childCRUD';
 import {
     Heading2w,
     Heading3,
@@ -61,9 +61,6 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   useFocusEffect(
     React.useCallback(() => {
-      //getAllChildren(dispatch);
-      // getAllConfigData(dispatch);
-     // console.log(relationshipValue.name,"..relationshipValue.name")
       setRelationshipName(relationshipValue!="" && relationshipValue!=null && relationshipValue!=undefined?relationshipValue.name:'');
  
        },[])
