@@ -54,6 +54,8 @@ import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { DateTime } from 'luxon';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
+import { getAllNotifications } from '../../../services/notificationService';
+import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 type HomeNavigationProp =
@@ -64,6 +66,7 @@ type Props = {
 };
 const Home = ({route,navigation}: Props) => {
   const {t} = useTranslation();
+  // console.log(route.params,"home params")
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -144,6 +147,28 @@ const Home = ({route,navigation}: Props) => {
     );
     return () => backHandler.remove();
   },[]);
+  let childAge = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
+  let allHealthCheckupsData = useAppSelector(
+    (state: any) =>
+    state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
+  );
+  const taxonomy = useAppSelector(
+    (state: any) =>
+      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  );
+  let allGrowthPeriods = taxonomy?.growth_period;
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+    state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
+  );
+  useEffect(() => {
+    return () => {
+      navigation.setParams({prevPage: ''});
+    }
+  },[])
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
@@ -153,6 +178,15 @@ const Home = ({route,navigation}: Props) => {
         dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
         dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
         dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+        const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+        console.log(allnotis,"generatedNotis");
+        dispatch(setAllNotificationData(allnotis))
+      }
+      console.log(route.params,"routeparamsHome");
+      if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
+        const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+        console.log(allnotis,"generatedNotisafterlangchange");
+        dispatch(setAllNotificationData(allnotis))
       }
       console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
