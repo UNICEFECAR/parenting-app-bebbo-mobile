@@ -126,7 +126,7 @@ export default () => {
       console.log("calculated");
       let obj = {key: 'showDownloadPopup', value: true};
       dispatch(setInfoModalOpened(obj));
-      getAllChildren(languageCode,dispatch,child_age);
+      getAllChildren(dispatch,child_age,0);
     }
   },[userIsOnboarded]);
   const routeNameRef = React.useRef<any>();

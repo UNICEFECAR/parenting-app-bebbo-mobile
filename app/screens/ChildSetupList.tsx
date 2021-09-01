@@ -29,7 +29,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
-import { apiJsonDataGet, checkBetween, deleteChild, getAge, getAllChildren, getAllConfigData, getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
+import { apiJsonDataGet, deleteChild, getAge, getAllChildren, getAllConfigData, isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import {
   Heading1Centerw,
@@ -47,8 +47,6 @@ import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
-
-
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -63,24 +61,8 @@ const ChildSetupList = ({ navigation }: Props) => {
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
   );
-  
-
-  useFocusEffect(
-    React.useCallback(() => {
-      getAllChildren(languageCode,dispatch,child_age);
-      getAllConfigData(dispatch);
-      navigation.dispatch(state => {
-        // Remove the home route from the stack
-        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-      
-        return CommonActions.reset({
-          ...state,
-          routes,
-          index: routes.length - 1,
-        });
-      });
-    },[])
-  );
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -95,6 +77,23 @@ const ChildSetupList = ({ navigation }: Props) => {
   );
   console.log(activeChild,"..activeChild..");
   
+  useFocusEffect(
+    React.useCallback(() => {
+      getAllChildren(dispatch,child_age);
+      getAllConfigData(dispatch);
+      navigation.dispatch(state => {
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+      
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
+      });
+    },[])
+  );
+
    const renderDailyReadItem =(dispatch:any,data: ChildEntity, index: number,gender:any) => {
        
      return (
@@ -179,8 +178,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   //   Alert.alert("No Internet Connection.")
   // }
  
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+ 
   return (
     <>
      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
