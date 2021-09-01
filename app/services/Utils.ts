@@ -20,6 +20,7 @@ import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../d
 import { ChildEntity } from "../database/schema/ChildDataSchema";
 import { CHILDREN_PATH } from "@types/types";
 import RNFS from 'react-native-fs';
+import { measure } from "react-native-reanimated";
 const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
@@ -317,11 +318,64 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
         return rval;
     }
 const isAnyKeyValueFalse = (o: { [x: string]: any; }) => !!Object.keys(o).find(k => !o[k]);
+const formatImportedMeasures= (measures)=>{
+    if (typeof measure === 'string' || measure instanceof String){
+        //imported from old app
+        if(measures==""){
+            return [];
+        }else{
+            let importedMeasures = JSON.parse(measures);
+            importedMeasures.forEach((measure:any) => {
 
+                if (typeof measure?.measurementPlace === 'string' || measure?.measurementPlace instanceof String){
+                if(measure?.measurementPlace=="doctor"){
+                    measure.measurementPlace=0
+                }else{
+                    measure.measurementPlace=1
+                }
+                }
+                if("length" in measure){
+                    measure.weight = parseFloat(measure?.weight/1000).toFixed(2);
+                    measure.height = parseFloat(measure?.length).toFixed(2);
+                    delete measure.length;
+                }
+
+            });
+            console.log(importedMeasures);
+            return importedMeasures;
+        }
+    }else{
+        return measures;
+    }
+}
+const formatImportedReminders = (reminders)=>{
+    if (typeof reminders === 'string' || reminders instanceof String){
+        //imported from old app
+    if(reminders==""){
+        return [];
+    }else{
+        let importedReminders =  JSON.parse(reminders);
+        importedReminders.forEach((reminder:any) => {
+            reminder.reminderDate = Number(reminder.date);
+            reminder.reminderTime = Number(reminder.time);
+            reminder.reminderType = "healthCheckup";
+            reminder.uuid = (reminder.uuid);
+            delete reminder.date;
+            delete reminder.time;
+        });
+        return importedReminders;
+    }
+}else{
+    reminders
+}
+   
+}
 //child data get
 export const getChild = async (child:any,genders:any) => {
     const photoUri=await RNFS.exists(CHILDREN_PATH + child.photoUri);
-    console.log(photoUri,"..photoUri..");
+    const childmeasures = await formatImportedMeasures(child.measures)
+    const childreminders = await formatImportedReminders(child.reminders)
+    console.log(photoUri,"..photoUri..",childreminders,childmeasures);
     console.log(child,"..childname..");
     console.log("name" in child,"..child.hasOwnProperty..");
     //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
@@ -354,11 +408,11 @@ export const getChild = async (child:any,genders:any) => {
       birthDate: child.birthDate,
       babyRating:child.babyRating,
       //mayur
-      measures: [],
+      measures:childmeasures,
       comment: child.comment,
       checkedMilestones:child.checkedMilestones,
       //mayur
-      reminders: [],
+      reminders: childreminders,
       isMigrated:true,
       isPremature:'false', //calcualte if its premature or not?
       isExpected:'false'
