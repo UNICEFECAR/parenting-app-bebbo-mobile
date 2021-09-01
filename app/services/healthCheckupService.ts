@@ -4,7 +4,7 @@ import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 import { formatStringDate } from './Utils';
-
+export const maxPeriodDays = 2920;
 export const getAllHealthCheckupPeriods = () => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -166,7 +166,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     console.log(item,"hcItem",index)
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
-      hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? 2920 : allHealthCheckupsData[index + 1]?.vaccination_opens;
+      hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens;
     }
     const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
     // console.log(index, measuresForHCPeriod, "measuresForHCPeriod");
