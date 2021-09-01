@@ -295,7 +295,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
     }
   }, [route.params?.weight, route.params?.height]);
   const isFormDisabled = () => {
-    console.log(plannedVaccine,prevPlannedVaccine,takenVaccine,"vac")
+  //  console.log(plannedVaccine,prevPlannedVaccine,takenVaccine,"vac")
     if (measureDate) {
       console.log("here")
       const modifiedTakenVaccines = takenVaccine.filter(
