@@ -29,7 +29,7 @@ export type LocalizationStackParamList = {
 };
 
 export type HomeDrawerNavigatorStackParamList = {
-  Home: undefined;
+  Home: {};
   NotificationsScreen: undefined;
   ChildgrowthScreen: undefined;
   ChildDevelopmentScreen: undefined;
