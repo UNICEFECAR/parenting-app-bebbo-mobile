@@ -3,7 +3,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import RNFS from 'react-native-fs';
-import { ArticleListContainer, ArticleListContent,SearchBox } from '@components/shared/ArticlesStyle';
+import { ArticleListContainer, ArticleListContent,SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
 import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
 import Divider,{DividerArt} from '@components/shared/Divider';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
@@ -302,7 +302,7 @@ const searchList=async (queryText:any)=>{
           />
           <FlexCol>
           <SearchBox>
-              <TextInput
+              <SearchInput
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
@@ -318,13 +318,13 @@ const searchList=async (queryText:any)=>{
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
                 style={{
-                  paddingHorizontal: 0,
+                  
                 }}
                 allowFontScaling={false} 
               />
                     <OuterIconRow>
-                <OuterIconRight15>
-                <Pressable onPress={async () => {
+                
+                <Pressable style={{padding:13}} onPress={async () => {
                  const data=await searchList(queryText)
                 }}>
                 <Icon
@@ -334,7 +334,7 @@ const searchList=async (queryText:any)=>{
                 
               />
               </Pressable>
-                </OuterIconRight15>
+                
               </OuterIconRow>
               
         
