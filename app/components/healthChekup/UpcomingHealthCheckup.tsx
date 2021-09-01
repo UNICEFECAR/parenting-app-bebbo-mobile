@@ -154,7 +154,7 @@ const UpcomingHealthCheckup = (props: any) => {
           <ToolsIconView>
             {item?.growthMeasures?.didChildGetVaccines ||
             item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ? (
-              <RadioActive style={{backgroundColor: 'green', borderRadius: 50}}>
+              <RadioActive style={{backgroundColor: 'green'}}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
             ) : (
