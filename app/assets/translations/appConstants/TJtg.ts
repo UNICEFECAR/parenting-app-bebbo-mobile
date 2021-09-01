@@ -395,6 +395,7 @@ childInfoAndText: "ва",
         vcNoti1:"In this period (child name) should receive vaccine:",
         alertForExistingMeasuresTitle:"Measure data is already available for this date, you can not select this date",
         alertForNoTakenVaccinesSelectTitle:"Please select some vaccines",
+        settingsButtonExportError:"Export Error"
         }
 }
 export default TJtg;
