@@ -407,14 +407,16 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const obj = realm?.objects<Entity>(entitySchema.name);
-                    //console.log("in try",obj);
+                    console.log("in try",obj);
                     resolve(obj);
                     //console.log("---",realm.schema);
                 }
                 else {
+                    console.log("in 21error");
                     reject();
                 }
             } catch (e) {
+                console.log("in error",e);
                 reject();
             }
         });

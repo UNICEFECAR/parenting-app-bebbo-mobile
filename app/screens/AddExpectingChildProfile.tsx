@@ -28,7 +28,7 @@ import {
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { addChild, deleteChild, getAllChildren, getAllConfigData, getNewChild } from '../services/childCRUD';
+import { addChild, deleteChild,getNewChild } from '../services/childCRUD';
 import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import {
@@ -98,8 +98,6 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   };
   useFocusEffect(
     React.useCallback(() => {
-      //getAllChildren(dispatch);
-      // getAllConfigData(dispatch);
       if (childData?.uuid != '') {
         setName(childData?.childName?childData?.childName:'');
         setPlannedTermDate(childData?.birthDate != null ? new Date(childData?.birthDate) : null);

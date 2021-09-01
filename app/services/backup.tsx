@@ -179,7 +179,7 @@ class Backup {
                         //       .then(() => console.log('FILE DELETED'))
                         //   }
                         // }) 
-                        let allChildren = await getAllChildren(langCode,dispatch, child_age);
+                        let allChildren = await getAllChildren(dispatch, child_age,1);
                         console.log(allChildren, "..allChildren..")
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                         let allChildrenList: Child[] = [];
