@@ -62,7 +62,7 @@ const ChildProfile = ({navigation}: Props) => {
   const dispatch = useAppDispatch();
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(languageCode,dispatch,child_age);
+      getAllChildren(dispatch,child_age,0);
       getAllConfigData(dispatch);
     },[])
   );

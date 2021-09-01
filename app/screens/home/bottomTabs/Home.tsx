@@ -43,7 +43,8 @@ import {
   Text,
   ToastAndroid,
   View,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -245,14 +246,17 @@ const Home = ({route,navigation}: Props) => {
       });
     }
   }
-  const ondobChange = (event:any,selectedDate: any) => {    
+  const ondobChange = (event:any,selectedDate: any) => { 
+    setShow(Platform.OS === 'ios');   
     setdate1(selectedDate);
-    setShow(false);
-    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis()}));
+   // setShow(false);
+   dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis()}));
   }
   const ondobChange2 = (event:any,selectedDate: any) => {
+    setShow2(Platform.OS === 'ios');
     setdate2(selectedDate);
-    setShow2(false);
+   // setShow2(false);
+  
     dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis()}));
   }
   

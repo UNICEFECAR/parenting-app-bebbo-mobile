@@ -628,9 +628,12 @@ export const calc = async (value:any,child_age:any) => {
 //   }
 // }
 
-export const getAllChildren = async (langCode:any,dispatch: any, child_age: any) => {
+export const getAllChildren = async (dispatch: any, child_age: any,param:any) => {
+  console.log("sdfdfd");
   let databaselistener: any;
   let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+  console.log("sdfdfd");
+  console.log(allJsonDatanew?.length,"..allJsonDatanew")
   let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
   allJsonDatanew.removeAllListeners();
   let childAllData: any = [];
@@ -639,13 +642,19 @@ export const getAllChildren = async (langCode:any,dispatch: any, child_age: any)
   childAllData = [];
   const p = allJsonDatanew.map(async (n: any) => {
   const value = await calc(n, child_age);
-  // if (childId?.length > 0) {
-  // childId = childId[0].value;
-  // if (childId === n.uuid) {
-  // // setActiveChild(langCode, n.uuid, dispatch, child_age);
-  // dispatch(setActiveChildData(value));
-  // }
-  // }
+  let userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
+  if (childId?.length > 0) {
+  childId = childId[0].value;
+  if (childId === n.uuid) {
+  let activeChild:any=value;  
+  // setActiveChild(langCode, n.uuid, dispatch, child_age);
+  if (userParentalRole?.length > 0) {
+    activeChild.parent_gender = userParentalRole[0].value
+  }
+  console.log(activeChild,"..3435activeChild")
+  dispatch(setActiveChildData(activeChild));
+  }
+  }
   console.log(value, " returned value")
   childAllData.push(value);
   return value;
@@ -665,7 +674,10 @@ export const getAllChildren = async (langCode:any,dispatch: any, child_age: any)
   });
   console.log(childAllData, "after");
   dispatch(setAllChildData(childAllData));
+  console.log(param, "param");
+  if(param==1){
   return childAllData;
+  }
   }
   
  }

@@ -51,8 +51,6 @@ const HeaderBabyMenu = (props: any) => {
   const dispatch = useAppDispatch();
   // useFocusEffect(
   //   React.useCallback(() => {
-  //     getAllChildren(dispatch);
-  //     getAllConfigData(dispatch);
   //   }, []),
   // );
 
@@ -289,7 +287,7 @@ const HeaderBabyMenu = (props: any) => {
                 onPress={() => {
                   setModalVisible(!modalVisible);
                     if (modalVisible) {
-                      getAllChildren(languageCode,dispatch,child_age);
+                      getAllChildren(dispatch,child_age,0);
                       getAllConfigData(dispatch);
                     }
 
@@ -318,7 +316,7 @@ const HeaderBabyMenu = (props: any) => {
             // }
             setModalVisible(!modalVisible);
             if (modalVisible) {
-              getAllChildren(languageCode,dispatch,child_age);
+              getAllChildren(dispatch,child_age,0);
               getAllConfigData(dispatch);
             }
           }}>
