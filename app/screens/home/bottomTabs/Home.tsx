@@ -41,7 +41,9 @@ import {
   Platform,
   ScrollView,
   Text,
-  ToastAndroid
+  ToastAndroid,
+  View,
+  Button
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -54,6 +56,7 @@ import { DateTime } from 'luxon';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getAllNotifications } from '../../../services/notificationService';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -69,6 +72,12 @@ const Home = ({route,navigation}: Props) => {
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [date1, setdate1] = useState<Date | null>(null);
+  const [show, setShow] = useState(false);
+  const [date2, setdate2] = useState<Date | null>(null);
+  const [show2, setShow2] = useState(false);
+
+
   const backgroundColorChildInfo =
     themeContext.colors.CHILDDEVELOPMENT_TINTCOLOR;
   //   const dailyMessages = useAppSelector((state: any) =>
@@ -236,6 +245,17 @@ const Home = ({route,navigation}: Props) => {
       });
     }
   }
+  const ondobChange = (event:any,selectedDate: any) => {    
+    setdate1(selectedDate);
+    setShow(false);
+    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis()}));
+  }
+  const ondobChange2 = (event:any,selectedDate: any) => {
+    setdate2(selectedDate);
+    setShow2(false);
+    dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.fromJSDate(new Date(selectedDate)).toMillis()}));
+  }
+  
   // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
   return (
     <>
@@ -254,6 +274,36 @@ const Home = ({route,navigation}: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
+            <View>
+              <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
+            </View>
+            {show && (
+                <DateTimePicker
+                testID="dobdatePicker"
+                dateFormat={'day month year'}
+                value={
+                  date1 != null ? date1 : new Date()
+                }
+                mode={'date'}
+                display="default"
+                onChange={ondobChange}
+              />
+            )}
+            <View>
+              <Button onPress={() => setShow2(true)} title={"Monthly " + date2} />
+            </View>
+            {show2 && (
+                <DateTimePicker
+                testID="dobdatePicker"
+                dateFormat={'day month year'}
+                value={
+                  date2 != null ? date2 : new Date()
+                }
+                mode={'date'}
+                display="default"
+                onChange={ondobChange2}
+              />
+            )}
             <DailyReads />
             <ChildMilestones />
             <PlayingTogether />

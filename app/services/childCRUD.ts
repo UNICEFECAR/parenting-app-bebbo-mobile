@@ -14,6 +14,7 @@ import { appConfig, articleCategory } from '@assets/translations/appOfflineData/
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
+import { MeasurementEntitySchema } from '../database/schema/measurementDataSchema';
 export const apiJsonDataGet = (childAge: any, parentGender: any) => {
 
   return [
@@ -242,6 +243,24 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
   //  console.log(ageData,"..ageData..")
   return ageData;
 }
+export const getDiffinDays = (day1millis: number,day2millis: number) => {
+  let days: number = 0;
+  if (day1millis && day2millis) {
+    let date1 = DateTime.fromMillis(day1millis);
+    let date2 = DateTime.fromMillis(day2millis);
+    console.log(date1,date2,"..convertInDays");
+    let convertInDays = date2.diff(date1, "days").toObject().days;
+   console.log(convertInDays,"..convertInDays")
+    if (convertInDays !== undefined && convertInDays > 0) {
+      days = Math.round(convertInDays);
+    }
+    else {
+      days = 0;
+    }
+  };
+  console.log(days, "..days..");
+  return days;
+};
 export const getCurrentChildAgeInDays = (birthDayMillis: number) => {
   let childBirthDay = birthDayMillis;
   let timeNow: any = DateTime.local().toMillis();
@@ -348,8 +367,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     }
     let createresult = await userRealmCommon.updateChild<ChildEntity>(ChildEntitySchema, data);
     console.log("..update child..", createresult);
-    let createresult1 = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    console.log(createresult1, "...createresult1getData..")
+    // let createresult1 = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
+    // console.log(createresult1, "...createresult1getData..")
+    // dispatch(setActiveChildData(data[0]));
   }
   else {
     console.log("..add child..", data);
@@ -357,6 +377,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
        analytics().logEvent(EXPECTED_CHILD_ENTERED)
     }
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
+    // dispatch(setActiveChildData(data[0]));
   }
 
   if (param == 0) {
@@ -396,6 +417,18 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let someDate = new Date(data[0].birthDate)
     console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate)==false) {
+      let deleteresult = await userRealmCommon.deleteNestedMeasures<ChildEntity>(
+        ChildEntitySchema,
+        DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis(),
+        'uuid ="' + data[0].uuid + '"',
+      );
+      console.log(deleteresult, "..deleteresult..")
+      let deleteresult1 = await userRealmCommon.deleteNestedReminders<ChildEntity>(
+        ChildEntitySchema,
+        DateTime.fromJSDate(new Date()).toMillis(),
+        'uuid ="' + data[0].uuid + '"',
+      );
+      console.log(deleteresult, "..deleteresult..")
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       console.log(ageLimit, "..ageLimit..")
       const taxonomyData = await checkBetween(0, ageLimit, child_age);
@@ -606,13 +639,13 @@ export const getAllChildren = async (langCode:any,dispatch: any, child_age: any)
   childAllData = [];
   const p = allJsonDatanew.map(async (n: any) => {
   const value = await calc(n, child_age);
-  if (childId?.length > 0) {
-  childId = childId[0].value;
-  if (childId === n.uuid) {
-  // setActiveChild(langCode, n.uuid, dispatch, child_age);
-  dispatch(setActiveChildData(value));
-  }
-  }
+  // if (childId?.length > 0) {
+  // childId = childId[0].value;
+  // if (childId === n.uuid) {
+  // // setActiveChild(langCode, n.uuid, dispatch, child_age);
+  // dispatch(setActiveChildData(value));
+  // }
+  // }
   console.log(value, " returned value")
   childAllData.push(value);
   return value;

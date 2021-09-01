@@ -72,6 +72,7 @@ import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setAllChildData } from '../../redux/reducers/childSlice';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -127,35 +128,17 @@ const SettingScreen = (props: any) => {
 
 const exportFile=async ()=>{
   Alert.alert('Coming Soon');
-// write the file
-// setIsExportRunning(true);
-// const userRealmPath = userRealmCommon.realm?.path;
-// console.log(userRealmPath,"..userRealmPath")
-// if (!userRealmPath) return false;
-// const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-// console.log(realmContent,"..11realmContent")
-// RNFS.writeFile(backUpPath, realmContent, 'utf8')
-//   .then((success:any) => {
-//     console.log('FILE WRITTEN!');
-//     setIsExportRunning(false);
-//     //actionSheetRef.current?.setModalVisible(false); 
-//   })
-//   .catch((err:any) => {
-//     console.log(err.message);
-//     setIsExportRunning(false);
-//    // actionSheetRef.current?.setModalVisible(false); 
-//   });
-  
 }
 const exportToDrive=async ()=>{
   setIsExportRunning(true);
   const exportIsSuccess = await backup.export();
   setIsExportRunning(false);
   if (!exportIsSuccess) {
-    Alert.alert('settingsButtonExportError')
+    Alert.alert(t('settingsButtonExportError'))
     // ToastAndroid.show(t('settingExportError'), 6000);
   } else {
     Alert.alert(t('settingExportSuccess'));
+    
   };
  
  // actionSheetRef.current?.setModalVisible(false); 
@@ -422,9 +405,10 @@ const exportAllData=async ()=>{
                onPress={() => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
-              {isExportRunning && (
+              {/* {isExportRunning && (
                                         <ActivityIndicator animating={true} />
-                                    )}
+                                    )} */}
+              
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
               <ButtonPrimary  disabled={isExportRunning || isImportRunning} onPress={() => {
@@ -432,9 +416,9 @@ const exportAllData=async ()=>{
               }}>
               <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
-              {isImportRunning && (
+              {/* {isImportRunning && (
               <ActivityIndicator animating={true}/>
-              )}
+              )} */}
                {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
                                     <UserRealmConsumer>
                                         {(userRealmContext: UserRealmContextValue) => (
@@ -451,6 +435,7 @@ const exportAllData=async ()=>{
                                     
                                 </View> */}
             </ShiftFromTopBottom10>
+            <OverlayLoadingComponent loading={(isExportRunning || isImportRunning) ? true: false} />   
           </MainContainer>
 
           <ActionSheet ref={actionSheetRef}>
@@ -478,7 +463,8 @@ const exportAllData=async ()=>{
                   <Pressable onPress={() => 
                   {
                     console.log("icon clicked");
-                    exportToDrive()
+                    actionSheetRef.current?.setModalVisible(false); 
+                    exportToDrive();
                   }}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
