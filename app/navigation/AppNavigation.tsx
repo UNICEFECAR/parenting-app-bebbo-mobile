@@ -64,7 +64,7 @@ export default () => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  
+
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -127,141 +127,172 @@ export default () => {
   // }
   useEffect(() => {
     SplashScreen.hide();
-  },[]);
+  }, []);
   useMemo(() => {
-   // if (userIsOnboarded == true) {
-   fetchNetInfo();
-   // } 
-   
+    // if (userIsOnboarded == true) {
+    fetchNetInfo();
+    // } 
+
     async function fetchNetInfo() {
-      if(netInfoval &&  netInfoval.isConnected!=null){
-       // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
+      if (netInfoval && netInfoval.isConnected != null) {
+        // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
         console.log("use effect net connected call");
         console.log(toggleSwitchVal, "..hometoggleSwitchVal")
         if (Platform.OS == 'android') {
-        if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
+          if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
+            //Alert.alert("66"+toggleSwitchVal+typeof(toggleSwitchVal));
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+             // Alert.alert(netInfoval.netValue.type, "--235navnetInfoval--");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
+            //Alert.alert("55"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
+            //Alert.alert("44"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          // else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == null) {
+          //   Alert.alert("33"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
+          //   if (toggleSwitchVal == false) {
+          //     let confirmation = await retryAlert1("Low Bandwidth", " on ");
+          //     console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          //     if (confirmation == "yes" && toggleSwitchVal == false) {
+          //       console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+          //       dispatch(onNetworkStateChange(true));
+          //     }
+          //   }
+          // }
+          else if (netInfoval.netValue.type == "none") {
+           // Alert.alert("22"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
+            if (toggleSwitchVal == false) {
+              // Alert.alert("no connection");
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else {
+            //Alert.alert("11"+toggleSwitchVal+typeof(toggleSwitchVal));
+            if (toggleSwitchVal == true) {
+              let confirmation = await retryAlert1("High Bandwidth", " off ");
+              console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == true) {
+                dispatch(onNetworkStateChange(false));
+              }
+            }
           }
         }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="2g"){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
+        else if (Platform.OS == 'ios') {
+          if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other")) {
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "2g") {
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == "3g") {
+            if (toggleSwitchVal == false) {
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          // else if (netInfoval.netValue.type == "cellular" && netInfoval.netValue.details.cellularGeneration == null) {
+          //   if (toggleSwitchVal == false) {
+          //     let confirmation = await retryAlert1("Low Bandwidth", " on ");
+          //     console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          //     if (confirmation == "yes" && toggleSwitchVal == false) {
+          //       console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+          //       dispatch(onNetworkStateChange(true));
+          //     }
+          //   }
+          // }
+          else if (netInfoval.netValue.type == "none") {
+            if (toggleSwitchVal == false) {
+              //  Alert.alert("no connection");
+              let confirmation = await retryAlert1("Low Bandwidth", " on ");
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == false) {
+                console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+                dispatch(onNetworkStateChange(true));
+              }
+            }
+          }
+          else {
+            if (toggleSwitchVal == true) {
+              let confirmation = await retryAlert1("High Bandwidth", " off ");
+              console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+              console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+              if (confirmation == "yes" && toggleSwitchVal == true) {
+                dispatch(onNetworkStateChange(false));
+              }
+            }
           }
         }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="3g"){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details==null){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "none"){
-        //  Alert.alert("no connection");
-        let confirmation = await retryAlert1("Low Bandwidth", " off ");
-        console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-        if (confirmation == "yes" && toggleSwitchVal == false) {
-          console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-          dispatch(onNetworkStateChange(true));
-        }
-        }
-        else {
-          let confirmation = await retryAlert1("High Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == true) {
-            dispatch(onNetworkStateChange(false));
-          }
-        }
-      }
-      else if (Platform.OS == 'ios') {
-        if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other")) {
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="2g"){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="3g"){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details==null){
-          let confirmation = await retryAlert1("Low Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == false) {
-            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-            dispatch(onNetworkStateChange(true));
-          }
-        }
-        else if(netInfoval.netValue.type == "none"){
-        //  Alert.alert("no connection");
-        let confirmation = await retryAlert1("Low Bandwidth", " off ");
-        console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-        if (confirmation == "yes" && toggleSwitchVal == false) {
-          console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-          dispatch(onNetworkStateChange(true));
-        }
-        }
-        else {
-          let confirmation = await retryAlert1("High Bandwidth", " off ");
-          console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
-          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-          if (confirmation == "yes" && toggleSwitchVal == true) {
-            dispatch(onNetworkStateChange(false));
-          }
-        }
-      }
       }
     }
     return {};
-  }, [netInfoval.isConnected]);
+  }, [netInfoval.isConnected,netInfoval.netType]);
   useEffect(() => {
     if (userIsOnboarded == true) {
       console.log("calculated");
       let obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
       getAllChildren(dispatch, child_age, 0);
-     
-     
+
+
     }
-   
-  
+
+
   }, [userIsOnboarded]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-      {/* <Text>{netInfoval?.netValue?.type}</Text> */}
+      {/* <Text>{JSON.stringify(netInfoval.netValue)}hiiii</Text> */}
       <NavigationContainer
         ref={navigationRef}
         onReady={() => {
