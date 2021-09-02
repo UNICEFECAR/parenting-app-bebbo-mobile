@@ -381,6 +381,20 @@ export const cancelRetryAlert = () => {
     );
   });
 }
+export const retryAlert1 = (bandwidth: string,toggle: string) => {
+  return new Promise((resolve, reject) => {
+    Alert.alert(bandwidth, "Do you want to switch"+toggle+"data saver mode?",
+      [
+        {
+          text: "cancel",
+          onPress: () => reject("Retry Cancelled"),
+          style: "cancel"
+        },
+        { text:"yes", onPress: () => resolve("yes") }
+      ]
+    );
+  });
+}
 export const deleteArticleNotPinned= async () => {
   let createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
   return createresult;

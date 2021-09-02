@@ -58,7 +58,9 @@ import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getAllNotifications } from '../../../services/notificationService';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import { onNetworkStateChange } from '../../../redux/reducers/bandwidthSlice';
+import NetInfo from "@react-native-community/netinfo";
+import { retryAlert1 } from '../../../services/commonApiService';
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -88,6 +90,7 @@ const Home = ({route,navigation}: Props) => {
   // );
 
   const dispatch = useAppDispatch();
+ 
   const userIsOnboarded = useAppSelector(
     (state: any) => state.utilsData.userIsOnboarded,
   );
@@ -99,7 +102,7 @@ const Home = ({route,navigation}: Props) => {
     (state.utilsData.showDownloadPopup),
   );
   const netInfoval = useNetInfoHook();
-  console.log(netInfoval,'--home focuseffect--', userIsOnboarded);
+  console.log(netInfoval.isConnected,'--31home focuseffect--', userIsOnboarded);
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
@@ -188,7 +191,6 @@ const Home = ({route,navigation}: Props) => {
         console.log(allnotis,"generatedNotisafterlangchange");
         dispatch(setAllNotificationData(allnotis))
       }
-      console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
       console.log(downloadWeeklyData,"--downloadWeeklyData-- and month",downloadMonthlyData);
       if(netInfoval && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
