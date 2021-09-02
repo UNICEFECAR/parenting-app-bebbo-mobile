@@ -20,8 +20,8 @@ import Terms from '@screens/Terms';
 import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
-import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
+import React, { useEffect, useMemo } from 'react';
+import { Alert, Platform, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -32,6 +32,9 @@ import { RootStackParamList } from './types';
 import analytics from '@react-native-firebase/analytics';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren } from '../services/childCRUD';
+import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
+import { retryAlert1 } from '../services/commonApiService';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -51,23 +54,28 @@ export default () => {
   const userIsOnboarded = useAppSelector(
     (state: any) =>
       state.utilsData.userIsOnboarded
-     );
-    const child_age = useAppSelector(
-      (state: any) =>
-        state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-    );
-    const languageCode = useAppSelector(
-      (state: any) => state.selectedCountry.languageCode,
-    );
-     console.log("userIsOnboarded appnav--",userIsOnboarded);
+  );
+  const child_age = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
+  
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [initialState, setInitialState] = React.useState();
   const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
-  const netInfo = useNetInfo();
   const dispatch = useAppDispatch();
-  
+  const netInfoval = useNetInfoHook();
   // useEffect(() => {
   //   async function addDBListener() {
   //     const datarealm = await dataRealmCommon.openRealm();
@@ -120,169 +128,277 @@ export default () => {
   useEffect(() => {
     SplashScreen.hide();
   },[]);
-  useEffect(() => {
-    if(userIsOnboarded == true)
-    {
-      console.log("calculated");
-      let obj = {key: 'showDownloadPopup', value: true};
-      dispatch(setInfoModalOpened(obj));
-      getAllChildren(dispatch,child_age,0);
+  useMemo(() => {
+   // if (userIsOnboarded == true) {
+   fetchNetInfo();
+   // } 
+   
+    async function fetchNetInfo() {
+      if(netInfoval &&  netInfoval.isConnected!=null){
+        // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
+        console.log("use effect net connected call");
+        console.log(toggleSwitchVal, "..hometoggleSwitchVal")
+        if (Platform.OS == 'android') {
+        if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="2g"){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="3g"){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details==null){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "none"){
+        //  Alert.alert("no connection");
+        }
+        else {
+          let confirmation = await retryAlert1("High Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == true) {
+            dispatch(onNetworkStateChange(false));
+          }
+        }
+      }
+      else if (Platform.OS == 'ios') {
+        if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other")) {
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="2g"){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details=="3g"){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "cellular" && netInfoval.netValue.details==null){
+          let confirmation = await retryAlert1("Low Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == false) {
+            console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+            dispatch(onNetworkStateChange(true));
+          }
+        }
+        else if(netInfoval.netValue.type == "none"){
+        //  Alert.alert("no connection");
+        }
+        else {
+          let confirmation = await retryAlert1("High Bandwidth", " off ");
+          console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+          console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+          if (confirmation == "yes" && toggleSwitchVal == true) {
+            dispatch(onNetworkStateChange(false));
+          }
+        }
+      }
+      }
     }
-  },[userIsOnboarded]);
+    return {};
+  }, [netInfoval.isConnected]);
+  useEffect(() => {
+    if (userIsOnboarded == true) {
+      console.log("calculated");
+      let obj = { key: 'showDownloadPopup', value: true };
+      dispatch(setInfoModalOpened(obj));
+      getAllChildren(dispatch, child_age, 0);
+     
+     
+    }
+   
+  
+  }, [userIsOnboarded]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
+      {/* <Text>{netInfoval?.netValue?.type}</Text> */}
       <NavigationContainer
-       ref={navigationRef}
-       onReady={() => {
-         routeNameRef.current = navigationRef.current.getCurrentRoute().name;
-       }}
-       onStateChange={async () => {
-         const previousRouteName = routeNameRef.current;
-         const currentRouteName = navigationRef.current.getCurrentRoute().name;
- 
-         if (previousRouteName !== currentRouteName) {
+        ref={navigationRef}
+        onReady={() => {
+          routeNameRef.current = navigationRef.current.getCurrentRoute().name;
+        }}
+        onStateChange={async () => {
+          const previousRouteName = routeNameRef.current;
+          const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+          if (previousRouteName !== currentRouteName) {
             analytics().logScreenView({
-             screen_name: currentRouteName,
-             screen_class: currentRouteName,
-           });
-            analytics().logEvent(currentRouteName+"_opened");
-          //  await analytics().logEvent('product_view', {
-          //   id: '1234',
-          // });
-         }
-         routeNameRef.current = currentRouteName;
-       }}
-        // initialState={initialState}
-        // onStateChange={(state) =>
-        //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-        // }
-        >
+              screen_name: currentRouteName,
+              screen_class: currentRouteName,
+            });
+            analytics().logEvent(currentRouteName + "_opened");
+            //  await analytics().logEvent('product_view', {
+            //   id: '1234',
+            // });
+          }
+          routeNameRef.current = currentRouteName;
+        }}
+      // initialState={initialState}
+      // onStateChange={(state) =>
+      //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+      // }
+      >
         <RootStack.Navigator
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
           }
-          screenOptions={{ animationEnabled: Platform.OS=='ios'?true:false }}
-          >
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false }}
+        >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
             name="Localization"
             component={LocalizationNavigation}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="Walkthrough"
             component={Walkthrough}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="Terms"
             component={Terms}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="PrivacyPolicy"
             component={PrivacyPolicy}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="ChildSetup"
             component={ChildSetup}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="ChildSetupList"
             component={ChildSetupList}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="AddSiblingDataScreen"
             component={AddSiblingData}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="LoadingScreen"
             component={LoadingScreen}
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="HomeDrawerNavigator"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={HomeDrawerNavigator}
-            // initialParams={{navigation}}
-            // options={({navigation}) => ({
-            //   title: 'ParentBuddy',
-            //   headerLeft: () => (
-            //     <TouchableOpacity
-            //       onPress={() =>
-            //         navigation.dispatch(DrawerActions.toggleDrawer())
-            //       }>
-            //       <Text>Toggle</Text>
-            //     </TouchableOpacity>
-            //   ),
-            //   headerLeftContainerStyle: {paddingLeft: 10},
-            // })}
+          // initialParams={{navigation}}
+          // options={({navigation}) => ({
+          //   title: 'ParentBuddy',
+          //   headerLeft: () => (
+          //     <TouchableOpacity
+          //       onPress={() =>
+          //         navigation.dispatch(DrawerActions.toggleDrawer())
+          //       }>
+          //       <Text>Toggle</Text>
+          //     </TouchableOpacity>
+          //   ),
+          //   headerLeftContainerStyle: {paddingLeft: 10},
+          // })}
           />
           <RootStack.Screen
             name="EditChildProfile"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={EditChildProfile}
           />
           <RootStack.Screen
             name="AddExpectingChildProfile"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddExpectingChildProfile}
           />
           <RootStack.Screen
             name="EditParentDetails"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={EditParentDetails}
           />
           <RootStack.Screen
             name="AddNewChildgrowth"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddNewChildgrowth}
           />
           <RootStack.Screen
             name="AddNewChildWeight"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddNewChildWeight}
           />
           <RootStack.Screen
             name="AddNewChildHeight"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddNewChildHeight}
           />
           <RootStack.Screen
             name="AllChildgrowthMeasures"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AllChildgrowthMeasures}
           />
           <RootStack.Screen
             name="ChartFullScreen"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={ChartFullScreen}
           />
           <RootStack.Screen
             name="DetailsScreen"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={DetailsScreen}
           />
           <RootStack.Screen
             name="AddChildVaccination"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddChildVaccination}
           />
           <RootStack.Screen
             name="AddReminder"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddReminder}
           />
           <RootStack.Screen
             name="AddChildHealthCheckup"
-            options={{headerShown: false}}
+            options={{ headerShown: false }}
             component={AddChildHealthCheckup}
           />
         </RootStack.Navigator>
