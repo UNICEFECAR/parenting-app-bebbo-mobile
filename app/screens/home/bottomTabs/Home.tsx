@@ -33,7 +33,7 @@ import {
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -173,7 +173,7 @@ const Home = ({route,navigation}: Props) => {
       navigation.setParams({prevPage: ''});
     }
   },[])
-  useEffect(() => {
+  useMemo(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
@@ -193,7 +193,7 @@ const Home = ({route,navigation}: Props) => {
       }
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
       console.log(downloadWeeklyData,"--downloadWeeklyData-- and month",downloadMonthlyData);
-      if(netInfoval && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
+      if(netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
       {
         let flagtext = 'downloadBufferData '+downloadBufferData+' downloadWeeklyData '+downloadWeeklyData+' downloadMonthlyData '+downloadMonthlyData;
         Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText') + ' '+flagtext ,
@@ -207,7 +207,7 @@ const Home = ({route,navigation}: Props) => {
           ]
         );
       }
-      else if(netInfoval && showDownloadPopup && errorObj.length > 0)
+      else if(netInfoval.isConnected && showDownloadPopup && errorObj.length > 0)
       {
         // Alert.alert('Download Data', "All content is not downloaded.Please download data.",
           Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
@@ -221,7 +221,8 @@ const Home = ({route,navigation}: Props) => {
             ]
           );
       }
-    }, [netInfoval]);
+      return {};
+    }, [netInfoval.isConnected]);
   const downloadApis = () => {
     console.log("Download Pressed",apiJsonData);
     // if(apiJsonData && apiJsonData.length > 0)
