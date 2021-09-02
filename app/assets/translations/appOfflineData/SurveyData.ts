@@ -5,7 +5,7 @@ export const SurveyData:any = {
             "type": "Survey",
             "title": "Test Survey",
             "body": "<p>Test Survey</p>\n",
-            "survey_link": "https://dev.bebbo.app",
+            "survey_feedback_link": "https://dev.bebbo.app",
             "created_at": "Wed, 07/14/2021 - 14:06",
             "updated_at": "Wed, 07/14/2021 - 14:18"
         },
@@ -17,7 +17,7 @@ export const SurveyData:any = {
             "type": "Survey",
             "title": "Test Survey",
             "body": "<p>Test Survey</p>\n",
-            "survey_link": "https://dev.bebbo.app",
+            "survey_feedback_link": "https://dev.bebbo.app",
             "created_at": "Wed, 07/14/2021 - 14:06",
             "updated_at": "Wed, 07/14/2021 - 14:18"
         },

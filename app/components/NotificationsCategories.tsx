@@ -41,6 +41,7 @@ const NotificationsCategories = (props: any) => {
       displayName: t('drawerMenucgTxt'),
       activatedColor: cgColor,
       isActivated: false,
+      type: "growth",
     },
     {
       id: 1,
@@ -48,6 +49,7 @@ const NotificationsCategories = (props: any) => {
       displayName: t('drawerMenucdTxt'),
       activatedColor: cdColor,
       isActivated: false,
+      type:"development",
     },
     {
       id: 2,
@@ -55,6 +57,7 @@ const NotificationsCategories = (props: any) => {
       displayName: t('drawerMenuvcTxt'),
       activatedColor: vcColor,
       isActivated: false,
+      type: "vaccination",
     },
     {
       id: 3,
@@ -62,6 +65,7 @@ const NotificationsCategories = (props: any) => {
       displayName: t('drawerMenuhcTxt'),
       activatedColor: hcColor,
       isActivated: false,
+      type: "healthchkp",
     },
   ];
   const [products, setProducts] = useState(allbuttons);

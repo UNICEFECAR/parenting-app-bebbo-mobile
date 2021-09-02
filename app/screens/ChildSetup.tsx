@@ -123,7 +123,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const AddChild = async () => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
-    let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender);
+    let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender,null);
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(childSet, "..childSet..");
