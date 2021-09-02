@@ -63,10 +63,16 @@ const DailyReads = () => {
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  const ActivitiesData = useAppSelector(
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+  const ActivitiesDataall = useAppSelector(
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activeChild?.taxonomyData.id))
   const activityCategoryArray = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -140,6 +146,7 @@ const DailyReads = () => {
   
   useFocusEffect(
     React.useCallback(() => {
+      // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
 
