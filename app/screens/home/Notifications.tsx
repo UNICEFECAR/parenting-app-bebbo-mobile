@@ -10,7 +10,7 @@ import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
@@ -22,6 +22,7 @@ import { getAllNotifications } from '../../services/notificationService';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 import { DateTime } from 'luxon';
+import { getAllNotificationsForActiveChild } from '../../services/currentChildNotifications';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
@@ -32,149 +33,84 @@ const Notifications = () => {
   const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
   const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const [notifications, setNotifications] = useState([]);
+  const [selectedCategories, setselectedCategories] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
-  let allnotis = useAppSelector((state: any) =>
-  (state.notificationData.notifications!= "" ?   JSON.parse(state.notificationData.notifications):[]
-  ));
-  allnotis= allnotis.sort(function (a, b) {
-    return a.days_from - b.days_from;
-  });
-  console.log(allnotis,"allnotis");
-  let activeChild = useAppSelector((state: any) =>
+
+  const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"..activeChild..")
+  let allnotis = useAppSelector((state: any) =>
+  (state.notificationData.notifications != "" ? JSON.parse(state.notificationData.notifications) : []
+  ));
+  allnotis = allnotis.sort(function (a, b) {
+    return a.days_from - b.days_from;
+  });
+  console.log(allnotis, "allnotis", new Date(activeChild.createdAt), new Date(activeChild.birthDate));
+
+  
+
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  console.log(childAgeInDays,"childAgeInDays");
+  // childBirthDate<childCreateDate ?activeChild.createdAt:activeChild.birthDate
+  console.log(childAgeInDays, "childAgeInDays");
+  // const notifications = ;
+  // console.log(notifications, "all notis till prev and current date", notifications.length);
 
-  // let allHealthCheckupsData = useAppSelector(
-  //   (state: any) =>
-  //     JSON.parse(state.utilsData.healthCheckupsData),
-  // );
-  // const taxonomy = useAppSelector(
-  //   (state: any) =>
-  //     (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  // );
-  // let allGrowthPeriods = taxonomy.growth_period;
-  // let allVaccinePeriods = useAppSelector(
-  //   (state: any) =>
-  //     JSON.parse(state.utilsData.vaccineData),
-  // );
-  useEffect(()=>{
 
-    // const allnotis= getAllNotifications(t,childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-    // console.log(allnotis);
-    const filteredallnotis = allnotis.filter((item)=>item.days_from<=childAgeInDays).reverse();
-  console.log(filteredallnotis,"all notis till prev and current date")
-    setNotifications(filteredallnotis); 
-  },[])
-  const DATA = [
-    {
-      id: 0,
-      title: "You haven't update your child's growth details from last 1 month",
-      timeStamp: '10 minutes ago',
-      type: 'growth',
-      bgColor: growthColor,
-      isChecked:false,
-    },
-    {
-      id: 2,
-      title:
-        "The next development milestones are set for jenny. Fill all the question to track you baby's milestones.",
-      timeStamp: '15 minutes ago',
-      type: 'development',
-      bgColor: cdColor,
-      isChecked:false,
-    },
-    {
-      id: 3,
-      title: 'Reminder has been set for the vaccination',
-      timeStamp: '19 minutes ago',
-      type: 'vaccination',
-      bgColor: vaccinationColor,
-      isChecked:false,
-    },
-    {
-      id: 4,
-      title: "Update your child growth data to track baby's growth",
-      timeStamp: '20 minutes ago',
-      type: 'healthchkp',
-      bgColor: hkColor,
-      isChecked:false,
-    },
-    {
-      id: 5,
-      title: "You haven't update your child's growth details from last 1 month",
-      timeStamp: '10 minutes ago',
-      type: 'growth',
-      bgColor: growthColor,
-      isChecked:false,
-    },
-    {
-      id: 6,
-      title:
-        "The next development milestones are set for jenny. Fill all the question to track you baby's milestones.",
-      timeStamp: '15 minutes ago',
-      type: 'development',
-      bgColor: cdColor,
-      isChecked:false,
-    },
-    {
-      id: 7,
-      title: 'Reminder has been set for the vaccination',
-      timeStamp: '19 minutes ago',
-      type: 'vaccination',
-      bgColor: vaccinationColor,
-      isChecked:false,
-    },
-    {
-      id: 8,
-      title: "Update your child growth data to track baby's growth",
-      timeStamp: '20 minutes ago',
-      type: 'healthchkp',
-      bgColor: hkColor,
-      isChecked:false,
-    },
-    {
-      id: 9,
-      title: 'Reminder has been set for the vaccination',
-      timeStamp: '19 minutes ago',
-      type: 'vaccination',
-      bgColor: vaccinationColor,
-      isChecked:false,
-    },
-    {
-      id: 10,
-      title: "Update your child growth data to track baby's growth",
-      timeStamp: '20 minutes ago',
-      type: 'healthchkp',
-      bgColor: hkColor,
-      isChecked:false,
-    },
-  ];
-  // let childAge = useAppSelector(
-  //   (state: any) =>
-  //     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  // );
-  // console.log(childAge,"childAge")
-  // const [allData, setallData] = useState(DATA);
-  const onCategorychange = (selectedCategories) => {
+  const onCategorychange = (selectedCategories:any) => {
     console.log(selectedCategories);
-  };
-  const onNotiItemChecked =(itemIndex:number,isChecked:boolean)=>{
-    const newArray = [...notifications];
+    const selectedFilters = selectedCategories.filter(category=>category.isActivated==true);
+    console.log(selectedFilters,"selectedFilters")
+    const filteredNotications:any[] = [];
+    if(selectedFilters.length>0){
+      selectedFilters.forEach(category => {
+        console.log(category.type,"category")
+        // console.log( allnotis.filter(notification => {notification.type == category.type}))
+      //  allnotis.map(notification => {notification.type == category.type}).forEach(element => {
+      //   filteredNotications.push(element)
+      //  });
+    })
+    console.log(filteredNotications,"filteredNotications")
     // newArray[itemIndex].isChecked=isChecked;
-    setNotifications(newArray);
-  }
-  
+    setNotifications(filteredNotications);
+    }else{
+      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays).reverse());
+    }
+  };
+  const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
+    console.log(itemIndex,isChecked,selectedCategories)
+    
+  } 
+  useEffect(() => {
+    const childCreateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+  const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate));
+  console.log(childCreateDate < childBirthDate? activeChild.birthDate: activeChild.createdAt);
+    if(childCreateDate < childBirthDate){
+      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays));
+      console.log('inif')
+    }else{
+      console.log('inelse') //show current period's notifications
+      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays && item.days_to>=childAgeInDays));
+    }
+    
+  }, [])
+  // useEffect(() => {
+   
+  //  return () => {
+    // const { notifications }  =  getAllNotificationsForActiveChild();
+    // console.log(notifications);
+    // setNotifications(notifications);
+  //  };
+  // },[]);
 
+  // const { notifications } = ;
+  // console.log("notifications", notifications.length)
   return (
     <>
       <SafeAreaContainer>
@@ -185,66 +121,66 @@ const Notifications = () => {
               backgroundColor: primaryColor,
               maxHeight: 50,
             }}>
-           
-              <BurgerIcon />
-           
-            <HeaderTitleView style={{flex: 2}}>
+
+            <BurgerIcon />
+
+            <HeaderTitleView style={{ flex: 2 }}>
               <Heading2w>{t('notiScreenheaderTitle')}</Heading2w>
             </HeaderTitleView>
-           
-             <OuterIconRow>
-               <OuterIconSpace>
-               <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
-                <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
-            </Pressable>
-               </OuterIconSpace>
-               <OuterIconSpace>
-               <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
-                <Icon name={'ic_trash'} size={20} color="#FFF" />
-              </Pressable>
-               </OuterIconSpace>
-             </OuterIconRow>
-              <HeaderBabyMenu />
+
+            <OuterIconRow>
+              <OuterIconSpace>
+                <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
+                  <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
+                </Pressable>
+              </OuterIconSpace>
+              <OuterIconSpace>
+                <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                  <Icon name={'ic_trash'} size={20} color="#FFF" />
+                </Pressable>
+              </OuterIconSpace>
+            </OuterIconRow>
+            <HeaderBabyMenu />
           </HeaderRowView>
-          
-          <ScrollView style={{flex: 7}}>
+
+          <ScrollView style={{ flex: 7 }}>
             <NotificationsCategories onchange={onCategorychange} />
-            <View style={{marginVertical: 0}}>
+            <View style={{ marginVertical: 0 }}>
               {
-               
-               notifications.map((item, index) => {
-                return (
-                  <View key={index}>
-                    <NotificationItem
-                      item={item}
-                      itemIndex={index}
-                      isDeleteEnabled={isDeleteEnabled}
-                      onItemChecked={onNotiItemChecked}
-                    />
-                  </View>
-                );
-              })}
+
+                notifications.map((item, index) => {
+                  return (
+                    <View key={index}>
+                      <NotificationItem
+                        item={item}
+                        itemIndex={index}
+                        isDeleteEnabled={isDeleteEnabled}
+                        onItemChecked={onNotiItemChecked}
+                      />
+                    </View>
+                  );
+                })}
             </View>
           </ScrollView>
           {
-          isDeleteEnabled ? (
-            <>
-              <ButtonContainerTwo>
-                <ButtonColTwo>
-                  <ButtonSecondaryTint onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
-                    <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
-                  </ButtonSecondaryTint>
+            isDeleteEnabled ? (
+              <>
+                <ButtonContainerTwo>
+                  <ButtonColTwo>
+                    <ButtonSecondaryTint onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                      <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
+                    </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                  <ButtonSecondary>
-                    <ButtonText numberOfLines={2}>{t('notiDelSelected',{count:notifications.filter(item=>item.isChecked===true).length})} </ButtonText>
+                    <ButtonSecondary>
+                      <ButtonText numberOfLines={2}>{t('notiDelSelected', { count: notifications.filter(item => item.isChecked === true).length })} </ButtonText>
                     </ButtonSecondary>
-                    </ButtonColTwo>
-                
-              </ButtonContainerTwo>
-            </>
-          ) : null}
+                  </ButtonColTwo>
+
+                </ButtonContainerTwo>
+              </>
+            ) : null}
         </FlexCol>
       </SafeAreaContainer>
     </>
