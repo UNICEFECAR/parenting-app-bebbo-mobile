@@ -163,7 +163,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
     const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
-    console.log(item,"hcItem",index)
+    // console.log(item,"hcItem",index)
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
       hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens;
