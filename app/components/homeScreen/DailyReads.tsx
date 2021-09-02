@@ -4,13 +4,14 @@ import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFaded } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
@@ -52,57 +53,16 @@ const DATA = [
 const DailyReads = () => {
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
+  const navigation = useNavigation();
+  const themeContext = useContext(ThemeContext);
+  const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
+  const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
+  const artHeaderColor = themeContext.colors.ARTICLES_COLOR;
+  const artBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  const RenderDailyReadItem = React.memo(({item, index}) => {
-    return (
-      <View>
-      <DailyBox key={index}>
-        <LoadableImage style={styles.cardImage} item={item}>
-        {/* <ImageBackground source={{
-          uri: item.cover_image.url,
-        }} style={styles.cardImage}> */}
-          <DailyArtTitle>
-          <Heading3w>{item?.title}</Heading3w>
-          </DailyArtTitle>
-          <OverlayFaded>
-          <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
-            <Text >
-          </Text>
-          </LinearGradient>
-          </OverlayFaded>
-          </LoadableImage>
-        {/* </ImageBackground> */}
-        {/*Tag*/ }
-        <DailyTag >
-        <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
-        </DailyTag>
-        {/*Parent Share , View Details*/ }
-        <DailyAction>
-          <FDirRow>
-          <OuterIconRow>
-                <OuterIconLeft>
-                <Icon name="ic_sb_shareapp" size={24} color="#000" />
-                </OuterIconLeft>
-              </OuterIconRow>
-            <Heading4>{t('homeScreenshareText')}</Heading4>
-          </FDirRow>
-          <FDirRow>
-          <OuterIconRow>
-                <OuterIconLeft>
-                <Icon name="ic_view" size={13} color="#000" />
-                </OuterIconLeft>
-              </OuterIconRow>
-              <Heading4>{t('homeScreenviewDetailsText')}</Heading4>
-          </FDirRow>
-         
-        </DailyAction>
-      </DailyBox>
-      </View>
-    );
-  });
   const ActivitiesData = useAppSelector(
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
@@ -118,6 +78,66 @@ const DailyReads = () => {
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
   const [dataToShowInList,setDataToShowInList] = useState([]);
+  const goToArticleDetail = (item:any) => {
+    navigation.navigate('DetailsScreen', {
+      fromScreen: item.hasOwnProperty('activity_category') ? 'HomeAct' : 'HomeArt',
+      headerColor: item.hasOwnProperty('activity_category') ? actHeaderColor : artHeaderColor,
+      backgroundColor: item.hasOwnProperty('activity_category') ? actBackgroundColor  :artBackgroundColor,
+      detailData: item,
+      selectedChildActivitiesData: ActivitiesData
+    });
+  }
+  const RenderDailyReadItem = React.memo(({item, index}) => {
+    return (
+      <View>
+        <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
+          <DailyBox>
+            <LoadableImage style={styles.cardImage} item={item}>
+            {/* <ImageBackground source={{
+              uri: item.cover_image.url,
+            }} style={styles.cardImage}> */}
+              <DailyArtTitle>
+              <Heading3w>{item?.title}</Heading3w>
+              </DailyArtTitle>
+              <OverlayFaded>
+              <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
+                <Text >
+              </Text>
+              </LinearGradient>
+              </OverlayFaded>
+              </LoadableImage>
+            {/* </ImageBackground> */}
+            {/*Tag*/ }
+            <DailyTag >
+            <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
+            </DailyTag>
+            {/*Parent Share , View Details*/ }
+            <DailyAction>
+              <FDirRow>
+              <OuterIconRow>
+                    <OuterIconLeft>
+                    <Icon name="ic_sb_shareapp" size={24} color="#000" />
+                    </OuterIconLeft>
+                  </OuterIconRow>
+                <Heading4>{t('homeScreenshareText')}</Heading4>
+              </FDirRow>
+              <Pressable onPress={() => { goToArticleDetail(item)}}>
+                <FDirRow>
+                <OuterIconRow>
+                      <OuterIconLeft>
+                      <Icon name="ic_view" size={13} color="#000" />
+                      </OuterIconLeft>
+                    </OuterIconRow>
+                    <Heading4>{t('homeScreenviewDetailsText')}</Heading4>
+                </FDirRow>
+                </Pressable>
+            </DailyAction>
+          </DailyBox>
+        </Pressable>
+      </View>
+    );
+  });
+  
   useFocusEffect(
     React.useCallback(() => {
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
