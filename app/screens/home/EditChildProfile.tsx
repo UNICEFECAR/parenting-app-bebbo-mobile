@@ -134,6 +134,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const [plannedTermDate, setPlannedTermDate] = React.useState<Date>();
   const [isPremature, setIsPremature] = React.useState<string>('false');
   const uuid = childData != null ? childData.uuid : '';
+  const createdAt = childData != null ? childData.createdAt : null;
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
   const child_age = useAppSelector(
@@ -361,6 +362,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           name,
           photoUri,
           gender,
+          createdAt,
         )
       : await getNewChild(
           uuidv4(),
@@ -371,6 +373,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
           name,
           photoUri,
           gender,
+          createdAt
         );
     let childSet: Array<any> = [];
     console.log(capturedPhoto, '..capturedPhoto..');
