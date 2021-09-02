@@ -73,6 +73,7 @@ import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schem
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setAllChildData } from '../../redux/reducers/childSlice';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
+import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -106,8 +107,15 @@ const SettingScreen = (props: any) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
+console.log(toggleSwitchVal,"..toggleSwitchVal..");
   const {t, i18n} = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
+  const [isDataSaverEnabled, setIsDataSaverEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isImportRunning, setIsImportRunning] = useState(false);
   const luxonLocale = useAppSelector(
@@ -117,30 +125,55 @@ const SettingScreen = (props: any) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const importAllData=async ()=>{
-    console.log(userRealmCommon.realm?.path,"..path")
+    Alert.alert(t('importText'), t("dataConsistency"),
+    [
+      {
+        text: "Cancel",
+        onPress: () =>{
+  
+        },
+        style: "cancel"
+      },
+      { text:"Continue", onPress: async () => {
+        console.log(userRealmCommon.realm?.path,"..path")
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
     const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age,genders);
     console.log(importResponse,"..importResponse");
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
+      }}
+    ]
+  );
 }
 
 const exportFile=async ()=>{
   Alert.alert('Coming Soon');
 }
 const exportToDrive=async ()=>{
-  setIsExportRunning(true);
-  const exportIsSuccess = await backup.export();
-  setIsExportRunning(false);
-  if (!exportIsSuccess) {
-    Alert.alert(t('settingsButtonExportError'))
-    // ToastAndroid.show(t('settingExportError'), 6000);
-  } else {
-    Alert.alert(t('settingExportSuccess'));
-    
-  };
- 
+  Alert.alert(t('exportText'), "To avoid data inconsistency please import/export in same language.Do you want to continue?",
+  [
+    {
+      text: "Cancel",
+      onPress: () =>{
+
+      },
+      style: "cancel"
+    },
+    { text:"Continue", onPress: async () => {
+      setIsExportRunning(true);
+      const exportIsSuccess = await backup.export();
+      setIsExportRunning(false);
+      if (!exportIsSuccess) {
+        Alert.alert(t('settingsButtonExportError'))
+        // ToastAndroid.show(t('settingExportError'), 6000);
+      } else {
+        Alert.alert(t('settingExportSuccess'));
+        
+      };
+    }}
+  ]
+);
  // actionSheetRef.current?.setModalVisible(false); 
 }
 const exportAllData=async ()=>{
@@ -150,7 +183,27 @@ const exportAllData=async ()=>{
 };
   const toggleSwitch = () => {
     //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
-    setIsEnabled((previousState) => !previousState);}
+    setIsEnabled((previousState) => !previousState);
+  }
+  const toggleDataSaverSwitch = () => {
+    dispatch(onNetworkStateChange(!toggleSwitchVal));
+    // console.log(isDataSaverEnabled,"..22isDataSaverEnabled");
+    // if(isDataSaverEnabled==false){
+    //   console.log(isDataSaverEnabled,"..22isDataSaverEnabled");
+    //   setIsDataSaverEnabled(true);
+    //   dispatch(onNetworkStateChange(true));
+    // }
+    // else{
+    //   console.log(isDataSaverEnabled,"..22333isDataSaverEnabled");
+    //   setIsDataSaverEnabled(false);
+    //   dispatch(onNetworkStateChange(false));
+    // }
+    // console.log(toggleSwitchVal,"..toggleSwitchVal on dispatch..")
+    // //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
+    
+  }
+ 
+   
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
@@ -167,6 +220,8 @@ const exportAllData=async ()=>{
       (language: any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
+    console.log(toggleSwitchVal,"..useeffect..")
+    // setIsDataSaverEnabled(toggleSwitchVal);
     // console.log(selectedCountry,selectedLanguage);
   }, []);
   return (
@@ -320,10 +375,10 @@ const exportAllData=async ()=>{
               <FDirRowStart>
                 <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
-                  thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
+                  thumbColor={toggleSwitchVal ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
+                  onValueChange={toggleDataSaverSwitch}
+                  value={toggleSwitchVal}
                 />
                 <Flex1>
                   <Heading4Regular>
