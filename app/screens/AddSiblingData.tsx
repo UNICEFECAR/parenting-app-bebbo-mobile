@@ -37,6 +37,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const { headerTitle } = route.params;
   const { childData } = route.params;
   const uuid= childData != null ? childData.uuid:'';
+  const createdAt = childData != null ? childData.createdAt:null;
   const name= childData != null ? childData.childName:'';
   const relationship= childData != null ? childData.relationship:'';
   const editScreen = childData != null ? true : false;
@@ -84,7 +85,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName=t('defaultChildPrefix')+(allJsonDatanew?.length+1);
     console.log(defaultName,"..defaultName",editScreen);
-    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender)
+    let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");

@@ -416,7 +416,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                   onPress={() => {
                     setModalVisible(false);
                      analytics().logEvent(FEEDBACK_SUBMIT)
-                    Linking.openURL(surveryData[0].survey_link)
+                    Linking.openURL(surveryData[0].survey_feedback_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
