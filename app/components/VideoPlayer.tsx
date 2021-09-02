@@ -8,6 +8,7 @@ import { getVimeoId, getYoutubeId } from "../services/Utils";
 import NetInfo from "@react-native-community/netinfo";
 import useNetInfoHook from "../customHooks/useNetInfoHook";
 import { color } from "react-native-reanimated";
+import { useAppSelector } from "../../App";
 
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
@@ -39,6 +40,11 @@ const VideoPlayer = (props: any) => {
         );
       }
     const netInfoval = useNetInfoHook();
+    const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
     // console.log(netInfoval,"--netInfo");
     let videoId: string;
     console.log("video player", props.selectedPinnedArticleData);
@@ -126,7 +132,7 @@ const VideoPlayer = (props: any) => {
     }
     return (
         <>
-            {videoType == videoTypeImage || netInfoval == false ?
+            {videoType == videoTypeImage || netInfoval.isConnected == false || toggleSwitchVal == true ?
                 (<Image
                     source={require('@assets/trash/defaultArticleImage.png')}
                     style={{ width: '100%',height:'auto',minHeight:200}}
