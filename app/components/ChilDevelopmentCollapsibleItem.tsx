@@ -79,9 +79,9 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         {   
             let imageArray = [];
             imageArray.push({
-                srcUrl: currActivityData?.cover_image.url, 
+                srcUrl: currActivityData?.cover_image?.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: currActivityData?.cover_image.url.split('/').pop()
+                destFilename: currActivityData?.cover_image?.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
             if (await RNFS.exists(destinationFolder + '/' + currActivityData?.cover_image?.url.split('/').pop())) {
@@ -97,9 +97,9 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
         {   
             let imageArray = [];
             imageArray.push({
-                srcUrl: currVideoArtData?.cover_image.url, 
+                srcUrl: currVideoArtData?.cover_image?.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: currVideoArtData?.cover_image.url.split('/').pop()
+                destFilename: currVideoArtData?.cover_image?.url.split('/').pop()
             })
             const imagesDownloadResult = await downloadImages(imageArray);
             if (await RNFS.exists(destinationFolder + '/' + currVideoArtData?.cover_image?.url.split('/').pop())) {
