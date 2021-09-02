@@ -60,15 +60,22 @@ export const getVCNotis = (allVaccinePeriods, allGrowthPeriods) => {
     if (period) {
       item.periodName = period.name;
       item.vaccination_opens = period.vaccination_opens;
-      noti.push({
-        "days_from": period?.vaccination_opens,
-        "type": "vaccination",
-        "title": ('vcNoti1'),
-        "isRead": false,
-        "isDeleted": false, "checkinField": "days_from",
-      })
+     
     }
   })
+  groupsForPeriods.map((item: any, index: number)=>{
+    item.vaccination_opens = item.vaccination_opens;
+    item.vaccination_closes = (index == groupsForPeriods.length - 1) ? maxPeriodDays :  groupsForPeriods[index+1].vaccination_opens;
+  })
+  groupsForPeriods.forEach((item: any, index: number) => {
+   noti.push({
+        "days_from": item?.vaccination_opens,
+        "days_to": item?.vaccination_closes,
+        "type": "vaccination",
+        "title": ('vcNoti1'),
+        "checkinField": "days_from",
+      })
+  });
   console.log(noti, "inVC")
   return noti;
 }
@@ -97,8 +104,7 @@ export const getHCReminderNotis = (allHealthCheckupsData, allGrowthPeriods) => {
         "days_to": (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens,
         "type": "healthchkp",
         "title": ('hcNoti1'),
-        "isRead": false,
-        "isDeleted": false, "checkinField": "days_from",
+        "checkinField": "days_from",
       })
     }
     // const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
@@ -123,15 +129,15 @@ export const getHCGWNotis = (childAge) => {
         "days_from": item.days_from,
         "days_to": item.days_to,
         "type": "growth",
-        "title": ('gwNoti1'), "isRead": false,
-        "isDeleted": false, checkinField: "days_from",
+        "title": ('gwNoti1'),
+        "checkinField": "days_to",
       },
       {
         "days_from": item.days_from,
         "days_to": item.days_to,
         "type": "development",
-        "title": ('cdNoti1'), "isRead": false,
-        "isDeleted": false, checkinField: "days_from",
+        "title": ('cdNoti1'),
+        "checkinField": "days_to",
       })
     //if> 3months then add noti
     //check gap between days_to and days_from
@@ -144,15 +150,15 @@ export const getHCGWNotis = (childAge) => {
             "days_from": item.days_from + (i * twoMonthDays),
             "days_to": (i == diff - 1) ? item.days_to - beforeDays : item.days_to < item.days_from + (i * twoMonthDays) + twoMonthDays ? item.days_to : item.days_from + (i * twoMonthDays) + twoMonthDays,
             "type": "growth",
-            "title": ('gwNoti1'), "isRead": false,
-            "isDeleted": false, checkinField: "days_from",
+            "title": ('gwNoti1'),
+            "checkinField": "days_from",
           },
           {
             "days_from": item.days_from + (i * twoMonthDays),
             "days_to": (i == diff - 1) ? item.days_to - beforeDays : item.days_to < item.days_from + (i * twoMonthDays) + twoMonthDays ? item.days_to : item.days_from + (i * twoMonthDays) + twoMonthDays,
             "type": "development",
-            "title": ('cdNoti2'), "isRead": false,
-            "isDeleted": false, checkinField: "days_to",
+            "title": ('cdNoti2'), 
+            "checkinField": "days_to",
           },
         )
       }
@@ -163,8 +169,8 @@ export const getHCGWNotis = (childAge) => {
           "days_from": item.days_from,
           "days_to": item.days_to - beforeDays,
           "type": "development",
-          "title": ('cdNoti2'), "isRead": false,
-          "isDeleted": false, checkinField: "days_to",
+          "title": ('cdNoti2'), 
+          "checkinField": "days_to",
         },
       )
       // console.log(noti,"noti")
