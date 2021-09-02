@@ -170,8 +170,7 @@ const Home = ({route,navigation}: Props) => {
       navigation.setParams({prevPage: ''});
     }
   },[])
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
@@ -220,8 +219,7 @@ const Home = ({route,navigation}: Props) => {
             ]
           );
       }
-    }, [netInfoval]),
-  );
+    }, [netInfoval]);
   const downloadApis = () => {
     console.log("Download Pressed",apiJsonData);
     // if(apiJsonData && apiJsonData.length > 0)
