@@ -286,8 +286,8 @@ class UserRealmCommon extends Component {
                 {
                     // console.log(realm);
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                //    console.log(obj,obj[0]);
-                //    console.log(typeof obj[0].measures)
+                   console.log(obj,obj[0]);
+                   console.log(typeof obj[0].measures)
                     realm?.write(() => {
                     if(obj[0].measures.length>0){
                         let updateItemIndex = obj[0].measures.findIndex(item=>{

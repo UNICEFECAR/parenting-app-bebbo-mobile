@@ -65,7 +65,7 @@ const DailyReads = () => {
           uri: item.cover_image.url,
         }} style={styles.cardImage}> */}
           <DailyArtTitle>
-          <Heading3w>{item.title}</Heading3w>
+          <Heading3w>{item?.title}</Heading3w>
           </DailyArtTitle>
           <OverlayFaded>
           <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
@@ -77,7 +77,7 @@ const DailyReads = () => {
         {/* </ImageBackground> */}
         {/*Tag*/ }
         <DailyTag >
-        <DailyTagText>{item.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
+        <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
         </DailyTag>
         {/*Parent Share , View Details*/ }
         <DailyAction>
@@ -162,8 +162,8 @@ const DailyReads = () => {
         console.log(categoryActivityData,"--arr--",activityCategoryArray[nextIndex2]);
         const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
         console.log("activityDataToShow---",activityDataToShow);
-        advicearray.push(articleDataToShow.id);
-        gamesarray.push(activityDataToShow.id);
+        advicearray.push(articleDataToShow?.id);
+        gamesarray.push(activityDataToShow?.id);
         console.log(gamesarray,"--updatedAdviceArr--",advicearray);
         var data:any = [];
         data.push(articleDataToShow);
@@ -189,7 +189,7 @@ const DailyReads = () => {
           horizontal
           renderItem={({item, index}) => <RenderDailyReadItem item={item} index={index} />}
           // renderItem={({item, index}) => renderDailyReadItem(item, index)}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item?.id}
         />
         </View>
         </MainContainer>
