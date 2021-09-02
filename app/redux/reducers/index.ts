@@ -10,6 +10,7 @@ import { variableSlice } from './variableSlice';
 import { createRealmPersistStorage } from './realmPersistor';
 import {notificationSlice} from './notificationSlice';
 import { createMigrate } from 'redux-persist';
+import { bandWidthSlice } from './bandwidthSlice';
 
 // import {createRealmPersistStorage} from '@bankify/redux-persist-realm';
 const migrations = {  
@@ -58,6 +59,10 @@ const notificationConfig = {
   key: 'notificationData',
   storage: createRealmPersistStorage(),
 };
+const bandWidthConfig = {
+  key: 'bandWidthData',
+  storage: createRealmPersistStorage(),
+};
 const rootReducer = combineReducers({
   // theme: themeSlice.reducer,
   selectedCountry: persistReducer(countryConfig, localizationSlice.reducer),
@@ -68,5 +73,6 @@ const rootReducer = combineReducers({
   articlesData:persistReducer(articleConfig,articlesSlice.reducer),
   variableData:persistReducer(variableConfig,variableSlice.reducer),
   notificationData:persistReducer(notificationConfig,notificationSlice.reducer),
+  bandWidthData:persistReducer(bandWidthConfig,bandWidthSlice.reducer),
 });
 export default rootReducer;

@@ -401,7 +401,10 @@ const en = {
         vcNoti1:"In this period (child name) should receive vaccine:",
         alertForExistingMeasuresTitle:"Measure data is already available for this date, you can not select this date",
         alertForNoTakenVaccinesSelectTitle:"Please select some vaccines",
-        settingsButtonExportError:"Export Error"
+        settingsButtonExportError:"Export Error",
+        importText:"Import Data",
+        exportText:"Export Data",
+        dataConsistency:"To avoid data inconsistency please import/export in same language.Do you want to continue?",
     }
 }
 export default en;
