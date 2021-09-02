@@ -151,10 +151,12 @@ const DailyReads = () => {
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
 
       if(dailyDataCategory){
-        const currentIndex = articleCategoryArray.findIndex((_item: any) => _item === dailyDataCategory.advice);
-        // const currentIndex = articleCategoryArray.findIndex((_item: any) => _item === 1);
-        const nextIndex = (currentIndex + 1) % articleCategoryArray.length;
-        let categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArray[nextIndex]);
+        const articleCategoryArrayNew = articleCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
+        const activityCategoryArrayNew = activityCategoryArray.filter((i:any) => ActivitiesData.find((f:any)=>f.activity_category === i.id))
+        const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
+        // const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === 1);
+        const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
+        let categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArrayNew[nextIndex]);
         // let obj1 = categoryArticleData.filter( ( el:any ) => !showedDailyDataCategory.advice.includes( el.id ) );
         let obj1 = categoryArticleData.filter((i:any) => !showedDailyDataCategory.advice.find((f:any) => f === i.id));
         let advicearray:any=[];
@@ -169,13 +171,13 @@ const DailyReads = () => {
         }
         console.log("advicearray---",advicearray);
         categoryArticleData = categoryArticleData.filter((i:any) => !advicearray.find((f:any) => f === i.id));
-        console.log(categoryArticleData,"--arr1--",articleCategoryArray[nextIndex]);
+        console.log(categoryArticleData,"--arr1--",articleCategoryArrayNew[nextIndex]);
         const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
         console.log(advicearray,"--articleDataToShow---",articleDataToShow);
 
-        const currentIndex2 = activityCategoryArray.findIndex((_item: any) => _item.id === dailyDataCategory.games);
-        const nextIndex2 = (currentIndex2 + 1) % activityCategoryArray.length;
-        let categoryActivityData = ActivitiesData.filter((x:any)=>x.activity_category == activityCategoryArray[nextIndex2].id);
+        const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
+        const nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
+        let categoryActivityData = ActivitiesData.filter((x:any)=>x.activity_category == activityCategoryArrayNew[nextIndex2].id);
         let obj2 = categoryActivityData.filter((i:any) => !showedDailyDataCategory.games.find((f:any) => f === i.id));
         let gamesarray:any=[];
         if(obj2.length == 0){
@@ -186,7 +188,7 @@ const DailyReads = () => {
         }
         console.log("gamesarray---",gamesarray);
         categoryActivityData = categoryActivityData.filter((i:any) => !gamesarray.find((f:any) => f === i.id));
-        console.log(categoryActivityData,"--arr--",activityCategoryArray[nextIndex2]);
+        console.log(categoryActivityData,"--arr--",activityCategoryArrayNew[nextIndex2]);
         const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
         console.log("activityDataToShow---",activityDataToShow);
         advicearray.push(articleDataToShow?.id);
@@ -196,7 +198,7 @@ const DailyReads = () => {
         data.push(articleDataToShow);
         data.push(activityDataToShow);
         setDataToShowInList(data);
-        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArray[nextIndex] , games: activityCategoryArray[nextIndex2].id}));
+        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2].id}));
         dispatch(setShowedDailyDataCategory({advice: advicearray , games: gamesarray}));
         console.log(dataToShowInList);
       }
