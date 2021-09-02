@@ -135,7 +135,7 @@ export default () => {
    
     async function fetchNetInfo() {
       if(netInfoval &&  netInfoval.isConnected!=null){
-        Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
+        // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
         console.log("use effect net connected call");
         console.log(toggleSwitchVal, "..hometoggleSwitchVal")
         if (Platform.OS == 'android') {
