@@ -21,7 +21,7 @@ export type SurveysEntity = {
       type: { type: 'string' },
       title: { type: 'string' },
       body: { type: 'string' },
-      survey_link: { type: 'string' },
+      survey_feedback_link: { type: 'string' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' }
     }
