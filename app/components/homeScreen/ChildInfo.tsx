@@ -103,10 +103,6 @@ const goToVideoArticleDetails = () => {
             <Heading4Regular style={{flexShrink:1}} numberOfLines={2}>
               {selectedPinnedArticleData?.summary}
             </Heading4Regular>
-              // <HTML
-              //   source={{html: selectedPinnedArticleData?.summary}}
-              //   baseFontStyle={{fontSize: 14}}
-              // />
               : null}
           </ShiftFromTopBottom10>
           <ShiftFromBottom10>
