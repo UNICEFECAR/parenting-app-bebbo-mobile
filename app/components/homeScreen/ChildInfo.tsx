@@ -6,7 +6,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import VideoPlayer from '@components/VideoPlayer';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2Center, Heading3Center, Heading4Centerr, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
+import { Heading2Center, Heading3Center, Heading4Centerr, Heading4Regular, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Image } from 'react-native';
@@ -99,12 +99,11 @@ const goToVideoArticleDetails = () => {
 
           <ShiftFromTopBottom10>
           
-            {/* {selectedPinnedArticleData && selectedPinnedArticleData?.body ? 
-              <HTML
-                source={{html: selectedPinnedArticleData?.body}}
-                baseFontStyle={{fontSize: 14}}
-              />
-              : null} */}
+            {selectedPinnedArticleData && selectedPinnedArticleData?.summary ? 
+            <Heading4Regular style={{flexShrink:1}} numberOfLines={2}>
+              {selectedPinnedArticleData?.summary}
+            </Heading4Regular>
+              : null}
           </ShiftFromTopBottom10>
           <ShiftFromBottom10>
             <ButtonSpacing>
