@@ -19,6 +19,7 @@ import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDev
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
 import { ChildEntity } from "../database/schema/ChildDataSchema";
 import { CHILDREN_PATH } from "@types/types";
+import { v4 as uuidv4 } from 'uuid';
 import RNFS from 'react-native-fs';
 import { measure } from "react-native-reanimated";
 const IntlPolyfill = require('intl');
@@ -318,44 +319,67 @@ export const validateForm=(param:any,birthDate:any,isPremature:any,relationship:
         return rval;
     }
 const isAnyKeyValueFalse = (o: { [x: string]: any; }) => !!Object.keys(o).find(k => !o[k]);
-const formatImportedMeasures= (measures)=>{
-    if (typeof measure === 'string' || measure instanceof String){
+const formatImportedMeasures= (measures:any)=>{
+    // if (typeof measure === 'string' || measure instanceof String){
         //imported from old app
-        if(measures==""){
+        if(measures=="" ||measures ==[]){
             return [];
         }else{
+            if(Array.isArray(measures)){
+                //import from new app's exported files
+                return measures;
+            }else{
+                 //import from old app's exported files
             let importedMeasures = JSON.parse(measures);
             importedMeasures.forEach((measure:any) => {
-
+                console.log(measure,"importedmeasures")
+                measure.uuid = uuidv4();
+                if(measure.didChildGetVaccines ==false)
+                measure.vaccineIds = ""
+                else{
+                    let allmeausreVaccineIds:any[] = [];
+                    measure.vaccineIds.forEach((element,index) => {
+                        //added for testing allmeausreVaccineIds.push(index==0?{uuid:"6b016c1c-64fa-4e47-adbd-93e0a7255e65"}:{uuid:element})
+                        allmeausreVaccineIds.push({uuid:element})
+                    });
+                    measure.vaccineIds = JSON.stringify(allmeausreVaccineIds);
+                  console.log(allmeausreVaccineIds,"allmeausreVaccineIds",measure.vaccineIds)
+                }
                 if (typeof measure?.measurementPlace === 'string' || measure?.measurementPlace instanceof String){
                 if(measure?.measurementPlace=="doctor"){
                     measure.measurementPlace=0
                 }else{
                     measure.measurementPlace=1
                 }
-                }
+                } //titleDateInMonth
                 if("length" in measure){
-                    measure.weight = parseFloat(measure?.weight/1000).toFixed(2);
-                    measure.height = parseFloat(measure?.length).toFixed(2);
+                    measure.weight = measure.weight=="" ? "":parseFloat(measure?.weight/1000).toFixed(2);
+                    measure.height = measure.length=="" ? "":parseFloat(measure?.length).toFixed(2);
                     delete measure.length;
                 }
 
             });
             console.log(importedMeasures);
             return importedMeasures;
+            }
         }
-    }else{
-        return measures;
-    }
+    // }else{
+    //     return measures;
+    // }
 }
-const formatImportedReminders = (reminders)=>{
-    if (typeof reminders === 'string' || reminders instanceof String){
-        //imported from old app
-    if(reminders==""){
+const formatImportedReminders = (reminders:any)=>{
+    if(reminders=="" || reminders==[]){
+        // in old app reminders were string, new app has reminders array
         return [];
     }else{
+        if(Array.isArray(reminders)){
+            //import from new app's exported files
+            return reminders;
+        }else{
+             //import from old app's exported files
         let importedReminders =  JSON.parse(reminders);
         importedReminders.forEach((reminder:any) => {
+            console.log(reminders,"importedReminders")
             reminder.reminderDate = Number(reminder.date);
             reminder.reminderTime = Number(reminder.time);
             reminder.reminderType = "healthCheckup";
@@ -365,17 +389,14 @@ const formatImportedReminders = (reminders)=>{
         });
         return importedReminders;
     }
-}else{
-    reminders
 }
-   
 }
 //child data get
 export const getChild = async (child:any,genders:any) => {
     const photoUri=await RNFS.exists(CHILDREN_PATH + child.photoUri);
-    // const childmeasures = await formatImportedMeasures(child.measures)
-    // const childreminders = await formatImportedReminders(child.reminders)
-    console.log(photoUri,"..photoUri..");
+    const childmeasures = await formatImportedMeasures(child.measures)
+    const childreminders = await formatImportedReminders(child.reminders)
+    console.log(photoUri,"..photoUri..",childmeasures,childreminders);
     console.log(child,"..childname..");
     console.log("name" in child,"..child.hasOwnProperty..");
     //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
@@ -408,11 +429,11 @@ export const getChild = async (child:any,genders:any) => {
       birthDate: child.birthDate,
       babyRating:child.babyRating,
       //mayur
-      measures:[],
+      measures:childmeasures,
       comment: child.comment,
       checkedMilestones:child.checkedMilestones,
       //mayur
-      reminders: [],
+      reminders: childreminders,
       isMigrated:true,
       isPremature:'false', //calcualte if its premature or not?
       isExpected:'false'
