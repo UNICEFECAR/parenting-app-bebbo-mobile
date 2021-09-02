@@ -6,13 +6,24 @@ import RNFS from 'react-native-fs';
 import { useFocusEffect } from '@react-navigation/native';
 import { DefaultImage } from '@components/shared/Image';
 import FastImage from 'react-native-fast-image';
+import { useAppSelector } from '../../App';
 const LoadableImage = (props:any) => {
   const [imageState, setImageState] = useState('loading');
   const [noImage, setNoImage] = useState(false);
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
     const { style,item } = props
-    console.log(item.id, "..id..")
+    // console.log(item.id, "..id..")
     const downloadImage = async (item:any) => {
-      console.log(item['cover_image'],"..item..");
+      // console.log(item['cover_image'],"..item..");
+      // console.log(toggleSwitchVal,"..download iamgetoggleSwitchVal..")
+      // if(toggleSwitchVal==true){
+      //   setNoImage(true);
+      // }
+      // else{
       if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
         console.log(item,"..11item..");
         if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
@@ -21,6 +32,11 @@ const LoadableImage = (props:any) => {
         }
         else {
           console.log(item,"..33item..");
+          if(toggleSwitchVal==true){
+            setImageState('loaded'); // This worked for me
+            setNoImage(true);
+          }
+          else{
           setImageState('loading');
           let imageArray: any = [];
           imageArray.push({
@@ -29,14 +45,21 @@ const LoadableImage = (props:any) => {
             destFilename: item['cover_image'].url.split('/').pop()
           })
           console.log(imageArray, "..imageArray..");
+          // if(toggleSwitchVal==false){
           const imagesDownloadResult = await downloadImages(imageArray);
           setTimeout(()=>{
             setImageState('loaded');
           },350)
-         
+          
           console.log(imagesDownloadResult, "..imagesDownloadResult..");
+          }
+          // }
+          // else{
+          //   console.log("..Data Saver on..");
+          // }
         }
       }
+      //}
     }
     const onLoadEnd = () => {
       console.log("loading false");
@@ -68,14 +91,14 @@ const LoadableImage = (props:any) => {
       <>
         <View style={styles.container}>
         {
-        (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
+        (item && item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined)?
         
       (
         imageState=='loading'?
         <ActivityIndicator style={style} size="large" color="#000"/>
         :noImage==false?<FastImage  
          onError={() => { setNoImage(true) }}
-         style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image.url.split('/').pop()),priority: FastImage.priority.normal}} 
+         style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image?.url.split('/').pop()),priority: FastImage.priority.normal}} 
          resizeMode={FastImage.resizeMode.cover}/>:<DefaultImage
          style={style}
          source={require('@assets/trash/defaultArticleImage.png')}/> 
