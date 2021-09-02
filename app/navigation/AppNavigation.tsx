@@ -173,6 +173,12 @@ export default () => {
         }
         else if(netInfoval.netValue.type == "none"){
         //  Alert.alert("no connection");
+        let confirmation = await retryAlert1("Low Bandwidth", " off ");
+        console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+        if (confirmation == "yes" && toggleSwitchVal == false) {
+          console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+          dispatch(onNetworkStateChange(true));
+        }
         }
         else {
           let confirmation = await retryAlert1("High Bandwidth", " off ");
@@ -218,6 +224,12 @@ export default () => {
         }
         else if(netInfoval.netValue.type == "none"){
         //  Alert.alert("no connection");
+        let confirmation = await retryAlert1("Low Bandwidth", " off ");
+        console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+        if (confirmation == "yes" && toggleSwitchVal == false) {
+          console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+          dispatch(onNetworkStateChange(true));
+        }
         }
         else {
           let confirmation = await retryAlert1("High Bandwidth", " off ");
