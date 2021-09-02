@@ -43,7 +43,22 @@ export const apiJsonDataGet = (childAge: any, parentGender: any) => {
   ];
   console.log(apiJsonDataGet,"..apiJsonDataGet..")
 }
-export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any): Promise<ChildEntity> => {
+export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any,createdAt?:any): Promise<ChildEntity> => {
+  console.log({
+    uuid: uuidGet ? uuidGet : uuidv4(),
+    childName: (name != "" && name != null && name != undefined) ? name : '',
+    photoUri: photoUri ? photoUri : '',
+    plannedTermDate: plannedTermDate ? plannedTermDate : null,
+    birthDate: birthDate,
+    isPremature: (isPremature != '' && isPremature != null && isPremature != undefined) ? isPremature : "false",
+    gender: gender ? gender : 0,
+    createdAt: createdAt!=null?createdAt:new Date(),
+    updatedAt: new Date(),
+    measurementPlace: "doctor",
+    isMigrated:false,
+    //relationship: relationship ? relationship : '',
+    isExpected: (isExpected != '' && isExpected != null && isExpected != undefined) ? isExpected : "false"
+  },"chilObjGetNewChild")
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
     childName: (name != "" && name != null && name != undefined) ? name : '',
@@ -52,7 +67,7 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
     birthDate: birthDate,
     isPremature: (isPremature != '' && isPremature != null && isPremature != undefined) ? isPremature : "false",
     gender: gender ? gender : 0,
-    createdAt: new Date(),
+    createdAt: createdAt?createdAt:new Date(),
     updatedAt: new Date(),
     measurementPlace: "doctor",
     isMigrated:false,
