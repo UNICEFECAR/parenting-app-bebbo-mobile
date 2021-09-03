@@ -102,8 +102,11 @@ const DailyReads = () => {
             {/* <ImageBackground source={{
               uri: item.cover_image.url,
             }} style={styles.cardImage}> */}
+              
+              </LoadableImage>
+              <View>
               <DailyArtTitle>
-              <Heading3w>{item?.title}</Heading3w>
+              <Heading3w numberOfLines={1}>{item?.title}</Heading3w>
               </DailyArtTitle>
               <OverlayFaded>
               <LinearGradient colors={['rgba(0,0,0,0.0)', 'rgba(0,0,0,0.8)', 'rgba(0,0,0,1)']} style={styles.linearGradient}>
@@ -111,10 +114,10 @@ const DailyReads = () => {
               </Text>
               </LinearGradient>
               </OverlayFaded>
-              </LoadableImage>
+              </View>
             {/* </ImageBackground> */}
             {/*Tag*/ }
-            <DailyTag >
+            <DailyTag>
             <DailyTagText>{item?.hasOwnProperty('activity_category') ? t('homeScreentodaygame') : t('homeScreentodayarticle')}</DailyTagText>
             </DailyTag>
             {/*Parent Share , View Details*/ }
