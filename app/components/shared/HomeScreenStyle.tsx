@@ -60,13 +60,13 @@ background-color: ${props => props.theme.colors.SECONDARY_COLOR};
 
 
 export const OverlayFaded = styled.Pressable`
-position:absolute; bottom:0; width:100%;z-index:0;height:70px;
+position:absolute; bottom:0; width:100%;z-index:99;height:70px;
 `;
 
 
 export const DailyArtTitle = styled.Pressable`
 
-position:absolute; bottom:10px;z-index:1;width:100%;padding:3px 10px;
+position:absolute; bottom:10px;z-index:999;width:100%;padding:3px 10px;
 `;
 
 export const DailyTag = styled.Pressable`

@@ -95,14 +95,14 @@ const goToVideoArticleDetails = () => {
             <VideoPlayer selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
           </ShiftFromBottom10>
           {/* <Heading3Center>{t('babyNotificationbyAge',{childName:(activeChild.childName!=null && activeChild.childName!="" && activeChild.childName!=undefined)?activeChild.childName:'',ageInMonth:(activeChild.birthDate!=null && activeChild.birthDate!="" && activeChild.birthDate!=undefined)? getCurrentChildAgeInMonths(t,activeChild.birthDate):''})}</Heading3Center> */}
-          <Heading3Center>{selectedPinnedArticleData?.title}</Heading3Center>
+          <Heading3Center style={{flexShrink:1}} numberOfLines={2}>{selectedPinnedArticleData?.title}</Heading3Center>
 
           <ShiftFromTopBottom10>
           
             {selectedPinnedArticleData && selectedPinnedArticleData?.summary ? 
-            <Heading4Regular style={{flexShrink:1}} numberOfLines={2}>
+            <Heading4Centerr style={{flexShrink:1}} numberOfLines={2}>
               {selectedPinnedArticleData?.summary}
-            </Heading4Regular>
+            </Heading4Centerr>
               : null}
           </ShiftFromTopBottom10>
           <ShiftFromBottom10>
