@@ -55,8 +55,6 @@ import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { DateTime } from 'luxon';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
-import { getAllNotifications } from '../../../services/notificationService';
-import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { onNetworkStateChange } from '../../../redux/reducers/bandwidthSlice';
 import NetInfo from "@react-native-community/netinfo";
@@ -168,17 +166,17 @@ const Home = ({route,navigation}: Props) => {
     (state: any) =>
     state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
-  useEffect(() => {
-    // console.log(route.params,"inUSEEFFECT")
-    //   if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
-    //     const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-    //     console.log(allnotis,"generatedNotisafterlangchange");
-    //     dispatch(setAllNotificationData(allnotis))
-    //   }
-    return () => {
-      // navigation.setParams({prevPage: ''});
-    }
-  },[])
+  // useEffect(() => {
+  //   // console.log(route.params,"inUSEEFFECT")
+  //   //   if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
+  //   //     const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+  //   //     console.log(allnotis,"generatedNotisafterlangchange");
+  //   //     dispatch(setAllNotificationData(allnotis))
+  //   //   }
+  //   return () => {
+  //     // navigation.setParams({prevPage: ''});
+  //   }
+  // },[])
   useMemo(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
@@ -191,12 +189,12 @@ const Home = ({route,navigation}: Props) => {
         // console.log(allnotis,"generatedNotis");
         // dispatch(setAllNotificationData(allnotis))
       }
-      console.log(route.params,"routeparamsHome");
-      if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
-        const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-        console.log(allnotis,"generatedNotisafterlangchange");
-        dispatch(setAllNotificationData(allnotis))
-      }
+      // console.log(route.params,"routeparamsHome");
+      // if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
+      //   const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+      //   console.log(allnotis,"generatedNotisafterlangchange");
+      //   dispatch(setAllNotificationData(allnotis))
+      // }
     
       console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
