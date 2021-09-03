@@ -177,7 +177,7 @@ const Home = ({route,navigation}: Props) => {
   //     // navigation.setParams({prevPage: ''});
   //   }
   // },[])
-  useMemo(() => {
+  useEffect(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
@@ -227,8 +227,9 @@ const Home = ({route,navigation}: Props) => {
             ]
           );
       }
-      return {};
+      // return {};
     }, [netInfoval.isConnected]);
+    // }, [netInfoval.isConnected]);
   const downloadApis = () => {
     console.log("Download Pressed",apiJsonData);
     // if(apiJsonData && apiJsonData.length > 0)
