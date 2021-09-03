@@ -400,11 +400,11 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </PopupClose>
               </PopupCloseContainer>
               <ModalPopupContent>
-                <Heading1Centerr>{surveryData[0].title}</Heading1Centerr>
+                <Heading1Centerr>{surveryData[1].title}</Heading1Centerr>
               
-                {surveryData[0] && surveryData[0].body ?
+                {surveryData[1] && surveryData[1].body ?
                     <HTML
-                      source={{html: surveryData[0].body}}
+                      source={{html: surveryData[1].body}}
                       ignoredStyles={['color', 'font-size', 'font-family']}
                     />
                     : null 
@@ -416,7 +416,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                   onPress={() => {
                     setModalVisible(false);
                      analytics().logEvent(FEEDBACK_SUBMIT)
-                    Linking.openURL(surveryData[0].survey_feedback_link)
+                    Linking.openURL(surveryData[1].survey_feedback_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>
