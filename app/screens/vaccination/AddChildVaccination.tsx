@@ -306,7 +306,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
       console.log(allVaccines,"allVaccines isFormDisabled")
       if (allVaccines.length > 0) {
         if (isMeasured) {
-          if (heightValue && weightValue) {
+          if (heightValue != 0 && weightValue != 0) {
             return false;
           } else {
             return true;
@@ -315,7 +315,15 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           return false;
         }
       } else {
-        return true;
+        if (isMeasured) {
+          if (heightValue != 0 && weightValue != 0) {
+            return false;
+          } else {
+            return true;
+          }
+        } else {
+          return false;
+        }
       }
     } else {
       return true;
@@ -381,7 +389,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               {
                 text: t('alertForModifyMeasuresOk'),
                 onPress: () => {
-                  setmeasureDate(editVaccineDate)
+                  // setmeasureDate(editVaccineDate)
                 },
                 style: "cancel",
               },

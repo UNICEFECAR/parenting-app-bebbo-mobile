@@ -5,7 +5,7 @@ export type SurveysEntity = {
     type: string,
     title: string,
     body: string,
-    survey_link: string,
+    survey_feedback_link: string,
     created_at: string,
     updated_at: string,
   };
