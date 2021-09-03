@@ -79,7 +79,7 @@ const ChildSetupList = ({ navigation }: Props) => {
   
   useFocusEffect(
     React.useCallback(() => {
-      getAllChildren(dispatch,child_age);
+      getAllChildren(dispatch,child_age,0);
       getAllConfigData(dispatch);
       navigation.dispatch(state => {
         // Remove the home route from the stack
