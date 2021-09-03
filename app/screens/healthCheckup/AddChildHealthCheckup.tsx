@@ -422,7 +422,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
               {
                 text: t('alertForModifyMeasuresOk'),
                 onPress: () => {
-                  setmeasureDate(editMeasurementDate)
+                  // setmeasureDate(editMeasurementDate)
                 },
                 style: "cancel",
               },
