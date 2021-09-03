@@ -60,7 +60,7 @@ export const getVCNotis = (allVaccinePeriods, allGrowthPeriods) => {
     if (period) {
       item.periodName = period.name;
       item.vaccination_opens = period.vaccination_opens;
-     
+      
     }
   })
   groupsForPeriods.map((item: any, index: number)=>{
@@ -74,6 +74,8 @@ export const getVCNotis = (allVaccinePeriods, allGrowthPeriods) => {
         "type": "vaccination",
         "title": ('vcNoti1'),
         "checkinField": "days_from",
+        "growth_period":Number(item?.periodID),
+        "periodName":item?.periodName,
       })
   });
   console.log(noti, "inVC")
@@ -105,6 +107,8 @@ export const getHCReminderNotis = (allHealthCheckupsData, allGrowthPeriods) => {
         "type": "healthchkp",
         "title": ('hcNoti1'),
         "checkinField": "days_from",
+        "growth_period":hcItem.growth_period,
+        "periodName":hcItem.title
       })
     }
     // const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
@@ -131,6 +135,8 @@ export const getHCGWNotis = (childAge) => {
         "type": "growth",
         "title": ('gwNoti1'),
         "checkinField": "days_to",
+        "periodName":item.name,
+        "growth_period":item.id,
       },
       {
         "days_from": item.days_from,
@@ -138,6 +144,8 @@ export const getHCGWNotis = (childAge) => {
         "type": "development",
         "title": ('cdNoti1'),
         "checkinField": "days_to",
+        "periodName":item.name,
+        "growth_period":item.id,
       })
     //if> 3months then add noti
     //check gap between days_to and days_from
@@ -152,6 +160,8 @@ export const getHCGWNotis = (childAge) => {
             "type": "growth",
             "title": ('gwNoti1'),
             "checkinField": "days_from",
+            "periodName":item.name,
+            "growth_period":item.id,
           },
           {
             "days_from": item.days_from + (i * twoMonthDays),
@@ -159,6 +169,8 @@ export const getHCGWNotis = (childAge) => {
             "type": "development",
             "title": ('cdNoti2'), 
             "checkinField": "days_to",
+            "periodName":item.name,
+            "growth_period":item.id,
           },
         )
       }
@@ -171,6 +183,8 @@ export const getHCGWNotis = (childAge) => {
           "type": "development",
           "title": ('cdNoti2'), 
           "checkinField": "days_to",
+          "periodName":item.name,
+          "growth_period":item.id,
         },
       )
       // console.log(noti,"noti")
