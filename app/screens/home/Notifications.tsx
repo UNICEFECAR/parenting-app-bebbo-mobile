@@ -43,13 +43,13 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  let allnotis = useAppSelector((state: any) =>
-  (state.notificationData.notifications != "" ? JSON.parse(state.notificationData.notifications) : []
-  ));
-  allnotis = allnotis.sort(function (a, b) {
-    return a.days_from - b.days_from;
-  });
-  console.log(allnotis, "allnotis", new Date(activeChild.createdAt), new Date(activeChild.birthDate));
+  // let allnotis = useAppSelector((state: any) =>
+  // (state.notificationData.notifications != "" ? JSON.parse(state.notificationData.notifications) : []
+  // ));
+  // allnotis = allnotis.sort(function (a, b) {
+  //   return a.days_from - b.days_from;
+  // });
+  // console.log(allnotis, "allnotis", new Date(activeChild.createdAt), new Date(activeChild.birthDate));
 
   
 
@@ -66,61 +66,61 @@ const Notifications = () => {
     console.log(selectedCategories);
     const selectedFilters = selectedCategories.filter(category=>category.isActivated==true);
     console.log(selectedFilters,"selectedFilters")
-    const filteredNotications:any[] = [];
-    if(selectedFilters.length>0){
-      selectedFilters.forEach(category => {
-        console.log(category.type,"category")
-        // console.log( allnotis.filter(notification => {notification.type == category.type}))
-      //  allnotis.map(notification => {notification.type == category.type}).forEach(element => {
-      //   filteredNotications.push(element)
-      //  });
-    })
-    console.log(filteredNotications,"filteredNotications")
-    // newArray[itemIndex].isChecked=isChecked;
-    setNotifications(filteredNotications);
-    }else{
-      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays).reverse());
-    }
+    // const filteredNotications:any[] = [];
+    // if(selectedFilters.length>0){
+    //   selectedFilters.forEach(category => {
+    //     console.log(category.type,"category")
+    //     // console.log( allnotis.filter(notification => {notification.type == category.type}))
+    //   //  allnotis.map(notification => {notification.type == category.type}).forEach(element => {
+    //   //   filteredNotications.push(element)
+    //   //  });
+    // })
+    // console.log(filteredNotications,"filteredNotications")
+    // // newArray[itemIndex].isChecked=isChecked;
+    // setNotifications(filteredNotications);
+    // }else{
+    //   setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays).reverse());
+    // }
   };
   const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
     console.log(itemIndex,isChecked,selectedCategories)
     
   } 
-  useEffect(() => {
-    const childCreateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-  const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate));
-  console.log(childCreateDate < childBirthDate? activeChild.birthDate: activeChild.createdAt);
-    if(childCreateDate < childBirthDate){
-      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays));
-      console.log('inif')
-    }else{
-      console.log('inelse') //show current period's notifications if child was created after birth date
-      setNotifications(allnotis.filter((item) => item.days_from < childAgeInDays && item.days_to>=childAgeInDays));
-       //  allnotis.filter((item) => item.days_from < childAgeInDays))
-    }
-    // show all notifications if child was created before birth date or what? =>expecting child case
-    // after period passed , show all previous period's notifications  till childcreate date or child dob ?
+  // useEffect(() => {
+  //   const childCreateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+  // const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate));
+  // console.log(childCreateDate < childBirthDate? activeChild.birthDate: activeChild.createdAt);
+  //   if(childCreateDate < childBirthDate){
+  //     setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays));
+  //     console.log('inif')
+  //   }else{
+  //     console.log('inelse') //show current period's notifications if child was created after birth date
+  //     setNotifications(allnotis.filter((item) => item.days_from < childAgeInDays && item.days_to>=childAgeInDays));
+  //      //  allnotis.filter((item) => item.days_from < childAgeInDays))
+  //   }
+  //   // show all notifications if child was created before birth date or what? =>expecting child case
+  //   // after period passed , show all previous period's notifications  till childcreate date or child dob ?
     
-  }, [])
-  let childAge = useAppSelector(
-    (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  );
-  let allHealthCheckupsData = useAppSelector(
-    (state: any) =>
-    state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
-  );
-  const taxonomy = useAppSelector(
-    (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  );
-  let allGrowthPeriods = taxonomy?.growth_period;
-  let allVaccinePeriods = useAppSelector(
-    (state: any) =>
-    state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
-  );
+  // }, [])
+  // let childAge = useAppSelector(
+  //   (state: any) =>
+  //     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  // );
+  // let allHealthCheckupsData = useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
+  // );
+  // const taxonomy = useAppSelector(
+  //   (state: any) =>
+  //     (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  // );
+  // let allGrowthPeriods = taxonomy?.growth_period;
+  // let allVaccinePeriods = useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
+  // );
   const calcAllNotis = ()=>{
-   console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
+  //  console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
   }
   // useEffect(() => {
    

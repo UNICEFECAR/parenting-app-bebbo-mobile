@@ -32,43 +32,43 @@ const NotificationItem = (props: any) => {
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const geticonname = (type: string) => {
     // console.log(type)
-    return type == 'growth'
+    return type == 'gw'
       ? 'ic_growth'
-      : type == 'development'
+      : type == 'cd'
         ? 'ic_milestone'
-        : type == 'vaccination'
+        : type == 'vc'
           ? 'ic_vaccination'
-          : type == 'healthchkp'
+          : type == 'hc'
             ? 'ic_doctor_chk_up'
             : 'ic_growth';
   };
   const getButtonname = (type: string) => {
-    return type == 'growth'
+    return type == 'gw'
       ? 'Add New Measurement'
-      : type == 'development'
+      : type == 'cd'
         ? 'Track your milestones'
-        : type == 'vaccination'
+        : type == 'vc'
           ? 'View Vaccination details'
-          : type == 'healthchkp'
+          : type == 'hc'
             ? 'View HealthCheck-up Details'
             : '';
   };
   const gotoPage = (type: string) => {
     //console.log(type);
-    type == 'growth'
+    type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
         headerTitle: t('growthScreenaddNewBtntxt'),
       })
-      : type == 'development'
+      : type == 'cd'
         ? navigation.navigate('Home', { screen: 'ChildDevelopment' })
-        : type == 'vaccination'
+        : type == 'vc'
           ? navigation.navigate('Home', {
             screen: 'Tools',
             params: {
               screen: 'VaccinationTab',
             },
           })
-          : type == 'healthchkp'
+          : type == 'hc'
             ? navigation.navigate('AddReminder', {
               reminderType: 'healthCheckup', // from remiderType
               headerTitle: t('vcReminderHeading'),

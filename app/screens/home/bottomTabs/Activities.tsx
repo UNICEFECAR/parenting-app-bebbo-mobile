@@ -13,7 +13,7 @@ import PrematureTag, { PrematureTagActivity } from '@components/shared/Premature
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
@@ -464,6 +464,20 @@ const DATA = [
   
   return (
     <>
+    <Pressable onPress={()=>{
+       navigation.dispatch(
+    CommonActions.reset({
+      index: 0,
+      routes: [
+        // { name: 'Home' },
+        {
+          name: 'HomeDrawerNavigator',
+          params: { prevPage: "prevPage" },
+        },
+      ],
+    })
+  );
+    }}><Text>click</Text></Pressable>
     <OverlayLoadingComponent loading={loading} />
       <ContainerView>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />

@@ -332,6 +332,9 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   console.log("done--",results);
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
+  //delete all notifications from slice for all child
+  let notiFlagObj = { key: 'generateNotifications', value: true };
+  dispatch(setInfoModalOpened(notiFlagObj));
   navigation.reset({
     index: 0,
     routes: [

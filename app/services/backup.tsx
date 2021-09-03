@@ -168,6 +168,8 @@ class Backup {
                         // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
                         //console.log(createresult,".....createresult...");
                     });
+        //              let notiFlagObj = { key: 'generateNotifications', value: true };
+        // dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
                         console.log(userRealmCommon.realm?.schemaVersion, "..new userRealmCommon schema version.");
 
