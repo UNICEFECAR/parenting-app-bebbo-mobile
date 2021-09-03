@@ -99,6 +99,9 @@ const Home = ({route,navigation}: Props) => {
   const showDownloadPopup = useAppSelector((state: any) =>
     (state.utilsData.showDownloadPopup),
   );
+  const generateNotificationsFlag = useAppSelector((state: any) =>
+    (state.utilsData.generateNotifications),
+  );
   const netInfoval = useNetInfoHook();
   console.log(netInfoval.isConnected,'--31home focuseffect--', userIsOnboarded);
   const surveryData = useAppSelector((state: any) =>
@@ -167,7 +170,7 @@ const Home = ({route,navigation}: Props) => {
     state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
   // useEffect(() => {
-  //   // console.log(route.params,"inUSEEFFECT")
+  //   console.log(route.params,"inUSEEFFECT")
   //   //   if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
   //   //     const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
   //   //     console.log(allnotis,"generatedNotisafterlangchange");
@@ -177,7 +180,12 @@ const Home = ({route,navigation}: Props) => {
   //     // navigation.setParams({prevPage: ''});
   //   }
   // },[])
-  useEffect(() => {
+  // useEffect(() => {
+  //   return () => {
+  //     // navigation.setParams({prevPage: ''});
+  //   }
+  // },[])
+  useMemo(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
@@ -195,6 +203,14 @@ const Home = ({route,navigation}: Props) => {
       //   console.log(allnotis,"generatedNotisafterlangchange");
       //   dispatch(setAllNotificationData(allnotis))
       // }
+      if(generateNotificationsFlag== true){
+        //generate notifications for all childs 
+        //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
+        //if already exist, then for each module get last period, and generate afterwards period's notifications
+        //after generating notifications make it false
+        // let notiFlagObj = { key: 'generateNotifications', value: false };
+        // dispatch(setInfoModalOpened(notiFlagObj));
+      }
     
       console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
