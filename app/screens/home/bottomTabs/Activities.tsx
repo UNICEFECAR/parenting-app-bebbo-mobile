@@ -464,20 +464,6 @@ const DATA = [
   
   return (
     <>
-    <Pressable onPress={()=>{
-       navigation.dispatch(
-    CommonActions.reset({
-      index: 0,
-      routes: [
-        // { name: 'Home' },
-        {
-          name: 'HomeDrawerNavigator',
-          params: { prevPage: "prevPage" },
-        },
-      ],
-    })
-  );
-    }}><Text>click</Text></Pressable>
     <OverlayLoadingComponent loading={loading} />
       <ContainerView>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
