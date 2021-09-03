@@ -201,7 +201,7 @@ const DailyReads = () => {
         data.push(articleDataToShow);
         data.push(activityDataToShow);
         setDataToShowInList(data);
-        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2].id}));
+        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2]?.id}));
         dispatch(setShowedDailyDataCategory({advice: advicearray , games: gamesarray}));
         console.log(dataToShowInList);
       }
