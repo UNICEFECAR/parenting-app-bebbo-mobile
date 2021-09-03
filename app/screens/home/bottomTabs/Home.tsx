@@ -168,11 +168,17 @@ const Home = ({route,navigation}: Props) => {
     (state: any) =>
     state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
-  useEffect(() => {
-    return () => {
-      navigation.setParams({prevPage: ''});
-    }
-  },[])
+  // useEffect(() => {
+  //   console.log(route.params,"inUSEEFFECT")
+  //     if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
+  //       const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+  //       console.log(allnotis,"generatedNotisafterlangchange");
+  //       dispatch(setAllNotificationData(allnotis))
+  //     }
+  //   return () => {
+  //     navigation.setParams({prevPage: ''});
+  //   }
+  // },[])
   useMemo(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
@@ -191,6 +197,8 @@ const Home = ({route,navigation}: Props) => {
         console.log(allnotis,"generatedNotisafterlangchange");
         dispatch(setAllNotificationData(allnotis))
       }
+    
+      console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
       console.log(downloadWeeklyData,"--downloadWeeklyData-- and month",downloadMonthlyData);
       if(netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
@@ -385,7 +393,7 @@ const Home = ({route,navigation}: Props) => {
                     
                      analytics().logEvent(SURVEY_SUBMIT)
                     
-                    Linking.openURL(surveryData[0].survey_link)
+                    Linking.openURL(surveryData[0].survey_feedback_link)
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                 </ButtonModal>

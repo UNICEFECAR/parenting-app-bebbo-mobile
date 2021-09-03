@@ -22,7 +22,6 @@ import { getAllNotifications } from '../../services/notificationService';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 import { DateTime } from 'luxon';
-import { getAllNotificationsForActiveChild } from '../../services/currentChildNotifications';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
@@ -95,11 +94,34 @@ const Notifications = () => {
       setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays));
       console.log('inif')
     }else{
-      console.log('inelse') //show current period's notifications
-      setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays && item.days_to>=childAgeInDays));
+      console.log('inelse') //show current period's notifications if child was created after birth date
+      setNotifications(allnotis.filter((item) => item.days_from < childAgeInDays && item.days_to>=childAgeInDays));
+       //  allnotis.filter((item) => item.days_from < childAgeInDays))
     }
+    // show all notifications if child was created before birth date or what? =>expecting child case
+    // after period passed , show all previous period's notifications  till childcreate date or child dob ?
     
   }, [])
+  let childAge = useAppSelector(
+    (state: any) =>
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
+  );
+  let allHealthCheckupsData = useAppSelector(
+    (state: any) =>
+    state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
+  );
+  const taxonomy = useAppSelector(
+    (state: any) =>
+      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
+  );
+  let allGrowthPeriods = taxonomy?.growth_period;
+  let allVaccinePeriods = useAppSelector(
+    (state: any) =>
+    state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
+  );
+  const calcAllNotis = ()=>{
+   console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
+  }
   // useEffect(() => {
    
   //  return () => {
@@ -130,7 +152,8 @@ const Notifications = () => {
 
             <OuterIconRow>
               <OuterIconSpace>
-                <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
+                <Pressable onPress={() => calcAllNotis()}>
+                {/* <Pressable onPress={() => navigation.navigate('SettingsScreen')}> */}
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>

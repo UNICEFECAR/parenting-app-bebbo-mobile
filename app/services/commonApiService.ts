@@ -38,7 +38,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-  // console.log("newurl--", newurl);
+  console.log("newurl--", newurl);
   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
@@ -228,6 +228,11 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
       },
     ],
   });
+  // navigation.navigate('Home',
+  //   {
+  //     screen:"Home",
+  //     params:{prevPage:prevPage},
+  //   });
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
   // navigation.navigate('HomeDrawerNavigator');
@@ -327,15 +332,15 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   console.log("done--",results);
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
-  // navigation.reset({
-  //   index: 0,
-  //   routes: [
-  //     {
-  //       name: 'HomeDrawerNavigator',
-  //       // params: {prevPage}
-  //     },
-  //   ],
-  // });
+  navigation.reset({
+    index: 0,
+    routes: [
+      {
+        name: 'HomeDrawerNavigator',
+        // params: {prevPage}
+      },
+    ],
+  });
   // navigation.dispatch(
   //   CommonActions.reset({
   //     index: 0,
@@ -348,11 +353,11 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //     ],
   //   })
   // );
-  navigation.navigate('Home',
-    {
-      screen:"Home",
-      params:{prevPage:prevPage},
-    });
+  // navigation.navigate('Home',
+  //   {
+  //     screen:"Home",
+  //     params:{prevPage:prevPage},
+  //   });
 }
 export const onApiFail = (error: any) => {
   console.log(error, "..error..");
