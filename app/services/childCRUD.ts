@@ -141,6 +141,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         if (taxonomyData?.length > 0) {
           child.taxonomyData = taxonomyData[0];
         }
+        //if notif.length>0 child.notifications.append
       }
       if (userParentalRole?.length > 0) {
         child.parent_gender = userParentalRole[0].value
@@ -167,6 +168,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         if (taxonomyData?.length > 0) {
           child.taxonomyData = taxonomyData[0];
         }
+         //if notif.length>0 child.notifications.append
       }
       if (userParentalRole?.length > 0) {
         child.parent_gender = userParentalRole[0].value
@@ -193,6 +195,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       if (taxonomyData?.length > 0) {
         child.taxonomyData = taxonomyData[0];
       }
+       //if notif.length>0 child.notifications.append
     }
     if (userParentalRole?.length > 0) {
       child.parent_gender = userParentalRole[0].value

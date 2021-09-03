@@ -281,7 +281,8 @@ export default () => {
       let obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
       getAllChildren(dispatch, child_age, 0);
-
+      let notiFlagObj = { key: 'generateNotifications', value: true };
+      dispatch(setInfoModalOpened(notiFlagObj));
 
     }
 

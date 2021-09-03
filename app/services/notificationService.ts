@@ -71,7 +71,7 @@ export const getVCNotis = (allVaccinePeriods, allGrowthPeriods) => {
    noti.push({
         "days_from": item?.vaccination_opens,
         "days_to": item?.vaccination_closes,
-        "type": "vaccination",
+        "type": "vc",
         "title": ('vcNoti1'),
         "checkinField": "days_from",
         "growth_period":Number(item?.periodID),
@@ -104,7 +104,7 @@ export const getHCReminderNotis = (allHealthCheckupsData, allGrowthPeriods) => {
       noti.push({
         "days_from": item?.vaccination_opens,
         "days_to": (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens,
-        "type": "healthchkp",
+        "type": "hc",
         "title": ('hcNoti1'),
         "checkinField": "days_from",
         "growth_period":hcItem.growth_period,
@@ -132,7 +132,7 @@ export const getHCGWNotis = (childAge) => {
       {
         "days_from": item.days_from,
         "days_to": item.days_to,
-        "type": "growth",
+        "type": "gw",
         "title": ('gwNoti1'),
         "checkinField": "days_to",
         "periodName":item.name,
@@ -141,7 +141,7 @@ export const getHCGWNotis = (childAge) => {
       {
         "days_from": item.days_from,
         "days_to": item.days_to,
-        "type": "development",
+        "type": "cd",
         "title": ('cdNoti1'),
         "checkinField": "days_to",
         "periodName":item.name,
@@ -157,7 +157,7 @@ export const getHCGWNotis = (childAge) => {
           {
             "days_from": item.days_from + (i * twoMonthDays),
             "days_to": (i == diff - 1) ? item.days_to - beforeDays : item.days_to < item.days_from + (i * twoMonthDays) + twoMonthDays ? item.days_to : item.days_from + (i * twoMonthDays) + twoMonthDays,
-            "type": "growth",
+            "type": "gw",
             "title": ('gwNoti1'),
             "checkinField": "days_from",
             "periodName":item.name,
@@ -166,7 +166,7 @@ export const getHCGWNotis = (childAge) => {
           {
             "days_from": item.days_from + (i * twoMonthDays),
             "days_to": (i == diff - 1) ? item.days_to - beforeDays : item.days_to < item.days_from + (i * twoMonthDays) + twoMonthDays ? item.days_to : item.days_from + (i * twoMonthDays) + twoMonthDays,
-            "type": "development",
+            "type": "cd",
             "title": ('cdNoti2'), 
             "checkinField": "days_to",
             "periodName":item.name,
@@ -180,7 +180,7 @@ export const getHCGWNotis = (childAge) => {
         {
           "days_from": item.days_from,
           "days_to": item.days_to - beforeDays,
-          "type": "development",
+          "type": "cd",
           "title": ('cdNoti2'), 
           "checkinField": "days_to",
           "periodName":item.name,
