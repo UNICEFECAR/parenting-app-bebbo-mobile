@@ -168,17 +168,17 @@ const Home = ({route,navigation}: Props) => {
     (state: any) =>
     state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
-  // useEffect(() => {
-  //   console.log(route.params,"inUSEEFFECT")
-  //     if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
-  //       const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-  //       console.log(allnotis,"generatedNotisafterlangchange");
-  //       dispatch(setAllNotificationData(allnotis))
-  //     }
-  //   return () => {
-  //     navigation.setParams({prevPage: ''});
-  //   }
-  // },[])
+  useEffect(() => {
+    // console.log(route.params,"inUSEEFFECT")
+    //   if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
+    //     const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+    //     console.log(allnotis,"generatedNotisafterlangchange");
+    //     dispatch(setAllNotificationData(allnotis))
+    //   }
+    return () => {
+      // navigation.setParams({prevPage: ''});
+    }
+  },[])
   useMemo(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
@@ -187,9 +187,9 @@ const Home = ({route,navigation}: Props) => {
         dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
         dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
         dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-        const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-        console.log(allnotis,"generatedNotis");
-        dispatch(setAllNotificationData(allnotis))
+        // const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
+        // console.log(allnotis,"generatedNotis");
+        // dispatch(setAllNotificationData(allnotis))
       }
       console.log(route.params,"routeparamsHome");
       if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
