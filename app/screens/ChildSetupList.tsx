@@ -129,8 +129,10 @@ const ChildSetupList = ({ navigation }: Props) => {
             onPress: () => reject("error"),
             style: "cancel"
           },
-          { text: t('growthScreendelText'), onPress: () => {
-            deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age,t);
+          { text: t('growthScreendelText'), onPress: async () => {
+            const deletedata=await deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age,t);
+            console.log(deletedata,"..deletedatares..")
+            getAllChildren(dispatch,child_age,0);
           }
           }
         ]
