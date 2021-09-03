@@ -352,6 +352,8 @@ const EditChildProfile = ({route, navigation}: Props) => {
     return destPath.replace(CHILDREN_PATH, '');
   }
   const AddChild = async () => {
+
+    // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     let insertData: any = editScreen
       ? await getNewChild(
           uuid,
