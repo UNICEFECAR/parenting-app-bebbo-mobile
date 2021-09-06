@@ -283,11 +283,9 @@ export default () => {
       getAllChildren(dispatch, child_age, 0);
       let notiFlagObj = { key: 'generateNotifications', value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
-
     }
-
-
-  }, [userIsOnboarded]);
+    //add notification condition in else if required 1st time as well
+  }, []);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
   return (
