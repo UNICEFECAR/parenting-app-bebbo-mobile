@@ -185,7 +185,7 @@ const Home = ({route,navigation}: Props) => {
   //     // navigation.setParams({prevPage: ''});
   //   }
   // },[])
-  useMemo(() => {
+  useEffect(() => {
       setModalVisible(false);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
@@ -193,6 +193,8 @@ const Home = ({route,navigation}: Props) => {
         dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
         dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
         dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+        let obj = { key: 'showDownloadPopup', value: false };
+        dispatch(setInfoModalOpened(obj));
         // const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
         // console.log(allnotis,"generatedNotis");
         // dispatch(setAllNotificationData(allnotis))
