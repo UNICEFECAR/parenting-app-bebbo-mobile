@@ -169,7 +169,8 @@ export const getAllPeriodicSyncData = () => {
         if(childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days)
         {
           const i = childAge.findIndex((_item:any) => _item.id === child.taxonomyData.id);
-          if(i > -1 && i < childAge.length){
+          // if(i > -1 && i < childAge.length){
+            if(i > -1 && i < childAge.length-1){
             const nextchildAgeData = childAge[i+1];
             console.log("nextchildAgeData--",nextchildAgeData);
             if(nextchildAgeData.age_bracket.length > 0){
