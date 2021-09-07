@@ -1,4 +1,4 @@
-import { onAddEditChildSuccess, onHomeapiSuccess } from './../../services/commonApiService';
+import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -9,6 +9,7 @@ import { apijsonArray, fetchAPI, FETCH_API, insertInDB, insertInStore } from './
 import { InsertInDBSaga } from './sagaInsertInDB';
 import { InsertInStoreSaga } from './sagaInsertInStore';
 import { receiveAPIFailure } from './sagaSlice';
+import { Alert } from 'react-native';
 // declare global errorArr;
 let errorArr: any[] = [];
 type commonApiServiceResponse = SagaReturnType<typeof commonApiService>
@@ -26,6 +27,7 @@ function* onFetchAPI(value: any) {
   const languageCode = value.languageCode;
   const activeChild = value.activeChild;
   const oldErrorObj = value.oldErrorObj;
+  const netInfovalisConnected = value.netInfovalisConnected;
   // console.log("prevPage--",prevPage);
   errorArr = [];
   try {
@@ -36,25 +38,39 @@ function* onFetchAPI(value: any) {
     //we can use fork instead of all.Need to check.
     // yield payload.map((data: apijsonArray) =>call(apiCall, data))
     // const response:commonApiServiceResponse = yield all(payload.forEach((data: apijsonArray) =>  fork(apiCall, data)));
-    let response: commonApiServiceResponse = yield all(
-      payload.map((data: apijsonArray) =>
-        call(apiCall, data,dispatch,languageCode)
+    // if(netInfovalisConnected == true)
+    // {
+      let response: commonApiServiceResponse = yield all(
+        payload.map((data: apijsonArray) =>
+          call(apiCall, data,dispatch,languageCode)
+        )
       )
-    )
-    response = response.filter((el: any) =>{
-      return el != null;
-    });
-    // console.log(response,"..response..");
-    // console.log(errorArr,"..errorArr..");
-    if (errorArr.length > 0) {
+      response = response.filter((el: any) =>{
+        return el != null;
+      });
+      // console.log(response,"..response..");
+      // console.log(errorArr,"..errorArr..");
+      // Alert.alert(errorArr.length+"-start--"+netInfovalisConnected+" hh "+prevPage);
+      if (netInfovalisConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
+          yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+      }
+      else {
+          yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+      }
+    // }else {
+    //   yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+
+    // }
+    //yield put(receiveAPISuccess(response));
+  } catch (e) {
+    // Alert.alert(errorArr.length+"-start--"+netInfovalisConnected+" hhnew "+prevPage);
+    if (netInfovalisConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
         yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
     }
     else {
-        yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
     }
-    //yield put(receiveAPISuccess(response));
-  } catch (e) {
-    yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+    // yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
   }
 }
 // async function* navigateToPage() {
@@ -154,6 +170,10 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
    else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen') {
     //dispatch action for before home page
     yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
+  }
+   else if (prevPage == 'Survey') {
+    //dispatch action for before home page
+    yield call(onHomeSurveyapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
 }
 

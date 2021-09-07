@@ -5,10 +5,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
-import { Dimensions } from 'react-native';
+import { Alert, Dimensions } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
 import { ArticleEntitySchema } from '../database/schema/ArticleSchema';
@@ -68,24 +69,30 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           ? JSON.parse(state.childData.childDataSet.activeChild)
           : [],
       );
+  const netInfoval = useNetInfoHook();
     useFocusEffect(
       React.useCallback(() => {
-          callSagaApi();
+        console.log(netInfoval.isConnected,'--loading focuseffect--');
+        if(netInfoval.isConnected != null)
+        {
+            callSagaApi();
+        }
           return () => {
             // console.log("loading screen left");
           };
-      },[])
+      },[netInfoval.isConnected])
     );
 
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = async () => {
+    console.log('in callSagaApi ',netInfoval.isConnected);
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
     else if(prevPage == "Home")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
     else if(prevPage == "CountryLangChange")
     {
@@ -118,7 +125,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
       dispatch(setDownloadedBufferAgeBracket([]))
       console.log("called fetchapi after delete");
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
     else if(prevPage == "PeriodicSync")
     {
@@ -183,13 +190,13 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
-      let payload = {errorArr:[],fromPage:'OnLoad'}
-      dispatch(receiveAPIFailure(payload));
+      // let payload = {errorArr:[],fromPage:'OnLoad'}
+      // dispatch(receiveAPIFailure(payload));
       if(allAgeBrackets.length > 0) {
         // dispatch(setDownloadedBufferAgeBracket([]))
         dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
       }
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
     else if(prevPage == "ImportScreen")
     {
@@ -208,10 +215,10 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
       const deleteArticles=await deleteArticleNotPinned();
       console.log(deleteArticles,"..deleteArticles..");
-      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle))
+      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected))
     }
     else {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
   }
   

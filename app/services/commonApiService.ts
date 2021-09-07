@@ -362,6 +362,17 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //     params:{prevPage:prevPage},
   //   });
 }
+export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+  console.log(response,"--oldErrorObj survey---",oldErrorObj);
+  // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
+  // console.log(allDatatoStore,"..allDatatoStore..")
+  const resolvedPromises =  oldErrorObj.map(async (x:any) => {
+      const allDatatoStore = await getAllDataOnRetryToStore(x.apiEndpoint,languageCode,dispatch,prevPage,activeChild);
+      return allDatatoStore;
+  });
+  const results = await Promise.all(resolvedPromises);
+  console.log("survey done--",results);
+}
 export const onApiFail = (error: any) => {
   console.log(error, "..error..");
 
