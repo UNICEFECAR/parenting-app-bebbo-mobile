@@ -30,6 +30,7 @@ import {
   ChildEntitySchema
 } from '../../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../../redux/reducers/childSlice';
+import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../../services/Utils';
 import {
   ButtonContainerAuto,
@@ -121,11 +122,6 @@ const UpcomingVaccines = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const isFutureDate = (date: Date) => {
-    return (
-      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
-    );
-  };
   useEffect(() => {
     currentPeriodId == item?.periodID ? setIsOpen(true) : setIsOpen(false);
     const yeas = item?.vaccines.some((el) => {

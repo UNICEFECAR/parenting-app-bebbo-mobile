@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
+import { isFutureDate } from '../../../services/childCRUD';
 import { formatStringDate } from '../../../services/Utils';
 import Icon, { IconViewAlert } from '../../shared/Icon';
 
@@ -49,11 +50,6 @@ const PreviousVaccines = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const isFutureDate = (date: Date) => {
-    return (
-      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
-    );
-  };
   const gotoArticle = (pinned_articleID) => {
     if (pinned_articleID != 0) {
       navigation.navigate('DetailsScreen', {
