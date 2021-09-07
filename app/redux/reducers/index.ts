@@ -45,7 +45,7 @@ const childConfig = {
   storage: createRealmPersistStorage(),
   version: 0,
   debug: true,
-  migrate: createMigrate(migrations, { debug: true }) 
+  // migrate: createMigrate(migrations, { debug: true }) 
 };
 const articleConfig = {
   key: 'articlesData',
