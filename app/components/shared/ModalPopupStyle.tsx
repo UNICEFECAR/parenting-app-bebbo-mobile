@@ -42,6 +42,13 @@ export const PopupClose = styled.Pressable`
   /* position:absolute; */
   
 `;
+export const PopupCloseVideo = styled(PopupClose)`
+ 
+  margin-right:4px;
+  top:0
+`;
+
+
 export const ModalPopupContent = styled.View`
   padding:10px 40px;
   margin-top:-25px
@@ -52,7 +59,8 @@ export const ModalPopupContentVideo = styled.View`
 background-color:#fff;
   min-width:100%;
   max-width:100%;
-  flex:1
+  flex:1;
+  margin-top:-25px;
 `;
 
 export default ModalPopupContainer;
