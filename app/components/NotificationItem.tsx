@@ -12,6 +12,7 @@ import {
   renderers
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../App';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
@@ -24,6 +25,11 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 const NotificationItem = (props: any) => {
   const { item, itemIndex } = props;
   // console.log(item,itemIndex);
+  const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
   const isDeleteEnabled = props.isDeleteEnabled;
   const themeContext = useContext(ThemeContext);
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
@@ -310,7 +316,13 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-            <Heading4Regular>{t(item.title)}</Heading4Regular>
+            <Heading4Regular>{t(item.title,{
+                            childName:
+                              activeChild.childName != null &&
+                                activeChild.childName != '' &&
+                                activeChild.childName != undefined
+                                ? activeChild.childName
+                                : ''})}</Heading4Regular>
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to}</Heading6>
             </ShiftFromTop5>
@@ -504,7 +516,7 @@ const NotificationItem = (props: any) => {
   }
 
   return (
-    item.type == 'growth' ? renderGrowthNotifcation() : item.type == 'development' ? renderCDNotifcation() : item.type == 'vaccination' ? renderVCNotifcation() : item.type == 'healthchkp' ? renderHCNotifcation() : null
+    item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null
   );
 };
 export default NotificationItem;
