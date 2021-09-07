@@ -1,6 +1,8 @@
 
+import { appConfig } from "@assets/translations/appOfflineData/apiConstants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { WritableDraft } from "immer/dist/internal";
+import { Alert } from "react-native";
 
 interface ArrayObj{data:any,apiEndpoint:any,status:any};
 // let initialState:[] as ArrayObj[];
@@ -14,7 +16,9 @@ let errorarray: WritableDraft<[]> = [];
             
             receiveAPIFailure: (state, action) => {
               // console.log(state.errorObj.length);
-              console.log("receiveOnloadAPIFailure--",action.payload);
+              // console.log("receiveOnloadAPIFailure--",action.payload.errorArr);
+              action.payload.errorArr = action.payload.errorArr.filter((_item: any) => _item.apiEndpoint !== appConfig.surveys);
+              // console.log("i survey--",action.payload.errorArr);
               //write code to check if element already in array.
               // action.payload.errorArr[0].apiEndpoint = "activities";
               // console.log("after receiveOnloadAPIFailure--",action.payload);
