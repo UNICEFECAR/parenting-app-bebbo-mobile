@@ -47,7 +47,7 @@ const VideoPlayer = (props: any) => {
   );
     // console.log(netInfoval,"--netInfo");
     let videoId: string;
-    console.log("video player", props.selectedPinnedArticleData);
+    // console.log("video player", props.selectedPinnedArticleData);
     let videoType = videoTypeImage;
     if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
@@ -58,7 +58,7 @@ const VideoPlayer = (props: any) => {
     //     if(props.selectedPinnedArticleData.cover_video)
     // }
     // const videoType = props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage;
-    console.log(videoType,"--videoType");
+    // console.log(videoType,"--videoType");
     if (videoType == videoTypeVimeo) {
         videoId = getVimeoId(props.selectedPinnedArticleData?.cover_video?.url)
     } else if (videoType == videoTypeYoutube) {

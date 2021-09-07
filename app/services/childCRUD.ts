@@ -15,6 +15,7 @@ import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStor
 import analytics from '@react-native-firebase/analytics';
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
 import { MeasurementEntitySchema } from '../database/schema/measurementDataSchema';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 export const apiJsonDataGet = (childAge: any, parentGender: any) => {
 
   return [
@@ -337,7 +338,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   // else{
   //   return 0 ;
   // }
-  console.log(birthDate,"..birthDate..")
+  // console.log(birthDate,"..birthDate..")
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
   const date1 = DateTime.local();
   const date2 = DateTime.fromISO(birthDate);
@@ -359,20 +360,20 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
       ageStr+=  diff.months + (diff.months>1 ? (diff.months>=5 ? ' '+t('months5tag'):' '+t('monthstag')):' '+t('monthtag'));
      
     }
-     console.log(Math.round(diff.days),"..diffff...")
+    //  console.log(Math.round(diff.days),"..diffff...")
     // if(diff.days>0){ 
     if (diff.days != "" && diff.months == "" && diff.years == "") {
       //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
       ageStr+=  Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days)>=5 ? ' '+t('days5tag'):' '+t('daystag')):' '+t('daytag'));
      // ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? (Math.round(diff.days)>=5 ? " days5 ": " day24 "): " day");
     }
-    console.log(ageStr,"..ageStr")
+    // console.log(ageStr,"..ageStr")
     if (ageStr == "") {
       ageStr = t('noday');
     }
 
   }
-  console.log(ageStr,"..ageStr")
+  // console.log(ageStr,"..ageStr")
   return ageStr;
 
 };
@@ -438,7 +439,15 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let startDate =new Date(oldBirthDate)
     let someDate = new Date(data[0].birthDate)
     console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
+    let notiFlagObj = { key: 'generateNotifications', value: true };
+    dispatch(setInfoModalOpened(notiFlagObj));
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate)==false) {
+      // regenerate notifications for new dob 
+      //startDate =>olddob
+      //someDate =>newdob
+      
+
+console.log('inifaddchild')
       let deleteresult = await userRealmCommon.deleteNestedMeasures<ChildEntity>(
         ChildEntitySchema,
         DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis(),
@@ -473,6 +482,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
 
     }
     else {
+      console.log('inelseaddchild')
       if (currentActiveChildId?.length > 0) {
         currentActiveChildId = currentActiveChildId[0].value;
         if (currentActiveChildId == data[0].uuid) {
@@ -487,7 +497,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 
   // //console.log(new Date()," result is ",createresult);
-
+  // if (editScreen) {
+  //   return 'updated'
+  // }
 }
 export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any) => {
   console.log(dateTime1, "/", dateTime2)
@@ -711,6 +723,8 @@ export const deleteChild = async (languageCode: any, index: number, dispatch: an
   let createresult = await userRealmCommon.delete(schemaName, recordId, filterCondition);
   //console.log(createresult,"..createresult..");
   if (createresult == 'success') {
+    let notiFlagObj = { key: 'generateNotifications', value: true };
+    dispatch(setInfoModalOpened(notiFlagObj));
     //console.log(index, "..index..");
     if (currentActiveChildId?.length > 0) {
       currentActiveChildId = currentActiveChildId[0].value;

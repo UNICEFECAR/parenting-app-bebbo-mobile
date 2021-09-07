@@ -25,13 +25,13 @@ const LoadableImage = (props:any) => {
       // }
       // else{
       if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
-        console.log(item,"..11item..");
+        // console.log(item,"..11item..");
         if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
-          console.log("..22item..");
+          // console.log("..22item..");
           setImageState('loaded');
         }
         else {
-          console.log(item,"..33item..");
+          // console.log(item,"..33item..");
           if(toggleSwitchVal==true){
             setImageState('loaded'); // This worked for me
             setNoImage(true);
@@ -44,14 +44,14 @@ const LoadableImage = (props:any) => {
             destFolder: destinationFolder,
             destFilename: item['cover_image'].url.split('/').pop()
           })
-          console.log(imageArray, "..imageArray..");
+          // console.log(imageArray, "..imageArray..");
           // if(toggleSwitchVal==false){
           const imagesDownloadResult = await downloadImages(imageArray);
           setTimeout(()=>{
             setImageState('loaded');
           },350)
           
-          console.log(imagesDownloadResult, "..imagesDownloadResult..");
+          // console.log(imagesDownloadResult, "..imagesDownloadResult..");
           }
           // }
           // else{
@@ -72,7 +72,7 @@ const LoadableImage = (props:any) => {
     useFocusEffect(
       React.useCallback(() => {
         async function fetchData() {
-          console.log("..11111.......",item.id)
+          // console.log("..11111.......",item.id)
           // setImageState('loading');
           downloadImage(item)
         }
