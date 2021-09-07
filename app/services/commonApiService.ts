@@ -24,6 +24,7 @@ import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { CommonActions } from '@react-navigation/native';
+import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -333,6 +334,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
   //delete all notifications from slice for all child
+  dispatch(setAllNotificationData([]));
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
   navigation.reset({

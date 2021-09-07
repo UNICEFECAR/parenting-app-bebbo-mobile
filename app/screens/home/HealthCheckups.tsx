@@ -38,6 +38,7 @@ import ModalPopupContainer, {
 import Icon from '@components/shared/Icon';
 import { ButtonModal } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
+import { isFutureDate } from '../../services/childCRUD';
 type HealthCheckupsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -84,11 +85,6 @@ const HealthCheckups = ({navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const isFutureDate = (date: Date) => {
-    return (
-      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
-    );
-  };
   // console.log(reminders,"UpcomingHealthCheckup-reminders");
   const healthCheckupReminder = reminders.filter(
     (item) => item.reminderType == 'healthCheckup',

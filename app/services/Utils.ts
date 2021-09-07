@@ -327,8 +327,8 @@ const formatImportedMeasures = (measures: any) => {
                         let allmeausreVaccineIds: any[] = [];
                         measure.vaccineIds.forEach((element, index) => {
                             // added for testing 
-                            allmeausreVaccineIds.push(index==0?{uuid:"6b016c1c-64fa-4e47-adbd-93e0a7255e65"}:{uuid:element})
-                            // allmeausreVaccineIds.push({ uuid: element })
+                            // allmeausreVaccineIds.push(index==0?{uuid:"6b016c1c-64fa-4e47-adbd-93e0a7255e65"}:{uuid:element})
+                            allmeausreVaccineIds.push({ uuid: element })
                         });
                         measure.vaccineIds = JSON.stringify(allmeausreVaccineIds);
                         // console.log(allmeausreVaccineIds, "allmeausreVaccineIds", measure.vaccineIds)

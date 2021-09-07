@@ -43,15 +43,52 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // let allnotis = useAppSelector((state: any) =>
-  // (state.notificationData.notifications != "" ? JSON.parse(state.notificationData.notifications) : []
-  // ));
+  
+  let allnotis = useAppSelector((state: any) =>(state.notificationData.notifications));
+  
+// console.log(allnotis)
+  // let notificationsForChild = allnotis.find((notiInfo)=>notiInfo.uuid==activeChild.uuid)
+  // console.log(allnotis,"notification")
   // allnotis = allnotis.sort(function (a, b) {
   //   return a.days_from - b.days_from;
   // });
   // console.log(allnotis, "allnotis", new Date(activeChild.createdAt), new Date(activeChild.birthDate));
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
+      if(allnotis.length>0){
+      const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+      console.log(currentChildNotis,"allfilteredNotis")
+      //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+      if(currentChildNotis){
+      let currentChildallnoti:any= [];
+          currentChildNotis.gwcdnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+          // // notiExist.gwcdnotis?.forEach((item)=>{
+          // //   allgwnoti.push(item)
+          // // })
+          currentChildNotis.hcnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+          // // notiExist.vcnotis?.forEach((item)=>{
+          // //   allvcnotis.push(item)
+          // // })
+          currentChildNotis.vcnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+          // console.log(allnotis)
+      const combinedNotis = currentChildallnoti.sort(
+        (a: any, b: any) => a.days_from - b.days_from,
+      ).reverse();
+      console.log(combinedNotis,"combinedNotis")
+      setNotifications(combinedNotis)
+    }
+    }
+    }, [activeChild.uuid])
+  );
 
-  
+
 
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
@@ -62,10 +99,10 @@ const Notifications = () => {
   // console.log(notifications, "all notis till prev and current date", notifications.length);
 
 
-  const onCategorychange = (selectedCategories:any) => {
+  const onCategorychange = (selectedCategories: any) => {
     console.log(selectedCategories);
-    const selectedFilters = selectedCategories.filter(category=>category.isActivated==true);
-    console.log(selectedFilters,"selectedFilters")
+    const selectedFilters = selectedCategories.filter(category => category.isActivated == true);
+    console.log(selectedFilters, "selectedFilters")
     // const filteredNotications:any[] = [];
     // if(selectedFilters.length>0){
     //   selectedFilters.forEach(category => {
@@ -83,9 +120,9 @@ const Notifications = () => {
     // }
   };
   const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
-    console.log(itemIndex,isChecked,selectedCategories)
-    
-  } 
+    console.log(itemIndex, isChecked, selectedCategories)
+
+  }
   // useEffect(() => {
   //   const childCreateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
   // const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate));
@@ -100,7 +137,7 @@ const Notifications = () => {
   //   }
   //   // show all notifications if child was created before birth date or what? =>expecting child case
   //   // after period passed , show all previous period's notifications  till childcreate date or child dob ?
-    
+
   // }, [])
   // let childAge = useAppSelector(
   //   (state: any) =>
@@ -119,20 +156,20 @@ const Notifications = () => {
   //   (state: any) =>
   //   state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   // );
-  const calcAllNotis = ()=>{
-  //  console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
+  const calcAllNotis = () => {
+    //  console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
   }
   // useEffect(() => {
-   
+
   //  return () => {
-    // const { notifications }  =  getAllNotificationsForActiveChild();
-    // console.log(notifications);
-    // setNotifications(notifications);
+  // const { notifications }  =  getAllNotificationsForActiveChild();
+  // console.log(notifications);
+  // setNotifications(notifications);
   //  };
   // },[]);
 
   // const { notifications } = ;
-  // console.log("notifications", notifications.length)
+ 
   return (
     <>
       <SafeAreaContainer>
@@ -153,7 +190,7 @@ const Notifications = () => {
             <OuterIconRow>
               <OuterIconSpace>
                 <Pressable onPress={() => calcAllNotis()}>
-                {/* <Pressable onPress={() => navigation.navigate('SettingsScreen')}> */}
+                  {/* <Pressable onPress={() => navigation.navigate('SettingsScreen')}> */}
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
