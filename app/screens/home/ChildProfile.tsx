@@ -312,36 +312,37 @@ const child_age = useAppSelector(
             </ScrollView>
             <ProfileLinkRow
               style={{
-                backgroundColor: secopndaryTintColor,
+                 backgroundColor: secopndaryTintColor,
+                 flexDirection:'column',
               }}>
-              <ProfileLinkCol>
+             <ProfileLinkCol>
                 <ButtonLinkPress
                   onPress={() => {
                     navigation.navigate('EditChildProfile', {childData: null});
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_plus" size={24} color="#000" />
+                      <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
 
                   <ButtonTextMdLineL  numberOfLines={2}>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
-              </ProfileLinkCol>
-              <ProfileLinkCol>
+                </ProfileLinkCol>
+                <ProfileLinkCol>
                 <ButtonLinkPress
                   onPress={() => {
                     navigation.navigate('AddExpectingChildProfile',{childData: null});
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_plus" size={24} color="#000" />
+                      <Icon name="ic_plus" size={20} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
 
                   <ButtonTextMdLineL numberOfLines={2}>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
-              </ProfileLinkCol>
+                </ProfileLinkCol>
             </ProfileLinkRow>
 
             <ParentListView style={{backgroundColor: secopndaryTintColor}}>
