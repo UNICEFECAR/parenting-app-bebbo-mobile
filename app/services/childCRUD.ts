@@ -268,13 +268,17 @@ export const getDiffinDays = (day1millis: number,day2millis: number) => {
     let date2 = DateTime.fromMillis(day2millis);
     console.log(date1,date2,"..convertInDays");
     let convertInDays = date2.diff(date1, "days").toObject().days;
-   console.log(convertInDays,"..convertInDays")
-    if (convertInDays !== undefined && convertInDays > 0) {
-      days = Math.round(convertInDays);
-    }
-    else {
-      days = 0;
-    }
+   console.log(convertInDays,"..convertInDays");
+   if (convertInDays == undefined || convertInDays == null){
+    convertInDays=-1;
+   }
+   days = Math.round(convertInDays);
+    // if (convertInDays !== undefined && convertInDays > 0) {
+      
+    // }
+    // else {
+    //   days = 0;
+    // }
   };
   console.log(days, "..days..");
   return days;
