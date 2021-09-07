@@ -59,6 +59,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { onNetworkStateChange } from '../../../redux/reducers/bandwidthSlice';
 import NetInfo from "@react-native-community/netinfo";
 import { retryAlert1 } from '../../../services/commonApiService';
+import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -102,6 +104,14 @@ const Home = ({route,navigation}: Props) => {
   const generateNotificationsFlag = useAppSelector((state: any) =>
     (state.utilsData.generateNotifications),
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const activeChild = useAppSelector((state: any) =>
+        state.childData.childDataSet.activeChild != ''
+          ? JSON.parse(state.childData.childDataSet.activeChild)
+          : [],
+      );
   const netInfoval = useNetInfoHook();
   console.log(netInfoval.isConnected,'--31home focuseffect--', userIsOnboarded);
   const surveryData = useAppSelector((state: any) =>
@@ -187,6 +197,7 @@ const Home = ({route,navigation}: Props) => {
   // },[])
   useEffect(() => {
       setModalVisible(false);
+      console.log("userIsOnboarded--",userIsOnboarded);
       if (userIsOnboarded == false) {
         dispatch(setuserIsOnboarded(true));
         const currentDate = DateTime.now().toMillis();
@@ -198,6 +209,19 @@ const Home = ({route,navigation}: Props) => {
         // const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
         // console.log(allnotis,"generatedNotis");
         // dispatch(setAllNotificationData(allnotis))
+      }else {
+        if(netInfoval.isConnected) {
+          console.log("survey data called--");
+          const apiJsonData = [
+            {
+              apiEndpoint: appConfig.surveys,
+              method: 'get',
+              postdata: {},
+              saveinDB: true,
+            }
+          ];
+          dispatch(fetchAPI(apiJsonData,'Survey',dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+        }
       }
       // console.log(route.params,"routeparamsHome");
       // if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
@@ -217,6 +241,7 @@ const Home = ({route,navigation}: Props) => {
       console.log(netInfoval,"--netInfoval--",apiJsonData);
       console.log(showDownloadPopup,"--errorObj.length--",errorObj.length);
       console.log(downloadWeeklyData,"--downloadWeeklyData-- and month",downloadMonthlyData);
+      // Alert.alert(showDownloadPopup+"--error obj--"+JSON.stringify(errorObj)+"length--"+errorObj.length);
       if(netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true))
       {
         let flagtext = 'downloadBufferData '+downloadBufferData+' downloadWeeklyData '+downloadWeeklyData+' downloadMonthlyData '+downloadMonthlyData;
