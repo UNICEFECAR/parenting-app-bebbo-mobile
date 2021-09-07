@@ -72,7 +72,7 @@ export const ProfileLinkRow = styled.View`
 width:100%;
   flex-direction:row;
   margin:0;
-  padding: 10px;
+  padding:5px 10px;
  margin-bottom:15px;
  border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
  margin-top:-4px;
@@ -83,11 +83,9 @@ width:100%;
 export const ProfileLinkCol = styled.View`
  
   align-items:center;
-  justify-content:flex-start;
-  flex:1;
+  justify-content:center;  
+  padding: 10px 20px;
   
-  padding: 0 20px;
-  flex-direction:column;
 `;
 export const ProfileContentView = styled.View`
  width:100%;
