@@ -23,7 +23,7 @@ import ModalPopupContainer, {
   ModalPopupContent,
   ModalPopupContainerVideo,
   ModalPopupContentVideo,
-  PopupClose,
+  PopupCloseVideo,
   PopupCloseContainer,
   PopupOverlay,
   PopupOverlayVideo
@@ -316,15 +316,15 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
             }}>
             <PopupOverlayVideo>
             <ModalPopupContainerVideo style={{height:windowWidth*0.95,}}>
-                <PopupCloseContainer>
-                <PopupClose style={{marginTop:10,marginRight:10,}}
+                <PopupCloseContainer style={{backgroundColor:'#000',paddingBottom:15,paddingTop:5}}>
+                <PopupCloseVideo
                     onPress={() => {
                     // setModalVisible(!modalVisible);
                     console.log("close clicked");
                     setModalVisible(!modalVisible);
                     }}>
                     <Icon name="ic_close" size={20} color="#fff" />
-                </PopupClose>
+                </PopupCloseVideo>
                 </PopupCloseContainer>
                 <ModalPopupContentVideo style={{maxHeight:windowWidth*0.563,height:windowWidth*0.563,}}>
                   <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
