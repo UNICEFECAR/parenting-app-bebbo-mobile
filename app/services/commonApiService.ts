@@ -24,6 +24,7 @@ import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { CommonActions } from '@react-navigation/native';
+import { setDailyArticleGamesCategory } from '../redux/reducers/articlesSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -335,6 +336,10 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //delete all notifications from slice for all child
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
+  if(prevPage == 'CountryLangChange'){
+    dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
+      currentadviceid:0,currentgamesid:0,currentDate:''}));
+  }
   navigation.reset({
     index: 0,
     routes: [
