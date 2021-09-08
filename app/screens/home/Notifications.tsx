@@ -176,8 +176,7 @@ const Notifications = () => {
 
             <OuterIconRow>
               <OuterIconSpace>
-                <Pressable onPress={() => calcAllNotis()}>
-                  {/* <Pressable onPress={() => navigation.navigate('SettingsScreen')}> */}
+                  <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
