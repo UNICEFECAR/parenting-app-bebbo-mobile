@@ -127,8 +127,8 @@ const Home = ({ route, navigation }: Props) => {
       currentCount++;
       // console.log(currentCount,1);
       if (Platform.OS === 'android') {
-        ToastAndroid.show('Press again to close!', 6000);
-        console.log("in condition", currentCount);
+        ToastAndroid.show(t('backPressText'), 6000);
+        console.log("in condition",currentCount);
         setTimeout(() => {
           console.log("in settimeout", currentCount);
           currentCount = 0;
@@ -136,7 +136,7 @@ const Home = ({ route, navigation }: Props) => {
         }, 2000);
         return true;
       } else {
-        Alert.alert('Press again to close!');
+        Alert.alert(t('backPressText'));
         setTimeout(() => {
           console.log("in settimeout", currentCount);
           currentCount = 0;
