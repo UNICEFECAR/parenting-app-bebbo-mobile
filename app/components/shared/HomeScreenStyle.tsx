@@ -74,7 +74,10 @@ position:absolute; background-color: ${props => props.theme.colors.PRIMARY_COLOR
 border-top-left-radius:4px;
 `;
 export const DailyTagText = styled.Text`
-font-size:11px;font-family:roboto-regular;text-transform:uppercase;color:#fff;
+font-size:11px;
+font-family:roboto-regular;
+text-transform:capitalize;
+color:#fff;
 
 `;
 export const DailyAction = styled.View`
