@@ -565,18 +565,27 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                    // const patient = realm?.objects('Patient').filtered("patient_id = $0", fromId);
+
                     console.log(obj[0],"obj0");
                     realm?.write(() => {
                     console.log(obj[0].measures,"length")
                     if(obj[0].measures.length>0){
-                         let updateItemIndex = obj[0].measures.findIndex(async (item,index)=>{
-                            console.log("measure.uuid",);
-                            const measuredays=await getDiffinDays(param,item.measurementDate);
+                        obj[0].measures.map((itemnew:any)=>{
+                            console.log(itemnew,"..itemnew")
+                         let updateItemIndex = obj[0].measures.findIndex((item,index)=>{
+                            console.log("measure.uuid",item);
+                            const measuredays=getDiffinDays(param,item.measurementDate);
                             console.log(measuredays,"..measuredays")
-                            return measuredays<0?index:0;
+                            return measuredays<0;
                           });
                            console.log(updateItemIndex,"..measureupdateItemIndex")
+                           if(updateItemIndex>=0){
                            obj[0].measures.splice(updateItemIndex, 1);
+                           }
+                           
+                        })
+                        console.log(obj[0].measures,"..obj[0].measures")
                        }
                     });
                     resolve(obj[0].measures);
