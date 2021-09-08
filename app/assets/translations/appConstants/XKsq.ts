@@ -400,6 +400,13 @@ childInfoAndText: "dhe ",
         exportText:"Export Data",
         dataConsistency:"To avoid data inconsistency please import/export in same language.Do you want to continue?",
         notiOption3: "Mark as unread",
+        downloadUpdatePopupTitle: "Update data",
+        downloadUpdatePopupText: "This will take time.Dow you want to Update data?",
+        downloadUpdateCancelPopUpBtn: "Cancel",
+        downloadUpdateContinueBtn: "Continue",
+        downloadUpdateSuccessPopupTitle: "Success",
+        downloadUpdateSuccessPopupText: "Updates downloaded successfully!!",
+        downloadUpdateSuccessOkBtn: "Ok",
 }
 }
 export default XKsq;
