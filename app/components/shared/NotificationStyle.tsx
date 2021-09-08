@@ -5,6 +5,8 @@ export default NotificationStyle;
 
 export const NotificationListContainer = styled.View`
 padding:10px 15px 10px;
+flex-direction:row;
+
 `;
 export const NotifIcon = styled.View`
 padding:8px;
