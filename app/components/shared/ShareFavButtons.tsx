@@ -45,7 +45,8 @@ const ShareFavButtons = (props: any) => {
         // dismissed
       }
     } catch (error: any) {
-      Alert.alert(error.message);
+      // Alert.alert(error.message);
+      Alert.alert(t('generalError'));
     }
   };
   const onFavClick = ()=>{

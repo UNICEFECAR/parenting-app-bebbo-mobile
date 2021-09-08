@@ -6,6 +6,7 @@ import { DailyAction, DailyArtTitle, DailyBox, DailyTag, DailyTagText, OverlayFa
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -152,8 +153,8 @@ const DailyReads = () => {
       // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
-
-      if(dailyDataCategory){
+      const nowDate = DateTime.now().toISODate();
+      if(dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)){
         const articleCategoryArrayNew = articleCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
         const activityCategoryArrayNew = activityCategoryArray.filter((i:any) => ActivitiesData.find((f:any)=>f.activity_category === i.id))
         const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
@@ -201,11 +202,30 @@ const DailyReads = () => {
         data.push(articleDataToShow);
         data.push(activityDataToShow);
         setDataToShowInList(data);
-        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2]?.id}));
+        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2]?.id,
+          currentadviceid:articleDataToShow?.id,currentgamesid:activityDataToShow?.id,currentDate:DateTime.now().toISODate()}));
         dispatch(setShowedDailyDataCategory({advice: advicearray , games: gamesarray}));
         console.log(dataToShowInList);
+      }else {
+        var data:any = [];
+        const articleDataToShow = articleData.filter((x:any)=>x.id == dailyDataCategory.currentadviceid).length > 0 ? 
+                    articleData.filter((x:any)=>x.id == dailyDataCategory.currentadviceid)[0] : null;
+        const activityDataToShow = ActivitiesData.filter((x:any)=>x.id == dailyDataCategory.currentgamesid).length > 0 ? 
+                    ActivitiesData.filter((x:any)=>x.id == dailyDataCategory.currentgamesid)[0] : null;
+        if(articleDataToShow == null && activityDataToShow == null){
+          dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
+            currentadviceid:0,currentgamesid:0,currentDate:''}));
+        }
+          if(articleDataToShow != null) {
+            data.push(articleDataToShow);
+          }
+          if(activityDataToShow != null) {
+            data.push(activityDataToShow);
+          }
+        console.log("articleData--",articleData.filter((x:any)=>x.id == dailyDataCategory.currentadviceid));
+        console.log(articleDataToShow,activityDataToShow,"activityDataToShow data---",data);
+        setDataToShowInList(data);
       }
-
     }, [])
   );
   return (
