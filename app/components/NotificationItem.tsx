@@ -24,14 +24,13 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 
 
 const NotificationItem = (props: any) => {
-  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked ,selectedCategories} = props;
+  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked ,selectedCategories,isDeleteEnabled} = props;
   // console.log(item,itemIndex);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const isDeleteEnabled = props.isDeleteEnabled;
   const themeContext = useContext(ThemeContext);
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
@@ -136,7 +135,7 @@ const NotificationItem = (props: any) => {
                 onPress={() => {
                   //  console.log(item);
                   setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(itemIndex, !toggleCheckBox)
+                  props.onItemChecked(item, !toggleCheckBox)
                 }}>
                 <CheckboxItem>
                   <View>
@@ -243,7 +242,7 @@ const NotificationItem = (props: any) => {
                 onPress={() => {
                   //  console.log(item);
                   setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(itemIndex, !toggleCheckBox)
+                  props.onItemChecked(item, !toggleCheckBox)
                 }}>
                 <CheckboxItem>
                   <View>
@@ -353,7 +352,7 @@ const NotificationItem = (props: any) => {
                 onPress={() => {
                   //  console.log(item);
                   setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(itemIndex, !toggleCheckBox)
+                  props.onItemChecked(item, !toggleCheckBox)
                 }}>
                 <CheckboxItem>
                   <View>
@@ -461,7 +460,7 @@ const NotificationItem = (props: any) => {
                 onPress={() => {
                   //  console.log(item);
                   setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(itemIndex, !toggleCheckBox)
+                  props.onItemChecked(item, !toggleCheckBox)
                 }}>
                 <CheckboxItem>
                   <View>
