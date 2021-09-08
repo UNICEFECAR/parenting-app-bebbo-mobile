@@ -250,7 +250,7 @@ const Terms = ({navigation}: Props) => {
                 )}
               </View>
             </CheckboxItem>
-            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold'}}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
+            <LabelText>{t('tNccheckbox2')} <CheckboxItemText onPress={goToPrivacyPolicy} style={{fontWeight:'bold', textDecorationStyle:'solid',textDecorationLine:'underline'}}>{t('tNcprivacyPolicy')}</CheckboxItemText></LabelText>
           </FormOuterCheckbox>
           <FormOuterCheckbox
             onPress={() => {
