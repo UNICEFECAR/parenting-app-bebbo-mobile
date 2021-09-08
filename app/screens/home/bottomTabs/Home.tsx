@@ -295,8 +295,8 @@ const Home = ({ route, navigation }: Props) => {
       //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
       //if already exist, then for each module get last period, and generate afterwards period's notifications
       //after generating notifications make it false
-      // let notiFlagObj = { key: 'generateNotifications', value: false };
-      // dispatch(setInfoModalOpened(notiFlagObj));
+      let notiFlagObj = { key: 'generateNotifications', value: false };
+      dispatch(setInfoModalOpened(notiFlagObj));
     }
 
     console.log(netInfoval, "--netInfoval--", apiJsonData);
