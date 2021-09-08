@@ -25,6 +25,7 @@ import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { CommonActions } from '@react-navigation/native';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setDailyArticleGamesCategory } from '../redux/reducers/articlesSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -337,6 +338,10 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   dispatch(setAllNotificationData([]));
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
+  if(prevPage == 'CountryLangChange'){
+    dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
+      currentadviceid:0,currentgamesid:0,currentDate:''}));
+  }
   navigation.reset({
     index: 0,
     routes: [
@@ -404,14 +409,15 @@ export const cancelRetryAlert = () => {
 }
 export const retryAlert1 = (bandwidth: string,toggle: string) => {
   return new Promise((resolve, reject) => {
-    Alert.alert(bandwidth, "Do you want to switch"+toggle+"data saver mode?",
+    //"Do you want to switch"+toggle+"data saver mode?"
+    Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
       [
         {
-          text: "cancel",
+          text: i18n.t('retryCancelPopUpBtn'),
           onPress: () => reject("Retry Cancelled"),
           style: "cancel"
         },
-        { text:"yes", onPress: () => resolve("yes") }
+        { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
       ]
     );
   });
