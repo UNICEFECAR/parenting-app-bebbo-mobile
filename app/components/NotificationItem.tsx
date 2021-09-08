@@ -1,9 +1,9 @@
 import Icon from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
-import { Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
+import { Heading4Bold, Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Alert, Pressable, Text, View } from 'react-native';
 import {
   Menu,
   MenuOption,
@@ -11,8 +11,10 @@ import {
   MenuTrigger,
   renderers
 } from 'react-native-popup-menu';
+import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../App';
+import { useAppDispatch, useAppSelector } from '../../App';
+import { toggleNotificationRead } from '../redux/reducers/notificationSlice';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
@@ -23,7 +25,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 
 
 const NotificationItem = (props: any) => {
-  const { item, itemIndex } = props;
+  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked } = props;
   // console.log(item,itemIndex);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -85,6 +87,12 @@ const NotificationItem = (props: any) => {
             })
             : '';
   };
+  const markAsRead = (item)=>{
+    onItemReadMarked(item);
+  }
+  const markAsDelete = (item)=>{
+    onItemDeleteMarked(item);
+  }
   const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
   const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
   const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
@@ -92,8 +100,8 @@ const NotificationItem = (props: any) => {
   const { t } = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   const renderGrowthNotifcation = () => {
-    //At the end of the period (if not already entered)
-    return (<>
+    return (
+      item.isDeleted? null :(<>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -108,7 +116,12 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-            <Heading4Regular>{t(item.title)}</Heading4Regular>
+            {item.isRead ==true ?
+             <Heading4Regular>{t(item.title)}</Heading4Regular> :
+             <Heading4Bold>{t(item.title)}</Heading4Bold>
+             }
+           
+            
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to}</Heading6>
             </ShiftFromTop5>
@@ -177,11 +190,11 @@ const NotificationItem = (props: any) => {
                       },
 
                     }}>
-                    <MenuOption value={1}>
+                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
-                    <MenuOption value={2}>
-                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
+                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                      <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -193,11 +206,11 @@ const NotificationItem = (props: any) => {
 
       </NotificationListContainer>
       <DividerContainer><Divider></Divider></DividerContainer>
-    </>)
+    </>))
   }
   const renderHCNotifcation = () => {
     //At the beginning of the period
-    return (<>
+    return ( item.isDeleted? null :<>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -212,7 +225,10 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-            <Heading4Regular>{t(item.title)}</Heading4Regular>
+          {item.isRead ==true ?
+             <Heading4Regular>{t(item.title)}</Heading4Regular> :
+             <Heading4Bold>{t(item.title)}</Heading4Bold>
+             }
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to}</Heading6>
             </ShiftFromTop5>
@@ -281,11 +297,11 @@ const NotificationItem = (props: any) => {
                       },
 
                     }}>
-                    <MenuOption value={1}>
+                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
-                    <MenuOption value={2}>
-                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
+                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>             
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -301,7 +317,7 @@ const NotificationItem = (props: any) => {
   }
   const renderVCNotifcation = () => {
     //A the beginning of the period
-    return (<>
+    return ( item.isDeleted? null :<>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -391,11 +407,11 @@ const NotificationItem = (props: any) => {
                       },
 
                     }}>
-                    <MenuOption value={1}>
+                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
-                    <MenuOption value={2}>
-                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
+                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -412,7 +428,7 @@ const NotificationItem = (props: any) => {
   const renderCDNotifcation = () => {
     //At the beginning of the period =>cd1
     //5 days before the end of the period =>cd2
-    return (<>
+    return ( item.isDeleted? null :<>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -427,7 +443,10 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-            <Heading4Regular>{t(item.title)}</Heading4Regular>
+          {item.isRead ==true ?
+             <Heading4Regular>{t(item.title)}</Heading4Regular> :
+             <Heading4Bold>{t(item.title)}</Heading4Bold>
+             }
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to}</Heading6>
             </ShiftFromTop5>
@@ -496,11 +515,11 @@ const NotificationItem = (props: any) => {
                       },
 
                     }}>
-                    <MenuOption value={1}>
+                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
-                    <MenuOption value={2}>
-                      <Heading5Bold>{t('notiOption2')}</Heading5Bold>
+                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -520,3 +539,4 @@ const NotificationItem = (props: any) => {
   );
 };
 export default NotificationItem;
+

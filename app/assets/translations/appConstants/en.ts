@@ -411,7 +411,8 @@ const en = {
         generalErrorTitle:"Error",
         permissionTitleText:"Permission required",
         permissionText:"Need permissions to access gallery and camera",
-        settingsTextOpen:"Open Settings"
+        settingsTextOpen:"Open Settings",
+        notiOption3: "Mark as unread",
     }
 }
 export default en;
