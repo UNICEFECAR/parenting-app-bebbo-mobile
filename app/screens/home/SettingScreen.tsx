@@ -128,13 +128,13 @@ console.log(toggleSwitchVal,"..toggleSwitchVal..");
     Alert.alert(t('importText'), t("dataConsistency"),
     [
       {
-        text: "Cancel",
+        text: t("retryCancelPopUpBtn"),
         onPress: () =>{
   
         },
         style: "cancel"
       },
-      { text:"Continue", onPress: async () => {
+      { text:t('continueCountryLang'), onPress: async () => {
         console.log(userRealmCommon.realm?.path,"..path")
     // this.setState({ isImportRunning: true, });
     setIsImportRunning(true);
@@ -148,19 +148,20 @@ console.log(toggleSwitchVal,"..toggleSwitchVal..");
 }
 
 const exportFile=async ()=>{
+  //need to add code.
   Alert.alert('Coming Soon');
 }
 const exportToDrive=async ()=>{
-  Alert.alert(t('exportText'), "To avoid data inconsistency please import/export in same language.Do you want to continue?",
+  Alert.alert(t('exportText'),t("dataConsistency"),
   [
     {
-      text: "Cancel",
+      text: t("retryCancelPopUpBtn"),
       onPress: () =>{
 
       },
       style: "cancel"
     },
-    { text:"Continue", onPress: async () => {
+    { text:t('continueCountryLang'), onPress: async () => {
       setIsExportRunning(true);
       const exportIsSuccess = await backup.export();
       setIsExportRunning(false);
