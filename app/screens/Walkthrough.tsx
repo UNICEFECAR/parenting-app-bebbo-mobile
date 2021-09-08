@@ -288,11 +288,11 @@ export default Walkthrough;
 const styles = StyleSheet.create({
   titleText: {
     color: '#fff',
-    fontSize: 50,
+    fontSize: 42,
     textAlign: 'center',
     fontFamily: 'roboto-bold',
     marginBottom: 20,
-    lineHeight:52,
+    lineHeight:45,
   },
   slide: {
     flex: 1,
