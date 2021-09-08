@@ -399,6 +399,7 @@ const BGbg = {
         importText:"Import Data",
         exportText:"Export Data",
         dataConsistency:"To avoid data inconsistency please import/export in same language.Do you want to continue?",
+        notiOption3: "Mark as unread",
 
         }
 }

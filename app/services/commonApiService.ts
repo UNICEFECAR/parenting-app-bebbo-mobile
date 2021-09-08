@@ -335,6 +335,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
   //delete all notifications from slice for all child
+  // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
+  // console.log(setAllNotificationData([]))
   dispatch(setAllNotificationData([]));
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
