@@ -87,7 +87,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         // dismissed
       }
     } catch (error: any) {
-      Alert.alert(error.message);
+      Alert.alert(t('generalError'));
     }
   };
   useFocusEffect(
