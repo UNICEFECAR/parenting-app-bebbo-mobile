@@ -2,7 +2,7 @@ import ImagePicker from "react-native-image-crop-picker";
 import { RESULTS, check, request, openSettings } from "react-native-permissions";
 import { Alert, Linking } from "react-native";
 import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION } from "../types/types";
-
+import i18n from 'i18next';
 class MediaPicker {
   /**
    *
@@ -356,16 +356,16 @@ class MediaPicker {
 
     let errorMsg = error.message ? error.message : error;
 
-    Alert.alert("Error", errorMsg);
+    Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
   }
 
   openSettingModal() {
     Alert.alert(
-      "Permission required",
-      "Need permissions to access gallery and camera",
+      i18n.t('permissionTitleText'),
+      i18n.t('permissionText'),
       [
-        { text: "Cancel", style: "cancel" },
-        { text: "Open Settings", onPress: () => openSettings() },
+        { text: i18n.t('retryCancelPopUpBtn'), style: "cancel" },
+        { text: i18n.t('settingsTextOpen'), onPress: () => openSettings() },
       ],
       { cancelable: false }
     );

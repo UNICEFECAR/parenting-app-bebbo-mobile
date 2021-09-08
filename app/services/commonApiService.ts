@@ -407,14 +407,15 @@ export const cancelRetryAlert = () => {
 }
 export const retryAlert1 = (bandwidth: string,toggle: string) => {
   return new Promise((resolve, reject) => {
-    Alert.alert(bandwidth, "Do you want to switch"+toggle+"data saver mode?",
+    //"Do you want to switch"+toggle+"data saver mode?"
+    Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
       [
         {
-          text: "cancel",
+          text: i18n.t('retryCancelPopUpBtn'),
           onPress: () => reject("Retry Cancelled"),
           style: "cancel"
         },
-        { text:"yes", onPress: () => resolve("yes") }
+        { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
       ]
     );
   });
