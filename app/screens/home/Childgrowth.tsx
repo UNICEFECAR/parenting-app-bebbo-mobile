@@ -47,7 +47,7 @@ import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
-import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
+import { getCurrentChildAgeInMonths, isFutureDate } from '../../services/childCRUD';
 import Icon from '@components/shared/Icon';
 import { ButtonModal } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
@@ -98,11 +98,6 @@ const Childgrowth = ({navigation,route}: Props) => {
   //   JSON.parse(state.utilsData.taxonomy.standardDevData),
   // );
   // console.log(standardDevData,"statestandardDevData")
-  const isFutureDate = (date: Date) => {
-    return (
-      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
-    );
-  };
 
   const renderDummyChart = () => {
     return (

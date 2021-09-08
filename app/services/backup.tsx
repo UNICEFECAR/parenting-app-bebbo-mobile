@@ -11,6 +11,7 @@ import { getAllChildren, addPrefixForAndroidPaths, setActiveChild } from "./chil
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { getChild } from "./Utils";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
+import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
@@ -168,8 +169,8 @@ class Backup {
                         // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
                         //console.log(createresult,".....createresult...");
                     });
-        //              let notiFlagObj = { key: 'generateNotifications', value: true };
-        // dispatch(setInfoModalOpened(notiFlagObj));
+                     let notiFlagObj = { key: 'generateNotifications', value: true };
+                    dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
                         console.log(userRealmCommon.realm?.schemaVersion, "..new userRealmCommon schema version.");
 

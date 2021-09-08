@@ -36,13 +36,13 @@ import {
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import {
   Heading1Centerr,
   Heading3, Heading4, Heading5
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Pressable, ScrollView, Share } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -52,7 +52,8 @@ import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-const CustomDrawerContent = ({ navigation }: any) => {
+import { useIsDrawerOpen } from '@react-navigation/drawer';
+const CustomDrawerContent = ({navigation}: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
@@ -60,7 +61,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"..draweractiveChild")
+  let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
+  const [notifications, setNotifications] = useState<any[]>([]);
+  // console.log(activeChild, "..draweractiveChild")
   const surveryData = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)
@@ -70,14 +73,95 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  // useEffect(() => {
+    
+  // }, [])
+
+  // React.useCallback(() => {
+
+  // );
+  const isOpen: boolean = useIsDrawerOpen();
+  useEffect(() => {   
+    if (isOpen) {
+      // Your dismiss logic here 
+
+         if (allnotis.length > 0) {
+      const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+      console.log(currentChildNotis, "allfilteredNotis")
+      //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+      if (currentChildNotis) {
+        let currentChildallnoti: any = [];
+        currentChildNotis.gwcdnotis.forEach((item) => {
+          currentChildallnoti.push(item)
+        })
+        // // notiExist.gwcdnotis?.forEach((item)=>{
+        // //   allgwnoti.push(item)
+        // // })
+        currentChildNotis.hcnotis.forEach((item) => {
+          currentChildallnoti.push(item)
+        })
+        // // notiExist.vcnotis?.forEach((item)=>{
+        // //   allvcnotis.push(item)
+        // // })
+        currentChildNotis.vcnotis.forEach((item) => {
+          currentChildallnoti.push(item)
+        })
+        // console.log(allnotis)
+        const combinedNotis = currentChildallnoti.sort(
+          (a: any, b: any) => a.days_from - b.days_from,
+        ).reverse();
+        console.log(combinedNotis, "combinedNotis")
+        setNotifications(combinedNotis)
+      }
+    }
+    }
+  }, [isOpen]);
   // console.log(activeChild, '..activeChild..');
+  // useEffect(() => {
+  //   // const unsubscribe = navigation.addListener('drawerOpen', (e) => {
+  //   //   console.log(e,"drawerOpen")
+  //     // Do something
+  //     console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
+  //   if (allnotis.length > 0) {
+  //     const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+  //     console.log(currentChildNotis, "allfilteredNotis")
+  //     //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+  //     if (currentChildNotis) {
+  //       let currentChildallnoti: any = [];
+  //       currentChildNotis.gwcdnotis.forEach((item) => {
+  //         currentChildallnoti.push(item)
+  //       })
+  //       // // notiExist.gwcdnotis?.forEach((item)=>{
+  //       // //   allgwnoti.push(item)
+  //       // // })
+  //       currentChildNotis.hcnotis.forEach((item) => {
+  //         currentChildallnoti.push(item)
+  //       })
+  //       // // notiExist.vcnotis?.forEach((item)=>{
+  //       // //   allvcnotis.push(item)
+  //       // // })
+  //       currentChildNotis.vcnotis.forEach((item) => {
+  //         currentChildallnoti.push(item)
+  //       })
+  //       // console.log(allnotis)
+  //       const combinedNotis = currentChildallnoti.sort(
+  //         (a: any, b: any) => a.days_from - b.days_from,
+  //       ).reverse();
+  //       console.log(combinedNotis, "combinedNotis")
+  //       setNotifications(combinedNotis)
+  //     }
+  //   }
+  //   // });
+  
+  //   // return unsubscribe;
+  // }, [activeChild]);
   const onShare = async () => {
     try {
       const result = await Share.share({
         message: t('appShareText'),
       });
       if (result.action === Share.sharedAction) {
-         analytics().logEvent(APP_SHARE);
+        analytics().logEvent(APP_SHARE);
         if (result.activityType) {
           // shared with activity type of result.activityType
         } else {
@@ -130,17 +214,17 @@ const CustomDrawerContent = ({ navigation }: any) => {
                             ? activeChild.childName
                             : ''}
                         </Heading3>
-                        <Heading5>      
-                          {( activeChild.birthDate != '' &&
-                                activeChild.birthDate != null &&
-                                activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate)) ? t('drawerMenuchildInfo', {
-                            childdob:
-                              activeChild.birthDate != '' &&
-                                activeChild.birthDate != null &&
-                                activeChild.birthDate != undefined
-                                ? formatDate(activeChild.birthDate,luxonLocale)
-                                : '',
-                          }):t('expectedChildDobLabel')}
+                        <Heading5>
+                          {(activeChild.birthDate != '' &&
+                            activeChild.birthDate != null &&
+                            activeChild.birthDate != undefined && !isFutureDate(activeChild.birthDate)) ? t('drawerMenuchildInfo', {
+                              childdob:
+                                activeChild.birthDate != '' &&
+                                  activeChild.birthDate != null &&
+                                  activeChild.birthDate != undefined
+                                  ? formatDate(activeChild.birthDate, luxonLocale)
+                                  : '',
+                            }) : t('expectedChildDobLabel')}
                         </Heading5>
                       </FDirCol>
                     </FlexDirRow>
@@ -161,7 +245,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuhomeTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuhomeTxt')}</Heading4>
           </DrawerLinkView>
 
 
@@ -173,12 +257,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenunotiTxt')}</Heading4>
-            <BubbleContainer>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenunotiTxt')}</Heading4>
+            {notifications.length > 0 ? <BubbleContainer>
               <BubbleView>
-                <Heading5>10</Heading5>
+                <Heading5>{notifications.length}</Heading5>
               </BubbleView>
             </BubbleContainer>
+              : null}
           </DrawerLinkView>
 
 
@@ -191,7 +276,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_tools" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenutoolsTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenutoolsTxt')}</Heading4>
             <Icon
               style={{ flex: 1, textAlign: 'right', alignSelf: 'center' }}
               name={accordvalue ? 'ic_angle_up' : 'ic_angle_down'}
@@ -215,18 +300,19 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenucdTxt')}</Heading4>
+                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenucdTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() =>
-                  { navigation.navigate('Home', {
+                onPress={() => {
+                  navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
                       screen: 'VaccinationTab',
                     },
-                  });}
+                  });
+                }
                   // navigation.navigate('Home', { screen: 'VaccinationTab' })
                 }>
                 <FDirRow>
@@ -238,18 +324,19 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenuvcTxt')}</Heading4>
+                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuvcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() =>
-                 { navigation.navigate('Home', {
+                onPress={() => {
+                  navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
                       screen: 'HealthCheckupsTab',
                     },
-                  });}
+                  });
+                }
                   // navigation.navigate('Home', { screen: 'HealthCheckupsTab' })
                 }>
                 <FDirRow>
@@ -261,18 +348,19 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenuhcTxt')}</Heading4>
+                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuhcTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
               <SubDrawerLinkView
-                onPress={() =>
-                  { navigation.navigate('Home', {
+                onPress={() => {
+                  navigation.navigate('Home', {
                     screen: 'Tools',
                     params: {
                       screen: 'ChildgrowthTab',
                     },
-                  });}
+                  });
+                }
                   // navigation.navigate('Home', { screen: 'ChildgrowthTab' })
                 }>
                 <FDirRow>
@@ -284,7 +372,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 </FDirRow>
                 <FDirRow>
                   <SubDrawerHead>
-                    <Heading4 style={{flexShrink: 1}}>{t('drawerMenucgTxt')}</Heading4>
+                    <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenucgTxt')}</Heading4>
                   </SubDrawerHead>
                 </FDirRow>
               </SubDrawerLinkView>
@@ -297,7 +385,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuchatTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('Favourites')}>
             <OuterIconRow>
@@ -306,7 +394,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenufavTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufavTxt')}</Heading4>
             <BubbleContainer>
               <BubbleView>
                 <Heading5>10</Heading5>
@@ -320,7 +408,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuabtTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuabtTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('UserGuide')}>
             <OuterIconRow>
@@ -329,7 +417,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuugTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuugTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('SettingsScreen')}>
             <OuterIconRow>
@@ -338,7 +426,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
 
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenusetTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenusetTxt')}</Heading4>
           </DrawerLinkView>
 
           <DrawerLinkView onPress={() => onShare()}>
@@ -347,15 +435,15 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_shareapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenushareTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenushareTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => {  setModalVisible(true);}}>
+          <DrawerLinkView onPress={() => { setModalVisible(true); }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_feedback" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenufeedbackTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => { }}>
             <OuterIconRow>
@@ -363,7 +451,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_loveapp" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenurateTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenurateTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView
             onPress={() => {
@@ -374,56 +462,56 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_sb_privacy" size={25} color="#000" />
               </OuterIconLeft15>
             </OuterIconRow>
-            <Heading4 style={{flexShrink: 1}}>{t('drawerMenuPrivacyTxt')}</Heading4>
+            <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuPrivacyTxt')}</Heading4>
           </DrawerLinkView>
         </ScrollView>
       </SafeAreaView>
       <Modal
-          animationType="none"
-          transparent={true}
-          visible={modalVisible === true}
-          onRequestClose={() => {
-            // Alert.alert('Modal has been closed.');
-            setModalVisible(false);
-          }}
-          onDismiss={() => {
-            setModalVisible(false);
-          }}>
-          <PopupOverlay>
-            <ModalPopupContainer>
-              <PopupCloseContainer>
-                <PopupClose
-                  onPress={() => {
-                    setModalVisible(false);
-                  }}>
-                  <Icon name="ic_close" size={16} color="#000" />
-                </PopupClose>
-              </PopupCloseContainer>
-              <ModalPopupContent>
-                <Heading1Centerr>{surveryData[1]?.title}</Heading1Centerr>
-              
-                {surveryData[1] && surveryData[1].body ?
-                    <HTML
-                      source={{html: surveryData[1].body}}
-                      ignoredStyles={['color', 'font-size', 'font-family']}
-                    />
-                    : null 
-                  }
-                
-              </ModalPopupContent>
-              <FDirRow>
-                <ButtonModal
-                  onPress={() => {
-                    setModalVisible(false);
-                     analytics().logEvent(FEEDBACK_SUBMIT)
-                    Linking.openURL(surveryData[1]?.survey_feedback_link)
-                  }}>
-                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
-                </ButtonModal>
-              </FDirRow>
-            </ModalPopupContainer>
-          </PopupOverlay>
-        </Modal>
+        animationType="none"
+        transparent={true}
+        visible={modalVisible === true}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading1Centerr>{surveryData[1]?.title}</Heading1Centerr>
+
+              {surveryData[1] && surveryData[1].body ?
+                <HTML
+                  source={{ html: surveryData[1].body }}
+                  ignoredStyles={['color', 'font-size', 'font-family']}
+                />
+                : null
+              }
+
+            </ModalPopupContent>
+            <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  setModalVisible(false);
+                  analytics().logEvent(FEEDBACK_SUBMIT)
+                  Linking.openURL(surveryData[1]?.survey_feedback_link)
+                }}>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+            </FDirRow>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
     </>
   );
 };

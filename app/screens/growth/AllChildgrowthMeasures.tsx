@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { Pressable, SafeAreaView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
+import { isFutureDate } from '../../services/childCRUD';
 
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -37,15 +38,6 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const isFutureDate = (date: Date) => {
-    return (
-      new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
-    );
-  };
-  
-
-  
-
   return (
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
