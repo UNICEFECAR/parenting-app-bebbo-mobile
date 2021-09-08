@@ -25,7 +25,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 
 const NotificationItem = (props: any) => {
   const { item, itemIndex,onItemReadMarked,onItemDeleteMarked ,selectedCategories,isDeleteEnabled} = props;
-  // console.log(item,itemIndex);
+  // console.log(itemIndex,"NotificationItemIndex");
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -121,7 +121,7 @@ const NotificationItem = (props: any) => {
            
             
             <ShiftFromTop5>
-              <Heading6>{item.days_from},{item.days_to}</Heading6>
+              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={() => gotoPage(item.type)}>
@@ -228,7 +228,7 @@ const NotificationItem = (props: any) => {
              <Heading4Bold>{t(item.title)}</Heading4Bold>
              }
             <ShiftFromTop5>
-              <Heading6>{item.days_from},{item.days_to}</Heading6>
+              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={() => gotoPage(item.type)}>
@@ -330,15 +330,25 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-            <Heading4Regular>{t(item.title,{
-                            childName:
-                              activeChild.childName != null &&
-                                activeChild.childName != '' &&
-                                activeChild.childName != undefined
-                                ? activeChild.childName
-                                : ''})}</Heading4Regular>
+          {item.isRead ==true ?
+              <Heading4Regular>{t(item.title,{
+                childName:
+                  activeChild.childName != null &&
+                    activeChild.childName != '' &&
+                    activeChild.childName != undefined
+                    ? activeChild.childName
+                    : ''})}</Heading4Regular>:
+                    <Heading4Bold>{t(item.title,{
+                      childName:
+                        activeChild.childName != null &&
+                          activeChild.childName != '' &&
+                          activeChild.childName != undefined
+                          ? activeChild.childName
+                          : ''})}</Heading4Bold>
+             }
+           
             <ShiftFromTop5>
-              <Heading6>{item.days_from},{item.days_to}</Heading6>
+              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={() => gotoPage(item.type)}>
@@ -446,7 +456,7 @@ const NotificationItem = (props: any) => {
              <Heading4Bold>{t(item.title)}</Heading4Bold>
              }
             <ShiftFromTop5>
-              <Heading6>{item.days_from},{item.days_to}</Heading6>
+              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={() => gotoPage(item.type)}>
