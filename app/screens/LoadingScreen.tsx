@@ -60,7 +60,6 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
     );
-    const netInfo=useNetInfo();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -69,6 +68,9 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           ? JSON.parse(state.childData.childDataSet.activeChild)
           : [],
       );
+      const bufferAgeBracket = useAppSelector((state: any) =>
+      state.childData.childDataSet.bufferAgeBracket
+    );
   const netInfoval = useNetInfoHook();
     useFocusEffect(
       React.useCallback(() => {
@@ -94,14 +96,14 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
-    else if(prevPage == "CountryLangChange")
+    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate")
     {
       const Ages=await getAge(childList,child_age);
-      console.log(Ages,"..Ages..")
+      const newAges = [...new Set([...Ages,...bufferAgeBracket])]
+      console.log(newAges,"..Ages..")
       let apiJsonDataarticle;
-      if(Ages?.length>0){
-        console.log(Ages,"..11Ages..")
-        apiJsonDataarticle=apiJsonDataGet(String(Ages),"all")
+      if(newAges?.length>0){
+        apiJsonDataarticle=apiJsonDataGet(String(newAges),"all")
       }
       else{
         apiJsonDataarticle=apiJsonDataGet("all","all")
@@ -123,7 +125,6 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       const currentDate = DateTime.now().toMillis();
       dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
       dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-      dispatch(setDownloadedBufferAgeBracket([]))
       console.log("called fetchapi after delete");
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
@@ -150,10 +151,10 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       if(downloadWeeklyData == true)
       {
         const Ages=await getAge(childList,child_age);
-        console.log(Ages,"..Ages..")
-        if(Ages?.length>0){
-          console.log(Ages,"..11Ages..");
-          Ages.map((age:any)=>{
+        const newAges = [...new Set([...Ages,...bufferAgeBracket])]
+        console.log(newAges,"..newAges..")
+        if(newAges?.length>0){
+          newAges.map((age:any)=>{
             allAgeBrackets.push(age);
           })
         }
@@ -215,6 +216,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
       const deleteArticles=await deleteArticleNotPinned();
       console.log(deleteArticles,"..deleteArticles..");
+      dispatch(setDownloadedBufferAgeBracket([]))
       dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected))
     }
     else {
