@@ -26,15 +26,16 @@ export const notificationSlice = createSlice({
       //   state.article.articles = JSON.stringify(action.payload);
       // }
     },
-    toggleNotificationRead:(  state,
-        action: PayloadAction<any>,)=>{
-          // action.payload.chiluuid,action.payload.item
+    // toggleNotificationRead:(  state,
+    //     action: PayloadAction<any>,)=>{
+    //       state.notifications =(action.payload);
 
-    },
-    toggleNotificationDelete:(  state,
-        action: PayloadAction<any>,)=>{
-        // action.payload.chiluuid,action.payload.item
-    }
+    // },
+    // toggleNotificationDelete:(  state,
+    //     action: PayloadAction<any>,)=>{
+    //       state.notifications =(action.payload);
+    //     // action.payload.chiluuid,action.payload.item
+    // }
   },
   // extraReducers: (builder) => {
   //   builder
