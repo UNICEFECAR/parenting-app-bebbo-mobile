@@ -156,7 +156,7 @@ const AddNewChildHeight = ({navigation,route}: Props) => {
             initialValue={route.params?.heightValue.height}
             onChangeValue={(value) => setheight(value)}
             minimum={0}
-            maximum={200}
+            maximum={125}
             segmentWidth={2}
             segmentSpacing={20}
             indicatorColor={headerColor}

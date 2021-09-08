@@ -1,15 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
-export type notiType = "growth"|"vaccine" | "healthCheckup" | "development";
-interface articleDataType {
+interface notiDataType {
   // name: string;
-  notifications: {
-  }
+  notifications:Array<any>
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
-const initialState: articleDataType = {
+const initialState: notiDataType = {
   // name: 'Rest of the world',
-  notifications: {}
+  notifications: []
 };
 export const notificationSlice = createSlice({
   name: 'notificationData',
@@ -22,20 +20,22 @@ export const notificationSlice = createSlice({
      // console.log("articles data---",state);
       //console.log(typeof action.payload);
       // console.log(action.payload.map(user => user));
-      state.notifications = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
-      // if(action.payload)
+      state.notifications =(action.payload);
+      // if(action.payload)|| Array.isArray(action.payload)
       // {
       //   state.article.articles = JSON.stringify(action.payload);
       // }
     },
-    toggleNotificationRead:(  state,
-        action: PayloadAction<any>,)=>{
+    // toggleNotificationRead:(  state,
+    //     action: PayloadAction<any>,)=>{
+    //       state.notifications =(action.payload);
 
-    },
-    toggleNotificationDelete:(  state,
-        action: PayloadAction<any>,)=>{
-
-    }
+    // },
+    // toggleNotificationDelete:(  state,
+    //     action: PayloadAction<any>,)=>{
+    //       state.notifications =(action.payload);
+    //     // action.payload.chiluuid,action.payload.item
+    // }
   },
   // extraReducers: (builder) => {
   //   builder

@@ -24,6 +24,7 @@ import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { CommonActions } from '@react-navigation/native';
+import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setDailyArticleGamesCategory } from '../redux/reducers/articlesSlice';
 
 export const client =
@@ -334,6 +335,9 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
   //delete all notifications from slice for all child
+  // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
+  // console.log(setAllNotificationData([]))
+  dispatch(setAllNotificationData([]));
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
   if(prevPage == 'CountryLangChange'){

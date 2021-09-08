@@ -392,14 +392,14 @@ const BYbe = {
         cdNoti2:"Check which milestones have your child reached in this period",
         gwNoti1:"Update growth measures",
         hcNoti1:"Schedule a visit to the doctor",
-        vcNoti1:"In this period (child name) should receive vaccine:",
+        vcNoti1:"In this period {{childName}} should receive vaccine:",
         alertForExistingMeasuresTitle:"Measure data is already available for this date, you can not select this date",
         alertForNoTakenVaccinesSelectTitle:"Please select some vaccines",
         settingsButtonExportError:"Export Error",
         importText:"Import Data",
         exportText:"Export Data",
         dataConsistency:"To avoid data inconsistency please import/export in same language.Do you want to continue?",
-
+        notiOption3: "Mark as unread",
         }
 }
 export default BYbe;
