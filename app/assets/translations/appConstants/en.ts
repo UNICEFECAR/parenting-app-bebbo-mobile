@@ -405,6 +405,13 @@ const en = {
         importText:"Import Data",
         exportText:"Export Data",
         dataConsistency:"To avoid data inconsistency please import/export in same language.Do you want to continue?",
+        dataSaver:"Do you want to switch {{toggle}} data saver mode?",
+        backPressText:"Press again to close!",
+        generalError:"Something went wrong ! Please try again",
+        generalErrorTitle:"Error",
+        permissionTitleText:"Permission required",
+        permissionText:"Need permissions to access gallery and camera",
+        settingsTextOpen:"Open Settings"
     }
 }
 export default en;
