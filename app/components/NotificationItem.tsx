@@ -14,7 +14,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
-import { toggleNotificationRead } from '../redux/reducers/notificationSlice';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
@@ -25,7 +24,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 
 
 const NotificationItem = (props: any) => {
-  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked } = props;
+  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked ,selectedCategories} = props;
   // console.log(item,itemIndex);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
@@ -535,7 +534,13 @@ const NotificationItem = (props: any) => {
   }
 
   return (
-    item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null
+    selectedCategories.length==0 ?
+      (item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null)
+    :
+    selectedCategories.includes(item.type) ?
+    (item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null)
+   :null
+     
   );
 };
 export default NotificationItem;
