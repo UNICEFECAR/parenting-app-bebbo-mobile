@@ -40,7 +40,9 @@ const Notifications = () => {
   const [selectedCategories, setselectedCategories] = useState<any[]>([]);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
-
+  const [checkedNotifications, setCheckedNotifications] = useState<any[]>(
+    [],
+  );
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -80,7 +82,7 @@ const Notifications = () => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const onCategorychange = (selectedCategoriesParam: any) => {
+  const onCategorychange = async(selectedCategoriesParam: any) => {
     console.log(selectedCategoriesParam);
     const selectedFilters = selectedCategoriesParam.filter(category => category.isActivated == true).map(item=>{
       return item.type
@@ -88,9 +90,24 @@ const Notifications = () => {
     setselectedCategories(selectedFilters)
     console.log(selectedFilters, "selectedFilters")  
   };
-  const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
-    console.log(itemIndex, isChecked, selectedCategories)
-
+  const onNotiItemChecked = (item: any, isChecked: boolean) => {
+    console.log(item, isChecked,checkedNotifications.length)
+    if(isChecked == true){
+        const allCheckedNotis = [
+          ...checkedNotifications,
+          item
+        ];
+        setCheckedNotifications(allCheckedNotis);
+        console.log(checkedNotifications,"checkedNotifications,in if");
+     
+    }else{
+      const allCheckedNotis = [...checkedNotifications].filter(
+        (element) => element !== item,
+      );
+      setCheckedNotifications(allCheckedNotis);
+      console.log(checkedNotifications,"checkedNotifications");
+    }
+    
   }
   const onItemReadMarked = (notiItem:any)=>{
     console.log(notiItem);
@@ -219,14 +236,14 @@ const Notifications = () => {
               <>
                 <ButtonContainerTwo>
                   <ButtonColTwo>
-                    <ButtonSecondaryTint onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                    <ButtonSecondaryTint onPress={() => {setIsDeleteEnabled(!isDeleteEnabled);}}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
                     </ButtonSecondaryTint>
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                    <ButtonSecondary>
-                      <ButtonText numberOfLines={2}>{t('notiDelSelected', { count: notifications.filter(item => item.isChecked === true).length })} </ButtonText>
+                    <ButtonSecondary  onPress={() => {console.log(checkedNotifications);}}>
+                      <ButtonText numberOfLines={2}>{t('notiDelSelected', { count: checkedNotifications.length })} </ButtonText>
                     </ButtonSecondary>
                   </ButtonColTwo>
 
