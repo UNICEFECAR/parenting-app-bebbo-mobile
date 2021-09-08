@@ -267,7 +267,7 @@ export const getDiffinDays = (day1millis: number,day2millis: number) => {
   if (day1millis && day2millis) {
     let date1 = DateTime.fromMillis(day1millis);
     let date2 = DateTime.fromMillis(day2millis);
-    console.log(date1,date2,"..convertInDays");
+    console.log(date1,date2,"..12convertInDays");
     let convertInDays = date2.diff(date1, "days").toObject().days;
    console.log(convertInDays,"..convertInDays");
    if (convertInDays == undefined || convertInDays == null){
@@ -441,6 +441,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..")
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..");
+   
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate)==false) {
       // regenerate notifications for new dob 
       //startDate =>olddob

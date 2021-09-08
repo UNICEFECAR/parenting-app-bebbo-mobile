@@ -8,7 +8,11 @@ interface articleDataType {
   },
   dailyDataCategory: {
     advice:number,
-    games:number
+    games:number,
+    currentadviceid:number,
+    currentgamesid:number,
+    currentDate:string
+
   },
   showedDailyDataCategory: {
     advice:Array<any>,
@@ -23,7 +27,10 @@ const initialState: articleDataType = {
   },
   dailyDataCategory: {
     advice:0,
-    games:0
+    games:0,
+    currentadviceid:0,
+    currentgamesid:0,
+    currentDate:''
   },
   showedDailyDataCategory: {
     advice:[],

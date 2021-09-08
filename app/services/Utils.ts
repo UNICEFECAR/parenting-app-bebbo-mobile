@@ -22,6 +22,7 @@ import { CHILDREN_PATH } from "@types/types";
 import { v4 as uuidv4 } from 'uuid';
 import RNFS from 'react-native-fs';
 import { measure } from "react-native-reanimated";
+import { isFutureDate } from "./childCRUD";
 const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
@@ -406,8 +407,10 @@ export const getChild = async (child: any, genders: any) => {
         console.log(genderValue, "..22typeof genderValue")
     }
     console.log(genderValue, "..genderValue..");
+    const inFuture = isFutureDate(child.birthDate);
     //child.isExpected?child.isExpected:"false"
     //mayur
+    //planned will be date of birth se aage ka and birthdate ka diff 4weeks and above hai then premature true
     return {
         uuid: child.uuid,
         childName: childName,
@@ -426,7 +429,7 @@ export const getChild = async (child: any, genders: any) => {
         reminders: childreminders,
         isMigrated: true,
         isPremature: 'false', //calcualte if its premature or not?
-        isExpected: 'false'
+        isExpected: inFuture==true?'true':'false'
         //relationship:''
     };
 }
