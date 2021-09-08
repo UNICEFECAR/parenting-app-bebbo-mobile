@@ -63,7 +63,7 @@ const Notifications = () => {
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
       ).reverse();
-      // console.log(combinedNotis,"combinedNotis")
+      console.log(combinedNotis,"combinedNotis")
       setNotifications(combinedNotis)
     }
   }
@@ -80,10 +80,13 @@ const Notifications = () => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const onCategorychange = (selectedCategories: any) => {
-    console.log(selectedCategories);
-    const selectedFilters = selectedCategories.filter(category => category.isActivated == true);
-    console.log(selectedFilters, "selectedFilters")
+  const onCategorychange = (selectedCategoriesParam: any) => {
+    console.log(selectedCategoriesParam);
+    const selectedFilters = selectedCategoriesParam.filter(category => category.isActivated == true).map(item=>{
+      return item.type
+    });
+    setselectedCategories(selectedFilters)
+    console.log(selectedFilters, "selectedFilters")  
   };
   const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
     console.log(itemIndex, isChecked, selectedCategories)
@@ -204,6 +207,7 @@ const Notifications = () => {
                         onItemChecked={onNotiItemChecked}
                         onItemReadMarked={onItemReadMarked}
                         onItemDeleteMarked={onItemDeleteMarked}
+                        selectedCategories={selectedCategories}
                       />
                     </View>
                   );
