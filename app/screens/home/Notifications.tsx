@@ -117,23 +117,23 @@ const Notifications = () => {
     let currentChildIndex  = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
     console.log(currentChildNotis,currentChildIndex,"currentChildNotis")
     if(notiItem.type == 'gw' || notiItem.type=='cd'){
-      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
-      newItem.isRead = newItem.isRead ?false:true;
+      newItem.isRead = (newItem.isRead==true) ?false:true;
       let allgwcdnotis = [...currentChildNotis.gwcdnotis]
       allgwcdnotis[notitoUpdateIndex]=newItem;
       currentChildNotis.gwcdnotis = allgwcdnotis
     }else if(notiItem.type == 'vc'){
-      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
-      newItem.isRead = newItem.isRead ?false:true;
+      newItem.isRead = (newItem.isRead==true) ?false:true;
       let allvcnotis = [...currentChildNotis.vcnotis]
       allvcnotis[notitoUpdateIndex]=newItem;
-      currentChildNotis.gwcdnotis = allvcnotis
+      currentChildNotis.vcnotis = allvcnotis
     }else if(notiItem.type == 'hc'){
-      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
-      newItem.isRead = newItem.isRead ?false:true;
+      newItem.isRead = (newItem.isRead==true) ?false:true;
       let allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex]=newItem;
       currentChildNotis.hcnotis = allhcnotis
@@ -145,27 +145,27 @@ const Notifications = () => {
   }
   const onItemDeleteMarked = (notiItem:any)=>{
     console.log(notiItem);
-    let allNotifications = [...allnotis];
+    let allNotifications = allnotis;
     console.log(allNotifications,"copiedAllNOTI")
     let currentChildNotis  = {...allNotifications.find((item) => item.childuuid == activeChild.uuid)}
     let currentChildIndex  = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
     console.log(currentChildNotis,currentChildIndex,"currentChildNotis")
     if(notiItem.type == 'gw' || notiItem.type=='cd'){
-      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
       newItem.isDeleted = newItem.isDeleted ?false:true;
       let allgwcdnotis = [...currentChildNotis.gwcdnotis]
       allgwcdnotis[notitoUpdateIndex]=newItem;
       currentChildNotis.gwcdnotis = allgwcdnotis
     }else if(notiItem.type == 'vc'){
-      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
       newItem.isDeleted = newItem.isDeleted ?false:true;
       let allvcnotis = [...currentChildNotis.vcnotis]
       allvcnotis[notitoUpdateIndex]=newItem;
-      currentChildNotis.gwcdnotis = allvcnotis
+      currentChildNotis.vcnotis = allvcnotis
     }else if(notiItem.type == 'hc'){
-      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>item == notiItem)
+      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>(item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type ==notiItem.type))
       let newItem:any = {...notiItem};
       newItem.isDeleted = newItem.isDeleted ?false:true;
       let allhcnotis = [...currentChildNotis.hcnotis]
