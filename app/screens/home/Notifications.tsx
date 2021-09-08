@@ -19,21 +19,24 @@ import { Pressable, SafeAreaView, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { getAllNotifications } from '../../services/notificationService';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { getCurrentChildAgeInDays } from '../../services/childCRUD';
 import { DateTime } from 'luxon';
+import { LabelText } from '@components/shared/ChildSetupStyle';
+import { setAllNotificationData } from '../../redux/reducers/notificationSlice';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
-  const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
-  const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
-  const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
-  const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
-  const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
+  // const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  // const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
+  // const vaccinationColor = themeContext.colors.VACCINATION_COLOR;
+  // const hkColor = themeContext.colors.HEALTHCHECKUP_COLOR;
+  // const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
   const [selectedCategories, setselectedCategories] = useState<any[]>([]);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [isDeleteEnabled, setIsDeleteEnabled] = useState(false);
@@ -43,96 +46,120 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  // let allnotis = useAppSelector((state: any) =>
-  // (state.notificationData.notifications != "" ? JSON.parse(state.notificationData.notifications) : []
-  // ));
-  // allnotis = allnotis.sort(function (a, b) {
-  //   return a.days_from - b.days_from;
-  // });
-  // console.log(allnotis, "allnotis", new Date(activeChild.createdAt), new Date(activeChild.birthDate));
-
   
-
+  let allnotis = useAppSelector((state: any) =>(state.notificationData.notifications));
+  const calculateNotis = (currentChildNotis:any)=>{
+      if(currentChildNotis){
+      let currentChildallnoti:any= [];
+          currentChildNotis.gwcdnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+          currentChildNotis.hcnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+          currentChildNotis.vcnotis.forEach((item)=>{
+            currentChildallnoti.push(item)
+          })
+      const combinedNotis = currentChildallnoti.sort(
+        (a: any, b: any) => a.days_from - b.days_from,
+      ).reverse();
+      console.log(combinedNotis,"combinedNotis")
+      setNotifications(combinedNotis)
+    }
+  }
+  useFocusEffect(
+    React.useCallback(() => {
+      // console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
+      if(allnotis.length>0){
+        const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+        // console.log(currentChildNotis,"allfilteredNotis")
+        calculateNotis(currentChildNotis)
+    }
+    }, [activeChild.uuid])
+  );
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  // childBirthDate<childCreateDate ?activeChild.createdAt:activeChild.birthDate
-  console.log(childAgeInDays, "childAgeInDays");
-  // const notifications = ;
-  // console.log(notifications, "all notis till prev and current date", notifications.length);
-
-
-  const onCategorychange = (selectedCategories:any) => {
-    console.log(selectedCategories);
-    const selectedFilters = selectedCategories.filter(category=>category.isActivated==true);
-    console.log(selectedFilters,"selectedFilters")
-    // const filteredNotications:any[] = [];
-    // if(selectedFilters.length>0){
-    //   selectedFilters.forEach(category => {
-    //     console.log(category.type,"category")
-    //     // console.log( allnotis.filter(notification => {notification.type == category.type}))
-    //   //  allnotis.map(notification => {notification.type == category.type}).forEach(element => {
-    //   //   filteredNotications.push(element)
-    //   //  });
-    // })
-    // console.log(filteredNotications,"filteredNotications")
-    // // newArray[itemIndex].isChecked=isChecked;
-    // setNotifications(filteredNotications);
-    // }else{
-    //   setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays).reverse());
-    // }
+  const onCategorychange = (selectedCategoriesParam: any) => {
+    console.log(selectedCategoriesParam);
+    const selectedFilters = selectedCategoriesParam.filter(category => category.isActivated == true).map(item=>{
+      return item.type
+    });
+    setselectedCategories(selectedFilters)
+    console.log(selectedFilters, "selectedFilters")  
   };
   const onNotiItemChecked = (itemIndex: number, isChecked: boolean) => {
-    console.log(itemIndex,isChecked,selectedCategories)
-    
-  } 
-  // useEffect(() => {
-  //   const childCreateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-  // const childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate));
-  // console.log(childCreateDate < childBirthDate? activeChild.birthDate: activeChild.createdAt);
-  //   if(childCreateDate < childBirthDate){
-  //     setNotifications(allnotis.filter((item) => item.days_from <= childAgeInDays));
-  //     console.log('inif')
-  //   }else{
-  //     console.log('inelse') //show current period's notifications if child was created after birth date
-  //     setNotifications(allnotis.filter((item) => item.days_from < childAgeInDays && item.days_to>=childAgeInDays));
-  //      //  allnotis.filter((item) => item.days_from < childAgeInDays))
-  //   }
-  //   // show all notifications if child was created before birth date or what? =>expecting child case
-  //   // after period passed , show all previous period's notifications  till childcreate date or child dob ?
-    
-  // }, [])
-  // let childAge = useAppSelector(
-  //   (state: any) =>
-  //     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
-  // );
-  // let allHealthCheckupsData = useAppSelector(
-  //   (state: any) =>
-  //   state.utilsData.healthCheckupsData != '' ? JSON.parse(state.utilsData.healthCheckupsData) : [],
-  // );
-  // const taxonomy = useAppSelector(
-  //   (state: any) =>
-  //     (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
-  // );
-  // let allGrowthPeriods = taxonomy?.growth_period;
-  // let allVaccinePeriods = useAppSelector(
-  //   (state: any) =>
-  //   state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
-  // );
-  const calcAllNotis = ()=>{
-  //  console.log(JSON.stringify(getAllNotifications(childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods)))
-  }
-  // useEffect(() => {
-   
-  //  return () => {
-    // const { notifications }  =  getAllNotificationsForActiveChild();
-    // console.log(notifications);
-    // setNotifications(notifications);
-  //  };
-  // },[]);
+    console.log(itemIndex, isChecked, selectedCategories)
 
-  // const { notifications } = ;
-  // console.log("notifications", notifications.length)
+  }
+  const onItemReadMarked = (notiItem:any)=>{
+    console.log(notiItem);
+    let allNotifications = [...allnotis];
+    console.log(allNotifications,"copiedAllNOTI")
+    let currentChildNotis  = {...allNotifications.find((item) => item.childuuid == activeChild.uuid)}
+    let currentChildIndex  = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
+    console.log(currentChildNotis,currentChildIndex,"currentChildNotis")
+    if(notiItem.type == 'gw' || notiItem.type=='cd'){
+      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isRead = newItem.isRead ?false:true;
+      let allgwcdnotis = [...currentChildNotis.gwcdnotis]
+      allgwcdnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.gwcdnotis = allgwcdnotis
+    }else if(notiItem.type == 'vc'){
+      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isRead = newItem.isRead ?false:true;
+      let allvcnotis = [...currentChildNotis.vcnotis]
+      allvcnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.gwcdnotis = allvcnotis
+    }else if(notiItem.type == 'hc'){
+      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isRead = newItem.isRead ?false:true;
+      let allhcnotis = [...currentChildNotis.hcnotis]
+      allhcnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.hcnotis = allhcnotis
+    }
+    allNotifications[currentChildIndex] =currentChildNotis
+    console.log(allNotifications,"allNotifications")
+    dispatch(setAllNotificationData(allNotifications));
+    calculateNotis(currentChildNotis);
+  }
+  const onItemDeleteMarked = (notiItem:any)=>{
+    console.log(notiItem);
+    let allNotifications = [...allnotis];
+    console.log(allNotifications,"copiedAllNOTI")
+    let currentChildNotis  = {...allNotifications.find((item) => item.childuuid == activeChild.uuid)}
+    let currentChildIndex  = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
+    console.log(currentChildNotis,currentChildIndex,"currentChildNotis")
+    if(notiItem.type == 'gw' || notiItem.type=='cd'){
+      const notitoUpdateIndex =  currentChildNotis.gwcdnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isDeleted = newItem.isDeleted ?false:true;
+      let allgwcdnotis = [...currentChildNotis.gwcdnotis]
+      allgwcdnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.gwcdnotis = allgwcdnotis
+    }else if(notiItem.type == 'vc'){
+      const notitoUpdateIndex =  currentChildNotis.vcnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isDeleted = newItem.isDeleted ?false:true;
+      let allvcnotis = [...currentChildNotis.vcnotis]
+      allvcnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.gwcdnotis = allvcnotis
+    }else if(notiItem.type == 'hc'){
+      const notitoUpdateIndex =  currentChildNotis.hcnotis.findIndex((item)=>item == notiItem)
+      let newItem:any = {...notiItem};
+      newItem.isDeleted = newItem.isDeleted ?false:true;
+      let allhcnotis = [...currentChildNotis.hcnotis]
+      allhcnotis[notitoUpdateIndex]=newItem;
+      currentChildNotis.hcnotis = allhcnotis
+    }
+    allNotifications[currentChildIndex] =currentChildNotis
+    console.log(allNotifications,"allNotifications")
+    dispatch(setAllNotificationData(allNotifications));
+    calculateNotis(currentChildNotis);
+  }
   return (
     <>
       <SafeAreaContainer>
@@ -152,8 +179,7 @@ const Notifications = () => {
 
             <OuterIconRow>
               <OuterIconSpace>
-                <Pressable onPress={() => calcAllNotis()}>
-                {/* <Pressable onPress={() => navigation.navigate('SettingsScreen')}> */}
+                  <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
@@ -179,6 +205,9 @@ const Notifications = () => {
                         itemIndex={index}
                         isDeleteEnabled={isDeleteEnabled}
                         onItemChecked={onNotiItemChecked}
+                        onItemReadMarked={onItemReadMarked}
+                        onItemDeleteMarked={onItemDeleteMarked}
+                        selectedCategories={selectedCategories}
                       />
                     </View>
                   );
