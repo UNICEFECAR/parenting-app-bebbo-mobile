@@ -13,7 +13,7 @@ import {
   renderers
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
-import { getCurrentChildAgeInMonths } from '../services/childCRUD';
+import { getCurrentChildAgeInDays, getCurrentChildAgeInMonths } from '../services/childCRUD';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
@@ -99,16 +99,28 @@ const NotificationItem = (props: any) => {
   const IsGrowthMeasuresForPeriodExist = () => {
     // isGrowthMeasureExistForDate(selectedMeasureDate,activeChild)
     // if item.days_to is today's date and thne check measures not entered then only show
-    let isMeasureEntered: boolean = false
+    let isGrowthNotMeasureExist = true;
     if (activeChild.measures.length > 0) {
       activeChild.measures.forEach((measure) => {
+        const childMeasureDateInDays = getCurrentChildAgeInDays(
+          DateTime.fromJSDate(new Date(measure.measurementDate)).toMillis(),
+        );
+        if (item.days_from < childMeasureDateInDays && item.days_to > childMeasureDateInDays) {
+          isGrowthNotMeasureExist = false;
+        } else {
+          isGrowthNotMeasureExist = true;
+        }
+        //get measurementdate in days and check if it is in between
         //find if measure exists in day_from and day_to
       })
     }
+    // console.log(isGrowthNotMeasureExist, 'isGrowthMeasureExist')
+    return isGrowthNotMeasureExist
   }
   const renderGrowthNotifcation = () => {
+    // console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation")
     return (
-      (item.days_from < childAgeInDays) ? item.isDeleted ? null : (<>
+      (item.days_from < childAgeInDays && IsGrowthMeasuresForPeriodExist()) ? item.isDeleted ? null : (<>
         <NotificationListContainer>
           <FlexDirRowStart>
             <NotifIcon style={{
