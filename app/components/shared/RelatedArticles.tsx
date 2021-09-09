@@ -21,38 +21,6 @@ const ContainerView = styled.View`
   margin-top: 10px;
 `;
 
-const DATA = [
-  {
-    id: '1',
-    imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'Gripping your filgers',
-  },
-  {
-    id: '2',
-    imagePath: require('@assets/trash/card2.jpeg'),
-    title: 'Molding your hands',
-  },
-  {
-    id: '3',
-    imagePath: require('@assets/trash/card3.jpeg'),
-    title: 'Picking stuff around',
-  },
-  {
-    id: '4',
-    imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'Gripping your filgers',
-  },
-  {
-    id: '5',
-    imagePath: require('@assets/trash/card5.jpeg'),
-    title: 'Molding your hands',
-  },
-  {
-    id: '6',
-    imagePath: require('@assets/trash/card6.jpeg'),
-    title: 'Picking stuff around',
-  },
-];
 const RelatedArticles = (props: RelatedArticlesProps) => {
   // console.log(props);
   const { related_articles, category, currentId, fromScreen, headerColor, backgroundColor, listCategoryArray, navigation, currentSelectedChildId } = props;
