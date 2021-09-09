@@ -41,9 +41,10 @@ import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
 import {
   Heading1Centerr,
-  Heading3, Heading4, Heading5
+  Heading3, Heading4, Heading4Center, Heading5
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
+import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Pressable, ScrollView, Share } from 'react-native';
@@ -51,7 +52,7 @@ import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { isFutureDate } from '../services/childCRUD';
+import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
@@ -69,6 +70,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
+  const feedbackItem = surveryData.find(item => item.type == "feedback")
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
@@ -80,6 +82,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
   // React.useCallback(() => {
 
   // );
+  const childAgeInDays = getCurrentChildAgeInDays(
+    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
+  );
   const isOpen: boolean = useIsDrawerOpen();
   useEffect(() => {
     if (isOpen) {
@@ -107,10 +112,16 @@ const CustomDrawerContent = ({ navigation }: any) => {
             currentChildallnoti.push(item)
           })
           // console.log(allnotis)
-          const combinedNotis = currentChildallnoti.sort(
+          let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
-          ).filter((item) => item.isRead == false && item.isDeleted == false);
-          console.log(combinedNotis, "combinedNotis")
+          ).filter((item) => item.isRead == false && item.isDeleted == false && item.days_from < childAgeInDays);
+          // console.log(combinedNotis, "combinedNotis")
+          const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
+          // console.log(toRemove, "findcdNoti")
+          combinedNotis = combinedNotis.filter(function (el) {
+            return !toRemove.includes(el);
+          });
+          // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
           setNotifications(combinedNotis)
         }
       }
@@ -448,28 +459,32 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Icon name="ic_close" size={16} color="#000" />
               </PopupClose>
             </PopupCloseContainer>
-            <ModalPopupContent>
-              <Heading1Centerr>{surveryData[1]?.title}</Heading1Centerr>
+            {feedbackItem ?
+              <><ModalPopupContent>
 
-              {surveryData[1] && surveryData[1].body ?
-                <HTML
-                  source={{ html: surveryData[1].body }}
-                  ignoredStyles={['color', 'font-size', 'font-family']}
-                />
-                : null
-              }
+                <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
 
-            </ModalPopupContent>
-            <FDirRow>
-              <ButtonModal
-                onPress={() => {
-                  setModalVisible(false);
-                  analytics().logEvent(FEEDBACK_SUBMIT)
-                  Linking.openURL(surveryData[1]?.survey_feedback_link)
-                }}>
-                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
-              </ButtonModal>
-            </FDirRow>
+                {feedbackItem && feedbackItem?.body ?
+                  <HTML
+                    source={{ html: feedbackItem?.body }}
+                    ignoredStyles={['color', 'font-size', 'font-family']}
+                  />
+                  : null
+                }
+
+              </ModalPopupContent>
+                <FDirRow>
+                  <ButtonModal
+                    onPress={() => {
+                      setModalVisible(false);
+                      analytics().logEvent(FEEDBACK_SUBMIT)
+                      Linking.openURL(feedbackItem?.survey_feedback_link)
+                    }}>
+                    <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+                  </ButtonModal>
+                </FDirRow>
+              </>
+              : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
