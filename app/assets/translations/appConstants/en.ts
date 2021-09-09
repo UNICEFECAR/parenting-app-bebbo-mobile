@@ -420,6 +420,7 @@ const en = {
         downloadUpdateSuccessPopupTitle: "Success",
         downloadUpdateSuccessPopupText: "Updates downloaded successfully!!",
         downloadUpdateSuccessOkBtn: "Ok",
+        newdetailScreenNoDataPopupText: "Selected Advice/Game is not available in this mobile.Please download latest data from settings.",
     }
 }
 export default en;
