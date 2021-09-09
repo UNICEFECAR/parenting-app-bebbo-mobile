@@ -1,3 +1,4 @@
+import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import BabyNotification from '@components/homeScreen/BabyNotification';
@@ -12,7 +13,6 @@ import {
   ButtonTertiary,
   ButtonText
 } from '@components/shared/ButtonGlobal';
-import analytics from '@react-native-firebase/analytics';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
@@ -25,7 +25,8 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr,
@@ -33,37 +34,26 @@ import {
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { DateTime } from 'luxon';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  BackHandler, Linking, Modal,
+  BackHandler, Button, Linking, Modal,
   Platform,
-  ScrollView,
-  Text,
-  ToastAndroid,
-  View,
-  Button,
-  TouchableOpacity
+  ScrollView, ToastAndroid,
+  View
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
-import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
-import { DateTime } from 'luxon';
-import { getAllPeriodicSyncData } from '../../../services/periodicSync';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { onNetworkStateChange } from '../../../redux/reducers/bandwidthSlice';
-import NetInfo from "@react-native-community/netinfo";
-import { retryAlert1 } from '../../../services/commonApiService';
-import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
-import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
-import { getChildNotification, getNextChildNotification, getNotisForNextPeriod, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
+import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { isFutureDate } from '../../../services/childCRUD';
+import { getChildNotification, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
+import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 
 
 type HomeNavigationProp =
@@ -128,7 +118,7 @@ const Home = ({ route, navigation }: Props) => {
       // console.log(currentCount,1);
       if (Platform.OS === 'android') {
         ToastAndroid.show(t('backPressText'), 6000);
-        console.log("in condition",currentCount);
+        console.log("in condition", currentCount);
         setTimeout(() => {
           console.log("in settimeout", currentCount);
           currentCount = 0;
@@ -197,22 +187,6 @@ const Home = ({ route, navigation }: Props) => {
   const findIfNotisExistForChild = (child) => {
     return allnotis.find((item) => String(item.childuuid) == String(child.uuid))
   }
-  // useEffect(() => {
-  //   console.log(route.params,"inUSEEFFECT")
-  //   //   if(route.params?.prevPage== "CountryLangChange" || route.params?.prevPage== "PeriodicSync"){
-  //   //     const allnotis= getAllNotifications(childAge,allHealthCheckupsData,allVaccinePeriods,allGrowthPeriods);
-  //   //     console.log(allnotis,"generatedNotisafterlangchange");
-  //   //     dispatch(setAllNotificationData(allnotis))
-  //   //   }
-  //   return () => {
-  //     // navigation.setParams({prevPage: ''});
-  //   }
-  // },[])
-  // useEffect(() => {
-  //   return () => {
-  //     // navigation.setParams({prevPage: ''});
-  //   }
-  // },[])
   useEffect(() => {
     setModalVisible(false);
     if (userIsOnboarded == false) {
