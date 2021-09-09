@@ -1,6 +1,7 @@
 
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
+import BabyNotification from '@components/homeScreen/BabyNotification';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
@@ -21,7 +22,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setAllNotificationData } from '../../redux/reducers/notificationSlice';
-import { getCurrentChildAgeInDays } from '../../services/childCRUD';
+import { getCurrentChildAgeInDays, isFutureDate } from '../../services/childCRUD';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
@@ -198,39 +199,40 @@ const Notifications = () => {
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
-              <OuterIconSpace>
-                <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
-                  <Icon name={'ic_trash'} size={20} color="#FFF" />
-                </Pressable>
-              </OuterIconSpace>
+              {isFutureDate(activeChild?.birthDate) ? null :
+                <OuterIconSpace>
+                  <Pressable onPress={() => setIsDeleteEnabled(!isDeleteEnabled)}>
+                    <Icon name={'ic_trash'} size={20} color="#FFF" />
+                  </Pressable>
+                </OuterIconSpace>}
             </OuterIconRow>
             <HeaderBabyMenu />
           </HeaderRowView>
+          {isFutureDate(activeChild?.birthDate) ? <BabyNotification /> :
+            <ScrollView style={{ flex: 7 }}>
+              <NotificationsCategories onchange={onCategorychange} />
+              <View style={{ marginVertical: 0 }}>
+                {
 
-          <ScrollView style={{ flex: 7 }}>
-            <NotificationsCategories onchange={onCategorychange} />
-            <View style={{ marginVertical: 0 }}>
-              {
-
-                notifications.map((item, index) => {
-                  return (
-                    <View key={index}>
-                      <NotificationItem
-                        item={item}
-                        itemIndex={index}
-                        isDeleteEnabled={isDeleteEnabled}
-                        onItemChecked={onNotiItemChecked}
-                        onItemReadMarked={onItemReadMarked}
-                        onItemDeleteMarked={onItemDeleteMarked}
-                        selectedCategories={selectedCategories}
-                        childAgeInDays={childAgeInDays}
-                        activeChild={activeChild}
-                      />
-                    </View>
-                  );
-                })}
-            </View>
-          </ScrollView>
+                  notifications.map((item, index) => {
+                    return (
+                      <View key={index}>
+                        <NotificationItem
+                          item={item}
+                          itemIndex={index}
+                          isDeleteEnabled={isDeleteEnabled}
+                          onItemChecked={onNotiItemChecked}
+                          onItemReadMarked={onItemReadMarked}
+                          onItemDeleteMarked={onItemDeleteMarked}
+                          selectedCategories={selectedCategories}
+                          childAgeInDays={childAgeInDays}
+                          activeChild={activeChild}
+                        />
+                      </View>
+                    );
+                  })}
+              </View>
+            </ScrollView>}
           {
             isDeleteEnabled ? (
               <>
@@ -250,6 +252,7 @@ const Notifications = () => {
                 </ButtonContainerTwo>
               </>
             ) : null}
+
         </FlexCol>
       </SafeAreaContainer>
     </>
