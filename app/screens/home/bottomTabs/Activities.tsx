@@ -44,38 +44,6 @@ type Props = {
   route: any
   navigation: ActivitiesNavigationProp;
 };
-const DATA = [
-  {
-    id: '1',
-    imagePath: require('@assets/trash/card1.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '2',
-    imagePath: require('@assets/trash/card2.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '3',
-    imagePath: require('@assets/trash/card3.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '4',
-    imagePath: require('@assets/trash/card4.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '5',
-    imagePath: require('@assets/trash/card5.jpeg'),
-    title: 'General recommendations for overweight and obese infants',
-  },
-  {
-    id: '6',
-    imagePath: require('@assets/trash/card6.jpeg'),
-    title: 'Picking stuff around',
-  },
-];
 const ContainerView = styled.SafeAreaView`
   flex: 1;
   background-color: ${(props) => props.theme.colors.ACTIVITIES_TINTCOLOR};
