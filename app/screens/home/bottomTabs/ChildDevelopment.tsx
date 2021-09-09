@@ -11,7 +11,7 @@ import { PrematureTagDevelopment } from '@components/shared/PrematureTag';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
+import { Heading2, Heading3, Heading3Regular, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, ShiftFromBottom10, ShiftFromBottom15, ShiftFromTop10, ShiftFromTop20, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -19,6 +19,7 @@ import analytics from '@react-native-firebase/analytics';
 import {
   FlatList,
   Image,
+  Modal,
   Pressable,
   SafeAreaView, Text, View
 } from 'react-native';
@@ -32,6 +33,7 @@ import ProgressCircle from 'react-native-progress-circle'
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
+import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 type ChildDevelopmentNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -88,7 +90,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const [milestonePercent, setMilestonePercent] = useState(0);
   const [componentColors, setComponentColors] = useState({});
   const [showNoData, setshowNoData] = useState(false);
-
+  const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = React.useRef()
 
   const setIsModalOpened = async (varkey: any) => {
@@ -306,11 +308,13 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                 <Heading3>{selectedChildDevData?.name} </Heading3>
 
                 {activeChild.isPremature === 'true' ? (
+                   <Pressable onPress={() => setModalVisible1(true)}>
                   <PrematureTagDevelopment>
                     <Heading5Bold>
                       {t('developScreenprematureText')}
                     </Heading5Bold>
                   </PrematureTagDevelopment>
+                  </Pressable>
                 ) : null}
               </FlexDirRowSpace>
               <ShiftFromTop5>
@@ -442,6 +446,35 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
               : <Heading4Center>{t('noDataTxt')}</Heading4Center> 
             } */}
         <FirstTimeModal modalVisible={modalVisible} setIsModalOpened={setIsModalOpened} modalScreenKey={modalScreenKey} modalScreenText={modalScreenText}></FirstTimeModal>
+        <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible1}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible1(false);
+        }}
+        onDismiss={() => {
+          setModalVisible1(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible1(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('childSetupprematureMessage')}
+              </Heading4Centerr>
+            </ModalPopupContent>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
       </SafeAreaContainer>
     </>
   );

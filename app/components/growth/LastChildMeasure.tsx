@@ -8,21 +8,23 @@ import {
   Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
 import Icon, {  OuterIconLeft, OuterIconRow,  IconViewAlert } from '@components/shared/Icon';
+import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useNavigation } from '@react-navigation/native';
 import {
   Heading2,
   Heading3,
   Heading4,
+  Heading4Centerr,
   Heading4Regular,
   Heading5,
   Heading5Bold,
   ShiftFromTop20
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View } from 'react-native';
+import { Modal, Pressable, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
@@ -38,6 +40,7 @@ const LastChildMeasure = (props: any) => {
   );
   console.log(activeChild,"LastChildMeasureactiveChild")
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const luxonLocale = useAppSelector(
@@ -128,9 +131,11 @@ const LastChildMeasure = (props: any) => {
           <FlexColEnd>
           
           {activeChild.isPremature === 'true' ? (
+          <Pressable onPress={() => setModalVisible(true)}>
             <PrematureTagGrowth>
               <Heading5Bold>{t('growthScreenprematureText')}</Heading5Bold>
             </PrematureTagGrowth>
+            </Pressable>
           ) : null}
           <Pressable
             onPress={(e) => {
@@ -221,6 +226,35 @@ const LastChildMeasure = (props: any) => {
           :null}
         </ShiftFromTop20>
       </BannerContainer1>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <Heading4Centerr>
+                {t('childSetupprematureMessage')}
+              </Heading4Centerr>
+            </ModalPopupContent>
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
     </>
   );
 };
