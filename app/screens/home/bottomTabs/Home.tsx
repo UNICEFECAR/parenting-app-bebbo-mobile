@@ -386,7 +386,7 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            {/* <View>
+            <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
             </View>
             {show && (
@@ -415,7 +415,7 @@ const Home = ({ route, navigation }: Props) => {
                 display="default"
                 onChange={ondobChange2}
               />
-            )} */}
+            )}
             <DailyReads />
             <ChildMilestones />
             <PlayingTogether />
