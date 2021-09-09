@@ -124,7 +124,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   let vcnotis: any[] = [];
   let hcnotis: any[] = [];
   childAgeObj.map((element: any, index: number) => {
-    console.log(element, lastchildgwperiod)
+    // console.log(element, lastchildgwperiod)
     if (element.days_from >= lastchildgwperiod.days_from && element.days_from <= childAgeInDays) {
       let currentgwPeriodNoti = getCDGWNotisForChild(element);
       console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
