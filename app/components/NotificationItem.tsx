@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Heading4Bold, Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import {
   Menu,
   MenuOption,
@@ -11,30 +11,27 @@ import {
   MenuTrigger,
   renderers
 } from 'react-native-popup-menu';
-import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components/native';
-import { useAppDispatch, useAppSelector } from '../../App';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
-import { MainContainer } from './shared/Container';
 import Divider, { DividerContainer } from './shared/Divider';
-import { FDirRow, FDirRowStart, FlexDirRowStart, } from './shared/FlexBoxStyle';
+import { FlexDirRowStart } from './shared/FlexBoxStyle';
 import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from './shared/NotificationStyle';
 
 
 const NotificationItem = (props: any) => {
-  const { item, itemIndex,onItemReadMarked,onItemDeleteMarked ,selectedCategories,isDeleteEnabled} = props;
+  const { item, itemIndex, onItemReadMarked, onItemDeleteMarked, selectedCategories, isDeleteEnabled, childAgeInDays, activeChild } = props;
   // console.log(itemIndex,"NotificationItemIndex");
-  const activeChild = useAppSelector((state: any) =>
-    state.childData.childDataSet.activeChild != ''
-      ? JSON.parse(state.childData.childDataSet.activeChild)
-      : [],
-  );
+  // const activeChild = useAppSelector((state: any) =>
+  //   state.childData.childDataSet.activeChild != ''
+  //     ? JSON.parse(state.childData.childDataSet.activeChild)
+  //     : [],
+  // );
   const themeContext = useContext(ThemeContext);
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
-  const primaryColor = themeContext.colors.PRIMARY_COLOR;
+  // const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const geticonname = (type: string) => {
     // console.log(type)
@@ -85,10 +82,10 @@ const NotificationItem = (props: any) => {
             })
             : '';
   };
-  const markAsRead = (item)=>{
+  const markAsRead = (item: any) => {
     onItemReadMarked(item);
   }
-  const markAsDelete = (item)=>{
+  const markAsDelete = (item: any) => {
     onItemDeleteMarked(item);
   }
   const growthColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -99,116 +96,116 @@ const NotificationItem = (props: any) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   const renderGrowthNotifcation = () => {
     return (
-      item.isDeleted? null :(<>
-      <NotificationListContainer>
-        <FlexDirRowStart>
-          <NotifIcon style={{
-            backgroundColor: growthColor
-          }}>
+      item.isDeleted ? null : (<>
+        <NotificationListContainer>
+          <FlexDirRowStart>
+            <NotifIcon style={{
+              backgroundColor: growthColor
+            }}>
 
-            <Icon
-              name={geticonname(item.type)}
-              size={20}
-              color="#000"
+              <Icon
+                name={geticonname(item.type)}
+                size={20}
+                color="#000"
 
-            />
-          </NotifIcon>
-          <NotifiContent>
-            {item.isRead ==true ?
-             <Heading4Regular>{t(item.title)}</Heading4Regular> :
-             <Heading4Bold>{t(item.title)}</Heading4Bold>
-             }
-           
-            
-            <ShiftFromTop5>
-              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
-            </ShiftFromTop5>
-            <ShiftFromTop10>
-              <Pressable onPress={() => gotoPage(item.type)}>
-                <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-              </Pressable></ShiftFromTop10>
-          </NotifiContent>
+              />
+            </NotifIcon>
+            <NotifiContent>
+              {item.isRead == true ?
+                <Heading4Regular>{t(item.title)}</Heading4Regular> :
+                <Heading4Bold>{t(item.title)}</Heading4Bold>
+              }
 
-          <NotifAction>
-            {(isDeleteEnabled === true) ? (
-              <FormOuterCheckbox
-                onPress={() => {
-                  //  console.log(item);
-                  setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(item, !toggleCheckBox)
-                }}>
-                <CheckboxItem>
-                  <View>
-                    {toggleCheckBox ? (
-                      <CheckboxActive>
-                        <Icon name="ic_tick" size={12} color="#000" />
-                      </CheckboxActive>
-                    ) : (
-                      <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                    )}
-                  </View>
-                </CheckboxItem>
-              </FormOuterCheckbox>
-            ) : (
-              <>
-                <Menu
-                  renderer={renderers.ContextMenu}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
-                  <MenuTrigger>
-                    <Icon
-                      style={{
-                        flex: 1,
-                        textAlign: 'right',
-                        alignSelf: 'center',
-                      }}
-                      name={'ic_kebabmenu'}
-                      size={25}
-                      color="#000"
-                    />
-                  </MenuTrigger>
-                  <MenuOptions
-                    customStyles={{
-                      optionsContainer: {
-                        marginTop: 30,
-                        borderRadius: 10,
-                        backgroundColor: primaryTintColor,
-                      },
 
-                      optionWrapper: {
-                        borderBottomWidth: 1,
-                        padding: 15,
-                      },
+              <ShiftFromTop5>
+                <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
+              </ShiftFromTop5>
+              <ShiftFromTop10>
+                <Pressable onPress={() => gotoPage(item.type)}>
+                  <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                </Pressable></ShiftFromTop10>
+            </NotifiContent>
 
-                    }}>
-                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                      <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                    </MenuOption>
-                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                      <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
-                    </MenuOption>
-                  </MenuOptions>
-                </Menu>
-              </>
-            )}
-          </NotifAction>
+            <NotifAction>
+              {(isDeleteEnabled === true) ? (
+                <FormOuterCheckbox
+                  onPress={() => {
+                    //  console.log(item);
+                    setToggleCheckBox(!toggleCheckBox);
+                    props.onItemChecked(item, !toggleCheckBox)
+                  }}>
+                  <CheckboxItem>
+                    <View>
+                      {toggleCheckBox ? (
+                        <CheckboxActive>
+                          <Icon name="ic_tick" size={12} color="#000" />
+                        </CheckboxActive>
+                      ) : (
+                        <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                      )}
+                    </View>
+                  </CheckboxItem>
+                </FormOuterCheckbox>
+              ) : (
+                <>
+                  <Menu
+                    renderer={renderers.ContextMenu}
+                    style={{
+                      width: 40,
+                      height: 40,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onSelect={(value) =>
+                      console.log(`Selected number: ${value} ${item}`)
+                    }>
+                    <MenuTrigger>
+                      <Icon
+                        style={{
+                          flex: 1,
+                          textAlign: 'right',
+                          alignSelf: 'center',
+                        }}
+                        name={'ic_kebabmenu'}
+                        size={25}
+                        color="#000"
+                      />
+                    </MenuTrigger>
+                    <MenuOptions
+                      customStyles={{
+                        optionsContainer: {
+                          marginTop: 30,
+                          borderRadius: 10,
+                          backgroundColor: primaryTintColor,
+                        },
 
-        </FlexDirRowStart>
+                        optionWrapper: {
+                          borderBottomWidth: 1,
+                          padding: 15,
+                        },
 
-      </NotificationListContainer>
-      <DividerContainer><Divider></Divider></DividerContainer>
-    </>))
+                      }}>
+                      <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                        <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                      </MenuOption>
+                      <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                        <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                      </MenuOption>
+                    </MenuOptions>
+                  </Menu>
+                </>
+              )}
+            </NotifAction>
+
+          </FlexDirRowStart>
+
+        </NotificationListContainer>
+        <DividerContainer><Divider></Divider></DividerContainer>
+      </>))
   }
   const renderHCNotifcation = () => {
     //At the beginning of the period
-    return ( item.isDeleted? null :<>
+    return (item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -223,10 +220,10 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-          {item.isRead ==true ?
-             <Heading4Regular>{t(item.title)}</Heading4Regular> :
-             <Heading4Bold>{t(item.title)}</Heading4Bold>
-             }
+            {item.isRead == true ?
+              <Heading4Regular>{t(item.title)}</Heading4Regular> :
+              <Heading4Bold>{t(item.title)}</Heading4Bold>
+            }
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
@@ -299,7 +296,7 @@ const NotificationItem = (props: any) => {
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
                     <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>             
+                      <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -315,11 +312,11 @@ const NotificationItem = (props: any) => {
   }
   const renderVCNotifcation = () => {
     //A the beginning of the period
-    return ( item.isDeleted? null :<>
+    return (item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
-            backgroundColor:  vaccinationColor
+            backgroundColor: vaccinationColor
           }}>
 
             <Icon
@@ -330,23 +327,25 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-          {item.isRead ==true ?
-              <Heading4Regular>{t(item.title,{
+            {item.isRead == true ?
+              <Heading4Regular>{t(item.title, {
                 childName:
                   activeChild.childName != null &&
                     activeChild.childName != '' &&
                     activeChild.childName != undefined
                     ? activeChild.childName
-                    : ''})}</Heading4Regular>:
-                    <Heading4Bold>{t(item.title,{
-                      childName:
-                        activeChild.childName != null &&
-                          activeChild.childName != '' &&
-                          activeChild.childName != undefined
-                          ? activeChild.childName
-                          : ''})}</Heading4Bold>
-             }
-           
+                    : ''
+              })}</Heading4Regular> :
+              <Heading4Bold>{t(item.title, {
+                childName:
+                  activeChild.childName != null &&
+                    activeChild.childName != '' &&
+                    activeChild.childName != undefined
+                    ? activeChild.childName
+                    : ''
+              })}</Heading4Bold>
+            }
+
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
@@ -419,7 +418,7 @@ const NotificationItem = (props: any) => {
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
                     <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
+                      <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -436,11 +435,11 @@ const NotificationItem = (props: any) => {
   const renderCDNotifcation = () => {
     //At the beginning of the period =>cd1
     //5 days before the end of the period =>cd2
-    return ( item.isDeleted? null :<>
+    return (item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
-            backgroundColor: cdColor 
+            backgroundColor: cdColor
           }}>
 
             <Icon
@@ -451,10 +450,10 @@ const NotificationItem = (props: any) => {
             />
           </NotifIcon>
           <NotifiContent>
-          {item.isRead ==true ?
-             <Heading4Regular>{t(item.title)}</Heading4Regular> :
-             <Heading4Bold>{t(item.title)}</Heading4Bold>
-             }
+            {item.isRead == true ?
+              <Heading4Regular>{t(item.title)}</Heading4Regular> :
+              <Heading4Bold>{t(item.title)}</Heading4Bold>
+            }
             <ShiftFromTop5>
               <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
             </ShiftFromTop5>
@@ -527,7 +526,7 @@ const NotificationItem = (props: any) => {
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
                     <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                    <Heading5Bold> { item.isRead ==true ?t('notiOption3') :t('notiOption2')}</Heading5Bold>
+                      <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -543,13 +542,13 @@ const NotificationItem = (props: any) => {
   }
 
   return (
-    selectedCategories.length==0 ?
+    selectedCategories.length == 0 ?
       (item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null)
-    :
-    selectedCategories.includes(item.type) ?
-    (item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null)
-   :null
-     
+      :
+      selectedCategories.includes(item.type) ?
+        (item.type == 'gw' ? renderGrowthNotifcation() : item.type == 'cd' ? renderCDNotifcation() : item.type == 'vc' ? renderVCNotifcation() : item.type == 'hc' ? renderHCNotifcation() : null)
+        : null
+
   );
 };
 export default NotificationItem;
