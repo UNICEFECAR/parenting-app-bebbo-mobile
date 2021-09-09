@@ -1,4 +1,4 @@
-import { backUpPath } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, backUpPath } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonModal,
@@ -67,13 +67,14 @@ import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import { addPrefixForAndroidPaths, setActiveChild } from '../../services/childCRUD';
+import { addPrefixForAndroidPaths, apiJsonDataGet, getAge, setActiveChild } from '../../services/childCRUD';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
 import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
 import { setAllChildData } from '../../redux/reducers/childSlice';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -124,6 +125,124 @@ console.log(toggleSwitchVal,"..toggleSwitchVal..");
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const netInfoval = useNetInfoHook();
+  const weeklyDownloadDate = useAppSelector(
+    (state: any) => state.utilsData.weeklyDownloadDate,
+);
+const monthlyDownloadDate = useAppSelector(
+    (state: any) => state.utilsData.monthlyDownloadDate,
+);
+const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
+  const apiJsonData = [
+    {
+      apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.videoArticles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.dailyMessages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.activities,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.surveys,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestones,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childDevelopmentData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinations,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthCheckupData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinePinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childGrowthPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevGirlPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevBoyPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthcheckupPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestoneRelatedArticle,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+        apiEndpoint: appConfig.standardDeviation,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+    }
+  ];  
   const importAllData=async ()=>{
     Alert.alert(t('importText'), t("dataConsistency"),
     [
@@ -204,6 +323,26 @@ const exportAllData=async ()=>{
     
   }
  
+  const downloadUpdatedData = () => {
+    Alert.alert(t('downloadUpdatePopupTitle'), t('downloadUpdatePopupText'),
+      [
+        {
+          text: t('downloadUpdateCancelPopUpBtn'),
+          onPress: () =>{
+
+          },
+          style: "cancel"
+        },
+        { text:t('downloadUpdateContinueBtn'), onPress: async () => {
+            props.navigation.navigate('LoadingScreen', {
+              apiJsonData: apiJsonData, 
+              prevPage: 'DownloadUpdate'
+            });
+          }
+        }
+      ]
+    );
+  }
    
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
@@ -397,11 +536,11 @@ const exportAllData=async ()=>{
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: formatStringDate(new Date(),luxonLocale),
+                downloadDate: formatStringDate(new Date(lastUpdatedDate),luxonLocale),
               })}
             </Heading6>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => {}}>
+              <ButtonPrimary onPress={() => {downloadUpdatedData()}}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
@@ -420,7 +559,7 @@ const exportAllData=async ()=>{
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable onPress={() => 
+                <Pressable disabled={!netInfoval.isConnected} onPress={() => 
                   {
                     console.log("icon clicked");
                     setModalVisible(true)
@@ -566,7 +705,7 @@ const exportAllData=async ()=>{
               </ModalPopupContent>
               <FDirRow>
                 <ButtonModal
-                  //disabled={true}
+                  // disabled={netInfoval.isConnected}
                   onPress={() => {
                     console.log('close');
                     setModalVisible(false);
