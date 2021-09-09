@@ -399,6 +399,13 @@ const ALsq = {
               importText: "Import Data",
               exportText: "Export Data",
               dataConsistency: "To avoid data inconsistency please import/export in same language.Do you want to continue?",
+              dataSaver: "Do you want to switch {{toggle}} data saver mode?",
+              backPressText: "Press again to close!",
+              generalError: "Something went wrong ! Please try again",
+              generalErrorTitle: "Error",
+              permissionTitleText: "Permission required",
+              permissionText: "Need permissions to access gallery and camera",
+              settingsTextOpen: "Open Settings",
               notiOption3: "Mark as unread",
               downloadUpdatePopupTitle: "Update data",
               downloadUpdatePopupText: "This will take time.Dow you want to Update data?",
@@ -407,6 +414,7 @@ const ALsq = {
               downloadUpdateSuccessPopupTitle: "Success",
               downloadUpdateSuccessPopupText: "Updates downloaded successfully!!",
               downloadUpdateSuccessOkBtn: "Ok",
+              newdetailScreenNoDataPopupText: "Selected Advice/Game is not available in this mobile.Please download latest data from settings.",      
        }
 }
 export default ALsq;

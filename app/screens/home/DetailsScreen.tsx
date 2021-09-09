@@ -106,7 +106,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               }
             }else {
               //show alert and back function
-              Alert.alert(t('detailScreenNoDataPopupTitle'), t('detailScreenNoDataPopupText'),
+              Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
               [
                 { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
               ]
