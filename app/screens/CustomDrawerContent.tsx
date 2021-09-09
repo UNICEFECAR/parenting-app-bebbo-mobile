@@ -1,10 +1,10 @@
+import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 import {
   BgDevelopment,
   BgGrowth,
   BgHealth,
   BgVaccination
 } from '@components/shared/BackgroundColors';
-import analytics from '@react-native-firebase/analytics';
 import {
   ButtonModal, ButtonText
 } from '@components/shared/ButtonGlobal';
@@ -36,7 +36,9 @@ import {
   SubDrawerHead,
   SubDrawerLinkView
 } from '@components/shared/NavigationDrawer';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import analytics from '@react-native-firebase/analytics';
+import { useIsDrawerOpen } from '@react-navigation/drawer';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   Heading1Centerr,
   Heading3, Heading4, Heading5
@@ -51,9 +53,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { isFutureDate } from '../services/childCRUD';
 import { formatDate } from '../services/Utils';
-import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { useIsDrawerOpen } from '@react-navigation/drawer';
-const CustomDrawerContent = ({navigation}: any) => {
+const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
   const activeChild = useAppSelector((state: any) =>
@@ -74,87 +74,48 @@ const CustomDrawerContent = ({navigation}: any) => {
     (state: any) => state.selectedCountry.luxonLocale,
   );
   // useEffect(() => {
-    
+
   // }, [])
 
   // React.useCallback(() => {
 
   // );
   const isOpen: boolean = useIsDrawerOpen();
-  useEffect(() => {   
+  useEffect(() => {
     if (isOpen) {
       // Your dismiss logic here 
 
-         if (allnotis.length > 0) {
-      const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
-      console.log(currentChildNotis, "allfilteredNotis")
-      //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
-      if (currentChildNotis) {
-        let currentChildallnoti: any = [];
-        currentChildNotis.gwcdnotis.forEach((item) => {
-          currentChildallnoti.push(item)
-        })
-        // // notiExist.gwcdnotis?.forEach((item)=>{
-        // //   allgwnoti.push(item)
-        // // })
-        currentChildNotis.hcnotis.forEach((item) => {
-          currentChildallnoti.push(item)
-        })
-        // // notiExist.vcnotis?.forEach((item)=>{
-        // //   allvcnotis.push(item)
-        // // })
-        currentChildNotis.vcnotis.forEach((item) => {
-          currentChildallnoti.push(item)
-        })
-        // console.log(allnotis)
-        const combinedNotis = currentChildallnoti.sort(
-          (a: any, b: any) => a.days_from - b.days_from,
-        ).reverse();
-        console.log(combinedNotis, "combinedNotis")
-        setNotifications(combinedNotis)
+      if (allnotis.length > 0) {
+        const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+        console.log(currentChildNotis, "allfilteredNotis")
+        //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+        if (currentChildNotis) {
+          let currentChildallnoti: any = [];
+          currentChildNotis.gwcdnotis.forEach((item) => {
+            currentChildallnoti.push(item)
+          })
+          // // notiExist.gwcdnotis?.forEach((item)=>{
+          // //   allgwnoti.push(item)
+          // // })
+          currentChildNotis.hcnotis.forEach((item) => {
+            currentChildallnoti.push(item)
+          })
+          // // notiExist.vcnotis?.forEach((item)=>{
+          // //   allvcnotis.push(item)
+          // // })
+          currentChildNotis.vcnotis.forEach((item) => {
+            currentChildallnoti.push(item)
+          })
+          // console.log(allnotis)
+          const combinedNotis = currentChildallnoti.sort(
+            (a: any, b: any) => a.days_from - b.days_from,
+          ).filter((item) => item.isRead == false && item.isDeleted == false);
+          console.log(combinedNotis, "combinedNotis")
+          setNotifications(combinedNotis)
+        }
       }
     }
-    }
   }, [isOpen]);
-  // console.log(activeChild, '..activeChild..');
-  // useEffect(() => {
-  //   // const unsubscribe = navigation.addListener('drawerOpen', (e) => {
-  //   //   console.log(e,"drawerOpen")
-  //     // Do something
-  //     console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
-  //   if (allnotis.length > 0) {
-  //     const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
-  //     console.log(currentChildNotis, "allfilteredNotis")
-  //     //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
-  //     if (currentChildNotis) {
-  //       let currentChildallnoti: any = [];
-  //       currentChildNotis.gwcdnotis.forEach((item) => {
-  //         currentChildallnoti.push(item)
-  //       })
-  //       // // notiExist.gwcdnotis?.forEach((item)=>{
-  //       // //   allgwnoti.push(item)
-  //       // // })
-  //       currentChildNotis.hcnotis.forEach((item) => {
-  //         currentChildallnoti.push(item)
-  //       })
-  //       // // notiExist.vcnotis?.forEach((item)=>{
-  //       // //   allvcnotis.push(item)
-  //       // // })
-  //       currentChildNotis.vcnotis.forEach((item) => {
-  //         currentChildallnoti.push(item)
-  //       })
-  //       // console.log(allnotis)
-  //       const combinedNotis = currentChildallnoti.sort(
-  //         (a: any, b: any) => a.days_from - b.days_from,
-  //       ).reverse();
-  //       console.log(combinedNotis, "combinedNotis")
-  //       setNotifications(combinedNotis)
-  //     }
-  //   }
-  //   // });
-  
-  //   // return unsubscribe;
-  // }, [activeChild]);
   const onShare = async () => {
     try {
       const result = await Share.share({
