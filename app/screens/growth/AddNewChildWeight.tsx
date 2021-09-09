@@ -31,19 +31,19 @@ type Props = {
   navigation: ChildSetupNavigationProp;
 };
 
-const AddNewChildWeight = ({navigation, route}: Props) => {
-  const {t} = useTranslation();
+const AddNewChildWeight = ({ navigation, route }: Props) => {
+  const { t } = useTranslation();
   const [headerColor, setHeaderColor] = useState();
   const [tintColor, setTintColor] = useState();
   const [modalVisible, setModalVisible] = useState(true);
   const screenPadding = 10;
   const secondScalePrefix = 0.01;
-  const {height, width} = Dimensions.get('screen');
+  const { height, width } = Dimensions.get('screen');
   const [weight, setweight] = useState<any>(0);
   const [weight1, setweight1] = useState<any>(0.0);
   const dispatch = useAppDispatch();
   const setIsModalOpened = async (varkey: any) => {
-    let obj = {key: varkey, value: !modalVisible};
+    let obj = { key: varkey, value: !modalVisible };
     dispatch(setInfoModalOpened(obj));
   };
   const [prevRoute, setPrevRoute] = useState<any>();
@@ -90,7 +90,7 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
     const w =
       (weight != NaN ? weight : 0) + (weight1 != NaN ? 0.01 * weight1 : 0);
     // console.log(w);
-    return w;
+    return w.toFixed(2);
   };
   return (
     <>
@@ -121,20 +121,20 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
               <Heading4Centerr>
                 {t('weightModalText')}
               </Heading4Centerr>
-              </ModalPopupContent>
-              <FDirRow>
-                <ButtonModal
-                  onPress={() => {
-                    setIsModalOpened('IsWeightModalOpened');
-                  }}>
-                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
-                </ButtonModal>
-              </FDirRow>
-            
+            </ModalPopupContent>
+            <FDirRow>
+              <ButtonModal
+                onPress={() => {
+                  setIsModalOpened('IsWeightModalOpened');
+                }}>
+                <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+              </ButtonModal>
+            </FDirRow>
+
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -142,17 +142,17 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-          <Pressable
-                onPress={() => {
-                  navigation.goBack();
-                }}>
-                <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={'ic_back'} color="#000" size={15} />
+            </Pressable>
           </HeaderIconView>
           <HeaderTitleView>
-          <Heading2>{t('growthScreenaddWeight')}</Heading2>
+            <Heading2>{t('growthScreenaddWeight')}</Heading2>
           </HeaderTitleView>
-          
+
         </HeaderRowView>
         {/* <View
           style={{
@@ -184,79 +184,79 @@ const AddNewChildWeight = ({navigation, route}: Props) => {
           </View>
         </View> */}
         <FlexCol>
-        <MainContainer>
-          <View style={{backgroundColor: tintColor, borderRadius: 4}}>
-            <View style={{overflow: 'hidden'}}>
-              <ShiftFromTopBottom20>
-                <Heading1Center>
-                  {getWeightValue()} {t('growthScreenkgText')}
-                </Heading1Center>
-              </ShiftFromTopBottom20>
-              <Ruler
-                style={{elevation: 3}}
-                width={width - screenPadding * 2}
-                height={100}
-                vertical={false}
-                initialValue={route.params?.weightValue.weight} //set value on edit
-                onChangeValue={(value) => setweight(value)}
-                minimum={0}
-                maximum={28}
-                segmentWidth={2}
-                segmentSpacing={20}
-                indicatorColor={headerColor}
-                indicatorWidth={100}
-                indicatorHeight={100}
-                indicatorBottom={0}
-                step={10}
-                stepPreFix={1}
-                stepColor="#333333"
-                stepHeight={40}
-                normalColor="#999999"
-                normalHeight={20}
-                backgroundColor={'#FFF'}
-              />
-              {/* <View style={{marginBottom: 20}}></View> */}
-              <Ruler
-                style={{elevation: 3}}
-                width={width - screenPadding - screenPadding}
-                height={100}
-                vertical={false}
-                initialValue={route.params?.weightValue.weight1}
-                onChangeValue={(value) => setweight1(value)}
-                minimum={0}
-                maximum={100}
-                segmentWidth={2}
-                segmentSpacing={20}
-                indicatorColor={headerColor}
-                indicatorWidth={100}
-                indicatorHeight={100}
-                indicatorBottom={0}
-                step={10}
-                stepPreFix={secondScalePrefix}
-                stepColor="#333333"
-                stepHeight={40}
-                normalColor="#999999"
-                normalHeight={20}
-                backgroundColor={tintColor}
-              />
+          <MainContainer>
+            <View style={{ backgroundColor: tintColor, borderRadius: 4 }}>
+              <View style={{ overflow: 'hidden' }}>
+                <ShiftFromTopBottom20>
+                  <Heading1Center>
+                    {getWeightValue()} {t('growthScreenkgText')}
+                  </Heading1Center>
+                </ShiftFromTopBottom20>
+                <Ruler
+                  style={{ elevation: 3 }}
+                  width={width - screenPadding * 2}
+                  height={100}
+                  vertical={false}
+                  initialValue={route.params?.weightValue.weight} //set value on edit
+                  onChangeValue={(value) => setweight(value)}
+                  minimum={0}
+                  maximum={28}
+                  segmentWidth={2}
+                  segmentSpacing={20}
+                  indicatorColor={headerColor}
+                  indicatorWidth={100}
+                  indicatorHeight={100}
+                  indicatorBottom={0}
+                  step={10}
+                  stepPreFix={1}
+                  stepColor="#333333"
+                  stepHeight={40}
+                  normalColor="#999999"
+                  normalHeight={20}
+                  backgroundColor={'#FFF'}
+                />
+                {/* <View style={{marginBottom: 20}}></View> */}
+                <Ruler
+                  style={{ elevation: 3 }}
+                  width={width - screenPadding - screenPadding}
+                  height={100}
+                  vertical={false}
+                  initialValue={route.params?.weightValue.weight1}
+                  onChangeValue={(value) => setweight1(value)}
+                  minimum={0}
+                  maximum={100}
+                  segmentWidth={2}
+                  segmentSpacing={20}
+                  indicatorColor={headerColor}
+                  indicatorWidth={100}
+                  indicatorHeight={100}
+                  indicatorBottom={0}
+                  step={10}
+                  stepPreFix={secondScalePrefix}
+                  stepColor="#333333"
+                  stepHeight={40}
+                  normalColor="#999999"
+                  normalHeight={20}
+                  backgroundColor={tintColor}
+                />
+              </View>
             </View>
-          </View>
-        </MainContainer>
-        <ButtonContainer>
-          <ButtonTertiary
-            onPress={() => {
-              // console.log(weight,weight1);
-              navigation.navigate({
-                name: prevRoute,
-                params: {weight: getWeightValue()},
-                merge: true,
-              });
-              // route.params.onReturn({weight:(weight + 0.01 * weight1).toFixed(2)});
-              // navigation.goBack();
-            }}>
-            <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
-          </ButtonTertiary>
-        </ButtonContainer>
+          </MainContainer>
+          <ButtonContainer>
+            <ButtonTertiary
+              onPress={() => {
+                // console.log(weight,weight1);
+                navigation.navigate({
+                  name: prevRoute,
+                  params: { weight: getWeightValue() },
+                  merge: true,
+                });
+                // route.params.onReturn({weight:(weight + 0.01 * weight1).toFixed(2)});
+                // navigation.goBack();
+              }}>
+              <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
+            </ButtonTertiary>
+          </ButtonContainer>
         </FlexCol>
       </SafeAreaView>
     </>
