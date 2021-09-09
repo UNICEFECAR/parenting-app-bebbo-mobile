@@ -15,6 +15,7 @@ const downloadImage=async (args: ApiImageData): Promise<boolean>=>{
         }
         //console.log(RNFS.exists(args.destFolder + '/' + args.destFilename));
         if (await RNFS.exists(args.destFolder + '/' + args.destFilename)) {
+            rval = true;
            // console.log("Image already exists");
         }else {
             // Download image: https://bit.ly/2S5CeEu
