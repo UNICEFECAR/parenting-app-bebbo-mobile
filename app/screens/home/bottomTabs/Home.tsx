@@ -30,7 +30,7 @@ import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr,
-  Heading3Regular, ShiftFromTop20,
+  Heading3Regular, Heading4Center, ShiftFromTop20,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
@@ -109,6 +109,7 @@ const Home = ({ route, navigation }: Props) => {
       ? JSON.parse(state.utilsData.surveryData)
       : state.utilsData.surveryData,
   );
+  const surveryItem = surveryData?.find(item => item.type == "survey");
   let currentCount = 0;
   let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = () => {
@@ -447,30 +448,33 @@ const Home = ({ route, navigation }: Props) => {
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
               </PopupCloseContainer>
-              <ModalPopupContent>
-                <Heading1Centerr>{surveryData[0].title}</Heading1Centerr>
+              {surveryItem ?
+                <>
+                  <ModalPopupContent>
+                    <Heading1Centerr>{surveryItem?.title}</Heading1Centerr>
 
-                {surveryData[0] && surveryData[0].body ?
-                  <HTML
-                    source={{ html: surveryData[0].body }}
-                    ignoredStyles={['color', 'font-size', 'font-family']}
-                  />
-                  : null
-                }
+                    {surveryItem && surveryItem?.body ?
+                      <HTML
+                        source={{ html: surveryItem?.body }}
+                        ignoredStyles={['color', 'font-size', 'font-family']}
+                      />
+                      : null
+                    }
 
-              </ModalPopupContent>
-              <FDirRow>
-                <ButtonModal
-                  onPress={() => {
-                    setModalVisible(false);
+                  </ModalPopupContent>
+                  <FDirRow>
+                    <ButtonModal
+                      onPress={() => {
+                        setModalVisible(false);
 
-                    analytics().logEvent(SURVEY_SUBMIT)
+                        analytics().logEvent(SURVEY_SUBMIT)
 
-                    Linking.openURL(surveryData[0].survey_feedback_link)
-                  }}>
-                  <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
-                </ButtonModal>
-              </FDirRow>
+                        Linking.openURL(surveryItem?.survey_feedback_link)
+                      }}>
+                      <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+                    </ButtonModal>
+                  </FDirRow></>
+                : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>

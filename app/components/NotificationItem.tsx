@@ -2,7 +2,7 @@ import Icon from '@components/shared/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { Heading4Bold, Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, ShiftFromTop5 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import {
@@ -13,7 +13,7 @@ import {
   renderers
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
-import { getCurrentChildAgeInMonths } from '../services/childCRUD';
+import { getCurrentChildAgeInDays, getCurrentChildAgeInMonths } from '../services/childCRUD';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
@@ -24,12 +24,6 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 
 const NotificationItem = (props: any) => {
   const { item, itemIndex, onItemReadMarked, onItemDeleteMarked, selectedCategories, isDeleteEnabled, childAgeInDays, activeChild } = props;
-  // console.log(itemIndex,"NotificationItemIndex");
-  // const activeChild = useAppSelector((state: any) =>
-  //   state.childData.childDataSet.activeChild != ''
-  //     ? JSON.parse(state.childData.childDataSet.activeChild)
-  //     : [],
-  // );
   const themeContext = useContext(ThemeContext);
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
@@ -96,19 +90,34 @@ const NotificationItem = (props: any) => {
   const cdColor = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const { t } = useTranslation();
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
+  useEffect(() => {
+    setToggleCheckBox(false);
+  }, [isDeleteEnabled])
   const IsGrowthMeasuresForPeriodExist = () => {
     // isGrowthMeasureExistForDate(selectedMeasureDate,activeChild)
     // if item.days_to is today's date and thne check measures not entered then only show
-    let isMeasureEntered: boolean = false
+    let isGrowthNotMeasureExist = true;
     if (activeChild.measures.length > 0) {
       activeChild.measures.forEach((measure) => {
+        const childMeasureDateInDays = getCurrentChildAgeInDays(
+          DateTime.fromJSDate(new Date(measure.measurementDate)).toMillis(),
+        );
+        if (item.days_from < childMeasureDateInDays && item.days_to > childMeasureDateInDays) {
+          isGrowthNotMeasureExist = false;
+        } else {
+          isGrowthNotMeasureExist = true;
+        }
+        //get measurementdate in days and check if it is in between
         //find if measure exists in day_from and day_to
       })
     }
+    // console.log(isGrowthNotMeasureExist, 'isGrowthMeasureExist')
+    return isGrowthNotMeasureExist
   }
   const renderGrowthNotifcation = () => {
+    console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation")
     return (
-      (item.days_from < childAgeInDays) ? item.isDeleted ? null : (<>
+      (item.days_from < childAgeInDays && IsGrowthMeasuresForPeriodExist()) ? item.isDeleted ? null : (<>
         <NotificationListContainer>
           <FlexDirRowStart>
             <NotifIcon style={{
@@ -124,8 +133,8 @@ const NotificationItem = (props: any) => {
             </NotifIcon>
             <NotifiContent>
               {item.isRead == true ?
-                <Heading4Regular>{t(item.title)}</Heading4Regular> :
-                <Heading4Bold>{t(item.title)}</Heading4Bold>
+                <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
               }
 
 
@@ -238,8 +247,8 @@ const NotificationItem = (props: any) => {
           </NotifIcon>
           <NotifiContent>
             {item.isRead == true ?
-              <Heading4Regular>{t(item.title)}</Heading4Regular> :
-              <Heading4Bold>{t(item.title)}</Heading4Bold>
+              <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+              <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
             }
             <ShiftFromTop5>
               <Heading6>{
@@ -247,7 +256,7 @@ const NotificationItem = (props: any) => {
                   t,
                   DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
                 )}</Heading6>
-              <Heading6>{item.days_from},{item.days_to},{String(item.isRead)}</Heading6>
+              <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
             </ShiftFromTop5>
             <ShiftFromTop10>
               <Pressable onPress={() => gotoPage(item.type)}>
@@ -356,7 +365,7 @@ const NotificationItem = (props: any) => {
                     activeChild.childName != '' &&
                     activeChild.childName != undefined
                     ? activeChild.childName
-                    : ''
+                    : '', periodName: item.periodName
               })}</Heading4Regular> :
               <Heading4Bold>{t(item.title, {
                 childName:
@@ -364,7 +373,7 @@ const NotificationItem = (props: any) => {
                     activeChild.childName != '' &&
                     activeChild.childName != undefined
                     ? activeChild.childName
-                    : ''
+                    : '', periodName: item.periodName
               })}</Heading4Bold>
             }
 
@@ -483,8 +492,8 @@ const NotificationItem = (props: any) => {
               </NotifIcon>
               <NotifiContent>
                 {item.isRead == true ?
-                  <Heading4Regular>{t(item.title)}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title)}</Heading4Bold>
+                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
                   <Heading6>{
@@ -595,8 +604,8 @@ const NotificationItem = (props: any) => {
               </NotifIcon>
               <NotifiContent>
                 {item.isRead == true ?
-                  <Heading4Regular>{t(item.title)}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title)}</Heading4Bold>
+                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
                   <Heading6>{
