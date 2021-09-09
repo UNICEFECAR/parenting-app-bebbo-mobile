@@ -1,4 +1,5 @@
 export const MileStonesData:any = {
+     //api all data
     "en":[  
         {
             "id": 2526,
