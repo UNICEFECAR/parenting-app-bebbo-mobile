@@ -413,6 +413,13 @@ const en = {
         permissionText:"Need permissions to access gallery and camera",
         settingsTextOpen:"Open Settings",
         notiOption3: "Mark as unread",
+        downloadUpdatePopupTitle: "Update data",
+        downloadUpdatePopupText: "This will take time.Dow you want to Update data?",
+        downloadUpdateCancelPopUpBtn: "Cancel",
+        downloadUpdateContinueBtn: "Continue",
+        downloadUpdateSuccessPopupTitle: "Success",
+        downloadUpdateSuccessPopupText: "Updates downloaded successfully!!",
+        downloadUpdateSuccessOkBtn: "Ok",
     }
 }
 export default en;
