@@ -28,6 +28,7 @@ import ModalPopupContainer, {
   PopupOverlay,
   PopupOverlayVideo
 } from '@components/shared/ModalPopupStyle';
+import { isFutureDate } from '../services/childCRUD';
 
 // const videoarticleType = {
 
@@ -52,6 +53,11 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
     : [],
 );
+const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
   const [selVideoArticleData, setselVideoArticleData] = useState();
   const [selActivitiesData, setselActivitiesData] = useState();
   const [selVideoImage, setselVideoImage] = useState('');
@@ -171,6 +177,7 @@ const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
               flexDirection:'row',
             }}>
             <Pressable
+              disabled={isFutureDate(activeChild?.birthDate)}
               onPress={() => {
                 milestoneCheckUncheck();
               }}>
