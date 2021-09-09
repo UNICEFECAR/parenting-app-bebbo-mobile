@@ -1,4 +1,5 @@
 export const SurveyData:any = {
+     //api all data
     "en": [
         {
             "id": 23076,

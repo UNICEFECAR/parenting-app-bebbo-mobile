@@ -1,4 +1,5 @@
 export const vaccineData:any = {
+     //api all data
     "en": [
         {
             "uuid": "b73bb553-e6f5-4f96-b7ff-bff0c89cf7f0",

@@ -1,4 +1,5 @@
 const standardDevData:any = {
+     //api all data
     "en": [ 
         {
             "weight_for_height": [

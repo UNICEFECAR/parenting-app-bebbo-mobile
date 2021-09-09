@@ -1,4 +1,5 @@
 export const dailyHomeNotificationdata:any = {
+     //api all data
     "en": [
         {
             "id": 55558,
