@@ -1,4 +1,5 @@
 const basicPagesData:any = {
+     //api all data
     "en": [
         {
             "id": 4516,
