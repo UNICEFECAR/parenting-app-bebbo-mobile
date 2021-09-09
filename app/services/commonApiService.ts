@@ -344,15 +344,34 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
       currentadviceid:0,currentgamesid:0,currentDate:''}));
   }
-  navigation.reset({
-    index: 0,
-    routes: [
-      {
-        name: 'HomeDrawerNavigator',
-        // params: {prevPage}
-      },
-    ],
-  });
+  if(prevPage == 'DownloadUpdate') {
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
+      [
+        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'HomeDrawerNavigator',
+                  // params: {prevPage}
+                },
+              ],
+            });
+          }
+        }
+      ]
+    );
+  }else {
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'HomeDrawerNavigator',
+          // params: {prevPage}
+        },
+      ],
+    });
+  }
   // navigation.dispatch(
   //   CommonActions.reset({
   //     index: 0,
