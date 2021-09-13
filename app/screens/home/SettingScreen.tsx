@@ -285,10 +285,10 @@ const exportToDrive=async ()=>{
       const exportIsSuccess = await backup.export();
       setIsExportRunning(false);
       if (!exportIsSuccess) {
-        Alert.alert(t('settingsButtonExportError'))
+        Alert.alert('',t('settingsButtonExportError'))
         // ToastAndroid.show(t('settingExportError'), 6000);
       } else {
-        Alert.alert(t('settingExportSuccess'));
+        Alert.alert('',t('settingExportSuccess'));
         
       };
     }}
