@@ -43,13 +43,13 @@ const NotificationItem = (props: any) => {
   };
   const getButtonname = (type: string) => {
     return type == 'gw'
-      ? 'Add New Measurement'
+      ? t('growthScreenaddNewBtntxt')
       : type == 'cd'
-        ? 'Track your milestones'
+        ? t('trackMilestoneViewBtn')
         : type == 'vc'
-          ? 'View Vaccination details'
+          ? t('vcAddBtn')
           : type == 'hc'
-            ? 'View HealthCheck-up Details'
+            ? t('hcReminderbtn')
             : '';
   };
   const gotoPage = (type: string) => {
