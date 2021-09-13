@@ -1,3 +1,4 @@
+import { GROWTH_MEASUREMENT_ADDED } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -46,6 +47,7 @@ import {
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -68,6 +70,8 @@ import {
   View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -85,11 +89,9 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
-import analytics from '@react-native-firebase/analytics';
-import { formatStringDate } from '../../services/Utils';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { GROWTH_MEASUREMENT_ADDED } from '@assets/data/firebaseEvents';
 import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
+import { formatStringDate } from '../../services/Utils';
+
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
   navigation: ChildSetupNavigationProp;
@@ -756,27 +758,28 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 </RadioBoxContainer>
               </FormContainer>
 
-              <FormContainer>
-                <FormInputText>
-                  {t('growthScreenenterDoctorRemarkText')}
-                </FormInputText>
-                <TextAreaBox>
-                  <TextInput
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    maxLength={maxCharForRemarks}
-                    clearButtonMode="always"
-                    defaultValue={remarkTxt}
-                    multiline={true}
-                    onChangeText={(text) => handleDoctorRemark(text)}
-                    placeholder={t(
-                      'growthScreenenterDoctorRemarkTextPlaceHolder',
-                    )}
-                    allowFontScaling={false}
-                  />
-                </TextAreaBox>
-              </FormContainer>
-
+              <KeyboardAwareScrollView>
+                <FormContainer>
+                  <FormInputText>
+                    {t('growthScreenenterDoctorRemarkText')}
+                  </FormInputText>
+                  <TextAreaBox>
+                    <TextInput
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      maxLength={maxCharForRemarks}
+                      clearButtonMode="always"
+                      defaultValue={remarkTxt}
+                      multiline={true}
+                      onChangeText={(text) => handleDoctorRemark(text)}
+                      placeholder={t(
+                        'growthScreenenterDoctorRemarkTextPlaceHolder',
+                      )}
+                      allowFontScaling={false}
+                    />
+                  </TextAreaBox>
+                </FormContainer>
+              </KeyboardAwareScrollView>
               <ShiftFromTopBottom10>
                 <Text>{t('growthScreennewGrowthBottomText')}</Text>
               </ShiftFromTopBottom10>
