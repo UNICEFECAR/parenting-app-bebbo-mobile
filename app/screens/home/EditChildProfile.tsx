@@ -125,6 +125,8 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const [response, setResponse] = React.useState<any>(null);
   const [capturedPhoto, setCapturedImage] = React.useState('');
   const [photoUri, setphotoUri] = React.useState('');
+  const [photoDeleted, setPhotoDeleted] = React.useState(false);
+  const [addChildParam, setAddChild] = React.useState(true);
   const [tempImage, cleanUPImage] = React.useState('');
   let initialData: any = {};
   const [birthDate, setBirthDate] = React.useState<Date>();
@@ -198,32 +200,36 @@ const EditChildProfile = ({route, navigation}: Props) => {
       mkdir(CHILDREN_PATH);
     }
     setCapturedImage(image.path);
+    setPhotoDeleted(false);
   };
   const removePhoto = () => {
     
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
         console.log(childData,"..deleted..");
-        if(childData && childData.uuid!="" && childData.uuid!=null){
-        let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(
-          ChildEntitySchema,
-          '',
-          'uuid ="' + childData?.uuid + '"',
-        );
-        // console.log(createresult,"..createresult..")
-        if (createresult == 'success') {
-          MediaPicker.cleanupImages();
-          setphotoUri('');
-          setCapturedImage('');
-        } else {
-          Alert.alert(t('tryText'));
-        }
-      }
-      else{
         MediaPicker.cleanupImages();
         setphotoUri('');
         setCapturedImage('');
-      }
+      //   if(childData && childData.uuid!="" && childData.uuid!=null){
+      //   let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(
+      //     ChildEntitySchema,
+      //     '',
+      //     'uuid ="' + childData?.uuid + '"',
+      //   );
+      //   // console.log(createresult,"..createresult..")
+      //   if (createresult == 'success') {
+      //     MediaPicker.cleanupImages();
+      //     setphotoUri('');
+      //     setCapturedImage('');
+      //   } else {
+      //     Alert.alert(t('tryText'));
+      //   }
+      // }
+      // else{
+      //   MediaPicker.cleanupImages();
+      //   setphotoUri('');
+      //   setCapturedImage('');
+      // }
       })
       .catch((error: any) => {
         Alert.alert(t('tryText'));
@@ -246,7 +252,8 @@ const EditChildProfile = ({route, navigation}: Props) => {
         {
           text: t('removePhotoOption2'),
           onPress: () => {
-            removePhoto();
+            setPhotoDeleted(true);
+            // removePhoto();
           },
         },
       ]);
@@ -352,7 +359,6 @@ const EditChildProfile = ({route, navigation}: Props) => {
     return destPath.replace(CHILDREN_PATH, '');
   }
   const AddChild = async () => {
-
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     let insertData: any = editScreen
       ? await getNewChild(
@@ -379,8 +385,15 @@ const EditChildProfile = ({route, navigation}: Props) => {
         );
     let childSet: Array<any> = [];
     console.log(capturedPhoto, '..capturedPhoto..');
+    console.log(photoDeleted, '..photoDeleted..');
+    if(photoDeleted==true){
+      removePhoto();
+      insertData.photoUri='';     
+    }
+    else{
     if(capturedPhoto!=null && capturedPhoto!=undefined && capturedPhoto!=''){
     insertData.photoUri=await setPhoto(insertData.uuid);
+    }
     }
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
@@ -438,7 +451,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
         <ScrollView style={{flex: 4}}>
           {/* <Text>{capturedPhoto}</Text> */}
           <FlexCol>
-            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined ? (
+            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted==false? (
               <View style={styles.container}>
                 <ImageBackground
                   source={
@@ -503,7 +516,9 @@ const EditChildProfile = ({route, navigation}: Props) => {
                           setName(value.replace(/\s/g, '')); 
                          } else {
                           console.log("..22value")
+                          if (/^[a-zA-Z ]*$/.test(value)) {
                           setName(value);
+                          }
                          }
                         // setName(value==""?value.replace(/\s/g, ''):value);
                       }}
@@ -597,11 +612,14 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 gender,
               )
             }
-            onPress={() => {
+            onPress={(e) => {
+               e.preventDefault();
+               setAddChild(false);
               //  console.log(birthDate,"..birthDate..");
               //  console.log(isPremature,"..isPremature..");
               //  console.log(plannedTermDate,"..plannedTermDate..");
               //  console.log(isExpected,"..isExpected..");
+              if(addChildParam==true){
               const validated = validateForm(
                 1,
                 birthDate,
@@ -612,9 +630,12 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 gender,
               );
               if (validated == true) {
+                console.log("24455e655")
                 AddChild();
               } else {
               }
+            }
+              
             }}>
             {childData && childData?.uuid != '' ? (
               <ButtonText numberOfLines={2}>{t('babyNotificationUpdateBtn')}</ButtonText>
