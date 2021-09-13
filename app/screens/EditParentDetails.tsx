@@ -178,8 +178,18 @@ const EditParentDetails = ({route,navigation}: Props) => {
               autoCorrect={false}
               maxLength={30}
               clearButtonMode="always"
-              onChangeText={(value:any) => { setParentName(value.replace(/\s/g, '')) }}
-              value={parentName.replace(/\s/g, '')}
+              onChangeText={(value:any) => { 
+                // setParentName(value.replace(/\s/g, ''))
+               if (value.replace(/\s/g,"")=="") {
+                  console.log("..11value")
+                  setParentName(value.replace(/\s/g, '')); 
+                 } else {
+                  console.log("..22value")
+                  setParentName(value);
+                 }
+               }}
+              // value={parentName.replace(/\s/g, '')}
+              value={parentName}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder={t('parentPlaceNameTxt')}
               allowFontScaling={false} 
