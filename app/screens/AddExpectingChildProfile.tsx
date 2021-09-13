@@ -285,7 +285,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                     setName(value.replace(/\s/g, '')); 
                    } else {
                     console.log("..22value")
+                    if (/^[a-zA-Z ]*$/.test(value)) {
                     setName(value);
+                    }
                    }
                 }}
                 // value={name.replace(/\s/g, '')}
