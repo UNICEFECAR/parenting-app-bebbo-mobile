@@ -1,7 +1,6 @@
 
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
-import BabyNotification from '@components/homeScreen/BabyNotification';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
@@ -13,7 +12,7 @@ import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2w } from '@styles/typography';
+import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -270,10 +269,10 @@ const Notifications = () => {
             </OuterIconRow>
             <HeaderBabyMenu />
           </HeaderRowView>
-          {isFutureDate(activeChild?.birthDate) ? <BabyNotification /> :
-            <ScrollView style={{ flex: 7 }}>
+          {isFutureDate(activeChild?.birthDate) ? <Heading4Center>{t('noDataTxt')}</Heading4Center> :
+            <ScrollView style={{ flex: 7, }}>
               <NotificationsCategories onchange={onCategorychange} />
-              <View style={{ marginVertical: 0 }}>
+              <View style={{ marginVertical: 0, paddingBottom: 10 }}>
                 {
 
                   notifications.map((item, index) => {
