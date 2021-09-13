@@ -126,7 +126,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         }
       }
     }
-  }, [isOpen]);
+  }, [isOpen, activeChild.uuid, allnotis]);
   const onShare = async () => {
     try {
       const result = await Share.share({
