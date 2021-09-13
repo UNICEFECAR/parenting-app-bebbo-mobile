@@ -185,7 +185,9 @@ const EditParentDetails = ({route,navigation}: Props) => {
                   setParentName(value.replace(/\s/g, '')); 
                  } else {
                   console.log("..22value")
+                  if (/^[a-zA-Z ]*$/.test(value)) {
                   setParentName(value);
+                  }
                  }
                }}
               // value={parentName.replace(/\s/g, '')}
