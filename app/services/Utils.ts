@@ -1,33 +1,30 @@
-import { DateTime, Settings } from "luxon";
+import { CHILDREN_PATH } from "@types/types";
+import RNFS from 'react-native-fs';
 import { ObjectSchema } from "realm";
+import { v4 as uuidv4 } from 'uuid';
+import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
-import { ArticleEntity, ArticleEntitySchema, } from "../database/schema/ArticleSchema";
+import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPagesSchema";
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../database/schema/ChildDevelopmentSchema";
 import { ChildGrowthEntity, ChildGrowthSchema } from "../database/schema/ChildGrowthSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from "../database/schema/HealthCheckUpsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../database/schema/MilestonesSchema";
+import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
+import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
 import { SurveysEntity, SurveysSchema } from "../database/schema/SurveysSchema";
 import { TaxonomyEntity, TaxonomySchema } from "../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
-import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
-import { StandardDevWeightForHeightSchema } from "../database/schema/StandardDevWeightForHeightSchema";
-import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
-import { ChildEntity } from "../database/schema/ChildDataSchema";
-import { CHILDREN_PATH } from "@types/types";
-import { v4 as uuidv4 } from 'uuid';
-import RNFS from 'react-native-fs';
-import { measure } from "react-native-reanimated";
 import { isFutureDate } from "./childCRUD";
 const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
         // console.log(new Date()," response in utils-",response);
-        let EntitySchema = <ObjectSchema>{ };
+        let EntitySchema = <ObjectSchema>{};
         let Entity: any;
         let insertData = [];
         let pinnedArticle = "";
@@ -309,7 +306,7 @@ const formatImportedMeasures = (measures: any) => {
     // console.log(typeof measures === 'object' && measures !== null)
     // if (typeof measure === 'string' || measure instanceof String){
     //imported from old app
-    if (measures == "" || measures == []) {
+    if (measures == "" || measures == [] || measures == null) {
         return [];
     } else {
         if (typeof measures === 'object' && measures !== null) {
@@ -325,16 +322,16 @@ const formatImportedMeasures = (measures: any) => {
                 if (measure.didChildGetVaccines == false)
                     measure.vaccineIds = ""
                 else {
-                        let allmeausreVaccineIds: any[] = [];
-                        measure.vaccineIds.forEach((element, index) => {
-                            // added for testing 
-                            // allmeausreVaccineIds.push(index==0?{uuid:"6b016c1c-64fa-4e47-adbd-93e0a7255e65"}:{uuid:element})
-                            allmeausreVaccineIds.push({ uuid: element })
-                        });
-                        measure.vaccineIds = JSON.stringify(allmeausreVaccineIds);
-                        // console.log(allmeausreVaccineIds, "allmeausreVaccineIds", measure.vaccineIds)
-                    
-                    
+                    let allmeausreVaccineIds: any[] = [];
+                    measure.vaccineIds.forEach((element, index) => {
+                        // added for testing 
+                        // allmeausreVaccineIds.push(index==0?{uuid:"6b016c1c-64fa-4e47-adbd-93e0a7255e65"}:{uuid:element})
+                        allmeausreVaccineIds.push({ uuid: element })
+                    });
+                    measure.vaccineIds = JSON.stringify(allmeausreVaccineIds);
+                    // console.log(allmeausreVaccineIds, "allmeausreVaccineIds", measure.vaccineIds)
+
+
                 }
                 if (typeof measure?.measurementPlace === 'string' || measure?.measurementPlace instanceof String) {
                     if (measure?.measurementPlace == "doctor") {
@@ -359,7 +356,7 @@ const formatImportedMeasures = (measures: any) => {
     // }
 }
 const formatImportedReminders = (reminders: any) => {
-    if (reminders == "" || reminders == []) {
+    if (reminders == "" || reminders == [] || reminders == null) {
         // in old app reminders were string, new app has reminders array
         return [];
     } else {
@@ -429,7 +426,7 @@ export const getChild = async (child: any, genders: any) => {
         reminders: childreminders,
         isMigrated: true,
         isPremature: 'false', //calcualte if its premature or not?
-        isExpected: inFuture==true?'true':'false'
+        isExpected: inFuture == true ? 'true' : 'false'
         //relationship:''
     };
 }
