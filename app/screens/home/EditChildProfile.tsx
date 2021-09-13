@@ -496,9 +496,19 @@ const EditChildProfile = ({route, navigation}: Props) => {
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        setName(value.replace(/\s/g, ''));
+                        console.log(value,"..value")
+                        // setName(value.replace(/\s/g, ''));
+                        if (value.replace(/\s/g,"")=="") {
+                          console.log("..11value")
+                          setName(value.replace(/\s/g, '')); 
+                         } else {
+                          console.log("..22value")
+                          setName(value);
+                         }
+                        // setName(value==""?value.replace(/\s/g, ''):value);
                       }}
-                      value={name.replace(/\s/g, '')}
+                      // value={name.replace(/\s/g, '')}
+                      value={name}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
                       allowFontScaling={false} 
