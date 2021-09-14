@@ -61,6 +61,7 @@ import i18n, {
       _i18nextOptions: InitOptions,
     ) => {
       /* use services and options */
+      // console.log("2233333");
     },
     detect: (callback: (lng: string) => void) => {
       AsyncStorage.getItem('APP_LANG', (err, lng) => {
@@ -86,10 +87,19 @@ import i18n, {
       AsyncStorage.setItem('APP_LANG', lng);
     },
   };
-  
+  const trimwhiteSpace = (str:any) => {
+    return str.length ? str.trim(): str
+  }
   i18n
     .use(languageDetector)
     .use(initReactI18next) // passes i18n down to react-i18next
+    .use({
+      type: 'postProcessor',
+      name: 'trimwhitespace',
+      process: function (value: any, key: any, options: any, translator: any) {
+        return trimwhiteSpace(value);
+      }
+    })
     .init({
       resources: AVAILABLE_LANGUAGES,
     //   load: 'currentOnly',
@@ -99,4 +109,5 @@ import i18n, {
       interpolation: {
         escapeValue: false,
       },
+      postProcess: ["trimwhitespace"]
     });
