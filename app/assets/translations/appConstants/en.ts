@@ -218,7 +218,7 @@ const en = {
         detailScreenActivityHeader: "Choose Games ",
         trackMilestoneViewHeader: "Please update your child's milestones.",
         trackMilestoneViewBtn: "Track your child's milestone",
-        babyNotificationText: "Child birth data not updated",
+        babyNotificationText: "Child profile is incomplete",
         babyNotificationbyAge: "{{childName}} is {{ageInMonth}} old",
         babyNotificationUpdateBtn: "Update profile",
         favScreenHeader: "Favourites",
@@ -352,7 +352,7 @@ const en = {
         removePhotoOption1: "Cancel",
         removePhotoOption2: "Remove",
         expectedChildDobLabel: "Child not born yet",
-        babyNotificationText1: "Child birth data updated",
+        babyNotificationText1: "Child profile is updated",
 
         //new text dated on 2nd August 2021
         activityModalText: "To find Games related to specific domain of development, click on the relevant button",
