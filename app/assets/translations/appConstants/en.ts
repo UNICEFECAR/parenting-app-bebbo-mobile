@@ -420,6 +420,8 @@ const en = {
         downloadUpdateSuccessOkBtn: "Ok",
         //translation updated till above 15th sep 
         newdetailScreenNoDataPopupText: "Selected Advice/Game is not available in this mobile.Please download latest data from settings.",
+        vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
+        hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
     }
 }
 export default en;
