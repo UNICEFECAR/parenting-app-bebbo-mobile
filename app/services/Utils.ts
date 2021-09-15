@@ -187,7 +187,8 @@ export const formatStringTime = (dateData: any, luxonLocale: string) => {
     // // console.log(period,"..period")
     // let timeView=hour+":"+minute+" "+period;
     //   return timeView;
-    return new IntlPolyfill.DateTimeFormat(luxonLocale, { hour: 'numeric', minute: 'numeric', hour12: true }).format(new Date(dateData));
+    
+    return new IntlPolyfill.DateTimeFormat(luxonLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
     // return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any) => {
