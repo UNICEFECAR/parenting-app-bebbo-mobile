@@ -355,7 +355,7 @@ const Home = ({ route, navigation }: Props) => {
           textColor="#FFF"
         />
         <ScrollView style={{ flex: 4, backgroundColor: '#FFF' }}>
-          <FlexCol>
+          <FlexCol> 
             <BabyNotification />
             <ChildInfo
               headerColor={headerColorChildInfo}
