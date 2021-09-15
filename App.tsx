@@ -58,7 +58,7 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
       <Text>{props.error.toString()}</Text>
       <Pressable
         onPress={() => {
-          props.resetError;
+          props.resetError();
         }}>
         <Text>{'Try again'} </Text>
       </Pressable>
