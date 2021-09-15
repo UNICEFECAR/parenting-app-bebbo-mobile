@@ -31,14 +31,44 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
     return false
   }
 }
-export const getCDGWNotisForChild = (childTaxonomyData: any) => {
+
+const IsGrowthMeasuresForPeriodExist = (child, days_from, days_to) => {
+  // isGrowthMeasureExistForDate(selectedMeasureDate,activeChild)
+  // if item.days_to is today's date and thne check measures not entered then only show
+  let isGrowthNotMeasureExist = true;
+  if (child.measures.length > 0) {
+
+    isGrowthNotMeasureExist = child.measures.some((measure, index) => {
+      const childMeasureDateInDays = DateTime.fromJSDate(new Date(measure.measurementDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+      if (days_from < childMeasureDateInDays && days_to > childMeasureDateInDays) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    // child.measures.forEach((measure) => {
+    //   // const childMeasureDateInDays = getCurrentChildAgeInDays(
+    //   //   DateTime.fromJSDate(new Date(measure.measurementDate)).toMillis(),
+    //   // );
+    //   const childMeasureDateInDays = DateTime.fromJSDate(new Date(measure.measurementDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+    //   if (days_from < childMeasureDateInDays && days_to > childMeasureDateInDays) {
+    //     isGrowthNotMeasureExist = false;
+    //   } else {
+    //     isGrowthNotMeasureExist = true;
+    //   }
+    //   //get measurementdate in days and check if it is in between
+    //   //find if measure exists in day_from and day_to
+    // })
+  }
+  // console.log(isGrowthNotMeasureExist, 'isGrowthMeasureExist')
+  return isGrowthNotMeasureExist
+}
+export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
   // childTaxonomyData.days_from childTaxonomyData.days_to
 
   let noti = [];
   // noti.push(//at the begginning of the period
   //   )
-
-
   //if> 3months then add noti
   //check gap between days_to and days_from
   if ((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays) {
@@ -57,18 +87,24 @@ export const getCDGWNotisForChild = (childTaxonomyData: any) => {
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     // console.log(diff, item.days_from) //
     for (var i = 0; i < diff; i++) {
+
+      const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from + (i * twoMonthDays), (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays)
+      if (!isGrowthDataExist) {
+        noti.push(
+          {
+            "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
+            "days_to": (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays,
+            "type": "gw",
+            "title": ('gwNoti1'),
+            "checkinField": "days_from",
+            "isRead": false,
+            "isDeleted": false,
+            "periodName": childTaxonomyData.name,
+            "growth_period": childTaxonomyData.id,
+          },
+        )
+      }
       noti.push(
-        {
-          "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
-          "days_to": (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays,
-          "type": "gw",
-          "title": ('gwNoti1'),
-          "checkinField": "days_from",
-          "isRead": false,
-          "isDeleted": false,
-          "periodName": childTaxonomyData.name,
-          "growth_period": childTaxonomyData.id,
-        },
         {
           "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
           "days_to": (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays,
@@ -84,18 +120,22 @@ export const getCDGWNotisForChild = (childTaxonomyData: any) => {
     }
 
   } else {
+    const isGrowthDataExist = IsGrowthMeasuresForPeriodExist(child, childTaxonomyData.days_from, childTaxonomyData.days_to)
+    if (isGrowthDataExist) {
+      noti.push(
+        {
+          "days_from": childTaxonomyData.days_from,
+          "days_to": childTaxonomyData.days_to,
+          "type": "gw",
+          "title": ('gwNoti1'),
+          "checkinField": "days_to",
+          "isRead": false,
+          "isDeleted": false,
+          "periodName": childTaxonomyData.name,
+          "growth_period": childTaxonomyData.id,
+        })
+    }
     noti.push(
-      {
-        "days_from": childTaxonomyData.days_from,
-        "days_to": childTaxonomyData.days_to,
-        "type": "gw",
-        "title": ('gwNoti1'),
-        "checkinField": "days_to",
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        "growth_period": childTaxonomyData.id,
-      },
       {
         "days_from": childTaxonomyData.days_from,
         "days_to": childTaxonomyData.days_to,
@@ -139,7 +179,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   childAgeObj.map((element: any, index: number) => {
     // console.log(element, lastchildgwperiod)
     if (element.days_from >= lastchildgwperiod.days_from && element.days_from <= childAgeInDays) {
-      let currentgwPeriodNoti = getCDGWNotisForChild(element);
+      let currentgwPeriodNoti = getCDGWNotisForChild(element, child);
       console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
       lastgwperiodid = element.id;
       if (gwperiodid != lastgwperiodid) {
@@ -192,9 +232,9 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
   const childBirthDate = DateTime.fromJSDate(new Date(child.birthDate));
   console.log(childCreateDate < childBirthDate ? child.birthDate : child.createdAt);
 
-  const childCreateDateInDays = getCurrentChildAgeInDays(
-    DateTime.fromJSDate(new Date(child.createdAt)).toMillis(),
-  );
+  // const childCreateDateInDays = getCurrentChildAgeInDays(
+  //   DateTime.fromJSDate(new Date(child.createdAt)).toMillis(),
+  // );
   if (childCreateDate > childBirthDate) {
     let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods);
     console.log(vcNotis, "vcNotis")
@@ -208,8 +248,9 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     const currenthcPeriodNoti = hcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
     console.log(currenthcPeriodNoti, "currenthcPeriodNoti", currenthcPeriodNoti[0].growth_period);
 
-    let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData)
+    let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child)
     console.log(currentgwPeriodNoti, "currentgwPeriodNoti", child.taxonomyData.id);
+
     // {lastperiodid:child.taxonomyData.id,notis:currentgwPeriodNoti}
     let notis = {
       lastgwperiodid: child.taxonomyData.id, gwcdnotis: currentgwPeriodNoti,
@@ -228,6 +269,119 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     }
 
   }
+}
+export const getChildReminderNotifications = (child: any, reminderNotis?: any) => {
+  ///get existing notis and compare for isread and is deleted
+  console.log(reminderNotis, "ExistingreminderNotis")
+  const childAgeInDays = getCurrentChildAgeInDays(
+    DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
+  );
+  let noti: any[] = [];
+  child.reminders.forEach((element: any, index: number) => {
+
+    if (element.reminderType == 'vaccine') {
+      // const childvcReminderDateInDays = getCurrentChildAgeInDays(
+      const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+      console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
+      if (reminderNotis.length > 0) {
+        //find hc and vc reminder in existing notis by type
+        // if hc exists, add vc ,and vica versa 
+        // or add one that exists
+        const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'vcr')
+        console.log(reminderexist, "reminderexist");
+        //get only past reminders  till today and filter by child age
+        if (reminderexist) {
+          noti.push(reminderexist)
+        } else {
+          if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+            noti.push({
+              "days_from": Math.floor(childvcReminderDateInDays),
+              "days_to": Math.floor(childvcReminderDateInDays),
+              "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+              "checkinField": "days_from",
+              "isRead": false,
+              "isDeleted": false,
+              "growth_period": element.reminderTime,
+              "periodName": element.reminderDate,
+            })
+          }
+        }
+      } else {
+        console.log('in else for generating notis for reminder')
+        if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+          noti.push({
+            "days_from": Math.floor(childvcReminderDateInDays),
+            "days_to": Math.floor(childvcReminderDateInDays),
+            "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+            "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+            "checkinField": "days_from",
+            "isRead": false,
+            "isDeleted": false,
+            "growth_period": element.reminderTime,
+            "periodName": element.reminderDate,
+          })
+        }
+      }
+    } else {
+      // const childvcReminderDateInDays = getCurrentChildAgeInDays(
+      const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+      console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
+      if (reminderNotis) {
+        //find hc and vc reminder in existing notis by type
+        // if hc exists, add vc ,and vica versa 
+        // or add one that exists
+        const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'hcr')
+        console.log(reminderexist, "reminderexist");
+        //get only past reminders  till today and filter by child age
+        if (reminderexist) {
+          noti.push(reminderexist)
+        } else {
+          if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+            noti.push({
+              "days_from": Math.floor(childvcReminderDateInDays),
+              "days_to": Math.floor(childvcReminderDateInDays),
+              "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+              "checkinField": "days_from",
+              "isRead": false,
+              "isDeleted": false,
+              "growth_period": element.reminderTime,
+              "periodName": element.reminderDate,
+            })
+          }
+        }
+      } else {
+        console.log('in else for generating notis for reminder')
+        if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+          noti.push({
+            "days_from": Math.floor(childvcReminderDateInDays),
+            "days_to": Math.floor(childvcReminderDateInDays),
+            "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+            "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+            "checkinField": "days_from",
+            "isRead": false,
+            "isDeleted": false,
+            "growth_period": element.reminderTime,
+            "periodName": element.reminderDate,
+          })
+        }
+      }
+    }
+
+  });
+  let sortednoti = noti.sort(
+    (a: any, b: any) => a.days_from - b.days_from,
+  );
+  console.log(sortednoti, "sortednoti")
+  return sortednoti;
+  // healthCheckupReminders.forEach((element: any, index: number) => {
+  //   const childhcReminderDateInDays = getCurrentChildAgeInDays(
+  //     DateTime.fromJSDate(new Date(element.reminderDate)).toMillis(),
+  //   );
+  // });
+  // convert vaccineReminders,healthCheckupReminders into days_from => days_to from birthdate onwards
+
 }
 export const getVCPeriods = (allVaccinePeriods: any) => {
   var group_to_growthPeriod = allVaccinePeriods.reduce(function (obj: any, item: any) {
@@ -278,7 +432,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any) => {
   });
   // console.log(noti, "inVC")
   let sortednoti = noti.sort(
-    (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+    (a: any, b: any) => a.days_from - b.days_from,
   );
   return sortednoti;
 }
