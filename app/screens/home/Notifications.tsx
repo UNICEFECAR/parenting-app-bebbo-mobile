@@ -66,6 +66,11 @@ const Notifications = () => {
         newItem['isChecked'] = false;
         currentChildallnoti.push(newItem)
       })
+      currentChildNotis.reminderNotis.forEach((item) => {
+        let newItem = { ...item }
+        newItem['isChecked'] = false;
+        currentChildallnoti.push(newItem)
+      })
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
       ).reverse();
@@ -91,7 +96,15 @@ const Notifications = () => {
     const selectedFilters = selectedCategoriesParam.filter(category => category.isActivated == true).map(item => {
       return item.type
     });
+    if (selectedFilters.includes('vc')) {
+      selectedFilters.push('vcr')
+    }
+    if (selectedFilters.includes('hc')) {
+      selectedFilters.push('hcr')
+    }
     setselectedCategories(selectedFilters)
+
+    // on vc hc reminder check add reminder category to list, and remove vica versa
     console.log(selectedFilters, "selectedFilters")
   };
   const onNotiItemChecked = (item: any, isChecked: boolean) => {
@@ -144,6 +157,14 @@ const Notifications = () => {
       let allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
+    } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
+      const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+      let newItem: any = { ...notiItem };
+      newItem.isRead = (newItem.isRead == true) ? false : true;
+      delete newItem.isChecked;
+      let allremindenotis = [...currentChildNotis.reminderNotis]
+      allremindenotis[notitoUpdateIndex] = newItem;
+      currentChildNotis.reminderNotis = allremindenotis
     }
     allNotifications[currentChildIndex] = currentChildNotis
     console.log(allNotifications, "allNotifications")
@@ -182,6 +203,14 @@ const Notifications = () => {
       let allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
+    } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
+      const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+      let newItem: any = { ...notiItem };
+      newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
+      delete newItem.isChecked;
+      let allremindenotis = [...currentChildNotis.reminderNotis]
+      allremindenotis[notitoUpdateIndex] = newItem;
+      currentChildNotis.reminderNotis = allremindenotis
     }
     allNotifications[currentChildIndex] = currentChildNotis
     console.log(allNotifications, "allNotifications")
@@ -228,6 +257,14 @@ const Notifications = () => {
         let allhcnotis = [...currentChildNotis.hcnotis]
         allhcnotis[notitoUpdateIndex] = newItem;
         currentChildNotis.hcnotis = allhcnotis
+      } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
+        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+        let newItem: any = { ...notiItem };
+        newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
+        delete newItem.isChecked;
+        let allremindenotis = [...currentChildNotis.reminderNotis]
+        allremindenotis[notitoUpdateIndex] = newItem;
+        currentChildNotis.reminderNotis = allremindenotis
       }
     })
     allNotifications[currentChildIndex] = currentChildNotis
@@ -276,21 +313,40 @@ const Notifications = () => {
                 {
 
                   notifications.map((item, index) => {
-                    return (
-                      <View key={index}>
-                        <NotificationItem
-                          item={item}
-                          itemIndex={index}
-                          isDeleteEnabled={isDeleteEnabled}
-                          onItemChecked={onNotiItemChecked}
-                          onItemReadMarked={onItemReadMarked}
-                          onItemDeleteMarked={onItemDeleteMarked}
-                          selectedCategories={selectedCategories}
-                          childAgeInDays={childAgeInDays}
-                          activeChild={activeChild}
-                        />
-                      </View>
-                    );
+                    if (selectedCategories.length == 0) {
+                      return (
+                        <View key={index}>
+                          <NotificationItem
+                            item={item}
+                            itemIndex={index}
+                            isDeleteEnabled={isDeleteEnabled}
+                            onItemChecked={onNotiItemChecked}
+                            onItemReadMarked={onItemReadMarked}
+                            onItemDeleteMarked={onItemDeleteMarked}
+                            childAgeInDays={childAgeInDays}
+                            activeChild={activeChild}
+                          />
+                        </View>
+                      );
+                    } else {
+                      if (selectedCategories.includes(item.type)) {
+                        return (
+                          <View key={index}>
+                            <NotificationItem
+                              item={item}
+                              itemIndex={index}
+                              isDeleteEnabled={isDeleteEnabled}
+                              onItemChecked={onNotiItemChecked}
+                              onItemReadMarked={onItemReadMarked}
+                              onItemDeleteMarked={onItemDeleteMarked}
+                              childAgeInDays={childAgeInDays}
+                              activeChild={activeChild}
+                            />
+                          </View>
+                        );
+                      }
+                    }
+
                   })}
               </View>
             </ScrollView>}
