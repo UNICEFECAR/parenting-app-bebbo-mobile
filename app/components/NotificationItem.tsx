@@ -43,13 +43,13 @@ const NotificationItem = (props: any) => {
   };
   const getButtonname = (type: string) => {
     return type == 'gw'
-      ? 'Add New Measurement'
+      ? t('growthScreenaddNewBtntxt')
       : type == 'cd'
-        ? 'Track your milestones'
+        ? t('trackMilestoneViewBtn')
         : type == 'vc'
-          ? 'View Vaccination details'
+          ? t('vcAddBtn')
           : type == 'hc'
-            ? 'View HealthCheck-up Details'
+            ? t('hcReminderbtn')
             : '';
   };
   const gotoPage = (type: string) => {
@@ -115,119 +115,121 @@ const NotificationItem = (props: any) => {
     return isGrowthNotMeasureExist
   }
   const renderGrowthNotifcation = () => {
-    console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation")
+    console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation");
     return (
-      (item.days_from < childAgeInDays && IsGrowthMeasuresForPeriodExist()) ? item.isDeleted ? null : (<>
-        <NotificationListContainer>
-          <FlexDirRowStart>
-            <NotifIcon style={{
-              backgroundColor: growthColor
-            }}>
+      (item.days_from < childAgeInDays && IsGrowthMeasuresForPeriodExist()) ? item.isDeleted ? null :
+        //if childageInDays is between days_from and days_to then only display notis which have days_from == chilAgeInDays
+        (<>
+          <NotificationListContainer>
+            <FlexDirRowStart>
+              <NotifIcon style={{
+                backgroundColor: growthColor
+              }}>
 
-              <Icon
-                name={geticonname(item.type)}
-                size={20}
-                color="#000"
+                <Icon
+                  name={geticonname(item.type)}
+                  size={20}
+                  color="#000"
 
-              />
-            </NotifIcon>
-            <NotifiContent>
-              {item.isRead == true ?
-                <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
-              }
+                />
+              </NotifIcon>
+              <NotifiContent>
+                {item.isRead == true ?
+                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                }
 
 
-              <ShiftFromTop5>
-                <Heading6>{
-                  getCurrentChildAgeInMonths(
-                    t,
-                    DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
-                  )}</Heading6>
-                <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
-              </ShiftFromTop5>
-              <ShiftFromTop10>
-                <Pressable onPress={() => gotoPage(item.type)}>
-                  <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-                </Pressable></ShiftFromTop10>
-            </NotifiContent>
+                <ShiftFromTop5>
+                  <Heading6>{
+                    getCurrentChildAgeInMonths(
+                      t,
+                      DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
+                    )}</Heading6>
+                  <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
+                </ShiftFromTop5>
+                <ShiftFromTop10>
+                  <Pressable onPress={() => gotoPage(item.type)}>
+                    <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                  </Pressable></ShiftFromTop10>
+              </NotifiContent>
 
-            <NotifAction>
-              {(isDeleteEnabled === true) ? (
-                <FormOuterCheckbox
-                  onPress={() => {
-                    //  console.log(item);
-                    setToggleCheckBox(!toggleCheckBox);
-                    props.onItemChecked(item, !toggleCheckBox)
-                  }}>
-                  <CheckboxItem>
-                    <View>
-                      {toggleCheckBox ? (
-                        <CheckboxActive>
-                          <Icon name="ic_tick" size={12} color="#000" />
-                        </CheckboxActive>
-                      ) : (
-                        <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                      )}
-                    </View>
-                  </CheckboxItem>
-                </FormOuterCheckbox>
-              ) : (
-                <>
-                  <Menu
-                    renderer={renderers.ContextMenu}
-                    style={{
-                      width: 40,
-                      height: 40,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                    onSelect={(value) =>
-                      console.log(`Selected number: ${value} ${item}`)
-                    }>
-                    <MenuTrigger>
-                      <Icon
-                        style={{
-                          flex: 1,
-                          textAlign: 'right',
-                          alignSelf: 'center',
-                        }}
-                        name={'ic_kebabmenu'}
-                        size={25}
-                        color="#000"
-                      />
-                    </MenuTrigger>
-                    <MenuOptions
-                      customStyles={{
-                        optionsContainer: {
-                          marginTop: 30,
-                          borderRadius: 10,
-                          backgroundColor: primaryTintColor,
-                        },
+              <NotifAction>
+                {(isDeleteEnabled === true) ? (
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      //  console.log(item);
+                      setToggleCheckBox(!toggleCheckBox);
+                      props.onItemChecked(item, !toggleCheckBox)
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {toggleCheckBox ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                ) : (
+                  <>
+                    <Menu
+                      renderer={renderers.ContextMenu}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onSelect={(value) =>
+                        console.log(`Selected number: ${value} ${item}`)
+                      }>
+                      <MenuTrigger>
+                        <Icon
+                          style={{
+                            flex: 1,
+                            textAlign: 'right',
+                            alignSelf: 'center',
+                          }}
+                          name={'ic_kebabmenu'}
+                          size={25}
+                          color="#000"
+                        />
+                      </MenuTrigger>
+                      <MenuOptions
+                        customStyles={{
+                          optionsContainer: {
+                            marginTop: 30,
+                            borderRadius: 10,
+                            backgroundColor: primaryTintColor,
+                          },
 
-                        optionWrapper: {
-                          borderBottomWidth: 1,
-                          padding: 15,
-                        },
+                          optionWrapper: {
+                            borderBottomWidth: 1,
+                            padding: 15,
+                          },
 
-                      }}>
-                      <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                        <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                      </MenuOption>
-                      <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                        <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
-                      </MenuOption>
-                    </MenuOptions>
-                  </Menu>
-                </>
-              )}
-            </NotifAction>
+                        }}>
+                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                          <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                        </MenuOption>
+                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                          <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                        </MenuOption>
+                      </MenuOptions>
+                    </Menu>
+                  </>
+                )}
+              </NotifAction>
 
-          </FlexDirRowStart>
+            </FlexDirRowStart>
 
-        </NotificationListContainer>
-        <DividerContainer><Divider></Divider></DividerContainer>
-      </>) : null)
+          </NotificationListContainer>
+          <DividerContainer><Divider></Divider></DividerContainer>
+        </>) : null)
   }
   const renderHCNotifcation = () => {
     //At the beginning of the period

@@ -1,4 +1,4 @@
-import { useNetInfo } from '@react-native-community/netinfo';
+import analytics from '@react-native-firebase/analytics';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
@@ -21,20 +21,19 @@ import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect, useMemo } from 'react';
-import { Alert, Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
+import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SplashScreen from 'react-native-splash-screen';
 import { useAppDispatch, useAppSelector } from '../../App';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 import useRealmListener from '../database/dbquery/userRealmListener';
+import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
+import { getAllChildren } from '../services/childCRUD';
+import { retryAlert1 } from '../services/commonApiService';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
-import analytics from '@react-native-firebase/analytics';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { getAllChildren } from '../services/childCRUD';
-import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
-import { retryAlert1 } from '../services/commonApiService';
-import useNetInfoHook from '../customHooks/useNetInfoHook';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -126,7 +125,9 @@ export default () => {
   //   return null;
   // }
   useEffect(() => {
-    SplashScreen.hide();
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 5000);
   }, []);
   useMemo(() => {
     // if (userIsOnboarded == true) {
@@ -143,7 +144,7 @@ export default () => {
             //Alert.alert("66"+toggleSwitchVal+typeof(toggleSwitchVal));
             if (toggleSwitchVal == false) {
               let confirmation = await retryAlert1("Low Bandwidth", " on ");
-             // Alert.alert(netInfoval.netValue.type, "--235navnetInfoval--");
+              // Alert.alert(netInfoval.netValue.type, "--235navnetInfoval--");
               console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
               if (confirmation == "yes" && toggleSwitchVal == false) {
                 console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
@@ -185,7 +186,7 @@ export default () => {
           //   }
           // }
           else if (netInfoval.netValue.type == "none") {
-           // Alert.alert("22"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
+            // Alert.alert("22"+toggleSwitchVal+typeof(toggleSwitchVal)+netInfoval.netValue.details.cellularGeneration);
             // if (toggleSwitchVal == false) {
             //   // Alert.alert("no connection");
             //   let confirmation = await retryAlert1("Low Bandwidth", " on ");
@@ -274,7 +275,7 @@ export default () => {
       }
     }
     return {};
-  }, [netInfoval.isConnected,netInfoval.netType]);
+  }, [netInfoval.isConnected, netInfoval.netType]);
   useEffect(() => {
     if (userIsOnboarded == true) {
       console.log("calculated");
