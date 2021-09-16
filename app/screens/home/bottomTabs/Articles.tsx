@@ -37,6 +37,7 @@ import LoadableImage from '../../../services/LoadableImage';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import {getDataToStore} from '@assets/translations/appOfflineData/getDataToStore';
+import { getIdByUniqueName } from '../../../services/Utils';
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -132,9 +133,13 @@ useFocusEffect(() => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  let articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  //console.log("articleData---",articleData);
-
+  let newCategoryArray=getIdByUniqueName(categoryData,articleCategoryArray);
+  console.log(newCategoryArray,"..newCategoryArray")
+  
+  //let newCategoryArray=getIdByUniqueName(articleCategoryArray,)
+  let articleData = articleDataall.filter((x:any)=>newCategoryArray.includes(x.category))
+  console.log("articleData---",articleData);
+  //getIdByUniqueName(articleDataall,)
   const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
