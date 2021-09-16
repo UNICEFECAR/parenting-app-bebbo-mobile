@@ -27,6 +27,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 const NotificationItem = (props: any) => {
   const { item, itemIndex, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, childAgeInDays, activeChild } = props;
   const themeContext = useContext(ThemeContext);
+  console.log(childAgeInDays, "childAgeInDays")
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   // const primaryColor = themeContext.colors.PRIMARY_COLOR;
@@ -241,7 +242,7 @@ const NotificationItem = (props: any) => {
   }
   const renderHCNotifcation = () => {
     //At the beginning of the period
-    return (item.isDeleted ? null : <>
+    return (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? (item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -349,11 +350,11 @@ const NotificationItem = (props: any) => {
 
       </NotificationListContainer>
       <DividerContainer><Divider></Divider></DividerContainer>
-    </>)
+    </>) : null
   }
   const renderVCNotifcation = () => {
     //A the beginning of the period
-    return (item.isDeleted ? null : <>
+    return (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? (item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -476,7 +477,7 @@ const NotificationItem = (props: any) => {
 
       </NotificationListContainer>
       <DividerContainer><Divider></Divider></DividerContainer>
-    </>)
+    </>) : null
   }
 
   const renderCDNotifcation = () => {
@@ -487,7 +488,7 @@ const NotificationItem = (props: any) => {
     // if today;s date childAgeInDays is less= than days_to then only cd2 diplay,
     if (item.title == 'cdNoti1') {
       return (
-        (item.days_from <= childAgeInDays) ? item.isDeleted ? null : (<>
+        (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? item.isDeleted ? null : (<>
           <NotificationListContainer>
             <FlexDirRowStart>
               <NotifIcon style={{
@@ -599,7 +600,7 @@ const NotificationItem = (props: any) => {
     }
     else {
       return (
-        (childAgeInDays <= item.days_to) ? null : item.isDeleted ? null : (<>
+        (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? item.isDeleted ? null : (<>
           <NotificationListContainer>
             <FlexDirRowStart>
               <NotifIcon style={{
@@ -707,7 +708,7 @@ const NotificationItem = (props: any) => {
 
           </NotificationListContainer>
           <DividerContainer><Divider></Divider></DividerContainer>
-        </>))
+        </>) : null)
     }
   }
 

@@ -248,7 +248,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         } else {
           console.log("noti does not exist for child")
           // create notification for that child first time
-          if (!isFutureDate(child?.birthDate)) {
+          if (!isFutureDate(activeChild?.birthDate)) {
             const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
             let reminderNotis = getChildReminderNotifications(activeChild);
