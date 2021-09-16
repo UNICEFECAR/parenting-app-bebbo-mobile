@@ -147,15 +147,22 @@ const CustomDrawerContent = ({ navigation }: any) => {
             currentChildallnoti.push(item)
           })
           // console.log(allnotis)
+
+          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+          let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+          //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
+          let toDay = DateTime.fromJSDate(new Date());
+
+
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
-          ).filter((item) => item.isRead == false && item.isDeleted == false && item.days_from <= childAgeInDays);
+          ).filter((item) => item.isRead == false && item.isDeleted == false && (toDay >= item.notificationDate && childCrateDate <= item.notificationDate));
           // console.log(combinedNotis, "combinedNotis")
-          const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
+          // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
           // console.log(toRemove, "findcdNoti")
-          combinedNotis = combinedNotis.filter(function (el) {
-            return !toRemove.includes(el);
-          });
+          // combinedNotis = combinedNotis.filter(function (el) {
+          //   return !toRemove.includes(el);
+          // });
           // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
           setNotifications(combinedNotis)
         }
@@ -240,7 +247,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               //clear notification which are already generated, 
               //generate for new notifications
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
-              let reminderNotis = getChildReminderNotifications(child);
+              let reminderNotis = getChildReminderNotifications(activeChild);
               console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
               allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis })
             }
