@@ -260,10 +260,6 @@ export default () => {
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
-      {
-        (netInfoval && netInfoval.isConnected == false) ?
-          <Heading3Regular>{t('noInternet')}</Heading3Regular> : null
-      }
       {/* <Text>{JSON.stringify(netInfoval.netValue)}Hiiiii</Text>
       <Text>Bandwidth-{netState}</Text> */}
       <NavigationContainer
