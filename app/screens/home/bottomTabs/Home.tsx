@@ -55,7 +55,6 @@ import { isFutureDate } from '../../../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 
-
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -166,6 +165,10 @@ const Home = ({ route, navigation }: Props) => {
     (state: any) =>
       (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
+  // let genders = useAppSelector(
+  //   (state: any) =>
+  //     state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+  // );
   let allGrowthPeriods = taxonomy?.growth_period;
   let allVaccinePeriods = useAppSelector(
     (state: any) =>
@@ -189,7 +192,10 @@ const Home = ({ route, navigation }: Props) => {
     return allnotis.find((item) => String(item.childuuid) == String(child.uuid))
   }
   useEffect(() => {
+    // const uniqueId=getUniqueNameId(genders,'girl');
+    // console.log(uniqueId,"..uniqueId");
     setModalVisible(false);
+    
     if (userIsOnboarded == false) {
       dispatch(setuserIsOnboarded(true));
       const currentDate = DateTime.now().toMillis();
