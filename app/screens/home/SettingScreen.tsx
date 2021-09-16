@@ -268,7 +268,27 @@ const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloa
 
 const exportFile=async ()=>{
   //need to add code.
-  Alert.alert('Coming Soon');
+  // Alert.alert('Coming Soon');
+  setIsExportRunning(true);
+  var path = RNFS.DocumentDirectoryPath + '/my.backup';
+  const userRealmPath = userRealmCommon.realm?.path;
+  console.log(userRealmPath, "..userRealmPath")
+  if (!userRealmPath) return false;
+
+  // Get realmContent
+  const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+  console.log(realmContent, "..11realmContent")
+
+// write the file
+  RNFS.writeFile(path, realmContent, 'base64')
+  .then((success) => {
+    setIsExportRunning(false);
+    Alert.alert('',t('settingExportSuccess'));
+  })
+  .catch((err) => {
+    setIsExportRunning(false);
+    Alert.alert('',t('settingExportError'))
+  });
 }
 const exportToDrive=async ()=>{
   Alert.alert(t('exportText'),t("dataConsistency"),
@@ -607,7 +627,12 @@ const exportAllData=async ()=>{
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
               <ButtonPrimary  disabled={isExportRunning || isImportRunning} onPress={() => {
+                if(netInfoval && netInfoval.isConnected==true){
                 importAllData()
+                }
+                else{
+                  Alert.alert('',t('noInternet'));
+                }
               }}>
               <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
@@ -644,7 +669,12 @@ const exportAllData=async ()=>{
                   <Pressable onPress={() => 
                   {
                     console.log("icon clicked");
-                    exportFile()
+                    //if(netInfoval && netInfoval.isConnected==true){
+                      exportFile()
+                      // }
+                      // else{
+                      //   Alert.alert('',t('noInternet'));
+                      // }
                   }}>
                     <Icon name="ic_sb_shareapp" size={30} color="#000" />
                     <ShiftFromTopBottom5>
@@ -659,7 +689,13 @@ const exportAllData=async ()=>{
                   {
                     console.log("icon clicked");
                     actionSheetRef.current?.setModalVisible(false); 
-                    exportToDrive();
+                    if(netInfoval && netInfoval.isConnected==true){
+                      exportToDrive();
+                      }
+                      else{
+                        Alert.alert('',t('noInternet'));
+                      }
+                   
                   }}>
                     <VectorImage
                       source={require('@assets/svg/ic_gdrive.svg')}
