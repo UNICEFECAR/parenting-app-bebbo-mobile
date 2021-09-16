@@ -59,6 +59,7 @@ import {
   ChildEntitySchema
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -211,6 +212,8 @@ const AddReminder = ({ route, navigation }: any) => {
     console.log(createresult?.length, 'ReminderDeleted');
     if (createresult) {
       activeChild.reminders = createresult;
+      let notiFlagObj = { key: 'generateNotifications', value: true };
+      dispatch(setInfoModalOpened(notiFlagObj));
       dispatch(setActiveChildData(activeChild));
     }
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
@@ -267,6 +270,8 @@ const AddReminder = ({ route, navigation }: any) => {
       if (createresult?.length > 0) {
         activeChild.reminders = createresult;
         dispatch(setActiveChildData(activeChild));
+        let notiFlagObj = { key: 'generateNotifications', value: true };
+        dispatch(setInfoModalOpened(notiFlagObj));
         navigation.goBack();
         if (reminderType == 'vaccine') {
           analytics().logEvent(VACCINE_REMINDER_SET)
