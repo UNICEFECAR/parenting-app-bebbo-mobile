@@ -12,6 +12,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
+import { getIdSetByUniqueName } from '../../services/Utils';
 import GrowthChart, { chartTypes } from './GrowthChart';
 const ChartWeightForHeight = () => {
   const navigation = useNavigation();
@@ -19,6 +20,14 @@ const ChartWeightForHeight = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
+  let genders = useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+  );
+  let growth_type= useAppSelector(
+    (state: any) =>
+    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
+  );
   const fullScreenChart = (chartType, obj) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
     navigation.navigate('ChartFullScreen', {
@@ -38,11 +47,11 @@ const ChartWeightForHeight = () => {
   );
   let obj: any;
   let standardDeviation: any;
-  if (activeChild?.gender == '40' || activeChild?.gender == '') {
+  if (activeChild?.gender == getIdSetByUniqueName(genders,"boy") || activeChild?.gender == '') {
     //boy or no gender added
     // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == 6461 && item.child_gender == 40,
+      (item) => item.growth_type == getIdSetByUniqueName(growth_type,"height_for_weight") && item.child_gender == getIdSetByUniqueName(genders,"boy"),
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'weight');
@@ -50,7 +59,7 @@ const ChartWeightForHeight = () => {
     //girl
     // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == 6461 && item.child_gender == 41,
+      (item) => item.growth_type ==  getIdSetByUniqueName(growth_type,"height_for_weight") && item.child_gender == getIdSetByUniqueName(genders,"girl"),
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'weight');
