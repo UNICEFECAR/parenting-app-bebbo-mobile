@@ -368,6 +368,10 @@ const Home = ({ route, navigation }: Props) => {
         />
         <ScrollView style={{ flex: 4, backgroundColor: '#FFF' }}>
           <FlexCol> 
+          {
+        (netInfoval && netInfoval.isConnected == false) ?
+          <Heading3Regular>{t('noInternet')}</Heading3Regular> : null
+      }
             <BabyNotification />
             <ChildInfo
               headerColor={headerColorChildInfo}
