@@ -428,8 +428,20 @@ export const cancelRetryAlert = () => {
     );
   });
 }
-export const retryAlert1 = (bandwidth: string,toggle: string) => {
+export const retryAlert1 = (bandwidth: any,toggle: any) => {
   return new Promise((resolve, reject) => {
+    if(bandwidth==1){
+      bandwidth=i18n.t('lowBandwidth');
+    }
+    else{
+      bandwidth=i18n.t('highBandwidth');
+    }
+    if(toggle==1){
+      toggle= i18n.t('dataSaveron');
+    }
+    else{
+      toggle= i18n.t('dataSaveroff');
+    }
     //"Do you want to switch"+toggle+"data saver mode?"
     Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
       [
