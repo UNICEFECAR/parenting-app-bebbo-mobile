@@ -446,16 +446,23 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       // regenerate notifications for new dob child
       // let allchildNotis = useAppSelector((state: any) => state.notificationData.notifications);
       const storedata = store.getState();
-      const allchildNotis = storedata.notificationData.notifications;
-      console.log(allchildNotis, "..articles from utils");
+      let allchildNotis = storedata.notificationData.notifications;
+      console.log(allchildNotis, ".allchildNotis");
 
       const findIfNotisExistForChild = (childuuid: any) => {
-        return allchildNotis.find((item) => String(item.childuuid) == String(childuuid))
+        if (allchildNotis.length > 0) {
+          return allchildNotis.find((item) => String(item.childuuid) == String(childuuid))
+        }
       }
       if (findIfNotisExistForChild(data[0].uuid)) {
         //remove object of current child's notifications from array
-        allchildNotis.splice(allchildNotis.findIndex(item => String(item.childuuid) == String(data[0].uuid)), 1);
-        dispatch(setAllNotificationData(allchildNotis));
+        if (allchildNotis.length > 0) {
+          // const deleteindex = allchildNotis.findIndex(item => String(item.childuuid) == String(data[0].uuid))
+          // console.log(deleteindex, "deleteindex")
+          allchildNotis = [...allchildNotis].filter(item => String(item.childuuid) != String(data[0].uuid));
+          console.log(allchildNotis, "new allchildNotis");
+          dispatch(setAllNotificationData(allchildNotis));
+        }
       }
 
       console.log('inifaddchild')
