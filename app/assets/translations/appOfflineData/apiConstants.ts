@@ -74,20 +74,19 @@ export const appConfig = {
 }
 
 export const articleCategoryobj = [
-    {name:'playingAndLearning',id:55, image:'ic_artl_play'},
-    {name:'healthAndWellbeingid',id:2, image:'ic_artl_health'},
-    {name:'safetyAndProtection', id:3, image:'ic_artl_safety'},
-    {name:'responsiveParenting', id:56,image:'ic_artl_responsive'},
-    {name:'parentingCorner', id:4,image:'ic_artl_parenting'},
-    {name:'nutritionAndBreastfeeding',id:1, image:'ic_artl_nutrition'},
+    {name:'playingAndLearning',unique_name:"play_and_learning",id:55, image:'ic_artl_play'},
+    {name:'healthAndWellbeingid',unique_name:"health_and_wellbeing",id:2, image:'ic_artl_health'},
+    {name:'safetyAndProtection',unique_name:"safety_and_protection", id:3, image:'ic_artl_safety'},
+    {name:'responsiveParenting',unique_name:"responsive_parenting", id:56,image:'ic_artl_responsive'},
+    {name:'parentingCorner',unique_name:"parenting_corner", id:4,image:'ic_artl_parenting'},
+    {name:'nutritionAndBreastfeeding',unique_name: "nutrition_and_breastfeeding",id:1, image:'ic_artl_nutrition'},
 ]
 export const activityCategoryobj = [
-    {name:'Socio-emotional',id:6431, image:'ic_act_emotional'},
-    {name:'Language and communication', id:6441,image:'ic_act_language'},
-    {name:'Cognitive', id:6436, image:'ic_act_cognitive'},
-    {name:'Motor',id:6421, image:'ic_act_movement'},
+    {name:'Socio-emotional',unique_name: "socio_emotional",id:6431, image:'ic_act_emotional'},
+    {name:'Language and communication',unique_name: "language_and_communication", id:6441,image:'ic_act_language'},
+    {name:'Cognitive',unique_name: "cognitive", id:6436, image:'ic_act_cognitive'},
+    {name:'Motor',unique_name: "motor",id:6421, image:'ic_act_movement'},
 ]
-
 export const basicPagesUniqueName = {
     aboutus: 'about_us',
     terms: 'terms_and_conditions',
