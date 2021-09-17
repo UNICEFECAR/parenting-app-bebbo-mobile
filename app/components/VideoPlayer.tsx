@@ -133,10 +133,10 @@ const VideoPlayer = (props: any) => {
     return (
         <>
             {videoType == videoTypeImage || netInfoval.isConnected == false || toggleSwitchVal == true ?
-                (<Image
+                ( <View style={{flex:1,flexDirection:'column',height:windowWidth*0.565,overflow:'hidden'}}><Image
                     source={require('@assets/trash/defaultArticleImage.png')}
-                    style={{ width: '100%',height:'auto',minHeight:200}}
-                />) :
+                    style={{ width: '100%',height:windowWidth*0.565}}
+                /></View>) :
                 (<>{videoType == videoTypeVimeo ?
                     <WebView
                         startInLoadingState={true}
