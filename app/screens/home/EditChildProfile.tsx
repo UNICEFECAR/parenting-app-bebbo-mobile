@@ -31,9 +31,7 @@ import {
   Heading2,
   Heading2w,
   Heading4,
-  Heading4Regular,
-  Heading4Regularw,
-  ShiftFromTop10
+  Heading4Regular, ShiftFromTop10
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { createRef, useContext, useEffect } from 'react';
@@ -45,31 +43,22 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
+  StyleSheet, TextInput,
   View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';
 import { ThemeContext } from 'styled-components/native';
+import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import {
-  ChildEntity,
-  ChildEntitySchema
-} from '../../database/schema/ChildDataSchema';
 import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import {
   addChild,
-  deleteChild,
-  getAllConfigData,
-  getNewChild
+  deleteChild, getNewChild
 } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
-import { v4 as uuidv4 } from 'uuid';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -77,7 +66,7 @@ type Props = {
   route: any;
   navigation: NotificationsNavigationProp;
 };
-const EditChildProfile = ({route, navigation}: Props) => {
+const EditChildProfile = ({ route, navigation }: Props) => {
   let childData = route.params.childData;
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -92,7 +81,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const editScreen = childData && childData.uuid != '' ? true : false;
   const themeContext = useContext(ThemeContext);
   const dispatch = useAppDispatch();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const SecondaryColor = themeContext.colors.SECONDARY_COLOR;
   const languageCode = useAppSelector(
@@ -100,26 +89,26 @@ const EditChildProfile = ({route, navigation}: Props) => {
   );
   let genders = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
-  
-  genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
-    return e.unique_name!="both";
+
+  genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
+    return e.unique_name != "both";
   });
-  console.log(genders,"..genders..");
+  console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   const getDefaultgenderValue = () => {
     return childData?.uuid != ''
       ? genders.find((item) => item.id == childData?.gender)
-      : {title: ''};
+      : { title: '' };
   };
 
   //console.log(getDefaultgenderValue,"..getDefaultgenderValue..")
 
   const imageOptions = [
-    {id: 0, iconName: 'ic_trash', name: t('cameraOption1')},
-    {id: 1, iconName: 'ic_camera', name: t('cameraOption2')},
-    {id: 2, iconName: 'ic_gallery', name: t('cameraOption3')},
+    { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
+    { id: 1, iconName: 'ic_camera', name: t('cameraOption2') },
+    { id: 2, iconName: 'ic_gallery', name: t('cameraOption3') },
   ];
   const actionSheetRef = createRef<any>();
   const [response, setResponse] = React.useState<any>(null);
@@ -141,11 +130,11 @@ const EditChildProfile = ({route, navigation}: Props) => {
   const [destPath, setDestPath] = React.useState<string>('');
   const child_age = useAppSelector(
     (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age:[],
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const sendData = (data: any) => {
     // the callback. Use a better name
-    console.log("111111",data)
+    console.log("111111", data)
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
@@ -181,17 +170,17 @@ const EditChildProfile = ({route, navigation}: Props) => {
       //     { id: 2, iconName: 'ic_gallery', name:  t('cameraOption3') },
       //   ];
       // }
-      if (childData!=undefined && childData != null && childData!='' && childData.uuid != '') {
+      if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
-        console.log(childData.photoUri,"..childData.photoUri..");
-        if(childData.photoUri!='' && childData.photoUri!=null && childData.photoUri!=undefined){
-        setCapturedImage('file://'+`${CHILDREN_PATH}/${childData.photoUri}`);
+        console.log(childData.photoUri, "..childData.photoUri..");
+        if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
+          setCapturedImage('file://' + `${CHILDREN_PATH}/${childData.photoUri}`);
         }
         sendData(childData);
       }
     }, []),
   );
- 
+
 
   const onChildPhotoChange = async (image: ImageObject,
   ) => {
@@ -203,33 +192,33 @@ const EditChildProfile = ({route, navigation}: Props) => {
     setPhotoDeleted(false);
   };
   const removePhoto = () => {
-    
+
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
-        console.log(childData,"..deleted..");
+        console.log(childData, "..deleted..");
         MediaPicker.cleanupImages();
         setphotoUri('');
         setCapturedImage('');
-      //   if(childData && childData.uuid!="" && childData.uuid!=null){
-      //   let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(
-      //     ChildEntitySchema,
-      //     '',
-      //     'uuid ="' + childData?.uuid + '"',
-      //   );
-      //   // console.log(createresult,"..createresult..")
-      //   if (createresult == 'success') {
-      //     MediaPicker.cleanupImages();
-      //     setphotoUri('');
-      //     setCapturedImage('');
-      //   } else {
-      //     Alert.alert(t('tryText'));
-      //   }
-      // }
-      // else{
-      //   MediaPicker.cleanupImages();
-      //   setphotoUri('');
-      //   setCapturedImage('');
-      // }
+        //   if(childData && childData.uuid!="" && childData.uuid!=null){
+        //   let createresult = await userRealmCommon.updatePhotoUri<ChildEntity>(
+        //     ChildEntitySchema,
+        //     '',
+        //     'uuid ="' + childData?.uuid + '"',
+        //   );
+        //   // console.log(createresult,"..createresult..")
+        //   if (createresult == 'success') {
+        //     MediaPicker.cleanupImages();
+        //     setphotoUri('');
+        //     setCapturedImage('');
+        //   } else {
+        //     Alert.alert(t('tryText'));
+        //   }
+        // }
+        // else{
+        //   MediaPicker.cleanupImages();
+        //   setphotoUri('');
+        //   setCapturedImage('');
+        // }
       })
       .catch((error: any) => {
         Alert.alert(t('tryText'));
@@ -246,7 +235,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
       Alert.alert(t('removePhotoTxt'), t('removeWarnTxt'), [
         {
           text: t('removePhotoOption1'),
-          onPress: () => {},
+          onPress: () => { },
           style: 'cancel',
         },
         {
@@ -327,8 +316,8 @@ const EditChildProfile = ({route, navigation}: Props) => {
 
   //   // askPermissions();
   // }, []);
-  const setPhoto=async (uuid:string)=>{
-    console.log(capturedPhoto,"..capturedPhoto..");
+  const setPhoto = async (uuid: string) => {
+    console.log(capturedPhoto, "..capturedPhoto..");
     let parts = capturedPhoto.split('.');
     let extension: string | null = null;
     if (parts.length > 1) {
@@ -352,9 +341,9 @@ const EditChildProfile = ({route, navigation}: Props) => {
 
     // Copy image
     await copyFile(capturedPhoto, destPath);
-    console.log(capturedPhoto,"..imagepath..");
-    console.log(destPath,"..destPath..");
-    console.log(destPath.replace(CHILDREN_PATH, ''),"..destPath..");
+    console.log(capturedPhoto, "..imagepath..");
+    console.log(destPath, "..destPath..");
+    console.log(destPath.replace(CHILDREN_PATH, ''), "..destPath..");
     setphotoUri(destPath.replace(CHILDREN_PATH, ''));
     return destPath.replace(CHILDREN_PATH, '');
   }
@@ -362,45 +351,48 @@ const EditChildProfile = ({route, navigation}: Props) => {
     // if dob /plannedTermDate changes, append notifications to current child's notifications in slice
     let insertData: any = editScreen
       ? await getNewChild(
-          uuid,
-          isExpected,
-          plannedTermDate,
-          isPremature,
-          birthDate,
-          name,
-          photoUri,
-          gender,
-          createdAt,
-        )
+        uuid,
+        isExpected,
+        plannedTermDate,
+        isPremature,
+        birthDate,
+        name,
+        photoUri,
+        gender,
+        createdAt,
+      )
       : await getNewChild(
-          uuidv4(),
-          isExpected,
-          plannedTermDate,
-          isPremature,
-          birthDate,
-          name,
-          photoUri,
-          gender,
-          createdAt
-        );
+        uuidv4(),
+        isExpected,
+        plannedTermDate,
+        isPremature,
+        birthDate,
+        name,
+        photoUri,
+        gender,
+        createdAt
+      );
     let childSet: Array<any> = [];
     console.log(capturedPhoto, '..capturedPhoto..');
     console.log(photoDeleted, '..photoDeleted..');
-    if(photoDeleted==true){
+    if (photoDeleted == true) {
       removePhoto();
-      insertData.photoUri='';     
+      insertData.photoUri = '';
     }
-    else{
-    if(capturedPhoto!=null && capturedPhoto!=undefined && capturedPhoto!=''){
-    insertData.photoUri=await setPhoto(insertData.uuid);
-    }
+    else {
+      if (capturedPhoto != null && capturedPhoto != undefined && capturedPhoto != '') {
+        insertData.photoUri = await setPhoto(insertData.uuid);
+      }
     }
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
     console.log(childSet, '..childSet..');
-    addChild(languageCode,editScreen, 2, childSet, dispatch, navigation, child_age,null);
+
+
+
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null);
   };
-  
+
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
     //console.log(checkedItem);
     // if (
@@ -415,7 +407,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -448,15 +440,15 @@ const EditChildProfile = ({route, navigation}: Props) => {
             ) : null}
           </HeaderActionView>
         </HeaderRowView>
-        <ScrollView style={{flex: 4}}>
+        <ScrollView style={{ flex: 4 }}>
           {/* <Text>{capturedPhoto}</Text> */}
           <FlexCol>
-            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted==false? (
+            {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted == false ? (
               <View style={styles.container}>
                 <ImageBackground
                   source={
                     capturedPhoto != ''
-                      ? {uri: capturedPhoto}
+                      ? { uri: capturedPhoto }
                       : null
                   }
                   style={styles.image}>
@@ -503,30 +495,30 @@ const EditChildProfile = ({route, navigation}: Props) => {
                   <LabelText>{t('childNameTxt')}</LabelText>
                   <FormInputBox>
                     <TextInput
-                      style={{width:'100%'}}
+                      style={{ width: '100%' }}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        console.log(value,"..value")
+                        console.log(value, "..value")
                         // setName(value.replace(/\s/g, ''));
-                        if (value.replace(/\s/g,"")=="") {
+                        if (value.replace(/\s/g, "") == "") {
                           console.log("..11value")
-                          setName(value.replace(/\s/g, '')); 
-                         } else {
+                          setName(value.replace(/\s/g, ''));
+                        } else {
                           console.log("..22value")
                           if (/^[a-zA-Z ]*$/.test(value)) {
-                          setName(value);
+                            setName(value);
                           }
-                         }
+                        }
                         // setName(value==""?value.replace(/\s/g, ''):value);
                       }}
                       // value={name.replace(/\s/g, '')}
                       value={name}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
-                      allowFontScaling={false} 
+                      allowFontScaling={false}
                     />
                   </FormInputBox>
                 </ShiftFromTop10>
@@ -541,7 +533,7 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 />
               </FormContainerFlex>
               <ShiftFromTop10>
-                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen"/>
+                <ChildDate sendData={sendData} childData={childData} dobMax={new Date()} prevScreen="EditScreen" />
               </ShiftFromTop10>
             </MainContainer>
           </FlexCol>
@@ -559,15 +551,15 @@ const EditChildProfile = ({route, navigation}: Props) => {
                 {imageOptions.map((item, index) => {
                   console.log(
                     index == 0 &&
-                      (capturedPhoto == '' ||
+                    (capturedPhoto == '' ||
                       capturedPhoto == null ||
                       capturedPhoto == undefined),
                   );
                   if (
                     index == 0 &&
                     (capturedPhoto == '' ||
-                    capturedPhoto == null ||
-                    capturedPhoto == undefined)
+                      capturedPhoto == null ||
+                      capturedPhoto == undefined)
                   ) {
                     return null;
                   } else {
@@ -578,18 +570,18 @@ const EditChildProfile = ({route, navigation}: Props) => {
                           justifyContent: 'center',
                           flexDirection: 'row',
                           padding: 16,
-                          
-                          flex:1,
-                         
+
+                          flex: 1,
+
                         }}>
                         <Pressable
-                          style={{alignItems: 'center'}}
+                          style={{ alignItems: 'center' }}
                           onPress={() => {
                             actionSheetRef.current?.hide();
                             handleImageOptionClick(index);
                           }}>
                           <Icon name={item.iconName} size={50} color="#000" />
-                          <Heading4 style={{flexShrink:1,textAlign:'center',marginTop:10}}>{item.name}</Heading4>
+                          <Heading4 style={{ flexShrink: 1, textAlign: 'center', marginTop: 10 }}>{item.name}</Heading4>
                         </Pressable>
                       </View>
                     );
@@ -613,29 +605,29 @@ const EditChildProfile = ({route, navigation}: Props) => {
               )
             }
             onPress={(e) => {
-               e.preventDefault();
-               setAddChild(false);
+              e.preventDefault();
+              setAddChild(false);
               //  console.log(birthDate,"..birthDate..");
               //  console.log(isPremature,"..isPremature..");
               //  console.log(plannedTermDate,"..plannedTermDate..");
               //  console.log(isExpected,"..isExpected..");
-              if(addChildParam==true){
-              const validated = validateForm(
-                1,
-                birthDate,
-                isPremature,
-                '',
-                plannedTermDate,
-                name,
-                gender,
-              );
-              if (validated == true) {
-                console.log("24455e655")
-                AddChild();
-              } else {
+              if (addChildParam == true) {
+                const validated = validateForm(
+                  1,
+                  birthDate,
+                  isPremature,
+                  '',
+                  plannedTermDate,
+                  name,
+                  gender,
+                );
+                if (validated == true) {
+                  console.log("24455e655")
+                  AddChild();
+                } else {
+                }
               }
-            }
-              
+
             }}>
             {childData && childData?.uuid != '' ? (
               <ButtonText numberOfLines={2}>{t('babyNotificationUpdateBtn')}</ButtonText>

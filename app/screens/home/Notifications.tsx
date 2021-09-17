@@ -48,34 +48,47 @@ const Notifications = () => {
   );
 
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
+  console.log(allnotis, "allnotis");
   const calculateNotis = (currentChildNotis: any) => {
     if (currentChildNotis) {
+      console.log(currentChildNotis, "currentChildNotis")
       let currentChildallnoti: any = [];
-      currentChildNotis.gwcdnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.hcnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.vcnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.reminderNotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      let toDay = DateTime.fromJSDate(new Date());
-      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+      if (currentChildNotis.gwcdnotis) {
+        currentChildNotis.gwcdnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.hcnotis) {
+        currentChildNotis.hcnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.vcnotis) {
+        currentChildNotis.vcnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.reminderNotis) {
+        currentChildNotis.reminderNotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      let toDay = DateTime.fromJSDate(new Date()).toMillis();
+      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
-      ).reverse().filter((item) => item.isRead == false && item.isDeleted == false && (toDay >= item.notificationDate && childCrateDate <= item.notificationDate));;
+      ).reverse()
+        .filter((item) => {
+          return item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childCrateDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis())
+        });
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
     }
