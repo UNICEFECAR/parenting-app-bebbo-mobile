@@ -128,35 +128,43 @@ const CustomDrawerContent = ({ navigation }: any) => {
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (currentChildNotis) {
           let currentChildallnoti: any = [];
-          currentChildNotis.gwcdnotis.forEach((item) => {
-            currentChildallnoti.push(item)
-          })
+          if (currentChildNotis.gwcdnotis) {
+            currentChildNotis.gwcdnotis.forEach((item) => {
+              currentChildallnoti.push(item)
+            })
+          }
           // // notiExist.gwcdnotis?.forEach((item)=>{
           // //   allgwnoti.push(item)
           // // })
-          currentChildNotis.hcnotis.forEach((item) => {
-            currentChildallnoti.push(item)
-          })
+          if (currentChildNotis.hcnotis) {
+            currentChildNotis.hcnotis.forEach((item) => {
+              currentChildallnoti.push(item)
+            })
+          }
           // // notiExist.vcnotis?.forEach((item)=>{
           // //   allvcnotis.push(item)
           // // })
-          currentChildNotis.vcnotis.forEach((item) => {
-            currentChildallnoti.push(item)
-          })
-          currentChildNotis.reminderNotis.forEach((item) => {
-            currentChildallnoti.push(item)
-          })
+          if (currentChildNotis.vcnotis) {
+            currentChildNotis.vcnotis.forEach((item) => {
+              currentChildallnoti.push(item)
+            })
+          }
+          if (currentChildNotis.reminderNotis) {
+            currentChildNotis.reminderNotis.forEach((item) => {
+              currentChildallnoti.push(item)
+            })
+          }
           // console.log(allnotis)
 
           // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-          let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+          let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
           //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
-          let toDay = DateTime.fromJSDate(new Date());
+          let toDay = DateTime.fromJSDate(new Date()).toMillis();
 
 
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
-          ).filter((item) => item.isRead == false && item.isDeleted == false && (toDay >= item.notificationDate && childCrateDate <= item.notificationDate));
+          ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childCrateDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
           // console.log(combinedNotis, "combinedNotis")
           // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
           // console.log(toRemove, "findcdNoti")
@@ -223,33 +231,36 @@ const CustomDrawerContent = ({ navigation }: any) => {
               gwcdnotis.reverse().forEach((item) => {
                 allgwcdnotis.push(item)
               })
-              notiExist.gwcdnotis?.forEach((item) => {
-                allgwcdnotis.push(item)
-              })
+              if (notiExist.gwcdnotis) {
+                notiExist.gwcdnotis?.forEach((item) => {
+                  allgwcdnotis.push(item)
+                })
+              }
               vcnotis.reverse().forEach((item) => {
                 allvcnotis.push(item)
               })
-              notiExist.vcnotis?.forEach((item) => {
-                allvcnotis.push(item)
-              })
+              if (notiExist.vcnotis) {
+                notiExist.vcnotis?.forEach((item) => {
+                  allvcnotis.push(item)
+                })
+              }
               hcnotis.reverse().forEach((item) => {
                 allhcnotis.push(item)
               })
-              notiExist.hcnotis?.forEach((item) => {
-                allhcnotis.push(item)
-              })
+              if (notiExist.hcnotis) {
+                notiExist.hcnotis?.forEach((item) => {
+                  allhcnotis.push(item)
+                })
+              }
               console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
-              allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis })
+              allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: reminderNotis })
 
             } else {
               //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
               //find and remove child from notification slice
               //clear notification which are already generated, 
               //generate for new notifications
-              const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
-              let reminderNotis = getChildReminderNotifications(activeChild);
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-              allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis })
+              allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: notiExist.reminderNotis })
             }
           }
         } else {
@@ -261,7 +272,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
             let reminderNotis = getChildReminderNotifications(activeChild);
             console.log(reminderNotis, "childNotis")
             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-            allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis })
+            allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
           } else {
             //for expecting child no notifications
           }

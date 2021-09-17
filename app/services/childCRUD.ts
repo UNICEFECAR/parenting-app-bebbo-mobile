@@ -5,11 +5,13 @@ import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
 import { Alert, Platform, ToastAndroid } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
+import { store } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { setActiveChildData, setAllChildData } from '../redux/reducers/childSlice';
+import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getVariableData } from '../redux/reducers/variableSlice';
 export const apiJsonDataGet = (childAge: any, parentGender: any) => {
@@ -441,10 +443,20 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     console.log(dateTimesAreSameDay(startDate, someDate), ".11.data.birthDate..");
 
     if (data[0].birthDate != null && data[0].birthDate != undefined && data[0].birthDate != "" && dateTimesAreSameDay(startDate, someDate) == false) {
-      // regenerate notifications for new dob 
-      //startDate =>olddob
-      //someDate =>newdob
+      // regenerate notifications for new dob child
+      // let allchildNotis = useAppSelector((state: any) => state.notificationData.notifications);
+      const storedata = store.getState();
+      const allchildNotis = storedata.notificationData.notifications;
+      console.log(allchildNotis, "..articles from utils");
 
+      const findIfNotisExistForChild = (childuuid: any) => {
+        return allchildNotis.find((item) => String(item.childuuid) == String(childuuid))
+      }
+      if (findIfNotisExistForChild(data[0].uuid)) {
+        //remove object of current child's notifications from array
+        allchildNotis.splice(allchildNotis.findIndex(item => String(item.childuuid) == String(data[0].uuid)), 1);
+        dispatch(setAllNotificationData(allchildNotis));
+      }
 
       console.log('inifaddchild')
       let deleteresult = await userRealmCommon.deleteNestedMeasures<ChildEntity>(

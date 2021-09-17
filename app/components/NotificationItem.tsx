@@ -105,39 +105,13 @@ const NotificationItem = (props: any) => {
   useEffect(() => {
     setToggleCheckBox(false);
   }, [isDeleteEnabled])
-  // const IsGrowthMeasuresForPeriodExist = () => {
-  //   // isGrowthMeasureExistForDate(selectedMeasureDate,activeChild)
-  //   // if item.days_to is today's date and thne check measures not entered then only show
-  //   let isGrowthNotMeasureExist = true;
-  //   if (activeChild.measures.length > 0) {
-  //     activeChild.measures.forEach((measure) => {
-  //       const childMeasureDateInDays = getCurrentChildAgeInDays(
-  //         DateTime.fromJSDate(new Date(measure.measurementDate)).toMillis(),
-  //       );
-  //       if (item.days_from < childMeasureDateInDays && item.days_to > childMeasureDateInDays) {
-  //         isGrowthNotMeasureExist = false;
-  //       } else {
-  //         isGrowthNotMeasureExist = true;
-  //       }
-  //       //get measurementdate in days and check if it is in between
-  //       //find if measure exists in day_from and day_to
-  //     })
-  //   }
-  //   // console.log(isGrowthNotMeasureExist, 'isGrowthMeasureExist')
-  //   return isGrowthNotMeasureExist
-  // }
+  let toDay = DateTime.fromJSDate(new Date()).toMillis();
+  let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+  let notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
   const renderGrowthNotifcation = () => {
-    // console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation");
-    // childcreate date
-    // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-    let toDay = DateTime.fromJSDate(new Date());
-    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-    // Alert.alert(fromDate + "fromDate")
-    // Alert.alert(childCrateDate + "childCrateDate");
-    // console.log(childCrateDate, "childCrateDate")
     return (
       //
-      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
+      (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
         //if childageInDays is between days_from and days_to then only display notis which have days_from == chilAgeInDays
         (<>
           <NotificationListContainer>
@@ -161,12 +135,15 @@ const NotificationItem = (props: any) => {
 
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-                  <Heading6>{
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
+                  {/* <Heading6></Heading6> */}
+                  {/* <Heading6>{formatStringDate(childCrateDate, luxonLocale)}</Heading6>
+                  <Heading6>{formatStringDate(toDay, luxonLocale)}</Heading6> */}
+
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
@@ -253,20 +230,8 @@ const NotificationItem = (props: any) => {
         </>) : null)
   }
   const renderHCNotifcation = () => {
-    //At the beginning of the period
-
-    let toDay = DateTime.fromJSDate(new Date());
-    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-    // Alert.alert(fromDate + "fromDate")
-    // Alert.alert(childCrateDate + "childCrateDate");
-    // console.log(childCrateDate, "childCrateDate")
     return (
-      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? (item.isDeleted ? null :
-
-
-        // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-        // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-        // return (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? (item.isDeleted ? null : 
+      (toDay >= notiDate && childCrateDate <= notiDate) ? (item.isDeleted ? null :
         <>
           <NotificationListContainer>
             <FlexDirRowStart>
@@ -287,8 +252,7 @@ const NotificationItem = (props: any) => {
                   <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
                 }
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-                  <Heading6>{
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
@@ -379,16 +343,8 @@ const NotificationItem = (props: any) => {
         </>) : null)
   }
   const renderVCNotifcation = () => {
-    let toDay = DateTime.fromJSDate(new Date());
-    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-    // Alert.alert(fromDate + "fromDate")
-    // Alert.alert(childCrateDate + "childCrateDate");
-    // console.log(childCrateDate, "childCrateDate")
     return (
-      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? (item.isDeleted ? null :
-        // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-        // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-        // return (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? (item.isDeleted ? null : 
+      (toDay >= notiDate && childCrateDate <= notiDate) ? (item.isDeleted ? null :
         <>
           <NotificationListContainer>
             <FlexDirRowStart>
@@ -424,12 +380,12 @@ const NotificationItem = (props: any) => {
                 }
 
                 <ShiftFromTop5>
-                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-                  <Heading6>{
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
+                  {/* <Heading6></Heading6> */}
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
@@ -517,25 +473,9 @@ const NotificationItem = (props: any) => {
   }
 
   const renderCDNotifcation = () => {
-    //At the beginning of the period =>cd1
-    //5 days before the end of the period =>cd2
-    //
-
-    // if today;s date childAgeInDays is less= than days_to then only cd2 diplay,
     if (item.title == 'cdNoti1') {
-      let toDay = DateTime.fromJSDate(new Date());
-      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-      // Alert.alert(fromDate + "fromDate")
-      // Alert.alert(childCrateDate + "childCrateDate");
-      // console.log(childCrateDate, "childCrateDate")
       return (
-        (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
-
-          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-          // return (
-          //   (item.days_from <= childAgeInDays && childCrateDate <= fromDate) ? item.isDeleted ? null : 
-
+        (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
           (<>
             <NotificationListContainer>
               <FlexDirRowStart>
@@ -556,12 +496,12 @@ const NotificationItem = (props: any) => {
                     <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-                    <Heading6>{
+                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                       getCurrentChildAgeInMonths(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
                       )}</Heading6>
+                    {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
                   <ShiftFromTop10>
@@ -648,18 +588,8 @@ const NotificationItem = (props: any) => {
           </>) : null)
     }
     else {
-      let toDay = DateTime.fromJSDate(new Date());
-      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-      // Alert.alert(fromDate + "fromDate")
-      // Alert.alert(childCrateDate + "childCrateDate");
-      // console.log(childCrateDate, "childCrateDate")
       return (
-        (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
-
-          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-          // return (
-          //   (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? item.isDeleted ? null :
+        (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
           (<>
             <NotificationListContainer>
               <FlexDirRowStart>
@@ -680,12 +610,12 @@ const NotificationItem = (props: any) => {
                     <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
                   }
                   <ShiftFromTop5>
-                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-                    <Heading6>{
+                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                       getCurrentChildAgeInMonths(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
                       )}</Heading6>
+                    {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
                   <ShiftFromTop10>
@@ -774,17 +704,8 @@ const NotificationItem = (props: any) => {
   }
 
   const renderVCReminderNotifcation = () => {
-
-    let toDay = DateTime.fromJSDate(new Date());
-    // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
-    // Alert.alert(fromDate + "fromDate")
-    // Alert.alert(childCrateDate + "childCrateDate");
-    // console.log(childCrateDate, "childCrateDate")
-    // return (
-    //   (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
-
-    console.log(item, childAgeInDays, "renderVCReminderNotifcation")
-    return (toDay >= item.notificationDate ? item.isDeleted ? null : <>
+    // console.log(item, childAgeInDays, "renderVCReminderNotifcation")
+    return (toDay >= notiDate ? item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -809,12 +730,12 @@ const NotificationItem = (props: any) => {
             }
 
             <ShiftFromTop5>
-              <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
-              <Heading6>{
+              <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                 getCurrentChildAgeInMonths(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate))
                 )}</Heading6>
+              {/* <Heading6></Heading6> */}
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
             </ShiftFromTop5>
             <ShiftFromTop10>

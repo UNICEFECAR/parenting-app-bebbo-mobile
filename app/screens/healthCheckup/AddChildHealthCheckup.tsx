@@ -779,11 +779,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   </ShiftFromTop15>
                 </FormContainerFlex1>
               ) : null}
-              <KeyboardAwareScrollView>
-                <FormContainerFlex>
-                  <FormInputText>
-                    {t('growthScreenenterDoctorRemarkText')}
-                  </FormInputText>
+
+              <FormContainerFlex>
+                <FormInputText>
+                  {t('growthScreenenterDoctorRemarkText')}
+                </FormInputText>
+                <KeyboardAwareScrollView>
                   <TextAreaBox>
                     <TextInput
                       autoCapitalize="none"
@@ -799,8 +800,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-                </FormContainerFlex>
-              </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView>
+              </FormContainerFlex>
+
               <ShiftFromTopBottom10>
                 <Text>{t('growthScreennewGrowthBottomText')}</Text>
               </ShiftFromTopBottom10>
