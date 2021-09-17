@@ -420,7 +420,7 @@ const en = {
                 downloadUpdateSuccessOkBtn: "Ok",
                 //translation updated till above 15th sep 
                 newdetailScreenNoDataPopupText: "Selected Advice/Game is not available in this mobile.Please download latest data from settings.",
-                noInternet: "No Internet available.App will run with offline data.",
+                noInternet: "No internet available.",
                 lowBandwidth: "Low Bandwidth",
                 highBandwidth: "High Bandwidth",
                 dataSaveron: "on",
