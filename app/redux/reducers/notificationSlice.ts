@@ -1,8 +1,8 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 interface notiDataType {
   // name: string;
-  notifications:Array<any>
+  notifications: Array<any>
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: notiDataType = {
@@ -17,10 +17,10 @@ export const notificationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     // console.log("articles data---",state);
-      //console.log(typeof action.payload);
+      // console.log("articles data---",state);
+      console.log(action.payload, "notifications");
       // console.log(action.payload.map(user => user));
-      state.notifications =(action.payload);
+      state.notifications = (action.payload);
       // if(action.payload)|| Array.isArray(action.payload)
       // {
       //   state.article.articles = JSON.stringify(action.payload);
@@ -49,7 +49,7 @@ export const notificationSlice = createSlice({
   // },
 });
 
-export const {setAllNotificationData} = notificationSlice.actions;
+export const { setAllNotificationData } = notificationSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
