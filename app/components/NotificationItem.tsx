@@ -104,7 +104,24 @@ const NotificationItem = (props: any) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(item.isChecked);
   useEffect(() => {
     setToggleCheckBox(false);
+    // console.log(getVaccinesForPeriod("59056"));
   }, [isDeleteEnabled])
+  const allVaccineData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.vaccineData),
+  );
+  const getVaccinesForPeriod = (period: string) => {
+    const allvc = allVaccineData.filter((item) => item.growth_period == period);
+    let vc = '';
+    allvc.map((item: any, index: number) => {
+      if (index == allvc.length - 1) {
+        vc += `${item.title}.`
+      } else {
+        vc += `${item.title}, `
+      }
+    })
+    return vc;
+  }
   let toDay = DateTime.fromJSDate(new Date()).toMillis();
   let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
   let notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
@@ -376,7 +393,7 @@ const NotificationItem = (props: any) => {
                         activeChild.childName != undefined
                         ? activeChild.childName
                         : '', periodName: item.periodName
-                  })}</Heading4Bold>
+                  })}{getVaccinesForPeriod(item.growth_period)}</Heading4Bold>
                 }
 
                 <ShiftFromTop5>
