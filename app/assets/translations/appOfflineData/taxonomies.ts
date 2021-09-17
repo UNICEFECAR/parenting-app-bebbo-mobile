@@ -6,61 +6,75 @@ export const taxonomydata:any = {
             "activity_category": [
                 {
                     "id": 6421,
-                    "name": "Motor"
+                    "name": "Motor",
+                    "unique_name": "motor"
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emotional"
+                    "name": "Socio-emotional",
+                    "unique_name": "socio_emotional"
                 },
                 {
                     "id": 6436,
-                    "name": "Cognitive"
+                    "name": "Cognitive",
+                    "unique_name": "cognitive"
                 },
                 {
                     "id": 6441,
-                    "name": "Language and communication"
+                    "name": "Language and communication",
+                    "unique_name": "language_and_communication"
                 }
             ],
             "category": [
                 {
                     "id": 1,
-                    "name": "Nutrition and Breastfeeding"
+                    "name": "Nutrition and Breastfeeding",
+                    "unique_name": "nutrition_and_breastfeeding"
                 },
                 {
                     "id": 2,
-                    "name": "Health and Wellbeing"
+                    "name": "Health and Wellbeing",
+                    "unique_name": "health_and_wellbeing"
                 },
                 {
                     "id": 3,
-                    "name": "Safety and Protection"
+                    "name": "Safety and Protection",
+                    "unique_name": "safety_and_protection"
                 },
                 {
                     "id": 4,
-                    "name": "Parenting Corner"
+                    "name": "Parenting Corner",
+                    "unique_name": "parenting_corner"
                 },
                 {
                     "id": 5,
-                    "name": "Child Growth"
+                    "name": "Child Growth",
+                    "unique_name": "child_growth"
                 },
                 {
                     "id": 6,
-                    "name": "Child Development"
+                    "name": "Child Development",
+                    "unique_name": "child_development"
                 },
                 {
                     "id": 7,
-                    "name": "Health Check-ups"
+                    "name": "Health Check-ups",
+                    "unique_name": "health_check_ups"
                 },
                 {
                     "id": 8,
-                    "name": "Vaccination"
+                    "name": "Vaccination",
+                    "unique_name": "vaccination"
                 },
                 {
                     "id": 55,
-                    "name": "Play and Learning"
+                    "name": "Play and Learning",
+                    "unique_name": "play_and_learning"
                 },
                 {
                     "id": 56,
-                    "name": "Responsive Parenting"
+                    "name": "Responsive Parenting",
+                    "unique_name": "responsive_parenting"
                 }
             ],
             "chatbot_child_age": [
@@ -225,15 +239,18 @@ export const taxonomydata:any = {
             "child_gender": [
                 {
                     "id": 40,
-                    "name": "Boy"
+                    "name": "Boy",
+                    "unique_name": "boy"
                 },
                 {
                     "id": 41,
-                    "name": "Girl"
+                    "name": "Girl",
+                    "unique_name": "girl"
                 },
                 {
                     "id": 59,
-                    "name": "Both"
+                    "name": "Both",
+                    "unique_name": "both"
                 }
             ],
             "growth_introductory": [
@@ -559,11 +576,13 @@ export const taxonomydata:any = {
             "growth_type": [
                 {
                     "id": 6461,
-                    "name": "Height for weight"
+                    "name": "Height for weight",
+                    "unique_name": "height_for_weight"
                 },
                 {
                     "id": 32786,
-                    "name": "Height for age"
+                    "name": "Height for age",
+                    "unique_name": "height_for_age"
                 }
             ],
             "keywords": [
@@ -5215,15 +5234,18 @@ export const taxonomydata:any = {
             "parent_gender": [
                 {
                     "id": 37,
-                    "name": "Father"
+                    "name": "Male",
+                    "unique_name": "male"
                 },
                 {
                     "id": 38,
-                    "name": "Mother"
+                    "name": "Female",
+                    "unique_name": "female"
                 },
                 {
                     "id": 60,
-                    "name": "Both"
+                    "name": "Both",
+                    "unique_name": "both"
                 }
             ],
             "type_of_support": [
