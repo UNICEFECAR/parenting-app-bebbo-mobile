@@ -32,6 +32,9 @@ const NotificationItem = (props: any) => {
   const navigation = useNavigation();
   // const primaryColor = themeContext.colors.PRIMARY_COLOR;
   const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const luxonLocale = useAppSelector(
+    (state: any) => state.selectedCountry.luxonLocale,
+  );
   const geticonname = (type: string) => {
     // console.log(type)
     return type == 'gw'
@@ -125,8 +128,16 @@ const NotificationItem = (props: any) => {
   // }
   const renderGrowthNotifcation = () => {
     // console.log(IsGrowthMeasuresForPeriodExist(), "renderGrowthNotifcation");
+    // childcreate date
+    // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+    let toDay = DateTime.fromJSDate(new Date());
+    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+    // Alert.alert(fromDate + "fromDate")
+    // Alert.alert(childCrateDate + "childCrateDate");
+    // console.log(childCrateDate, "childCrateDate")
     return (
-      (item.days_from <= childAgeInDays) ? item.isDeleted ? null :
+      //
+      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
         //if childageInDays is between days_from and days_to then only display notis which have days_from == chilAgeInDays
         (<>
           <NotificationListContainer>
@@ -150,12 +161,13 @@ const NotificationItem = (props: any) => {
 
 
                 <ShiftFromTop5>
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
                   <Heading6>{
                     getCurrentChildAgeInMonths(
                       t,
-                      DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
+                      DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
-                  <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
+                  {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
                   <Pressable onPress={() => gotoPage(item.type)}>
@@ -242,242 +254,266 @@ const NotificationItem = (props: any) => {
   }
   const renderHCNotifcation = () => {
     //At the beginning of the period
-    return (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? (item.isDeleted ? null : <>
-      <NotificationListContainer>
-        <FlexDirRowStart>
-          <NotifIcon style={{
-            backgroundColor: hkColor
-          }}>
 
-            <Icon
-              name={geticonname(item.type)}
-              size={20}
-              color="#000"
+    let toDay = DateTime.fromJSDate(new Date());
+    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+    // Alert.alert(fromDate + "fromDate")
+    // Alert.alert(childCrateDate + "childCrateDate");
+    // console.log(childCrateDate, "childCrateDate")
+    return (
+      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? (item.isDeleted ? null :
 
-            />
-          </NotifIcon>
-          <NotifiContent>
-            {item.isRead == true ?
-              <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-              <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
-            }
-            <ShiftFromTop5>
-              <Heading6>{
-                getCurrentChildAgeInMonths(
-                  t,
-                  DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
-                )}</Heading6>
-              <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
-            </ShiftFromTop5>
-            <ShiftFromTop10>
-              <Pressable onPress={() => gotoPage(item.type)}>
-                <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-              </Pressable></ShiftFromTop10>
-          </NotifiContent>
 
-          <NotifAction>
-            {(isDeleteEnabled === true) ? (
-              <FormOuterCheckbox
-                onPress={() => {
-                  //  console.log(item);
-                  setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(item, !toggleCheckBox)
-                }}>
-                <CheckboxItem>
-                  <View>
-                    {toggleCheckBox ? (
-                      <CheckboxActive>
-                        <Icon name="ic_tick" size={12} color="#000" />
-                      </CheckboxActive>
-                    ) : (
-                      <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                    )}
-                  </View>
-                </CheckboxItem>
-              </FormOuterCheckbox>
-            ) : (
-              <>
-                <Menu
-                  renderer={renderers.ContextMenu}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
-                  <MenuTrigger>
-                    <Icon
-                      style={{
-                        flex: 1,
-                        textAlign: 'right',
-                        alignSelf: 'center',
-                      }}
-                      name={'ic_kebabmenu'}
-                      size={25}
-                      color="#000"
-                    />
-                  </MenuTrigger>
-                  <MenuOptions
-                    customStyles={{
-                      optionsContainer: {
-                        marginTop: 30,
-                        borderRadius: 10,
-                        backgroundColor: primaryTintColor,
-                      },
+        // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+        // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+        // return (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? (item.isDeleted ? null : 
+        <>
+          <NotificationListContainer>
+            <FlexDirRowStart>
+              <NotifIcon style={{
+                backgroundColor: hkColor
+              }}>
 
-                      optionWrapper: {
-                        borderBottomWidth: 1,
-                        padding: 15,
-                      },
+                <Icon
+                  name={geticonname(item.type)}
+                  size={20}
+                  color="#000"
 
+                />
+              </NotifIcon>
+              <NotifiContent>
+                {item.isRead == true ?
+                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                }
+                <ShiftFromTop5>
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
+                  <Heading6>{
+                    getCurrentChildAgeInMonths(
+                      t,
+                      DateTime.fromJSDate(new Date(item.notificationDate))
+                    )}</Heading6>
+                  {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
+                </ShiftFromTop5>
+                <ShiftFromTop10>
+                  <Pressable onPress={() => gotoPage(item.type)}>
+                    <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                  </Pressable></ShiftFromTop10>
+              </NotifiContent>
+
+              <NotifAction>
+                {(isDeleteEnabled === true) ? (
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      //  console.log(item);
+                      setToggleCheckBox(!toggleCheckBox);
+                      props.onItemChecked(item, !toggleCheckBox)
                     }}>
-                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                      <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                    </MenuOption>
-                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                      <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
-                    </MenuOption>
-                  </MenuOptions>
-                </Menu>
-              </>
-            )}
-          </NotifAction>
+                    <CheckboxItem>
+                      <View>
+                        {toggleCheckBox ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                ) : (
+                  <>
+                    <Menu
+                      renderer={renderers.ContextMenu}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onSelect={(value) =>
+                        console.log(`Selected number: ${value} ${item}`)
+                      }>
+                      <MenuTrigger>
+                        <Icon
+                          style={{
+                            flex: 1,
+                            textAlign: 'right',
+                            alignSelf: 'center',
+                          }}
+                          name={'ic_kebabmenu'}
+                          size={25}
+                          color="#000"
+                        />
+                      </MenuTrigger>
+                      <MenuOptions
+                        customStyles={{
+                          optionsContainer: {
+                            marginTop: 30,
+                            borderRadius: 10,
+                            backgroundColor: primaryTintColor,
+                          },
 
-        </FlexDirRowStart>
+                          optionWrapper: {
+                            borderBottomWidth: 1,
+                            padding: 15,
+                          },
 
-      </NotificationListContainer>
-      <DividerContainer><Divider></Divider></DividerContainer>
-    </>) : null
+                        }}>
+                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                          <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                        </MenuOption>
+                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                          <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                        </MenuOption>
+                      </MenuOptions>
+                    </Menu>
+                  </>
+                )}
+              </NotifAction>
+
+            </FlexDirRowStart>
+
+          </NotificationListContainer>
+          <DividerContainer><Divider></Divider></DividerContainer>
+        </>) : null)
   }
   const renderVCNotifcation = () => {
-    //A the beginning of the period
-    return (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? (item.isDeleted ? null : <>
-      <NotificationListContainer>
-        <FlexDirRowStart>
-          <NotifIcon style={{
-            backgroundColor: vaccinationColor
-          }}>
+    let toDay = DateTime.fromJSDate(new Date());
+    let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+    // Alert.alert(fromDate + "fromDate")
+    // Alert.alert(childCrateDate + "childCrateDate");
+    // console.log(childCrateDate, "childCrateDate")
+    return (
+      (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? (item.isDeleted ? null :
+        // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+        // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+        // return (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? (item.isDeleted ? null : 
+        <>
+          <NotificationListContainer>
+            <FlexDirRowStart>
+              <NotifIcon style={{
+                backgroundColor: vaccinationColor
+              }}>
 
-            <Icon
-              name={geticonname(item.type)}
-              size={20}
-              color="#000"
+                <Icon
+                  name={geticonname(item.type)}
+                  size={20}
+                  color="#000"
 
-            />
-          </NotifIcon>
-          <NotifiContent>
-            {item.isRead == true ?
-              <Heading4Regular>{t(item.title, {
-                childName:
-                  activeChild.childName != null &&
-                    activeChild.childName != '' &&
-                    activeChild.childName != undefined
-                    ? activeChild.childName
-                    : '', periodName: item.periodName
-              })}</Heading4Regular> :
-              <Heading4Bold>{t(item.title, {
-                childName:
-                  activeChild.childName != null &&
-                    activeChild.childName != '' &&
-                    activeChild.childName != undefined
-                    ? activeChild.childName
-                    : '', periodName: item.periodName
-              })}</Heading4Bold>
-            }
+                />
+              </NotifIcon>
+              <NotifiContent>
+                {item.isRead == true ?
+                  <Heading4Regular>{t(item.title, {
+                    childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '', periodName: item.periodName
+                  })}</Heading4Regular> :
+                  <Heading4Bold>{t(item.title, {
+                    childName:
+                      activeChild.childName != null &&
+                        activeChild.childName != '' &&
+                        activeChild.childName != undefined
+                        ? activeChild.childName
+                        : '', periodName: item.periodName
+                  })}</Heading4Bold>
+                }
 
-            <ShiftFromTop5>
-              <Heading6>{
-                getCurrentChildAgeInMonths(
-                  t,
-                  DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
-                )}</Heading6>
-              <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
-            </ShiftFromTop5>
-            <ShiftFromTop10>
-              <Pressable onPress={() => gotoPage(item.type)}>
-                <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-              </Pressable></ShiftFromTop10>
-          </NotifiContent>
+                <ShiftFromTop5>
+                  <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
+                  <Heading6>{
+                    getCurrentChildAgeInMonths(
+                      t,
+                      DateTime.fromJSDate(new Date(item.notificationDate))
+                    )}</Heading6>
+                  {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
+                </ShiftFromTop5>
+                <ShiftFromTop10>
+                  <Pressable onPress={() => gotoPage(item.type)}>
+                    <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                  </Pressable></ShiftFromTop10>
+              </NotifiContent>
 
-          <NotifAction>
-            {(isDeleteEnabled === true) ? (
-              <FormOuterCheckbox
-                onPress={() => {
-                  //  console.log(item);
-                  setToggleCheckBox(!toggleCheckBox);
-                  props.onItemChecked(item, !toggleCheckBox)
-                }}>
-                <CheckboxItem>
-                  <View>
-                    {toggleCheckBox ? (
-                      <CheckboxActive>
-                        <Icon name="ic_tick" size={12} color="#000" />
-                      </CheckboxActive>
-                    ) : (
-                      <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                    )}
-                  </View>
-                </CheckboxItem>
-              </FormOuterCheckbox>
-            ) : (
-              <>
-                <Menu
-                  renderer={renderers.ContextMenu}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
-                  <MenuTrigger>
-                    <Icon
-                      style={{
-                        flex: 1,
-                        textAlign: 'right',
-                        alignSelf: 'center',
-                      }}
-                      name={'ic_kebabmenu'}
-                      size={25}
-                      color="#000"
-                    />
-                  </MenuTrigger>
-                  <MenuOptions
-                    customStyles={{
-                      optionsContainer: {
-                        marginTop: 30,
-                        borderRadius: 10,
-                        backgroundColor: primaryTintColor,
-                      },
-
-                      optionWrapper: {
-                        borderBottomWidth: 1,
-                        padding: 15,
-                      },
-
+              <NotifAction>
+                {(isDeleteEnabled === true) ? (
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      //  console.log(item);
+                      setToggleCheckBox(!toggleCheckBox);
+                      props.onItemChecked(item, !toggleCheckBox)
                     }}>
-                    <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                      <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                    </MenuOption>
-                    <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                      <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
-                    </MenuOption>
-                  </MenuOptions>
-                </Menu>
-              </>
-            )}
-          </NotifAction>
+                    <CheckboxItem>
+                      <View>
+                        {toggleCheckBox ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                ) : (
+                  <>
+                    <Menu
+                      renderer={renderers.ContextMenu}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onSelect={(value) =>
+                        console.log(`Selected number: ${value} ${item}`)
+                      }>
+                      <MenuTrigger>
+                        <Icon
+                          style={{
+                            flex: 1,
+                            textAlign: 'right',
+                            alignSelf: 'center',
+                          }}
+                          name={'ic_kebabmenu'}
+                          size={25}
+                          color="#000"
+                        />
+                      </MenuTrigger>
+                      <MenuOptions
+                        customStyles={{
+                          optionsContainer: {
+                            marginTop: 30,
+                            borderRadius: 10,
+                            backgroundColor: primaryTintColor,
+                          },
 
-        </FlexDirRowStart>
+                          optionWrapper: {
+                            borderBottomWidth: 1,
+                            padding: 15,
+                          },
 
-      </NotificationListContainer>
-      <DividerContainer><Divider></Divider></DividerContainer>
-    </>) : null
+                        }}>
+                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                          <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                        </MenuOption>
+                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                          <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                        </MenuOption>
+                      </MenuOptions>
+                    </Menu>
+                  </>
+                )}
+              </NotifAction>
+
+            </FlexDirRowStart>
+
+          </NotificationListContainer>
+          <DividerContainer><Divider></Divider></DividerContainer>
+        </>) : null)
   }
 
   const renderCDNotifcation = () => {
@@ -487,237 +523,268 @@ const NotificationItem = (props: any) => {
 
     // if today;s date childAgeInDays is less= than days_to then only cd2 diplay,
     if (item.title == 'cdNoti1') {
+      let toDay = DateTime.fromJSDate(new Date());
+      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+      // Alert.alert(fromDate + "fromDate")
+      // Alert.alert(childCrateDate + "childCrateDate");
+      // console.log(childCrateDate, "childCrateDate")
       return (
-        (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? item.isDeleted ? null : (<>
-          <NotificationListContainer>
-            <FlexDirRowStart>
-              <NotifIcon style={{
-                backgroundColor: cdColor
-              }}>
+        (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
 
-                <Icon
-                  name={geticonname(item.type)}
-                  size={20}
-                  color="#000"
+          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+          // return (
+          //   (item.days_from <= childAgeInDays && childCrateDate <= fromDate) ? item.isDeleted ? null : 
 
-                />
-              </NotifIcon>
-              <NotifiContent>
-                {item.isRead == true ?
-                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
-                }
-                <ShiftFromTop5>
-                  <Heading6>{
-                    getCurrentChildAgeInMonths(
-                      t,
-                      DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
-                    )}</Heading6>
-                  <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
-                </ShiftFromTop5>
-                <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item.type)}>
-                    <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-                  </Pressable></ShiftFromTop10>
-              </NotifiContent>
+          (<>
+            <NotificationListContainer>
+              <FlexDirRowStart>
+                <NotifIcon style={{
+                  backgroundColor: cdColor
+                }}>
 
-              <NotifAction>
-                {(isDeleteEnabled === true) ? (
-                  <FormOuterCheckbox
-                    onPress={() => {
-                      //  console.log(item);
-                      setToggleCheckBox(!toggleCheckBox);
-                      props.onItemChecked(item, !toggleCheckBox)
-                    }}>
-                    <CheckboxItem>
-                      <View>
-                        {toggleCheckBox ? (
-                          <CheckboxActive>
-                            <Icon name="ic_tick" size={12} color="#000" />
-                          </CheckboxActive>
-                        ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                        )}
-                      </View>
-                    </CheckboxItem>
-                  </FormOuterCheckbox>
-                ) : (
-                  <>
-                    <Menu
-                      renderer={renderers.ContextMenu}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
-                      <MenuTrigger>
-                        <Icon
-                          style={{
-                            flex: 1,
-                            textAlign: 'right',
-                            alignSelf: 'center',
-                          }}
-                          name={'ic_kebabmenu'}
-                          size={25}
-                          color="#000"
-                        />
-                      </MenuTrigger>
-                      <MenuOptions
-                        customStyles={{
-                          optionsContainer: {
-                            marginTop: 30,
-                            borderRadius: 10,
-                            backgroundColor: primaryTintColor,
-                          },
+                  <Icon
+                    name={geticonname(item.type)}
+                    size={20}
+                    color="#000"
 
-                          optionWrapper: {
-                            borderBottomWidth: 1,
-                            padding: 15,
-                          },
+                  />
+                </NotifIcon>
+                <NotifiContent>
+                  {item.isRead == true ?
+                    <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                    <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                  }
+                  <ShiftFromTop5>
+                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
+                    <Heading6>{
+                      getCurrentChildAgeInMonths(
+                        t,
+                        DateTime.fromJSDate(new Date(item.notificationDate))
+                      )}</Heading6>
+                    {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
+                  </ShiftFromTop5>
+                  <ShiftFromTop10>
+                    <Pressable onPress={() => gotoPage(item.type)}>
+                      <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                    </Pressable></ShiftFromTop10>
+                </NotifiContent>
 
-                        }}>
-                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                          <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                        </MenuOption>
-                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                          <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
-                        </MenuOption>
-                      </MenuOptions>
-                    </Menu>
-                  </>
-                )}
-              </NotifAction>
+                <NotifAction>
+                  {(isDeleteEnabled === true) ? (
+                    <FormOuterCheckbox
+                      onPress={() => {
+                        //  console.log(item);
+                        setToggleCheckBox(!toggleCheckBox);
+                        props.onItemChecked(item, !toggleCheckBox)
+                      }}>
+                      <CheckboxItem>
+                        <View>
+                          {toggleCheckBox ? (
+                            <CheckboxActive>
+                              <Icon name="ic_tick" size={12} color="#000" />
+                            </CheckboxActive>
+                          ) : (
+                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          )}
+                        </View>
+                      </CheckboxItem>
+                    </FormOuterCheckbox>
+                  ) : (
+                    <>
+                      <Menu
+                        renderer={renderers.ContextMenu}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                        onSelect={(value) =>
+                          console.log(`Selected number: ${value} ${item}`)
+                        }>
+                        <MenuTrigger>
+                          <Icon
+                            style={{
+                              flex: 1,
+                              textAlign: 'right',
+                              alignSelf: 'center',
+                            }}
+                            name={'ic_kebabmenu'}
+                            size={25}
+                            color="#000"
+                          />
+                        </MenuTrigger>
+                        <MenuOptions
+                          customStyles={{
+                            optionsContainer: {
+                              marginTop: 30,
+                              borderRadius: 10,
+                              backgroundColor: primaryTintColor,
+                            },
 
-            </FlexDirRowStart>
+                            optionWrapper: {
+                              borderBottomWidth: 1,
+                              padding: 15,
+                            },
 
-          </NotificationListContainer>
-          <DividerContainer><Divider></Divider></DividerContainer>
-        </>) : null)
+                          }}>
+                          <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                            <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                          </MenuOption>
+                          <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                            <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                          </MenuOption>
+                        </MenuOptions>
+                      </Menu>
+                    </>
+                  )}
+                </NotifAction>
+
+              </FlexDirRowStart>
+
+            </NotificationListContainer>
+            <DividerContainer><Divider></Divider></DividerContainer>
+          </>) : null)
     }
     else {
+      let toDay = DateTime.fromJSDate(new Date());
+      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+      // Alert.alert(fromDate + "fromDate")
+      // Alert.alert(childCrateDate + "childCrateDate");
+      // console.log(childCrateDate, "childCrateDate")
       return (
-        (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to) ? item.isDeleted ? null : (<>
-          <NotificationListContainer>
-            <FlexDirRowStart>
-              <NotifIcon style={{
-                backgroundColor: cdColor
-              }}>
+        (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
 
-                <Icon
-                  name={geticonname(item.type)}
-                  size={20}
-                  color="#000"
+          // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
+          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+          // return (
+          //   (item.days_from < childAgeInDays && childCrateDate <= fromDate) ? item.isDeleted ? null :
+          (<>
+            <NotificationListContainer>
+              <FlexDirRowStart>
+                <NotifIcon style={{
+                  backgroundColor: cdColor
+                }}>
 
-                />
-              </NotifIcon>
-              <NotifiContent>
-                {item.isRead == true ?
-                  <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
-                  <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
-                }
-                <ShiftFromTop5>
-                  <Heading6>{
-                    getCurrentChildAgeInMonths(
-                      t,
-                      DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_to })
-                    )}</Heading6>
-                  <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6>
-                </ShiftFromTop5>
-                <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item.type)}>
-                    <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
-                  </Pressable></ShiftFromTop10>
-              </NotifiContent>
+                  <Icon
+                    name={geticonname(item.type)}
+                    size={20}
+                    color="#000"
 
-              <NotifAction>
-                {(isDeleteEnabled === true) ? (
-                  <FormOuterCheckbox
-                    onPress={() => {
-                      //  console.log(item);
-                      setToggleCheckBox(!toggleCheckBox);
-                      props.onItemChecked(item, !toggleCheckBox)
-                    }}>
-                    <CheckboxItem>
-                      <View>
-                        {toggleCheckBox ? (
-                          <CheckboxActive>
-                            <Icon name="ic_tick" size={12} color="#000" />
-                          </CheckboxActive>
-                        ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                        )}
-                      </View>
-                    </CheckboxItem>
-                  </FormOuterCheckbox>
-                ) : (
-                  <>
-                    <Menu
-                      renderer={renderers.ContextMenu}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
-                      <MenuTrigger>
-                        <Icon
-                          style={{
-                            flex: 1,
-                            textAlign: 'right',
-                            alignSelf: 'center',
-                          }}
-                          name={'ic_kebabmenu'}
-                          size={25}
-                          color="#000"
-                        />
-                      </MenuTrigger>
-                      <MenuOptions
-                        customStyles={{
-                          optionsContainer: {
-                            marginTop: 30,
-                            borderRadius: 10,
-                            backgroundColor: primaryTintColor,
-                          },
+                  />
+                </NotifIcon>
+                <NotifiContent>
+                  {item.isRead == true ?
+                    <Heading4Regular>{t(item.title, { periodName: item.periodName })}</Heading4Regular> :
+                    <Heading4Bold>{t(item.title, { periodName: item.periodName })}</Heading4Bold>
+                  }
+                  <ShiftFromTop5>
+                    <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
+                    <Heading6>{
+                      getCurrentChildAgeInMonths(
+                        t,
+                        DateTime.fromJSDate(new Date(item.notificationDate))
+                      )}</Heading6>
+                    {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
+                  </ShiftFromTop5>
+                  <ShiftFromTop10>
+                    <Pressable onPress={() => gotoPage(item.type)}>
+                      <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
+                    </Pressable></ShiftFromTop10>
+                </NotifiContent>
 
-                          optionWrapper: {
-                            borderBottomWidth: 1,
-                            padding: 15,
-                          },
+                <NotifAction>
+                  {(isDeleteEnabled === true) ? (
+                    <FormOuterCheckbox
+                      onPress={() => {
+                        //  console.log(item);
+                        setToggleCheckBox(!toggleCheckBox);
+                        props.onItemChecked(item, !toggleCheckBox)
+                      }}>
+                      <CheckboxItem>
+                        <View>
+                          {toggleCheckBox ? (
+                            <CheckboxActive>
+                              <Icon name="ic_tick" size={12} color="#000" />
+                            </CheckboxActive>
+                          ) : (
+                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          )}
+                        </View>
+                      </CheckboxItem>
+                    </FormOuterCheckbox>
+                  ) : (
+                    <>
+                      <Menu
+                        renderer={renderers.ContextMenu}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
+                        onSelect={(value) =>
+                          console.log(`Selected number: ${value} ${item}`)
+                        }>
+                        <MenuTrigger>
+                          <Icon
+                            style={{
+                              flex: 1,
+                              textAlign: 'right',
+                              alignSelf: 'center',
+                            }}
+                            name={'ic_kebabmenu'}
+                            size={25}
+                            color="#000"
+                          />
+                        </MenuTrigger>
+                        <MenuOptions
+                          customStyles={{
+                            optionsContainer: {
+                              marginTop: 30,
+                              borderRadius: 10,
+                              backgroundColor: primaryTintColor,
+                            },
 
-                        }}>
-                        <MenuOption value={1} onSelect={() => markAsDelete(item)}>
-                          <Heading5Bold>{t('notiOption1')}</Heading5Bold>
-                        </MenuOption>
-                        <MenuOption value={2} onSelect={() => markAsRead(item)}>
-                          <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
-                        </MenuOption>
-                      </MenuOptions>
-                    </Menu>
-                  </>
-                )}
-              </NotifAction>
+                            optionWrapper: {
+                              borderBottomWidth: 1,
+                              padding: 15,
+                            },
 
-            </FlexDirRowStart>
+                          }}>
+                          <MenuOption value={1} onSelect={() => markAsDelete(item)}>
+                            <Heading5Bold>{t('notiOption1')}</Heading5Bold>
+                          </MenuOption>
+                          <MenuOption value={2} onSelect={() => markAsRead(item)}>
+                            <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
+                          </MenuOption>
+                        </MenuOptions>
+                      </Menu>
+                    </>
+                  )}
+                </NotifAction>
 
-          </NotificationListContainer>
-          <DividerContainer><Divider></Divider></DividerContainer>
-        </>) : null)
+              </FlexDirRowStart>
+
+            </NotificationListContainer>
+            <DividerContainer><Divider></Divider></DividerContainer>
+          </>) : null)
     }
   }
 
   const renderVCReminderNotifcation = () => {
-    const luxonLocale = useAppSelector(
-      (state: any) => state.selectedCountry.luxonLocale,
-    );
+
+    let toDay = DateTime.fromJSDate(new Date());
+    // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
+    // Alert.alert(fromDate + "fromDate")
+    // Alert.alert(childCrateDate + "childCrateDate");
+    // console.log(childCrateDate, "childCrateDate")
+    // return (
+    //   (toDay >= item.notificationDate && childCrateDate <= item.notificationDate) ? item.isDeleted ? null :
+
     console.log(item, childAgeInDays, "renderVCReminderNotifcation")
-    return (Math.floor(item.days_from) <= childAgeInDays ? item.isDeleted ? null : <>
+    return (toDay >= item.notificationDate ? item.isDeleted ? null : <>
       <NotificationListContainer>
         <FlexDirRowStart>
           <NotifIcon style={{
@@ -742,10 +809,11 @@ const NotificationItem = (props: any) => {
             }
 
             <ShiftFromTop5>
+              <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)}</Heading6>
               <Heading6>{
                 getCurrentChildAgeInMonths(
                   t,
-                  DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from })
+                  DateTime.fromJSDate(new Date(item.notificationDate))
                 )}</Heading6>
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
             </ShiftFromTop5>
