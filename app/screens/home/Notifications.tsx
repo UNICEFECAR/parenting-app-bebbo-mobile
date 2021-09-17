@@ -48,32 +48,47 @@ const Notifications = () => {
   );
 
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
+  console.log(allnotis, "allnotis");
   const calculateNotis = (currentChildNotis: any) => {
     if (currentChildNotis) {
+      console.log(currentChildNotis, "currentChildNotis")
       let currentChildallnoti: any = [];
-      currentChildNotis.gwcdnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.hcnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.vcnotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
-      currentChildNotis.reminderNotis.forEach((item) => {
-        let newItem = { ...item }
-        newItem['isChecked'] = false;
-        currentChildallnoti.push(newItem)
-      })
+      if (currentChildNotis.gwcdnotis) {
+        currentChildNotis.gwcdnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.hcnotis) {
+        currentChildNotis.hcnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.vcnotis) {
+        currentChildNotis.vcnotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      if (currentChildNotis.reminderNotis) {
+        currentChildNotis.reminderNotis.forEach((item) => {
+          let newItem = { ...item }
+          newItem['isChecked'] = false;
+          currentChildallnoti.push(newItem)
+        })
+      }
+      let toDay = DateTime.fromJSDate(new Date()).toMillis();
+      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
-      ).reverse();
+      ).reverse()
+        .filter((item) => {
+          return item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childCrateDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis())
+        });
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
     }
@@ -307,29 +322,14 @@ const Notifications = () => {
             <HeaderBabyMenu />
           </HeaderRowView>
           {isFutureDate(activeChild?.birthDate) ? <Heading4Center>{t('noDataTxt')}</Heading4Center> :
-            <ScrollView style={{ flex: 7, }}>
-              <NotificationsCategories onchange={onCategorychange} />
-              <View style={{ marginVertical: 0, paddingBottom: 10 }}>
-                {
+            notifications.length > 0 ?
+              <ScrollView style={{ flex: 7, }}>
+                <NotificationsCategories onchange={onCategorychange} />
+                <View style={{ marginVertical: 0, paddingBottom: 10 }}>
+                  {
 
-                  notifications.map((item, index) => {
-                    if (selectedCategories.length == 0) {
-                      return (
-                        <View key={index}>
-                          <NotificationItem
-                            item={item}
-                            itemIndex={index}
-                            isDeleteEnabled={isDeleteEnabled}
-                            onItemChecked={onNotiItemChecked}
-                            onItemReadMarked={onItemReadMarked}
-                            onItemDeleteMarked={onItemDeleteMarked}
-                            childAgeInDays={childAgeInDays}
-                            activeChild={activeChild}
-                          />
-                        </View>
-                      );
-                    } else {
-                      if (selectedCategories.includes(item.type)) {
+                    notifications.map((item, index) => {
+                      if (selectedCategories.length == 0) {
                         return (
                           <View key={index}>
                             <NotificationItem
@@ -344,12 +344,28 @@ const Notifications = () => {
                             />
                           </View>
                         );
+                      } else {
+                        if (selectedCategories.includes(item.type)) {
+                          return (
+                            <View key={index}>
+                              <NotificationItem
+                                item={item}
+                                itemIndex={index}
+                                isDeleteEnabled={isDeleteEnabled}
+                                onItemChecked={onNotiItemChecked}
+                                onItemReadMarked={onItemReadMarked}
+                                onItemDeleteMarked={onItemDeleteMarked}
+                                childAgeInDays={childAgeInDays}
+                                activeChild={activeChild}
+                              />
+                            </View>
+                          );
+                        }
                       }
-                    }
 
-                  })}
-              </View>
-            </ScrollView>}
+                    })}
+                </View>
+              </ScrollView> : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
           {
             isDeleteEnabled ? (
               <>
