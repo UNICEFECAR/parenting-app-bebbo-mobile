@@ -49,6 +49,7 @@ const PinnedChildDevData = useAppSelector(
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
 useFocusEffect(
   React.useCallback(() => { 
+    
     // console.log("selectedChildDevData changed--");
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activeChild.taxonomyData.id))[0];
     filteredData = {...filteredData,name:activeChild.taxonomyData.name};

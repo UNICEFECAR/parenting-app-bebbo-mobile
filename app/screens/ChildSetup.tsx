@@ -82,7 +82,7 @@ const ChildSetup = ({ navigation }: Props) => {
   );
 
   genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
-    return e.id != 59;
+    return e.unique_name!="both";
   });
   console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
