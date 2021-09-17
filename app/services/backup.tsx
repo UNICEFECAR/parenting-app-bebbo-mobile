@@ -160,12 +160,14 @@ class Backup {
                 if (oldChildrenData?.length > 0) {
                     const resolvedPromises = oldChildrenData.map(async (item: any) => {
                         console.log(item, "..item..");
+                        if(item.birthDate!=null && item.birthDate!=undefined){
                         const itemnew = await getChild(item, genders);
                         let childData: any = [];
                         childData.push(itemnew);
                         console.log(childData, "..childData..");
                         let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
                         console.log(createresult, "..createresult");
+                        }
                         // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
                         //console.log(createresult,".....createresult...");
                     });
