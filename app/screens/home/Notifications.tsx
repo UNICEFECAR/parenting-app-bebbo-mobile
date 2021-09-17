@@ -173,13 +173,15 @@ const Notifications = () => {
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
-      const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
-      newItem.isRead = (newItem.isRead == true) ? false : true;
-      delete newItem.isChecked;
-      let allremindenotis = [...currentChildNotis.reminderNotis]
-      allremindenotis[notitoUpdateIndex] = newItem;
-      currentChildNotis.reminderNotis = allremindenotis
+      if (currentChildNotis.reminderNotis) {
+        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+        let newItem: any = { ...notiItem };
+        newItem.isRead = (newItem.isRead == true) ? false : true;
+        delete newItem.isChecked;
+        let allremindenotis = [...currentChildNotis.reminderNotis]
+        allremindenotis[notitoUpdateIndex] = newItem;
+        currentChildNotis.reminderNotis = allremindenotis
+      }
     }
     allNotifications[currentChildIndex] = currentChildNotis
     console.log(allNotifications, "allNotifications")
@@ -219,13 +221,15 @@ const Notifications = () => {
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
-      const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-      let newItem: any = { ...notiItem };
-      newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
-      delete newItem.isChecked;
-      let allremindenotis = [...currentChildNotis.reminderNotis]
-      allremindenotis[notitoUpdateIndex] = newItem;
-      currentChildNotis.reminderNotis = allremindenotis
+      if (currentChildNotis.reminderNotis) {
+        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+        let newItem: any = { ...notiItem };
+        newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
+        delete newItem.isChecked;
+        let allremindenotis = [...currentChildNotis.reminderNotis]
+        allremindenotis[notitoUpdateIndex] = newItem;
+        currentChildNotis.reminderNotis = allremindenotis
+      }
     }
     allNotifications[currentChildIndex] = currentChildNotis
     console.log(allNotifications, "allNotifications")
@@ -273,13 +277,15 @@ const Notifications = () => {
         allhcnotis[notitoUpdateIndex] = newItem;
         currentChildNotis.hcnotis = allhcnotis
       } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
-        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
-        let newItem: any = { ...notiItem };
-        newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
-        delete newItem.isChecked;
-        let allremindenotis = [...currentChildNotis.reminderNotis]
-        allremindenotis[notitoUpdateIndex] = newItem;
-        currentChildNotis.reminderNotis = allremindenotis
+        if (currentChildNotis.reminderNotis) {
+          const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
+          let newItem: any = { ...notiItem };
+          newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
+          delete newItem.isChecked;
+          let allremindenotis = [...currentChildNotis.reminderNotis]
+          allremindenotis[notitoUpdateIndex] = newItem;
+          currentChildNotis.reminderNotis = allremindenotis
+        }
       }
     })
     allNotifications[currentChildIndex] = currentChildNotis

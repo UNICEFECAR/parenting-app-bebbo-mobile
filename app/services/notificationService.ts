@@ -255,27 +255,29 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     console.log(vcNotis, "vcNotis")
     //sort by days_from => find days_from period id to
     const currentvcPeriodNoti = vcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-    console.log(currentvcPeriodNoti, "currentvcPeriodNoti", currentvcPeriodNoti[0].growth_period);
+    // console.log(currentvcPeriodNoti, "currentvcPeriodNoti", currentvcPeriodNoti[0].growth_period);
 
 
     let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
     console.log(hcNotis, "hcNotis")
     const currenthcPeriodNoti = hcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
-    console.log(currenthcPeriodNoti, "currenthcPeriodNoti", currenthcPeriodNoti[0].growth_period);
+    // console.log(currenthcPeriodNoti, "currenthcPeriodNoti", currenthcPeriodNoti[0].growth_period);
 
     let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child)
-    console.log(currentgwPeriodNoti, "currentgwPeriodNoti", child.taxonomyData.id);
+    // console.log(currentgwPeriodNoti, "currentgwPeriodNoti", child.taxonomyData.id);
 
     // {lastperiodid:child.taxonomyData.id,notis:currentgwPeriodNoti}
-    let notis = {
-      lastgwperiodid: child.taxonomyData.id, gwcdnotis: currentgwPeriodNoti,
-      lastvcperiodid: currentvcPeriodNoti[0].growth_period, vcnotis: currentvcPeriodNoti,
-      lasthcperiodid: currenthcPeriodNoti[0].growth_period, hcnotis: currenthcPeriodNoti,
-    }
-    console.log(notis, "newCalcNotis")
-    // show current period's notifications if child was created after birth date (expecting child)
+    if (currentvcPeriodNoti && currenthcPeriodNoti && currentgwPeriodNoti) {
+      let notis = {
+        lastgwperiodid: child.taxonomyData.id, gwcdnotis: currentgwPeriodNoti,
+        lastvcperiodid: currentvcPeriodNoti[0].growth_period, vcnotis: currentvcPeriodNoti,
+        lasthcperiodid: currenthcPeriodNoti[0].growth_period, hcnotis: currenthcPeriodNoti,
+      }
+      console.log(notis, "newCalcNotis")
+      // show current period's notifications if child was created after birth date (expecting child)
 
-    return notis
+      return notis
+    }
   }
   else {
     console.log('childcreated but child is yet to born');
