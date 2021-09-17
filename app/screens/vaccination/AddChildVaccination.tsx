@@ -712,11 +712,12 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 </ShiftFromTop15>
               </>
             ) : null}
-            <KeyboardAwareScrollView>
-              <FormContainer>
-                <FormInputText>
-                  <Heading3>{t('vcDoctorRemark')}</Heading3>
-                </FormInputText>
+
+            <FormContainer>
+              <FormInputText>
+                <Heading3>{t('vcDoctorRemark')}</Heading3>
+              </FormInputText>
+              <KeyboardAwareScrollView>
                 <TextAreaBox>
                   <TextInput
                     autoCapitalize="none"
@@ -731,8 +732,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
 
                   />
                 </TextAreaBox>
-              </FormContainer>
-            </KeyboardAwareScrollView>
+              </KeyboardAwareScrollView>
+            </FormContainer>
+
           </MainContainer>
         </ScrollView>
         <ButtonContainer>

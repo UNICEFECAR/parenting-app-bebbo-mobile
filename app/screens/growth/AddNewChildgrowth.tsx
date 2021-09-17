@@ -758,11 +758,12 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 </RadioBoxContainer>
               </FormContainer>
 
-              <KeyboardAwareScrollView>
-                <FormContainer>
-                  <FormInputText>
-                    {t('growthScreenenterDoctorRemarkText')}
-                  </FormInputText>
+
+              <FormContainer>
+                <FormInputText>
+                  {t('growthScreenenterDoctorRemarkText')}
+                </FormInputText>
+                <KeyboardAwareScrollView>
                   <TextAreaBox>
                     <TextInput
                       autoCapitalize="none"
@@ -778,8 +779,9 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-                </FormContainer>
-              </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView>
+              </FormContainer>
+
               <ShiftFromTopBottom10>
                 <Text>{t('growthScreennewGrowthBottomText')}</Text>
               </ShiftFromTopBottom10>
