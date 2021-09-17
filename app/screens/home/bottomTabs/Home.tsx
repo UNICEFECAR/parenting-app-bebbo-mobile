@@ -376,7 +376,7 @@ const Home = ({ route, navigation }: Props) => {
           <FlexCol> 
           {
         (netInfoval && netInfoval.isConnected == false) ?
-          <Heading3Regular>{t('noInternet')}</Heading3Regular> : null
+          <Heading3Regular style={{textAlign:'center',padding:10}}>{t('noInternet')}</Heading3Regular> : null
       }
             <BabyNotification />
             <ChildInfo
