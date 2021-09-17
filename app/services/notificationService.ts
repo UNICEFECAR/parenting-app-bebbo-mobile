@@ -292,22 +292,40 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
   let noti: any[] = [];
-  child.reminders.forEach((element: any, index: number) => {
+  if (child?.reminders && child.reminders?.length > 0) {
+    child.reminders?.forEach((element: any, index: number) => {
 
-    if (element.reminderType == 'vaccine') {
-      // const childvcReminderDateInDays = getCurrentChildAgeInDays(
-      const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
-      console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
-      if (reminderNotis.length > 0) {
-        //find hc and vc reminder in existing notis by type
-        // if hc exists, add vc ,and vica versa 
-        // or add one that exists
-        const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'vcr')
-        console.log(reminderexist, "reminderexist");
-        //get only past reminders  till today and filter by child age
-        if (reminderexist) {
-          noti.push(reminderexist)
+      if (element.reminderType == 'vaccine') {
+        // const childvcReminderDateInDays = getCurrentChildAgeInDays(
+        const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+        console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
+        if (reminderNotis) {
+          //find hc and vc reminder in existing notis by type
+          // if hc exists, add vc ,and vica versa 
+          // or add one that exists
+          const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'vcr')
+          console.log(reminderexist, "reminderexist");
+          //get only past reminders  till today and filter by child age
+          if (reminderexist) {
+            noti.push(reminderexist)
+          } else {
+            if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+              noti.push({
+                "days_from": Math.floor(childvcReminderDateInDays),
+                "days_to": Math.floor(childvcReminderDateInDays),
+                "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+                "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+                "checkinField": "days_from",
+                "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
+                "isRead": false,
+                "isDeleted": false,
+                "growth_period": element.reminderTime,
+                "periodName": element.reminderDate,
+              })
+            }
+          }
         } else {
+          console.log('in else for generating notis for reminder')
           if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
             noti.push({
               "days_from": Math.floor(childvcReminderDateInDays),
@@ -324,36 +342,36 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
           }
         }
       } else {
-        console.log('in else for generating notis for reminder')
-        if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
-          noti.push({
-            "days_from": Math.floor(childvcReminderDateInDays),
-            "days_to": Math.floor(childvcReminderDateInDays),
-            "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
-            "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
-            "checkinField": "days_from",
-            "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
-            "isRead": false,
-            "isDeleted": false,
-            "growth_period": element.reminderTime,
-            "periodName": element.reminderDate,
-          })
-        }
-      }
-    } else {
-      // const childvcReminderDateInDays = getCurrentChildAgeInDays(
-      const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
-      console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
-      if (reminderNotis) {
-        //find hc and vc reminder in existing notis by type
-        // if hc exists, add vc ,and vica versa 
-        // or add one that exists
-        const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'hcr')
-        console.log(reminderexist, "reminderexist");
-        //get only past reminders  till today and filter by child age
-        if (reminderexist) {
-          noti.push(reminderexist)
+        // const childvcReminderDateInDays = getCurrentChildAgeInDays(
+        const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
+        console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
+        if (reminderNotis) {
+          //find hc and vc reminder in existing notis by type
+          // if hc exists, add vc ,and vica versa 
+          // or add one that exists
+          const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'hcr')
+          console.log(reminderexist, "reminderexist");
+          //get only past reminders  till today and filter by child age
+          if (reminderexist) {
+            noti.push(reminderexist)
+          } else {
+            if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
+              noti.push({
+                "days_from": Math.floor(childvcReminderDateInDays),
+                "days_to": Math.floor(childvcReminderDateInDays),
+                "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+                "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+                "checkinField": "days_from",
+                "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
+                "isRead": false,
+                "isDeleted": false,
+                "growth_period": element.reminderTime,
+                "periodName": element.reminderDate,
+              })
+            }
+          }
         } else {
+          console.log('in else for generating notis for reminder')
           if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
             noti.push({
               "days_from": Math.floor(childvcReminderDateInDays),
@@ -369,26 +387,10 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
             })
           }
         }
-      } else {
-        console.log('in else for generating notis for reminder')
-        if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
-          noti.push({
-            "days_from": Math.floor(childvcReminderDateInDays),
-            "days_to": Math.floor(childvcReminderDateInDays),
-            "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
-            "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
-            "checkinField": "days_from",
-            "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
-            "isRead": false,
-            "isDeleted": false,
-            "growth_period": element.reminderTime,
-            "periodName": element.reminderDate,
-          })
-        }
       }
-    }
 
-  });
+    });
+  }
   let sortednoti = noti.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
