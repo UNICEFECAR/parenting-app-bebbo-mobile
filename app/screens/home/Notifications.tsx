@@ -71,9 +71,11 @@ const Notifications = () => {
         newItem['isChecked'] = false;
         currentChildallnoti.push(newItem)
       })
+      let toDay = DateTime.fromJSDate(new Date());
+      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt));
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
-      ).reverse();
+      ).reverse().filter((item) => item.isRead == false && item.isDeleted == false && (toDay >= item.notificationDate && childCrateDate <= item.notificationDate));;
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
     }
@@ -307,29 +309,14 @@ const Notifications = () => {
             <HeaderBabyMenu />
           </HeaderRowView>
           {isFutureDate(activeChild?.birthDate) ? <Heading4Center>{t('noDataTxt')}</Heading4Center> :
-            <ScrollView style={{ flex: 7, }}>
-              <NotificationsCategories onchange={onCategorychange} />
-              <View style={{ marginVertical: 0, paddingBottom: 10 }}>
-                {
+            notifications.length > 0 ?
+              <ScrollView style={{ flex: 7, }}>
+                <NotificationsCategories onchange={onCategorychange} />
+                <View style={{ marginVertical: 0, paddingBottom: 10 }}>
+                  {
 
-                  notifications.map((item, index) => {
-                    if (selectedCategories.length == 0) {
-                      return (
-                        <View key={index}>
-                          <NotificationItem
-                            item={item}
-                            itemIndex={index}
-                            isDeleteEnabled={isDeleteEnabled}
-                            onItemChecked={onNotiItemChecked}
-                            onItemReadMarked={onItemReadMarked}
-                            onItemDeleteMarked={onItemDeleteMarked}
-                            childAgeInDays={childAgeInDays}
-                            activeChild={activeChild}
-                          />
-                        </View>
-                      );
-                    } else {
-                      if (selectedCategories.includes(item.type)) {
+                    notifications.map((item, index) => {
+                      if (selectedCategories.length == 0) {
                         return (
                           <View key={index}>
                             <NotificationItem
@@ -344,12 +331,28 @@ const Notifications = () => {
                             />
                           </View>
                         );
+                      } else {
+                        if (selectedCategories.includes(item.type)) {
+                          return (
+                            <View key={index}>
+                              <NotificationItem
+                                item={item}
+                                itemIndex={index}
+                                isDeleteEnabled={isDeleteEnabled}
+                                onItemChecked={onNotiItemChecked}
+                                onItemReadMarked={onItemReadMarked}
+                                onItemDeleteMarked={onItemDeleteMarked}
+                                childAgeInDays={childAgeInDays}
+                                activeChild={activeChild}
+                              />
+                            </View>
+                          );
+                        }
                       }
-                    }
 
-                  })}
-              </View>
-            </ScrollView>}
+                    })}
+                </View>
+              </ScrollView> : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
           {
             isDeleteEnabled ? (
               <>
