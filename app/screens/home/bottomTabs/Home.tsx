@@ -263,8 +263,18 @@ const Home = ({ route, navigation }: Props) => {
                     allhcnotis.push(item)
                   })
                 }
+                let allreminderNotis: any = []
+                let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
+                if (notiExist.hcnotis) {
+                  notiExist.hcnotis?.forEach((item) => {
+                    allreminderNotis.push(item)
+                  })
+                }
+                reminderNotis.reverse().forEach((item) => {
+                  allreminderNotis.push(item)
+                })
                 console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
-                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: reminderNotis })
+                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
               } else {
 
@@ -275,7 +285,17 @@ const Home = ({ route, navigation }: Props) => {
                 // const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
                 // let reminderNotis = getChildReminderNotifications(child);
                 // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: notiExist.reminderNotis })
+                let allreminderNotis: any = []
+                let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
+                if (notiExist.hcnotis) {
+                  notiExist.hcnotis?.forEach((item) => {
+                    allreminderNotis.push(item)
+                  })
+                }
+                reminderNotis.reverse().forEach((item) => {
+                  allreminderNotis.push(item)
+                })
+                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
               }
             }
           } else {
