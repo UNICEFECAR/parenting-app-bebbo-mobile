@@ -8,9 +8,9 @@ import {
   ViewStyle
 } from 'react-native';
 
-const {width} = Dimensions.get('screen');
-const {height} = Dimensions.get('screen');
-
+const { width } = Dimensions.get('screen');
+const { height } = Dimensions.get('screen');
+console.log(width, "ScreenWidth")
 type Props = {
   /**
    * Container style
@@ -107,7 +107,7 @@ type Props = {
    * On value change
    */
   onChangeValue: Function;
-  initialValue:number
+  initialValue: number
 };
 interface State {
   value: number;
@@ -144,6 +144,11 @@ class Ruler extends React.Component<Props, State> {
       props.width -
       props.segmentWidth +
       (props.maximum - props.minimum) * this.snapSegment;
+    console.log(this.rulerWidth, "rulerWidth");
+    console.log(props.segmentWidth, "segmentWidth");
+    console.log(props.segmentSpacing, "segmentSpacing");
+    console.log(this.snapSegment, "snapSegment");
+    console.log(props, "props")
   }
   // static getDerivedStateFromProps(props, state) {
   //   console.log(props,state)
@@ -165,7 +170,7 @@ class Ruler extends React.Component<Props, State> {
   // shouldComponentUpdate(nextProps, nextState){
   //   // console.log(nextProps,"nextProps")
   //   // console.log(nextState,"nextState")
-   
+
   //   if(nextProps.initialValue != nextState.value)
   //   {
   //     // if (this.scrollViewRef && this.scrollViewRef.current) {
@@ -174,7 +179,7 @@ class Ruler extends React.Component<Props, State> {
   //         y: 0,
   //         animated: true
   //       });
-        
+
   //       nextProps.onChangeValue(nextProps.initialValue)
   //     // }
   //     this.setState({value:nextProps.initialValue})
@@ -185,35 +190,38 @@ class Ruler extends React.Component<Props, State> {
   // }
 
   componentDidMount() {
-    const {minimum,initialValue,onChangeValue} = this.props;
-  // console.log(initialValue);
-      if (this.scrollViewRef && this.scrollViewRef.current) {
-        this.scrollViewRef.current?.scrollTo({
-          x: (initialValue - minimum) * this.snapSegment,
-          y: 0,
-          animated: true
-        });
-        this.setState({
-          value: initialValue,
-        });
-        onChangeValue(initialValue)
-      }
-  
+    const { minimum, initialValue, onChangeValue } = this.props;
+    // console.log(initialValue);
+    if (this.scrollViewRef && this.scrollViewRef.current) {
+      this.scrollViewRef.current?.scrollTo({
+        x: (initialValue - minimum) * this.snapSegment,
+        y: 0,
+        animated: true
+      });
+      this.setState({
+        value: initialValue,
+      });
+      onChangeValue(initialValue)
+    }
+
     // Create a listener
-    this.scrollListener = this.state.scrollX.addListener(({value}) => {
+    this.scrollListener = this.state.scrollX.addListener(({ value }) => {
+      // console.log(value, "fromScroll", this.snapSegment, minimum);
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
       });
+
+      // onChangeValue(Math.round(value / this.snapSegment) + minimum)
       // }
     });
   }
 
   componentWillUnmount() {
     // Remove the above listener
-    if(this.scrollListener){
+    if (this.scrollListener) {
       this.state.scrollX.removeListener(this.scrollListener);
     }
-   
+
   }
 
   renderRuler(data: number[]) {
@@ -252,25 +260,25 @@ class Ruler extends React.Component<Props, State> {
         {data.map((i, index) => {
           return (
 
+            <View
+              key={index}
+              style={{ flexDirection: 'column-reverse' }}>
               <View
-                key={index}
-                style={{flexDirection: 'column-reverse'}}>
-                <View
-                  style={{
-                    backgroundColor: i % step === 0 ? stepColor : normalColor,
-                    height: i % step === 0 ? stepHeight : normalHeight,
-                    width: segmentWidth,
-                    marginRight: segmentSpacing,
-                  }}
-                />
-                {i % step === Number(0.0) ? (
-                  <View style={{width: 40, marginLeft: -25}}>
-                    <Text style={{textAlign: 'center', fontSize: 11}}>
-                      {Number(stepPreFix * i).toFixed(2)}
-                    </Text>
-                  </View>
-                ) : null}
-              </View>
+                style={{
+                  backgroundColor: i % step === 0 ? stepColor : normalColor,
+                  height: i % step === 0 ? stepHeight : normalHeight,
+                  width: segmentWidth,
+                  marginRight: segmentSpacing,
+                }}
+              />
+              {i % step === Number(0.0) ? (
+                <View style={{ width: 40, marginLeft: -25 }}>
+                  <Text style={{ textAlign: 'center', fontSize: 11 }}>
+                    {Number(stepPreFix * i).toFixed(2)}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
           );
         })}
 
@@ -312,7 +320,7 @@ class Ruler extends React.Component<Props, State> {
             height,
             backgroundColor,
             position: 'relative',
-            transform: vertical ? [{rotate: '90deg'}] : undefined,
+            transform: vertical ? [{ rotate: '90deg' }] : undefined,
           },
         ]}>
         {/* Number && Unit */}
@@ -328,7 +336,7 @@ class Ruler extends React.Component<Props, State> {
           pointerEvents="none">
 
           {/* Indicator */}
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <View
               style={{
                 height: indicatorHeight,
@@ -360,20 +368,35 @@ class Ruler extends React.Component<Props, State> {
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           snapToInterval={this.snapSegment}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {x: this.state.scrollX},
+          onScroll={
+            // (event) => {
+            //   console.log(event.nativeEvent.contentOffset, "onScroll");
+            Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: { x: this.state.scrollX },
+                  },
                 },
-              },
-            ],
-            {useNativeDriver: false},
-          )}
-          onMomentumScrollEnd={() => onChangeValue(this.state.value)}>
+              ],
+              { useNativeDriver: true },
+            )
+          }
+          // }
+          // onScrollEndDrag={() => {
+
+          // }}
+          onMomentumScrollEnd={() => {
+            // console.log(this.state.value, this.state.scrollX, "onMomentumScrollEnd");
+            onChangeValue(this.state.value);
+            this.scrollViewRef.current?.scrollTo({
+              x: this.state.value * this.snapSegment,
+              y: 0,
+            });
+          }}>
           {this.renderRuler(data)}
         </Animated.ScrollView>
-      </SafeAreaView>
+      </SafeAreaView >
     );
   }
 }
@@ -382,7 +405,7 @@ Ruler.defaultProps = {
   vertical: false,
   width,
   height: height * 0.23,
-  onChangeValue: () => {},
+  onChangeValue: () => { },
   minimum: 0,
   maximum: 100,
   segmentWidth: 2,
@@ -398,7 +421,7 @@ Ruler.defaultProps = {
   normalColor: '#999999',
   normalHeight: 20,
   backgroundColor: '#FFFFFF',
-  initialValue:0,
+  initialValue: 0,
 };
 
 export default Ruler;

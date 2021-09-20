@@ -1,4 +1,3 @@
-import { taxonomydata } from '@assets/translations/appOfflineData/taxonomies';
 import { DateTime } from "luxon";
 import { useAppSelector } from "../../App";
 
@@ -11,16 +10,16 @@ export const getAllVaccinePeriods = () => {
   // console.log(activeChild.measures, "activeChild.measures filter by didChildGetVaccines");
   //filter measures by didChildGetVaccines
   const vaccineMeasures = activeChild?.measures.filter((item) => item.didChildGetVaccines == true);
-//  console.log(vaccineMeasures, "vaccineMeasures filter by didChildGetVaccines");
+  //  console.log(vaccineMeasures, "vaccineMeasures filter by didChildGetVaccines");
   let measuredVaccines: any[] = [];
-  vaccineMeasures.forEach((measure,index) => {
-    const vaccinesForAmeasure =  (measure.vaccineIds || measure.vaccineIds!=''|| measure.vaccineIds!=null) ?JSON.parse(measure.vaccineIds): [];
+  vaccineMeasures.forEach((measure, index) => {
+    const vaccinesForAmeasure = (measure.vaccineIds || measure.vaccineIds != '' || measure.vaccineIds != null) ? JSON.parse(measure.vaccineIds) : [];
     //  console.log(vaccinesForAmeasure,"vaccinesForAmeasure");
-     if(vaccinesForAmeasure){
-    vaccinesForAmeasure.forEach((vaccine,innerindex) => {
-      measuredVaccines.push({uuid: vaccine.uuid,measurementDate:measure.measurementDate});
-    });
-  }
+    if (vaccinesForAmeasure) {
+      vaccinesForAmeasure.forEach((vaccine, innerindex) => {
+        measuredVaccines.push({ uuid: vaccine.uuid, measurementDate: measure.measurementDate });
+      });
+    }
   });
   // console.log(measuredVaccines,"measuredVaccines");
   // const getMeasureInfoForVaccine = (uuid :number=56276) => {
@@ -38,10 +37,10 @@ export const getAllVaccinePeriods = () => {
   // console.log(childAgeIndays, 'childAgeIndays');
   const taxonomy = useAppSelector(
     (state: any) =>
-      (state.utilsData.taxonomy?.allTaxonomyData!="" ?JSON.parse(state.utilsData.taxonomy?.allTaxonomyData): {}),
+      (state.utilsData.taxonomy?.allTaxonomyData != "" ? JSON.parse(state.utilsData.taxonomy?.allTaxonomyData) : {}),
   );
   // console.log(taxonomy,taxonomy.growth_period);
-  const allGrowthPeriods =taxonomy.growth_period
+  const allGrowthPeriods = taxonomy.growth_period
   // const allGrowthPeriods = taxonomydata['en'][0].allData.growth_period;
   // console.log(allGrowthPeriods, "taxonomydata_growth_period");
   const getVaccineInfo = (periodID) => {
@@ -57,7 +56,7 @@ export const getAllVaccinePeriods = () => {
     // const checkIfVacineMeasured = isVaccineMeasured(item.uuid);
     // console.log(checkIfVacineMeasured, "checkIfVacineMeasured");
     obj[item.growth_period] = obj[item.growth_period] || [];
-    obj[item.growth_period].push({ id: item.id,uuid: item.uuid,title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
+    obj[item.growth_period].push({ id: item.id, uuid: item.uuid, title: item.title, pinned_article: item.pinned_article, created_at: item.created_at, updated_at: item.updated_at });
     return obj;
   }, {});
   let groupsForPeriods: any = Object.keys(group_to_growthPeriod).map(function (key) {
@@ -101,31 +100,32 @@ export const getAllVaccinePeriods = () => {
     .reverse();
   // logic to add current period to upcomingPeriods and remove it from previousPeriods
   let currentPeriod;
-  if(previousPeriods.length>0){
-  currentPeriod = previousPeriods[0];
-  upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
-  previousPeriods.shift();
+  if (previousPeriods.length > 0) {
+    currentPeriod = previousPeriods[0];
+    upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
+    previousPeriods.shift();
   }
-  let overDuePreviousVCcount,doneVCcount,totalUpcomingVaccines,totalPreviousVaccines;
-  if(upcomingPeriods?.length > 0) {
+  let overDuePreviousVCcount, doneVCcount, totalUpcomingVaccines, totalPreviousVaccines;
+  if (upcomingPeriods?.length > 0) {
     totalUpcomingVaccines = upcomingPeriods?.map((item) => {
-      return item?.vaccines.length;
+      return item?.vaccines.filter((item) => {
+        return item?.isMeasured == false;
+      }).length;
     }).reduce((accumulator, current) => {
-        return accumulator + current;
+      return accumulator + current;
     });
   }
-  if(previousPeriods?.length > 0){
+  if (previousPeriods?.length > 0) {
     totalPreviousVaccines = previousPeriods?.map((item) => {
       return item?.vaccines.length;
     }).reduce((accumulator, current) => {
-        return accumulator + current;
+      return accumulator + current;
     });
   }
   // console.log(totalPreviousVaccines, totalUpcomingVaccines, "totalPrevVaccines");
   // console.log(sortedlocalgrowthPeriod,"growth_period_uniqueData");
-  
-  if(sortedGroupsForPeriods?.length > 0)
-  {
+
+  if (sortedGroupsForPeriods?.length > 0) {
     doneVCcount = sortedGroupsForPeriods.map((item) => {
       return item.vaccines.filter((item) => {
         return item.isMeasured;
@@ -134,8 +134,7 @@ export const getAllVaccinePeriods = () => {
       return accumulator + current;
     });
   }
-  if(previousPeriods?.length > 0)
-  {
+  if (previousPeriods?.length > 0) {
     overDuePreviousVCcount = previousPeriods.map((item) => {
       return item.vaccines.filter((item) => {
         return !item.isMeasured;
@@ -145,5 +144,5 @@ export const getAllVaccinePeriods = () => {
     });
   }
   // console.log(doneVCcount,overDueVCcount,"doneVCcount");
-  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines, currentPeriod,overDuePreviousVCcount,doneVCcount };
+  return { upcomingPeriods, previousPeriods, sortedGroupsForPeriods, totalPreviousVaccines, totalUpcomingVaccines, currentPeriod, overDuePreviousVCcount, doneVCcount };
 }
