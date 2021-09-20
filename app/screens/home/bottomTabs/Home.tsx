@@ -264,15 +264,15 @@ const Home = ({ route, navigation }: Props) => {
                   })
                 }
                 let allreminderNotis: any = []
-                let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
-                if (notiExist.hcnotis) {
-                  notiExist.hcnotis?.forEach((item) => {
+                if (notiExist.reminderNotis) {
+                  notiExist.reminderNotis?.forEach((item) => {
                     allreminderNotis.push(item)
                   })
                 }
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
                 })
+                // remove duplicates by key of growth_period,periodName from reminderNotis
                 console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
                 allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
