@@ -25,6 +25,14 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+                green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+                 blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+                alpha:1.0]
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -47,10 +55,29 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  
+  
+  
+  
   Dynamic *t = [Dynamic new];
    UIView *animationView = [t createAnimationViewWithRootView:rootView lottieName:@"splash"]; // change lottieName to your lottie files name
-   animationView.backgroundColor = [UIColor whiteColor]; // change backgroundColor
+//   animationView.backgroundColor = [UIColor whiteColor]; // change backgroundColor
 
+  CAGradientLayer *gradient = [CAGradientLayer layer];
+  gradient.startPoint = CGPointMake(0.0, 0.5);
+  gradient.endPoint = CGPointMake(1.0, 0.5);
+  gradient.frame = animationView.bounds;
+  gradient.locations = @[@0.0 , @0.3,@0.5,@0.7,@1.0];
+  gradient.colors = @[
+    (id) UIColorFromRGB(0x2B2F84).CGColor,
+    (id)UIColorFromRGB(0x27378B).CGColor,
+    (id)UIColorFromRGB(0x1F50A0).CGColor,
+    (id)UIColorFromRGB(0x1277C1).CGColor,
+    (id)UIColorFromRGB(0x00AEEF).CGColor,
+                      ];
+  [animationView.layer insertSublayer:gradient atIndex:0];
+
+  //#2B2F84, #27378B, #1F50A0, #1277C1, #00AEEF
    // register LottieSplashScreen to RNSplashScreen
    [RNSplashScreen showLottieSplash:animationView inRootView:rootView];
 
