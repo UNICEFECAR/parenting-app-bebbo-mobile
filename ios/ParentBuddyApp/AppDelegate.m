@@ -62,20 +62,27 @@ static void InitializeFlipper(UIApplication *application) {
   Dynamic *t = [Dynamic new];
    UIView *animationView = [t createAnimationViewWithRootView:rootView lottieName:@"splash"]; // change lottieName to your lottie files name
 //   animationView.backgroundColor = [UIColor whiteColor]; // change backgroundColor
-
-  CAGradientLayer *gradient = [CAGradientLayer layer];
-  gradient.startPoint = CGPointMake(0.0, 0.5);
-  gradient.endPoint = CGPointMake(1.0, 0.5);
-  gradient.frame = animationView.bounds;
-  gradient.locations = @[@0.0 , @0.3,@0.5,@0.7,@1.0];
-  gradient.colors = @[
-    (id) UIColorFromRGB(0x2B2F84).CGColor,
-    (id)UIColorFromRGB(0x27378B).CGColor,
-    (id)UIColorFromRGB(0x1F50A0).CGColor,
-    (id)UIColorFromRGB(0x1277C1).CGColor,
-    (id)UIColorFromRGB(0x00AEEF).CGColor,
-                      ];
-  [animationView.layer insertSublayer:gradient atIndex:0];
+ // animationView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"splashimg"]];
+  UIImageView *img = [[UIImageView alloc]initWithFrame:rootView.bounds];
+  [img setImage:[UIImage imageNamed:@"splashimg"]];
+  [animationView addSubview:img];
+  [animationView sendSubviewToBack:img];
+//  animationView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 2, 2);
+//  CAGradientLayer *gradient = [CAGradientLayer layer];
+//  gradient.startPoint = CGPointMake(0.0, 0.5);
+//  gradient.endPoint = CGPointMake(1.0, 0.5);
+//  gradient.frame = animationView.bounds;
+//  gradient.locations = @[@0.0,@0.2,@0.25,@0.45,@0.65,@0.93,@1.0];
+//  gradient.colors = @[
+//    (id) UIColorFromRGB(0x2B2F84).CGColor,
+//    (id) UIColorFromRGB(0x2B2F84).CGColor,la
+//    (id)UIColorFromRGB(0x27378B).CGColor,
+//    (id)UIColorFromRGB(0x1F50A0).CGColor,
+//    (id)UIColorFromRGB(0x1277C1).CGColor,
+//    (id)UIColorFromRGB(0x00AEEF).CGColor,
+//    (id)UIColorFromRGB(0x00AEEF).CGColor,
+//                      ];
+//  [animationView.layer insertSublayer:gradient atIndex:0];
 
   //#2B2F84, #27378B, #1F50A0, #1277C1, #00AEEF
    // register LottieSplashScreen to RNSplashScreen
