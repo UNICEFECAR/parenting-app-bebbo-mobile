@@ -273,7 +273,7 @@ const Home = ({ route, navigation }: Props) => {
                   allreminderNotis.push(item)
                 })
                 // remove duplicates by key of growth_period,periodName from reminderNotis
-                console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
+                console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
                 allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
               } else {
@@ -283,12 +283,12 @@ const Home = ({ route, navigation }: Props) => {
                 //clear notification which are already generated, 
                 //generate for new notifications
                 // const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
-                // let reminderNotis = getChildReminderNotifications(child);
+
                 // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
                 let allreminderNotis: any = []
                 let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
-                if (notiExist.hcnotis) {
-                  notiExist.hcnotis?.forEach((item) => {
+                if (notiExist.reminderNotis) {
+                  notiExist.reminderNotis?.forEach((item) => {
                     allreminderNotis.push(item)
                   })
                 }
@@ -304,10 +304,10 @@ const Home = ({ route, navigation }: Props) => {
             if (!isFutureDate(child?.birthDate)) {
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
               console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-              let reminderNotis = getChildReminderNotifications(child);
+              let reminderNotis = getChildReminderNotifications(child, []);
               console.log(reminderNotis, "childNotis")
               console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-              allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis })
+              allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
             } else {
               //for expecting child no notifications
             }

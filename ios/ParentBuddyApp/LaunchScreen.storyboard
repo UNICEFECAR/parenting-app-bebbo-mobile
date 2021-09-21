@@ -25,7 +25,7 @@
                         <constraints>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="TDR-us-0HT" secondAttribute="bottom" id="4yw-Zx-SU5"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="TDR-us-0HT" secondAttribute="trailing" id="AD5-fs-1di"/>
-                            <constraint firstItem="TDR-us-0HT" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="In0-hV-c3l"/>
+                            <constraint firstItem="TDR-us-0HT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="In0-hV-c3l"/>
                             <constraint firstItem="TDR-us-0HT" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="hVT-T5-H1u"/>
                         </constraints>
                     </view>
