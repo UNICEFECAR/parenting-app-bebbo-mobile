@@ -35,7 +35,7 @@ import { Alert, Text } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect } from '../../redux/reducers/localizationSlice';
+import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
 import { formatStringDate } from '../../services/Utils';
 
@@ -209,6 +209,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     }else {
       dispatch(onLocalizationSelect(route.params));
       analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
+      if(userIsOnboarded == true){
+        dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
+      }
         navigation.navigate('LoadingScreen', {
           apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
           prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
