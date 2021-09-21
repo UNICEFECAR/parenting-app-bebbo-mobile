@@ -13,6 +13,17 @@ export const HeaderIconView = styled.View`
   padding: 10px 15px;
   justify-content: center;
 `;
+
+export const HeaderIconPress = styled.Pressable`
+
+padding:7px 0px 4px;
+width:32px;
+height:30px;
+margin-left:-4px;
+margin-right:-4px
+align-items:center;
+`;
+
 export const HeaderTitleView = styled.View`
   flex: 4;
   padding: 10px;
