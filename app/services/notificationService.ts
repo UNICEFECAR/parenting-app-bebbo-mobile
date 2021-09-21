@@ -301,7 +301,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
         // const childvcReminderDateInDays = getCurrentChildAgeInDays(
         const childvcReminderDateInDays = DateTime.fromJSDate(new Date(element.reminderDate)).diff(DateTime.fromJSDate(new Date(child.birthDate)), "days").days;
         console.log(childvcReminderDateInDays, "childvcReminderDateInDays");
-        if (reminderNotis) {
+        if (reminderNotis.length > 0) {
           //find hc and vc reminder in existing notis by type
           // if hc exists, add vc ,and vica versa 
           // or add one that exists
