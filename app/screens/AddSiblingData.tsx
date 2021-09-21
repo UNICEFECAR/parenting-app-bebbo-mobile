@@ -1,4 +1,5 @@
 
+import { both_child_gender } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
@@ -55,7 +56,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   );
   
   genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
-    return e.unique_name!="both";
+    return e.id!=both_child_gender;
   });
   console.log(genders,"..genders..");
   let initialData: any = {};
@@ -94,7 +95,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(insertData,"..insertData");
-    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null);
+    addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
 }
 const [gender, setGender] = React.useState(
   childData != null ? childData.gender : 0,
