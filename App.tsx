@@ -7,20 +7,19 @@
 
 // declare const global: {HermesInternal: null | {}};
 
+import { ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { Action, ThunkAction } from '@reduxjs/toolkit';
 import React from 'react';
 import {
-  ActivityIndicator,
-  Pressable,
-  SafeAreaView,
-  Text,
+  ActivityIndicator, Text,
   View
 } from 'react-native';
 import ErrorBoundary from 'react-native-error-boundary';
 import 'react-native-gesture-handler';
 import Orientation from 'react-native-orientation-locker';
 import { MenuProvider } from 'react-native-popup-menu';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 import {
   Provider,
@@ -56,12 +55,12 @@ const CustomFallback = (props: { error: Error; resetError: Function }) => {
     <View>
       <Text>Something happened!</Text>
       <Text>{props.error.toString()}</Text>
-      <Pressable
+      <ButtonPrimary
         onPress={() => {
           props.resetError();
         }}>
-        <Text>{'Try again'} </Text>
-      </Pressable>
+        <ButtonText>{('Try again')}</ButtonText>
+      </ButtonPrimary>
     </View>
   );
 }
@@ -80,9 +79,9 @@ const App = () => {
             <PersistGate
               loading={<><ActivityIndicator size="large" color="#0000ff" /></>}
               persistor={persistor}>
-              <SafeAreaView style={{ flex: 1 }}>
+              <SafeAreaProvider style={{ flex: 1 }}>
                 <AppNavigation />
-              </SafeAreaView>
+              </SafeAreaProvider>
             </PersistGate>
           </Provider>
         </MenuProvider>
