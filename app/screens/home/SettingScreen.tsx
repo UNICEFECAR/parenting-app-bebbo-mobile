@@ -1,5 +1,7 @@
-import { appConfig, backUpPath } from '@assets/translations/appOfflineData/apiConstants';
+import { DEVELOPMENT_NOTIFICATION, GROWTH_NOTIFICATION, VACCINE_HEALTHCHECKUP_NOTIFICATION } from '@assets/data/firebaseEvents';
+import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonModal,
   ButtonPrimary,
@@ -37,7 +39,7 @@ import {
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -56,25 +58,20 @@ import {
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, View } from 'react-native';
+import { Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
+import RNFS from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { localization } from '../../assets/data/localization';
+import useNetInfoHook from '../../customHooks/useNetInfoHook';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
+import { toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
 import { backup } from '../../services/backup';
 import { formatStringDate } from '../../services/Utils';
-import RNFS from 'react-native-fs';
-import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
-import { addPrefixForAndroidPaths, apiJsonDataGet, getAge, setActiveChild } from '../../services/childCRUD';
-import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
-import { ConfigSettingsEntity, ConfigSettingsSchema } from '../../database/schema/ConfigSettingsSchema';
-import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
-import { setAllChildData } from '../../redux/reducers/childSlice';
-import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
-import useNetInfoHook from '../../customHooks/useNetInfoHook';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -100,6 +97,15 @@ const SettingScreen = (props: any) => {
   const thumbTrueColor = primaryColor;
   const thumbFalseColor = '#9598BE';
   const dispatch = useAppDispatch();
+  const growthEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.growthEnabled),
+  );
+  const developmentEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.developmentEnabled),
+  );
+  const vchcEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.vchcEnabled),
+  );
   const child_age = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -109,12 +115,12 @@ const SettingScreen = (props: any) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
   const toggleSwitchVal = useAppSelector((state: any) =>
-  state.bandWidthData?.lowbandWidth
-    ? state.bandWidthData.lowbandWidth
-    : false,
-);
-console.log(toggleSwitchVal,"..toggleSwitchVal..");
-  const {t, i18n} = useTranslation();
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
+  console.log(toggleSwitchVal, "..toggleSwitchVal..");
+  const { t, i18n } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isDataSaverEnabled, setIsDataSaverEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
@@ -128,11 +134,12 @@ console.log(toggleSwitchVal,"..toggleSwitchVal..");
   const netInfoval = useNetInfoHook();
   const weeklyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.weeklyDownloadDate,
-);
-const monthlyDownloadDate = useAppSelector(
+  );
+  const monthlyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.monthlyDownloadDate,
-);
-const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
+  );
+
+  const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
   const apiJsonData = [
     {
       apiEndpoint: appConfig.sponsors,
@@ -237,93 +244,127 @@ const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloa
       saveinDB: true,
     },
     {
-        apiEndpoint: appConfig.standardDeviation,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
+      apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
     }
-  ];  
-  const importAllData=async ()=>{
+  ];
+  const importAllData = async () => {
     Alert.alert(t('importText'), t("dataConsistency"),
-    [
-      {
-        text: t("retryCancelPopUpBtn"),
-        onPress: () =>{
-  
+      [
+        {
+          text: t("retryCancelPopUpBtn"),
+          onPress: () => {
+
+          },
+          style: "cancel"
         },
-        style: "cancel"
-      },
-      { text:t('continueCountryLang'), onPress: async () => {
-        console.log(userRealmCommon.realm?.path,"..path")
-    // this.setState({ isImportRunning: true, });
-    setIsImportRunning(true);
-    const importResponse = await backup.import(props.navigation,languageCode,dispatch,child_age,genders);
-    console.log(importResponse,"..importResponse");
-    // this.setState({ isImportRunning: false, });
-    setIsImportRunning(false);
-      }}
-    ]
-  );
-}
+        {
+          text: t('continueCountryLang'), onPress: async () => {
+            console.log(userRealmCommon.realm?.path, "..path")
+            // this.setState({ isImportRunning: true, });
+            setIsImportRunning(true);
+            const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
+            console.log(importResponse, "..importResponse");
+            // this.setState({ isImportRunning: false, });
+            setIsImportRunning(false);
+          }
+        }
+      ]
+    );
+  }
 
-const exportFile=async ()=>{
-  //need to add code.
-  // Alert.alert('Coming Soon');
-  setIsExportRunning(true);
-  var path = RNFS.DocumentDirectoryPath + '/my.backup';
-  const userRealmPath = userRealmCommon.realm?.path;
-  console.log(userRealmPath, "..userRealmPath")
-  if (!userRealmPath) return false;
+  const exportFile = async () => {
+    //need to add code.
+    // Alert.alert('Coming Soon');
+    setIsExportRunning(true);
+    var path = RNFS.DocumentDirectoryPath + '/my.backup';
+    const userRealmPath = userRealmCommon.realm?.path;
+    console.log(userRealmPath, "..userRealmPath")
+    if (!userRealmPath) return false;
 
-  // Get realmContent
-  const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-  console.log(realmContent, "..11realmContent")
+    // Get realmContent
+    const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+    console.log(realmContent, "..11realmContent")
 
-// write the file
-  RNFS.writeFile(path, realmContent, 'base64')
-  .then((success) => {
-    setIsExportRunning(false);
-    Alert.alert('',t('settingExportSuccess'));
-  })
-  .catch((err) => {
-    setIsExportRunning(false);
-    Alert.alert('',t('settingExportError'))
-  });
-}
-const exportToDrive=async ()=>{
-  Alert.alert(t('exportText'),t("dataConsistency"),
-  [
-    {
-      text: t("retryCancelPopUpBtn"),
-      onPress: () =>{
+    // write the file
+    RNFS.writeFile(path, realmContent, 'base64')
+      .then((success) => {
+        setIsExportRunning(false);
+        Alert.alert('', t('settingExportSuccess'));
+      })
+      .catch((err) => {
+        setIsExportRunning(false);
+        Alert.alert('', t('settingExportError'))
+      });
+  }
+  const exportToDrive = async () => {
+    Alert.alert(t('exportText'), t("dataConsistency"),
+      [
+        {
+          text: t("retryCancelPopUpBtn"),
+          onPress: () => {
 
-      },
-      style: "cancel"
-    },
-    { text:t('continueCountryLang'), onPress: async () => {
-      setIsExportRunning(true);
-      const exportIsSuccess = await backup.export();
-      setIsExportRunning(false);
-      if (!exportIsSuccess) {
-        Alert.alert('',t('settingExportError'))
-        // ToastAndroid.show(t('settingExportError'), 6000);
-      } else {
-        Alert.alert('',t('settingExportSuccess'));
-        
-      };
-    }}
-  ]
-);
- // actionSheetRef.current?.setModalVisible(false); 
-}
-const exportAllData=async ()=>{
-  
-  actionSheetRef.current?.setModalVisible(); 
- 
-};
+          },
+          style: "cancel"
+        },
+        {
+          text: t('continueCountryLang'), onPress: async () => {
+            setIsExportRunning(true);
+            const exportIsSuccess = await backup.export();
+            setIsExportRunning(false);
+            if (!exportIsSuccess) {
+              Alert.alert('', t('settingExportError'))
+              // ToastAndroid.show(t('settingExportError'), 6000);
+            } else {
+              Alert.alert('', t('settingExportSuccess'));
+
+            };
+          }
+        }
+      ]
+    );
+    // actionSheetRef.current?.setModalVisible(false); 
+  }
+  const exportAllData = async () => {
+
+    actionSheetRef.current?.setModalVisible();
+
+  };
   const toggleSwitch = () => {
-    //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
-    setIsEnabled((previousState) => !previousState);
+    //   // //
+    console.log(growthEnabledFlag, "..growthEnabledFlag")
+    console.log(developmentEnabledFlag, "..developmentEnabledFlag")
+    console.log(vchcEnabledFlag, "..vchcEnabledFlag")
+    // setTimeout(() => {
+    if (vchcEnabledFlag == true && growthEnabledFlag == true && developmentEnabledFlag == true) {
+      setIsEnabled(true);
+    } else {
+      setIsEnabled(false);
+    }
+    // }
+    //   , 1000);
+
+  }
+  const toggleAllNotis = () => {
+    if (isEnabled == true) {
+      let obj = { key: 'growthEnabled', value: false };
+      dispatch(toggleNotificationFlags(obj));
+      let obj1 = { key: 'developmentEnabled', value: false };
+      dispatch(toggleNotificationFlags(obj1));
+      let obj2 = { key: 'vchcEnabled', value: false };
+      dispatch(toggleNotificationFlags(obj2));
+      setIsEnabled(false);
+    } else {
+      let obj = { key: 'growthEnabled', value: true };
+      dispatch(toggleNotificationFlags(obj));
+      let obj1 = { key: 'developmentEnabled', value: true };
+      dispatch(toggleNotificationFlags(obj1));
+      let obj2 = { key: 'vchcEnabled', value: true };
+      dispatch(toggleNotificationFlags(obj2));
+      setIsEnabled(true);
+    }
   }
   const toggleDataSaverSwitch = () => {
     dispatch(onNetworkStateChange(!toggleSwitchVal));
@@ -340,22 +381,23 @@ const exportAllData=async ()=>{
     // }
     // console.log(toggleSwitchVal,"..toggleSwitchVal on dispatch..")
     // //  analytics().logEvent(DEVELOPMENT_NOTIFICATION) //GROWTH_NOTIFICATION //VACCINE_HEALTHCHECKUP_NOTIFICATION
-    
+
   }
- 
+
   const downloadUpdatedData = () => {
     Alert.alert(t('downloadUpdatePopupTitle'), t('downloadUpdatePopupText'),
       [
         {
           text: t('downloadUpdateCancelPopUpBtn'),
-          onPress: () =>{
+          onPress: () => {
 
           },
           style: "cancel"
         },
-        { text:t('downloadUpdateContinueBtn'), onPress: async () => {
+        {
+          text: t('downloadUpdateContinueBtn'), onPress: async () => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: apiJsonData, 
+              apiJsonData: apiJsonData,
               prevPage: 'DownloadUpdate'
             });
           }
@@ -363,7 +405,7 @@ const exportAllData=async ()=>{
       ]
     );
   }
-   
+
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
@@ -380,7 +422,8 @@ const exportAllData=async ()=>{
       (language: any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
-    console.log(toggleSwitchVal,"..useeffect..")
+    console.log(toggleSwitchVal, "..useeffect..");
+    toggleSwitch();
     // setIsDataSaverEnabled(toggleSwitchVal);
     // console.log(selectedCountry,selectedLanguage);
   }, []);
@@ -394,7 +437,7 @@ const exportAllData=async ()=>{
           textColor="#FFF"
         />
 
-        <ScrollView style={{flex: 1}}>
+        <ScrollView style={{ flex: 1 }}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -402,10 +445,10 @@ const exportAllData=async ()=>{
             <ShiftFromBottom10>
               <FDirRowStart>
                 <Switch
-                  trackColor={{false: trackFalseColor, true: trackTrueColor}}
+                  trackColor={{ false: trackFalseColor, true: trackTrueColor }}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
+                  onValueChange={toggleAllNotis}
                   value={isEnabled}
                 />
                 <Flex1>
@@ -421,16 +464,25 @@ const exportAllData=async ()=>{
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      setIsEnabled(!isEnabled);
+                      let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      if (vchcEnabledFlag == true && (growthEnabledFlag == true ? false : true) == true && developmentEnabledFlag == true) {
+                        setIsEnabled(true);
+                      } else {
+                        setIsEnabled(false);
+                      }
+                      // toggleSwitch();
+                      analytics().logEvent(GROWTH_NOTIFICATION)
+                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
-                        {isEnabled ? (
+                        {growthEnabledFlag ? (
                           <CheckboxActive>
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -456,16 +508,25 @@ const exportAllData=async ()=>{
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      setIsEnabled(!isEnabled);
+                      let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      if (vchcEnabledFlag == true && (growthEnabledFlag) == true && (developmentEnabledFlag == true ? false : true) == true) {
+                        setIsEnabled(true);
+                      } else {
+                        setIsEnabled(false);
+                      }
+                      // toggleSwitch();
+                      analytics().logEvent(DEVELOPMENT_NOTIFICATION)
+                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
-                        {isEnabled ? (
+                        {developmentEnabledFlag ? (
                           <CheckboxActive>
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -491,16 +552,25 @@ const exportAllData=async ()=>{
                 <FDirRowStart>
                   <FormOuterCheckbox
                     onPress={() => {
-                      setIsEnabled(!isEnabled);
+                      let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      if ((vchcEnabledFlag == true ? false : true) == true && (growthEnabledFlag) == true && (developmentEnabledFlag) == true) {
+                        setIsEnabled(true);
+                      } else {
+                        setIsEnabled(false);
+                      }
+                      // toggleSwitch();
+                      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION)
+                      // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
                       <View>
-                        {isEnabled ? (
+                        {vchcEnabledFlag ? (
                           <CheckboxActive>
                             <Icon name="ic_tick" size={12} color="#000" />
                           </CheckboxActive>
                         ) : (
-                          <Checkbox style={{borderWidth: 1}}></Checkbox>
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
                         )}
                       </View>
                     </CheckboxItem>
@@ -534,7 +604,7 @@ const exportAllData=async ()=>{
             <ShiftFromBottom10>
               <FDirRowStart>
                 <Switch
-                  trackColor={{false: trackFalseColor, true: trackTrueColor}}
+                  trackColor={{ false: trackFalseColor, true: trackTrueColor }}
                   thumbColor={toggleSwitchVal ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleDataSaverSwitch}
@@ -556,11 +626,11 @@ const exportAllData=async ()=>{
             <Heading4>{t('settingScreendownldSubHeaderText')}</Heading4>
             <Heading6>
               {t('settingScreendownldlast', {
-                downloadDate: formatStringDate(new Date(lastUpdatedDate),luxonLocale),
+                downloadDate: formatStringDate(new Date(lastUpdatedDate), luxonLocale),
               })}
             </Heading6>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => {downloadUpdatedData()}}>
+              <ButtonPrimary onPress={() => { downloadUpdatedData() }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
@@ -569,7 +639,7 @@ const exportAllData=async ()=>{
               <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
             </ShiftFromTop20>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => {}}>
+              <ButtonPrimary onPress={() => { }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
@@ -579,11 +649,10 @@ const exportAllData=async ()=>{
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable disabled={!netInfoval.isConnected} onPress={() => 
-                  {
-                    console.log("icon clicked");
-                    setModalVisible(true)
-                  }}>
+                <Pressable disabled={!netInfoval.isConnected} onPress={() => {
+                  console.log("icon clicked");
+                  setModalVisible(true)
+                }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </Pressable>
               </FlexDirRowSpace>
@@ -616,30 +685,30 @@ const exportAllData=async ()=>{
             </SettingHeading>
             <ShiftFromTopBottom10>
               <ButtonPrimary
-               disabled={isExportRunning || isImportRunning}
-               onPress={() => { exportAllData(); }}>
+                disabled={isExportRunning || isImportRunning}
+                onPress={() => { exportAllData(); }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenexportBtnText')}</ButtonText>
               </ButtonPrimary>
               {/* {isExportRunning && (
                                         <ActivityIndicator animating={true} />
                                     )} */}
-              
+
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
-              <ButtonPrimary  disabled={isExportRunning || isImportRunning} onPress={() => {
-                if(netInfoval && netInfoval.isConnected==true){
-                importAllData()
+              <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={() => {
+                if (netInfoval && netInfoval.isConnected == true) {
+                  importAllData()
                 }
-                else{
-                  Alert.alert('',t('noInternet'));
+                else {
+                  Alert.alert('', t('noInternet'));
                 }
               }}>
-              <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
+                <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
               {/* {isImportRunning && (
               <ActivityIndicator animating={true}/>
               )} */}
-               {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
+              {/* <View style={{ flexDirection: 'row', width: '85%', alignSelf: 'center' }}>
                                     <UserRealmConsumer>
                                         {(userRealmContext: UserRealmContextValue) => (
                                             <RoundedButton
@@ -655,7 +724,7 @@ const exportAllData=async ()=>{
                                     
                                 </View> */}
             </ShiftFromTopBottom10>
-            <OverlayLoadingComponent loading={(isExportRunning || isImportRunning) ? true: false} />   
+            <OverlayLoadingComponent loading={(isExportRunning || isImportRunning) ? true : false} />
           </MainContainer>
 
           <ActionSheet ref={actionSheetRef}>
@@ -666,45 +735,43 @@ const exportAllData=async ()=>{
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
-                  <Pressable onPress={() => 
-                  {
-                    console.log("icon clicked");
-                    //if(netInfoval && netInfoval.isConnected==true){
+                    <Pressable onPress={() => {
+                      console.log("icon clicked");
+                      //if(netInfoval && netInfoval.isConnected==true){
                       exportFile()
                       // }
                       // else{
                       //   Alert.alert('',t('noInternet'));
                       // }
-                  }}>
-                    <Icon name="ic_sb_shareapp" size={30} color="#000" />
-                    <ShiftFromTopBottom5>
-                      <Heading4Regular>
-                        {t('settingScreenshareBtntxt')}
-                      </Heading4Regular>
-                    </ShiftFromTopBottom5>
+                    }}>
+                      <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreenshareBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
                     </Pressable>
                   </SettingOptions>
                   <SettingOptions>
-                  <Pressable onPress={() => 
-                  {
-                    console.log("icon clicked");
-                    actionSheetRef.current?.setModalVisible(false); 
-                    if(netInfoval && netInfoval.isConnected==true){
-                      exportToDrive();
+                    <Pressable onPress={() => {
+                      console.log("icon clicked");
+                      actionSheetRef.current?.setModalVisible(false);
+                      if (netInfoval && netInfoval.isConnected == true) {
+                        exportToDrive();
                       }
-                      else{
-                        Alert.alert('',t('noInternet'));
+                      else {
+                        Alert.alert('', t('noInternet'));
                       }
-                   
-                  }}>
-                    <VectorImage
-                      source={require('@assets/svg/ic_gdrive.svg')}
-                    />
-                    <ShiftFromTopBottom5>
-                      <Heading4Regular>
-                        {t('settingScreengdriveBtntxt')}
-                      </Heading4Regular>
-                    </ShiftFromTopBottom5>
+
+                    }}>
+                      <VectorImage
+                        source={require('@assets/svg/ic_gdrive.svg')}
+                      />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreengdriveBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
                     </Pressable>
                   </SettingOptions>
                 </FDirRow>
@@ -750,10 +817,10 @@ const exportAllData=async ()=>{
                     //   routes: [{name: 'Localization'}],
                     // });
                     props.navigation.navigate('Localization',
-                    {
-                      screen:'CountrySelection',
-                      params:{country:null,language:null}
-                    });
+                      {
+                        screen: 'CountrySelection',
+                        params: { country: null, language: null }
+                      });
                     // props.navigation.navigate('Localization')
                   }}>
                   <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
