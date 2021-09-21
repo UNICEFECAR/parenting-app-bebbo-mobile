@@ -253,11 +253,11 @@ const CustomDrawerContent = ({ navigation }: any) => {
               }
               let allreminderNotis: any = []
               let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
-              if (notiExist.reminderNotis) {
-                notiExist.reminderNotis?.forEach((item) => {
-                  allreminderNotis.push(item)
-                })
-              }
+              // if (notiExist.reminderNotis) {
+              //   notiExist.reminderNotis?.forEach((item) => {
+              //     allreminderNotis.push(item)
+              //   })
+              // }
               reminderNotis.reverse().forEach((item) => {
                 allreminderNotis.push(item)
               })
@@ -271,11 +271,11 @@ const CustomDrawerContent = ({ navigation }: any) => {
               //generate for new notifications // append reminders
               let allreminderNotis: any = []
               let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
-              if (notiExist.reminderNotis) {
-                notiExist.reminderNotis?.forEach((item) => {
-                  allreminderNotis.push(item)
-                })
-              }
+              // if (notiExist.reminderNotis) {
+              //   notiExist.reminderNotis?.forEach((item) => {
+              //     allreminderNotis.push(item)
+              //   })
+              // }
               reminderNotis.reverse().forEach((item) => {
                 allreminderNotis.push(item)
               })
