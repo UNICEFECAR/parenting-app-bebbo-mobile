@@ -171,7 +171,7 @@ class Backup {
                         // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
                         //console.log(createresult,".....createresult...");
                     });
-                     let notiFlagObj = { key: 'generateNotifications', value: true };
+                    let notiFlagObj = { key: 'generateNotifications', value: true };
                     dispatch(setInfoModalOpened(notiFlagObj));
                     await Promise.all(resolvedPromises).then(async item => {
                         console.log(userRealmCommon.realm?.schemaVersion, "..new userRealmCommon schema version.");
@@ -187,6 +187,7 @@ class Backup {
                         let allChildren = await getAllChildren(dispatch, child_age,1);
                         console.log(allChildren, "..allChildren..")
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+                        console.log(childId,"..childId..")
                         let allChildrenList: Child[] = [];
                         this.closeImportedRealm();
                             try {
@@ -195,35 +196,67 @@ class Backup {
                                 console.log(error);
                             }
                         if (allChildren.length > 0) {
-                            allChildren.map((child: any) => {
-                                if (childId?.length > 0) {
-                                    childId = childId[0].value;
-                                    if (childId === child.uuid) {
-                                        setActiveChild(langCode, child.uuid, dispatch, child_age);
-                                        navigation.navigate('LoadingScreen', {
-                                            apiJsonData: [],
-                                            prevPage: 'ImportScreen'
-                                        });
-                                        return "Imported";
-                                    }
-                                    else {
-                                        setActiveChild(langCode, '', dispatch, child_age);
-                                        navigation.navigate('LoadingScreen', {
-                                            apiJsonData: [],
-                                            prevPage: 'ImportScreen'
-                                        });
-                                        return "Imported";
-                                    }
-                                }
-                                else {
-                                    setActiveChild(langCode, '', dispatch, child_age);
-                                    navigation.navigate('LoadingScreen', {
-                                        apiJsonData: [],
-                                        prevPage: 'ImportScreen'
-                                    });
-                                    return "Imported";
-                                }
-                            });
+                            if (childId?.length > 0) {
+                            childId = childId[0].value;
+                            let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                            if(activeChildData.length>0){
+                                const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
+                                console.log(activeChildnew,"..activeset")
+                                navigation.navigate('LoadingScreen', {
+                                    apiJsonData: [],
+                                    prevPage: 'ImportScreen'
+                                });
+                                return "Imported";
+                            }
+                            else{
+                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                                console.log(activeChildnew,"..activeset")
+                                navigation.navigate('LoadingScreen', {
+                                    apiJsonData: [],
+                                    prevPage: 'ImportScreen'
+                                });
+                                return "Imported";
+                            }
+                            }
+                            else{
+                                const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                                console.log(activeChildnew,"..activeset")
+                                navigation.navigate('LoadingScreen', {
+                                    apiJsonData: [],
+                                    prevPage: 'ImportScreen'
+                                });
+                                return "Imported";
+                            }
+     
+                            // allChildren.map((child: any) => {
+                            //     if (childId?.length > 0) {
+                            //         childId = childId[0].value;
+                            //         if (childId === child.uuid) {
+                            //             setActiveChild(langCode, child.uuid, dispatch, child_age);
+                            //             navigation.navigate('LoadingScreen', {
+                            //                 apiJsonData: [],
+                            //                 prevPage: 'ImportScreen'
+                            //             });
+                            //             return "Imported";
+                            //         }
+                            //         else {
+                            //             setActiveChild(langCode, '', dispatch, child_age);
+                            //             navigation.navigate('LoadingScreen', {
+                            //                 apiJsonData: [],
+                            //                 prevPage: 'ImportScreen'
+                            //             });
+                            //             return "Imported";
+                            //         }
+                            //     }
+                            //     else {
+                            //         setActiveChild(langCode, '', dispatch, child_age);
+                            //         navigation.navigate('LoadingScreen', {
+                            //             apiJsonData: [],
+                            //             prevPage: 'ImportScreen'
+                            //         });
+                            //         return "Imported";
+                            //     }
+                            // });
                         }
                         else {
                             return new Error('No Data');
