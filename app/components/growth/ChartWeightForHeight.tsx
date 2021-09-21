@@ -1,3 +1,4 @@
+import { boy_child_gender, girl_child_gender, height_growth_type, weight_growth_type } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -12,7 +13,6 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
-import { getIdSetByUniqueName } from '../../services/Utils';
 import GrowthChart, { chartTypes } from './GrowthChart';
 const ChartWeightForHeight = () => {
   const navigation = useNavigation();
@@ -20,14 +20,14 @@ const ChartWeightForHeight = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  let genders = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
-  );
-  let growth_type= useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
-  );
+  // let genders = useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+  // );
+  // let growth_type= useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
+  // );
   const fullScreenChart = (chartType, obj) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
     navigation.navigate('ChartFullScreen', {
@@ -47,11 +47,11 @@ const ChartWeightForHeight = () => {
   );
   let obj: any;
   let standardDeviation: any;
-  if (activeChild?.gender == getIdSetByUniqueName(genders,"boy") || activeChild?.gender == '') {
+  if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
     // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == getIdSetByUniqueName(growth_type,"height_for_weight") && item.child_gender == getIdSetByUniqueName(genders,"boy"),
+      (item) => item.growth_type == height_growth_type && item.child_gender == boy_child_gender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'weight');
@@ -59,7 +59,7 @@ const ChartWeightForHeight = () => {
     //girl
     // standardDeviation = require('../../assets/translations/appOfflineData/girlstandardDeviation.json');
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type ==  getIdSetByUniqueName(growth_type,"height_for_weight") && item.child_gender == getIdSetByUniqueName(genders,"girl"),
+      (item) => item.growth_type == height_growth_type && item.child_gender == girl_child_gender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'weight');
