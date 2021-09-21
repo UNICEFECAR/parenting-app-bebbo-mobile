@@ -305,11 +305,23 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
           //find hc and vc reminder in existing notis by type
           // if hc exists, add vc ,and vica versa 
           // or add one that exists
-          const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'vcr')
+          const reminderexist = reminderNotis.find(item => item.uuid == element.uuid && item.type == 'vcr')
           console.log(reminderexist, "reminderexist");
           //get only past reminders  till today and filter by child age
           if (reminderexist) {
-            noti.push(reminderexist)
+            noti.push({
+              "days_from": Math.floor(childvcReminderDateInDays),
+              "days_to": Math.floor(childvcReminderDateInDays),
+              "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+              "checkinField": "days_from",
+              "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
+              "isRead": element.reminderDate == reminderexist.periodName ? reminderexist.isRead : false,
+              "isDeleted": element.reminderDate == reminderexist.periodName ? reminderexist.isDeleted : false,
+              "growth_period": element.reminderTime,
+              "periodName": element.reminderDate,
+              "uuid": element.uuid,
+            })
           } else {
             if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
               noti.push({
@@ -323,6 +335,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
                 "isDeleted": false,
                 "growth_period": element.reminderTime,
                 "periodName": element.reminderDate,
+                "uuid": element.uuid,
               })
             }
           }
@@ -340,6 +353,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
               "isDeleted": false,
               "growth_period": element.reminderTime,
               "periodName": element.reminderDate,
+              "uuid": element.uuid,
             })
           }
         }
@@ -351,11 +365,23 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
           //find hc and vc reminder in existing notis by type
           // if hc exists, add vc ,and vica versa 
           // or add one that exists
-          const reminderexist = reminderNotis.find(item => item.periodName == element.reminderDate && item.growth_period == element.reminderTime && item.type == 'hcr')
+          const reminderexist = reminderNotis.find(item => item.uuid == element.uuid && item.type == 'hcr')
           console.log(reminderexist, "reminderexist");
           //get only past reminders  till today and filter by child age
           if (reminderexist) {
-            noti.push(reminderexist)
+            noti.push({
+              "days_from": Math.floor(childvcReminderDateInDays),
+              "days_to": Math.floor(childvcReminderDateInDays),
+              "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
+              "checkinField": "days_from",
+              "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
+              "isRead": element.reminderDate == reminderexist.periodName ? reminderexist.isRead : false,
+              "isDeleted": element.reminderDate == reminderexist.periodName ? reminderexist.isDeleted : false,
+              "growth_period": element.reminderTime,
+              "periodName": element.reminderDate,
+              "uuid": element.uuid,
+            })
           } else {
             if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
               noti.push({
@@ -369,6 +395,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
                 "isDeleted": false,
                 "growth_period": element.reminderTime,
                 "periodName": element.reminderDate,
+                "uuid": element.uuid,
               })
             }
           }
@@ -386,6 +413,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
               "isDeleted": false,
               "growth_period": element.reminderTime,
               "periodName": element.reminderDate,
+              "uuid": element.uuid,
             })
           }
         }
