@@ -15,7 +15,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HomeSurveyBox } from '@components/shared/HomeScreenStyle';
+import { HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -30,7 +30,7 @@ import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr,
-  Heading3Regular, Heading4Center, ShiftFromTop20,
+  Heading3Regular, Heading3Centerr, Heading4Center, ShiftFromTop20,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
@@ -409,12 +409,13 @@ const Home = ({ route, navigation }: Props) => {
           headerColor={headerColor}
           textColor="#FFF"
         />
+        
+        {
+        (netInfoval && netInfoval.isConnected == false) ?
+          <OfflineBar><Heading3Centerr style={{}}>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
+      }
         <ScrollView style={{ flex: 4, backgroundColor: '#FFF' }}>
-          <FlexCol>
-            {
-              (netInfoval && netInfoval.isConnected == false) ?
-                <Heading3Regular>{t('noInternet')}</Heading3Regular> : null
-            }
+          <FlexCol> 
             <BabyNotification />
             <ChildInfo
               headerColor={headerColorChildInfo}
