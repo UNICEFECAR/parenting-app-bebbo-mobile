@@ -21,7 +21,10 @@ export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
 export const ProfileIconView = styled.View`
-  flex: 1;
+ min-width:48px;
+ text-align:center;
+ align-items:center;
+ margin-left:-5px
 `;
 
 export const ProfileTextView = styled.View`
@@ -41,8 +44,7 @@ export const ProfileActionView = styled.View`
 export const ProfileLinkView = styled.View`
   flex-direction: row;
   margin-top: 10px;
-  justify-content: space-between;
- 
+
 `;
 
 /*Manage Profile Drowpdown End */

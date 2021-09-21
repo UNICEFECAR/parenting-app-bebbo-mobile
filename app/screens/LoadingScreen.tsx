@@ -119,7 +119,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         })
         const results = await Promise.all(resolvedPromises);
         console.log("delete done--",results);
-      dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
+      //dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
       const currentDate = DateTime.now().toMillis();
@@ -190,7 +190,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       apiJsonData.push(apiJsonDataarticle[0]);
       console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
-      dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
+      // dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       // let payload = {errorArr:[],fromPage:'OnLoad'}
       // dispatch(receiveAPIFailure(payload));
       if(allAgeBrackets.length > 0) {
