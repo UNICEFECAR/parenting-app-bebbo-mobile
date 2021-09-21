@@ -29,8 +29,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
-  Heading1Centerr,
-  Heading3Regular, Heading3Centerr, Heading4Center, ShiftFromTop20,
+  Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
   ShiftFromTopBottom10,
   SideSpacing25
 } from '@styles/typography';
@@ -264,11 +263,11 @@ const Home = ({ route, navigation }: Props) => {
                   })
                 }
                 let allreminderNotis: any = []
-                if (notiExist.reminderNotis) {
-                  notiExist.reminderNotis?.forEach((item) => {
-                    allreminderNotis.push(item)
-                  })
-                }
+                // if (notiExist.reminderNotis) {
+                //   notiExist.reminderNotis?.forEach((item) => {
+                //     allreminderNotis.push(item)
+                //   })
+                // }
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
                 })
@@ -287,11 +286,11 @@ const Home = ({ route, navigation }: Props) => {
                 // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
                 let allreminderNotis: any = []
                 let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
-                if (notiExist.reminderNotis) {
-                  notiExist.reminderNotis?.forEach((item) => {
-                    allreminderNotis.push(item)
-                  })
-                }
+                // if (notiExist.reminderNotis) {
+                //   notiExist.reminderNotis?.forEach((item) => {
+                //     allreminderNotis.push(item)
+                //   })
+                // }
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
                 })
@@ -409,13 +408,13 @@ const Home = ({ route, navigation }: Props) => {
           headerColor={headerColor}
           textColor="#FFF"
         />
-        
+
         {
-        (netInfoval && netInfoval.isConnected == false) ?
-          <OfflineBar><Heading3Centerr style={{}}>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
-      }
+          (netInfoval && netInfoval.isConnected == false) ?
+            <OfflineBar><Heading3Centerr style={{}}>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
+        }
         <ScrollView style={{ flex: 4, backgroundColor: '#FFF' }}>
-          <FlexCol> 
+          <FlexCol>
             <BabyNotification />
             <ChildInfo
               headerColor={headerColorChildInfo}
