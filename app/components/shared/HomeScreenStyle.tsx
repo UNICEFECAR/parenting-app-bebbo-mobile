@@ -104,6 +104,14 @@ border-top-width:3px;
 
 `;
 
+export const OfflineBar = styled.View`
+padding:10px;
+background-color:#f5f5f5;
+border-bottom-width:1px;
+border-color:#ccc;
+
+`;
+
 export const BottomBarList = styled.View`
 
 border-bottom-width:1px;
