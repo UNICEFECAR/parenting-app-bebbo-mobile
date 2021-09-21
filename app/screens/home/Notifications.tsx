@@ -191,7 +191,7 @@ const Notifications = () => {
   }
   const onItemDeleteMarked = (notiItem: any) => {
     console.log(notiItem);
-    let allNotifications = allnotis;
+    let allNotifications = [...allnotis];
     console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -203,7 +203,11 @@ const Notifications = () => {
       delete newItem.isChecked;
       let allgwcdnotis = [...currentChildNotis.gwcdnotis]
       allgwcdnotis[notitoUpdateIndex] = newItem;
-      currentChildNotis.gwcdnotis = allgwcdnotis
+      currentChildNotis.gwcdnotis = allgwcdnotis;
+      allNotifications[currentChildIndex] = currentChildNotis
+      console.log(allNotifications, "AFTERDELETE allNotifications")
+      dispatch(setAllNotificationData(allNotifications));
+      calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'vc') {
       const notitoUpdateIndex = currentChildNotis.vcnotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
       let newItem: any = { ...notiItem };
@@ -211,7 +215,11 @@ const Notifications = () => {
       delete newItem.isChecked;
       let allvcnotis = [...currentChildNotis.vcnotis]
       allvcnotis[notitoUpdateIndex] = newItem;
-      currentChildNotis.vcnotis = allvcnotis
+      currentChildNotis.vcnotis = allvcnotis;
+      allNotifications[currentChildIndex] = currentChildNotis
+      console.log(allNotifications, "AFTERDELETE allNotifications")
+      dispatch(setAllNotificationData(allNotifications));
+      calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'hc') {
       const notitoUpdateIndex = currentChildNotis.hcnotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
       let newItem: any = { ...notiItem };
@@ -220,24 +228,29 @@ const Notifications = () => {
       let allhcnotis = [...currentChildNotis.hcnotis]
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
+      allNotifications[currentChildIndex] = currentChildNotis
+      console.log(allNotifications, "AFTERDELETE allNotifications")
+      dispatch(setAllNotificationData(allNotifications));
+      calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
       if (currentChildNotis.reminderNotis) {
         const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
         let newItem: any = { ...notiItem };
-        newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
+        newItem.isDeleted = true;
         delete newItem.isChecked;
         console.log(newItem, "deleteItem")
-        // currentChildNotis.reminderNotis = currentChildNotis.reminderNotis.map((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type) ? newItem : item);
-
+        // currentChildNotis.reminderNotis = currentChildNotis.reminderNotis.map((item) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) ? newItem : item);
         let allremindenotis = [...currentChildNotis.reminderNotis]
         allremindenotis[notitoUpdateIndex] = newItem;
-        currentChildNotis.reminderNotis = allremindenotis
+        currentChildNotis.reminderNotis = allremindenotis;
+        console.log(currentChildNotis, "currentChildNotis");
+        allNotifications[currentChildIndex] = currentChildNotis
+        console.log(allNotifications, "AFTERDELETE allNotifications")
+        dispatch(setAllNotificationData(allNotifications));
+        calculateNotis(currentChildNotis);
       }
     }
-    allNotifications[currentChildIndex] = currentChildNotis
-    console.log(allNotifications, "AFTERDELETE allNotifications")
-    dispatch(setAllNotificationData(allNotifications));
-    calculateNotis(currentChildNotis);
+
   }
   const deleteSelectedNotifications = async () => {
 
@@ -324,7 +337,7 @@ const Notifications = () => {
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
               </OuterIconSpace>
-              {isFutureDate(activeChild?.birthDate) ? null :
+              {isFutureDate(activeChild?.birthDate) || notifications.length == 0 ? null :
                 <OuterIconSpace>
                   <Pressable onPress={() => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]); }}>
                     <Icon name={'ic_trash'} size={20} color="#FFF" />
