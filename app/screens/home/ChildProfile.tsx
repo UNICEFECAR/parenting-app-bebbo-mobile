@@ -5,8 +5,8 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { MainContainer,AreaContainer } from '@components/shared/Container';
 import { VerticalDivider } from '@components/shared/Divider';
-import { FDirRow, FlexColEnd,FlexCol} from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import { FDirRow, FlexColEnd,FlexCol,FlexRow} from '@components/shared/FlexBoxStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView,HeaderIconPress} from '@components/shared/HeaderContainerStyle';
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
@@ -149,9 +149,10 @@ const child_age = useAppSelector(
          </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
             }
           </ProfileIconView>
-          <ProfileTextView>
+          <ProfileTextView  style={{paddingRight:5}}>
             <ProfileSectionView>
-              <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontSize:12,fontWeight:'normal'}}>{', '+genderName}</Text>:null}
+              <Heading3 style={{flexShrink:1}}>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?
+              <Text style={{fontSize:12,fontWeight:'normal'}}>{', '+genderName}</Text>:null}
               </Heading3>
             </ProfileSectionView>
             <Heading5>      
@@ -177,7 +178,7 @@ const child_age = useAppSelector(
             </ProfileLinkView>
           </ProfileTextView>
           
-          <ProfileActionView>
+          <ProfileActionView style={{flex:1}}>
           <FlexColEnd>
             {/* Premature Tag Insert Here */}
           {/* <ShiftFromBottom5>
@@ -192,12 +193,12 @@ const child_age = useAppSelector(
             <OuterIconRow>
               <OuterIconLeft>
                 <TickView>
-                  <Icon name="ic_tick" size={12} color="#009B00" />
+                  <Icon name="ic_tick" size={11} color="#009B00" />
                 </TickView>
               </OuterIconLeft>
             </OuterIconRow>
 
-            <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+            <Heading5Bold style={{flexShrink:1}}>{t('childActivatedtxt')}</Heading5Bold>
             </FDirRow>
             </FlexColEnd>  
           </ProfileActionView>
@@ -206,7 +207,8 @@ const child_age = useAppSelector(
         
         <ProfileListDefault
           style={{
-            backgroundColor: secopndaryTintColor,
+             backgroundColor: secopndaryTintColor,
+             flexDirection:'column',flex:1,
           }}>
           <ProfileListInner>
             <ProfileIconView>
@@ -216,9 +218,11 @@ const child_age = useAppSelector(
          </ImageIcon>  : <Icon name="ic_baby" size={30} color="#000" />
             }
             </ProfileIconView>
+            <FlexCol> 
+            <FlexRow>
             <ProfileTextView>
               <ProfileSectionView style={{alignItems:'flex-start'}}>
-              <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontWeight:'normal'}}>{', '+genderName}</Text>:null}
+              <Heading3>{data.childName}{genderName!='' && genderName!=null && genderName!=undefined ?<Text style={{fontSize:12,fontWeight:'normal'}}>{', '+genderName}</Text>:null}
               </Heading3>
                 
               </ProfileSectionView>
@@ -227,30 +231,7 @@ const child_age = useAppSelector(
                                data.birthDate != null &&
                                data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}
                         </Heading5>
-              <ProfileLinkView>
-                <ButtonTextSmLine numberOfLines={2}
-                  onPress={() => {
-                  data.index = index;
-                  console.log(isFutureDate(data.birthDate),"..isFutureDate(data.birthDate)..");
-                  if(isFutureDate(data.birthDate)){
-                    navigation.navigate('AddExpectingChildProfile', {childData: data});
-                  }
-                  else{
-                    navigation.navigate('EditChildProfile', {childData: data});
-                  }
-                  }}>
-                  <Text>{t('editProfileBtn')}</Text>
-                </ButtonTextSmLine>
-                <VerticalDivider>
-                  <Text>|</Text>
-                </VerticalDivider>
-                <ButtonTextSmLine numberOfLines={2}
-                  onPress={() => {
-                    setActiveChild(languageCode,data.uuid,dispatch,child_age);
-                  }}>
-                 {t('childActivatebtn')}
-                </ButtonTextSmLine>
-              </ProfileLinkView>
+              
             </ProfileTextView>
             <ProfileActionView>
               {/* Pressable button */}
@@ -267,8 +248,36 @@ const child_age = useAppSelector(
            {/* Premature Tag End Here */}
             </FlexColEnd>  
             </ProfileActionView>
+            </FlexRow>
+            <ProfileLinkView style={{marginLeft:6}}>
+                <ButtonTextSmLine numberOfLines={2} style={{flexShrink:1,alignItems:'flex-start', textAlign:'left'}}
+                  onPress={() => {
+                  data.index = index;
+                  console.log(isFutureDate(data.birthDate),"..isFutureDate(data.birthDate)..");
+                  if(isFutureDate(data.birthDate)){
+                    navigation.navigate('AddExpectingChildProfile', {childData: data});
+                  }
+                  else{
+                    navigation.navigate('EditChildProfile', {childData: data});
+                  }
+                  }}>
+                  <Text  style={{flexShrink:1}}>{t('editProfileBtn')}</Text>
+                </ButtonTextSmLine>
+                <VerticalDivider>
+                  {/* <Text>|</Text> */}
+                  <Text></Text>
+                </VerticalDivider>
+                <ButtonTextSmLine numberOfLines={2} style={{flexShrink:1,alignItems:'flex-start', textAlign:'left'}}
+                  onPress={() => {
+                    setActiveChild(languageCode,data.uuid,dispatch,child_age);
+                  }}>
+                 <Text  style={{flexShrink:1}}>{t('childActivatebtn')}</Text>
+                </ButtonTextSmLine>
+              </ProfileLinkView>
+            </FlexCol>
+            
           </ProfileListInner>
-        </ProfileListDefault>     
+        </ProfileListDefault>        
       )}
     </View>
   );
@@ -278,19 +287,20 @@ const child_age = useAppSelector(
       <SafeAreaView style={{flex: 1}}>
        
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+        
         <HeaderRowView
           style={{
             backgroundColor: headerColor,
             maxHeight: 50,
           }}>
           <HeaderIconView>
-          <Pressable
+          <HeaderIconPress 
               onPress={(e) => {
                 e.stopPropagation();
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
-            </Pressable>
+            </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
           <Heading2w numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
@@ -326,7 +336,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL  numberOfLines={2}>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL>{t('childSetupListaddSiblingBtn')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
                 </ProfileLinkCol>
                 <ProfileLinkCol>
@@ -340,7 +350,7 @@ const child_age = useAppSelector(
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <ButtonTextMdLineL numberOfLines={2}>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
+                  <ButtonTextMdLineL>{t('expectChildAddTxt2')}</ButtonTextMdLineL>
                 </ButtonLinkPress>
                 </ProfileLinkCol>
             </ProfileLinkRow>
