@@ -1,3 +1,4 @@
+import { boy_child_gender, girl_child_gender, weight_growth_type } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -11,7 +12,6 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
-import { getIdSetByUniqueName } from '../../services/Utils';
 import GrowthChart, { chartTypes } from './GrowthChart';
 
 const ChartHeightForAge = () => {
@@ -19,15 +19,15 @@ const ChartHeightForAge = () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   const backgroundColor = themeContext.colors.CHILDGROWTH_TINTCOLOR;
-  let genders = useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
-  );
-  let growth_type= useAppSelector(
-    (state: any) =>
-    state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
-  );
-  console.log(growth_type,"..growth_type..")
+  // let genders = useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
+  // );
+  // let growth_type= useAppSelector(
+  //   (state: any) =>
+  //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
+  // );
+  // console.log(growth_type,"..growth_type..")
   const navigation = useNavigation();
   const fullScreenChart = (chartType, obj) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
@@ -48,16 +48,15 @@ const ChartHeightForAge = () => {
   );
   let obj: any;
   let standardDeviation: any;
-  console.log(getIdSetByUniqueName(genders,"boy") ,"..getIdSetByUniqueName(genders)..");
-  // if (activeChild?.gender == '40' || activeChild?.gender == '') {
-  if (activeChild?.gender == getIdSetByUniqueName(genders,"boy") || activeChild?.gender == '') {
+   // if (activeChild?.gender == '40' || activeChild?.gender == '') {
+  if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
     // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
     // const genderBoyData = standardDevData?.filter(
     //   (item) => item.growth_type == 32786 && item.child_gender == 40,
     // );
     const genderBoyData = standardDevData?.filter(
-      (item) => item.growth_type == getIdSetByUniqueName(growth_type,"height_for_age") && item.child_gender == getIdSetByUniqueName(genders,"boy"),
+      (item) => item.growth_type == weight_growth_type && item.child_gender == boy_child_gender,
     );
     standardDeviation = genderBoyData;
     obj = formatHeightData(genderBoyData,'height');
@@ -68,7 +67,7 @@ const ChartHeightForAge = () => {
     //   (item) => item.growth_type == 32786 && item.child_gender == 41,
     // );
     const genderGirlData = standardDevData?.filter(
-      (item) => item.growth_type == getIdSetByUniqueName(growth_type,"height_for_age") && item.child_gender == getIdSetByUniqueName(genders,"girl"),
+      (item) => item.growth_type == weight_growth_type && item.child_gender == girl_child_gender,
     );
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'height');

@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, boy_child_gender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -140,6 +140,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         if (taxonomyData?.length > 0) {
           child.taxonomyData = taxonomyData[0];
         }
+        else{}
         //if notif.length>0 child.notifications.append
       }
       if (userParentalRole?.length > 0) {
@@ -151,8 +152,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == 40 ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
-
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      
 
     }
     else {
@@ -176,7 +177,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log(allDatatoStore, "..allDatatoStore..")
         dispatch(setActiveChildData(child));
-        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == 40 ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
 
       }
     }
@@ -203,11 +204,12 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == 40 ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
     }
   }
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
+  // return "activeset";
 }
 
 
@@ -254,11 +256,17 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
           console.log(ageData, "..unique..")
         }
       }
+      else{
+        console.log(ageData,"..noageData..")
+        // ageData.push(item);
+      }
+      console.log(ageData,"..ageData..")
       return ageData;
     }));
+    console.log(result,"..result..")
     return result;
   }));
-  //  console.log(ageData,"..ageData..")
+  console.log(ageData,"..1123ageData..")
   return ageData;
 }
 export const getDiffinDays = (day1millis: number, day2millis: number) => {
@@ -376,7 +384,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   return ageStr;
 
 };
-export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any, relationship?: any) => {
+export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any, relationship?: any,userRelationToParent?:any) => {
   let oldBirthDate;
   console.log(editScreen, "..editScreen..")
   console.log(param, "..param..")
@@ -416,7 +424,9 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       relationshipnew = String(relationship);
     }
     console.log(data[0].uuid, "..data[0].uuid..");
+    console.log(userRelationToParent,"..userRelationToParent")
     let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+    let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", data[0].uuid);
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
     setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
@@ -534,7 +544,7 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
   child[key] = value;
   // console.log(child, "..child..");
   dispatch(setActiveChildData(child));
-  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == 40 ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
 
 }
 export const getAllConfigData = async (dispatch: any) => {
