@@ -57,60 +57,62 @@ const DailyHomeNotification = () => {
         : null;
       // console.log('currentNotificationVal', currentNotificationVal);
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
-
-      if (
-        currentNotificationVal.day != currentDate.day ||
-        currentNotificationVal.month != currentDate.month ||
-        currentNotificationVal.year != currentDate.year
-      ) {
-        const currentMessageIndex = records.findIndex(
-          (item: any) => item.id === currentNotificationVal.messageId,
-        );
-        // console.log(currentMessageIndex, 'currentMessageIndex');
-        // Set next daily message
-        let newNotification = {
-          messageId: records[currentMessageIndex + 1].id,
-          messageText: records[currentMessageIndex + 1].title,
+      if (records.length > 0) {
+        if (
+          currentNotificationVal.day != currentDate.day ||
+          currentNotificationVal.month != currentDate.month ||
+          currentNotificationVal.year != currentDate.year
+        ) {
+          const currentMessageIndex = records.findIndex(
+            (item: any) => item.id === currentNotificationVal.messageId,
+          );
+          // console.log(currentMessageIndex, 'currentMessageIndex');
+          // Set next daily message
+          let newNotification = {
+            messageId: records[currentMessageIndex + 1].id,
+            messageText: records[currentMessageIndex + 1].title,
+            day: currentDate.day,
+            month: currentDate.month,
+            year: currentDate.year,
+          };
+          let updateNotifcation = setNotiInDB(newNotification);
+          // console.log(updateNotifcation);
+          setNotification(newNotification);
+          // console.log(
+          //   'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
+          //   newNotification,
+          // );
+        } else {
+          // console.log('DAILY MESSAGE VARIABLE IS CurrentNotification', records);
+          setNotification(currentNotificationVal);
+        }
+      } else {
+        // console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
+        let firstNotification = {
+          messageId: records ? records[0].id : '',
+          messageText: records ? records[0].title : '',
           day: currentDate.day,
           month: currentDate.month,
           year: currentDate.year,
         };
-        let updateNotifcation = setNotiInDB(newNotification);
+        // console.log(firstNotification);
+        let updateNotifcation = setNotiInDB(firstNotification);
+        setNotification(firstNotification);
         // console.log(updateNotifcation);
-        setNotification(newNotification);
-        // console.log(
-        //   'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
-        //   newNotification,
-        // );
-      } else {
-        // console.log('DAILY MESSAGE VARIABLE IS CurrentNotification', records);
-        setNotification(currentNotificationVal);
       }
-    } else {
-      // console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
-      let firstNotification = {
-        messageId: records ? records[0].id : '',
-        messageText: records ? records[0].title : '',
-        day: currentDate.day,
-        month: currentDate.month,
-        year: currentDate.year,
-      };
-      // console.log(firstNotification);
-      let updateNotifcation = setNotiInDB(firstNotification);
-      setNotification(firstNotification);
-      // console.log(updateNotifcation);
     }
   }, []);
 
   return (
     <>
+    {records.length > 0?
       <BgPrimary>
         <MainContainer>
           <ShiftFromTopBottom10>
             <FlexDirRowStart>
               <OuterIconRow>
                 <OuterIconLeft>
-                    <Icon name="ic_sb_loveapp" size={24} color="#fff" />
+                  <Icon name="ic_sb_loveapp" size={24} color="#fff" />
                 </OuterIconLeft>
               </OuterIconRow>
               <Flex1>
@@ -120,6 +122,7 @@ const DailyHomeNotification = () => {
           </ShiftFromTopBottom10>
         </MainContainer>
       </BgPrimary>
+       : null}
     </>
   );
 };
