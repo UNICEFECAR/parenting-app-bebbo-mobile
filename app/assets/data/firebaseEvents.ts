@@ -24,5 +24,5 @@ export const DEVELOPMENT_NOTIFICATION_ON="development_notification_on";//,enable
 export const DEVELOPMENT_NOTIFICATION_OFF="development_notification_off";//,enabled:true/false
 export const GROWTH_NOTIFICATION_ON="growth_notification_on"; //,enabled:true/false
 export const GROWTH_NOTIFICATION_OFF="growth_notification_off"; //,enabled:true/false
-export const VACCINE_HEALTHCHECKUP_NOTIFICATION_ON="vaccination_healthcheckup_notification_on";//enabled:true/false
-export const VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF="vaccination_healthcheckup_notification_off";//enabled:true/false
+export const VACCINE_HEALTHCHECKUP_NOTIFICATION_ON="vc_hc_notification_on";//enabled:true/false
+export const VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF="vc_hc_notification_off";//enabled:true/false
