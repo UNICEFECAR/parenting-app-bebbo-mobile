@@ -427,8 +427,8 @@ const en = {
                 dataSaveroff: "off",
                 vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
-                parentGender: "Select Parent Gender",
-                relationToParentNameLabel:'Relation to parent'
+                parentGender: "Parent Gender",
+                //relationToParentNameLabel:'Relation to parent'
         }
 }
 export default en;
