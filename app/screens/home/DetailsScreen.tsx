@@ -322,7 +322,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               source={require('@assets/trash/defaultArticleImage.png')}/>   
               }
             </View>
-            <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} item={detailDataToUse} isAdvice={fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct'?false:true}/>
+            {/* <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} item={detailDataToUse} isAdvice={fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct'?false:true}/> */}
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
             {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
