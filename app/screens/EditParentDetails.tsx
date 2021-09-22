@@ -72,8 +72,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   useFocusEffect(
     React.useCallback(() => {
-      setRelationshipName(relationshipValue!="" && relationshipValue!=null && relationshipValue!=undefined?relationshipValue.name:'');
-      setUserRelationToParent(relationshipToParent!="" && relationshipToParent!=null && relationshipToParent!=undefined?relationshipToParent.name:'');
+      setRelationshipName(relationshipToParent!="" && relationshipToParent!=null && relationshipToParent!=undefined?relationshipToParent.name:'');
+      setUserRelationToParent(relationshipToParent!="" && relationshipToParent!=null && relationshipToParent!=undefined?relationshipToParent.id:'');
        },[])
   );
   useEffect(() => {
@@ -166,8 +166,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
 
               <FormInputBox>
                 <FormDateText>
-                  <Text>{userRelationToParent ? userRelationToParent : 'Select'}</Text>
-                  {/* <Text>{relationshipName ? relationshipName : 'Select'}</Text> */}
+                  {/* <Text>{userRelationToParent ? userRelationToParent : 'Select'}</Text> */}
+                  <Text>{relationshipName ? relationshipName : 'Select'}</Text>
                 </FormDateText>
                 <FormDateAction>
                   <Icon name="ic_angle_down" size={10} color="#000" />
