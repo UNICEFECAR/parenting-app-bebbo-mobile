@@ -1,3 +1,4 @@
+import { both_child_gender } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -93,7 +94,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   );
 
   genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
-    return e.unique_name != "both";
+    return e.id != both_child_gender;
   });
   console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
@@ -387,10 +388,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     childSet.push(insertData);
     console.log(insertData, '..insertData..');
     console.log(childSet, '..childSet..');
-
-
-
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   };
 
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
@@ -400,7 +398,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     //   checkedItem.id instanceof String
     // ) {
     //   setGender(checkedItem.id);
-    // } else {
+    // } else { 
     //   setGender(String(checkedItem.id));
     // }
     setGender(checkedItem.id);

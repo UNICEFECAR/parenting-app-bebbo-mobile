@@ -115,13 +115,24 @@ const child_age = useAppSelector(
     allConfigData?.length > 0
       ? allConfigData.filter((item) => item.key === 'userName')
       : [];
+      const relationship_to_parent = useAppSelector(
+        (state: any) =>
+        state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent:[],
+      );
+      const userRelationToParent =
+      allConfigData?.length > 0
+        ? allConfigData.filter((item) => item.key === 'userRelationToParent')
+        : [];
    const relationshipData = useAppSelector(
         (state: any) =>
         state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender:[],
       );
+
       console.log(relationshipData,"..relationshipData..")
     let relationshipValue = relationshipData.length>0 && userParentalRoleData.length>0 ? relationshipData.find((o:any) => String(o.id) === userParentalRoleData[0].value):'';
+    let relationshipToParent = relationship_to_parent.length>0 && userRelationToParent.length>0 ? relationship_to_parent.find((o:any) => String(o.id) === userRelationToParent[0].value):'';
     console.log(relationshipValue,"..relationshipValue..")
+    console.log(relationshipToParent,"..relationshipToParent..")
   // const currentActiveChildId =
   //   allConfigData?.length > 0
   //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
@@ -370,6 +381,9 @@ const child_age = useAppSelector(
                             : '',
                         parentEditName:
                           userNameData?.length > 0 ? userNameData[0].value : '',
+                          userRelationToParentEdit:userRelationToParent?.length > 0
+                          ? userRelationToParent[0].value
+                          : '',
                       });
                     }}>
                     <ButtonTextSmLine numberOfLines={2}>{t('editProfileBtn')}</ButtonTextSmLine>
@@ -395,14 +409,29 @@ const child_age = useAppSelector(
                   </ParentSection>
                   <ParentSection>
                     <ParentLabel>
+                      <Text>{t('relationToParentNameLabel')}</Text>
+                    </ParentLabel>
+                    <ParentData>
+                    <Text style={{marginLeft:15}}>
+                        {userRelationToParent?.length > 0 ? relationshipToParent.name : ''}
+                      </Text>
+                 
+                    </ParentData>
+                    
+                  </ParentSection>
+                
+                  <ParentSection>
+                    <ParentLabel>
                       <Text>{t('parentNameLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
                       <Text style={{marginLeft:15}}>
                         {userNameData?.length > 0 ? userNameData[0].value : ''}
                       </Text>
+                     
                     </ParentData>
-                  </ParentSection>
+                 </ParentSection>
+                
                 </ParentRowView>
               </ProfileContentView>
             </ParentListView>
