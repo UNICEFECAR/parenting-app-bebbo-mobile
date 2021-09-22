@@ -310,7 +310,7 @@ const Activities = ({ route, navigation }: Props) => {
             <Heading3>{item.title}</Heading3>
           </ArticleListContent>
 
-          <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} />
+          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
         </ArticleListContainer>
       </Pressable>
     )
@@ -346,7 +346,7 @@ const Activities = ({ route, navigation }: Props) => {
         : null
         } */}
           </ArticleListContent>
-          <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} />
+          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
         </ArticleListContainer>
       </Pressable>
     )
