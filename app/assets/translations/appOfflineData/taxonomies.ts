@@ -5248,6 +5248,28 @@ export const taxonomydata:any = {
                     "unique_name": "both"
                 }
             ],
+            "relationship_to_parent": [
+                {
+                    "id": 109726,
+                    "name": "Mother",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109731,
+                    "name": "Father",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109736,
+                    "name": "Other Caregiver",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109741,
+                    "name": "Service Provider",
+                    "unique_name": "service_provider"
+                }
+            ],
             "type_of_support": [
                 {
                     "id": 59001,
