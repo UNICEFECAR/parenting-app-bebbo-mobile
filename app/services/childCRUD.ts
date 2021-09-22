@@ -236,6 +236,13 @@ export const getAge = (childList: any, child_age: any) => {
 export const checkBetween = async (param: any, users: any, child_age: any) => {
   let ageData: any = [];
   await Promise.all(users.map(async (itemset: any) => {
+    if(child_age.length>0){
+    if(itemset>child_age[child_age.length-1].days_to){
+      console.log(child_age[child_age.length-1],"..last taxonomy dataset..")
+      ageData.push(child_age[child_age.length-1]);
+      console.log(ageData,"..last taxonomy..")
+    }
+    else{
     let result = await Promise.all(child_age.map((item: any) => {
       if (between(itemset, parseInt(item["days_from"]), parseInt(item["days_to"]))) {
         if (item.id != "446") {
@@ -265,6 +272,9 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
     }));
     console.log(result,"..result..")
     return result;
+    }
+    }
+   
   }));
   console.log(ageData,"..1123ageData..")
   return ageData;
