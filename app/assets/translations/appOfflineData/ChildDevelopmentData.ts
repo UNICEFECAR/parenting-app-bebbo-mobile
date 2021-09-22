@@ -1,5 +1,5 @@
 export const ChildDevelopmentData:any = {
-    "en":  [
+    "en":   [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
