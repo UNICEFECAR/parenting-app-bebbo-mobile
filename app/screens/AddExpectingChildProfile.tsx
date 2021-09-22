@@ -124,7 +124,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(childData,"..childData")
-    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null);
+    addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string) => {
     //console.log("..deleted..");
