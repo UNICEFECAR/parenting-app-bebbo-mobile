@@ -106,6 +106,15 @@ const CustomDrawerContent = ({ navigation }: any) => {
     (state: any) =>
       state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
+  const growthEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.growthEnabled),
+  );
+  const developmentEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.developmentEnabled),
+  );
+  const vchcEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.vchcEnabled),
+  );
   const dispatch = useAppDispatch();
   // useEffect(() => {
 
@@ -219,9 +228,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
             if (checkIfNewCalcRequired) {
               console.log("NEWCALCREQUIRED")
               console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
-              const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
+              const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
 
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
+              // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
 
               ////  append new notifications for child 
               let allgwcdnotis: any = [];
@@ -252,7 +261,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 })
               }
               let allreminderNotis: any = []
-              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
+              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
               // if (notiExist.reminderNotis) {
               //   notiExist.reminderNotis?.forEach((item) => {
               //     allreminderNotis.push(item)
@@ -270,7 +279,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               //clear notification which are already generated, 
               //generate for new notifications // append reminders
               let allreminderNotis: any = []
-              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis);
+              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
               // if (notiExist.reminderNotis) {
               //   notiExist.reminderNotis?.forEach((item) => {
               //     allreminderNotis.push(item)
@@ -286,9 +295,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
           console.log("noti does not exist for child");
           // create notification for that child first time
           if (!isFutureDate(activeChild?.birthDate)) {
-            const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods);
+            const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-            let reminderNotis = getChildReminderNotifications(activeChild);
+            let reminderNotis = getChildReminderNotifications(activeChild,[],vchcEnabledFlag);
             console.log(reminderNotis, "new reminderNotis")
             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
             allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
