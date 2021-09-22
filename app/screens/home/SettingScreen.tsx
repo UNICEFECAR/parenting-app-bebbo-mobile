@@ -769,7 +769,7 @@ const SettingScreen = (props: any) => {
                 <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
-            <ShiftFromTop20>
+            {/* <ShiftFromTop20>
               <Heading4>{t('settingScreendownldSubHeader2Text')}</Heading4>
               <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
             </ShiftFromTop20>
@@ -777,7 +777,7 @@ const SettingScreen = (props: any) => {
               <ButtonPrimary onPress={() => { }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
-            </ShiftFromTop10>
+            </ShiftFromTop10> */}
           </MainContainer>
 
           <MainContainer>
@@ -869,7 +869,7 @@ const SettingScreen = (props: any) => {
               </SettingHeading>
               <SettingShareData>
                 <FDirRow>
-                  <SettingOptions>
+                  {/* <SettingOptions>
                     <Pressable onPress={() => {
                       console.log("icon clicked");
                       //if(netInfoval && netInfoval.isConnected==true){
@@ -886,7 +886,7 @@ const SettingScreen = (props: any) => {
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
-                  </SettingOptions>
+                  </SettingOptions> */}
                   <SettingOptions>
                     <Pressable onPress={() => {
                       console.log("icon clicked");
