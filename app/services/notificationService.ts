@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { getCurrentChildAgeInDays } from './childCRUD';
+import { getCurrentChildAgeInDays, isFutureDate } from './childCRUD';
 import { maxPeriodDays } from "./healthCheckupService";
 export const threeeMonthDays = 90;
 export const twoMonthDays = 60;
@@ -158,7 +158,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
   }
   return noti;
 }
-export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcperiodid: any, child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any) => {
+export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcperiodid: any, child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any,growthEnabledFlag:boolean,developmentEnabledFlag:boolean,vchcEnabledFlag:boolean) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
@@ -190,20 +190,6 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
     })
     // }
   }
-
-  // childAgeObj.map((element: any, index: number) => {
-  //   // console.log(element, lastchildgwperiod)
-  //   if (element.days_from >= lastchildgwperiod.days_from && element.days_from <= childAgeInDays) {
-  //     let currentgwPeriodNoti = getCDGWNotisForChild(element, child);
-  //     console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
-  //     lastgwperiodid = element.id;
-  //     if (gwperiodid != lastgwperiodid) {
-  //       currentgwPeriodNoti.forEach((noti) => {
-  //         gwcdnotis.push(noti)
-  //       })
-  //     }
-  //   }
-  // });
   ///perform computation for hc,vc
   // get all notis between last period id to current running period
   let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
@@ -230,7 +216,50 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
     }
   });
   console.log('NEWHCNOTIS', hcnotis, lasthcperiodid)
-
+  if(vchcEnabledFlag==false){
+    vcnotis = [...vcnotis].map(item=>{
+      if(isFutureDate(new Date(item.notificationDate))){
+        return { ...item, isDeleted: true };
+      }else{
+        return {...item};
+      }
+    })
+    hcnotis = [...hcnotis].map(item=>{
+      if(isFutureDate(new Date(item.notificationDate))){
+        return { ...item, isDeleted: true };
+      }else{
+        return {...item};
+      }
+    })
+  }
+  if(growthEnabledFlag==false){
+    gwcdnotis = [...gwcdnotis]?.map((item) => {
+      if (item.type == 'gw') {
+        // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
+        if(isFutureDate(new Date(item.notificationDate))){
+          return { ...item, isDeleted: true };
+        }else{
+          return {...item};
+        }
+      }else{
+        return {...item};
+      }
+    })
+  }
+  if(developmentEnabledFlag==false){
+    gwcdnotis = [...gwcdnotis]?.map((item) => {
+      if (item.type == 'cd') {
+        // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
+        if(isFutureDate(new Date(item.notificationDate))){
+          return { ...item, isDeleted: true };
+        }else{
+          return {...item};
+        }
+      }else{
+        return {...item};
+      }
+    })
+  }
   let notis = {
     lastgwperiodid, gwcdnotis,
     lastvcperiodid, vcnotis,
@@ -239,7 +268,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   console.log(notis, "newCalcNotis")
   return notis
 }
-export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any) => {
+export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any,growthEnabledFlag:boolean,developmentEnabledFlag:boolean,vchcEnabledFlag:boolean) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
@@ -254,18 +283,63 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
     let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child);
     console.log(vcNotis, "vcNotis")
     //sort by days_from => find days_from period id to
-    const currentvcPeriodNoti = vcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
+    let currentvcPeriodNoti = vcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
     // console.log(currentvcPeriodNoti, "currentvcPeriodNoti", currentvcPeriodNoti[0].growth_period);
-
 
     let hcNotis: any = getHCReminderNotis(allHealthCheckupsData, allGrowthPeriods, child);
     console.log(hcNotis, "hcNotis")
-    const currenthcPeriodNoti = hcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
+    let currenthcPeriodNoti = hcNotis.filter((item) => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
     // console.log(currenthcPeriodNoti, "currenthcPeriodNoti", currenthcPeriodNoti[0].growth_period);
 
+
+    if(vchcEnabledFlag==false){
+      currentvcPeriodNoti = [...currentvcPeriodNoti].map(item=>{
+        if(isFutureDate(new Date(item.notificationDate))){
+          return { ...item, isDeleted: true };
+        }else{
+          return {...item};
+        }
+      })
+      currenthcPeriodNoti = [...currenthcPeriodNoti].map(item=>{
+        if(isFutureDate(new Date(item.notificationDate))){
+          return { ...item, isDeleted: true };
+        }else{
+          return {...item};
+        }
+      })
+    }
+
+    
     let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child)
     // console.log(currentgwPeriodNoti, "currentgwPeriodNoti", child.taxonomyData.id);
-
+    if(growthEnabledFlag==false){
+      currentgwPeriodNoti = [...currentgwPeriodNoti]?.map((item) => {
+        if (item.type == 'gw') {
+          // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
+          if(isFutureDate(new Date(item.notificationDate))){
+            return { ...item, isDeleted: true };
+          }else{
+            return {...item};
+          }
+        }else{
+          return {...item};
+        }
+      })
+    }
+    if(developmentEnabledFlag==false){
+      currentgwPeriodNoti = [...currentgwPeriodNoti]?.map((item) => {
+        if (item.type == 'cd') {
+          // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
+          if(isFutureDate(new Date(item.notificationDate))){
+            return { ...item, isDeleted: true };
+          }else{
+            return {...item};
+          }
+        }else{
+          return {...item};
+        }
+      })
+    }
     // {lastperiodid:child.taxonomyData.id,notis:currentgwPeriodNoti}
     if (currentvcPeriodNoti && currenthcPeriodNoti && currentgwPeriodNoti) {
       let notis = {
@@ -287,7 +361,7 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
 
   }
 }
-export const getChildReminderNotifications = (child: any, reminderNotis?: any) => {
+export const getChildReminderNotifications = (child: any, reminderNotis: any,vchcEnabledFlag:boolean) => {
   ///get existing notis and compare for isread and is deleted
   console.log(reminderNotis, "ExistingreminderNotis")
   const childAgeInDays = getCurrentChildAgeInDays(
@@ -332,7 +406,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
                 "checkinField": "days_from",
                 "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
                 "isRead": false,
-                "isDeleted": false,
+                "isDeleted": vchcEnabledFlag==false ? true: false,
                 "growth_period": element.reminderTime,
                 "periodName": element.reminderDate,
                 "uuid": element.uuid,
@@ -350,7 +424,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
               "checkinField": "days_from",
               "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
               "isRead": false,
-              "isDeleted": false,
+              "isDeleted": vchcEnabledFlag==false ? true: false,
               "growth_period": element.reminderTime,
               "periodName": element.reminderDate,
               "uuid": element.uuid,
@@ -392,7 +466,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
                 "checkinField": "days_from",
                 "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
                 "isRead": false,
-                "isDeleted": false,
+                "isDeleted":vchcEnabledFlag==false ? true: false,
                 "growth_period": element.reminderTime,
                 "periodName": element.reminderDate,
                 "uuid": element.uuid,
@@ -410,7 +484,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
               "checkinField": "days_from",
               "notificationDate": DateTime.fromJSDate(new Date(element.reminderDate)),
               "isRead": false,
-              "isDeleted": false,
+              "isDeleted": vchcEnabledFlag==false ? true: false,
               "growth_period": element.reminderTime,
               "periodName": element.reminderDate,
               "uuid": element.uuid,
@@ -424,6 +498,15 @@ export const getChildReminderNotifications = (child: any, reminderNotis?: any) =
   let sortednoti = noti.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
+  // if(vchcEnabledFlag==false){
+  //   sortednoti = [...sortednoti].map(item=>{
+  //     if(isFutureDate(new Date(item.notificationDate))){
+  //       return { ...item, isDeleted: true };
+  //     }else{
+  //       return {...item};
+  //     }
+  //   })
+  // }
   console.log(sortednoti, "sortednoti")
   return sortednoti;
   // healthCheckupReminders.forEach((element: any, index: number) => {
