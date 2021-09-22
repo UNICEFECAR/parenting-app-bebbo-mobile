@@ -381,36 +381,36 @@ const formatImportedReminders = (reminders: any) => {
         }
     }
 }
-export const getDataSet=(key:any,uniquename:any)=>{
- const storedata = store.getState();
-  const relationshipData =storedata.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData)[key]:[];
-  console.log(relationshipData,"..articles from utils");
-  return getIdSetByUniqueName(relationshipData,uniquename);
-}
-//find array by uniquename
-export const getIdByUniqueName=(array:any,subarray:any)=>{
+// export const getDataSet=(key:any,uniquename:any)=>{
+//  const storedata = store.getState();
+//   const relationshipData =storedata.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData)[key]:[];
+//   console.log(relationshipData,"..articles from utils");
+//   return getIdSetByUniqueName(relationshipData,uniquename);
+// }
+// //find array by uniquename
+// export const getIdByUniqueName=(array:any,subarray:any)=>{
    
-console.log(array,"..array");
-console.log(subarray,"..subarray");
-return array.filter(g => subarray.includes(g.unique_name)).map(g => g.id);
-}
-//find id by uniquename
-export const getIdSetByUniqueName=(array:any,uniquename:any)=>{
-         let dataset= array.filter(x => x.unique_name == uniquename);
-       if(dataset.length>0){
-        return dataset[0].id;
-       }
-}
+// console.log(array,"..array");
+// console.log(subarray,"..subarray");
+// return array.filter(g => subarray.includes(g.unique_name)).map(g => g.id);
+// }
+// //find id by uniquename
+// export const getIdSetByUniqueName=(array:any,uniquename:any)=>{
+//          let dataset= array.filter(x => x.unique_name == uniquename);
+//        if(dataset.length>0){
+//         return dataset[0].id;
+//        }
+// }
 //find uniquename by id
-export const getUniqueNameById=(array:any,id:any)=>{
-    console.log(array,"..getUniqueNameId..")
-    console.log(id,"..uniquename..")
-    let dataset=array.filter(x => x.id == id)
-    if(dataset.length>0){
-     return dataset[0].unique_name;
-    }
+// export const getUniqueNameById=(array:any,id:any)=>{
+//     console.log(array,"..getUniqueNameId..")
+//     console.log(id,"..uniquename..")
+//     let dataset=array.filter(x => x.id == id)
+//     if(dataset.length>0){
+//      return dataset[0].unique_name;
+//     }
    
- }
+//  }
 //child data get
 export const getChild = async (child: any, genders: any) => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);

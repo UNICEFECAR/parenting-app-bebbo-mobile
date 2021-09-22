@@ -1,3 +1,4 @@
+import { both_child_gender, both_parent_gender, femaleData, maleData, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
@@ -48,15 +49,20 @@ type Props = {
 const ChildSetup = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const [relationship, setRelationship] = useState('');
+  const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected, setIsExpected] = useState<string>('false');
   // const relationshipData = ['Father', 'Mother', 'Other'];
-  const relationshipData = useAppSelector(
+  let relationshipData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
+  );
+  const relationship_to_parent = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -66,6 +72,7 @@ const ChildSetup = ({ navigation }: Props) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
   const actionSheetRef = createRef<any>();
+  const actionSheetRef1 = createRef<any>();
   const [gender, setGender] = React.useState(0);
   const dispatch = useAppDispatch();
   let initialData: any = {};
@@ -82,7 +89,10 @@ const ChildSetup = ({ navigation }: Props) => {
   );
 
   genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
-    return e.unique_name!="both";
+    return e.id!=both_child_gender;
+  });
+  relationshipData= relationshipData.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
+    return e.id!=both_parent_gender;
   });
   console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
@@ -120,6 +130,17 @@ const ChildSetup = ({ navigation }: Props) => {
     // }
     setGender(checkedItem.id);
   };
+  const getCheckedParentItem = (checkedItem:any) => {
+    console.log(checkedItem,"..checkedItem");
+    if (
+      typeof checkedItem.id === 'string' ||
+      checkedItem.id instanceof String
+    ) {
+      setRelationship(checkedItem.id);
+    } else {
+      setRelationship(String(checkedItem.id));
+    }
+  };
   const AddChild = async () => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
@@ -127,7 +148,7 @@ const ChildSetup = ({ navigation }: Props) => {
     let childSet: Array<any> = [];
     childSet.push(insertData);
     console.log(childSet, "..childSet..");
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship);
+    addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship,userRelationToParent);
   }
 
   const themeContext = useContext(ThemeContext);
@@ -178,13 +199,30 @@ const ChildSetup = ({ navigation }: Props) => {
                 </FormInputBox>
               </FormInputGroup>
               </ShiftFromTop20>
+              <View>
+           {
+                userRelationToParent!=null && userRelationToParent!=undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
+                  <FormContainer1>
+                    <LabelText>{t('parentGender')}</LabelText>
+                      <ToggleRadios
+                        options={relationshipData}
+                        tickbgColor={headerColor}
+                        tickColor={'#FFF'}
+                        getCheckedItem={getCheckedParentItem}
+                      />
+                  </FormContainer1>
+                  : null
+          }
+          </View>
             </ChildSection>
           </ChildContentArea>
           </OnboardingContainer>
+          
           </ScrollView>
           <ActionSheet ref={actionSheetRef}>
+
             <View>
-              {relationshipData.map((item, index) => {
+              {/* {relationshipData.map((item, index) => {
                 return (
                   <ChildRelationList key={index}>
                     <Pressable
@@ -202,10 +240,47 @@ const ChildSetup = ({ navigation }: Props) => {
                     </Pressable>
                   </ChildRelationList>
                 );
+              })} */}
+               {relationship_to_parent.map((item, index) => {
+                return (
+                  <ChildRelationList key={index}>
+                    <Pressable
+                      onPress={() => {
+                        console.log(item,"..item..");  
+                        setUserRelationToParent(item.id);
+                        console.log(userRelationToParent,"..userRelationToParent..");  
+                        if(item.id == relationShipMotherId){
+                          if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
+                            setRelationship(femaleData.id);
+                          }
+                          else {
+                            setRelationship(String(femaleData.id));
+                          }
+                        }
+                        else if(item.id == relationShipFatherId){
+                          if (typeof maleData.id === 'string' || maleData.id instanceof String) {
+                            setRelationship(maleData.id);
+                          }
+                          else {
+                            setRelationship(String(maleData.id));
+                          }
+                        }
+                        else{
+                          setRelationship('');
+                        }
+                        setRelationshipName(item.name);
+                        actionSheetRef.current?.hide();
+                      }}>
+                      <Heading3>{item.name}</Heading3>
+                    </Pressable>
+                  </ChildRelationList>
+                );
               })}
+            
             </View>
           </ActionSheet>
-              <SideSpacing25>
+         
+          <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
               disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
