@@ -108,7 +108,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
 
   const imageOptions = [
     { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
-    { id: 1, iconName: 'ic_camera', name: t('cameraOption2') },
+    // { id: 1, iconName: 'ic_camera', name: t('cameraOption2') },
     { id: 2, iconName: 'ic_gallery', name: t('cameraOption3') },
   ];
   const actionSheetRef = createRef<any>();
