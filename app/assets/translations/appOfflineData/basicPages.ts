@@ -1,5 +1,5 @@
 const basicPagesData:any = {
-    "en":  [
+    "en": [
         {
             "id": 4516,
             "type": "Basic page",
