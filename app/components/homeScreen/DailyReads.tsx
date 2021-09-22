@@ -10,13 +10,12 @@ import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
-import { getIdByUniqueName } from '../../services/Utils';
 
 
 const DailyReads = () => {
@@ -34,11 +33,8 @@ const DailyReads = () => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  let newCategoryArray=getIdByUniqueName(categoryData,articleCategoryArray);
-  console.log(newCategoryArray,"..newCategoryArray")
   
-  // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  const articleData = articleDataall.filter((x:any)=> newCategoryArray.includes(x.category))
+   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -125,15 +121,19 @@ const DailyReads = () => {
   
   useFocusEffect(
     React.useCallback(() => {
-      console.log(newCategoryArray,"..newCategoryArray11")
+      //console.log(newCategoryArray,"..newCategoryArray11")
       // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
       const nowDate = DateTime.now().toISODate();
+      // Alert.alert(nowDate+'Modal has been closed.'+dailyDataCategory.currentDate);
       if(dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)){
-        const articleCategoryArrayNew = newCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
+        const articleCategoryArrayNew = articleCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
         const activityCategoryArrayNew = activityCategoryArray.filter((i:any) => ActivitiesData.find((f:any)=>f.activity_category === i.id))
+        console.log(activityCategoryArray,"activityCategoryArray");
+        console.log(ActivitiesData,"ActivitiesData");
         const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === dailyDataCategory.advice);
+        // Alert.alert(JSON.stringify(articleCategoryArrayNew)+" - "+JSON.stringify(activityCategoryArrayNew));
         // const currentIndex = articleCategoryArrayNew.findIndex((_item: any) => _item === 1);
         const nextIndex = (currentIndex + 1) % articleCategoryArrayNew.length;
         let categoryArticleData = articleData.filter((x:any)=>x.category == articleCategoryArrayNew[nextIndex]);
@@ -153,7 +153,7 @@ const DailyReads = () => {
         categoryArticleData = categoryArticleData.filter((i:any) => !advicearray.find((f:any) => f === i.id));
         console.log(categoryArticleData,"--arr1--",articleCategoryArrayNew[nextIndex]);
         const articleDataToShow = categoryArticleData[Math.floor(Math.random() * categoryArticleData.length)];
-        console.log(advicearray,"--articleDataToShow---",articleDataToShow);
+        // Alert.alert(JSON.stringify(articleDataToShow)+"--articleDataToShow---"+articleDataToShow);
 
         const currentIndex2 = activityCategoryArrayNew.findIndex((_item: any) => _item.id === dailyDataCategory.games);
         const nextIndex2 = (currentIndex2 + 1) % activityCategoryArrayNew.length;
@@ -171,15 +171,25 @@ const DailyReads = () => {
         console.log(categoryActivityData,"--arr--",activityCategoryArrayNew[nextIndex2]);
         const activityDataToShow = categoryActivityData[Math.floor(Math.random() * categoryActivityData.length)];
         console.log("activityDataToShow---",activityDataToShow);
-        advicearray.push(articleDataToShow?.id);
-        gamesarray.push(activityDataToShow?.id);
-        console.log(gamesarray,"--updatedAdviceArr--",advicearray);
         var data:any = [];
-        data.push(articleDataToShow);
-        data.push(activityDataToShow);
+        if(articleDataToShow != null && articleDataToShow != undefined){
+          advicearray.push(articleDataToShow?.id);
+          data.push(articleDataToShow);
+        }
+        if(activityDataToShow != null && activityDataToShow != undefined){
+          gamesarray.push(activityDataToShow?.id);
+          data.push(activityDataToShow);
+        }
+        console.log(gamesarray,"--updatedAdviceArr--",advicearray);
+        // Alert.alert(data.length+"data-"+activityDataToShow);
         setDataToShowInList(data);
-        dispatch(setDailyArticleGamesCategory({advice: articleCategoryArrayNew[nextIndex] , games: activityCategoryArrayNew[nextIndex2]?.id,
-          currentadviceid:articleDataToShow?.id,currentgamesid:activityDataToShow?.id,currentDate:DateTime.now().toISODate()}));
+        dispatch(setDailyArticleGamesCategory({
+          advice: articleDataToShow && articleDataToShow != null ? articleCategoryArrayNew[nextIndex] : 0 , 
+          games: activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2]?.id : 0,
+          currentadviceid:articleDataToShow && articleDataToShow != null ? articleDataToShow?.id : 0,
+          currentgamesid:activityDataToShow && activityDataToShow != null ? activityDataToShow?.id : 0,
+          currentDate:DateTime.now().toISODate()
+        }));
         dispatch(setShowedDailyDataCategory({advice: advicearray , games: gamesarray}));
         console.log(dataToShowInList);
       }else {
