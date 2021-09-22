@@ -16,7 +16,6 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
-import { getIdByUniqueName } from '../../services/Utils';
 
 
 const DailyReads = () => {
@@ -34,11 +33,8 @@ const DailyReads = () => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
-  let newCategoryArray=getIdByUniqueName(categoryData,articleCategoryArray);
-  console.log(newCategoryArray,"..newCategoryArray")
   
-  // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  const articleData = articleDataall.filter((x:any)=> newCategoryArray.includes(x.category))
+   const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -125,14 +121,14 @@ const DailyReads = () => {
   
   useFocusEffect(
     React.useCallback(() => {
-      console.log(newCategoryArray,"..newCategoryArray11")
+      //console.log(newCategoryArray,"..newCategoryArray11")
       // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
       const nowDate = DateTime.now().toISODate();
       // Alert.alert(nowDate+'Modal has been closed.'+dailyDataCategory.currentDate);
       if(dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)){
-        const articleCategoryArrayNew = newCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
+        const articleCategoryArrayNew = articleCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
         const activityCategoryArrayNew = activityCategoryArray.filter((i:any) => ActivitiesData.find((f:any)=>f.activity_category === i.id))
         console.log(activityCategoryArray,"activityCategoryArray");
         console.log(ActivitiesData,"ActivitiesData");
