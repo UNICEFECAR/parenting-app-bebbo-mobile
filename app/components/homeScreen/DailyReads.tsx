@@ -95,12 +95,12 @@ const DailyReads = () => {
             {/*Parent Share , View Details*/ }
             <DailyAction>
               <FDirRow>
-              <OuterIconRow>
+              {/* <OuterIconRow>
                     <OuterIconLeft>
                     <Icon name="ic_sb_shareapp" size={24} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
-                <Heading4>{t('homeScreenshareText')}</Heading4>
+                <Heading4>{t('homeScreenshareText')}</Heading4> */}
               </FDirRow>
               <Pressable onPress={() => { goToArticleDetail(item)}}>
                 <FDirRow>
