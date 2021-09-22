@@ -204,11 +204,7 @@ const NotificationItem = (props: any) => {
                       }>
                       <MenuTrigger>
                         <Icon
-                          style={{
-                            flex: 1,
-                            textAlign: 'right',
-                            alignSelf: 'center',
-                          }}
+                          
                           name={'ic_kebabmenu'}
                           size={25}
                           color="#000"
@@ -317,11 +313,7 @@ const NotificationItem = (props: any) => {
                       }>
                       <MenuTrigger>
                         <Icon
-                          style={{
-                            flex: 1,
-                            textAlign: 'right',
-                            alignSelf: 'center',
-                          }}
+                          
                           name={'ic_kebabmenu'}
                           size={25}
                           color="#000"
@@ -446,11 +438,7 @@ const NotificationItem = (props: any) => {
                       }>
                       <MenuTrigger>
                         <Icon
-                          style={{
-                            flex: 1,
-                            textAlign: 'right',
-                            alignSelf: 'center',
-                          }}
+                          
                           name={'ic_kebabmenu'}
                           size={25}
                           color="#000"
@@ -562,11 +550,7 @@ const NotificationItem = (props: any) => {
                         }>
                         <MenuTrigger>
                           <Icon
-                            style={{
-                              flex: 1,
-                              textAlign: 'right',
-                              alignSelf: 'center',
-                            }}
+                            
                             name={'ic_kebabmenu'}
                             size={25}
                             color="#000"
@@ -676,11 +660,7 @@ const NotificationItem = (props: any) => {
                         }>
                         <MenuTrigger>
                           <Icon
-                            style={{
-                              flex: 1,
-                              textAlign: 'right',
-                              alignSelf: 'center',
-                            }}
+                            
                             name={'ic_kebabmenu'}
                             size={25}
                             color="#000"
@@ -796,11 +776,7 @@ const NotificationItem = (props: any) => {
                   }>
                   <MenuTrigger>
                     <Icon
-                      style={{
-                        flex: 1,
-                        textAlign: 'right',
-                        alignSelf: 'center',
-                      }}
+                      
                       name={'ic_kebabmenu'}
                       size={25}
                       color="#000"
