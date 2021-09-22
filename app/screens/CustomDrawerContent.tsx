@@ -526,7 +526,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => navigation.navigate('Favourites')}>
+          {/* <DrawerLinkView onPress={() => navigation.navigate('Favourites')}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_favorites" size={25} color="#000" />
@@ -539,7 +539,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 <Heading5>10</Heading5>
               </BubbleView>
             </BubbleContainer>
-          </DrawerLinkView>
+          </DrawerLinkView> */}
           <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
