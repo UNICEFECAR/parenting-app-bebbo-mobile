@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig, boy_child_gender } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, boy_child_gender, maleData } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -152,7 +152,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
       
 
     }
@@ -177,7 +177,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log(allDatatoStore, "..allDatatoStore..")
         dispatch(setActiveChildData(child));
-        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
 
       }
     }
@@ -204,7 +204,7 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
     }
   }
   let notiFlagObj = { key: 'generateNotifications', value: true };
@@ -544,8 +544,7 @@ export const updateActiveChild = (child: any, key: any, value: any, dispatch: an
   child[key] = value;
   // console.log(child, "..child..");
   dispatch(setActiveChildData(child));
-  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == 36 ? "Father" : "Mother" }) // relationship_with_child:monther/father
-
+  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any) => {
   let databaselistener: any;
