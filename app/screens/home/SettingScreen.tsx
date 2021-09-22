@@ -1,4 +1,4 @@
-import { DEVELOPMENT_NOTIFICATION, GROWTH_NOTIFICATION, VACCINE_HEALTHCHECKUP_NOTIFICATION } from '@assets/data/firebaseEvents';
+import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
 import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -355,21 +355,21 @@ const SettingScreen = (props: any) => {
     let allnotis = [...storedata.notificationData.notifications];
     console.log(allnotis, "..childListallnotis..")
     childList.map((child: any) => {
-    let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
-    let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
+      let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
+      let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       let notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
       if (notiExist) {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'gw') {
               // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-              if(isFutureDate((item.notificationDate))){
+              if (isFutureDate((item.notificationDate))) {
                 return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              }else{
-                return {...item};
+              } else {
+                return { ...item };
               }
-            }else{
-              return {...item};
+            } else {
+              return { ...item };
             }
           })
         }
@@ -393,15 +393,15 @@ const SettingScreen = (props: any) => {
       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
       if (notiExist) {
         if (currentChildNotis.gwcdnotis.length > 0) {
-          currentChildNotis.gwcdnotis =  [...currentChildNotis.gwcdnotis]?.map((item) => {
+          currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'cd') {
-              if(isFutureDate(new Date(item.notificationDate))){
+              if (isFutureDate(new Date(item.notificationDate))) {
                 return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              }else{
-                return {...item};
+              } else {
+                return { ...item };
               }
-            }else{
-              return {...item};
+            } else {
+              return { ...item };
             }
           })
         }
@@ -424,30 +424,30 @@ const SettingScreen = (props: any) => {
       if (notiExist) {
         if (currentChildNotis.vcnotis.length > 0) {
           currentChildNotis.vcnotis = [...currentChildNotis.vcnotis]?.map((item) => {
-              if(isFutureDate(new Date(item.notificationDate))){
-                return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              }else{
-                return {...item};
-              }
+            if (isFutureDate(new Date(item.notificationDate))) {
+              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+            } else {
+              return { ...item };
+            }
           })
         }
         if (notiExist.hcnotis.length > 0) {
           currentChildNotis.hcnotis = [...currentChildNotis.hcnotis]?.map((item) => {
-              if(isFutureDate(new Date(item.notificationDate))){
-                return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              }else{
-                return {...item};
-              }
+            if (isFutureDate(new Date(item.notificationDate))) {
+              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+            } else {
+              return { ...item };
+            }
           })
         }
         if (notiExist.reminderNotis.length > 0) {
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
-              if(isFutureDate(new Date(item.notificationDate))){
-                return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              }
-              else{
-                return {...item};
-              }
+            if (isFutureDate(new Date(item.notificationDate))) {
+              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+            }
+            else {
+              return { ...item };
+            }
           })
         }
       }
@@ -465,6 +465,9 @@ const SettingScreen = (props: any) => {
       let obj2 = { key: 'vchcEnabled', value: false };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(false);
+      analytics().logEvent(GROWTH_NOTIFICATION_OFF)
+      analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
+      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
     } else {
       let obj = { key: 'growthEnabled', value: true };
       dispatch(toggleNotificationFlags(obj));
@@ -473,6 +476,9 @@ const SettingScreen = (props: any) => {
       let obj2 = { key: 'vchcEnabled', value: true };
       dispatch(toggleNotificationFlags(obj2));
       setIsEnabled(true);
+      analytics().logEvent(GROWTH_NOTIFICATION_ON)
+      analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
+      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
     }
     toggleGrowthFutureNotiData();
     togglecdFutureNotiData();
@@ -584,8 +590,13 @@ const SettingScreen = (props: any) => {
                       } else {
                         setIsEnabled(false);
                       }
+                      if (growthEnabledFlag == true) {
+                        analytics().logEvent(GROWTH_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(GROWTH_NOTIFICATION_OFF)
+                      }
                       // toggleSwitch();
-                      analytics().logEvent(GROWTH_NOTIFICATION)
+                      // analytics().logEvent(GROWTH_NOTIFICATION)
                       // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
@@ -629,8 +640,13 @@ const SettingScreen = (props: any) => {
                       } else {
                         setIsEnabled(false);
                       }
+                      if (developmentEnabledFlag == true) {
+                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
+                      }
                       // toggleSwitch();
-                      analytics().logEvent(DEVELOPMENT_NOTIFICATION)
+
                       // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
@@ -674,8 +690,12 @@ const SettingScreen = (props: any) => {
                       } else {
                         setIsEnabled(false);
                       }
+                      if (vchcEnabledFlag == true) {
+                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
+                      }
                       // toggleSwitch();
-                      analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION)
                       // setIsEnabled(!isEnabled);
                     }}>
                     <CheckboxItem>
