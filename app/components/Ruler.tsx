@@ -144,11 +144,11 @@ class Ruler extends React.Component<Props, State> {
       props.width -
       props.segmentWidth +
       (props.maximum - props.minimum) * this.snapSegment;
-    console.log(this.rulerWidth, "rulerWidth");
-    console.log(props.segmentWidth, "segmentWidth");
-    console.log(props.segmentSpacing, "segmentSpacing");
-    console.log(this.snapSegment, "snapSegment");
-    console.log(props, "props")
+    // console.log(this.rulerWidth, "rulerWidth");
+    // console.log(props.segmentWidth, "segmentWidth");
+    // console.log(props.segmentSpacing, "segmentSpacing");
+    // console.log(this.snapSegment, "snapSegment");
+    // console.log(props, "props")
   }
   // static getDerivedStateFromProps(props, state) {
   //   console.log(props,state)
@@ -191,13 +191,16 @@ class Ruler extends React.Component<Props, State> {
 
   componentDidMount() {
     const { minimum, initialValue, onChangeValue } = this.props;
-    // console.log(initialValue);
+    console.log(initialValue,"initialValue");
     if (this.scrollViewRef && this.scrollViewRef.current) {
+     setTimeout(() => {
       this.scrollViewRef.current?.scrollTo({
         x: (initialValue - minimum) * this.snapSegment,
         y: 0,
         animated: true
       });
+     }, 10);
+     
       this.setState({
         value: initialValue,
       });
