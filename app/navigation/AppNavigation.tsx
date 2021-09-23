@@ -20,10 +20,9 @@ import Terms from '@screens/Terms';
 import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
-import { Heading3Regular } from '@styles/typography';
 import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -128,10 +127,12 @@ export default () => {
   // if (!isReady) {
   //   return null;
   // }
+
+
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 5000);
+    }, 3500);
   }, []);
   useMemo(() => {
     // if (userIsOnboarded == true) {
@@ -277,6 +278,12 @@ export default () => {
               screen_class: currentRouteName,
             });
             analytics().logEvent(currentRouteName + "_opened");
+            console.log(currentRouteName,"currentRouteName")
+            // if(currentRouteName =="ChartFullScreen"){
+            //   Orientation.lockToLandscape();
+            // }else{
+            //   Orientation.lockToPortrait();
+            // }
             //  await analytics().logEvent('product_view', {
             //   id: '1234',
             // });
@@ -390,7 +397,7 @@ export default () => {
           />
           <RootStack.Screen
             name="ChartFullScreen"
-            options={{ headerShown: false }}
+            options={{ headerShown: false}}
             component={ChartFullScreen}
           />
           <RootStack.Screen
