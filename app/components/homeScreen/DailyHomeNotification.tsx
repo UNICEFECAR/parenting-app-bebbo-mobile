@@ -5,15 +5,16 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import {
   ConfigSettingsEntity,
   ConfigSettingsSchema
 } from '../../database/schema/ConfigSettingsSchema';
+import { getAllConfigData } from '../../services/childCRUD';
 const DailyHomeNotification = () => {
   const [notification, setNotification] = useState<any>();
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   // const languageCode = useAppSelector(
   //   (state: any) => state.selectedCountry.languageCode,
   // );
@@ -27,20 +28,24 @@ const DailyHomeNotification = () => {
       ? JSON.parse(state.utilsData.dailymessages)
       : state.utilsData.dailymessages,
   );
-  // console.log(records, '<<records>>');
+  console.log(records, '<<records>>');
 
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
       ? JSON.parse(state.variableData?.variableData)
       : state.variableData?.variableData,
   );
-  // console.log(allConfigData, '..allConfigData..');
+  console.log(allConfigData, '..allConfigData..');
   const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number; }) => {
-    await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
-      ConfigSettingsSchema,
-      'dailyNotification',
-      JSON.stringify(noti),
-    );
+    // await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
+    //   ConfigSettingsSchema,
+    //   'dailyNotification',
+    //   JSON.stringify(noti),
+    // );
+    console.log('setNotiInDB', noti);
+    let dailymessage = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification", JSON.stringify(noti));
+    console.log(dailymessage, 'dailymessageAdded');
+    getAllConfigData(dispatch);
   };
 
   useEffect(() => {
@@ -48,14 +53,14 @@ const DailyHomeNotification = () => {
       allConfigData?.length > 0
         ? allConfigData.find((item) => item.key == 'dailyNotification')
         : null;
-    // console.log(currentNotification, 'currentNotification<>');
+    console.log(currentNotification, 'currentNotification<>');
     let currentDate = DateTime.local();
     // let currentDate = DateTime.local().plus({days: 4});//for testing next day noti change
     if (currentNotification != null || currentNotification != undefined) {
       const currentNotificationVal = currentNotification
         ? JSON.parse(currentNotification?.value)
         : null;
-      // console.log('currentNotificationVal', currentNotificationVal);
+      console.log('currentNotificationVal', currentNotificationVal);
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
       if (records.length > 0) {
         if (
@@ -66,7 +71,7 @@ const DailyHomeNotification = () => {
           const currentMessageIndex = records.findIndex(
             (item: any) => item.id === currentNotificationVal.messageId,
           );
-          // console.log(currentMessageIndex, 'currentMessageIndex');
+          console.log(currentMessageIndex, 'currentMessageIndex');
           // Set next daily message
           let newNotification = {
             messageId: records[currentMessageIndex + 1].id,
@@ -95,11 +100,22 @@ const DailyHomeNotification = () => {
           month: currentDate.month,
           year: currentDate.year,
         };
-        // console.log(firstNotification);
+        console.log(firstNotification,"firstNotification");
         let updateNotifcation = setNotiInDB(firstNotification);
         setNotification(firstNotification);
         // console.log(updateNotifcation);
       }
+    }else{
+      let firstNotification = {
+        messageId: records ? records[0].id : '',
+        messageText: records ? records[0].title : '',
+        day: currentDate.day,
+        month: currentDate.month,
+        year: currentDate.year,
+      };
+      console.log(firstNotification,"firstNotification");
+      let updateNotifcation = setNotiInDB(firstNotification);
+      setNotification(firstNotification);
     }
   }, []);
 
