@@ -562,8 +562,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </Pressable>
               </HeaderActionView> : null}
           </HeaderRowView>
-
+          
           <ScrollView style={{ flex: 9 }}>
+          <KeyboardAwareScrollView  bounces={false}>
             <MainContainer>
               <FormInputGroup onPress={() => {
                 setmeasureDateShow(true);
@@ -784,7 +785,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 <FormInputText>
                   {t('growthScreenenterDoctorRemarkText')}
                 </FormInputText>
-                <KeyboardAwareScrollView>
+                
                   <TextAreaBox>
                     <TextInput
                       autoCapitalize="none"
@@ -800,15 +801,14 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-                </KeyboardAwareScrollView>
+               
               </FormContainerFlex>
 
               <ShiftFromTopBottom10>
                 <Text>{t('growthScreennewGrowthBottomText')}</Text>
               </ShiftFromTopBottom10>
             </MainContainer>
-          </ScrollView>
-          <ButtonContainer>
+            <ButtonContainer>
             <ButtonTertiary
               disabled={isFormDisabled()}
               onPress={(e) => {
@@ -818,6 +818,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
           </ButtonContainer>
+            </KeyboardAwareScrollView>
+          </ScrollView>
+          
 
           <Modal
             animationType="none"
