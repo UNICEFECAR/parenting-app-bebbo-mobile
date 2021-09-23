@@ -1,14 +1,13 @@
 import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
 import { BannerContainer1 } from '@components/shared/Container';
 import {
-  FDirRow,
   FDirRowStart,
   Flex1,
   Flex2,
   Flex3, FlexColEnd, FlexDirColStart, FlexDirRowEnd, FlexDirRowSpace, FlexDirRowSpaceStart
 } from '@components/shared/FlexBoxStyle';
-import Icon, {  OuterIconLeft, OuterIconRow,  IconViewAlert } from '@components/shared/Icon';
-import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
+import Icon, { IconViewAlert, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import ModalPopupContainer, { ModalPopupContent, PopupClose, PopupCloseContainer, PopupOverlay } from '@components/shared/ModalPopupStyle';
 import { PrematureTagGrowth } from '@components/shared/PrematureTag';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -24,7 +23,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, Text, View } from 'react-native';
+import { Modal, Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';

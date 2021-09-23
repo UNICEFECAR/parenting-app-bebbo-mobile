@@ -3,7 +3,6 @@ import GrowthChart, { chartTypes } from '@components/growth/GrowthChart';
 import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexFDirRowSpace } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +10,7 @@ import {
   ActivityIndicator,
   BackHandler,
   Dimensions,
+  Platform,
   Pressable,
   ScrollView
 } from 'react-native';
@@ -18,21 +18,27 @@ import Orientation from 'react-native-orientation-locker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 
-export const ChartFullScreen = ({route}) => {
+
+export const ChartFullScreen = ({ route, navigation }: Props) => {
   const {activeChild, chartType, obj, standardDeviation} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
   // console.log(activeChild, chartType, obj, standardDeviation);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const {t} = useTranslation();
   const chartHeading =
     chartType == chartTypes.weightForHeight
       ? {title: t('growthScreenweightForHeight')}
       : {title: t('growthScreenheightForAge')};
   const [isChartVisible, setIsChartVisible] = React.useState(false);
-  useFocusEffect(
-    React.useCallback(() => {
-     // Orientation.unlockAllOrientations();
+
+
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      // The screen is focused
+      // Call any action
+      Orientation.unlockAllOrientations();
       Orientation.lockToLandscape();
       setTimeout(() => {
         setIsChartVisible(true);
@@ -49,8 +55,19 @@ export const ChartFullScreen = ({route}) => {
          */
         return true;
       });
-    }, []),
-  );
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //    Orientation.unlockAllOrientations();
+  //     Orientation.lockToLandscapeLeft();
+     
+  //   }, []),
+  // );
   const closeFullScreen = () => {
     //Orientation.unlockAllOrientations();
     Orientation.lockToPortrait();
@@ -106,8 +123,8 @@ export const ChartFullScreen = ({route}) => {
                     activeChild={activeChild}
                     chartType={chartType}
                     bgObj={obj}
-                    windowWidth={windowHeight}
-                    windowHeight={windowWidth}
+                    windowWidth={Platform.OS === 'ios'? windowWidth : windowHeight}
+                    windowHeight={Platform.OS === 'ios' ? windowHeight : windowWidth}
                   />
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
