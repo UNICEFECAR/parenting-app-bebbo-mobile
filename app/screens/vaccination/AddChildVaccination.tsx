@@ -527,6 +527,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
         </HeaderRowView>
 
         <ScrollView style={{ flex: 9 }}>
+        <KeyboardAwareScrollView  bounces={false}>
           <MainContainer>
             <FormInputGroup onPress={() => {
               // setmeasureDateShow(true)
@@ -717,7 +718,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               <FormInputText>
                 <Heading3>{t('vcDoctorRemark')}</Heading3>
               </FormInputText>
-              <KeyboardAwareScrollView>
+             
                 <TextAreaBox>
                   <TextInput
                     autoCapitalize="none"
@@ -732,12 +733,11 @@ const AddChildVaccination = ({ route, navigation }: any) => {
 
                   />
                 </TextAreaBox>
-              </KeyboardAwareScrollView>
+             
             </FormContainer>
 
           </MainContainer>
-        </ScrollView>
-        <ButtonContainer>
+          <ButtonContainer>
           <ButtonTertiary
             disabled={isFormDisabled()}
             onPress={(e) => {
@@ -748,6 +748,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
             <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
           </ButtonTertiary>
         </ButtonContainer>
+        </KeyboardAwareScrollView>
+        </ScrollView>
+        
 
         <Modal
           animationType="none"
