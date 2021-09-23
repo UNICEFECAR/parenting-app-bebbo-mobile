@@ -7,7 +7,7 @@ import { MainContainer } from '@components/shared/Container';
 import VideoPlayer from '@components/VideoPlayer';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2Center, Heading3Center, Heading4Centerr, Heading4Regular, ShiftFromBottom10, ShiftFromTopBottom10,SideSpacing25} from '@styles/typography';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dimensions, Image } from 'react-native';
 import { useAppSelector } from '../../../App';
@@ -47,8 +47,7 @@ const PinnedChildDevData = useAppSelector(
     state.utilsData.PinnedChildDevData != '' ?JSON.parse(state.utilsData.PinnedChildDevData):[],
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
-useFocusEffect(
-  React.useCallback(() => { 
+  useEffect(() => {
     
     // console.log("selectedChildDevData changed--");
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activeChild.taxonomyData.id))[0];
@@ -64,8 +63,7 @@ useFocusEffect(
       let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }
-  },[activeChild.uuid])
-);
+  },[activeChild.uuid,activeChild.taxonomyData.id]);
 
 const goToVideoArticleDetails = () => {
   navigation.navigate('DetailsScreen', {

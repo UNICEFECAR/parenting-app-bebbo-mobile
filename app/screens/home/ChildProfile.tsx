@@ -393,12 +393,26 @@ const child_age = useAppSelector(
 
               <ProfileContentView>
                 <ParentRowView>
+                  
+                
                   <ParentSection>
                     <ParentLabel>
                       <Text>{t('parentRoleLabel')}</Text>
                     </ParentLabel>
                     <ParentData>
+                     
                       <Text style={{marginLeft:15}}>
+                        {userRelationToParent?.length > 0 ? relationshipToParent.name : ''}
+                      </Text>
+                 
+                    </ParentData>
+                  </ParentSection>
+                  <ParentSection>
+                    <ParentLabel>
+                      <Text>{t('parentGender')}</Text>
+                    </ParentLabel>
+                    <ParentData>
+                    <Text style={{marginLeft:15}}>
                         {
                         userParentalRoleData?.length > 0
                           ? relationshipValue.name
@@ -406,20 +420,8 @@ const child_age = useAppSelector(
                         }
                       </Text>
                     </ParentData>
-                  </ParentSection>
-                  <ParentSection>
-                    <ParentLabel>
-                      <Text>{t('relationToParentNameLabel')}</Text>
-                    </ParentLabel>
-                    <ParentData>
-                    <Text style={{marginLeft:15}}>
-                        {userRelationToParent?.length > 0 ? relationshipToParent.name : ''}
-                      </Text>
-                 
-                    </ParentData>
                     
                   </ParentSection>
-                
                   <ParentSection>
                     <ParentLabel>
                       <Text>{t('parentNameLabel')}</Text>
