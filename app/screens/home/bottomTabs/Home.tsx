@@ -43,6 +43,7 @@ import {
   ScrollView, ToastAndroid,
   View
 } from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -81,7 +82,18 @@ const Home = ({ route, navigation }: Props) => {
   //     ? JSON.parse(state.childData.childDataSet.allChild)
   //     : state.childData.childDataSet.allChild,
   // );
+  // const navigation = useNavigation()
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      // The screen is focused
+      // Call any action
+      Orientation.unlockAllOrientations();
+      Orientation.lockToPortrait();
+    });
 
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
   const dispatch = useAppDispatch();
 
   const userIsOnboarded = useAppSelector(
