@@ -608,6 +608,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
             ) : null}
           </HeaderRowView>
           <FlexCol>
+          <KeyboardAwareScrollView  bounces={false}>
             <MainContainer>
               <FormInputGroup onPress={() => {
                 setmeasureDateShow(true);
@@ -763,7 +764,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 <FormInputText>
                   {t('growthScreenenterDoctorRemarkText')}
                 </FormInputText>
-                <KeyboardAwareScrollView>
+                
                   <TextAreaBox>
                     <TextInput
                       autoCapitalize="none"
@@ -779,15 +780,14 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-                </KeyboardAwareScrollView>
+               
               </FormContainer>
 
               <ShiftFromTopBottom10>
                 <Text>{t('growthScreennewGrowthBottomText')}</Text>
               </ShiftFromTopBottom10>
             </MainContainer>
-          </FlexCol>
-          <ButtonContainer>
+            <ButtonContainer>
             <ButtonTertiary
               disabled={isFormFilled()}
               onPress={(e) => {
@@ -797,6 +797,9 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
             </ButtonTertiary>
           </ButtonContainer>
+                        </KeyboardAwareScrollView>
+          </FlexCol>
+          
           <Modal
             animationType="none"
             transparent={true}
