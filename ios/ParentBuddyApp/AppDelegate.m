@@ -6,6 +6,7 @@
 #import "RNSplashScreen.h"
 #import <Firebase.h>
 #import "ParentBuddyApp-Swift.h"
+#import "Orientation.h"
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -100,7 +101,16 @@ static void InitializeFlipper(UIApplication *application) {
 //  [RNSplashScreen show];
   return YES;
 }
-
+//- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+//   while ([[UIDevice currentDevice] isGeneratingDeviceOrientationNotifications]) {
+//       [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+//   }
+//
+//   return [Orientation getOrientation];
+// }
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+ return [Orientation getOrientation];
+}
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
 #if DEBUG
@@ -109,5 +119,7 @@ static void InitializeFlipper(UIApplication *application) {
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
+
+
 
 @end

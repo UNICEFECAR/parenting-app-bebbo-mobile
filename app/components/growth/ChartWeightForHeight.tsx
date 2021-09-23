@@ -1,4 +1,4 @@
-import { boy_child_gender, girl_child_gender, height_growth_type, weight_growth_type } from '@assets/translations/appOfflineData/apiConstants';
+import { boy_child_gender, girl_child_gender, height_growth_type } from '@assets/translations/appOfflineData/apiConstants';
 import { FlexCol, FlexColEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
@@ -6,8 +6,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading4, ShiftFromTop10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, Dimensions, Pressable, View ,Text} from 'react-native';
-import Orientation from 'react-native-orientation-locker';
+import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';

@@ -393,7 +393,7 @@ class Ruler extends React.Component<Props, State> {
             // console.log(this.state.value, this.state.scrollX, "onMomentumScrollEnd");
             onChangeValue(this.state.value);
             this.scrollViewRef.current?.scrollTo({
-              x: this.state.value * this.snapSegment,
+              x: (this.state.value * this.snapSegment)+ minimum,
               y: 0,
             });
           }}>
