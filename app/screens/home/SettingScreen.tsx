@@ -50,9 +50,7 @@ import {
   Heading4Regular,
   Heading6,
   ShiftFromBottom10,
-  ShiftFromTop10,
-  ShiftFromTop20,
-  ShiftFromTopBottom10,
+  ShiftFromTop10, ShiftFromTopBottom10,
   ShiftFromTopBottom5,
   SideSpacing10
 } from '@styles/typography';
@@ -576,156 +574,156 @@ const SettingScreen = (props: any) => {
                 </Flex1>
               </FDirRowStart>
             </ShiftFromBottom10>
-
-            <ShiftFromBottom10>
-              <SideSpacing10>
-                <FDirRowStart>
-                  <FormOuterCheckbox
-                    onPress={() => {
-                      let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
-                      dispatch(toggleNotificationFlags(obj));
-                      toggleGrowthFutureNotiData();
-                      if (vchcEnabledFlag == true && (growthEnabledFlag == true ? false : true) == true && developmentEnabledFlag == true) {
-                        setIsEnabled(true);
-                      } else {
-                        setIsEnabled(false);
-                      }
-                      if (growthEnabledFlag == true) {
-                        analytics().logEvent(GROWTH_NOTIFICATION_ON)
-                      } else {
-                        analytics().logEvent(GROWTH_NOTIFICATION_OFF)
-                      }
-                      // toggleSwitch();
-                      // analytics().logEvent(GROWTH_NOTIFICATION)
-                      // setIsEnabled(!isEnabled);
-                    }}>
-                    <CheckboxItem>
-                      <View>
-                        {growthEnabledFlag ? (
-                          <CheckboxActive>
-                            <Icon name="ic_tick" size={12} color="#000" />
-                          </CheckboxActive>
-                        ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                        )}
-                      </View>
-                    </CheckboxItem>
-                  </FormOuterCheckbox>
-                  {/* <Switch
+            {isEnabled ? <>
+              <ShiftFromBottom10>
+                <SideSpacing10>
+                  <FDirRowStart>
+                    <FormOuterCheckbox
+                      onPress={() => {
+                        let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
+                        dispatch(toggleNotificationFlags(obj));
+                        toggleGrowthFutureNotiData();
+                        if (vchcEnabledFlag == false && growthEnabledFlag == true && developmentEnabledFlag == false) {
+                          setIsEnabled(false);
+                        } else {
+                          setIsEnabled(true);
+                        }
+                        if (growthEnabledFlag == true) {
+                          analytics().logEvent(GROWTH_NOTIFICATION_ON)
+                        } else {
+                          analytics().logEvent(GROWTH_NOTIFICATION_OFF)
+                        }
+                        // toggleSwitch();
+                        // analytics().logEvent(GROWTH_NOTIFICATION)
+                        // setIsEnabled(!isEnabled);
+                      }}>
+                      <CheckboxItem>
+                        <View>
+                          {growthEnabledFlag ? (
+                            <CheckboxActive>
+                              <Icon name="ic_tick" size={12} color="#000" />
+                            </CheckboxActive>
+                          ) : (
+                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          )}
+                        </View>
+                      </CheckboxItem>
+                    </FormOuterCheckbox>
+                    {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                  <Flex1>
-                    <Heading4Regular>
-                      {t('settingScreennotiType2')}
-                    </Heading4Regular>
-                  </Flex1>
-                </FDirRowStart>
-              </SideSpacing10>
-            </ShiftFromBottom10>
+                    <Flex1>
+                      <Heading4Regular>
+                        {t('settingScreennotiType2')}
+                      </Heading4Regular>
+                    </Flex1>
+                  </FDirRowStart>
+                </SideSpacing10>
+              </ShiftFromBottom10>
 
-            <ShiftFromBottom10>
-              <SideSpacing10>
-                <FDirRowStart>
-                  <FormOuterCheckbox
-                    onPress={() => {
-                      let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
-                      dispatch(toggleNotificationFlags(obj));
-                      togglecdFutureNotiData();
-                      if (vchcEnabledFlag == true && (growthEnabledFlag) == true && (developmentEnabledFlag == true ? false : true) == true) {
-                        setIsEnabled(true);
-                      } else {
-                        setIsEnabled(false);
-                      }
-                      if (developmentEnabledFlag == true) {
-                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
-                      } else {
-                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
-                      }
-                      // toggleSwitch();
+              <ShiftFromBottom10>
+                <SideSpacing10>
+                  <FDirRowStart>
+                    <FormOuterCheckbox
+                      onPress={() => {
+                        let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
+                        dispatch(toggleNotificationFlags(obj));
+                        togglecdFutureNotiData();
+                        if (vchcEnabledFlag == false && growthEnabledFlag == false && developmentEnabledFlag == true) {
+                          setIsEnabled(false);
+                        } else {
+                          setIsEnabled(true);
+                        }
+                        if (developmentEnabledFlag == true) {
+                          analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
+                        } else {
+                          analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
+                        }
+                        // toggleSwitch();
 
-                      // setIsEnabled(!isEnabled);
-                    }}>
-                    <CheckboxItem>
-                      <View>
-                        {developmentEnabledFlag ? (
-                          <CheckboxActive>
-                            <Icon name="ic_tick" size={12} color="#000" />
-                          </CheckboxActive>
-                        ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                        )}
-                      </View>
-                    </CheckboxItem>
-                  </FormOuterCheckbox>
-                  {/* <Switch
+                        // setIsEnabled(!isEnabled);
+                      }}>
+                      <CheckboxItem>
+                        <View>
+                          {developmentEnabledFlag ? (
+                            <CheckboxActive>
+                              <Icon name="ic_tick" size={12} color="#000" />
+                            </CheckboxActive>
+                          ) : (
+                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          )}
+                        </View>
+                      </CheckboxItem>
+                    </FormOuterCheckbox>
+                    {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                  <Flex1>
-                    <Heading4Regular>
-                      {t('settingScreennotiType3')}
-                    </Heading4Regular>
-                  </Flex1>
-                </FDirRowStart>
-              </SideSpacing10>
-            </ShiftFromBottom10>
+                    <Flex1>
+                      <Heading4Regular>
+                        {t('settingScreennotiType3')}
+                      </Heading4Regular>
+                    </Flex1>
+                  </FDirRowStart>
+                </SideSpacing10>
+              </ShiftFromBottom10>
 
-            <ShiftFromBottom10>
-              <SideSpacing10>
-                <FDirRowStart>
-                  <FormOuterCheckbox
-                    onPress={() => {
-                      let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
-                      dispatch(toggleNotificationFlags(obj));
-                      toggleVCHCVCRHCRFutureNotiData();
-                      if ((vchcEnabledFlag == true ? false : true) == true && (growthEnabledFlag) == true && (developmentEnabledFlag) == true) {
-                        setIsEnabled(true);
-                      } else {
-                        setIsEnabled(false);
-                      }
-                      if (vchcEnabledFlag == true) {
-                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
-                      } else {
-                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
-                      }
-                      // toggleSwitch();
-                      // setIsEnabled(!isEnabled);
-                    }}>
-                    <CheckboxItem>
-                      <View>
-                        {vchcEnabledFlag ? (
-                          <CheckboxActive>
-                            <Icon name="ic_tick" size={12} color="#000" />
-                          </CheckboxActive>
-                        ) : (
-                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                        )}
-                      </View>
-                    </CheckboxItem>
-                  </FormOuterCheckbox>
-                  {/* <Switch
+              <ShiftFromBottom10>
+                <SideSpacing10>
+                  <FDirRowStart>
+                    <FormOuterCheckbox
+                      onPress={() => {
+                        let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
+                        dispatch(toggleNotificationFlags(obj));
+                        toggleVCHCVCRHCRFutureNotiData();
+                        if (vchcEnabledFlag == true && growthEnabledFlag == false && developmentEnabledFlag == false) {
+                          setIsEnabled(false);
+                        } else {
+                          setIsEnabled(true);
+                        }
+                        if (vchcEnabledFlag == true) {
+                          analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
+                        } else {
+                          analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
+                        }
+                        // toggleSwitch();
+                        // setIsEnabled(!isEnabled);
+                      }}>
+                      <CheckboxItem>
+                        <View>
+                          {vchcEnabledFlag ? (
+                            <CheckboxActive>
+                              <Icon name="ic_tick" size={12} color="#000" />
+                            </CheckboxActive>
+                          ) : (
+                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                          )}
+                        </View>
+                      </CheckboxItem>
+                    </FormOuterCheckbox>
+                    {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                  <Flex1>
-                    <Heading4Regular>
-                      {t('settingScreennotiType4')}
-                    </Heading4Regular>
-                  </Flex1>
-                </FDirRowStart>
-              </SideSpacing10>
-            </ShiftFromBottom10>
-
+                    <Flex1>
+                      <Heading4Regular>
+                        {t('settingScreennotiType4')}
+                      </Heading4Regular>
+                    </Flex1>
+                  </FDirRowStart>
+                </SideSpacing10>
+              </ShiftFromBottom10>
+            </> : null}
             <View>
               <Heading4Regular>{t('settingScreennotiInfo')}</Heading4Regular>
             </View>
