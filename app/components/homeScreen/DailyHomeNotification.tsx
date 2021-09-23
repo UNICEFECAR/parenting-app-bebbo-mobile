@@ -44,7 +44,7 @@ const DailyHomeNotification = () => {
     // );
     // console.log('setNotiInDB', noti);
     let dailymessage = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification", JSON.stringify(noti));
-    console.log(dailymessage, 'dailymessageAdded');
+    // console.log(dailymessage, 'dailymessageAdded');
     getAllConfigData(dispatch);
   };
 
