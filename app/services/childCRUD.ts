@@ -723,6 +723,12 @@ export const getAllChildren = async (dispatch: any, child_age: any, param: any) 
             activeChild.parent_gender = userParentalRole[0].value
           }
           console.log(activeChild, "..3435activeChild")
+
+    const storedata = store.getState();
+    //console.log("store val--", storedata)
+    
+          const allDatatoStore = await getAllDataToStore(storedata.selectedCountry.languageCode, dispatch, "AddEditChild", activeChild);
+          console.log(allDatatoStore, "..allDatatoStore..")
           dispatch(setActiveChildData(activeChild));
         }
       }
