@@ -118,7 +118,7 @@ const SettingScreen = (props: any) => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-  console.log(toggleSwitchVal, "..toggleSwitchVal..");
+  // console.log(toggleSwitchVal, "..toggleSwitchVal..");
   const { t, i18n } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
   const [isDataSaverEnabled, setIsDataSaverEnabled] = useState(false);
@@ -351,7 +351,7 @@ const SettingScreen = (props: any) => {
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
-    console.log(allnotis, "..childListallnotis..")
+    // console.log(allnotis, "..childListallnotis..")
     childList.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
@@ -374,7 +374,7 @@ const SettingScreen = (props: any) => {
       }
       // currentChildNotis.gwcdnotis = currentChildNotis.gwcdnotis;
       allnotis[currentChildIndex] = currentChildNotis
-      console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
+      // console.log(allnotis, "allNotifications>toggleGrowthFutureNotiData");
     });
     dispatch(setAllNotificationData(allnotis));
   }
@@ -405,7 +405,7 @@ const SettingScreen = (props: any) => {
         }
       }
       allnotis[currentChildIndex] = currentChildNotis
-      console.log(allnotis, "allNotifications>togglecdFutureNotiData");
+      // console.log(allnotis, "allNotifications>togglecdFutureNotiData");
     });
     dispatch(setAllNotificationData(allnotis));
   }
@@ -414,7 +414,7 @@ const SettingScreen = (props: any) => {
     let childList = await getAllChildren(dispatch, childAge, 1);
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
-    console.log(childList, "..childList..")
+    // console.log(childList, "..childList..")
     childList.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
@@ -450,7 +450,7 @@ const SettingScreen = (props: any) => {
         }
       }
       allnotis[currentChildIndex] = currentChildNotis
-      console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");
+      // console.log(allnotis, "allNotifications>toggleVCHCVCRHCRFutureNotiData");
     });
     dispatch(setAllNotificationData(allnotis));
   }
@@ -538,7 +538,7 @@ const SettingScreen = (props: any) => {
       (language: any) => language.languageCode === languageCode,
     );
     setlanguage(selectedLanguage);
-    console.log(toggleSwitchVal, "..useeffect..");
+    // console.log(toggleSwitchVal, "..useeffect..");
     toggleSwitch();
     // setIsDataSaverEnabled(toggleSwitchVal);
     // console.log(selectedCountry,selectedLanguage);
@@ -574,7 +574,7 @@ const SettingScreen = (props: any) => {
                 </Flex1>
               </FDirRowStart>
             </ShiftFromBottom10>
-            {isEnabled ? <>
+          
               <ShiftFromBottom10>
                 <SideSpacing10>
                   <FDirRowStart>
@@ -723,7 +723,7 @@ const SettingScreen = (props: any) => {
                   </FDirRowStart>
                 </SideSpacing10>
               </ShiftFromBottom10>
-            </> : null}
+           
             <View>
               <Heading4Regular>{t('settingScreennotiInfo')}</Heading4Regular>
             </View>
