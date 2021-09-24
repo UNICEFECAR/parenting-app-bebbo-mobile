@@ -447,7 +447,7 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
       [
         {
           text: i18n.t('retryCancelPopUpBtn'),
-          onPress: () => reject("Retry Cancelled"),
+          onPress: () => resolve("cancel"),
           style: "cancel"
         },
         { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
