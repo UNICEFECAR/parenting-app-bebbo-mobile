@@ -768,7 +768,15 @@ const SettingScreen = (props: any) => {
               })}
             </Heading6>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => { downloadUpdatedData() }}>
+              {/* <ButtonPrimary onPress={() => { downloadUpdatedData() }}> */}
+              <ButtonPrimary onPress={() => {
+                if (netInfoval && netInfoval.isConnected == true) {
+                  downloadUpdatedData()
+                }
+                else {
+                  Alert.alert('', t('noInternet'));
+                }
+              }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
@@ -787,10 +795,18 @@ const SettingScreen = (props: any) => {
             <SettingHeading>
               <FlexDirRowSpace>
                 <Heading1>{t('settingScreenlocalizationHeader')}</Heading1>
-                <Pressable disabled={!netInfoval.isConnected} onPress={() => {
+                {/* <Pressable disabled={!netInfoval.isConnected} onPress={() => {
                   console.log("icon clicked");
                   setModalVisible(true)
-                }}>
+                }}> */}
+                <Pressable onPress={() => {
+                if (netInfoval && netInfoval.isConnected == true) {
+                  setModalVisible(true)
+                }
+                else {
+                  Alert.alert('', t('noInternet'));
+                }
+              }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </Pressable>
               </FlexDirRowSpace>
