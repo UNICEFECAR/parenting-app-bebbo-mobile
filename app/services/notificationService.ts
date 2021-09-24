@@ -297,6 +297,7 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
 
 
       if (vchcEnabledFlag == false) {
+        if(currentvcPeriodNoti.length > 0){
         currentvcPeriodNoti = [...currentvcPeriodNoti].map(item => {
           if (isFutureDate(new Date(item.notificationDate))) {
             return { ...item, isDeleted: true };
@@ -304,6 +305,8 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
             return { ...item };
           }
         })
+      }
+      if(currenthcPeriodNoti.length > 0){
         currenthcPeriodNoti = [...currenthcPeriodNoti].map(item => {
           if (isFutureDate(new Date(item.notificationDate))) {
             return { ...item, isDeleted: true };
@@ -311,6 +314,7 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
             return { ...item };
           }
         })
+      }
       }
 
 
@@ -344,14 +348,17 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
           }
         })
       }
-      console.log(child,"child")
-      console.log(child.taxonomyData, "child.taxonomyData.id");
+      // console.log(child,"child")
+      // console.log(child.taxonomyData, "child.taxonomyData.id");
+      // console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
+      // console.log(currentvcPeriodNoti, "currentvcPeriodNoti");
+      // console.log(currenthcPeriodNoti, "currenthcPeriodNoti");
       // {lastperiodid:child.taxonomyData.id,notis:currentgwPeriodNoti}
       if (currentvcPeriodNoti && currenthcPeriodNoti && currentgwPeriodNoti) {
         let notis = {
           lastgwperiodid: child.taxonomyData.id, gwcdnotis: currentgwPeriodNoti,
-          lastvcperiodid: currentvcPeriodNoti[0].growth_period, vcnotis: currentvcPeriodNoti,
-          lasthcperiodid: currenthcPeriodNoti[0].growth_period, hcnotis: currenthcPeriodNoti,
+          lastvcperiodid: currentvcPeriodNoti.length>0 ? currentvcPeriodNoti[0].growth_period : 0, vcnotis: currentvcPeriodNoti,
+          lasthcperiodid: currenthcPeriodNoti.length>0 ? currenthcPeriodNoti[0].growth_period : 0, hcnotis: currenthcPeriodNoti,
         }
         console.log(notis, "newCalcNotis")
         // show current period's notifications if child was created after birth date (expecting child)
@@ -561,7 +568,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
     item.vaccination_opens = item.vaccination_opens;
     item.vaccination_closes = (index == groupsForPeriods.length - 1) ? maxPeriodDays : groupsForPeriods[index + 1].vaccination_opens;
   })
-  // console.log(groupsForPeriods, "groupsForPeriods")
+  console.log(groupsForPeriods, "groupsForPeriods")
   groupsForPeriods.forEach((item: any, index: number) => {
     // console.log(item,'vcNoti')
     noti.push({
@@ -578,7 +585,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
     })
   });
   // console.log(groupsForPeriods, "groupsForPeriods")
-  // console.log(noti, "inVC")
+  console.log(noti, "inVC")
   let sortednoti = noti.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
