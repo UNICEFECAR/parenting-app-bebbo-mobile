@@ -413,7 +413,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         ? measureDate.toFormat('MM')
         : measureDate.toFormat('MM')
       : measureDate.toFormat('MM');
-    if (allVaccines.length == 0) {
+    if (isVaccineMeasured==true && allVaccines.length == 0) {
       Alert.alert(t('alertForModifyMeasures'),
         t('alertForNoTakenVaccinesSelectTitle'),
         [
