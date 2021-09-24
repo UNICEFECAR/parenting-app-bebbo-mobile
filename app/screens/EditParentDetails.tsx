@@ -269,9 +269,10 @@ const EditParentDetails = ({route,navigation}: Props) => {
           </MainContainer>
           <ShiftFromTop10>
           <ButtonContainer>
-            
+            {/* <Text>{userRelationToParent+"/"+relationship+"/"+parentName}huhi</Text> */}
             <ButtonPrimary
-             disabled={relationship==null || relationship==undefined || parentName==null || parentName==undefined || parentName=="" ? true :false}
+             disabled={
+              relationship=="" || relationship==null || relationship==undefined || parentName==null || parentName==undefined || parentName=="" ? true :false}
               onPress={() => {
                 saveParentData(relationship,parentName,userRelationToParent);
              
