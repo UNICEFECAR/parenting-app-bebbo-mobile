@@ -1,3 +1,5 @@
+
+
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
 import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -35,7 +37,9 @@ import ModalPopupContainer, {
 import {
   SettingHeading,
   SettingOptions,
-  SettingShareData
+  SettingShareData,
+  ToggleLabelText,
+  ToggleLabelText1
 } from '@components/shared/SettingsStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -52,7 +56,8 @@ import {
   ShiftFromBottom10,
   ShiftFromTop10, ShiftFromTopBottom10,
   ShiftFromTopBottom5,
-  SideSpacing10
+  SideSpacing10,
+  SideSpacing20
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -567,11 +572,11 @@ const SettingScreen = (props: any) => {
                   onValueChange={toggleAllNotis}
                   value={isEnabled}
                 />
-                <Flex1>
+                <ToggleLabelText>
                   <Heading4Regular>
                     {t('settingScreennotiType1')}
                   </Heading4Regular>
-                </Flex1>
+                </ToggleLabelText>
               </FDirRowStart>
             </ShiftFromBottom10>
           
@@ -616,11 +621,11 @@ const SettingScreen = (props: any) => {
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <Flex1>
+                    <ToggleLabelText1 >
                       <Heading4Regular>
                         {t('settingScreennotiType2')}
                       </Heading4Regular>
-                    </Flex1>
+                    </ToggleLabelText1>
                   </FDirRowStart>
                 </SideSpacing10>
               </ShiftFromBottom10>
@@ -666,11 +671,11 @@ const SettingScreen = (props: any) => {
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <Flex1>
+                    <ToggleLabelText1>
                       <Heading4Regular>
                         {t('settingScreennotiType3')}
                       </Heading4Regular>
-                    </Flex1>
+                    </ToggleLabelText1>
                   </FDirRowStart>
                 </SideSpacing10>
               </ShiftFromBottom10>
@@ -715,11 +720,11 @@ const SettingScreen = (props: any) => {
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <Flex1>
+                    <ToggleLabelText1>
                       <Heading4Regular>
                         {t('settingScreennotiType4')}
                       </Heading4Regular>
-                    </Flex1>
+                    </ToggleLabelText1>
                   </FDirRowStart>
                 </SideSpacing10>
               </ShiftFromBottom10>
@@ -743,11 +748,11 @@ const SettingScreen = (props: any) => {
                   onValueChange={toggleDataSaverSwitch}
                   value={toggleSwitchVal}
                 />
-                <Flex1>
+                <ToggleLabelText>
                   <Heading4Regular>
                     {t('settingScreendataSaverSubText')}
                   </Heading4Regular>
-                </Flex1>
+                </ToggleLabelText>
               </FDirRowStart>
             </ShiftFromBottom10>
           </MainContainer>
