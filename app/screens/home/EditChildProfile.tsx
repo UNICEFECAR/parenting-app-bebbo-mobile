@@ -225,8 +225,9 @@ const EditChildProfile = ({ route, navigation }: Props) => {
         Alert.alert(t('tryText'));
       });
   };
-  const handleImageOptionClick = async (index: number) => {
-    if (index == 0) {
+  const handleImageOptionClick = async (item:any,index: number) => {
+    console.log(item,"..item")
+    if (item.id == 0) {
       // MediaPicker.cleanupSingleImage((image:any) => {
       //   // image.path ==>> file path
       //   console.log(image,"..image..")
@@ -247,7 +248,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
           },
         },
       ]);
-    } else if (index == 1) {
+    } 
+    else if (item.id == 1) {
       MediaPicker.showCameraImagePicker((image: any) => {
         // image.path ==>> file path
         // console.log(image,"..image..");
@@ -256,7 +258,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
         onChildPhotoChange(image);
         // setphotoUri(image.path)
       });
-    } else if (index == 2) {
+    } 
+    else if (item.id == 2) {
       MediaPicker.showGalleryImagePicker((image: any) => {
         console.log(image)
         // image.path ==>> file path
@@ -576,7 +579,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                           style={{ alignItems: 'center' }}
                           onPress={() => {
                             actionSheetRef.current?.hide();
-                            handleImageOptionClick(index);
+                            handleImageOptionClick(item,index);
                           }}>
                           <Icon name={item.iconName} size={50} color="#000" />
                           <Heading4 style={{ flexShrink: 1, textAlign: 'center', marginTop: 10 }}>{item.name}</Heading4>
