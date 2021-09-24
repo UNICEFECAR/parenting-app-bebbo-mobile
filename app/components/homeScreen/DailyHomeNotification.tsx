@@ -28,7 +28,7 @@ const DailyHomeNotification = () => {
       ? JSON.parse(state.utilsData.dailymessages)
       : state.utilsData.dailymessages,
   );
-  // console.log(records, '<<records>>');
+  console.log(records, '<<records>>');
 
   const allConfigData = useAppSelector((state: any) =>
     state.variableData?.variableData != ''
@@ -106,6 +106,7 @@ const DailyHomeNotification = () => {
         // console.log(updateNotifcation);
       }
     }else{
+      if (records.length > 0) {
       let firstNotification = {
         messageId: records ? records[0].id : '',
         messageText: records ? records[0].title : '',
@@ -117,7 +118,8 @@ const DailyHomeNotification = () => {
       let updateNotifcation = setNotiInDB(firstNotification);
       setNotification(firstNotification);
     }
-  }, []);
+    }
+  }, [records.length]);
 
   return (
     <>
