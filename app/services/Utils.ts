@@ -342,7 +342,7 @@ const formatImportedMeasures = (measures: any) => {
                     }
                 } //titleDateInMonth
                 if ("length" in measure && measure.length != null && measure.length != undefined) {
-                    if(isNaN(measure.length) || isNaN(measure.weight)){
+                    if(isNaN(parseFloat(measure.length)) || isNaN(parseFloat(measure.weight))){
                         measure.isChildMeasured = false;
                     }else{
                         measure.weight = measure.weight == "" ? "" : parseFloat(measure?.weight / 1000).toFixed(2);
