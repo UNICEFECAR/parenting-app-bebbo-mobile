@@ -20,8 +20,8 @@ export const maleData:any={
     "name": "Male",
     "unique_name": "male"
 };
-export const relationShipMotherId=109726;
-export const relationShipFatherId=109731;
+export const relationShipMotherId=109801;
+export const relationShipFatherId=109806;
 export const femaleData:any={
     "id": 38,
     "name": "Female",
