@@ -2,7 +2,6 @@ import { CHILDREN_PATH } from "@types/types";
 import RNFS from 'react-native-fs';
 import { ObjectSchema } from "realm";
 import { v4 as uuidv4 } from 'uuid';
-import { store, useAppSelector } from "../../App";
 import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
@@ -342,10 +341,16 @@ const formatImportedMeasures = (measures: any) => {
                         measure.measurementPlace = 1
                     }
                 } //titleDateInMonth
-                if ("length" in measure) {
-                    measure.weight = measure.weight == "" ? "" : parseFloat(measure?.weight / 1000).toFixed(2);
-                    measure.height = measure.length == "" ? "" : parseFloat(measure?.length).toFixed(2);
-                    delete measure.length;
+                if ("length" in measure && measure.length != null && measure.length != undefined) {
+                    if(isNaN(measure.length) || isNaN(measure.weight)){
+                        measure.isChildMeasured = false;
+                    }else{
+                        measure.weight = measure.weight == "" ? "" : parseFloat(measure?.weight / 1000).toFixed(2);
+                        measure.height = measure.length == "" ? "" : parseFloat(measure?.length).toFixed(2);
+                        measure.isChildMeasured = true;
+                        delete measure.length;
+                    }
+
                 }
 
             });
