@@ -322,8 +322,8 @@ const activeChild = useAppSelector((state: any) =>
             //   setModalVisible(!modalVisible);
             }}>
             <PopupOverlayVideo>
-            <ModalPopupContainerVideo style={{height:windowWidth*0.95,}}>
-                <PopupCloseContainer style={{backgroundColor:'#000',paddingBottom:15,paddingTop:5}}>
+            <ModalPopupContainerVideo style={{height:windowWidth*0.8,}}>
+                <PopupCloseContainer style={{backgroundColor:'#000',paddingBottom:6,paddingTop:8}}>
                 <PopupCloseVideo
                     onPress={() => {
                     // setModalVisible(!modalVisible);
