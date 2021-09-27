@@ -13,11 +13,13 @@ import { useAppSelector } from "../../App";
 const VideoPlayer = (props: any) => {
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
+    let videoType = videoTypeImage;
     const onReady = useCallback(() => {
       setLoading(false);
     }, []);
     const onError = useCallback(() => {
       setLoading(false);
+      videoType = videoTypeImage;
     }, []);
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
@@ -48,7 +50,6 @@ const VideoPlayer = (props: any) => {
     // console.log(netInfoval,"--netInfo");
     let videoId: string;
     // console.log("video player", props.selectedPinnedArticleData);
-    let videoType = videoTypeImage;
     if(props.selectedPinnedArticleData && props.selectedPinnedArticleData != {})
     {
         videoType = props.selectedPinnedArticleData.cover_video && props.selectedPinnedArticleData.cover_video?.site && props.selectedPinnedArticleData?.cover_video?.site != "" ? (props.selectedPinnedArticleData?.cover_video?.site == videoTypeVimeo ? videoTypeVimeo : videoTypeYoutube) : videoTypeImage
