@@ -1,11 +1,7 @@
-import { VectorImage } from 'react-native-vector-image';
-import { View } from 'react-native';
-import { useAppSelector } from './../../App';
-
-
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../database/schema/ChildDataSchema';
-import { MeasurementEntity } from '../database/schema/measurementDataSchema';
+
+
 export interface singleAreaDataFormat {
   x?: number | null,
   y: number | null,
@@ -16,25 +12,27 @@ export interface chartAreaDataFormat {
   middleArea: singleAreaDataFormat[],
   bottomArea: singleAreaDataFormat[],
 }
-
+export const maxWeight = 28;
+export const maxHeight = 125;
 
 export const setInitialWeightValues = (weightValue: any) => {
   // console.log(weightValue,"weightValue")
   // console.log(weightValue+ ''.indexOf('.'),"indexOf");
   if (weightValue + ''.indexOf('.') === -1) {
-    // console.log("in if")
+    console.log("in if")
     return { weight: weightValue, weight1: 0 };
   } else {
+    console.log("in else")
     let w = (weightValue + '').split('.');
     // console.log(w[1],"w1")
     if (weightValue && String(w[1]).length == 1) {
-      // console.log("in else if")
+      console.log("in else if")
       return { weight: Number(w[0]), weight1: Number(w[1]) * 10 };
     } else {
-      // console.log("in else else")
+      console.log("in else else")
       return {
-        weight: Number(w[0]),
-        weight1: w[1] == undefined ? 0 : Number(w[1]),
+        weight: Number(w[0]) >maxWeight ?maxWeight:Number(w[0]),
+        weight1: Number(w[0]) >maxWeight ? (Number(w[0])-maxWeight)*100 : (w[1] == undefined ? 0 : Number(w[1])),
       };
     }
   }
@@ -54,8 +52,10 @@ export const setInitialHeightValues = (heightValue: any) => {
       return { height: Number(w[0]), height1: Number(w[1]) * 10 };
     } else {
       return {
-        height: Number(w[0]),
-        height1: w[1] == undefined ? 0 : Number(w[1]),
+        height: Number(w[0]) >maxHeight ?maxHeight:Number(w[0]),
+        // height1: w[1] == undefined ? 0 : Number(w[1]),
+        height1: Number(w[0]) >maxHeight ? (Number(w[0])-maxHeight)*100 : (w[1] == undefined ? 0 : Number(w[1])),
+
       };
     }
   }
