@@ -11,6 +11,7 @@ border-radius:0px;
 background-color: transparent;
   /*background-color: ${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
    border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};*/
+   padding:0
 `;
 export const PopupOverlay = styled.Pressable`
   flex: 1;
@@ -60,7 +61,7 @@ background-color:#fff;
   min-width:100%;
   max-width:100%;
   flex:1;
-  margin-top:-25px;
+  margin-top:0;
 `;
 
 export default ModalPopupContainer;
