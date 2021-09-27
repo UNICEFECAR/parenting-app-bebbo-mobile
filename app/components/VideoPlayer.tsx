@@ -133,7 +133,7 @@ const VideoPlayer = (props: any) => {
     }
     return (
         <>
-            {videoType == videoTypeImage || netInfoval.isConnected == false || toggleSwitchVal == true ?
+            {videoType == videoTypeImage || netInfoval.isConnected == false ?
                 ( <View style={{flex:1,flexDirection:'column',height:windowWidth*0.565,overflow:'hidden'}}><Image
                     source={require('@assets/trash/defaultArticleImage.png')}
                     style={{ width: '100%',height:windowWidth*0.565}}
