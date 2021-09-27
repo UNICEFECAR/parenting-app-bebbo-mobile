@@ -4,8 +4,8 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
-import React, { useContext } from 'react';
-import { Alert, Dimensions } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { Alert, BackHandler, Dimensions } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import LoadingScreenComponent from '../components/LoadingScreenComponent';
@@ -84,7 +84,19 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           };
       },[netInfoval.isConnected])
     );
-
+    useEffect(() => {
+      const backAction = () => {
+        return true;
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction,
+      );
+    
+      return () => {
+        backHandler.remove();
+      }
+    }, []);
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = async () => {
     console.log('in callSagaApi ',netInfoval.isConnected);

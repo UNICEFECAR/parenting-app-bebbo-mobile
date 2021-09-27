@@ -16,6 +16,11 @@ public class MainActivity extends ReactActivity {
         SplashScreen.setAnimationFinished(true);
         super.onCreate(savedInstanceState);
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (outState != null) { outState.clear(); }
+    }
   @Override
   protected String getMainComponentName() {
     return "ParentBuddyApp";
