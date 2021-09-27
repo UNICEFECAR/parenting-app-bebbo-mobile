@@ -345,7 +345,7 @@ const formatImportedMeasures = (measures: any) => {
                     if(isNaN(parseFloat(measure.length)) || isNaN(parseFloat(measure.weight))){
                         measure.isChildMeasured = false;
                     }else{
-                        measure.weight = measure.weight == "" ? "" : parseFloat(measure?.weight / 1000).toFixed(2);
+                        measure.weight = measure.weight == "" ? "" : (parseFloat(measure?.weight) / 1000).toFixed(2);
                         measure.height = measure.length == "" ? "" : parseFloat(measure?.length).toFixed(2);
                         measure.isChildMeasured = true;
                         delete measure.length;
