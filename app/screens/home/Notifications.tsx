@@ -14,9 +14,9 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { AppState, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -25,6 +25,36 @@ import { getCurrentChildAgeInDays, isFutureDate } from '../../services/childCRUD
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
+  
+  let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
+  console.log(allnotis, "allnotis");
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+  useEffect(() => {
+    const subscription:any = AppState.addEventListener("change", nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        console.log("App has come to the foreground!");
+        if (allnotis.length > 0) {
+          const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+          console.log(currentChildNotis,"allfilteredNotis")
+          calculateNotis(currentChildNotis)
+        }
+      }
+
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+      console.log("AppState", appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   // const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -47,8 +77,7 @@ const Notifications = () => {
       : [],
   );
 
-  let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
-  console.log(allnotis, "allnotis");
+
   const calculateNotis = (currentChildNotis: any) => {
     if (currentChildNotis) {
       console.log(currentChildNotis, "currentChildNotis")
