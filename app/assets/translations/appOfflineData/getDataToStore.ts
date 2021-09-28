@@ -1,7 +1,7 @@
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
-import { ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
+import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../../../database/schema/BasicPagesSchema";
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../../../database/schema/ChildDevelopmentSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../../../database/schema/DailyHomeMessagesSchema";
@@ -13,11 +13,13 @@ import { SurveysSchema } from '../../../database/schema/SurveysSchema';
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
+import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { ActivitiesData } from "./ActivitiesData";
 import { appConfig, both_child_gender, both_parent_gender } from "./apiConstants";
+import { articledata } from "./article";
 import basicPagesData from "./basicPages";
 import { ChildDevelopmentData } from "./ChildDevelopmentData";
 import { dailyHomeNotificationdata } from "./dailyHomeNotification";
@@ -58,7 +60,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "taxonomyData": activeChild.taxonomyData
             }
             console.log(currentChildData, "..currentChildData..")
-            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         }
         else if (prevPage == "Terms") {
@@ -83,7 +85,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         } else {
             resolve("fail");
@@ -151,7 +153,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("success");
         } else {
             resolve("fail");
