@@ -1,42 +1,31 @@
+import { articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
 import { articledata } from '@assets/translations/appOfflineData/article';
+import { getDataToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
-import RNFS from 'react-native-fs';
-import { ArticleListContainer, ArticleListContent,SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
-import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonRow, ButtonSpacing, ButtonText } from '@components/shared/ButtonGlobal';
-import Divider,{DividerArt} from '@components/shared/Divider';
-import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
-
-import Icon, { OuterIconLeft15, OuterIconRight15, OuterIconRow } from '@components/shared/Icon';
-import InfiniteScrollList from '@components/shared/InfiniteScrollList';
-import ModalPopupContainer, {
-  ModalPopupContent,
-  PopupClose,
-  PopupCloseContainer,
-  PopupOverlay
-} from '@components/shared/ModalPopupStyle';
-import ShareFavButtons from '@components/shared/ShareFavButtons';
+import { ArticleListContainer, ArticleListContent, SearchBox, SearchInput } from '@components/shared/ArticlesStyle';
+import { DividerArt } from '@components/shared/Divider';
+import FirstTimeModal from '@components/shared/FirstTimeModal';
+import { FlexCol } from '@components/shared/FlexBoxStyle';
+import Icon, { OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading3, Heading4Center, Heading4Centerr, Heading6Bold, ShiftFromTop10, ShiftFromTopBottom5 } from '@styles/typography';
+import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList,View,
-   KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, ActivityIndicator
+  FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text
 } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
-import { destinationFolder, articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
-import FirstTimeModal from '@components/shared/FirstTimeModal';
-import LoadableImage from '../../../services/LoadableImage';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
-import {getDataToStore} from '@assets/translations/appOfflineData/getDataToStore';
+import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
+import LoadableImage from '../../../services/LoadableImage';
+
 // import {KeyboardAwareView} from 'react-native-keyboard-aware-view';
 type ArticlesNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
