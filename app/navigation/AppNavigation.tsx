@@ -132,7 +132,7 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 3500);
+    }, 2000);
   }, []);
   useMemo(() => {
     // if (userIsOnboarded == true) {
