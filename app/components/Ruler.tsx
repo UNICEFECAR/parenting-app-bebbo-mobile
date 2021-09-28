@@ -199,7 +199,7 @@ class Ruler extends React.Component<Props, State> {
         y: 0,
         animated: true
       });
-     }, 10);
+     });
      
       this.setState({
         value: initialValue,
@@ -209,12 +209,12 @@ class Ruler extends React.Component<Props, State> {
 
     // Create a listener
     this.scrollListener = this.state.scrollX.addListener(({ value }) => {
-      // console.log(value, "fromScroll", this.snapSegment, minimum);
+      console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
       });
 
-      // onChangeValue(Math.round(value / this.snapSegment) + minimum)
+      onChangeValue(Math.round(value / this.snapSegment) + minimum)
       // }
     });
   }
@@ -370,7 +370,7 @@ class Ruler extends React.Component<Props, State> {
           bounces={false}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
-          snapToInterval={this.snapSegment}
+          snapToInterval={Math.round(this.snapSegment)}
           onScroll={
             // (event) => {
             //   console.log(event.nativeEvent.contentOffset, "onScroll");
@@ -382,7 +382,7 @@ class Ruler extends React.Component<Props, State> {
                   },
                 },
               ],
-              { useNativeDriver: true },
+              { useNativeDriver: false },
             )
           }
           // }
@@ -391,7 +391,7 @@ class Ruler extends React.Component<Props, State> {
           // }}
           onMomentumScrollEnd={() => {
             // console.log(this.state.value, this.state.scrollX, "onMomentumScrollEnd");
-            onChangeValue(this.state.value);
+            // onChangeValue(this.state.value);
             this.scrollViewRef.current?.scrollTo({
               x: (this.state.value * this.snapSegment)+ minimum,
               y: 0,
