@@ -1,36 +1,34 @@
-import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { ObjectSchema } from "realm";
 import { dataRealmCommon } from "../../../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../../../database/schema/ActivitiesSchema";
-import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
+import { ArticleEntitySchema } from "../../../database/schema/ArticleSchema";
 import { BasicPagesEntity, BasicPagesSchema } from "../../../database/schema/BasicPagesSchema";
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../../../database/schema/ChildDevelopmentSchema";
-import { DailyHomeMessagesSchema, DailyHomeMessagesEntity } from "../../../database/schema/DailyHomeMessagesSchema";
+import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../../../database/schema/DailyHomeMessagesSchema";
 import { MilestonesEntity, MilestonesSchema } from "../../../database/schema/MilestonesSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../../../database/schema/PinnedChildDevelopmentSchema";
 import { StandardDevHeightForAgeEntity, StandardDevHeightForAgeSchema } from "../../../database/schema/StandardDevHeightForAgeSchema";
 import { StandardDevWeightForHeightEntity, StandardDevWeightForHeightSchema } from "../../../database/schema/StandardDevWeightForHeightSchema";
+import { SurveysSchema } from '../../../database/schema/SurveysSchema';
 import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/TaxonomySchema";
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
-import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllHealthCheckupsData, setAllActivitiesData, setAllChildDevData, setAllMileStonesData, setAllPinnedChildDevData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData, setAllSurveyData } from "../../../redux/reducers/utilsSlice";
+import { setAllActivitiesData, setAllChildDevData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
+import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { ActivitiesData } from "./ActivitiesData";
 import { appConfig, both_child_gender, both_parent_gender } from "./apiConstants";
-import { articledata } from "./article";
 import basicPagesData from "./basicPages";
 import { ChildDevelopmentData } from "./ChildDevelopmentData";
 import { dailyHomeNotificationdata } from "./dailyHomeNotification";
+import { healthCheckupsData } from './healthCheckupsData';
 import { MileStonesData } from "./MileStonesData";
 import { PinnedChildDevData } from "./PinnedChildDevData";
 import standardDevData from "./standardDevData";
+import { SurveyData } from './SurveyData';
 import { taxonomydata } from "./taxonomies";
 import { vaccineData } from "./vaccineData";
-import { healthCheckupsData } from './healthCheckupsData';
 import { VideoArticleData } from "./VideoArticleData";
-import { SurveysSchema } from '../../../database/schema/SurveysSchema';
-import { SurveyData } from './SurveyData';
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
@@ -60,7 +58,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "taxonomyData": activeChild.taxonomyData
             }
             console.log(currentChildData, "..currentChildData..")
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         }
         else if (prevPage == "Terms") {
@@ -85,7 +83,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         } else {
             resolve("fail");
@@ -153,7 +151,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
+            // const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("success");
         } else {
             resolve("fail");
