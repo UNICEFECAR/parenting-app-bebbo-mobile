@@ -34,7 +34,7 @@ import Icon, { IconViewAlert } from '../shared/Icon';
 
 const PreviousHealthCheckup = (props: any) => {
   const {item, headerColor, backgroundColor} = props;
-  console.log(item, 'PreviousHealthCheckup');
+  // console.log(item, 'PreviousHealthCheckup');
   const {t} = useTranslation();
   const navigation = useNavigation();
   const [isOPen, setIsOPen] = useState<Boolean>(false);
@@ -68,7 +68,7 @@ const PreviousHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.growthMeasures?.didChildGetVaccines || item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ?  (
+            {item?.growthMeasures?.measurementDate ?  (
             <RadioActive
                   style={{backgroundColor: 'green', borderRadius: 50}}>
                   <Icon name="ic_tick" size={12} color="#FFF" />
@@ -104,8 +104,7 @@ const PreviousHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item?.title}</Heading2>
-              {item?.growthMeasures?.didChildGetVaccines ||
-            item?.growthMeasures?.isChildMeasured || item.isAdditional ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
+              {item?.growthMeasures?.measurementDate ?<Text>{(item?.growthMeasures?.measurementDate)}</Text>: null}
             </ToolsHeadingView>
             <ToolsActionView>
               <FlexDirRow>

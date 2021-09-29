@@ -1,43 +1,40 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
 
-    ButtonLinkText,
-    ButtonPrimary,
-    ButtonText,
-    ButtonTextLg
+  ButtonLinkText,
+  ButtonPrimary,
+  ButtonText,
+  ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
-    LocalizationAction,
-    LocalizationCol,
-    LocalizationContainer,
-    LocalizationcontentHead,
-    LocalizationcontentResult,
-    LocalizationRow,
-    OnboardingconfirmationHead,
-    OnboardingContent,
-    OnboardingshiftHead
+  LocalizationAction,
+  LocalizationCol,
+  LocalizationContainer,
+  LocalizationcontentHead,
+  LocalizationcontentResult,
+  LocalizationRow,
+  OnboardingconfirmationHead,
+  OnboardingContent,
+  OnboardingshiftHead
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
-import { StackNavigationProp } from '@react-navigation/stack';
 import analytics from '@react-native-firebase/analytics';
+import { StackNavigationProp } from '@react-navigation/stack';
 import {
-    Heading2Centerw,
-    Heading3,
-    Heading3Centerw,
-    Heading3Regular
+  Heading2Centerw,
+  Heading3,
+  Heading3Centerw,
+  Heading3Regular
 } from '@styles/typography';
-import { Settings } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
-import { fetchAPI } from '../../redux/sagaMiddleware/sagaActions';
-import { formatStringDate } from '../../services/Utils';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -223,6 +220,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+    <SafeAreaView style={{flex:1}}>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
       {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
@@ -278,6 +276,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
           </LocalizationContainer>
         </OnboardingContent>
       </OnboardingContainer>
+      </SafeAreaView>
     </>
   );
 };
