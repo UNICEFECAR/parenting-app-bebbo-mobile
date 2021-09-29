@@ -107,6 +107,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
+  const [editHCDate, seteditHCDate] = useState<DateTime>( editMeasurementDate ? editMeasurementDate : null);
+ 
   const deleteHealthCheckup = async () => {
     if (editMeasurementDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")
@@ -136,6 +138,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
       console.log(existingMeasure, "existingMeasure");
       setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
+      seteditHCDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       setIsMeasured(existingMeasure?.isChildMeasured)
       setDefaultMeasured(existingMeasure?.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
       setWeightValue(existingMeasure?.weight)
@@ -280,6 +283,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   // const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
                   setWeightValue(existingMeasure?.weight)
+                  seteditHCDate(DateTime.fromJSDate(selectedDate));
                   setHeightValue(existingMeasure?.height)
                   handleDoctorRemark(existingMeasure?.doctorComment)
                   setIsMeasured(existingMeasure?.isChildMeasured);
@@ -433,8 +437,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
           //   ),
         })
     } else {
-      if (editMeasurementDate) {
-        const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
+      if (editHCDate) {
+        const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editHCDate)), activeChild)
         // if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)) {
         // existingMeasure.uuid
         const growthValues = {
@@ -467,7 +471,6 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
           const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
           console.log(existingMeasure, "inEdit");
-
           const growthValues = {
             uuid: existingMeasure.uuid,
             isChildMeasured: isMeasured,
@@ -495,6 +498,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
           navigation.goBack();
 
         } else {
+
+           // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
           const growthValues = {
             uuid: uuidv4(),
             isChildMeasured: isMeasured,

@@ -11,22 +11,20 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, FlatList, Text } from 'react-native';
+import { BackHandler, FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { ChildEntitySchema } from '../../database/schema/ChildDataSchema';
-import { deleteImageFile } from '../../downloadImages/ImageStorage';
 import { setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { receiveAPIFailure } from '../../redux/sagaMiddleware/sagaSlice';
-import { formatStringDate } from '../../services/Utils';
 type CountrySelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
   'LanguageSelection'
@@ -128,6 +126,7 @@ const CountrySelection = (props: any) => {
   // console.log("-----bj ",i18n);
   return (
     <>
+    <SafeAreaView style={{ flex: 1 }}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       
       <OnboardingContainer>
@@ -165,6 +164,7 @@ const CountrySelection = (props: any) => {
           </ButtonviewPrevious>
         )}
       </OnboardingContainer>
+      </SafeAreaView>
     </>
   );
 };
