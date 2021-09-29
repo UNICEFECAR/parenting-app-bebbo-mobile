@@ -10,8 +10,6 @@ const KGky = {
                 checkonce: "Улантуудан мурун текшериңиз",
                 country: "Өлкө",
                 language: "Тил",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Кош келиңиздер, ата-энелер!",
                 walkthroughTextssubtitle0: "Беббо сиздин жардамчыңыз, бул жерден балаңыздын өнүгүүсү жөнүндө керектүү маалыматты табасыз.",
                 walkthroughTextstitle1: "Оюндар",
@@ -22,8 +20,6 @@ const KGky = {
                 walkthroughTextssubtitle3: "Балаңызга керек болгон нерселер боюнча суроолорго жооп катары.",
                 walkthroughButtonBack: "Артка",
                 walkthroughButtonNext: "Кийинки",
-
-                // t&C
                 tNcheader: "Жоболор жана шарттар",
                 tNccheckbox1: "Беббо тиркемесин колдонуу боюнча шарттар менен тааныштым, түшүндүм жана кабыл алдым",
                 tNccheckbox2: "Тааныштым, түшүндүм жана кабыл алдым",
@@ -31,11 +27,7 @@ const KGky = {
                 tNccheckbox3: "Тиркемени колдонуу жөнүндө анонимдүү маалыматтар анын иштешин жакшыртуу максатында чогултулат деп макулмун (милдеттүү эмес)",
                 tNcprivacyPolicyTitle: "Купуялык саясаты",
                 tNcacceptbtn: "Мен жоболорду жана шарттарды кабыл алам",
-
-                // Loading
                 loadingText: "Маалыматтар жүктөлүүдө ...",
-
-                // childSetup
                 childSetupheader: "Тиркемени орнотуп алалы",
                 childSetupdobLabel: "Баланын туулган күнү / болжолдуу төрөлүү күнү",
                 childSetupdobSelector: "Туулган күнүн/болжолдуу төрөлүү күнүн киргизиңиз",
@@ -46,16 +38,12 @@ const KGky = {
                 childSetuprelationSelectTitle: "Балага ким болосуз?",
                 childSetuprelationSelectText: "Тандоо",
                 childSetupcontinueBtnText: "Улантуу",
-
-                // childSetupList
                 childSetupListheader: "Сиз балаңыздын профилин түздүңүз!",
                 childSetupListsubHeader: "Улантуудан мурун балаңыздын толук маалыматтарын текшериңиз!",
                 childSetupListaddSiblingBtn: "Эжесин же агасын кошуңуз",
                 childSetupListeditSiblingBtn: "Бала тураалуу маалыматты түзөтүңүз",
                 childSetupListcontinueBtnText: "Улантуу",
                 childSetupListsaveBtnText: "Маалыматтарды сактоо",
-
-                // drawerMenu
                 drawerMenuchildInfo: "туулган күнү: {{childdob}}",
                 drawerMenuhomeTxt: "башкы бет",
                 drawerMenunotiTxt: "Эскертмелер",
@@ -73,10 +61,7 @@ const KGky = {
                 drawerMenufeedbackTxt: "Кайтарым байланыш",
                 drawerMenurateTxt: "Сизге Беббо жактыбы? Баалаңыз!",
                 drawerMenuPrivacyTxt: "Купуялык саясаты",
-                // notiScreen
                 notiScreenheaderTitle: "Эскертмелер",
-
-                // settingScreen
                 settingScreenheaderTitle: "Орнотуулар",
                 settingScreennotiHeaderText: "Эскертмелер",
                 settingScreennotiType1: "Эскертмелерди Bebbo аркылуу алгым келет",
@@ -100,20 +85,14 @@ const KGky = {
                 settingScreenexportOptionHeader: "Маалыматтарды экспорттоо",
                 settingScreenshareBtntxt: "Бөлүшүү",
                 settingScreengdriveBtntxt: "Google диск",
-
-                // userGuide
                 userGuideheaderTitle: "Колдонуучунун колдонмосу",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "Биз жөнүндө",
-                // supportScreen
                 supportScreenheaderTitle: "Баарлашуу",
                 supportScreenheader1text: "Жакында!",
                 supportScreenheader2text: "Баарлашуу учурда жеткиликсиз",
-                // homeScreen
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Андан ары окуу",
-                homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}},",
+                homeScreenchildInfoTitle: "Кош келиңиз {{childName}} жана {{parentName}}",
                 homeScreendailyReadsTitle: "Күнүмдүк материалдар",
                 homeScreentodayarticle: "Күндүн кеңеши",
                 homeScreentodaygame: "Күндүн оюну",
@@ -131,8 +110,6 @@ const KGky = {
                 homeScreenvc: "Эмдөө",
                 homeScreenhc: "Профилактикалык медициналык текшерүүдөн өтүү",
                 homeScreencg: "Баланын өсүшү",
-
-                // actScreen
                 actScreenheaderTitle: "Оюндар",
                 actScreensugacttxt: "Сунушталган оюндар",
                 actScreenotheracttxt: "Башка оюндар",
@@ -143,7 +120,6 @@ const KGky = {
                 actScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
                 actScreenshareText: "Бөлүшүү",
                 actScreenaddtoFavText: "Тандалмаларга кошуу",
-                // developScreen
                 developScreenheaderTitle: "Баланын өнүгүшү",
                 developScreenprematureText: "Мезгилинен эрте төрөлгөн ымыркай",
                 developScreenchartLabel: "Күтүлүүдө",
@@ -154,13 +130,11 @@ const KGky = {
                 developScreenrelatedArticleText: "Тема боюнча кеңеш",
                 developScreenrelatedAct: "Тема боюнча оюндар",
                 developScreenviewDetails: "Көбүрөөк маалымат",
-                // articleScreen
                 articleScreenheaderTitle: "Кеңештер",
                 articleScreensearchPlaceHolder: "Негизги сөздөр боюнча издөө",
                 articleScreennoSearchResult: "Кеңеш табылбады",
                 articleScreenshareText: "Бөлүшүү",
                 articleScreenaddtoFavText: "Тандалмаларга кошуу",
-                // growthScreen
                 growthScreenheaderTitle: "Баланын өсүшү",
                 growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
                 growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
@@ -196,15 +170,14 @@ const KGky = {
                 growthScreenaddHeight: "Боюн кошуңуз",
                 growthScreennewGrowthBottomText: "Үйдө баланын бою жана салмагын өлчөө дарыгердин өлчөөсүнө караганда анча ишенимдүү эмес жана өсүү схемасынын тактыгына таасирин тийгизиши мүмкүн.",
                 growthScreenrelatedArticle: "Тема боюнча кеңештер",
-                // Sprint4 Screens
                 noBorn: "Азырынча төрөлө элек",
-                noday: "0 күн",
-                yearstag: "жыл",
-                yeartag: "жыл",
-                monthstag: "ай",
-                monthtag: "ай",
-                daystag: "күн",
-                daytag: "күн",
+                noday: "0 күнгө",
+                yearstag: "жылга",
+                yeartag: "жылга",
+                monthstag: "айга",
+                monthtag: "айга",
+                daystag: "күнгө",
+                daytag: "күнгө",
                 defaultChildPrefix: "Наристе",
                 notiOption1: "Эскертмени өчүрүү",
                 notiOption2: "Окулган деп белгилөө",
@@ -217,7 +190,7 @@ const KGky = {
                 trackMilestoneViewHeader: "Сураныч, балаңыздын өнүгүү этаптарын жаңыртыңыз.",
                 trackMilestoneViewBtn: "Ымыркайыңыздын өнүгүү этаптарын көзөмөлдөңүз",
                 babyNotificationText: "Баланын туулгандыгы жөнүндө маалыматтар жаңыртылган эмес",
-                babyNotificationbyAge: "{{childName}} азыр {{ageInMonth}}га толду",
+                babyNotificationbyAge: "{{childName}} азыр {{ageInMonth}} толду",
                 babyNotificationUpdateBtn: "Маалыматтарды жаңыртыңыз",
                 favScreenHeader: "Тандалмалар",
                 actScreenremovetoFavText: "Тандалмалардан алып салуу",
@@ -300,7 +273,6 @@ const KGky = {
                 hcdateText: "Медициналык текшерүүдөн өткөн күн",
                 hcenterDateText: "Медициналык текшерүүдөн өткөн күндү киргизиңиз",
                 hcChildVaccineQ: "Бала эмдөөдөн өттүбү ?",
-                /// sprin5 screens
                 tabbarLabel1: "Башкы бет",
                 tabbarLabel2: "Оюндар",
                 tabbarLabel3: "Куралдар",
@@ -309,8 +281,6 @@ const KGky = {
                 tabbarLabel6: "Эмдөө",
                 tabbarLabel7: "Медициналык текшерүүлөр",
                 tabbarLabel8: "Баланын өсүшү",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Профилди башкаруу",
                 removePhotoTxt: "Сүрөттү жок кылуу",
                 removeWarnTxt: "Сүрөттү жок кылгыңыз келеби?",
@@ -351,9 +321,9 @@ const KGky = {
                 babyNotificationText1: "Баланын төрөлүшү тууралуу маалыматтар жаңыртылды",
                 activityModalText: "Белгилүү бир өнүктүрүү чөйрөсүнө тиешелүү оюндарды табуу үчүн тиешелүү баскычты басыңыз",
                 childDevModalText: "Балаңыз ушул мезгилде өнүгө турган көндүмдөргө жеткенин текшериңиз жана оюн аркылуу өнүгүүнү кантип колдоого болорун көрүңүз",
-                months5tag: "ай",
-                years5tag: "жыл",
-                days5tag: "күн",
+                months5tag: "айга",
+                years5tag: "жылга",
+                days5tag: "күнгө",
                 downloadOnLoadPopupTitle: "Маалыматтарды жүктөө",
                 downloadOnLoadPopupText: "Мазмун толугу менен жүктөлгөн жок. Аны азыр жүктөгүңүз келеби?",
                 downloadOnLoadCancelPopUpBtn: "Жокко чыгаруу",
@@ -366,7 +336,6 @@ const KGky = {
                 childInfoBabyText: "Ымыркай",
                 childInfoParentText: "Ата-эне",
                 childInfoAndText: "жана",
-                // translation replacement closed till above
                 childSetupdobText: "Туулган күндү киргизиңиз",
                 growthModalText: "Бул жерге балаңыздын салмагын жана боюнун узундугун киргизип, аларды жаңылап туруңуз; ошентип анын өсүүсүн жакшыраак колдоп турасыз",
                 vaccineModalText: "Бул жерде сиз улуттук эмдөө календары боюнча каттап, көзөмөлдөп, ар бир вакцина тууралуу көбүрөөк биле аласыз. Балаңыздын эмдөөсү үчүн эскертүүлөрдү коюңуз жана эскертмелерди алыңыз!",
@@ -382,8 +351,6 @@ const KGky = {
                 alertForModifyMeasures: "Ката",
                 alertForModifyMeasuresTitle: "Бул күндү тандоо учурдагы маалыматтарды өзгөртөт",
                 alertForModifyMeasuresOk: "Макул",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Дайындарды шайкештештирүү",
                 SyncOnLoadPopupText: "Дайындарды азыр шайкештештиргиңиз келеби?",
                 SyncOnLoadCancelPopUpBtn: "Жокко чыгаруу",
@@ -421,6 +388,7 @@ const KGky = {
                 dataSaveroff: "Өчүк",
                 vcrNoti1: "Эмдөө үчүн эскертме {{reminderDateTime}} күнү коюлган",
                 hcrNoti1: "Ден соолук текшерүүсү үчүн эскертме {{reminderDateTime}} күнү коюлду",
+                //translation till above
                 parentGender: "Parent Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
