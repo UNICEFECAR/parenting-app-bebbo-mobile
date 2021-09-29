@@ -313,25 +313,33 @@ const activeChild = useAppSelector((state: any) =>
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-                console.log("onRequestClose clicked");
+                console.log("onRequestClose clicked",modalVisible);
             // Alert.alert('Modal has been closed.');
-            //   setModalVisible(!modalVisible);
+              setModalVisible(!modalVisible);
             }}
             onDismiss={() => {
                 console.log("onDismiss clicked");
             //   setModalVisible(!modalVisible);
             }}>
-            <View style={{ width: windowWidth, height: windowHeight, backgroundColor: 'rgba(0,0,0,0.8)', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{width:windowWidth,height:windowHeight, backgroundColor:'rgba(0,0,0,0.7)',
 
+flexDirection:'row',
 
+alignItems:'center',justifyContent:'center'}}>
 
-<VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+  
 
-<PopupCloseContainer style={{ position: 'absolute', zIndex: 0, top: 0, paddingBottom: 6, paddingTop: 8, marginTop: 10 }}>
+ <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
 
-  <PopupCloseVideo
+ <PopupCloseContainer style={{width:windowWidth,height:windowHeight,position:'absolute',zIndex:-1,top:0,}}>
 
-    onPress={() => {
+  <PopupCloseVideo style={{
+
+    width:windowWidth,height:windowHeight, alignItems:'flex-start',justifyContent:'flex-end',padding:17
+
+  }}
+
+      onPress={() => {
 
       // setModalVisible(!modalVisible);
 
@@ -339,15 +347,15 @@ const activeChild = useAppSelector((state: any) =>
 
       setModalVisible(!modalVisible);
 
-    }}>
+      }}>
 
-    <Icon name="ic_close" size={20} color="#fff" />
+      <Icon name="ic_close" size={20} color="#fff" />
 
   </PopupCloseVideo>
 
-</PopupCloseContainer>
+  </PopupCloseContainer>
 
-</View>
+ </View>
         </Modal>
     </MainContainer>
     </>
