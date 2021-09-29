@@ -5,13 +5,11 @@ const MKmk = {
                 continueCountryLang: "Продолжете",
                 selectYourCountry: "Одберете земја",
                 selectYourLang: "Одберете јазик",
-                goToLanguageSelection: "Продолжете да одберете јазик",
+                goToLanguageSelection: "Продолжете за да одберете јазик",
                 goToConfirm: "Потврдете",
                 checkonce: "Проверете пред да продолжите",
                 country: "Земја",
                 language: "Јазик",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Добредојдовте родители!",
                 walkthroughTextssubtitle0: "Откријте ја Bebbo - се што треба да знаете како родител за да го поддржите развојот на вашето дете",
                 walkthroughTextstitle1: "Игри",
@@ -22,20 +20,14 @@ const MKmk = {
                 walkthroughTextssubtitle3: "соодветни за вашите прашања и возраста на вашето дете",
                 walkthroughButtonBack: "Назад",
                 walkthroughButtonNext: "Следно",
-
-                // t&C
                 tNcheader: "Услови за користење",
-                tNccheckbox1: "Ги прочитав, ги разбирам и ги прифачам условите за користење на Bebbo апликацијата",
+                tNccheckbox1: "Ги прочитав, ги разбирам и ги прифаќам условите за користење на Bebbo апликацијата",
                 tNccheckbox2: "Ги прочитав, ги разбирам и ги прифаќам... ",
                 tNcprivacyPolicy: "Политика за приватност на Bebbo апликацијата",
                 tNccheckbox3: "Прифаќам анонимизираните податоци од моето користење на апликацијата да се користат за подобрување на Bebbo (не е задолжително)",
                 tNcprivacyPolicyTitle: "Политика за приватност",
                 tNcacceptbtn: "Ги прифаќам условите за користење",
-
-                // Loading
                 loadingText: "Податоците се вчитуваат...",
-
-                // childSetup
                 childSetupheader: "Ве молиме одвоете момент за да ја персонализирате апликацијата",
                 childSetupdobLabel: "Датум на раѓање на детето / очекуван датум на раѓање",
                 childSetupdobSelector: "Внесете датум на раѓање / очекуван датум на раѓање",
@@ -46,16 +38,12 @@ const MKmk = {
                 childSetuprelationSelectTitle: "Роднинска врска со детето",
                 childSetuprelationSelectText: "Одберете",
                 childSetupcontinueBtnText: "Продолжете",
-
-                // childSetupList
                 childSetupListheader: "Профилот на вашето дете е креиран!",
                 childSetupListsubHeader: "Ве молиме проверете ги внесените детали за детето пред да продолжите!",
                 childSetupListaddSiblingBtn: "Додадете брат или сестра",
                 childSetupListeditSiblingBtn: "Променете ги податоците за детето",
                 childSetupListcontinueBtnText: "Продолжете",
                 childSetupListsaveBtnText: "Снимете ги податоците",
-
-                // drawerMenu
                 drawerMenuchildInfo: "Роден/а на {{childdob}} ",
                 drawerMenuhomeTxt: "На почеток",
                 drawerMenunotiTxt: "Известувања",
@@ -73,10 +61,7 @@ const MKmk = {
                 drawerMenufeedbackTxt: "Ваше мислење",
                 drawerMenurateTxt: "Ви се допаѓа Bebbo? Оценете ја!",
                 drawerMenuPrivacyTxt: "Политика на приватност",
-                // notiScreen
                 notiScreenheaderTitle: "Известувања",
-
-                // settingScreen
                 settingScreenheaderTitle: "Подесувања",
                 settingScreennotiHeaderText: "Известувања",
                 settingScreennotiType1: "Сакам да добивам известувања од Bebbo",
@@ -100,17 +85,11 @@ const MKmk = {
                 settingScreenexportOptionHeader: "Експортирајте ги податоците на ",
                 settingScreenshareBtntxt: "Споделете",
                 settingScreengdriveBtntxt: "Google drive",
-
-                // userGuide
                 userGuideheaderTitle: "Водич за корисници",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "За нас",
-                // supportScreen
                 supportScreenheaderTitle: "Разговарајте со нас",
                 supportScreenheader1text: "Наскоро !",
                 supportScreenheader2text: "Во моментот не постои опција за разговор",
-                // homeScreen
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Прочитајте повеќе ",
                 homeScreenchildInfoTitle: "Добредојдовте {{childName}} и {{parentName}}",
@@ -131,8 +110,6 @@ const MKmk = {
                 homeScreenvc: "Вакцинација",
                 homeScreenhc: "Здравествени прегледи",
                 homeScreencg: "Раст на детето",
-
-                // actScreen
                 actScreenheaderTitle: "Игри ",
                 actScreensugacttxt: "Предлог игри",
                 actScreenotheracttxt: "Други игри ",
@@ -143,7 +120,6 @@ const MKmk = {
                 actScreenprematureText: "Предвремено родено",
                 actScreenshareText: "Споделете",
                 actScreenaddtoFavText: "Додадете во омилени",
-                // developScreen
                 developScreenheaderTitle: "Развој на детето",
                 developScreenprematureText: "Предвремено родено",
                 developScreenchartLabel: "Незавршено",
@@ -154,15 +130,13 @@ const MKmk = {
                 developScreenrelatedArticleText: "Прочитајте поврзан совет",
                 developScreenrelatedAct: "Поврзани игри",
                 developScreenviewDetails: "Прочитајте повеќе",
-                // articleScreen
                 articleScreenheaderTitle: "Совет",
                 articleScreensearchPlaceHolder: "Пребарување по клучни зборови",
                 articleScreennoSearchResult: "Не е пронајден совет",
                 articleScreenshareText: "Споделете",
                 articleScreenaddtoFavText: "Додадете во омилени",
-                // growthScreen
                 growthScreenheaderTitle: "Раст на детето",
-                growthScreengrowthDataTitle: "Детето има {{childAge}} месеци",
+                growthScreengrowthDataTitle: "Детето има {{childAge}} ",
                 growthScreennoGrowthData: "нема податоци за мерење на вашето дете",
                 growthScreennoGrowthDataHelpText: "Ова ќе ви помогне да го следите растот на вашето дете",
                 growthScreenaddNewBtntxt: "Додадете ново мерење",
@@ -196,7 +170,6 @@ const MKmk = {
                 growthScreenaddHeight: "Додадете висина",
                 growthScreennewGrowthBottomText: "Мерењето на детето дома е помалку точно отколку мерењето кај доктор и може да влијае на точноста на графиконот на раст",
                 growthScreenrelatedArticle: "Поврзан совет",
-                // Sprint4 Screens
                 noBorn: "Не е сеуште родено",
                 noday: "0 денови",
                 yearstag: "години",
@@ -207,7 +180,7 @@ const MKmk = {
                 daytag: "ден",
                 defaultChildPrefix: "Дете",
                 notiOption1: "Избришете известување",
-                notiOption2: "Обележете како причитано",
+                notiOption2: "Обележете како прочитано",
                 continueInModal: "Продолжете",
                 weightModalText: "Поместете го копчето за да ја одберете тежината на детето",
                 heightModalText: "Поместете го копчето за да ја одберете висината на детето",
@@ -217,7 +190,7 @@ const MKmk = {
                 trackMilestoneViewHeader: "Ве молиме ажурирајте ги развојните одредници на детето",
                 trackMilestoneViewBtn: "Следете ги развојните одредници на вашето дете",
                 babyNotificationText: "Податоците за раѓање на детето не се ажурирани",
-                babyNotificationbyAge: "{{childName}} има {{ageInMonth}} месеци",
+                babyNotificationbyAge: "{{childName}} има {{ageInMonth}} ",
                 babyNotificationUpdateBtn: "Ажурирајте го профилот",
                 favScreenHeader: "Омилени",
                 actScreenremovetoFavText: "Отстранете од омилени",
@@ -300,7 +273,6 @@ const MKmk = {
                 hcdateText: "Датум на здравствен преглед",
                 hcenterDateText: "Внесете датум на здравствен преглед",
                 hcChildVaccineQ: "Дали детето прими вакцина?",
-                /// sprin5 screens
                 tabbarLabel1: "На почеток",
                 tabbarLabel2: "Игри",
                 tabbarLabel3: "Алатки",
@@ -309,16 +281,14 @@ const MKmk = {
                 tabbarLabel6: "Вакцинација",
                 tabbarLabel7: "Здравствени прегледи",
                 tabbarLabel8: "Раст на детето",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Менаџирање на профилот",
-                removePhotoTxt: "Отстранете фотографија",
-                removeWarnTxt: "Дали сакате да отстраните фотографија?",
+                removePhotoTxt: "Избришете фотографија",
+                removeWarnTxt: "Дали сакате да ја избришете фотографијата?",
                 removeOption1: "Откажете",
                 removeOption2: "Отстранете",
                 deleteChildTxt: "Избришете профил на дете",
                 deleteWarnTxt: "Дали сакате да го избришете профилот на детето?",
-                uploadPhtototxt: "Закачете фотографија од детето",
+                uploadPhtototxt: "Прикачете фотографија од детето",
                 cameraOptionsHeader: "Одберете",
                 noChildsTxt: "Нема податоци",
                 relationShipTxt: "Роднинска врска со детето",
@@ -331,7 +301,7 @@ const MKmk = {
                 localizationChangeModalText: "Доколку одберете нова земја, содржината може да се промени; ако одберете нов јазик за истата земја, содржината ќе остане иста, само ќе биде на другиот одбран јазик",
                 growthChartLegendSilverLabel: "-Типични вредности за возраста",
                 growthChartLegendOrangeLabel: "-Субоптимални вредности за возраста",
-                noVaccinesForPeriod: "Нема вкацини во овој период",
+                noVaccinesForPeriod: "Нема вакцини во овој период",
                 defaultPeriodInterpretationText: "Графиконите за раст се однесуваат на деца од 0 до 61 месеци и не содржат вредности за раст на поголеми деца. Можете да прочитате повеќе за растот во овој период во соодветниот совет",
                 retryPopupTitle: "Обидете се повторно",
                 retryPopupText: "Ве молиме обидете се повторно. Не е симната целата содржина",
@@ -353,7 +323,7 @@ const MKmk = {
                 childDevModalText: "Проверете дали вашето дете ги стекнало вештините кои се очекува да ги развие во овој период и проверете како да го поддржите развојот преку игра",
                 months5tag: "месеци",
                 years5tag: "години",
-                days5tag: "денови",
+                days5tag: "дена",
                 downloadOnLoadPopupTitle: "Симнете податоци",
                 downloadOnLoadPopupText: "Содржината не е целосно симната. Дали сакате да ја симнете сега?",
                 downloadOnLoadCancelPopUpBtn: "Откажете",
@@ -366,7 +336,6 @@ const MKmk = {
                 childInfoBabyText: "Бебе",
                 childInfoParentText: "Родител",
                 childInfoAndText: "и",
-                // translation replacement closed till above
                 childSetupdobText: "Внесете датум на раѓање",
                 growthModalText: "Внесете и продолжете да ги ажурирате податоците за висина и тежина на вашето дете; ќе научите како подобро да го поддржите неговиот раст",
                 vaccineModalText: "Овде можете да запишете, следите и да прочитате повеќе за секоја вакцина во националниот календар за имунизација. Поставете потсетник за вакцинациите на вашето дете и добивајте известувања!",
@@ -382,8 +351,6 @@ const MKmk = {
                 alertForModifyMeasures: "Внимание",
                 alertForModifyMeasuresTitle: "Одбирањето на овој датум ќе ги промени постоечките мерења",
                 alertForModifyMeasuresOk: "Во ред",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Податоците се синхронизираат",
                 SyncOnLoadPopupText: "Дали сакате да ги синхронизирате податоците?",
                 SyncOnLoadCancelPopUpBtn: "Откажете",
@@ -398,7 +365,7 @@ const MKmk = {
                 settingsButtonExportError: "Грешка при експорт",
                 importText: "Импортирајте податоци",
                 exportText: "Експортирајте податоци",
-                dataConsistency: "За конзистентност на податоците, ве молиме користете ист јазик за да експортирате или импортирате податоци. Дали сакате да продолжите?",
+                dataConsistency: "За конзистентност на податоците, ве молиме користете го истиот јазик за да експортирате или импортирате податоци. Дали сакате да продолжите?",
                 dataSaver: "Дали сакате да се префрлите на {{toggle}} опција за зачувување на податоците?",
                 backPressText: "Кликнете уште еднаш за да затворите!",
                 generalError: "Погрешна команда! Ве молиме обидете се повторно",
@@ -414,7 +381,7 @@ const MKmk = {
                 downloadUpdateSuccessPopupTitle: "Успешно завршено",
                 downloadUpdateSuccessPopupText: "Ажурирањето е успешно завршено!!",
                 downloadUpdateSuccessOkBtn: "Во ред",
-                newdetailScreenNoDataPopupText: "Бараниот совет/игра е недостапен во воваа верзија. Ве молиме симнете ги најновите податоци во делот Подесувања",
+                newdetailScreenNoDataPopupText: "Бараниот совет/игра е недостапен во оваа верзија. Ве молиме симнете ги најновите податоци во делот Подесувања",
                 noInternet: "Нема пристап до интернет",
                 lowBandwidth: "Мала брзина на интернет",
                 highBandwidth: "Голема брзина на интернет",
@@ -422,6 +389,7 @@ const MKmk = {
                 dataSaveroff: "Исклучено",
                 vcrNoti1: "Поставивте потсетник за вакцинација на {{reminderDateTime}}",
                 hcrNoti1: "Поставивте потсетник за здравствен преглед на  {{reminderDateTime}}",
+                //translation till above
                 parentGender: "Parent Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
