@@ -235,6 +235,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               {
                 text: t('alertForModifyMeasuresOk'),
                 onPress: () => {
+                  setmeasureDate(null);
+                  if (editVaccineDate) {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
                   setShowDelete(true)
@@ -259,6 +261,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                     setTakenVaccine(existingMeasuredVaccines);
                     setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
                   }
+                }
 
                 },
                 style: "cancel",
