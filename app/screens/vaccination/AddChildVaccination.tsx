@@ -72,7 +72,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
-import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
+import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
 const AddChildVaccination = ({ route, navigation }: any) => {
   const { t } = useTranslation();
@@ -83,6 +83,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editVaccineDate ? editVaccineDate : null,
   );
+  const [editVCDate, seteditVCDate] = useState<DateTime>( editVaccineDate ? editVaccineDate : null);
   const deleteVaccination = async () => {
     if (editVaccineDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")
@@ -112,6 +113,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)
       // console.log(existingMeasure,"existingMeasure");
       setmeasureDate(DateTime.fromJSDate(new Date(editVaccineDate)));
+      seteditVCDate(DateTime.fromJSDate(new Date(editVaccineDate)));
       setIsMeasured(existingMeasure?.isChildMeasured)
       setDefaultMeasured(existingMeasure?.isChildMeasured == true ? isMeasuredOptions[0] : isMeasuredOptions[1])
       setWeightValue(existingMeasure?.weight)
@@ -172,6 +174,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   const [dateTouched, setDateTouched] = useState<Boolean>(false);
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const handleMeasureConfirm = (event: any) => {
+    console.log(event, 'handleMeasureConfirmevent');
     const date = event;
     console.log("A date has been picked: ", date);
     onmeasureDateChange(event, date);
@@ -235,11 +238,11 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               {
                 text: t('alertForModifyMeasuresOk'),
                 onPress: () => {
-                  setmeasureDate(null);
-                  if (editVaccineDate) {
+                  // setmeasureDate(null);
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
                   setShowDelete(true)
+                  seteditVCDate(DateTime.fromJSDate(selectedDate));
                   setWeightValue(existingMeasure?.weight)
                   setHeightValue(existingMeasure?.height)
                   handleDoctorRemark(existingMeasure?.doctorComment)
@@ -261,7 +264,6 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                     setTakenVaccine(existingMeasuredVaccines);
                     setTakenVaccineForPrevPeriod(existingMeasuredVaccines)
                   }
-                }
 
                 },
                 style: "cancel",
@@ -406,8 +408,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           //   ),
         })
     } else {
-      if (editVaccineDate) {
-        const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)
+      if (editVCDate) {
+        const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVCDate)), activeChild)
         // if (isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)) {
         // existingMeasure.uuid
         const growthValues = {
@@ -438,7 +440,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
         navigation.goBack();
         // }
       } else {
-        if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
+        if (isAnyMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
           const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
           console.log(existingMeasure, "inEdit");
 
@@ -469,6 +471,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           navigation.goBack();
 
         } else {
+             // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
           const growthValues = {
             uuid: uuidv4(),
             isChildMeasured: isMeasured,

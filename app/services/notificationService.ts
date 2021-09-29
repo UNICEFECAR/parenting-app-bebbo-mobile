@@ -166,10 +166,10 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const lastchildgwperiod = childAgeObj.find(item => String(item.id) == String(gwperiodid));
   const lastchildgwperiodIndex = childAgeObj.findIndex(item => String(item.id) == String(gwperiodid));
   const currentchildgwperiod = childAgeObj.find(element => element.days_from > lastchildgwperiod.days_from && element.days_from <= childAgeInDays);
-  const currentchildgwperiodIndex = childAgeObj.findIndex(element => element.days_from > lastchildgwperiod.days_from && element.days_from <= childAgeInDays);
+  const currentchildgwperiodIndex = childAgeObj.findIndex(element => element.days_from > lastchildgwperiod.days_from && element.days_to > childAgeInDays && element.days_from <= childAgeInDays);
   // Alert.alert(String(lastchildgwperiod.id), 'last child gw period');
   // Alert.alert(String(currentchildgwperiod.id), 'current child gw period');
-  // Alert.alert(currentchildgwperiodIndex + " currentchildgwperiodIndex");
+  // console.log(currentchildgwperiodIndex + " currentchildgwperiodIndex");
   // Alert.alert(lastchildgwperiodIndex + "lastchildgwperiodIndex");
   let lastgwperiodid = gwperiodid, lastvcperiodid = vcperiodid, lasthcperiodid = hcperiodid;
   let gwcdnotis: any[] = [];
