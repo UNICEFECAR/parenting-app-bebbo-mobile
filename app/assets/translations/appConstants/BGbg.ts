@@ -10,8 +10,6 @@ const BGbg = {
                 checkonce: "Проверете преди да продължите",
                 country: "Държава",
                 language: "Език",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Здравейте, родители!",
                 walkthroughTextssubtitle0: "Открийте Беббо - всичко, което ви е нужно като родител, за да подкрепяте развитието на детето си",
                 walkthroughTextstitle1: "Игри",
@@ -22,8 +20,6 @@ const BGbg = {
                 walkthroughTextssubtitle3: "съобразени с вашите въпроси и възрастта на детето",
                 walkthroughButtonBack: "Назад",
                 walkthroughButtonNext: "Напред",
-
-                // t&C
                 tNcheader: "Общи условия",
                 tNccheckbox1: "Прочетох, разбрах и приемам Общите условия на приложението Беббо",
                 tNccheckbox2: "Прочетох, разбрах и приемам",
@@ -31,11 +27,7 @@ const BGbg = {
                 tNccheckbox3: "Приемам, че анонимизираните данни за начина, по който използвам приложението, ще бъдат използвани за подобряване на приложението Беббо (не е задължително)",
                 tNcprivacyPolicyTitle: "Политика за поверителност",
                 tNcacceptbtn: "Приемам Общите условия",
-
-                // Loading
                 loadingText: "Зареждане на данни...",
-
-                // childSetup
                 childSetupheader: "Mоля, отделете малко време, за да персонализирате приложението",
                 childSetupdobLabel: "Дата на раждане на детето / термин",
                 childSetupdobSelector: "Въведете дата на раждане / термин",
@@ -46,16 +38,12 @@ const BGbg = {
                 childSetuprelationSelectTitle: "Връзка с детето",
                 childSetuprelationSelectText: "Изберете",
                 childSetupcontinueBtnText: "Продължете",
-
-                // childSetupList
                 childSetupListheader: "Профилът на вашето дете е създаден!",
                 childSetupListsubHeader: "Моля проверете данните за вашето дете преди да продължите!",
                 childSetupListaddSiblingBtn: "Добавете брат или сестра",
                 childSetupListeditSiblingBtn: "Редакция на информацията за детето",
                 childSetupListcontinueBtnText: "Продължете",
                 childSetupListsaveBtnText: "Запазете данните",
-
-                // drawerMenu
                 drawerMenuchildInfo: "родено на {{childdob}}",
                 drawerMenuhomeTxt: "Начало",
                 drawerMenunotiTxt: "Известия",
@@ -73,10 +61,7 @@ const BGbg = {
                 drawerMenufeedbackTxt: "Обратна връзка",
                 drawerMenurateTxt: "Харесвате ли Беббо? Оценете го!",
                 drawerMenuPrivacyTxt: "Политика за поверителност",
-                // notiScreen
                 notiScreenheaderTitle: "Известия",
-
-                // settingScreen
                 settingScreenheaderTitle: "Настройки",
                 settingScreennotiHeaderText: "Известия",
                 settingScreennotiType1: "Искам да получавам известия от Беббо",
@@ -100,17 +85,11 @@ const BGbg = {
                 settingScreenexportOptionHeader: "Експорт на данни на",
                 settingScreenshareBtntxt: "Споделяне",
                 settingScreengdriveBtntxt: "Google Drive",
-
-                // userGuide
                 userGuideheaderTitle: "Упътване за употреба",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "За нас",
-                // supportScreen
                 supportScreenheaderTitle: "Чат",
                 supportScreenheader1text: "Очаквайте скоро!",
                 supportScreenheader2text: "Чатът не е достъпен в момента",
-                // homeScreen
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Прочетете повече",
                 homeScreenchildInfoTitle: "Добре дошли, {{childName}} и {{parentName}}",
@@ -131,8 +110,6 @@ const BGbg = {
                 homeScreenvc: "Ваксинации",
                 homeScreenhc: "Профилактични прегледи",
                 homeScreencg: "Растеж на детето",
-
-                // actScreen
                 actScreenheaderTitle: "Игри",
                 actScreensugacttxt: "Предложения за игри",
                 actScreenotheracttxt: "Други игри",
@@ -143,7 +120,6 @@ const BGbg = {
                 actScreenprematureText: "Преждевременно",
                 actScreenshareText: "Споделяне",
                 actScreenaddtoFavText: "Добавете в любими",
-                // developScreen
                 developScreenheaderTitle: "Развитие на детето",
                 developScreenprematureText: "Преждевременно",
                 developScreenchartLabel: "Предстоящи",
@@ -154,13 +130,11 @@ const BGbg = {
                 developScreenrelatedArticleText: "Вижте свързани съвети",
                 developScreenrelatedAct: "Свързани игри",
                 developScreenviewDetails: "Разгледайте",
-                // articleScreen
                 articleScreenheaderTitle: "Съвети",
                 articleScreensearchPlaceHolder: "Търсете по ключови думи",
                 articleScreennoSearchResult: "Не са намерени съвети",
                 articleScreenshareText: "Споделяне",
                 articleScreenaddtoFavText: "Добавете в любими",
-                // growthScreen
                 growthScreenheaderTitle: "Растеж на детето",
                 growthScreengrowthDataTitle: "Детето е на {{child name}} месеца",
                 growthScreennoGrowthData: "Все още не са въведени данни за растежа на вашето дете",
@@ -196,12 +170,11 @@ const BGbg = {
                 growthScreenaddHeight: "Въведете ръст",
                 growthScreennewGrowthBottomText: "Измерването на детето вкъщи е по-неточно от измерването в лекарски кабинет и може да окаже влияние върху точността на графиките на растежа.",
                 growthScreenrelatedArticle: "Свързани съвети",
-                // Sprint4 Screens
                 noBorn: "Все още неродено",
                 noday: "0 дни",
                 yearstag: " години",
                 yeartag: " година",
-                monthstag: " месеци",
+                monthstag: " месецa",
                 monthtag: " месец",
                 daystag: " дни",
                 daytag: " ден",
@@ -300,7 +273,6 @@ const BGbg = {
                 hcdateText: "Дата на профилактичен преглед",
                 hcenterDateText: "Въведете дата на профилактичен преглед",
                 hcChildVaccineQ: "Детето беше ли ваксинирано?",
-                /// sprin5 screens
                 tabbarLabel1: "Начален екран",
                 tabbarLabel2: "Игри",
                 tabbarLabel3: "Инструменти",
@@ -309,8 +281,6 @@ const BGbg = {
                 tabbarLabel6: "Ваксинации",
                 tabbarLabel7: "Профилактични прегледи",
                 tabbarLabel8: "Растеж на детето",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Управление на профила",
                 removePhotoTxt: "Премахване на снимка",
                 removeWarnTxt: "Искате ли да премахнете снимката?",
@@ -351,7 +321,7 @@ const BGbg = {
                 babyNotificationText1: "Данните за раждането на детето са актуализирани",
                 activityModalText: "За да намерите игри, свързани с конкретна област на развитие, натиснете съответния бутон",
                 childDevModalText: "Проверете дали вашето дете е развило уменията, които се очаква да бъдат развити през този период, и вижте как да подпомогнете развитието му чрез игра",
-                months5tag: "месеци",
+                months5tag: "месецa",
                 years5tag: "години",
                 days5tag: "дни",
                 downloadOnLoadPopupTitle: "Сваляне на данни",
@@ -366,7 +336,6 @@ const BGbg = {
                 childInfoBabyText: "Бебе",
                 childInfoParentText: "Родител",
                 childInfoAndText: "и",
-                // translation replacement closed till above
                 childSetupdobText: "Въведете дата на раждане",
                 growthModalText: "Въведете и поддържайте актуални теглото и ръста на вашето дете; ще научите как по-добре да подкрепяте неговия растеж.",
                 vaccineModalText: "Тук можете да регистрирате, проследявате и научите повече за всяка ваксина, според националния имунизационен календар. Задавайте напомняния за ваксинациите на вашето дете и ще получавате известия.",
@@ -382,8 +351,6 @@ const BGbg = {
                 alertForModifyMeasures: "Предупреждение",
                 alertForModifyMeasuresTitle: "Избирането на тази дата ще промени съществуващите измервания",
                 alertForModifyMeasuresOk: "ОК",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Синхронизиране на данни",
                 SyncOnLoadPopupText: "Искате ли да синхронизирате данните сега?",
                 SyncOnLoadCancelPopUpBtn: "Отмяна",
@@ -421,6 +388,7 @@ const BGbg = {
                 dataSaveroff: "Изключено",
                 vcrNoti1: "Зададено е напомняне за ваксинация на {{reminderDateTime}}",
                 hcrNoti1: "Зададено е напомняне за профилактичен преглед на {{reminderDateTime}}",
+                //translation till above
                 parentGender: "Parent Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
