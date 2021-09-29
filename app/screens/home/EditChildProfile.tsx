@@ -19,11 +19,13 @@ import { MainContainer } from '@components/shared/Container';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
+  HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import Icon, { IconBox } from '@components/shared/Icon';
+import { ProfileEditView } from '@components/shared/ProfileListingStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -416,12 +418,12 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-            <Pressable
+            <HeaderIconPress
               onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
-            </Pressable>
+            </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
             {childData && childData?.uuid != '' ? (
@@ -453,13 +455,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       : null
                   }
                   style={styles.image}>
-                  <View
-                    style={{
-                      backgroundColor: '#fff',
-                      borderRadius: 100,
-                      margin: 10,
-                      padding: 10,
-                    }}>
+                  <ProfileEditView>
                     <Icon
                       name="ic_edit"
                       size={16}
@@ -468,7 +464,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                         actionSheetRef.current?.setModalVisible();
                       }}
                     />
-                  </View>
+                  </ProfileEditView>
                 </ImageBackground>
               </View>
             ) : (
