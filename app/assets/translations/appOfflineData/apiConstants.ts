@@ -114,4 +114,10 @@ export const basicPagesUniqueName = {
 export const measurementPlaces = (items:any)=>{
     return [ {id:0,title:items[0] },{id:1,title:items[1] }]
 }
-export const maxCharForRemarks = 200
+export const maxCharForRemarks = 200;
+export const threeeMonthDays = 90;
+export const twoMonthDays = 60;
+export const beforeDays = 5;
+export const maxPeriodDays = 2920;
+export const maxWeight = 28;
+export const maxHeight = 125;
