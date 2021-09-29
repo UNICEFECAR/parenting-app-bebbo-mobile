@@ -209,7 +209,7 @@ class Ruler extends React.Component<Props, State> {
 
     // Create a listener
     this.scrollListener = this.state.scrollX.addListener(({ value }) => {
-      console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
+      // console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
       });

@@ -89,7 +89,7 @@ import {
   setInitialHeightValues,
   setInitialWeightValues
 } from '../../services/growthService';
-import { getMeasuresForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
+import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -132,11 +132,12 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
   useEffect(() => {
-    // console.log(editVaccineDate,"editVaccineDate");
+    console.log(editMeasurementDate,"editMeasurementDate");
     // find growthmeasures for date, if exist show growthmeasures with delete enabled.
     if (editMeasurementDate) {
       setShowDelete(true)
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
+      console.log(existingMeasure,"existingMeasure");
       setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       setWeightValue(existingMeasure?.weight)
       setHeightValue(existingMeasure?.height)
@@ -515,7 +516,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
 
     } else {
 
-      if (isGrowthMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild) || isVaccineMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
+      if (isAnyMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
         const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
         console.log(existingMeasure, "inEdit");
 
@@ -546,6 +547,8 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         navigation.goBack();
 
       } else {
+
+        // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
         const growthValues = {
           uuid: uuidv4(),
           isChildMeasured: true,
