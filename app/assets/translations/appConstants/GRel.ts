@@ -10,8 +10,6 @@ const GRel = {
                 checkonce: "Ελέγξτε πριν συνεχίσετε",
                 country: "Χώρα",
                 language: "Γλώσσα",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Καλως ήρθατε γονείς!",
                 walkthroughTextssubtitle0: "Ανακαλύψτε το Μπέμπο- όλα όσα χρειάζεστε ως γονέας για να υποστηρίξετε την ανάπτυξη του παιδιού σας",
                 walkthroughTextstitle1: "Παιχνίδια",
@@ -22,7 +20,6 @@ const GRel = {
                 walkthroughTextssubtitle3: "Προσαρμοσμένο στις ερωτήσεις σας και την ηλικία του παιδιού σας",
                 walkthroughButtonBack: "Πίσω",
                 walkthroughButtonNext: "Επόμενο",
-                // t&C
                 tNcheader: "Όροι και προϋποθέσεις",
                 tNccheckbox1: "Έχω διαβάσει, καταλάβει και αποδεχτεί τους Όρους και Προϋποθέσεις της εφαρμογής Μπέμπο",
                 tNccheckbox2: "Έχω διαβάσει, καταλάβει και αποδεχτεί  ",
@@ -30,11 +27,7 @@ const GRel = {
                 tNccheckbox3: "Αποδέχομαι ότι τα ανώνυμα δεδομένα της χρήσης μου στην εφαρμογή θα χρησιμοποιηθούν για τη βελτίωση της εφαρμογής Μπέμπο (δεν είναι υποχρεωτικό)",
                 tNcprivacyPolicyTitle: "Πολιτική απορρήτου",
                 tNcacceptbtn: "Αποδέχομαι τους όρους και τις προϋποθέσεις",
-
-                // Loading
                 loadingText: "Φόρτωση δεδομένων",
-
-                // childSetup
                 childSetupheader: "Παρακαλώ αφιερώστε ένα λεπτό για να εξατομικεύσετε την εφαρμογή σας",
                 childSetupdobLabel: "Ημερομηνία γέννησης παιδιού / αναμενόμενη ημερομηνία τοκετού",
                 childSetupdobSelector: "Εισάγετε ημερομηνία γέννησης / αναμενόμενη ημερομηνία τοκετού ",
@@ -45,16 +38,12 @@ const GRel = {
                 childSetuprelationSelectTitle: "Σχέση με το παιδί",
                 childSetuprelationSelectText: "Επιλογή",
                 childSetupcontinueBtnText: "Συνέχεια",
-
-                // childSetupList
                 childSetupListheader: "Το προφίλ του παιδιού σας έχει δημιουργηθεί!",
                 childSetupListsubHeader: "Παρακαλώ ελέγξτε τις πληροφορίες του παιδιού σας πριν συνεχίσετε!",
                 childSetupListaddSiblingBtn: "Προσθέστε Αδερφή ή Αδερφός",
                 childSetupListeditSiblingBtn: "Επεξεργαστείτε τις πληροφορίες του παιδιού",
                 childSetupListcontinueBtnText: "Συνέχεια",
                 childSetupListsaveBtnText: "Aποθήκευση δεδομένων",
-
-                // drawerMenu
                 drawerMenuchildInfo: "Γεννημένο στις {{childdob}} ",
                 drawerMenuhomeTxt: "Αρχική σελίδα",
                 drawerMenunotiTxt: "Ειδοποιήσεις",
@@ -72,10 +61,7 @@ const GRel = {
                 drawerMenufeedbackTxt: "Αφήστε τα σχόλια σας",
                 drawerMenurateTxt: "Σας άρεσε το Μπέμπο? Αξιολογήστε το!",
                 drawerMenuPrivacyTxt: "Πολιτική απορρήτου",
-                // notiScreen
                 notiScreenheaderTitle: "Ειδοποιήσεις",
-
-                // settingScreen
                 settingScreenheaderTitle: "Ρυθμίσεις",
                 settingScreennotiHeaderText: "Ειδοποιήσεις",
                 settingScreennotiType1: "Θέλω να λαμβάνω ειδοποιήσεις μέσω του Μπέμπο",
@@ -99,17 +85,11 @@ const GRel = {
                 settingScreenexportOptionHeader: "Εξαγωγή δεδομένων στις",
                 settingScreenshareBtntxt: "Κοινοποίηση ",
                 settingScreengdriveBtntxt: "Μηχανή αναζήτησης",
-
-                // userGuide
                 userGuideheaderTitle: "Οδηγός χρήστη",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "Σχετικά με εμάς",
-                // supportScreen
                 supportScreenheaderTitle: "Συνομιλία",
                 supportScreenheader1text: "Σύντομα κοντά σας!",
                 supportScreenheader2text: "Η συνομιλία δεν είναι διαθέσιμη αυτήν τη στιγμή",
-                // homeScreen
                 homeScreenheaderTitle: "Μπέμπο",
                 homeScreenchildBtnText: "Διαβάστε περισσότερα",
                 homeScreenchildInfoTitle: "Καλώς ήρθατε {{childName}} και {{parentName}}",
@@ -130,8 +110,6 @@ const GRel = {
                 homeScreenvc: "Εμβολιασμός",
                 homeScreenhc: "Ιατρικός έλεγχος",
                 homeScreencg: "Εξέλιξη παιδιού",
-
-                // actScreen
                 actScreenheaderTitle: "Παιχνίδια",
                 actScreensugacttxt: "Προτεινόμενα παιχνίδια",
                 actScreenotheracttxt: "Άλλα παιχνίδια ",
@@ -142,7 +120,6 @@ const GRel = {
                 actScreenprematureText: "Πρόωρο",
                 actScreenshareText: "Κοινοποίηση ",
                 actScreenaddtoFavText: "Προσθέστε στα αγαπημένα",
-                // developScreen
                 developScreenheaderTitle: "Ανάπτυξη παιδιού",
                 developScreenprematureText: "Πρόωρο",
                 developScreenchartLabel: "Εκκρεμεί έγκριση",
@@ -153,13 +130,11 @@ const GRel = {
                 developScreenrelatedArticleText: "Δείτε σχετικές συμβουλές",
                 developScreenrelatedAct: "Σχετικά παιχνίδια",
                 developScreenviewDetails: "Δείτε λεπτομέρειες",
-                // articleScreen
                 articleScreenheaderTitle: "Συμβουλές",
                 articleScreensearchPlaceHolder: "Ψάξτε για λέξεις κλειδιά",
                 articleScreennoSearchResult: "Δεν βρέθηκαν συμβουλές",
                 articleScreenshareText: "Κοινοποίηση",
                 articleScreenaddtoFavText: "Προσθέστε στα αγαπημένα",
-                // growthScreen
                 growthScreenheaderTitle: "Εξέλιξη παιδιού",
                 growthScreengrowthDataTitle: "Το παιδί είναι {{child name}} μηνών",
                 growthScreennoGrowthData: "Τα δεδομένα για την ανάπτυξη του παιδιού σας δεν έχουν μετρηθεί ακόμη",
@@ -195,15 +170,14 @@ const GRel = {
                 growthScreenaddHeight: "Προσθέστε το ύψος",
                 growthScreennewGrowthBottomText: "Η μέτρηση ενός παιδιού στο σπίτι είναι λιγότερο ακριβής από τη μέτρηση στο γιατρό και μπορεί να επηρεάσει την ακρίβεια του διαγράμματος ανάπτυξης",
                 growthScreenrelatedArticle: "Σχετικές συμβουλές",
-                // Sprint4 Screens
                 noBorn: "Αγέννητο",
-                noday: "0 ημέρες",
-                yearstag: "χρόνια",
-                yeartag: "χρόνος",
-                monthstag: "μήνες",
-                monthtag: "μήνας",
-                daystag: "μέρες",
-                daytag: "μέρα",
+                noday: "0 ημερών",
+                yearstag: "χρονών",
+                yeartag: "χρόνου",
+                monthstag: "μηνών",
+                monthtag: "μήνα",
+                daystag: "ημερών",
+                daytag: "ημέρας",
                 defaultChildPrefix: "Παιδί",
                 notiOption1: "Διαγραφή ειδοποίησης",
                 notiOption2: "Επισήμανση ως διαβασμένο",
@@ -216,7 +190,7 @@ const GRel = {
                 trackMilestoneViewHeader: "Παρακαλώ ενημερώστε τους σταθμούς ανάπτυξης του παιδιού σας",
                 trackMilestoneViewBtn: "Παρακολουθήστε τον σταθμό ανάπτυξης του παιδιού σας",
                 babyNotificationText: "Τα δεδομένα γέννησης του παιδιού δεν έχουν ενημερωθεί",
-                babyNotificationbyAge: "{{childName}} είναι {{ageInMonth}} χρονών",
+                babyNotificationbyAge: "{{childName}} είναι {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Ενημέρωση προφίλ",
                 favScreenHeader: "Αγαπημένα",
                 actScreenremovetoFavText: "Κατάργηση από τα αγαπημένα",
@@ -299,7 +273,6 @@ const GRel = {
                 hcdateText: "Ημερομηνία ιατρικού ελέγχου",
                 hcenterDateText: "Εισάγετε την ημερομηνία και την ώρα του ιατρικού ελέγχου",
                 hcChildVaccineQ: "Έλαβε το παιδί εμβόλιο;",
-                /// sprin5 screens
                 tabbarLabel1: "Αρχική σελίδα",
                 tabbarLabel2: "Παιχνίδια",
                 tabbarLabel3: "Εργαλεία",
@@ -308,8 +281,6 @@ const GRel = {
                 tabbarLabel6: "Εμβόλια",
                 tabbarLabel7: "Ιατρικοί έλεγχοι",
                 tabbarLabel8: "Εξέλιξη του παιδιού",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Διαχείριση προφίλ",
                 removePhotoTxt: "Κατάργηση φωτογραφίας",
                 removeWarnTxt: "Θέλετε να καταργήσετε την φωτογραφία;",
@@ -326,7 +297,7 @@ const GRel = {
                 editParentTxt: "Επεξεργασία στοιχείων γονέα",
                 notiDelSelected: "Διαγραφή επιλεγμένων  ({{count}})",
                 onBirthDay: "Γέννηση",
-                month: "Μήνας",
+                month: "μήνα",
                 localizationChangeModalText: "Εάν επιλέξετε μια καινούργια χώρα, το περιεχόμενο μπορεί να αλλάξει. Εάν επιλέξετε μια νέα γλώσσα στη χώρα αυτή, το περιεχόμενο θα παραμείνει το ίδιο, μόνο στη νέα γλώσσα που έχει επιλεγεί",
                 growthChartLegendSilverLabel: "Τυπικές τιμές για την ηλικία",
                 growthChartLegendOrangeLabel: "Ανεπαρκείς τιμές για την ηλικία",
@@ -350,9 +321,9 @@ const GRel = {
                 babyNotificationText1: "Ενημερώθηκαν τα δεδομένα γέννησης παιδιού",
                 activityModalText: "Για να βρείτε Παιχνίδια που σχετίζονται με συγκεκριμένο τομέα ανάπτυξης, κάντε κλικ στο σχετικό κουμπί",
                 childDevModalText: "Ελέγξτε εάν το παιδί σας έχει φτάσει σε δεξιότητες που αναμένεται να αναπτυχθούν κατά τη διάρκεια αυτής της περιόδου και δείτε πώς να υποστηρίξετε την ανάπτυξη του μέσω του παιχνιδιού",
-                months5tag: "Μήνες",
-                years5tag: "Χρόνια",
-                days5tag: "Μέρες",
+                months5tag: "μηνών",
+                years5tag: "Χρονών",
+                days5tag: "Ημερών",
                 downloadOnLoadPopupTitle: "Κατεβάστε τα δεδομένα",
                 downloadOnLoadPopupText: "Το περιεχόμενο δεν έχει κατέβει πλήρως. Θέλετε να το κατεβάσετε τώρα;",
                 downloadOnLoadCancelPopUpBtn: "Ακύρωση",
@@ -365,7 +336,6 @@ const GRel = {
                 childInfoBabyText: "Μωρό",
                 childInfoParentText: "Γονέας",
                 childInfoAndText: "Και",
-                // translation replacement closed till above
                 childSetupdobText: "Εισάγετε ημερομηνία γεννήσης",
                 growthModalText: "Εισάγετε και ενημερώνετε το βάρος και το ύψος του παιδιού σας εδώ; θα μάθετε πως να υποστηρίζετε καλύτερα την ανάπτυξη του",
                 vaccineModalText: "Εδώ μπορείτε να εγγραφείτε, να παρακολουθήσετε και να μάθετε περισσότερα για κάθε εμβόλιο σύμφωνα με το εθνικό ημερολόγιο εμβολιασμών. Ορίστε υπενθυμίσεις για τους εμβολιασμούς του παιδιού σας και λάβετε ειδοποιήσεις!",
@@ -381,8 +351,6 @@ const GRel = {
                 alertForModifyMeasures: "Ειδοποιήση",
                 alertForModifyMeasuresTitle: "Η επιλογή αυτής της ημερομηνίας θα τροποποιήσει τις υπάρχουσες μετρήσεις",
                 alertForModifyMeasuresOk: "ΟΚ",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Συγχρονισμός δεδομένων",
                 SyncOnLoadPopupText: "Θέλετε να συγχρονίσετε τα δεδομένα τώρα;",
                 SyncOnLoadCancelPopUpBtn: "Ακύρωση",
@@ -420,6 +388,7 @@ const GRel = {
                 dataSaveroff: "απενεργοποίηση",
                 vcrNoti1: "Έχει οριστεί υπενθύμιση για τον εμβολιασμό στις {{reminderDateTime}}",
                 hcrNoti1: "Έχει οριστεί υπενθύμιση για τον ιατρικό έλεγχο στις {{reminderDateTime}}",
+                //translation till above
                 parentGender: "Parent Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
