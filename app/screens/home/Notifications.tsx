@@ -375,7 +375,7 @@ const Notifications = () => {
             </OuterIconRow>
             <HeaderBabyMenu />
           </HeaderRowView>
-          {isFutureDate(activeChild?.birthDate) ? <Heading4Center>{t('noDataTxt')}</Heading4Center> :
+          {isFutureDate(activeChild?.birthDate) ? <Heading4Center style={{marginTop:10}}>{t('noDataTxt')}</Heading4Center> :
             notifications.length > 0 ?
               <ScrollView style={{ flex: 7, }}>
                 <NotificationsCategories onchange={onCategorychange} />
