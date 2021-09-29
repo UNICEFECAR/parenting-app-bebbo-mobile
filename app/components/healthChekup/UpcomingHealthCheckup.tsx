@@ -50,7 +50,7 @@ import Icon, { IconViewBg } from '../shared/Icon';
 const UpcomingHealthCheckup = (props: any) => {
   const { item, currentIndex, childAgeIndays, headerColor, backgroundColor, currentPeriodId } =
     props;
-  console.log(item, "UpcomingHealthCheckup")
+  // console.log(item, "UpcomingHealthCheckup")
   // console.log(childAgeIndays,item.vaccination_opens,item.vaccination_ends,item.title)
   // console.log(currentPeriodId,"currentPeriodId");
   const { t } = useTranslation();
@@ -150,8 +150,7 @@ const UpcomingHealthCheckup = (props: any) => {
             backgroundColor: backgroundColor,
           }}>
           <ToolsIconView>
-            {item?.growthMeasures?.didChildGetVaccines ||
-              item?.growthMeasures?.isChildMeasured || item?.growthMeasures.doctorComment ? (
+            {item?.growthMeasures?.measurementDate ? (
               <RadioActive style={{ backgroundColor: 'green' }}>
                 <Icon name="ic_tick" size={12} color="#FFF" />
               </RadioActive>
@@ -171,8 +170,7 @@ const UpcomingHealthCheckup = (props: any) => {
             }}>
             <ToolsHeadingView>
               <Heading2>{item?.title}</Heading2>
-              {item?.growthMeasures?.didChildGetVaccines ||
-                item?.growthMeasures?.isChildMeasured || item?.isAdditional ? (
+              {item?.growthMeasures?.measurementDate? (
                 <Text>{item?.growthMeasures?.measurementDate}</Text>
               ) : null}
             </ToolsHeadingView>
