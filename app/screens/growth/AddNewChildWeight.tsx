@@ -244,6 +244,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
           </MainContainer>
           <ButtonContainer>
             <ButtonTertiary
+             disabled={getWeightValue()<=0?true:false}
               onPress={() => {
                 // console.log(weight,weight1);
                 navigation.navigate({
