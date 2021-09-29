@@ -320,7 +320,7 @@ const child_age = useAppSelector(
         <FlexCol>
         <AreaContainer>
           <View style={{flexDirection: 'column'}}>
-            <ScrollView style={{maxHeight:'70%',height:'auto'}} nestedScrollEnabled={true}>
+            <ScrollView style={{maxHeight:'55%',height:'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
                    console.log(item,"..item..");

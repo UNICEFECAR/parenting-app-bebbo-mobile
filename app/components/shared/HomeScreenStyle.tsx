@@ -105,7 +105,7 @@ border-top-width:3px;
 `;
 
 export const OfflineBar = styled.View`
-padding:10px;
+padding:6px;
 background-color:#f5f5f5;
 border-bottom-width:1px;
 border-color:#ccc;
