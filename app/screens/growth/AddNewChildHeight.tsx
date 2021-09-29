@@ -1,6 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import Ruler from '@components/Ruler';
-import { ButtonContainer, ButtonModal, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
+import { ButtonContainer, ButtonModal, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
@@ -200,8 +200,8 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           </MainContainer>
 
           <ButtonContainer>
-            <ButtonPrimary
-              style={{ backgroundColor: '#FFF' }}
+            <ButtonTertiary
+              disabled={getHeightValue()<=0?true:false}
               onPress={() => {
                 navigation.navigate({
                   name: prevRoute,
@@ -212,7 +212,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
                 // navigation.goBack();
               }}>
               <ButtonText numberOfLines={2}>{t('growthScreensaveMeasuresDetails')}</ButtonText>
-            </ButtonPrimary>
+            </ButtonTertiary>
           </ButtonContainer>
 
         </FlexCol>
