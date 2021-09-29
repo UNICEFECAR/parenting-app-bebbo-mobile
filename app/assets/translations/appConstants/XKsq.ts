@@ -10,8 +10,6 @@ const XKsq = {
                 checkonce: "Kontrolloni përpara se të vazhdoni",
                 country: "Shteti",
                 language: "Gjuha",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Mirë se erdhët Prindër!",
                 walkthroughTextssubtitle0: "Zbuloni Bebbo-n, gjithçka që ju nevojitet si prindër për ta mbështetur zhvillimin e fëmijës suaj",
                 walkthroughTextstitle1: "Lojëra",
@@ -22,8 +20,6 @@ const XKsq = {
                 walkthroughTextssubtitle3: "të përshtatura sipas pyetjeve tuaja dhe moshës së fëmijës tuaj",
                 walkthroughButtonBack: "Kthehu",
                 walkthroughButtonNext: "Tjetër",
-
-                // t&C
                 tNcheader: "Termat dhe Kushtet",
                 tNccheckbox1: "Unë i kam lexuar, kuptuar dhe pranuar Termat dhe Kushtet e aplikacionit Bebbo",
                 tNccheckbox2: "Unë e kam lexuar, kuptuar dhe pranuar",
@@ -31,11 +27,7 @@ const XKsq = {
                 tNccheckbox3: "Unë pranoj që të dhënat e mia anonime mbi përdorimin e aplikacionit të përdoren për ta përmirësuar aplikacionin Bebbo (nuk është e detyrueshme)",
                 tNcprivacyPolicyTitle: "Politika e Privatësisë së të dhënave",
                 tNcacceptbtn: "Unë i pranoj Termat dhe Kushtet",
-
-                // Loading
                 loadingText: "Të dhënat po ngarkohen",
-
-                // childSetup
                 childSetupheader: "Ju lutemi, ndani pak kohë për ta personalizuar aplikacionin tuaj",
                 childSetupdobLabel: "Data e lindjes së fëmijës/data e parashikuar e lindjes",
                 childSetupdobSelector: "Vendoseni datën e lindjes/datën e parashikuar të lindjes",
@@ -46,16 +38,12 @@ const XKsq = {
                 childSetuprelationSelectTitle: "Marrëdhënia me fëmijën",
                 childSetuprelationSelectText: "Përzgjedh",
                 childSetupcontinueBtnText: "Vazhdo",
-
-                // childSetupList
                 childSetupListheader: "Profili i fëmijës suaj është krijuar!",
                 childSetupListsubHeader: "Ju lutemi t'i rishikoni të dhënat për fëmijën tuaj përpara se të vazhdoni!",
                 childSetupListaddSiblingBtn: "Shtoni motër ose vëlla",
                 childSetupListeditSiblingBtn: "Editoni informatat për fëmijën",
                 childSetupListcontinueBtnText: "Vazhdo",
                 childSetupListsaveBtnText: "Ruaj të dhënat",
-
-                // drawerMenu
                 drawerMenuchildInfo: "i/e lindur më {{childdob}}",
                 drawerMenuhomeTxt: "Faqja Kryesore",
                 drawerMenunotiTxt: "Njoftimet",
@@ -73,10 +61,7 @@ const XKsq = {
                 drawerMenufeedbackTxt: "Jepni mendimin tuaj për aplikacionin Bebbo",
                 drawerMenurateTxt: "E pëlqeni aplikacioni Bebbo? Vlerësojeni!",
                 drawerMenuPrivacyTxt: "Politika e Privatësisë së të dhënave",
-                // notiScreen
                 notiScreenheaderTitle: "Njoftimet",
-
-                // settingScreen
                 settingScreenheaderTitle: "Cilësimet",
                 settingScreennotiHeaderText: "Njoftimet",
                 settingScreennotiType1: "Dëshiroj të pranoj njoftime përmes Bebbo-s",
@@ -100,17 +85,11 @@ const XKsq = {
                 settingScreenexportOptionHeader: "Eksportimi i të dhënave është i aktivizuar",
                 settingScreenshareBtntxt: "Shpërndaj",
                 settingScreengdriveBtntxt: "Google drive",
-
-                // userGuide
                 userGuideheaderTitle: "Udhëzuesi për përdorues",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "Rreth nesh",
-                // supportScreen
                 supportScreenheaderTitle: "Bisedo në chat",
                 supportScreenheader1text: "Së Shpejti!",
                 supportScreenheader2text: "Bisedat në chat nuk mund të realizohen për momentin",
-                // homeScreen
                 homeScreenheaderTitle: "Bebbo",
                 homeScreenchildBtnText: "Lexoni më shumë",
                 homeScreenchildInfoTitle: "Mirë se erdhët {{childName}} dhe {{parentName}}",
@@ -131,8 +110,6 @@ const XKsq = {
                 homeScreenvc: "Vaksinimi",
                 homeScreenhc: "Kontrolli shëndetësor",
                 homeScreencg: "Rritja e fëmijës",
-
-                // actScreen
                 actScreenheaderTitle: "Lojëra",
                 actScreensugacttxt: "Lojërat e sugjeruara",
                 actScreenotheracttxt: "Lojëra të tjera",
@@ -143,7 +120,6 @@ const XKsq = {
                 actScreenprematureText: "I/e lindur para kohe",
                 actScreenshareText: "Shpërndaj",
                 actScreenaddtoFavText: "Shtoni tek të preferuarat",
-                // developScreen
                 developScreenheaderTitle: "Zhvillimi i fëmijës",
                 developScreenprematureText: "I/e lindur para kohe",
                 developScreenchartLabel: "Në pritje",
@@ -154,15 +130,13 @@ const XKsq = {
                 developScreenrelatedArticleText: "Shikoni këshilla të ngjashme",
                 developScreenrelatedAct: "Lojëra të ngjashme",
                 developScreenviewDetails: "Shikoni detajet",
-                // articleScreen
                 articleScreenheaderTitle: "Këshilla",
                 articleScreensearchPlaceHolder: "Kërkoni për fjalë kyçe",
                 articleScreennoSearchResult: "Nuk u gjet asnjë këshillë",
                 articleScreenshareText: "Shpërndaj",
                 articleScreenaddtoFavText: "Shtoni tek të preferuarat",
-                // growthScreen
                 growthScreenheaderTitle: "Rritja e fëmijës",
-                growthScreengrowthDataTitle: "Fëmija është {{child name}} muajsh",
+                growthScreengrowthDataTitle: "Fëmija është {{childAge}}",
                 growthScreennoGrowthData: "parametrat e rritjes së fëmijës tuaj nuk janë matur akoma",
                 growthScreennoGrowthDataHelpText: "Kjo do t'ju ndihmojë që të mbani shënim për rritjen e fëmijës suaj",
                 growthScreenaddNewBtntxt: "Shtoni një matje të re",
@@ -171,7 +145,7 @@ const XKsq = {
                 growthScreenheightForAge: "Pesha për moshën përkatëse",
                 growthScreensubHeading: "Matja e parametrave të rritjes",
                 growthScreenprematureText: "I/e lindur para kohe",
-                growthScreenlastMeasureText: "Matjet e fundit më {{sizeDate}}",
+                growthScreenlastMeasureText: "Matjet e fundit më {{measureDate}}",
                 growthScreenallMeasurements: "Të gjitha matjet",
                 growthScreenhText: "Gjatësia",
                 growthScreenwText: "Pesha",
@@ -196,7 +170,6 @@ const XKsq = {
                 growthScreenaddHeight: "Shtoni peshën",
                 growthScreennewGrowthBottomText: "Matja e një fëmije në shtëpi është më pak e saktë sesa matja te mjeku, dhe mund të ndikojë në saktësinë e grafikut të rritjes.",
                 growthScreenrelatedArticle: "Këshilla të ngjashme",
-                // Sprint4 Screens
                 noBorn: "Nuk ka lindur akoma",
                 noday: "0 ditë",
                 yearstag: "vite",
@@ -245,7 +218,7 @@ const XKsq = {
                 vcChildMeasureQ: "A është matur fëmija juaj?",
                 vcDoctorRemark: "Sugjerimet dhe komentet e mjekut",
                 vcDoctorRemarkPlaceHolder: "Vendosini sugjerimet dhe komentet e mjekut",
-                vcIsMeasuredOption1: "Po ",
+                vcIsMeasuredOption1: "Po",
                 vcIsMeasuredOption2: "Jo",
                 vcDeleteWarning: "Dëshironi t'i fshini detajet e vaksinimit të fëmijës suaj?",
                 vcReminderHeading: "Vendoseni njoftimin për rikujtim",
@@ -300,7 +273,6 @@ const XKsq = {
                 hcdateText: "Data e kontrollit shëndetësor",
                 hcenterDateText: "Vendoseni datën e kontrollit shëndetësor",
                 hcChildVaccineQ: "A e ka marrë fëmija vaksinën?",
-                /// sprin5 screens
                 tabbarLabel1: "Faqja Kryesore",
                 tabbarLabel2: "Lojëra",
                 tabbarLabel3: "Mjete",
@@ -309,8 +281,6 @@ const XKsq = {
                 tabbarLabel6: "Vaksinimi",
                 tabbarLabel7: "Kontrollet shëndetësore",
                 tabbarLabel8: "Rritja e fëmijës",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: " Menaxho profilin   ",
                 removePhotoTxt: "Fshi foton   ",
                 removeWarnTxt: "Doni të fshini foton?   ",
@@ -325,7 +295,7 @@ const XKsq = {
                 parentNameTxt: "Emri i prindit   ",
                 parentPlaceNameTxt: "Shkruaj emrin tënd   ",
                 editParentTxt: "Ndrysho të dhënat e prindërve   ",
-                notiDelSelected: " Fshij të përzgjedhurën ({{count}})   ",
+                notiDelSelected: "Fshij të përzgjedhurën ({{count}})",
                 onBirthDay: "Lindja   ",
                 month: " Muaji   ",
                 localizationChangeModalText: "Nëse përzgjidhet një vend i ri   përmbajtja mund të ndryshojë; nëse përzgjidhni një gjuhë të re brenda atij vendi përmbajtja do të mbetet e njëjtë   vetëm se në gjuhën e re të përzgjedhur   ",
@@ -351,9 +321,9 @@ const XKsq = {
                 babyNotificationText1: "Të dhënat e lindjes së fëmijës u përditësuan   ",
                 activityModalText: "Për të gjetur Lojëra që lidhen me fushën specifike të zhvillimit   klikoni në butonin përkatës ",
                 childDevModalText: "Kontrollo nëse fëmija juaj ka arritur aftësitë që pritet të zhvillohen gjatë kësaj periudhe dhe shih se si ta mbështesësh zhvillimin përmes lojës”  ",
-                months5tag: "muajt   ",
-                years5tag: "vitet   ",
-                days5tag: "ditët   ",
+                months5tag: "muaj",
+                years5tag: "vite",
+                days5tag: "ditë",
                 downloadOnLoadPopupTitle: "Shkarko të dhënat   ",
                 downloadOnLoadPopupText: "Përmbajtja nuk është shkarkuar plotësisht. Dëshironi ta shkarkoni tani?   ",
                 downloadOnLoadCancelPopUpBtn: "Anulo   ",
@@ -366,7 +336,6 @@ const XKsq = {
                 childInfoBabyText: " Foshnja   ",
                 childInfoParentText: "Prindi   ",
                 childInfoAndText: "dhe ",
-                // translation replacement closed till above
                 childSetupdobText: "Shkruani datën e lindjes",
                 growthModalText: "Shkruani dhe përditësoni peshën dhe gjatësinë e fëmijës suaj këtu; do të mësoni se si ta mbështesni zhvillimin e tij/saj",
                 vaccineModalText: "Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime!",
@@ -382,8 +351,6 @@ const XKsq = {
                 alertForModifyMeasures: "Kujdes!",
                 alertForModifyMeasuresTitle: "Përzgjedhja e kësaj date do t'i modifikojë matjet ekzistuese.",
                 alertForModifyMeasuresOk: "Në rregull.",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Sinkronizo të dhënat",
                 SyncOnLoadPopupText: "A dëshironi t'i sinkronizoni të dhënat tani?",
                 SyncOnLoadCancelPopUpBtn: "Anulo",
@@ -421,6 +388,7 @@ const XKsq = {
                 dataSaveroff: "Deaktivizo",
                 vcrNoti1: "Rikujtimi është caktuar për vaksinim më {{reminderDateTime}}",
                 hcrNoti1: "Rikujtimi është caktuar për kontrollë mjekësore më {{reminderDateTime}}",
+                //translation till above
                 parentGender: "Parent Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
