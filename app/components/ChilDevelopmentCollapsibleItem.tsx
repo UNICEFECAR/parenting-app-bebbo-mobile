@@ -313,41 +313,49 @@ const activeChild = useAppSelector((state: any) =>
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-                console.log("onRequestClose clicked");
+                console.log("onRequestClose clicked",modalVisible);
             // Alert.alert('Modal has been closed.');
-            //   setModalVisible(!modalVisible);
+              setModalVisible(!modalVisible);
             }}
             onDismiss={() => {
                 console.log("onDismiss clicked");
             //   setModalVisible(!modalVisible);
             }}>
-            <PopupOverlayVideo>
-            <ModalPopupContainerVideo style={{height:windowWidth*0.8,}}>
-                <PopupCloseContainer style={{backgroundColor:'#000',paddingBottom:6,paddingTop:8}}>
-                <PopupCloseVideo
-                    onPress={() => {
-                    // setModalVisible(!modalVisible);
-                    console.log("close clicked");
-                    setModalVisible(!modalVisible);
-                    }}>
-                    <Icon name="ic_close" size={20} color="#fff" />
-                </PopupCloseVideo>
-                </PopupCloseContainer>
-                <ModalPopupContentVideo style={{maxHeight:windowWidth*0.563,height:windowWidth*0.563,}}>
-                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
-                </ModalPopupContentVideo>
-                
-                <FDirRow>
-                {/* <ButtonModal
-                    onPress={() => {
-                      setModalVisible(!modalVisible);
-                    }}>
-                    <ButtonText>{t('continueInModal')}</ButtonText>
-                </ButtonModal> */}
-                </FDirRow>
+            <View style={{width:windowWidth,height:windowHeight, backgroundColor:'rgba(0,0,0,0.7)',
 
-            </ModalPopupContainerVideo>
-            </PopupOverlayVideo>
+flexDirection:'row',
+
+alignItems:'center',justifyContent:'center'}}>
+
+  
+
+ <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+
+ <PopupCloseContainer style={{width:windowWidth,height:windowHeight,position:'absolute',zIndex:-1,top:0,}}>
+
+  <PopupCloseVideo style={{
+
+    width:windowWidth,height:windowHeight, alignItems:'flex-start',justifyContent:'flex-end',padding:17
+
+  }}
+
+      onPress={() => {
+
+      // setModalVisible(!modalVisible);
+
+      console.log("close clicked");
+
+      setModalVisible(!modalVisible);
+
+      }}>
+
+      <Icon name="ic_close" size={20} color="#fff" />
+
+  </PopupCloseVideo>
+
+  </PopupCloseContainer>
+
+ </View>
         </Modal>
     </MainContainer>
     </>
