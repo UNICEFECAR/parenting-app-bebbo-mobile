@@ -1,9 +1,6 @@
+import { beforeDays, maxPeriodDays, threeeMonthDays, twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
 import { getCurrentChildAgeInDays, isFutureDate } from './childCRUD';
-import { maxPeriodDays } from "./healthCheckupService";
-export const threeeMonthDays = 90;
-export const twoMonthDays = 60;
-export const beforeDays = 5;
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),

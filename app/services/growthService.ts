@@ -1,3 +1,4 @@
+import { maxHeight, maxWeight } from '@assets/translations/appOfflineData/apiConstants';
 import { DateTime } from 'luxon';
 import { MeasuresEntity } from '../database/schema/ChildDataSchema';
 
@@ -12,8 +13,7 @@ export interface chartAreaDataFormat {
   middleArea: singleAreaDataFormat[],
   bottomArea: singleAreaDataFormat[],
 }
-export const maxWeight = 28;
-export const maxHeight = 125;
+
 
 export const setInitialWeightValues = (weightValue: any) => {
   // console.log(weightValue,"weightValue")

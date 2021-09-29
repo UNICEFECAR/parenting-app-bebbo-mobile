@@ -1,10 +1,9 @@
-import { Alert } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { MeasuresEntity } from './../database/schema/ChildDataSchema';
+import { maxPeriodDays } from '@assets/translations/appOfflineData/apiConstants';
 import { DateTime } from "luxon";
+import { useTranslation } from 'react-i18next';
 import { useAppSelector } from "../../App";
+import { MeasuresEntity } from './../database/schema/ChildDataSchema';
 import { formatStringDate } from './Utils';
-export const maxPeriodDays = 2920;
 export const getAllHealthCheckupPeriods = () => {
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
