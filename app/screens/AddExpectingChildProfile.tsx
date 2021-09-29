@@ -33,6 +33,7 @@ import { DateTime } from 'luxon';
 import { dobMax } from '@types/types';
 import {
   HeaderActionView,
+  HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -167,12 +168,12 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-            <Pressable
+            <HeaderIconPress
               onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#FFF" size={15} />
-            </Pressable>
+            </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
           <Heading2w numberOfLines={1}>
