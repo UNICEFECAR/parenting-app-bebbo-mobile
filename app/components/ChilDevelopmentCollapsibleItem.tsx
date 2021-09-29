@@ -321,33 +321,33 @@ const activeChild = useAppSelector((state: any) =>
                 console.log("onDismiss clicked");
             //   setModalVisible(!modalVisible);
             }}>
-            <PopupOverlayVideo>
-            <ModalPopupContainerVideo style={{height:windowWidth*0.8,}}>
-                <PopupCloseContainer style={{backgroundColor:'#000',paddingBottom:6,paddingTop:8}}>
-                <PopupCloseVideo
-                    onPress={() => {
-                    // setModalVisible(!modalVisible);
-                    console.log("close clicked");
-                    setModalVisible(!modalVisible);
-                    }}>
-                    <Icon name="ic_close" size={20} color="#fff" />
-                </PopupCloseVideo>
-                </PopupCloseContainer>
-                <ModalPopupContentVideo style={{maxHeight:windowWidth*0.563,height:windowWidth*0.563,}}>
-                  <VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
-                </ModalPopupContentVideo>
-                
-                <FDirRow>
-                {/* <ButtonModal
-                    onPress={() => {
-                      setModalVisible(!modalVisible);
-                    }}>
-                    <ButtonText>{t('continueInModal')}</ButtonText>
-                </ButtonModal> */}
-                </FDirRow>
+            <View style={{ width: windowWidth, height: windowHeight, backgroundColor: 'rgba(0,0,0,0.8)', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
-            </ModalPopupContainerVideo>
-            </PopupOverlayVideo>
+
+
+<VideoPlayer selectedPinnedArticleData={selVideoArticleData}></VideoPlayer>
+
+<PopupCloseContainer style={{ position: 'absolute', zIndex: 0, top: 0, paddingBottom: 6, paddingTop: 8, marginTop: 10 }}>
+
+  <PopupCloseVideo
+
+    onPress={() => {
+
+      // setModalVisible(!modalVisible);
+
+      console.log("close clicked");
+
+      setModalVisible(!modalVisible);
+
+    }}>
+
+    <Icon name="ic_close" size={20} color="#fff" />
+
+  </PopupCloseVideo>
+
+</PopupCloseContainer>
+
+</View>
         </Modal>
     </MainContainer>
     </>
