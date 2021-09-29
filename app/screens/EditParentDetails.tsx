@@ -11,6 +11,7 @@ import {
     LabelText,
     TextAreaBox,TextBox
 } from '@components/shared/ChildSetupStyle';
+import { HeaderIconView, HeaderRowView, HeaderTitleView,HeaderIconPress} from '@components/shared/HeaderContainerStyle';
 import { MainContainer } from '@components/shared/Container';
 import Icon from '@components/shared/Icon';
 import ToggleRadios from '@components/ToggleRadios';
@@ -135,7 +136,26 @@ const EditParentDetails = ({route,navigation}: Props) => {
     <>
       <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <View
+        <HeaderRowView
+          style={{
+            backgroundColor: headerColor,
+            maxHeight: 50,
+          }}>
+          <HeaderIconView>
+          <HeaderIconPress 
+               onPress={() => {
+                navigation.goBack();
+              }}>
+              <Icon name={'ic_back'} color="#FFF" size={15} />
+            </HeaderIconPress>
+          </HeaderIconView>
+          <HeaderTitleView>
+          <Heading2w numberOfLines={1}>
+              {t('editParentTxt')}
+              </Heading2w>
+          </HeaderTitleView>
+        </HeaderRowView>
+        {/* <View
             style={{
               flexDirection: 'row',
               flex: 1,
@@ -155,7 +175,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               {t('editParentTxt')}
               </Heading2w>
             </View>
-          </View>
+          </View> */}
        
 <MainContainer>
         <FormInputGroup
