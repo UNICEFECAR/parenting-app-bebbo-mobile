@@ -27,7 +27,7 @@ import {
   Flex3,
   FlexDirRowSpace
 } from '@components/shared/FlexBoxStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconAreaPress } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -799,7 +799,7 @@ const SettingScreen = (props: any) => {
                   console.log("icon clicked");
                   setModalVisible(true)
                 }}> */}
-                <Pressable onPress={() => {
+                <IconAreaPress onPress={() => {
                 if (netInfoval && netInfoval.isConnected == true) {
                   setModalVisible(true)
                 }
@@ -808,7 +808,7 @@ const SettingScreen = (props: any) => {
                 }
               }}>
                   <Icon name="ic_edit" size={16} color="#000" />
-                </Pressable>
+                </IconAreaPress>
               </FlexDirRowSpace>
             </SettingHeading>
             <ShiftFromTopBottom5>
