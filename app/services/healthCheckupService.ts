@@ -78,6 +78,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
 
   });
   const vaccineMeasuredInfo = (uuid: number) => {
+    // console.log(uuid,measuredVaccines, "vaccineMeasuredInfo uuid");
     return (measuredVaccines.find(item => item.uuid == uuid))
   }
 
@@ -89,7 +90,8 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   const getVaccinesForHCPeriod = (growthPeriodID) => {
     let vaccinesforHC = allVaccinePeriods.filter(item => item.growth_period == growthPeriodID);
     vaccinesforHC?.forEach(vaccine => {
-      const vaccineMeasured = vaccineMeasuredInfo(vaccine.id);
+      const vaccineMeasured = vaccineMeasuredInfo(vaccine.uuid);
+      // console.log(vaccineMeasured, "vaccineMeasured", vaccine.uuid);
       vaccine.isMeasured = vaccineMeasured ? true : false;
       vaccine.measurementDate = vaccineMeasured ? vaccineMeasured.measurementDate : "";
     })
