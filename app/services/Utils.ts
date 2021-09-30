@@ -430,10 +430,11 @@ export const getChild = async (child: any, genders: any) => {
     let genderValue: any = child.gender;
     console.log(typeof genderValue, "..typeof genderValue")
     if (typeof genderValue === 'string' || genderValue instanceof String) {
-        console.log(typeof genderValue, "..11typeof genderValue")
+        console.log(typeof genderValue, "..11typeof genderValue");
+        
         // console.log(genders.find((genderset:any) => genderset.name == child.gender).id,"/idset");
         if (genders.length > 0 && genderValue != "") {
-            genderValue = genders.find((genderset) => genderset.name.toLowerCase() == child.gender.toLowerCase()).id
+            genderValue = genders.find((genderset) => genderset.unique_name.toLowerCase() == child.gender.toLowerCase()).id
         }
         else {
             genderValue = 0;
