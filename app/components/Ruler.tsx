@@ -388,7 +388,7 @@ class Ruler extends React.Component<Props, State> {
           }}
           scrollToOverflowEnabled={true}
           bounces={false}
-          showsHorizontalScrollIndicator={true}
+          showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
           snapToInterval={Math.round(this.snapSegment)}
           onScroll={
