@@ -26,7 +26,7 @@ const LoadableImage = (props:any) => {
       // else{
       if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
         // console.log(item,"..11item..");
-        if (await RNFS.exists(destinationFolder + '/' + item['cover_image']?.url.split('/').pop())) {
+        if (await RNFS.exists(RNFS.DocumentDirectoryPath + '/content' + '/' + item['cover_image']?.url.split('/').pop())) {
           // console.log("..22item..");
           setImageState('loaded');
         }
@@ -41,16 +41,16 @@ const LoadableImage = (props:any) => {
           let imageArray: any = [];
           imageArray.push({
             srcUrl: item['cover_image'].url,
-            destFolder: destinationFolder,
+            destFolder: RNFS.DocumentDirectoryPath + '/content',
             destFilename: item['cover_image'].url.split('/').pop()
           })
           // console.log(imageArray, "..imageArray..");
           // if(toggleSwitchVal==false){
           const imagesDownloadResult = await downloadImages(imageArray);
-          setTimeout(()=>{
+          if(imagesDownloadResult && imagesDownloadResult.length>0 && imagesDownloadResult[0].success==true){
+            setNoImage(false);
             setImageState('loaded');
-          },350)
-          
+          }
           // console.log(imagesDownloadResult, "..imagesDownloadResult..");
           }
           // }
@@ -96,7 +96,7 @@ const LoadableImage = (props:any) => {
       (
         imageState=='loading'?
         <ActivityIndicator style={style} size="large" color="#000"/>
-        :noImage==false?<FastImage  
+        :noImage==false && imageState=='loaded'?<FastImage  
          onError={() => { setNoImage(true) }}
          style={style} source={{uri:encodeURI("file://" + destinationFolder + item.cover_image?.url.split('/').pop()),priority: FastImage.priority.normal}} 
          resizeMode={FastImage.resizeMode.cover}/>:<DefaultImage
