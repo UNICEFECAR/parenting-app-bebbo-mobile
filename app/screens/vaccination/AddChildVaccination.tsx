@@ -85,9 +85,9 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   );
   const [editVCDate, seteditVCDate] = useState<DateTime>( editVaccineDate ? editVaccineDate : null);
   const deleteVaccination = async () => {
-    if (editVaccineDate) {
+    if (editVCDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")
-      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVaccineDate)), activeChild)
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editVCDate)), activeChild)
       // console.log(existingMeasure.uuid)
       //delete measure obj
       let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
