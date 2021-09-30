@@ -415,8 +415,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
         const growthValues = {
           uuid: existingMeasure.uuid,
           isChildMeasured: isMeasured,
-          weight: String(weightValue),
-          height: String(heightValue),
+          weight: isMeasured ? String(weightValue): '0',
+          height: isMeasured ? String(heightValue) :'0',
           measurementDate: measurementDateParam,
           titleDateInMonth: titleDateInMonthParam.toString(),
           didChildGetVaccines: allVaccines.length > 0 ? true : false,
@@ -447,8 +447,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           const growthValues = {
             uuid: existingMeasure.uuid,
             isChildMeasured: isMeasured,
-            weight: String(weightValue),
-            height: String(heightValue),
+            weight: isMeasured ? String(weightValue): '0',
+            height: isMeasured ? String(heightValue) :'0',
             measurementDate: measurementDateParam,
             titleDateInMonth: titleDateInMonthParam.toString(),
             didChildGetVaccines: allVaccines.length > 0 ? true : false,
@@ -475,8 +475,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           const growthValues = {
             uuid: uuidv4(),
             isChildMeasured: isMeasured,
-            weight: String(weightValue),
-            height: String(heightValue),
+            weight: isMeasured ? String(weightValue): '0',
+            height: isMeasured ? String(heightValue) :'0',
             measurementDate: measurementDateParam,
             titleDateInMonth: titleDateInMonthParam.toString(),
             didChildGetVaccines: allVaccines.length > 0 ? true : false,
