@@ -18,13 +18,13 @@ export const localization = [
     countryId: 106,
     displayName: 'Belarus (Беларусь)',
     languages: [
-      {
-        name: 'Belarusian',
-        displayName: 'Беларуская мова',
-        languageCode: 'by-be',
-        locale: 'BYbe',
-        luxonLocale:'be-BY'
-      },
+      // {
+      //   name: 'Belarusian',
+      //   displayName: 'Беларуская мова',
+      //   languageCode: 'by-be',
+      //   locale: 'BYbe',
+      //   luxonLocale:'be-BY'
+      // },
       {
         name: 'Russian',
         displayName: 'Русский',
