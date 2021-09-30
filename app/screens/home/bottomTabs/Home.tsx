@@ -438,9 +438,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            <View>
+            {/* <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View>
+            </View> */}
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
@@ -453,9 +453,9 @@ const Home = ({ route, navigation }: Props) => {
                 onChange={ondobChange}
               />
             )}
-            <View>
+            {/* <View>
               <Button onPress={() => setShow2(true)} title={"Monthly " + date2} />
-            </View>
+            </View> */}
             {show2 && (
               <DateTimePicker
                 testID="dobdatePicker"
