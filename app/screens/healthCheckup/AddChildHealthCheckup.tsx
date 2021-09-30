@@ -110,9 +110,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const [editHCDate, seteditHCDate] = useState<DateTime>( editMeasurementDate ? editMeasurementDate : null);
  
   const deleteHealthCheckup = async () => {
-    if (editMeasurementDate) {
+    if (editHCDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")
-      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
+      const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editHCDate)), activeChild)
       // console.log(existingMeasure.uuid)
       //delete measure obj
       let deleteresult = await userRealmCommon.deleteChildMeasures<ChildEntity>(
@@ -282,6 +282,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 onPress: () => {
                   // const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
+                  setShowDelete(true);
                   setWeightValue(existingMeasure?.weight)
                   seteditHCDate(DateTime.fromJSDate(selectedDate));
                   setHeightValue(existingMeasure?.height)
