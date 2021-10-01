@@ -39,6 +39,7 @@ import {
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -286,9 +287,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                     setName(value.replace(/\s/g, '')); 
                    } else {
                     console.log("..22value")
-                    if (/^[a-zA-Z ]*$/.test(value)) {
-                    setName(value);
-                    }
+                    // if (/^[a-zA-Z ]*$/.test(value)) {
+                    // setName(value);
+                    // }
+                    setName(value.replace(regexpEmojiPresentation, ''));
                    }
                 }}
                 // value={name.replace(/\s/g, '')}
