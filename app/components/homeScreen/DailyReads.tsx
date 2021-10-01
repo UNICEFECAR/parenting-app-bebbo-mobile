@@ -201,6 +201,7 @@ const DailyReads = () => {
         if(articleDataToShow == null && activityDataToShow == null){
           dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
             currentadviceid:0,currentgamesid:0,currentDate:''}));
+          dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
         }
           if(articleDataToShow != null) {
             data.push(articleDataToShow);
