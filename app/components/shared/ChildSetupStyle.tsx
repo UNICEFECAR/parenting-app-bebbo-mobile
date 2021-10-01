@@ -152,7 +152,6 @@ export const FormInputText = styled(LabelText)`
 `;
 export const TextAreaBox = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_TEXTCOLOR};
-  padding: 0 15px;
 height:75px;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `;
