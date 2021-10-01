@@ -350,7 +350,7 @@ const Home = ({ route, navigation }: Props) => {
     console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
     if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       let flagtext = 'downloadBufferData ' + downloadBufferData + ' downloadWeeklyData ' + downloadWeeklyData + ' downloadMonthlyData ' + downloadMonthlyData;
-      Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText') + ' ' + flagtext,
+      Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText'),
         [
           {
             text: t('SyncOnLoadCancelPopUpBtn'),
