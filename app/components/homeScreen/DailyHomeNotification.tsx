@@ -6,18 +6,13 @@ import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
-import {
-  ConfigSettingsEntity,
-  ConfigSettingsSchema
-} from '../../database/schema/ConfigSettingsSchema';
-import { getAllConfigData } from '../../services/childCRUD';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 const DailyHomeNotification = () => {
   const [notification, setNotification] = useState<any>();
   const dispatch = useAppDispatch();
-  // const languageCode = useAppSelector(
-  //   (state: any) => state.selectedCountry.languageCode,
-  // );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   // const records = useAppSelector((state: any) => state.utilsData.dailymessages);
   // const utilsDatarecordConsts = useAppSelector((state: any) =>
   //   state.utilsData != '' ? state.utilsData : state.utilsData,
@@ -29,12 +24,14 @@ const DailyHomeNotification = () => {
       : state.utilsData.dailymessages,
   );
   console.log(records, '<<records>>');
-
-  const allConfigData = useAppSelector((state: any) =>
-    state.variableData?.variableData != ''
-      ? JSON.parse(state.variableData?.variableData)
-      : state.variableData?.variableData,
-  );
+  const currentNotification = useAppSelector((state: any) =>
+  (state.utilsData.dailyMessageNotification),
+);
+  // const allConfigData = useAppSelector((state: any) =>
+  //   state.variableData?.variableData != ''
+  //     ? JSON.parse(state.variableData?.variableData)
+  //     : state.variableData?.variableData,
+  // );
   // console.log(allConfigData, '..allConfigData..');
   const setNotiInDB = async (noti: { messageId: any; messageText: any; day: number; month: number; year: number; }) => {
     // await dataRealmCommon.updateSettings<ConfigSettingsEntity>(
@@ -43,22 +40,20 @@ const DailyHomeNotification = () => {
     //   JSON.stringify(noti),
     // );
     // console.log('setNotiInDB', noti);
-    let dailymessage = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification", JSON.stringify(noti));
+    dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: JSON.stringify(noti)}));
+    // let dailymessage = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "dailyNotification", JSON.stringify(noti));
     // console.log(dailymessage, 'dailymessageAdded');
-    getAllConfigData(dispatch);
+    // getAllConfigData(dispatch);
   };
 
   useEffect(() => {
-    const currentNotification =
-      allConfigData?.length > 0
-        ? allConfigData.find((item) => item.key == 'dailyNotification')
-        : null;
-    // console.log(currentNotification, 'currentNotification<>');
+    console.log(currentNotification, 'currentNotification<>');
     let currentDate = DateTime.local();
     // let currentDate = DateTime.local().plus({days: 4});//for testing next day noti change
-    if (currentNotification != null || currentNotification != undefined) {
-      const currentNotificationVal = currentNotification
-        ? JSON.parse(currentNotification?.value)
+    if (currentNotification != null && currentNotification != undefined && currentNotification != '') {
+      console.log(currentNotification, 'currentNotification<>');
+      const currentNotificationVal = currentNotification!=''
+        ? JSON.parse(currentNotification)
         : null;
       // console.log('currentNotificationVal', currentNotificationVal);
       // CHECK IF DAILY MESSAGE VARIABLE NEEDS TO BE UPDATED
