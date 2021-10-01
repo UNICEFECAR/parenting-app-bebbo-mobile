@@ -7,7 +7,7 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading2, Heading3w, Heading4, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -119,13 +119,13 @@ const DailyReads = () => {
     );
   });
   
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
       //console.log(newCategoryArray,"..newCategoryArray11")
       // console.log(ActivitiesData,"--ActivitiesData--",ActivitiesDataall);
       console.log(dailyDataCategory,"--showedDailyDataCategory--",showedDailyDataCategory);
       // dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
       const nowDate = DateTime.now().toISODate();
+      console.log(dailyDataCategory.currentDate+'..'+nowDate);
       // Alert.alert(nowDate+'Modal has been closed.'+dailyDataCategory.currentDate);
       if(dailyDataCategory && (dailyDataCategory.currentDate == '' || dailyDataCategory.currentDate < nowDate)){
         const articleCategoryArrayNew = articleCategoryArray.filter((i:any) => articleData.find((f:any)=>f.category === i))
@@ -201,6 +201,7 @@ const DailyReads = () => {
         if(articleDataToShow == null && activityDataToShow == null){
           dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
             currentadviceid:0,currentgamesid:0,currentDate:''}));
+          dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
         }
           if(articleDataToShow != null) {
             data.push(articleDataToShow);
@@ -212,8 +213,7 @@ const DailyReads = () => {
         console.log(articleDataToShow,activityDataToShow,"activityDataToShow data---",data);
         setDataToShowInList(data);
       }
-    }, [])
-  );
+    }, []);
   return (
     <>
       <BgSecondaryTint>
