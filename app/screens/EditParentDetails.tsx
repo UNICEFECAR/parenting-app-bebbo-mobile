@@ -1,4 +1,4 @@
-import { both_parent_gender, femaleData, maleData, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+import { both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
@@ -274,9 +274,9 @@ const EditParentDetails = ({route,navigation}: Props) => {
                   setParentName(value.replace(/\s/g, '')); 
                  } else {
                   console.log("..22value")
-                  if (/^[a-zA-Z ]*$/.test(value)) {
-                  setParentName(value);
-                  }
+                  // if (/^[a-zA-Z ]*$/.test(value)) {
+                  setParentName(value.replace(regexpEmojiPresentation, ''));
+                  // }
                  }
                }}
               // value={parentName.replace(/\s/g, '')}
