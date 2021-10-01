@@ -1,31 +1,22 @@
-import { ConfigSettingsEntity, ConfigSettingsSchema } from './../database/schema/ConfigSettingsSchema';
-
-import { userRealmCommon } from './../database/dbquery/userRealmCommon';
-import RNFS from 'react-native-fs';
-import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
-
-import axios, { AxiosResponse } from "axios";
-import { SagaReturnType } from "redux-saga/effects";
-import { RootState, useAppSelector } from "../../App";
-import { commonApiInterface } from "../interface/interface";
-import { finalUrl } from "../assets/translations/appOfflineData/apiConstants";
-import axiosService from "./axiosService";
-import { store } from "../../App";
-import ImageStorage from "../downloadImages/ImageStorage";
-import { Alert } from "react-native";
-import CountryLanguageConfirmation from '../screens/localization/CountryLanguageConfirmation';
-import downloadImages from '../downloadImages/ImageStorage';
-import { setSponsorStore } from '../redux/reducers/localizationSlice';
-import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
-import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translations/appOfflineData/getDataToStore';
-import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
-import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import i18n from 'i18next';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { CommonActions } from '@react-navigation/native';
-import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { Alert } from "react-native";
+import RNFS from 'react-native-fs';
+import { store } from "../../App";
+import { appConfig, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import downloadImages from '../downloadImages/ImageStorage';
+import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
+import { setSponsorStore } from '../redux/reducers/localizationSlice';
+import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+
+import axiosService from './axiosService';
+
+import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
+
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
