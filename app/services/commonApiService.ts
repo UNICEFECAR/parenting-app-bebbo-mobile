@@ -12,11 +12,6 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
-import { userRealmCommon } from './../database/dbquery/userRealmCommon';
-import axiosService from "./axiosService";
-
-
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -335,7 +330,6 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
       currentadviceid:0,currentgamesid:0,currentDate:''}));
     dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
-    // let createresult = await dataRealmCommon.delete(ArticleEntitySchema.name, "isarticle_pinned!='1'");
   }
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),

@@ -58,7 +58,7 @@ export const articlesSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("Daily data---",state);
+     console.log("Daily data---",state.dailyDataCategory);
       console.log(action.payload);
       // console.log(action.payload.map(user => user));
       // dailyDataCategory
@@ -71,7 +71,7 @@ export const articlesSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("Daily data---",state);
+     console.log("showedDailyDataCategory data---",state.showedDailyDataCategory);
       console.log(action.payload);
       // console.log(action.payload.map(user => user));
       // dailyDataCategory
