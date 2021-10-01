@@ -769,7 +769,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput
+                    <TextInput style={{flex:1}}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}
