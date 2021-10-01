@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { basicPagesUniqueName } from '@assets/translations/appOfflineData/apiConstants';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 
 interface hardcodedDataType {
@@ -41,6 +41,7 @@ interface hardcodedDataType {
   IsHCUModalOpened:boolean,
   showDownloadPopup:boolean,
   generateNotifications:boolean,
+  dailyMessageNotification:string,
   dailymessages:string,
   vaccineData:{
     id: number,
@@ -123,6 +124,7 @@ const initialState: hardcodedDataType = {
   IsHCUModalOpened:true,
   showDownloadPopup:true,
   generateNotifications:true,
+  dailyMessageNotification:'',
   dailymessages:'',
   vaccineData:{
     id: 0,
@@ -187,11 +189,12 @@ export const utilsSlice = createSlice({
     },
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
-        // console.log(action.payload,"actionpayload");
+        // console.log(action.payload,"setDailyMessagesData");
         (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
         if(action.payload.length>0)
         {
           state.dailymessages = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
+          // console.log(state.dailymessages,"state.dailymessages");
         }
     },
     setAllTaxonomyData: (
