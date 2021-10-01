@@ -35,6 +35,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -205,6 +206,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       });
     }else {
       dispatch(onLocalizationSelect(route.params));
+      dispatch(setInfoModalOpened({key:'dailyMessageNotification', value: ''}));
       analytics().setUserProperties({country:route.params.country.displayName,language:route.params.language.displayName})
       if(userIsOnboarded == true){
         dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
