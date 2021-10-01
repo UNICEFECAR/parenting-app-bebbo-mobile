@@ -5,6 +5,7 @@ export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
 export const articleCategoryArray = [4,1,55,56,3,2];
+export const regexpEmojiPresentation = /[^\p{L}]/gu;                       
 // export const articleCategory = '"parenting_corner","nutrition_and_breastfeeding","play_and_learning","responsive_parenting","safety_and_protection","health_and_wellbeing"';
 // export const articleCategoryArray = ["parenting_corner","nutrition_and_breastfeeding","play_and_learning","responsive_parenting","safety_and_protection","health_and_wellbeing"];
 export const videoTypeVimeo = "vimeo";
