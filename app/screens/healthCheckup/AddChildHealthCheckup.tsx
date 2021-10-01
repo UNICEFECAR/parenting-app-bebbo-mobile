@@ -504,8 +504,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
           const growthValues = {
             uuid: uuidv4(),
             isChildMeasured: isMeasured,
-            weight: String(weightValue),
-            height: String(heightValue),
+            weight: isMeasured ? String(weightValue): '0',
+            height: isMeasured ? String(heightValue): '0',
             measurementDate: measurementDateParam,
             titleDateInMonth: titleDateInMonthParam.toString(),
             didChildGetVaccines: isVaccineMeasured ? allVaccines.length > 0 ? true : false : false,
@@ -793,7 +793,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput
+                    <TextInput style={{flex:1}}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}
