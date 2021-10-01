@@ -25,7 +25,7 @@ import i18n from 'i18next';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { CommonActions } from '@react-navigation/native';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setDailyArticleGamesCategory } from '../redux/reducers/articlesSlice';
+import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 
 export const client =
   'https://raw.githubusercontent.com/UNICEFECAR/parent-buddy-mobile/master/src/translations/';
@@ -343,6 +343,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   if(prevPage == 'CountryLangChange'){
     dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
       currentadviceid:0,currentgamesid:0,currentDate:''}));
+    dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
   }
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
