@@ -38,10 +38,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  BackHandler, Button, Linking, Modal,
+  BackHandler, Linking, Modal,
   Platform,
-  ScrollView, ToastAndroid,
-  View
+  ScrollView, ToastAndroid
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
@@ -228,7 +227,7 @@ const Home = ({ route, navigation }: Props) => {
         let childList = await getAllChildren(dispatch, childAge, 1);
         let allchildNotis: any[] = [];
         console.log(childList, "..childList..")
-        childList.map((child: any) => {
+        childList?.map((child: any) => {
           console.log(child, "<<child>>")
           const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
           console.log("notiExist", notiExist);

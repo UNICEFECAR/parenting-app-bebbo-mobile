@@ -21,9 +21,7 @@ import {
 } from '@components/shared/Container';
 import {
   FDirRow,
-  FDirRowStart,
-  Flex1,
-  Flex2,
+  FDirRowStart, Flex2,
   Flex3,
   FlexDirRowSpace
 } from '@components/shared/FlexBoxStyle';
@@ -56,8 +54,7 @@ import {
   ShiftFromBottom10,
   ShiftFromTop10, ShiftFromTopBottom10,
   ShiftFromTopBottom5,
-  SideSpacing10,
-  SideSpacing20
+  SideSpacing10
 } from '@styles/typography';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -357,7 +354,7 @@ const SettingScreen = (props: any) => {
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
     // console.log(allnotis, "..childListallnotis..")
-    childList.map((child: any) => {
+    childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       let notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
@@ -390,7 +387,7 @@ const SettingScreen = (props: any) => {
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
     // console.log(childList, "..childList..")
-    childList.map((child: any) => {
+    childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
@@ -420,7 +417,7 @@ const SettingScreen = (props: any) => {
     const storedata = store.getState();
     let allnotis = [...storedata.notificationData.notifications];
     // console.log(childList, "..childList..")
-    childList.map((child: any) => {
+    childList?.map((child: any) => {
       let currentChildNotis = { ...allnotis.find((item) => item.childuuid == child.uuid) }
       let currentChildIndex = allnotis.findIndex((item) => item.childuuid == child.uuid)
       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
