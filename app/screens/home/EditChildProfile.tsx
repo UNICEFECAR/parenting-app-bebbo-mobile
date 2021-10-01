@@ -1,4 +1,4 @@
-import { both_child_gender } from '@assets/translations/appOfflineData/apiConstants';
+import { both_child_gender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
@@ -504,10 +504,16 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                           console.log("..11value")
                           setName(value.replace(/\s/g, ''));
                         } else {
-                          console.log("..22value")
-                          if (/^[a-zA-Z ]*$/.test(value)) {
-                            setName(value);
-                          }
+                          // console.log("..22value");
+                          // console.log("ah4567".match(regexpEmojiPresentation));
+                          // console.log("ahh".match(regexpEmojiPresentation));
+                          // if (/[\p{L}]+/u.test(value)) {
+                          //   console.log("only text",value);
+                            setName(value.replace(regexpEmojiPresentation, ''));
+                          // }
+                          // else{
+                          //   console.log("having a number",value);
+                          // }
                         }
                         // setName(value==""?value.replace(/\s/g, ''):value);
                       }}
