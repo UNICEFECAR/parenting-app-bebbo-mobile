@@ -611,7 +611,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
             ) : null}
           </HeaderRowView>
           <FlexCol>
-          <KeyboardAwareScrollView  bounces={false}>
+          <KeyboardAwareScrollView  bounces={false} keyboardShouldPersistTaps={'always'}>
             <MainContainer>
               <FormInputGroup onPress={() => {
                 setmeasureDateShow(true);
@@ -769,7 +769,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput style={{flex:1}}
+                    <TextInput style={{flex:1,textAlignVertical: 'top',padding:10}}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}
