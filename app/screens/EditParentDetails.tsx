@@ -2,17 +2,16 @@ import { both_parent_gender, femaleData, maleData, regexpEmojiPresentation, rela
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonContainer, ButtonPrimary, ButtonText } from '@components/shared/ButtonGlobal';
 import {
-    ChildRelationList,
-    FormContainer,
-    FormContainer1,
-    FormDateAction, FormDateText,
-    FormInputBox,
-    FormInputGroup,
-    LabelText,
-    TextAreaBox,TextBox
+  ChildRelationList,
+  FormContainer,
+  FormContainer1,
+  FormDateAction, FormDateText,
+  FormInputBox,
+  FormInputGroup,
+  LabelText
 } from '@components/shared/ChildSetupStyle';
-import { HeaderIconView, HeaderRowView, HeaderTitleView,HeaderIconPress} from '@components/shared/HeaderContainerStyle';
 import { MainContainer } from '@components/shared/Container';
+import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
@@ -22,7 +21,7 @@ import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
-    Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { ThemeContext } from 'styled-components/native';
@@ -31,9 +30,8 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
 import { updateActiveChild } from '../services/childCRUD';
 import {
-    Heading2w,
-    Heading3,
-    ShiftFromTop20,ShiftFromTop10
+  Heading2w,
+  Heading3, ShiftFromTop10
 } from '../styles/typography';
 
 type ChildSetupNavigationProp = StackNavigationProp<

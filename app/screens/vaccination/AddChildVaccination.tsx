@@ -532,8 +532,8 @@ const AddChildVaccination = ({ route, navigation }: any) => {
           </HeaderActionView> : null}
         </HeaderRowView>
 
-        <ScrollView style={{ flex: 9 }}>
-        <KeyboardAwareScrollView  bounces={false}>
+        <ScrollView style={{ flex: 9 }} keyboardShouldPersistTaps={'always'}>
+        <KeyboardAwareScrollView  bounces={false} keyboardShouldPersistTaps={'always'}>
           <MainContainer>
             <FormInputGroup onPress={() => {
               // setmeasureDateShow(true)
@@ -726,7 +726,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
               </FormInputText>
              
                 <TextAreaBox>
-                  <TextInput style={{flex:1}}
+                  <TextInput style={{flex:1,textAlignVertical: 'top',padding:10}}
                     autoCapitalize="none"
                     autoCorrect={false}
                     maxLength={maxCharForRemarks}
