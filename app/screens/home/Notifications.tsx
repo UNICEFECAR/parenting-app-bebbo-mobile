@@ -25,7 +25,7 @@ import { getCurrentChildAgeInDays, isFutureDate } from '../../services/childCRUD
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
-  const [allnotification, setAllNotification] = useState<any>();
+  const [allnotification, setAllNotification] = useState<any[]>([]);
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
   console.log(allnotis, "allnotis");
   const appState = useRef(AppState.currentState);
