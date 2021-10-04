@@ -377,7 +377,7 @@ const NotificationItem = (props: any) => {
                         activeChild.childName != undefined
                         ? activeChild.childName
                         : '', periodName: item.periodName
-                  })}</Heading4Regular> :
+                  })}{getVaccinesForPeriod(item.growth_period)}</Heading4Regular> :
                   <Heading4Bold>{t(item.title, {
                     childName:
                       activeChild.childName != null &&
