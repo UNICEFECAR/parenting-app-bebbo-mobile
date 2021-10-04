@@ -5,6 +5,7 @@ import RNFS from 'react-native-fs';
 import { store } from "../../App";
 import { appConfig, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import downloadImages from '../downloadImages/ImageStorage';
