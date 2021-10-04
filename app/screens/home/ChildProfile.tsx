@@ -33,7 +33,7 @@ import {
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { BackHandler, Dimensions, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -320,7 +320,7 @@ const child_age = useAppSelector(
         <FlexCol>
         <AreaContainer>
           <View style={{flexDirection: 'column'}}>
-            <ScrollView style={{maxHeight:'55%',height:'auto'}} nestedScrollEnabled={true}>
+            <ScrollView style={{maxHeight:Dimensions.get('window').height-350,height:'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
                    console.log(item,"..item..");
