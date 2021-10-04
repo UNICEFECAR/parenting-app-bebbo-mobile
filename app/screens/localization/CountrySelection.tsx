@@ -118,7 +118,7 @@ const CountrySelection = (props: any) => {
     setCountry(selectedCountry);
 
     return () => backHandler.remove();
-  }, []);
+  }, [props.route.params]);
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
