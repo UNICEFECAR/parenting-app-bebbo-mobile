@@ -413,7 +413,7 @@ const XKrs = {
               downloadUpdateSuccessPopupTitle: "Uspešno",
               downloadUpdateSuccessPopupText: "Ažuriranja su uspešno preuzeta!",
               downloadUpdateSuccessOkBtn: "Ok",
-              newdetailScreenNoDataPopupText: "Odabrani članak/igra nije dostupna na ovom mobilnom uređaju. Molimo preuzmite najnovije podatke iz postavki.",
+              newdetailScreenNoDataPopupText: "Izabran sadržaj nije dostupan na ovom uređaju. Molimo vas da preuzmete najnovije podatke iz podešavanja.",
               noInternet: "Internet nije dostupan.",
               lowBandwidth: "Slaba propusnost",
               highBandwidth: "Jaka propusnost",
@@ -421,7 +421,7 @@ const XKrs = {
               dataSaveroff: "Isključeno",
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
-              parentGender: "Parent Gender",
+              parentGender: "Pol roditelja",
               //relationToParentNameLabel:'Relation to parent'
        }
 }
