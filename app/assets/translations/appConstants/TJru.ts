@@ -136,7 +136,7 @@ const TJru = {
                 articleScreenshareText: "Поделиться",
                 articleScreenaddtoFavText: "Добавить в избранное",
                 growthScreenheaderTitle: "Рост ребенка",
-                growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
+                //growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить данные",

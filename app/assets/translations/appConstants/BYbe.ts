@@ -162,7 +162,7 @@ const BYbe = {
                 articleScreenaddtoFavText: "Дадаць у выбранае",
                 // growthScreen
                 growthScreenheaderTitle: "Рост дзіцяці",
-                growthScreengrowthDataTitle: "Дзіцяці {{child name}} месяцы",
+                //growthScreengrowthDataTitle: "Дзіцяці {{child name}} месяцы",
                 growthScreennoGrowthData: "Яшчэ няма даных пра рост дзіцяці",
                 growthScreennoGrowthDataHelpText: "Гэта дапаможа вам сачыць за ростам дзіцяці",
                 growthScreenaddNewBtntxt: "Дадаць даныя",
@@ -413,7 +413,7 @@ const BYbe = {
                 downloadUpdateSuccessPopupTitle: "Паспяхова",
                 downloadUpdateSuccessPopupText: "Абнаўленні паспяхова загружаны!",
                 downloadUpdateSuccessOkBtn: "ОК",
-                newdetailScreenNoDataPopupText: "Выбраны змест недаступны на вашай прыладзе. Калі ласка, спампуйце новыя даныя ў раздзеле 'Настройкі'",
+                newdetailScreenNoDataPopupText: "Выбраны змест недаступны на вашай прыладзе. Калі ласка, спампуйце новыя даныя ў раздзеле \"Настройкі\"",
                 noInternet: "Няма падключэння да інтэрнэту",
                 lowBandwidth: "Нізкая хуткасць падключэння",
                 highBandwidth: "Высокая хуткасць падключэння",

@@ -136,7 +136,7 @@ const TJtg = {
                 articleScreenshareText: "Мубодила кардан",
                 articleScreenaddtoFavText: "Ба интихобшуда ворид намудан",
                 growthScreenheaderTitle: "Қади кӯдак",
-                growthScreengrowthDataTitle: "Кӯдак {{child name}} моҳа аст.",
+                //growthScreengrowthDataTitle: "Кӯдак {{child name}} моҳа аст.",
                 growthScreennoGrowthData: "Ҳоло маълумот дар бораи қади кӯдак вуҷуд надорад",
                 growthScreennoGrowthDataHelpText: "Ин барои мушоҳида намудани қади кӯдак кӯмак менамояд",
                 growthScreenaddNewBtntxt: "Илова намудани маълумот",

@@ -159,7 +159,7 @@ developScreenviewDetails: "View details",
                 articleScreenaddtoFavText: "Add to favourites",
                 // growthScreen
                 growthScreenheaderTitle: "Child's growth",
-growthScreengrowthDataTitle: "Child is {{childAge}} months old",
+//growthScreengrowthDataTitle: "Child is {{childAge}} months old",
 growthScreennoGrowthData: "your child's growth data are not measured yet ",
 growthScreennoGrowthDataHelpText: "This will help you track your child's growth",
 growthScreenaddNewBtntxt: "Add new measurement",
