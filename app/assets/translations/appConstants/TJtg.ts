@@ -10,11 +10,9 @@ const TJtg = {
                 checkonce: "Пеш аз идома додан интихоб намоед",
                 country: "Давлат",
                 language: "Забон",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Салом падару модар!",
                 walkthroughTextssubtitle0: "Ин Беббо аст - ҳама он чизе, ки Шумо бояд дар бораи камолот ва инкишофи фарзанди худ донед ",
-                walkthroughTextstitle1: "Машғулият ",
+                walkthroughTextstitle1: "Машғулият",
                 walkthroughTextssubtitle1: "Машғулиятҳое, ки ба рушди фарзанди Шумо ҳамарӯза мусоидат мекунад  ",
                 walkthroughTextstitle2: "Воситаҳо",
                 walkthroughTextssubtitle2: "пайгирии инкишоф, иммунизатсия ва саломатии кӯдак Шумо",
@@ -22,20 +20,14 @@ const TJtg = {
                 walkthroughTextssubtitle3: "ҷавоб ба савол дар бораи он, ки ба фарзанди Шумо чӣ лозим аст",
                 walkthroughButtonBack: "Бозгашт",
                 walkthroughButtonNext: "Ба пеш",
-
-                // t&C
                 tNcheader: "Шарту шароит",
-                tNccheckbox1: "Шарту шароити истифодаи замимаи мобилӣ Беббо аз тарафи ман хонда шудааст, фаҳмост ва қобили қабуланд  ",
+                tNccheckbox1: "Шарту шароити истифодаи замимаи мобилӣ Беббо аз тарафи ман хонда шудааст, фаҳмост ва қобили қабуланд",
                 tNccheckbox2: "Аз тарафи ман хонда шудааст, фаҳмост ва қобили қабул аст",
                 tNcprivacyPolicy: "Сиёсати махфияти замимаи мобили Беббо",
-                tNccheckbox3: "Ман мавқеро дар бораи он, ки ҷамъ намудани маълумотҳои автоматикарда дар бораи аз тарафи ман истифода бурдани замимаи мобилӣ бо мақсади беҳтар намудани кори он аст,  (ҳатмӣ нест) қабул менамоям. ",
+                tNccheckbox3: "Ман мавқеро дар бораи он, ки ҷамъ намудани маълумотҳои автоматикарда дар бораи аз тарафи ман истифода бурдани замимаи мобилӣ бо мақсади беҳтар намудани кори он аст, (ҳатмӣ нест) қабул менамоям. ",
                 tNcprivacyPolicyTitle: "Сиёсати махфият",
                 tNcacceptbtn: "Ман шартҳои замимаи мобилиро қабул мекунам",
-
-                // Loading
                 loadingText: "Зеркашии маълумот….",
-
-                // childSetup
                 childSetupheader: "Биёед замимаи мобилиро барои истифода омода мекунем",
                 childSetupdobLabel: "Санаи таваллуди кӯдак/санаи эҳтимолии таваллуд",
                 childSetupdobSelector: "Санаи таваллудро ворид намоед/муҳлати эҳтимолии таваллуд ",
@@ -46,16 +38,12 @@ const TJtg = {
                 childSetuprelationSelectTitle: "Шумо ба кӯдак кӣ мешавед?",
                 childSetuprelationSelectText: "Интихоб намоед",
                 childSetupcontinueBtnText: "Идома диҳед ",
-
-                // childSetupList
                 childSetupListheader: "Шумо профили фарзанди худро сохтед!",
                 childSetupListsubHeader: "Илтимос, пеш аз идома додан, ҳамаи маълумотро дар бораи кӯдак ворид намоед",
                 childSetupListaddSiblingBtn: "Ворид намудани хоҳар ё бародар",
                 childSetupListeditSiblingBtn: "Таҳрирсозии маълумоти кӯдак",
                 childSetupListcontinueBtnText: "Идома додан",
                 childSetupListsaveBtnText: "Сабти маълумот",
-
-                // drawerMenu
                 drawerMenuchildInfo: "Санаи таваллуд {{childdob}}",
                 drawerMenuhomeTxt: "Асосӣ",
                 drawerMenunotiTxt: "Огоҳсозӣ",
@@ -73,10 +61,7 @@ const TJtg = {
                 drawerMenufeedbackTxt: "Алоқаи мутақобила",
                 drawerMenurateTxt: "Оё Беббо писанд омад? Баҳо гузоред!",
                 drawerMenuPrivacyTxt: "Сиёсати махфият",
-                // notiScreen
                 notiScreenheaderTitle: "Огоҳсозӣ",
-
-                // settingScreen
                 settingScreenheaderTitle: "Ҷурсозӣ",
                 settingScreennotiHeaderText: "Огоҳсозӣ",
                 settingScreennotiType1: "Мехоҳам огоҳсозиро ба воситаи Беббо қабул намоям",
@@ -100,17 +85,11 @@ const TJtg = {
                 settingScreenexportOptionHeader: "Содироти маълумот",
                 settingScreenshareBtntxt: "Мубодила кардан",
                 settingScreengdriveBtntxt: "Диски Google",
-
-                // userGuide
                 userGuideheaderTitle: "Дастурамали истифодабаранда",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "Дар бораи мо",
-                // supportScreen
                 supportScreenheaderTitle: "Сӯҳбат ",
                 supportScreenheader1text: "Дар коркард аст!",
                 supportScreenheader2text: "Айни замон Сӯҳбат дастнорас аст",
-                // homeScreen
                 homeScreenheaderTitle: "Беббо ",
                 homeScreenchildBtnText: "Идомаи хониш",
                 homeScreenchildInfoTitle: "Салом {{childName}} ва {{parentName}}",
@@ -131,8 +110,6 @@ const TJtg = {
                 homeScreenvc: "Иммунизатсия",
                 homeScreenhc: "Муоинаи нақшавӣ",
                 homeScreencg: "Қади кӯдак",
-
-                // actScreen
                 actScreenheaderTitle: "Машғулиятҳо",
                 actScreensugacttxt: "Машғулиятҳои пешниҳодшуда",
                 actScreenotheracttxt: "Дигар машғулиятҳо",
@@ -143,7 +120,6 @@ const TJtg = {
                 actScreenprematureText: "Кӯдаки норасид",
                 actScreenshareText: "Мубодила намудан",
                 actScreenaddtoFavText: "Ба интихобшуда ворид намудан",
-                // developScreen
                 developScreenheaderTitle: "Инкишофи кӯдак",
                 developScreenprematureText: "Кӯдаки норасид",
                 developScreenchartLabel: "Дар ҷарраён аст",
@@ -154,19 +130,17 @@ const TJtg = {
                 developScreenrelatedArticleText: "Тавсия аз рӯйи мавзӯъ",
                 developScreenrelatedAct: "Машғулиятҳо аз рӯйи мавзӯъ",
                 developScreenviewDetails: "Муфассалтар",
-                // articleScreen
                 articleScreenheaderTitle: "Тавсияҳо",
                 articleScreensearchPlaceHolder: "Дарёфт аз рӯйи калимаи асосӣ",
                 articleScreennoSearchResult: "Тавсия вуҷуд надорад",
                 articleScreenshareText: "Мубодила кардан",
                 articleScreenaddtoFavText: "Ба интихобшуда ворид намудан",
-                // growthScreen
                 growthScreenheaderTitle: "Қади кӯдак",
-                growthScreengrowthDataTitle: "Кӯдак {{child name}} моҳа",
+                growthScreengrowthDataTitle: "Кӯдак {{child name}} моҳа аст.",
                 growthScreennoGrowthData: "Ҳоло маълумот дар бораи қади кӯдак вуҷуд надорад",
                 growthScreennoGrowthDataHelpText: "Ин барои мушоҳида намудани қади кӯдак кӯмак менамояд",
                 growthScreenaddNewBtntxt: "Илова намудани маълумот",
-                growthScreeneditNewBtntxt: "Таҳрир намудани маълумот ",
+                growthScreeneditNewBtntxt: "Таҳрир намудани маълумот",
                 growthScreenweightForHeight: "Вазн аз рӯйи қад",
                 growthScreenheightForAge: "Қад аз рӯйи синну сол",
                 growthScreensubHeading: "Ченкунии афзоиш",
@@ -196,7 +170,6 @@ const TJtg = {
                 growthScreenaddHeight: "Ворид намудани қад",
                 growthScreennewGrowthBottomText: "Ченкунии қад ва вазни кӯдак дар хона он қадар дақиқ нест, нисбат ба оне, ки дар назди табиб чен карда мешавад ва он метавонад ба дақиқии ҷадвали инкишоф таъсир расонад",
                 growthScreenrelatedArticle: "Тавсияҳо оид ба мавзӯъ",
-                // Sprint4 Screens
                 noBorn: "Ҳоло таваллуд нашудааст",
                 noday: "0 рӯза",
                 yearstag: "сола",
@@ -217,7 +190,7 @@ const TJtg = {
                 trackMilestoneViewHeader: "Маълумотро дар бораи марҳилаҳои инкишофи фарзандатон навсозӣ намоед",
                 trackMilestoneViewBtn: "Пайгирӣ намудани марҳилаҳои инкишофи фарзанди худ",
                 babyNotificationText: "Маълумот дар бораи таваллуди кӯдак навсозӣ нашудааст",
-                babyNotificationbyAge: "{{childName}} ҳоло {{ageInMonth}} ",
+                babyNotificationbyAge: "{{childName}} ҳоло {{ageInMonth}} аст.",
                 babyNotificationUpdateBtn: "Навсозӣ намудани маълумот",
                 favScreenHeader: "Интихобшуда",
                 actScreenremovetoFavText: "Аз интихобшуда ҳориҷ намудан",
@@ -300,7 +273,6 @@ const TJtg = {
                 hcdateText: "Санаи муоинаи нақшавӣ",
                 hcenterDateText: "Санаи муоинаи нақшавиро ворид намоед",
                 hcChildVaccineQ: "Оё кӯдак ваксина гирифтааст?",
-                /// sprin5 screens
                 tabbarLabel1: "Асосӣ",
                 tabbarLabel2: "Машғулиятҳо",
                 tabbarLabel3: "Воситаҳо",
@@ -309,8 +281,6 @@ const TJtg = {
                 tabbarLabel6: "Иммунизатсия",
                 tabbarLabel7: "Муоинаи нақшавӣ",
                 tabbarLabel8: "Қади кӯдак",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Идоракунии профил",
                 removePhotoTxt: "Хориҷ намудани сурат",
                 removeWarnTxt: "Оё Шумо мехоҳед суратро хориҷ намоед?",
@@ -327,7 +297,7 @@ const TJtg = {
                 editParentTxt: "Тағйир додани маълумот дар бораи волидайн",
                 notiDelSelected: "Хориҷ кардани интихобшуда ({{count}})\"",
                 onBirthDay: "Таваллуд",
-                month: "Моҳ",
+                month: "Моҳи",
                 localizationChangeModalText: "Агар давлати дигар интихоб гардад, маълумот метавонад тағйир ёбад, ҳангоми интихоби забони дигар давлати интихоб шуда, маълумот тағйир намеёбад, танҳо забони интихобгардида  тағйир меёбад.",
                 growthChartLegendSilverLabel: "Арзишҳои маъмулӣ барои синну сол",
                 growthChartLegendOrangeLabel: "Арзишҳои номувофиқ барои синну сол",
@@ -351,9 +321,9 @@ const TJtg = {
                 babyNotificationText1: "Маълумот дар бораи таваллуди кӯдак навсозӣ шудааст",
                 activityModalText: "Барои дарёфти Бозиҳои ба соҳаи муайяни инкишоф дахлдошта , ба тугмачаи мувофиқ зер кунед",
                 childDevModalText: "Санҷед, ки оё фарзанди Шумо ба малакаҳое, ки дар ин давра бояд ноил мешуд, ба даст овардааст ё не, ва бинед, ки чӣ гуна инкишофро тавассути бозӣ дастгирӣ кардан мумкин аст.",
-                months5tag: "моҳҳо",
-                years5tag: "солҳо",
-                days5tag: "рӯзҳо",
+                months5tag: "моҳа",
+                years5tag: "сола",
+                days5tag: "рӯза",
                 downloadOnLoadPopupTitle: "Маълумотро зеркашӣ намоед",
                 downloadOnLoadPopupText: "Маълумот пурра зеркашӣ карда нашудааст.Оё мехоҳед онро ҳозир зеркашӣ намоед?",
                 downloadOnLoadCancelPopUpBtn: "Бекор кардан ",
@@ -366,12 +336,11 @@ const TJtg = {
                 childInfoBabyText: "Кӯдак",
                 childInfoParentText: "Падар ё модар",
                 childInfoAndText: "ва",
-                // translation replacement closed till above
                 childSetupdobText: "Санаи таваллудро ворид намоед",
                 growthModalText: "Вазн ва қади фарзандатонро дар ин ҷо ворид намоед ва навсозиро идома диҳед; ин тавр Шумо дар бораи беҳтар дастгирӣ намудани инкишофи кӯдак фаҳмида метавонед",
                 vaccineModalText: "Дар ин ҷо Шумо метавонед худро ба қайд гиред, пайгирӣ намоед ва дар бораи ҳар ваксина маълумоти бештарро мутобиқи тақвими миллии иммунизатсия гиред. Огоҳсозиро дар бораи ваксинатсияи фарзандатон насб кунед ва хабарҳоро қабул намоед!",
                 hcModalText: "Дар ин ҷо Шумо метавонед маълумотҳоро ворид намоед, огоҳсозиро насб кунед ва дар бораи муоинаи тиббии пешбинишудаи фарзандатон огоҳӣ гиред, инчунин дар бораи мундариҷаи онҳо маълумоти бештар пайдо кунед!\n",
-                tryText: "Боз кӯшиш кунед.. ",
+                tryText: "Боз кӯшиш кунед. ",
                 deleteSuccess: "Истифодабаранда бомуваффақ хориҷ карда шуд",
                 deleteError: "Хатогӣ ҳангоми хориҷкунии истифодабаранда. Лутфан, боз кӯшиш кунед..",
                 reminderalertText: "Санаи огоҳсозӣ аз санаи ҷорӣ пештар аст",
@@ -382,8 +351,6 @@ const TJtg = {
                 alertForModifyMeasures: "Диққат",
                 alertForModifyMeasuresTitle: "Интихоби ин сана маълумоти мавҷудбударо тағйир медиҳад",
                 alertForModifyMeasuresOk: "Хуб",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Маълумотро ҳамоҳанг созед",
                 SyncOnLoadPopupText: "Оё Шумо ҳозир маълумотро ҳамоҳанг кардан мехоҳед?",
                 SyncOnLoadCancelPopUpBtn: "Бекор кардан",
@@ -413,7 +380,7 @@ const TJtg = {
                 downloadUpdateSuccessPopupTitle: "Бомуваффақият",
                 downloadUpdateSuccessPopupText: "Навсозӣ бомуваффақият зеркашӣ карда шуд!",
                 downloadUpdateSuccessOkBtn: "Хуб",
-                newdetailScreenNoDataPopupText: "Маслиҳат/бозии интихобшуда дар ин телефони мобилӣ дастрас нест. Лутфан маълумоти охиринро аз ҷӯрсозӣ зеркашӣ кунед",
+                newdetailScreenNoDataPopupText: "Контенти интихобшуда дар телефони мобилии мазкур дастнорас аст. Лутфан маълумоти охиринро аз ҷурсози зеркаши кунед",
                 noInternet: "Интернет нест",
                 lowBandwidth: "Имконияти гузарониши паст",
                 highBandwidth: "Имконияти гузарониши баланд",
@@ -421,7 +388,7 @@ const TJtg = {
                 dataSaveroff: "Хомӯш карда шудааст",
                 vcrNoti1: "Огоҳсозии ваксина ба {{ReminderDateTime}} насб шудааст \n",
                 hcrNoti1: "Огоҳсозӣ оид ба муоинаи профилактикии тиббӣ ба {{ReminderDateTime}} насб шудааст.",
-                parentGender: "Parent Gender",
+                parentGender: "Ҷинси волидайн",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
