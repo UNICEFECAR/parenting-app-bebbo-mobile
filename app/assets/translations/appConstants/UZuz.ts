@@ -414,7 +414,7 @@ const UZuz = {
               downloadUpdateSuccessPopupTitle: "Muvaffaqiyatli",
               downloadUpdateSuccessPopupText: "Yangilanishlar muvaffaqiyatli yuklab olindi!!",
               downloadUpdateSuccessOkBtn: "Tasdiqlash",
-              newdetailScreenNoDataPopupText: "Tanlangan maslahat/mashgʻulot bu mobil telefonda mavjud emas, iltimos, sozlamalardan soʻnggi maʼlumotlarni yuklab oling",
+              newdetailScreenNoDataPopupText: "Tanlangan kontent bu mobil qurilmada mavjud yemas. Iltimos, sozlamalardan soʻnggi maʻlumotlarni yuklab oling",
               noInternet: "Internet yoʼq",
               lowBandwidth: "Kam tarmoqli kenglik",
               highBandwidth: "Yuqori tarmoqli kenglik",
@@ -422,7 +422,7 @@ const UZuz = {
               dataSaveroff: "Oʻchirish",
               vcrNoti1: "Vaktsina muddati uchun eslatma {{reminderDateTime}} da oʻrnatildi",
               hcrNoti1: "Shifokor koʻrigi uchun eslatma {{reminderDateTime}} da oʻrnatildi",
-              parentGender: "Parent Gender",
+              parentGender: "Ota-Ona Jinsi",
               //relationToParentNameLabel:'Relation to parent'
        }
 }

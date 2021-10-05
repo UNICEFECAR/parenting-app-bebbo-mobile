@@ -413,7 +413,7 @@ alertForModifyMeasuresOk: "Ok",
                 downloadUpdateSuccessPopupText: "Updates downloaded successfully!!",
                 downloadUpdateSuccessOkBtn: "Ok",
                 //translation updated till above 15th sep 
-                newdetailScreenNoDataPopupText: "Selected Advice/Game is not available in this mobile.Please download latest data from settings.",
+                newdetailScreenNoDataPopupText: "Selected content is not available in this mobile. Please download latest data from settings",
                 noInternet: "No internet available.",
                 lowBandwidth: "Low bandwidth",
                 highBandwidth: "High bandwidth",
