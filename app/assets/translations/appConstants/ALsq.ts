@@ -136,7 +136,7 @@ const ALsq = {
               articleScreenshareText: "Shpërndaj",
               articleScreenaddtoFavText: "Shto te të preferuarat",
               growthScreenheaderTitle: "Rritja e fëmijës",
-              growthScreengrowthDataTitle: "Fëmija është {{child name}} muajsh",
+              //growthScreengrowthDataTitle: "Fëmija është {{child name}} muajsh",
               growthScreennoGrowthData: "parametrat e rritjes së fëmijës tuaj nuk janë matur akoma",
               growthScreennoGrowthDataHelpText: "Kjo do t'ju ndihmojë të gjurmoni rritjen e fëmijës tuaj",
               growthScreenaddNewBtntxt: "Shto një matje të re",
