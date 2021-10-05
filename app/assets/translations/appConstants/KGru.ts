@@ -136,7 +136,7 @@ const KGru = {
                 articleScreenshareText: "Поделиться",
                 articleScreenaddtoFavText: "Добавить в избранное",
                 growthScreenheaderTitle: "Рост ребенка",
-                growthScreengrowthDataTitle: "Ребенку {{childAge}} месяца(-ев)",
+                //growthScreengrowthDataTitle: "Ребенку {{childAge}} месяца(-ев)",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить новые данные",

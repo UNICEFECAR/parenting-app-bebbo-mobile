@@ -162,7 +162,7 @@ const UZuz = {
               articleScreenaddtoFavText: "Sevimlilarga qoʻshish",
               // growthScreen
               growthScreenheaderTitle: "Bolaning oʻsishi",
-              growthScreengrowthDataTitle: "Bola {{child name}} oylik",
+              //growthScreengrowthDataTitle: "Bola {{child name}} oylik",
               growthScreennoGrowthData: "bolaning oʻsish maʼlumotlari hali hisoblanmagan",
               growthScreennoGrowthDataHelpText: "Bu farzandingizning oʻsishini kuzatishda yordam beradi",
               growthScreenaddNewBtntxt: "Yangi oʻlchovni kiritish",

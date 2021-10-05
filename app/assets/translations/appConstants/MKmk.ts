@@ -136,7 +136,7 @@ const MKmk = {
                 articleScreenshareText: "Споделете",
                 articleScreenaddtoFavText: "Додадете во омилени",
                 growthScreenheaderTitle: "Раст на детето",
-                growthScreengrowthDataTitle: "Детето има {{childAge}} ",
+                //growthScreengrowthDataTitle: "Детето има {{childAge}} ",
                 growthScreennoGrowthData: "нема податоци за мерење на вашето дете",
                 growthScreennoGrowthDataHelpText: "Ова ќе ви помогне да го следите растот на вашето дете",
                 growthScreenaddNewBtntxt: "Додадете ново мерење",
