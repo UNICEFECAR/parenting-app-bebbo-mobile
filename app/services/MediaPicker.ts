@@ -1,6 +1,6 @@
 import ImagePicker from "react-native-image-crop-picker";
-import { RESULTS, check, request, openSettings } from "react-native-permissions";
-import { Alert, Linking } from "react-native";
+import { RESULTS, check, request, openSettings, openLimitedPhotoLibraryPicker } from "react-native-permissions";
+import { Alert, Linking, Platform } from "react-native";
 import { PICKER_TYPE, IMAGE_PICKER_OPTIONS, CAMERA_PERMISSION, GALLERY_PERMISSION } from "../types/types";
 import i18n from 'i18next';
 class MediaPicker {
@@ -183,7 +183,7 @@ class MediaPicker {
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
-      console.log("342334timeout")
+      console.log("342334timeout",options)
     ImagePicker.openCamera({
       width: options.width,
       height: options.height,
@@ -213,7 +213,7 @@ class MediaPicker {
    */
   pickImageFromGallery(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-
+    console.log(options,"..options..")
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
@@ -382,10 +382,16 @@ class MediaPicker {
         ) {
           triggerFunc();
         }
+        else if (
+          cameraPermission === RESULTS.DENIED
+        ){
+          Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
+        }
       });
   }
   handlePermissionsGallery(triggerFunc:any) {
-    request(GALLERY_PERMISSION).then((photoPermission) => {
+    let cameraOncedOpened:any=false;
+    request(GALLERY_PERMISSION).then(async (photoPermission) => {
       console.log(photoPermission,"..photoPermission")
       console.log(triggerFunc,"..triggerFunc")
       if (
@@ -393,6 +399,62 @@ class MediaPicker {
       ) {
         console.log(photoPermission,"..11photoPermission")
         triggerFunc();
+      }
+      else if (
+        photoPermission === RESULTS.LIMITED
+      ){
+        let cameraOncedOpened:any=false;
+        let options:any;
+        let callback:any;
+         options = { ...IMAGE_PICKER_OPTIONS, ...options };
+         if (Platform.OS === 'ios') {
+        setTimeout(()=>{
+          console.log("222timeout limited");
+        openLimitedPhotoLibraryPicker().then(()=>{
+          console.log("1222timeout limited");
+          triggerFunc();
+        }).catch(() => {
+          console.warn('Cannot open photo library picker');
+        });
+      },350);
+    }
+      // if (Platform.OS === 'ios') {
+      //   try {
+      //     setTimeout(openLimitedPhotoLibraryPicker().then(()=>{
+      //       triggerFunc();
+      //     }).catch(()=>{
+
+      //     }), 350);
+      //   } catch (e) {
+      //     console.log('openLimitedPhotoLibraryPicker', e);
+      //   }
+      // }
+      // setTimeout(()=>{
+      //   console.log("342334timeout");
+        
+      //   // ImagePicker.openPicker({
+      //   //   compressImageMaxWidth: options.compressImageMaxWidth,
+      //   //   compressImageMaxHeight: options.compressImageMaxHeight,
+      //   //   compressImageQuality: options.compressImageQuality,
+      //   //   mediaType: options.mediaType,
+      //   //   includeExif: options.includeExif,
+      //   //   includeBase64: options.includeBase64,
+      //   // })
+      //   //   .then((image) => {
+      //   //     let path = this.getImageUriFromData(options.includeBase64, image);
+      //   //     const imageData = { ...image, path };
+      //   //     //console.log("image Data", imageData);
+      //   //     triggerFunc();
+      //   //   })
+      //   //   .catch((e) => this.handleError(e));
+      //   },350);
+        
+      }
+      else if (
+        photoPermission === RESULTS.DENIED
+      ){
+        Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
+       //openSettings().catch(() => console.warn('cannot open settings'));
       }
     });
   }

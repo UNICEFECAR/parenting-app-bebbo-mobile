@@ -380,7 +380,7 @@ const XKsq = {
                 downloadUpdateSuccessPopupTitle: "Me sukses",
                 downloadUpdateSuccessPopupText: "Përditësimet janë shkarkuar me sukses!",
                 downloadUpdateSuccessOkBtn: "Në rregull",
-                newdetailScreenNoDataPopupText: "Këshilla/Loja e përzgjedhur nuk është në dispozicion në këtë celular. Ju lutemi shkarkoni të dhënat e fundit nga cilësimet.",
+                newdetailScreenNoDataPopupText: "Përmbajtja e zgjedhur nuk është e disponueshme në këtë telefon. Ju lutem shkarkoni të dhënat më të fundit nga cilësimet",
                 noInternet: "Nuk ka qasje në internet.",
                 lowBandwidth: "Frekuencë e ulët",
                 highBandwidth: "Frekuencë e lartë",
@@ -389,7 +389,7 @@ const XKsq = {
                 vcrNoti1: "Rikujtimi është caktuar për vaksinim më {{reminderDateTime}}",
                 hcrNoti1: "Rikujtimi është caktuar për kontrollë mjekësore më {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Gjinia e prindit",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
