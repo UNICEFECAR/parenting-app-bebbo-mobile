@@ -136,7 +136,7 @@ const BGbg = {
                 articleScreenshareText: "Споделяне",
                 articleScreenaddtoFavText: "Добавете в любими",
                 growthScreenheaderTitle: "Растеж на детето",
-                growthScreengrowthDataTitle: "Детето е на {{child name}} месеца",
+                //growthScreengrowthDataTitle: "Детето е на {{child name}} месеца",
                 growthScreennoGrowthData: "Все още не са въведени данни за растежа на вашето дете",
                 growthScreennoGrowthDataHelpText: "Това ще ви помогне да проследявате растежа на вашето дете",
                 growthScreenaddNewBtntxt: "Добавете ново измерване",

@@ -136,7 +136,7 @@ const KGky = {
                 articleScreenshareText: "Бөлүшүү",
                 articleScreenaddtoFavText: "Тандалмаларга кошуу",
                 growthScreenheaderTitle: "Баланын өсүшү",
-                growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
+                //growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
                 growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
                 growthScreennoGrowthDataHelpText: "Бул балаңыздын өсүшүн көзөмөлдөөгө жардам берет.",
                 growthScreenaddNewBtntxt: "Жаңы маалыматтарды кошуңуз",
