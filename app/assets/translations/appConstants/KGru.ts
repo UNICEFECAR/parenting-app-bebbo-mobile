@@ -190,7 +190,7 @@ const KGru = {
                 trackMilestoneViewHeader: "Пожалуйста, обновите информацию об этапах развития вашего ребенка",
                 trackMilestoneViewBtn: "Отслеживать этапы развития вашего ребенка",
                 babyNotificationText: "Данные о рождении ребенка не обновлены",
-                babyNotificationbyAge: "{{childName}} сейчас {{ageInMonth}}",
+                babyNotificationbyAge: "{{childName}} - {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Обновить данные",
                 favScreenHeader: "Избранное",
                 actScreenremovetoFavText: "Удалить из избранного",
