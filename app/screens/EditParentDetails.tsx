@@ -116,7 +116,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
     let userNames = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userName",parentName);
     // console.log(userParentalRole,"..userParentalRole")
     // console.log(userNames,"..userNames");
-    updateActiveChild(activeChild,"parent_gender",relationship, dispatch);
+    userRelationToParent=userRelationToParent.length>0?userRelationToParent[0].value:'';
+    updateActiveChild(activeChild,"parent_gender",relationship, dispatch,userRelationToParentRole);
     navigation.navigate('ChildProfileScreen');
   }
   const getCheckedParentItem = (checkedItem:any) => {
