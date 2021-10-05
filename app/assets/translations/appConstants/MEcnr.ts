@@ -381,7 +381,7 @@ const MEcnr = {
                 downloadUpdateSuccessPopupTitle: "Uspjeh",
                 downloadUpdateSuccessPopupText: "Ažuriranja su uspješno preuzeta!!",
                 downloadUpdateSuccessOkBtn: "U redu",
-                newdetailScreenNoDataPopupText: "Odabrani savjet/igra nije dostupan/dostupna na ovom mobilnom telefonu. Molimo Vas da ažurirate podatke u podešavanjima aplikacije.",
+                newdetailScreenNoDataPopupText: "Odabrani sadržaj nije dostupan na ovom mobilnom telefonu. Preuzmite najnovije podatke iz postavki.",
                 noInternet: "Internet nije dostupan.",
                 lowBandwidth: "Spor internet ",
                 highBandwidth: "Brz internet",
@@ -390,7 +390,7 @@ const MEcnr = {
                 vcrNoti1: "Podsjetnik za vakcinaciju je uključen {{reminderDateTime}}",
                 hcrNoti1: "Podsjetnik za kontrolne zdravstvene preglede je uključen {{reminderDateTime}}",
                  //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Pol roditelja",
                 //relationToParentNameLabel:'Relation to parent'
         }
 

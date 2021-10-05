@@ -413,7 +413,7 @@ const BYbe = {
                 downloadUpdateSuccessPopupTitle: "Паспяхова",
                 downloadUpdateSuccessPopupText: "Абнаўленні паспяхова загружаны!",
                 downloadUpdateSuccessOkBtn: "ОК",
-                newdetailScreenNoDataPopupText: "Выбраная парада/гульня не даступна на гэтым устройстве. Калі ласка, прайдзіце ў настройкі і спампуйце апошнія абнаўленні",
+                newdetailScreenNoDataPopupText: "Выбраны змест недаступны на вашай прыладзе. Калі ласка, спампуйце новыя даныя ў раздзеле 'Настройкі'",
                 noInternet: "Няма падключэння да інтэрнэту",
                 lowBandwidth: "Нізкая хуткасць падключэння",
                 highBandwidth: "Высокая хуткасць падключэння",
@@ -421,7 +421,7 @@ const BYbe = {
                 dataSaveroff: "Выкл",
                 vcrNoti1: "Створана напамінанне пра вакцынацыю на {{reminderDateTime}}",
                 hcrNoti1: "Створана напамінанне пра медагляд на {{reminderDateTime}}",
-                parentGender: "Parent Gender",
+                parentGender: "Пол маці/бацькі",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }

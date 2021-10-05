@@ -380,7 +380,7 @@ const KGru = {
                 downloadUpdateSuccessPopupTitle: "Успешно",
                 downloadUpdateSuccessPopupText: "Обновления успешно скачаны!!",
                 downloadUpdateSuccessOkBtn: "Хорошо",
-                newdetailScreenNoDataPopupText: "Выбранный совет / игра недоступна в этом мобильном телефоне. Загрузите последние данные из настроек.",
+                newdetailScreenNoDataPopupText: "Выбранный контент недоступен в этом мобильном телефоне. Пожалуйста, загрузите последние данные из настроек",
                 noInternet: "Нет интернета.",
                 lowBandwidth: "Низкая пропускная способность",
                 highBandwidth: "Высокая пропускная способность",
@@ -389,7 +389,7 @@ const KGru = {
                 vcrNoti1: "Напоминание о вакцинации установлено на {{ReminderDateTime}}.",
                 hcrNoti1: "Напоминание о профилактических медосмотрах установлено на {{ReminderDateTime}}.",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Пол родителей",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
