@@ -413,7 +413,7 @@ const RSsr = {
               downloadUpdateSuccessPopupTitle: "Uspešno",
               downloadUpdateSuccessPopupText: "Ažuriranja su uspešno preuzeta!",
               downloadUpdateSuccessOkBtn: "Ok",
-              newdetailScreenNoDataPopupText: "Odabrani članak/igra nije dostupna na ovom mobilnom uređaju. Molimo preuzmite najnovije podatke iz postavki.",
+              newdetailScreenNoDataPopupText: "Odabrani sadržaj nije dostupan na ovom mobilnom telefonu. Preuzmite najnovije podatke iz postavki",
               noInternet: "Internet nije dostupan.",
               lowBandwidth: "Slaba propusnost",
               highBandwidth: "Jaka propusnost",
@@ -421,7 +421,7 @@ const RSsr = {
               dataSaveroff: "Isključeno",
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
-              parentGender: "Parent Gender",
+              parentGender: "Pol roditelja",
               //relationToParentNameLabel:'Relation to parent'
        }
 

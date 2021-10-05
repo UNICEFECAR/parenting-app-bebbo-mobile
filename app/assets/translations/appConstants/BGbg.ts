@@ -380,7 +380,7 @@ const BGbg = {
                 downloadUpdateSuccessPopupTitle: "Успех",
                 downloadUpdateSuccessPopupText: "Актуализациите са свалени успешно!!",
                 downloadUpdateSuccessOkBtn: "ОК",
-                newdetailScreenNoDataPopupText: "Избранията Съвет/Игра не е наличен/на на това устройство. Моля свалете последните данни от настройките.",
+                newdetailScreenNoDataPopupText: "Избраното съдържание не е налично на това устройство. Моля, изтеглете най-новите данни от менюто с настройките.",
                 noInternet: "Няма интернет.",
                 lowBandwidth: "Ниска скорост",
                 highBandwidth: "Висока скорост",
@@ -389,7 +389,7 @@ const BGbg = {
                 vcrNoti1: "Зададено е напомняне за ваксинация на {{reminderDateTime}}",
                 hcrNoti1: "Зададено е напомняне за профилактичен преглед на {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Пол на родителя",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
