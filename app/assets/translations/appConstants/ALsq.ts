@@ -380,7 +380,7 @@ const ALsq = {
               downloadUpdateSuccessPopupTitle: "Me sukses",
               downloadUpdateSuccessPopupText: "Përditësimet u shkarkuan me sukses !!",
               downloadUpdateSuccessOkBtn: "Ok",
-              newdetailScreenNoDataPopupText: "Këshilla/loja e zgjedhur nuk është e disponueshme në këtë celular. Ju lutemi shkarkoni të dhënat e fundit nga cilësimet.",
+              newdetailScreenNoDataPopupText: "Informacioni i zgjedhur nuk është i vlefshëm në këtë pajisje. Ju lutemi të sharkoni të dhënat e fundit nga cilësimet.",
               noInternet: "Nuk ka lidhje me internetin",
               lowBandwidth: "Internet me shpejtësi të ulët",
               highBandwidth: "Internet me shpejtësi të lartë",
@@ -389,7 +389,7 @@ const ALsq = {
               vcrNoti1: "Ri-kujtesa është vendosur për vaksinimin në {{reminderDateTime}}",
               hcrNoti1: "Ri-kujtesa është vendosur për kontrollin shëndetësor në {{reminderDateTime}}",
               //translation till above
-              parentGender: "Parent Gender",
+              parentGender: "Gjinia e Prindit",
               //relationToParentNameLabel:'Relation to parent'
        }
 }
