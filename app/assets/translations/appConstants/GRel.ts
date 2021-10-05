@@ -136,7 +136,7 @@ const GRel = {
                 articleScreenshareText: "Κοινοποίηση",
                 articleScreenaddtoFavText: "Προσθέστε στα αγαπημένα",
                 growthScreenheaderTitle: "Εξέλιξη παιδιού",
-                growthScreengrowthDataTitle: "Το παιδί είναι {{child name}} μηνών",
+                //growthScreengrowthDataTitle: "Το παιδί είναι {{child name}} μηνών",
                 growthScreennoGrowthData: "Τα δεδομένα για την ανάπτυξη του παιδιού σας δεν έχουν μετρηθεί ακόμη",
                 growthScreennoGrowthDataHelpText: "Αυτό θα σας βοηθήσει να παρακολουθήσετε την εξέλιξη του παιδιού σας",
                 growthScreenaddNewBtntxt: "Προσθέστε νέα μέτρηση",

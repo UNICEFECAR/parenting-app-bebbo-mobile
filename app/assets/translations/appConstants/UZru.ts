@@ -162,7 +162,7 @@ const UZru = {
                 articleScreenaddtoFavText: "Добавить в избранное",
                 // growthScreen
                 growthScreenheaderTitle: "Рост ребенка",
-                growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
+                //growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить данные",
