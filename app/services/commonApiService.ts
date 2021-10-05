@@ -13,6 +13,7 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 
 
