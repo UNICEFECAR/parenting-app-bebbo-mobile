@@ -162,7 +162,7 @@ const XKrs = {
               articleScreenaddtoFavText: "Dodajte u 'Omiljene sadržaje'",
               // growthScreen
               growthScreenheaderTitle: "Rast deteta",
-              growthScreengrowthDataTitle: "Uzrast deteta {{child name}} u mesecima",
+              //growthScreengrowthDataTitle: "Uzrast deteta {{child name}} u mesecima",
               growthScreennoGrowthData: "podaci o rastu Vašeg deteta još uvek nisu prikazani",
               growthScreennoGrowthDataHelpText: "Dete {{child name}} ima meseci",
               growthScreenaddNewBtntxt: "Dodajte novu meru",
