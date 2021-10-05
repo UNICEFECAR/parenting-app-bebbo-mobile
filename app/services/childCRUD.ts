@@ -125,7 +125,8 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
 
   //console.log(child_age,"..child_age..");
   let userParentalRole = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userParentalRole'");
-
+  let userRelationToParent = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='userRelationToParent'");
+  userRelationToParent=userRelationToParent.length>0?userRelationToParent[0].value:''
   if (uuid != "" && uuid != null && uuid != undefined) {
     let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", uuid);
     let child = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, `uuid == '${uuid}'`);
@@ -152,7 +153,11 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
+        is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+        relationship_with_child:userRelationToParent,
+      parent_gender: child.parent_gender
+    }) // relationship_with_child:monther/father
       
 
     }
@@ -177,7 +182,12 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
         console.log(allDatatoStore, "..allDatatoStore..")
         dispatch(setActiveChildData(child));
-        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
+        analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
+          is_premature: child.isPremature, 
+          child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+          relationship_with_child:userRelationToParent,
+          parent_gender: child.parent_gender
+        }) // relationship_with_child:monther/father
 
       }
     }
@@ -204,7 +214,11 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       const allDatatoStore = await getAllDataToStore(languageCode, dispatch, "AddEditChild", child);
       console.log(allDatatoStore, "..allDatatoStore..")
       dispatch(setActiveChildData(child));
-      analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
+      analytics().setUserProperties({ ageid: String(child.taxonomyData.id),
+         is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", 
+         relationship_with_child:userRelationToParent,
+         parent_gender: child.parent_gender
+        }) // relationship_with_child:monther/father
     }
   }
   let notiFlagObj = { key: 'generateNotifications', value: true };
@@ -550,11 +564,15 @@ export const dateTimesAreSameDay = (dateTime1: any, dateTime2: any) => {
   console.log(year1, "/", year2, month1, "/", month2, day1, "/", day2)
   return month1 === month2 && year1 === year2 && day1 === day2;
 }
-export const updateActiveChild = (child: any, key: any, value: any, dispatch: any) => {
+export const updateActiveChild = (child: any, key: any, value: any, dispatch: any,userRelationToParent:any) => {
   child[key] = value;
   // console.log(child, "..child..");
   dispatch(setActiveChildData(child));
-  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl", relationship_with_child: child.parent_gender == maleData.id ? "Father" : "Mother" }) // relationship_with_child:monther/father
+  analytics().setUserProperties({ ageid: String(child.taxonomyData.id), 
+    is_premature: child.isPremature, child_gender: child.gender == boy_child_gender ? "Boy" : "Girl",
+    relationship_with_child:userRelationToParent,
+    parent_gender: child.parent_gender
+     }) // relationship_with_child:monther/father
 }
 export const getAllConfigData = async (dispatch: any) => {
   let databaselistener: any;
