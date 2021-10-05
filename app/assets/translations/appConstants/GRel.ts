@@ -380,7 +380,7 @@ const GRel = {
                 downloadUpdateSuccessPopupTitle: "Επιτυχώς",
                 downloadUpdateSuccessPopupText: "Οι ενημερώσεις ολοκληρώθηκαν με επιτυχία!!",
                 downloadUpdateSuccessOkBtn: "ΟΚ",
-                newdetailScreenNoDataPopupText: "Η επιλεγμένη συμβουλή/παιχνίδι δεν είναι διαθέσιμη σε αυτό το κινητό. Παρακαλώ κατεβάστε τις τελευταίες ενημερώσεις από τις ρυθμίσεις.",
+                newdetailScreenNoDataPopupText: "Το επιλεγμένο περιεχόμενο δεν είναι διαθέσιμο σε αυτό το κινητό. Παρακαλούμε κατεβάστε τα τελευταία δεδομένα από τις ρυθμίσεις",
                 noInternet: "Δεν υπάρχει δίκτυο.",
                 lowBandwidth: "Χαμηλό εύρος ζώνης",
                 highBandwidth: "Υψηλό εύρος ζώνης",
@@ -389,7 +389,7 @@ const GRel = {
                 vcrNoti1: "Έχει οριστεί υπενθύμιση για τον εμβολιασμό στις {{reminderDateTime}}",
                 hcrNoti1: "Έχει οριστεί υπενθύμιση για τον ιατρικό έλεγχο στις {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Φύλο γονέα",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
