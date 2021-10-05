@@ -25,37 +25,9 @@ import { getCurrentChildAgeInDays, isFutureDate } from '../../services/childCRUD
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
-  // const [allnotification, setAllNotification] = useState<any[]>([]);
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
   console.log(allnotis, "allnotis");
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
-  useEffect(() => {
-    // setAllNotification(allnotis);
-    const subscription:any = AppState.addEventListener("change", nextAppState => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
-      ) {
-        console.log("App has come to the foreground!");
-        if (allnotis.length > 0) {
-          const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
-          console.log(currentChildNotis,"allfilteredNotis")
-          calculateNotis(currentChildNotis)
-        }
-      }
-
-      appState.current = nextAppState;
-      setAppStateVisible(appState.current);
-      console.log("AppState", appState.current);
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
-
+  const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   // const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -77,8 +49,63 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
+  
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+  const handleAppStateChange = (nextAppState) => {
+    console.log('App State: ' + nextAppState);
+    if (appState != nextAppState) {
+      if (appState.current.match(/inactive|background/) 
+            && nextAppState === 'active') {
+        console.log(
+          'App State: ' +
+          'App has come to the foreground!'
+        );
+        console.log("App has come to the foreground!",allChildnotification);
+        if (allChildnotification.length > 0) {
+          console.log(allChildnotification,"in if from background")
+          const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
+          console.log(currentChildNotis,"allfilteredNotis")
+          calculateNotis(currentChildNotis)
+        }
 
+      }
+      console.log('App State: ' + nextAppState);
+      appState.current = nextAppState;
+    }
+  };
+  // useEffect(() => {
+  //   const subscription:any = AppState.addEventListener("change", nextAppState => {
+  //     if (
+  //       appState.current.match(/inactive|background/) &&
+  //       nextAppState === "active"
+  //     ) {
+  //       console.log("App has come to the foreground!",allChildnotification);
+  //       if (allChildnotification.length > 0) {
+  //         console.log(allChildnotification,"in if from background")
+  //         const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
+  //         console.log(currentChildNotis,"allfilteredNotis")
+  //         calculateNotis(currentChildNotis)
+  //       }
+  //     }
 
+  //     appState.current = nextAppState;
+  //     setAppStateVisible(appState.current);
+  //     console.log("AppState", appState.current);
+  //   });
+
+  //   return () => {
+  //     console.log()
+  //     AppState.removeEventListener("change",subscription)
+  //     subscription?.remove();
+  //   };
+  // }, []);
   const calculateNotis = (currentChildNotis: any) => {
     console.log(currentChildNotis, "currentChildNotis")
     if (currentChildNotis) {
@@ -126,13 +153,14 @@ const Notifications = () => {
   }
   useFocusEffect(
     React.useCallback(() => {
+      setAllChildNotification(allnotis);
       // console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
-      if (allnotis.length > 0) {
-        const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+      if (allChildnotification.length > 0) {
+        const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
         // console.log(currentChildNotis,"allfilteredNotis")
         calculateNotis(currentChildNotis)
       }
-    }, [activeChild.uuid, allnotis])
+    }, [activeChild.uuid, allChildnotification])
   );
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
@@ -174,7 +202,7 @@ const Notifications = () => {
   }
   const onItemReadMarked = async (notiItem: any) => {
     console.log(notiItem);
-    let allNotifications = [...allnotis];
+    let allNotifications = [...allChildnotification];
     console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -216,13 +244,15 @@ const Notifications = () => {
     }
     allNotifications[currentChildIndex] = currentChildNotis
     console.log(allNotifications, "allNotifications")
+    setAllChildNotification(allNotifications);
     dispatch(setAllNotificationData(allNotifications));
+    
     calculateNotis(currentChildNotis);
     return currentChildNotis
   }
   const onItemDeleteMarked = (notiItem: any) => {
     console.log(notiItem);
-    let allNotifications = [...allnotis];
+    let allNotifications = [...allChildnotification];
     console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -237,6 +267,7 @@ const Notifications = () => {
       currentChildNotis.gwcdnotis = allgwcdnotis;
       allNotifications[currentChildIndex] = currentChildNotis
       console.log(allNotifications, "AFTERDELETE allNotifications")
+     setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
       calculateNotis(currentChildNotis);
@@ -249,7 +280,8 @@ const Notifications = () => {
       allvcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.vcnotis = allvcnotis;
       allNotifications[currentChildIndex] = currentChildNotis
-      console.log(allNotifications, "AFTERDELETE allNotifications")
+      console.log(allNotifications, "AFTERDELETE allNotifications");
+      setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
       calculateNotis(currentChildNotis);
@@ -263,6 +295,7 @@ const Notifications = () => {
       currentChildNotis.hcnotis = allhcnotis
       allNotifications[currentChildIndex] = currentChildNotis
       console.log(allNotifications, "AFTERDELETE allNotifications")
+     setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
       calculateNotis(currentChildNotis);
@@ -279,7 +312,8 @@ const Notifications = () => {
         currentChildNotis.reminderNotis = allremindenotis;
         console.log(currentChildNotis, "currentChildNotis");
         allNotifications[currentChildIndex] = currentChildNotis
-        console.log(allNotifications, "AFTERDELETE allNotifications")
+        console.log(allNotifications, "AFTERDELETE allNotifications");
+        setAllChildNotification(allNotifications);
         dispatch(setAllNotificationData(allNotifications));
         // setAllNotification(allNotifications);
         calculateNotis(currentChildNotis);
@@ -289,7 +323,7 @@ const Notifications = () => {
   }
   const deleteSelectedNotifications = async () => {
 
-    let allNotifications = [...allnotis];
+    let allNotifications = [...allChildnotification];
     console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
@@ -343,7 +377,8 @@ const Notifications = () => {
       }
     })
     allNotifications[currentChildIndex] = currentChildNotis
-    console.log(allNotifications, "allNotifications")
+    console.log(allNotifications, "allNotifications");
+    setAllChildNotification(allNotifications)
     dispatch(setAllNotificationData(allNotifications));
     // setAllNotification(allNotifications);
     calculateNotis(currentChildNotis);
