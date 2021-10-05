@@ -136,7 +136,7 @@ const XKsq = {
                 articleScreenshareText: "Shpërndaj",
                 articleScreenaddtoFavText: "Shtoni tek të preferuarat",
                 growthScreenheaderTitle: "Rritja e fëmijës",
-                growthScreengrowthDataTitle: "Fëmija është {{childAge}}",
+                //growthScreengrowthDataTitle: "Fëmija është {{childAge}}",
                 growthScreennoGrowthData: "parametrat e rritjes së fëmijës tuaj nuk janë matur akoma",
                 growthScreennoGrowthDataHelpText: "Kjo do t'ju ndihmojë që të mbani shënim për rritjen e fëmijës suaj",
                 growthScreenaddNewBtntxt: "Shtoni një matje të re",

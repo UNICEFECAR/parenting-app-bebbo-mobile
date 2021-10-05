@@ -136,7 +136,7 @@ const MEcnr = {
                 articleScreenshareText: "Podijelite",
                 articleScreenaddtoFavText: "Dodajte u 'omiljeni sadržaj'",
                 growthScreenheaderTitle: "Rast djeteta",
-                growthScreengrowthDataTitle: "Dijete ima {{child name}} mjeseci",
+                //growthScreengrowthDataTitle: "Dijete ima {{child name}} mjeseci",
                 growthScreennoGrowthData: "podaci o rastu Vašeg djeteta još uvijek nisu izmjereni",
                 growthScreennoGrowthDataHelpText: "Ovo će Vam pomoći da pratite rast Vašeg djeteta",
                 growthScreenaddNewBtntxt: "Dodajte novu mjeru",
