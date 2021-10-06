@@ -105,7 +105,7 @@ export const localization = [
     ],
   },
   {
-    name: 'Montenegro',
+    name: ' ',
     countryId: 31,
     displayName: 'Montenegro (Crna Gora)',
     languages: [
@@ -114,7 +114,8 @@ export const localization = [
         displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
-        luxonLocale:'sr-Cyrl-ME'//need to be verified
+        //luxonLocale:'sr-Cyrl-ME'//need to be verified
+        luxonLocale:'sr-Latn-ME'//need to be verified
       },
     ],
   },
