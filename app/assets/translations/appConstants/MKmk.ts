@@ -136,7 +136,7 @@ const MKmk = {
                 articleScreenshareText: "Споделете",
                 articleScreenaddtoFavText: "Додадете во омилени",
                 growthScreenheaderTitle: "Раст на детето",
-                growthScreengrowthDataTitle: "Детето има {{childAge}} ",
+                //growthScreengrowthDataTitle: "Детето има {{childAge}} ",
                 growthScreennoGrowthData: "нема податоци за мерење на вашето дете",
                 growthScreennoGrowthDataHelpText: "Ова ќе ви помогне да го следите растот на вашето дете",
                 growthScreenaddNewBtntxt: "Додадете ново мерење",
@@ -381,7 +381,7 @@ const MKmk = {
                 downloadUpdateSuccessPopupTitle: "Успешно завршено",
                 downloadUpdateSuccessPopupText: "Ажурирањето е успешно завршено!!",
                 downloadUpdateSuccessOkBtn: "Во ред",
-                newdetailScreenNoDataPopupText: "Бараниот совет/игра е недостапен во оваа верзија. Ве молиме симнете ги најновите податоци во делот Подесувања",
+                newdetailScreenNoDataPopupText: "Одбраната содржина не е достапна во оваа верзија на апликацијата. Ве молиме симнете ја најновата верзија во делот Подесувања",
                 noInternet: "Нема пристап до интернет",
                 lowBandwidth: "Мала брзина на интернет",
                 highBandwidth: "Голема брзина на интернет",
@@ -390,7 +390,7 @@ const MKmk = {
                 vcrNoti1: "Поставивте потсетник за вакцинација на {{reminderDateTime}}",
                 hcrNoti1: "Поставивте потсетник за здравствен преглед на  {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Пол на родителот",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }

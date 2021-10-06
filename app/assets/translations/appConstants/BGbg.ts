@@ -136,7 +136,7 @@ const BGbg = {
                 articleScreenshareText: "Споделяне",
                 articleScreenaddtoFavText: "Добавете в любими",
                 growthScreenheaderTitle: "Растеж на детето",
-                growthScreengrowthDataTitle: "Детето е на {{child name}} месеца",
+                //growthScreengrowthDataTitle: "Детето е на {{child name}} месеца",
                 growthScreennoGrowthData: "Все още не са въведени данни за растежа на вашето дете",
                 growthScreennoGrowthDataHelpText: "Това ще ви помогне да проследявате растежа на вашето дете",
                 growthScreenaddNewBtntxt: "Добавете ново измерване",
@@ -380,7 +380,7 @@ const BGbg = {
                 downloadUpdateSuccessPopupTitle: "Успех",
                 downloadUpdateSuccessPopupText: "Актуализациите са свалени успешно!!",
                 downloadUpdateSuccessOkBtn: "ОК",
-                newdetailScreenNoDataPopupText: "Избранията Съвет/Игра не е наличен/на на това устройство. Моля свалете последните данни от настройките.",
+                newdetailScreenNoDataPopupText: "Избраното съдържание не е налично на това устройство. Моля, изтеглете най-новите данни от менюто с настройките.",
                 noInternet: "Няма интернет.",
                 lowBandwidth: "Ниска скорост",
                 highBandwidth: "Висока скорост",
@@ -389,7 +389,7 @@ const BGbg = {
                 vcrNoti1: "Зададено е напомняне за ваксинация на {{reminderDateTime}}",
                 hcrNoti1: "Зададено е напомняне за профилактичен преглед на {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Пол на родителя",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }

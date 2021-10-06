@@ -136,7 +136,7 @@ const MKsq = {
                 articleScreenshareText: "Shpërndaj",
                 articleScreenaddtoFavText: "Shtoni tek të preferuarat",
                 growthScreenheaderTitle: "Rritja e fëmijës",
-                growthScreengrowthDataTitle: "Fëmija është {{childAge}}",
+                //growthScreengrowthDataTitle: "Fëmija është {{childAge}}",
                 growthScreennoGrowthData: "parametrat e rritjes së fëmijës tuaj nuk janë matur akoma",
                 growthScreennoGrowthDataHelpText: "Kjo do t'ju ndihmojë që të mbani shënim për rritjen e fëmijës suaj",
                 growthScreenaddNewBtntxt: "Shtoni një matje të re",
@@ -380,7 +380,7 @@ const MKsq = {
                 downloadUpdateSuccessPopupTitle: "Me sukses",
                 downloadUpdateSuccessPopupText: "Përditësimet janë shkarkuar me sukses!",
                 downloadUpdateSuccessOkBtn: "Në rregull",
-                newdetailScreenNoDataPopupText: "Këshilla/Loja e përzgjedhur nuk është në dispozicion në këtë celular. Ju lutemi shkarkoni të dhënat e fundit nga cilësimet.",
+                newdetailScreenNoDataPopupText: "Përmbajtja e zgjedhur nuk është e disponueshme në këtë telefon. Ju lutem shkarkoni të dhënat më të fundit nga cilësimet",
                 noInternet: "Nuk ka qasje në internet.",
                 lowBandwidth: "Frekuencë e ulët",
                 highBandwidth: "Frekuencë e lartë",
@@ -389,7 +389,7 @@ const MKsq = {
                 vcrNoti1: "Rikujtimi është caktuar për vaksinim më {{reminderDateTime}}",
                 hcrNoti1: "Rikujtimi është caktuar për kontrollë mjekësore më {{reminderDateTime}}",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Gjinia e prindit",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
