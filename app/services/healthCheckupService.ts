@@ -79,8 +79,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   });
   const vaccineMeasuredInfo = (uuid: number) => {
     // console.log(uuid,measuredVaccines, "vaccineMeasuredInfo uuid");
-    // return (measuredVaccines.find(item => item.uuid == uuid))
-    return (measuredVaccines.find(item => String(item.uuid) == String(uuid)))
+    return (measuredVaccines.find(item => item.uuid == uuid))
   }
 
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
@@ -103,7 +102,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     (state: any) =>
       JSON.parse(state.utilsData.healthCheckupsData),
   );
-  // console.log(allHealthCheckupsData, "allHealthCheckupsData");
+  console.log(allHealthCheckupsData, "allHealthCheckupsData");
   let additionalMeasures: any[] = [];
   const getMeasuresForHCPeriod = (hcItem: any, currentIndex: number) => {
     const { t } = useTranslation();
@@ -160,7 +159,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   }).sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  // console.log("allHealthCheckupsDatasorted",allHealthCheckupsData,allHealthCheckupsData.length);
+  console.log("allHealthCheckupsDatasorted",allHealthCheckupsData,allHealthCheckupsData.length);
   allHealthCheckupsData.reverse().forEach((hcItem: any, index: number) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
@@ -175,7 +174,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     hcItem.growthMeasures = measuresForHCPeriod;
 
   });
-  // console.log(allHealthCheckupsData, "allHealthCheckupsDataNew",allHealthCheckupsData.length);
+  console.log(allHealthCheckupsData, "allHealthCheckupsDataNew",allHealthCheckupsData.length);
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
@@ -212,7 +211,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   let sortedGroupsForPeriods = [...allHealthCheckupsData, ...additionalMeasures].sort(
     (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
   );
-  // console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
+  console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
 
 
   // const isUpComingPeriod = (vaccination_opens: number) => {
@@ -234,7 +233,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     .reverse();
   // // logic to add current period to upcomingPeriods and remove it from previousPeriods
   let currentPeriod;
-  // console.log(previousPeriods,upcomingPeriods,"old")
+  console.log(previousPeriods,upcomingPeriods,"old")
   if (upcomingPeriods.length > 0) {
     currentPeriod = upcomingPeriods[0];
     //currentPEriod is childAgeIndays fall in open and end
