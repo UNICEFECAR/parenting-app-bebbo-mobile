@@ -162,7 +162,7 @@ const UZru = {
                 articleScreenaddtoFavText: "Добавить в избранное",
                 // growthScreen
                 growthScreenheaderTitle: "Рост ребенка",
-                growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
+                //growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить данные",
@@ -217,7 +217,7 @@ const UZru = {
                 trackMilestoneViewHeader: "Обновите информацию об этапах развития вашего ребенка ",
                 trackMilestoneViewBtn: "Отслеживать этапы развития вашего ребенка ",
                 babyNotificationText: "Данные о рождении ребенка не обновлены ",
-                babyNotificationbyAge: "{{childName}} сейчас {{ageInMonth}} месяцев",
+                babyNotificationbyAge: "{{childName}} - {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Обновить данные",
                 favScreenHeader: "Избранное",
                 actScreenremovetoFavText: "Удалить из избранного",
@@ -414,7 +414,7 @@ const UZru = {
                 downloadUpdateSuccessPopupTitle: "Успешно",
                 downloadUpdateSuccessPopupText: "Обновления успешно скачаны!!",
                 downloadUpdateSuccessOkBtn: "Хорошо",
-                newdetailScreenNoDataPopupText: "Выбранный совет/занятие недоступны в этом мобильном телефоне. Загрузите последние обновления из настроек.",
+                newdetailScreenNoDataPopupText: "Выбранный контент недоступен на этом мобильном устройстве. Пожалуйста, загрузите последние данные из настроек.",
                 noInternet: "Нет интернета.",
                 lowBandwidth: "Низкая пропускная способность сети",
                 highBandwidth: "Высокая пропускная способность сети",
@@ -422,7 +422,7 @@ const UZru = {
                 dataSaveroff: "Выключено",
                 vcrNoti1: "Напоминание о вакцинации установлено на {{reminderDateTime}}.",
                 hcrNoti1: "Напоминание о медосмотре установлено на {{reminderDateTime}}",
-                parentGender: "Parent Gender",
+                parentGender: "Пол Родителей",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }

@@ -59,17 +59,17 @@ background-color: ${props => props.theme.colors.SECONDARY_COLOR};
 
 
 
-export const OverlayFaded = styled.Pressable`
+export const OverlayFaded = styled.View`
 position:absolute; bottom:0; width:100%;z-index:99;height:70px;
 `;
 
 
-export const DailyArtTitle = styled.Pressable`
+export const DailyArtTitle = styled.View`
 
 position:absolute; bottom:10px;z-index:999;width:100%;padding:3px 10px;
 `;
 
-export const DailyTag = styled.Pressable`
+export const DailyTag = styled.View`
 position:absolute; background-color: ${props => props.theme.colors.PRIMARY_COLOR};padding:7px 10px;
 border-top-left-radius:4px;
 `;
