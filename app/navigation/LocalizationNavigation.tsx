@@ -3,12 +3,13 @@ import CountryLanguageConfirmation from '@screens/localization/CountryLanguageCo
 import CountrySelection from '@screens/localization/CountrySelection';
 import LanguageSelection from '@screens/localization/LanguageSelection';
 import React from 'react';
+import { Platform } from 'react-native';
 import { LocalizationStackParamList } from './types';
 
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
 export default () => {
   return (
-    <LocalizationStack.Navigator initialRouteName="CountrySelection">
+    <LocalizationStack.Navigator initialRouteName="CountrySelection"   screenOptions={{ gestureEnabled:Platform.OS == 'ios' ? false : true}}>
       <LocalizationStack.Screen
         name="CountrySelection"
         component={CountrySelection}

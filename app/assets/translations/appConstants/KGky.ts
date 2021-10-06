@@ -136,7 +136,7 @@ const KGky = {
                 articleScreenshareText: "Бөлүшүү",
                 articleScreenaddtoFavText: "Тандалмаларга кошуу",
                 growthScreenheaderTitle: "Баланын өсүшү",
-                growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
+                //growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
                 growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
                 growthScreennoGrowthDataHelpText: "Бул балаңыздын өсүшүн көзөмөлдөөгө жардам берет.",
                 growthScreenaddNewBtntxt: "Жаңы маалыматтарды кошуңуз",
@@ -380,7 +380,7 @@ const KGky = {
                 downloadUpdateSuccessPopupTitle: "Ийгиликтүү",
                 downloadUpdateSuccessPopupText: "Жаңыртуулар ийгиликтүү жүктөлдү !!",
                 downloadUpdateSuccessOkBtn: "Жакшы",
-                newdetailScreenNoDataPopupText: "Тандалган Кеңеш/Оюн бул мобилдик телефондо жок. Жөндөөлөрдөн акыркы маалыматтарды жүктөп алыңыз.",
+                newdetailScreenNoDataPopupText: "Тандалган мазмун бул мобилдик телефондо жеткиликтүү эмес. Жөндөөлөрдөн акыркы маалыматты жүктөп алыңыз",
                 noInternet: "Интернет жок.",
                 lowBandwidth: "Өткөрүү жөндөмдүүлүгү төмөн",
                 highBandwidth: "Өткөрүү жөндөмдүүлүгү жогору",
@@ -389,7 +389,7 @@ const KGky = {
                 vcrNoti1: "Эмдөө үчүн эскертме {{reminderDateTime}} күнү коюлган",
                 hcrNoti1: "Ден соолук текшерүүсү үчүн эскертме {{reminderDateTime}} күнү коюлду",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Ата -эненин жынысы",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
