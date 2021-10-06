@@ -109,8 +109,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editMeasurementDate ? editMeasurementDate : null,
   );
-  const [editHCDate, seteditHCDate] = useState<any>(editMeasurementDate ? editMeasurementDate : null);
-
+  const [editHCDate, seteditHCDate] = useState<any>( editMeasurementDate ? editMeasurementDate : null);
+ 
   const deleteHealthCheckup = async () => {
     if (editHCDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")
@@ -285,8 +285,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   // const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
                   console.log(existingMeasure, "existingMeasure");
                   setShowDelete(true);
+                  setWeightValue(existingMeasure?.weight)
                   seteditHCDate(DateTime.fromJSDate(new Date(selectedDate)));
-                  setWeightValue(existingMeasure?.weight);
                   setHeightValue(existingMeasure?.height)
                   handleDoctorRemark(existingMeasure?.doctorComment)
                   setIsMeasured(existingMeasure?.isChildMeasured);
@@ -541,91 +541,83 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       }
     }
   };
-  // useFocusEffect(
-  //   React.useCallback(() => {
-
-  // },[])
-  // )
-  let { previousPeriods } = getAllHealthCheckupPeriods();
-  console.log(vcPeriod,previousPeriods, 'AllVaccinesPeriods');
-  const isAllVaccinesMeasured = () => {
-    // previousPeriods.shift();
-    //remove first period which is the current period
-    let allPreviousPendingVaccines: any[] = [];
-    previousPeriods.forEach((period) => {
-      period.vaccines.forEach((vItem: any) => {
-        allPreviousPendingVaccines.push(vItem);
-      });
-    });
-    console.log(allPreviousPendingVaccines, 'allPreviousPendingVaccines');
-    if(vcPeriod.vaccines.length>0){
-      allPreviousPendingVaccines=[...allPreviousPendingVaccines,...vcPeriod.vaccines];
-    }
-
-    const isAllMeasured = [ ...allPreviousPendingVaccines].every((el) => {
-      return el.isMeasured == true;
-    })
-    console.log(isAllMeasured, "isAllMeasured");
-    return isAllMeasured;
+  let { previousPeriods } = getAllHealthCheckupPeriods();	
+  console.log(vcPeriod,previousPeriods, 'AllVaccinesPeriods');	
+  const isAllVaccinesMeasured = () => {	
+    // previousPeriods.shift();	
+    //remove first period which is the current period	
+    let allPreviousPendingVaccines: any[] = [];	
+    previousPeriods.forEach((period) => {	
+      period.vaccines.forEach((vItem: any) => {	
+        allPreviousPendingVaccines.push(vItem);	
+      });	
+    });	
+    console.log(allPreviousPendingVaccines, 'allPreviousPendingVaccines');	
+    if(vcPeriod.vaccines.length>0){	
+      allPreviousPendingVaccines=[...allPreviousPendingVaccines,...vcPeriod.vaccines];	
+    }	
+    const isAllMeasured = [ ...allPreviousPendingVaccines].every((el) => {	
+      return el.isMeasured == true;	
+    })	
+    console.log(isAllMeasured, "isAllMeasured");	
+    return isAllMeasured;	
   }
-  const RenderVaccineSection = () => {
-
-    return (
-      <>
-          <FormContainerFlex>
-            <FormInputText>
-              <Heading3>{t('hcChildVaccineQ')}</Heading3>
-            </FormInputText>
-
-            <ToggleRadios
-              options={isMeasuredOptions}
-              defaultValue={defaultVaccineMeasured}
-              tickbgColor={headerColor}
-              tickColor={'#000'}
-              getCheckedItem={getCheckedIsVaccineMeaured}
-            />
-          </FormContainerFlex>
-          {isVaccineMeasured ? (
-            <FormContainerFlex1>
-              {takenVaccine?.length > 0 ?
-                (<ShiftFromTop15>
-                  <FormInputText>
-                    <Heading3>{t('vcTaken')}</Heading3>
-                  </FormInputText>
-                  <TakenVaccines
-                    fromScreen={'AddChildHealthCheckup'}
-                    takenVaccines={takenVaccine}
-                    backgroundActiveColor={headerColor}
-                    onTakenVaccineToggle={onTakenVaccineToggle}
-                  />
-                </ShiftFromTop15>) : null}
-              {takenVaccine?.length == 0 ? <ShiftFromTop15>
-                <FormInputText>
-                  <Heading3>{t('vcPlanned')}</Heading3>
-                </FormInputText>
-                <PlannedVaccines
-                  fromScreen={'AddChildHealthCheckup'}
-                  backgroundActiveColor={headerColor}
-                  currentPeriodVaccines={vcPeriod?.vaccines}
-                  onPlannedVaccineToggle={onPlannedVaccineToggle}
-                />
-              </ShiftFromTop15> : null}
-              <ShiftFromTop15>
-                <FormInputText>
-                  <Heading3>{t('vcPrev')}</Heading3>
-                </FormInputText>
-                <PrevPlannedVaccines
-                  fromScreen={'AddChildHealthCheckup'}
-                  backgroundActiveColor={headerColor}
-                  takenVaccine={takenVaccineForPrevPeriod}
-                  currentPeriodVaccines={vcPeriod?.vaccines}
-                  onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
-                />
-              </ShiftFromTop15>
-            </FormContainerFlex1>
-          ) : null}
-      </>
-    )
+  const renderVaccineSection = () => {	
+    return (	
+      <>	
+          <FormContainerFlex>	
+            <FormInputText>	
+              <Heading3>{t('hcChildVaccineQ')}</Heading3>	
+            </FormInputText>	
+            <ToggleRadios	
+              options={isMeasuredOptions}	
+              defaultValue={defaultVaccineMeasured}	
+              tickbgColor={headerColor}	
+              tickColor={'#000'}	
+              getCheckedItem={getCheckedIsVaccineMeaured}	
+            />	
+          </FormContainerFlex>	
+          {isVaccineMeasured ? (	
+            <FormContainerFlex1>	
+              {takenVaccine?.length > 0 ?	
+                (<ShiftFromTop15>	
+                  <FormInputText>	
+                    <Heading3>{t('vcTaken')}</Heading3>	
+                  </FormInputText>	
+                  <TakenVaccines	
+                    fromScreen={'AddChildHealthCheckup'}	
+                    takenVaccines={takenVaccine}	
+                    backgroundActiveColor={headerColor}	
+                    onTakenVaccineToggle={onTakenVaccineToggle}	
+                  />	
+                </ShiftFromTop15>) : null}	
+              {takenVaccine?.length == 0 ? <ShiftFromTop15>	
+                <FormInputText>	
+                  <Heading3>{t('vcPlanned')}</Heading3>	
+                </FormInputText>	
+                <PlannedVaccines	
+                  fromScreen={'AddChildHealthCheckup'}	
+                  backgroundActiveColor={headerColor}	
+                  currentPeriodVaccines={vcPeriod?.vaccines}	
+                  onPlannedVaccineToggle={onPlannedVaccineToggle}	
+                />	
+              </ShiftFromTop15> : null}	
+              <ShiftFromTop15>	
+                <FormInputText>	
+                  <Heading3>{t('vcPrev')}</Heading3>	
+                </FormInputText>	
+                <PrevPlannedVaccines	
+                  fromScreen={'AddChildHealthCheckup'}	
+                  backgroundActiveColor={headerColor}	
+                  takenVaccine={takenVaccineForPrevPeriod}	
+                  currentPeriodVaccines={vcPeriod?.vaccines}	
+                  onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}	
+                />	
+              </ShiftFromTop15>	
+            </FormContainerFlex1>	
+          ) : null}	
+      </>	
+    )	
   }
   return (
     <>
@@ -748,91 +740,91 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   )}
                 </FormInputGroup>
 
-                <View></View>
-                <FormContainerFlex>
-                  <FormInputText>
-                    <Heading3>{t('vcChildMeasureQ')}</Heading3>
-                  </FormInputText>
-                  <ToggleRadios
-                    options={isMeasuredOptions}
-                    defaultValue={defaultMeasured}
-                    tickbgColor={headerColor}
-                    tickColor={'#000'}
-                    getCheckedItem={getCheckedItem}
-                  />
-                </FormContainerFlex>
-                <View>
-                  {isMeasured ? (
-                    <>
-                      <ShiftFromTop15>
-                        <FormInputText>
-                          <Heading3>
-                            {t('growthScreenenterMeasuresText')}
-                          </Heading3>
-                        </FormInputText>
-                        <RadioBoxContainer>
-                          <FDirRow>
-                            <RadioOuter>
-                              <RadioInnerBox
-                                onPress={() => {
-                                  navigation.navigate('AddNewChildWeight', {
-                                    prevRoute: 'AddChildHealthCheckup',
-                                    headerColor,
-                                    backgroundColor,
-                                    weightValue:
-                                      setInitialWeightValues(weightValue),
-                                  });
-                                }}>
-                                <FlexFDirRowSpace>
-                                  <Heading3>
-                                    {weightValue
-                                      ? weightValue
-                                      : t('growthScreenwText')}
-                                  </Heading3>
-                                  <Heading4Regular>
-                                    {t('growthScreenkgText')}
-                                  </Heading4Regular>
-                                </FlexFDirRowSpace>
-                              </RadioInnerBox>
-                            </RadioOuter>
-                            <RadioOuter>
-                              <RadioInnerBox
-                                onPress={() => {
-                                  navigation.navigate('AddNewChildHeight', {
-                                    prevRoute: 'AddChildHealthCheckup',
-                                    headerColor,
-                                    backgroundColor,
-                                    heightValue:
-                                      setInitialHeightValues(heightValue),
-                                  });
-                                }}>
-                                <FlexFDirRowSpace>
-                                  <Heading3>
-                                    {heightValue
-                                      ? heightValue
-                                      : t('growthScreenhText')}
-                                  </Heading3>
-                                  <Heading4Regular>
-                                    {t('growthScreencmText')}
-                                  </Heading4Regular>
-                                </FlexFDirRowSpace>
-                              </RadioInnerBox>
-                            </RadioOuter>
-                          </FDirRow>
-                        </RadioBoxContainer>
-                      </ShiftFromTop15>
-                    </>
-                  ) : null}
-                </View>
-              
-                {editHCDate ? <RenderVaccineSection/> :
-                  (isAllVaccinesMeasured() ? null :
-                  <RenderVaccineSection/>)}
-                <FormContainerFlex>
-                  <FormInputText>
-                    {t('growthScreenenterDoctorRemarkText')}
-                  </FormInputText>
+              <View></View>
+              <FormContainerFlex>
+                <FormInputText>
+                  <Heading3>{t('vcChildMeasureQ')}</Heading3>
+                </FormInputText>
+                <ToggleRadios
+                  options={isMeasuredOptions}
+                  defaultValue={defaultMeasured}
+                  tickbgColor={headerColor}
+                  tickColor={'#000'}
+                  getCheckedItem={getCheckedItem}
+                />
+              </FormContainerFlex>
+              <View>
+                {isMeasured ? (
+                  <>
+                    <ShiftFromTop15>
+                      <FormInputText>
+                        <Heading3>
+                          {t('growthScreenenterMeasuresText')}
+                        </Heading3>
+                      </FormInputText>
+                      <RadioBoxContainer>
+                        <FDirRow>
+                          <RadioOuter>
+                            <RadioInnerBox
+                              onPress={() => {
+                                navigation.navigate('AddNewChildWeight', {
+                                  prevRoute: 'AddChildHealthCheckup',
+                                  headerColor,
+                                  backgroundColor,
+                                  weightValue:
+                                    setInitialWeightValues(weightValue),
+                                });
+                              }}>
+                              <FlexFDirRowSpace>
+                                <Heading3>
+                                  {weightValue
+                                    ? weightValue
+                                    : t('growthScreenwText')}
+                                </Heading3>
+                                <Heading4Regular>
+                                  {t('growthScreenkgText')}
+                                </Heading4Regular>
+                              </FlexFDirRowSpace>
+                            </RadioInnerBox>
+                          </RadioOuter>
+                          <RadioOuter>
+                            <RadioInnerBox
+                              onPress={() => {
+                                navigation.navigate('AddNewChildHeight', {
+                                  prevRoute: 'AddChildHealthCheckup',
+                                  headerColor,
+                                  backgroundColor,
+                                  heightValue:
+                                    setInitialHeightValues(heightValue),
+                                });
+                              }}>
+                              <FlexFDirRowSpace>
+                                <Heading3>
+                                  {heightValue
+                                    ? heightValue
+                                    : t('growthScreenhText')}
+                                </Heading3>
+                                <Heading4Regular>
+                                  {t('growthScreencmText')}
+                                </Heading4Regular>
+                              </FlexFDirRowSpace>
+                            </RadioInnerBox>
+                          </RadioOuter>
+                        </FDirRow>
+                      </RadioBoxContainer>
+                    </ShiftFromTop15>
+                  </>
+                ) : null}
+              </View>
+              {editHCDate ? renderVaccineSection() :	
+                  (isAllVaccinesMeasured() ? null :	
+                  renderVaccineSection())}
 
+              <FormContainerFlex>
+                <FormInputText>
+                  {t('growthScreenenterDoctorRemarkText')}
+                </FormInputText>
+                
                   <TextAreaBox>
                     <TextInput style={{ flex: 1, textAlignVertical: 'top', padding: 10 }}
                       autoCapitalize="none"
