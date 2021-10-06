@@ -244,7 +244,9 @@ const EditParentDetails = ({route,navigation}: Props) => {
                         }
                       }
                       else{
-                        setRelationship('');
+                        if(userRelationToParent==relationShipMotherId || userRelationToParent==relationShipFatherId){
+                          setRelationship('');
+                        }
                       }
                       setRelationshipName(item.name);
                       actionSheetRef.current?.hide();
