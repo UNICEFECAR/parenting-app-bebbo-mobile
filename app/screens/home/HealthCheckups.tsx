@@ -135,6 +135,19 @@ const HealthCheckups = ({navigation}: Props) => {
       );
     }
   };
+  const getVaccinationPeriod = () => {
+
+    if(upcomingPeriods[0]?.vaccination_opens <= childAgeIndays && upcomingPeriods[0]?.vaccination_ends > childAgeIndays)
+    {
+     return upcomingPeriods[0]
+    }else{
+     const prevPeriod = previousPeriods.find(item =>item.vaccination_opens <= childAgeIndays && item.vaccination_ends > childAgeIndays)
+    //  console.log(prevPeriod,"prevPeriod");
+     return prevPeriod;
+    }
+
+
+  }
   return (
     <>
     <Modal
@@ -207,14 +220,13 @@ const HealthCheckups = ({navigation}: Props) => {
                   <ButtonTextSmLine numberOfLines={2}>{t('hcReminderbtn')}</ButtonTextSmLine>
                 </Pressable>)
               }
-
               <ButtonContainerAuto>
                 <ButtonHealth
                   disabled={isFutureDate(activeChild?.birthDate)}
                   onPress={() =>
                     navigation.navigate('AddChildHealthCheckup', {
                       headerTitle: t('hcNewHeaderTitle'),
-                      vcPeriod: upcomingPeriods[0],
+                      vcPeriod: getVaccinationPeriod(),
                     })
                   }>
                   <ButtonText numberOfLines={2}>{t('hcNewBtn')}</ButtonText>
