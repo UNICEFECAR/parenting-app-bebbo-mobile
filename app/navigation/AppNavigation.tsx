@@ -299,7 +299,7 @@ export default () => {
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
           }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false ,gestureEnabled:Platform.OS == 'ios' ? false : true}}
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false}}
         >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
@@ -340,7 +340,7 @@ export default () => {
           <RootStack.Screen
             name="LoadingScreen"
             component={LoadingScreen}
-            options={{ headerShown: false }}
+            options={{ headerShown: false ,gestureEnabled:false}}
           />
           <RootStack.Screen
             name="HomeDrawerNavigator"
