@@ -79,7 +79,8 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   });
   const vaccineMeasuredInfo = (uuid: number) => {
     // console.log(uuid,measuredVaccines, "vaccineMeasuredInfo uuid");
-    return (measuredVaccines.find(item => item.uuid == uuid))
+    // return (measuredVaccines.find(item => item.uuid == uuid))
+    return (measuredVaccines.find(item => String(item.uuid) == String(uuid)))
   }
 
   let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
