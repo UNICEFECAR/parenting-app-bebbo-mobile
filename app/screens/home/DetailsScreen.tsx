@@ -329,14 +329,25 @@ const DetailsScreen = ({route, navigation}: any) => {
               <Heading6Bold>{ categoryData.filter((x: any) => x.id==detailDataToUse.category)[0].name }</Heading6Bold>
               : null }
             </ShiftFromBottom5>
-            <Heading2>{detailDataToUse?.title}</Heading2>
+            <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
               <HTML
                 source={{html: detailDataToUse.body}} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
-                baseFontStyle={{fontSize: 16, color: '#000000'}}
+                baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
-                tagsStyles={{img: {maxWidth:Dimensions.get('window').width} }}
+                tagsStyles={{
+                  img: {maxWidth:Dimensions.get('window').width},
+                  p:{marginBottom:15,marginTop:0,},
+                  h1:{marginBottom:0,marginTop:10,},
+                  h2:{marginBottom:15,marginTop:0,},
+                  h3:{marginBottom:15,marginTop:0},
+                  h4:{marginBottom:15,marginTop:0},
+                  h5:{marginBottom:15,marginTop:0},
+                  h6:{marginBottom:15,marginTop:0},
+                  span:{marginBottom:15,marginTop:0},
+                  br:{height:0},
+                }}
               />
                : null 
             } 
