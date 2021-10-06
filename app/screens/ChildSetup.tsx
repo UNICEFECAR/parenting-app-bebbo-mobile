@@ -248,9 +248,15 @@ const ChildSetup = ({ navigation }: Props) => {
                       onPress={() => {
                         console.log(item,"..item..");  
                         setUserRelationToParent(item.id);
+                      //   if(item.id == relationShipFatherId  || item.id == relationShipMotherId || relationship == '' || relationship == null || relationship == undefined){
+                      //     setRelationship('');
+                      //  }
+                      //  if(item.id != relationShipFatherId  && item.id != relationShipMotherId && relationship != '' && relationship != null && relationship != undefined){
+                      //   setRelationship('');
+                      //  }
                         console.log(userRelationToParent,"..userRelationToParent..");  
                         if(item.id == relationShipMotherId){
-                          if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
+                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
                             setRelationship(femaleData.id);
                           }
                           else {
@@ -266,7 +272,12 @@ const ChildSetup = ({ navigation }: Props) => {
                           }
                         }
                         else{
-                          setRelationship('');
+                          console.log(item.id,"..item.id");
+                          console.log(relationship,"..relationship..");
+                          console.log(userRelationToParent,"..userRelationToParent..");
+                          if(userRelationToParent==relationShipMotherId || userRelationToParent==relationShipFatherId){
+                            setRelationship('');
+                          }
                         }
                         setRelationshipName(item.name);
                         actionSheetRef.current?.hide();
