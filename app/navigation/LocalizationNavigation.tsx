@@ -9,7 +9,7 @@ import { LocalizationStackParamList } from './types';
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
 export default () => {
   return (
-    <LocalizationStack.Navigator initialRouteName="CountrySelection"   screenOptions={{ gestureEnabled:Platform.OS == 'ios' ? false : true}}>
+    <LocalizationStack.Navigator initialRouteName="CountrySelection">
       <LocalizationStack.Screen
         name="CountrySelection"
         component={CountrySelection}
