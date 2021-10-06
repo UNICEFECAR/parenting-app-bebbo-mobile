@@ -49,6 +49,7 @@ import TakenVaccines from '@components/vaccination/TakenVaccines';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
+import { useFocusEffect } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -182,7 +183,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild, "activeChild")
+  // console.log(activeChild, "activeChild")
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -307,6 +308,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                     setIsVaccineMeasured(existingMeasuredVaccines?.length > 0 ? true : false);
                     setDefaultVaccineMeasured(existingMeasuredVaccines?.length > 0 ? isMeasuredOptions[0] : isMeasuredOptions[1])
                   }
+                  // console.log(editHCDate, 'editHCDate');
+                
 
                 },
                 style: "cancel",
@@ -419,7 +422,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
         ? measureDate.toFormat('MM')
         : measureDate.toFormat('MM')
       : measureDate.toFormat('MM');
-    if (isVaccineMeasured==true && allVaccines.length == 0) {
+    if (isVaccineMeasured == true && allVaccines.length == 0) {
       Alert.alert(t('alertForModifyMeasures'),
         t('alertForNoTakenVaccinesSelectTitle'),
         [
@@ -501,12 +504,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
 
         } else {
 
-           // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
+          // check if blank healthcheckup is done or not?// is there entry exists for that date update or else add?
           const growthValues = {
             uuid: uuidv4(),
             isChildMeasured: isMeasured,
-            weight: isMeasured ? String(weightValue): '0',
-            height: isMeasured ? String(heightValue): '0',
+            weight: isMeasured ? String(weightValue) : '0',
+            height: isMeasured ? String(heightValue) : '0',
             measurementDate: measurementDateParam,
             titleDateInMonth: titleDateInMonthParam.toString(),
             didChildGetVaccines: isVaccineMeasured ? allVaccines.length > 0 ? true : false : false,
@@ -647,64 +650,64 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </Pressable>
               </HeaderActionView> : null}
           </HeaderRowView>
-          
+
           <ScrollView style={{ flex: 9 }} keyboardShouldPersistTaps={'always'}>
-          <KeyboardAwareScrollView  bounces={false} keyboardShouldPersistTaps={'always'}>
-            <MainContainer>
-              <FormInputGroup onPress={() => {
-                setmeasureDateShow(true);
-                if (Platform.OS == 'ios') {
-                  setMeasureDatePickerVisibility(true);
-                }
-              }}>
-                {/* <FormInputText>
+            <KeyboardAwareScrollView bounces={false} keyboardShouldPersistTaps={'always'}>
+              <MainContainer>
+                <FormInputGroup onPress={() => {
+                  setmeasureDateShow(true);
+                  if (Platform.OS == 'ios') {
+                    setMeasureDatePickerVisibility(true);
+                  }
+                }}>
+                  {/* <FormInputText>
           <Heading3>{t('hcdateText')}</Heading3>
           </FormInputText> */}
-                {Platform.OS != 'ios' ? (
-                  <FormInputBox>
-                    <FormDateText1>
-                      <Text>
-                        {' '}
-                        {measureDate
-                          ?
-                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                          //     'dd/MM/yyyy',
-                          //   )
-                          formatStringDate(measureDate, luxonLocale)
-                          : t('vcScreenenterDateText')}
-                      </Text>
-                      {showmeasureDate && (
-                        <DateTimePicker
-                          testID="measureDatePicker"
-                          value={
-                            editMeasurementDate ? new Date(editMeasurementDate) : new Date()
-                          }
-                          mode={'date'}
-                          display="default"
-                          maximumDate={new Date()}
-                          minimumDate={new Date(minChildGrwothDate)}
-                          onChange={onmeasureDateChange}
-                        />
-                      )}
-                    </FormDateText1>
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
-                ) : (
-                  <FormInputBox>
-                    <FormDateText1>
-                      <Text>
-                        {' '}
-                        {measureDate
-                          ?
-                          // DateTime.fromJSDate(new Date(measureDate)).toFormat(
-                          //     'dd/MM/yyyy',
-                          //   )
-                          formatStringDate(measureDate, luxonLocale)
-                          : t('vcScreenenterDateText')}
-                      </Text>
-                      {/* <DateTimePicker
+                  {Platform.OS != 'ios' ? (
+                    <FormInputBox>
+                      <FormDateText1>
+                        <Text>
+                          {' '}
+                          {measureDate
+                            ?
+                            // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                            //     'dd/MM/yyyy',
+                            //   )
+                            formatStringDate(measureDate, luxonLocale)
+                            : t('vcScreenenterDateText')}
+                        </Text>
+                        {showmeasureDate && (
+                          <DateTimePicker
+                            testID="measureDatePicker"
+                            value={
+                              editMeasurementDate ? new Date(editMeasurementDate) : new Date()
+                            }
+                            mode={'date'}
+                            display="default"
+                            maximumDate={new Date()}
+                            minimumDate={new Date(minChildGrwothDate)}
+                            onChange={onmeasureDateChange}
+                          />
+                        )}
+                      </FormDateText1>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
+                  ) : (
+                    <FormInputBox>
+                      <FormDateText1>
+                        <Text>
+                          {' '}
+                          {measureDate
+                            ?
+                            // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                            //     'dd/MM/yyyy',
+                            //   )
+                            formatStringDate(measureDate, luxonLocale)
+                            : t('vcScreenenterDateText')}
+                        </Text>
+                        {/* <DateTimePicker
                       testID="measureDatePicker"
                       value={
                         editGrowthItem ? new Date(measureDate) : new Date()
@@ -716,26 +719,26 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       onChange={onmeasureDateChange}
                       style={{backgroundColor: 'white', flex: 1}}
                     /> */}
-                      <DateTimePickerModal
-                        isVisible={isMeasureDatePickerVisible}
-                        mode="date"
-                        onConfirm={handleMeasureConfirm}
-                        date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
-                        onCancel={() => {
-                          // Alert.alert('Modal has been closed.');
-                          setMeasureDatePickerVisibility(false);
-                        }}
-                        maximumDate={new Date()}
-                        minimumDate={new Date(minChildGrwothDate)}
-                      />
+                        <DateTimePickerModal
+                          isVisible={isMeasureDatePickerVisible}
+                          mode="date"
+                          onConfirm={handleMeasureConfirm}
+                          date={editMeasurementDate ? new Date(editMeasurementDate) : new Date()}
+                          onCancel={() => {
+                            // Alert.alert('Modal has been closed.');
+                            setMeasureDatePickerVisibility(false);
+                          }}
+                          maximumDate={new Date()}
+                          minimumDate={new Date(minChildGrwothDate)}
+                        />
 
-                    </FormDateText1>
-                    <FormDateAction>
-                      <Icon name="ic_calendar" size={20} color="#000" />
-                    </FormDateAction>
-                  </FormInputBox>
-                )}
-              </FormInputGroup>
+                      </FormDateText1>
+                      <FormDateAction>
+                        <Icon name="ic_calendar" size={20} color="#000" />
+                      </FormDateAction>
+                    </FormInputBox>
+                  )}
+                </FormInputGroup>
 
               <View></View>
               <FormContainerFlex>
@@ -823,7 +826,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput style={{flex:1,textAlignVertical: 'top',padding:10}}
+                    <TextInput style={{ flex: 1, textAlignVertical: 'top', padding: 10 }}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}
@@ -837,26 +840,26 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
-               
-              </FormContainerFlex>
 
-              <ShiftFromTopBottom10>
-                <Text>{t('growthScreennewGrowthBottomText')}</Text>
-              </ShiftFromTopBottom10>
-            </MainContainer>
-            <ButtonContainer>
-            <ButtonTertiary
-              disabled={isFormDisabled()}
-              onPress={(e) => {
-                e.stopPropagation();
-                saveChildMeasures();
-              }}>
-              <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
-            </ButtonTertiary>
-          </ButtonContainer>
+                </FormContainerFlex>
+
+                <ShiftFromTopBottom10>
+                  <Text>{t('growthScreennewGrowthBottomText')}</Text>
+                </ShiftFromTopBottom10>
+              </MainContainer>
+              <ButtonContainer>
+                <ButtonTertiary
+                  // disabled={isFormDisabled()}
+                  onPress={(e) => {
+                    e.stopPropagation();
+                    saveChildMeasures();
+                  }}>
+                  <ButtonText numberOfLines={2}>{t('growthScreensaveMeasures')}</ButtonText>
+                </ButtonTertiary>
+              </ButtonContainer>
             </KeyboardAwareScrollView>
           </ScrollView>
-          
+
 
           <Modal
             animationType="none"
