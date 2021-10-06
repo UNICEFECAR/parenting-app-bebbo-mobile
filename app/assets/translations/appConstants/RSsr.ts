@@ -162,7 +162,7 @@ const RSsr = {
               articleScreenaddtoFavText: "Dodajte u 'Omiljene sadržaje'",
               // growthScreen
               growthScreenheaderTitle: "Rast deteta",
-              growthScreengrowthDataTitle: "Uzrast deteta {{child name}} u mesecima",
+              //growthScreengrowthDataTitle: "Uzrast deteta {{child name}} u mesecima",
               growthScreennoGrowthData: "podaci o rastu Vašeg deteta još uvek nisu prikazani",
               growthScreennoGrowthDataHelpText: "Dete {{child name}} ima meseci",
               growthScreenaddNewBtntxt: "Dodajte novu meru",
@@ -413,7 +413,7 @@ const RSsr = {
               downloadUpdateSuccessPopupTitle: "Uspešno",
               downloadUpdateSuccessPopupText: "Ažuriranja su uspešno preuzeta!",
               downloadUpdateSuccessOkBtn: "Ok",
-              newdetailScreenNoDataPopupText: "Odabrani članak/igra nije dostupna na ovom mobilnom uređaju. Molimo preuzmite najnovije podatke iz postavki.",
+              newdetailScreenNoDataPopupText: "Odabrani sadržaj nije dostupan na ovom mobilnom telefonu. Preuzmite najnovije podatke iz postavki",
               noInternet: "Internet nije dostupan.",
               lowBandwidth: "Slaba propusnost",
               highBandwidth: "Jaka propusnost",
@@ -421,7 +421,7 @@ const RSsr = {
               dataSaveroff: "Isključeno",
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
-              parentGender: "Parent Gender",
+              parentGender: "Pol roditelja",
               //relationToParentNameLabel:'Relation to parent'
        }
 
