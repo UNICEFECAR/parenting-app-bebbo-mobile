@@ -136,7 +136,7 @@ const KGru = {
                 articleScreenshareText: "Поделиться",
                 articleScreenaddtoFavText: "Добавить в избранное",
                 growthScreenheaderTitle: "Рост ребенка",
-                growthScreengrowthDataTitle: "Ребенку {{childAge}} месяца(-ев)",
+                //growthScreengrowthDataTitle: "Ребенку {{childAge}} месяца(-ев)",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить новые данные",
@@ -190,7 +190,7 @@ const KGru = {
                 trackMilestoneViewHeader: "Пожалуйста, обновите информацию об этапах развития вашего ребенка",
                 trackMilestoneViewBtn: "Отслеживать этапы развития вашего ребенка",
                 babyNotificationText: "Данные о рождении ребенка не обновлены",
-                babyNotificationbyAge: "{{childName}} сейчас {{ageInMonth}}",
+                babyNotificationbyAge: "{{childName}} - {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Обновить данные",
                 favScreenHeader: "Избранное",
                 actScreenremovetoFavText: "Удалить из избранного",
@@ -380,7 +380,7 @@ const KGru = {
                 downloadUpdateSuccessPopupTitle: "Успешно",
                 downloadUpdateSuccessPopupText: "Обновления успешно скачаны!!",
                 downloadUpdateSuccessOkBtn: "Хорошо",
-                newdetailScreenNoDataPopupText: "Выбранный совет / игра недоступна в этом мобильном телефоне. Загрузите последние данные из настроек.",
+                newdetailScreenNoDataPopupText: "Выбранный контент недоступен в этом мобильном телефоне. Пожалуйста, загрузите последние данные из настроек",
                 noInternet: "Нет интернета.",
                 lowBandwidth: "Низкая пропускная способность",
                 highBandwidth: "Высокая пропускная способность",
@@ -389,7 +389,7 @@ const KGru = {
                 vcrNoti1: "Напоминание о вакцинации установлено на {{ReminderDateTime}}.",
                 hcrNoti1: "Напоминание о профилактических медосмотрах установлено на {{ReminderDateTime}}.",
                 //translation till above
-                parentGender: "Parent Gender",
+                parentGender: "Пол родителей",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }

@@ -299,7 +299,7 @@ export default () => {
           initialRouteName={
             userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
           }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false }}
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false ,gestureEnabled:Platform.OS == 'ios' ? false : true}}
         >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
