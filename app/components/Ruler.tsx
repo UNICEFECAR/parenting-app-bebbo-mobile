@@ -220,23 +220,23 @@ class Ruler extends React.Component<Props, State> {
       // }
     });
   }
-  moveTo() {
-    const prevValue = this.state.scrollValue;
-    const newValue = this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum);
-    console.log(prevValue, newValue,"fromMoveTo");
-  //  console.log(this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum), "moveTo");
-    if(prevValue<newValue){
+  // moveTo() {
+  //   const prevValue = this.state.scrollValue;
+  //   const newValue = this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum);
+  //   console.log(prevValue, newValue,"fromMoveTo");
+  // //  console.log(this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum), "moveTo");
+  //   if(prevValue<newValue){
     
-      setTimeout(() => {
-        console.log('in if moveto');
-      this.scrollViewRef.current.scrollTo({ x: newValue, y: 0, animated: false });
-      });
-      // this.scrollViewRef.current?.scrollTo({
-      //   x: (this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum)),
-      //   y: 0,
-      // });
-    }
-  }
+  //     setTimeout(() => {
+  //       console.log('in if moveto');
+  //     this.scrollViewRef.current.scrollTo({ x: newValue, y: 0, animated: false });
+  //     });
+  //     // this.scrollViewRef.current?.scrollTo({
+  //     //   x: (this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + this.props.minimum)),
+  //     //   y: 0,
+  //     // });
+  //   }
+  // }
 
   componentWillUnmount() {
     // Remove the above listener
@@ -426,7 +426,7 @@ class Ruler extends React.Component<Props, State> {
             // const new2 =this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum);
             // const new3 = (this.state.value * this.snapSegment)+ minimum;
             // console.log(new1,new2,new3,"vals",this.state.scrollValue);
-            this.moveTo();
+            // this.moveTo();
 // console.log((this.state.value * this.snapSegment)+ minimum,this.state.value,"onMomentumScrollEnd",this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum));
 // console.log(this.state.value*(this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum)),"multiplied")
             // if((this.state.scrollValue)<this.state.value*this.snapSegment*(Math.round(this.state.value / this.snapSegment) + minimum)){
