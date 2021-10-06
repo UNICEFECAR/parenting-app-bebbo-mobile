@@ -74,6 +74,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   // fromScreen === 'Activities'
   useEffect(() => {
     const backAction = () => {
+      console.log("dwferfef")
       onHeaderBack()
       return true;
     };
@@ -82,8 +83,13 @@ const DetailsScreen = ({route, navigation}: any) => {
       "hardwareBackPress",
       backAction,
     );
+    navigation.addListener('gestureEnd', backAction);
+      
   
-    return () => backHandler.remove();
+    return () => {
+      navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove();
+    }
   }, []);
   useEffect(() => {
       const functionOnLoad = async () => {
