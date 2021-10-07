@@ -86,9 +86,10 @@ useEffect(() => {
     "hardwareBackPress",
     backAction,
   );
- 
+  navigation.addListener('gestureEnd', backAction);
 
   return () => {
+    navigation.removeListener('gestureEnd', backAction);
     backHandler.remove();
   }
 }, []);
