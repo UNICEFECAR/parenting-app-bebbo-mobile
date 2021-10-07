@@ -353,6 +353,7 @@ const Home = ({ route, navigation }: Props) => {
     console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
     if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       let flagtext = 'downloadBufferData ' + downloadBufferData + ' downloadWeeklyData ' + downloadWeeklyData + ' downloadMonthlyData ' + downloadMonthlyData;
+      setTimeout(() => {
       Alert.alert(t('SyncOnLoadPopupTitle'), t('SyncOnLoadPopupText'),
         [
           {
@@ -363,9 +364,11 @@ const Home = ({ route, navigation }: Props) => {
           { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
         ]
       );
+    }, 2000);
     }
     else if (netInfoval.isConnected && showDownloadPopup && errorObj.length > 0) {
       // Alert.alert('Download Data', "All content is not downloaded.Please download data.",
+      setTimeout(() => {
       Alert.alert(t('downloadOnLoadPopupTitle'), t('downloadOnLoadPopupText'),
         [
           {
@@ -376,6 +379,7 @@ const Home = ({ route, navigation }: Props) => {
           { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
         ]
       );
+      },2000);
     }
     // return {};
   }, [netInfoval.isConnected]);
