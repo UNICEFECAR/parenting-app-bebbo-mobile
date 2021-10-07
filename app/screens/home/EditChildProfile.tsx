@@ -159,8 +159,10 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       "hardwareBackPress",
       backAction,
     );
-
-    return () => backHandler.remove();
+    navigation.addListener('gestureEnd', backAction);
+    return () => {
+      navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove()};
   }, []);
   useFocusEffect(
     React.useCallback(() => {
