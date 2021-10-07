@@ -189,13 +189,18 @@ export const utilsSlice = createSlice({
     },
     setDailyMessagesData:(  state,
       action: PayloadAction<any>,)=>{
-        // console.log(action.payload,"setDailyMessagesData");
-        (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
-        if(action.payload.length>0)
-        {
-          state.dailymessages = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
-          // console.log(state.dailymessages,"state.dailymessages");
-        }
+        // console.log(action.payload?.length,"actionpayload setDailyMessagesData");
+        // console.log(JSON.stringify(action.payload),"setDailyMessagesData");
+        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+        state.dailymessages = action.payload;
+        // (typeof action.payload == 'string') ? (action.payload = JSON.parse(action.payload)) : null;
+        // if(action.payload.length>0)
+        // {
+        //   state.dailymessages = (typeof action.payload == 'object') ? (JSON.stringify(action.payload)) : (action.payload);
+        //   // console.log(state.dailymessages,"state.dailymessages");
+        // }else{
+        //   state.dailymessages = JSON.stringify([]);
+        // }
     },
     setAllTaxonomyData: (
       state,
