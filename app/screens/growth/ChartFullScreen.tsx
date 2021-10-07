@@ -55,6 +55,18 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
          */
         return true;
       });
+      navigation.addListener('gestureEnd',  function () {
+        closeFullScreen();
+        /**
+         * When true is returned the event will not be bubbled up
+         * & no other back action will execute
+         */
+        /**
+         * Returning false will let the event to bubble up & let other event listeners
+         * or the system's default back action to be executed.
+         */
+        return true;
+      });
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
