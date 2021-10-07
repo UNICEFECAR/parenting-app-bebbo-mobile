@@ -29,7 +29,7 @@ import ModalPopupContainer, {
   PopupOverlayVideo
 } from '@components/shared/ModalPopupStyle';
 import { isFutureDate } from '../services/childCRUD';
-
+import { removeParams } from '../services/Utils';
 // const videoarticleType = {
 
 // }
@@ -83,16 +83,20 @@ const activeChild = useAppSelector((state: any) =>
         console.log(currActivityData?.cover_image?.url,"----url");
         if(currActivityData && currActivityData?.cover_image && currActivityData?.cover_image?.url != "")
         {   
+          let imageName=removeParams(currActivityData?.cover_image?.url.split('/').pop());
+          console.log(imageName,"..imageName..");
             let imageArray = [];
             imageArray.push({
                 srcUrl: currActivityData?.cover_image?.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: currActivityData?.cover_image?.url.split('/').pop()
+                // destFilename: currActivityData?.cover_image?.url.split('/').pop()
+                destFilename:imageName
             })
             const imagesDownloadResult = await downloadImages(imageArray);
-            if (await RNFS.exists(destinationFolder + '/' + currActivityData?.cover_image?.url.split('/').pop())) {
+            if (await RNFS.exists(destinationFolder + '/' + imageName)) {
               console.log("selActivityImage in if ",selActivityImage);
-              setselActivityImage(encodeURI("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop()));
+           //   setselActivityImage(encodeURI("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop()));
+              setselActivityImage(encodeURI("file://" + destinationFolder + imageName));
             }else {
              console.log("selActivityImage in else ",selActivityImage);
             setselActivityImage('');
@@ -101,16 +105,21 @@ const activeChild = useAppSelector((state: any) =>
         }
         if(currVideoArtData && currVideoArtData?.cover_image && currVideoArtData?.cover_image?.url != "")
         {   
+          let imageName=removeParams(currVideoArtData?.cover_image?.url.split('/').pop());
+          console.log(imageName,"..imageName..");
+       
             let imageArray = [];
             imageArray.push({
                 srcUrl: currVideoArtData?.cover_image?.url, 
                 destFolder: RNFS.DocumentDirectoryPath + '/content', 
-                destFilename: currVideoArtData?.cover_image?.url.split('/').pop()
+              //  destFilename: currVideoArtData?.cover_image?.url.split('/').pop()
+                destFilename: imageName
+                
             })
             const imagesDownloadResult = await downloadImages(imageArray);
-            if (await RNFS.exists(destinationFolder + '/' + currVideoArtData?.cover_image?.url.split('/').pop())) {
+            if (await RNFS.exists(destinationFolder + '/' + imageName)) {
               // console.log("Image already exists");
-              setselVideoImage(encodeURI("file://" + destinationFolder + currVideoArtData?.cover_image?.url.split('/').pop()));
+              setselVideoImage(encodeURI("file://" + destinationFolder + imageName));
             }else {
             //  console.log("Image already exists");
               setselVideoImage('');
