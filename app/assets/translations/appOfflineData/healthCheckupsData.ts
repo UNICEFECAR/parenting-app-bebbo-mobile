@@ -1632,9 +1632,9 @@ export const healthCheckupsData:any = {
         }
     ],
     //no data
-    "mk-sq": [
+    // "mk-sq": [
 
-    ],
+    // ],
     "rs-sr": [
         {
             "id": 57746,

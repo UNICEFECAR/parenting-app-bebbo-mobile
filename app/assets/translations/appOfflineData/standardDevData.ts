@@ -3547,13 +3547,13 @@ const standardDevData:any = {
         }
     ],
     //No data for kg-ky
-    "kg-ky": [
+    // "kg-ky": [
 
-    ],
-    //No data for kg-ru
-    "kg-ru": [
+    // ],
+    // //No data for kg-ru
+    // "kg-ru": [
 
-    ],
+    // ],
     "me-cnr": [
         {
             "weight_for_height": [
