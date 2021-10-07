@@ -191,8 +191,18 @@ export const formatStringTime = (dateData: any, luxonLocale: string) => {
     return new IntlPolyfill.DateTimeFormat(luxonLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
     // return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
 }
+export const removeParams=(sParam:any)=>
+{
+  if(sParam.indexOf("?") != -1){
+    var url =sParam.split('?')[0];
+    return url;
+  }
+  else{
+    return sParam;
+  }    
+}
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any) => {
-    // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender);
+    console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender,"..123");
     if (birthDate == null || birthDate == undefined) {
         //    return 'Please enter birth date.';
         return false;
