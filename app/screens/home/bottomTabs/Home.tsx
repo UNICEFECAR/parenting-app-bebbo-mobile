@@ -160,7 +160,10 @@ const Home = ({ route, navigation }: Props) => {
       'hardwareBackPress',
       onBackPress,
     );
-    return () => backHandler.remove();
+    navigation.addListener('gestureEnd', onBackPress);
+    return () => {
+      navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove()};
   }, []);
   let childAge = useAppSelector(
     (state: any) =>
