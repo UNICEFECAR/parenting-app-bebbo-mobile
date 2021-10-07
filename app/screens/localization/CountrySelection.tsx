@@ -83,7 +83,7 @@ const CountrySelection = (props: any) => {
       "hardwareBackPress",
       backAction,
     );
-    
+    props.navigation.addListener('gestureEnd', backAction);
     // console.log(props.route.params.country,"---",countryId,"---onboard",userIsOnboarded)
       let newCountryId: any,selectedCountry;
     if(userIsOnboarded == true){
@@ -117,7 +117,10 @@ const CountrySelection = (props: any) => {
     fetchData()
     setCountry(selectedCountry);
 
-    return () => backHandler.remove();
+    return () => {
+      props.navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove()
+    };
   }, [props.route.params]);
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />

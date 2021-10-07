@@ -116,8 +116,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       "hardwareBackPress",
       backAction,
     );
-  
+    navigation.addListener('gestureEnd', backAction);
     return () => {
+      navigation.removeListener('gestureEnd', backAction);
       backHandler.remove();
     }
   }, []);
