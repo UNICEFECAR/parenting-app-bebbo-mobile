@@ -1544,7 +1544,8 @@ export const vaccineData:any = {
             "updated_at": "Thu, 09/30/2021 - 12:41"
         }
     ],
-    "kg-ru":[],
+    //no data
+    //"kg-ru":[],
     "me-cnr": [
         {
             "uuid": "7b26917b-4551-4e28-858b-c2abc883c560",
