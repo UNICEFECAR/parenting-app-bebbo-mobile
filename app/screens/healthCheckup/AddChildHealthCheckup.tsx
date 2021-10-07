@@ -816,7 +816,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   </>
                 ) : null}
               </View>
-              {editHCDate ? renderVaccineSection() :	
+              {editHCDate ? isAllVaccinesMeasured() ? takenVaccine.length>0 ? renderVaccineSection(): null :renderVaccineSection() :	
                   (isAllVaccinesMeasured() ? null :	
                   renderVaccineSection())}
 
