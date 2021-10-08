@@ -77,8 +77,6 @@ export const ButtonLinkText = styled.Text`
   font-size:16px;
   line-height:20px;
   text-decoration:underline;
-  width:100%;
-  padding:11px 0;
 `;
 
 export const ButtonTextLg = styled(ButtonText)`
