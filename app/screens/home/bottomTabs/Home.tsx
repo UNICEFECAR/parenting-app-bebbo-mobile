@@ -364,7 +364,7 @@ const Home = ({ route, navigation }: Props) => {
           { text: t('SyncOnLoadRetryBtn'), onPress: () => downloadApis() }
         ]
       );
-    }, 2000);
+    }, 3000);
     }
     else if (netInfoval.isConnected && showDownloadPopup && errorObj.length > 0) {
       // Alert.alert('Download Data', "All content is not downloaded.Please download data.",
@@ -379,7 +379,7 @@ const Home = ({ route, navigation }: Props) => {
           { text: t('downloadOnLoadRetryBtn'), onPress: () => callFailedApis() }
         ]
       );
-      },2000);
+      },3000);
     }
     // return {};
   }, [netInfoval.isConnected]);
