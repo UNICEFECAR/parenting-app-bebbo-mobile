@@ -35,10 +35,10 @@ export default () => {
         name="AboutusScreen"
         component={Aboutus}
       />
-      <HomeDrawerNavigator.Screen
+      {/* <HomeDrawerNavigator.Screen
         name="ChildProfileScreen"
         component={ChildProfile}
-      />
+      /> */}
       <HomeDrawerNavigator.Screen name="SupportChat" component={SupportChat}/>
       {/* <HomeDrawerNavigator.Screen
         name="ChildgrowthScreen"
