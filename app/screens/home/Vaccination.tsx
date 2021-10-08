@@ -153,7 +153,7 @@ const Vaccination = ({navigation}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1,backgroundColor:headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ToolsBgContainer>
           <TabScreenHeader

@@ -12,7 +12,6 @@ import {
 import {
   BgContainer,
   MainContainer,
-  SafeAreaContainer
 } from '@components/shared/Container';
 import { FlexCol, FlexDirCol } from '@components/shared/FlexBoxStyle';
 import {
@@ -51,6 +50,7 @@ import { getCurrentChildAgeInMonths, isFutureDate } from '../../services/childCR
 import Icon from '@components/shared/Icon';
 import { ButtonModal } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
+import { SafeAreaView } from 'react-native-safe-area-context';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -156,7 +156,7 @@ const Childgrowth = ({navigation,route}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaContainer>
+      <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -280,7 +280,7 @@ const Childgrowth = ({navigation,route}: Props) => {
             </ShiftFromTop10>
           </ButtonContainer>
         </FlexCol>
-      </SafeAreaContainer>
+      </SafeAreaView>
     </>
   );
 };

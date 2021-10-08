@@ -44,11 +44,11 @@ import {
   BackHandler,
   ImageBackground,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet, TextInput,
   View
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';

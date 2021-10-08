@@ -14,7 +14,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
@@ -112,7 +113,7 @@ const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-      <SafeAreaView style={{flex:1}}>
+      <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
   
      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
