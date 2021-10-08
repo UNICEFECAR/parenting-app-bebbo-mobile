@@ -797,12 +797,12 @@ const SettingScreen = (props: any) => {
                   setModalVisible(true)
                 }}> */}
                 <IconAreaPress onPress={() => {
-                if (netInfoval && netInfoval.isConnected == true) {
+                // if (netInfoval && netInfoval.isConnected == true) {
                   setModalVisible(true)
-                }
-                else {
-                  Alert.alert('', t('noInternet'));
-                }
+                // }
+                // else {
+                //   Alert.alert('', t('noInternet'));
+                // }
               }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </IconAreaPress>
