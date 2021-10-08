@@ -436,6 +436,7 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
       toggle= i18n.t('dataSaveroff');
     }
     //"Do you want to switch"+toggle+"data saver mode?"
+    setTimeout(() => {
     Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
       [
         {
@@ -446,6 +447,7 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
         { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
       ]
     );
+  },3000);
   });
 }
 export const deleteArticleNotPinned= async () => {
