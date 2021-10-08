@@ -13,6 +13,7 @@ border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 min-height:50px;
 height:auto;
 justify-content:center;
+
 `;
 
 export const ButtonPrimaryMd = styled(ButtonPrimary)`
@@ -28,6 +29,7 @@ export const ButtonText = styled.Text`
   font-family: 'roboto-bold';
   font-size:16px;
   line-height:20px;
+  
 `;
 
 export const ButtonTextLine = styled(ButtonText)`
@@ -36,6 +38,7 @@ export const ButtonTextLine = styled(ButtonText)`
 export const ButtonTextSmLine = styled(ButtonTextLine)`
   font-size:12px;
   line-height:16px;
+  
 `;
 export const ButtonTextSmLineW = styled(ButtonTextSmLine)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
@@ -74,7 +77,8 @@ export const ButtonLinkText = styled.Text`
   font-size:16px;
   line-height:20px;
   text-decoration:underline;
-  
+  width:100%;
+  padding:11px 0;
 `;
 
 export const ButtonTextLg = styled(ButtonText)`
@@ -127,7 +131,7 @@ export const ButtonLinkPress = styled.Pressable`
 flex-direction:row;
 align-items:center;
 justify-content:center;
-
+padding:7px 0
 `
 
 export const ButtonTertiary = styled(ButtonPrimary)`
@@ -140,6 +144,7 @@ export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   height:auto;
   padding:4px;
   justify-content:center;
+  
 `;
 export const ButtonDelPress = styled.Pressable`
   min-width:65px;

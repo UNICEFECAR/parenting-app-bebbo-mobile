@@ -35,7 +35,7 @@ import {
   Heading1Centerw,
   Heading3Centerw,
   Heading5,
-  ShiftFromBottom20,
+  ShiftFromBottom10,
   ShiftFromTop30
 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
@@ -222,7 +222,7 @@ const ChildSetupList = ({ navigation }: Props) => {
 
         <ButtonRow>
           
-          <ShiftFromBottom20>
+          <ShiftFromBottom10>
             <ButtonLinkPress
               onPress={() => navigation.navigate('AddSiblingDataScreen',{headerTitle:t('childSetupListaddSiblingBtn'),childData:null})}>
               <OuterIconRow>
@@ -232,7 +232,7 @@ const ChildSetupList = ({ navigation }: Props) => {
                 <ButtonTextLinew numberOfLines={2}> {t('childSetupListaddSiblingBtn')}</ButtonTextLinew>
               </OuterIconRow>
             </ButtonLinkPress>
-          </ShiftFromBottom20>
+          </ShiftFromBottom10>
          
           <ButtonPrimary
             onPress={(e) => {

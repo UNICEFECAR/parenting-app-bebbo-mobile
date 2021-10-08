@@ -339,7 +339,7 @@ const child_age = useAppSelector(
             <ProfileLinkRow
               style={{
                  backgroundColor: secopndaryTintColor,
-                 flexDirection:'column',
+                
               }}>
              <ProfileLinkCol>
                 <ButtonLinkPress
