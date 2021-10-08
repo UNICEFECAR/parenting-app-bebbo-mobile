@@ -47,7 +47,7 @@ border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 min-height:125px
 `;
 
-export const ToolBoxText = styled.Pressable`
+export const ToolBoxText = styled.View`
 margin-top:15px;
 `;
 
