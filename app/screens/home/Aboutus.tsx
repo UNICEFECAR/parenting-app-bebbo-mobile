@@ -56,7 +56,9 @@ const Aboutus = ({navigation}: Props) => {
               source={{html: aboutusdata}}
               baseFontStyle={{fontSize: 16, color: '#000'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
-              tagsStyles={{img: {maxWidth:Dimensions.get('window').width} }}
+              tagsStyles={{
+                p: { marginBottom: 15, marginTop: 0 },h1: { marginBottom: 0, marginTop: 10},h2: { marginBottom: 15, marginTop: 0},h3: { marginBottom: 15, marginTop: 0 },h4: { marginBottom: 15, marginTop: 0 },h5: { marginBottom: 15, marginTop: 0 },h6: { marginBottom: 15, marginTop: 0 },span: { marginBottom: 15, marginTop: 0 },br: { height: 0 }
+              }}
             />
             : null 
           }

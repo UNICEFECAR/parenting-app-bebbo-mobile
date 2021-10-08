@@ -13,8 +13,7 @@ export const ProfileListView = styled.View`
 
 export const ProfileListViewSelected = styled(ProfileListView)`
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
-  
-  margin-bottom:5px;
+  margin-bottom:15px;
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
