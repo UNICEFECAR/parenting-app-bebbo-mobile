@@ -429,7 +429,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
           {accordvalue ? (
             <>
-              <SubDrawerLinkView
+              <SubDrawerLinkView 
                 onPress={() =>
                   navigation.navigate('Home', { screen: 'ChildDevelopment' })
                 }>

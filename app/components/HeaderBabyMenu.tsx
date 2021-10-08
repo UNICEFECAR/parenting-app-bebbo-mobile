@@ -9,7 +9,8 @@ import {
   Heading3,
   Heading5,
   Heading5Bold,
-  ShiftFromBottom20
+  ShiftFromBottom20,
+  ShiftFromBottom10
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useState } from 'react';
@@ -245,7 +246,7 @@ const HeaderBabyMenu = (props: any) => {
             ) : null}
 
             <ButtonContainer>
-              <ShiftFromBottom20>
+              <ShiftFromBottom10>
                 <ButtonLinkPress
                   onPress={() =>{
                     setModalVisible(false);
@@ -261,7 +262,7 @@ const HeaderBabyMenu = (props: any) => {
                     </ButtonTextLine>
                   </OuterIconRow>
                 </ButtonLinkPress>
-              </ShiftFromBottom20>
+              </ShiftFromBottom10>
 
               <ButtonPrimary
                 onPress={() => {
