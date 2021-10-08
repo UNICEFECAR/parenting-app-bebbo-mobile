@@ -12,7 +12,6 @@ import AddNewChildWeight from '@screens/growth/AddNewChildWeight';
 import AllChildgrowthMeasures from '@screens/growth/AllChildgrowthMeasures';
 import { ChartFullScreen } from '@screens/growth/ChartFullScreen';
 import AddChildHealthCheckup from '@screens/healthCheckup/AddChildHealthCheckup';
-import ChildProfile from '@screens/home/ChildProfile';
 import DetailsScreen from '@screens/home/DetailsScreen';
 import EditChildProfile from '@screens/home/EditChildProfile';
 import LoadingScreen from '@screens/LoadingScreen';
@@ -405,11 +404,6 @@ export default () => {
             name="DetailsScreen"
             options={{ headerShown: false }}
             component={DetailsScreen}
-          />
-           <RootStack.Screen
-            name="ChildProfileScreen"
-            component={ChildProfile}
-            options={{ headerShown: false }}
           />
           <RootStack.Screen
             name="AddChildVaccination"
