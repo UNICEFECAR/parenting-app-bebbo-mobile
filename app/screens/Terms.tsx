@@ -14,7 +14,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Settings } from 'luxon';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import { Dimensions, SafeAreaView, ScrollView, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -212,6 +212,9 @@ const Terms = ({navigation}: Props) => {
               source={{html: termsdata}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
+              tagsStyles={{
+              p: { marginBottom: 15, marginTop: 0 },h1: { marginBottom: 0, marginTop: 10},h2: { marginBottom: 15, marginTop: 0},h3: { marginBottom: 15, marginTop: 0 },h4: { marginBottom: 15, marginTop: 0 },h5: { marginBottom: 15, marginTop: 0 },h6: { marginBottom: 15, marginTop: 0 },span: { marginBottom: 15, marginTop: 0 },br: { height: 0 },
+              }}
             />
             : null
           }
