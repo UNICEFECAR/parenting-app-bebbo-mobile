@@ -14,7 +14,7 @@ export const ProfileListView = styled.View`
 export const ProfileListViewSelected = styled(ProfileListView)`
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
   
-  margin-bottom:15px;
+  margin-bottom:5px;
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
@@ -72,7 +72,7 @@ export const ProfileListActiveChild = styled(ProfileListView)`
 
 export const ProfileLinkRow = styled.View`
 width:100%;
-  flex-direction:row;
+  flex-direction:column;
   margin:0;
   padding:5px 10px;
  margin-bottom:15px;
@@ -80,14 +80,15 @@ width:100%;
  margin-top:-4px;
  border-color: rgba(0, 0, 0, 0.1);
  border-top-width: 1px;
+ 
 `;
 
 export const ProfileLinkCol = styled.View`
  
   align-items:center;
   justify-content:center;  
-  padding: 6px 20px;
-  
+  padding: 2px 20px;
+ 
 `;
 export const ProfileContentView = styled.View`
  width:100%;
