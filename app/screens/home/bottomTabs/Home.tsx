@@ -162,7 +162,7 @@ const Home = ({ route, navigation }: Props) => {
     );
     navigation.addListener('gestureEnd', onBackPress);
     return () => {
-      navigation.removeListener('gestureEnd', backAction);
+      navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
   let childAge = useAppSelector(
