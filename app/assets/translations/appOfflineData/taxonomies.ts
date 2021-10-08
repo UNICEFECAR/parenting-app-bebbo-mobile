@@ -22310,103 +22310,103 @@ export const taxonomydata:any = {
             "activity_category": [
                 {
                     "id": 6421,
-                    "name": "Motor",
+                    "name": "Motorike",
                     "unique_name": "motor"
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emotional",
+                    "name": "Socio-emocionale",
                     "unique_name": "socio_emotional"
                 },
                 {
                     "id": 6436,
-                    "name": "Cognitive",
+                    "name": "Kognitive",
                     "unique_name": "cognitive"
                 },
                 {
                     "id": 6441,
-                    "name": "Language and communication",
+                    "name": "Gjuha dhe komunikimi",
                     "unique_name": "language_and_communication"
                 }
             ],
             "category": [
                 {
                     "id": 1,
-                    "name": "Nutrition and Breastfeeding",
+                    "name": "Ushqyerja dhe gjidhënia",
                     "unique_name": "nutrition_and_breastfeeding"
                 },
                 {
                     "id": 2,
-                    "name": "Health and Wellbeing",
+                    "name": "Shëndeti dhe mirëqenia",
                     "unique_name": "health_and_wellbeing"
                 },
                 {
                     "id": 3,
-                    "name": "Safety and Protection",
+                    "name": "Siguria dhe mbrojtja",
                     "unique_name": "safety_and_protection"
                 },
                 {
                     "id": 4,
-                    "name": "Parenting Corner",
+                    "name": "Këndi i prindërve",
                     "unique_name": "parenting_corner"
                 },
                 {
                     "id": 5,
-                    "name": "Child Growth",
+                    "name": "Rritja e fëmijëve",
                     "unique_name": "child_growth"
                 },
                 {
                     "id": 6,
-                    "name": "Child Development",
+                    "name": "Zhvillimi i fëmijëve",
                     "unique_name": "child_development"
                 },
                 {
                     "id": 7,
-                    "name": "Health Check-ups",
+                    "name": "Kontrollet shëndetësore",
                     "unique_name": "health_check_ups"
                 },
                 {
                     "id": 8,
-                    "name": "Vaccination",
+                    "name": "Vaksinimi",
                     "unique_name": "vaccination"
                 },
                 {
                     "id": 55,
-                    "name": "Play and Learning",
+                    "name": "Loja dhe mësimi",
                     "unique_name": "play_and_learning"
                 },
                 {
                     "id": 56,
-                    "name": "Responsive Parenting",
+                    "name": "Prindërimi i përgjegjshëm",
                     "unique_name": "responsive_parenting"
                 }
             ],
             "chatbot_child_age": [
                 {
                     "id": 32711,
-                    "name": "Newborn"
+                    "name": "I posalindur"
                 },
                 {
                     "id": 32716,
-                    "name": "Infant"
+                    "name": "Foshnjë"
                 },
                 {
                     "id": 32721,
-                    "name": "Toddler"
+                    "name": "Vogëlush"
                 },
                 {
                     "id": 32726,
-                    "name": "Pre-schooler"
+                    "name": "I moshës parashkollore"
                 },
                 {
                     "id": 32731,
-                    "name": "All"
+                    "name": "Të gjithë"
                 }
             ],
             "child_age": [
                 {
                     "id": 43,
-                    "name": "1st month",
+                    "name": "muaji i parë",
                     "days_from": 0,
                     "days_to": 30,
                     "buffers_days": 10,
@@ -22418,7 +22418,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 44,
-                    "name": "2nd month",
+                    "name": "muaji i dytë",
                     "days_from": 31,
                     "days_to": 60,
                     "buffers_days": 10,
@@ -22430,7 +22430,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 45,
-                    "name": "3-4 months",
+                    "name": "muaji i tretë",
                     "days_from": 61,
                     "days_to": 120,
                     "buffers_days": 10,
@@ -22442,7 +22442,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 46,
-                    "name": "5-6 months",
+                    "name": "muajt 5-6",
                     "days_from": 121,
                     "days_to": 180,
                     "buffers_days": 10,
@@ -22454,7 +22454,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 47,
-                    "name": "7-9 months",
+                    "name": "muajt 7-9",
                     "days_from": 181,
                     "days_to": 270,
                     "buffers_days": 10,
@@ -22465,7 +22465,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 48,
-                    "name": "10-12 months",
+                    "name": "muajt 10-12",
                     "days_from": 271,
                     "days_to": 360,
                     "buffers_days": 10,
@@ -22476,7 +22476,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 49,
-                    "name": "13-18 months",
+                    "name": "muajt 13-18",
                     "days_from": 361,
                     "days_to": 540,
                     "buffers_days": 10,
@@ -22487,7 +22487,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 50,
-                    "name": "19-24 months",
+                    "name": "muajt 19-24",
                     "days_from": 541,
                     "days_to": 720,
                     "buffers_days": 10,
@@ -22498,7 +22498,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 51,
-                    "name": "25-36 months",
+                    "name": "muajt 25-36",
                     "days_from": 721,
                     "days_to": 1080,
                     "buffers_days": 10,
@@ -22509,7 +22509,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 52,
-                    "name": "37-48 months",
+                    "name": "muajt 37-48 ",
                     "days_from": 1081,
                     "days_to": 1140,
                     "buffers_days": 10,
@@ -22520,7 +22520,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 57,
-                    "name": "49-60 months",
+                    "name": "muajt 49-60",
                     "days_from": 1141,
                     "days_to": 1800,
                     "buffers_days": 10,
@@ -22531,7 +22531,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 58,
-                    "name": "61-72 months",
+                    "name": "muajt 61-72 ",
                     "days_from": 1801,
                     "days_to": 2160,
                     "buffers_days": 10,
@@ -22543,74 +22543,74 @@ export const taxonomydata:any = {
             "child_gender": [
                 {
                     "id": 40,
-                    "name": "Boy",
+                    "name": "dečak ",
                     "unique_name": "boy"
                 },
                 {
                     "id": 41,
-                    "name": "Girl",
+                    "name": "devojčica ",
                     "unique_name": "girl"
                 },
                 {
                     "id": 59,
-                    "name": "Both",
+                    "name": "oboje",
                     "unique_name": "both"
                 }
             ],
             "growth_introductory": [
                 {
                     "id": 10003,
-                    "name": "1 Month",
-                    "body": "During the first 5 days, the newborn will lose up to 10% of his body weight but with appropriate care and nutrition, primarily breastfeeding, they will compensate for this loss by the end of the second week of life. In the following period, the newborn will be gaining 20 to 30 g per day in weight, up to 5 cm monthly in length and 2-2.5 cm in head circumference.",
+                    "name": "1 muaj",
+                    "body": "Gjatë 5 ditëve të para, i porsalinduri do të humbasë deri në 10% të peshës së tij trupore por me kujdesin dhe ushqimin e duhur, kryesisht gjidhënien, ata do të kompensojnë këtë humbje deri në fund të javës së dytë të jetës. Në periudhën vijuese, i porsalinduri do të fitojë 20 deri në 30 g në ditë në peshë, deri në 5 cm në muaj në gjatësi dhe 2-2,5 cm në perimetrin e kokës.",
                     "days_from": 0,
                     "days_to": 30
                 },
                 {
                     "id": 10004,
-                    "name": "2 months, 3 months",
-                    "body": "In the second and third month, the child continues to grow at approximately the same pace that it established during the first weeks. S/he will gain 700 to 900 g per month in weight, 2.5 to 4 cm in length and about 1.2 cm in head circumference.",
+                    "name": "2 muaj, 3 muaj",
+                    "body": "Në muajin e dytë dhe të tretë, fëmija vazhdon të rritet me afërsisht të njëjtin ritëm që kishte gjatë javëve të para. Ajo/ai do të fitojë 700 deri 900 g në muaj në peshë, 2.5 deri në 4 cm në gjatësi dhe rreth 1.2 cm në perimetrin e kokës.",
                     "days_from": 31,
                     "days_to": 91
                 },
                 {
                     "id": 10005,
-                    "name": "5 months (covers 4 and 5 months)",
-                    "body": "The growth begins to slow down and during the fourth, fifth and sixth month, the child gains on an average 450-550 g in weight and about 2 cm in length",
+                    "name": "5 muaj (mbulon 4 dhe 5 muaj)",
+                    "body": "Rritja fillon të ngadalësohet dhe gjatë muajit të katërt, të pestë dhe të gjashtë, fëmija fiton mesatarisht 450-550 g në peshë dhe rreth 2 cm në gjatësi",
                     "days_from": 92,
                     "days_to": 152
                 },
                 {
                     "id": 10007,
-                    "name": "6 months",
-                    "body": "The child continues to gain 450-550 grams per month in weight and about 2 cm in lenght on an average. By the age of 6 months, the child has already doubled its body weight from birth.",
+                    "name": "6 muaj",
+                    "body": "Fëmija vazhdon të fitojë 450-550 gram në muaj në peshë dhe rreth 2 cm në gjatësi mesatarisht. Deri në moshën 6 muajshe, fëmija tashmë ka dyfishuar peshën e tij trupore që nga lindja.",
                     "days_from": 153,
                     "days_to": 183
                 },
                 {
                     "id": 10008,
-                    "name": "9 months (covers 7 to 9 months)",
-                    "body": "From the seventh to the ninth month, growth continues to slow down. Children grow at different pace but it is important to follow the pattern of growth that is established during the previous months.",
+                    "name": "9 muaj (mbulon nga 7 deri në 9 muaj)",
+                    "body": "Nga muaji i shtatë deri në muajin e nëntë, rritja vazhdon të ngadalësohet. Fëmijët rriten me ritme të ndryshme, por është e rëndësishme të ndiqni modelin e rritjes që është vendosur gjatë muajve të mëparshëm.",
                     "days_from": 184,
                     "days_to": 274
                 },
                 {
                     "id": 10009,
-                    "name": "12 months (covers from 10 -12 months)",
-                    "body": "In the last trimester of the first year, the child gains about 1 cm per month while the weight varies and depends on the activity level. During the first year, a child usually triples its weight at birth, grows 25 cm on an average and the head circumference increases by 12.5 cm.",
+                    "name": "12 muaj (mbulon nga 10 -12 muaj)",
+                    "body": "Në tremujorin e fundit të vitit të parë, fëmija fiton rreth 1 cm në muaj ndërsa pesha ndryshon dhe varet nga niveli i aktivitetit. Gjatë vitit të parë, një fëmijë zakonisht trefishon peshën e tij në lindje, rritet mesatarisht 25 cm dhe perimetri i kokës rritet për 12.5 cm.",
                     "days_from": 275,
                     "days_to": 365
                 },
                 {
                     "id": 10010,
-                    "name": "18 months (covers the second year)",
-                    "body": "In the second year, the gradual slowdown in growth continues. During this year, a child grows about 12 cm, gains 2-2.5 kg in weight and the head circumference increases by 2-2.5 cm.",
+                    "name": "18 muaj (mbulon vitin e dytë)",
+                    "body": "Në vitin e dytë, ngadalësimi gradual i rritjes vazhdon. Gjatë këtij viti, një fëmijë rritet rreth 12 cm, fiton 2-2.5 kg në peshë dhe perimetri i kokës rritet për 2-2.5 cm.",
                     "days_from": 366,
                     "days_to": 730
                 },
                 {
                     "id": 10012,
-                    "name": "3 years onwards (third year onwards)",
-                    "body": "The growth from the third years onwards becomes more even. A child gains 5-7.5 cm in height and 2-3 kg in weight per year.",
+                    "name": "3 vjet e tutje (viti i tretë e tutje)",
+                    "body": "Rritja nga vitet e treta e më tej bëhet më e barabartë. Një fëmijë fiton 5-7.5 cm gjatësi dhe 2-3 kg peshë në vit.",
                     "days_from": 731,
                     "days_to": 2190
                 }
@@ -22618,5023 +22618,5211 @@ export const taxonomydata:any = {
             "growth_period": [
                 {
                     "id": 6466,
-                    "name": "At birth",
+                    "name": "Në lindje",
                     "vaccination_opens": 0
                 },
                 {
                     "id": 6471,
-                    "name": "With full 1 month",
+                    "name": "Me 1 muaj të plotë",
                     "vaccination_opens": 30
                 },
                 {
                     "id": 6476,
-                    "name": "With full 2 months",
+                    "name": "Me 2 muaj të plotë ",
                     "vaccination_opens": 60
                 },
                 {
                     "id": 6481,
-                    "name": "With full 3 months",
+                    "name": "Me 3 muaj të plotë",
                     "vaccination_opens": 90
                 },
                 {
                     "id": 6486,
-                    "name": "With full 3.5 months",
+                    "name": "Me 3 muaj e gjysmë të plotë",
                     "vaccination_opens": 105
                 },
                 {
                     "id": 6491,
-                    "name": "With full 4 months",
+                    "name": "Me 4 muaj të plotë",
                     "vaccination_opens": 120
                 },
                 {
                     "id": 6496,
-                    "name": "With full 5 months",
+                    "name": "Me 5 muaj të plotë",
                     "vaccination_opens": 150
                 },
                 {
                     "id": 6501,
-                    "name": "With full 6 months",
+                    "name": "Me 6 muaj të plotë",
                     "vaccination_opens": 180
                 },
                 {
                     "id": 6506,
-                    "name": "From 16 to 23 months",
+                    "name": "Prej 16 deri në 23 muaj",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6511,
-                    "name": "With full 7 months",
+                    "name": "Me 7 muaj të plotë",
                     "vaccination_opens": 210
                 },
                 {
                     "id": 6516,
-                    "name": "With full 8 months",
+                    "name": "Me 8 muaj të plotë",
                     "vaccination_opens": 240
                 },
                 {
                     "id": 6521,
-                    "name": "With full 9 months",
+                    "name": "Me 9 muaj të plotë",
                     "vaccination_opens": 270
                 },
                 {
                     "id": 6526,
-                    "name": "With full 10 months",
+                    "name": "Me 10 muaj të plotë",
                     "vaccination_opens": 300
                 },
                 {
                     "id": 6531,
-                    "name": "With full 11 months",
+                    "name": "Me 11 muaj të plotë",
                     "vaccination_opens": 330
                 },
                 {
                     "id": 6532,
-                    "name": "With full 12 months",
+                    "name": "Me 12 muaj të plotë",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 6533,
-                    "name": "From 12 to 15 months",
+                    "name": "Prej 12 deri në 15 muaj",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 6534,
-                    "name": "With full 15 months",
+                    "name": "Me 15 muaj të plotë",
                     "vaccination_opens": 455
                 },
                 {
                     "id": 6535,
-                    "name": "With full 16 months",
+                    "name": "Me 16 muaj të plotë",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6537,
-                    "name": "With full 21 months",
+                    "name": "Me 21 muaj të plotë",
                     "vaccination_opens": 635
                 },
                 {
                     "id": 6538,
-                    "name": "With full 2 years",
+                    "name": "Me 2 vjet të plota",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6540,
-                    "name": "With full 27 Months",
+                    "name": "Me 27 muaj të plotë",
                     "vaccination_opens": 820
                 },
                 {
                     "id": 6541,
-                    "name": "With full 30 months",
+                    "name": "Me 30 muaj të plotë",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6542,
-                    "name": "With full 33 months",
+                    "name": "Me 33 muaj të plotë",
                     "vaccination_opens": 1000
                 },
                 {
                     "id": 6543,
-                    "name": "With full 3 years",
+                    "name": "Me 3 vjet të plota",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6544,
-                    "name": "From 30 to 36 months",
+                    "name": "Prej 30 deri në 36 muaj",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6545,
-                    "name": "From 24 to 30 months",
+                    "name": "Prej 24 deri në 30 muaj",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6546,
-                    "name": "From 36 to 48 months",
+                    "name": "Prej 36 deri në 48 muaj",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6547,
-                    "name": "With full 42 months",
+                    "name": "Me 42 muaj të plotë",
                     "vaccination_opens": 1275
                 },
                 {
                     "id": 6548,
-                    "name": "With full 4 years",
+                    "name": "Me 4 vjet të plota",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 6549,
-                    "name": "With full 54 months",
+                    "name": "Me 54 muaj të plotë",
                     "vaccination_opens": 1640
                 },
                 {
                     "id": 6550,
-                    "name": "From 48 to 61 months",
+                    "name": "Prej 48 deri në 61 muaj",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 6551,
-                    "name": "With full 5 years",
+                    "name": "Me 5 vjet të plota",
                     "vaccination_opens": 1825
                 },
                 {
                     "id": 6552,
-                    "name": "From 3 to 7 years",
+                    "name": "Prej 3 deri 7 vjet",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6553,
-                    "name": "With full 6 years",
+                    "name": "Me 6 vjet të plota",
                     "vaccination_opens": 2190
                 },
                 {
                     "id": 6556,
-                    "name": "With full 6,5 years",
+                    "name": "Me 6 vjet e gjysmë të plota",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 6557,
-                    "name": "With full 7 years",
+                    "name": "Me 7 vjet të plota.",
                     "vaccination_opens": 2555
                 },
                 {
                     "id": 6560,
-                    "name": "With full 18 months",
+                    "name": "Me 18 muaj të plotë",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 32906,
-                    "name": "With full 5,5 years",
+                    "name": "Me 5 vjet e gjysmë të plota",
                     "vaccination_opens": 2005
                 },
                 {
                     "id": 59016,
-                    "name": "From 5 to 6 years",
+                    "name": "Prej 5 deri në 6 vjet",
                     "vaccination_opens": 1825
                 },
                 {
                     "id": 59041,
-                    "name": "From 37 to 48 months",
+                    "name": "Prej 37 deri në 48 muaj",
                     "vaccination_opens": 1125
                 },
                 {
                     "id": 59051,
-                    "name": "With full 13 months",
+                    "name": "Me 13 muaj të plotë",
                     "vaccination_opens": 395
                 },
                 {
                     "id": 59056,
-                    "name": "From 6 to 7 years",
+                    "name": "Prej 6 deri në 7 vjet",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 59061,
-                    "name": "From 18 to 24 months",
+                    "name": "Prej 18 deri në 24 muaj",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 59076,
-                    "name": "From 12 to 18 months",
+                    "name": "Prej 12 deri në 18 muaj",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 59326,
-                    "name": "From 19 to 23 Months",
+                    "name": "Prej 19 deri në 23 muaj",
                     "vaccination_opens": 575
                 },
                 {
                     "id": 109721,
-                    "name": "With 15 days",
+                    "name": "Me 15 ditë",
                     "vaccination_opens": 15
                 },
                 {
                     "id": 110006,
-                    "name": "From 7 to 14 days",
+                    "name": "Prej 7 deri në 14 ditë",
                     "vaccination_opens": 7
                 },
                 {
                     "id": 110011,
-                    "name": "From 4 to 6 years",
+                    "name": "Prej 4 deri në 6 vjet",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 110016,
-                    "name": "With 21 days",
+                    "name": "Me 21 ditë",
                     "vaccination_opens": 21
                 }
             ],
             "growth_type": [
                 {
                     "id": 6461,
-                    "name": "Height for weight",
+                    "name": "Gjatësia për peshë",
                     "unique_name": "height_for_weight"
                 },
                 {
                     "id": 32786,
-                    "name": "Height for age",
+                    "name": "Gjatësia për moshë",
                     "unique_name": "height_for_age"
                 }
             ],
             "keywords": [
                 {
                     "id": 54,
-                    "name": " crib safety"
+                    "name": "siguria e shtratit të fëmijës"
                 },
                 {
                     "id": 62,
-                    "name": " doctor appointment"
+                    "name": "caktimi i vizitës tek mjeku"
+                },
+                {
+                    "id": 66,
+                    "name": "vbnm"
                 },
                 {
                     "id": 71,
-                    "name": " newborn"
+                    "name": "i/e porsalindur"
                 },
                 {
                     "id": 76,
-                    "name": " play"
+                    "name": "luaj"
                 },
                 {
                     "id": 81,
-                    "name": " development"
+                    "name": "zhvillimi"
                 },
                 {
                     "id": 86,
-                    "name": " motor skills"
+                    "name": "aftësitë motorike"
                 },
                 {
                     "id": 91,
-                    "name": " interaction"
+                    "name": "ndërveprimi"
                 },
                 {
                     "id": 96,
-                    "name": " sleep"
+                    "name": "gjumi"
                 },
                 {
                     "id": 101,
-                    "name": " routine"
+                    "name": "rutina"
                 },
                 {
                     "id": 106,
-                    "name": " settling"
+                    "name": "qetësimi"
                 },
                 {
                     "id": 111,
-                    "name": " safe sleeping"
+                    "name": "gjumi i sigurt"
                 },
                 {
                     "id": 116,
-                    "name": " newborns"
+                    "name": "të porsalindurit"
                 },
                 {
                     "id": 121,
-                    "name": " immunization"
+                    "name": "imunizimi"
                 },
                 {
                     "id": 126,
-                    "name": " vaccination"
+                    "name": "vaksinimi"
                 },
                 {
                     "id": 131,
-                    "name": " child health"
+                    "name": "shëndeti i fëmijës"
                 },
                 {
                     "id": 136,
-                    "name": " disease prevention"
+                    "name": "parandalimi i sëmundjeve"
+                },
+                {
+                    "id": 141,
+                    "name": "COVID-19"
                 },
                 {
                     "id": 146,
-                    "name": " breastfeeding"
+                    "name": "ushqyerja me gji"
                 },
                 {
                     "id": 151,
-                    "name": " protection"
+                    "name": "mbrojtja"
                 },
                 {
                     "id": 156,
-                    "name": " Learning activities"
+                    "name": "Aktivitetet mësimore"
                 },
                 {
                     "id": 161,
-                    "name": " Singing"
+                    "name": "të kënduarit"
                 },
                 {
                     "id": 166,
-                    "name": " Second language"
+                    "name": "Gjuha e dytë"
                 },
                 {
                     "id": 171,
-                    "name": " Toddlers"
+                    "name": "Të vegjëlit"
                 },
                 {
                     "id": 176,
-                    "name": " Game"
+                    "name": "Loja"
                 },
                 {
                     "id": 181,
-                    "name": " Fun"
+                    "name": "Argëtimi"
                 },
                 {
                     "id": 186,
-                    "name": " Physical activity"
+                    "name": "Aktiviteti fizik"
                 },
                 {
                     "id": 191,
-                    "name": " Speak"
+                    "name": "Të folurit"
                 },
                 {
                     "id": 196,
-                    "name": " language development"
+                    "name": "zhvillimi i gjuhës"
                 },
                 {
                     "id": 201,
-                    "name": " language skills"
+                    "name": "aftësitë gjuhësore"
                 },
                 {
                     "id": 206,
-                    "name": " learning"
+                    "name": "mësimnxënia/të nxënit"
                 },
                 {
                     "id": 211,
-                    "name": " teaching"
+                    "name": "mësimdhënia"
                 },
                 {
                     "id": 216,
-                    "name": " get dressed"
+                    "name": "veshja e rrobave"
                 },
                 {
                     "id": 221,
-                    "name": " Winter"
+                    "name": "Dimri"
                 },
                 {
                     "id": 226,
-                    "name": " play ideas"
+                    "name": "ide për lojëra"
                 },
                 {
                     "id": 231,
-                    "name": " skills development"
+                    "name": "zhvillimi i shkathtësive"
                 },
                 {
                     "id": 236,
-                    "name": " obstacles"
+                    "name": "pengesat"
                 },
                 {
                     "id": 241,
-                    "name": " physical development"
+                    "name": "zhvillimi fizik"
                 },
                 {
                     "id": 246,
-                    "name": " Reading"
+                    "name": "Leximi"
                 },
                 {
                     "id": 251,
-                    "name": " family time"
+                    "name": "koha me familjen"
                 },
                 {
                     "id": 256,
-                    "name": " social skills"
+                    "name": "shkathtësitë sociale"
                 },
                 {
                     "id": 261,
-                    "name": " literacy development"
+                    "name": "zhvillimi i shkrim-leximit"
                 },
                 {
                     "id": 266,
-                    "name": " communication"
+                    "name": "komunikimi"
                 },
                 {
                     "id": 271,
-                    "name": " baby talk"
+                    "name": "të folurit e foshnjave"
                 },
                 {
                     "id": 276,
-                    "name": " care for baby at childbirth"
+                    "name": "kujdesi për foshnjën gjatë lindjes"
                 },
                 {
                     "id": 281,
-                    "name": " breastfeeding initiation"
+                    "name": "fillimi/inicimi i të ushqyerit me gji"
                 },
                 {
                     "id": 286,
-                    "name": " feeding baby at childbirth"
+                    "name": "ushqyerja e foshnjës në lindje"
                 },
                 {
                     "id": 291,
-                    "name": " breastfeeding positions"
+                    "name": "pozicionet e gjidhënies"
                 },
                 {
                     "id": 296,
-                    "name": " holding baby"
+                    "name": "mbajtja e foshnjës"
                 },
                 {
                     "id": 301,
-                    "name": " symptoms"
+                    "name": "simptomat"
                 },
                 {
                     "id": 306,
-                    "name": " sick child"
+                    "name": "fëmija i sëmurë"
                 },
                 {
                     "id": 311,
-                    "name": " COVID-19"
+                    "name": "COVID-19"
                 },
                 {
                     "id": 316,
-                    "name": " suspected COVID-19"
+                    "name": "rast i dyshuar me COVID-19"
                 },
                 {
                     "id": 321,
-                    "name": " confirmed COVID-19"
+                    "name": "rast i vërtetuar me COVID-19"
                 },
                 {
                     "id": 326,
-                    "name": " hygiene"
+                    "name": "higjiena"
                 },
                 {
                     "id": 331,
-                    "name": " infant formula"
+                    "name": "ushqim/formula për foshnje"
                 },
                 {
                     "id": 336,
-                    "name": " safe"
+                    "name": "i/e sigurt"
                 },
                 {
                     "id": 341,
-                    "name": " safety"
+                    "name": "siguria"
                 },
                 {
                     "id": 346,
-                    "name": " vaccines"
+                    "name": "vaksinat"
                 },
                 {
                     "id": 351,
-                    "name": " delaying vaccines"
+                    "name": "vonesa e vaksinave"
                 },
                 {
                     "id": 356,
-                    "name": " sun protection"
+                    "name": "mbrojtja nga dielli"
                 },
                 {
                     "id": 361,
-                    "name": " baby"
+                    "name": "foshnje"
                 },
                 {
                     "id": 366,
-                    "name": " care"
+                    "name": "përkujdesje"
                 },
                 {
                     "id": 371,
-                    "name": " bonding"
+                    "name": "lidhja (emocionale)"
                 },
                 {
                     "id": 376,
-                    "name": " stimulation"
+                    "name": "stimulimi/nxitja"
                 },
                 {
                     "id": 381,
-                    "name": " crying"
+                    "name": "të qarit"
                 },
                 {
                     "id": 386,
-                    "name": " overstimulation"
+                    "name": "stimulimi/nxitja e tepërt"
                 },
                 {
                     "id": 391,
-                    "name": " tired"
+                    "name": "i/e lodhur"
                 },
                 {
                     "id": 396,
-                    "name": " jaundice"
+                    "name": "verdhëza"
                 },
                 {
                     "id": 401,
-                    "name": " breastmilk"
+                    "name": "qumështi i gjirit"
                 },
                 {
                     "id": 406,
-                    "name": " screen time"
+                    "name": "koha për ekran (koha e kaluar duke shikuar TV ose duke përdorur pajisje tjera si telefoni, laptopi, etj.)"
                 },
                 {
                     "id": 411,
-                    "name": " safe play"
+                    "name": "loja e sigurt"
                 },
                 {
                     "id": 416,
-                    "name": " depression"
+                    "name": "depresioni"
                 },
                 {
                     "id": 421,
-                    "name": " men"
+                    "name": "burrat"
                 },
                 {
                     "id": 426,
-                    "name": " breastfeeding frequency"
+                    "name": "shpeshtësia e gjidhënies"
                 },
                 {
                     "id": 431,
-                    "name": " corrected age"
+                    "name": "mosha e korrigjuar"
                 },
                 {
                     "id": 436,
-                    "name": " adjusted age"
+                    "name": "mosha e përshtatur"
                 },
                 {
                     "id": 441,
-                    "name": " premature baby"
+                    "name": "foshnje e lindur para kohe"
                 },
                 {
                     "id": 451,
-                    "name": " feeding techniques"
+                    "name": "teknikat e të ushqyerit"
                 },
                 {
                     "id": 456,
-                    "name": " inflant"
+                    "name": " foshnje"
                 },
                 {
                     "id": 461,
-                    "name": " lactation"
+                    "name": "laktacioni"
                 },
                 {
                     "id": 466,
-                    "name": " relactation"
+                    "name": "relaktacioni/rinisja e gjidhënies"
                 },
                 {
                     "id": 471,
-                    "name": " newborn"
+                    "name": "i/e porsalindur"
                 },
                 {
                     "id": 476,
-                    "name": " infant"
+                    "name": " foshnje"
                 },
                 {
                     "id": 481,
-                    "name": " breastfeeding again"
+                    "name": "ushqyerja me gji përsëri"
                 },
                 {
                     "id": 486,
-                    "name": " diarrhoea"
+                    "name": "diarre/jashtëqitje"
                 },
                 {
                     "id": 491,
-                    "name": " disability"
+                    "name": "aftësi e kufizuar"
                 },
                 {
                     "id": 496,
-                    "name": " behaviour"
+                    "name": "sjellje"
                 },
                 {
                     "id": 501,
-                    "name": " disabilities"
+                    "name": "aftësitë e kufizuara"
                 },
                 {
                     "id": 506,
-                    "name": " siblings"
+                    "name": "vëllezërit dhe motrat"
                 },
                 {
                     "id": 511,
-                    "name": " feelings"
+                    "name": "ndjenjat"
                 },
                 {
                     "id": 516,
-                    "name": " relationships"
+                    "name": "marrëdhëniet"
                 },
                 {
                     "id": 521,
-                    "name": " family"
+                    "name": "familja"
                 },
                 {
                     "id": 526,
-                    "name": " language delay"
+                    "name": "vonesa në të folur"
                 },
                 {
                     "id": 531,
-                    "name": " developmental delay"
+                    "name": "vonesa në zhvillim"
                 },
                 {
                     "id": 536,
-                    "name": " Hepatitis"
+                    "name": "Hepatiti"
                 },
                 {
                     "id": 541,
-                    "name": " health check-ups"
+                    "name": "kontrollet mjekësore"
                 },
                 {
                     "id": 546,
-                    "name": " responsive parenting"
+                    "name": "prindërimi i përgjegjshëm"
                 },
                 {
                     "id": 551,
-                    "name": " Head lice"
+                    "name": "Morrat e kokës"
                 },
                 {
                     "id": 556,
-                    "name": " Scabies"
+                    "name": "Zgjeba"
                 },
                 {
                     "id": 561,
-                    "name": " worms"
+                    "name": "krimbat"
                 },
                 {
                     "id": 566,
-                    "name": " nutrition"
+                    "name": "Ushqyerja"
                 },
                 {
                     "id": 571,
-                    "name": " obesity"
+                    "name": "mbipesha"
                 },
                 {
                     "id": 576,
-                    "name": " Growing pains"
+                    "name": "Dhimbjet e rritjes"
                 },
                 {
                     "id": 581,
-                    "name": " Febrile convulsions"
+                    "name": "Konvulsionet febrile"
                 },
                 {
                     "id": 586,
-                    "name": " Headache"
+                    "name": "Dhimbje koke"
                 },
                 {
                     "id": 591,
-                    "name": " Epilepsy"
+                    "name": "Epilepsia"
                 },
                 {
                     "id": 596,
-                    "name": " seizures"
+                    "name": "Krizat epileptike/shtangimet"
                 },
                 {
                     "id": 601,
-                    "name": " Cleft lip"
+                    "name": "Buza e çarë (Buzë lepuri)"
                 },
                 {
                     "id": 606,
-                    "name": " cleft palate"
+                    "name": "qiellza e çarë"
                 },
                 {
                     "id": 611,
-                    "name": " Cleft"
+                    "name": "Çarje"
                 },
                 {
                     "id": 616,
-                    "name": " lip"
+                    "name": "buzë"
                 },
                 {
                     "id": 621,
-                    "name": " feeding"
+                    "name": "të ushqyerit"
                 },
                 {
                     "id": 626,
-                    "name": " speech therapy"
+                    "name": "terapi e të folurit/logopedi"
                 },
                 {
                     "id": 631,
-                    "name": " Hip"
+                    "name": "Ijë"
                 },
                 {
                     "id": 636,
-                    "name": " developmental dysplasia"
+                    "name": "displazia zhvillimore"
                 },
                 {
                     "id": 641,
-                    "name": " Clubfoot"
+                    "name": "Shputa e shtrembër"
                 },
                 {
                     "id": 646,
-                    "name": " foot"
+                    "name": "shputa"
                 },
                 {
                     "id": 651,
-                    "name": " feets"
+                    "name": "shputat"
                 },
                 {
                     "id": 656,
-                    "name": " ultrasound"
+                    "name": "ultrazëri"
                 },
                 {
                     "id": 661,
-                    "name": " Labial fusion"
+                    "name": "Fuzioni labial"
                 },
                 {
                     "id": 666,
-                    "name": " adhesions"
+                    "name": "ngjitjet e indeve/adezionet"
                 },
                 {
                     "id": 671,
-                    "name": " girls"
+                    "name": "vajzat"
                 },
                 {
                     "id": 676,
-                    "name": " Mouth ulcers"
+                    "name": "Ulçerat e gojës"
                 },
                 {
                     "id": 681,
-                    "name": " Mouth"
+                    "name": "Goja"
                 },
                 {
                     "id": 686,
-                    "name": " Ulcers"
+                    "name": "Ulçerat"
                 },
                 {
                     "id": 691,
-                    "name": " Herpes"
+                    "name": "Herpesi"
                 },
                 {
                     "id": 696,
-                    "name": " mouth infection"
+                    "name": "infeksioni i gojës"
                 },
                 {
                     "id": 701,
-                    "name": " Slapped cheek disease"
+                    "name": "Sëmundja e skuqjes së faqeve"
                 },
                 {
                     "id": 706,
-                    "name": " rash"
+                    "name": "skuqja e lëkurës"
                 },
                 {
                     "id": 711,
-                    "name": " fever"
+                    "name": "ethe"
                 },
                 {
                     "id": 716,
-                    "name": " Hand"
+                    "name": "dora"
                 },
                 {
                     "id": 721,
-                    "name": " Impetigo"
+                    "name": "Impetigo/puçërra lëkure"
                 },
                 {
                     "id": 726,
-                    "name": " cut"
+                    "name": "prerje"
                 },
                 {
                     "id": 731,
-                    "name": " scratch"
+                    "name": "gërvishtje"
                 },
                 {
                     "id": 736,
-                    "name": " skin"
+                    "name": "lëkura"
                 },
                 {
                     "id": 741,
-                    "name": " Heat rash"
+                    "name": "Skuqje e shkaktuar nga nxehtësia"
                 },
                 {
                     "id": 746,
-                    "name": " Swollen lymph glands"
+                    "name": "Gjëndrat e fryra/të ënjtura limfatike"
                 },
                 {
                     "id": 751,
-                    "name": " Mumps"
+                    "name": "Shytat"
                 },
                 {
                     "id": 756,
-                    "name": " immunisation"
+                    "name": "iImunizimi"
                 },
                 {
                     "id": 761,
-                    "name": " Glandular fever"
+                    "name": "Ethet e gjëndrave"
                 },
                 {
                     "id": 766,
-                    "name": " Scarlet fever"
+                    "name": "Fruthi i zi/i keq"
                 },
                 {
                     "id": 771,
-                    "name": " Whooping cough"
+                    "name": "Kollë e mirë"
                 },
                 {
                     "id": 776,
-                    "name": " cough"
+                    "name": "kollitje"
                 },
                 {
                     "id": 781,
-                    "name": " breathing"
+                    "name": "frymëmarrje"
                 },
                 {
                     "id": 786,
-                    "name": " Measles"
+                    "name": "Fruthi"
                 },
                 {
                     "id": 791,
-                    "name": " Rubella"
+                    "name": "Rubeola"
                 },
                 {
                     "id": 796,
-                    "name": " sore throat"
+                    "name": "dhimbje e fytit"
                 },
                 {
                     "id": 801,
-                    "name": " Chickenpox"
+                    "name": "Lija"
                 },
                 {
                     "id": 806,
-                    "name": " Vulvovaginitis"
+                    "name": "Vulvovaginiti"
                 },
                 {
                     "id": 811,
-                    "name": " Urinary infection"
+                    "name": "Infeksion urinar"
                 },
                 {
                     "id": 816,
-                    "name": " infection"
+                    "name": "iInfeksion"
                 },
                 {
                     "id": 821,
-                    "name": " testicle"
+                    "name": "testikuj"
                 },
                 {
                     "id": 826,
-                    "name": " boy"
+                    "name": "djalë"
                 },
                 {
                     "id": 831,
-                    "name": " Circumcision"
+                    "name": "Bërja synet/synetimi"
                 },
                 {
                     "id": 836,
-                    "name": " Coeliac"
+                    "name": "Celiak"
                 },
                 {
                     "id": 841,
-                    "name": " gluten"
+                    "name": "gluteni"
                 },
                 {
                     "id": 846,
-                    "name": " wheat"
+                    "name": "gruri"
                 },
                 {
                     "id": 851,
-                    "name": " food"
+                    "name": "ushqimi"
                 },
                 {
                     "id": 856,
-                    "name": " Type-2 diabetes"
+                    "name": "Diabeti i Tipit 2"
                 },
                 {
                     "id": 861,
-                    "name": " diabetes"
+                    "name": "diabeti"
                 },
                 {
                     "id": 866,
-                    "name": " weight"
+                    "name": "pesha"
                 },
                 {
                     "id": 871,
-                    "name": " Type-1 diabetes"
+                    "name": "Diabeti i Tipit 1"
                 },
                 {
                     "id": 876,
-                    "name": " frequent urination"
+                    "name": "urinimi i shpeshtë"
                 },
                 {
                     "id": 881,
-                    "name": " weight loss"
+                    "name": "humbja e peshës"
                 },
                 {
                     "id": 886,
-                    "name": " Dehydration"
+                    "name": "Dehidrimi"
                 },
                 {
                     "id": 891,
-                    "name": " vomiting"
+                    "name": "të vjella"
                 },
                 {
                     "id": 896,
-                    "name": " Nausea"
+                    "name": "Të përziera/mundim"
                 },
                 {
                     "id": 901,
-                    "name": " Appendicitis"
+                    "name": "Apendiciti"
                 },
                 {
                     "id": 906,
-                    "name": " tummy pain"
+                    "name": "dhimbje barku"
                 },
                 {
                     "id": 911,
-                    "name": " tummy"
+                    "name": "barku"
                 },
                 {
                     "id": 916,
-                    "name": " appendix"
+                    "name": "Apendiksi (pjesë e dalë e një organi)"
                 },
                 {
                     "id": 921,
-                    "name": " tantrum"
+                    "name": "tantrume/zemërim i çastit"
                 },
                 {
                     "id": 926,
-                    "name": " Stomach ache"
+                    "name": "Dhimbje stomaku"
                 },
                 {
                     "id": 931,
-                    "name": " stomach"
+                    "name": "stomaku"
                 },
                 {
                     "id": 936,
-                    "name": " being a parent"
+                    "name": "të jesh prind"
                 },
                 {
                     "id": 941,
-                    "name": " Food poisoning"
+                    "name": "Helmimi nga ushqimi"
                 },
                 {
                     "id": 946,
-                    "name": " Faecal incontinence"
+                    "name": "Mosmbajtja (Inkontinenca) e jashtëqitjes"
                 },
                 {
                     "id": 951,
-                    "name": " toilet"
+                    "name": "tualeti"
                 },
                 {
                     "id": 956,
-                    "name": " poo"
+                    "name": "jashtëqitja "
                 },
                 {
                     "id": 961,
-                    "name": " bowel"
+                    "name": "zorrë"
                 },
                 {
                     "id": 966,
-                    "name": " Passing wind"
+                    "name": "lirimi i gazrave"
                 },
                 {
                     "id": 971,
-                    "name": " flatulence"
+                    "name": "gazra stomaku"
                 },
                 {
                     "id": 976,
-                    "name": " Constipation"
+                    "name": "Kapsllëk"
                 },
                 {
                     "id": 981,
-                    "name": " speech development"
+                    "name": "zhvillimi i të folurit"
                 },
                 {
                     "id": 986,
-                    "name": " conversation"
+                    "name": "biseda"
                 },
                 {
                     "id": 991,
-                    "name": " sexual education"
+                    "name": "edukimi seksual"
                 },
                 {
                     "id": 996,
-                    "name": " nurturing care"
+                    "name": "përkujdesja përmes edukimit"
                 },
                 {
                     "id": 1001,
-                    "name": " sexual behaviour"
+                    "name": "sjellje seksuale"
                 },
                 {
                     "id": 1006,
-                    "name": " self-regulation"
+                    "name": "vetë-rregullimi"
                 },
                 {
                     "id": 1011,
-                    "name": " self-steem"
+                    "name": "vetë-vlerësimi"
                 },
                 {
                     "id": 1016,
-                    "name": " identity"
+                    "name": "identiteti"
                 },
                 {
                     "id": 1021,
-                    "name": " love"
+                    "name": "dashuria"
                 },
                 {
                     "id": 1026,
-                    "name": " soothing"
+                    "name": "qetësues/lehtësues"
                 },
                 {
                     "id": 1031,
-                    "name": " transitions"
+                    "name": "tranzicionet/ndryshimet"
                 },
                 {
                     "id": 1036,
-                    "name": " bullying"
+                    "name": "ngacmimi (bullizmi)"
                 },
                 {
                     "id": 1041,
-                    "name": " Growth charts"
+                    "name": "Grafikët e rritjes (zhvillimit)"
                 },
                 {
                     "id": 1046,
-                    "name": " Child development"
+                    "name": "Zhvillimi i fëmijës"
                 },
                 {
                     "id": 1051,
-                    "name": " Childhood development"
+                    "name": "Zhvillimi gjatë fëmijërisë"
                 },
                 {
                     "id": 1056,
-                    "name": " childrens development"
+                    "name": "zhvillimi i fëmijëve"
                 },
                 {
                     "id": 1061,
-                    "name": " Dental care"
+                    "name": "Perkujdesja dentare"
                 },
                 {
                     "id": 1066,
-                    "name": " Teeth care"
+                    "name": "Kujdesi për dhëmbët"
                 },
                 {
                     "id": 1071,
-                    "name": " Tooth care"
+                    "name": "Kujdesi për dhëmbin"
                 },
                 {
                     "id": 1076,
-                    "name": " Caring for teeth and gums"
+                    "name": "Kujdesi për dhëmbët dhe mishrat e dhëmbëve"
                 },
                 {
                     "id": 1081,
-                    "name": " Dental hygiene"
+                    "name": "Higjiena e dhëmbëve"
+                },
+                {
+                    "id": 1086,
+                    "name": "Higjiena e mirë e dhëmbëve"
                 },
                 {
                     "id": 1091,
-                    "name": " First teeth"
+                    "name": "Dhëmbët e parë"
                 },
                 {
                     "id": 1096,
-                    "name": " Bedwetting"
+                    "name": "Urinimi i fëmijëve në shtrat"
                 },
                 {
                     "id": 1101,
-                    "name": " Bed wetting"
+                    "name": "Urinimi në shtrat"
                 },
                 {
                     "id": 1106,
-                    "name": " enuresis"
+                    "name": "Enureza (urinimi i pavullnetshëm)"
                 },
                 {
                     "id": 1111,
-                    "name": " External ear infection"
+                    "name": "Infeksioni i jashtëm i veshit"
                 },
                 {
                     "id": 1116,
-                    "name": " Outer ear infection"
+                    "name": "Infeksioni i veshit të jashtëm"
                 },
                 {
                     "id": 1121,
-                    "name": " Otitis externa"
+                    "name": "Otit (inflamacion) i jashtëm"
                 },
                 {
                     "id": 1126,
-                    "name": " Swimmer’s ear"
+                    "name": "Veshi i notarit"
                 },
                 {
                     "id": 1131,
-                    "name": " Swimmers ear"
+                    "name": "Veshi i notarëve"
                 },
                 {
                     "id": 1136,
-                    "name": " getting prepared"
+                    "name": "duke u përgatitur"
                 },
                 {
                     "id": 1141,
-                    "name": " Colic"
+                    "name": "Dhimbje barku (kolika)"
                 },
                 {
                     "id": 1146,
-                    "name": " Colicky"
+                    "name": "Me dhimbje barku (kolikë)"
                 },
                 {
                     "id": 1151,
-                    "name": " Colicky baby"
+                    "name": "Foshnjë me dhimbje barku (kolikë)"
                 },
                 {
                     "id": 1156,
-                    "name": " Colicky babies"
+                    "name": "Foshnje me kolikë"
                 },
                 {
                     "id": 1161,
-                    "name": " Nappy"
+                    "name": "Pelenë"
                 },
                 {
                     "id": 1166,
-                    "name": " Nappies"
+                    "name": "Pelenat"
                 },
                 {
                     "id": 1171,
-                    "name": " Diaper"
+                    "name": "Pelenë"
                 },
                 {
                     "id": 1176,
-                    "name": " Diapers"
+                    "name": "Pelenat"
                 },
                 {
                     "id": 1181,
-                    "name": " Nappy - disposable"
+                    "name": "Pelenë njëpërdorimshme"
                 },
                 {
                     "id": 1186,
-                    "name": " Nappies - disposable"
+                    "name": "Pelena njëpërdorimshme"
                 },
                 {
                     "id": 1191,
-                    "name": " Disposable nappy"
+                    "name": "Pelenë njëpërdorimshme"
                 },
                 {
                     "id": 1196,
-                    "name": " Disposable nappies"
+                    "name": "Pelena njëpërdorimshme"
                 },
                 {
                     "id": 1201,
-                    "name": " Nappy - cloth"
+                    "name": "Pelenë pëlhure"
                 },
                 {
                     "id": 1206,
-                    "name": " Nappies - cloth"
+                    "name": "Pelena prej pëlhure"
                 },
                 {
                     "id": 1211,
-                    "name": " Cloth nappy"
+                    "name": "Pelenë pëlhure"
                 },
                 {
                     "id": 1216,
-                    "name": " Cloth nappies"
+                    "name": "Pelena prej pëlhure"
                 },
                 {
                     "id": 1221,
-                    "name": " Newborn first week"
+                    "name": "Java e parë e të porsalindurit"
                 },
                 {
                     "id": 1226,
-                    "name": " Baby first week"
+                    "name": "Java e parë e foshnjës"
                 },
                 {
                     "id": 1231,
-                    "name": " First week"
+                    "name": "Java e parë"
                 },
                 {
                     "id": 1236,
-                    "name": " First week of life"
+                    "name": "Java e parë e jetës"
                 },
                 {
                     "id": 1241,
-                    "name": " Vitamin D"
+                    "name": "Vitamina D"
                 },
                 {
                     "id": 1246,
-                    "name": " Blended family"
+                    "name": "Familje e përzier"
                 },
                 {
                     "id": 1251,
-                    "name": " Blended families"
+                    "name": "Familje të përziera"
                 },
                 {
                     "id": 1256,
-                    "name": " stepfamilies"
+                    "name": "familjet me njerk/njerkë"
                 },
                 {
                     "id": 1261,
-                    "name": " step-families"
+                    "name": "familje - me njerk/njerkë"
                 },
                 {
                     "id": 1266,
-                    "name": " step families"
+                    "name": "familje me njerk/njerkë"
                 },
                 {
                     "id": 1271,
-                    "name": " stepfamily"
+                    "name": "familja me njerk/njerkë"
                 },
                 {
                     "id": 1276,
-                    "name": " step-family"
+                    "name": "familja -  me njerk/njerkë"
                 },
                 {
                     "id": 1281,
-                    "name": " step family"
+                    "name": "familje me njerk/njerkë"
                 },
                 {
                     "id": 1286,
-                    "name": " New baby"
+                    "name": "Foshnjë e re"
                 },
                 {
                     "id": 1291,
-                    "name": " New sibling"
+                    "name": "Vëlla/motër i/e ri/re"
                 },
                 {
                     "id": 1296,
-                    "name": " New brother"
+                    "name": "Vëlla i ri"
                 },
                 {
                     "id": 1301,
-                    "name": " new sister"
+                    "name": "Motër e re"
                 },
                 {
                     "id": 1306,
-                    "name": " Birth"
+                    "name": "Lindje"
                 },
                 {
                     "id": 1311,
-                    "name": " Newborn baby"
+                    "name": "Foshnje e porsalindur"
                 },
                 {
                     "id": 1316,
-                    "name": " Newborn babies"
+                    "name": "Foshnja të porsalindura"
                 },
                 {
                     "id": 1321,
-                    "name": " Apgar score"
+                    "name": "Rezultati Apgar"
+                },
+                {
+                    "id": 1326,
+                    "name": "Apgar"
+                },
+                {
+                    "id": 1331,
+                    "name": "Kontrolli Apgar"
+                },
+                {
+                    "id": 1336,
+                    "name": "Testi Apgar"
                 },
                 {
                     "id": 1341,
-                    "name": " Bath"
+                    "name": "Banjo"
                 },
                 {
                     "id": 1346,
-                    "name": " Bathe"
+                    "name": "Lahem"
                 },
                 {
                     "id": 1351,
-                    "name": " Bathing"
+                    "name": "Larje"
                 },
                 {
                     "id": 1356,
-                    "name": " Batheing"
+                    "name": "Duke u larë"
                 },
                 {
                     "id": 1361,
-                    "name": " Tooth decay"
+                    "name": "Prishja e dhëmbit"
                 },
                 {
                     "id": 1366,
-                    "name": " Early childhood tooth decay"
+                    "name": "Prishja e dhëmbëve në fëmijërinë e hershme"
                 },
                 {
                     "id": 1371,
-                    "name": " Dental caries"
+                    "name": "Kariesi dentar"
                 },
                 {
                     "id": 1376,
-                    "name": " Teeth decay"
+                    "name": "Prishja e dhëmbëve"
                 },
                 {
                     "id": 1381,
-                    "name": " Rotten teeth"
+                    "name": "Dhëmbë të prishur"
                 },
                 {
                     "id": 1386,
-                    "name": " Holding"
+                    "name": "Mbajtja"
                 },
                 {
                     "id": 1391,
-                    "name": " comfort holding"
+                    "name": "mbajtje e rehatshme"
                 },
                 {
                     "id": 1396,
-                    "name": " Massage"
+                    "name": "Masazh"
                 },
                 {
                     "id": 1401,
-                    "name": " Infant massage"
+                    "name": "Masazhi i foshnjës"
                 },
                 {
                     "id": 1406,
-                    "name": " Baby massage"
+                    "name": "Masazhi i foshnjës"
                 },
                 {
                     "id": 1411,
-                    "name": " Massaging your baby"
+                    "name": "Masazhimi i foshnjës suaj"
                 },
                 {
                     "id": 1416,
-                    "name": " Medication"
+                    "name": "Mjekim (me ilaçe)"
                 },
                 {
                     "id": 1421,
-                    "name": " Medicine"
+                    "name": "Ilaçi"
                 },
                 {
                     "id": 1426,
-                    "name": " Medicines"
+                    "name": "Ilaçet"
                 },
                 {
                     "id": 1431,
-                    "name": " Medications"
+                    "name": "Medikamentet"
                 },
                 {
                     "id": 1436,
-                    "name": " Illness"
+                    "name": "Sëmundje"
                 },
                 {
                     "id": 1441,
-                    "name": " Serious illness"
+                    "name": "Sëmundje e rëndë"
                 },
                 {
                     "id": 1446,
-                    "name": " Sickness"
+                    "name": "Sëmundje"
                 },
                 {
                     "id": 1451,
-                    "name": " Serious sickness"
+                    "name": "Sëmundje e rëndë"
                 },
                 {
                     "id": 1456,
-                    "name": " Ill"
+                    "name": "I/e sëmurë"
                 },
                 {
                     "id": 1461,
-                    "name": " Sick"
+                    "name": "I/e sëmurë"
                 },
                 {
                     "id": 1466,
-                    "name": " High temperature"
+                    "name": "Temperaturë e lartë"
                 },
                 {
                     "id": 1471,
-                    "name": " Taking a temperature"
+                    "name": "Matja e temperaturës"
                 },
                 {
                     "id": 1476,
-                    "name": " Temperature"
+                    "name": "Temperatura"
+                },
+                {
+                    "id": 1481,
+                    "name": "Temperatura e fëmijës"
+                },
+                {
+                    "id": 1486,
+                    "name": "Matja e temperaturës së fëmijës suaj"
                 },
                 {
                     "id": 1491,
-                    "name": " Taking a child’s temperature"
+                    "name": "Matja e temperaturës së fëmijes"
                 },
                 {
                     "id": 1496,
-                    "name": " Thermometer"
+                    "name": "Termometri"
                 },
                 {
                     "id": 1501,
-                    "name": " Thermometers"
+                    "name": "Termometra"
                 },
                 {
                     "id": 1506,
-                    "name": " Neonatal jaundice"
+                    "name": "Verdhëza neonatale"
                 },
                 {
                     "id": 1511,
-                    "name": " Newborn jaundice"
+                    "name": "Verdhëza e të porsalindurit"
                 },
                 {
                     "id": 1516,
-                    "name": " Jaundice in newborns"
+                    "name": "Verdhëza tek të porsalindurit"
                 },
                 {
                     "id": 1521,
-                    "name": " Cradle cap"
+                    "name": "Krustat e qumështit"
                 },
                 {
                     "id": 1526,
-                    "name": " Plagiocephaly"
+                    "name": "Plagiocefalia"
                 },
                 {
                     "id": 1531,
-                    "name": " Flat head"
+                    "name": "Koka e rrafshët"
                 },
                 {
                     "id": 1536,
-                    "name": " Flattened head"
+                    "name": "Koka e rrafshët"
                 },
                 {
                     "id": 1541,
-                    "name": " Flat spot on head"
+                    "name": "Vend i rrafshët në kokë"
                 },
                 {
                     "id": 1546,
-                    "name": " Allergies"
+                    "name": "Alergjitë"
                 },
                 {
                     "id": 1551,
-                    "name": " Allergy"
+                    "name": "Alergji"
                 },
                 {
                     "id": 1556,
-                    "name": " Allergic"
+                    "name": "Alergjik"
                 },
                 {
                     "id": 1561,
-                    "name": " Allergic reaction"
+                    "name": "Reaksion alergjik"
                 },
                 {
                     "id": 1566,
-                    "name": " Anaphylaxis"
+                    "name": "Anafilaksi"
                 },
                 {
                     "id": 1571,
-                    "name": " Anaphylactic"
+                    "name": "Anafilaktik"
                 },
                 {
                     "id": 1576,
-                    "name": " Anaphalactic"
+                    "name": "Anafalaktik"
                 },
                 {
                     "id": 1581,
-                    "name": " Lactose intolerance"
+                    "name": "Intoleranca ndaj laktozës"
                 },
                 {
                     "id": 1586,
-                    "name": " Lactose intolerant"
+                    "name": "Intolerant/e ndaj laktozës"
                 },
                 {
                     "id": 1591,
-                    "name": " Lactose"
+                    "name": "Laktoza"
                 },
                 {
                     "id": 1596,
-                    "name": " Lactase"
+                    "name": "Laktaza"
                 },
                 {
                     "id": 1601,
-                    "name": " Tired signs"
+                    "name": "Shenja të lodhjes"
                 },
                 {
                     "id": 1606,
-                    "name": " Wrapping"
+                    "name": "Mbështjellja"
                 },
                 {
                     "id": 1611,
-                    "name": " Wrap"
+                    "name": "Mbështjell"
                 },
                 {
                     "id": 1616,
-                    "name": " Swaddle"
+                    "name": "Mbështjell me pelena"
                 },
                 {
                     "id": 1621,
-                    "name": " Swaddleing"
+                    "name": "Mbështjellje me pelena"
                 },
                 {
                     "id": 1626,
-                    "name": " Swaddling"
+                    "name": "Mbështjellje me pelena"
                 },
                 {
                     "id": 1631,
-                    "name": " Swadle"
+                    "name": "Mbështjell me pelena"
                 },
                 {
                     "id": 1636,
-                    "name": " Co-sleeping"
+                    "name": "Të fjeturit së bashku"
                 },
                 {
                     "id": 1641,
-                    "name": " sharing a bed with baby"
+                    "name": "ndarja e shtratit me foshnjën"
                 },
                 {
                     "id": 1646,
-                    "name": " Bed-sharing"
+                    "name": "Ndarja e shtratit"
                 },
                 {
                     "id": 1651,
-                    "name": " Neonatal Intensive Care Unit"
+                    "name": "Njësia e Kujdesit Intensiv Neonatal"
                 },
                 {
                     "id": 1656,
-                    "name": " NICU"
+                    "name": "NjKIN"
                 },
                 {
                     "id": 1661,
-                    "name": " Premature babies"
+                    "name": "Foshnje e lindur para kohe"
                 },
                 {
                     "id": 1666,
-                    "name": " Premmies"
+                    "name": "Foshnje të parakohshme"
                 },
                 {
                     "id": 1671,
-                    "name": " Parents"
+                    "name": "Prindërit"
                 },
                 {
                     "id": 1676,
-                    "name": " Support"
+                    "name": "Mbështetje"
                 },
                 {
                     "id": 1681,
-                    "name": " Middle ear infection"
+                    "name": "Infeksioni i veshit të mesëm"
                 },
                 {
                     "id": 1686,
-                    "name": " Inner ear infection"
+                    "name": "Infeksioni i veshit të brendshëm"
                 },
                 {
                     "id": 1691,
-                    "name": " Otitis media"
+                    "name": "Otitis media"
                 },
                 {
                     "id": 1696,
-                    "name": " Food allergy"
+                    "name": "Alergji në ushqim"
                 },
                 {
                     "id": 1701,
-                    "name": " Food allergies"
+                    "name": "Alergjitë në ushqim"
                 },
                 {
                     "id": 1706,
-                    "name": " Food intolerance"
+                    "name": "Intoleranca ndaj ushqimit"
                 },
                 {
                     "id": 1711,
-                    "name": " Food intolerances"
+                    "name": "Intolerancat ndaj ushqimit"
                 },
                 {
                     "id": 1716,
-                    "name": " Food sensitivity"
+                    "name": "Ndjeshmëria ndaj ushqimit"
                 },
                 {
                     "id": 1721,
-                    "name": " Food sensitivities"
+                    "name": "Ndjeshmëritë ndaj ushqimit"
                 },
                 {
                     "id": 1726,
-                    "name": " Food intolerant"
+                    "name": "Intolerant ndaj ushqimit"
                 },
                 {
                     "id": 1731,
-                    "name": " Reflux"
+                    "name": "Refluksi"
                 },
                 {
                     "id": 1736,
-                    "name": " Gastro-oesophageal reflux"
+                    "name": "Refluksi gastro-ezofageal"
                 },
                 {
                     "id": 1741,
-                    "name": " Gastrooesophageal reflux"
+                    "name": "Refluksi gastroezofageal"
                 },
                 {
                     "id": 1746,
-                    "name": " Gastroesophageal reflux"
+                    "name": "Refluksi gastroezofageal"
                 },
                 {
                     "id": 1751,
-                    "name": " GOR"
+                    "name": "RGE"
                 },
                 {
                     "id": 1756,
-                    "name": " GORD"
+                    "name": "SRGE"
                 },
                 {
                     "id": 1761,
-                    "name": " Sleeping"
+                    "name": "Duke fjetur"
                 },
                 {
                     "id": 1766,
-                    "name": " Sleeps"
+                    "name": "Fle"
                 },
                 {
                     "id": 1771,
-                    "name": " Sleep habits"
+                    "name": "Shprehitë e gjumit"
                 },
                 {
                     "id": 1776,
-                    "name": " Teeth"
+                    "name": "Dhëmbët"
                 },
                 {
                     "id": 1781,
-                    "name": " Oral health"
+                    "name": "Shëndeti oral"
                 },
                 {
                     "id": 1786,
-                    "name": " Dental health"
+                    "name": "Shëndeti i dhëmbëve"
+                },
+                {
+                    "id": 1791,
+                    "name": "Kujdesi për dhëmbët"
+                },
+                {
+                    "id": 1796,
+                    "name": "Dalja e dhëmbëve"
                 },
                 {
                     "id": 1801,
-                    "name": " Getting teeth"
+                    "name": "Dalja e dhëmbëve"
                 },
                 {
                     "id": 1806,
-                    "name": " Toilet training"
+                    "name": "Trajnimi i fëmijëve për përdorim të tualetit"
                 },
                 {
                     "id": 1811,
-                    "name": " Toileting"
+                    "name": "Përdorimi i tualetit"
                 },
                 {
                     "id": 1816,
-                    "name": " Toddler routines"
+                    "name": "Rutinat e fëmijëve të vegjël"
                 },
                 {
                     "id": 1821,
-                    "name": " Routines for toddlers"
+                    "name": "Rutinat për fëmijët e vegjël"
                 },
                 {
                     "id": 1826,
-                    "name": " Toddlers routines"
+                    "name": "Rutinat e fëmijëve të vegjël"
+                },
+                {
+                    "id": 1831,
+                    "name": "Pyetjet e shpeshta"
                 },
                 {
                     "id": 1836,
-                    "name": " FAQs"
+                    "name": "Pyetjet e shpeshta"
                 },
                 {
                     "id": 1841,
-                    "name": " FAQ"
+                    "name": "Pyetjet e shpeshta"
                 },
                 {
                     "id": 1846,
-                    "name": " Questions"
+                    "name": "Pyetjet"
                 },
                 {
                     "id": 1851,
-                    "name": " Frequent questions"
+                    "name": "Pyetje të shpeshta"
                 },
                 {
                     "id": 1856,
-                    "name": " Good sleep"
+                    "name": "Gjumë i mirë"
                 },
                 {
                     "id": 1861,
-                    "name": " A good nights sleep"
+                    "name": "Gjumë i mirë nate"
                 },
                 {
                     "id": 1866,
-                    "name": " Sleeping well"
+                    "name": "Të fjeturit mirë"
                 },
                 {
                     "id": 1871,
-                    "name": " Quality sleep"
+                    "name": "Gjumë cilësor ( i mirë )"
                 },
                 {
                     "id": 1876,
-                    "name": " Sleep routine"
+                    "name": "Rutina e gjumit"
                 },
                 {
                     "id": 1881,
-                    "name": " Sleep environment"
+                    "name": "Mjedisi i gjumit"
                 },
                 {
                     "id": 1886,
-                    "name": " Where children sleep"
+                    "name": "Vendi ku flejnë fëmijët"
                 },
                 {
                     "id": 1891,
-                    "name": " Noise and light while sleeping"
+                    "name": "Zhurma dhe drita gjatë fjetjes"
                 },
                 {
                     "id": 1896,
-                    "name": " Preschooler routines"
+                    "name": "Rutinat e parashkollorëve"
                 },
                 {
                     "id": 1901,
-                    "name": " Routines for preschoolers"
+                    "name": "Rutinat për fëmijët parashkollorë"
                 },
                 {
                     "id": 1906,
-                    "name": " Preschoolers routines"
+                    "name": "Rutinat e fëmijëve parashkollorë"
                 },
                 {
                     "id": 1911,
-                    "name": " Preschool routines"
+                    "name": "Rutinat parashkollore"
                 },
                 {
                     "id": 1916,
-                    "name": " Anaemia"
+                    "name": "Anemia"
                 },
                 {
                     "id": 1921,
-                    "name": " Anemia"
+                    "name": "Anemia"
                 },
                 {
                     "id": 1926,
-                    "name": " Anaemic"
+                    "name": "Anemik"
                 },
                 {
                     "id": 1931,
-                    "name": " Anemic"
+                    "name": "Anemik"
                 },
                 {
                     "id": 1936,
-                    "name": " Asthma"
+                    "name": "Astma"
                 },
                 {
                     "id": 1941,
-                    "name": " Athsma"
+                    "name": "Astma"
                 },
                 {
                     "id": 1946,
-                    "name": " Athma"
+                    "name": "Astma"
                 },
                 {
                     "id": 1951,
-                    "name": " Dust mite allergy"
+                    "name": "Alergji nga pluhuri"
                 },
                 {
                     "id": 1956,
-                    "name": " Dust mites"
+                    "name": "Morrat e pluhurit"
                 },
                 {
                     "id": 1961,
-                    "name": " Grass allergy"
+                    "name": "Alergji nga bari"
                 },
                 {
                     "id": 1966,
-                    "name": " Pollen"
+                    "name": "Poleni"
                 },
                 {
                     "id": 1971,
-                    "name": " Pet allergy"
+                    "name": "Alergji nga kafshët shtëpiake"
                 },
                 {
                     "id": 1976,
-                    "name": " Latex allergy"
+                    "name": "Alergji nga lateksi"
                 },
                 {
                     "id": 1981,
-                    "name": " Insect stings"
+                    "name": "Pickimi i insekteve"
                 },
                 {
                     "id": 1986,
-                    "name": " Chemical allergy"
+                    "name": "Alergji nga kemikalet"
                 },
                 {
                     "id": 1991,
-                    "name": " Hives"
+                    "name": "Urtikaria "
                 },
                 {
                     "id": 1996,
-                    "name": " Urticaria"
+                    "name": "Urtikaria"
                 },
                 {
                     "id": 2001,
-                    "name": " Nosebleed"
+                    "name": "Gjakderdhja nga hunda"
                 },
                 {
                     "id": 2006,
-                    "name": " Nosebleeds"
+                    "name": "Gjakderdhjet nga hunda"
                 },
                 {
                     "id": 2011,
-                    "name": " Nose bleed"
+                    "name": "Gjakderdhje nga hunda"
                 },
                 {
                     "id": 2016,
-                    "name": " Nose bleeds"
+                    "name": "Gjakderdhjet nga hunda"
                 },
                 {
                     "id": 2021,
-                    "name": " Blood nose"
+                    "name": "Hundë me gjak"
                 },
                 {
                     "id": 2026,
-                    "name": " Bloodnose"
+                    "name": "Hundë me gjak"
                 },
                 {
                     "id": 2031,
-                    "name": " Bleeding nose"
+                    "name": "Hundë e gjakosur"
                 },
                 {
                     "id": 2036,
-                    "name": " Bleeding noses"
+                    "name": "Hundë të gjakosura"
                 },
                 {
                     "id": 2041,
-                    "name": " Nose bleeding"
+                    "name": "Gjakderdhja nga hunda"
                 },
                 {
                     "id": 2046,
-                    "name": " Coughs"
+                    "name": "Kollitjet"
                 },
                 {
                     "id": 2051,
-                    "name": " Coughing"
+                    "name": "Duke kollitur"
                 },
                 {
                     "id": 2056,
-                    "name": " Croup"
+                    "name": "Laringotrakeobronkitis"
                 },
                 {
                     "id": 2061,
-                    "name": " Croop"
+                    "name": "Laringotrakeobronkitis"
                 },
                 {
                     "id": 2066,
-                    "name": " Croupe"
+                    "name": "Laringotrakeobronkitis"
                 },
                 {
                     "id": 2071,
-                    "name": " Stridor"
+                    "name": "Stridor"
                 },
                 {
                     "id": 2076,
-                    "name": " Cold"
+                    "name": "Ftohje"
                 },
                 {
                     "id": 2081,
-                    "name": " Throat infection"
+                    "name": "Infeksioni i fytit"
                 },
                 {
                     "id": 2086,
-                    "name": " Strep throat"
+                    "name": "Infeksion nga streptokoku"
                 },
                 {
                     "id": 2091,
-                    "name": " Pharyngitis"
+                    "name": "Faringjit"
                 },
                 {
                     "id": 2096,
-                    "name": " Tonsillitis"
+                    "name": "Inflamacioni i bajameve"
                 },
                 {
                     "id": 2101,
-                    "name": " Tonsilitis"
+                    "name": "Inflamacioni i bajameve"
                 },
                 {
                     "id": 2106,
-                    "name": " Tonsils"
+                    "name": "Bajamet"
                 },
                 {
                     "id": 2111,
-                    "name": " Tonsil infection"
+                    "name": "Infeksioni i bajameve"
                 },
                 {
                     "id": 2116,
-                    "name": " Sinusitis"
+                    "name": "Pezmatim i sinuseve"
                 },
                 {
                     "id": 2121,
-                    "name": " Rhinosinusitis"
+                    "name": "Rinosinusiti"
                 },
                 {
                     "id": 2126,
-                    "name": " Rhino sinusitis"
+                    "name": "Rinosinusiti"
                 },
                 {
                     "id": 2131,
-                    "name": " Sinus infection"
+                    "name": "Infeksioni i sinusit"
                 },
                 {
                     "id": 2136,
-                    "name": " Influenza"
+                    "name": "Gripi"
                 },
                 {
                     "id": 2141,
-                    "name": " Flu"
+                    "name": "Gripi"
                 },
                 {
                     "id": 2146,
-                    "name": " Pneumonia"
+                    "name": "Pneumonia"
                 },
                 {
                     "id": 2151,
-                    "name": " Cystic fibrosis"
+                    "name": "Fibroza cistike"
                 },
                 {
                     "id": 2156,
-                    "name": " CF"
+                    "name": "FC (Fibroza cistike)"
                 },
                 {
                     "id": 2161,
-                    "name": " Milia"
+                    "name": "Milia (puçërrat e qumështit)"
                 },
                 {
                     "id": 2166,
-                    "name": " Convulsion"
+                    "name": "Konvulsion"
                 },
                 {
                     "id": 2171,
-                    "name": " Convulsions"
+                    "name": "Konvulsione"
                 },
                 {
                     "id": 2176,
-                    "name": " Seizure"
+                    "name": "Spazma"
                 },
                 {
                     "id": 2181,
-                    "name": " Fit"
+                    "name": "Konvulsion"
                 },
                 {
                     "id": 2186,
-                    "name": " Fits"
+                    "name": "Konvulsione"
+                },
+                {
+                    "id": 2191,
+                    "name": "Sulm konvulsiv"
                 },
                 {
                     "id": 2196,
-                    "name": " Febrile convulsion"
+                    "name": "Konvulsion febril"
                 },
                 {
                     "id": 2201,
-                    "name": " Febrile seizure"
+                    "name": "Konvulsion febril"
                 },
                 {
                     "id": 2206,
-                    "name": " Febrile seizures"
+                    "name": "Konvulzione febrile"
                 },
                 {
                     "id": 2211,
-                    "name": " Hearing impairment"
+                    "name": "Dëmtimi i dëgjimit"
                 },
                 {
                     "id": 2216,
-                    "name": " Hearing loss"
+                    "name": "Humbja e dëgjimit"
                 },
                 {
                     "id": 2221,
-                    "name": " Deafness"
+                    "name": "Shurdhimi/shurdhësia"
                 },
                 {
                     "id": 2226,
-                    "name": " Deaf"
+                    "name": "I/e shurdhër"
                 },
                 {
                     "id": 2231,
-                    "name": " Vision impairment"
+                    "name": "Dëmtimi i shikimit"
+                },
+                {
+                    "id": 2236,
+                    "name": "Dëmtimi i shikimit"
                 },
                 {
                     "id": 2241,
-                    "name": " Visually impaired"
+                    "name": "Me shikim të dëmtuar"
                 },
                 {
                     "id": 2246,
-                    "name": " Blindness"
+                    "name": "Verbëria"
                 },
                 {
                     "id": 2251,
-                    "name": " Blind"
+                    "name": "I/e verbër"
                 },
                 {
                     "id": 2256,
-                    "name": " Vision loss"
+                    "name": "Humbja e shikimit"
                 },
                 {
                     "id": 2261,
-                    "name": " Poor vision"
+                    "name": "Shikim i dobët"
                 },
                 {
                     "id": 2266,
-                    "name": " Microcephaly"
+                    "name": "Mikrocefalia"
                 },
                 {
                     "id": 2271,
-                    "name": " Hepatitis C"
+                    "name": "Hepatiti C"
                 },
                 {
                     "id": 2276,
-                    "name": " Autism spectrum disorder"
+                    "name": "Çrregullimi i spektrit autik"
                 },
                 {
                     "id": 2281,
-                    "name": " Autism spectrum disorders"
+                    "name": "Çrregullimet e spektrit autik"
                 },
                 {
                     "id": 2286,
-                    "name": " ASD"
+                    "name": "ÇSA"
                 },
                 {
                     "id": 2291,
-                    "name": " autism"
+                    "name": "Autizmi"
                 },
                 {
                     "id": 2296,
-                    "name": " autistic"
+                    "name": "Autik"
                 },
                 {
                     "id": 2301,
-                    "name": " Cerebral palsy"
+                    "name": "Paraliza cerebrale"
                 },
                 {
                     "id": 2306,
-                    "name": " Down Syndrome"
+                    "name": "Sindroma Down"
+                },
+                {
+                    "id": 2311,
+                    "name": "Sindroma Down"
                 },
                 {
                     "id": 2316,
-                    "name": " Downs Syndrome"
+                    "name": "Sindroma Down"
                 },
                 {
                     "id": 2321,
-                    "name": " Downs"
+                    "name": "Downs"
                 },
                 {
                     "id": 2326,
-                    "name": " Trisomy 21"
+                    "name": "Trisomia 21"
                 },
                 {
                     "id": 2331,
-                    "name": " Mongoloidism"
+                    "name": "Mongoloidizmi"
                 },
                 {
                     "id": 2336,
-                    "name": " Development milestones"
+                    "name": "Etapat kryesore të zhvillimit"
                 },
                 {
                     "id": 2341,
-                    "name": " Development indicators"
+                    "name": "Treguesit e zhvillimit"
                 },
                 {
                     "id": 2346,
-                    "name": " milestones"
+                    "name": "etapat"
                 },
                 {
                     "id": 2351,
-                    "name": " indicators"
+                    "name": "treguesit"
                 },
                 {
                     "id": 2356,
-                    "name": " mile stones"
+                    "name": "etapat"
                 },
                 {
                     "id": 2361,
-                    "name": " development mile stones"
+                    "name": "etapat e zhvillimit"
                 },
                 {
                     "id": 2366,
-                    "name": " developmental milestones"
+                    "name": "etapat zhvillimore"
                 },
                 {
                     "id": 2371,
-                    "name": " developmental indicators"
+                    "name": "treguesit zhvillimorë"
                 },
                 {
                     "id": 2376,
-                    "name": " developmental mile stones"
+                    "name": "etapat zhvillimore"
                 },
                 {
                     "id": 2381,
-                    "name": " Baby development"
+                    "name": "Zhvillimi i foshnjës"
                 },
                 {
                     "id": 2386,
-                    "name": " Development stages"
+                    "name": "Fazat e zhvillimit"
                 },
                 {
                     "id": 2391,
-                    "name": " Stages of development"
+                    "name": "Fazat e zhvillimit"
                 },
                 {
                     "id": 2396,
-                    "name": " Newborn development"
+                    "name": "Zhvillimi i të porsalindurit"
                 },
                 {
                     "id": 2401,
-                    "name": " Newborn baby development"
+                    "name": "Zhvillimi i foshnjës së porsalindur"
                 },
                 {
                     "id": 2406,
-                    "name": " Developing"
+                    "name": "Zhvillimi"
                 },
                 {
                     "id": 2411,
-                    "name": " How children learn"
+                    "name": "Si mësojnë fëmijët"
                 },
                 {
                     "id": 2416,
-                    "name": " Children learning"
+                    "name": "Të mësuarit e fëmijëve"
                 },
                 {
                     "id": 2421,
-                    "name": " Childhood learning"
+                    "name": "Të mësuarit gjatë fëmijërisë"
                 },
                 {
                     "id": 2426,
-                    "name": " Playing"
+                    "name": "Duke luajtur"
                 },
                 {
                     "id": 2431,
-                    "name": " playtime"
+                    "name": "koha e lojës"
                 },
                 {
                     "id": 2436,
-                    "name": " play time"
+                    "name": "koha e lojës"
                 },
                 {
                     "id": 2441,
-                    "name": " Movement"
+                    "name": "Lëvizja"
                 },
                 {
                     "id": 2446,
-                    "name": " Move"
+                    "name": "Lëviz"
                 },
                 {
                     "id": 2451,
-                    "name": " Moving"
+                    "name": "Duke lëvizur"
                 },
                 {
                     "id": 2456,
-                    "name": " Movements"
+                    "name": "Lëvizjet"
                 },
                 {
                     "id": 2461,
-                    "name": " Physical movement"
+                    "name": "Lëvizja fizike"
                 },
                 {
                     "id": 2466,
-                    "name": " Physically moving"
+                    "name": "Duke lëvizur fizikisht"
                 },
                 {
                     "id": 2471,
-                    "name": " Toddler development"
+                    "name": "Zhvillimi i foshnjës"
                 },
                 {
                     "id": 2476,
-                    "name": " Toddlers development"
+                    "name": "Zhvillimi i foshnjave"
                 },
                 {
                     "id": 2481,
-                    "name": " Development toddlers"
+                    "name": "Foshnjat në zhvillim"
                 },
                 {
                     "id": 2486,
-                    "name": " Toddlers developing"
+                    "name": "Foshnjat në zhvillim e sipër"
                 },
                 {
                     "id": 2491,
-                    "name": " Parenting"
+                    "name": "Prindërimi"
                 },
                 {
                     "id": 2496,
-                    "name": " Relating"
+                    "name": "Krijimi i lidhjeve"
                 },
                 {
                     "id": 2501,
-                    "name": " Brothers"
+                    "name": "Vëllezërit"
                 },
                 {
                     "id": 2506,
-                    "name": " sisters"
+                    "name": "motrat"
                 },
                 {
                     "id": 2511,
-                    "name": " Disability - child"
+                    "name": "Aftësia e kufizuar - fëmijë"
                 },
                 {
                     "id": 2516,
-                    "name": " Disabled child"
+                    "name": "Fëmija me aftësi të kufizuar"
                 },
                 {
                     "id": 2521,
-                    "name": " Child with disability"
+                    "name": "Fëmijë me aftësi të kufizuar"
                 },
                 {
                     "id": 2526,
-                    "name": " Child with disabilities"
+                    "name": "Fëmijë me aftësi të kufizuara"
                 },
                 {
                     "id": 2531,
-                    "name": " Disabled children"
+                    "name": "Fëmijë me aftësi të kufizuara"
                 },
                 {
                     "id": 2536,
-                    "name": " Disabled kids"
+                    "name": "Fëmijë me aftësi të kufizuara"
                 },
                 {
                     "id": 2541,
-                    "name": " Behavior"
+                    "name": "Sjellje"
                 },
                 {
                     "id": 2546,
-                    "name": " Behaviour management"
+                    "name": "Menaxhimi i sjelljes"
                 },
                 {
                     "id": 2551,
-                    "name": " Managing behaviour"
+                    "name": "Menaxhimi i sjelljes"
                 },
                 {
                     "id": 2556,
-                    "name": " Discipline"
+                    "name": "Disiplina"
                 },
                 {
                     "id": 2561,
-                    "name": " Praise"
+                    "name": "Lavdërimi"
                 },
                 {
                     "id": 2566,
-                    "name": " Preschooler development"
+                    "name": "Zhvillimi i fëmijës parashkollor"
                 },
                 {
                     "id": 2571,
-                    "name": " Preschoolers development"
+                    "name": "Zhvillimi i parashkollorëve"
                 },
                 {
                     "id": 2576,
-                    "name": " Development preschoolers"
+                    "name": "Fëmijët ​​parashkollorë në zhvillim"
                 },
                 {
                     "id": 2581,
-                    "name": " Preschoolers developing"
+                    "name": "Fëmijët parashkollorë në zhvillim e sipër"
                 },
                 {
                     "id": 2586,
-                    "name": " Creativity"
+                    "name": "Kreativiteti"
                 },
                 {
                     "id": 2591,
-                    "name": " Creating"
+                    "name": "Krijimi"
                 },
                 {
                     "id": 2596,
-                    "name": " Creative"
+                    "name": "Kreativ"
                 },
                 {
                     "id": 2601,
-                    "name": " Breast milk"
+                    "name": "Qumështi i gjirit"
                 },
                 {
                     "id": 2606,
-                    "name": " Milk - breast"
+                    "name": "Qumësht - gji"
+                },
+                {
+                    "id": 2611,
+                    "name": "Qumështi i nënës"
+                },
+                {
+                    "id": 2616,
+                    "name": "Qumështi i nënës"
                 },
                 {
                     "id": 2621,
-                    "name": " Mummy milk"
+                    "name": "Qumështi i nënës"
+                },
+                {
+                    "id": 2626,
+                    "name": "Qumështi i nënës"
+                },
+                {
+                    "id": 2631,
+                    "name": "Qumështi i nënave"
                 },
                 {
                     "id": 2636,
-                    "name": " Alcohol and other drugs"
+                    "name": "Alkooli dhe droga të tjera"
                 },
                 {
                     "id": 2641,
-                    "name": " Alcohol and drugs"
+                    "name": "Alkooli dhe drogat"
                 },
                 {
                     "id": 2646,
-                    "name": " Drugs and alcohol"
+                    "name": "Drogat dhe alkooli"
                 },
                 {
                     "id": 2651,
-                    "name": " Drugs"
+                    "name": "Drogat"
                 },
                 {
                     "id": 2656,
-                    "name": " Alcohol"
+                    "name": "Alkooli"
                 },
                 {
                     "id": 2661,
-                    "name": " Drug use"
+                    "name": "Përdorimi i drogës"
                 },
                 {
                     "id": 2666,
-                    "name": " Drug abuse"
+                    "name": "Abuzimi me droga"
                 },
                 {
                     "id": 2671,
-                    "name": " Drinking"
+                    "name": "Pirja e alkoolit"
                 },
                 {
                     "id": 2676,
-                    "name": " Breast feeding"
+                    "name": "Ushqyerja me gji"
                 },
                 {
                     "id": 2681,
-                    "name": " Breastfeed"
+                    "name": "Ushqyerja me gji"
                 },
                 {
                     "id": 2686,
-                    "name": " Breast feed"
+                    "name": "Ushqej me gji"
                 },
                 {
                     "id": 2691,
-                    "name": " Breastfeeds"
+                    "name": "Ushqyerja me gji"
                 },
                 {
                     "id": 2696,
-                    "name": " Breast feeds"
+                    "name": "Ushqen me gji"
                 },
                 {
                     "id": 2701,
-                    "name": " Breastfed"
+                    "name": "I/e ushqyer me gji"
                 },
                 {
                     "id": 2706,
-                    "name": " Diet"
+                    "name": "Dieta"
                 },
                 {
                     "id": 2711,
-                    "name": " Healthy diet"
+                    "name": "Dietë e shëndetshme"
                 },
                 {
                     "id": 2716,
-                    "name": " Eating"
+                    "name": "Të ngrënit"
                 },
                 {
                     "id": 2721,
-                    "name": " Smoking"
+                    "name": "Pirja e duhanit"
                 },
                 {
                     "id": 2726,
-                    "name": " smoke"
+                    "name": "pi duhan"
                 },
                 {
                     "id": 2731,
-                    "name": " smokers"
+                    "name": "duhanpirësit"
                 },
                 {
                     "id": 2736,
-                    "name": " tobacco"
+                    "name": "duhani"
                 },
                 {
                     "id": 2741,
-                    "name": " cigarettes"
+                    "name": "cigaret"
                 },
                 {
                     "id": 2746,
-                    "name": " Teeth brushing"
+                    "name": "Larja e dhëmbëve"
+                },
+                {
+                    "id": 2751,
+                    "name": "Larja e dhëmbëve"
                 },
                 {
                     "id": 2756,
-                    "name": " Cleaning teeth"
+                    "name": "Pastrimi i dhëmbëve"
                 },
                 {
                     "id": 2761,
-                    "name": " weaning"
+                    "name": "Lënia e qumështit të gjirit"
                 },
                 {
                     "id": 2766,
-                    "name": " stopping breastfeeding"
+                    "name": "Ndërprerja e gjidhënies"
                 },
                 {
                     "id": 2771,
-                    "name": " wean"
+                    "name": "Ablaktacioni"
                 },
                 {
                     "id": 2776,
-                    "name": " Night weaning"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2781,
-                    "name": " Nightweaning"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2786,
-                    "name": " Night-weaning"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2791,
-                    "name": " Night wean"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2796,
-                    "name": " Nightwean"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2801,
-                    "name": " Night-wean"
+                    "name": "Ablaktacioni gjatë natës"
                 },
                 {
                     "id": 2806,
-                    "name": " Night feed"
+                    "name": "Ushqyerja natën"
+                },
+                {
+                    "id": 2811,
+                    "name": "Ushqyerja natën"
+                },
+                {
+                    "id": 2816,
+                    "name": "Ushqyerja natën"
+                },
+                {
+                    "id": 2821,
+                    "name": "Ushqej gjatë natës"
                 },
                 {
                     "id": 2826,
-                    "name": " Night-time feeds"
+                    "name": "Ushqen gjatë natës"
                 },
                 {
                     "id": 2831,
-                    "name": " Night-time feeding"
+                    "name": "Ushqyerja gjatë natës"
                 },
                 {
                     "id": 2836,
-                    "name": " Solids"
+                    "name": "Ushqime të forta"
                 },
                 {
                     "id": 2841,
-                    "name": " Solid food"
+                    "name": "Ushqim i fortë"
+                },
+                {
+                    "id": 2846,
+                    "name": "Prezantimi i ushqimeve të forta"
                 },
                 {
                     "id": 2851,
-                    "name": " introducing solid food"
+                    "name": "Prezantimi i ushqimeve të forta"
                 },
                 {
                     "id": 2856,
-                    "name": " Vitamins"
+                    "name": "Vitaminat"
                 },
                 {
                     "id": 2861,
-                    "name": " Vitamin"
+                    "name": "Vitamina"
                 },
                 {
                     "id": 2866,
-                    "name": " Minerals"
+                    "name": "Minerale"
                 },
                 {
                     "id": 2871,
-                    "name": " Mineral"
+                    "name": "Mineral"
                 },
                 {
                     "id": 2876,
-                    "name": " Nutrients"
+                    "name": "Lëndët ushqyese"
                 },
                 {
                     "id": 2881,
-                    "name": " Nutrient"
+                    "name": "Lëndë ushqyese"
                 },
                 {
                     "id": 2886,
-                    "name": " Essential nutrients"
+                    "name": "Lëndë ushqyese thelbësore"
                 },
                 {
                     "id": 2891,
-                    "name": " Food nutrients"
+                    "name": "Përbërësit e lëndëve ushqyese"
                 },
                 {
                     "id": 2896,
-                    "name": " Nutrients in food"
+                    "name": "Lëndët ushqyese në ushqim"
                 },
                 {
                     "id": 2901,
-                    "name": " Deficiency"
+                    "name": "Mangësi"
                 },
                 {
                     "id": 2906,
-                    "name": " Iron"
+                    "name": "Hekur"
                 },
                 {
                     "id": 2911,
-                    "name": " Calcium"
+                    "name": "Kalcium"
                 },
                 {
                     "id": 2916,
-                    "name": " Iodine"
+                    "name": "Jod"
                 },
                 {
                     "id": 2921,
-                    "name": " Potassium"
+                    "name": "Kalium"
                 },
                 {
                     "id": 2926,
-                    "name": " Magnesium"
+                    "name": "Magnez"
                 },
                 {
                     "id": 2931,
-                    "name": " Zinc"
+                    "name": "Zink"
                 },
                 {
                     "id": 2936,
-                    "name": " Copper"
+                    "name": "Bakër"
                 },
                 {
                     "id": 2941,
-                    "name": " Vitamin A"
+                    "name": "Vitamina A"
                 },
                 {
                     "id": 2946,
-                    "name": " Vitamin B"
+                    "name": "Vitamina B"
                 },
                 {
                     "id": 2951,
-                    "name": " Vitamin C"
+                    "name": "Vitamina C"
                 },
                 {
                     "id": 2956,
-                    "name": " Vitamin E"
+                    "name": "Vitamina E"
                 },
                 {
                     "id": 2961,
-                    "name": " Carbohydrates"
+                    "name": "Karbohidratet"
                 },
                 {
                     "id": 2966,
-                    "name": " Carbs"
+                    "name": "Karbohidratet"
                 },
                 {
                     "id": 2971,
-                    "name": " Carbohydrate foods"
+                    "name": "Ushqime me karbohidrate"
+                },
+                {
+                    "id": 2976,
+                    "name": "Çfarë janë karbohidratet"
                 },
                 {
                     "id": 2981,
-                    "name": " Low carbohydrates diet"
+                    "name": "Dietë me karbohidrate të ulëta"
+                },
+                {
+                    "id": 2986,
+                    "name": "Dietë me karbohidrate të ulëta"
+                },
+                {
+                    "id": 2991,
+                    "name": "IG"
+                },
+                {
+                    "id": 2996,
+                    "name": "Indeksi i glikemisë"
+                },
+                {
+                    "id": 3001,
+                    "name": "Indeksi i glikemisë"
                 },
                 {
                     "id": 3006,
-                    "name": " Glycemic food index"
+                    "name": "Indeksi glikemik i ushqimit"
+                },
+                {
+                    "id": 3011,
+                    "name": "Çfarë është IG"
+                },
+                {
+                    "id": 3016,
+                    "name": "Çfarë është Indeksi Glikemik"
+                },
+                {
+                    "id": 3021,
+                    "name": "Çfarë është Indeksi Glikemik"
                 },
                 {
                     "id": 3026,
-                    "name": " Low Glycaemic Index"
+                    "name": "Indeksi i ulët i glikemisë"
+                },
+                {
+                    "id": 3031,
+                    "name": "Indeksi i ulët i glikemisë"
                 },
                 {
                     "id": 3036,
-                    "name": " Blood sugar"
+                    "name": "Sheqeri në gjak"
                 },
                 {
                     "id": 3041,
-                    "name": " Blood sugar levels"
+                    "name": "Nivelet e sheqerit në gjak"
                 },
                 {
                     "id": 3046,
-                    "name": " Sugar levels"
+                    "name": "Nivelet e sheqerit"
                 },
                 {
                     "id": 3051,
-                    "name": " Glucose"
+                    "name": "Glukoza"
                 },
                 {
                     "id": 3056,
-                    "name": " Blood glucose"
+                    "name": "Glukoza në gjak"
                 },
                 {
                     "id": 3061,
-                    "name": " Food label"
+                    "name": "Etiketa e ushqimit"
+                },
+                {
+                    "id": 3066,
+                    "name": "Etiketat e ushqimit"
+                },
+                {
+                    "id": 3071,
+                    "name": "Etiketimi i ushqimit"
+                },
+                {
+                    "id": 3076,
+                    "name": "Leximi i etiketave të ushqimit"
+                },
+                {
+                    "id": 3081,
+                    "name": "Ligjet për etiketimin e ushqimit"
                 },
                 {
                     "id": 3086,
-                    "name": " Food labelling regulations"
+                    "name": "Rregulloret për etiketimin e ushqimit"
                 },
                 {
                     "id": 3091,
-                    "name": " Food labeling"
+                    "name": "Etiketimi i ushqimit"
                 },
                 {
                     "id": 3096,
-                    "name": " Nutrition panel"
+                    "name": "Paneli i lëndëve ushqyese"
+                },
+                {
+                    "id": 3101,
+                    "name": "Panelet e lëndëve ushqyese"
                 },
                 {
                     "id": 3106,
-                    "name": " Nutritional panel"
+                    "name": "Paneli i lëndëve ushqyese"
+                },
+                {
+                    "id": 3111,
+                    "name": "Paneli i informacioneve për lëndë ushqyese"
+                },
+                {
+                    "id": 3116,
+                    "name": "Fakte rreth lëndëve ushqyese"
+                },
+                {
+                    "id": 3121,
+                    "name": "Të dhëna rreth lëndëve ushqyese"
                 },
                 {
                     "id": 3126,
-                    "name": " Food additives"
+                    "name": "Aditivët e ushqimit"
+                },
+                {
+                    "id": 3131,
+                    "name": "Aditivët"
                 },
                 {
                     "id": 3136,
-                    "name": " Additives in food"
+                    "name": "Aditivët në ushqim"
                 },
                 {
                     "id": 3141,
-                    "name": " Food groups"
+                    "name": "Grupet ushqimore"
                 },
                 {
                     "id": 3146,
-                    "name": " Five food groups"
+                    "name": "Pesë grupe ushqimore"
                 },
                 {
                     "id": 3151,
-                    "name": " Healthy food groups"
+                    "name": "Grupet e ushqimit të shëndetshëm"
+                },
+                {
+                    "id": 3156,
+                    "name": "Qumësht lope"
                 },
                 {
                     "id": 3161,
-                    "name": " Milk"
+                    "name": "Qumësht"
                 },
                 {
                     "id": 3166,
-                    "name": " Dairy milk"
+                    "name": "Qumësht bagëtie"
                 },
                 {
                     "id": 3171,
-                    "name": " Cow milk"
+                    "name": "Qumësht lope"
                 },
                 {
                     "id": 3176,
-                    "name": " Cow’s milk"
+                    "name": "Qumështi i lopës"
                 },
                 {
                     "id": 3181,
-                    "name": " Regular milk"
+                    "name": "Qumësht i rregullt"
                 },
                 {
                     "id": 3186,
-                    "name": " Soft drinks"
+                    "name": "Pije joalkoolike"
+                },
+                {
+                    "id": 3191,
+                    "name": "Pijet joalkoolike"
                 },
                 {
                     "id": 3196,
-                    "name": " Fizzy drinks"
+                    "name": "Pije të gazuara"
                 },
                 {
                     "id": 3201,
-                    "name": " Sweet drinks"
+                    "name": "Pije të ëmbla"
                 },
                 {
                     "id": 3206,
-                    "name": " Fruit juice"
+                    "name": "Lëng frutash"
                 },
                 {
                     "id": 3211,
-                    "name": " juice"
+                    "name": "lëng"
                 },
                 {
                     "id": 3216,
-                    "name": " juices"
+                    "name": "lëngje"
                 },
                 {
                     "id": 3221,
-                    "name": " fruit"
+                    "name": "fruta"
                 },
                 {
                     "id": 3226,
-                    "name": " fruit drink"
+                    "name": "lëng frutash"
                 },
                 {
                     "id": 3231,
-                    "name": " fruit drinks"
+                    "name": "lëngje frutash"
                 },
                 {
                     "id": 3236,
-                    "name": " Energy drinks"
+                    "name": "Pijet energjike"
                 },
                 {
                     "id": 3241,
-                    "name": " energy drink"
+                    "name": "pije energjike"
                 },
                 {
                     "id": 3246,
-                    "name": " caffeine drink"
+                    "name": "pije me përmbajtje kafeine"
                 },
                 {
                     "id": 3251,
-                    "name": " caffeine drinks"
+                    "name": "pijet me përmbajtje kafeine"
+                },
+                {
+                    "id": 3256,
+                    "name": "pije që përmban guarana"
                 },
                 {
                     "id": 3261,
-                    "name": " guarana drinks"
+                    "name": "pijet që përmbajnë guarana"
+                },
+                {
+                    "id": 3266,
+                    "name": "pije që përmban xhensen"
                 },
                 {
                     "id": 3271,
-                    "name": " ginseng drinks"
+                    "name": "pijet që përmbajnë xhensen"
                 },
                 {
                     "id": 3276,
-                    "name": " Sports drinks"
+                    "name": "Pijet sportive"
                 },
                 {
                     "id": 3281,
-                    "name": " Sports drink"
+                    "name": "Pije sportive"
                 },
                 {
                     "id": 3286,
-                    "name": " Metabolic drink"
+                    "name": "Pije metabolike"
                 },
                 {
                     "id": 3291,
-                    "name": " Metabolic drinks"
+                    "name": "Pijet metabolike"
                 },
                 {
                     "id": 3296,
-                    "name": " Isotonic drinks"
+                    "name": "Pijet izotonike"
                 },
                 {
                     "id": 3301,
-                    "name": " Isotonic drink"
+                    "name": "Pije izotonike"
                 },
                 {
                     "id": 3306,
-                    "name": " Hypertonic drinks"
+                    "name": "Pijet hipertonike"
                 },
                 {
                     "id": 3311,
-                    "name": " Hypertonic drink"
+                    "name": "Pije hipertonike"
+                },
+                {
+                    "id": 3316,
+                    "name": "Pijet hipotonike"
+                },
+                {
+                    "id": 3321,
+                    "name": "Pije hipotonike"
                 },
                 {
                     "id": 3326,
-                    "name": " Electrolytes drinks"
+                    "name": "Pijet me elektrolite"
+                },
+                {
+                    "id": 3331,
+                    "name": "Pije me elektrolite"
                 },
                 {
                     "id": 3336,
-                    "name": " Water"
+                    "name": "Ujë"
+                },
+                {
+                    "id": 3341,
+                    "name": "H2O"
                 },
                 {
                     "id": 3346,
-                    "name": " Vegetables"
+                    "name": "Perime"
                 },
                 {
                     "id": 3351,
-                    "name": " Vegies"
+                    "name": "Perime"
                 },
                 {
                     "id": 3356,
-                    "name": " Veggies"
+                    "name": "Perime"
                 },
                 {
                     "id": 3361,
-                    "name": " Veg"
+                    "name": "Perime"
                 },
                 {
                     "id": 3366,
-                    "name": " Meals"
+                    "name": "Vaktet/Shujtat"
                 },
                 {
                     "id": 3371,
-                    "name": " Meal"
+                    "name": "Vakt/Shujtë"
                 },
                 {
                     "id": 3376,
-                    "name": " Mealtimes"
+                    "name": "Kohët e vaktit/shujtës"
                 },
                 {
                     "id": 3381,
-                    "name": " Meal time"
+                    "name": "Koha e vaktit/shujtës"
                 },
                 {
                     "id": 3386,
-                    "name": " Mealtime"
+                    "name": "Koha e vaktit/shujtës"
                 },
                 {
                     "id": 3391,
-                    "name": " Family meals"
+                    "name": "Vakte/ Shujta familjare"
                 },
                 {
                     "id": 3396,
-                    "name": " Family meal"
+                    "name": "Vakt/ Shujtë familjare"
                 },
                 {
                     "id": 3401,
-                    "name": " Healthy eating"
+                    "name": "Ushqyerje e shëndetshme"
                 },
                 {
                     "id": 3406,
-                    "name": " Healthy food"
+                    "name": "Ushqim i shëndetshëm"
                 },
                 {
                     "id": 3411,
-                    "name": " Eating out"
+                    "name": "Të ngrënit jashtë"
                 },
                 {
                     "id": 3416,
-                    "name": " Breakfast"
+                    "name": "Mëngjesi"
                 },
                 {
                     "id": 3421,
-                    "name": " Break fast"
+                    "name": "Mëngjesi"
+                },
+                {
+                    "id": 3426,
+                    "name": "Mëngjesi"
                 },
                 {
                     "id": 3431,
-                    "name": " Cooking"
+                    "name": "Gatimi"
                 },
                 {
                     "id": 3436,
-                    "name": " Children cooking"
+                    "name": "Fëmijët gatuajnë"
                 },
                 {
                     "id": 3441,
-                    "name": " Herbs"
+                    "name": "Erëza"
                 },
                 {
                     "id": 3446,
-                    "name": " Fresh food"
+                    "name": "Ushqim i freskët"
                 },
                 {
                     "id": 3451,
-                    "name": " Finger food"
+                    "name": "Ushqim me porcione të vogla që konsumohet me duar/gishta"
                 },
                 {
                     "id": 3456,
-                    "name": " Fingerfood"
+                    "name": "Ushqim me porcione të vogla që konsumohet me duar/gishta"
                 },
                 {
                     "id": 3461,
-                    "name": " Recipe"
+                    "name": "Receta"
                 },
                 {
                     "id": 3466,
-                    "name": " Recipes"
+                    "name": "Recetat"
                 },
                 {
                     "id": 3471,
-                    "name": " Food ideas"
+                    "name": "Ide ushqimore"
                 },
                 {
                     "id": 3476,
-                    "name": " Menu"
+                    "name": "Meny"
                 },
                 {
                     "id": 3481,
-                    "name": " Menus"
+                    "name": "Menytë"
                 },
                 {
                     "id": 3486,
-                    "name": " Fussy eating"
+                    "name": "Ngrënie me naze"
                 },
                 {
                     "id": 3491,
-                    "name": " Fussy eaters"
+                    "name": "Ngrënësit me naze"
+                },
+                {
+                    "id": 3496,
+                    "name": "Ngrënës me naze"
                 },
                 {
                     "id": 3501,
-                    "name": " Messy eating"
+                    "name": "Ngrënie e çrregullt"
                 },
                 {
                     "id": 3506,
-                    "name": " Messy eater"
+                    "name": "Ngrënës i  çrregullt"
+                },
+                {
+                    "id": 3511,
+                    "name": "Ngrënës të  çrregullt"
                 },
                 {
                     "id": 3516,
-                    "name": " Exercise"
+                    "name": "Ushtrim/Stërvitje"
                 },
                 {
                     "id": 3521,
-                    "name": " Physical activities"
+                    "name": "Aktivitete fizike"
+                },
+                {
+                    "id": 3526,
+                    "name": "Koha pranë ekranit"
                 },
                 {
                     "id": 3531,
-                    "name": " screentime"
+                    "name": "koha pranë ekranit"
                 },
                 {
                     "id": 3536,
-                    "name": " TV time"
+                    "name": "Koha për shikim të televizionit"
                 },
                 {
                     "id": 3541,
-                    "name": " PC time"
+                    "name": "Koha për kompjuter"
                 },
                 {
                     "id": 3546,
-                    "name": " viewing time"
+                    "name": "koha e shikimit"
                 },
                 {
                     "id": 3551,
-                    "name": " premature birth"
+                    "name": "lindje e parakohshme"
                 },
                 {
                     "id": 3556,
-                    "name": " preterm birth"
+                    "name": "lindja para terminit kohor"
                 },
                 {
                     "id": 3561,
-                    "name": " Father"
+                    "name": "Babai"
                 },
                 {
                     "id": 3566,
-                    "name": " Dads"
+                    "name": "Baballarët"
                 },
                 {
                     "id": 3571,
-                    "name": " Dad"
+                    "name": "Babi"
                 },
                 {
                     "id": 3576,
-                    "name": " Fathers"
+                    "name": "Baballarët"
                 },
                 {
                     "id": 3581,
-                    "name": " Single parent"
+                    "name": "Prind vetushqyes"
                 },
                 {
                     "id": 3586,
-                    "name": " Single parents"
+                    "name": "Prindër vetushqyes"
                 },
                 {
                     "id": 3591,
-                    "name": " Single parenting"
+                    "name": "Prindërim vetushqyes"
                 },
                 {
                     "id": 3596,
-                    "name": " Single-parent"
+                    "name": "Prind vetushqyes"
                 },
                 {
                     "id": 3601,
-                    "name": " Sole parent"
+                    "name": "Prind i vetëm"
                 },
                 {
                     "id": 3606,
-                    "name": " Sole parenting"
+                    "name": "Prindërimi i vetëm"
                 },
                 {
                     "id": 3611,
-                    "name": " Solo parent"
+                    "name": "Prind i vetëm"
                 },
                 {
                     "id": 3616,
-                    "name": " Divorce"
+                    "name": "Shkurorëzimi/Divorci"
                 },
                 {
                     "id": 3621,
-                    "name": " Divorced parents"
+                    "name": "Prindër të divorcuar"
                 },
                 {
                     "id": 3626,
-                    "name": " Parents divorced"
+                    "name": "Prindër të divorcuar"
                 },
                 {
                     "id": 3631,
-                    "name": " Parents divorcing"
+                    "name": "Prindër në proces të divorcimit"
                 },
                 {
                     "id": 3636,
-                    "name": " Separation - parents"
+                    "name": "Prindër të ndarë"
                 },
                 {
                     "id": 3641,
-                    "name": " Seperation"
+                    "name": "Ndarja"
                 },
                 {
                     "id": 3646,
-                    "name": " Separated parents"
+                    "name": "Prindër të ndarë"
                 },
                 {
                     "id": 3651,
-                    "name": "Separated parents"
+                    "name": "Prindër të ndarë"
                 },
                 {
                     "id": 3656,
-                    "name": " Parents separated"
+                    "name": "Prindërit e ndarë"
                 },
                 {
                     "id": 3661,
-                    "name": " Parents seperated"
+                    "name": "Prindërit e ndarë"
                 },
                 {
                     "id": 3666,
-                    "name": " IVF"
+                    "name": "IVF"
                 },
                 {
                     "id": 3671,
-                    "name": " Infertility treatment"
+                    "name": "Trajtimi i infertilitetit"
                 },
                 {
                     "id": 3676,
-                    "name": " Parenting newborns"
+                    "name": "Përkujdesja prindërore ndaj të porsalindurve"
                 },
                 {
                     "id": 3681,
-                    "name": " Postnatal depression"
+                    "name": "Depresioni postnatal /pas lindjes"
                 },
                 {
                     "id": 3686,
-                    "name": " Post natal depression"
+                    "name": "Depresioni post natal / pas lindjes"
                 },
                 {
                     "id": 3691,
-                    "name": " baby blues"
+                    "name": "Melankolia antenatale (baby blues)"
                 },
                 {
                     "id": 3696,
-                    "name": " PND"
+                    "name": "DPL"
                 },
                 {
                     "id": 3701,
-                    "name": " Perinatal depression"
+                    "name": "Depresioni perinatal"
                 },
                 {
                     "id": 3706,
-                    "name": " Antenatal depression"
+                    "name": "Depresioni antenatal"
                 },
                 {
                     "id": 3711,
-                    "name": " New mother"
+                    "name": "Nënë e re"
                 },
                 {
                     "id": 3716,
-                    "name": " New mothers"
+                    "name": "Nëna të reja"
                 },
                 {
                     "id": 3721,
-                    "name": " New mum"
+                    "name": "Mama e re"
                 },
                 {
                     "id": 3726,
-                    "name": " New mums"
+                    "name": "Mama të reja"
                 },
                 {
                     "id": 3731,
-                    "name": " Body"
+                    "name": "Trupi"
                 },
                 {
                     "id": 3736,
-                    "name": " Vaginal bleeding"
+                    "name": "Gjakderdhje vaginale"
                 },
                 {
                     "id": 3741,
-                    "name": " Breasts"
+                    "name": "Gjinjtë"
                 },
                 {
                     "id": 3746,
-                    "name": " Nipples"
+                    "name": "Thithat"
                 },
                 {
                     "id": 3751,
-                    "name": " Perineum"
+                    "name": "Perineum"
                 },
                 {
                     "id": 3756,
-                    "name": " Afterpains"
+                    "name": "Dhimbje të mitrës pas lindjes"
                 },
                 {
                     "id": 3761,
-                    "name": " Hair"
+                    "name": "Flokët"
                 },
                 {
                     "id": 3766,
-                    "name": " Stretch marks"
+                    "name": "Strijat"
                 },
                 {
                     "id": 3771,
-                    "name": " Sex"
+                    "name": "Seksi"
                 },
                 {
                     "id": 3776,
-                    "name": " Sexual relationships"
+                    "name": "Marrëdhëniet seksuale"
                 },
                 {
                     "id": 3781,
-                    "name": " Talking"
+                    "name": "Biseda"
                 },
                 {
                     "id": 3786,
-                    "name": " Talking with children"
+                    "name": "Biseda me fëmijë"
                 },
                 {
                     "id": 3791,
-                    "name": " Talking with kids"
+                    "name": "Biseda me fëmijë"
                 },
                 {
                     "id": 3796,
-                    "name": " Communicating"
+                    "name": "Komunikimi"
                 },
                 {
                     "id": 3801,
-                    "name": " Problem-solving"
+                    "name": "Zgjidhja e problemeve"
                 },
                 {
                     "id": 3806,
-                    "name": " Solving problems"
+                    "name": "Të zgjidhurit e problemeve"
                 },
                 {
                     "id": 3811,
-                    "name": " Problem solving"
+                    "name": "Zgjidhja e problemeve"
                 },
                 {
                     "id": 3816,
-                    "name": " Conflict management"
+                    "name": "Menaxhimi i konfliktit"
                 },
                 {
                     "id": 3821,
-                    "name": " Managing conflict"
+                    "name": "Menaxhimi i konfliktit"
                 },
                 {
                     "id": 3826,
-                    "name": " Anger"
+                    "name": "Zemërimi"
                 },
                 {
                     "id": 3831,
-                    "name": " Anxiety - parent"
+                    "name": "Ankthi - prindi"
                 },
                 {
                     "id": 3836,
-                    "name": " Anxiety - parental"
+                    "name": "Ankthi - prindëror"
                 },
                 {
                     "id": 3841,
-                    "name": " Anxiety attacks - parents"
+                    "name": "Kriza paniku-prindërit"
                 },
                 {
                     "id": 3846,
-                    "name": " Anxiety attacks - parental"
+                    "name": "Kriza paniku-prindërore"
                 },
                 {
                     "id": 3851,
-                    "name": " Anxious parent"
+                    "name": "Prind i shqetësuar"
                 },
                 {
                     "id": 3856,
-                    "name": " Anxious parents"
+                    "name": "Prindër të shqetësuar"
                 },
                 {
                     "id": 3861,
-                    "name": " Parental anxiety"
+                    "name": "Ankthi prindëror"
                 },
                 {
                     "id": 3866,
-                    "name": " Anxiety"
+                    "name": "Ankthi"
                 },
                 {
                     "id": 3871,
-                    "name": " Anxious feelings"
+                    "name": "Ndjenjat e ankthit"
                 },
                 {
                     "id": 3876,
-                    "name": " Feeling anxious"
+                    "name": "Të ndjerit anksioz/në ankth"
                 },
                 {
                     "id": 3881,
-                    "name": " Stress"
+                    "name": "Stresi"
                 },
                 {
                     "id": 3886,
-                    "name": " Stressed"
+                    "name": "I/e stresuar"
                 },
                 {
                     "id": 3891,
-                    "name": " Relaxation"
+                    "name": "Relaksimi/çlodhja"
                 },
                 {
                     "id": 3896,
-                    "name": " relaxing"
+                    "name": "Relaksues/çlodhës"
                 },
                 {
                     "id": 3901,
-                    "name": " relax"
+                    "name": "çlodhem"
                 },
                 {
                     "id": 3906,
-                    "name": " breathing exercises"
+                    "name": "ushtrime të frymëmarrjes"
                 },
                 {
                     "id": 3911,
-                    "name": " breathing techniques"
+                    "name": "teknikat e frymëmarrjes"
                 },
                 {
                     "id": 3916,
-                    "name": " Mindfulness"
+                    "name": "Vëmendje"
                 },
                 {
                     "id": 3921,
-                    "name": " work-family balance"
+                    "name": "ekuilibri punë-familje"
                 },
                 {
                     "id": 3926,
-                    "name": " Family-work balance"
+                    "name": "Ekuilibri familje-punë"
                 },
                 {
                     "id": 3931,
-                    "name": " Work family balance"
+                    "name": "Ekuilibri punë-familje"
                 },
                 {
                     "id": 3936,
-                    "name": " Family work balance"
+                    "name": "Ekuilibri familje-punë"
                 },
                 {
                     "id": 3941,
-                    "name": " balancing work and family"
+                    "name": "ekuilibrimi i punës dhe familjes"
                 },
                 {
                     "id": 3946,
-                    "name": " Work-children balance"
+                    "name": "Ekuilibrimi i punës dhe fëmijëve"
                 },
                 {
                     "id": 3951,
-                    "name": " Work life balance"
+                    "name": "Ekuilibrimi punë-jetë"
                 },
                 {
                     "id": 3956,
-                    "name": " Work-life balance"
+                    "name": "Ekuilibrimi punë-jetë"
                 },
                 {
                     "id": 3961,
-                    "name": " Returning to work"
+                    "name": "Të kthyerit në punë"
                 },
                 {
                     "id": 3966,
-                    "name": " Return to work"
+                    "name": "Kthimi në punë"
                 },
                 {
                     "id": 3971,
-                    "name": " Going back to work"
+                    "name": "Të kthehesh në punë"
                 },
                 {
                     "id": 3976,
-                    "name": " Child care"
+                    "name": "Përkujdesi për fëmijët"
                 },
                 {
                     "id": 3981,
-                    "name": " Childcare"
+                    "name": "Përkujdesi për fëmijët"
                 },
                 {
                     "id": 3986,
-                    "name": " Child carer"
+                    "name": "Kujdestari i fëmijëve"
                 },
                 {
                     "id": 3991,
-                    "name": " Child carers"
+                    "name": "Kujdestarët e fëmijëve"
                 },
                 {
                     "id": 3996,
-                    "name": " Child educator"
+                    "name": "Edukatori i fëmijëve"
                 },
                 {
                     "id": 4001,
-                    "name": " Child educators"
+                    "name": "Edukatorët e fëmijëve"
                 },
                 {
                     "id": 4006,
-                    "name": " Child care worker"
+                    "name": "Punonjës i përkujdesit për fëmijë"
                 },
                 {
                     "id": 4011,
-                    "name": " Child care workers"
+                    "name": "Punonjësit e përkujdesit për fëmijë"
                 },
                 {
                     "id": 4016,
-                    "name": " Starting child care"
+                    "name": "Nisja i përkujdesit për fëmijë"
                 },
                 {
                     "id": 4021,
-                    "name": " Starting childcare"
+                    "name": "Nisja e përkujdesit për fëmijët"
                 },
                 {
                     "id": 4026,
-                    "name": " Resettling"
+                    "name": "Riqetësimi"
                 },
                 {
                     "id": 4031,
-                    "name": " Fear of bath"
+                    "name": "Frika nga bërja banjë"
                 },
                 {
                     "id": 4036,
-                    "name": " Bilingualism"
+                    "name": "Dygjuhësia"
                 },
                 {
                     "id": 4041,
-                    "name": " Bilingual"
+                    "name": "Dygjuhësh"
                 },
                 {
                     "id": 4046,
-                    "name": " Speaking two languages"
+                    "name": "Të folurit e dy gjuhëve"
                 },
                 {
                     "id": 4051,
-                    "name": " Structured play"
+                    "name": "Lojë e strukturuar"
                 },
                 {
                     "id": 4056,
-                    "name": " Unstructured play"
+                    "name": "Lojë e pastrukturuar"
                 },
                 {
                     "id": 4061,
-                    "name": " Thinking"
+                    "name": "Të menduarit"
                 },
                 {
                     "id": 4066,
-                    "name": " Cognition"
+                    "name": "Njohja (Aftësitë njohëse/kognitive)"
                 },
                 {
                     "id": 4071,
-                    "name": " Cognitive"
+                    "name": "Njohës (Kognitiv)"
                 },
                 {
                     "id": 4076,
-                    "name": " Cognitive development"
+                    "name": "Zhvillimi kognitiv"
                 },
                 {
                     "id": 4081,
-                    "name": " Intellectual development"
+                    "name": "Zhvillimi intelektual"
                 },
                 {
                     "id": 4086,
-                    "name": " Brain development"
+                    "name": "Zhvillimi i trurit"
                 },
                 {
                     "id": 4091,
-                    "name": " Tummy time"
+                    "name": "Koha e lojës me bark"
                 },
                 {
                     "id": 4096,
-                    "name": " Floor time"
+                    "name": "Koha e lojës në dysheme"
                 },
                 {
                     "id": 4101,
-                    "name": " Baby on tummy"
+                    "name": "Bebja në bark"
                 },
                 {
                     "id": 4106,
-                    "name": " Baby on stomach"
+                    "name": "Bebja në stomak"
                 },
                 {
                     "id": 4111,
-                    "name": " Toys"
+                    "name": "Lodrat"
                 },
                 {
                     "id": 4116,
-                    "name": " Toy"
+                    "name": "Lodër"
                 },
                 {
                     "id": 4121,
-                    "name": " Playing with toys"
+                    "name": "Loja me lodra"
                 },
                 {
                     "id": 4126,
-                    "name": " Games"
+                    "name": "Lojërat"
                 },
                 {
                     "id": 4131,
-                    "name": " Homemade toys"
+                    "name": "Lodra shtëpiake"
                 },
                 {
                     "id": 4136,
-                    "name": " Home-made toys"
+                    "name": "Lodra të bëra në shtëpi"
                 },
                 {
                     "id": 4141,
-                    "name": " Maths"
+                    "name": "Matematika"
                 },
                 {
                     "id": 4146,
-                    "name": " Numeracy"
+                    "name": "Numërimi"
                 },
                 {
                     "id": 4151,
-                    "name": " Numerate"
+                    "name": "Numëroj/llogaris"
                 },
                 {
                     "id": 4156,
-                    "name": " Numbers"
+                    "name": "Numrat"
                 },
                 {
                     "id": 4161,
-                    "name": " Learning to read"
+                    "name": "Të mësuarit e leximit"
                 },
                 {
                     "id": 4166,
-                    "name": " Children reading"
+                    "name": "Lexim për fëmijë"
                 },
                 {
                     "id": 4171,
-                    "name": " Reading stories"
+                    "name": "Leximi i tregimeve"
                 },
                 {
                     "id": 4176,
-                    "name": " Storytelling"
+                    "name": "Tregim historish"
                 },
                 {
                     "id": 4181,
-                    "name": " Telling stories"
+                    "name": "Tregimi i historive"
                 },
                 {
                     "id": 4186,
-                    "name": " Telling stories to children"
+                    "name": "Tregimi i përrallave për fëmijë"
                 },
                 {
                     "id": 4191,
-                    "name": " Storytelling with children"
+                    "name": "Tregime historish me fëmijë"
                 },
                 {
                     "id": 4196,
-                    "name": " Stories"
+                    "name": "Tregimet/Historitë"
                 },
                 {
                     "id": 4201,
-                    "name": " Making up stories"
+                    "name": "Krijimi i tregimeve"
                 },
                 {
                     "id": 4206,
-                    "name": " Books"
+                    "name": "Librat"
                 },
                 {
                     "id": 4211,
-                    "name": " Book"
+                    "name": "Libër"
                 },
                 {
                     "id": 4216,
-                    "name": " Reading books"
+                    "name": "Leximi i librave"
                 },
                 {
                     "id": 4221,
-                    "name": " Learning to read books"
+                    "name": "Të mësuarit e leximit të librave"
                 },
                 {
                     "id": 4226,
-                    "name": " Children reading books"
+                    "name": "Fëmijët që lexojnë libra"
                 },
                 {
                     "id": 4231,
-                    "name": " Children learning to read books"
+                    "name": "Fëmijët duke mësuar si të lexojnë libra"
                 },
                 {
                     "id": 4236,
-                    "name": " Technology use"
+                    "name": "Përdorimi i teknologjisë"
                 },
                 {
                     "id": 4241,
-                    "name": " Imagination"
+                    "name": "Imagjinata"
                 },
                 {
                     "id": 4246,
-                    "name": " Imaginative"
+                    "name": "Imagjinues"
                 },
                 {
                     "id": 4251,
-                    "name": " Imagining"
+                    "name": "Imagjinimi"
                 },
                 {
                     "id": 4256,
-                    "name": " Developing language"
+                    "name": "Zhvillimi i gjuhës"
                 },
                 {
                     "id": 4261,
-                    "name": " Learning language"
+                    "name": "Të mësuarit e gjuhës"
                 },
                 {
                     "id": 4266,
-                    "name": " Learning words"
+                    "name": "Të mësuarit e fjalëve"
                 },
                 {
                     "id": 4271,
-                    "name": " Learning language skills"
+                    "name": "Përvetësimi i aftësive gjuhësore"
                 },
                 {
                     "id": 4276,
-                    "name": " Developing language skills"
+                    "name": "Zhvillimi i aftësive gjuhësore"
                 },
                 {
                     "id": 4281,
-                    "name": " Sound play"
+                    "name": "Lojë me zë"
                 },
                 {
                     "id": 4286,
-                    "name": " Playing with sound"
+                    "name": "Loja me zë"
                 },
                 {
                     "id": 4291,
-                    "name": " Puppet play"
+                    "name": "Lojë me kukulla"
                 },
                 {
                     "id": 4296,
-                    "name": " Puppets"
+                    "name": "Kukullat"
                 },
                 {
                     "id": 4301,
-                    "name": " Making puppets"
+                    "name": "Bërja e kukullave"
                 },
                 {
                     "id": 4306,
-                    "name": " How to make puppets"
+                    "name": "Si të bëni kukulla"
                 },
                 {
                     "id": 4311,
-                    "name": " Puppet making"
+                    "name": "Bërja e kukullave"
                 },
                 {
                     "id": 4316,
-                    "name": " Outdoor play"
+                    "name": "Loja jashtë shtëpisë"
                 },
                 {
                     "id": 4321,
-                    "name": " Outside play"
+                    "name": "Loja jashtë"
                 },
                 {
                     "id": 4326,
-                    "name": " Playing outdoors"
+                    "name": "Loja në natyrë"
                 },
                 {
                     "id": 4331,
-                    "name": " Playing outside"
+                    "name": "Loja në natyrë"
                 },
                 {
                     "id": 4336,
-                    "name": " Outdoors play"
+                    "name": "Loja jashtë shtëpisë"
                 },
                 {
                     "id": 4341,
-                    "name": " Nature play"
+                    "name": "Loja në natyrë"
                 },
                 {
                     "id": 4346,
-                    "name": " Playing in nature"
+                    "name": "Duke luajtur në natyrë"
                 },
                 {
                     "id": 4351,
-                    "name": " Nature walk"
+                    "name": "Shëtitja në natyrë"
                 },
                 {
                     "id": 4356,
-                    "name": " Ball play"
+                    "name": "Loja me top"
                 },
                 {
                     "id": 4361,
-                    "name": " Playing with balls"
+                    "name": "Loja me topa"
                 },
                 {
                     "id": 4366,
-                    "name": " Literacy"
+                    "name": "Shkrim-leximi"
                 },
                 {
                     "id": 4371,
-                    "name": " Developing literacy"
+                    "name": "Zhvillimi i shkrim-leximit"
                 },
                 {
                     "id": 4376,
-                    "name": " Learning literacy"
+                    "name": "Të mësuarit e shkrim-leximit"
                 },
                 {
                     "id": 4381,
-                    "name": " Literate"
+                    "name": "I aftë për shkrim-lexim"
                 },
                 {
                     "id": 4386,
-                    "name": " Becoming literate"
+                    "name": "Të bëhesh i aftë për shkrim-lexim"
                 },
                 {
                     "id": 4391,
-                    "name": " Children developing literacy"
+                    "name": "Fëmijët që mësojnë shkrim-leximin"
                 },
                 {
                     "id": 4396,
-                    "name": " Story"
+                    "name": "Tregim"
                 },
                 {
                     "id": 4401,
-                    "name": " Literacy difficulties"
+                    "name": "Vështirësitë në shkrim-lexim"
                 },
                 {
                     "id": 4406,
-                    "name": " Literacy problems"
+                    "name": "Problemet në shkrim-lexim"
                 },
                 {
                     "id": 4411,
-                    "name": " Cry"
+                    "name": "Të qarit"
                 },
                 {
                     "id": 4416,
-                    "name": " Crying baby"
+                    "name": "Foshnje qaramane"
                 },
                 {
                     "id": 4421,
-                    "name": " Crying babies"
+                    "name": "Foshnjet qaramane"
                 },
                 {
                     "id": 4426,
-                    "name": " Crying child"
+                    "name": "Fëmijë qaraman"
                 },
                 {
                     "id": 4431,
-                    "name": " Crying children"
+                    "name": "Fëmijët qaramanë"
                 },
                 {
                     "id": 4436,
-                    "name": " Bond between parent and child"
+                    "name": "Lidhja midis prindit dhe fëmijës"
                 },
                 {
                     "id": 4441,
-                    "name": " Attachment"
+                    "name": "Afërsia/Lidhja emocionale"
                 },
                 {
                     "id": 4446,
-                    "name": " Breastfeeding attachment"
+                    "name": "Afërsia gjatë ushqyerjes me gji"
                 },
                 {
                     "id": 4451,
-                    "name": " Breast feeding attachment"
+                    "name": "Afërsia gjatë ushqyerjes me gji"
                 },
                 {
                     "id": 4456,
-                    "name": " Attachment for breastfeeding"
+                    "name": "Afërsia për ushqyerjen me gji"
                 },
                 {
                     "id": 4461,
-                    "name": " Good attachment"
+                    "name": "Afërsia e mirë"
                 },
                 {
                     "id": 4466,
-                    "name": " Correct attachment"
+                    "name": "Afërsia e duhur/ e saktë"
                 },
                 {
                     "id": 4471,
-                    "name": " Getting baby to attach"
+                    "name": "Të mësuarit e foshnjës me afërsinë"
                 },
                 {
                     "id": 4476,
-                    "name": " Getting baby to latch on"
+                    "name": "Të mësuarit e foshnjës si të puthitet me gjirin"
                 },
                 {
                     "id": 4481,
-                    "name": " Attaching baby to the breast"
+                    "name": "Vënia e foshnjës në gji"
                 },
                 {
                     "id": 4486,
-                    "name": " Connecting"
+                    "name": "Lidhja"
                 },
                 {
                     "id": 4491,
-                    "name": " Connections"
+                    "name": "Lidhjet"
                 },
                 {
                     "id": 4496,
-                    "name": " Making connections"
+                    "name": "Krijimi i lidhjeve"
                 },
                 {
                     "id": 4501,
-                    "name": " Building connections"
+                    "name": "Ndërtimi i lidhjeve"
                 },
                 {
                     "id": 4506,
-                    "name": " Spoil a baby"
+                    "name": "Llastimi i foshnjës"
                 },
                 {
                     "id": 4511,
-                    "name": " Disciplining children"
+                    "name": "Disiplinimi i fëmijëve"
                 },
                 {
                     "id": 4516,
-                    "name": " Disciplining child"
+                    "name": "Disiplinimi i fëmijës"
                 },
                 {
                     "id": 4521,
-                    "name": " Encouraging good behaviour"
+                    "name": "Nxitja e sjelljes së mirë"
                 },
                 {
                     "id": 4526,
-                    "name": " Getting children to behave well"
+                    "name": "Të mësuarit e fëmijëve si të sillen mirë"
                 },
                 {
                     "id": 4531,
-                    "name": " encouraging appropriate behaviour"
+                    "name": "inkurajimi i sjelljes së përshtatshme"
                 },
                 {
                     "id": 4536,
-                    "name": " Smack"
+                    "name": "Shuplakë në trup"
                 },
                 {
                     "id": 4541,
-                    "name": " Slap"
+                    "name": "Shuplakë në fytyrë"
                 },
                 {
                     "id": 4546,
-                    "name": " Spank"
+                    "name": "Shuplakë në vithe"
                 },
                 {
                     "id": 4551,
-                    "name": " Slapping"
+                    "name": "Goditje me shuplakë në fytyrë"
                 },
                 {
                     "id": 4556,
-                    "name": " Spanking"
+                    "name": "Goditje me shuplakë në vithe"
                 },
                 {
                     "id": 4561,
-                    "name": " Smacking"
+                    "name": "Goditje me shuplakë në trup"
                 },
                 {
                     "id": 4566,
-                    "name": " Family rules"
+                    "name": "Rregullat e familjes"
                 },
                 {
                     "id": 4571,
-                    "name": " rules"
+                    "name": "rregullat"
                 },
                 {
                     "id": 4576,
-                    "name": " Tantrums"
+                    "name": "Shpërthime inati/zemërime të çastit"
                 },
                 {
                     "id": 4581,
-                    "name": " Temper tantrums"
+                    "name": "Shpërthim temperamenti"
                 },
                 {
                     "id": 4586,
-                    "name": " SIDS"
+                    "name": "SVPF"
                 },
                 {
                     "id": 4591,
-                    "name": " Sudden Infant Death Syndrome"
+                    "name": "Sindroma e Vdekjes së Papritur të Foshnjave"
                 },
                 {
                     "id": 4596,
-                    "name": " cot death"
+                    "name": "Vdekje e papritur e foshnjës"
                 },
                 {
                     "id": 4601,
-                    "name": " crib death"
+                    "name": "Vdekje e foshnjës gjatë gjumit"
                 },
                 {
                     "id": 4606,
-                    "name": " baby death"
+                    "name": "Vdekja e foshnjës"
                 },
                 {
                     "id": 4611,
-                    "name": " SUDI"
+                    "name": "VPPF"
                 },
                 {
                     "id": 4616,
-                    "name": " Fatal sleep accidents"
+                    "name": "Aksidente fatale në gjumë"
                 },
                 {
                     "id": 4621,
-                    "name": " Fatal sleeping accidents"
+                    "name": "Aksidente fatale gjatë fjetjes"
                 },
                 {
                     "id": 4626,
-                    "name": " Infant death"
+                    "name": "Vdekja e foshnjave"
                 },
                 {
                     "id": 4631,
-                    "name": " Sudden unexplained death in infancy"
+                    "name": "Vdekja e papritur dhe e pashpjegueshme në foshnjëri"
                 },
                 {
                     "id": 4636,
-                    "name": " Sudden unexplained infant death"
+                    "name": "Vdekja e papritur dhe e pashpjegueshme e foshnjës"
                 },
                 {
                     "id": 4641,
-                    "name": " SUID"
+                    "name": "VPPF"
                 },
                 {
                     "id": 4646,
-                    "name": " safe sleep"
+                    "name": "Gjumë i sigurtë"
+                },
+                {
+                    "id": 4651,
+                    "name": "Siguria gjatë gjumit"
                 },
                 {
                     "id": 4656,
-                    "name": " Domestic violence"
+                    "name": "Dhuna në familje"
                 },
                 {
                     "id": 4661,
-                    "name": " Violence towards women"
+                    "name": "Dhuna ndaj grave"
                 },
                 {
                     "id": 4666,
-                    "name": " Violence towards partners"
+                    "name": "Dhuna ndaj partnerëve"
                 },
                 {
                     "id": 4671,
-                    "name": " Violence in families"
+                    "name": "Dhuna në familje"
                 },
                 {
                     "id": 4676,
-                    "name": " Family violence"
+                    "name": "Dhuna familjare"
                 },
                 {
                     "id": 4681,
-                    "name": " Intimate partner violence"
+                    "name": "Dhuna e partnerit intim"
                 },
                 {
                     "id": 4686,
-                    "name": " Child abuse"
+                    "name": "Abuzimi me fëmijë"
                 },
                 {
                     "id": 4691,
-                    "name": " Hitting by parent"
+                    "name": "Goditja (rrahja) nga prindi"
                 },
                 {
                     "id": 4696,
-                    "name": " Abuse"
+                    "name": "Abuzimi"
                 },
                 {
                     "id": 4701,
-                    "name": " Hitting children"
+                    "name": "Rrahja e fëmijëve"
                 },
                 {
                     "id": 4706,
-                    "name": " Violence"
+                    "name": "Dhuna"
                 },
                 {
                     "id": 4711,
-                    "name": " Sun safety"
+                    "name": "Siguria nga dielli"
                 },
                 {
                     "id": 4716,
-                    "name": " Safety in the sun"
+                    "name": "Siguria në diell"
                 },
                 {
                     "id": 4721,
-                    "name": " Sun safe"
+                    "name": "I mbrojtur nga dielli"
                 },
                 {
                     "id": 4726,
-                    "name": " Sun-safe"
+                    "name": "I mbrojtur nga dielli"
                 },
                 {
                     "id": 4736,
-                    "name": " miljokaz"
+                    "name": "etapa"
                 },
                 {
                     "id": 4741,
-                    "name": " Developmental Milestone"
+                    "name": "treguesi zhvillimor"
                 },
                 {
                     "id": 4746,
-                    "name": " Child development"
+                    "name": "zhvillimi i fëmijës"
                 },
                 {
                     "id": 4751,
-                    "name": " Child Growth"
+                    "name": "Rritja e Fëmijëve"
                 },
                 {
                     "id": 4761,
-                    "name": " attention"
+                    "name": "vëmendja"
                 },
                 {
                     "id": 4766,
-                    "name": " self-esteem"
+                    "name": "vetë-vlerësimi"
                 },
                 {
                     "id": 4771,
-                    "name": " family stress"
+                    "name": "stresi familjar"
                 },
                 {
                     "id": 4776,
-                    "name": " baby well being"
+                    "name": "mirëqenia e foshnjës"
                 },
                 {
                     "id": 4781,
-                    "name": " baby bath"
+                    "name": "larja e foshnjës"
                 },
                 {
                     "id": 4786,
-                    "name": " Umbilical"
+                    "name": "Kërthizor"
                 },
                 {
                     "id": 4791,
-                    "name": " Trimming baby nails"
+                    "name": "Shkurtimi i thonjve të foshnjës"
                 },
                 {
                     "id": 4796,
-                    "name": " nails"
+                    "name": "thonjtë"
                 },
                 {
                     "id": 4801,
-                    "name": " genetic counsellor"
+                    "name": "këshilltar gjenetik"
                 },
                 {
                     "id": 4806,
-                    "name": " anorexia"
+                    "name": "anoreksi"
                 },
                 {
                     "id": 4811,
-                    "name": " nappy rash"
+                    "name": "skuqje nga pelenat"
                 },
                 {
                     "id": 4816,
-                    "name": " genital"
+                    "name": "gjenitale"
                 },
                 {
                     "id": 4821,
-                    "name": " museum activities"
+                    "name": "aktivitete muzeore"
                 },
                 {
                     "id": 4826,
-                    "name": " indoor activities"
+                    "name": "aktivitete në ambiente të brendshme"
                 },
                 {
                     "id": 4831,
-                    "name": " learning and play"
+                    "name": "të mësuarit dhe loja"
                 },
                 {
                     "id": 4836,
-                    "name": " crafts"
+                    "name": "zanatet"
                 },
                 {
                     "id": 4841,
-                    "name": " fine motor skill"
+                    "name": "aftësitë motorike të vogla"
                 },
                 {
                     "id": 4846,
-                    "name": " gross motor skills"
+                    "name": "aftësitë motorike të mëdha"
                 },
                 {
                     "id": 4851,
-                    "name": " movement coordination"
+                    "name": "koordinimi i lëvizjes"
                 },
                 {
                     "id": 4856,
-                    "name": " evaluating spatial relationships among objects"
+                    "name": "vlerësimi i marrëdhënieve hapësinore midis objekteve"
                 },
                 {
                     "id": 4861,
-                    "name": " learning the concept my turn"
+                    "name": "të mësuarit e konceptit \"radha ime\""
                 },
                 {
                     "id": 4866,
-                    "name": " socio- emotional development"
+                    "name": "zhvillimi socio-emocional"
                 },
                 {
                     "id": 4871,
-                    "name": " fine motor skills"
+                    "name": "aftësi motorike të vogla"
                 },
                 {
                     "id": 4876,
-                    "name": " reaching"
+                    "name": "zgjatja për të kapur"
                 },
                 {
                     "id": 4881,
-                    "name": " motor development"
+                    "name": "zhvillimi motorik"
                 },
                 {
                     "id": 4886,
-                    "name": " reading with the baby"
+                    "name": "leximi me foshnjën"
                 },
                 {
                     "id": 4891,
-                    "name": " socio-emotional development"
+                    "name": "zhvillimi socio-emocional"
                 },
                 {
                     "id": 4896,
-                    "name": " fear from unknown"
+                    "name": "frika nga e panjohura"
                 },
                 {
                     "id": 4901,
-                    "name": " separation anxiety"
+                    "name": "ankthi i ndarjes"
                 },
                 {
                     "id": 4906,
-                    "name": " online"
+                    "name": "në internet/online"
                 },
                 {
                     "id": 4911,
-                    "name": " digital"
+                    "name": "digjital"
                 },
                 {
                     "id": 4916,
-                    "name": " burping"
+                    "name": "gromësima"
                 },
                 {
                     "id": 4921,
-                    "name": " emotions"
+                    "name": "emocionet"
                 },
                 {
                     "id": 4926,
-                    "name": " words"
+                    "name": "fjalët"
                 },
                 {
                     "id": 4931,
-                    "name": " recommendations"
+                    "name": "rekomandimet"
                 },
                 {
                     "id": 4936,
-                    "name": " infant feeding"
+                    "name": "ushqyerja e foshnjave"
                 },
                 {
                     "id": 4941,
-                    "name": " child feeding"
+                    "name": "ushqyerja e fëmijëve"
                 },
                 {
                     "id": 4946,
-                    "name": " complementary  feeding"
+                    "name": "ushqyerja plotësuese"
+                },
+                {
+                    "id": 4951,
+                    "name": "pozicionimi i mirë i gojës së foshnjës në gji"
                 },
                 {
                     "id": 4956,
-                    "name": " Breastmilk supply"
+                    "name": "furnizimi me qumësht gjiri"
                 },
                 {
                     "id": 4961,
-                    "name": " breastmilk quantity"
+                    "name": "sasia e qumështit të gjirit"
                 },
                 {
                     "id": 4966,
-                    "name": " enough breastmilk"
+                    "name": "qumësht i mjaftueshëm gjiri"
                 },
                 {
                     "id": 4971,
-                    "name": " breastmilk expression"
+                    "name": "shtrydhja e qumështit të  gjirit"
+                },
+                {
+                    "id": 4976,
+                    "name": "të ushqyerit me qumësht të shtrydhur nga gjiri"
                 },
                 {
                     "id": 4981,
-                    "name": " storage of breastmilk"
+                    "name": "ruajtja e qumështit të gjirit"
                 },
                 {
                     "id": 4986,
-                    "name": " breastfeeding problems"
+                    "name": "problemet me gjidhënie"
                 },
                 {
                     "id": 4991,
-                    "name": " nipple pain"
+                    "name": "dhimbja e thithave"
                 },
                 {
                     "id": 4996,
-                    "name": " breast pain"
+                    "name": "dhimbja e gjirit"
                 },
                 {
                     "id": 5001,
-                    "name": " benefits"
+                    "name": "përfitimet"
+                },
+                {
+                    "id": 5006,
+                    "name": "kujdesi për fëmijën gjatë lindjes"
+                },
+                {
+                    "id": 5011,
+                    "name": "ushqyerja e fëmijës pas lindjes"
                 },
                 {
                     "id": 5016,
-                    "name": " early breastfeeding"
+                    "name": "gjidhënia e hershme"
                 },
                 {
                     "id": 5021,
-                    "name": " washing breasts"
+                    "name": "larja e gjinjve"
+                },
+                {
+                    "id": 5026,
+                    "name": "përkujdesi"
+                },
+                {
+                    "id": 5031,
+                    "name": "shtrydhja e gjirit"
                 },
                 {
                     "id": 5036,
-                    "name": " mother"
+                    "name": "nëna"
                 },
                 {
                     "id": 5041,
-                    "name": " severe illness"
+                    "name": "sëmundje e rëndë"
                 },
                 {
                     "id": 5046,
-                    "name": " recovery"
+                    "name": "shërimi"
+                },
+                {
+                    "id": 5051,
+                    "name": "përgatitja e ushqimit"
                 },
                 {
                     "id": 5056,
-                    "name": " food hygiene"
+                    "name": "higjiena e ushqimit"
+                },
+                {
+                    "id": 5061,
+                    "name": "përgatitja e vaktit/shujtës"
                 },
                 {
                     "id": 5066,
-                    "name": " Birthmark"
+                    "name": "shenjë në lindje"
                 },
                 {
                     "id": 5071,
-                    "name": " eye"
+                    "name": "syri"
                 },
                 {
                     "id": 5076,
-                    "name": " stye"
+                    "name": "elbthi në sy/byci"
                 },
                 {
                     "id": 5081,
-                    "name": " eyelid"
+                    "name": "qepalla"
                 },
                 {
                     "id": 5086,
-                    "name": " partner support"
+                    "name": "mbështetja e partnerit"
                 },
                 {
                     "id": 5091,
-                    "name": " shyness"
+                    "name": "ndrojtje"
                 },
                 {
                     "id": 5096,
-                    "name": " parent"
+                    "name": "prind"
                 },
                 {
                     "id": 5101,
-                    "name": " Reward"
+                    "name": "Shpërblim"
                 },
                 {
                     "id": 5106,
-                    "name": " Bronchiolitis"
+                    "name": "Bronkioliti"
                 },
                 {
                     "id": 5111,
-                    "name": " hard to breath"
+                    "name": "vështirësi në frymëmarrje"
                 },
                 {
                     "id": 5116,
-                    "name": " distressed"
+                    "name": "i/e shqetësuar"
                 },
                 {
                     "id": 5121,
-                    "name": " danger"
+                    "name": "rrezik"
                 },
                 {
                     "id": 5126,
-                    "name": " harmful"
+                    "name": "i dëmshëm/ e dëmshme"
                 },
                 {
                     "id": 5131,
-                    "name": " morning routine"
+                    "name": "rutina e mëngjesit"
                 },
                 {
                     "id": 5136,
-                    "name": " behaviour management tool"
+                    "name": "mjet për menaxhimin e sjelljes"
                 },
                 {
                     "id": 5141,
-                    "name": " planning"
+                    "name": "planifikimi"
                 },
                 {
                     "id": 5146,
-                    "name": " Temperament"
+                    "name": "temperamenti"
                 },
                 {
                     "id": 5151,
-                    "name": " parent tips"
+                    "name": "këshilla për prindërit"
                 },
                 {
                     "id": 5156,
-                    "name": " gender"
+                    "name": "gjinia"
                 },
                 {
                     "id": 5161,
-                    "name": " Gender perspective"
+                    "name": "perspektiva gjinore"
                 },
                 {
                     "id": 5166,
-                    "name": " stuttering"
+                    "name": "belbëzimi"
                 },
                 {
                     "id": 5171,
-                    "name": " preschoolers"
+                    "name": "fëmijët parashkollorë"
                 },
                 {
                     "id": 5176,
-                    "name": " good behaviour"
+                    "name": "sjellja e mire"
                 },
                 {
                     "id": 5181,
-                    "name": " 4-5"
+                    "name": "4 deri 5"
                 },
                 {
                     "id": 5186,
-                    "name": " 3-4"
+                    "name": "3 deri 4"
                 },
                 {
                     "id": 5191,
-                    "name": " Bronchitis"
+                    "name": "Bronkiti"
                 },
                 {
                     "id": 5196,
-                    "name": " pentavalent vaccine"
+                    "name": " vaksina pentavalente"
                 },
                 {
                     "id": 5201,
-                    "name": " side effects"
+                    "name": "efektet anësore"
                 },
                 {
                     "id": 5206,
-                    "name": " Hemophilus influenzae type b"
+                    "name": " Hemophilus influenzae tipi b"
                 },
                 {
                     "id": 5211,
-                    "name": " Diphtheria"
+                    "name": "Difteria"
                 },
                 {
                     "id": 5216,
-                    "name": " Streptococcus pneumoniae"
+                    "name": "pneumokoku"
                 },
                 {
                     "id": 5221,
-                    "name": " BCG vaccine"
+                    "name": "vaksina BCG"
                 },
                 {
                     "id": 5226,
-                    "name": " protection against mosquito bites"
+                    "name": " mbrojtja nga pickimet e mushkonjave"
                 },
                 {
                     "id": 5231,
-                    "name": " early intervention"
+                    "name": " ndërhyrjet e hershme"
                 },
                 {
                     "id": 5236,
-                    "name": " diagnosis of autism"
+                    "name": "diagnoza e autizmit"
                 },
                 {
                     "id": 5241,
-                    "name": " early signs"
+                    "name": "shenjat e hershme"
                 },
                 {
                     "id": 5246,
-                    "name": " diagnosis"
+                    "name": " diagnoza"
                 },
                 {
                     "id": 5251,
-                    "name": " intervention"
+                    "name": " ndërhyrja"
                 },
                 {
                     "id": 5256,
-                    "name": " abuse"
+                    "name": "abuzimi"
                 },
                 {
                     "id": 5261,
-                    "name": " neglect"
+                    "name": "neglizhimi"
                 },
                 {
                     "id": 5266,
-                    "name": " sexual abuse"
+                    "name": " abuzimi seksual"
                 },
                 {
                     "id": 5271,
-                    "name": " parental alienation syndrome"
+                    "name": " sindroma e tjetërsimit prindëror"
                 },
                 {
                     "id": 5276,
-                    "name": " parental divorce"
+                    "name": "divorci i prindërve"
                 },
                 {
                     "id": 5281,
-                    "name": " Motherhood"
+                    "name": " Amësia"
                 },
                 {
                     "id": 5286,
-                    "name": " growth"
+                    "name": "rritja"
+                },
+                {
+                    "id": 5291,
+                    "name": "foshnja"
                 },
                 {
                     "id": 5296,
-                    "name": " growth parameters"
+                    "name": "parametrat e rritjes"
                 },
                 {
                     "id": 5301,
-                    "name": " typical infant growth"
+                    "name": "rritja tipike e  foshnjës"
                 },
                 {
                     "id": 5306,
-                    "name": " third quarter"
+                    "name": "tremujori i tretë"
                 },
                 {
                     "id": 5311,
-                    "name": " fourth quarter"
+                    "name": "tremujori i katërt"
+                },
+                {
+                    "id": 5316,
+                    "name": "rritje tipike"
                 },
                 {
                     "id": 5321,
-                    "name": " height"
+                    "name": "gjatësia"
                 },
                 {
                     "id": 5326,
-                    "name": " mental health"
+                    "name": "shëndeti  mendor"
                 },
                 {
                     "id": 5331,
-                    "name": " mental disorders"
+                    "name": " çrregullime mendore"
                 },
                 {
                     "id": 5336,
-                    "name": " child wellbeing"
+                    "name": " mirëqenia e fëmijës"
                 },
                 {
                     "id": 5341,
-                    "name": " sitting"
+                    "name": "të qëndruarit ulur"
                 },
                 {
                     "id": 5346,
-                    "name": " sedentary screen time"
+                    "name": "koha ulur pranë ekranit"
                 },
                 {
                     "id": 5351,
-                    "name": " light"
+                    "name": "drita"
                 },
                 {
                     "id": 5356,
-                    "name": " moderate"
+                    "name": "mesatar/e"
                 },
                 {
                     "id": 5361,
-                    "name": " vigorous physical activity"
+                    "name": "aktivitet i vrullshëm fizik"
                 },
                 {
                     "id": 5366,
-                    "name": " 6 months"
+                    "name": "6 muajsh"
                 },
                 {
                     "id": 5371,
-                    "name": " feeding young child"
+                    "name": "të ushqyerit e fëmijës së vogël"
                 },
                 {
                     "id": 5376,
-                    "name": " 9 months"
+                    "name": "9 muajsh"
                 },
                 {
                     "id": 5381,
-                    "name": " 10 months"
+                    "name": "10 muajsh"
                 },
                 {
                     "id": 5386,
-                    "name": " 11 months"
+                    "name": "11 muajsh"
                 },
                 {
                     "id": 5391,
-                    "name": " BCG vaccine"
+                    "name": "Vaksina BCG"
                 },
                 {
                     "id": 5396,
-                    "name": " tuberculosis"
+                    "name": "tuberkulozi"
                 },
                 {
                     "id": 5401,
-                    "name": " abuse"
+                    "name": "abuzimi"
                 },
                 {
                     "id": 5406,
-                    "name": " daily routines"
+                    "name": " rutinat ditore"
                 },
                 {
                     "id": 5411,
-                    "name": " imitations"
+                    "name": "imitimet"
                 },
                 {
                     "id": 5421,
-                    "name": " skin to skin"
+                    "name": "lëkurë më lëkurë"
                 },
                 {
                     "id": 5426,
-                    "name": " development assessment"
+                    "name": "vlerësimi i zhvillimit"
                 },
                 {
                     "id": 5431,
-                    "name": " Injuries"
+                    "name": " Lëndimet"
                 },
                 {
                     "id": 5436,
-                    "name": " falls"
+                    "name": "rrëzimet"
                 },
                 {
                     "id": 5441,
-                    "name": " fractures"
+                    "name": "frakturat/thyerjet"
                 },
                 {
                     "id": 5446,
-                    "name": " frostbite"
+                    "name": "morthi"
                 },
                 {
                     "id": 5451,
-                    "name": " freezing"
+                    "name": " ngrirja"
                 },
                 {
                     "id": 5456,
-                    "name": " frostbite"
+                    "name": "morthi"
                 },
                 {
                     "id": 5461,
-                    "name": " bite"
+                    "name": "kafshimi"
                 },
                 {
                     "id": 5466,
-                    "name": " burns"
+                    "name": "djegiet"
                 },
                 {
                     "id": 5471,
-                    "name": " poisoning"
+                    "name": " helmimi"
                 },
                 {
                     "id": 5476,
-                    "name": " suffocation"
+                    "name": "asfiksia"
                 },
                 {
                     "id": 5481,
-                    "name": " drowning"
+                    "name": "mbytja"
                 },
                 {
                     "id": 5486,
-                    "name": " Pharmacy"
+                    "name": "barnatore"
                 },
                 {
                     "id": 5491,
-                    "name": " dressing the baby"
+                    "name": "veshja e foshnjës"
                 },
                 {
                     "id": 5496,
-                    "name": " overheating"
+                    "name": "temperatura e lartë/tejngrohja"
                 },
                 {
                     "id": 5501,
-                    "name": " umbilical stump"
+                    "name": "cungu i kërthizës"
                 },
                 {
                     "id": 5506,
-                    "name": " conjunctivitis"
+                    "name": "konjuktiviti"
                 },
                 {
                     "id": 5511,
-                    "name": " nasal hygiene"
+                    "name": "higjiena nazale (hundore)"
                 },
                 {
                     "id": 5516,
-                    "name": " hospital"
+                    "name": "spitali"
                 },
                 {
                     "id": 5521,
-                    "name": " eye hygiene"
+                    "name": "higjiena  e syve"
                 },
                 {
                     "id": 5526,
-                    "name": " cracked nipples"
+                    "name": "thitha të plasaritura"
                 },
                 {
                     "id": 5531,
-                    "name": " breastfeeding on demand"
+                    "name": " ushqyerja me gji sipas kërkesës"
                 },
                 {
                     "id": 5536,
-                    "name": " supplementation"
+                    "name": " plotësimi/shtesa ushqimore"
                 },
                 {
                     "id": 5541,
-                    "name": " storing breast milk"
+                    "name": "ruajtja e qumështit të gjirit"
                 },
                 {
                     "id": 5546,
-                    "name": " milking"
+                    "name": "nxjerrja e qumështit"
                 },
                 {
                     "id": 5551,
-                    "name": " mastitis"
+                    "name": " mastiti"
                 },
                 {
                     "id": 5556,
-                    "name": " mammary glands"
+                    "name": "gjëndrat e qumështit"
                 },
                 {
                     "id": 5561,
-                    "name": " varied diet"
+                    "name": "dietë e larmishme"
                 },
                 {
                     "id": 5566,
-                    "name": " represented groceries"
+                    "name": "ushqime të përfaqësuara"
                 },
                 {
                     "id": 5571,
-                    "name": " overweight"
+                    "name": "mbipesha"
                 },
                 {
                     "id": 5581,
-                    "name": " satisfied baby"
+                    "name": "foshnje e kënaqur"
                 },
                 {
                     "id": 5591,
-                    "name": " weight gain"
+                    "name": "shtimi në peshë"
                 },
                 {
                     "id": 5601,
-                    "name": " starting to walk"
+                    "name": "fillimi i ecjes"
                 },
                 {
                     "id": 5606,
-                    "name": " independent sitting"
+                    "name": " ulja në mënyrë të pavarur"
                 },
                 {
                     "id": 5611,
-                    "name": " sitting with support"
+                    "name": "ulja duke u mbështetur"
                 },
                 {
                     "id": 5616,
-                    "name": " steady walk"
+                    "name": "ecja e qëndrueshme"
                 },
                 {
                     "id": 5621,
-                    "name": " rollover with support"
+                    "name": "rrotullimi me mbështetje"
                 },
                 {
                     "id": 5636,
-                    "name": " getting up while holding furniture"
+                    "name": " ngritja duke u mbajtur nëpër orendi"
                 },
                 {
                     "id": 5641,
-                    "name": " cruising"
+                    "name": "ecja duke u mbajtur "
                 },
                 {
                     "id": 5651,
-                    "name": " scoop up small objects"
+                    "name": "mbledhja e objekteve të vogla"
                 },
                 {
                     "id": 5661,
-                    "name": " insertion"
+                    "name": "futja"
                 },
                 {
                     "id": 5666,
-                    "name": " inserts"
+                    "name": " futjet/shtesat"
                 },
                 {
                     "id": 5671,
-                    "name": " drawing"
+                    "name": "vizatimi"
                 },
                 {
                     "id": 5676,
-                    "name": " ejection-insertion"
+                    "name": "nxjerrja-futja"
                 },
                 {
                     "id": 5681,
-                    "name": " throwing"
+                    "name": "hudhja"
                 },
                 {
                     "id": 5686,
-                    "name": " throwing games"
+                    "name": " lojërat me hedhje"
                 },
                 {
                     "id": 5691,
-                    "name": " first word"
+                    "name": "fjala e parë"
                 },
                 {
                     "id": 5696,
-                    "name": " first sentence"
+                    "name": "fjalia e parë"
                 },
                 {
                     "id": 5701,
-                    "name": " reaching"
+                    "name": "zgjatja për të kapur "
                 },
                 {
                     "id": 5706,
-                    "name": " carrying"
+                    "name": " mbajtja"
                 },
                 {
                     "id": 5711,
-                    "name": " switching from hand to hand"
+                    "name": "kalimi i gjërave nga njëra dorë tek tjetra"
                 },
                 {
                     "id": 5716,
-                    "name": " chatter"
+                    "name": "bërbëlitja"
                 },
                 {
                     "id": 5721,
-                    "name": " cooing"
+                    "name": " gugatja"
                 },
                 {
                     "id": 5726,
-                    "name": " walking without support"
+                    "name": "ecja pa mbështetje"
                 },
                 {
                     "id": 5731,
-                    "name": " pushing"
+                    "name": "shtytja"
                 },
                 {
                     "id": 5736,
-                    "name": " hiding"
+                    "name": "fshehja"
                 },
                 {
                     "id": 5741,
-                    "name": " hide and seek"
+                    "name": " loja symbyllazi"
                 },
                 {
                     "id": 5746,
-                    "name": " picture books"
+                    "name": "librat me fotografi"
                 },
                 {
                     "id": 5751,
-                    "name": " making sounds"
+                    "name": "lëshimi i tingujve"
                 },
                 {
                     "id": 5756,
-                    "name": " sounds and voices"
+                    "name": "tingujt dhe zërat"
                 },
                 {
                     "id": 5761,
-                    "name": " first smile"
+                    "name": " buzëqeshja e parë"
                 },
                 {
                     "id": 5766,
-                    "name": " eye tracking"
+                    "name": " përcjellja me sy"
                 },
                 {
                     "id": 5771,
-                    "name": " laughing"
+                    "name": "qeshja"
                 },
                 {
                     "id": 5776,
-                    "name": " Listening"
+                    "name": "të dëgjuarit"
                 },
                 {
                     "id": 5781,
-                    "name": " music games"
+                    "name": " lojërat me muzikë"
                 },
                 {
                     "id": 5796,
-                    "name": " fantasy"
+                    "name": " fantazia"
                 },
                 {
                     "id": 5811,
-                    "name": " creation"
+                    "name": "krijimi"
                 },
                 {
                     "id": 5816,
-                    "name": " muscles"
+                    "name": "muskujt"
                 },
                 {
                     "id": 5821,
-                    "name": " strengthening"
+                    "name": " forcimi"
                 },
                 {
                     "id": 5826,
-                    "name": " muscularity"
+                    "name": " muskulatura"
                 },
                 {
                     "id": 5831,
-                    "name": " muscle strength"
+                    "name": "forca e muskujve"
                 },
                 {
                     "id": 5861,
-                    "name": " time on the floor"
+                    "name": "koha e lojës në dysheme"
                 },
                 {
                     "id": 5866,
-                    "name": " classification"
+                    "name": " klasifikimi"
                 },
                 {
                     "id": 5871,
-                    "name": " spremanje"
+                    "name": " përgatitja"
                 },
                 {
                     "id": 5876,
-                    "name": " leaving"
+                    "name": " largimi"
                 },
                 {
                     "id": 5881,
-                    "name": " sorting"
+                    "name": "klasifikimi i gjërave"
                 },
                 {
                     "id": 5886,
-                    "name": " sounds toys"
+                    "name": "lodrat që krijojnë tinguj"
                 },
                 {
                     "id": 5891,
-                    "name": " musical toys"
+                    "name": "lodra muzikore"
                 },
                 {
                     "id": 5896,
-                    "name": " a game led by a child"
+                    "name": "një lojë e drejtuar nga një fëmijë"
                 },
                 {
                     "id": 5901,
-                    "name": " a child leader in the game"
+                    "name": "një fëmijë udhëheqës në lojë"
                 },
                 {
                     "id": 5906,
-                    "name": " pretend games"
+                    "name": "lojërat me role"
                 },
                 {
                     "id": 5911,
-                    "name": " first words"
+                    "name": "fjalët e para"
                 },
                 {
                     "id": 5916,
-                    "name": " counting"
+                    "name": " numërimi"
                 },
                 {
                     "id": 5926,
-                    "name": " igre brojevima"
+                    "name": "lojëra me numra"
                 },
                 {
                     "id": 5931,
-                    "name": " number"
+                    "name": "numri"
                 },
                 {
                     "id": 5936,
-                    "name": " stringing"
+                    "name": " vargëzimi"
                 },
                 {
                     "id": 5941,
-                    "name": " games outside"
+                    "name": "lojërat në ambiente të jashtme"
                 },
                 {
                     "id": 5946,
-                    "name": " exercises"
+                    "name": "ushtrimet"
                 },
                 {
                     "id": 5951,
-                    "name": " retrieval"
+                    "name": "rikthimi/korrigjimi"
                 },
                 {
                     "id": 5956,
-                    "name": " getting to know"
+                    "name": " njohja/të mësuarit"
                 },
                 {
                     "id": 5961,
-                    "name": " parallel game"
+                    "name": " lojë paralele"
                 },
                 {
                     "id": 5966,
-                    "name": " joint game"
+                    "name": "lojëra të përbashkëta"
                 },
                 {
                     "id": 5976,
-                    "name": " children at play"
+                    "name": "fëmijët gjatë lojës"
                 },
                 {
                     "id": 5986,
-                    "name": " hiding games"
+                    "name": "lojërat me fshehje"
                 },
                 {
                     "id": 5991,
-                    "name": " dad and kid at play"
+                    "name": "  babai dhe fëmija në lojë"
                 },
                 {
                     "id": 5996,
-                    "name": " reading with a baby"
+                    "name": "leximi së bashku me foshnjën"
                 },
                 {
                     "id": 6001,
-                    "name": " jumping"
+                    "name": " kërcimi"
                 },
                 {
                     "id": 6006,
-                    "name": " milia on the skin"
+                    "name": " milia (puçërra të qumështit) në lëkurë"
                 },
                 {
                     "id": 6011,
-                    "name": " white spots on the skin"
+                    "name": " shenja të bardha në lëkurë"
                 },
                 {
                     "id": 6016,
-                    "name": " skin care"
+                    "name": "përkujdesja për lëkurën"
                 },
                 {
                     "id": 6021,
-                    "name": " head care"
+                    "name": "përkujdesja për kokën"
                 },
                 {
                     "id": 6026,
-                    "name": " bathing over the arm"
+                    "name": " larja mbi krah"
                 },
                 {
                     "id": 6031,
-                    "name": " bathing in the tub"
+                    "name": " larja në vaskë"
                 },
                 {
                     "id": 6036,
-                    "name": " nail care"
+                    "name": "përkujdesja për thonjtë"
                 },
                 {
                     "id": 6041,
-                    "name": " ear care"
+                    "name": "përkujdesja për veshin"
                 },
                 {
                     "id": 6046,
-                    "name": " genital care in girls"
+                    "name": " kujdesi gjenital tek vajzat"
                 },
                 {
                     "id": 6051,
-                    "name": " genital care in boys"
+                    "name": " kujdesi gjenital tek djemtë"
                 },
                 {
                     "id": 6056,
-                    "name": " eye care"
+                    "name": "përkujdesja për sytë"
                 },
                 {
                     "id": 6061,
-                    "name": " Thigh chafing"
+                    "name": "irritimi i kofshës"
                 },
                 {
                     "id": 6066,
-                    "name": " diaper rash"
+                    "name": " skuqja nga pelenat"
                 },
                 {
                     "id": 6071,
-                    "name": " mouth care"
+                    "name": " përkujdesja për gojën"
                 },
                 {
                     "id": 6076,
-                    "name": " pajamas"
+                    "name": "pizhamet"
                 },
                 {
                     "id": 6106,
-                    "name": " nasal care"
+                    "name": "përkujdesja për hundën"
                 },
                 {
                     "id": 6131,
-                    "name": " Baby clothes"
+                    "name": "rrobat e foshnjës"
                 },
                 {
                     "id": 6136,
-                    "name": " sterilization"
+                    "name": " sterilizimi"
                 },
                 {
                     "id": 6141,
-                    "name": " baby accessories"
+                    "name": "aksesorë për fëmijë"
                 },
                 {
                     "id": 6146,
-                    "name": " Teething"
+                    "name": "dalja e dhëmbëve"
                 },
                 {
                     "id": 6151,
-                    "name": " toy hygiene"
+                    "name": " higjiena e lodrave"
                 },
                 {
                     "id": 6156,
-                    "name": " toys"
+                    "name": " lodrat"
                 },
                 {
                     "id": 6161,
-                    "name": " pillow"
+                    "name": "jastëk"
                 },
                 {
                     "id": 6166,
-                    "name": " sleeping on a pillow"
+                    "name": " fjetja në jastëk"
                 },
                 {
                     "id": 6171,
-                    "name": " trolley"
+                    "name": " karroca për fëmijë"
                 },
                 {
                     "id": 6176,
-                    "name": " baby stroller"
+                    "name": " karroca për fëmijë"
                 },
                 {
                     "id": 6181,
-                    "name": " first walk"
+                    "name": "ecja e parë"
                 },
                 {
                     "id": 6186,
-                    "name": " a walk"
+                    "name": " ecja"
                 },
                 {
                     "id": 6196,
-                    "name": " U koje doba dana beba sme u šetnju leti ?"
+                    "name": "Në çfarë ore të ditës foshnja mund të dal në shëtitje verës?"
                 },
                 {
                     "id": 6206,
-                    "name": " scarf and hat"
+                    "name": " shall dhe kapele"
                 },
                 {
                     "id": 6211,
-                    "name": " covered"
+                    "name": " të mbuluara"
                 },
                 {
                     "id": 6216,
-                    "name": " winter jumpsuit"
+                    "name": "rroba dimri/kominoshe dimri"
                 },
                 {
                     "id": 6221,
-                    "name": " summer"
+                    "name": " vera"
                 },
                 {
                     "id": 6226,
-                    "name": " summer walk"
+                    "name": " shëtitje verore"
                 },
                 {
                     "id": 6236,
-                    "name": " spring"
+                    "name": "pranvera"
                 },
                 {
                     "id": 6241,
-                    "name": " mosquito bite"
+                    "name": "pickimi i mushkonjave"
                 },
                 {
                     "id": 6246,
-                    "name": " beach"
+                    "name": "plazhi"
                 },
                 {
                     "id": 6251,
-                    "name": " Swimming pool"
+                    "name": " Pishina"
                 },
                 {
                     "id": 6256,
-                    "name": " travel"
+                    "name": "udhëtimi"
                 },
                 {
                     "id": 6261,
-                    "name": " travel equipment"
+                    "name": "pajisjet e udhëtimit"
                 },
                 {
                     "id": 6266,
-                    "name": " Travel pharmacy"
+                    "name": "barnatore mobile/ e lëvizshme"
                 },
                 {
                     "id": 6271,
-                    "name": " high growth"
+                    "name": " rritja e madhe"
                 },
                 {
                     "id": 6276,
-                    "name": " growth hormone"
+                    "name": "hormoni i rritjes"
                 },
                 {
                     "id": 6281,
-                    "name": " gigantism"
+                    "name": "gjigantizmi"
                 },
                 {
                     "id": 6286,
-                    "name": " food preparation"
+                    "name": "përgatitja e ushqimit"
                 },
                 {
                     "id": 6291,
-                    "name": " child malnutrition"
+                    "name": "kequshqyerja e fëmijëve"
                 },
                 {
                     "id": 6296,
-                    "name": " malnutrition"
+                    "name": "kequshqyerja"
                 },
                 {
                     "id": 6301,
-                    "name": " no weight gain"
+                    "name": "mos-shtimi në peshë"
                 },
                 {
                     "id": 6306,
-                    "name": " poor weight gain"
+                    "name": "shtim i vogël i peshës"
                 },
                 {
                     "id": 6326,
-                    "name": " improper diet"
+                    "name": " dieta jo e duhur"
                 },
                 {
                     "id": 6331,
-                    "name": " lack of activity"
+                    "name": " mungesa e aktivitetit"
                 },
                 {
                     "id": 6341,
-                    "name": " harmfulness of smoking"
+                    "name": "dëmi nga pirja e duhanit"
                 },
                 {
                     "id": 6346,
-                    "name": " tobacco smoke"
+                    "name": "tymi i duhanit/pirja e duhanit"
                 },
                 {
                     "id": 6351,
-                    "name": " harmfulness of tobacco smoke"
+                    "name": "dëmet nga tymi i duhanit"
                 },
                 {
                     "id": 6356,
-                    "name": " nicotine"
+                    "name": " nikotina"
                 },
                 {
                     "id": 6361,
-                    "name": " carcinogenic"
+                    "name": " kancerogjene"
                 },
                 {
                     "id": 6366,
-                    "name": " independence"
+                    "name": "pavarësia"
                 },
                 {
                     "id": 6371,
-                    "name": " veštačka ishrana"
-                },
-                {
-                    "id": 109726,
-                    "name": "АКДС"
-                },
-                {
-                    "id": 109791,
-                    "name": "Ден соолукту профилактикалык текшерүү"
-                },
-                {
-                    "id": 109796,
-                    "name": "2 жаш"
-                },
-                {
-                    "id": 109831,
-                    "name": "Плановый осмотр в 7 месяцев"
-                },
-                {
-                    "id": 109841,
-                    "name": "Плановый осмотр ребенка в полные 8 месяцев"
-                },
-                {
-                    "id": 109851,
-                    "name": "Плановый осмотр ребенка в 15 месяцев"
-                },
-                {
-                    "id": 109861,
-                    "name": "Плановый осмотр ребенка в 21 месяцев"
-                },
-                {
-                    "id": 109871,
-                    "name": "Плановый осмотр ребенка в 24 месяца"
-                },
-                {
-                    "id": 109881,
-                    "name": "Плановый осмотр ребенка в 27 месяцев"
-                },
-                {
-                    "id": 109891,
-                    "name": "Плановый осмотр ребенка в 30 месяцев"
-                },
-                {
-                    "id": 109901,
-                    "name": "Плановый осмотр ребенка в 33 месяца"
-                },
-                {
-                    "id": 109911,
-                    "name": "Плановый осмотр ребенка в 36 месяцев"
-                },
-                {
-                    "id": 109921,
-                    "name": "Плановый осмотр ребенка в 42 месяца"
-                },
-                {
-                    "id": 109931,
-                    "name": "Плановый осмотр ребенка в 54 месяца"
-                },
-                {
-                    "id": 109941,
-                    "name": "Плановый осмотр ребенка в 60 месяцев"
-                },
-                {
-                    "id": 109951,
-                    "name": "Плановый осмотр ребенка 6 лет"
-                },
-                {
-                    "id": 110031,
-                    "name": "child development"
+                    "name": " ushqimi artificial"
                 }
             ],
             "parent_gender": [
                 {
                     "id": 37,
-                    "name": "Male",
+                    "name": "Mashkull",
                     "unique_name": "male"
                 },
                 {
                     "id": 38,
-                    "name": "Female",
+                    "name": "Femër",
                     "unique_name": "female"
                 },
                 {
                     "id": 60,
-                    "name": "Both",
+                    "name": "Të dyja",
                     "unique_name": "both"
                 }
             ],
             "relationship_to_parent": [
                 {
                     "id": 109801,
-                    "name": "Mother",
+                    "name": "Nëna",
                     "unique_name": "mother"
                 },
                 {
                     "id": 109806,
-                    "name": "Father",
+                    "name": "Babai",
                     "unique_name": "father"
                 },
                 {
                     "id": 109811,
-                    "name": "Other Caregiver",
+                    "name": "Kujdestari tjetër",
                     "unique_name": "other_caregiver"
                 },
                 {
                     "id": 109816,
-                    "name": "Service Provider",
+                    "name": "Ofruesi i shërbimit",
                     "unique_name": "service_provider"
                 }
             ],
             "type_of_support": [
                 {
                     "id": 59001,
-                    "name": "Parent Guided"
+                    "name": "E udhëhequr nga prindërit"
                 },
                 {
                     "id": 59006,
-                    "name": "Independent Play"
+                    "name": "Lojë e pavarur"
                 }
             ]
         },
