@@ -447,7 +447,7 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
         { text: i18n.t('vcIsMeasuredOption1'), onPress: () => resolve("yes") }
       ]
     );
-  },3000);
+  },2500);
   });
 }
 export const deleteArticleNotPinned= async () => {
