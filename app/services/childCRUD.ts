@@ -435,10 +435,11 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
   }
 
   if (param == 0) {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'ChildSetupList' }],
-    });
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'ChildSetupList' }],
+    // });
+    navigation.navigate('ChildSetupList');
     // console.log(data[0].relationship,"..data[0].relationship..");
     let relationshipnew = relationship;
     if (typeof relationship === 'string' || relationship instanceof String) {
