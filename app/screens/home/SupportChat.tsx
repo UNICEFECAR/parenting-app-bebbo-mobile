@@ -1,5 +1,4 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { SafeAreaContainer } from '@components/shared/Container';
 import { FlexCol,FlexDirCol} from '@components/shared/FlexBoxStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -20,7 +19,7 @@ const SupportChat = ({ navigation }: Props) => {
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-     <SafeAreaContainer>
+     <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -30,7 +29,7 @@ const SupportChat = ({ navigation }: Props) => {
           headerColor={headerColor}
           textColor="#FFF"
         />
-      <FlexCol>
+      <FlexCol style={{backgroundColor:'#FFF'}}>
         
         <FlexDirCol>
           <Heading1>{t('supportScreenheader1text')}</Heading1>
@@ -39,7 +38,7 @@ const SupportChat = ({ navigation }: Props) => {
           </ShiftFromTop10>
         </FlexDirCol>
       </FlexCol>
-      </SafeAreaContainer>
+      </SafeAreaView>
     </>
   );
 };

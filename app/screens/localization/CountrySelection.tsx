@@ -129,7 +129,7 @@ const CountrySelection = (props: any) => {
   // console.log("-----bj ",i18n);
   return (
     <>
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:headerColor}}>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       
       <OnboardingContainer>
