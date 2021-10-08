@@ -16,8 +16,7 @@ import Checkbox, {
 import { FormOuterCheckbox } from '@components/shared/ChildSetupStyle';
 import {
   BannerContainer,
-  MainContainer,
-  SafeAreaContainer
+  MainContainer
 } from '@components/shared/Container';
 import {
   FDirRow,
@@ -62,6 +61,7 @@ import { Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import RNFS from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
@@ -547,7 +547,7 @@ const SettingScreen = (props: any) => {
   }, []);
   return (
     <>
-      <SafeAreaContainer>
+      <SafeAreaView style={{flex:1,backgroundColor:primaryColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -555,7 +555,7 @@ const SettingScreen = (props: any) => {
           textColor="#FFF"
         />
 
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 ,backgroundColor:"#FFF"}}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -980,7 +980,7 @@ const SettingScreen = (props: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaContainer>
+      </SafeAreaView>
     </>
   );
 };
