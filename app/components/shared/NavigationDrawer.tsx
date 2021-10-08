@@ -23,7 +23,7 @@ border-color:#ddd
 
 `;
 
-export const NavIconSpacing = styled(DrawerLinkView)`
+export const NavIconSpacing = styled.View`
 padding:12px 8px;
 
 `;
