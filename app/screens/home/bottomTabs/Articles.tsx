@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import {
   FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
@@ -40,10 +41,6 @@ export type ArticleCategoriesProps = {
   fromPage?:any,
   onFilterArrayChange?:Function
 }
-const ContainerView = styled.SafeAreaView`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.ARTICLES_TINTCOLOR};
-`;
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText,searchQueryText] = useState('');
@@ -277,7 +274,7 @@ const searchList=async (queryText:any)=>{
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
-      <ContainerView>
+      <SafeAreaView style={{flex:1,backgroundColor:backgroundColor}}>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{flex:1}}
@@ -392,7 +389,7 @@ const searchList=async (queryText:any)=>{
         </PopupOverlay>
       </Modal> */}
         </KeyboardAvoidingView>
-      </ContainerView>
+      </SafeAreaView>
               
     </>
   );

@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
-  SafeAreaView,
   Text,
   View,
   ViewStyle
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
