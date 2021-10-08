@@ -20,7 +20,6 @@ export type RootStackParamList = {
   AddChildHealthCheckup:undefined;
   AllChildgrowthMeasures:undefined;
   DetailsScreen: {};
-  ChildProfileScreen: undefined;
 };
 
 export type LocalizationStackParamList = {
@@ -38,7 +37,7 @@ export type HomeDrawerNavigatorStackParamList = {
   HealthCheckupsScreen: undefined;
   SettingsScreen: undefined;
   AboutusScreen: undefined;
-  // ChildProfileScreen: undefined;
+  ChildProfileScreen: undefined;
   
   UserGuide: undefined;
   Favourites: undefined;
