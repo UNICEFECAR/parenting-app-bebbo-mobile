@@ -163,14 +163,15 @@ const CustomDrawerContent = ({ navigation }: any) => {
           // console.log(allnotis)
 
           // let fromDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).plus({ days: item.days_from });
-          let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+          // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+          let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
           //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
           let toDay = DateTime.fromJSDate(new Date()).toMillis();
 
 
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
-          ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childCrateDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
+          ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
           // console.log(combinedNotis, "combinedNotis")
           // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
           // console.log(toRemove, "findcdNoti")
