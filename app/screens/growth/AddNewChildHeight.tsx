@@ -17,7 +17,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1Center, Heading2, Heading4Centerr, ShiftFromTopBottom20 } from '@styles/typography';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, SafeAreaView, View } from 'react-native';
+import { Dimensions, Modal, Pressable, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 
@@ -119,7 +120,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -216,7 +217,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
           </ButtonContainer>
 
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

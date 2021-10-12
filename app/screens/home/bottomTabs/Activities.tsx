@@ -38,16 +38,17 @@ import { GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
+import { SafeAreaView } from 'react-native-safe-area-context';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   route: any
   navigation: ActivitiesNavigationProp;
 };
-const ContainerView = styled.SafeAreaView`
-  flex: 1;
-  background-color: ${(props) => props.theme.colors.ACTIVITIES_TINTCOLOR};
-`;
+// const ContainerView = styled.SafeAreaView`
+//   flex: 1;
+//   background-color: ${(props) => props.theme.colors.ACTIVITIES_TINTCOLOR};
+// `;
 
 const Activities = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
@@ -433,7 +434,7 @@ const Activities = ({ route, navigation }: Props) => {
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
-      <ContainerView>
+      <View style={{flex:1,backgroundColor:backgroundColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <ScrollView nestedScrollEnabled={true}> */}
         <TabScreenHeader
@@ -537,7 +538,7 @@ const Activities = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </ContainerView>
+      </View>
     </>
   );
 };

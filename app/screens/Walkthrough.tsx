@@ -26,7 +26,8 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -219,7 +220,7 @@ const goBackSlide = ()=>{
 const _renderPagination = (activeIndex: number) => {
   return (
     <View style={styles.paginationContainer}>
-      <SafeAreaView>
+      <View>
       {activeIndex != 3 ? (
         <View style={styles.paginationDots}>
           {data.length > 1 &&
@@ -253,7 +254,7 @@ const _renderPagination = (activeIndex: number) => {
                   </ButtonContainerTwo>
                   </WalkBtn>
                 ) : null}
-      </SafeAreaView>
+      </View>
     </View>
   );
 };

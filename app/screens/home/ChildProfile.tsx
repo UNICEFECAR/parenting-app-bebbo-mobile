@@ -33,8 +33,9 @@ import {
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext, useEffect,useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, Dimensions, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { BackHandler, Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
 import { getAllChildren, getAllConfigData, setActiveChild } from '../../services/childCRUD';
@@ -325,7 +326,7 @@ const child_age = useAppSelector(
   
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1,backgroundColor:headerColor}}>
        
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         
@@ -347,7 +348,7 @@ const child_age = useAppSelector(
           <Heading2w numberOfLines={1}>{t('childProfileHeader')}</Heading2w>
           </HeaderTitleView>
         </HeaderRowView>
-        <FlexCol>
+        <FlexCol style={{backgroundColor:"#FFF"}}>
         <AreaContainer>
           <View style={{flexDirection: 'column'}}>
             <ScrollView style={{maxHeight:(windowHeight-parentViewHeight-profileViewHeight)-140,height:'auto'}} nestedScrollEnabled={true}>
@@ -478,7 +479,7 @@ const child_age = useAppSelector(
           </View>
         </AreaContainer>
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

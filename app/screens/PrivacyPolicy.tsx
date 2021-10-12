@@ -8,8 +8,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1w, ShiftFromTop5 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, useWindowDimensions, View } from 'react-native';
 import HTML from 'react-native-render-html';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
@@ -31,6 +32,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
+    <View style={{flex:1,backgroundColor:headerColor}}>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingHeading>
@@ -57,6 +59,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
           }
         </ScrollView>
       </OnboardingContainer>
+      </View>
     </>
   );
 };
