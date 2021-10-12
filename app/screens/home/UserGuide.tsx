@@ -1,5 +1,4 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { SafeAreaContainer } from '@components/shared/Container';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import WalkthroughContainer, {
     Slide,
@@ -14,7 +13,8 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
@@ -112,7 +112,7 @@ const UserGuide = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaContainer>
+      <View style={{flex:1,backgroundColor:headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
        
         <TabScreenHeader
@@ -137,7 +137,7 @@ const UserGuide = ({navigation}: Props) => {
             data={data}
           />
         </FlexCol>
-      </SafeAreaContainer>
+      </View>
     </>
   );
 };

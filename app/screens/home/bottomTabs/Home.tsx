@@ -40,7 +40,7 @@ import {
   Alert,
   BackHandler, Linking, Modal,
   Platform,
-  ScrollView, ToastAndroid
+  ScrollView, Text, ToastAndroid
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
@@ -53,6 +53,7 @@ import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../re
 import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
+import { getStatusBarHeight } from '../../../services/StatusBarHeight';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -113,12 +114,12 @@ const Home = ({ route, navigation }: Props) => {
   );
   const netInfoval = useNetInfoHook();
   console.log(netInfoval.isConnected, '--31home focuseffect--', userIsOnboarded);
-  const surveryData = useAppSelector((state: any) =>
+  const surveyItem = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
-      ? JSON.parse(state.utilsData.surveryData)
+      ? JSON.parse(state.utilsData.surveryData)?.find(item => item.type == "survey")
       : state.utilsData.surveryData,
   );
-  const surveryItem = surveryData?.find(item => item.type == "survey");
+ 
   let currentCount = 0;
   let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = () => {
@@ -424,7 +425,7 @@ const Home = ({ route, navigation }: Props) => {
   // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
   return (
     <>
-      <SafeAreaView style={{ flex: 1 }}>
+      <>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <TabScreenHeader
@@ -437,7 +438,7 @@ const Home = ({ route, navigation }: Props) => {
           (netInfoval && netInfoval.isConnected == false) ?
             <OfflineBar><Heading3Centerr style={{}}>{t('noInternet')}</Heading3Centerr></OfflineBar> : null
         }
-        <ScrollView style={{ flex: 4, backgroundColor: '#FFF' }}>
+        <ScrollView style={{ flex: 5, backgroundColor: '#FFF' }}>
           <FlexCol>
             <BabyNotification />
             <ChildInfo
@@ -474,6 +475,7 @@ const Home = ({ route, navigation }: Props) => {
                 onChange={ondobChange2}
               />
             )}
+            {/* <Text> {getStatusBarHeight(0)}</Text> */}
             <DailyReads />
             <ChildMilestones />
             <PlayingTogether />
@@ -531,14 +533,14 @@ const Home = ({ route, navigation }: Props) => {
                   <Icon name="ic_close" size={16} color="#000" />
                 </PopupClose>
               </PopupCloseContainer>
-              {surveryItem ?
+              {surveyItem ?
                 <>
                   <ModalPopupContent>
-                    <Heading1Centerr>{surveryItem?.title}</Heading1Centerr>
+                    <Heading1Centerr>{surveyItem?.title}</Heading1Centerr>
 
-                    {surveryItem && surveryItem?.body ?
+                    {surveyItem && surveyItem?.body ?
                       <HTML
-                        source={{ html: surveryItem?.body }}
+                        source={{ html: surveyItem?.body }}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                       />
                       : null
@@ -552,7 +554,7 @@ const Home = ({ route, navigation }: Props) => {
 
                         analytics().logEvent(SURVEY_SUBMIT)
 
-                        Linking.openURL(surveryItem?.survey_feedback_link)
+                        Linking.openURL(surveyItem?.survey_feedback_link)
                       }}>
                       <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
                     </ButtonModal>
@@ -561,7 +563,7 @@ const Home = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaView>
+      </>
     </>
   );
 };

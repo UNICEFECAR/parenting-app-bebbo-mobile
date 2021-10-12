@@ -55,10 +55,11 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Modal, Platform, Pressable, SafeAreaView, Text, TextInput } from 'react-native';
+import { Alert, Modal, Platform, Pressable, Text, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -504,7 +505,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
   };
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -803,7 +804,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

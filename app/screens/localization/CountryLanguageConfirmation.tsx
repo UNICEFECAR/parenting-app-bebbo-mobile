@@ -222,7 +222,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-    <SafeAreaView style={{flex:1}}>
+    <>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
       {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
@@ -278,7 +278,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
           </LocalizationContainer>
         </OnboardingContent>
       </OnboardingContainer>
-      </SafeAreaView>
+      </>
     </>
   );
 };
