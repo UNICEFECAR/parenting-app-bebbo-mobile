@@ -220,7 +220,7 @@ const goBackSlide = ()=>{
 const _renderPagination = (activeIndex: number) => {
   return (
     <View style={styles.paginationContainer}>
-      <SafeAreaView>
+      <View>
       {activeIndex != 3 ? (
         <View style={styles.paginationDots}>
           {data.length > 1 &&
@@ -254,7 +254,7 @@ const _renderPagination = (activeIndex: number) => {
                   </ButtonContainerTwo>
                   </WalkBtn>
                 ) : null}
-      </SafeAreaView>
+      </View>
     </View>
   );
 };

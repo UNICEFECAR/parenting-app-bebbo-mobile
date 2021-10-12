@@ -112,7 +112,7 @@ const UserGuide = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
+      <View style={{flex:1,backgroundColor:headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
        
         <TabScreenHeader
@@ -137,7 +137,7 @@ const UserGuide = ({navigation}: Props) => {
             data={data}
           />
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
   BgGrowth,
@@ -12,6 +13,7 @@ import {
   FDirCol,
   FDirRow,
   Flex1,
+  FlexCol,
   FlexDirRow
 } from '@components/shared/FlexBoxStyle';
 import {
@@ -47,7 +49,7 @@ import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking, Modal, Pressable, ScrollView, Share } from 'react-native';
+import { Alert, Linking, Modal, Pressable, ScrollView, Share, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -327,8 +329,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-      <SafeAreaView>
-        <ScrollView>
+     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+      <View style={{flex:1,backgroundColor:headerColor}}>
+        <ScrollView style={{flex:1,backgroundColor:"#FFF"}}>
           <Flex1>
             <Pressable
               onPress={() => navigation.navigate('ChildProfileScreen')}
@@ -379,6 +382,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </DrawerHeadContainer>
             </Pressable>
           </Flex1>
+         
           <DrawerLinkView
             // onPress={() => navigation.navigate('Home')}
             onPress={() => navigation.navigate('Home', { screen: 'Home' })}>
@@ -607,8 +611,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuPrivacyTxt')}</Heading4>
           </DrawerLinkView>
+        
         </ScrollView>
-      </SafeAreaView>
+      </View>
       <Modal
         animationType="none"
         transparent={true}
