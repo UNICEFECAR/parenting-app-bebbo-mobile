@@ -554,18 +554,14 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                   flexDirection: 'row',
                 }}>
                 {imageOptions.map((item, index) => {
-                  console.log(
+                    if (
                     index == 0 &&
                     (capturedPhoto == '' ||
                       capturedPhoto == null ||
-                      capturedPhoto == undefined),
-                  );
-                  if (
-                    index == 0 &&
-                    (capturedPhoto == '' ||
-                      capturedPhoto == null ||
-                      capturedPhoto == undefined)
+                      capturedPhoto == undefined || photoDeleted==true)
                   ) {
+                    console.log(capturedPhoto,"..capturedPhoto")
+                    console.log(photoDeleted,"..photoDeleted")
                     return null;
                   } else {
                     return (
