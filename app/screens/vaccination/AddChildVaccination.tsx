@@ -645,6 +645,7 @@ const AddChildVaccination = ({ route, navigation }: any) => {
                 currentPeriodVaccines={vcPeriod?.vaccines}
                 takenVaccine={takenVaccineForPrevPeriod}
                 backgroundActiveColor={headerColor}
+                isEditScreen={editVCDate ?true :false}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
             </FormContainerFlex>
