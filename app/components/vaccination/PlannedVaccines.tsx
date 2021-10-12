@@ -40,7 +40,11 @@ const PlannedVaccines = (props: any) => {
   };
   return (
     <>
-      {currentPeriodVaccines?.length > 0 ? (
+      {currentPeriodVaccines?.filter(
+    (vItem: any) => {
+      return vItem.isMeasured == false
+    },
+  )?.length > 0 ? (
         <BgContainer>
           {currentPeriodVaccines?.filter(
     (vItem: any) => {
