@@ -298,7 +298,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   return (
     <>
     {detailDataToUse ?
-         <SafeAreaView style={{flex:1,backgroundColor:newHeaderColor}}>
+         <View style={{flex:1,backgroundColor:newHeaderColor}}>
           <FocusAwareStatusBar animated={true} backgroundColor={newHeaderColor} />
           <FlexDirRow
             style={{
@@ -424,7 +424,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               </>:null
             }
           </ScrollView>
-        </SafeAreaView>
+        </View>
         : null 
       }
     </>

@@ -311,7 +311,7 @@ const child_age = useAppSelector(
   
   return (
     <>
-      <SafeAreaView style={{flex: 1,backgroundColor:headerColor}}>
+      <View style={{flex: 1,backgroundColor:headerColor}}>
        
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         
@@ -464,7 +464,7 @@ const child_age = useAppSelector(
           </View>
         </AreaContainer>
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

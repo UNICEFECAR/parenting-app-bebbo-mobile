@@ -74,7 +74,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   }
   return (
     <>
-    <SafeAreaView style={{ flex: 1 ,backgroundColor:headerColor}}>
+    <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
@@ -113,7 +113,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
           </BtnMultiple>
         </ShiftFromTopBottom10>
       </OnboardingContainer>
-      </SafeAreaView>
+      </>
     </>
   );
 };

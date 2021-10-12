@@ -334,7 +334,7 @@ class Ruler extends React.Component<Props, State> {
       (i) => i + minimum,
     );
     return (
-      <SafeAreaView
+      <View
         style={[
           style,
           {
@@ -451,7 +451,7 @@ class Ruler extends React.Component<Props, State> {
           }}>
           {this.renderRuler(data)}
         </Animated.ScrollView>
-      </SafeAreaView >
+      </View >
     );
   }
 }

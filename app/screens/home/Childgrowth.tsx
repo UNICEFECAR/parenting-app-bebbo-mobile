@@ -156,7 +156,7 @@ const Childgrowth = ({navigation,route}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
+      <View style={{flex:1,backgroundColor:headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -280,7 +280,7 @@ const Childgrowth = ({navigation,route}: Props) => {
             </ShiftFromTop10>
           </ButtonContainer>
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

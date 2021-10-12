@@ -41,7 +41,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
   );
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <View style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <View
           style={{
@@ -132,7 +132,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
           
           </FlexCol>
         
-      </SafeAreaView>
+      </View>
     </>
   );
 };
