@@ -19,7 +19,7 @@ import {
   ProfileLinkRow, ProfileLinkView, ProfileListDefault, ProfileListInner, ProfileListViewSelected1, ProfileSectionView, ProfileTextView
 } from '@components/shared/ProfileListingStyle';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2w,
@@ -65,6 +65,16 @@ const ChildProfile = ({navigation}: Props) => {
     React.useCallback(() => {
       getAllChildren(dispatch,child_age,0);
       getAllConfigData(dispatch);
+      navigation.dispatch(state => {
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile');
+      
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
+      });
     },[])
   );
   const childList = useAppSelector((state: any) =>
