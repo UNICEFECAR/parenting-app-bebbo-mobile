@@ -11,7 +11,7 @@ const FocusAwareStatusBar = (props: any) => {
   }else{
     const insets = useSafeAreaInsets();
     console.log(getStatusBarHeight(0),"MAYUR")
-    const heightValue =  getStatusBarHeight(0)>20?0:0
+    const heightValue =  getStatusBarHeight(0)>=20?insets.top:0
     return (
       <View style={{ height: heightValue, backgroundColor:props.backgroundColor }}>
          <StatusBar

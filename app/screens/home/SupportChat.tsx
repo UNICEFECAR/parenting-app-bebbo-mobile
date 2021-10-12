@@ -19,7 +19,7 @@ const SupportChat = ({ navigation }: Props) => {
   const headerColor=themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-     <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
+     <View style={{flex:1,backgroundColor:headerColor}}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -38,7 +38,7 @@ const SupportChat = ({ navigation }: Props) => {
           </ShiftFromTop10>
         </FlexDirCol>
       </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

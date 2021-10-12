@@ -40,7 +40,7 @@ import {
   Alert,
   BackHandler, Linking, Modal,
   Platform,
-  ScrollView, ToastAndroid
+  ScrollView, Text, ToastAndroid
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
@@ -53,6 +53,7 @@ import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../re
 import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
+import { getStatusBarHeight } from '../../../services/StatusBarHeight';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -424,7 +425,7 @@ const Home = ({ route, navigation }: Props) => {
   // let userIsOnboarded = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userIsOnboarded","true");
   return (
     <>
-      <SafeAreaView style={{ flex: 1 ,backgroundColor:headerColor}}>
+      <>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <TabScreenHeader
@@ -474,6 +475,7 @@ const Home = ({ route, navigation }: Props) => {
                 onChange={ondobChange2}
               />
             )}
+            {/* <Text> {getStatusBarHeight(0)}</Text> */}
             <DailyReads />
             <ChildMilestones />
             <PlayingTogether />
@@ -561,7 +563,7 @@ const Home = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaView>
+      </>
     </>
   );
 };

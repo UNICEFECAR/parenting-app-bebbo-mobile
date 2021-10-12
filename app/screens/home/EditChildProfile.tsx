@@ -412,7 +412,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -637,7 +637,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             )}
           </ButtonPrimary>
         </ButtonContainer>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
