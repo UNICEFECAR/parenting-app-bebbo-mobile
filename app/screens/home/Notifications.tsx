@@ -140,12 +140,13 @@ const Notifications = () => {
         })
       }
       let toDay = DateTime.fromJSDate(new Date()).toMillis();
-      let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+      let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
+      // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
       const combinedNotis = currentChildallnoti.sort(
         (a: any, b: any) => a.days_from - b.days_from,
       ).reverse()
         .filter((item) => {
-          return item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childCrateDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis())
+          return item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis())
         });
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
