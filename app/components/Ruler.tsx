@@ -2,11 +2,11 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
-  SafeAreaView,
   Text,
   View,
   ViewStyle
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
@@ -334,7 +334,7 @@ class Ruler extends React.Component<Props, State> {
       (i) => i + minimum,
     );
     return (
-      <SafeAreaView
+      <View
         style={[
           style,
           {
@@ -451,7 +451,7 @@ class Ruler extends React.Component<Props, State> {
           }}>
           {this.renderRuler(data)}
         </Animated.ScrollView>
-      </SafeAreaView >
+      </View >
     );
   }
 }

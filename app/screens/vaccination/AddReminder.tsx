@@ -45,12 +45,12 @@ import {
   Alert, Modal,
   Platform,
   Pressable,
-  SafeAreaView,
   Text,
   View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -290,7 +290,7 @@ const AddReminder = ({ route, navigation }: any) => {
   fiveYearFromNow.setFullYear(fiveYearFromNow.getFullYear() + 5);
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -543,7 +543,7 @@ const AddReminder = ({ route, navigation }: any) => {
             </PopupOverlay>
           </Modal>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

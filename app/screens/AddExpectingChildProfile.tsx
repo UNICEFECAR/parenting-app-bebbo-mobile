@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Alert,
   BackHandler,
-  Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Platform, Pressable, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -40,6 +40,7 @@ import {
 } from '@components/shared/HeaderContainerStyle';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -162,7 +163,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -324,7 +325,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
             </ButtonPrimary>
           </ButtonContainer>
         </ShiftFromTop10>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
