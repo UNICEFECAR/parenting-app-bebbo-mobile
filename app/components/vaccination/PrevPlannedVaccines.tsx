@@ -10,7 +10,7 @@ type VaccineItemProps = {
   // measurementDate: number;
 };
 const PrevPlannedVaccines = (props: any) => {
-  const {onPrevPlannedVaccineToggle, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
+  const {onPrevPlannedVaccineToggle,isEditScreen, currentPeriodVaccines,takenVaccine, fromScreen,backgroundActiveColor} = props;
   let {previousPeriods} = getAllVaccinePeriods();
   // previousPeriods.shift();
   //remove first period which is the current period
@@ -21,10 +21,18 @@ const PrevPlannedVaccines = (props: any) => {
     });
   });
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
+  if(isEditScreen== true){
+    currentPeriodVaccines.filter((vItem:any)=>{
+      if(vItem.isMeasured == false){
+        allPreviousPendingVaccines.push(vItem);
+      }
+    })
+  }
+
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       return !currentPeriodVaccines?.find((element) => {
-        return element.uuid == vItem.uuid;
+        return element.uuid == vItem.uuid && element.isMeasured == true;
       });
     },
   ).filter(
