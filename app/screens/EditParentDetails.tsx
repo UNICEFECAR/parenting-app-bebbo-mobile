@@ -21,9 +21,10 @@ import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
-  Pressable, SafeAreaView, StyleSheet, Text, TextInput, View
+  Pressable, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
@@ -134,7 +135,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <View style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -303,7 +304,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
             </ButtonPrimary>
           </ButtonContainer>
           </ShiftFromTop10>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
