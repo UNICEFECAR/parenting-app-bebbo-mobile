@@ -123,12 +123,13 @@ const NotificationItem = (props: any) => {
     return vc;
   }
   let toDay = DateTime.fromJSDate(new Date()).toMillis();
-  let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+  // let childCrateDate = DateTime.fromJSDate(new Date(activeChild.createdAt)).toMillis();
+  let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
   let notiDate = DateTime.fromJSDate(new Date(item.notificationDate)).toMillis();
   const renderGrowthNotifcation = () => {
     return (
       //
-      (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
+      (toDay >= notiDate && childBirthDate <= notiDate) ? item.isDeleted ? null :
         //if childageInDays is between days_from and days_to then only display notis which have days_from == chilAgeInDays
         (<>
           <NotificationListContainer>
@@ -244,7 +245,7 @@ const NotificationItem = (props: any) => {
   }
   const renderHCNotifcation = () => {
     return (
-      (toDay >= notiDate && childCrateDate <= notiDate) ? (item.isDeleted ? null :
+      (toDay >= notiDate && childBirthDate <= notiDate) ? (item.isDeleted ? null :
         <>
           <NotificationListContainer>
             <FlexDirRowStart>
@@ -353,7 +354,7 @@ const NotificationItem = (props: any) => {
   }
   const renderVCNotifcation = () => {
     return (
-      (toDay >= notiDate && childCrateDate <= notiDate) ? (item.isDeleted ? null :
+      (toDay >= notiDate && childBirthDate <= notiDate) ? (item.isDeleted ? null :
         <>
           <NotificationListContainer>
             <FlexDirRowStart>
@@ -480,7 +481,7 @@ const NotificationItem = (props: any) => {
   const renderCDNotifcation = () => {
     if (item.title == 'cdNoti1') {
       return (
-        (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
+        (toDay >= notiDate && childBirthDate <= notiDate) ? item.isDeleted ? null :
           (<>
             <NotificationListContainer>
               <FlexDirRowStart>
@@ -590,7 +591,7 @@ const NotificationItem = (props: any) => {
     }
     else {
       return (
-        (toDay >= notiDate && childCrateDate <= notiDate) ? item.isDeleted ? null :
+        (toDay >= notiDate && childBirthDate <= notiDate) ? item.isDeleted ? null :
           (<>
             <NotificationListContainer>
               <FlexDirRowStart>
