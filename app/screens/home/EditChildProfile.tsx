@@ -434,16 +434,17 @@ const EditChildProfile = ({ route, navigation }: Props) => {
               <Heading2w numberOfLines={1}>{t('addChildProfileHeader')}</Heading2w>
             )}
           </HeaderTitleView>
+          {childList?.length > 1 && childData && childData?.uuid != '' ? (
           <HeaderActionView>
-            {childList?.length > 1 && childData && childData?.uuid != '' ? (
               <ButtonDelPress
                 onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
                 <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
               </ButtonDelPress>
-            ) : null}
+            
           </HeaderActionView>
+          ) : null}
         </HeaderRowView>
         <ScrollView style={{ flex: 4 }}>
           {/* <Text>{capturedPhoto}</Text> */}

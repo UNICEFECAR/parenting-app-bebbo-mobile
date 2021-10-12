@@ -31,7 +31,7 @@ import {
   Heading5BoldW
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BackHandler, Dimensions, Pressable, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -48,6 +48,8 @@ type Props = {
 };
 const ChildProfile = ({navigation}: Props) => {
   const {t} = useTranslation();
+  const [parentViewHeight, setParentViewheight] = useState(0);
+  const [profileViewHeight, setProfileViewheight] = useState(0);
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const secopndaryColor = themeContext.colors.SECONDARY_COLOR;
@@ -109,6 +111,19 @@ const luxonLocale = useAppSelector(
 const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
 };
+const onLayout = event => {
+  // if (this.state.dimensions) return // layout was already called
+  let {width, height} = event.nativeEvent.layout;
+  setParentViewheight(event.nativeEvent.layout.height);
+  // this.setState({dimensions: {width, height}})
+}
+const onLayout1 = event => {
+  // if (this.state.dimensions) return // layout was already called
+  let {width, height} = event.nativeEvent.layout;
+  setProfileViewheight(event.nativeEvent.layout.height);
+  // this.setState({dimensions: {width, height}})
+}
+
 const currentActiveChild =activeChild.uuid;
 const child_age = useAppSelector(
   (state: any) =>
@@ -335,7 +350,7 @@ const child_age = useAppSelector(
         <FlexCol>
         <AreaContainer>
           <View style={{flexDirection: 'column'}}>
-            <ScrollView style={{maxHeight:windowHeight-360,height:'auto'}} nestedScrollEnabled={true}>
+            <ScrollView style={{maxHeight:(windowHeight-parentViewHeight-profileViewHeight)-140,height:'auto'}} nestedScrollEnabled={true}>
               {SortedchildList.length > 0
                 ? SortedchildList.map((item: any, index: number) => {
                    console.log(item,"..item..");
@@ -346,7 +361,7 @@ const child_age = useAppSelector(
                   })
                 : null}
             </ScrollView>
-            <ProfileLinkRow
+            <ProfileLinkRow  onLayout={onLayout1}
               style={{
                  backgroundColor: secopndaryTintColor,
                 
@@ -381,7 +396,7 @@ const child_age = useAppSelector(
                 </ProfileLinkCol>
             </ProfileLinkRow>
 
-            <ParentListView style={{backgroundColor: secopndaryTintColor}}>
+            <ParentListView style={{backgroundColor: secopndaryTintColor}}   onLayout={onLayout}>
               <ProfileContentView>
                 <ProfileTextView>
                   <Heading3>{t('parentDetailsTxt')}</Heading3>
@@ -408,8 +423,8 @@ const child_age = useAppSelector(
 
               <ProfileContentView>
                 <ParentRowView>
-                  
-                
+                  {/* <Text>{parentViewHeight}parentheight{profileViewHeight}profileViewHeight{windowHeight}windowHeight</Text>
+                 */}
                   <ParentSection>
                     <ParentLabel>
                       <Text>{t('parentRoleLabel')}</Text>
