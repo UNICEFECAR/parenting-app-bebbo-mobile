@@ -78,7 +78,11 @@ const PrevPlannedVaccines = (props: any) => {
   const {t} = useTranslation();
   return (
     <>
-    {allPreviousPendingVaccines?.length > 0 ?
+    {allPreviousPendingVaccines?.filter(
+    (vItem: any) => {
+      return vItem.isMeasured == false
+    },
+  )?.length > 0 ?
       <BgContainer>
         {allPreviousPendingVaccines?.filter(
     (vItem: any) => {
