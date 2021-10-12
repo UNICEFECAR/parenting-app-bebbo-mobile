@@ -87,7 +87,8 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let newNameIndex:any=0;
     let defaultName:any="";
     if(allJsonDatanew.length>0){
-       newNameIndex=allJsonDatanew[allJsonDatanew.length-1].childName.split("Child").pop();
+      console.log(allJsonDatanew[allJsonDatanew.length-1].childName,"..allJsonDatanew[allJsonDatanew.length-1].childName")
+       newNameIndex=allJsonDatanew[allJsonDatanew.length-1].childName.split(t('defaultChildPrefix')).pop();
        defaultName=t('defaultChildPrefix')+(parseInt(newNameIndex)+1);
     }
     console.log(defaultName,"..defaultName",editScreen);
