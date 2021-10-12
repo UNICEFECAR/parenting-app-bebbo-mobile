@@ -155,7 +155,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView contentContainerStyle={{padding:0, paddingTop: 0}}>
         <OnboardingContainer>
@@ -323,7 +323,7 @@ const ChildSetup = ({ navigation }: Props) => {
             </ButtonPrimary>
           </ButtonRow>
           </SideSpacing25>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

@@ -14,7 +14,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Settings } from 'luxon';
 import React, { Fragment, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, SafeAreaView, ScrollView, View } from 'react-native';
+import { Dimensions, ScrollView, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -196,7 +197,7 @@ const Terms = ({navigation}: Props) => {
 
   return (
     <>
-     <SafeAreaView style={{flex:1}}>
+     <View style={{flex:1,backgroundColor:headerColor}}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -321,7 +322,7 @@ const Terms = ({navigation}: Props) => {
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

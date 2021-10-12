@@ -5,7 +5,6 @@ import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
-import { SafeAreaContainer } from '@components/shared/Container';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
@@ -18,6 +17,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AppState, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setAllNotificationData } from '../../redux/reducers/notificationSlice';
@@ -388,9 +388,9 @@ const Notifications = () => {
   }
   return (
     <>
-      <SafeAreaContainer>
+      <View style={{flex:1,backgroundColor:primaryColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <FlexCol>
+        <View style={{ flex:1,flexDirection: 'column', paddingBottom: 35,backgroundColor:'#FFF'}}>
           <HeaderRowView
             style={{
               backgroundColor: primaryColor,
@@ -483,8 +483,8 @@ const Notifications = () => {
               </>
             ) : null}
 
-        </FlexCol>
-      </SafeAreaContainer>
+        </View>
+      </View>
     </>
   );
 };

@@ -15,7 +15,8 @@ import {
 } from '@styles/typography';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, SafeAreaView, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { isFutureDate } from '../../services/childCRUD';
@@ -40,7 +41,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
   );
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+      <View style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <View
           style={{
@@ -131,7 +132,7 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
           
           </FlexCol>
         
-      </SafeAreaView>
+      </View>
     </>
   );
 };

@@ -44,11 +44,11 @@ import {
   BackHandler,
   ImageBackground,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet, TextInput,
   View
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ActionSheet from 'react-native-actions-sheet';
 import { copyFile, exists, mkdir, unlink } from 'react-native-fs';
 import { Image as ImageObject } from 'react-native-image-crop-picker';
@@ -412,7 +412,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -638,7 +638,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             )}
           </ButtonPrimary>
         </ButtonContainer>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

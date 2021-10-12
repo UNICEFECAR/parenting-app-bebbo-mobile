@@ -15,7 +15,8 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 
@@ -73,7 +74,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   }
   return (
     <>
-    <SafeAreaView style={{ flex: 1 }}>
+    <>
       <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingStyle
@@ -112,7 +113,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
           </BtnMultiple>
         </ShiftFromTopBottom10>
       </OnboardingContainer>
-      </SafeAreaView>
+      </>
     </>
   );
 };
