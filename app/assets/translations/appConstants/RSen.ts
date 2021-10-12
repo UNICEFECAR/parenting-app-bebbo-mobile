@@ -421,7 +421,8 @@ alertForModifyMeasuresOk: "Ok",
                 dataSaveroff: "Off",
                 vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
-                parentGender: "Parent Gender",
+                // parentGender: "Parent Gender",
+                parentGender: "Gender",
                 //relationToParentNameLabel:'Relation to parent'
         }
 }
