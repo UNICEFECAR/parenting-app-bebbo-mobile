@@ -3,7 +3,7 @@ import VideoPlayer from '@components/VideoPlayer';
 import ChilDevelopmentCollapsibleItem from '@components/ChilDevelopmentCollapsibleItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleHeading } from '@components/shared/ArticlesStyle';
-import Container, { BannerContainer, MainContainer, SafeAreaContainer } from '@components/shared/Container';
+import Container, { BannerContainer, MainContainer } from '@components/shared/Container';
 import { DevelopmentContent, DevelopmentPercent, DevelopmentStatus } from '@components/shared/DevelopmentStyle';
 import { FDirCol, FlexCol, FDirRow, Flex1, Flex4, FlexDirCol, FlexDirRowSpace, FlexDirRowSpaceStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow, IconViewSuccess, IconViewAlert, IconAreaPress } from '@components/shared/Icon';
@@ -21,7 +21,7 @@ import {
   Image,
   Modal,
   Pressable,
-  SafeAreaView, Text, View
+  Text, View
 } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
@@ -32,6 +32,7 @@ import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDa
 import ProgressCircle from 'react-native-progress-circle'
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 type ChildDevelopmentNavigationProp =
@@ -404,7 +405,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <SafeAreaContainer>
+      <View style={{flex:1,backgroundColor:componentColors?.headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={componentColors?.headerColor} />
         <TabScreenHeader
           title={t('developScreenheaderTitle')}
@@ -475,7 +476,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      </SafeAreaContainer>
+      </View>
     </>
   );
 };

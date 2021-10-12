@@ -4,7 +4,7 @@ import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/ArticlesStyle';
 import { BgActivityTint } from '@components/shared/BackgroundColors';
-import { MainContainer, SafeAreaContainer } from '@components/shared/Container';
+import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
@@ -32,6 +32,7 @@ import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
 import analytics from '@react-native-firebase/analytics';
 import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
+import { SafeAreaView } from 'react-native-safe-area-context';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -297,7 +298,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   return (
     <>
     {detailDataToUse ?
-        <SafeAreaContainer>
+         <View style={{flex:1,backgroundColor:newHeaderColor}}>
           <FocusAwareStatusBar animated={true} backgroundColor={newHeaderColor} />
           <FlexDirRow
             style={{
@@ -423,7 +424,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               </>:null
             }
           </ScrollView>
-        </SafeAreaContainer>
+        </View>
         : null 
       }
     </>

@@ -24,7 +24,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -183,7 +183,7 @@ const ChildSetupList = ({ navigation }: Props) => {
  
   return (
     <>
-     <SafeAreaView style={{flex: 1, backgroundColor: headerColor}}>
+     <View style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
         <OnboardingHeading>
@@ -244,7 +244,7 @@ const ChildSetupList = ({ navigation }: Props) => {
    
         </ButtonRow>
       </OnboardingContainer>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
