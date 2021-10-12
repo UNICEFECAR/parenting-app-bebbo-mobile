@@ -190,7 +190,7 @@ const MEcnr = {
                 trackMilestoneViewHeader: "Molimo Vas da ažurirate prekretnice u životu Vašeg djeteta",
                 trackMilestoneViewBtn: "Pratite prekretnice u životu djeteta",
                 babyNotificationText: "Podaci o rođenju djeteta nisu ažurirani",
-                babyNotificationbyAge: "{{childName}} ima {{ageinMonth}}",
+                babyNotificationbyAge: "{{childName}} ima {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Ažurirajte profil",
                 favScreenHeader: "Omiljeni sadržaj",
                 actScreenremovetoFavText: "Ukloni iz 'omiljenog sadržaja'",
