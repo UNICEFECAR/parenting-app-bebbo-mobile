@@ -197,7 +197,7 @@ const Terms = ({navigation}: Props) => {
 
   return (
     <>
-     <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
+     <View style={{flex:1,backgroundColor:headerColor}}>
      <FocusAwareStatusBar
         animated={true}
         backgroundColor={headerColor}
@@ -322,7 +322,7 @@ const Terms = ({navigation}: Props) => {
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

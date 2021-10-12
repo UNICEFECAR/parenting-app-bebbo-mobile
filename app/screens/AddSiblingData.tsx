@@ -114,7 +114,7 @@ const themeContext = useContext(ThemeContext);
 const headerColor = themeContext.colors.PRIMARY_COLOR;
   return (
     <>
-      <SafeAreaView style={{flex:1,backgroundColor:headerColor}}>
+      <View style={{flex:1,backgroundColor:headerColor}}>
   
      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
@@ -184,7 +184,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
           </ButtonPrimary>
         </ButtonRow>
       </OnboardingContainer>
-    </SafeAreaView>
+    </View>
     </>
   );
 };

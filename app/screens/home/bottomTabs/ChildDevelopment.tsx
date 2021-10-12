@@ -405,7 +405,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex:1,backgroundColor:componentColors?.headerColor}}>
+      <View style={{flex:1,backgroundColor:componentColors?.headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={componentColors?.headerColor} />
         <TabScreenHeader
           title={t('developScreenheaderTitle')}
@@ -476,7 +476,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
