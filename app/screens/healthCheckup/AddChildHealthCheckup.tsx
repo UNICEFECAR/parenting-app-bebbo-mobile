@@ -622,7 +622,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
   }
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <HeaderRowView
@@ -908,7 +908,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             </PopupOverlay>
           </Modal>
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

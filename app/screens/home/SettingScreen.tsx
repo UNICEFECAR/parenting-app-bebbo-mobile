@@ -547,7 +547,7 @@ const SettingScreen = (props: any) => {
   }, []);
   return (
     <>
-      <SafeAreaView style={{flex:1,backgroundColor:primaryColor}}>
+      <View style={{flex:1,backgroundColor:primaryColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -980,7 +980,7 @@ const SettingScreen = (props: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

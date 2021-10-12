@@ -135,7 +135,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <SafeAreaView style={{ flex: 1, backgroundColor: headerColor }}>
+      <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <HeaderRowView
           style={{
@@ -260,7 +260,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
             </ButtonTertiary>
           </ButtonContainer>
         </FlexCol>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

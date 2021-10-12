@@ -434,7 +434,7 @@ const Activities = ({ route, navigation }: Props) => {
   return (
     <>
       <OverlayLoadingComponent loading={loading} />
-      <SafeAreaView style={{flex:1,backgroundColor:backgroundColor}}>
+      <View style={{flex:1,backgroundColor:backgroundColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         {/* <ScrollView nestedScrollEnabled={true}> */}
         <TabScreenHeader
@@ -538,7 +538,7 @@ const Activities = ({ route, navigation }: Props) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

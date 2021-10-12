@@ -12,7 +12,8 @@ import {
   Dimensions,
   Platform,
   Pressable,
-  ScrollView
+  ScrollView,
+  View
 } from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -110,7 +111,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   let windowHeight = Dimensions.get('window').height;
   return (
     <>
-      <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
 
         <ScrollView>
@@ -146,7 +147,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
             </MainContainer>
           </FlexCol>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

@@ -388,7 +388,7 @@ const Notifications = () => {
   }
   return (
     <>
-      <SafeAreaView style={{flex:1,backgroundColor:primaryColor}}>
+      <View style={{flex:1,backgroundColor:primaryColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <View style={{ flex:1,flexDirection: 'column', paddingBottom: 35,backgroundColor:'#FFF'}}>
           <HeaderRowView
@@ -484,7 +484,7 @@ const Notifications = () => {
             ) : null}
 
         </View>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

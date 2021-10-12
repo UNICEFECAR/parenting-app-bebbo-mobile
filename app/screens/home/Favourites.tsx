@@ -55,7 +55,7 @@ const Favourites = ({navigation}: Props) => {
   };
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <TabScreenHeader
           title={t('favScreenHeader')}
@@ -104,7 +104,7 @@ const Favourites = ({navigation}: Props) => {
         <Flex1>
           {renderItem(selectedIndex)}
         </Flex1>
-      </SafeAreaView>
+      </View>
     </>
   );
 };

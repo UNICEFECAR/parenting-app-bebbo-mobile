@@ -17,7 +17,7 @@ import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@st
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text
+  FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { ThemeContext } from 'styled-components/native';
@@ -274,7 +274,7 @@ const searchList=async (queryText:any)=>{
   return (
     <>
       <OverlayLoadingComponent loading={loadingArticle} />
-      <SafeAreaView style={{flex:1,backgroundColor:backgroundColor}}>
+      <View style={{flex:1,backgroundColor:backgroundColor}}>
       <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{flex:1}}
@@ -389,7 +389,7 @@ const searchList=async (queryText:any)=>{
         </PopupOverlay>
       </Modal> */}
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </View>
               
     </>
   );
