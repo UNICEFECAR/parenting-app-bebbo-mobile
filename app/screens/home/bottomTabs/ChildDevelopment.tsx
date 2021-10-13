@@ -413,7 +413,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
           textColor="#000"
         />
         {currentSelectedChildId && componentColors != {} && currentSelectedChildId != 0 ?
-
+          <View style={{backgroundColor:"#FFF"}}>
           <AgeBrackets
             itemColor={componentColors?.headerColorBlack}
             activatedItemColor={componentColors?.headerColor}
@@ -421,7 +421,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
             showSelectedBracketData={showSelectedBracketData}
             ItemTintColor={componentColors?.backgroundColor}
           />
-
+        </View>
           : null
         }
 
