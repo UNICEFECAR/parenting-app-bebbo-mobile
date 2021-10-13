@@ -1,6 +1,6 @@
 import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading4, Heading4Regular, Heading5, ShiftFromBottom5, ShiftFromTop5, ShiftFromTopBottom10, Heading4Centerr } from '@styles/typography';
+import { Heading3,Heading4, Heading4Regular, Heading5, ShiftFromBottom5,ShiftFromBottom10, ShiftFromTop5, ShiftFromTopBottom10, Heading4Centerr } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, View,Dimensions, Text, Modal } from 'react-native';
@@ -226,10 +226,10 @@ const activeChild = useAppSelector((state: any) =>
           <>
           <ShiftFromTop5></ShiftFromTop5>
             <ShiftFromTopBottom10>
-              <ShiftFromBottom5>
-              <Heading4>{t('developScreenmileStone')}</Heading4>
-             </ShiftFromBottom5>
-              <FDirRow>
+              <ShiftFromBottom10>
+              <Heading3>{t('developScreenmileStone')}</Heading3>
+             </ShiftFromBottom10>
+              <FDirRow style={{alignItems:'flex-start'}}>
                 
                 {selVideoArticleData && selVideoArticleData?.cover_video && selVideoArticleData?.cover_video?.url != "" ? 
                   <>
@@ -256,7 +256,10 @@ const activeChild = useAppSelector((state: any) =>
                     <HTML
                       source={{html: item.body}}
                       baseFontStyle={{fontSize: 14}}
-                      ignoredStyles={['color', 'font-size', 'font-family']}
+                      ignoredStyles={['color', 'font-size', 'font-family','margin','padding']}
+                      tagsStyles={{
+                        p:{marginTop:0,},
+                      }}
                     />
                     : null 
                   }
@@ -277,9 +280,9 @@ const activeChild = useAppSelector((state: any) =>
                   <DividerDev></DividerDev>
                 
                   <ShiftFromTopBottom10>
-                  <ShiftFromBottom5>
-                  <Heading4>{t('developScreenrelatedAct')}</Heading4>
-                </ShiftFromBottom5>
+                  <ShiftFromBottom10>
+                  <Heading3>{t('developScreenrelatedAct')}</Heading3>
+                </ShiftFromBottom10>
                   <FDirRow>
                   { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
                   <>

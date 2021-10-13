@@ -196,7 +196,7 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                  <ButtonTextSmLine  numberOfLines={2}
+                  <ButtonTextSmLine  numberOfLines={2} style={{paddingTop:7,paddingBottom:7,}}
                     onPress={() => {
                       setModalVisible(false);
                       setActiveChild(languageCode, data.uuid, dispatch, child_age);
