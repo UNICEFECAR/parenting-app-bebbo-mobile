@@ -1,12 +1,23 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
+
 interface articleDataType {
   // name: string;
   article: {
     articles: string;
   },
-  dailyDataCategory:Object,
-  showedDailyDataCategory:Object
+  dailyDataCategory: {
+    advice:number,
+    games:number,
+    currentadviceid:number,
+    currentgamesid:number,
+    currentDate:string
+
+  },
+  showedDailyDataCategory: {
+    advice:Array<any>,
+    games:Array<any>
+  }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: articleDataType = {
@@ -14,8 +25,17 @@ const initialState: articleDataType = {
   article: { 
     articles: '',
   },
-  dailyDataCategory:{},
-  showedDailyDataCategory:{}
+  dailyDataCategory: {
+    advice:0,
+    games:0,
+    currentadviceid:0,
+    currentgamesid:0,
+    currentDate:''
+  },
+  showedDailyDataCategory: {
+    advice:[],
+    games:[]
+  }
 };
 export const articlesSlice = createSlice({
   name: 'articlesData',
