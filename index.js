@@ -18,7 +18,7 @@
  import 'intl/locale-data/jsonp/sr-Latn-XK';
  import 'intl/locale-data/jsonp/ky-KG';
  import 'intl/locale-data/jsonp/ru-KG';
- import 'intl/locale-data/jsonp/sr-Cyrl-ME';//montenegrin code to be verified
+ import 'intl/locale-data/jsonp/sr-Latn-ME';//montenegrin code to be verified
  import 'intl/locale-data/jsonp/mk-MK';
  import 'intl/locale-data/jsonp/sq-MK';
  import 'intl/locale-data/jsonp/sr-Latn-RS';
