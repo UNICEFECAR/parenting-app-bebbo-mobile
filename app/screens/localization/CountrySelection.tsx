@@ -11,6 +11,7 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
@@ -68,7 +69,8 @@ const CountrySelection = (props: any) => {
   );
   console.log("...sponsors..", sponsors);
   console.log("userIsOnboarded appnav--", userIsOnboarded);
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
 
       const backAction = () => {
         if (userIsOnboarded == true) {
@@ -121,7 +123,8 @@ const CountrySelection = (props: any) => {
       props.navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()
     };
-  }, [props.route.params]);
+    }, [props.route.params]),
+);
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
