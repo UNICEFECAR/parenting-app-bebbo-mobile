@@ -474,7 +474,7 @@ const Notifications = () => {
                   </ButtonColTwo>
 
                   <ButtonColTwo>
-                    <ButtonSecondary onPress={() => { deleteSelectedNotifications() }}>
+                    <ButtonSecondary onPress={() => { deleteSelectedNotifications() }}  disabled={checkedNotifications.length==0?true:false}>
                       <ButtonText numberOfLines={2}>{t('notiDelSelected', { count: checkedNotifications.length })} </ButtonText>
                     </ButtonSecondary>
                   </ButtonColTwo>

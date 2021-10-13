@@ -2,8 +2,6 @@ import {configureStore} from '@reduxjs/toolkit';
 import {FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist';
 
 import rootReducer from './reducers';
-
-import {reduxBatch} from '@manaflair/redux-batch';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagaMiddleware/saga';
 const {createLogger} = require('redux-logger');
@@ -44,7 +42,7 @@ export default function configureAppStore() {
       }).concat(allMiddlewares),
     devTools: process.env.NODE_ENV !== 'production',
     // preloadedState,
-    enhancers: [reduxBatch],
+    enhancers: [],
   });
   sagaMiddleware.run(rootSaga);
   // if (process.env.NODE_ENV !== 'production' && module.hot) {
