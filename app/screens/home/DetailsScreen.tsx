@@ -316,7 +316,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             </HeaderTitleView>
           </FlexDirRow>
 
-          <ScrollView style={{flex: 4}}>
+          <ScrollView style={{flex: 4,backgroundColor:"#FFF"}}>
             <View>
               {
               fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
