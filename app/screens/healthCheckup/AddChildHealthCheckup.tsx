@@ -850,7 +850,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
               </MainContainer>
               <ButtonContainer>
                 <ButtonTertiary
-                  // disabled={isFormDisabled()}
+                  disabled={isFormDisabled()}
                   onPress={(e) => {
                     e.stopPropagation();
                     saveChildMeasures();
