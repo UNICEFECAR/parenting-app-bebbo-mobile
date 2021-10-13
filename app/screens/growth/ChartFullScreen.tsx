@@ -45,6 +45,11 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
         setIsChartVisible(true);
       }, 2000);
       BackHandler.addEventListener('hardwareBackPress', function () {
+        setTimeout(()=>{
+          // Orientation.unlockAllOrientations();
+          Orientation.lockToPortrait();
+        },0)
+        
         closeFullScreen();
         /**
          * When true is returned the event will not be bubbled up
@@ -56,18 +61,23 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
          */
         return true;
       });
-      navigation.addListener('gestureEnd',  function () {
-        closeFullScreen();
-        /**
-         * When true is returned the event will not be bubbled up
-         * & no other back action will execute
-         */
-        /**
-         * Returning false will let the event to bubble up & let other event listeners
-         * or the system's default back action to be executed.
-         */
-        return true;
-      });
+      // navigation.addListener('gestureEnd',  function () {
+      //   setTimeout(()=>{
+      //     // Orientation.unlockAllOrientations();
+      //     Orientation.lockToPortrait();
+      //   },Platform.OS=='ios' ? 500:0)
+        
+       
+      //   /**
+      //    * When true is returned the event will not be bubbled up
+      //    * & no other back action will execute
+      //    */
+      //   /**
+      //    * Returning false will let the event to bubble up & let other event listeners
+      //    * or the system's default back action to be executed.
+      //    */
+      //   return true;
+      // });
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
@@ -82,9 +92,13 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   //   }, []),
   // );
   const closeFullScreen = () => {
-    //Orientation.unlockAllOrientations();
-    Orientation.lockToPortrait();
     navigation.goBack();
+    //Orientation.unlockAllOrientations();
+    setTimeout(()=>{
+      // Orientation.unlockAllOrientations();
+      Orientation.lockToPortrait();
+    },Platform.OS=='ios' ? 400:0)
+   
   };
   // const [deviceOrientation, setDeviceOrientation] = useState(
   //   Dimensions.get('window').width < Dimensions.get('window').height
