@@ -17,16 +17,17 @@ export const HeaderIconView = styled.View`
 export const HeaderIconPress = styled.Pressable`
 
 padding:7px 0px 4px;
-width:32px;
+width:40px;
 height:30px;
-margin-left:-4px;
-margin-right:-4px
+margin-left:-8px;
+margin-right:-8px
 align-items:center;
+
 `;
 export const HeaderBurgerPress = styled(HeaderIconPress)`
 width:40px;
-margin-left:-8px
-margin-right:-8px
+margin-left:-8px;
+margin-right:-8px;
 `;
 export const HeaderTitleView = styled.View`
   flex: 4;
