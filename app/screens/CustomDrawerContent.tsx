@@ -49,7 +49,7 @@ import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Linking, Modal, Pressable, ScrollView, Share, View } from 'react-native';
+import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -329,7 +329,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+     <FocusAwareStatusBar animated={true} />
       <View style={{flex:1,backgroundColor:headerColor}}>
         <ScrollView style={{flex:1,backgroundColor:"#FFF"}}>
           <Flex1>
