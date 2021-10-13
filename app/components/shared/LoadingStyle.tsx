@@ -15,7 +15,7 @@ export const MainView = styled.View`
 export const WrapView = styled.View`
   justify-content: center;
   align-content: center;
-  margin-top: 10px;
+  margin-top: 30px;
   
 `;
 export const PartnerLogo = styled.Image`
@@ -28,9 +28,9 @@ flex:1;
 
 `;
 export const StaticLogo = styled.Image`
-  width: 125px;
-  height: 66px;
-  margin-top:20px;
+  width: 115px;
+  height: 60px;
+ /* margin-top:20px;*/
  
 `;
 export const LoadingText = styled.Text`
