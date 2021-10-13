@@ -398,7 +398,7 @@ export default () => {
           />
           <RootStack.Screen
             name="ChartFullScreen"
-            options={{ headerShown: false}}
+            options={{ headerShown: false,gestureEnabled:false }}
             component={ChartFullScreen}
           />
           <RootStack.Screen
