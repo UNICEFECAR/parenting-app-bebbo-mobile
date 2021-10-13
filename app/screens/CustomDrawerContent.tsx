@@ -329,7 +329,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const headerColor = themeContext.colors.SECONDARY_COLOR;
   return (
     <>
-     <FocusAwareStatusBar animated={true} />
+     <FocusAwareStatusBar animated={true} backgroundColor={Platform.OS=='ios' ?headerColor:null}/>
       <View style={{flex:1,backgroundColor:headerColor}}>
         <ScrollView style={{flex:1,backgroundColor:"#FFF"}}>
           <Flex1>
