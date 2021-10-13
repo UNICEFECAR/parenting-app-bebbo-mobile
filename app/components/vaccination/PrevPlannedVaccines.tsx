@@ -23,8 +23,10 @@ const PrevPlannedVaccines = (props: any) => {
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
   if(isEditScreen== true){
     currentPeriodVaccines.filter((vItem:any)=>{
-      if(vItem.isMeasured == false){
-        allPreviousPendingVaccines.push(vItem);
+      if(takenVaccine.length>0){
+        if(vItem.isMeasured == false){
+          allPreviousPendingVaccines.push(vItem);
+        }
       }
     })
   }
