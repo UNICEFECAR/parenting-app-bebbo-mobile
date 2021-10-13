@@ -17,11 +17,12 @@ import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@st
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
+  FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
+import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
 import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
@@ -44,6 +45,11 @@ export type ArticleCategoriesProps = {
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText,searchQueryText] = useState('');
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const flatListRef = useRef(null);
@@ -66,7 +72,8 @@ const Articles = ({route, navigation}: Props) => {
     return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         <ArticleListContainer>
-          <LoadableImage style={styles.cardImage} item={item}/> 
+        <LoadableImage style={styles.cardImage} item={item}/> 
+          {/* <LoadableImage style={styles.cardImage} item={item}  toggleSwitchVal={toggleSwitchVal}/>  */}
            <ArticleListContent>
              <ShiftFromTopBottom5>
            <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>
@@ -118,8 +125,9 @@ useFocusEffect(() => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  console.log(articleDataall,"..articleDataall..");
   let articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  console.log("articleData---",articleData);
+  console.log("56fg---",articleData);
   const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
@@ -200,7 +208,7 @@ useFocusEffect(() => {
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
 }
   const setFilteredArticleData = (itemId:any) => {
-    console.log(itemId,"articleData in filtered ",articleData);
+    console.log(itemId,"articleData in filtered 333",articleData.length);
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
@@ -210,7 +218,11 @@ useFocusEffect(() => {
       setLoadingArticle(true);
       if(itemId.length>0)
       {
-        const newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
+        let newArticleData = articleData.filter((x:any)=> itemId.includes(x.category));
+        if(queryText !="" && queryText!=undefined && queryText!=null){ 
+          newArticleData =newArticleData.filter(element => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+        }
+        console.log(newArticleData.length,"..in if")
         setfilteredData(newArticleData);
         // if(newArticleData.length == 0)
         // {
@@ -220,7 +232,11 @@ useFocusEffect(() => {
         toTop();
         // setTimeout(function(){setLoading(false)}, 700);
       }else {
-        const newArticleData = articleData != '' ? articleData : [];
+        let newArticleData = articleData != '' ? articleData : [];
+        console.log(newArticleData.length,"..in else");
+        if(queryText !="" && queryText!=undefined && queryText!=null){ 
+          newArticleData =articleDataall.filter(element => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+        }
         setfilteredData(newArticleData);
         
         // if(newArticleData.length == 0)
@@ -253,20 +269,28 @@ useFocusEffect(() => {
 const searchList=async (queryText:any)=>{
   console.log(queryText,"..queryText")
   setLoadingArticle(true);
-  const currentChildData = {
-    "gender":activeChild.gender,
-    "parent_gender":activeChild.parent_gender,
-    "taxonomyData":activeChild.taxonomyData
-  }
-  console.log(currentChildData,"..currentChildData..");
+  // const currentChildData = {
+  //   "gender":activeChild.gender,
+  //   "parent_gender":activeChild.parent_gender,
+  //   "taxonomyData":activeChild.taxonomyData
+  // }
+  //console.log(currentChildData,"..currentChildData..");
   // console.log(route.params?.categoryArray,"..route.params?.categoryArray..")
   let Entity:any;
-  const artData:any = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData,queryText);
-  artData.map((item)=>{
-    console.log(item,"..search item")
-  });
+  let artData:any
+  if(queryText !="" && queryText!=undefined && queryText!=null){ 
+   artData =articleDataall.filter(element => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
+  }
+  else{
+    artData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category));
+  }
+  // const artData:any = await getDataToStore(languageCode,dispatch,ArticleEntitySchema,Entity as ArticleEntity,articledata,setAllArticleData,"",currentChildData,queryText);
+  // artData.map((item)=>{
+  //   console.log(item,"..search item")
+  // });
+  console.log(artData.length,"..artData length")
   articleData = artData;
-  console.log(articleData,"1111..articleData..",filterArray);
+  console.log(articleData.length,"after search..articleData..",filterArray);
   //setLoadingArticle(false);
   // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   setFilteredArticleData(filterArray);
@@ -292,12 +316,16 @@ const searchList=async (queryText:any)=>{
                 autoCorrect={false}
                 clearButtonMode="always"
                 onChangeText={async (queryText:any)=>{
-                  searchQueryText(queryText);
+                   searchQueryText(queryText.trim());
                 }}
                 value={queryText}
                 onSubmitEditing = {async (event) =>{
-                  console.log("11")
-                  const data=await searchList(queryText)
+                 // if (queryText != "" && queryText != null && queryText != undefined) {
+                  const data=await searchList(queryText);
+                  // }
+                  // else{
+
+                  // }
                 }}
                 multiline={false}
                 // placeholder="Search for Keywords"
@@ -310,7 +338,9 @@ const searchList=async (queryText:any)=>{
                     <OuterIconRow>
                 
                 <Pressable style={{padding:13}} onPress={async () => {
-                 const data=await searchList(queryText)
+                 Keyboard.dismiss();
+                 const data=await searchList(queryText);
+                
                 }}>
                 <Icon
                 name="ic_search"
