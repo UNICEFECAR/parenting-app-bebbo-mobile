@@ -153,29 +153,40 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   allHealthCheckupsData.map((hcItem: any) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
-    const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+    const item = allGrowthPeriods.find((item) => Number(item.id) == Number(hcItem.growth_period));
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
+      // delete hcItem?.vaccination_ends;
     }
-  }).sort(
-    (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+  })
+
+  let allHealthCheckupsDataNew =  allHealthCheckupsData.sort(
+    (a: any, b: any) =>  Number(b.vaccination_opens) > Number(a.vaccination_opens)?1:-1,
   );
+  // const allHealthCheckupsDataNew =  allHealthCheckupsData.sort(
+  //   (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ?1:-1,
+  // );
+  // console.log(allHealthCheckupsDataNew,"allHealthCheckupsDataNewSort",allHealthCheckupsDataNew.length)
+  allHealthCheckupsDataNew = allHealthCheckupsDataNew.reverse();
+  // console.log(allHealthCheckupsDataNew,"allHealthCheckupsDataNewSortReverse",allHealthCheckupsDataNew.length)
+
   // console.log("allHealthCheckupsDatasorted",allHealthCheckupsData,allHealthCheckupsData.length);
-  allHealthCheckupsData.reverse().forEach((hcItem: any, index: number) => {
+  allHealthCheckupsDataNew.forEach((hcItem: any, index: number) => {
     hcItem.vaccines = getVaccinesForHCPeriod(hcItem.growth_period) // this is to show which vaccines are given / not given in Healthchecks period
     // hcItem.vaccination_opens = getVaccineOpens(hcItem.growth_period).vaccination_opens;
-    const item = allGrowthPeriods.find((item) => item.id == hcItem.growth_period);
+    const item = allGrowthPeriods.find((item) => Number(item.id) == Number(hcItem.growth_period));
     // console.log(item,"hcItem",index)
     if (item) {
       hcItem.vaccination_opens = item?.vaccination_opens;
-      hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens;
+      hcItem.vaccination_ends = index < allHealthCheckupsDataNew.length-1 ?  allHealthCheckupsDataNew[index + 1]?.vaccination_opens :maxPeriodDays;
+      // hcItem.vaccination_ends = (index == allHealthCheckupsData.length - 1) ? maxPeriodDays : allHealthCheckupsData[index + 1]?.vaccination_opens;
     }
     const measuresForHCPeriod = getMeasuresForHCPeriod(hcItem, index)
     // console.log(index, measuresForHCPeriod, "measuresForHCPeriod");
     hcItem.growthMeasures = measuresForHCPeriod;
 
   });
-  // console.log(allHealthCheckupsData, "allHealthCheckupsDataNew",allHealthCheckupsData.length);
+  console.log(allHealthCheckupsDataNew, "allHealthCheckupsDataNew",allHealthCheckupsDataNew.length);
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
@@ -209,8 +220,8 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
   // })
 
 
-  let sortedGroupsForPeriods = [...allHealthCheckupsData, ...additionalMeasures].sort(
-    (a: any, b: any) => a.vaccination_opens - b.vaccination_opens,
+  let sortedGroupsForPeriods = [...allHealthCheckupsDataNew, ...additionalMeasures].sort(
+    (a: any, b: any) => Number(a.vaccination_opens) > Number(b.vaccination_opens) ?1:-1,
   );
   // console.log(sortedGroupsForPeriods, "sortedGroupsForPeriods");
 
