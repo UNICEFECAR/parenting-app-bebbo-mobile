@@ -25,9 +25,6 @@ import i18n, {
   import RSen from '@assets/translations/appConstants/RSen';
   import BYbe from '@assets/translations/appConstants/BYbe';
   import BYru from '@assets/translations/appConstants/BYru';
-import { localization } from '@assets/data/localization';
-import { store } from '../../App';
-import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 
   export const AVAILABLE_LANGUAGES = {
     en,
@@ -50,27 +47,9 @@ import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
     BYbe,
     BYru
   };
-
-  const findAllByKey:any = (obj: object | null, keyToFind: string) => {
-    return Object.entries(obj)
-      .reduce((acc, [key, value]) => (key === keyToFind)
-        ? acc.concat(value)
-        : (typeof value === 'object')
-        ? acc.concat(findAllByKey(value, keyToFind))
-        : acc
-      , [])
-  }
-
-  const findLangCode = (languageTag: string | undefined) => {
-    const obj = localization.reduce((prev, product):any => prev || product.languages.find(item => item.luxonLocale === languageTag), undefined);
-    const obj2 = obj ? obj.locale : obj;
-    console.log("obj2--",obj2);
-    return obj2;
-  }
  // console.log(AVAILABLE_LANGUAGES,"----");
-  // const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
-  const AVALAILABLE_LANG_CODES = findAllByKey(localization,'luxonLocale');
-  console.log(AVALAILABLE_LANG_CODES,"AVALAILABLE_LANG_CODES34");
+  const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
+  
   const languageDetector: LanguageDetectorAsyncModule = {
     type: 'languageDetector',
     // If this is set to true, your detect function receives a callback function that you should call with your language,
@@ -96,22 +75,16 @@ import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
             // );
           }
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
-         console.log(bestLng,"--bestLng--- ",AVALAILABLE_LANG_CODES);
-         const langCodeNew = findLangCode(bestLng?.languageTag);
-         console.log("langCodeNew---",langCodeNew);
-          callback(langCodeNew ?? 'en');
+         // console.log(bestLng,"--bestLng--- ");
+          callback(bestLng?.languageTag ?? 'en');
           return;
         }
         callback(lng);
       });
     },
     cacheUserLanguage: (lng: string) => {
-     console.log("lng---cache ",lng);
+     // console.log("lng---cache ",lng);
       AsyncStorage.setItem('APP_LANG', lng);
-      const country = localization.find(x => x.languages.some(item => item.locale === lng));
-      const language = localization.reduce((prev, product):any => prev || product.languages.find(item => item.locale === lng), undefined);
-      console.log(country,"--country--",language);
-      store.dispatch(onLocalizationSelect({country,language}))
     },
   };
   const trimwhiteSpace = (str:any) => {
