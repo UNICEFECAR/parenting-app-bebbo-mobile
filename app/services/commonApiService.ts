@@ -332,9 +332,10 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   dispatch(setAllNotificationData([]));
   let notiFlagObj = { key: 'generateNotifications', value: true };
   dispatch(setInfoModalOpened(notiFlagObj));
-  if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
-    dispatch(setDailyArticleGamesCategory({}));
-    dispatch(setShowedDailyDataCategory({}));
+  if(prevPage == 'CountryLangChange'){
+    dispatch(setDailyArticleGamesCategory({advice: 0 , games: 0,
+      currentadviceid:0,currentgamesid:0,currentDate:''}));
+    dispatch(setShowedDailyDataCategory({advice: [] , games: []}));
   }
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
