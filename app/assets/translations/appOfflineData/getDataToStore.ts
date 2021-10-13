@@ -209,12 +209,13 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 if (currentChildData.gender != "" && currentChildData.gender != 0 && currentChildData.gender != "0") {
                     filterQuery += '&& (child_gender==' + parseInt(currentChildData.gender) + ' || child_gender == ' + both_child_gender + ' || child_gender == ' + String(both_child_gender) + '  || child_gender == 0)';
                 }
-                if (queryText != "" && queryText != null && queryText != undefined) {
-                    filterQuery += ' && title CONTAINS "' + queryText + '" || summary CONTAINS "' + queryText + '" || body CONTAINS "' + queryText + '"';
-                }
+                // console.log(queryText,"..queryText");
+                // if (queryText != "" && queryText != null && queryText != undefined) {
+                //     filterQuery += ' && title CONTAINS[c]"' + queryText + '" || summary CONTAINS[c] "' + queryText + '" || body CONTAINS[c] "' + queryText + '"';
+                // }
                 // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
-                console.log(filterQuery, "..filterQuery..");
+                console.log(filterQuery, "..11filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
                 console.log(databaseData.length);
                 dataToStore = databaseData;
