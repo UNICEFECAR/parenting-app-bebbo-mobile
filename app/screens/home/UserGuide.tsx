@@ -146,7 +146,7 @@ export default UserGuide;
 const styles = StyleSheet.create({
   titleText: {
     color: '#fff',
-    fontSize: 50,
+    fontSize: 48,
     textAlign: 'center',
     fontFamily: 'roboto-bold',
     marginBottom: 20,
