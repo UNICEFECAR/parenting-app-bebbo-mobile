@@ -6,7 +6,7 @@ import { ArticleDetailsContainer, ArticleHeading } from '@components/shared/Arti
 import { BgActivityTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import { HeaderIconView, HeaderTitleView,HeaderIconPress } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
@@ -306,10 +306,10 @@ const DetailsScreen = ({route, navigation}: any) => {
               maxHeight: 50,
             }}>
             <HeaderIconView>
-              <Pressable
+              <HeaderIconPress
                 onPress={onHeaderBack}>
                 <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
+              </HeaderIconPress>
             </HeaderIconView>
             <HeaderTitleView>
             <Heading2 numberOfLines={1}>{detailDataToUse?.title}</Heading2>
