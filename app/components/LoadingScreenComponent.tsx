@@ -35,21 +35,23 @@ const LoadingScreenComponent = (props: any) => {
               justifyContent: 'flex-start',
               flexDirection: 'column',
               marginTop:45,
+              
             }}>
               <FlexDirCol>
-            <View>
+            <View style={{marginBottom:15}}>
               <VectorImage source={item.image} />
             </View>
             <View style={{
-                  width:240,height:80,
+                  width:180,height:60,
                   //backgroundColor:'#000',
                   alignContent:'center',
                   marginTop:20,
+                  
                 }}>
               <PartnerLogo 
               style={{
                 flex: 1,
-                resizeMode: 'contain'
+                resizeMode: 'cover'
               }}
                 source={
                   sponsors?.country_national_partner!=null
@@ -69,7 +71,7 @@ const LoadingScreenComponent = (props: any) => {
               <SponsorLogo
               style={{
                 flex: 1,
-                resizeMode: 'contain'
+                resizeMode: 'cover'
               }}
                 source={
                   sponsors?.country_sponsor_logo!=null

@@ -23,7 +23,11 @@ margin-left:-4px;
 margin-right:-4px
 align-items:center;
 `;
-
+export const HeaderBurgerPress = styled(HeaderIconPress)`
+width:40px;
+margin-left:-8px
+margin-right:-8px
+`;
 export const HeaderTitleView = styled.View`
   flex: 4;
   padding: 10px;
