@@ -11,7 +11,7 @@ export const Slide = styled.View`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 0 25px;
+  padding: 0 15px;
 `;
 
 export const WalkthroughImagebox = styled.View`
@@ -36,8 +36,8 @@ export const WalkthroughTitle = styled.Text`
 export const WalkthroughSubtext = styled.Text`
   font-size: 20px;
   text-align: center;
-  padding: 0 5px;
-  font-family: roboto-regular;
+  padding: 0 20px;
+  font-family: roboto-regular
 `;
 
 export const ButtonTertiary1 = styled.View`

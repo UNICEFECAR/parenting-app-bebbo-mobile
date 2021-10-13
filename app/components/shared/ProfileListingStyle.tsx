@@ -4,20 +4,22 @@ const ProfileListingStyle = styled.View``;
 /*Manage Profile Drowpdown*/
 
 export const ProfileListView = styled.View`
-  padding: 10px 15px;
+  padding: 11px 15px;
   flex-direction: row;
   align-items: center;
+  
 `;
 
 
 
 export const ProfileListViewSelected = styled(ProfileListView)`
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
-  margin-bottom:15px;
+  margin-bottom:3px;
   align-items:flex-start;
 `;
 export const ProfileListViewSelected1 = styled(ProfileListViewSelected)`
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
+margin-bottom:15px;
 `;
 export const ProfileIconView = styled.View`
  min-width:48px;
