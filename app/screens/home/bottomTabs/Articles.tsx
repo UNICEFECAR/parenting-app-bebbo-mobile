@@ -45,11 +45,6 @@ export type ArticleCategoriesProps = {
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [queryText,searchQueryText] = useState('');
-  const toggleSwitchVal = useAppSelector((state: any) =>
-  state.bandWidthData?.lowbandWidth
-    ? state.bandWidthData.lowbandWidth
-    : false,
-);
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const flatListRef = useRef(null);
@@ -64,6 +59,11 @@ const Articles = ({route, navigation}: Props) => {
   const articleModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsArticleModalOpened),
     );
+    const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
@@ -72,8 +72,7 @@ const Articles = ({route, navigation}: Props) => {
     return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         <ArticleListContainer>
-        <LoadableImage style={styles.cardImage} item={item}/> 
-          {/* <LoadableImage style={styles.cardImage} item={item}  toggleSwitchVal={toggleSwitchVal}/>  */}
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/> 
            <ArticleListContent>
              <ShiftFromTopBottom5>
            <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>

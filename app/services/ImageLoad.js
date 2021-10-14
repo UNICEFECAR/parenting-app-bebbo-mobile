@@ -194,7 +194,6 @@ export const createImageProgress = ImageComponent =>
       let indicatorElement;
 
       if (error) {
-        console.log(error,"..erorr")
         if (renderError) {
           indicatorElement = (
             <View style={errorContainerStyle}>{renderError(error)}</View>
