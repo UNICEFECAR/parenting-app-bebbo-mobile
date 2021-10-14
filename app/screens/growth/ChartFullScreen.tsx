@@ -45,10 +45,10 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
         setIsChartVisible(true);
       }, 2000);
       BackHandler.addEventListener('hardwareBackPress', function () {
-        setTimeout(()=>{
-          // Orientation.unlockAllOrientations();
-          Orientation.lockToPortrait();
-        },0)
+        // setTimeout(()=>{
+        //   // Orientation.unlockAllOrientations();
+        //   Orientation.lockToPortrait();
+        // },1000)
         
         closeFullScreen();
         /**
@@ -61,23 +61,23 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
          */
         return true;
       });
-      // navigation.addListener('gestureEnd',  function () {
-      //   setTimeout(()=>{
-      //     // Orientation.unlockAllOrientations();
-      //     Orientation.lockToPortrait();
-      //   },Platform.OS=='ios' ? 500:0)
+      navigation.addListener('gestureEnd',  function () {
+        setTimeout(()=>{
+          // Orientation.unlockAllOrientations();
+          Orientation.lockToPortrait();
+        },Platform.OS=='ios' ? 400:400)
         
        
-      //   /**
-      //    * When true is returned the event will not be bubbled up
-      //    * & no other back action will execute
-      //    */
-      //   /**
-      //    * Returning false will let the event to bubble up & let other event listeners
-      //    * or the system's default back action to be executed.
-      //    */
-      //   return true;
-      // });
+        /**
+         * When true is returned the event will not be bubbled up
+         * & no other back action will execute
+         */
+        /**
+         * Returning false will let the event to bubble up & let other event listeners
+         * or the system's default back action to be executed.
+         */
+        return true;
+      });
     });
 
     // Return the function to unsubscribe from the event so it gets removed on unmount
