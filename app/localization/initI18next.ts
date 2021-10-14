@@ -25,6 +25,10 @@ import i18n, {
   import RSen from '@assets/translations/appConstants/RSen';
   import BYbe from '@assets/translations/appConstants/BYbe';
   import BYru from '@assets/translations/appConstants/BYru';
+  import { localization } from '@assets/data/localization';
+  import { Alert } from 'react-native';
+  import { store } from '../../App';
+  import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 
   export const AVAILABLE_LANGUAGES = {
     en,
@@ -47,9 +51,31 @@ import i18n, {
     BYbe,
     BYru
   };
+  const newArr: any[] = [];
+  const localisationnew = [...localization];
+  // const localisationnew = arrCopy.filter(o=>o.languages = o.languages.filter(x=> x.languageCode != 'rs-en'))
+  console.log(localisationnew,"--localisationnew");
+  const findAllByKey:any = (obj: object | null, keyToFind: string) => {
+    return Object.entries(obj)
+      .reduce((acc, [key, value]) => (key === keyToFind)
+        ? acc.concat(value)
+        : (typeof value === 'object')
+        ? acc.concat(findAllByKey(value, keyToFind))
+        : acc
+      , [])
+  }
+
+  const findLangCode = (languageTag: string | undefined) => {
+    const obj = localisationnew.reduce((prev, product):any => prev || product.languages.find(item => item.luxonLocale === languageTag && item.locale != 'RSen'), undefined);
+    console.log("obj---",obj)
+    const obj2 = obj ? obj.locale : obj;
+    console.log("obj2--",obj2);
+    return obj2;
+  }
  // console.log(AVAILABLE_LANGUAGES,"----");
-  const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
-  
+  // const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
+  const AVALAILABLE_LANG_CODES = findAllByKey(localisationnew,'luxonLocale');
+  console.log(AVALAILABLE_LANG_CODES,"AVALAILABLE_LANG_CODES34");
   const languageDetector: LanguageDetectorAsyncModule = {
     type: 'languageDetector',
     // If this is set to true, your detect function receives a callback function that you should call with your language,
@@ -65,6 +91,7 @@ import i18n, {
     },
     detect: (callback: (lng: string) => void) => {
       AsyncStorage.getItem('APP_LANG', (err, lng) => {
+        //Alert.alert("getitem async called",lng);
         // Error fetching stored data or no language was stored
         if (err || !lng) {
           if (err) {
@@ -76,14 +103,23 @@ import i18n, {
           }
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
          // console.log(bestLng,"--bestLng--- ");
-          callback(bestLng?.languageTag ?? 'en');
+         console.log(bestLng,"--bestLng--- ",AVALAILABLE_LANG_CODES);
+         const langCodeNew = findLangCode(bestLng?.languageTag);
+         console.log("langCodeNew---",langCodeNew);
+         let lang2 = langCodeNew ?langCodeNew : 'en';
+         const country = localization.find(x => x.languages.some(item => item.locale === lang2));
+        const language = localization.reduce((prev, product):any => prev || product.languages.find(item => item.locale === lang2), undefined);
+        console.log(country,"--country--",language);
+        store.dispatch(onLocalizationSelect({country,language}))
+          callback(langCodeNew ?? 'en');
+          //callback(bestLng?.languageTag ?? 'en');
           return;
         }
         callback(lng);
       });
     },
     cacheUserLanguage: (lng: string) => {
-     // console.log("lng---cache ",lng);
+    //  console.log("lng---cache ",lng);
       AsyncStorage.setItem('APP_LANG', lng);
     },
   };
