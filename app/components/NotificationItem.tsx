@@ -58,7 +58,11 @@ const NotificationItem = (props: any) => {
             ? t('hcReminderbtn')
             : type == 'hcr' ? t('hcNewBtn') : '';
   };
-  const gotoPage = (type: string) => {
+  const gotoPage = (item: any) => {
+    if(item.isRead==false){
+      markAsRead(item);
+    }
+    const type = item.type;
     //console.log(type);
     type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
@@ -274,7 +278,7 @@ const NotificationItem = (props: any) => {
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item.type)}>
+                  <Pressable onPress={() => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
@@ -399,7 +403,7 @@ const NotificationItem = (props: any) => {
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item.type)}>
+                  <Pressable onPress={() => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
@@ -511,7 +515,7 @@ const NotificationItem = (props: any) => {
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
                   <ShiftFromTop10>
-                    <Pressable onPress={() => gotoPage(item.type)}>
+                    <Pressable onPress={() => gotoPage(item)}>
                       <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                     </Pressable></ShiftFromTop10>
                 </NotifiContent>
@@ -621,7 +625,7 @@ const NotificationItem = (props: any) => {
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
                   <ShiftFromTop10>
-                    <Pressable onPress={() => gotoPage(item.type)}>
+                    <Pressable onPress={() => gotoPage(item)}>
                       <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                     </Pressable></ShiftFromTop10>
                 </NotifiContent>
@@ -737,7 +741,7 @@ const NotificationItem = (props: any) => {
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
             </ShiftFromTop5>
             <ShiftFromTop10>
-              <Pressable onPress={() => gotoPage(item.type)}>
+              <Pressable onPress={() => gotoPage(item)}>
                 <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
               </Pressable></ShiftFromTop10>
           </NotifiContent>
