@@ -196,7 +196,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: t('appShareText'),
+        // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
+        message: t('appShareText')+'\nhttp://tesmobility.datamatics.com/Bebbo', 
+        //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
         analytics().logEvent(APP_SHARE);
