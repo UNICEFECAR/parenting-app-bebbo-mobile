@@ -86,7 +86,7 @@ const LoadableImage = (props:any) => {
 //           console.log(err,"..err")
 //                   })
         // setNoImage(imagePath);
-        if(!toggleSwitchVal){
+        if(!toggleSwitchVal && netInfo.isConnected ==true){
           FastImage.preload([{
             uri:item['cover_image'].url
           }]);
@@ -166,7 +166,7 @@ const LoadableImage = (props:any) => {
       source={{
         uri: item['cover_image'].url,
         priority: FastImage.priority.high,
-        cache:toggleSwitchVal?FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
+        cache:toggleSwitchVal || netInfo.isConnected ==false ?FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
       }}
       style={style}
       resizeMode={FastImage.resizeMode.cover}
