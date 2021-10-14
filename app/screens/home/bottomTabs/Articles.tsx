@@ -309,8 +309,9 @@ const searchList=async (queryText:any)=>{
       <OverlayLoadingComponent loading={loadingArticle} />
       <View style={{flex:1,backgroundColor:backgroundColor}}>
       <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{flex:1}}
+      // behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}  
+      style={{flex:1,height:'100%'}}
     >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <TabScreenHeader
@@ -351,10 +352,11 @@ const searchList=async (queryText:any)=>{
               />
                     <OuterIconRow>
                 
-                <Pressable style={{padding:13}} onPress={async () => {
-                 Keyboard.dismiss();
+                <Pressable style={{padding:13}} onPress={async (e) => {
+                      e.preventDefault();
                  const data=await searchList(queryText);
-                
+                 Keyboard.dismiss();
+                 
                 }}>
                 <Icon
                 name="ic_search"
@@ -378,6 +380,8 @@ const searchList=async (queryText:any)=>{
                 <FlatList
                   ref={flatListRef}
                   data={filteredData}
+                  // keyboardDismissMode={"on-drag"}
+                  // keyboardShouldPersistTaps='always'
                   removeClippedSubviews={true} // Unmount components when outside of window 
                   initialNumToRender={4} // Reduce initial render amount
                   maxToRenderPerBatch={4} // Reduce number in each render batch
