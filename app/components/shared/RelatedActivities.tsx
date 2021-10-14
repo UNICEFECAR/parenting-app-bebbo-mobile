@@ -39,6 +39,11 @@ const RelatedActivities = (props:RelatedActivityProps) => {
     (state: any) =>
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const activityCategoryData = useAppSelector(
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
@@ -136,7 +141,8 @@ const RelatedActivities = (props:RelatedActivityProps) => {
       style={{flexDirection:'row'}}
       >
         <RelatedArticleContainer style={{backgroundColor:'#fff'}}  key={index}>
-          <LoadableImage style={styles.cardImage} item={item}/>
+        
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
           <View style={{minHeight:90,}}>
           <ArticleListContent>
           <ShiftFromTopBottom5>

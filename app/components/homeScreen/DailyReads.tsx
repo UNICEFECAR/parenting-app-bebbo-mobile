@@ -30,6 +30,11 @@ const DailyReads = () => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -74,7 +79,7 @@ const DailyReads = () => {
       <View>
         <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
           <DailyBox>
-            <LoadableImage style={styles.cardImage} item={item}>
+            <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}>
             {/* <ImageBackground source={{
               uri: item.cover_image.url,
             }} style={styles.cardImage}> */}
