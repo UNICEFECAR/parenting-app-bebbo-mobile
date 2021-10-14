@@ -11,12 +11,13 @@ import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BackHandler, FlatList } from 'react-native';
+import { Alert, BackHandler, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -52,7 +53,8 @@ const CountrySelection = (props: any) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const dispatch = useAppDispatch();
-  const [country, setCountry] = useState<localizationType>();
+  const [country, setCountry] = useState<any>();
+  const isVisible = useIsFocused();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -68,8 +70,9 @@ const CountrySelection = (props: any) => {
   );
   console.log("...sponsors..", sponsors);
   console.log("userIsOnboarded appnav--", userIsOnboarded);
-  useEffect(() => {
-
+  useFocusEffect(
+    React.useCallback(() => {
+      // Alert.alert("focuseffect--",JSON.stringify(countryId));
       const backAction = () => {
         if (userIsOnboarded == true) {
           i18n.changeLanguage(locale);
@@ -84,44 +87,52 @@ const CountrySelection = (props: any) => {
       backAction,
     );
     props.navigation.addListener('gestureEnd', backAction);
-    // console.log(props.route.params.country,"---",countryId,"---onboard",userIsOnboarded)
-      let newCountryId: any,selectedCountry;
-    if(userIsOnboarded == true){
-      if(props.route.params.country && props.route.params.country != null){
-        newCountryId = props.route.params.country.countryId;
-      }else {
-        newCountryId = countryId;
-      }
-    }else {
-      newCountryId = countryId;
-    }
-    selectedCountry = localization.find(
-      (country) => country.countryId === newCountryId,
-    );
-    console.log(selectedCountry,"---selectedCountry");
-    const fetchData = async () => {
-      if (userIsOnboarded == false) {
-        let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
-        dataRealmCommon.deleteAllAtOnce();
-        // if(sponsors.country_national_partner!=undefined && sponsors.country_national_partner!="" && sponsors?.country_national_partner!=null){
-        //   deleteImageFile(sponsors?.country_national_partner);
-        // }
-        // if(sponsors.country_sponsor_logo!=undefined && sponsors.country_sponsor_logo!="" && sponsors?.country_sponsor_logo!=null){
-        //   deleteImageFile(sponsors?.country_sponsor_logo);
-        // }
-        dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
-        let payload = {errorArr:[],fromPage:'OnLoad'}
-        dispatch(receiveAPIFailure(payload));
-      }
-    }
-    fetchData()
-    setCountry(selectedCountry);
 
     return () => {
       props.navigation.removeListener('gestureEnd', backAction);
       backHandler.remove()
     };
-  }, [props.route.params]);
+    }, []),
+  );
+  useEffect(() => {
+    // Alert.alert("onload--",JSON.stringify(countryId)+isVisible);
+      
+    // console.log(props.route.params.country,"---",countryId,"---onboard",userIsOnboarded)
+    if(isVisible) {
+      let newCountryId: any,selectedCountry;
+      if(userIsOnboarded == true){
+        if(props.route.params.country && props.route.params.country != null){
+          newCountryId = props.route.params.country.countryId;
+        }else {
+          newCountryId = countryId;
+        }
+      }else {
+        newCountryId = countryId;
+      }
+      selectedCountry = localization.find(
+        (country) => country.countryId === newCountryId,
+      );
+      console.log(selectedCountry,"---selectedCountry");
+      const fetchData = async () => {
+        if (userIsOnboarded == false) {
+          let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
+          dataRealmCommon.deleteAllAtOnce();
+          // if(sponsors.country_national_partner!=undefined && sponsors.country_national_partner!="" && sponsors?.country_national_partner!=null){
+          //   deleteImageFile(sponsors?.country_national_partner);
+          // }
+          // if(sponsors.country_sponsor_logo!=undefined && sponsors.country_sponsor_logo!="" && sponsors?.country_sponsor_logo!=null){
+          //   deleteImageFile(sponsors?.country_sponsor_logo);
+          // }
+          dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
+          let payload = {errorArr:[],fromPage:'OnLoad'}
+          dispatch(receiveAPIFailure(payload));
+        }
+      }
+      fetchData()
+      setCountry(selectedCountry);
+    }
+    
+  }, [isVisible, props.route.params]);
   const renderItem = ({ item }: any) => (
     <CountryItem item={item} currentItem={country} setCountry={setCountry} />
   );
