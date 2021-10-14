@@ -10,11 +10,9 @@ const UZru = {
                 checkonce: "Выберите, прежде чем продолжить",
                 country: "Страна",
                 language: "Язык",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Привет, родители!",
                 walkthroughTextssubtitle0: "Перед вами Беббо — все, что вам нужно знать о росте и развитии вашего ребенка",
-                walkthroughTextstitle1: "Занятия  ",
+                walkthroughTextstitle1: "Игры  ",
                 walkthroughTextssubtitle1: "помогающие вашему ребенку узнавать новое каждый день",
                 walkthroughTextstitle2: "Инструменты",
                 walkthroughTextssubtitle2: "для отслеживания развития, роста, иммунизации и здоровья ребенка",
@@ -22,8 +20,6 @@ const UZru = {
                 walkthroughTextssubtitle3: "в ответ на ваши вопросы о том, что нужно вашему ребенку в его возрасте",
                 walkthroughButtonBack: "Назад",
                 walkthroughButtonNext: "Далее",
-
-                // t&C
                 tNcheader: "Условия и положения",
                 tNccheckbox1: "Условия и положения пользования приложением Беббо мною прочитаны, поняты и принимаются",
                 tNccheckbox2: "Мною прочитана, понята и принимается",
@@ -31,11 +27,7 @@ const UZru = {
                 tNccheckbox3: "Я принимаю положение о том, что анонимные данные о моём использовании приложения будут собираться с целью улучшения его работы (не обязательно)",
                 tNcprivacyPolicyTitle: "Политика конфиденциальности",
                 tNcacceptbtn: "Я принимаю условия и положения",
-
-                // Loading
                 loadingText: "Загрузка данных…",
-
-                // childSetup
                 childSetupheader: "Давайте настроим приложение",
                 childSetupdobLabel: "Дата рождения ребёнка/предполагаемая дата родов",
                 childSetupdobSelector: "Введите дату рождения/предполагаемую дату родов",
@@ -46,16 +38,12 @@ const UZru = {
                 childSetuprelationSelectTitle: "Кем вы приходитесь ребёнку? ",
                 childSetuprelationSelectText: "Выбрать",
                 childSetupcontinueBtnText: "Продолжить",
-
-                // childSetupList
                 childSetupListheader: "Вы создали профиль вашего ребенка!",
                 childSetupListsubHeader: "Пожалуйста, проверьте все данные ребёнка, прежде чем продолжить!",
                 childSetupListaddSiblingBtn: "Добавить сестру или брата",
                 childSetupListeditSiblingBtn: "Редактировать данные ребенка",
                 childSetupListcontinueBtnText: "Продолжить",
                 childSetupListsaveBtnText: "Сохранить данные",
-
-                // drawerMenu
                 drawerMenuchildInfo: "Дата рождения: {{childdob}}",
                 drawerMenuhomeTxt: "В начало",
                 drawerMenunotiTxt: "Уведомления",
@@ -73,10 +61,7 @@ const UZru = {
                 drawerMenufeedbackTxt: "Обратная связь",
                 drawerMenurateTxt: "Понравилось Беббо? Поставьте оценку!",
                 drawerMenuPrivacyTxt: "Политика конфиденциальности",
-                // notiScreen
                 notiScreenheaderTitle: "Уведомления",
-
-                // settingScreen
                 settingScreenheaderTitle: "Настройки",
                 settingScreennotiHeaderText: "Уведомления",
                 settingScreennotiType1: "Хочу получать уведомления через Беббо",
@@ -100,23 +85,17 @@ const UZru = {
                 settingScreenexportOptionHeader: "Экспорт данных",
                 settingScreenshareBtntxt: "Поделиться",
                 settingScreengdriveBtntxt: "Google диск ",
-
-                // userGuide
                 userGuideheaderTitle: "Руководство пользователя",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "О нас",
-                // supportScreen
                 supportScreenheaderTitle: "Чат",
                 supportScreenheader1text: "Скоро!",
                 supportScreenheader2text: "В настоящее время чат недоступен",
-                // homeScreen
                 homeScreenheaderTitle: "Беббо",
                 homeScreenchildBtnText: "Подробнее ",
                 homeScreenchildInfoTitle: "Добро пожаловать {{childName}} и {{parentName}},",
                 homeScreendailyReadsTitle: "Ежедневные материалы",
                 homeScreentodayarticle: "Совет дня",
-                homeScreentodaygame: "Занятие дня",
+                homeScreentodaygame: "Игра дня",
                 homeScreenshareText: "Поделиться",
                 homeScreenviewDetailsText: "Подробнее",
                 homeScreenexpText: "Расскажите о своем опыте",
@@ -131,11 +110,9 @@ const UZru = {
                 homeScreenvc: "Вакцинация",
                 homeScreenhc: "Медосмотры",
                 homeScreencg: "Рост ребенка",
-
-                // actScreen
-                actScreenheaderTitle: "Занятия",
-                actScreensugacttxt: "Предлагаемые занятия",
-                actScreenotheracttxt: "Другие занятия",
+                actScreenheaderTitle: "Игры",
+                actScreensugacttxt: "Предлагаемые игры",
+                actScreenotheracttxt: "Другие игры",
                 actScreenpendingMilestone: "В процессе",
                 actScreencompleteMilestone: "Завершено",
                 actScreentrack: "Отслеживать",
@@ -143,7 +120,6 @@ const UZru = {
                 actScreenprematureText: "Недоношенный ребенок ",
                 actScreenshareText: "Поделиться",
                 actScreenaddtoFavText: "Добавить в избранное",
-                // developScreen
                 developScreenheaderTitle: "Развитие ребенка",
                 developScreenprematureText: "Недоношенный ребенок ",
                 developScreenchartLabel: "В процессе",
@@ -152,17 +128,14 @@ const UZru = {
                 developScreentipsText: "Советы врачей",
                 developScreenmileStone: "Этапы развития",
                 developScreenrelatedArticleText: "Советы по теме",
-                developScreenrelatedAct: "Занятия по теме",
+                developScreenrelatedAct: "Игры по теме",
                 developScreenviewDetails: "Подробнее",
-                // articleScreen
                 articleScreenheaderTitle: "Советы",
                 articleScreensearchPlaceHolder: "Поиск по ключевым словам",
                 articleScreennoSearchResult: "Нет советов",
                 articleScreenshareText: "Поделиться",
                 articleScreenaddtoFavText: "Добавить в избранное",
-                // growthScreen
                 growthScreenheaderTitle: "Рост ребенка",
-                //growthScreengrowthDataTitle: "Ребенку {{child name}} месяца",
                 growthScreennoGrowthData: "Еще нет данных о росте ребенка",
                 growthScreennoGrowthDataHelpText: "Это поможет вам следить за ростом ребенка",
                 growthScreenaddNewBtntxt: "Добавить данные",
@@ -196,7 +169,6 @@ const UZru = {
                 growthScreenaddHeight: "Добавить рост ",
                 growthScreennewGrowthBottomText: "Измерения роста и веса ребенка, полученные дома, менее достоверны, чем измерение у врача, и могут повлиять на точность графика роста.",
                 growthScreenrelatedArticle: "Советы по теме",
-                // Sprint4 Screens
                 noBorn: "Еще не родился",
                 noday: "0 дня",
                 yearstag: "года",
@@ -213,9 +185,9 @@ const UZru = {
                 heightModalText: "Укажите ползунком рост вашего ребенка",
                 articleModalText: "Чтобы выбрать советы, нажмите на соответствующие кнопки или используйте поиск по ключевым словам",
                 detailScreenArticleHeader: "Выбрать советы ",
-                detailScreenActivityHeader: "Выбрать занятия",
+                detailScreenActivityHeader: "Выбрать игры",
                 trackMilestoneViewHeader: "Обновите информацию об этапах развития вашего ребенка ",
-                trackMilestoneViewBtn: "Отслеживать этапы развития вашего ребенка ",
+                trackMilestoneViewBtn: "Отслеживайте этапы развития вашего ребенка ",
                 babyNotificationText: "Данные о рождении ребенка не обновлены ",
                 babyNotificationbyAge: "{{childName}} - {{ageInMonth}}",
                 babyNotificationUpdateBtn: "Обновить данные",
@@ -300,17 +272,14 @@ const UZru = {
                 hcdateText: "Дата медосмотра",
                 hcenterDateText: "Введите дату медосмотра",
                 hcChildVaccineQ: "Получил ли ребенок прививку?",
-                /// sprin5 screens
                 tabbarLabel1: "В начало",
-                tabbarLabel2: "Занятия ",
+                tabbarLabel2: "Игры ",
                 tabbarLabel3: "Инструменты",
                 tabbarLabel4: "Советы ",
                 tabbarLabel5: "Развитие ",
                 tabbarLabel6: "Вакцинация",
                 tabbarLabel7: "Медосмотры",
                 tabbarLabel8: "Рост ребенка",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Управление профилем",
                 removePhotoTxt: "Удалить фото",
                 removeWarnTxt: "Хотите удалить фото?",
@@ -328,7 +297,7 @@ const UZru = {
                 notiDelSelected: "Удалить выбранное  ({{count}})",
                 onBirthDay: "Рождение",
                 month: "Месяц",
-                localizationChangeModalText: "Если выбрана новая страна, данные могут измениться; при выборе нового языка внутри той же страны данные сохранятся только на новом, выбранном языке",
+                localizationChangeModalText: "Если выбрана новая страна, содержимое может измениться. Если выбрать новый язык в той же стране, контент останется прежним, только содержимое будет отображаться на новом выбранном языке",
                 growthChartLegendSilverLabel: "-Типичные значения возраста",
                 growthChartLegendOrangeLabel: "-Субоптимальные значения возраста",
                 noVaccinesForPeriod: "В этот период вакцинация не требуется",
@@ -349,7 +318,7 @@ const UZru = {
                 removePhotoOption2: "Удалить",
                 expectedChildDobLabel: "Ребенок еще не родился",
                 babyNotificationText1: "Данные о рождении ребенка обновлены",
-                activityModalText: "Чтобы найти занятия, связанные с определенной областью развития, нажмите соответствующую кнопку",
+                activityModalText: "Чтобы найти Игры, связанные с определенной областью развития, нажмите соответствующую кнопку",
                 childDevModalText: "Проверьте, приобрел ли ваш ребенок ожидаемые навыки, которые развиваются в этот период и узнайте, как поддержать его развитие через игру.",
                 months5tag: "месяцы",
                 years5tag: "годы",
@@ -359,14 +328,13 @@ const UZru = {
                 downloadOnLoadCancelPopUpBtn: "Отмена",
                 downloadOnLoadRetryBtn: "Скачать",
                 detailScreenNoDataPopupTitle: "Предупреждение",
-                detailScreenNoDataPopupText: "Нет данных для выбранного совета / игры",
+                detailScreenNoDataPopupText: "Нет данных для выбранного Совета / Игры",
                 detailScreenNoDataOkBtn: "Хорошо",
                 editExpectChildAddTxt: "Изменить данные ожидаемого ребенка",
                 editChildDobLabel: "Введите дату рождения",
                 childInfoBabyText: "Малыш",
                 childInfoParentText: "Родитель",
                 childInfoAndText: "и",
-                // translation replacement closed till above
                 childSetupdobText: "Введите дату рождения",
                 growthModalText: "Введите здесь и продолжайте обновлять вес и рост вашего ребенка; так вы будете знать, как лучше поддерживать его рост",
                 vaccineModalText: "Здесь вы можете зарегистрироваться, отслеживать и узнавать больше о каждой вакцине в соответствии с календарем иммунизации. Установите напоминания о вакцинации вашего ребенка и получайте уведомления!",
@@ -382,8 +350,6 @@ const UZru = {
                 alertForModifyMeasures: "Ошибка",
                 alertForModifyMeasuresTitle: "Выбор этих данных изменит существующие данные",
                 alertForModifyMeasuresOk: "Хорошо",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Синхронизировать данные",
                 SyncOnLoadPopupText: "Вы хотите синхронизировать данные сейчас?",
                 SyncOnLoadCancelPopUpBtn: "Отмена",
@@ -414,7 +380,7 @@ const UZru = {
                 downloadUpdateSuccessPopupTitle: "Успешно",
                 downloadUpdateSuccessPopupText: "Обновления успешно скачаны!!",
                 downloadUpdateSuccessOkBtn: "Хорошо",
-                newdetailScreenNoDataPopupText: "Выбранный контент недоступен на этом мобильном устройстве. Пожалуйста, загрузите последние данные из настроек.",
+                newdetailScreenNoDataPopupText: "Выбранный Совет / Игра  недоступен(на). Пожалуйста, загрузите последние данные из настроек.",
                 noInternet: "Нет интернета.",
                 lowBandwidth: "Низкая пропускная способность сети",
                 highBandwidth: "Высокая пропускная способность сети",
@@ -422,8 +388,7 @@ const UZru = {
                 dataSaveroff: "Выключено",
                 vcrNoti1: "Напоминание о вакцинации установлено на {{reminderDateTime}}.",
                 hcrNoti1: "Напоминание о медосмотре установлено на {{reminderDateTime}}",
-                parentGender: "Пол Родителей",
-                //relationToParentNameLabel:'Relation to parent'
+                parentGender: "Пол"
         }
 }
 export default UZru;

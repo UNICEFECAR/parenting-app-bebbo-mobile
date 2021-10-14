@@ -64,6 +64,11 @@ const Activities = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -303,7 +308,7 @@ const Activities = ({ route, navigation }: Props) => {
     return (
       <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
         <ArticleListContainer>
-          <LoadableImage style={styles.cardImage} item={item} />
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
               <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
@@ -321,7 +326,7 @@ const Activities = ({ route, navigation }: Props) => {
     return (
       <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
         <ArticleListContainer>
-          <LoadableImage style={styles.cardImage} item={item} />
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
               <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
