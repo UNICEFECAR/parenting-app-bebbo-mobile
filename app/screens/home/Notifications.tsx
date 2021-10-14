@@ -15,7 +15,7 @@ import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AppState, Pressable, View } from 'react-native';
+import { AppState, BackHandler, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -49,7 +49,27 @@ const Notifications = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  
+  const onBackPress = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'HomeDrawerNavigator' }],
+    });
+      return true;
+  }
+  useEffect(() => {
+    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
+    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress,
+    );
+    navigation.addListener('gestureEnd', onBackPress);
+    return () => {
+      navigation.removeListener('gestureEnd', onBackPress);
+      backHandler.remove()};
+  }, []);
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   useEffect(() => {

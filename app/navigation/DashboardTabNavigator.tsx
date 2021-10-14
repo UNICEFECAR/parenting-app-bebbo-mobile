@@ -123,7 +123,8 @@ export default () => {
         activeTintColor: headerColor,
         inactiveTintColor:'#000',
         activeBackgroundColor:'#FFF',
-        inactiveBackgroundColor:'#FFF'
+        inactiveBackgroundColor:'#FFF',
+        keyboardHidesTabBar:true,
 
       }}
       >
