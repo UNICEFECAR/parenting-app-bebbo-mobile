@@ -63,18 +63,23 @@ const NotificationItem = (props: any) => {
       markAsRead(item);
     }
     const type = item.type;
-    //console.log(type);
+    console.log(type);
     type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
         headerTitle: t('growthScreenaddNewBtntxt'),
       })
       : type == 'cd'
-        ? navigation.navigate('Home', { screen: 'ChildDevelopment' })
+        ? navigation.navigate('Home', { screen: 'ChildDevelopment' ,params:{
+          fromNotificationScreen: true,
+        }})
         : type == 'vc' || type == 'vcr'
           ? navigation.navigate('Home', {
             screen: 'Tools',
             params: {
               screen: 'VaccinationTab',
+              params:{
+                fromNotificationScreen: true,
+              }
             },
           })
           : type == 'hc'
@@ -91,6 +96,9 @@ const NotificationItem = (props: any) => {
                 screen: 'Tools',
                 params: {
                   screen: 'HealthCheckupsTab',
+                  params:{
+                    fromNotificationScreen: true,
+                  }
                 },
               }) : '';
   };
@@ -169,7 +177,7 @@ const NotificationItem = (props: any) => {
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
-                  <Pressable onPress={() => gotoPage(item.type)}>
+                  <Pressable onPress={() => gotoPage(item)}>
                     <ButtonTextSmLineL numberOfLines={2}>{getButtonname(item.type)}</ButtonTextSmLineL>
                   </Pressable></ShiftFromTop10>
               </NotifiContent>
