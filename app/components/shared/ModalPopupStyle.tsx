@@ -24,7 +24,7 @@ export const PopupOverlayVideo = styled(PopupOverlay)`
   padding:0px;
 `;
 
-export const PopupCloseContainer = styled.Pressable`
+export const PopupCloseContainer = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;;
@@ -41,6 +41,7 @@ export const PopupClose = styled.Pressable`
   width: 40px;
   height: 40px;
   /* position:absolute; */
+  
   
 `;
 export const PopupCloseVideo = styled(PopupClose)`
