@@ -31,6 +31,11 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   const articleData = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -155,7 +160,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         style={{ flexDirection: 'row' }}
       >
         <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
-        <LoadableImage style={styles.cardImage} item={item}/>
+        <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
           <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
             <View style={{ minHeight: 80, }}>
               <ArticleListContent>
