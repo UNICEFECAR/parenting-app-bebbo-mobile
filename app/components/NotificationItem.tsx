@@ -67,6 +67,7 @@ const NotificationItem = (props: any) => {
     type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
         headerTitle: t('growthScreenaddNewBtntxt'),
+        fromNotificationScreen: true,
       })
       : type == 'cd'
         ? navigation.navigate('Home', { screen: 'ChildDevelopment' ,params:{
@@ -90,6 +91,7 @@ const NotificationItem = (props: any) => {
               titleTxt: t('hcReminderText'),
               warningTxt: t('hcReminderDeleteWarning'),
               headerColor: hcheaderColor,
+              fromNotificationScreen: true,
             })
             : type == 'hcr'
               ? navigation.navigate('Home', {
