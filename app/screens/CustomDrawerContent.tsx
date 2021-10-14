@@ -126,7 +126,8 @@ const CustomDrawerContent = ({ navigation }: any) => {
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
   const isOpen: boolean = useIsDrawerOpen();
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     if (isOpen) {
       // Your dismiss logic here 
 
@@ -134,6 +135,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
         const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
         console.log(currentChildNotis, "allfilteredNotis")
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
+        if (!isFutureDate(activeChild?.birthDate)) {
         if (currentChildNotis) {
           let currentChildallnoti: any = [];
           if (currentChildNotis.gwcdnotis) {
@@ -174,18 +176,23 @@ const CustomDrawerContent = ({ navigation }: any) => {
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
           ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-          // console.log(combinedNotis, "combinedNotis")
+          console.log(combinedNotis, "combinedNotis")
           // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
           // console.log(toRemove, "findcdNoti")
           // combinedNotis = combinedNotis.filter(function (el) {
           //   return !toRemove.includes(el);
           // });
           // delete item from combinedNotis item => { item.title == 'cdNoti2' && childAgeInDays >= item.days_to })
-          setNotifications(combinedNotis)
+          setNotifications(currentChildallnoti.length>0?combinedNotis:[])
         }
+      }else{
+        setNotifications([]);
+      }
       }
     }
-  }, [isOpen, activeChild.uuid, allnotis]);
+  }, [isOpen, activeChild.uuid, allnotis]),
+  );
+  // }, [isOpen, activeChild.uuid, allnotis]);
   const onShare = async () => {
     try {
       const result = await Share.share({

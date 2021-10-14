@@ -18,9 +18,9 @@ import {
   ShiftFromTopBottom10,
   ShiftFromTopBottom5
 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, SafeAreaView, ScrollView, View } from 'react-native';
+import { BackHandler, Modal, Pressable, SafeAreaView, ScrollView, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
@@ -39,7 +39,8 @@ type VaccinationNavigationProp =
 type Props = {
   navigation: VaccinationNavigationProp;
 };
-const Vaccination = ({navigation}: Props) => {
+const Vaccination = ({navigation,route}: Props) => {
+  // console.log(route.params?.fromNotificationScreen,"fromNotificationScreen")
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.VACCINATION_COLOR;
   const backgroundColor = themeContext.colors.VACCINATION_TINTCOLOR;
@@ -53,6 +54,29 @@ const Vaccination = ({navigation}: Props) => {
     let obj = {key: varkey, value: !modalVisible};
     dispatch(setInfoModalOpened(obj));
   };
+  const onBackPress = () => {
+    if(route.params?.fromNotificationScreen==true){
+      navigation.navigate('NotificationsScreen');
+      return true;
+    }else{
+      navigation.goBack();  
+      return true;
+    }
+  }
+  useEffect(() => {
+    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
+    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress,
+    );
+    navigation.addListener('gestureEnd', onBackPress);
+    return () => {
+      navigation.removeListener('gestureEnd', onBackPress);
+      backHandler.remove()};
+  }, []);
   const vaccineModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsVaccineModalOpened),
     );
