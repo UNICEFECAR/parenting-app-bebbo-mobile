@@ -207,13 +207,14 @@ useFocusEffect(() => {
     flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
 }
   const setFilteredArticleData = (itemId:any) => {
-    console.log(itemId,"articleData in filtered 333",articleData.length);
+    console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
     // }
-    if(articleData != '' && articleData != null && articleData != undefined)
+    if(articleData != '' && articleData != null && articleData != undefined && articleData.length>0)
     {
+      console.log("in inf")
       setLoadingArticle(true);
       if(itemId.length>0)
       {
@@ -248,7 +249,9 @@ useFocusEffect(() => {
         // setTimeout(function(){setLoading(false)}, 700);
       }
     }else {
+      console.log("in else")
       setLoadingArticle(false);
+      setfilteredData([]);
     }
   }
   
@@ -288,10 +291,17 @@ const searchList=async (queryText:any)=>{
   //   console.log(item,"..search item")
   // });
   console.log(artData.length,"..artData length")
-  articleData = artData;
+  articleData = [...artData];
   console.log(articleData.length,"after search..articleData..",filterArray);
   //setLoadingArticle(false);
   // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
+  // if(artData.length<=0){
+  //   // setFilterArray([]);
+  //   setFilteredArticleData([]);
+  // }
+  // else{
+ 
+  // }
   setFilteredArticleData(filterArray);
 }
   return (
@@ -314,8 +324,13 @@ const searchList=async (queryText:any)=>{
                 autoCapitalize="none"
                 autoCorrect={false}
                 clearButtonMode="always"
-                onChangeText={async (queryText:any)=>{
-                   searchQueryText(queryText.trim());
+                onChangeText={(queryText:any)=>{
+                  if (queryText.replace(/\s/g, "") == "") {
+                    console.log("..11value")
+                    searchQueryText(queryText.replace(/\s/g, ''));
+                  } else {
+                    searchQueryText(queryText);
+                  }
                 }}
                 value={queryText}
                 onSubmitEditing = {async (event) =>{
