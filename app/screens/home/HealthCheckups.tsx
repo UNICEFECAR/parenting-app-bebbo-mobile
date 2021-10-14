@@ -22,9 +22,9 @@ import {
   ShiftFromBottom20,
   ShiftFromTopBottom10
 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, ScrollView, View } from 'react-native';
+import { BackHandler, Modal, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -45,7 +45,7 @@ type HealthCheckupsNavigationProp =
 type Props = {
   navigation: HealthCheckupsNavigationProp;
 };
-const HealthCheckups = ({navigation}: Props) => {
+const HealthCheckups = ({navigation,route}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const backgroundColor = themeContext.colors.HEALTHCHECKUP_TINTCOLOR;
@@ -149,6 +149,29 @@ const HealthCheckups = ({navigation}: Props) => {
 
 
   }
+  const onBackPress = () => {
+    if(route.params?.fromNotificationScreen==true){
+      navigation.navigate('NotificationsScreen');
+      return true;
+    }else{
+      navigation.goBack();  
+      return true;
+    }
+  }
+  useEffect(() => {
+    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
+    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress,
+    );
+    navigation.addListener('gestureEnd', onBackPress);
+    return () => {
+      navigation.removeListener('gestureEnd', onBackPress);
+      backHandler.remove()};
+  }, []);
   return (
     <>
     <Modal
