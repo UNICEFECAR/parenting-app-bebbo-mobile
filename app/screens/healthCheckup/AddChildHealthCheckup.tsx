@@ -64,6 +64,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  BackHandler,
   Modal,
   Platform,
   Pressable,
@@ -110,7 +111,20 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
     editMeasurementDate ? editMeasurementDate : null,
   );
   const [editHCDate, seteditHCDate] = useState<any>( editMeasurementDate ? editMeasurementDate : null);
- 
+  const onBackPress = () => {
+      navigation.goBack();  
+      return true;
+  }
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      onBackPress,
+    );
+    navigation.addListener('gestureEnd', onBackPress);
+    return () => {
+      navigation.removeListener('gestureEnd', onBackPress);
+      backHandler.remove()};
+  }, []);
   const deleteHealthCheckup = async () => {
     if (editHCDate) {
       // console.log(vcPeriod,"vcPeriod?.vaccines")

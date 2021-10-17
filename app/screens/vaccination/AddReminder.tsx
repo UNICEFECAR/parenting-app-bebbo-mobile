@@ -1,4 +1,5 @@
 import { HEALTH_CHECKUP_REMINDER_SET, VACCINE_REMINDER_SET } from '@assets/data/firebaseEvents';
+import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -39,10 +40,10 @@ import {
   ShiftFromTopBottom10
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Alert, Modal,
+  Alert, BackHandler, Modal,
   Platform,
   Pressable,
   Text,
@@ -286,8 +287,21 @@ const AddReminder = ({ route, navigation }: any) => {
     // reminderalertText:"Reminder Date is before current Date Time"
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
-  let fiveYearFromNow = new Date();
-  fiveYearFromNow.setFullYear(fiveYearFromNow.getFullYear() + 5);
+ 
+  const onBackPress = () => {
+    navigation.goBack();  
+    return true;
+}
+useEffect(() => {
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    onBackPress,
+  );
+  navigation.addListener('gestureEnd', onBackPress);
+  return () => {
+    navigation.removeListener('gestureEnd', onBackPress);
+    backHandler.remove()};
+}, []);
   return (
     <>
       <View style={{ flex: 1, backgroundColor: headerColor }}>
