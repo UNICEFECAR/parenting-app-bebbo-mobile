@@ -199,9 +199,9 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", child.uuid);
       let ageLimit = [];
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis()));
-      // console.log(ageLimit,"..ageLimit..")  
+       console.log(ageLimit,"..ageLimit..")  
       const taxonomyData = await checkBetween(1, ageLimit, child_age);
-      // console.log(taxonomyData,"..taxonomyData..")
+       console.log(taxonomyData,"..taxonomyData..")
       if (taxonomyData?.length > 0) {
         child.taxonomyData = taxonomyData[0];
       }

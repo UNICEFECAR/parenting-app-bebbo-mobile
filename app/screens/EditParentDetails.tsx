@@ -49,6 +49,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   const [relationship, setRelationship] = useState(userParentalRoleData?userParentalRoleData:"");
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipName, setRelationshipName] = useState("");
+  const [defaultGenderValue, setDefaultGenderValue] = React.useState<any>(null);
   // const genders = ['Father', 'Mother', 'Other'];
   let relationshipData = useAppSelector(
     (state: any) =>
@@ -74,6 +75,9 @@ const EditParentDetails = ({route,navigation}: Props) => {
     React.useCallback(() => {
       setRelationshipName(relationshipToParent!="" && relationshipToParent!=null && relationshipToParent!=undefined?relationshipToParent.name:'');
       setUserRelationToParent(relationshipToParent!="" && relationshipToParent!=null && relationshipToParent!=undefined?relationshipToParent.id:'');
+      setDefaultGenderValue(userParentalRoleData != ''
+      ? relationshipData.find((item) => item.id == relationship)
+      : { title: '' })
        },[])
   );
   useEffect(() => {
@@ -97,11 +101,11 @@ const EditParentDetails = ({route,navigation}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  const getDefaultgenderValue = () => {
-    return userParentalRoleData != ''
-      ? relationshipData.find((item) => item.id == relationship)
-      : { title: '' };
-  };
+  // const getDefaultgenderValue = () => {
+  //   return userParentalRoleData != ''
+  //     ? relationshipData.find((item) => item.id == relationship)
+  //     : { title: '' };
+  // };
 
   const saveParentData=async (relationship:any,parentName:any,userRelationToParent:any)=>{
     console.log(userRelationToParent,"../",typeof(userRelationToParent))
@@ -202,7 +206,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
                     <LabelText>{t('parentGender')}</LabelText>
                       <ToggleRadios
                         options={relationshipData}
-                        defaultValue={getDefaultgenderValue()}
+                        // defaultValue={getDefaultgenderValue()}
+                        defaultValue={defaultGenderValue}
                         tickbgColor={headerColor}
                         tickColor={'#FFF'}
                         getCheckedItem={getCheckedParentItem}

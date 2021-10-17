@@ -389,9 +389,14 @@ const MEcnr = {
                 dataSaveroff: "Isključeno",
                 vcrNoti1: "Podsjetnik za vakcinaciju je uključen {{reminderDateTime}}",
                 hcrNoti1: "Podsjetnik za kontrolne zdravstvene preglede je uključen {{reminderDateTime}}",
-                 //translation till above
                 parentGender: "Pol roditelja",
-                //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 
 }
