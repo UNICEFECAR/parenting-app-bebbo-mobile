@@ -61,6 +61,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  BackHandler,
   Modal,
   Platform,
   Pressable,
@@ -578,6 +579,20 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       }
     }
   };
+  const onBackPress = () => {
+    navigation.goBack();  
+    return true;
+}
+useEffect(() => {
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    onBackPress,
+  );
+  navigation.addListener('gestureEnd', onBackPress);
+  return () => {
+    navigation.removeListener('gestureEnd', onBackPress);
+    backHandler.remove()};
+}, []);
   return (
     <>
       <View style={{ flex: 1, backgroundColor: headerColor }}>
