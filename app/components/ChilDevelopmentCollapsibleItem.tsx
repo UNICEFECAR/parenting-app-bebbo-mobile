@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Image, Pressable, StyleSheet, View,Dimensions, Text, Modal } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { ButtonTextSmLineL } from './shared/ButtonGlobal';
+import { ButtonTextSmLineL,ButtonTextMdLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxDevActive, CheckboxItem } from './shared/CheckboxStyle';
 import { MainContainer } from './shared/Container';
 import { DevelopmentBox } from './shared/DevelopmentStyle';
@@ -227,7 +227,7 @@ const activeChild = useAppSelector((state: any) =>
           <ShiftFromTop5></ShiftFromTop5>
             <ShiftFromTopBottom10>
               <ShiftFromBottom10>
-              <Heading3>{t('developScreenmileStone')}</Heading3>
+              <Heading4>{t('developScreenmileStone')}</Heading4>
              </ShiftFromBottom10>
               <FDirRow style={{alignItems:'flex-start'}}>
                 
@@ -281,7 +281,7 @@ const activeChild = useAppSelector((state: any) =>
                 
                   <ShiftFromTopBottom10>
                   <ShiftFromBottom10>
-                  <Heading3>{t('developScreenrelatedAct')}</Heading3>
+                  <Heading4>{t('developScreenrelatedAct')}</Heading4>
                 </ShiftFromBottom10>
                   <FDirRow>
                   { selActivitiesData && selActivitiesData?.cover_image && selActivitiesData?.cover_image?.url != "" ? 
@@ -299,15 +299,15 @@ const activeChild = useAppSelector((state: any) =>
                   }
                     <Flex5>
                     <ShiftFromBottom5>
-                    <Heading5>
+                    <Heading4Regular>
                         {selActivitiesData?.title}
-                      </Heading5>
+                      </Heading4Regular>
                       </ShiftFromBottom5>
                       {selActivitiesData ?
                         <Pressable onPress={() => gotoActivity(selActivitiesData)}>
-                          <ButtonTextSmLineL numberOfLines={2}>
+                          <ButtonTextMdLineL numberOfLines={2}>
                             {t('developScreenviewDetails')}
-                          </ButtonTextSmLineL>
+                          </ButtonTextMdLineL>
                         </Pressable>
                         : null}
                     </Flex5>
