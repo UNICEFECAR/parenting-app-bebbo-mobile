@@ -41,7 +41,7 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, ScrollView, View } from 'react-native';
+import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -98,7 +98,7 @@ const Childgrowth = ({navigation,route}: Props) => {
   //   JSON.parse(state.utilsData.taxonomy.standardDevData),
   // );
   // console.log(standardDevData,"statestandardDevData")
-
+const {width,height}= Dimensions.get('window');
   const renderDummyChart = () => {
     return (
       <>
@@ -156,7 +156,7 @@ const Childgrowth = ({navigation,route}: Props) => {
           </ModalPopupContainer>
         </PopupOverlay>
       </Modal>
-      <View style={{flex:1,backgroundColor:headerColor}}>
+      <View style={{backgroundColor:headerColor,width:width,height:height,flex:1}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <FlexCol>
           <TabScreenHeader
@@ -211,7 +211,7 @@ const Childgrowth = ({navigation,route}: Props) => {
                 </FlexDirCol>
                 {renderDummyChart()}
               </>
-            ) : (
+            ) : width<height ?(
               <MainContainer>
                 <GrowthIntroductory activeChild={activeChild} />
 
@@ -263,7 +263,7 @@ const Childgrowth = ({navigation,route}: Props) => {
 
                
               </MainContainer>
-            )}
+            ) : null}
           </ScrollView>
           <ButtonContainer style={{backgroundColor: backgroundColor}}>
             <ShiftFromTop10>
