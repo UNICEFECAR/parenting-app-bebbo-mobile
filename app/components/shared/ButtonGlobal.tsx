@@ -145,12 +145,18 @@ export const ButtonTertiaryMd = styled(ButtonPrimaryMd)`
   
 `;
 export const ButtonDelPress = styled.Pressable`
-  min-width:65px;
+  min-width:70px;
   margin-left:5px;
   min-height:32px;
   justify-content:flex-end;
   flex-direction:row;
   align-items:center;
+  margin-right:-10px;
+  padding-right:10px;
+`;
+export const ButtonEditPress = styled(ButtonDelPress)`
+ 
+  
 `;
 
 

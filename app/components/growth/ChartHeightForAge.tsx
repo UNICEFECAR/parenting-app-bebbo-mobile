@@ -3,7 +3,7 @@ import { FlexCol, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, ShiftFromTop10 } from '@styles/typography';
+import { Heading2, Heading4, ShiftFromTop10, ShiftFromTopBottom15 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
@@ -142,7 +142,7 @@ useEffect(() => {
           </View>
         )}
 
-        <ShiftFromTop10>
+        <ShiftFromTopBottom15>
           {item ? (
             <>
              {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null} 
@@ -154,9 +154,10 @@ useEffect(() => {
                   ignoredStyles={['color', 'font-size', 'font-family']}
                 />
               ) : null}
+              
             </>
           ) : null}
-        </ShiftFromTop10>
+        </ShiftFromTopBottom15>
       </FlexCol>
       <FlexCol
         style={{
