@@ -659,7 +659,7 @@ useEffect(() => {
                 currentPeriodVaccines={vcPeriod?.vaccines}
                 takenVaccine={takenVaccineForPrevPeriod}
                 backgroundActiveColor={headerColor}
-                isEditScreen={editVCDate ?true :false}
+                isEditScreen={showDelete}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
             </FormContainerFlex>
