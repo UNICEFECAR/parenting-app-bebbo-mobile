@@ -34,7 +34,7 @@ const PrevPlannedVaccines = (props: any) => {
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       return !currentPeriodVaccines?.find((element) => {
-        return element.uuid == vItem.uuid && element.isMeasured == true;
+        return element.uuid == vItem.uuid && element.isMeasured == false;
       });
     },
   ).filter(
