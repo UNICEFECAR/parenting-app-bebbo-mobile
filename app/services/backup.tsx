@@ -97,7 +97,79 @@ class Backup {
             delete this.importedrealm;
         }
     }
+    public async import1(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
+        // await googleAuth.signOut();
+        const tokens = await googleAuth.getTokens();
 
+        // Sign in if neccessary
+        if (!tokens) {
+            const user = await googleAuth.signIn();
+            console.log(user, "..backupFiles")
+            if (!user) return new Error('loginCanceled');
+        }
+
+        // Get backupFolderId
+        let backupFolderId = await googleDrive.safeCreateFolder({
+            name: backupGDriveFolderName,
+            parentFolderId: 'root'
+        });
+        console.log(backupFolderId, "..backupFolderId..")
+        if (backupFolderId instanceof Error) {
+            return new Error('Backup folder doesnt exist on GDrive');
+        }
+
+        // Get backup file ID if exists on GDrive
+        let backupFileId: string | null = null;
+
+        const backupFiles = await googleDrive.list({
+            filter: `trashed=false and (name contains '${backupGDriveFileName}') and ('${backupFolderId}' in parents)`,
+        });
+        console.log(backupFiles, "..backupFiles")
+        if (Array.isArray(backupFiles) && backupFiles.length > 0) {
+            backupFileId = backupFiles[0].id;
+        }
+        console.log(backupFileId, "..backupFileId")
+        if (!backupFileId) {
+            return new Error("..Error coming..");
+        }
+        //const downloadres="dd";
+        // Download file from GDrive
+        console.log(userRealmCommon.realm?.schemaVersion, "..old userRealmCommon.");
+        // userRealmCommon.closeRealm();
+        const downloadres = await googleDrive.downloadAndReadFile({
+            fileId: backupFileId,
+            filePath: RNFS.DocumentDirectoryPath + '/' + 'user1.realm',
+        });
+        console.log(downloadres, "..downloadres..");
+        userRealmCommon.closeRealm();
+        // try{
+        if (downloadres && downloadres.statusCode == 200) {
+            this.closeImportedRealm();
+            this.importedrealm = await new Realm({ path: 'user1.realm' });
+            if (this.importedrealm) {
+                await userRealmCommon.openRealm();
+                userRealmCommon.deleteAllAtOnce();
+                console.log("111111Realm is located at: " + this.importedrealm.path);
+                this.closeImportedRealm();
+                this.importedrealm = await new Realm({ path: 'user1.realm' });
+                const user1Path = this.importedrealm.path;
+                const oldChildrenData = this.importedrealm.objects('ChildEntity');
+                console.log("Realm is located at: " + this.importedrealm.path);
+                console.log("11Realm is located at: " + oldChildrenData);
+               return oldChildrenData;
+
+            }
+
+            // return downloadres;
+
+        }
+
+        // } catch (e) {
+        //     return new Error('file not downloaded..');
+        // }
+        // Open user realm  
+        // return downloadres;
+    }
     public async import(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
         // await googleAuth.signOut();
         const tokens = await googleAuth.getTokens();
