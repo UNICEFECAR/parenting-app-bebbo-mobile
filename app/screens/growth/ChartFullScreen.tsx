@@ -121,8 +121,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   //     Dimensions.removeEventListener('change', deviceOrientation);
   //   };
   // }, [deviceOrientation]);
-  let windowWidth = Dimensions.get('window').width;
-  let windowHeight = Dimensions.get('window').height;
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
   return (
     <>
       <View style={{flex: 1, backgroundColor: '#fff'}}>
