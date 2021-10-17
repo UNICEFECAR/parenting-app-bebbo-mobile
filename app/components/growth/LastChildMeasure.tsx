@@ -1,4 +1,4 @@
-import { ButtonTextMdLine } from '@components/shared/ButtonGlobal';
+import { ButtonTextMdLine,ButtonEditPress } from '@components/shared/ButtonGlobal';
 import { BannerContainer1 } from '@components/shared/Container';
 import {
   FDirRowStart,
@@ -179,7 +179,7 @@ const LastChildMeasure = (props: any) => {
             </Flex2>
             <Flex1>
               <FlexDirRowEnd>
-              <Pressable
+              <ButtonEditPress
                 onPress={() => {
                   const lastmeasure =  childmeasures[childmeasures.length - 1];
                   navigation.navigate('AddNewChildgrowth', {
@@ -200,10 +200,10 @@ const LastChildMeasure = (props: any) => {
                 >
                 {/* <FlexDirRowEnd>
                   <ButtonTextMdLine> */}
-                   <ButtonTextMdLine numberOfLines={2}> {t('growthScreeneditText')}</ButtonTextMdLine>
+                   <ButtonTextMdLine numberOfLines={2}>{t('growthScreeneditText')}</ButtonTextMdLine>
                   {/* </ButtonTextMdLine>
                 </FlexDirRowEnd> */}
-              </Pressable>
+              </ButtonEditPress>
               </FlexDirRowEnd>
             </Flex1>
           </FlexDirRowSpace>

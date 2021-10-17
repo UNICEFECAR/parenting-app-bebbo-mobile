@@ -30,6 +30,11 @@ const DailyReads = () => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+    state.bandWidthData?.lowbandWidth
+      ? state.bandWidthData.lowbandWidth
+      : false,
+  );
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
@@ -74,7 +79,7 @@ const DailyReads = () => {
       <View>
         <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
           <DailyBox>
-            <LoadableImage style={styles.cardImage} item={item}>
+            <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}>
             {/* <ImageBackground source={{
               uri: item.cover_image.url,
             }} style={styles.cardImage}> */}
@@ -131,16 +136,27 @@ const DailyReads = () => {
       console.log(dailyDataCategoryall,"--dailyDataCategoryall 4--",showedDailyDataCategoryall);
       console.log(dailyDataCategory,"--showedDailyDataCategory 3--",showedDailyDataCategory);
       if(dailyDataCategoryall[activeChild.uuid] === undefined) {
-        dailyDataCategory  = {advice: 0 , games: 0, currentadviceid:0,currentgamesid:0,currentDate:''};
+        dailyDataCategory  = {advice: 0 , games: 0, currentadviceid:0,currentgamesid:0,currentDate:'',taxonomyid:activeChild.taxonomyData.id};
       }else {
-        dailyDataCategory = dailyDataCategoryall[activeChild.uuid]
+        if(dailyDataCategoryall[activeChild.uuid].taxonomyid == activeChild.taxonomyData.id)
+        {
+          dailyDataCategory = dailyDataCategoryall[activeChild.uuid];
+        }else {
+          dailyDataCategory  = {advice: 0 , games: 0, currentadviceid:0,currentgamesid:0,currentDate:'',taxonomyid:activeChild.taxonomyData.id};
+        }
       }
       if(showedDailyDataCategoryall[activeChild.uuid] === undefined) {
         console.log("in ifff");
         showedDailyDataCategory  = {advice: [] , games: []};
       }else {
         console.log("in elseee");
-        showedDailyDataCategory = showedDailyDataCategoryall[activeChild.uuid]
+        if(dailyDataCategoryall[activeChild.uuid].taxonomyid == activeChild.taxonomyData.id)
+        {
+          showedDailyDataCategory = showedDailyDataCategoryall[activeChild.uuid]
+        }else {
+          showedDailyDataCategory  = {advice: [] , games: []};
+        }
+        
       }
       const nowDate = DateTime.now().toISODate();
       //console.log(dailyDataCategory.currentDate+'..'+nowDate);
@@ -210,7 +226,8 @@ const DailyReads = () => {
             games: activityDataToShow && activityDataToShow != null ? activityCategoryArrayNew[nextIndex2]?.id : 0,
             currentadviceid:articleDataToShow && articleDataToShow != null ? articleDataToShow?.id : 0,
             currentgamesid:activityDataToShow && activityDataToShow != null ? activityDataToShow?.id : 0,
-            currentDate:DateTime.now().toISODate()
+            currentDate:DateTime.now().toISODate(),
+            taxonomyid:activeChild.taxonomyData.id
           };
           showedDailyDataCategorytoDispatch[activeChild.uuid] = {advice: advicearray , games: gamesarray}
         
@@ -238,7 +255,7 @@ const DailyReads = () => {
         console.log(articleDataToShow,activityDataToShow,"activityDataToShow data---",data);
         setDataToShowInList(data);
       }
-    }, [activeChild.uuid]);
+    }, [activeChild.uuid,activeChild.taxonomyData.id]);
   return (
     <>
       <BgSecondaryTint>
