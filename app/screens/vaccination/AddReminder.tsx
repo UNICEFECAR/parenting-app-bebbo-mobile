@@ -1,4 +1,5 @@
 import { HEALTH_CHECKUP_REMINDER_SET, VACCINE_REMINDER_SET } from '@assets/data/firebaseEvents';
+import { fiveYearFromNow } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonColTwo,
@@ -286,31 +287,20 @@ const AddReminder = ({ route, navigation }: any) => {
     // reminderalertText:"Reminder Date is before current Date Time"
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
-  let fiveYearFromNow = new Date();
-  fiveYearFromNow.setFullYear(fiveYearFromNow.getFullYear() + 5);
-  const onBackPress = () => {
-    if(route.params?.fromNotificationScreen==true){
-      navigation.navigate('NotificationsScreen');
-      return true;
-    }else{
-      navigation.goBack();  
-      return true;
-    }
-  }
-  useEffect(() => {
-    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
-    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      onBackPress,
-    );
-    navigation.addListener('gestureEnd', onBackPress);
-    return () => {
-      navigation.removeListener('gestureEnd', onBackPress);
-      backHandler.remove()};
-  }, []);
+const onBackPress = () => {
+    navigation.goBack();  
+    return true;
+}
+useEffect(() => {
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    onBackPress,
+  );
+  navigation.addListener('gestureEnd', onBackPress);
+  return () => {
+    navigation.removeListener('gestureEnd', onBackPress);
+    backHandler.remove()};
+}, []);
   return (
     <>
       <View style={{ flex: 1, backgroundColor: headerColor }}>

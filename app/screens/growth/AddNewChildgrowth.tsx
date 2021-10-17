@@ -580,28 +580,19 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
     }
   };
   const onBackPress = () => {
-    if(route.params?.fromNotificationScreen==true){
-      navigation.navigate('NotificationsScreen');
-      return true;
-    }else{
-      navigation.goBack();  
-      return true;
-    }
-  }
-  useEffect(() => {
-    // const currentDate = DateTime.now().plus({days:-8}).toMillis();
-    // dispatch(setSyncDate({key: 'userOnboardedDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-    // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      onBackPress,
-    );
-    navigation.addListener('gestureEnd', onBackPress);
-    return () => {
-      navigation.removeListener('gestureEnd', onBackPress);
-      backHandler.remove()};
-  }, []);
+    navigation.goBack();  
+    return true;
+}
+useEffect(() => {
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    onBackPress,
+  );
+  navigation.addListener('gestureEnd', onBackPress);
+  return () => {
+    navigation.removeListener('gestureEnd', onBackPress);
+    backHandler.remove()};
+}, []);
   return (
     <>
       <View style={{ flex: 1, backgroundColor: headerColor }}>
