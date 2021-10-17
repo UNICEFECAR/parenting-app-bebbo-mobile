@@ -150,8 +150,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
                     activeChild={activeChild}
                     chartType={chartType}
                     bgObj={obj}
-                    windowWidth={windowWidth}
-                    windowHeight={windowHeight}
+                    windowWidth={Platform.OS === 'ios'? windowWidth : windowHeight}
+                    windowHeight={Platform.OS === 'ios' ? windowHeight : windowWidth}
                   />
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
