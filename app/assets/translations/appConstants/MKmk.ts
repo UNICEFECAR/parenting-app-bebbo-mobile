@@ -389,9 +389,14 @@ const MKmk = {
                 dataSaveroff: "Исклучено",
                 vcrNoti1: "Поставивте потсетник за вакцинација на {{reminderDateTime}}",
                 hcrNoti1: "Поставивте потсетник за здравствен преглед на  {{reminderDateTime}}",
-                //translation till above
                 parentGender: "Пол на родителот",
-                //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default MKmk;
