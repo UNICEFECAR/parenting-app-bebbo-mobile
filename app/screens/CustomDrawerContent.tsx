@@ -21,6 +21,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
+import Rate, { AndroidMarket } from 'react-native-rate';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import ModalPopupContainer, {
@@ -601,7 +602,29 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
-          <DrawerLinkView onPress={() => { }}>
+          <DrawerLinkView onPress={() => {
+            const options = {
+              AppleAppID:"389801252",
+              GooglePackageName:"org.unicef.ecar.parentbuddy",
+              // AmazonPackageName:"com.mywebsite.myapp",
+              // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
+              preferredAndroidMarket: AndroidMarket.Google,
+              preferInApp:true,
+              openAppStoreIfInAppFails:true,
+              fallbackPlatformURL:"https://tesmobility.datamatics.com/Bebbo",
+            }
+            Rate.rate(options, (success, errorMessage)=>{
+              if (success) {
+                console.log('rated successfully');
+                // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+                // this.setState({rated:true})
+              }
+              if (errorMessage) {
+                // errorMessage comes from the native code. Useful for debugging, but probably not for users to view
+                console.error(`Example page Rate.rate() error: ${errorMessage}`)
+              }
+            })
+           }}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_loveapp" size={25} color="#000" />
