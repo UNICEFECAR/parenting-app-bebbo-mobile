@@ -625,7 +625,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   backgroundActiveColor={headerColor}	
                   takenVaccine={takenVaccineForPrevPeriod}	
                   currentPeriodVaccines={vcPeriod?.vaccines}	
-                  isEditScreen={editHCDate ?true :false}
+                  isEditScreen={showDelete}
                   onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}	
                 />	
               </ShiftFromTop15>	
