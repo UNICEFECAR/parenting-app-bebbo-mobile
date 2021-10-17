@@ -97,7 +97,7 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
     setTimeout(()=>{
       // Orientation.unlockAllOrientations();
       Orientation.lockToPortrait();
-    },Platform.OS=='ios' ? 400:0)
+    },Platform.OS=='ios' ? 500:0)
    
   };
   // const [deviceOrientation, setDeviceOrientation] = useState(
