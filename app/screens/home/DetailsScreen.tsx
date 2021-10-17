@@ -159,6 +159,11 @@ const DetailsScreen = ({route, navigation}: any) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
   const [isImgLoaded, setIsImageLoaded] = useState(false);
   const [cover_image,setCoverImage]=useState();
   const [filterArray,setFilterArray] = useState([]);
@@ -323,7 +328,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
-              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse}/>):
+              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal}/>):
               <DefaultImage
               style={{width: '100%', height: 200}} 
               source={require('@assets/trash/defaultArticleImage.png')}/>   

@@ -10,8 +10,6 @@ const UZuz = {
               checkonce: "Davom etishdan oldin tekshiring",
               country: "Mamlakat",
               language: "Til",
-
-              // walkthroughTexts
               walkthroughTextstitle0: "Xush kelibsizlar, ota-onalar!",
               walkthroughTextssubtitle0: "Bebboni kashf eting – farzandingizning rivojlanishida ota-ona sifatida yordam berishingiz uchun hamma narsa mavjud.",
               walkthroughTextstitle1: "Oʻyinlar",
@@ -22,8 +20,6 @@ const UZuz = {
               walkthroughTextssubtitle3: "savolingiz va farzandingiz yoshiga moslashtirilgan",
               walkthroughButtonBack: "Orqaga",
               walkthroughButtonNext: "Keyingisi",
-
-              // t&C
               tNcheader: "Foydalanish shartlari",
               tNccheckbox1: "Bebbo ilovasi foydalanish shartlarini oʻqib chiqdim, tushundim va roziman",
               tNccheckbox2: "Oʻqib chiqdim, tushundim va roziman",
@@ -31,11 +27,7 @@ const UZuz = {
               tNccheckbox3: "Bebbo ilovasini yaxshilash uchun foydalanish maʼlumotlaridan anonim tarzda foydalanishlariga roziman (bu majburiy emas)",
               tNcprivacyPolicyTitle: "Maxfiylik siyosati",
               tNcacceptbtn: "Foydalanish shartlariga roziman",
-
-              // Loading
               loadingText: "Maʼlumotlar yuklanmoqda…",
-
-              // childSetup
               childSetupheader: "Ilovani moslash uchun biroz vaqtingizni olamiz",
               childSetupdobLabel: "Bolaning tugʻilgan/tugʻilishi kutilayotgan sana",
               childSetupdobSelector: "Bolaning tugʻilgan/tugʻilishi kutilayotgan sanani kiriting",
@@ -46,16 +38,12 @@ const UZuz = {
               childSetuprelationSelectTitle: "Bolaga qarindoshligi",
               childSetuprelationSelectText: "Tanlash",
               childSetupcontinueBtnText: "Davom etish",
-
-              // childSetupList
               childSetupListheader: "Farzandingiz profili yaratildi!",
               childSetupListsubHeader: "Davom etishdan oldin bola maʼlumotlarini tekshirib chiqing!",
               childSetupListaddSiblingBtn: "Aka/ukasi yoki opa/singlini kiritish",
               childSetupListeditSiblingBtn: "Bola maʼlumotlarini tahrirlash",
               childSetupListcontinueBtnText: "Davom etish",
               childSetupListsaveBtnText: "Maʼlumotlarni saqlash",
-
-              // drawerMenu
               drawerMenuchildInfo: "{{childob}} da tugʻilgan",
               drawerMenuhomeTxt: "Uy",
               drawerMenunotiTxt: "Bildirishnomalar",
@@ -73,10 +61,7 @@ const UZuz = {
               drawerMenufeedbackTxt: "Fikr-mulohaza",
               drawerMenurateTxt: "Bebbo yoqdimi? Unda baho bering!",
               drawerMenuPrivacyTxt: "Maxfiylik siyosati",
-              // notiScreen
               notiScreenheaderTitle: "Bildirishnomalar",
-
-              // settingScreen
               settingScreenheaderTitle: "Sozlamalar",
               settingScreennotiHeaderText: "Bildirishnomalar",
               settingScreennotiType1: "Bebbo orqali bildirishnomalar olishni xohlayman",
@@ -100,17 +85,11 @@ const UZuz = {
               settingScreenexportOptionHeader: "Maʼlumotlar eksport qilingan sana",
               settingScreenshareBtntxt: "Ulashish",
               settingScreengdriveBtntxt: "Google Drive",
-
-              // userGuide
               userGuideheaderTitle: "Foydalanuvchi uchun qoʻllanma",
-
-              // aboutUsScreen
               aboutUsScreenheaderTitle: "Biz haqimizda",
-              // supportScreen
               supportScreenheaderTitle: "Chat",
               supportScreenheader1text: "Tez orada!",
               supportScreenheader2text: "Hozirda chat mavjud emas",
-              // homeScreen
               homeScreenheaderTitle: "Bebbo",
               homeScreenchildBtnText: "Batafsil",
               homeScreenchildInfoTitle: "{{childName}} va {{parentName}}, xush kelibsiz",
@@ -131,8 +110,6 @@ const UZuz = {
               homeScreenvc: "Emlash",
               homeScreenhc: "Salomatlik tekshiruvi",
               homeScreencg: "Bolaning oʻsishi",
-
-              // actScreen
               actScreenheaderTitle: "Oʻyinlar",
               actScreensugacttxt: "Tavsiya etiladigan oʻyinlar",
               actScreenotheracttxt: "Boshqa oʻyinlar",
@@ -143,7 +120,6 @@ const UZuz = {
               actScreenprematureText: "Erta",
               actScreenshareText: "Ulashish",
               actScreenaddtoFavText: "Sevimlilarga qoʻshish",
-              // developScreen
               developScreenheaderTitle: "Bolaning rivojlanishi",
               developScreenprematureText: "Erta",
               developScreenchartLabel: "Kutilmoqda",
@@ -154,15 +130,12 @@ const UZuz = {
               developScreenrelatedArticleText: "Tegishli maslahatni koʻrish",
               developScreenrelatedAct: "Tegishli oʻyinlar",
               developScreenviewDetails: "Tafsilotlarni koʻrish",
-              // articleScreen
               articleScreenheaderTitle: "Maslahatlar",
               articleScreensearchPlaceHolder: "Kalit soʻzlar bilan qidirish",
               articleScreennoSearchResult: "Hech qanday maslahat topilmadi",
               articleScreenshareText: "Ulashish",
               articleScreenaddtoFavText: "Sevimlilarga qoʻshish",
-              // growthScreen
               growthScreenheaderTitle: "Bolaning oʻsishi",
-              //growthScreengrowthDataTitle: "Bola {{child name}} oylik",
               growthScreennoGrowthData: "bolaning oʻsish maʼlumotlari hali hisoblanmagan",
               growthScreennoGrowthDataHelpText: "Bu farzandingizning oʻsishini kuzatishda yordam beradi",
               growthScreenaddNewBtntxt: "Yangi oʻlchovni kiritish",
@@ -196,7 +169,6 @@ const UZuz = {
               growthScreenaddHeight: "Boʻyni kiritish",
               growthScreennewGrowthBottomText: "Bolaning boʻyi va vaznini uyda oʻlchash shifokor oʻlchaganidek aniq boʻlmasligi mumkin. Bu oʻsish diagrammasi aniqligiga taʼsir qilishi mumkin.",
               growthScreenrelatedArticle: "Tegishli maslahatlar",
-              // Sprint4 Screens
               noBorn: "Hali tugʻilmagan",
               noday: "0 kun",
               yearstag: "yillar",
@@ -300,7 +272,6 @@ const UZuz = {
               hcdateText: "Salomatlik tekshirilgan sana",
               hcenterDateText: "Salomatlik tekshirilgan sanani kiriting",
               hcChildVaccineQ: "Bola emlandimi?",
-              /// sprin5 screens
               tabbarLabel1: "Uy",
               tabbarLabel2: "Oʻyinlar",
               tabbarLabel3: "Vositalar",
@@ -309,8 +280,6 @@ const UZuz = {
               tabbarLabel6: "Emlash",
               tabbarLabel7: "Salomatlik tekshiruvi",
               tabbarLabel8: "Bolaning oʻsishi",
-              // translation replacement closed till above
-              //sprint 6 screens after v3 of language file 
               manageProfileTxt: "Profilni boshqarish",
               removePhotoTxt: "Fotosuratni oʻchirish",
               removeWarnTxt: "Fotosuratni oʻchirmoqchimisiz?",
@@ -328,7 +297,7 @@ const UZuz = {
               notiDelSelected: "Tanlanganlarni oʻchirish ({{count}})",
               onBirthDay: "Tugʼilish",
               month: "Oy",
-              localizationChangeModalText: "Agar yangi mamlakat tanlansa, maʼlumotlar oʻzgarishi mumkin; agar bir mamlakatning oʻzida yangi tilni tanlasangiz, maʼlumotlar yangi tilda saqlanadi",
+              localizationChangeModalText: "Agar yangi mamlakat tanlansa, tarkib o'zgarishi mumkin. Agar o'sha mamlakatda yangi til tanlansa, kontent o'zgarmaydi, faqat ma'lumotlar tanlangan tilda ko'rsatiladi",
               growthChartLegendSilverLabel: "-Yosh uchun odatiy qiymatlar",
               growthChartLegendOrangeLabel: "-Yosh uchun maqbul boʻlmagan qiymatlar",
               noVaccinesForPeriod: "Bu davrda vaksinalar talab etilmaydi",
@@ -366,7 +335,6 @@ const UZuz = {
               childInfoBabyText: "Chaqaloq",
               childInfoParentText: "Ota-ona",
               childInfoAndText: "va",
-              // translation replacement closed till above
               childSetupdobText: "Tugʻilgan sanani kiriting",
               growthModalText: "Bu yerga farzandingizning ogʻirlik va boʻy oʻchamlarini yangilab kiritib boring; oʻsishini toʻgʻri qoʻllab turishni oʻrganib olasiz",
               vaccineModalText: "Bu yerda milliy emlash taqvimiga muvofiq roʻyxatdan oʻtishingiz, kuzatib borishingiz va har bir vaksina haqida koʻproq maʼlumot olishingiz mumkin. Farzandingizni emlatish eslatmasini yoqing va xabarnomalar olib turing!",
@@ -382,8 +350,6 @@ const UZuz = {
               alertForModifyMeasures: "Ogohlantirish",
               alertForModifyMeasuresTitle: "Bu sanani tanlash mavjud oʻlchamlarni oʻzgartiradi",
               alertForModifyMeasuresOk: "Tasdiqlash",
-
-              //new data added on 27th Aug
               SyncOnLoadPopupTitle: "Maʼlumotlarni sinxronlash",
               SyncOnLoadPopupText: "Maʼlumotlarni hozir sinxronlashni xohlaysizmi?",
               SyncOnLoadCancelPopUpBtn: "Bekor qilish",
@@ -414,7 +380,7 @@ const UZuz = {
               downloadUpdateSuccessPopupTitle: "Muvaffaqiyatli",
               downloadUpdateSuccessPopupText: "Yangilanishlar muvaffaqiyatli yuklab olindi!!",
               downloadUpdateSuccessOkBtn: "Tasdiqlash",
-              newdetailScreenNoDataPopupText: "Tanlangan kontent bu mobil qurilmada mavjud yemas. Iltimos, sozlamalardan soʻnggi maʻlumotlarni yuklab oling",
+              newdetailScreenNoDataPopupText: "Tanlangan Maslahat/Oʻyin mavjud emas. Iltimos, soʻnggi maʼlumotlarni Sozlamalardan yuklab oling.",
               noInternet: "Internet yoʼq",
               lowBandwidth: "Kam tarmoqli kenglik",
               highBandwidth: "Yuqori tarmoqli kenglik",
@@ -422,8 +388,7 @@ const UZuz = {
               dataSaveroff: "Oʻchirish",
               vcrNoti1: "Vaktsina muddati uchun eslatma {{reminderDateTime}} da oʻrnatildi",
               hcrNoti1: "Shifokor koʻrigi uchun eslatma {{reminderDateTime}} da oʻrnatildi",
-              parentGender: "Ota-Ona Jinsi",
-              //relationToParentNameLabel:'Relation to parent'
+              parentGender: "Jins"
        }
 }
 export default UZuz;
