@@ -287,8 +287,7 @@ const AddReminder = ({ route, navigation }: any) => {
     // reminderalertText:"Reminder Date is before current Date Time"
     // setActiveChild(languageCode, activeChild.uuid, dispatch, child_age);
   };
- 
-  const onBackPress = () => {
+const onBackPress = () => {
     navigation.goBack();  
     return true;
 }
