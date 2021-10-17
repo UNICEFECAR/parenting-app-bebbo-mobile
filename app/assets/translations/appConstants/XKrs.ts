@@ -422,7 +422,13 @@ const XKrs = {
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
               parentGender: "Pol roditelja",
-              //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
        }
 }
 export default XKrs;

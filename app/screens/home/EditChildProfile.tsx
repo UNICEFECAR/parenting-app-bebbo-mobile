@@ -100,11 +100,11 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   });
   console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
-  const getDefaultgenderValue = () => {
-    return childData?.uuid != ''
-      ? genders.find((item) => item.id == childData?.gender)
-      : { title: '' };
-  };
+  // const getDefaultgenderValue = () => {
+  //   return childData?.uuid != ''
+  //     ? genders.find((item) => item.id == childData?.gender)
+  //     : { title: '' };
+  // };
 
   //console.log(getDefaultgenderValue,"..getDefaultgenderValue..")
 
@@ -118,6 +118,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   const [capturedPhoto, setCapturedImage] = React.useState('');
   const [photoUri, setphotoUri] = React.useState('');
   const [photoDeleted, setPhotoDeleted] = React.useState(false);
+  const [defaultGenderValue, setDefaultGenderValue] = React.useState<any>(null);
   const [addChildParam, setAddChild] = React.useState(true);
   const [tempImage, cleanUPImage] = React.useState('');
   let initialData: any = {};
@@ -177,12 +178,13 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       // }
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
-        console.log(childData.photoUri, "..childData.photoUri..");
+       console.log(childData.photoUri, "..childData.photoUri..");
         if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
           setCapturedImage('file://' + `${CHILDREN_PATH}/${childData.photoUri}`);
         }
         sendData(childData);
       }
+      setDefaultGenderValue(childData && childData.uuid? genders.find((item) => item.id == childData?.gender):{ title: '' })
     }, []),
   );
 
@@ -532,7 +534,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
               <FormContainerFlex>
                 <ToggleRadios
                   options={genders}
-                  defaultValue={getDefaultgenderValue()}
+                  defaultValue={defaultGenderValue}
                   tickbgColor={headerColor}
                   tickColor={'#FFF'}
                   getCheckedItem={getCheckedItem}
