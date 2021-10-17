@@ -64,7 +64,7 @@ const GrowthChart = (props: any) => {
   const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
   // console.log(labelX, labelY);
 //   const [obj, setObj] = useState([]);
-
+// console.log(windowWidth,windowHeight,"<><><><><><><><>")
 
 const [deviceOrientation, setDeviceOrientation] = useState(
   windowWidth < windowHeight
