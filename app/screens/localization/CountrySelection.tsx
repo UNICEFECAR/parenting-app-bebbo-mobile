@@ -1,4 +1,5 @@
 import { localization } from '@assets/data/localization';
+import { restOfTheWorldAlertText, restOfTheWorldAlertTitle, restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
 import CountryItem from '@components/CountryItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
@@ -162,8 +163,22 @@ const CountrySelection = (props: any) => {
               <ButtonviewNext>
                 <ButtonviewClick
                   style={{}}
-                  onPress={() =>
-                    props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
+                  onPress={() => {
+                    console.log("country-----",country);
+                      if(country.countryId == restOfTheWorldCountryId) {
+                            Alert.alert(restOfTheWorldAlertTitle, restOfTheWorldAlertText,
+                            [
+                              { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+                                props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
+                                }
+                              }
+                            ]
+                          );
+                      }else {
+                        props.navigation.navigate('LanguageSelection', { country:country,languagenew: props.route.params && props.route.params.language ? props.route.params.language : null})
+                      }
+                    
+                    }
                   }>
                   <Icon name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
