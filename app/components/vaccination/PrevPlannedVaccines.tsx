@@ -21,24 +21,31 @@ const PrevPlannedVaccines = (props: any) => {
     });
   });
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
-  if(isEditScreen== true){
-    currentPeriodVaccines.filter((vItem:any)=>{
-      if(takenVaccine.length>0){
-        if(vItem.isMeasured == false){
-          allPreviousPendingVaccines.push(vItem);
-        }
-      }
-    })
-  }
-
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
-      return !currentPeriodVaccines?.find((element) => {
-        return element.uuid == vItem.uuid && element.isMeasured == false;
-      });
+      if(isEditScreen== true){
+        if(takenVaccine.length>0){
+           //remove all current period vaccines which are measured
+          return !currentPeriodVaccines?.find((element) => {
+            return element.uuid == vItem.uuid && element.isMeasured == true;
+          });
+          }else{
+             //remove all current period vaccines which are not measured
+            return !currentPeriodVaccines?.find((element) => {
+              return element.uuid == vItem.uuid && element.isMeasured == false;
+            });
+          }
+      }else{
+        // remove all current period vaccines which are not measured, because its already in planned vaccines
+        return !currentPeriodVaccines?.find((element) => {
+          return element.uuid == vItem.uuid
+        });
+      }
+      
     },
   ).filter(
     (vItem: any) => {
+       //remove all taken(measured) vaccines
       return !takenVaccine?.find((element) => {
         return element.uuid == vItem.uuid;
       });
