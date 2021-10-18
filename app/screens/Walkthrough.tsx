@@ -192,16 +192,18 @@ const Walkthrough = ({navigation}: Props) => {
   };
 useFocusEffect(
   React.useCallback(() => {
-    navigation.dispatch(state => {
-      // Remove the home route from the stack
-      const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-    
-      return CommonActions.reset({
-        ...state,
-        routes,
-        index: routes.length - 1,
+    setTimeout(() => {
+      navigation.dispatch(state => {
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+      
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
       });
-    });
+    },500);
   },[])
 );
   const onDone = () => {
