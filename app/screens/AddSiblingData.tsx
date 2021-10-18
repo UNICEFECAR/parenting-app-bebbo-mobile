@@ -65,6 +65,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected,setIsExpected] = useState<string>('false');
+  const [defaultGenderValue, setDefaultGenderValue] = useState<any>(null);
   const sendData = (data: any) => { // the callback. Use a better name
     //console.log(data,"..data..")
     setBirthDate(data.birthDate);
@@ -81,6 +82,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     if(childData!=null && childData.uuid!=''){
       sendData(childData);
     }
+    setDefaultGenderValue(childData && childData.uuid? genders.find((item) => item.id == childData?.gender): {title: ''})
     }, [])
   );
   const AddChild=async ()=>{
@@ -102,11 +104,11 @@ const AddSiblingData = ({ route, navigation }: Props) => {
 const [gender, setGender] = React.useState(
   childData != null ? childData.gender : 0,
 );
-const getDefaultgenderValue = () => {
-  return childData?.uuid != ''
-    ? genders.find((item) => item.id == childData?.gender)
-    : {title: ''};
-};
+// const getDefaultgenderValue = () => {
+//   return childData?.uuid != ''
+//     ? genders.find((item) => item.id == childData?.gender)
+//     : {title: ''};
+// };
 const getCheckedItem = (checkedItem: typeof genders[0]) => {
   setGender(checkedItem.id);
 };
@@ -140,7 +142,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
           <FormContainerFlex>
                 <ToggleRadios
                   options={genders}
-                  defaultValue={getDefaultgenderValue()}
+                  defaultValue={defaultGenderValue}
                   tickbgColor={headerColor}
                   tickColor={'#FFF'}
                   getCheckedItem={getCheckedItem}
