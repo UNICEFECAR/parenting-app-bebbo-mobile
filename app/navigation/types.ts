@@ -2,6 +2,7 @@ export type RootStackParamList = {
   Localization: undefined;
   Walkthrough: undefined;
   ChildSetup: undefined;
+  ChildImportSetup: {};
   ChildSetupList: undefined;
   AddSiblingDataScreen: {};
   LoadingScreen: {};
