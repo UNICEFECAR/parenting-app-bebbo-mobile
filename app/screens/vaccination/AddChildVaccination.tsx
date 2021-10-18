@@ -650,7 +650,7 @@ useEffect(() => {
                 />
               </FormContainerFlex>
               : null}
-            <FormContainerFlex>
+            <FormContainer>
               <FormInputText>
                 <Heading3>{t('vcPrev')}</Heading3>
               </FormInputText>
@@ -662,7 +662,7 @@ useEffect(() => {
                 isEditScreen={showDelete}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
-            </FormContainerFlex>
+            </FormContainer>
 
             <FormContainerFlex>
               <FormInputText>
