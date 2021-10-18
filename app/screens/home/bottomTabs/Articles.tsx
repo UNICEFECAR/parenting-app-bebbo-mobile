@@ -130,7 +130,8 @@ useFocusEffect(() => {
   const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
-  
+  const [keyboardStatus, setKeyboardStatus] = useState<any>();
+
   useFocusEffect(
     React.useCallback(() => {
       console.log(filteredData,"routes changed--",route);
@@ -163,12 +164,19 @@ useFocusEffect(() => {
     React.useCallback(() => {
       // console.log("article useFocusEffect called--",articleModalOpened);
       //setLoading(true);
-      
+      const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+        setKeyboardStatus(true);
+      });
+      const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+        setKeyboardStatus(false);
+      });
       // fetchData()
       return () => {
         console.log("in article unmount");
         {
           navigation.setParams({categoryArray:[]})
+          showSubscription.remove();
+          hideSubscription.remove();
           // route.params?.currentSelectedChildId = 0;
         }
       }
@@ -311,6 +319,7 @@ const searchList=async (queryText:any)=>{
       <KeyboardAvoidingView
       // behavior={Platform.OS === "ios" ? "padding" : "height"}
       behavior={Platform.OS === "ios" ? "padding" : "height"}  
+      keyboardVerticalOffset={(Platform.OS === 'android') ? -200 : 0}
       style={{flex:1}}
     >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
@@ -397,6 +406,12 @@ const searchList=async (queryText:any)=>{
                 <FlatList
                   ref={flatListRef}
                   data={filteredData}
+                  onScroll={(e)=>{
+                    if(keyboardStatus==true){
+                      Keyboard.dismiss();
+                    }
+                  }}
+                  nestedScrollEnabled={true}
                   // keyboardDismissMode={"on-drag"}
                   // keyboardShouldPersistTaps='always'
                   removeClippedSubviews={true} // Unmount components when outside of window 
