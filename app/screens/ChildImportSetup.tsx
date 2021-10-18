@@ -1,3 +1,4 @@
+import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import { both_child_gender, both_parent_gender, femaleData, maleData, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
@@ -17,18 +18,22 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import { Settings } from 'luxon';
-import React, { createRef, useContext, useState } from 'react';
+import React, { createRef, useContext, useEffect, useState } from 'react';
+import analytics from '@react-native-firebase/analytics';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, BackHandler } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import { ConfigSettingsEntity, ConfigSettingsSchema } from '../database/schema/ConfigSettingsSchema';
+import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { backup } from '../services/backup';
-import { addChild, getNewChild, isFutureDate } from '../services/childCRUD';
-import { validateForm } from '../services/Utils';
+import { addChild, apiJsonDataGet, getAge, getAllChildren, getNewChild, isFutureDate, setActiveChild } from '../services/childCRUD';
+import { getChild, validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
@@ -39,32 +44,28 @@ import {
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 
-type ChildSetupNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'ChildSetupList'
->;
+// type ChildImportSetupNavigationProp = StackNavigationProp<
+//   RootStackParamList,
+//   'ChildSetupList'
+// >;
 
-type Props = {
-  navigation: ChildSetupNavigationProp,
-};
-const ChildSetup = ({ navigation }: Props) => {
+// type Props = {
+//   navigation: ChildImportSetupNavigationProp,
+// };
+const ChildImportSetup = (props: any) => {
+  console.log(props.route.params,"..routeparams..");
+  let {importResponse}=props.route.params;
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const [relationship, setRelationship] = useState('');
   const [userRelationToParent, setUserRelationToParent] = useState();
   const [relationshipname, setRelationshipName] = useState('');
-  const [birthDate, setBirthDate] = useState<Date>();
-  const [plannedTermDate, setPlannedTermDate] = useState<Date>();
-  const [isImportRunning, setIsImportRunning] = useState(false);
-  const [isPremature, setIsPremature] = useState<string>('false');
-  const [isExpected, setIsExpected] = useState<string>('false');
-  // const relationshipData = ['Father', 'Mother', 'Other'];
-  let relationshipData = useAppSelector(
+  const actionSheetRef = createRef<any>();
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  let genders = useAppSelector(
     (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
-  );
-  const relationship_to_parent = useAppSelector(
-    (state: any) =>
-      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
+      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
@@ -73,66 +74,33 @@ const ChildSetup = ({ navigation }: Props) => {
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
   );
-  const actionSheetRef = createRef<any>();
-  const [gender, setGender] = React.useState(0);
-  const dispatch = useAppDispatch();
-  let initialData: any = {};
-  const sendData = (data: any) => { // the callback. Use a better name
-    setBirthDate(data.birthDate);
-    setPlannedTermDate(data.plannedTermDate);
-    var myString: string = String(data.isPremature);
-    setIsPremature(myString);
-    setIsExpected(String(data.isExpected));
-  };
-  let genders = useAppSelector(
+  let relationshipData = useAppSelector(
     (state: any) =>
-      state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender : [],
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender,
   );
-
-  genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
-    return e.id != both_child_gender;
-  });
   relationshipData = relationshipData.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
     return e.id != both_parent_gender;
   });
-  console.log(genders, "..genders..");
-  //console.log(childData?.gender,"..childData?.gender..");
-  useFocusEffect(
-    React.useCallback(() => {
-      // const fetchData = async () => {  
-      // }
-      // fetchData();
-    }, [])
+  const relationship_to_parent = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).relationship_to_parent,
   );
-  useFocusEffect(
-    React.useCallback(() => {
-      setTimeout(() => {
-        navigation.dispatch(state => {
-          // 
-          // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-
-          return CommonActions.reset({
-            ...state,
-            routes,
-            index: routes.length - 1,
-          });
-        });
-      },500);
-    }, [])
-  );
-  const getCheckedItem = (checkedItem: typeof genders[0]) => {
-    //console.log(checkedItem);
-    // if (
-    //   typeof checkedItem.id === 'string' ||
-    //   checkedItem.id instanceof String
-    // ) {
-    //   setGender(checkedItem.id);
-    // } else {
-    //   setGender(String(checkedItem.id));
-    // }
-    setGender(checkedItem.id);
-  };
+  useEffect(() => {
+    const backAction = () => {
+      console.log("11")
+      //navigation.goBack();
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+    props.navigation.addListener('gestureEnd', backAction);
+    return () => {
+      props.navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove();
+    }
+  }, []);
   const getCheckedParentItem = (checkedItem: any) => {
     console.log(checkedItem, "..checkedItem");
     if (
@@ -144,105 +112,39 @@ const ChildSetup = ({ navigation }: Props) => {
       setRelationship(String(checkedItem.id));
     }
   };
-  const importAllData = async () => {
-    Alert.alert(t('importText'), t("dataConsistency"),
-      [
-        {
-          text: t("retryCancelPopUpBtn"),
-          onPress: () => {
+  useFocusEffect(
+    React.useCallback(() => {
+      //actionSheetRef.current?.setModalVisible();
+      props.navigation.dispatch(state => {
+        // 
+        // Remove the home route from the stack
+        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
 
-          },
-          style: "cancel"
-        },
-        {
-          text: t('continueCountryLang'), onPress: async () => {
-            console.log(userRealmCommon.realm?.path, "..path")
-            // this.setState({ isImportRunning: true, });
-            setIsImportRunning(true);
-            //param 1 from settings import for navigation
-            const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
-            console.log(importResponse, "..111111importResponse");
-            if (importResponse.length > 0) {
-              setIsImportRunning(false);
-              navigation.navigate('ChildImportSetup',{
-                importResponse:JSON.stringify(importResponse)
-              });
-              // actionSheetRef1.current?.setModalVisible();
-              // setParentSection(true);  
-             
-            }
-            else {
-              setIsImportRunning(false);
-            }
-            // this.setState({ isImportRunning: false, });
-            // setIsImportRunning(false);
-          }
-        }
-      ]
-    );
-  }
-  const AddChild = async () => {
-    let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
-    let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
-    let childSet: Array<any> = [];
-    childSet.push(insertData);
-    console.log(childSet, "..childSet..");
-    addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship, userRelationToParent);
-  }
-
-  const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
+        return CommonActions.reset({
+          ...state,
+          routes,
+          index: routes.length - 1,
+        });
+      });
+    }, [])
+  );
+  
   return (
     <>
+    
       <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
           <OnboardingContainer>
-            <OnboardingHeading>
-              <ChildCenterView>
-                <Heading1Centerw>
-                  {t('childSetupheader')}
-                </Heading1Centerw>
-              </ChildCenterView>
-
-            </OnboardingHeading>
-
+           
             <ChildContentArea>
               <ChildSection>
-                <View>
-                  <Text>{t('importOnboardingText')}</Text>
-                  <ButtonPrimary
-                    disabled={isImportRunning}
-                    onPress={(e) => {
-                      e.stopPropagation();
-                      importAllData();
-
-                    }}>
-                    <ButtonText>{t('OnboardingImportButton')}</ButtonText>
-                  </ButtonPrimary>
-
-                </View>
                
                 <View>
-                  <Heading1Centerw>
-                    {t('addChildText')}
-                  </Heading1Centerw>
-                  <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" />
-                  {
-                    birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
-                      <FormContainer1>
-                        <LabelText>{t('genderLabel')}</LabelText>
-                        <ToggleRadios
-                          options={genders}
-                          tickbgColor={headerColor}
-                          tickColor={'#FFF'}
-                          getCheckedItem={getCheckedItem}
-                        />
-                      </FormContainer1>
-                      : null
-                  }
                   <ShiftFromTop20>
+                  <Heading1Centerw style={{textAlign:'center',fontWeight:"bold"}}>{t('successOnboardingImport')}</Heading1Centerw>
+                  <Heading1Centerw style={{textAlign:'center'}}>{t('updateImportText')}</Heading1Centerw>
+            
                     <FormInputGroup
                       onPress={() => {
                         actionSheetRef.current?.setModalVisible();
@@ -355,30 +257,91 @@ const ChildSetup = ({ navigation }: Props) => {
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
-              disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
-              onPress={(e) => {
+              disabled={relationship==null || relationship=="" || relationship==undefined || userRelationToParent==undefined ? true :false}
+              onPress={async (e) => {
                 e.stopPropagation();
-                // console.log(birthDate,"..birthDate..");
+                console.log("..birthDate..",importResponse.length);
+                if(importResponse){
+                  importResponse=JSON.parse(importResponse);
+                }
                 // console.log(isPremature,"..isPremature..");
                 // console.log(plannedTermDate,"..plannedTermDate..");
                 // console.log(isExpected,"..isExpected..");
                 // AddChild();
                 // console.log(birthDate,"..birthDate..");
-                let validated: any = false;
-                if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
-                  validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender);
-                }
-                else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
-                  validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender);
-                }
-                console.log(validated, "..validated..");
-                if (validated == true) {
-                  AddChild();
-                }
-                else {
-                  //  Alert.alert(validated);
-                }
+                let counter:any=0;
+                if (importResponse?.length > 0) {
+                  const resolvedPromises = importResponse.map(async (item: any) => {
+                    // getAllChildren(dispatch,child_age,0);
+                      console.log(item, "..item..");
+                      if(item.birthDate!=null && item.birthDate!=undefined){
+                      const itemnew = await getChild(item, genders);
+                      let childData: any = [];
+                      childData.push(itemnew);
+                      console.log(childData, "..childData..");
+                      let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                      console.log(createresult, "..createresult");
+                      let relationshipnew:any = relationship;
+                      if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
+                        relationshipnew = relationship;
+                      }
+                      else {
+                        relationshipnew = String(relationship);
+                      }
+                      
+                      let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
+                      let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
+                      let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", item.uuid);
+                      let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");                
+                      if(counter==0){     
+                      console.log(item.uuid, "..data[0].uuid..");
+                      console.log(userRelationToParent,"..userRelationToParent")
+                      const activeChildnew=await setActiveChild(languageCode, item.uuid, dispatch, child_age);
+                      counter++;
+                      } 
+                      
+                      }
+                      // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
+                      //console.log(createresult,".....createresult...");
+                  });
+                  let notiFlagObj = { key: 'generateNotifications', value: true };
+                  dispatch(setInfoModalOpened(notiFlagObj));
+                  await Promise.all(resolvedPromises).then(async item => {
+                    if(importResponse.length>0){
+                      let childList = await getAllChildren(dispatch, child_age, 1);
+    
+                    // props.navigation.navigate('ChildSetupList');
+                    const Ages=await getAge(childList,child_age);
+    console.log(Ages,"..Ages..")
+    let apiJsonData;
+    if(Ages?.length>0){
+      console.log(Ages,"..11Ages..")
+      apiJsonData=apiJsonDataGet(String(Ages),"all")
+    }
+    else{
+      apiJsonData=apiJsonDataGet("all","all")
+    }
+     analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
+    // await analytics().setUserProperties({ageid,is_premature,child_gender,relationship_with_child}) relationship_with_child:monther/father
 
+    console.log(apiJsonData,"..apiJsonData...")
+    props.navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'LoadingScreen',
+          params: { apiJsonData: apiJsonData, prevPage: 'ChilSetup' },
+        },
+      ],
+    });
+  }      
+  else{
+    // BackHandler.exitApp();
+  } 
+  });
+                
+                }
+                
               }}>
               <ButtonText>{t('childSetupcontinueBtnText')}</ButtonText>
             </ButtonPrimary>
@@ -387,10 +350,11 @@ const ChildSetup = ({ navigation }: Props) => {
      
       </View>
       </>
+      
   );
 };
 
-export default ChildSetup;
+export default ChildImportSetup;
 // const styles = StyleSheet.create({
 //   modalBackground: {
 //     flex: 1,
