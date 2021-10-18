@@ -37,6 +37,9 @@ export const height_growth_type=6461;
 let today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
+export const restOfTheWorldCountryId = 1;
+export const restOfTheWorldAlertTitle = 'Warning';
+export const restOfTheWorldAlertText = 'Rest of the world data is not relevant to a specific country.';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
      console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
