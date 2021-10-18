@@ -153,10 +153,10 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     // console.log(filteredData);
     setSelectedChildDevData(filteredData);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, 'uuid == "' + activeChild.uuid + '"');
-    // console.log("childData--",childData[0].checkedMilestones);
+    // console.log(MileStonesData,"childData in dev--",childData[0].checkedMilestones);
     let milestonefilteredData = await MileStonesData.filter((x: any) => x.child_age.includes(item.id));
     milestonefilteredData = milestonefilteredData.map(item => ({ ...item, toggleCheck: false }))
-    // console.log(milestonefilteredData);
+    // console.log("milestonefilteredData----",milestonefilteredData);
     childData[0].checkedMilestones.filter((x: any) => {
       // console.log(x);
       const i = milestonefilteredData.findIndex((_item: any) => _item.id === x);
@@ -164,7 +164,11 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
         milestonefilteredData[i]['toggleCheck'] = true;
         // milestonefilteredData[i] = {...milestonefilteredData[i],toggleCheck:true}
       }
+      // else {
+      //   milestonefilteredData[i]['toggleCheck'] = false;
+      // }
     })
+    // console.log("after milestonefilteredData----",milestonefilteredData);
     const sortednewArray = milestonefilteredData.sort((x, y) => { return x.toggleCheck === false ? -1 : y.toggleCheck === false ? 1 : 0; });
     // console.log("sortednewArray--",sortednewArray);
     setselectedChildMilestoneData([...sortednewArray]);
@@ -459,7 +463,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
               data={selectedChildMilestoneData}
               // renderItem={({item, index}) => renderItem(item)}
               // renderItem={({item, index}) => <RenderItem item={item} index={index} />  }
-              renderItem={({ item, index }) => <ChilDevelopmentCollapsibleItem key={item.id} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
+              renderItem={({ item, index }) => <ChilDevelopmentCollapsibleItem key={item.id} activeChilduuidnew={activeChild.uuid} item={item} sendMileStoneDatatoParent={sendMileStoneDatatoParent} VideoArticlesData={VideoArticlesData} ActivitiesData={ActivitiesData} subItemSaperatorColor={componentColors?.headerColor} currentSelectedChildId={currentSelectedChildId} />}
               keyExtractor={(item) => item.id.toString()}
               nestedScrollEnabled={true}
               ListHeaderComponent={ContentThatGoesAboveTheFlatList}
