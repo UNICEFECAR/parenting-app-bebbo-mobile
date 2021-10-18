@@ -388,9 +388,14 @@ const MKsq = {
                 dataSaveroff: "Deaktivizo",
                 vcrNoti1: "Rikujtimi është caktuar për vaksinim më {{reminderDateTime}}",
                 hcrNoti1: "Rikujtimi është caktuar për kontrollë mjekësore më {{reminderDateTime}}",
-                //translation till above
                 parentGender: "Gjinia e prindit",
-                //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default MKsq;

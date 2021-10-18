@@ -389,7 +389,13 @@ const BYru = {
                 vcrNoti1: "Создано напоминание о вакцинации на {{reminderDateTime}}",
                 hcrNoti1: "Создано напоминание о медосмотре на {{reminderDateTime}}",
                 parentGender: "Пол родителя",
-                //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default BYru;
