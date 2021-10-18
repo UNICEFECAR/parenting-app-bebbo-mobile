@@ -125,6 +125,7 @@ export default () => {
         activeBackgroundColor:'#FFF',
         inactiveBackgroundColor:'#FFF',
         keyboardHidesTabBar:true,
+        labelPosition:'below-icon'
 
       }}
       >
