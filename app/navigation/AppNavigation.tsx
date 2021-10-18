@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AddExpectingChildProfile from '@screens/AddExpectingChildProfile';
 import AddSiblingData from '@screens/AddSiblingData';
 import ChildSetup from '@screens/ChildSetup';
+import ChildImportSetup from '@screens/ChildImportSetup';
 import ChildSetupList from '@screens/ChildSetupList';
 import EditParentDetails from '@screens/EditParentDetails';
 import AddNewChildgrowth from '@screens/growth/AddNewChildgrowth';
@@ -326,6 +327,11 @@ export default () => {
           <RootStack.Screen
             name="ChildSetup"
             component={ChildSetup}
+            options={{ headerShown: false }}
+          />
+           <RootStack.Screen
+            name="ChildImportSetup"
+            component={ChildImportSetup}
             options={{ headerShown: false }}
           />
           <RootStack.Screen
