@@ -81,16 +81,18 @@ const ChildSetupList = ({ navigation }: Props) => {
     React.useCallback(() => {
       getAllChildren(dispatch,child_age,0);
       getAllConfigData(dispatch);
-      navigation.dispatch(state => {
-        // Remove the home route from the stack
-        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
-      
-        return CommonActions.reset({
-          ...state,
-          routes,
-          index: routes.length - 1,
+      setTimeout(() => {
+        navigation.dispatch(state => {
+          // Remove the home route from the stack
+          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+        
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
         });
-      });
+      },500);
     },[])
   );
 
