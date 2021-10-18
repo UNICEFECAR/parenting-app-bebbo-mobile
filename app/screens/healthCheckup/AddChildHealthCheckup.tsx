@@ -11,6 +11,7 @@ import {
   ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
+  FormContainer,
   FormContainerFlex,
   FormContainerFlex1,
   FormDateAction, FormDateText1,
@@ -592,7 +593,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             />	
           </FormContainerFlex>	
           {isVaccineMeasured ? (	
-            <FormContainerFlex1>	
+            <FormContainer>	
               {takenVaccine?.length > 0 ?	
                 (<ShiftFromTop15>	
                   <FormInputText>	
@@ -616,7 +617,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   onPlannedVaccineToggle={onPlannedVaccineToggle}	
                 />	
               </ShiftFromTop15> : null}	
-              <ShiftFromTop15>	
+              <FormContainer>	
                 <FormInputText>	
                   <Heading3>{t('vcPrev')}</Heading3>	
                 </FormInputText>	
@@ -628,8 +629,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   isEditScreen={showDelete}
                   onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}	
                 />	
-              </ShiftFromTop15>	
-            </FormContainerFlex1>	
+              </FormContainer>	
+            </FormContainer>	
           ) : null}	
       </>	
     )	
