@@ -329,12 +329,13 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //delete all notifications from slice for all child
   // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
   // console.log(setAllNotificationData([]))
-  dispatch(setAllNotificationData([]));
-  let notiFlagObj = { key: 'generateNotifications', value: true };
-  dispatch(setInfoModalOpened(notiFlagObj));
+  
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
+    dispatch(setAllNotificationData([]));
+    let notiFlagObj = { key: 'generateNotifications', value: true };
+    dispatch(setInfoModalOpened(notiFlagObj));
   }
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
