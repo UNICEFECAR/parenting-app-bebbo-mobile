@@ -1,6 +1,7 @@
 import { both_child_gender, both_parent_gender, femaleData, maleData, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonPrimary, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
@@ -57,6 +58,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected, setIsExpected] = useState<string>('false');
+  const [loading, setLoading] = useState(false);
   // const relationshipData = ['Father', 'Mother', 'Other'];
   let relationshipData = useAppSelector(
     (state: any) =>
@@ -158,12 +160,14 @@ const ChildSetup = ({ navigation }: Props) => {
           text: t('continueCountryLang'), onPress: async () => {
             console.log(userRealmCommon.realm?.path, "..path")
             // this.setState({ isImportRunning: true, });
+            setLoading(true);
             setIsImportRunning(true);
             //param 1 from settings import for navigation
             const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
             console.log(importResponse, "..111111importResponse");
             if (importResponse.length > 0) {
               setIsImportRunning(false);
+              setLoading(false);
               navigation.navigate('ChildImportSetup',{
                 importResponse:JSON.stringify(importResponse)
               });
@@ -172,6 +176,7 @@ const ChildSetup = ({ navigation }: Props) => {
              
             }
             else {
+              setLoading(false);
               setIsImportRunning(false);
             }
             // this.setState({ isImportRunning: false, });
@@ -199,6 +204,7 @@ const ChildSetup = ({ navigation }: Props) => {
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
         <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
           <OnboardingContainer>
+          <OverlayLoadingComponent loading={loading} />
             <OnboardingHeading>
               <ChildCenterView>
                 <Heading1Centerw>
