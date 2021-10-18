@@ -109,17 +109,19 @@ const ChildSetup = ({ navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      navigation.dispatch(state => {
-        // 
-        // Remove the home route from the stack
-        const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
+      setTimeout(() => {
+        navigation.dispatch(state => {
+          // 
+          // Remove the home route from the stack
+          const routes = state.routes.filter(r => r.name !== 'LoadingScreen');
 
-        return CommonActions.reset({
-          ...state,
-          routes,
-          index: routes.length - 1,
+          return CommonActions.reset({
+            ...state,
+            routes,
+            index: routes.length - 1,
+          });
         });
-      });
+      },500);
     }, [])
   );
   const getCheckedItem = (checkedItem: typeof genders[0]) => {
