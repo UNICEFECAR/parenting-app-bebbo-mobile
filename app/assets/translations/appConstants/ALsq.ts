@@ -388,9 +388,14 @@ const ALsq = {
               dataSaveroff: "Jo aktive",
               vcrNoti1: "Ri-kujtesa është vendosur për vaksinimin në {{reminderDateTime}}",
               hcrNoti1: "Ri-kujtesa është vendosur për kontrollin shëndetësor në {{reminderDateTime}}",
-              //translation till above
               parentGender: "Gjinia e Prindit",
-              //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
        }
 }
 export default ALsq;

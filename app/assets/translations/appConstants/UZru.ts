@@ -388,7 +388,14 @@ const UZru = {
                 dataSaveroff: "Выключено",
                 vcrNoti1: "Напоминание о вакцинации установлено на {{reminderDateTime}}.",
                 hcrNoti1: "Напоминание о медосмотре установлено на {{reminderDateTime}}",
-                parentGender: "Пол"
+                parentGender: "Пол",
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default UZru;

@@ -311,7 +311,7 @@ const searchList=async (queryText:any)=>{
       <KeyboardAvoidingView
       // behavior={Platform.OS === "ios" ? "padding" : "height"}
       behavior={Platform.OS === "ios" ? "padding" : "height"}  
-      style={{flex:1,height:'100%'}}
+      style={{flex:1}}
     >
           <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
           <TabScreenHeader
@@ -350,10 +350,27 @@ const searchList=async (queryText:any)=>{
                 }}
                 allowFontScaling={false} 
               />
+              {
+                Platform.OS=='android' && 
+                 <OuterIconRow>
+                
+                 <Pressable style={{padding:13}} onPress={() => {
+                  searchQueryText('');
+                 }}>
+                 <Icon
+                 name="ic_close"
+                 size={15}
+                 color="#000"
+                 
+               />
+               </Pressable>
+                 
+               </OuterIconRow>
+              }
                     <OuterIconRow>
                 
                 <Pressable style={{padding:13}} onPress={async (e) => {
-                      e.preventDefault();
+                 e.preventDefault();
                  const data=await searchList(queryText);
                  Keyboard.dismiss();
                  

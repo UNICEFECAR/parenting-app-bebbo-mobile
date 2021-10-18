@@ -388,9 +388,14 @@ const GRel = {
                 dataSaveroff: "απενεργοποίηση",
                 vcrNoti1: "Έχει οριστεί υπενθύμιση για τον εμβολιασμό στις {{reminderDateTime}}",
                 hcrNoti1: "Έχει οριστεί υπενθύμιση για τον ιατρικό έλεγχο στις {{reminderDateTime}}",
-                //translation till above
                 parentGender: "Φύλο γονέα",
-                //relationToParentNameLabel:'Relation to parent'
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default GRel;

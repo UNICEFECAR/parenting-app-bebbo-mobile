@@ -388,9 +388,14 @@ const KGky = {
                 dataSaveroff: "Өчүк",
                 vcrNoti1: "Эмдөө үчүн эскертме {{reminderDateTime}} күнү коюлган",
                 hcrNoti1: "Ден соолук текшерүүсү үчүн эскертме {{reminderDateTime}} күнү коюлду",
-                //translation till above
-                parentGender: "Ата -эненин жынысы",
-                //relationToParentNameLabel:'Relation to parent'
+                parentGender: "Ата -эненин жынысы",    
+                //Onboarding Import text new Translations
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details"
         }
 }
 export default KGky;
