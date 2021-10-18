@@ -98,9 +98,9 @@ const PreviousVaccines = (props: any) => {
             <ToolsHeadingView>
               <Heading2>{item.periodName}</Heading2>
               <Heading5>
-                {item.vaccines.length} {t('vaccinesTxt')}{', '}{doneVc ? doneVc.length : 0}{' '}
-                {t('vaccinesDoneTxt')} | {item.vaccines.length - (doneVc ? doneVc.length : 0)}{' '}
-                {t('vaccinesPendingTxt')}
+                {t('vaccinesTxt')}{':'}{item.vaccines.length} {' | '}
+                {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '} 
+                {t('vaccinesPendingTxt')}{':'}{item.vaccines.length - (doneVc ? doneVc.length : 0)}
               </Heading5>
             </ToolsHeadingView>
           </ToolsHeadPress>
