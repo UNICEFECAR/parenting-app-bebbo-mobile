@@ -35,8 +35,8 @@ import { removeParams } from '../services/Utils';
 // }
 
 const ChilDevelopmentCollapsibleItem = React.memo((props: any) => {
-  const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId} = props;
-  // console.log(item);
+  const {item, VideoArticlesData, ActivitiesData, sendMileStoneDatatoParent, currentSelectedChildId,activeChilduuidnew} = props;
+  // console.log(item,"---item---");
   // console.log(ActivitiesData);
   const navigation = useNavigation();
   const {t}= useTranslation()
@@ -65,7 +65,7 @@ const activeChild = useAppSelector((state: any) =>
   // useFocusEffect(
   //   React.useCallback(() => {
     useEffect(() => {
-      // console.log("collapsible usefocuseffect",item);
+      // console.log(item.id,"collapsible usefocuseffect",item?.toggleCheck);
       if(item?.toggleCheck == true)
       {
         setToggleCheckBox(true);
@@ -129,7 +129,7 @@ const activeChild = useAppSelector((state: any) =>
         
       }
       fetchData()
-    }, []);
+    }, [item]);
   //   },[])
   // );
   // console.log((selVideoArticleData),"--selActivitiesData---",selActivitiesData);
@@ -137,7 +137,7 @@ const activeChild = useAppSelector((state: any) =>
   const milestoneCheckUncheck = async () => {
     // console.log(activeChilduuid,"--checked mielstone---",item);
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
-    // console.log("filterQuery--",filterQuery);
+    // console.log("filterQuery child dev--",filterQuery);
     setToggleCheckBox(!toggleCheckBox);
     sendMileStoneDatatoParent(item,!toggleCheckBox);
     const updatemilestone = await userRealmCommon.updateChildMilestones<ChildEntity>(ChildEntitySchema,item?.id,filterQuery);
