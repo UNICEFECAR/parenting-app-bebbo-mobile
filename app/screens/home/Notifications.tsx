@@ -15,7 +15,7 @@ import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AppState, BackHandler, Pressable, View } from 'react-native';
+import { ActivityIndicator, AppState, BackHandler, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -28,6 +28,7 @@ const Notifications = () => {
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
   console.log(allnotis, "allnotis");
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const themeContext = useContext(ThemeContext);
   const primaryColor = themeContext.colors.PRIMARY_COLOR;
   // const primaryTintColor = themeContext.colors.PRIMARY_TINTCOLOR;
@@ -170,10 +171,12 @@ const Notifications = () => {
         });
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
+      setIsLoading(false)
     }
   }
   useFocusEffect(
     React.useCallback(() => {
+      setIsLoading(true);
       setAllChildNotification(allnotis);
       // console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
       if (allChildnotification.length > 0) {
@@ -482,7 +485,7 @@ const Notifications = () => {
 
                     })}
                 </View>
-              </ScrollView> : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+              </ScrollView> : isLoading==true ? <ActivityIndicator size="large" color={primaryColor} animating={true}/>:<Heading4Center>{t('noDataTxt')}</Heading4Center>}
           {
             isDeleteEnabled ? (
               <>
