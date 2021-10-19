@@ -136,7 +136,6 @@ const KGky = {
                 articleScreenshareText: "Бөлүшүү",
                 articleScreenaddtoFavText: "Тандалмаларга кошуу",
                 growthScreenheaderTitle: "Баланын өсүшү",
-                //growthScreengrowthDataTitle: "Бала {{childAge}} айлык",
                 growthScreennoGrowthData: "Баланын өсүшү боюнча азырынча маалымат жок",
                 growthScreennoGrowthDataHelpText: "Бул балаңыздын өсүшүн көзөмөлдөөгө жардам берет.",
                 growthScreenaddNewBtntxt: "Жаңы маалыматтарды кошуңуз",
@@ -188,7 +187,7 @@ const KGky = {
                 detailScreenArticleHeader: "Кеңештерди тандоо",
                 detailScreenActivityHeader: "Оюндарды тандоо",
                 trackMilestoneViewHeader: "Сураныч, балаңыздын өнүгүү этаптарын жаңыртыңыз.",
-                trackMilestoneViewBtn: "Ымыркайыңыздын өнүгүү этаптарын көзөмөлдөңүз",
+                trackMilestoneViewBtn: "Балаңыздын өнүгүү этаптарын көзөмөлдөңүз",
                 babyNotificationText: "Баланын туулгандыгы жөнүндө маалыматтар жаңыртылган эмес",
                 babyNotificationbyAge: "{{childName}} азыр {{ageInMonth}} толду",
                 babyNotificationUpdateBtn: "Маалыматтарды жаңыртыңыз",
@@ -381,21 +380,21 @@ const KGky = {
                 downloadUpdateSuccessPopupText: "Жаңыртуулар ийгиликтүү жүктөлдү !!",
                 downloadUpdateSuccessOkBtn: "Жакшы",
                 newdetailScreenNoDataPopupText: "Тандалган мазмун бул мобилдик телефондо жеткиликтүү эмес. Жөндөөлөрдөн акыркы маалыматты жүктөп алыңыз",
-                noInternet: "Интернет жок.",
+                noInternet: "Интернет байланышы жок",
                 lowBandwidth: "Өткөрүү жөндөмдүүлүгү төмөн",
                 highBandwidth: "Өткөрүү жөндөмдүүлүгү жогору",
                 dataSaveron: "Күйүк",
                 dataSaveroff: "Өчүк",
                 vcrNoti1: "Эмдөө үчүн эскертме {{reminderDateTime}} күнү коюлган",
                 hcrNoti1: "Ден соолук текшерүүсү үчүн эскертме {{reminderDateTime}} күнү коюлду",
-                parentGender: "Ата -эненин жынысы",    
+                parentGender: "Жынысы",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details"
+                successOnboardingImport: "Балаңыздын маалыматын ийгиликтүү импорттодуңуз",
+                updateImportText: "Улантуу үчүн маалыматыңызды жаңыртыңыз.",
+                importOnboardingText: "Сиз балаңыздын мурда экспорттолгон  маалыматын импорттой аласыз",
+                OnboardingImportButton: "Азыр импорттоо",
+                ORkeyText: "ЖЕ",
+                addChildText: "Балаңыз жөнүндө маалыматтарды кошуңуз"
         }
 }
 export default KGky;
