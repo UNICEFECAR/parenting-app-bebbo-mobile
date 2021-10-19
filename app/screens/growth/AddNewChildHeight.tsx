@@ -3,7 +3,7 @@ import Ruler from '@components/Ruler';
 import { ButtonContainer, ButtonModal, ButtonTertiary, ButtonText } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -128,12 +128,12 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-            <Pressable
+            <HeaderIconPress
               onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#000" size={15} />
-            </Pressable>
+            </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
             <Heading2>{t('growthScreenaddHeight')}</Heading2>
