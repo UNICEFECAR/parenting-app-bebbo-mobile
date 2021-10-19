@@ -10,20 +10,16 @@ const RSsr = {
               checkonce: "Proverite pre nego što nastavite",
               country: "Zemlja",
               language: "Jezik",
-
-              // walkthroughTexts
               walkthroughTextstitle0: "Dobro došli, roditelji!",
               walkthroughTextssubtitle0: "Otkrijte Bebbo – sve što Vam kao roditelju treba da podržite razvoj svog deteta",
               walkthroughTextstitle1: "Igre",
               walkthroughTextssubtitle1: "koje Vašem detetu pomažu da svakog dana nauči nove stvari",
               walkthroughTextstitle2: "Alati",
               walkthroughTextssubtitle2: "koji pomažu da pratite razvoj, rast, imunizaciju i zdravlje Vašeg deteta",
-              walkthroughTextstitle3: "Saveti",
+              walkthroughTextstitle3: "Saveti stručnjaka",
               walkthroughTextssubtitle3: "prilagođeni Vašim interesovanjima i uzrastu Vašeg deteta",
               walkthroughButtonBack: "Nazad",
               walkthroughButtonNext: "Napred",
-
-              // t&C
               tNcheader: "Uslovi i odredbe",
               tNccheckbox1: "Pročitao/la sam, razumeo/la i prihvatam Uslove i odredbe aplikacije Bebbo",
               tNccheckbox2: "Pročitao/la sam, razumeo/la i prihvatam",
@@ -31,11 +27,7 @@ const RSsr = {
               tNccheckbox3: "Prihvatam da se anonimni podaci o mom korišćenju ove aplikacije upotrebe za njeno poboljšanje (nije obavezno)",
               tNcprivacyPolicyTitle: "Politika privatnosti",
               tNcacceptbtn: "Prihvatam Uslove i odredbe",
-
-              // Loading
               loadingText: "Učitavanje podataka…",
-
-              // childSetup
               childSetupheader: "Molimo Vas, iskoristite trenutak da aplikaciju prilagodite svojim potrebama",
               childSetupdobLabel: "Datum rođenja/očekivani datum rođenja deteta",
               childSetupdobSelector: "Unesite datum rođenja/očekivani datum rođenja deteta",
@@ -46,16 +38,12 @@ const RSsr = {
               childSetuprelationSelectTitle: "Odnos sa detetom",
               childSetuprelationSelectText: "Odaberite",
               childSetupcontinueBtnText: "Nastavite",
-
-              // childSetupList
               childSetupListheader: "Profil Vašeg deteta je kreiran!",
               childSetupListsubHeader: "Molimo Vas da proverite podatke o Vašem detetu pre nego što nastavite!",
               childSetupListaddSiblingBtn: "Dodajte sestru ili brata",
               childSetupListeditSiblingBtn: "Izmenite informacije o detetu",
               childSetupListcontinueBtnText: "Nastavite",
               childSetupListsaveBtnText: "Sačuvajte podatke",
-
-              // drawerMenu
               drawerMenuchildInfo: "Datum rođenja {{childdob}}",
               drawerMenuhomeTxt: "Početna stranica",
               drawerMenunotiTxt: "Obaveštenja",
@@ -73,10 +61,7 @@ const RSsr = {
               drawerMenufeedbackTxt: "Povratne informacije",
               drawerMenurateTxt: "Sviđa Vam se Bebbo? Ocenite aplikaciju!",
               drawerMenuPrivacyTxt: "Politika privatnosti",
-              // notiScreen
               notiScreenheaderTitle: "Obaveštenja",
-
-              // settingScreen
               settingScreenheaderTitle: "Podešavanja",
               settingScreennotiHeaderText: "Obaveštenja",
               settingScreennotiType1: "Želim da dobijam obaveštenja putem aplikacije Bebbo",
@@ -100,20 +85,14 @@ const RSsr = {
               settingScreenexportOptionHeader: "Sačuvajte kopiju podataka na",
               settingScreenshareBtntxt: "Podelite",
               settingScreengdriveBtntxt: "Google Drive",
-
-              // userGuide
               userGuideheaderTitle: "Uputstvo za korisnika",
-
-              // aboutUsScreen
               aboutUsScreenheaderTitle: "O nama",
-              // supportScreen
               supportScreenheaderTitle: "Ćaskanje",
               supportScreenheader1text: "Uskoro!",
               supportScreenheader2text: "Ćaskanje trenutno nije dostupno",
-              // homeScreen
               homeScreenheaderTitle: "Bebbo",
               homeScreenchildBtnText: "Pročitajte više",
-              homeScreenchildInfoTitle: "Dobro došli, {{childName}} i {{parentName}}",
+              homeScreenchildInfoTitle: "Dobro došli/e, {{childName}} i {{parentName}}",
               homeScreendailyReadsTitle: "Dnevni članci",
               homeScreentodayarticle: "Savet dana",
               homeScreentodaygame: "Igra dana",
@@ -131,8 +110,6 @@ const RSsr = {
               homeScreenvc: "Vakcinacija",
               homeScreenhc: "Pediajtrijski pregled",
               homeScreencg: "Rast deteta",
-
-              // actScreen
               actScreenheaderTitle: "Igre",
               actScreensugacttxt: "Predložene igre",
               actScreenotheracttxt: "Druge igre",
@@ -143,7 +120,6 @@ const RSsr = {
               actScreenprematureText: "Prevremeno",
               actScreenshareText: "Podelite",
               actScreenaddtoFavText: "Dodajte u 'Omiljene sadržaje'",
-              // developScreen
               developScreenheaderTitle: "Razvoj deteta",
               developScreenprematureText: "Prevremeno",
               developScreenchartLabel: "Na čekanju",
@@ -154,15 +130,12 @@ const RSsr = {
               developScreenrelatedArticleText: "Pogledajte slične članke",
               developScreenrelatedAct: "Slične igre",
               developScreenviewDetails: "Pogledajte detalje",
-              // articleScreen
               articleScreenheaderTitle: "Članci",
               articleScreensearchPlaceHolder: "Potražite ključne reči",
               articleScreennoSearchResult: "Članci nisu pronađeni ",
               articleScreenshareText: "Podelite",
               articleScreenaddtoFavText: "Dodajte u 'Omiljene sadržaje'",
-              // growthScreen
               growthScreenheaderTitle: "Rast deteta",
-              //growthScreengrowthDataTitle: "Uzrast deteta {{child name}} u mesecima",
               growthScreennoGrowthData: "podaci o rastu Vašeg deteta još uvek nisu prikazani",
               growthScreennoGrowthDataHelpText: "Dete {{child name}} ima meseci",
               growthScreenaddNewBtntxt: "Dodajte novu meru",
@@ -196,14 +169,13 @@ const RSsr = {
               growthScreenaddHeight: "Dodajte visinu",
               growthScreennewGrowthBottomText: "Merenje deteta kod kuće obično je manje precizno od merenja kod pedijatra, što može uticati na tačnost mape rasta.",
               growthScreenrelatedArticle: "Slični članci",
-              // Sprint4 Screens
               noBorn: "Još nije rođeno",
               noday: "0 dana",
               yearstag: "godine",
-              yeartag: "godina",
-              monthstag: "meseci",
+              yeartag: "godinu",
+              monthstag: "meseca",
               monthtag: "mesec",
-              daystag: "dani",
+              daystag: "dana",
               daytag: "dan",
               defaultChildPrefix: "Dete",
               notiOption1: "Obrišite obaveštenje",
@@ -217,7 +189,7 @@ const RSsr = {
               trackMilestoneViewHeader: "Molimo Vas ažurirajte razvojne prekretnice Vašeg deteta.",
               trackMilestoneViewBtn: "Pratite razvojne prekretnice vašeg deteta",
               babyNotificationText: "Podaci o rođenju deteta nisu ažurirani",
-              babyNotificationbyAge: "{{childName}} ima {{ageInMonth}} meseci",
+              babyNotificationbyAge: "{{childName}} ima {{ageInMonth}}",
               babyNotificationUpdateBtn: "Ažurirajte profil",
               favScreenHeader: "Omiljeni sadržaji",
               actScreenremovetoFavText: "Ukloni iz 'Omiljenih sadržaja'",
@@ -300,7 +272,6 @@ const RSsr = {
               hcdateText: "Datum pedijatrijskog pregleda",
               hcenterDateText: "Unesite datum pedijatrijskog  pregleda",
               hcChildVaccineQ: "Da li je dete primilo vakcinu?",
-              /// sprin5 screens
               tabbarLabel1: "Početna stranica",
               tabbarLabel2: "Igre",
               tabbarLabel3: "Alati",
@@ -309,8 +280,6 @@ const RSsr = {
               tabbarLabel6: "Vakcinacije",
               tabbarLabel7: "Pedijatrijski pregledi",
               tabbarLabel8: "Rast deteta",
-              // translation replacement closed till above
-              //sprint 6 screens after v3 of language file 
               manageProfileTxt: "Uredite profil Vašeg deteta",
               removePhotoTxt: "Uklonite fotografiju",
               removeWarnTxt: "Da li želite da uklonite fotografiju?",
@@ -341,7 +310,7 @@ const RSsr = {
               cancelPopupText: "Podaci nisu u potpunosti preuzeti. Biće prikazani samo nepotpuni podaci.",
               cancelPopUpBtn: "OK",
               developScreenCompletechartLabel: "Završeno",
-              developScreenCompletechartText: "Čestitamo, Vaša beba je ostvarila sve razvojne prekretnice!!",
+              developScreenCompletechartText: "Čestitamo, Vaše dete je ostvarilo sve razvojne prekretnice!!",
               noDataTxt: "Nema podataka",
               hcEditHeaderTitle: "Izmeni zakazani pregled kod pedijatra",
               genderLabel: "Pol deteta",
@@ -352,8 +321,8 @@ const RSsr = {
               activityModalText: "Da biste pronašli igre koje podržavaju razvoj u određenoj oblasti, kliknite na odgovarajuće dugme",
               childDevModalText: "Proverite da li je Vaše dete razvilo preporučene veštine i podržite njihov razvoj kroz igru",
               months5tag: "meseci",
-              years5tag: "godine",
-              days5tag: "dani",
+              years5tag: "godina",
+              days5tag: "dana",
               downloadOnLoadPopupTitle: "Preuzmite podatke",
               downloadOnLoadPopupText: "Sadržaj nije u potpunosti preuzet. Da li želite da ga preuzmete sada?",
               downloadOnLoadCancelPopUpBtn: "Otkažite",
@@ -366,7 +335,6 @@ const RSsr = {
               childInfoBabyText: "Beba",
               childInfoParentText: "Roditelj",
               childInfoAndText: "i",
-              // translation replacement closed till above
               childSetupdobText: "Unesite datum rođenja",
               growthModalText: "Unesite najnovije podatke o težini i visini vašeg deteta i redovno ih obnavljajte; naučićete kako bolje da podržavate rast vašeg deteta",
               vaccineModalText: "Ovde možete uneti, pratiti i saznati više o svakoj vakcini prema nacionalnom kalendaru imunizacije. Postavite podsetnike za vakcinaciju vašeg deteta i primajte obaveštenja!",
@@ -382,8 +350,6 @@ const RSsr = {
               alertForModifyMeasures: "Pažnja!",
               alertForModifyMeasuresTitle: "Ako izaberete ovaj datum biće izmenjene postojeće mere",
               alertForModifyMeasuresOk: "Ok",
-
-              //new data added on 27th Aug
               SyncOnLoadPopupTitle: "Sinhronizovanje podataka",
               SyncOnLoadPopupText: "Da li želite da sinhronizujete podatke sada?",
               SyncOnLoadCancelPopUpBtn: "Otkaži",
@@ -423,12 +389,12 @@ const RSsr = {
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
               parentGender: "Pol roditelja",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details"
+                successOnboardingImport:"Uspešno ste uneli podatke o detetu",
+                updateImportText:"Molimo vas osvežite detalje da biste nastavili ",
+                importOnboardingText:"Možete uvesti podatke o detetu koje ste prethodno izvezli ",
+                OnboardingImportButton:"Uvezite sada",
+                ORkeyText:"ILI",
+                addChildText:"Dodajte podatke o detetu"
        }
 
 }
