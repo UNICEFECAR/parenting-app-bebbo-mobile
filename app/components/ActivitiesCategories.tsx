@@ -55,7 +55,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
             <View style={{
           padding: 10,
           minHeight: 120,
-          maxWidth:280,
+        //   maxWidth:280,
           width:'100%',
           marginLeft:'auto'
           ,marginRight:'auto',

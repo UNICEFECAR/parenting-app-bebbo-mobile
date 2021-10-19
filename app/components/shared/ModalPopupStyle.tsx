@@ -13,12 +13,13 @@ background-color: transparent;
    border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};*/
    padding:0
 `;
-export const PopupOverlay = styled.Pressable`
+export const PopupOverlay = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
   padding:20px;
+  
 `;
 export const PopupOverlayVideo = styled(PopupOverlay)`
   padding:0px;
@@ -30,6 +31,8 @@ export const PopupCloseContainer = styled.View`
   width: 100%;;
   position:relative;
   z-index:111;
+  
+  
 `;
 export const PopupClose = styled.Pressable`
   flex-direction: row;
