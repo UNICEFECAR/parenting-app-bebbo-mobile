@@ -3,14 +3,16 @@ import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
-  ButtonPrimary, ButtonRow, ButtonText
+  ButtonPrimary, ButtonPrimaryMd, ButtonRow, ButtonText
 } from '@components/shared/ButtonGlobal';
 import {
   ChildCenterView,
-  ChildContentArea, ChildRelationList, ChildSection, FormContainer, FormContainer1, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText, TextBox
+  ChildContentArea, ChildRelationList, ChildSection, FormContainer, FormContainer1, FormContainerFlex, FormDateAction, FormDateText, FormInputBox, FormInputGroup, LabelText, OrDivider, OrHeadingView, OrView, TextBox
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
+import {FlexDirRowSpace,FlexCol, FlexRow, Flex1,Flex3, Flex2} from '@components/shared/FlexBoxStyle';
+
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
@@ -33,10 +35,14 @@ import { validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
   Heading3,
+  Heading4Regularw,
   ShiftFromTop30,
   ShiftFromTop20,
-  SideSpacing25
+  SideSpacing25,
+  Heading3Centerw,
+  Heading2w
 } from '../styles/typography';
+import { VerticalDivider } from '@components/shared/Divider';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 
@@ -214,11 +220,13 @@ const ChildSetup = ({ navigation }: Props) => {
 
             </OnboardingHeading>
 
-            <ChildContentArea>
-              <ChildSection>
-                <View>
-                  <Text>{t('importOnboardingText')}</Text>
-                  <ButtonPrimary
+            <FlexCol>
+                <FlexRow style={{marginTop:10}}>
+                  <Flex2>
+                  <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
+                  </Flex2>
+                  <Flex1>
+                  <ButtonPrimaryMd
                     disabled={isImportRunning}
                     onPress={(e) => {
                       e.stopPropagation();
@@ -226,14 +234,25 @@ const ChildSetup = ({ navigation }: Props) => {
 
                     }}>
                     <ButtonText>{t('OnboardingImportButton')}</ButtonText>
-                  </ButtonPrimary>
-
-                </View>
-               
-                <View>
-                  <Heading1Centerw>
+                  </ButtonPrimaryMd>
+                  </Flex1>
+                </FlexRow>
+                <FlexRow>
+                  <Flex1>
+                    <OrView>
+                    <OrDivider><Text></Text></OrDivider>
+                      <OrHeadingView>
+                      <Heading3Centerw>OR</Heading3Centerw>
+                      </OrHeadingView>
+                      
+                    </OrView>
+                  </Flex1>
+                </FlexRow>
+                </FlexCol>
+                <FlexCol>
+                  <Heading2w>
                     {t('addChildText')}
-                  </Heading1Centerw>
+                  </Heading2w>
                   <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" />
                   {
                     birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
@@ -279,10 +298,10 @@ const ChildSetup = ({ navigation }: Props) => {
                         : null
                     }
                   </View>
-                </View>
-              </ChildSection>
+                </FlexCol>
+              
 
-            </ChildContentArea>
+           
           </OnboardingContainer>
 
         </ScrollView>
