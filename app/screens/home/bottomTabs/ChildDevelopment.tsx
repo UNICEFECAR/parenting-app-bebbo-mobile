@@ -139,7 +139,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   };
   const toTop = () => {
     // use current
-    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
   }
   const showSelectedBracketData = async (item: any) => {
     console.log("in showSelectedBracketData--", item);
