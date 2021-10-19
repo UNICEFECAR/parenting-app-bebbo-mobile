@@ -491,7 +491,7 @@ const Home = ({ route, navigation }: Props) => {
                           <Icon name="ic_survey" size={24} color="#000" />
                         </OuterIconLeft>
                       </OuterIconRow>
-                      <Heading3Regular>
+                      <Heading3Regular style={{flexShrink:1}}>
                         {t('homeScreenexpText')}
                       </Heading3Regular>
                     </FlexDirRow>
