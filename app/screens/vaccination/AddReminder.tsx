@@ -17,6 +17,7 @@ import {
 } from '@components/shared/ChildSetupStyle';
 import {
   HeaderActionView,
+  HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -311,12 +312,12 @@ useEffect(() => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-            <Pressable
+            <HeaderIconPress
               onPress={() => {
                 navigation.goBack();
               }}>
               <Icon name={'ic_back'} color="#000" size={15} />
-            </Pressable>
+            </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
