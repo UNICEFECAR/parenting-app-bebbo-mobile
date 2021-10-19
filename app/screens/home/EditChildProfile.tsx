@@ -460,14 +460,14 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       : null
                   }
                   style={styles.image}>
-                  <ProfileEditView>
+                  <ProfileEditView onPress={() => {
+                        actionSheetRef.current?.setModalVisible();
+                      }}>
                     <Icon
                       name="ic_edit"
                       size={16}
                       color="#000"
-                      onPress={() => {
-                        actionSheetRef.current?.setModalVisible();
-                      }}
+                      
                     />
                   </ProfileEditView>
                 </ImageBackground>

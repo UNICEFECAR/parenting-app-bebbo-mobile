@@ -5,10 +5,12 @@ import {
   ButtonColTwo,
   ButtonContainer,
   ButtonContainerTwo,
+  ButtonDelPress,
   ButtonSecondary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -539,12 +541,12 @@ useEffect(() => {
             <Heading2 numberOfLines={1}>{showDelete ? t('editVcTitle') : t('addVcTitle')}</Heading2>
           </HeaderTitleView>
           {showDelete ? <HeaderActionView>
-            <Pressable
+            <ButtonDelPress
               onPress={() => {
                 setModalVisible(true);
               }}>
-              <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
+              <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+            </ButtonDelPress>
           </HeaderActionView> : null}
         </HeaderRowView>
 
