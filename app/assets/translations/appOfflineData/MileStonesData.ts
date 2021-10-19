@@ -1,25 +1,6 @@
 export const MileStonesData: any = {
     "en": [
         {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "When lying on his tummy, he lifts his head",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>When you put him lying on his tummy, the baby will try to lift his head to clear the airway.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 0
-        },
-        {
             "id": 2531,
             "type": "Milestone",
             "title": "Gets excited when you talk to him",
@@ -58,21 +39,21 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2566,
+            "id": 2556,
             "type": "Milestone",
-            "title": "Can comfort herself for a while",
+            "title": "When lying on his tummy, he lifts his head",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>The baby soothes herself by sucking her finger or her little hand.</p>",
+            "body": "<p>When you put him lying on his tummy, the baby will try to lift his head to clear the airway.</p>",
             "child_age": [
-                44
+                43
             ],
             "related_activities": [
-                7176
+                7606
             ],
             "related_articles": [],
             "related_video_articles": [
-                6361
+                6281
             ],
             "mandatory": 0
         },
@@ -96,57 +77,21 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2586,
+            "id": 2566,
             "type": "Milestone",
-            "title": "Shows boredom or cries if the activity changes",
+            "title": "Can comfort herself for a while",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>The baby complains by crying if she is left in one position for a long time, or protests if you put her down after holding her in your arms.</p>",
+            "body": "<p>The baby soothes herself by sucking her finger or her little hand.</p>",
             "child_age": [
                 44
             ],
             "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Starts babbling",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Vocalizes and produces sounds that resemble vowels - a, e, i, o, u</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
+                7176
             ],
             "related_articles": [],
             "related_video_articles": [
-                6371
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Establishes hand-eye coordination",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>The hand-eye coordination ability increases, for example: your baby looks at an object and tries to reach it.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
+                6361
             ],
             "mandatory": 0
         },
@@ -170,21 +115,78 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2746,
+            "id": 2586,
             "type": "Milestone",
-            "title": "The baby is excited when he realizes that it's time to play",
+            "title": "Shows boredom or cries if the activity changes",
             "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>He rejoices, looks happy and enjoys the play and contact, especially with parents and familiar persons.</p>",
+            "updated_at": "Mon, 10/18/2021 - 13:34",
+            "body": "<p>The baby complains by crying if she is left in one position for a long time, or protests if you put her down after holding her in your arms.</p>",
             "child_age": [
-                46
+                44
             ],
             "related_activities": [
-                7841
+                7181
             ],
             "related_articles": [],
             "related_video_articles": [
-                6441
+                6916
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Starts babbling",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Vocalizes and produces sounds that resemble vowels - a, e, i, o, u</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Climbs up and down stairs",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Walks up the stairs with support, using alternately one foot and then the other.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Establishes hand-eye coordination",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>The hand-eye coordination ability increases, for example: your baby looks at an object and tries to reach it.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
             ],
             "mandatory": 0
         },
@@ -203,6 +205,25 @@ export const MileStonesData: any = {
             ],
             "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Can say a sentence of 2 to 3 words",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Can compose and say sentences of 2 to 3 words well enough for the family members to understand her.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
             "mandatory": 0
         },
         {
@@ -225,21 +246,40 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2866,
+            "id": 2746,
             "type": "Milestone",
-            "title": "Pushes away, tries to stand up.",
+            "title": "The baby is excited when he realizes that it's time to play",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Pushes away, tries to stand up. She tries to get up holding on to the furniture, but she needs help and support.</p>",
+            "body": "<p>He rejoices, looks happy and enjoys the play and contact, especially with parents and familiar persons.</p>",
             "child_age": [
-                47
+                46
             ],
             "related_activities": [
-                7241
+                7841
             ],
             "related_articles": [],
             "related_video_articles": [
-                6471
+                6441
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Likes to play in the company of children",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Play is no longer just parallel – side by side, but has more complex elements, imagination and playfulness.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
             ],
             "mandatory": 0
         },
@@ -263,6 +303,25 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Uses one hand more than the other",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Begins to use one hand more - left or right.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 0
+        },
+        {
             "id": 2856,
             "type": "Milestone",
             "title": "Lifts himself up to a crawling position. Some children are already crawling.",
@@ -278,6 +337,61 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [
                 6486
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Pushes away, tries to stand up.",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Pushes away, tries to stand up. She tries to get up holding on to the furniture, but she needs help and support.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Parts of the child`s communication are also understood by people who are not with him every day",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>He begins to pronounce voices more clearly and uses more and more words with meaning, and therefore communication is easier.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Spontaneously seeks to share interests and pleasures with adults",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Thu, 08/12/2021 - 21:37",
+            "body": "<p>Enjoys reciprocal games, \"I give it to you - you give it to me\", \"I do - you do\" and the like.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
             ],
             "mandatory": 0
         },
@@ -318,40 +432,38 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2901,
+            "id": 2966,
             "type": "Milestone",
-            "title": "Spontaneously seeks to share interests and pleasures with adults",
+            "title": "Is becoming more and more independent",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Enjoys reciprocal games, \"I give it to you - you give it to me\", \"I do - you do\" and the like.</p>",
+            "body": "<p>Sometimes he resists orders, gets angry, wants to control others, quarrels, orders, defends his things.</p>",
             "child_age": [
-                48
+                50
             ],
             "related_activities": [
-                7731
+                7786
             ],
             "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
-            "id": 3001,
+            "id": 2981,
             "type": "Milestone",
-            "title": "Scribbles independently with a pencil or crayons on paper",
+            "title": "Understands and executes simple orders",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Likes to use the scribble movement, whether it`s with a pencil on paper, with a hand on sand, with a stick on mud, or water on concrete. </p>",
+            "body": "<p>Follows simply stated instructions with no demonstration, can perform what is expected of him.</p>",
             "child_age": [
                 49
             ],
             "related_activities": [
-                7296
+                7326
             ],
             "related_articles": [],
             "related_video_articles": [
-                6606
+                6571
             ],
             "mandatory": 0
         },
@@ -375,131 +487,21 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2981,
+            "id": 3001,
             "type": "Milestone",
-            "title": "Understands and executes simple orders",
+            "title": "Scribbles independently with a pencil or crayons on paper",
             "created_at": "Thu, 08/12/2021 - 21:37",
             "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Follows simply stated instructions with no demonstration, can perform what is expected of him.</p>",
+            "body": "<p>Likes to use the scribble movement, whether it`s with a pencil on paper, with a hand on sand, with a stick on mud, or water on concrete. </p>",
             "child_age": [
                 49
             ],
             "related_activities": [
-                7326
+                7296
             ],
             "related_articles": [],
             "related_video_articles": [
-                6571
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Uses one hand more than the other",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Begins to use one hand more - left or right.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2966,
-            "type": "Milestone",
-            "title": "Is becoming more and more independent",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Sometimes he resists orders, gets angry, wants to control others, quarrels, orders, defends his things.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2876,
-            "type": "Milestone",
-            "title": "Parts of the child`s communication are also understood by people who are not with him every day",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>He begins to pronounce voices more clearly and uses more and more words with meaning, and therefore communication is easier.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2701,
-            "type": "Milestone",
-            "title": "Can say a sentence of 2 to 3 words",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Can compose and say sentences of 2 to 3 words well enough for the family members to understand her.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2766,
-            "type": "Milestone",
-            "title": "Likes to play in the company of children",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Play is no longer just parallel – side by side, but has more complex elements, imagination and playfulness.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Climbs up and down stairs",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Thu, 08/12/2021 - 21:37",
-            "body": "<p>Walks up the stairs with support, using alternately one foot and then the other.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
+                6606
             ],
             "mandatory": 0
         },
@@ -561,25 +563,6 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 7056,
-            "type": "Milestone",
-            "title": "Can count to ten and name ten objects without mistakes",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Wed, 09/29/2021 - 09:49",
-            "body": "<p>Can also say “first, second,” up to 10, count days of week and months.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                58601
-            ],
-            "mandatory": 0
-        },
-        {
             "id": 7041,
             "type": "Milestone",
             "title": "Speaks in sentences of five or more words; uses words to talk about the future",
@@ -599,6 +582,25 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Can count to ten and name ten objects without mistakes",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Wed, 09/29/2021 - 09:49",
+            "body": "<p>Can also say “first, second,” up to 10, count days of week and months.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 0
+        },
+        {
             "id": 7081,
             "type": "Milestone",
             "title": "Uses skills to independently participate in everyday routines and social activities",
@@ -614,25 +616,6 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [
                 58596
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 7131,
-            "type": "Milestone",
-            "title": "Shows understanding of difference between real and pretend or make-believe",
-            "created_at": "Thu, 08/12/2021 - 21:37",
-            "updated_at": "Wed, 09/29/2021 - 10:46",
-            "body": "<p>He/she only invents stories, events, characters from his/her imagination, artistically presents, describes, and assigns them properties that are not realistic. He/she has fun while doing it, aware that everything is possible in the world of imagination. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                58641
             ],
             "mandatory": 0
         },
@@ -674,8 +657,27 @@ export const MileStonesData: any = {
             ],
             "mandatory": 0
         },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Shows understanding of difference between real and pretend or make-believe",
+            "created_at": "Thu, 08/12/2021 - 21:37",
+            "updated_at": "Wed, 09/29/2021 - 10:46",
+            "body": "<p>He/she only invents stories, events, characters from his/her imagination, artistically presents, describes, and assigns them properties that are not realistic. He/she has fun while doing it, aware that everything is possible in the world of imagination. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58641
+            ],
+            "mandatory": 0
+        }
     ],
-    "al-sq": [
+    "al-sq":[
         {
             "id": 2531,
             "type": "Milestone",
@@ -1341,7 +1343,8 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
-        }],
+        }
+    ],
     "by-ru": [
         {
             "id": 2531,
@@ -1444,7 +1447,7 @@ export const MileStonesData: any = {
             "title": "Поворачивает голову к источнику звука и слушает",
             "created_at": "Thu, 08/12/2021 - 21:38",
             "updated_at": "Fri, 09/24/2021 - 14:44",
-            "body": "<p>Когда малыш слышит человеческий голос или какой-то другой звук, он поворачивает голову в его сторону. Прислушиваясь к голосу, ребенок пристально смотрит на родителя или говорящего, замедляя свои движения.</p><p> </p>",
+            "body": "<p>Когда малыш слышит человеческий голос или какой-то другой звук, он поворачивает голову в его сторону. Прислушиваясь к голосу, ребенок пристально смотрит на родителя или говорящего, замедляя свои движения.</p>",
             "child_age": [
                 44
             ],
@@ -1879,7 +1882,7 @@ export const MileStonesData: any = {
             "title": "Разговаривает предложениями из 4–5 слов",
             "created_at": "Thu, 08/12/2021 - 21:38",
             "updated_at": "Tue, 09/28/2021 - 09:31",
-            "body": "<p>Ребенок формулирует свою мысль, правильно и со смыслом сочетая слова в предложениях.</p><p> </p>",
+            "body": "<p>Ребенок формулирует свою мысль, правильно и со смыслом сочетая слова в предложениях.</p>",
             "child_age": [
                 52
             ],
@@ -2010,7 +2013,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "bg-bg": [
+    "bg-bg":[
         {
             "id": 2531,
             "type": "Milestone",
@@ -2678,7 +2681,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "gr-el": [
+    "gr-el":[
         {
             "id": 2531,
             "type": "Milestone",
@@ -4187,23 +4190,6 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2961,
-            "type": "Milestone",
-            "title": "Pomaže pri oblačenju",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Sarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
             "id": 2936,
             "type": "Milestone",
             "title": "Prstima uzima male predmete, hrani se prstima",
@@ -4222,6 +4208,175 @@ export const MileStonesData: any = {
             "related_video_articles": [
                 6536
             ],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Spontano traži da deli interesovanja i zadovoljstva sa odraslima",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Uživa u recipročnim igrama dodavanje,  “ja tebi – ti meni” razmena, “ja uradim – ti uradiš” i sl.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Delove komunikacije deteta razumeju i osobe koje nisu svakodnevno sa njim",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Počinje razgovetnije da izgovara glasove i koristi sve više reči sa značenjem pa je sporazumevanje lakše.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Odguruje se, pokušava da ustane",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Pokušava da ustane pridržavajući se za nameštaj, ali mu je u tome potrebna pomoć i podrška.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Podiže se u položaj za puzanje, neka deca već puze",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Može da se samostalno postavi u položaj za puzanje. Pokreće se puzeći bez obzira da li je to unazad ili napred.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Više koristi jednu ruku",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:11",
+            "body": "<p>Počinje više da koristi jednu ruku – levu ili desnu.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Počinje da razume značenje reči “ne”.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Kada čuje reč ne zaustavlja radnju i prepoznaje neodobravanje.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Rado se igra u društvu dece",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Igra više nije samo paralelna – jedni pored drugih, već ima složenijih elemenata, maštovitosti i razigranosti.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Uzbuđena je kada shvati da je vreme za igru",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:15",
+            "body": "<p>Raduje se, izgleda srećno i uživa u igri i kontaktu, pogotovo sa roditeljima i poznatima.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Pomaže pri oblačenju",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Sarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
@@ -4305,76 +4460,38 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2696,
+            "id": 2586,
             "type": "Milestone",
-            "title": "Može da sedi uz podršku",
+            "title": "Pokazuje dosadu ili zaplače ako se aktivnost promeni",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Kada ima potporu ili se pridržava beba može da sedi, a na kratko vreme može da zadrži sedeći položaj i samostalno.</p>",
+            "body": "<p>Buni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.</p>",
             "child_age": [
-                46
+                44
             ],
             "related_activities": [
-                7671
+                7181
             ],
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
         },
         {
-            "id": 2541,
+            "id": 2571,
             "type": "Milestone",
-            "title": "Oglašava se",
+            "title": "Okreće glavu prema izvoru zvuka i pokazuje da sluša",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Beba se oglašava plakanjem, ali i proizvodi glasove</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "Kada leži na stomaku, podiže glavu",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Kada je stavite u ležeći položaj na stomak beba će pokušavati da podigne glavicu kako bi oslobodila disajne puteve.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2561,
-            "type": "Milestone",
-            "title": "Proizvodi različite zvuke kada je srećna, uznemirana ili gladna",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Razlikuje se bebin plač kada ima određene potrebe, pa tako na osnovu oglašavanja može da se prepozna da li je vesela, uznemirena ili ima neku drugu potrebu.</p>",
+            "body": "<p>Ukoliko čuje ljudski glas ili neki drugi zvuk beba okreće glavicu prema njemu. Dok sluša glas zagleda se u roditelja ili osobu koja govori, usporava pokrete.</p>",
             "child_age": [
                 44
             ],
             "related_activities": [
-                7611
+                7721
             ],
             "related_articles": [],
             "related_video_articles": [
-                6316
+                6326
             ],
             "mandatory": 0
         },
@@ -4398,95 +4515,59 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2571,
+            "id": 2561,
             "type": "Milestone",
-            "title": "Okreće glavu prema izvoru zvuka i pokazuje da sluša",
+            "title": "Proizvodi različite zvuke kada je srećna, uznemirana ili gladna",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Ukoliko čuje ljudski glas ili neki drugi zvuk beba okreće glavicu prema njemu. Dok sluša glas zagleda se u roditelja ili osobu koja govori, usporava pokrete.</p>",
+            "body": "<p>Razlikuje se bebin plač kada ima određene potrebe, pa tako na osnovu oglašavanja može da se prepozna da li je vesela, uznemirena ili ima neku drugu potrebu.</p>",
             "child_age": [
                 44
             ],
             "related_activities": [
-                7721
+                7611
             ],
             "related_articles": [],
             "related_video_articles": [
-                6326
+                6316
             ],
             "mandatory": 0
         },
         {
-            "id": 2586,
+            "id": 2556,
             "type": "Milestone",
-            "title": "Pokazuje dosadu ili zaplače ako se aktivnost promeni",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Buni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.</p><p> </p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Počinje da brblja",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Vokalizuje i proizvodi glasove koji liče na vokale – a, e, i, o, u.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Penje se i silazi niz stepeneice",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Stepenicama ide uz pridržavanje stajući naizmenično jednim po jednim stopalom na stepenik.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Uspostavlja koordinaciju oko – ruka",
+            "title": "Kada leži na stomaku, podiže glavu",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Wed, 09/29/2021 - 12:17",
-            "body": "<p>Povaćeva se sposobnost koordinacije ruka – oko, na primer: beba gleda objekat i pokušava da ga dohvati.</p>",
+            "body": "<p>Kada je stavite u ležeći položaj na stomak beba će pokušavati da podigne glavicu kako bi oslobodila disajne puteve.</p>",
             "child_age": [
-                45
+                43
             ],
             "related_activities": [
-                7661
+                7606
             ],
             "related_articles": [],
             "related_video_articles": [
-                6406
+                6281
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Oglašava se",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:15",
+            "body": "<p>Beba se oglašava plakanjem, ali i proizvodi glasove</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
             ],
             "mandatory": 0
         },
@@ -4510,25 +4591,6 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2701,
-            "type": "Milestone",
-            "title": "Izgovara rečenicu od 2 do 3 reči",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:12",
-            "body": "<p>Može da sastavi i kaže rečenice od 2 do 3 reči dovoljno dobro da ga ukućani razumeju.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 0
-        },
-        {
             "id": 2731,
             "type": "Milestone",
             "title": "Na zvuk glasa uzvraća oglašavanjem - spajanjem samoglasnika: a,e,u...",
@@ -4548,12 +4610,350 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2746,
+            "id": 2701,
             "type": "Milestone",
-            "title": "Uzbuđena je kada shvati da je vreme za igru",
+            "title": "Izgovara rečenicu od 2 do 3 reči",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:12",
+            "body": "<p>Može da sastavi i kaže rečenice od 2 do 3 reči dovoljno dobro da ga ukućani razumeju.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Može da sedi uz podršku",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Raduje se, izgleda srećno i uživa u igri i kontaktu, pogotovo sa roditeljima i poznatima.</p>",
+            "body": "<p>Kada ima potporu ili se pridržava beba može da sedi, a na kratko vreme može da zadrži sedeći položaj i samostalno.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Uspostavlja koordinaciju oko – ruka",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:17",
+            "body": "<p>Povaćeva se sposobnost koordinacije ruka – oko, na primer: beba gleda objekat i pokušava da ga dohvati.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Penje se i silazi niz stepeneice",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Stepenicama ide uz pridržavanje stajući naizmenično jednim po jednim stopalom na stepenik.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Počinje da brblja",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:15",
+            "body": "<p>Vokalizuje i proizvodi glasove koji liče na vokale – a, e, i, o, u.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 0
+        }
+    ],
+    "kg-ky":[
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Аны менен сүйлөшкөндө толкунданып кетет",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:24",
+            "body": "<p>Сиздин үнүңүздү укканда наристе толкунданганын көрсөтөт, бирок анын кыймылын басаңдатып жаткандыгын байкайсыз, ал сизди тыңшап жаткандай, андыктан бирге болуңуз ...</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Үн чыгарат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:24",
+            "body": "<p>Ымыркай ыйлайт, ошондой эле үндөрдү чыгарат</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Курсагында жатып, башын көтөрөт",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:23",
+            "body": "<p>Аны курсагына жаткырганда, бала дем алуу жолун тазалоо үчүн башын көтөргөнгө аракет кылат.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Кубанганда, капаланганда же ачка болгондо ар кандай үндөрдү чыгарат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:28",
+            "body": "<p>Ымыркайдын ыйлоосу анын кандайдыр бир муктаждыктары болгондо айырмаланып турат, андыктан ал чыгарган үндөрдүн негизинде анын бактылуубу, капа болгонбу же башка бир муктаждык барбы, билинет.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Бир аз убакытка өзүн соорото алат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:26",
+            "body": "<p>Ымыркай манжасын же кичинекей колун соруп өзүн-өзү тынчтандырат.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Башын үн чыккан жакка буруп, угуп жаткандыгын көрсөтөт",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:46",
+            "body": "<p>Эгер ал адамдын үнүн же башка бир үндү укса, ымыркай ага башын бурат. Үнүн укканда ал ата-энесине же сүйлөп жаткан адамга тигиле карап, кыймылын жайлатат.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Эгерде иш-аракет өзгөрсө, зериккенин көрсөтөт же ыйлайт",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:44",
+            "body": "<p>Ымыркай бир абалда узак убакытка калса ыйлап, же аны колуңузда алып жүрүп кийин койсоңуз нааразычылыгын билдирет.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Кобурап баштайт",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:44",
+            "body": "<p>Үндүүлөргө окшош үндөрдү чыгарат - а, е, и, о, у</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Тепкичтен өйдө жана ылдый түшөт",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 18:04",
+            "body": "<p>Колдоо менен, бир бутун, андан кийин экинчи бутун кезеги менен колдонуп, тепкич менен көтөрүлөт.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Кол менен көздүн координациясын орнотот",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:45",
+            "body": "<p>Кол менен көздү координациялоо жөндөмү жогорулайт, мисалы: балаңыз бир нерсени карап, ага жетүүгө аракет кылат.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Бир аз колдоо менен отура алат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:47",
+            "body": "<p>Бала колдоо менен же бир нерсени кармап, отура алат, жана бир аз убакытка чейин өз алдынча отурган абалын сактайт.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "2-3 сөздөн турган сүйлөмдү айта алат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 18:03",
+            "body": "<p>Үй-бүлө мүчөлөрү аны түшүнүшү үчүн 2-3 сөздөн турган сүйлөмдөрдү түзүп, айта алат.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Үнгө үндөрдү чыгаруу менен - үндүүлөрдү бириктирип жооп берет: а, э, у ...",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:47",
+            "body": "<p>Кимдир бирөө ага кайрылса, сүйлөсө, ырдап берсе, окуп жатса ... ымыркай жооп берет.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Ымыркай ойноого убакыт келгенин билгенде толкунданат",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 17:46",
+            "body": "<p>Ал кубанып, бактылуу көрүнөт жана оюндан, айрыкча, ата-энелери жана тааныш адамдар менен баарлашуудан ырахат алат.</p>",
             "child_age": [
                 46
             ],
@@ -4569,10 +4969,10 @@ export const MileStonesData: any = {
         {
             "id": 2766,
             "type": "Milestone",
-            "title": "Rado se igra u društvu dece",
+            "title": "Балдар менен чогуу ойногонду жакшы көрөт",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Igra više nije samo paralelna – jedni pored drugih, već ima složenijih elemenata, maštovitosti i razigranosti.</p>",
+            "updated_at": "Thu, 09/30/2021 - 18:03",
+            "body": "<p>Оюн мындан ары жөн эле катарлаш эмес, жандаш, бирок татаал элементтерге, фантазияга жана ойноокчулукка ээ. </p>",
             "child_age": [
                 51
             ],
@@ -4588,10 +4988,10 @@ export const MileStonesData: any = {
         {
             "id": 2786,
             "type": "Milestone",
-            "title": "Počinje da razume značenje reči “ne”.",
+            "title": "\"Жок\" деген сөздүн маанисин түшүнө баштайт.",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Kada čuje reč ne zaustavlja radnju i prepoznaje neodobravanje.</p>",
+            "updated_at": "Thu, 09/30/2021 - 17:50",
+            "body": "<p>\"Жок\" деген сөздүн маанисин түшүнө баштайт.  Ал сөздү укканда, кыймыл-аракетти токтотуп, жактырбоочулукту байкайт.</p>",
             "child_age": [
                 47
             ],
@@ -4607,10 +5007,10 @@ export const MileStonesData: any = {
         {
             "id": 2816,
             "type": "Milestone",
-            "title": "Više koristi jednu ruku",
+            "title": "Бир колун экинчи колуна караганда көбүрөөк колдонот",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:11",
-            "body": "<p>Počinje više da koristi jednu ruku – levu ili desnu.</p>",
+            "updated_at": "Thu, 09/30/2021 - 18:01",
+            "body": "<p>Бир колду көбүрөөк колдоно баштайт - сол же оң колун.</p>",
             "child_age": [
                 50
             ],
@@ -4626,10 +5026,10 @@ export const MileStonesData: any = {
         {
             "id": 2856,
             "type": "Milestone",
-            "title": "Podiže se u položaj za puzanje, neka deca već puze",
+            "title": "Өзүн сойлош үчүн ылайыктап көтөрөт. Айрым балдар алда качан эле сойлоп жүрүшөт.",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Može da se samostalno postavi u položaj za puzanje. Pokreće se puzeći bez obzira da li je to unazad ili napred.</p>",
+            "updated_at": "Thu, 09/30/2021 - 17:50",
+            "body": "<p>Өзүн сойлош үчүн ылайыктап көтөрөт. Айрым балдар алда качан эле сойлоп жүрүшөт. Ал өз алдынча сойлой турган абалга тура алат. Артка же алдыга карай сойлоп кыймылдайт.</p>",
             "child_age": [
                 47
             ],
@@ -4645,10 +5045,10 @@ export const MileStonesData: any = {
         {
             "id": 2866,
             "type": "Milestone",
-            "title": "Odguruje se, pokušava da ustane",
+            "title": "Түртүнүп, ордунан турууга аракет кылат.",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Pokušava da ustane pridržavajući se za nameštaj, ali mu je u tome potrebna pomoć i podrška.</p>",
+            "updated_at": "Thu, 09/30/2021 - 17:49",
+            "body": "<p>Түртүнүп, ордунан турууга аракет кылат. Ал эмеректерди кармап турууга аракет кылат, бирок ал жардамга жана колдоого муктаж.</p>",
             "child_age": [
                 47
             ],
@@ -4661,61 +5061,6 @@ export const MileStonesData: any = {
             "related_video_articles": [
                 6471
             ],
-            "mandatory": 0
-        },
-        {
-            "id": 2876,
-            "type": "Milestone",
-            "title": "Delove komunikacije deteta razumeju i osobe koje nisu svakodnevno sa njim",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Počinje razgovetnije da izgovara glasove i koristi sve više reči sa značenjem pa je sporazumevanje lakše.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2901,
-            "type": "Milestone",
-            "title": "Spontano traži da deli interesovanja i zadovoljstva sa odraslima",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Uživa u recipročnim igrama dodavanje,  “ja tebi – ti meni” razmena, “ja uradim – ti uradiš” i sl.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
-            "mandatory": 0
-        }
-    ],
-    "kg-ky": [
-        {
-            "id": 6976,
-            "type": "Milestone",
-            "title": "Башкаларды ыраазы кылуу жана кызматташуу жагат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 18:04",
-            "body": "<p>Башкалардын сезимдерин тааныйт; көп учурда башкалар менен бөлүшкөндү жакшы көрөт; кезектеше алат. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
             "mandatory": 0
         },
         {
@@ -4873,24 +5218,20 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2866,
+            "id": 6976,
             "type": "Milestone",
-            "title": "Түртүнүп, ордунан турууга аракет кылат.",
+            "title": "Башкаларды ыраазы кылуу жана кызматташуу жагат",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:49",
-            "body": "<p>Түртүнүп, ордунан турууга аракет кылат. Ал эмеректерди кармап турууга аракет кылат, бирок ал жардамга жана колдоого муктаж.</p>",
+            "updated_at": "Thu, 09/30/2021 - 18:04",
+            "body": "<p>Башкалардын сезимдерин тааныйт; көп учурда башкалар менен бөлүшкөндү жакшы көрөт; кезектеше алат. </p>",
             "child_age": [
-                47
+                52
             ],
             "related_activities": [
-                7241
+                7426
             ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
@@ -5028,183 +5369,16 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Кол менен көздүн координациясын орнотот",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:45",
-            "body": "<p>Кол менен көздү координациялоо жөндөмү жогорулайт, мисалы: балаңыз бир нерсени карап, ага жетүүгө аракет кылат.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2541,
-            "type": "Milestone",
-            "title": "Үн чыгарат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:24",
-            "body": "<p>Ымыркай ыйлайт, ошондой эле үндөрдү чыгарат</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "Курсагында жатып, башын көтөрөт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:23",
-            "body": "<p>Аны курсагына жаткырганда, бала дем алуу жолун тазалоо үчүн башын көтөргөнгө аракет кылат.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2561,
-            "type": "Milestone",
-            "title": "Кубанганда, капаланганда же ачка болгондо ар кандай үндөрдү чыгарат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:28",
-            "body": "<p>Ымыркайдын ыйлоосу анын кандайдыр бир муктаждыктары болгондо айырмаланып турат, андыктан ал чыгарган үндөрдүн негизинде анын бактылуубу, капа болгонбу же башка бир муктаждык барбы, билинет.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2566,
-            "type": "Milestone",
-            "title": "Бир аз убакытка өзүн соорото алат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:26",
-            "body": "<p>Ымыркай манжасын же кичинекей колун соруп өзүн-өзү тынчтандырат.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2571,
-            "type": "Milestone",
-            "title": "Башын үн чыккан жакка буруп, угуп жаткандыгын көрсөтөт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:46",
-            "body": "<p>Эгер ал адамдын үнүн же башка бир үндү укса, ымыркай ага башын бурат. Үнүн укканда ал ата-энесине же сүйлөп жаткан адамга тигиле карап, кыймылын жайлатат.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2586,
-            "type": "Milestone",
-            "title": "Эгерде иш-аракет өзгөрсө, зериккенин көрсөтөт же ыйлайт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:44",
-            "body": "<p>Ымыркай бир абалда узак убакытка калса ыйлап, же аны колуңузда алып жүрүп кийин койсоңуз нааразычылыгын билдирет.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Кобурап баштайт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:44",
-            "body": "<p>Үндүүлөргө окшош үндөрдү чыгарат - а, е, и, о, у</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Тепкичтен өйдө жана ылдый түшөт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 18:04",
-            "body": "<p>Колдоо менен, бир бутун, андан кийин экинчи бутун кезеги менен колдонуп, тепкич менен көтөрүлөт.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
-            "mandatory": 0
-        },
+        }
+    ],
+    "kg-ru":[
         {
             "id": 2531,
             "type": "Milestone",
-            "title": "Аны менен сүйлөшкөндө толкунданып кетет",
+            "title": "Взволнован, когда вы с ним/ней разговариваете",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:24",
-            "body": "<p>Сиздин үнүңүздү укканда наристе толкунданганын көрсөтөт, бирок анын кыймылын басаңдатып жаткандыгын байкайсыз, ал сизди тыңшап жаткандай, андыктан бирге болуңуз ...</p>",
+            "updated_at": "Thu, 09/30/2021 - 15:09",
+            "body": "<p>Когда слышит ваш голос, ребенок проявляет возбуждение, но вы также замечаете, что он/она замедляет свои движения, кажется, что слушает, присутствует...</p>",
             "child_age": [
                 43
             ],
@@ -5214,505 +5388,6 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [
                 6311
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2696,
-            "type": "Milestone",
-            "title": "Бир аз колдоо менен отура алат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:47",
-            "body": "<p>Бала колдоо менен же бир нерсени кармап, отура алат, жана бир аз убакытка чейин өз алдынча отурган абалын сактайт.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2701,
-            "type": "Milestone",
-            "title": "2-3 сөздөн турган сүйлөмдү айта алат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 18:03",
-            "body": "<p>Үй-бүлө мүчөлөрү аны түшүнүшү үчүн 2-3 сөздөн турган сүйлөмдөрдү түзүп, айта алат.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2731,
-            "type": "Milestone",
-            "title": "Үнгө үндөрдү чыгаруу менен - үндүүлөрдү бириктирип жооп берет: а, э, у ...",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:47",
-            "body": "<p>Кимдир бирөө ага кайрылса, сүйлөсө, ырдап берсе, окуп жатса ... ымыркай жооп берет.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2746,
-            "type": "Milestone",
-            "title": "Ымыркай ойноого убакыт келгенин билгенде толкунданат",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:46",
-            "body": "<p>Ал кубанып, бактылуу көрүнөт жана оюндан, айрыкча, ата-энелери жана тааныш адамдар менен баарлашуудан ырахат алат.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2766,
-            "type": "Milestone",
-            "title": "Балдар менен чогуу ойногонду жакшы көрөт",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 18:03",
-            "body": "<p>Оюн мындан ары жөн эле катарлаш эмес, жандаш, бирок татаал элементтерге, фантазияга жана ойноокчулукка ээ. </p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2786,
-            "type": "Milestone",
-            "title": "\"Жок\" деген сөздүн маанисин түшүнө баштайт.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:50",
-            "body": "<p>\"Жок\" деген сөздүн маанисин түшүнө баштайт.  Ал сөздү укканда, кыймыл-аракетти токтотуп, жактырбоочулукту байкайт.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Бир колун экинчи колуна караганда көбүрөөк колдонот",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 18:01",
-            "body": "<p>Бир колду көбүрөөк колдоно баштайт - сол же оң колун.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2856,
-            "type": "Milestone",
-            "title": "Өзүн сойлош үчүн ылайыктап көтөрөт. Айрым балдар алда качан эле сойлоп жүрүшөт.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:50",
-            "body": "<p>Өзүн сойлош үчүн ылайыктап көтөрөт. Айрым балдар алда качан эле сойлоп жүрүшөт. Ал өз алдынча сойлой турган абалга тура алат. Артка же алдыга карай сойлоп кыймылдайт.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
-            "mandatory": 0
-        }
-    ],
-    "kg-ru": [
-        {
-            "id": 6976,
-            "type": "Milestone",
-            "title": "Любит угождать другим и сотрудничать",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:33",
-            "body": "<p>Распознает чувства других; часто с удовольствием делиться с другими; умеет действовать по очереди. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7426
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2876,
-            "type": "Milestone",
-            "title": "При общении с ребенком, его/ее частично понимают те, которые не находятся рядом с ним/ней ежедневно.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:25",
-            "body": "<p>Он/она начинает произносить звуки более четко и использует все больше и больше слов со смыслом, поэтому общаться становится проще.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7346
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2901,
-            "type": "Milestone",
-            "title": "Непроизвольно стремится разделить интересы и радости со взрослыми.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:22",
-            "body": "<p>Любит обоюдные игры: «Я даю тебе - ты отдаешь мне», «Я делаю - ты делаешь» и т.п.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2936,
-            "type": "Milestone",
-            "title": "Пальцами собирает мелкие предметы и кушает.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 17:47",
-            "body": "<p>Обладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими предметами, беря их большим и указательным пальцами.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2961,
-            "type": "Milestone",
-            "title": "Помогает себя одевать",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 11:22",
-            "body": "<p>Участвует, когда вы его/ее одеваете, просовывает руки в рукава и ноги в штанины.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2966,
-            "type": "Milestone",
-            "title": "Становится все более и более независимым",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:25",
-            "body": "<p>Иногда противится приказам, сердится, хочет командовать другими, ссорится, приказывает, оберегает свои вещи.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7786
-            ],
-            "related_articles": [
-                4781
-            ],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2981,
-            "type": "Milestone",
-            "title": "Понимает и выполняет простые указания",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:24",
-            "body": "<p>Следует просто изложенным инструкциям без демонстрации, может выполнять то, что от него/нее ожидают.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7326
-            ],
-            "related_articles": [
-                4776
-            ],
-            "related_video_articles": [
-                6571
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2986,
-            "type": "Milestone",
-            "title": "Произносит слова со смыслом.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:23",
-            "body": "<p>Обращаясь к родителям, произносит хотя бы одно или несколько отдельных слов.</p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7286
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6851
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 3001,
-            "type": "Milestone",
-            "title": "Самостоятельно рисует каракули карандашом или мелками на бумаге",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:23",
-            "body": "<p>Любит рисовать каракули, будь то карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне. </p>",
-            "child_age": [
-                49
-            ],
-            "related_activities": [
-                7296
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6606
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2866,
-            "type": "Milestone",
-            "title": "Отталкивается, пытается встать.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:20",
-            "body": "<p>Отталкивается, пытается встать. Пытается встать, держась за мебель, но ей/ему нужна помощь и поддержка.  </p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7241
-            ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 6981,
-            "type": "Milestone",
-            "title": "Пользуется предложениями из 4-5 слов.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:33",
-            "body": "<p>Соединяет слова между собой, чтобы они имели смысл и доносили его/ее идеи. </p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7431
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 6996,
-            "type": "Milestone",
-            "title": "Знает основные различия между реальными, придуманными и воображаемыми вещами.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:33",
-            "body": "<p>Придумывает историю о несуществующем персонаже, или знает, что животные не могут разговаривать в реальной жизни.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7041,
-            "type": "Milestone",
-            "title": "Разговаривает предложениями из пяти и более слов; использует слова для разговора о будущем.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:32",
-            "body": "<p>Подбирает слова для выражения своих идей; может сказать, что «произойдет» или «может произойти» в будущем.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7056,
-            "type": "Milestone",
-            "title": "Может считать до десяти и назвать десять предметов без ошибок.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:33",
-            "body": "<p>Может также назвать порядковые числители «первый, второй» до 10, считать дни недели и месяцы.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7501
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7081,
-            "type": "Milestone",
-            "title": "Использует навыки для самостоятельного участия в повседневных делах и общественной деятельности",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:32",
-            "body": "<p>Может самостоятельно одеваться и раздеваться, пользоваться ложкой и вилкой, ходить в туалет и мыть руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7086,
-            "type": "Milestone",
-            "title": "Умело участвует в различных видах деятельности, требующих развитых физических навыков.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:32",
-            "body": "<p>Умеет стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7106,
-            "type": "Milestone",
-            "title": "Рассказывает историю полностью",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:31",
-            "body": "<p>Ребенку удается полностью самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, в котором он/она участвовал(а), или телепередачу.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 7131,
-            "type": "Milestone",
-            "title": "Демонстрирует понимание разницы между реальным и вымышленным или воображаемым.",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:32",
-            "body": "<p>Он / она придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и наделяет их свойствами, которые не соответствуют реальности. При этом он / она получает удовольствие, осознавая, что в мире воображения возможно все. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Развивается зрительно-моторная координация",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:16",
-            "body": "<p>Повышается способность к зрительно-моторной координации, например: ваш ребенок смотрит на предмет и пытается дотянуться до него.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
             ],
             "mandatory": 0
         },
@@ -5867,21 +5542,21 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2531,
+            "id": 2646,
             "type": "Milestone",
-            "title": "Взволнован, когда вы с ним/ней разговариваете",
+            "title": "Развивается зрительно-моторная координация",
             "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 09/30/2021 - 15:09",
-            "body": "<p>Когда слышит ваш голос, ребенок проявляет возбуждение, но вы также замечаете, что он/она замедляет свои движения, кажется, что слушает, присутствует...</p>",
+            "updated_at": "Thu, 09/30/2021 - 15:16",
+            "body": "<p>Повышается способность к зрительно-моторной координации, например: ваш ребенок смотрит на предмет и пытается дотянуться до него.</p>",
             "child_age": [
-                43
+                45
             ],
             "related_activities": [
-                7586
+                7661
             ],
             "related_articles": [],
             "related_video_articles": [
-                6311
+                6406
             ],
             "mandatory": 0
         },
@@ -6034,6 +5709,334 @@ export const MileStonesData: any = {
                 6486
             ],
             "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Отталкивается, пытается встать.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:20",
+            "body": "<p>Отталкивается, пытается встать. Пытается встать, держась за мебель, но ей/ему нужна помощь и поддержка.  </p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "При общении с ребенком, его/ее частично понимают те, которые не находятся рядом с ним/ней ежедневно.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:25",
+            "body": "<p>Он/она начинает произносить звуки более четко и использует все больше и больше слов со смыслом, поэтому общаться становится проще.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Непроизвольно стремится разделить интересы и радости со взрослыми.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:22",
+            "body": "<p>Любит обоюдные игры: «Я даю тебе - ты отдаешь мне», «Я делаю - ты делаешь» и т.п.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Пальцами собирает мелкие предметы и кушает руками.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Mon, 10/18/2021 - 09:03",
+            "body": "<p>Обладает лучшим \"пинцетным захватом \" - может манипулировать очень маленькими предметами, беря их большим и указательным пальцами.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Помогает себя одевать",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 11:22",
+            "body": "<p>Участвует, когда вы его/ее одеваете, просовывает руки в рукава и ноги в штанины.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Становится все более и более независимым",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:25",
+            "body": "<p>Иногда противится приказам, сердится, хочет командовать другими, ссорится, приказывает, оберегает свои вещи.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [
+                4781
+            ],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Понимает и выполняет простые указания",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:24",
+            "body": "<p>Следует просто изложенным инструкциям без демонстрации, может выполнять то, что от него/нее ожидают.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [
+                4776
+            ],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Произносит слова со смыслом.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:23",
+            "body": "<p>Обращаясь к родителям, произносит хотя бы одно или несколько отдельных слов.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Самостоятельно рисует каракули карандашом или мелками на бумаге",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:23",
+            "body": "<p>Любит рисовать каракули, будь то карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне. </p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Любит угождать другим и сотрудничать",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:33",
+            "body": "<p>Распознает чувства других; часто с удовольствием делиться с другими; умеет действовать по очереди. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Пользуется предложениями из 4-5 слов.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:33",
+            "body": "<p>Соединяет слова между собой, чтобы они имели смысл и доносили его/ее идеи. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Знает основные различия между реальными, придуманными и воображаемыми вещами.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:33",
+            "body": "<p>Придумывает историю о несуществующем персонаже, или знает, что животные не могут разговаривать в реальной жизни.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Разговаривает предложениями из пяти и более слов; использует слова для разговора о будущем.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:32",
+            "body": "<p>Подбирает слова для выражения своих идей; может сказать, что «произойдет» или «может произойти» в будущем.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Может считать до десяти и назвать десять предметов без ошибок.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:33",
+            "body": "<p>Может также назвать порядковые числители «первый, второй» до 10, считать дни недели и месяцы.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Использует навыки для самостоятельного участия в повседневных делах и общественной деятельности",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:32",
+            "body": "<p>Может самостоятельно одеваться и раздеваться, пользоваться ложкой и вилкой, ходить в туалет и мыть руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Умело участвует в различных видах деятельности, требующих развитых физических навыков.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:32",
+            "body": "<p>Умеет стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Рассказывает историю полностью",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:31",
+            "body": "<p>Ребенку удается полностью самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, в котором он/она участвовал(а), или телепередачу.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Демонстрирует понимание разницы между реальным и вымышленным или воображаемым.",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 09/30/2021 - 15:32",
+            "body": "<p>Он / она придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и наделяет их свойствами, которые не соответствуют реальности. При этом он / она получает удовольствие, осознавая, что в мире воображения возможно все. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
         }
     ],
     "me-cnr": [
@@ -6156,8 +6159,8 @@ export const MileStonesData: any = {
             "type": "Milestone",
             "title": "Pravi razliku između stvarnog i izmišljenog",
             "created_at": "Fri, 10/01/2021 - 13:56",
-            "updated_at": "Fri, 10/01/2021 - 13:59",
-            "body": "<p>Izmišlja priču o junaku koji ne postoji, ili zna da da životinje ne mogu da pričaju u stvarnom životu. </p>",
+            "updated_at": "Mon, 10/18/2021 - 09:39",
+            "body": "<p>Izmišlja priču o junaku koji ne postoji, ili zna da životinje ne mogu da pričaju u stvarnom životu. </p>",
             "child_age": [
                 52
             ],
@@ -6233,7 +6236,7 @@ export const MileStonesData: any = {
             "title": "Oglašava se",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Mon, 09/27/2021 - 17:36",
-            "body": "<p> </p><p>Beba se uglavnom oglašava plakanjem, ali proizvodi i glasove.</p>",
+            "body": "<p>Beba se uglavnom oglašava plakanjem, ali proizvodi i glasove.</p>",
             "child_age": [
                 43
             ],
@@ -6328,7 +6331,7 @@ export const MileStonesData: any = {
             "title": "Pokazuje dosadu, zaplače kad se aktivnost prekine ili promijeni",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Mon, 09/27/2021 - 22:52",
-            "body": "<p>Buni se plačući ukoliko je dugo ostavite u istom položaju, ili pokazuje protest kad je spustite nakon držanja u naručju.</p><p> </p>",
+            "body": "<p>Buni se plačući ukoliko je dugo ostavite u istom položaju, ili pokazuje protest kad je spustite nakon držanja u naručju.</p>",
             "child_age": [
                 44
             ],
@@ -6724,7 +6727,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "mk-mk": [
+    "mk-mk":[
         {
             "id": 2531,
             "type": "Milestone",
@@ -7392,7 +7395,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "mk-sq": [
+    "mk-sq":[
         {
             "id": 2936,
             "type": "Milestone",
@@ -8062,11 +8065,49 @@ export const MileStonesData: any = {
     ],
     "rs-sr": [
         {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Voli da ugađa drugima i sarađuje ",
+            "created_at": "Thu, 10/07/2021 - 15:13",
+            "updated_at": "Thu, 10/07/2021 - 21:21",
+            "body": "<p>Prepoznaje osećanja drugih osoba; često voli da deli stvari sa drugima; može da se okreće. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58521
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Može da broji do deset i imenuje deset objekata bez grešaka",
+            "created_at": "Thu, 10/07/2021 - 15:12",
+            "updated_at": "Thu, 10/07/2021 - 21:20",
+            "body": "<p>Takođe, može da kaže \"prvi, drugi\" do broja 10, nabraja dane u nedelji i mesece.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 0
+        },
+        {
             "id": 7081,
             "type": "Milestone",
             "title": "Koristi veštine za samostalno učešće u svakodnevnim rutinama i društvenim aktivnostima",
             "created_at": "Tue, 10/05/2021 - 09:40",
-            "updated_at": "Tue, 10/05/2021 - 09:54",
+            "updated_at": "Tue, 10/19/2021 - 09:29",
             "body": "<p>Može da se oblači nezavisno, koristi kašiku i viljušku, sam/a koristi toalet i pere ruke. Može se odvojiti od roditelja i uključiti u samostalne društvene aktivnosti. </p>",
             "child_age": [
                 57
@@ -8314,7 +8355,7 @@ export const MileStonesData: any = {
             "title": "Pokazuje dosadu ili zaplače ako se aktivnost promeni",
             "created_at": "Thu, 08/12/2021 - 21:39",
             "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p> Buni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.</p><p> </p>",
+            "body": "<p> Buni se plačući ukoliko je dugo ostavljena u jednom položaju, ili pokazuje protest i ukoliko je spustite nakon držanja u naručju.</p>",
             "child_age": [
                 44
             ],
@@ -9376,7 +9417,7 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "tj-tg": [
+    "tj-tg":[
         {
             "id": 2936,
             "type": "Milestone",
@@ -10712,22 +10753,364 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    "uz-uz": [
+    "uz-uz":[
         {
-            "id": 6976,
+            "id": 2531,
             "type": "Milestone",
-            "title": "Boshqalarni xursand qilishni va hamkorlik qilishni yoqtiradi",
+            "title": "Bola bilan gaplashganingizda u hayajonlanib ketadi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:53",
-            "body": "<p>Boshqalarning his-tuyg'ularini tan oladi; ko'pincha boshqalar bilan baham ko'rishni yaxshi ko'radi; navbat bilan turishga qodir. </p>",
+            "updated_at": "Tue, 09/28/2021 - 21:42",
+            "body": "<p>Farzandingiz ovozingizni eshitganida o'z hayajonini namoyon qiladi, siz uning sizni tinglayotgandek harakatlarini sekinlashtirganini sezishingiz mumkin</p>",
             "child_age": [
-                52
+                43
             ],
             "related_activities": [
-                7426
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Ovoz chiqaradi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:43",
+            "body": "<p>Bola yig'laydi, shu bilan birga tovushlarni ham chiqaradi</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Qornida yotganida boshini ko'taradi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:41",
+            "body": "<p>Uni qorniga yotqizganingizda, bola nafas yo'lini ochish uchun boshini ko'tarishga harakat qiladi.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "U xursand, xafa bo'lganida yoki och qolganida turli xil tovushlarni chiqaradi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:44",
+            "body": "<p>Kichkintoyning yig'lashi uning ehtiyojlarga qarab farqlanadi, shuning uchun bolaning tovushlariga ko'ra uning quvongani, xafa bo'lgani, yoki boshqa biron bir ehtiyoj borligini bilish mumkin.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "O'zini-o'zi bir muddat ovuntira oladi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:44",
+            "body": "<p>Bola barmog'ini yoki mitti qo'lchasini so'rib tinchlanadi</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Boshini tovush manbai tomon burib, tinglayotganini ko'rsatadi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:46",
+            "body": "<p>Odamning ovozi yoki boshqa biron bir tovushni eshitganda, Bola boshini ovoz chiqqan tomonga qaratadi. Ovozni tinglaganda, ota-onasiga yoki gapirayotgan kishiga tikilib, harakatlarini sekinlashtiradi.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Faoliyat turi o'zgarganida, zerikayotganligini ko'rsatadi yoki yig'laydi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:45",
+            "body": "<p>Bola uzoq vaqt davomida bir holatda qolsa yig'lab shikoyat qiladi, qo'lingizdan tushirganingizda norozilik bildiradi.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
             ],
             "related_articles": [],
             "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Chug'urlashni boshlaydi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:45",
+            "body": "<p>Ovozini sayqallab a, e, i, o, u unli tovushlarga o'xshash tovushlarni talaffuz qiladi</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Zinadan yuqoriga chiqadi va pastga tushadiadi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:53",
+            "body": "<p>Oyoqlariga galma-gal tayanib zinapoyadan ko'tariladi.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Qo'l-ko'zni muvofiqlashtirishni muvofiqlashtiradi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:46",
+            "body": "<p>Qo'l-ko'zni muvofiqlashtirish qobiliyati oshadi, masalan, bolangiz ko'rib turgan ob'ektga erishishga harakat qiladi.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Ozgina yordam bilan o'tira oladi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:47",
+            "body": "<p>Biror narsaga suyanib yoki uni ushlab o'tiradi va oz muddat o'tirgan holatini saqlay oladi.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 0
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "2 dan 3 tagacha so'zlardan iborat bo'lgan jumlalarni ayta oladi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:52",
+            "body": "<p>2-3 so'zdan iborat jumlalar tuzishi va oila a'zolari uni tushunishi uchun yetarlicha aniq aytishi mumkin.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Tovushli ovozga a, e, u unli tovushlarini birlashtirib javob beradi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:48",
+            "body": "<p>Kimdir unga murojaat qilganda, gapirganda, qo'shiq aytganida, o'qiganda bola o'zicha javob qaytaradi.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Bola o'yin vaqti kelganini anglaganida zavqlanadi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:47",
+            "body": "<p>U tanish odamlar, va ayniqsa, ota-onasi bilan o'ynaganida yoki muloqotda bo'lganida quvonadi, baxtli ko'rinadi va zavqlanadi.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Bolalar davrasida o'ynashni yaxshi ko'radi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:52",
+            "body": "<p>O'yin endi shunchaki yonma-yon emas, balki murakkabroq elementlarga, tasavvurga va o'yinqaroqlikka ega.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "\"Yo'q\" so'zining ma'nosini tushuna boshlaydi.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:48",
+            "body": "<p>\"Yo'q\" so'zining ma'nosini tushuna boshlaydi. Bu so'zni eshitgach, u o'z faoliyatini to'xtatib, noroziligini namoyon qiladi.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Bir qo'lini ikkinchisidan ko'ra ko'proq ishlatadi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:51",
+            "body": "<p>Bir qo'lini ko'proq ishlata oladi - chapini yoki o'ngini.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Emaklayotgan vaqtida tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi.",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:49",
+            "body": "<p>Emaklash holati darajasigacha tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi. Mustaqil ravishda emaklay oladi. Emaklab oldinga yoki orqaga harakatlanadi.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 0
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Itariladi, turishga harakat qiladi",
+            "created_at": "Thu, 08/12/2021 - 21:40",
+            "updated_at": "Tue, 09/28/2021 - 21:48",
+            "body": "<p>Itariladi, turishga harakat qiladi. Mebelni ushlagan holda turishga harakat qiladi, lekin unga yordam va tayanch kerak.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
             "mandatory": 0
         },
         {
@@ -10885,24 +11268,20 @@ export const MileStonesData: any = {
             "mandatory": 0
         },
         {
-            "id": 2866,
+            "id": 6976,
             "type": "Milestone",
-            "title": "Itariladi, turishga harakat qiladi",
+            "title": "Boshqalarni xursand qilishni va hamkorlik qilishni yoqtiradi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>Itariladi, turishga harakat qiladi. Mebelni ushlagan holda turishga harakat qiladi, lekin unga yordam va tayanch kerak.</p>",
+            "updated_at": "Tue, 09/28/2021 - 21:53",
+            "body": "<p>Boshqalarning his-tuyg'ularini tan oladi; ko'pincha boshqalar bilan baham ko'rishni yaxshi ko'radi; navbat bilan turishga qodir. </p>",
             "child_age": [
-                47
+                52
             ],
             "related_activities": [
-                7241
+                7426
             ],
-            "related_articles": [
-                4531
-            ],
-            "related_video_articles": [
-                6471
-            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 0
         },
         {
@@ -10976,10 +11355,10 @@ export const MileStonesData: any = {
         {
             "id": 7081,
             "type": "Milestone",
-            "title": "Kundalik tartib-qoidalar va ijtimoiy tadbirlarda mustaqil ravishda ishtirok etish ko'nikmalaridan foydalanadi",
+            "title": "Kundalik ishlar va ijtimoiy tadbirlarda mustaqil ravishda ishtirok etish ko'nikmalaridan foydalanadi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:57",
-            "body": "<p>Mustaqil ravishda kiyinishi va echinishi mumkin, qoshiq va vilkadan foydalanadi, yolg'iz hojatxonadan foydalanadi va qo'llarini yuvadi. Ota-onadan ajralib, mustaqil ijtimoiy faoliyat bilan shug'ullanishi mumkin. </p>",
+            "updated_at": "Thu, 10/14/2021 - 09:51",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Mustaqil ravishda yechinib, kiyina oladi, qoshiq va vilkadan foydalanadi, hojatxonadan foydalanadi va qo'llarini yuvadi. Ota-onadan ajralib, mustaqil ijtimoiy faoliyatda ishtirok etishi mumkin.</p>",
             "child_age": [
                 57
             ],
@@ -10993,10 +11372,10 @@ export const MileStonesData: any = {
         {
             "id": 7086,
             "type": "Milestone",
-            "title": "Yuqori jismoniy ko'nikmalarni talab qiladigan turli xil tadbirlarda mahorat bilan qatnashadi",
+            "title": "Qo'shimcha jismoniy ko'nikmalar talab qiladigan turli xil tadbirlarda mahorat bilan qatnashadi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:58",
-            "body": "<p>Bir oyoqda turish, to'pni aniq tepish, to'pni nishonga urish va h.k. </p>",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Bir oyoqda turishi, to'pni aniq tepishi, to'pni nishonga urishi va shu kabilarni qilishga qodir</p>",
             "child_age": [
                 58
             ],
@@ -11010,10 +11389,10 @@ export const MileStonesData: any = {
         {
             "id": 7106,
             "type": "Milestone",
-            "title": "To'liq hikoyani aytib beradi",
+            "title": "Hikoyani to'liq aytib beradi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:59",
-            "body": "<p>Bola ma'lum bir voqea syujetini to'liq mustaqil va aniq hikoya qilib berishga, voqealarni xronologik tartibda, o'zi ishtirok etgan tadbirda yoki teledasturda to'g'ri tartibga solishda muvaffaq bo'ladi.</p>",
+            "updated_at": "Thu, 10/14/2021 - 10:06",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Bola o'zi ishtirok etgan tadbir yoki teledastur to'g'risida, ma'lum bir voqeani syujetini xronologik tartibga solib to'liq, mustaqil va aniq hikoya qilib berishga muvaffaq bo'ladi</p>",
             "child_age": [
                 58
             ],
@@ -11027,10 +11406,10 @@ export const MileStonesData: any = {
         {
             "id": 7131,
             "type": "Milestone",
-            "title": "Haqiqiy va yolg'on yoki ishonish orasidagi farqni tushuntiradi",
+            "title": "Haqqoniy, taqlid va o'ylab topilganlar orasidagi farqni tushunishini namoyish qiladi",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:58",
-            "body": "<p>U faqat tasavvuridagi voqealarni, voqealarni, personajlarni ixtiro qiladi, badiiy tarzda taqdim etadi, tasvirlaydi va ularga real bo'lmagan xususiyatlarni beradi. U buni amalga oshirayotganda xursand bo'ladi, chunki tasavvur dunyosida hamma narsa mumkin. </p>",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>U faqat tasavvuridagi voqea, hikoya, qahramonlarni o'ylab topadi, ularni badiiy jihatdan tasavvur qiladi, tasvirlaydi va haqqoniy bo'lmagan xususiyatlarni beradi. Tasavvur dunyosida hamma narsa mumkinligini tushungan holda bu ishni qilishi uni zavqlantiradi</p>",
             "child_age": [
                 58
             ],
@@ -11040,354 +11419,16 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 0
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Qo'l-ko'zni muvofiqlashtirishni muvofiqlashtiradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:46",
-            "body": "<p>Qo'l-ko'zni muvofiqlashtirish qobiliyati oshadi, masalan, bolangiz ko'rib turgan ob'ektga erishishga harakat qiladi.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2541,
-            "type": "Milestone",
-            "title": "Ovoz chiqaradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:43",
-            "body": "<p>Bola yig'laydi, shu bilan birga tovushlarni ham chiqaradi</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2556,
-            "type": "Milestone",
-            "title": "Qornida yotganida boshini ko'taradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:41",
-            "body": "<p>Uni qorniga yotqizganingizda, bola nafas yo'lini ochish uchun boshini ko'tarishga harakat qiladi.</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7606
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6281
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2561,
-            "type": "Milestone",
-            "title": "U xursand, xafa bo'lganida yoki och qolganida turli xil tovushlarni chiqaradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:44",
-            "body": "<p>Kichkintoyning yig'lashi uning ehtiyojlarga qarab farqlanadi, shuning uchun bolaning tovushlariga ko'ra uning quvongani, xafa bo'lgani, yoki boshqa biron bir ehtiyoj borligini bilish mumkin.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7611
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6316
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2566,
-            "type": "Milestone",
-            "title": "O'zini-o'zi bir muddat ovuntira oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:44",
-            "body": "<p>Bola barmog'ini yoki mitti qo'lchasini so'rib tinchlanadi</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7176
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6361
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2571,
-            "type": "Milestone",
-            "title": "Boshini tovush manbai tomon burib, tinglayotganini ko'rsatadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:46",
-            "body": "<p>Odamning ovozi yoki boshqa biron bir tovushni eshitganda, Bola boshini ovoz chiqqan tomonga qaratadi. Ovozni tinglaganda, ota-onasiga yoki gapirayotgan kishiga tikilib, harakatlarini sekinlashtiradi.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7721
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6326
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2586,
-            "type": "Milestone",
-            "title": "Faoliyat turi o'zgarganida, zerikayotganligini ko'rsatadi yoki yig'laydi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:45",
-            "body": "<p>Bola uzoq vaqt davomida bir holatda qolsa yig'lab shikoyat qiladi, qo'lingizdan tushirganingizda norozilik bildiradi.</p>",
-            "child_age": [
-                44
-            ],
-            "related_activities": [
-                7181
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2631,
-            "type": "Milestone",
-            "title": "Chug'urlashni boshlaydi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:45",
-            "body": "<p>Ovozini sayqallab a, e, i, o, u unli tovushlarga o'xshash tovushlarni talaffuz qiladi</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7651
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6371
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2636,
-            "type": "Milestone",
-            "title": "Zinadan yuqoriga chiqadi va pastga tushadiadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:53",
-            "body": "<p>Oyoqlariga galma-gal tayanib zinapoyadan ko'tariladi.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7416
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6811
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2531,
-            "type": "Milestone",
-            "title": "Bola bilan gaplashganingizda u hayajonlanib ketadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:42",
-            "body": "<p>Farzandingiz ovozingizni eshitganida o'z hayajonini namoyon qiladi, siz uning sizni tinglayotgandek harakatlarini sekinlashtirganini sezishingiz mumkin</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2696,
-            "type": "Milestone",
-            "title": "Ozgina yordam bilan o'tira oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:47",
-            "body": "<p>Biror narsaga suyanib yoki uni ushlab o'tiradi va oz muddat o'tirgan holatini saqlay oladi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7671
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 0
-        },
-        {
-            "id": 2701,
-            "type": "Milestone",
-            "title": "2 dan 3 tagacha so'zlardan iborat bo'lgan jumlalarni ayta oladi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>2-3 so'zdan iborat jumlalar tuzishi va oila a'zolari uni tushunishi uchun yetarlicha aniq aytishi mumkin.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2731,
-            "type": "Milestone",
-            "title": "Tovushli ovozga a, e, u unli tovushlarini birlashtirib javob beradi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>Kimdir unga murojaat qilganda, gapirganda, qo'shiq aytganida, o'qiganda bola o'zicha javob qaytaradi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7211
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6421
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2746,
-            "type": "Milestone",
-            "title": "Bola o'yin vaqti kelganini anglaganida zavqlanadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:47",
-            "body": "<p>U tanish odamlar, va ayniqsa, ota-onasi bilan o'ynaganida yoki muloqotda bo'lganida quvonadi, baxtli ko'rinadi va zavqlanadi.</p>",
-            "child_age": [
-                46
-            ],
-            "related_activities": [
-                7841
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6441
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2766,
-            "type": "Milestone",
-            "title": "Bolalar davrasida o'ynashni yaxshi ko'radi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:52",
-            "body": "<p>O'yin endi shunchaki yonma-yon emas, balki murakkabroq elementlarga, tasavvurga va o'yinqaroqlikka ega.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7371
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6931
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2786,
-            "type": "Milestone",
-            "title": "\"Yo'q\" so'zining ma'nosini tushuna boshlaydi.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:48",
-            "body": "<p>\"Yo'q\" so'zining ma'nosini tushuna boshlaydi. Bu so'zni eshitgach, u o'z faoliyatini to'xtatib, noroziligini namoyon qiladi.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7226
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6476
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2816,
-            "type": "Milestone",
-            "title": "Bir qo'lini ikkinchisidan ko'ra ko'proq ishlatadi",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:51",
-            "body": "<p>Bir qo'lini ko'proq ishlata oladi - chapini yoki o'ngini.</p>",
-            "child_age": [
-                50
-            ],
-            "related_activities": [
-                7356
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6666
-            ],
-            "mandatory": 0
-        },
-        {
-            "id": 2856,
-            "type": "Milestone",
-            "title": "Emaklayotgan vaqtida tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi.",
-            "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Tue, 09/28/2021 - 21:49",
-            "body": "<p>Emaklash holati darajasigacha tanasini ko'taradi. Ayrim bolalar bemalol emaklashadi. Mustaqil ravishda emaklay oladi. Emaklab oldinga yoki orqaga harakatlanadi.</p>",
-            "child_age": [
-                47
-            ],
-            "related_activities": [
-                7706
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6486
-            ],
-            "mandatory": 0
         }
     ],
-    "uz-ru": [
+    "uz-ru":[
         {
             "id": 7106,
             "type": "Milestone",
-            "title": "Пересказывает историю полностью",
+            "title": "Пересказывает историю полностью ",
             "created_at": "Tue, 09/28/2021 - 22:00",
-            "updated_at": "Tue, 09/28/2021 - 22:00",
-            "body": "<p>Ребенку удается совершенно самостоятельно и точно пересказать сюжет определенного рассказа, правильно расположив события в хронологическом порядке, событие, в котором он участвовал, или телешоу.</p>",
+            "updated_at": "Thu, 10/14/2021 - 10:06",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Ребенку удается совершенно самостоятельно и точно пересказать сюжет определенной истории, правильно расположив события в хронологическом порядке, событие, или телешоу в котором он участвовал.</p>",
             "child_age": [
                 58
             ],
@@ -11401,10 +11442,10 @@ export const MileStonesData: any = {
         {
             "id": 7086,
             "type": "Milestone",
-            "title": "Ловок в разных видах деятельности, требующих высоких физических навыков.",
+            "title": "Ловко участвует в различных мероприятиях, требующих дополнительных физических навыков",
             "created_at": "Tue, 09/28/2021 - 21:59",
-            "updated_at": "Tue, 09/28/2021 - 21:59",
-            "body": "<p>Умеет стоять на одной ноге, точно ударяет по мячу, попадает мячом в цель и т. д. </p>",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Способен(на) стоять на одной ноге, точно бить по мячу, попадать мячом в цель и т. д.</p>",
             "child_age": [
                 58
             ],
@@ -11420,8 +11461,8 @@ export const MileStonesData: any = {
             "type": "Milestone",
             "title": "Демонстрирует понимание разницы между реальным и подражанием или вымышленным",
             "created_at": "Tue, 09/28/2021 - 21:58",
-            "updated_at": "Tue, 09/28/2021 - 21:58",
-            "body": "<p>Он / она только с своем воображении придумывает истории, события, персонажей, художественно представляя, описывает и приписывает им свойства, которые не являются реалистичными. Делая это, он / она получает удовольствие, осознавая, что в мире воображения возможно все. </p>",
+            "updated_at": "Thu, 10/14/2021 - 10:04",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Он/она только придумывает истории, события, персонажей из своего воображения, художественно представляет, описывает и присваивает им свойства, которые не являются реалистичными. Он/она получает удовольствие, делая это, осознавая, что в мире воображения возможно все.</p>",
             "child_age": [
                 58
             ],
@@ -11435,10 +11476,10 @@ export const MileStonesData: any = {
         {
             "id": 7081,
             "type": "Milestone",
-            "title": "Использует навыки для самостоятельного участия в повседневных делах и общественной деятельности",
+            "title": "Использует навыки самостоятельного участия в повседневных делах и общественной деятельности",
             "created_at": "Tue, 09/28/2021 - 21:57",
-            "updated_at": "Tue, 09/28/2021 - 21:57",
-            "body": "<p>Может самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
+            "updated_at": "Thu, 10/14/2021 - 09:51",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Может самостоятельно одеваться и раздеваться, пользуется ложкой и вилкой, самостоятельно пользуется туалетом и моет руки. Может расстаться с родителями и участвовать в самостоятельной общественной деятельности. </p>",
             "child_age": [
                 57
             ],
@@ -12031,8 +12072,8 @@ export const MileStonesData: any = {
             "type": "Milestone",
             "title": "Самостоятельно пишет карандашом или мелками на бумаге",
             "created_at": "Thu, 08/12/2021 - 21:40",
-            "updated_at": "Wed, 09/22/2021 - 06:05",
-            "body": "<p>Любит делать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.</p>",
+            "updated_at": "Wed, 10/13/2021 - 11:27",
+            "body": "<p><style type=\"text/css\"><!--/*--><![CDATA[/* ><!--*/<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->/*--><!]]>*/</style>Любит чиркать каракули, карандашом на бумаге, рукой на песке, палкой на грязи или водой на бетоне.</p>",
             "child_age": [
                 49
             ],
