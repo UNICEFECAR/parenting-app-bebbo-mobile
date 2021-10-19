@@ -51,7 +51,7 @@ const Aboutus = ({navigation}: Props) => {
           </View>
 
           <View>
-            <ScrollView contentContainerStyle={{paddingBottom: 35,paddingHorizontal:10,paddingTop:0}}>
+            <ScrollView contentContainerStyle={{paddingBottom: 35,paddingHorizontal:15,paddingTop:15}}>
 
             { aboutusdata != "" ? 
             <HTML
