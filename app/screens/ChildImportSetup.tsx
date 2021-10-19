@@ -36,10 +36,15 @@ import { addChild, apiJsonDataGet, getAge, getAllChildren, getNewChild, isFuture
 import { getChild, validateForm } from '../services/Utils';
 import {
   Heading1Centerw,
+  Heading2Centerw,
   Heading3,
   ShiftFromTop30,
   ShiftFromTop20,
-  SideSpacing25
+  SideSpacing25,
+  ShiftFromTop50,
+  Heading3Centerw,
+  ShiftFromTopBottom20,
+  ShiftFromTop10
 } from '../styles/typography';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
@@ -141,10 +146,13 @@ const ChildImportSetup = (props: any) => {
               <ChildSection>
                
                 <View>
-                  <ShiftFromTop20>
+                  <ShiftFromTop50>
                   <Heading1Centerw style={{textAlign:'center',fontWeight:"bold"}}>{t('successOnboardingImport')}</Heading1Centerw>
-                  <Heading1Centerw style={{textAlign:'center'}}>{t('updateImportText')}</Heading1Centerw>
-            
+                  </ShiftFromTop50>
+                  <ShiftFromTop10><Text></Text></ShiftFromTop10>
+                  <ShiftFromTopBottom20>
+                  <Heading3Centerw style={{textAlign:'center'}}>{t('updateImportText')}</Heading3Centerw>
+                  </ShiftFromTopBottom20> 
                     <FormInputGroup
                       onPress={() => {
                         actionSheetRef.current?.setModalVisible();
@@ -159,7 +167,7 @@ const ChildImportSetup = (props: any) => {
                         </FormDateAction>
                       </FormInputBox>
                     </FormInputGroup>
-                  </ShiftFromTop20>
+                  
                   <View>
                     {
                       userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
