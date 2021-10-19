@@ -609,9 +609,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
               // AmazonPackageName:"com.mywebsite.myapp",
               // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
               preferredAndroidMarket: AndroidMarket.Google,
-              preferInApp:true,
-              openAppStoreIfInAppFails:true,
-              fallbackPlatformURL:"https://tesmobility.datamatics.com/REMOVED_FACEBOOK_APP_ID1",
+              // preferInApp:true,
+              // openAppStoreIfInAppFails:true,
+              // fallbackPlatformURL:"https://tesmobility.datamatics.com/REMOVED_FACEBOOK_APP_ID1",
             }
             Rate.rate(options, (success, errorMessage)=>{
               if (success) {

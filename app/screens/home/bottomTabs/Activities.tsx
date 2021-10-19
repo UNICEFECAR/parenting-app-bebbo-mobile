@@ -119,6 +119,7 @@ const Activities = ({ route, navigation }: Props) => {
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
     sectionListRef.scrollToLocation(
       {
+        animated:Platform.OS=="android" ? true:false,
         sectionIndex: 0,
         itemIndex: 0
       }

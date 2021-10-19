@@ -8,7 +8,7 @@ import { ArticleListContainer, ArticleListContent, SearchBox, SearchInput } from
 import { DividerArt } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconClearBox, IconClearPress, OuterIconRow } from '@components/shared/Icon';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -212,7 +212,7 @@ useFocusEffect(() => {
   // );
   const toTop = () => {
     // use current
-    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
 }
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
@@ -360,20 +360,19 @@ const searchList=async (queryText:any)=>{
                 allowFontScaling={false} 
               />
               {
-                Platform.OS=='android' && 
+                Platform.OS=='android' && queryText.replace(/\s/g,"") != "" &&
                  <OuterIconRow>
                 
-                 <Pressable style={{padding:13}} onPress={() => {
+                 <IconClearPress  onPress={() => {
                   searchQueryText('');
                  }}>
                  <Icon
                  name="ic_close"
-                 size={15}
-                 color="#000"
-                 
+                 size={10}
+                 color="#fff"
                />
-               </Pressable>
-                 
+               </IconClearPress>
+               
                </OuterIconRow>
               }
                     <OuterIconRow>
