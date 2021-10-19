@@ -28,6 +28,7 @@ import {
 } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
+  HeaderIconPress,
   HeaderIconView,
   HeaderRowView,
   HeaderTitleView
@@ -646,12 +647,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
               maxHeight: 50,
             }}>
             <HeaderIconView>
-              <Pressable
+              <HeaderIconPress
                 onPress={() => {
                   navigation.goBack();
                 }}>
                 <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
+              </HeaderIconPress>
             </HeaderIconView>
             <HeaderTitleView>
               <Heading2>{showDelete ? t('hcEditHeaderTitle') : t('hcNewHeaderTitle')}</Heading2>
