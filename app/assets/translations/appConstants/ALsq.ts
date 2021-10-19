@@ -136,7 +136,6 @@ const ALsq = {
               articleScreenshareText: "Shpërndaj",
               articleScreenaddtoFavText: "Shto te të preferuarat",
               growthScreenheaderTitle: "Rritja e fëmijës",
-              //growthScreengrowthDataTitle: "Fëmija është {{child name}} muajsh",
               growthScreennoGrowthData: "parametrat e rritjes së fëmijës tuaj nuk janë matur akoma",
               growthScreennoGrowthDataHelpText: "Kjo do t'ju ndihmojë të gjurmoni rritjen e fëmijës tuaj",
               growthScreenaddNewBtntxt: "Shto një matje të re",
@@ -380,7 +379,7 @@ const ALsq = {
               downloadUpdateSuccessPopupTitle: "Me sukses",
               downloadUpdateSuccessPopupText: "Përditësimet u shkarkuan me sukses !!",
               downloadUpdateSuccessOkBtn: "Ok",
-              newdetailScreenNoDataPopupText: "Informacioni i zgjedhur nuk është i vlefshëm në këtë pajisje. Ju lutemi të sharkoni të dhënat e fundit nga cilësimet.",
+              newdetailScreenNoDataPopupText: "Loja/Keshillimi i zgjedhur nuk është i vlefshëm në këtë pajisje. Ju lutemi të sharkoni të dhënat e fundit nga cilësimet.",
               noInternet: "Nuk ka lidhje me internetin",
               lowBandwidth: "Internet me shpejtësi të ulët",
               highBandwidth: "Internet me shpejtësi të lartë",
@@ -388,14 +387,14 @@ const ALsq = {
               dataSaveroff: "Jo aktive",
               vcrNoti1: "Ri-kujtesa është vendosur për vaksinimin në {{reminderDateTime}}",
               hcrNoti1: "Ri-kujtesa është vendosur për kontrollin shëndetësor në {{reminderDateTime}}",
-              parentGender: "Gjinia e Prindit",
-                //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details"
+              parentGender: "Gjinia",
+              //Onboarding Import text new Translations
+              successOnboardingImport: "Të dhënat e fëmijës u importuan me sukses",
+              updateImportText: "Ju lutemi të plotësoni të dhënat për të vazhduar",
+              importOnboardingText: "Ju mund të importoni të dhënat e fëmijës që keni eksportuar më parë",
+              OnboardingImportButton: "Importo tani",
+              ORkeyText: "Ose",
+              addChildText: "Shtoni të dhënat e fëmijës"
        }
 }
 export default ALsq;
