@@ -212,7 +212,7 @@ useFocusEffect(() => {
   // );
   const toTop = () => {
     // use current
-    flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
 }
   const setFilteredArticleData = (itemId:any) => {
     console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
@@ -360,7 +360,7 @@ const searchList=async (queryText:any)=>{
                 allowFontScaling={false} 
               />
               {
-                Platform.OS=='android' && 
+                Platform.OS=='android' && queryText.replace(/\s/g,"") != "" &&
                  <OuterIconRow>
                 
                  <Pressable style={{padding:13}} onPress={() => {
