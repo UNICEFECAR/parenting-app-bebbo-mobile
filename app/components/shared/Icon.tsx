@@ -78,6 +78,21 @@ border-color:#000;
 width:24px;
 height:24px;
 `;
+export const IconClearBox = styled(OuterIconDone)`
+
+`;
+export const IconClearPress = styled.Pressable`
+background-color:${(props) => props.theme.colors.PRIMARY_TEXTCOLOR};
+opacity:0.6;
+border:0px;
+border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
+width:22px;
+height:22px;
+justify-content:center;
+align-items:center;
+`;
+
+
 export const IconViewBg = styled(IconViewBorder)`
 background-color: ${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 border-width:0px;
