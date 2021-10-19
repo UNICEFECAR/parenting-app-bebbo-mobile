@@ -6,7 +6,7 @@ import {
   ButtonText
 } from '@components/shared/ButtonGlobal';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
-import { HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
+import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -54,12 +54,12 @@ const AllChildgrowthMeasures = ({route, navigation}) => {
             maxHeight: 50,
           }}>
           <HeaderIconView>
-          <Pressable
+          <HeaderIconPress
                 onPress={() => {
                   navigation.goBack();
                 }}>
                 <Icon name={'ic_back'} color="#000" size={15} />
-              </Pressable>
+              </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
           <Heading2> {t('growthScreenallMeasureHeader')}</Heading2>
