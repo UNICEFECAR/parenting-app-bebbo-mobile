@@ -39,7 +39,7 @@ today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 1;
 export const restOfTheWorldAlertTitle = 'Warning';
-export const restOfTheWorldAlertText = 'Rest of the world data is not relevant to a specific country.';
+export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and HC are not customized to a specific national health program.';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
      console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
