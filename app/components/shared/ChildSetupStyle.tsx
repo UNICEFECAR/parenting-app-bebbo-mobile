@@ -161,5 +161,31 @@ padding-top:8px;
 padding-bottom:7px;
 `;
 
+
+export const OrView = styled.View`
+position:relative;
+z-index:11;
+justify-content:center;
+align-items:center;
+
+margin:15px 0
+`;
+export const OrHeadingView = styled.View`
+padding:5px 0;
+min-width:50px;
+background-color:${(props) => props.theme.colors.PRIMARY_COLOR};
+`;
+
+
+export const OrDivider = styled.View`
+position:absolute;
+width:100%;
+height:1px;
+background-color:#fff;
+top:50%;
+left:0;
+z-index:0
+
+`;
 /*Form Styling*/
 export default ChildSetupContainer;
