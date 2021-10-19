@@ -133,7 +133,7 @@ height:350px;margin-top:15px;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `
 
-export const ProfileEditView = styled.View`
+export const ProfileEditView = styled.Pressable`
 background-color:#fff;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 margin:10px;
