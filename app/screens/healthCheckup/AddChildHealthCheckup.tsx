@@ -5,10 +5,12 @@ import {
   ButtonColTwo,
   ButtonContainer,
   ButtonContainerTwo,
+  ButtonDelPress,
   ButtonPrimary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -659,12 +661,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             </HeaderTitleView>
             {showDelete ?
               <HeaderActionView>
-                <Pressable
+                <ButtonDelPress
                   onPress={() => {
                     setModalVisible(true);
                   }}>
-                  <Text>{t('growthScreendeletebtnText')}</Text>
-                </Pressable>
+                  <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+                </ButtonDelPress>
               </HeaderActionView> : null}
           </HeaderRowView>
 
