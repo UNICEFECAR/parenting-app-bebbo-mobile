@@ -24,6 +24,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   const {activeChild, chartType, obj, standardDeviation} = route.params;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
+  const [windowWidth,setWindowWidth] = React.useState(Dimensions.get('window').width);
+  const [windowHeight,setWindowHeight] = React.useState(Dimensions.get('window').height);
   // console.log(activeChild, chartType, obj, standardDeviation);
   // const navigation = useNavigation();
   const {t} = useTranslation();
@@ -41,6 +43,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
       // Call any action
       Orientation.unlockAllOrientations();
       Orientation.lockToLandscape();
+      setWindowHeight(Dimensions.get('window').width);
+      setWindowWidth(Dimensions.get('window').height);
       setTimeout(() => {
         setIsChartVisible(true);
       }, 2000);
@@ -121,8 +125,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
   //     Dimensions.removeEventListener('change', deviceOrientation);
   //   };
   // }, [deviceOrientation]);
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
+  // const windowWidth = Dimensions.get('window').width;
+  // const windowHeight = Dimensions.get('window').height;
   return (
     <>
       <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -150,8 +154,8 @@ export const ChartFullScreen = ({ route, navigation }: Props) => {
                     activeChild={activeChild}
                     chartType={chartType}
                     bgObj={obj}
-                    windowWidth={Platform.OS === 'ios'? windowWidth : windowHeight}
-                    windowHeight={Platform.OS === 'ios' ? windowHeight : windowWidth}
+                    windowWidth={windowWidth}
+                    windowHeight={windowHeight}
                   />
                 ) : (
                   <ActivityIndicator size="large" color={headerColor} />
