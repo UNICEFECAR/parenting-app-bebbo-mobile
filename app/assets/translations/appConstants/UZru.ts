@@ -253,7 +253,7 @@ const UZru = {
                 parentDetailsTxt: "Данные родителя",
                 parentRoleLabel: "Кем вы приходитесь ребёнку?",
                 parentNameLabel: "Имя",
-                hcHeader: "Медосмотр",
+                hcHeader: "Медосмотры",
                 hcSummaryHeader: "Дополнительные медосмотры",
                 hcReminderbtn: "Создать напоминание о медосмотре",
                 hcNewBtn: "Добавить данные о посещении врача",
@@ -390,12 +390,12 @@ const UZru = {
                 hcrNoti1: "Напоминание о медосмотре установлено на {{reminderDateTime}}",
                 parentGender: "Пол",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details"
+                successOnboardingImport:"Вы успешно импортировали данные ребенка",
+                updateImportText:"Обновите свои данные, чтобы продолжить",
+                importOnboardingText:"Вы можете импортировать ранее экспортированные данные ребенка",
+                OnboardingImportButton:"Импортировать сейчас",
+                ORkeyText:"ИЛИ",
+                addChildText:"Добавьте сведения о своем ребенке"
         }
 }
 export default UZru;
