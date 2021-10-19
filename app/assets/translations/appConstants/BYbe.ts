@@ -10,8 +10,6 @@ const BYbe = {
                 checkonce: "Выберыце, перш чым прадоўжыць",
                 country: "Краіна",
                 language: "Мова",
-
-                // walkthroughTexts
                 walkthroughTextstitle0: "Прывітанне, бацькі!",
                 walkthroughTextssubtitle0: "Перад вамі \"Беба\" — дадатак, дзе ёсць усё, што вам трэба ведаць пра рост і развіццё вашага дзіцяці",
                 walkthroughTextstitle1: "Заняткі",
@@ -22,8 +20,6 @@ const BYbe = {
                 walkthroughTextssubtitle3: "ў адказ на вашы пытанні пра тое, што патрэбна вашаму дзіцяці",
                 walkthroughButtonBack: "Назад",
                 walkthroughButtonNext: "Далей",
-
-                // t&C
                 tNcheader: "Умовы і палажэнні",
                 tNccheckbox1: "Умовы і палажэнні карыстання дадаткам \"Беба\" мной прачытаны, зразуметы і прымаюцца",
                 tNccheckbox2: "Мной прачытана, зразумета і прымаецца",
@@ -31,11 +27,7 @@ const BYbe = {
                 tNccheckbox3: "Я прымаю палажэнне аб тым, што ананімізаваныя даныя пра выкарыстанне мной дадатку будуць збірацца з мэтай паляпшэння яго работы (не абавязкова)",
                 tNcprivacyPolicyTitle: "Палітыка канфідэнцыяльнасці",
                 tNcacceptbtn: "Я прымаю ўмовы і палажэнні",
-
-                // Loading
                 loadingText: "Загрузка даных…",
-
-                // childSetup
                 childSetupheader: "Давайце настроім дадатак",
                 childSetupdobLabel: "Дата нараджэння дзіцяці / мяркуемая дата родаў",
                 childSetupdobSelector: "Увядзіце дату нараджэння / мяркуемую дату родаў",
@@ -46,16 +38,12 @@ const BYbe = {
                 childSetuprelationSelectTitle: "Кім вы даводзіцеся дзіцяці?",
                 childSetuprelationSelectText: "Выбраць",
                 childSetupcontinueBtnText: "Прадоўжыць",
-
-                // childSetupList
                 childSetupListheader: "Вы стварылі профіль вашага дзіцяці!",
                 childSetupListsubHeader: "Калі ласка, праверце ўсе даныя дзіцяці, перш чым прадоўжыць!",
                 childSetupListaddSiblingBtn: "Дадаць сястру ці брата",
                 childSetupListeditSiblingBtn: "Рэдагаваць даныя дзіцяці",
                 childSetupListcontinueBtnText: "Прадоўжыць",
                 childSetupListsaveBtnText: "Захаваць даныя",
-
-                // drawerMenu
                 drawerMenuchildInfo: "Дата нараджэння: {{childdob}}",
                 drawerMenuhomeTxt: "У пачатак",
                 drawerMenunotiTxt: "Апавяшчэнні",
@@ -73,10 +61,7 @@ const BYbe = {
                 drawerMenufeedbackTxt: "Зваротная сувязь",
                 drawerMenurateTxt: "Спадабалася \"Беба\"? Пастаўце адзнаку!",
                 drawerMenuPrivacyTxt: "Палітыка канфідэнцыяльнасці",
-                // notiScreen
                 notiScreenheaderTitle: "Апавяшчэнні",
-
-                // settingScreen
                 settingScreenheaderTitle: "Настройкі",
                 settingScreennotiHeaderText: "Апавяшчэнні",
                 settingScreennotiType1: "Хачу атрымліваць апавяшчэнні праз \"Беба\"",
@@ -100,17 +85,11 @@ const BYbe = {
                 settingScreenexportOptionHeader: "Экспарт даных",
                 settingScreenshareBtntxt: "Падзяліцца",
                 settingScreengdriveBtntxt: "Google-дыск",
-
-                // userGuide
                 userGuideheaderTitle: "Дапаможнік карыстальніка",
-
-                // aboutUsScreen
                 aboutUsScreenheaderTitle: "Пра нас",
-                // supportScreen
                 supportScreenheaderTitle: "Чат",
                 supportScreenheader1text: "У распрацоўцы!",
                 supportScreenheader2text: "У дадзены момант чат недаступны",
-                // homeScreen
                 homeScreenheaderTitle: "\"Беба\"",
                 homeScreenchildBtnText: "Чытаць далей",
                 homeScreenchildInfoTitle: "Рады вас вітаць, {{childName}} і {{parentName}}!",
@@ -131,8 +110,6 @@ const BYbe = {
                 homeScreenvc: "Вакцынацыя",
                 homeScreenhc: "Медагляды",
                 homeScreencg: "Рост дзіцяці",
-
-                // actScreen
                 actScreenheaderTitle: "Заняткі",
                 actScreensugacttxt: "Заняткі, якія прапануюцца",
                 actScreenotheracttxt: "Іншыя заняткі",
@@ -143,7 +120,6 @@ const BYbe = {
                 actScreenprematureText: "Неданошанае дзіця",
                 actScreenshareText: "Падзяліцца",
                 actScreenaddtoFavText: "Дадаць у выбранае",
-                // developScreen
                 developScreenheaderTitle: "Развіццё дзіцяці",
                 developScreenprematureText: "Неданошанае дзіця",
                 developScreenchartLabel: "У працэсе",
@@ -154,15 +130,12 @@ const BYbe = {
                 developScreenrelatedArticleText: "Парада па тэме",
                 developScreenrelatedAct: "Заняткі па тэме",
                 developScreenviewDetails: "Падрабязней",
-                // articleScreen
                 articleScreenheaderTitle: "Парады",
                 articleScreensearchPlaceHolder: "Пошук па ключавых словах",
                 articleScreennoSearchResult: "Няма парад",
                 articleScreenshareText: "Падзяліцца",
                 articleScreenaddtoFavText: "Дадаць у выбранае",
-                // growthScreen
                 growthScreenheaderTitle: "Рост дзіцяці",
-                //growthScreengrowthDataTitle: "Дзіцяці {{child name}} месяцы",
                 growthScreennoGrowthData: "Яшчэ няма даных пра рост дзіцяці",
                 growthScreennoGrowthDataHelpText: "Гэта дапаможа вам сачыць за ростам дзіцяці",
                 growthScreenaddNewBtntxt: "Дадаць даныя",
@@ -196,7 +169,6 @@ const BYbe = {
                 growthScreenaddHeight: "Дадаць рост",
                 growthScreennewGrowthBottomText: "Вынікі вымярэнняў росту і вагі дзіцяці, атрыманыя дома, менш дакладныя, чым вынікі вымярэнняў ва ўрача, і могуць паўплываць на дакладнасць графіка росту",
                 growthScreenrelatedArticle: "Парады па тэме",
-                // Sprint4 Screens
                 noBorn: "Яшчэ не нарадзілася",
                 noday: "0 дзён",
                 yearstag: "гады",
@@ -300,7 +272,6 @@ const BYbe = {
                 hcdateText: "Дата медагляду",
                 hcenterDateText: "Увядзіце дату медагляду",
                 hcChildVaccineQ: "Ці атрымала дзіця прышчэпку?",
-                /// sprin5 screens
                 tabbarLabel1: "У пачатак",
                 tabbarLabel2: "Заняткі",
                 tabbarLabel3: "Інструменты",
@@ -309,8 +280,6 @@ const BYbe = {
                 tabbarLabel6: "Вакцынацыя",
                 tabbarLabel7: "Медагляды",
                 tabbarLabel8: "Рост дзіцяці",
-                // translation replacement closed till above
-                //sprint 6 screens after v3 of language file 
                 manageProfileTxt: "Кіраванне профілем",
                 removePhotoTxt: "Выдаліць фота",
                 removeWarnTxt: "Вы насамрэч хочаце выдаліць фота?",
@@ -328,7 +297,7 @@ const BYbe = {
                 notiDelSelected: "Выдаліць выбранае ({{count}})",
                 onBirthDay: "Дата нараджэння",
                 month: "Месяц",
-                localizationChangeModalText: "Пры выбары новай краіны змест можа змяніцца; пры выбары новай мовы ў гэтай краіне кантэнт застанецца ранейшым і будзе адлюстроўвацца на новай выбранай мове",
+                localizationChangeModalText: "Пры выбары новай краіны змест можа змяніцца. Пры выбары новай мовы ў гэтай краіне кантэнт застанецца ранейшым і будзе адлюстроўвацца на новай выбранай мове",
                 growthChartLegendSilverLabel: "Тыповыя значэнні для ўзросту",
                 growthChartLegendOrangeLabel: "Неаптымальныя значэнні для ўзросту",
                 noVaccinesForPeriod: "На гэты перыяд няма вакцын",
@@ -359,14 +328,13 @@ const BYbe = {
                 downloadOnLoadCancelPopUpBtn: "Адмена",
                 downloadOnLoadRetryBtn: "Спампаваць",
                 detailScreenNoDataPopupTitle: "Папярэджанне",
-                detailScreenNoDataPopupText: "Няма даных для выбранай парады/гульні",
+                detailScreenNoDataPopupText: "Няма выбранай парады/гульні. Калi ласка, спампуйце апошния даныя у Настройках.",
                 detailScreenNoDataOkBtn: "ОК",
                 editExpectChildAddTxt: "Рэдагаваць даныя дзіцяці, якое чакаецца",
                 editChildDobLabel: "Увесці дату нараджэння",
                 childInfoBabyText: "Дзіця",
                 childInfoParentText: "Маці/бацька",
                 childInfoAndText: "і",
-                // translation replacement closed till above
                 childSetupdobText: "Увесці дату нараджэння",
                 growthModalText: "Уводзьце і абнаўляйце даныя пра рост і вагу дзіцяці; вы будзеце атрымліваць інфармацыю аб тым, як стымуляваць яго развіццё",
                 vaccineModalText: "Тут вы можаце весці ўлік атрыманых вакцын, адсочваць графік імунізацыі і атрымліваць інфармацыю аб неабходных прышчэпках. Стварайце напамінанні і атрымлівайце апавяшчэнні аб прышчэпках вашага дзіцяці!",
@@ -382,8 +350,6 @@ const BYbe = {
                 alertForModifyMeasures: "Увага",
                 alertForModifyMeasuresTitle: "Выбар гэтай даты прывядзе да змены вынікаў вымярэнняў",
                 alertForModifyMeasuresOk: "ОК",
-
-                //new data added on 27th Aug
                 SyncOnLoadPopupTitle: "Сінхранізаваць даныя",
                 SyncOnLoadPopupText: "Хочаце сінхранізаваць даныя зараз?",
                 SyncOnLoadCancelPopUpBtn: "Адмена",
@@ -421,14 +387,14 @@ const BYbe = {
                 dataSaveroff: "Выкл",
                 vcrNoti1: "Створана напамінанне пра вакцынацыю на {{reminderDateTime}}",
                 hcrNoti1: "Створана напамінанне пра медагляд на {{reminderDateTime}}",
-                parentGender: "Пол маці/бацькі",
+                parentGender: "Пол",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details"
+                successOnboardingImport: "Вы паспяхова імпартавалі даныя дзіцяці",
+                updateImportText: "Калі ласка, абнавіце даныя пра сябе, каб прадоўжыць",
+                importOnboardingText: "Вы можаце імпартаваць раней экспартаваныя даныя пра дзіця",
+                OnboardingImportButton: "Імпартаваць зараз",
+                ORkeyText: "АБО",
+                addChildText: "Дадаць даныя пра дзіця"
         }
 }
 export default BYbe;
