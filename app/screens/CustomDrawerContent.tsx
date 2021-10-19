@@ -133,7 +133,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       // Your dismiss logic here 
 
       if (allnotis.length > 0) {
-        const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
+        const currentChildNotis = allnotis?.find((item) => item.childuuid == activeChild.uuid)
         console.log(currentChildNotis, "allfilteredNotis")
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
@@ -221,7 +221,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       if (generateNotificationsFlag == true) {
         let allchildNotis: any[] = [];
         // childList.map((child: any) => {
-        const notiExist = allnotis.find((item) => String(item.childuuid) == String(activeChild.uuid))
+        const notiExist = allnotis?.find((item) => String(item.childuuid) == String(activeChild.uuid))
         console.log("notiExist", notiExist);
         if (notiExist != undefined) {
           // notiExist.gwcdnotis?.forEach((item) => {
