@@ -102,6 +102,12 @@ const [deviceOrientation, setDeviceOrientation] = useState(
 // );
 // useFocusEffect(
 //   React.useCallback(() => {
+  useEffect(() => {
+console.log(windowWidth,windowHeight,"<><><><><><><><>")
+    setDeviceOrientation( windowWidth < windowHeight
+      ? 'portrait'
+      : 'landscape')
+  },[windowWidth,windowHeight]);
 useEffect(() => {
   const deviceOrientation = () => {
     if (windowWidth < windowHeight) {
