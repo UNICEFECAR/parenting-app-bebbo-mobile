@@ -603,27 +603,30 @@ const CustomDrawerContent = ({ navigation }: any) => {
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufeedbackTxt')}</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => {
-            const options = {
-              AppleAppID:"389801252",
-              GooglePackageName:"org.unicef.ecar.parentbuddy",
-              // AmazonPackageName:"com.mywebsite.myapp",
-              // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
-              preferredAndroidMarket: AndroidMarket.Google,
-              // preferInApp:true,
-              // openAppStoreIfInAppFails:true,
-              // fallbackPlatformURL:"https://tesmobility.datamatics.com/Bebbo",
-            }
-            Rate.rate(options, (success, errorMessage)=>{
-              if (success) {
-                console.log('rated successfully');
-                // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
-                // this.setState({rated:true})
-              }
-              if (errorMessage) {
-                // errorMessage comes from the native code. Useful for debugging, but probably not for users to view
-                console.error(`Example page Rate.rate() error: ${errorMessage}`)
-              }
-            })
+            Platform.OS === 'android' ? Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo') :
+            Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id376771144?action=write-review');
+            //  Linking.openURL("market://details?id=com.whatsapp")
+            // const options = {
+            //   AppleAppID:"389801252",
+            //   GooglePackageName:"org.unicef.ecar.parentbuddy",
+            //   // AmazonPackageName:"com.mywebsite.myapp",
+            //   // OtherAndroidURL:"http://www.randomappstore.com/app/47172391",
+            //   preferredAndroidMarket: AndroidMarket.Google,
+            //   // preferInApp:true,
+            //   // openAppStoreIfInAppFails:true,
+            //   // fallbackPlatformURL:"https://tesmobility.datamatics.com/Bebbo",
+            // }
+            // Rate.rate(options, (success, errorMessage)=>{
+            //   if (success) {
+            //     console.log('rated successfully');
+            //     // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+            //     // this.setState({rated:true})
+            //   }
+            //   if (errorMessage) {
+            //     // errorMessage comes from the native code. Useful for debugging, but probably not for users to view
+            //     console.error(`Example page Rate.rate() error: ${errorMessage}`)
+            //   }
+            // })
            }}>
             <OuterIconRow>
               <OuterIconLeft15>
