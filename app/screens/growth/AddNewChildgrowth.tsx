@@ -598,7 +598,7 @@ useEffect(() => {
     <>
       <View style={{ flex: 1, backgroundColor: headerColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-        <ScrollView nestedScrollEnabled={true}>
+        <ScrollView nestedScrollEnabled={true}  keyboardShouldPersistTaps={'always'}>
           <HeaderRowView
             style={{
               backgroundColor: headerColor,
