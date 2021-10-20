@@ -325,8 +325,8 @@ const Activities = ({ route, navigation }: Props) => {
   const SuggestedActivities = React.memo(({ item, section, index }) => {
     console.log(section, "SuggestedActivities", item.id);
     return (
-      <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
         <ArticleListContainer>
+           <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
           <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
@@ -354,8 +354,9 @@ const Activities = ({ route, navigation }: Props) => {
         } */}
           </ArticleListContent>
           {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
+          </Pressable>
         </ArticleListContainer>
-      </Pressable>
+     
     )
   });
 
