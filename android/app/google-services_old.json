@@ -7,26 +7,26 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:185520625819:android:489448d8c459b86af30e3e",
+        "mobilesdk_app_id": "1:185520625819:android:73c12146f7fd1fccf30e3e",
         "android_client_info": {
-          "package_name": "org.unicef.ecar.bebbo"
+          "package_name": "com.parentbuddyapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "185520625819-016knpp029t553482gvp224o10233rm0.apps.googleusercontent.com",
+          "client_id": "185520625819-28tfc28j803gkc8j00avc93uus5uek1q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "org.unicef.ecar.bebbo",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+            "package_name": "com.parentbuddyapp",
+            "certificate_hash": "4121df99e99b65dfc331ba3ea806a5ad19ed7f73"
           }
         },
         {
-          "client_id": "185520625819-ev8c45se66bq89huhafhoslcl8a2fh05.apps.googleusercontent.com",
+          "client_id": "185520625819-ca8pinumif29d1gj1cmb9jm3814n7g55.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "org.unicef.ecar.bebbo",
-            "certificate_hash": "4121df99e99b65dfc331ba3ea806a5ad19ed7f73"
+            "package_name": "com.parentbuddyapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
