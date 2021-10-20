@@ -8,37 +8,37 @@ import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavArticles = (props: any) => {
-  const DATA = [
-    {
-      id: '1',
-      imagePath: require('@assets/trash/card1.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '2',
-      imagePath: require('@assets/trash/card2.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '3',
-      imagePath: require('@assets/trash/card3.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '4',
-      imagePath: require('@assets/trash/card4.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '5',
-      imagePath: require('@assets/trash/card5.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '6',
-      imagePath: require('@assets/trash/card6.jpeg'),
-      title: 'Picking stuff around',
-    },
+  const DATA:any[] = [
+    // {
+    //   id: '1',
+    //   imagePath: require('@assets/trash/card1.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '2',
+    //   imagePath: require('@assets/trash/card2.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '3',
+    //   imagePath: require('@assets/trash/card3.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '4',
+    //   imagePath: require('@assets/trash/card4.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '5',
+    //   imagePath: require('@assets/trash/card5.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '6',
+    //   imagePath: require('@assets/trash/card6.jpeg'),
+    //   title: 'Picking stuff around',
+    // },
   ];
   const navigation = useNavigation();
 
