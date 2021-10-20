@@ -198,7 +198,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
     try {
       const result = await Share.share({
         // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
-        message: t('appShareText')+'\nhttp://tesmobility.datamatics.com/Bebbo', 
+        message: t('appShareText')+'\nhttps://tesmobility.datamatics.com/Bebbo/install.html',
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
