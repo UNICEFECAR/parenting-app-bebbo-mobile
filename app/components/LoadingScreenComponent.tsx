@@ -51,7 +51,7 @@ const LoadingScreenComponent = (props: any) => {
               <PartnerLogo 
               style={{
                 flex: 1,
-                resizeMode: 'cover'
+                resizeMode: 'contain'
               }}
                 source={
                   sponsors?.country_national_partner!=null
@@ -71,7 +71,7 @@ const LoadingScreenComponent = (props: any) => {
               <SponsorLogo
               style={{
                 flex: 1,
-                resizeMode: 'cover'
+                resizeMode: 'contain'
               }}
                 source={
                   sponsors?.country_sponsor_logo!=null
