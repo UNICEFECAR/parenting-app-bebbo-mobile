@@ -596,7 +596,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             />	
           </FormContainerFlex>	
           {isVaccineMeasured ? (	
-            <FormContainer>	
+            <FormContainerFlex>	
               {takenVaccine?.length > 0 ?	
                 (<ShiftFromTop15>	
                   <FormInputText>	
@@ -620,7 +620,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   onPlannedVaccineToggle={onPlannedVaccineToggle}	
                 />	
               </ShiftFromTop15> : null}	
-              <FormContainer>	
+              <FormContainerFlex>	
                 <FormInputText>	
                   <Heading3>{t('vcPrev')}</Heading3>	
                 </FormInputText>	
@@ -632,8 +632,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   isEditScreen={showDelete}
                   onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}	
                 />	
-              </FormContainer>	
-            </FormContainer>	
+              </FormContainerFlex>	
+            </FormContainerFlex>	
           ) : null}	
       </>	
     )	
