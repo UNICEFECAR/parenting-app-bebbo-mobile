@@ -10,7 +10,7 @@ import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavActivities = (props: any) => {
   const navigation = useNavigation()
-  const DATA:any = [
+  const DATA:any[] = [
     // {
     //   id: '1',
     //   imagePath: require('@assets/trash/card4.jpeg'),
