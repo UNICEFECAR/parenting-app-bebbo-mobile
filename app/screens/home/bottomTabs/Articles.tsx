@@ -70,8 +70,8 @@ const Articles = ({route, navigation}: Props) => {
   const RenderArticleItem = React.memo(({item, index}) => {
     console.log("renderArticleItem-",index)
     return(
-      <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
         <ArticleListContainer>
+          <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
           <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/> 
            <ArticleListContent>
              <ShiftFromTopBottom5>
@@ -80,8 +80,9 @@ const Articles = ({route, navigation}: Props) => {
            <Heading3>{item.title}</Heading3>
            </ArticleListContent>
            {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/> */}
+           </Pressable>
          </ArticleListContainer>
-       </Pressable>
+      
 
   ) 
 });
