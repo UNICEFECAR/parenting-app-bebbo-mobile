@@ -253,7 +253,13 @@ export const checkBetween = async (param: any, users: any, child_age: any) => {
     if(child_age.length>0){
     if(itemset>child_age[child_age.length-1].days_to){
       console.log(child_age[child_age.length-1],"..last taxonomy dataset..")
-      ageData.push(child_age[child_age.length-1]);
+      // ageData.push(child_age[child_age.length-1]);
+      if (param == 0) {
+        ageData.push(child_age[child_age.length-1].id);
+      }
+      else {
+        ageData.push(child_age[child_age.length-1]);
+      }
       console.log(ageData,"..last taxonomy..")
     }
     else{
