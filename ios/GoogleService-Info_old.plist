@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>185520625819-qc2dnj0lo720h08fqo44ame1c1dp992k.apps.googleusercontent.com</string>
+	<string>185520625819-fcdc8edjttcc2u48uusvh2mcq0ah6ap5.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.185520625819-qc2dnj0lo720h08fqo44ame1c1dp992k</string>
+	<string>com.googleusercontent.apps.185520625819-fcdc8edjttcc2u48uusvh2mcq0ah6ap5</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>185520625819-016knpp029t553482gvp224o10233rm0.apps.googleusercontent.com</string>
+	<string>185520625819-28tfc28j803gkc8j00avc93uus5uek1q.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>***REMOVED***</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.unicef.ecar.bebbo</string>
+	<string>com.datamatics.bebbo</string>
 	<key>PROJECT_ID</key>
 	<string>ecaro-bebbo</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:185520625819:ios:ea237f09706bfd59f30e3e</string>
+	<string>1:185520625819:ios:d3ae5218793a342ef30e3e</string>
 </dict>
 </plist>
