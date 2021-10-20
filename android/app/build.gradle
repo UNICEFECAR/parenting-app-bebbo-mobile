@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.parentbuddyapp"
+        applicationId "org.unicef.ecar.bebbo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

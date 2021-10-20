@@ -8,7 +8,7 @@ import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavArticles = (props: any) => {
-  const DATA:any= [
+  const DATA:any[] = [
     // {
     //   id: '1',
     //   imagePath: require('@assets/trash/card1.jpeg'),
