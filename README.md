@@ -92,6 +92,12 @@ git clone https://github.com/github_username/repo_name.git
 ```sh
 npm install
 ```
+create .env file at project root
+and add
+
+```sh
+apiUrlDevelop = 'https://hostname.com/api'
+```
 3. Only on Mac, go to "ios" folder, and run
 ```sh
 pod install
