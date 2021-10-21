@@ -98,6 +98,10 @@ and add
 ```sh
 apiUrlDevelop = 'https://hostname.com/api'
 ```
+configure custom icons used in App 
+from android/app/src/main/assets/fonts/fontello.ttf
+using from https://github.com/oblador/react-native-vector-icons#custom-fonts
+
 3. Only on Mac, go to "ios" folder, and run
 ```sh
 pod install
