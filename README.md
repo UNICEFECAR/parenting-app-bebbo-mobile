@@ -111,7 +111,7 @@ pod install
     - Enable Google Drive API from Cloud Console.
     - Choose Scope For Drive Access
     - Copy Access key from GoogleInfo.plist and add in ios/info.plist as
-    ```
+    ```sh
         <key>CFBundleURLTypes</key>
         <array>
         <dict>
@@ -123,13 +123,13 @@ pod install
         </array>
         </dict>
         </array>        
-```-->
+```
 <!-- RUNNING -->
 ## Running
 
 After you install the application you can run it with one of the several npm run scripts.
 
-```sh
+```
 npm run android
 npm run android-release
 npm run ios
