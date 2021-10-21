@@ -123,13 +123,13 @@ pod install
         </array>
         </dict>
         </array>        
-```-->
+
 <!-- RUNNING -->
 ## Running
 
 After you install the application you can run it with one of the several npm run scripts.
 
-```
+```sh
 npm run android
 npm run android-release
 npm run ios
