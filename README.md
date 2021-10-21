@@ -150,7 +150,7 @@ npm run ios-device-release
 npm run ios-iphone-se
 npm run ios-release
 ```
-
+<!--
 There are several other NPM scripts that can be useful during development. Check package.json for details.
 
 
