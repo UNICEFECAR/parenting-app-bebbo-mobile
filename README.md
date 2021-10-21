@@ -122,6 +122,7 @@ export const apiConfig = {
     - Enable Google Drive API from Cloud Console.
     - Choose Scope For Drive Access
     - Copy Access key from GoogleInfo.plist and add in ios/info.plist as
+    ```
         <key>CFBundleURLTypes</key>
         <array>
         <dict>
@@ -133,7 +134,7 @@ export const apiConfig = {
         </array>
         </dict>
         </array>        
-
+```
 
 <!-- RUNNING -->
 ## Running
