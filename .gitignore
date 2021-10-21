@@ -35,4 +35,7 @@ android/gradle.properties
 
 
 *.plist
+google-services.json
+google-services_old.json
+debug.keystore
 *.keystore
