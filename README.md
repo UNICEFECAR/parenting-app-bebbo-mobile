@@ -107,8 +107,8 @@ export const apiConfig = {
     apiAuthUsername: '...',
     apiAuthPassword: '...',
 };
-```
-5. Configure Firebase services
+```-->
+4. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
     - Use Firebase wizards to create these:
@@ -117,7 +117,7 @@ export const apiConfig = {
     - Copy files here:
         -  android/app/google-services.json
         - ios/GoogleService-Info.plist
--->
+
 
 <!-- RUNNING -->
 ## Running
