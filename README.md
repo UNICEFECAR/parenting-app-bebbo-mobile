@@ -96,18 +96,7 @@ npm install
 ```sh
 pod install
 ```
-<!-- 4. Create  "src/app/apiConfig.ts"
-    - Server part of "Parent Buddy" is Drupal application
-    - Administrator of Drupal application should give you values that you should put in apiConfig.ts
-    - apiConfig.ts should look like this
-```
-export const apiConfig = {
-    apiUsername: '...',
-    apiPassword: '...',
-    apiAuthUsername: '...',
-    apiAuthPassword: '...',
-};
-```-->
+
 4. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
@@ -134,14 +123,13 @@ export const apiConfig = {
         </array>
         </dict>
         </array>        
-```
--->
+```-->
 <!-- RUNNING -->
 ## Running
 
 After you install the application you can run it with one of the several npm run scripts.
 
-```
+```sh
 npm run android
 npm run android-release
 npm run ios
@@ -150,7 +138,7 @@ npm run ios-device-release
 npm run ios-iphone-se
 npm run ios-release
 ```
-<!--
+
 There are several other NPM scripts that can be useful during development. Check package.json for details.
 <!-- LICENSE -->
 ## License
