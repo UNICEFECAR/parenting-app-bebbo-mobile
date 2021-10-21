@@ -123,7 +123,7 @@ pod install
         </array>
         </dict>
         </array>        
-```
+```-->
 <!-- RUNNING -->
 ## Running
 
