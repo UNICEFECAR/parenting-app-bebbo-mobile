@@ -96,7 +96,7 @@ npm install
 ```sh
 pod install
 ```
-
+Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
 4. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
@@ -130,9 +130,9 @@ pod install
 After you install the application you can run it with one of the several npm run scripts.
 
 ```sh
-npm run android
-npm run android-release
-npm run ios
+npx react-native run-android
+npx react-native run-android --variant=release
+npx react-native run-ios
 npm run ios-device
 npm run ios-device-release
 npm run ios-iphone-se
