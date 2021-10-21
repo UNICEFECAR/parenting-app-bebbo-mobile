@@ -130,7 +130,7 @@ export const apiConfig = {
         <string>Editor</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}/string>
+        <string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
         </array>
         </dict>
         </array>        
