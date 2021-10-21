@@ -118,6 +118,22 @@ export const apiConfig = {
         -  android/app/google-services.json
         - ios/GoogleService-Info.plist
 
+5. configure google Signin and GDrive Import/Export
+    - Enable Google Drive API from Cloud Console.
+    - Choose Scope For Drive Access
+    - Copy Access key from GoogleInfo.plist and add in ios/info.plist as
+        <key>CFBundleURLTypes</key>
+        <array>
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}/string>
+        </array>
+        </dict>
+        </array>        
+
 
 <!-- RUNNING -->
 ## Running
