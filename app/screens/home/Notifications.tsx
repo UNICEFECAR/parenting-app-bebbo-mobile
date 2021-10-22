@@ -5,7 +5,6 @@ import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
 import { ButtonColTwo, ButtonContainerTwo, ButtonSecondary, ButtonSecondaryTint, ButtonText } from '@components/shared/ButtonGlobal';
-import { FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { OuterIconRow, OuterIconSpace } from '@components/shared/Icon';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -17,7 +16,6 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, AppState, BackHandler, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setAllNotificationData } from '../../redux/reducers/notificationSlice';
@@ -448,8 +446,9 @@ const Notifications = () => {
                 <View style={{ marginVertical: 0, paddingBottom: 10 }}>
                   {
 
-                    notifications.map((item, index) => {
-                      if (selectedCategories.length == 0) {
+                   
+                      (selectedCategories.length == 0) ? 
+                        notifications.map((item, index) => {
                         return (
                           <View key={index}>
                             <NotificationItem
@@ -464,7 +463,10 @@ const Notifications = () => {
                             />
                           </View>
                         );
-                      } else {
+                      })
+                      :
+                       notifications.find((item) => selectedCategories.includes(item.type)) 
+                       ? notifications.map((item, index) => {
                         if (selectedCategories.includes(item.type)) {
                           return (
                             <View key={index}>
@@ -481,9 +483,9 @@ const Notifications = () => {
                             </View>
                           );
                         }
-                      }
-
-                    })}
+                    })
+                    :<Heading4Center>{t('noDataTxt')}</Heading4Center>
+                    }
                 </View>
               </ScrollView> : isLoading==true ? <ActivityIndicator size="large" color={primaryColor} animating={true}/>:<Heading4Center>{t('noDataTxt')}</Heading4Center>}
           {
