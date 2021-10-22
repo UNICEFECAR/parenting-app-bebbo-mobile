@@ -27,7 +27,7 @@ const ShareFavButtons = (props: any) => {
    // console.log('share');
     try {
       const result = await Share.share({
-        message:item ? item.title :t('appShareText')
+        message:item ? item.title :t('appShareText')+'\nhttps://dev.bebbo.app/share'
             });
       if (result.action === Share.sharedAction) {
         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
