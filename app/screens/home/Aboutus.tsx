@@ -52,6 +52,7 @@ const Aboutus = ({navigation}: Props) => {
           <View>
             <ScrollView contentContainerStyle={{paddingBottom: 80,paddingHorizontal:10,paddingTop:0}}>
 
+
             { aboutusdata != "" ? 
             <HTML
               source={{html: aboutusdata}}

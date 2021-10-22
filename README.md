@@ -92,23 +92,24 @@ git clone https://github.com/github_username/repo_name.git
 ```sh
 npm install
 ```
+create .env file at project root
+and add
+
+```sh
+apiUrlDevelop = 'https://hostname.com/api'
+```
+configure custom icons used in App 
+from android/app/src/main/assets/fonts/fontello.ttf
+using from https://github.com/oblador/react-native-vector-icons#custom-fonts
+
 3. Only on Mac, go to "ios" folder, and run
 ```sh
 pod install
 ```
-<!-- 4. Create  "src/app/apiConfig.ts"
-    - Server part of "Parent Buddy" is Drupal application
-    - Administrator of Drupal application should give you values that you should put in apiConfig.ts
-    - apiConfig.ts should look like this
-```
-export const apiConfig = {
-    apiUsername: '...',
-    apiPassword: '...',
-    apiAuthUsername: '...',
-    apiAuthPassword: '...',
-};
-```
-5. Configure Firebase services
+Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
+
+
+4. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
     - Use Firebase wizards to create these:
@@ -117,17 +118,33 @@ export const apiConfig = {
     - Copy files here:
         -  android/app/google-services.json
         - ios/GoogleService-Info.plist
--->
+
+5. configure google Signin and GDrive Import/Export
+    - Enable Google Drive API from Cloud Console.
+    - Choose Scope For Drive Access
+    - Copy Access key from GoogleInfo.plist and add in ios/info.plist as
+    ```sh
+        <key>CFBundleURLTypes</key>
+        <array>
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
+        </array>
+        </dict>
+        </array>        
 
 <!-- RUNNING -->
 ## Running
 
 After you install the application you can run it with one of the several npm run scripts.
 
-```
-npm run android
-npm run android-release
-npm run ios
+```sh
+npx react-native run-android
+npx react-native run-android --variant=release
+npx react-native run-ios
 npm run ios-device
 npm run ios-device-release
 npm run ios-iphone-se
@@ -135,112 +152,6 @@ npm run ios-release
 ```
 
 There are several other NPM scripts that can be useful during development. Check package.json for details.
-
-
-<!-- SOURCE CODE OVERVIEW
-## Source Code Overview
-
-- Configuration
-    - Most of the configuration can be done from “src/app/appConfig.ts”
-- Backup
-    - Code related to backup is here “src/app/backup.tsx”
-    - Backup is done to Google Drive
-- Error handling
-    - Custom error handling code is here “src/app/errors.ts”
-    - Custom error handling is initialized from App component by calling initGlobalErrorHandler()
-- Content (articles, etc)
-    - Content related helpers: “src/app/content.ts”
-    - Content is downloaded from the Drupal
-    - Images are saved on mobile file system
-    - Articles, home messages etc are save din realm database
-- Services related code
-    - src/app/facebook.ts
-        - Used for login
-    - src/app/googleAuth.ts
-        - Used for login
-    - src/app/googleDrive.ts
-        - Used for backup
-- Home messages
-    - Code related to showing home messages: src/app/homeMessages.ts
-- Localization related code
-    - src/app/localize.ts
-- Syncing data with server
-    - Code related to downloading data from the Drupal API: “src/app/syncData.ts”
-- Utilities
-    - src/app/utils.ts
-- Analytics
-    - Firebase Analytics is used
-    - There is one method that is called for all analytic logs: logAnalitic
-        - Its defined in “src/app/utils.ts”
-- Custom UI components
-    - There are many custom UI components defined here: “src/components”
-    - They are divided per feature
-        - development
-        - doctor-visit
-        - growth
-        - vaccinations
-        - …
-- Navigation screens
-    - All navigation screens are here “src/screens”
-    - They are divided into feature folders
-- API related code
-    - src/stores/apiStore.ts
-    - This is code that communicates with Drupal API
-- Entities
-    - These are the main entities of the application
-    - src/stores/BasicPageEntity.ts
-        - Data from Drupal, same structure is in Realm
-    - src/stores/CategoryArticlesViewEntity.ts
-    - src/stores/ChildEntity.ts
-    - src/stores/ContentEntity.ts
-        - Data from Drupal, same structure is in Realm
-    - src/stores/ContentViewEntity.ts
-    - src/stores/DailyMessageEntity.ts
-        - Data from Drupal, same structure is in Realm
-    - src/stores/MilestoneEntity.ts
-        - Data from Drupal, same structure is in Realm
-    - src/stores/PollsEntity.ts
-        - Data from Drupal, same structure is in Realm
-    - src/stores/ConfigSettingsEntity.ts
-- Realm related code
-    - Configure realms
-        - src/stores/dataRealmConfig.ts
-        - src/stores/userRealmConfig.ts
-    - React contexts
-        - src/stores/DataRealmContext.tsx
-        - src/stores/UserRealmContext.tsx
-        - src/stores/DataUserRealmsContext.tsx
-    - Helper functions
-        - src/stores/dataRealmStore.ts
-        - src/stores/userRealmStore.ts
-- UI translation
-    - src/translations
-- Hard coded data that is specific to language
-    - src/translationsData
-- Storybook visual tests
-    - storybook folder
- -->
-
-<!-- REALM DATABASES 
-## Realm Databases
-
-Two Realm databases are created by the application:
-
-- data
-    - Contains data downloaded from the Drupal API
-    - Structure of the Realm classes is saved here:
-        - src/stores/BasicPageEntity.ts
-        - src/stores/ContentEntity.ts
-        - src/stores/DailyMessageEntity.ts
-        - src/stores/MilestoneEntity.ts
-        - src/stores/PollsEntity.ts
-        - src/stores/ConfigSettingsEntity.ts
-- user
-    - Contains user specific data
-    - Structure of the Realm classes is saved here:
-        - src/stores/ChildEntity.ts
--->
-
 <!-- LICENSE -->
 ## License
 
