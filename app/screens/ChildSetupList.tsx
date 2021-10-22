@@ -1,3 +1,4 @@
+import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
@@ -19,13 +20,12 @@ import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import { RootStackParamList } from '@navigation/types';
+import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { DateTime } from 'luxon';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -42,8 +42,6 @@ type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'AddSiblingDataScreen'
 >;
-import analytics from '@react-native-firebase/analytics';
-import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 type Props = {
   navigation: ChildSetupNavigationProp;
 };
@@ -109,12 +107,12 @@ const ChildSetupList = ({ navigation }: Props) => {
     {
           childList.length> 1 ? (
             <ChildListAction>
-            <TitleLinkSm numberOfLines={2} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+            <TitleLinkSm numberOfLines={3} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
             </ChildListAction>
             ) :null
           }
           <ChildListAction>
-      <TitleLinkSm numberOfLines={2} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+      <TitleLinkSm numberOfLines={3} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
       </ChildListAction>
     </ChildColArea2>
   </ChildListingBox>
