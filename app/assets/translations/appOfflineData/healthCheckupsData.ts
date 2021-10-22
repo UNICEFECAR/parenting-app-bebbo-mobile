@@ -467,6 +467,16 @@ export const healthCheckupsData:any = {
     ],
     "bg-bg": [
         {
+            "id": 59031,
+            "type": "Health Check-ups - Age Periods",
+            "title": "На навършени 21 месеца",
+            "growth_period": 6537,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 17:45",
+            "updated_at": "Thu, 10/07/2021 - 09:12"
+        },
+        {
             "id": 56151,
             "type": "Health Check-ups - Age Periods",
             "title": "При навършени 78 месеца",
@@ -1033,6 +1043,16 @@ export const healthCheckupsData:any = {
     ],
     "xk-rs": [
         {
+            "id": 59036,
+            "type": "Health Check-ups - Age Periods",
+            "title": "između 37 i 48 meseci",
+            "growth_period": 59041,
+            "pinned_article": 4511,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 17:52",
+            "updated_at": "Thu, 10/07/2021 - 11:14"
+        },
+        {
             "id": 57741,
             "type": "Health Check-ups - Age Periods",
             "title": "između 37 i 48 meseci",
@@ -1428,6 +1448,16 @@ export const healthCheckupsData:any = {
         }
     ],
     "me-cnr": [
+        {
+            "id": 59066,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Nakon 8 mjeseci",
+            "growth_period": 6516,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 18:10",
+            "updated_at": "Fri, 10/08/2021 - 10:52"
+        },
         {
             "id": 24576,
             "type": "Health Check-ups - Age Periods",
@@ -2383,7 +2413,7 @@ export const healthCheckupsData:any = {
             "updated_at": "Mon, 09/27/2021 - 20:12"
         }
     ],
-    "uz-uz": [
+    "uz-uz":  [
         {
             "id": 57766,
             "type": "Health Check-ups - Age Periods",

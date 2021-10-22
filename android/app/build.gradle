@@ -130,11 +130,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.parentbuddyapp"
+        applicationId "org.unicef.ecar.bebbo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "0.12.3"
+        versionName "1.0.1"
     }
     splits {
         abi {

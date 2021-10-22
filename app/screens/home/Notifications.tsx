@@ -411,7 +411,7 @@ const Notifications = () => {
     <>
       <View style={{flex:1,backgroundColor:primaryColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
-        <View style={{ flex:1,flexDirection: 'column', paddingBottom: 35,backgroundColor:'#FFF'}}>
+        <View style={{ flex:1,flexDirection: 'column', backgroundColor:'#FFF'}}>
           <HeaderRowView
             style={{
               backgroundColor: primaryColor,

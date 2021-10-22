@@ -342,7 +342,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 93BCKGKLMZ;
+						DevelopmentTeam = K288UMKCNF;
 						LastSwiftMigration = 1250;
 						ProvisioningStyle = Manual;
 					};
@@ -801,7 +801,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				HEADER_SEARCH_PATHS = (
@@ -892,15 +892,15 @@
 				);
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.12.3;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.bebbo;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
+				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -918,18 +918,18 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.12.3;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.bebbo;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
+				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
