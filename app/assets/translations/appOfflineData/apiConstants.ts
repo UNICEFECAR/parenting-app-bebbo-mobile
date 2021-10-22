@@ -16,6 +16,7 @@ export const backupGDriveFileName= 'my.backup';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
+export const shareText='\nhttps://dev.bebbo.app/share';
 export const maleData:any={
     "id": 37,
     "name": "Male",
