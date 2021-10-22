@@ -5,10 +5,12 @@ import {
   ButtonColTwo,
   ButtonContainer,
   ButtonContainerTwo,
+  ButtonDelPress,
   ButtonPrimary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -594,7 +596,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             />	
           </FormContainerFlex>	
           {isVaccineMeasured ? (	
-            <FormContainer>	
+            <FormContainerFlex>	
               {takenVaccine?.length > 0 ?	
                 (<ShiftFromTop15>	
                   <FormInputText>	
@@ -618,7 +620,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   onPlannedVaccineToggle={onPlannedVaccineToggle}	
                 />	
               </ShiftFromTop15> : null}	
-              <FormContainer>	
+              <FormContainerFlex>	
                 <FormInputText>	
                   <Heading3>{t('vcPrev')}</Heading3>	
                 </FormInputText>	
@@ -630,8 +632,8 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   isEditScreen={showDelete}
                   onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}	
                 />	
-              </FormContainer>	
-            </FormContainer>	
+              </FormContainerFlex>	
+            </FormContainerFlex>	
           ) : null}	
       </>	
     )	
@@ -659,12 +661,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
             </HeaderTitleView>
             {showDelete ?
               <HeaderActionView>
-                <Pressable
+                <ButtonDelPress
                   onPress={() => {
                     setModalVisible(true);
                   }}>
-                  <Text>{t('growthScreendeletebtnText')}</Text>
-                </Pressable>
+                  <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+                </ButtonDelPress>
               </HeaderActionView> : null}
           </HeaderRowView>
 

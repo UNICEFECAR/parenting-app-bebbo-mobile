@@ -87,9 +87,11 @@ const LoadableImage = (props:any) => {
 //                   })
         // setNoImage(imagePath);
         if(!toggleSwitchVal && netInfo.isConnected ==true){
+        if (item['cover_image'] != "" && item['cover_image'] != null && item['cover_image'] != undefined && item['cover_image'].url != "" && item['cover_image'].url != null && item['cover_image'].url != undefined) {
           FastImage.preload([{
             uri:item['cover_image'].url
           }]);
+        }
         }
         }
         // async function fetchData() {

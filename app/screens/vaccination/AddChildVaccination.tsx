@@ -5,10 +5,12 @@ import {
   ButtonColTwo,
   ButtonContainer,
   ButtonContainerTwo,
+  ButtonDelPress,
   ButtonSecondary,
   ButtonSecondaryTint,
   ButtonTertiary,
-  ButtonText
+  ButtonText,
+  ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
   FormContainer,
@@ -539,12 +541,12 @@ useEffect(() => {
             <Heading2 numberOfLines={1}>{showDelete ? t('editVcTitle') : t('addVcTitle')}</Heading2>
           </HeaderTitleView>
           {showDelete ? <HeaderActionView>
-            <Pressable
+            <ButtonDelPress
               onPress={() => {
                 setModalVisible(true);
               }}>
-              <Text>{t('growthScreendeletebtnText')}</Text>
-            </Pressable>
+              <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+            </ButtonDelPress>
           </HeaderActionView> : null}
         </HeaderRowView>
 
@@ -651,7 +653,7 @@ useEffect(() => {
                 />
               </FormContainerFlex>
               : null}
-            <FormContainer>
+            <FormContainerFlex>
               <FormInputText>
                 <Heading3>{t('vcPrev')}</Heading3>
               </FormInputText>
@@ -663,7 +665,7 @@ useEffect(() => {
                 isEditScreen={showDelete}
                 onPrevPlannedVaccineToggle={onPrevPlannedVaccineToggle}
               />
-            </FormContainer>
+            </FormContainerFlex>
 
             <FormContainerFlex>
               <FormInputText>
@@ -737,7 +739,7 @@ useEffect(() => {
               </>
             ) : null}
 
-            <FormContainer>
+            <FormContainerFlex>
               <FormInputText>
                 <Heading3>{t('vcDoctorRemark')}</Heading3>
               </FormInputText>
@@ -757,7 +759,7 @@ useEffect(() => {
                   />
                 </TextAreaBox>
              
-            </FormContainer>
+            </FormContainerFlex>
 
           </MainContainer>
           <ButtonContainer>
