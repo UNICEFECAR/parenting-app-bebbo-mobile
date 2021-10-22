@@ -60,6 +60,7 @@ import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import { formatDate } from '../services/Utils';
+import { shareText } from '@assets/translations/appOfflineData/apiConstants';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -198,7 +199,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
     try {
       const result = await Share.share({
         // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
-        message: t('appShareText')+'\nhttps://dev.bebbo.app/share', 
+        message: t('appShareText')+shareText, 
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
