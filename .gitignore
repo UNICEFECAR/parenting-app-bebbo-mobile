@@ -40,4 +40,5 @@ google-services_old.json
 debug.keystore
 GoogleService-Info.plist
 GoogleService-Info_old.plist
+Info.plist
 *.keystore
