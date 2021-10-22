@@ -242,7 +242,7 @@ const ChildSetup = ({ navigation }: Props) => {
                     <OrView>
                     <OrDivider><Text></Text></OrDivider>
                       <OrHeadingView>
-                      <Heading3Centerw>OR</Heading3Centerw>
+                      <Heading3Centerw>{t('ORkeyText')}</Heading3Centerw>
                       </OrHeadingView>
                       
                     </OrView>

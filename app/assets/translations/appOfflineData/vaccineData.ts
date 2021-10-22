@@ -826,12 +826,12 @@ export const vaccineData:any = {
             "uuid": "b12a0626-b08b-4758-90e2-fd6e2b4c1ebc",
             "id": 59061,
             "type": "Vaccinations - Age Periods",
-            "title": "κατά ανεμευλογιάς (VAR) - δεύτερη δόση",
+            "title": "κατά της Ανεμευλογιάς (VAR) - δεύτερη δόση",
             "growth_period": 59326,
             "pinned_article": 5071,
             "pinned_video_article": 0,
             "created_at": "Wed, 10/06/2021 - 18:07",
-            "updated_at": "Wed, 10/06/2021 - 18:10"
+            "updated_at": "Fri, 10/15/2021 - 13:29"
         },
         {
             "uuid": "a7e6ad07-35d1-452c-9ed7-ea5bf6c134dd",
@@ -848,12 +848,12 @@ export const vaccineData:any = {
             "uuid": "c3c9f7e4-3a1f-4d3a-b97e-7569e780de28",
             "id": 59051,
             "type": "Vaccinations - Age Periods",
-            "title": "κατά Ανεμευλογιάς (VAR) - πρώτη δόση",
+            "title": "κατά της Ανεμευλογιάς (VAR) - πρώτη δόση",
             "growth_period": 6533,
             "pinned_article": 58666,
             "pinned_video_article": 0,
             "created_at": "Wed, 10/06/2021 - 18:03",
-            "updated_at": "Wed, 10/06/2021 - 18:04"
+            "updated_at": "Fri, 10/15/2021 - 13:29"
         },
         {
             "uuid": "fd094bf7-9223-4fc8-a287-4c6adf8d3d53",
@@ -870,34 +870,12 @@ export const vaccineData:any = {
             "uuid": "e95fa788-c84f-4b9b-8b0a-c61c06053632",
             "id": 59041,
             "type": "Vaccinations - Age Periods",
-            "title": "\"κατά Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib), Πολιομυελίτιδας αδρανοποιημένο (IPV)- τρίτη δόση\"",
+            "title": "κατά Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib), Πολιομυελίτιδας αδρανοποιημένο (IPV)- τρίτη δόση",
             "growth_period": 6501,
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Wed, 10/06/2021 - 17:55",
-            "updated_at": "Wed, 10/06/2021 - 17:57"
-        },
-        {
-            "uuid": "a258ee4c-896c-46f4-be3c-f1f391416ec8",
-            "id": 57706,
-            "type": "Vaccinations - Age Periods",
-            "title": "Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη (DtaP)-πέμπτη δόση, Πολιομυελίτιδας αδρανοποιημένο (IPV)- τέταρτη δόση, Ηπατίτιδας Α (HepA) – δεύτερη δόση ",
-            "growth_period": 59326,
-            "pinned_article": 4896,
-            "pinned_video_article": 0,
-            "created_at": "Wed, 08/11/2021 - 10:42",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
-        },
-        {
-            "uuid": "dc893467-7190-4eae-9678-6d46bbed494e",
-            "id": 57701,
-            "type": "Vaccinations - Age Periods",
-            "title": "Ιλαράς, Παρωτίτιδας, Ερυθράς (MMR), Ανεμευλογιάς (VAR) – δεύτερη δόση, Ηπατίτιδας Α (HepA)- πρώτη δόση",
-            "growth_period": 59326,
-            "pinned_article": 5071,
-            "pinned_video_article": 0,
-            "created_at": "Wed, 08/11/2021 - 10:42",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
+            "updated_at": "Fri, 10/15/2021 - 01:54"
         },
         {
             "uuid": "50195f72-7c5f-4ebd-8d25-f2513fbe56a4",
@@ -914,89 +892,78 @@ export const vaccineData:any = {
             "uuid": "0acd26a0-2b22-4262-8035-33996f1f378a",
             "id": 56871,
             "type": "Vaccinations - Age Periods",
-            "title": "Ηπατίτιδας Β (HepB), Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib)- τέταρτη δόση, Πνευμονιόκοκκου συζευγμένο (PCV)-τρίτη δόση",
+            "title": "κατά Ηπατίτιδας Β (HepB), Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib)- τέταρτη δόση, Πνευμονιόκοκκου συζευγμένο (PCV)-τρίτη δόση",
             "growth_period": 59076,
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 16:00",
-            "updated_at": "Wed, 09/22/2021 - 18:15"
+            "updated_at": "Fri, 10/15/2021 - 01:55"
         },
         {
             "uuid": "0a08ec47-ab3c-4c05-961e-fdc7c99cca04",
             "id": 56866,
             "type": "Vaccinations - Age Periods",
-            "title": "Μηνιγγιτιδόκοκκου οροομάδας C συζευγμένο (MCC), Ιλαράς, Παρωτίτιδας, Ερυθράς (MMR), Ανεμευλογιάς (VAR)- πρώτη δόση",
+            "title": "κατά Μηνιγγιτιδόκοκκου οροομάδας C συζευγμένο (MCC), Ιλαράς, Παρωτίτιδας, Ερυθράς (MMR), Ανεμευλογιάς (VAR)- πρώτη δόση",
             "growth_period": 59076,
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:59",
-            "updated_at": "Wed, 09/22/2021 - 17:40"
+            "updated_at": "Fri, 10/15/2021 - 01:56"
         },
         {
             "uuid": "0fa64cbc-4377-4592-88eb-9582af967bfc",
             "id": 56851,
             "type": "Vaccinations - Age Periods",
-            "title": "Πνευμονιόκοκκου συζευγμένο (PCV)-δεύτερη δόση",
+            "title": "κατα Πνευμονιόκοκκου συζευγμένο (PCV)-δεύτερη δόση",
             "growth_period": 6491,
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:58",
-            "updated_at": "Wed, 09/22/2021 - 17:15"
+            "updated_at": "Fri, 10/15/2021 - 13:26"
         },
         {
             "uuid": "c4ef5611-f858-4220-8d8a-1dd8711b3bf4",
             "id": 24046,
             "type": "Vaccinations - Age Periods",
-            "title": "Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Πολιομυελίτιδας αδρανοποιημένο (IPV), Αιμόφιλου ινφλουέντζας τύπου b (Hib)- δεύτερη δόση",
+            "title": "κατά Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Πολιομυελίτιδας αδρανοποιημένο (IPV), Αιμόφιλου ινφλουέντζας τύπου b (Hib)- δεύτερη δόση",
             "growth_period": 6491,
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 15:42",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
+            "updated_at": "Fri, 10/15/2021 - 13:27"
         },
         {
             "uuid": "a065f010-fc62-4cf1-8ee4-f36dc990dfa2",
             "id": 24036,
             "type": "Vaccinations - Age Periods",
-            "title": "Ηπατίτιδας Β (HepB)- τρίτη δόση, Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib), Πολιομυελίτιδας αδρανοποιημένο (IPV)- τρίτη δόση, ",
+            "title": "κατά Ηπατίτιδας Β (HepB)- τρίτη δόση, Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Αιμόφιλου ινφλουέντζας τύπου b (Hib), Πολιομυελίτιδας αδρανοποιημένο (IPV)- τρίτη δόση, ",
             "growth_period": 6501,
             "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 15:41",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
+            "updated_at": "Fri, 10/15/2021 - 13:27"
         },
         {
             "uuid": "9120d646-dc5c-40d9-8005-d3280d9c4624",
             "id": 24031,
             "type": "Vaccinations - Age Periods",
-            "title": "Πνευμονιόκοκκου συζευγμένο (PCV)  - πρώτη δόση",
+            "title": "κατά Πνευμονιόκοκκου συζευγμένο (PCV)  - πρώτη δόση",
             "growth_period": 6476,
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 15:40",
-            "updated_at": "Wed, 10/06/2021 - 15:14"
+            "updated_at": "Fri, 10/15/2021 - 01:55"
         },
         {
             "uuid": "38c6f1f8-9c74-40ea-8f94-57c5b33a5511",
             "id": 24026,
             "type": "Vaccinations - Age Periods",
-            "title": "Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Πολιομυελίτιδας αδρανοποιημένο (IPV), Αιμόφιλου ινφλουέντζας τύπου b (Hib), -πρώτη δόση",
+            "title": "κατά Διφθερίτιδας, Τετάνου, ακυτταρικό Κοκκύτη, (DtaP), Πολιομυελίτιδας αδρανοποιημένο (IPV), Αιμόφιλου ινφλουέντζας τύπου b (Hib), -πρώτη δόση",
             "growth_period": 6476,
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 15:39",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
-        },
-        {
-            "uuid": "9a696a72-77b9-494b-a6c4-1e38384aaaac",
-            "id": 24021,
-            "type": "Vaccinations - Age Periods",
-            "title": "Ηπατίτιδας Β (HepB) – δεύτερη δόση",
-            "growth_period": 6471,
-            "pinned_article": 4661,
-            "pinned_video_article": 0,
-            "created_at": "Fri, 07/16/2021 - 15:39",
-            "updated_at": "Sat, 08/28/2021 - 04:05"
+            "updated_at": "Fri, 10/15/2021 - 13:28"
         },
         {
             "uuid": "0f07e622-a862-4abe-abd0-c7b01ebc9e1d",
@@ -1544,8 +1511,206 @@ export const vaccineData:any = {
             "updated_at": "Thu, 09/30/2021 - 12:41"
         }
     ],
-    //no data
-    //"kg-ru":[],
+    "kg-ru":[
+        {
+            "uuid": "497e8154-55dc-4bda-a225-26381ae34398",
+            "id": 24001,
+            "type": "Vaccinations - Age Periods",
+            "title": "АКДС  против Коклюша, дифтерии, столбняка",
+            "growth_period": 6538,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:29",
+            "updated_at": "Thu, 10/07/2021 - 16:25"
+        },
+        {
+            "uuid": "63f0e174-9247-45fb-85d6-e685dbbfb8ab",
+            "id": 23996,
+            "type": "Vaccinations - Age Periods",
+            "title": "КПК   против Кори, эпидемического паротита, краснухи",
+            "growth_period": 6553,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:28",
+            "updated_at": "Thu, 10/07/2021 - 16:16"
+        },
+        {
+            "uuid": "5c490fbf-2e6f-4c05-8440-401445c869e7",
+            "id": 23991,
+            "type": "Vaccinations - Age Periods",
+            "title": "АДС  против Дифтерии, столбняка",
+            "growth_period": 6553,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:27",
+            "updated_at": "Thu, 10/07/2021 - 16:16"
+        },
+        {
+            "uuid": "45b02051-0f7a-43fb-a14a-4ad94d0e728f",
+            "id": 23986,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПКВ - третья доза   против Пневмококковой инфекции",
+            "growth_period": 6532,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:27",
+            "updated_at": "Thu, 10/07/2021 - 16:16"
+        },
+        {
+            "uuid": "69f08fef-18fb-4dba-8714-66612b20a121",
+            "id": 23981,
+            "type": "Vaccinations - Age Periods",
+            "title": "КПК   против Кори, эпидемического паротита, краснухи",
+            "growth_period": 6532,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:26",
+            "updated_at": "Thu, 10/07/2021 - 16:17"
+        },
+        {
+            "uuid": "fce57a41-bccd-49ce-8fb2-d0a3fe4bc544",
+            "id": 23976,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПБ  против Ротавирусной инфекции",
+            "growth_period": 6496,
+            "pinned_article": 58271,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:25",
+            "updated_at": "Thu, 10/07/2021 - 16:24"
+        },
+        {
+            "uuid": "41a6caa7-c8e8-4b9d-ba93-6d78ec3d9f15",
+            "id": 23971,
+            "type": "Vaccinations - Age Periods",
+            "title": "ОПВ И ИПВ против Полиомиелита",
+            "growth_period": 6496,
+            "pinned_article": 58241,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:25",
+            "updated_at": "Thu, 10/07/2021 - 16:24"
+        },
+        {
+            "uuid": "1a5112e5-30bb-404b-acf8-ba0eff44bd1e",
+            "id": 23966,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПКВ - вторая доза против Пневмококковой инфекции",
+            "growth_period": 6496,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:24",
+            "updated_at": "Thu, 10/07/2021 - 16:24"
+        },
+        {
+            "uuid": "277bda8b-affa-47a6-b8cb-ff961d0195de",
+            "id": 23961,
+            "type": "Vaccinations - Age Periods",
+            "title": "АКДС - ВГВ - ХИБ (пентавакцина) - третья доза против против Коклюша, дифтерии, столбняка, вирусного гепатита В, Гемофильной инфекции типа «В»",
+            "growth_period": 6496,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:23",
+            "updated_at": "Thu, 10/07/2021 - 16:21"
+        },
+        {
+            "uuid": "2db2f77c-752e-4a20-b00d-4323e28261c4",
+            "id": 23956,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПБ  против Ротавирусной инфекции",
+            "growth_period": 6486,
+            "pinned_article": 58271,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:22",
+            "updated_at": "Thu, 10/07/2021 - 16:23"
+        },
+        {
+            "uuid": "2342c9a2-85fc-4332-ba92-25df812be809",
+            "id": 23951,
+            "type": "Vaccinations - Age Periods",
+            "title": "ОПВ И ИПВ против Полиомиелита",
+            "growth_period": 6486,
+            "pinned_article": 58241,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:22",
+            "updated_at": "Thu, 10/07/2021 - 16:23"
+        },
+        {
+            "uuid": "f20edefd-5d71-4659-885c-7388e68b1577",
+            "id": 23946,
+            "type": "Vaccinations - Age Periods",
+            "title": "АКДС - ВГВ - ХИБ (пентавакцина) - вторая доза  против Коклюша, дифтерии, столбняка, вирусного гепатита В, гемофилической инфекции типа «В»",
+            "growth_period": 6486,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:21",
+            "updated_at": "Thu, 10/07/2021 - 16:21"
+        },
+        {
+            "uuid": "9480e55a-cd76-4db6-b3ae-359f695ba6e7",
+            "id": 23936,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПБ  против Ротавирусной инфекции",
+            "growth_period": 6476,
+            "pinned_article": 58271,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:20",
+            "updated_at": "Thu, 10/07/2021 - 16:23"
+        },
+        {
+            "uuid": "635eeec7-1456-4676-b50e-eb70d664ef8e",
+            "id": 23931,
+            "type": "Vaccinations - Age Periods",
+            "title": "ОПВ против Полиомиелита",
+            "growth_period": 6476,
+            "pinned_article": 58241,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:19",
+            "updated_at": "Thu, 10/07/2021 - 16:23"
+        },
+        {
+            "uuid": "fdb341aa-bf09-426c-ad02-44d935aaecc4",
+            "id": 23926,
+            "type": "Vaccinations - Age Periods",
+            "title": "ПКВ - первая доза против Пневмококковой инфекции",
+            "growth_period": 6476,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:19",
+            "updated_at": "Thu, 10/07/2021 - 16:21"
+        },
+        {
+            "uuid": "1952abd6-4b64-4f66-bfb9-05e727fb55fa",
+            "id": 23921,
+            "type": "Vaccinations - Age Periods",
+            "title": "АКДС - ВГВ - ХИБ (пентавакцина) - первая доза  против Коклюша, дифтерии, столбняка, вирусного гепатита В, гемофилической инфекции типа «В»",
+            "growth_period": 6476,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:18",
+            "updated_at": "Thu, 10/07/2021 - 16:22"
+        },
+        {
+            "uuid": "4002da22-a25f-4323-9a9f-0a17a0507daf",
+            "id": 23916,
+            "type": "Vaccinations - Age Periods",
+            "title": "БЦЖ против Туберкулеза",
+            "growth_period": 6466,
+            "pinned_article": 4676,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:17",
+            "updated_at": "Thu, 10/07/2021 - 16:22"
+        },
+        {
+            "uuid": "fb77347c-b32f-4b55-ad17-56bef1e5e8f6",
+            "id": 23911,
+            "type": "Vaccinations - Age Periods",
+            "title": "ВГВ - первая доза против вирусного Гепатита B",
+            "growth_period": 6466,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 07/16/2021 - 15:00",
+            "updated_at": "Thu, 10/07/2021 - 16:22"
+        }
+    ],
     "me-cnr": [
         {
             "uuid": "7b26917b-4551-4e28-858b-c2abc883c560",
@@ -1854,10 +2019,10 @@ export const vaccineData:any = {
             "type": "Vaccinations - Age Periods",
             "title": "Kundër Hepatitit B - doza e parë",
             "growth_period": 6466,
-            "pinned_article": 0,
+            "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 14:25",
-            "updated_at": "Wed, 10/06/2021 - 20:02"
+            "updated_at": "Thu, 10/07/2021 - 17:23"
         }
     ],
     "rs-sr":[
