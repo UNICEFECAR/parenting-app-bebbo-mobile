@@ -4,10 +4,9 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 
@@ -51,7 +50,8 @@ const Aboutus = ({navigation}: Props) => {
           </View>
 
           <View>
-            <ScrollView contentContainerStyle={{paddingBottom: 35,paddingHorizontal:15,paddingTop:15}}>
+            <ScrollView contentContainerStyle={{paddingBottom: 80,paddingHorizontal:10,paddingTop:0}}>
+
 
             { aboutusdata != "" ? 
             <HTML
