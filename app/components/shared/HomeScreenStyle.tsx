@@ -76,7 +76,7 @@ border-top-left-radius:4px;
 export const DailyTagText = styled.Text`
 font-size:11px;
 font-family:roboto-regular;
-text-transform:capitalize;
+ // text-transform:capitalize;
 color:#fff;
 
 `;
