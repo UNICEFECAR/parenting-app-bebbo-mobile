@@ -11,8 +11,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emotional",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emotional",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -5351,8 +5351,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emocionale",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emocionale",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -10879,8 +10879,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социально-эмоциональная",
-                    "unique_name": "socio_emotional"
+                    "name": "Социально- эмоциональная",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -11515,8 +11515,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социално-емоционално развитие",
-                    "unique_name": "socio_emotional"
+                    "name": "Социално- емоционално развитие",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -17043,8 +17043,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Κοινωνικό-συναισθηματική ",
-                    "unique_name": "socio_emotional"
+                    "name": "Κοινωνικό- συναισθηματική",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -17075,7 +17075,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 4,
-                    "name": "Γωνιά για συμβουλές ανατροφής",
+                    "name": "Γωνιά των γονέων",
                     "unique_name": "parenting_corner"
                 },
                 {
@@ -22315,8 +22315,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emocionale",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emocionale",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -27774,6 +27774,18 @@ export const taxonomydata:any = {
                 {
                     "id": 6371,
                     "name": " ushqimi artificial"
+                },
+                {
+                    "id": 110046,
+                    "name": "vaksina dtp"
+                },
+                {
+                    "id": 110051,
+                    "name": "vaksina IPV"
+                },
+                {
+                    "id": 110056,
+                    "name": "vaksina opv"
                 }
             ],
             "parent_gender": [
@@ -27843,8 +27855,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-ekonomski ",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emotivni",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -28469,8 +28481,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социалдык-эмоционалдык",
-                    "unique_name": "socio_emotional"
+                    "name": "Социалдык- эмоционалдык",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -28777,37 +28789,37 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6471,
-                    "name": "Толугу менен 1 ай",
+                    "name": "Толук 1 айда",
                     "vaccination_opens": 30
                 },
                 {
                     "id": 6476,
-                    "name": "Толугу менен 2 ай",
+                    "name": "Толук 2 айда",
                     "vaccination_opens": 60
                 },
                 {
                     "id": 6481,
-                    "name": "Толугу менен 3 ай",
+                    "name": "Толук 3 айда",
                     "vaccination_opens": 90
                 },
                 {
                     "id": 6486,
-                    "name": "Толугу менен 3,5 ай ",
+                    "name": "Толук 3,5 айда",
                     "vaccination_opens": 105
                 },
                 {
                     "id": 6491,
-                    "name": "Толугу менен 4 ай",
+                    "name": "Толук 4 айда",
                     "vaccination_opens": 120
                 },
                 {
                     "id": 6496,
-                    "name": "Толугу менен 5 ай ",
+                    "name": "Толук 5 айда",
                     "vaccination_opens": 150
                 },
                 {
                     "id": 6501,
-                    "name": "Толугу менен 6 ай ",
+                    "name": "Толук 6 айда",
                     "vaccination_opens": 180
                 },
                 {
@@ -28817,32 +28829,32 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6511,
-                    "name": "Толугу менен 7 ай ",
+                    "name": "Толук 7 айда",
                     "vaccination_opens": 210
                 },
                 {
                     "id": 6516,
-                    "name": "Толугу менен 8 ай ",
+                    "name": "Толук 8 айда",
                     "vaccination_opens": 240
                 },
                 {
                     "id": 6521,
-                    "name": "Толугу менен 9 ай",
+                    "name": "Толук 9 айда",
                     "vaccination_opens": 270
                 },
                 {
                     "id": 6526,
-                    "name": "Толугу менен 10 ай ",
+                    "name": "Толук 10 айда",
                     "vaccination_opens": 300
                 },
                 {
                     "id": 6531,
-                    "name": "Толугу менен 11 ай",
+                    "name": "Толук 11 айда",
                     "vaccination_opens": 330
                 },
                 {
                     "id": 6532,
-                    "name": "Толугу менен 12 ай ",
+                    "name": "Толук 12 айда",
                     "vaccination_opens": 365
                 },
                 {
@@ -28852,42 +28864,42 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6534,
-                    "name": "Толугу менен 15 ай ",
+                    "name": "Толук 15 айда",
                     "vaccination_opens": 455
                 },
                 {
                     "id": 6535,
-                    "name": "Толугу менен 16 ай ",
+                    "name": "Толук 16 айда",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6537,
-                    "name": "Толугу менен 21 ай ",
+                    "name": "Толук 21 айда",
                     "vaccination_opens": 635
                 },
                 {
                     "id": 6538,
-                    "name": "Толугу менен 2 жаш",
+                    "name": "Толук 2 жашта",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6540,
-                    "name": "Толугу менен 27 ай ",
+                    "name": "Толук 27 айда",
                     "vaccination_opens": 820
                 },
                 {
                     "id": 6541,
-                    "name": "Толугу менен 30 ай ",
+                    "name": "Толук 30 айда",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6542,
-                    "name": "Толугу менен 33 ай ",
+                    "name": "Толук 33 айда",
                     "vaccination_opens": 1000
                 },
                 {
                     "id": 6543,
-                    "name": "Толугу менен 3 жаш",
+                    "name": "Толук 3 жашта",
                     "vaccination_opens": 1095
                 },
                 {
@@ -28907,7 +28919,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6547,
-                    "name": "Толугу менен 42 ай",
+                    "name": "Толук 42 айда",
                     "vaccination_opens": 1275
                 },
                 {
@@ -28917,7 +28929,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6549,
-                    "name": "Толугу менен 54 ай",
+                    "name": "Толук 54 айда",
                     "vaccination_opens": 1640
                 },
                 {
@@ -28927,7 +28939,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6551,
-                    "name": "Толугу менен 5 жаш",
+                    "name": "Толук 5 жашта",
                     "vaccination_opens": 1825
                 },
                 {
@@ -28937,27 +28949,27 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6553,
-                    "name": "Толугу менен 6 жыл",
+                    "name": "Толук 6 жашта",
                     "vaccination_opens": 2190
                 },
                 {
                     "id": 6556,
-                    "name": "Толугу менен 6 жарым жаш",
+                    "name": "Толук 6 жарым жашта",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 6557,
-                    "name": "Толугу менен 7 жаш",
+                    "name": "Толук 7 жашта",
                     "vaccination_opens": 2555
                 },
                 {
                     "id": 6560,
-                    "name": "Толугу менен 18 ай ",
+                    "name": "Толук 18 айда",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 32906,
-                    "name": "Толугу менен 5 жарым жаш",
+                    "name": "Толук 5 жарым жашта",
                     "vaccination_opens": 2005
                 },
                 {
@@ -28972,7 +28984,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 59051,
-                    "name": "Толугу менен 13 ай ",
+                    "name": "Толук 13 айда",
                     "vaccination_opens": 395
                 },
                 {
@@ -28997,7 +29009,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 109721,
-                    "name": "15 күн менен",
+                    "name": "15 күндүк болгондо",
                     "vaccination_opens": 15
                 },
                 {
@@ -29012,7 +29024,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 110016,
-                    "name": "21 күн менен",
+                    "name": "21 күндүк болгондо",
                     "vaccination_opens": 21
                 }
             ],
@@ -33765,8 +33777,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социально-эмоциональное",
-                    "unique_name": "socio_emotional"
+                    "name": "Социально- эмоциональное",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -34073,37 +34085,37 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6471,
-                    "name": "С полным 1 месяцем",
+                    "name": "В полный 1 месяц",
                     "vaccination_opens": 30
                 },
                 {
                     "id": 6476,
-                    "name": "С полными 2 месяцами",
+                    "name": "В полные 2 месяца",
                     "vaccination_opens": 60
                 },
                 {
                     "id": 6481,
-                    "name": "С полными 3 месяцами",
+                    "name": "В полные 3 месяца",
                     "vaccination_opens": 90
                 },
                 {
                     "id": 6486,
-                    "name": "С полными 3,5 месяца",
+                    "name": "В полные 3,5 месяца",
                     "vaccination_opens": 105
                 },
                 {
                     "id": 6491,
-                    "name": "С полными 4 месяцами",
+                    "name": "В полные 4 месяца",
                     "vaccination_opens": 120
                 },
                 {
                     "id": 6496,
-                    "name": "С полных 5 месяцев",
+                    "name": "В полные 5 месяцев",
                     "vaccination_opens": 150
                 },
                 {
                     "id": 6501,
-                    "name": "С полных 6 месяцев",
+                    "name": "В полные 6 месяцев",
                     "vaccination_opens": 180
                 },
                 {
@@ -34113,32 +34125,32 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6511,
-                    "name": "С полных 7 месяцев",
+                    "name": "В полные 7 месяцев",
                     "vaccination_opens": 210
                 },
                 {
                     "id": 6516,
-                    "name": "С полных 8 месяцев",
+                    "name": "В полные 8 месяцев",
                     "vaccination_opens": 240
                 },
                 {
                     "id": 6521,
-                    "name": "С полных 9 месяцев",
+                    "name": "В полные 9 месяцев",
                     "vaccination_opens": 270
                 },
                 {
                     "id": 6526,
-                    "name": "С полных 10 месяцев",
+                    "name": "В полные 10 месяцев",
                     "vaccination_opens": 300
                 },
                 {
                     "id": 6531,
-                    "name": "С полных 11 месяцев",
+                    "name": "В полные 11 месяцев",
                     "vaccination_opens": 330
                 },
                 {
                     "id": 6532,
-                    "name": "С полными 12 месяцев",
+                    "name": "В полные 12 месяцев",
                     "vaccination_opens": 365
                 },
                 {
@@ -34148,42 +34160,42 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6534,
-                    "name": "С полными 15 месяцев",
+                    "name": "В полные 15 месяцев",
                     "vaccination_opens": 455
                 },
                 {
                     "id": 6535,
-                    "name": "С полными 16 месяцев",
+                    "name": "В полные 16 месяцев",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6537,
-                    "name": "С полными 21 месяцем",
+                    "name": "В полные 21 месяц",
                     "vaccination_opens": 635
                 },
                 {
                     "id": 6538,
-                    "name": "С полными 2 годами",
+                    "name": "В полные 2 года",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6540,
-                    "name": "За полные 27 месяцев",
+                    "name": "В полные 27 месяцев",
                     "vaccination_opens": 820
                 },
                 {
                     "id": 6541,
-                    "name": "С полными 30 месяцев",
+                    "name": "В полные 30 месяцев",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6542,
-                    "name": "С полными 33 месяцами",
+                    "name": "В полные 33 месяца",
                     "vaccination_opens": 1000
                 },
                 {
                     "id": 6543,
-                    "name": "С полных 3 лет",
+                    "name": "В полные 3 года",
                     "vaccination_opens": 1095
                 },
                 {
@@ -34203,7 +34215,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6547,
-                    "name": "С полными 42 месяца",
+                    "name": "В полные 42 месяца",
                     "vaccination_opens": 1275
                 },
                 {
@@ -34213,7 +34225,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6549,
-                    "name": "С полными 54 месяцами",
+                    "name": "В полные 54 месяца",
                     "vaccination_opens": 1640
                 },
                 {
@@ -34223,7 +34235,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6551,
-                    "name": "С полных 5 лет",
+                    "name": "В полные 5 лет",
                     "vaccination_opens": 1825
                 },
                 {
@@ -34233,27 +34245,27 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6553,
-                    "name": "С полных 6 лет",
+                    "name": "В полные 6 лет",
                     "vaccination_opens": 2190
                 },
                 {
                     "id": 6556,
-                    "name": "За полные 6 с половиной лет",
+                    "name": "В полные 6 с половиной лет",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 6557,
-                    "name": "С полных 7 лет",
+                    "name": "В полные 7 лет",
                     "vaccination_opens": 2555
                 },
                 {
                     "id": 6560,
-                    "name": "С полных 18 месяцев",
+                    "name": "В полные 18 месяцев",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 32906,
-                    "name": "За полные 5 с половиной лет",
+                    "name": "В полные 5 с половиной лет",
                     "vaccination_opens": 2005
                 },
                 {
@@ -34268,7 +34280,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 59051,
-                    "name": "С полных 13 месяцев",
+                    "name": "В полные 13 месяцев",
                     "vaccination_opens": 395
                 },
                 {
@@ -34288,7 +34300,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 59326,
-                    "name": "С 19 до 23 месяцев",
+                    "name": "От 19 до 23 месяцев",
                     "vaccination_opens": 575
                 },
                 {
@@ -38565,8 +38577,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emocionalni",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emocionalni",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -43837,8 +43849,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социо-емоционални",
-                    "unique_name": "socio_emotional"
+                    "name": "Социо- емоционални",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -49366,7 +49378,7 @@ export const taxonomydata:any = {
                 {
                     "id": 6431,
                     "name": "Shoqërore - emocionale",
-                    "unique_name": "socio_emotional"
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -49991,8 +50003,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emotivni",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emotivni",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -55194,6 +55206,10 @@ export const taxonomydata:any = {
                 {
                     "id": 6371,
                     "name": " veštačka ishrana"
+                },
+                {
+                    "id": 110061,
+                    "name": "razvoj deteta"
                 }
             ],
             "parent_gender": [
@@ -55263,8 +55279,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Socio-emotional",
-                    "unique_name": "socio_emotional"
+                    "name": "Socio- emotional",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -60535,8 +60551,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Иҷтимоӣ-эҳсосотӣ",
-                    "unique_name": "socio_emotional"
+                    "name": "Иҷтимоӣ- эҳсосотӣ",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -65895,8 +65911,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социально-эмоциональный",
-                    "unique_name": "socio_emotional"
+                    "name": "Социально- эмоциональный",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -71183,8 +71199,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Ijtimoiy-emotsional",
-                    "unique_name": "socio_emotional"
+                    "name": "Ijtimoiy- emotsional",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
@@ -71626,7 +71642,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6548,
-                    "name": "To'liq 4 yoshdan",
+                    "name": "To'liq 4 yoshda",
                     "vaccination_opens": 1460
                 },
                 {
@@ -76711,8 +76727,8 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 6431,
-                    "name": "Социально-эмоциональное",
-                    "unique_name": "socio_emotional"
+                    "name": "Социально- эмоциональное",
+                    "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
