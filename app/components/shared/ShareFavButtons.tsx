@@ -1,4 +1,5 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
+import { shareText } from '@assets/translations/appOfflineData/apiConstants';
 import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
 import React from 'react';
@@ -27,7 +28,7 @@ const ShareFavButtons = (props: any) => {
    // console.log('share');
     try {
       const result = await Share.share({
-        message:item ? item.title :t('appShareText')
+        message:item ? item.title :t('appShareText')+shareText
             });
       if (result.action === Share.sharedAction) {
         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}

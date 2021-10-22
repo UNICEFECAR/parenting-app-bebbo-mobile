@@ -10,37 +10,37 @@ import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavActivities = (props: any) => {
   const navigation = useNavigation()
-  const DATA = [
-    {
-      id: '1',
-      imagePath: require('@assets/trash/card4.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '2',
-      imagePath: require('@assets/trash/card2.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '3',
-      imagePath: require('@assets/trash/card3.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '4',
-      imagePath: require('@assets/trash/card4.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '5',
-      imagePath: require('@assets/trash/card5.jpeg'),
-      title: 'General recommendations for overweight and obese infants',
-    },
-    {
-      id: '6',
-      imagePath: require('@assets/trash/card6.jpeg'),
-      title: 'Picking stuff around',
-    },
+  const DATA:any[] = [
+    // {
+    //   id: '1',
+    //   imagePath: require('@assets/trash/card4.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '2',
+    //   imagePath: require('@assets/trash/card2.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '3',
+    //   imagePath: require('@assets/trash/card3.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '4',
+    //   imagePath: require('@assets/trash/card4.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '5',
+    //   imagePath: require('@assets/trash/card5.jpeg'),
+    //   title: 'General recommendations for overweight and obese infants',
+    // },
+    // {
+    //   id: '6',
+    //   imagePath: require('@assets/trash/card6.jpeg'),
+    //   title: 'Picking stuff around',
+    // },
   ];
   const themeContext = useContext(ThemeContext);
   const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
@@ -122,12 +122,12 @@ const styles = StyleSheet.create({
   //   // flex: 1,
   //   color: '#000',
   // },
-  // cardImage: {
-  //   height: 200,
-  //   width: '100%',
-  //   // flex: 1,
-  //   // alignSelf: 'center',
-  //   borderTopRightRadius: 5,
-  //   borderTopLeftRadius: 5,
-  // },
+  cardImage: {
+    height: 200,
+    width: '100%',
+    // flex: 1,
+    // alignSelf: 'center',
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+  },
 });
