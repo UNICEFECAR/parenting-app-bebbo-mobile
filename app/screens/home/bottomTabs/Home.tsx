@@ -540,7 +540,7 @@ const Home = ({ route, navigation }: Props) => {
 
                     {surveyItem && surveyItem?.body ?
                       <HTML
-                        source={{ html: surveyItem?.body.replace(/>\s\s+</g, '>&shy; <')}}
+                        source={{ html: surveyItem?.body.replace(/>\s+</g, '>&shy; <')}}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                       />
                       : null
