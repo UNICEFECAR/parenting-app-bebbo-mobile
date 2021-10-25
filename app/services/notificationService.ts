@@ -1,6 +1,6 @@
 import { beforeDays, maxPeriodDays, threeeMonthDays, twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
-import { getCurrentChildAgeInDays, isFutureDate } from './childCRUD';
+import { getCurrentChildAgeInDays } from './childCRUD';
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
@@ -215,29 +215,32 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   console.log('NEWHCNOTIS', hcnotis, lasthcperiodid)
   if (vchcEnabledFlag == false) {
     vcnotis = [...vcnotis].map(item => {
-      if (isFutureDate(new Date(item.notificationDate))) {
+      // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
+      // if (isFutureDate(new Date(item.notificationDate))|| difftoToday == 0) {
         return { ...item, isDeleted: true };
-      } else {
-        return { ...item };
-      }
+      // } else {
+      //   return { ...item };
+      // }
     })
     hcnotis = [...hcnotis].map(item => {
-      if (isFutureDate(new Date(item.notificationDate))) {
+      const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
+      // if (isFutureDate(new Date(item.notificationDate))|| difftoToday == 0) {
         return { ...item, isDeleted: true };
-      } else {
-        return { ...item };
-      }
+      // } else {
+      //   return { ...item };
+      // }
     })
   }
   if (growthEnabledFlag == false) {
     gwcdnotis = [...gwcdnotis]?.map((item) => {
+      // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
       if (item.type == 'gw') {
         // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-        if (isFutureDate(new Date(item.notificationDate))) {
+        // if (isFutureDate(new Date(item.notificationDate)) || difftoToday == 0) {
           return { ...item, isDeleted: true };
-        } else {
-          return { ...item };
-        }
+        // } else {
+        //   return { ...item };
+        // }
       } else {
         return { ...item };
       }
@@ -245,13 +248,14 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   }
   if (developmentEnabledFlag == false) {
     gwcdnotis = [...gwcdnotis]?.map((item) => {
+      // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
       if (item.type == 'cd') {
         // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-        if (isFutureDate(new Date(item.notificationDate))) {
+        // if (isFutureDate(new Date(item.notificationDate))|| difftoToday == 0) {
           return { ...item, isDeleted: true };
-        } else {
-          return { ...item };
-        }
+        // } else {
+        //   return { ...item };
+        // }
       } else {
         return { ...item };
       }
@@ -296,20 +300,22 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
       if (vchcEnabledFlag == false) {
         if(currentvcPeriodNoti.length > 0){
         currentvcPeriodNoti = [...currentvcPeriodNoti].map(item => {
-          if (isFutureDate(new Date(item.notificationDate))) {
+          // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
+          // if (isFutureDate(new Date(item.notificationDate)) || difftoToday == 0) {
             return { ...item, isDeleted: true };
-          } else {
-            return { ...item };
-          }
+          // } else {
+          //   return { ...item };
+          // }
         })
       }
       if(currenthcPeriodNoti.length > 0){
         currenthcPeriodNoti = [...currenthcPeriodNoti].map(item => {
-          if (isFutureDate(new Date(item.notificationDate))) {
+          // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
+          // if (isFutureDate(new Date(item.notificationDate)) || difftoToday == 0) {
             return { ...item, isDeleted: true };
-          } else {
-            return { ...item };
-          }
+          // } else {
+          //   return { ...item };
+          // }
         })
       }
       }
@@ -321,11 +327,12 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
         currentgwPeriodNoti = [...currentgwPeriodNoti]?.map((item) => {
           if (item.type == 'gw') {
             // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-            if (isFutureDate(new Date(item.notificationDate))) {
+            // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days)
+            // if (isFutureDate(new Date(item.notificationDate)) || difftoToday == 0) {
               return { ...item, isDeleted: true };
-            } else {
-              return { ...item };
-            }
+            // } else {
+            //   return { ...item };
+            // }
           } else {
             return { ...item };
           }
@@ -335,11 +342,13 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
         currentgwPeriodNoti = [...currentgwPeriodNoti]?.map((item) => {
           if (item.type == 'cd') {
             // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
-            if (isFutureDate(new Date(item.notificationDate))) {
+            // const difftoToday = Math.round(item.notificationDate.diff(DateTime.fromJSDate(new Date()), 'days').days);
+            // console.log(difftoToday, "difftoTodaycd")
+            // if (isFutureDate(new Date(item.notificationDate)) || difftoToday == 0) {
               return { ...item, isDeleted: true };
-            } else {
-              return { ...item };
-            }
+            // } else {
+            //   return { ...item };
+            // }
           } else {
             return { ...item };
           }
