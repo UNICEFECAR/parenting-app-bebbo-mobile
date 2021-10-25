@@ -1,4 +1,5 @@
 import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+import { shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -12,16 +13,13 @@ import {
 import {
   FDirCol,
   FDirRow,
-  Flex1,
-  FlexCol,
-  FlexDirRow
+  Flex1, FlexDirRow
 } from '@components/shared/FlexBoxStyle';
 import {
   HeaderActionView,
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Rate, { AndroidMarket } from 'react-native-rate';
 import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import ModalPopupContainer, {
@@ -48,11 +46,10 @@ import {
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, View } from 'react-native';
 import HTML from 'react-native-render-html';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
@@ -60,7 +57,6 @@ import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import { formatDate } from '../services/Utils';
-import { shareText } from '@assets/translations/appOfflineData/apiConstants';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
