@@ -381,7 +381,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   const date2 = DateTime.fromISO(birthDate);
 
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
-  // console.log(diff.toObject());
+  console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
   // console.log(diff.years,diff.months,diff.days);
   if (diff.years <= 0 && diff.months <= 0 && diff.days <= 0) {
@@ -399,12 +399,12 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
     }
     //  console.log(Math.round(diff.days),"..diffff...")
     // if(diff.days>0){ 
-    if (diff.days != "" && diff.months == "" && diff.years == "") {
+    if (diff.days >=1 && diff.months == "" && diff.years == "") {
       //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
       ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       // ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? (Math.round(diff.days)>=5 ? " days5 ": " day24 "): " day");
     }
-    // console.log(ageStr,"..ageStr")
+    console.log(ageStr,"..ageStr")
     if (ageStr == "") {
       ageStr = t('noday');
     }

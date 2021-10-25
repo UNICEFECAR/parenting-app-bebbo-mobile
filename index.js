@@ -18,7 +18,6 @@
  import 'intl/locale-data/jsonp/sr-Latn-XK';
  import 'intl/locale-data/jsonp/ky-KG';
  import 'intl/locale-data/jsonp/ru-KG';
- import 'intl/locale-data/jsonp/sr-Latn-ME';//montenegrin code to be verified
  import 'intl/locale-data/jsonp/mk-MK';
  import 'intl/locale-data/jsonp/sq-MK';
  import 'intl/locale-data/jsonp/sr-Latn-RS';
@@ -27,6 +26,7 @@
  import 'intl/locale-data/jsonp/en-US';
  import '@assets/customLocale/bg-BG';
  import '@assets/customLocale/tg-TJ';
+ import '@assets/customLocale/me-cnr';
  // import 'intl/locale-data/jsonp/be';
  // import 'intl/locale-data/jsonp/be';
  //sq,ru
