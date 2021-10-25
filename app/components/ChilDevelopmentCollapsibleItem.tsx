@@ -254,7 +254,7 @@ const activeChild = useAppSelector((state: any) =>
                   </Heading5> */}
                   {item && item.body ?
                     <HTML
-                      source={{html: item.body.replace(/>\s\s+</g, '>&shy; <')}}
+                      source={{html: item.body.replace(/>\s+</g, '>&shy; <')}}
                       baseFontStyle={{fontSize: 14}}
                       ignoredStyles={['color', 'font-size', 'font-family','margin','padding']}
                       tagsStyles={{
