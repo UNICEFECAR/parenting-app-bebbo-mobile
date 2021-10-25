@@ -55,13 +55,13 @@ import {
   ShiftFromTopBottom5,
   SideSpacing10
 } from '@styles/typography';
+import { DateTime } from 'luxon';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import RNFS from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
@@ -362,9 +362,19 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'gw') {
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
               // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
+              // console.log(growthEnabledFlag,"growthEnabledFlag");
+// growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
               if (isFutureDate((item.notificationDate))) {
-                return { ...item, isDeleted: item.isDeleted == true ? false : true };
+                return { ...item, isDeleted: growthEnabledFlag == false ? false : true };
+              }else if(difftoToday==0  || difftoToday==-0){
+                if(growthEnabledFlag ==false){
+                  return { ...item, isDeleted: false };
+                }else{
+                  return { ...item };
+                }
+               
               } else {
                 return { ...item };
               }
@@ -395,9 +405,19 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'cd') {
+              const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);   
+              // console.log(developmentEnabledFlag,"developmentEnabledFlag");
+              // developmentEnabledFlag == false checked because state update of developmentEnabledFlag istaking time
               if (isFutureDate(new Date(item.notificationDate))) {
-                return { ...item, isDeleted: item.isDeleted == true ? false : true };
-              } else {
+                return { ...item, isDeleted: developmentEnabledFlag == false ? false : true };
+              }else if(difftoToday==0  || difftoToday==-0){
+                if(developmentEnabledFlag ==false){
+                  return { ...item, isDeleted: false };
+                }else{
+                  return { ...item };
+                }
+              }
+                else {
                 return { ...item };
               }
             } else {
@@ -424,8 +444,20 @@ const SettingScreen = (props: any) => {
       if (notiExist) {
         if (currentChildNotis.vcnotis.length > 0) {
           currentChildNotis.vcnotis = [...currentChildNotis.vcnotis]?.map((item) => {
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);   
+            console.log(Number(difftoToday),"difftoToday,vcnotis");
+          // console.log(vchcEnabledFlag,"vchcEnabledFlag");
+          // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
-              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+              return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
+            }
+          
+            else if(difftoToday==0 || difftoToday==-0){
+              if(vchcEnabledFlag ==false){
+                return { ...item, isDeleted: false };
+              }else{
+                return { ...item };
+              }
             } else {
               return { ...item };
             }
@@ -433,8 +465,17 @@ const SettingScreen = (props: any) => {
         }
         if (notiExist.hcnotis.length > 0) {
           currentChildNotis.hcnotis = [...currentChildNotis.hcnotis]?.map((item) => {
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);    
+            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
+           // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
-              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+              return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
+            }else if(difftoToday==0  || difftoToday==-0){
+              if(vchcEnabledFlag ==false){
+                return { ...item, isDeleted: false };
+              }else{
+                return { ...item };
+              }
             } else {
               return { ...item };
             }
@@ -442,8 +483,17 @@ const SettingScreen = (props: any) => {
         }
         if (notiExist.reminderNotis.length > 0) {
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);    
+            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
+           // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
-              return { ...item, isDeleted: item.isDeleted == true ? false : true };
+              return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
+            }else if(difftoToday==0  || difftoToday==-0){
+              if(vchcEnabledFlag ==false){
+                return { ...item, isDeleted: false };
+              }else{
+                return { ...item };
+              }
             }
             else {
               return { ...item };
