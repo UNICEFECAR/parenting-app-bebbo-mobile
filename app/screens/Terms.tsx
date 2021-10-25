@@ -210,7 +210,7 @@ const Terms = ({navigation}: Props) => {
         <ScrollView contentContainerStyle={{padding: 0}}>
           { termsdata != "" ?
             <HTML
-              source={{html: termsdata.replace(/>\s\s+</g, '>&shy; <')}}
+              source={{html: termsdata.replace(/>\s+</g, '>&shy; <')}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
