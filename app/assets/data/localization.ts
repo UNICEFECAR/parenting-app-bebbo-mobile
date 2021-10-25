@@ -114,7 +114,7 @@ export const localization = [
         displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
-        luxonLocale:'sr-Latn-ME'//need to be verified
+        luxonLocale:'me-cnr'//need to be verified
       },
     ],
   },
