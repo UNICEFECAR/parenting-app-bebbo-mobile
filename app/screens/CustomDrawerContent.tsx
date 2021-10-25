@@ -678,7 +678,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
                 {feedbackItem && feedbackItem?.body ?
                   <HTML
-                    source={{ html: feedbackItem?.body }}
+                    source={{ html: feedbackItem?.body.replace(/>\s\s+</g, '>&shy; <')}}
                     ignoredStyles={['color', 'font-size', 'font-family']}
                   />
                   : null
