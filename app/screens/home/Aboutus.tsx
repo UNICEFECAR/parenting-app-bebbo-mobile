@@ -55,7 +55,7 @@ const Aboutus = ({navigation}: Props) => {
 
             { aboutusdata != "" ? 
             <HTML
-              source={{html: aboutusdata.replace(/>\s\s+</g, '>&shy; <')}}
+              source={{html: aboutusdata.replace(/>\s+</g, '>&shy; <')}}
               baseFontStyle={{fontSize: 16, color: '#000'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{

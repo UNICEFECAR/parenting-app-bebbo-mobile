@@ -344,7 +344,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
               <HTML
-                source={{html: detailDataToUse.body.replace(/>\s\s+</g, '>&shy; <')}} {...htmlProps}
+                source={{html: detailDataToUse.body.replace(/>\s+</g, '>&shy; <')}} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
