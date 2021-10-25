@@ -127,7 +127,7 @@ const Notifications = () => {
   // }, []);
   const calculateNotis = (currentChildNotis: any) => {
     console.log(currentChildNotis, "currentChildNotis")
-    if (currentChildNotis) {
+    if (currentChildNotis!= undefined) {
       console.log(currentChildNotis, "currentChildNotis")
       let currentChildallnoti: any = [];
       if (currentChildNotis.gwcdnotis) {
@@ -169,6 +169,9 @@ const Notifications = () => {
         });
       console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
+      setIsLoading(false)
+    }else{
+      setNotifications([]);
       setIsLoading(false)
     }
   }
