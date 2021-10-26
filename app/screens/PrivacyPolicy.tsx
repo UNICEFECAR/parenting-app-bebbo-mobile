@@ -51,7 +51,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
         <ScrollView contentContainerStyle={{padding: 0}}>
           { privacydata != "" ? 
             <HTML
-              source={{html: privacydata.replace(/>\s+</g, '>&shy; <')}}
+              source={{html: privacydata}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
             />
