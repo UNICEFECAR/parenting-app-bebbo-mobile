@@ -42,3 +42,4 @@ GoogleService-Info.plist
 GoogleService-Info_old.plist
 Info.plist
 *.keystore
+ios/ParentBuddyApp/Info.plist
