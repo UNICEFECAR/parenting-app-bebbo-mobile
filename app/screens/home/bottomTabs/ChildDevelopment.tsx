@@ -295,7 +295,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                   {
                     selectedChildDevData?.milestone ?
                       <HTML
-                        source={{ html: selectedChildDevData?.milestone.replace(/>\s+</g, '>&shy; <') }}
+                        source={{ html: selectedChildDevData?.milestone}}
                         baseFontStyle={{ fontSize: 14 }}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                       />
