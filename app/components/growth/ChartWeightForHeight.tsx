@@ -138,7 +138,7 @@ const ChartWeightForHeight = () => {
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <HTML
-                  source={{html: item?.interpretationText?.text.replace(/>\s+</g, '>&shy; <')}}
+                  source={{html: item?.interpretationText?.text}}
                   baseFontStyle={{fontSize: 16}}
                   ignoredStyles={['color', 'font-size', 'font-family']}
                 />
