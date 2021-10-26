@@ -41,6 +41,7 @@ import {
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1,
@@ -337,7 +338,7 @@ const SettingScreen = (props: any) => {
     // console.log(growthEnabledFlag, "..growthEnabledFlag")
     // console.log(developmentEnabledFlag, "..developmentEnabledFlag")
     // console.log(vchcEnabledFlag, "..vchcEnabledFlag")
-    if (vchcEnabledFlag == true && growthEnabledFlag == true && developmentEnabledFlag == true) {
+    if (vchcEnabledFlag == true || growthEnabledFlag == true || developmentEnabledFlag == true) {
       setIsEnabled(true);
     } else {
       setIsEnabled(false);
@@ -595,6 +596,11 @@ const SettingScreen = (props: any) => {
     // setIsDataSaverEnabled(toggleSwitchVal);
     // console.log(selectedCountry,selectedLanguage);
   }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      toggleSwitch();
+    }, [])
+  );
   return (
     <>
       <View style={{flex:1,backgroundColor:primaryColor}}>

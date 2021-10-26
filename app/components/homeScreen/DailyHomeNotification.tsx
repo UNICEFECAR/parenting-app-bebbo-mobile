@@ -89,8 +89,8 @@ const DailyHomeNotification = () => {
       } else {
         // console.log('DAILY MESSAGE VARIABLE WAS NEVER SET', records);
         let firstNotification = {
-          messageId: records ? records[0].id : '',
-          messageText: records ? records[0].title : '',
+          messageId: records.length>0 ? records[0].id : '',
+          messageText: records.length>0? records[0].title : '',
           day: currentDate.day,
           month: currentDate.month,
           year: currentDate.year,
