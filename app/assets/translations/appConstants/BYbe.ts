@@ -394,7 +394,8 @@ const BYbe = {
                 importOnboardingText: "Вы можаце імпартаваць раней экспартаваныя даныя пра дзіця",
                 OnboardingImportButton: "Імпартаваць зараз",
                 ORkeyText: "АБО",
-                addChildText: "Дадаць даныя пра дзіця"
+                addChildText: "Дадаць даныя пра дзіця",
+                notiTimeAgoTxt: "ago",
         }
 }
 export default BYbe;
