@@ -397,6 +397,7 @@ const UZuz = {
               ORkeyText: "YoKI",
               addChildText: "Farzandingiz haqida maʼlumotlarni qoʻshing",
               notiTimeAgoTxt: "ago",
+              todayTxt:"today",
        }
 }
 export default UZuz;

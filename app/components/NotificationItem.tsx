@@ -14,7 +14,7 @@ import {
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { getCurrentChildAgeInMonths } from '../services/childCRUD';
+import { getNotificationDateInString } from '../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../services/Utils';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
@@ -168,10 +168,10 @@ const NotificationItem = (props: any) => {
 
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                    )}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{formatStringDate(childCrateDate, luxonLocale)}</Heading6>
                   <Heading6>{formatStringDate(toDay, luxonLocale)}</Heading6> */}
@@ -281,10 +281,10 @@ const NotificationItem = (props: any) => {
                 }
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                    )}</Heading6>
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
@@ -405,10 +405,10 @@ const NotificationItem = (props: any) => {
 
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                    )}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
@@ -517,10 +517,10 @@ const NotificationItem = (props: any) => {
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                      getCurrentChildAgeInMonths(
+                      getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
-                      )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                      )}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
@@ -627,10 +627,10 @@ const NotificationItem = (props: any) => {
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                      getCurrentChildAgeInMonths(
+                      getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
-                      )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                      )}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
@@ -743,10 +743,10 @@ const NotificationItem = (props: any) => {
 
             <ShiftFromTop5>
               <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                getCurrentChildAgeInMonths(
+                getNotificationDateInString(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate))
-                )}{" "}{t('notiTimeAgoTxt')}</Heading6>
+                )}</Heading6>
               {/* <Heading6></Heading6> */}
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
             </ShiftFromTop5>
