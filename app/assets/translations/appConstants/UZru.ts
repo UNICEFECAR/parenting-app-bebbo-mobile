@@ -395,7 +395,8 @@ const UZru = {
                 importOnboardingText:"Вы можете импортировать ранее экспортированные данные ребенка",
                 OnboardingImportButton:"Импортировать сейчас",
                 ORkeyText:"ИЛИ",
-                addChildText:"Добавьте сведения о своем ребенке"
+                addChildText:"Добавьте сведения о своем ребенке",
+                notiTimeAgoTxt: "ago",
         }
 }
 export default UZru;

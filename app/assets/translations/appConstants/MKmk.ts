@@ -396,7 +396,8 @@ const MKmk = {
                 importOnboardingText: "Можете да ги импортирате претходно експортираните податоци за детето",
                 OnboardingImportButton: "Импортирајте податоци",
                 ORkeyText: "ИЛИ",
-                addChildText: "Додадете податоци за детето"
+                addChildText: "Додадете податоци за детето",
+                notiTimeAgoTxt: "ago",
         }
 }
 export default MKmk;
