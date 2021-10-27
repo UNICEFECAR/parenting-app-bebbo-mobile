@@ -171,7 +171,7 @@ const NotificationItem = (props: any) => {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}</Heading6>
+                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{formatStringDate(childCrateDate, luxonLocale)}</Heading6>
                   <Heading6>{formatStringDate(toDay, luxonLocale)}</Heading6> */}
@@ -284,7 +284,7 @@ const NotificationItem = (props: any) => {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}</Heading6>
+                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
                 <ShiftFromTop10>
@@ -408,7 +408,7 @@ const NotificationItem = (props: any) => {
                     getCurrentChildAgeInMonths(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
-                    )}</Heading6>
+                    )}{" "}{t('notiTimeAgoTxt')}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
@@ -520,7 +520,7 @@ const NotificationItem = (props: any) => {
                       getCurrentChildAgeInMonths(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
-                      )}</Heading6>
+                      )}{" "}{t('notiTimeAgoTxt')}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
@@ -630,7 +630,7 @@ const NotificationItem = (props: any) => {
                       getCurrentChildAgeInMonths(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
-                      )}</Heading6>
+                      )}{" "}{t('notiTimeAgoTxt')}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                   </ShiftFromTop5>
@@ -746,7 +746,7 @@ const NotificationItem = (props: any) => {
                 getCurrentChildAgeInMonths(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate))
-                )}</Heading6>
+                )}{" "}{t('notiTimeAgoTxt')}</Heading6>
               {/* <Heading6></Heading6> */}
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
             </ShiftFromTop5>

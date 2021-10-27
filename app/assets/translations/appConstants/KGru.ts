@@ -394,7 +394,8 @@ const KGru = {
                 importOnboardingText: "Вы можете импортировать ранее экспортированные данные ребенка",
                 OnboardingImportButton: "Импортировать сейчас",
                 ORkeyText: "ИЛИ",
-                addChildText: "Добавьте данные своего ребенка"
+                addChildText: "Добавьте данные своего ребенка",
+                notiTimeAgoTxt: "ago",
         }
 }
 export default KGru;
