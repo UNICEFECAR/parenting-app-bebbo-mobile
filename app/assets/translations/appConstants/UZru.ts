@@ -397,6 +397,7 @@ const UZru = {
                 ORkeyText:"ИЛИ",
                 addChildText:"Добавьте сведения о своем ребенке",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default UZru;

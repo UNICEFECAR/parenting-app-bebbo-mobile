@@ -398,6 +398,7 @@ const MKmk = {
                 ORkeyText: "ИЛИ",
                 addChildText: "Додадете податоци за детето",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default MKmk;
