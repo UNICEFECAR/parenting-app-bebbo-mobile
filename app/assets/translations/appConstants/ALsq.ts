@@ -396,6 +396,7 @@ const ALsq = {
               ORkeyText: "Ose",
               addChildText: "Shtoni të dhënat e fëmijës",
               notiTimeAgoTxt: "ago",
+              todayTxt:"today",
        }
 }
 export default ALsq;

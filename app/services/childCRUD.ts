@@ -1,5 +1,5 @@
 import { EXPECTED_CHILD_ENTERED } from '@assets/data/firebaseEvents';
-import { appConfig, boy_child_gender, maleData } from '@assets/translations/appOfflineData/apiConstants';
+import { appConfig, boy_child_gender } from '@assets/translations/appOfflineData/apiConstants';
 import getAllDataToStore from '@assets/translations/appOfflineData/getDataToStore';
 import analytics from '@react-native-firebase/analytics';
 import { DateTime } from 'luxon';
@@ -383,8 +383,8 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
   console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
-  // console.log(diff.years,diff.months,diff.days);
-  if (diff.years <= 0 && diff.months <= 0 && diff.days <= 0) {
+  console.log(diff.years,diff.months,diff.days);
+  if (diff.years <= 0 && diff.months <= 0 && (diff.days) <= 0) {
     ageStr = t('noBorn');
   } else {
     if (diff.years > 0) {
@@ -412,6 +412,47 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
   }
   // console.log(ageStr,"..ageStr")
   return ageStr;
+
+};
+
+export const getNotificationDateInString = (t: any, birthDate: string) => {
+  const date1 = DateTime.local();
+  const date2 = DateTime.fromISO(birthDate);
+
+  const diff: any = date1.diff(date2, ["years", "months", "days"]);
+  console.log(diff.toObject(),"..diffobject");
+  var ageStr = "";
+  console.log(diff.years,diff.months,diff.days);
+  if (diff.years <= 0 && diff.months <= 0 && (diff.days) <= 0) {
+    ageStr = t('noBorn');
+  } else {
+    if (diff.years > 0) {
+      //ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
+      ageStr += diff.years + (diff.years > 1 ? (diff.years >= 5 ? ' ' + t('years5tag') : ' ' + t('yearstag')) : ' ' + t('yeartag'));
+      ageStr += ' ';
+    }
+    if (diff.months > 0) {
+      //ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
+      ageStr += diff.months + (diff.months > 1 ? (diff.months >= 5 ? ' ' + t('months5tag') : ' ' + t('monthstag')) : ' ' + t('monthtag'));
+
+    }
+    //  console.log(Math.round(diff.days),"..diffff...")
+    // if(diff.days>0){ 
+    if (diff.days >=1 && diff.months == "" && diff.years == "") {
+      //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
+      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+      // ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? (Math.round(diff.days)>=5 ? " days5 ": " day24 "): " day");
+    }
+    console.log(ageStr,"..ageStr")
+    if (ageStr == "") {
+      ageStr = t('todayTxt');
+    }else{
+      ageStr = ageStr+ " "+t('notiTimeAgoTxt')
+    }
+
+  }
+  // console.log(ageStr,"..ageStr")
+  return ageStr
 
 };
 export const addChild = async (languageCode: any, editScreen: boolean, param: number, data: any, dispatch: any, navigation: any, child_age: any, relationship?: any,userRelationToParent?:any) => {

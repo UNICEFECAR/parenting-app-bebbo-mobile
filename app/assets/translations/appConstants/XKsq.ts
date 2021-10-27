@@ -397,6 +397,7 @@ const XKsq = {
                 ORkeyText: "OSE",
                 addChildText: "Shtoni të dhënat e fëmijës tuaj",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default XKsq;

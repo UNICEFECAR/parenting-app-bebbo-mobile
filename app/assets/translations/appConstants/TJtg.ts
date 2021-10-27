@@ -397,6 +397,7 @@ const TJtg = {
                 ORkeyText:"OR",
                 addChildText:"Add your child details",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default TJtg;

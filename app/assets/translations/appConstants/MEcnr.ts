@@ -398,6 +398,7 @@ const MEcnr = {
                 ORkeyText: "ILI",
                 addChildText: "Dodajte podatke o djetetu",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 
 }

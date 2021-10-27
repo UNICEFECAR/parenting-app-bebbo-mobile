@@ -397,6 +397,7 @@ const GRel = {
                 ORkeyText: "Ή",
                 addChildText: "Προσθέστε τα στοιχεία του παιδιού σας",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default GRel;
