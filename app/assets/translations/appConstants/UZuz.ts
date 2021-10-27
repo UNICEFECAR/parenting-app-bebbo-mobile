@@ -365,7 +365,7 @@ const UZuz = {
               importText: "Maʼlumotlarni import qilish",
               exportText: "Maʼlumotni eksport qilish",
               dataConsistency: "Maʼlumotlar izchilligini saqlash uchun, iltimos, maʼlumotlarni import/eksport qilayotganingizda bir tildan foydalaning. Davom ettirishni xohlaysizmi?",
-              dataSaver: "{{Toggle}} ni maʼlumotlarni saqlash rejimiga oʻtkazmoqchimisiz?",
+              dataSaver: "{{toggle}} ni maʼlumotlarni saqlash rejimiga oʻtkazmoqchimisiz?",
               backPressText: "Yopish uchun yana bir martta bosing!",
               generalError: "Nimadir notoʻg'ri bajarildi! Iltimos, yana bir bor urinib koʻring",
               generalErrorTitle: "Xato",
