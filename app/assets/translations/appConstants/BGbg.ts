@@ -395,7 +395,8 @@ const BGbg = {
                 importOnboardingText: "Можете да импортирате предишни експортирани данни за дете",
                 OnboardingImportButton: "Импортирайте сега",
                 ORkeyText: "ИЛИ",
-                addChildText: "Добавете данни за вашето дете"
+                addChildText: "Добавете данни за вашето дете",
+                notiTimeAgoTxt: "ago",
         }
 }
 export default BGbg;

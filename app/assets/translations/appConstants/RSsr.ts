@@ -394,7 +394,8 @@ const RSsr = {
                 importOnboardingText:"Možete uvesti podatke o detetu koje ste prethodno izvezli ",
                 OnboardingImportButton:"Uvezite sada",
                 ORkeyText:"ILI",
-                addChildText:"Dodajte podatke o detetu"
+                addChildText:"Dodajte podatke o detetu",
+                notiTimeAgoTxt: "ago",
        }
 
 }
