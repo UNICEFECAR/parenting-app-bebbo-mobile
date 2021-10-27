@@ -397,6 +397,7 @@ const BGbg = {
                 ORkeyText: "ИЛИ",
                 addChildText: "Добавете данни за вашето дете",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default BGbg;

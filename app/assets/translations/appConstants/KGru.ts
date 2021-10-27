@@ -396,6 +396,7 @@ const KGru = {
                 ORkeyText: "ИЛИ",
                 addChildText: "Добавьте данные своего ребенка",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default KGru;

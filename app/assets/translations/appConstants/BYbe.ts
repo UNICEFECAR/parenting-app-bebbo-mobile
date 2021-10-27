@@ -396,6 +396,7 @@ const BYbe = {
                 ORkeyText: "АБО",
                 addChildText: "Дадаць даныя пра дзіця",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default BYbe;

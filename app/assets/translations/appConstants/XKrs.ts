@@ -396,6 +396,7 @@ const XKrs = {
                 ORkeyText:"ILI",
                 addChildText:"Dodajte podatke o detetu",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
        }
 }
 export default XKrs;

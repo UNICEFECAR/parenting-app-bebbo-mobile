@@ -396,6 +396,7 @@ const RSsr = {
                 ORkeyText:"ILI",
                 addChildText:"Dodajte podatke o detetu",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
        }
 
 }
