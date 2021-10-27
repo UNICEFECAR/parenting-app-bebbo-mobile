@@ -394,7 +394,8 @@ const ALsq = {
               importOnboardingText: "Ju mund të importoni të dhënat e fëmijës që keni eksportuar më parë",
               OnboardingImportButton: "Importo tani",
               ORkeyText: "Ose",
-              addChildText: "Shtoni të dhënat e fëmijës"
+              addChildText: "Shtoni të dhënat e fëmijës",
+              notiTimeAgoTxt: "ago",
        }
 }
 export default ALsq;

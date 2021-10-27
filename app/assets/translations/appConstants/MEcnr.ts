@@ -396,7 +396,8 @@ const MEcnr = {
                 importOnboardingText: "Možete uvesti podatke o djetetu koje ste prethodno izvezli ",
                 OnboardingImportButton: "Uvezite sada",
                 ORkeyText: "ILI",
-                addChildText: "Dodajte podatke o djetetu"
+                addChildText: "Dodajte podatke o djetetu",
+                notiTimeAgoTxt: "ago",
         }
 
 }
