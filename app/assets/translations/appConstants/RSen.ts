@@ -396,6 +396,7 @@ const RSen = {
                 ORkeyText: "OR",
                 addChildText: "Add your child details",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default RSen;

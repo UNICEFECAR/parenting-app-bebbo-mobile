@@ -396,6 +396,7 @@ const KGky = {
                 ORkeyText: "ЖЕ",
                 addChildText: "Балаңыз жөнүндө маалыматтарды кошуңуз",
                 notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default KGky;
