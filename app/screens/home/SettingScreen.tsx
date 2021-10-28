@@ -599,7 +599,7 @@ const SettingScreen = (props: any) => {
   useFocusEffect(
     React.useCallback(() => {
       toggleSwitch();
-    }, [])
+    }, [developmentEnabledFlag,growthEnabledFlag,vchcEnabledFlag])
   );
   return (
     <>
