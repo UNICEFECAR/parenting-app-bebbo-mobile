@@ -28,14 +28,16 @@ import {
   Heading3Centerw,
   Heading3Regular
 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { I18nManager, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import RNRestart from 'react-native-restart';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -56,6 +58,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
+  );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   console.log(country,"---country",countryId);
   //console.log(country, language);
@@ -190,8 +195,33 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     }
   ];
   const {t, i18n} = useTranslation();
+  console.log(I18nManager.isRTL,"---is rtl val");
+
+  useEffect(() => {
+    dispatch(setrestartOnLangChange('no'));
+  }, []);
   const saveSelection = () => {
-    i18n.changeLanguage(language.locale);
+    i18n.changeLanguage(language.locale)
+    .then(() => {
+      if(language.locale == 'RSen')
+      {
+        if(AppLayoutDirection == 'ltr') {
+          //remove rtl on backhandler
+          // dispatch(setAppLayoutDirection('rtl'));
+          // dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          // dispatch(setAppLayoutDirectionParams({
+          //   country,
+          //   language,
+          // }));
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+        }else {
+          I18nManager.forceRTL(true);
+        }
+      }else {
+        I18nManager.forceRTL(false);
+      }
+    })
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
     if(userIsOnboarded == true && (language.languageCode == languageCode))
@@ -223,9 +253,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   return (
     <>
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={language}/>
       <OnboardingContainer>
-      {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
           <OnboardingshiftHead>
