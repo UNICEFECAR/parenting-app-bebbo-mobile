@@ -61,6 +61,7 @@
     "react-native-progress-circle": "^2.1.0",
     "react-native-reanimated": "^2.1.0",
     "react-native-render-html": "^5.1.0",
+    "react-native-restart": "0.0.22",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.2.0",
     "react-native-svg": "^12.1.1",
