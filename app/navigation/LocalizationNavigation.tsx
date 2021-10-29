@@ -9,8 +9,8 @@ import { LocalizationStackParamList } from './types';
 
 const LocalizationStack = createStackNavigator<LocalizationStackParamList>();
 export default () => {
-  const AppLayoutDirection = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirection,
+  const restartOnLangChange = useAppSelector(
+    (state: any) => state.selectedCountry.restartOnLangChange,
   );
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
@@ -18,11 +18,11 @@ export default () => {
   const AppLayoutDirectionParams = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionParams,
   );
-  console.log(AppLayoutDirection,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
+  console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   return (
     <LocalizationStack.Navigator 
       // initialRouteName="CountrySelection"
-      initialRouteName= {AppLayoutDirection != 'rtl' ? "CountrySelection" : AppLayoutDirectionScreen}
+      initialRouteName= {restartOnLangChange != 'yes' ? "CountrySelection" : AppLayoutDirectionScreen}
     >
       <LocalizationStack.Screen
         name="CountrySelection"
