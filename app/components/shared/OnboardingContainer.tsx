@@ -67,9 +67,11 @@ justify-content:center;
 
 export const LocalizationcontentHead = styled.View`
 flex:1;
+align-items:flex-start;
 `
 export const LocalizationcontentResult = styled.View`
 flex:2;
+align-items:flex-start;
 `
 
 

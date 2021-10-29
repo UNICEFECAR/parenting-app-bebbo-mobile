@@ -35,7 +35,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
   Heading3Center,
+  Heading4,
+  Heading4Regular,
+  Heading5,
   Paragraph,
+  ShiftFromBottom10,
   ShiftFromTop20,
   ShiftFromTop30,
   ShiftFromTopBottom10
@@ -335,7 +339,10 @@ useEffect(() => {
         </HeaderRowView>
 
         <ScrollView style={{ padding: 15, flex: 7 }}>
-          <Paragraph>{titleTxt}</Paragraph>
+          <ShiftFromBottom10>
+          <Heading4Regular>{titleTxt}</Heading4Regular>
+          {/* <Paragraph>{titleTxt}</Paragraph> */}
+          </ShiftFromBottom10>
           <FormInputGroup onPress={showmeasureDatepicker}>
             {Platform.OS != 'ios' ? (
               <FormInputBox>
