@@ -198,7 +198,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   console.log(I18nManager.isRTL,"---is rtl val");
 
   useEffect(() => {
-    dispatch(setrestartOnLangChange('no'));
+    console.log("confirm useeffect called");
+    // dispatch(setrestartOnLangChange('no'));
+
+    return () => {
+      dispatch(setrestartOnLangChange('no'));
+    }
   }, []);
   const saveSelection = () => {
     i18n.changeLanguage(language.locale)
