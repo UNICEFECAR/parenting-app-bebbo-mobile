@@ -390,12 +390,14 @@ const UZru = {
                 hcrNoti1: "Напоминание о медосмотре установлено на {{reminderDateTime}}",
                 parentGender: "Пол",
                 //Onboarding Import text new Translations
-                successOnboardingImport: "Вы успешно импортировали данные ребенка",
-                updateImportText: "Обновите свои данные, чтобы продолжить",
-                importOnboardingText: "Вы можете импортировать ранее экспортированные данные ребенка",
-                OnboardingImportButton: "Импортировать сейчас",
-                ORkeyText: "ИЛИ",
-                addChildText: "Добавьте сведения о своем ребенке"
+                successOnboardingImport:"Вы успешно импортировали данные ребенка",
+                updateImportText:"Обновите свои данные, чтобы продолжить",
+                importOnboardingText:"Вы можете импортировать ранее экспортированные данные ребенка",
+                OnboardingImportButton:"Импортировать сейчас",
+                ORkeyText:"ИЛИ",
+                addChildText:"Добавьте сведения о своем ребенке",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default UZru;

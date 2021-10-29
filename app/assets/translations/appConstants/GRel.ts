@@ -395,7 +395,9 @@ const GRel = {
                 importOnboardingText: "Μπορείτε να εισάγετε τα στοιχεία των παιδιών που είχατε προηγουμένως εξάγει  ",
                 OnboardingImportButton: "Εισάγετε τώρα ",
                 ORkeyText: "Ή",
-                addChildText: "Προσθέστε τα στοιχεία του παιδιού σας"
+                addChildText: "Προσθέστε τα στοιχεία του παιδιού σας",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default GRel;

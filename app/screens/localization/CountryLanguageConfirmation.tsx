@@ -21,6 +21,7 @@ import OnboardingContainer, {
 } from '@components/shared/OnboardingContainer';
 import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2Centerw,
@@ -31,6 +32,7 @@ import {
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { I18nManager, Text } from 'react-native';
+import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -61,6 +63,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   );
   const AppLayoutDirection = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirection,
+  );
+  const locale = useAppSelector(
+    (state: any) => state.selectedCountry.locale,
   );
   console.log(country,"---country",countryId);
   //console.log(country, language);
@@ -205,6 +210,32 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       dispatch(setrestartOnLangChange('no'));
     }
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Alert.alert("focuseffect--",JSON.stringify(countryId));
+      const backAction = () => {
+        // if (userIsOnboarded == true) {
+          i18n.changeLanguage(locale);
+          navigation.goBack()
+        // }else {
+        //   navigation.goBack()
+        // }
+        return true;
+      };
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction,
+    );
+    navigation.addListener('gestureEnd', backAction);
+
+    return () => {
+      navigation.removeListener('gestureEnd', backAction);
+      backHandler.remove()
+    };
+  }, []),
+  );
+
   const saveSelection = () => {
     i18n.changeLanguage(language.locale)
     .then(() => {
