@@ -395,7 +395,9 @@ const XKsq = {
                 importOnboardingText: "Mund të importoni të dhënat e fëmijës të cilat janë eksportuara më parë",
                 OnboardingImportButton: "Importoni tani",
                 ORkeyText: "OSE",
-                addChildText: "Shtoni të dhënat e fëmijës tuaj"
+                addChildText: "Shtoni të dhënat e fëmijës tuaj",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default XKsq;

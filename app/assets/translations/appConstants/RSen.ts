@@ -394,7 +394,9 @@ const RSen = {
                 importOnboardingText: "You can import previously exported child data",
                 OnboardingImportButton: "Import now",
                 ORkeyText: "OR",
-                addChildText: "Add your child details"
+                addChildText: "Add your child details",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default RSen;
