@@ -14,7 +14,7 @@ import {
 } from 'react-native-popup-menu';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
-import { getCurrentChildAgeInMonths } from '../services/childCRUD';
+import { getNotificationDateInString } from '../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../services/Utils';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
@@ -168,7 +168,7 @@ const NotificationItem = (props: any) => {
 
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
@@ -281,7 +281,7 @@ const NotificationItem = (props: any) => {
                 }
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
@@ -405,7 +405,7 @@ const NotificationItem = (props: any) => {
 
                 <ShiftFromTop5>
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                    getCurrentChildAgeInMonths(
+                    getNotificationDateInString(
                       t,
                       DateTime.fromJSDate(new Date(item.notificationDate))
                     )}</Heading6>
@@ -517,7 +517,7 @@ const NotificationItem = (props: any) => {
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                      getCurrentChildAgeInMonths(
+                      getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
                       )}</Heading6>
@@ -627,7 +627,7 @@ const NotificationItem = (props: any) => {
                   }
                   <ShiftFromTop5>
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                      getCurrentChildAgeInMonths(
+                      getNotificationDateInString(
                         t,
                         DateTime.fromJSDate(new Date(item.notificationDate))
                       )}</Heading6>
@@ -743,7 +743,7 @@ const NotificationItem = (props: any) => {
 
             <ShiftFromTop5>
               <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
-                getCurrentChildAgeInMonths(
+                getNotificationDateInString(
                   t,
                   DateTime.fromJSDate(new Date(item.notificationDate))
                 )}</Heading6>

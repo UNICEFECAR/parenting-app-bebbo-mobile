@@ -394,7 +394,9 @@ const BYru = {
                 importOnboardingText: "Вы можете импортировать ранее экспортированные данные о ребенке",
                 OnboardingImportButton: "Импортировать сейчас",
                 ORkeyText: "ИЛИ",
-                addChildText: "Добавить данные о ребенке"
+                addChildText: "Добавить данные о ребенке",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default BYru;

@@ -395,7 +395,9 @@ const TJru = {
                 importOnboardingText: "Вы можете импортировать ранее экспортированные данные ребенка",
                 OnboardingImportButton: "Импортировать сейчас",
                 ORkeyText: "ИЛИ",
-                addChildText: "Добавьте сведения о своем ребенке"
+                addChildText: "Добавьте сведения о своем ребенке",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default TJru;
