@@ -387,7 +387,7 @@ const XKrs = {
               dataSaveroff: "Isključeno",
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
-              parentGender: "Pol roditelja",
+              parentGender: "Pol",
                 //Onboarding Import text new Translations
                 successOnboardingImport:"Uspešno ste uneli podatke o detetu",
                 updateImportText:"Molimo vas osvežite detalje da biste nastavili ",
