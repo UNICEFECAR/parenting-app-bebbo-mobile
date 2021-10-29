@@ -90,7 +90,6 @@ export const localizationSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      // console.log(action.payload);
       state.restartOnLangChange = action.payload;
     },
     setAppLayoutDirection: (
