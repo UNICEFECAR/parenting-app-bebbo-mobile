@@ -71,13 +71,13 @@ export default () => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
-  const AppLayoutDirection = useAppSelector(
-    (state: any) => state.selectedCountry.AppLayoutDirection,
+  const restartOnLangChange = useAppSelector(
+    (state: any) => state.selectedCountry.restartOnLangChange,
   );
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
   );
-  console.log(AppLayoutDirection,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
+  console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [netState, setNetState] = React.useState('');
@@ -305,7 +305,7 @@ export default () => {
       >
         <RootStack.Navigator
           initialRouteName={
-            AppLayoutDirection != 'rtl' ?
+            restartOnLangChange != 'yes' ?
               userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
             : AppLayoutDirectionScreen 
           }
