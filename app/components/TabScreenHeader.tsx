@@ -3,6 +3,7 @@ import {
 } from '@styles/typography';
 import React from 'react';
 import HeaderBabyMenu from './HeaderBabyMenu';
+import HeaderNotiIcon from './HeaderNotiIcon';
 import BurgerIcon from './shared/BurgerIcon';
 import {
   HeaderRowView,
@@ -25,6 +26,7 @@ const TabScreenHeader = (props: any) => {
         <HeaderTitleView>
           <Heading2w style={{color:textColor}}> {props.title}</Heading2w>
         </HeaderTitleView>
+        <HeaderNotiIcon color={textColor}/>
         <HeaderBabyMenu color={textColor}/>
       </HeaderRowView>
     </>
