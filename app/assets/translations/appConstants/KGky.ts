@@ -394,7 +394,9 @@ const KGky = {
                 importOnboardingText: "Сиз балаңыздын мурда экспорттолгон  маалыматын импорттой аласыз",
                 OnboardingImportButton: "Азыр импорттоо",
                 ORkeyText: "ЖЕ",
-                addChildText: "Балаңыз жөнүндө маалыматтарды кошуңуз"
+                addChildText: "Балаңыз жөнүндө маалыматтарды кошуңуз",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default KGky;
