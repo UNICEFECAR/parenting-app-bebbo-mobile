@@ -178,7 +178,7 @@ const UpcomingVaccines = (props: any) => {
                 {t('vaccinesTxt')}{':'}{item?.vaccines.length}
                 {' | '} 
                 {t('vaccinesDoneTxt')}{':'}{doneVc ? doneVc.length : 0} {' | '}
-                {t('vaccinesPendingTxt')}{':'} {item?.vaccines.length - (doneVc ? doneVc.length : 0)}
+                {t('vaccinesPendingTxt')}{':'}{item?.vaccines.length - (doneVc ? doneVc.length : 0)}
               </Heading5>
             </ToolsHeadingView>
             <ToolsActionView>
