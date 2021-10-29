@@ -99,7 +99,7 @@ const ChildSetupList = ({ navigation }: Props) => {
      return (
     <ChildListingBox key={index}>
     <ChildColArea1>
-      <ChildListTitle>{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontSize:12,fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
+      <ChildListTitle >{data.childName}{(gender!='' && gender!=0 && gender!=undefined)?<Text style={{fontSize:12,fontWeight:'normal'}}>, {gender}</Text>:null}</ChildListTitle>
       <Heading5>{(data.birthDate != null && data.birthDate != undefined && !isFutureDate(data.birthDate)) ? t('childProfileBornOn',{childdob:data.birthDate!=null  ? formatDate(data.birthDate,luxonLocale):''}):t('expectedChildDobLabel')}</Heading5>
     </ChildColArea1>
     <ChildColArea2>
@@ -201,7 +201,7 @@ const ChildSetupList = ({ navigation }: Props) => {
         <ChildContentArea>
          {/* <ScrollView> */}
           <ChildListingArea>
-          <CustomScrollView>
+          <CustomScrollView >
             {
               childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
