@@ -332,7 +332,7 @@ export default () => {
            <RootStack.Screen
             name="ChildImportSetup"
             component={ChildImportSetup}
-            options={{ headerShown: false }}
+            options={{ headerShown: false,gestureEnabled:false }}
           />
           <RootStack.Screen
             name="ChildSetupList"
