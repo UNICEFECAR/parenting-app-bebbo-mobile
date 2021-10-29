@@ -395,7 +395,9 @@ const UZuz = {
               importOnboardingText: "Bundan oldin eksport qilingan farzandingiz maʼlumotlarini import qilishingiz mumkin",
               OnboardingImportButton: "Hozir import qilish",
               ORkeyText: "YoKI",
-              addChildText: "Farzandingiz haqida maʼlumotlarni qoʻshing"
+              addChildText: "Farzandingiz haqida maʼlumotlarni qoʻshing",
+              notiTimeAgoTxt: "ago",
+              todayTxt:"today",
        }
 }
 export default UZuz;
