@@ -71,30 +71,30 @@ const CountrySelection = (props: any) => {
   );
   console.log("...sponsors..", sponsors);
   console.log("userIsOnboarded appnav--", userIsOnboarded);
-  useFocusEffect(
-    React.useCallback(() => {
-      // Alert.alert("focuseffect--",JSON.stringify(countryId));
-      const backAction = () => {
-        if (userIsOnboarded == true) {
-          i18n.changeLanguage(locale);
-          props.navigation.goBack()
-        }else {
-          BackHandler.exitApp();
-        }
-        return true;
-      };
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      backAction,
-    );
-    props.navigation.addListener('gestureEnd', backAction);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     // Alert.alert("focuseffect--",JSON.stringify(countryId));
+  //     const backAction = () => {
+  //       if (userIsOnboarded == true) {
+  //         i18n.changeLanguage(locale);
+  //         props.navigation.goBack()
+  //       }else {
+  //         BackHandler.exitApp();
+  //       }
+  //       return true;
+  //     };
+  //   const backHandler = BackHandler.addEventListener(
+  //     "hardwareBackPress",
+  //     backAction,
+  //   );
+  //   props.navigation.addListener('gestureEnd', backAction);
 
-    return () => {
-      props.navigation.removeListener('gestureEnd', backAction);
-      backHandler.remove()
-    };
-    }, []),
-  );
+  //   return () => {
+  //     props.navigation.removeListener('gestureEnd', backAction);
+  //     backHandler.remove()
+  //   };
+  //   }, []),
+  // );
   useEffect(() => {
     // Alert.alert("onload--",JSON.stringify(countryId)+isVisible);
       
