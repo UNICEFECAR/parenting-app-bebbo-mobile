@@ -388,13 +388,16 @@ const RSsr = {
               vcrNoti1: "Podsetnik za vakcinaciju je postavljen {{reminderDateTime}}",
               hcrNoti1: "Podsetnik za pedijatrijski pregled je postavljen {{reminderDateTime}}",
               parentGender: "Pol",
-              //Onboarding Import text new Translations
-              successOnboardingImport: "Uspešno ste uneli podatke o detetu",
-              updateImportText: "Molimo vas osvežite detalje da biste nastavili ",
-              importOnboardingText: "Možete uvesti podatke o detetu koje ste prethodno izvezli ",
-              OnboardingImportButton: "Uvezite sada",
-              ORkeyText: "ILI",
-              addChildText: "Dodajte podatke o detetu"
+                //Onboarding Import text new Translations
+                successOnboardingImport:"Uspešno ste uneli podatke o detetu",
+                updateImportText:"Molimo vas osvežite detalje da biste nastavili ",
+                importOnboardingText:"Možete uvesti podatke o detetu koje ste prethodno izvezli ",
+                OnboardingImportButton:"Uvezite sada",
+                ORkeyText:"ILI",
+                addChildText:"Dodajte podatke o detetu",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
+
        }
 
 }
