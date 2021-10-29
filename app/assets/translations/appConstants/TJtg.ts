@@ -395,7 +395,9 @@ const TJtg = {
                 importOnboardingText: "Шумо метавонед маълумоти қаблан содирнамударо ворид созед",
                 OnboardingImportButton: "Ворид сохтан",
                 ORkeyText: "ё ин ки",
-                addChildText: "Маълумот дар бораи кӯдакро илова намоед"
+                addChildText: "Маълумот дар бораи кӯдакро илова намоед",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
         }
 }
 export default TJtg;
