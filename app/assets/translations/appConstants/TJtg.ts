@@ -390,12 +390,12 @@ const TJtg = {
                 hcrNoti1: "Огоҳномаи оид ба муоинаи профилактикии тиббӣ ба {{reminderDateTime}} насб шудааст.",
                 parentGender: "Ҷинс",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details",
+                successOnboardingImport: "Бо муваффақият маълумот дар бораи кӯдак сабт шуд",
+                updateImportText: "Лутфан, маълумот дар бораи худро навсозӣ кунед",
+                importOnboardingText: "Шумо метавонед маълумоти қаблан содирнамударо ворид созед",
+                OnboardingImportButton: "Ворид сохтан",
+                ORkeyText: "ё ин ки",
+                addChildText: "Маълумот дар бораи кӯдакро илова намоед",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
         }
