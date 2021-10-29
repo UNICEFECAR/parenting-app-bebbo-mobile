@@ -49,6 +49,7 @@ export const LabelTextVac = styled.Text`
 `;
 export const LabelText = styled(LabelTextVac)`
   margin-bottom: 7px;
+  text-align:left;
 `;
 export const ChildSection = styled.View`
   flex: 1;
@@ -71,6 +72,7 @@ export const ChildListingBox = styled.View`
 export const ChildListTitle = styled.Text`
   font-size: 16px;
   font-weight: bold;
+  text-align:left;
 `;
 
 export const ChildColArea1 = styled.View`
