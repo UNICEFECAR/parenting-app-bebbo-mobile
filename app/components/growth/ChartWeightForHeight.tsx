@@ -141,6 +141,17 @@ const ChartWeightForHeight = () => {
                   source={{html: item?.interpretationText?.text}}
                   baseFontStyle={{fontSize: 16}}
                   ignoredStyles={['color', 'font-size', 'font-family']}
+                  tagsStyles={{
+                    p:{textAlign:'left',},
+                    h1:{textAlign:'left'},
+                    h2:{textAlign:'left'},
+                    h3:{textAlign:'left'},
+                    h4:{textAlign:'left'},
+                    h5:{textAlign:'left'},
+                    h6:{textAlign:'left'},
+                    span:{textAlign:'left'},
+                    li:{textAlign:'left'},
+                  }}
                 />
               ) : null}
             </>

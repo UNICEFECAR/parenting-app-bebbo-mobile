@@ -222,7 +222,7 @@ const ChildSetup = ({ navigation }: Props) => {
 
             <FlexCol>
                 <FlexRow style={{marginTop:10}}>
-                  <Flex2>
+                  <Flex2 style={{alignItems:'flex-start'}}>
                   <Heading4Regularw>{t('importOnboardingText')}</Heading4Regularw>
                   </Flex2>
                   <Flex1>
