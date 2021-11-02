@@ -27,7 +27,10 @@ const PrevPlannedVaccines = (props: any) => {
       return item.isMeasured ==false;
     });
   }
-  }else{
+  }
+  else{
+  console.log("222",isEditScreen,allPreviousPendingVaccines,takenVaccine);
+  allPreviousPendingVaccines.push(...currentPeriodVaccines);
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       if(isEditScreen== true){
