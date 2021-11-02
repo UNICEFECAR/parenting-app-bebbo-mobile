@@ -26,7 +26,7 @@ const TabScreenHeader = (props: any) => {
         <HeaderTitleView>
           <Heading2w style={{color:textColor}}> {props.title}</Heading2w>
         </HeaderTitleView>
-        <HeaderNotiIcon color={textColor}/>
+       {/* <HeaderNotiIcon color={textColor}/> */}
         <HeaderBabyMenu color={textColor}/>
       </HeaderRowView>
     </>
