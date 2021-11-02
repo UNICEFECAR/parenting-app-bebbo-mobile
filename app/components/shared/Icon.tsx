@@ -3,11 +3,9 @@ import { I18nManager } from 'react-native';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import styled from 'styled-components/native';
 
-// const Icon = createIconSetFromFontello(fontelloConfig);
-const isRTL = I18nManager.isRTL ? `180deg` : `0deg`;
+const Icon = createIconSetFromFontello(fontelloConfig);
 const FontelloIcon = createIconSetFromFontello(fontelloConfig);
-const Icon = styled(FontelloIcon)`
-flex-direction: row;
+export const IconML = styled(FontelloIcon)`
 transform: ${(props) => props.theme.isRTL ? 'scaleX(-1)' : 'scaleX(1)'}
 `;
 // styled(FontelloIcon).attrs(props => ({
