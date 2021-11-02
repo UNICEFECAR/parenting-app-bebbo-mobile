@@ -9,7 +9,7 @@ export const Heading1 = styled.Text`
   line-height: 32px;
   color: ${props => props.theme.colors.PRIMARY_TEXTCOLOR};
   font-family: 'roboto-bold';
-  
+  text-align:left;
 `;
 export const Heading1w = styled(Heading1)`
   color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
