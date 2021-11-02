@@ -1,6 +1,5 @@
 import { BgContainer } from '@components/shared/Container';
 import { Heading4 } from '@styles/typography';
-import { DateTime } from 'luxon';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getAllVaccinePeriods } from '../../services/vacccineService';
@@ -20,7 +19,15 @@ const PrevPlannedVaccines = (props: any) => {
       allPreviousPendingVaccines.push(vItem);
     });
   });
+  // allPreviousPendingVaccines.push(...currentPeriodVaccines);
   console.log(allPreviousPendingVaccines, currentPeriodVaccines);
+  if(allPreviousPendingVaccines.length === 0){
+    if(isEditScreen== true){
+    allPreviousPendingVaccines = currentPeriodVaccines.filter((item)=>{
+      return item.isMeasured ==false;
+    });
+  }
+  }else{
   allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
     (vItem: any) => {
       if(isEditScreen== true){
@@ -51,6 +58,7 @@ const PrevPlannedVaccines = (props: any) => {
       });
     },
   );
+}
   // console.log(allPreviousPendingVaccines);
   // let allCheckedVaccines: any[] = [];
   const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
