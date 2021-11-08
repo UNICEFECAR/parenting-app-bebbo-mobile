@@ -34,6 +34,7 @@ import ProgressCircle from 'react-native-progress-circle'
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { addSpaceToHtml } from '../../../services/Utils';
 import { CHILD_DEVELOPMENT_AGEGROUP_SELECTED, CHILD_MILESTONE_TRACKED, GAME_AGEGROUP_SELECTED } from '@assets/data/firebaseEvents';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 type ChildDevelopmentNavigationProp =
@@ -295,7 +296,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                   {
                     selectedChildDevData?.milestone ?
                       <HTML
-                        source={{ html: selectedChildDevData?.milestone}}
+                        source={{ html: addSpaceToHtml(selectedChildDevData?.milestone)}}
                         baseFontStyle={{ fontSize: 14 }}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                       />
