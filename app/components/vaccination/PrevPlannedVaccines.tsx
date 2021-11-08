@@ -16,49 +16,76 @@ const PrevPlannedVaccines = (props: any) => {
   let allPreviousPendingVaccines: any[] = [];
   previousPeriods.forEach((period) => {
     period.vaccines.forEach((vItem: any) => {
-      allPreviousPendingVaccines.push(vItem);
+      if(vItem.isMeasured ==false){
+        allPreviousPendingVaccines.push(vItem);
+      }
     });
   });
+  console.log("curr",currentPeriodVaccines)
   // allPreviousPendingVaccines.push(...currentPeriodVaccines);
-  console.log(allPreviousPendingVaccines, currentPeriodVaccines);
-  if(allPreviousPendingVaccines.length === 0){
-    if(isEditScreen== true){
-    allPreviousPendingVaccines = currentPeriodVaccines.filter((item)=>{
-      return item.isMeasured ==false;
-    });
-  }
-  }else{
-  allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
-    (vItem: any) => {
-      if(isEditScreen== true){
-        if(takenVaccine.length>0){
-           //remove all current period vaccines which are measured
-          return !currentPeriodVaccines?.find((element) => {
-            return element.uuid == vItem.uuid && element.isMeasured == true;
-          });
+  console.log("prev",allPreviousPendingVaccines);
+  if(isEditScreen== true){
+          if(takenVaccine.length>0){
+            allPreviousPendingVaccines = allPreviousPendingVaccines.filter((vItem)=>{
+              return !currentPeriodVaccines?.find((element) => {
+                        return element.uuid == vItem.uuid && element.isMeasured ==false;
+                      });
+            })
+           
           }else{
-             //remove all current period vaccines which are not measured
-            return !currentPeriodVaccines?.find((element) => {
-              return element.uuid == vItem.uuid && element.isMeasured == false;
-            });
+            allPreviousPendingVaccines.push([...currentPeriodVaccines].filter((item)=>{
+                return item.isMeasured ==false;
+              }));
           }
-      }else{
-        // remove all current period vaccines which are not measured, because its already in planned vaccines
-        return !currentPeriodVaccines?.find((element) => {
-          return element.uuid == vItem.uuid
+
+        }else{
+          allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
+              (vItem: any) => {
+                return !currentPeriodVaccines?.find((element) => {
+                          return element.uuid == vItem.uuid
+                        });
         });
-      }
+        }
+
+ 
+  // allPreviousPendingVaccines = currentPeriodVaccines.filter((item)=>{
+  //   return item.isMeasured ==false;
+  // });
+  // allPreviousPendingVaccines.push([...currentPeriodVaccines].filter((item)=>{
+  //   return item.isMeasured ==false;
+  // }));
+ 
+  // allPreviousPendingVaccines = allPreviousPendingVaccines.filter(
+  //   (vItem: any) => {
+  //     if(isEditScreen== true){
+  //       if(takenVaccine.length>0){
+  //          //remove all current period vaccines which are measured
+  //         return !currentPeriodVaccines?.find((element) => {
+  //           return element.uuid == vItem.uuid && element.isMeasured == true;
+  //         });
+  //         }else{
+  //            //remove all current period vaccines which are not measured
+  //           return !currentPeriodVaccines?.find((element) => {
+  //             return element.uuid == vItem.uuid && element.isMeasured == false;
+  //           });
+  //         }
+  //     }else{
+  //       // remove all current period vaccines which are not measured, because its already in planned vaccines
+  //       return !currentPeriodVaccines?.find((element) => {
+  //         return element.uuid == vItem.uuid
+  //       });
+  //     }
       
-    },
-  ).filter(
-    (vItem: any) => {
-       //remove all taken(measured) vaccines
-      return !takenVaccine?.find((element) => {
-        return element.uuid == vItem.uuid;
-      });
-    },
-  );
-}
+  //   },
+  // ).filter(
+  //   (vItem: any) => {
+  //      //remove all taken(measured) vaccines
+  //     return !takenVaccine?.find((element) => {
+  //       return element.uuid == vItem.uuid;
+  //     });
+  //   },
+  // );
+// }
   // console.log(allPreviousPendingVaccines);
   // let allCheckedVaccines: any[] = [];
   const [checkedVaccines, setCheckedVaccines] = useState<VaccineItemProps[]>(
