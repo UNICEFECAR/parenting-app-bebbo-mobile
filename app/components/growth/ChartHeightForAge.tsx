@@ -12,6 +12,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationHeightForAge } from '../../services/interpretationService';
+import { addSpaceToHtml } from '../../services/Utils';
 import GrowthChart, { chartTypes } from './GrowthChart';
 
 const ChartHeightForAge = () => {
@@ -149,7 +150,7 @@ useEffect(() => {
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <HTML
-                  source={{html: item?.interpretationText?.text}}
+                  source={{html: addSpaceToHtml(item?.interpretationText?.text)}}
                   baseFontStyle={{fontSize: 16}}
                   ignoredStyles={['color', 'font-size', 'font-family']}
                 />
