@@ -13,10 +13,7 @@ import {
   ButtonTextSmLine
 } from '@components/shared/ButtonGlobal';
 import {
-  FormContainer,
-  FormContainerFlex,
-  FormContainerFlex1,
-  FormDateAction, FormDateText1,
+  FormContainerFlex, FormDateAction, FormDateText1,
   FormInputBox,
   FormInputGroup,
   FormInputText,
@@ -53,7 +50,6 @@ import TakenVaccines from '@components/vaccination/TakenVaccines';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
-import { useFocusEffect } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
@@ -70,13 +66,10 @@ import {
   Alert,
   BackHandler,
   Modal,
-  Platform,
-  Pressable,
-  Text,
+  Platform, Text,
   TextInput,
   View
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -609,7 +602,9 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                     onTakenVaccineToggle={onTakenVaccineToggle}	
                   />	
                 </ShiftFromTop15>) : null}	
-              {takenVaccine?.length == 0 ? <ShiftFromTop15>	
+              {vcPeriod?.vaccines.filter((item)=>{
+              return item.isMeasured ==false;
+            }).length >0 ? <ShiftFromTop15>	
                 <FormInputText>	
                   <Heading3>{t('vcPlanned')}</Heading3>	
                 </FormInputText>	
