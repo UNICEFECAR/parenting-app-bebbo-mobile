@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector } from '../../App';
 import { appConfig } from '../assets/translations/appOfflineData/apiConstants';
 import { setAcceptTerms } from '../redux/reducers/utilsSlice';
 import { Heading1w } from '../styles/typography';
-
+import { addSpaceToHtml } from '../services/Utils';
 
 
 type TermsNavigationProp = StackNavigationProp<
@@ -210,7 +210,7 @@ const Terms = ({navigation}: Props) => {
         <ScrollView contentContainerStyle={{padding: 0}}>
           { termsdata != "" ?
             <HTML
-              source={{html: termsdata}}
+              source={{html: addSpaceToHtml(termsdata)}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
