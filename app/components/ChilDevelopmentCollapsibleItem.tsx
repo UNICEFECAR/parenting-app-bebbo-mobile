@@ -19,6 +19,7 @@ import downloadImages from '../downloadImages/ImageStorage';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import HTML from 'react-native-render-html';
+import { addSpaceToHtml } from '../services/Utils';
 import ModalPopupContainer, {
   ModalPopupContent,
   ModalPopupContainerVideo,
@@ -254,7 +255,7 @@ const activeChild = useAppSelector((state: any) =>
                   </Heading5> */}
                   {item && item.body ?
                     <HTML
-                      source={{html: item.body}}
+                      source={{html: addSpaceToHtml(item.body)}}
                       baseFontStyle={{fontSize: 14}}
                       ignoredStyles={['color', 'font-size', 'font-family','margin','padding']}
                       tagsStyles={{
