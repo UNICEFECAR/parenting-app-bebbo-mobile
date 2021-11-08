@@ -164,6 +164,22 @@ export const addApiDataInRealm = async (response: any) => {
 //     //new Intl.DateTimeFormat('de-DE', options).format(date)
 //     return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('dd LLL yyyy');
 //   }
+export const addSpaceToHtml=(htmlInput:any)=>{
+
+	if(htmlInput !== null && htmlInput !== undefined){
+
+		let html = htmlInput;
+
+		html = html.replace(/<[/]strong> /g, " </strong>");
+		html = html.replace(/<[/]em> /g, " </em>");
+		html = html.replace(/<[/]i> /g, " </i>");
+		html = html.replace(/<[/]s> /g, " </s>");
+		html = html.replace(/<[/]u> /g, " </u>");
+		html = html.replace(/<[/]span> /g, " </span>");
+
+		return html;
+	}
+}
 export const formatDate = (dateData: any, luxonLocale: string) => {
     // return new IntlPolyfill.DateTimeFormat(luxonLocale, {day:'2-digit', month: 'short',year:'numeric' }).format(new Date(dateData))
     let day = new IntlPolyfill.DateTimeFormat(luxonLocale, { day: '2-digit' }).format(new Date(dateData));
