@@ -70,7 +70,7 @@ const ChildProfile = ({navigation}: Props) => {
       setTimeout(() => {
         navigation.dispatch(state => {
           // Remove the home route from the stack
-          const routes = state.routes.filter(r => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile');
+          const routes = state.routes.filter(r => r.name !== 'LoadingScreen' && r.name !== 'EditChildProfile' && r.name !== 'AddExpectingChildProfile');
         
           return CommonActions.reset({
             ...state,
