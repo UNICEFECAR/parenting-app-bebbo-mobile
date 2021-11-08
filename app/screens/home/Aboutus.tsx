@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
-
+import { addSpaceToHtml } from '../../services/Utils';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -55,7 +55,7 @@ const Aboutus = ({navigation}: Props) => {
 
             { aboutusdata != "" ? 
             <HTML
-              source={{html: aboutusdata}}
+              source={{html: addSpaceToHtml(aboutusdata)}}
               baseFontStyle={{fontSize: 16, color: '#000'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
