@@ -13,6 +13,7 @@ import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
+import { addSpaceToHtml } from '../services/Utils';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -51,7 +52,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
         <ScrollView contentContainerStyle={{padding: 0}}>
           { privacydata != "" ? 
             <HTML
-              source={{html: privacydata}}
+              source={{html: addSpaceToHtml(privacydata)}}
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{

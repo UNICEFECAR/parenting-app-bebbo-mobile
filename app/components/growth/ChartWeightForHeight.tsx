@@ -13,6 +13,7 @@ import { useAppSelector } from '../../../App';
 import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
+import { addSpaceToHtml } from '../../services/Utils';
 const ChartWeightForHeight = () => {
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -138,7 +139,7 @@ const ChartWeightForHeight = () => {
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <HTML
-                  source={{html: item?.interpretationText?.text}}
+                  source={{html: addSpaceToHtml(item?.interpretationText?.text)}}
                   baseFontStyle={{fontSize: 16}}
                   ignoredStyles={['color', 'font-size', 'font-family']}
                 />
