@@ -54,6 +54,7 @@ import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getStatusBarHeight } from '../../../services/StatusBarHeight';
+import { addSpaceToHtml } from '../../../services/Utils';
 
 type HomeNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -540,7 +541,7 @@ const Home = ({ route, navigation }: Props) => {
 
                     {surveyItem && surveyItem?.body ?
                       <HTML
-                        source={{ html: surveyItem?.body}}
+                        source={{ html: addSpaceToHtml(surveyItem?.body)}}
                         ignoredStyles={['color', 'font-size', 'font-family']}
                       />
                       : null

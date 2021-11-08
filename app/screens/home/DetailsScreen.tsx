@@ -33,6 +33,7 @@ import { DefaultImage } from '@components/shared/Image';
 import analytics from '@react-native-firebase/analytics';
 import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { addSpaceToHtml } from '../../services/Utils';
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -344,7 +345,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
               <HTML
-                source={{html: detailDataToUse.body}} {...htmlProps}
+                source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
