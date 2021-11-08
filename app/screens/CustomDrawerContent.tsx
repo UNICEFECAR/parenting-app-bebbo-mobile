@@ -56,7 +56,7 @@ import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getCurrentChildAgeInDays, isFutureDate } from '../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
-import { formatDate } from '../services/Utils';
+import { formatDate,addSpaceToHtml } from '../services/Utils';
 const CustomDrawerContent = ({ navigation }: any) => {
   const { t } = useTranslation();
   const [accordvalue, onChangeaccordvalue] = React.useState(false);
@@ -674,7 +674,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
                 {feedbackItem && feedbackItem?.body ?
                   <HTML
-                    source={{ html: feedbackItem?.body}}
+                    source={{ html: addSpaceToHtml(feedbackItem?.body)}}
                     ignoredStyles={['color', 'font-size', 'font-family']}
                   />
                   : null
