@@ -9,7 +9,9 @@ margin:5px 0
 `;
 export default Divider;
 
-
+export const DividerN = styled(Divider)`
+margin:0
+`;
 export const DividerDev = styled(Divider)`
 border-color:${(props) => props.theme.colors.CHILDDEVELOPMENT_COLOR};
 `;

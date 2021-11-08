@@ -7,7 +7,7 @@ import {
   ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
   LocalizationAction,
   LocalizationCol,
@@ -328,7 +328,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_edit" size={16} color="#000" />
+                      <IconML name="ic_edit" size={16} color="#000" />
                     </OuterIconLeft>
                     <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
                   </OuterIconRow>
