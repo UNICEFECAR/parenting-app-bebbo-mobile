@@ -1,6 +1,7 @@
 
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import HeaderBabyMenu from '@components/HeaderBabyMenu';
+import HeaderNotiIcon from '@components/HeaderNotiIcon';
 import NotificationItem from '@components/NotificationItem';
 import NotificationsCategories from '@components/NotificationsCategories';
 import BurgerIcon from '@components/shared/BurgerIcon';
@@ -429,6 +430,7 @@ const Notifications = () => {
 
             <OuterIconRow>
               <OuterIconSpace>
+              <HeaderNotiIcon color="#000" isVisibleIcon={false}/>
                 <Pressable onPress={() => navigation.navigate('SettingsScreen')}>
                   <Icon name={'ic_sb_settings'} size={22} color="#FFF" />
                 </Pressable>
