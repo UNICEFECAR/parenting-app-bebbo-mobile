@@ -227,125 +227,125 @@ const Home = ({ route, navigation }: Props) => {
       let obj = { key: 'showDownloadPopup', value: false };
       dispatch(setInfoModalOpened(obj));
     }
-    if (generateNotificationsFlag == true) {
-      const fetchData = async () => {
-        let childList = await getAllChildren(dispatch, childAge, 1);
-        let allchildNotis: any[] = [];
-        console.log(childList, "..childList..")
-        childList?.map((child: any) => {
-          console.log(child, "<<child>>")
-          const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-          console.log("notiExist", notiExist);
-          if (notiExist != undefined) {
-            // notiExist.gwcdnotis?.forEach((item) => {
-            //   allgwcdnotis.push(item)
-            // })
-            //remove reminder notis
-            // dispatch(setAllNotificationData(notiExist))
-            if (isFutureDate(child?.birthDate)) {
-              // do not calculate for expecting child
-              //empty childNotis // find and remove child from notification slice
-              console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
-            } else {
-              let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis,vchcEnabledFlag);
-              const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-              console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
-              if (checkIfNewCalcRequired) {
-                console.log("NEWCALCREQUIRED")
-                console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
-                const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
+    // if (generateNotificationsFlag == true) {
+    //   const fetchData = async () => {
+    //     let childList = await getAllChildren(dispatch, childAge, 1);
+    //     let allchildNotis: any[] = [];
+    //     console.log(childList, "..childList..")
+    //     childList?.map((child: any) => {
+    //       console.log(child, "<<child>>")
+    //       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
+    //       console.log("notiExist", notiExist);
+    //       if (notiExist != undefined) {
+    //         // notiExist.gwcdnotis?.forEach((item) => {
+    //         //   allgwcdnotis.push(item)
+    //         // })
+    //         //remove reminder notis
+    //         // dispatch(setAllNotificationData(notiExist))
+    //         if (isFutureDate(child?.birthDate)) {
+    //           // do not calculate for expecting child
+    //           //empty childNotis // find and remove child from notification slice
+    //           console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
+    //         } else {
+    //           let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis,vchcEnabledFlag);
+    //           const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
+    //           console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
+    //           if (checkIfNewCalcRequired) {
+    //             console.log("NEWCALCREQUIRED")
+    //             console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
+    //             const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
 
-                console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
+    //             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
 
-                ////  append new notifications for child 
-                let allgwcdnotis: any = [];
-                let allvcnotis: any = [];
-                let allhcnotis: any = [];
-                gwcdnotis.reverse().forEach((item) => {
-                  allgwcdnotis.push(item)
-                })
-                if (notiExist.gwcdnotis) {
-                  notiExist.gwcdnotis?.forEach((item) => {
-                    allgwcdnotis.push(item)
-                  })
-                }
-                vcnotis.reverse().forEach((item) => {
-                  allvcnotis.push(item)
-                })
-                if (notiExist.vcnotis) {
-                  notiExist.vcnotis?.forEach((item) => {
-                    allvcnotis.push(item)
-                  })
-                }
-                hcnotis.reverse().forEach((item) => {
-                  allhcnotis.push(item)
-                })
-                if (notiExist.hcnotis) {
-                  notiExist.hcnotis?.forEach((item) => {
-                    allhcnotis.push(item)
-                  })
-                }
-                let allreminderNotis: any = []
-                // if (notiExist.reminderNotis) {
-                //   notiExist.reminderNotis?.forEach((item) => {
-                //     allreminderNotis.push(item)
-                //   })
-                // }
-                reminderNotis.reverse().forEach((item) => {
-                  allreminderNotis.push(item)
-                })
-                // remove duplicates by key of growth_period,periodName from reminderNotis
-                console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
-                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
+    //             ////  append new notifications for child 
+    //             let allgwcdnotis: any = [];
+    //             let allvcnotis: any = [];
+    //             let allhcnotis: any = [];
+    //             gwcdnotis.reverse().forEach((item) => {
+    //               allgwcdnotis.push(item)
+    //             })
+    //             if (notiExist.gwcdnotis) {
+    //               notiExist.gwcdnotis?.forEach((item) => {
+    //                 allgwcdnotis.push(item)
+    //               })
+    //             }
+    //             vcnotis.reverse().forEach((item) => {
+    //               allvcnotis.push(item)
+    //             })
+    //             if (notiExist.vcnotis) {
+    //               notiExist.vcnotis?.forEach((item) => {
+    //                 allvcnotis.push(item)
+    //               })
+    //             }
+    //             hcnotis.reverse().forEach((item) => {
+    //               allhcnotis.push(item)
+    //             })
+    //             if (notiExist.hcnotis) {
+    //               notiExist.hcnotis?.forEach((item) => {
+    //                 allhcnotis.push(item)
+    //               })
+    //             }
+    //             let allreminderNotis: any = []
+    //             // if (notiExist.reminderNotis) {
+    //             //   notiExist.reminderNotis?.forEach((item) => {
+    //             //     allreminderNotis.push(item)
+    //             //   })
+    //             // }
+    //             reminderNotis.reverse().forEach((item) => {
+    //               allreminderNotis.push(item)
+    //             })
+    //             // remove duplicates by key of growth_period,periodName from reminderNotis
+    //             console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
+    //             allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
-              } else {
+    //           } else {
 
-                //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
-                //find and remove child from notification slice
-                //clear notification which are already generated, 
-                //generate for new notifications
-                let allreminderNotis: any = []
-                let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-                // if (notiExist.reminderNotis) {
-                //   notiExist.reminderNotis?.forEach((item) => {
-                //     allreminderNotis.push(item)
-                //   })
-                // }
-                console.log("Periods Not Moved Ahead",notiExist);
+    //             //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
+    //             //find and remove child from notification slice
+    //             //clear notification which are already generated, 
+    //             //generate for new notifications
+    //             let allreminderNotis: any = []
+    //             let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
+    //             // if (notiExist.reminderNotis) {
+    //             //   notiExist.reminderNotis?.forEach((item) => {
+    //             //     allreminderNotis.push(item)
+    //             //   })
+    //             // }
+    //             console.log("Periods Not Moved Ahead",notiExist);
                 
-                reminderNotis.reverse().forEach((item) => {
-                  allreminderNotis.push(item)
-                })
-                allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
-              }
-            }
-          } else {
-            console.log("noti does not exist for child")
-            // create notification for that child first time
-            if (!isFutureDate(child?.birthDate)) {
-              const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-              let reminderNotis = getChildReminderNotifications(child, [],vchcEnabledFlag);
-              console.log(reminderNotis, "childNotis")
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-              allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
-            } else {
-              //for expecting child no notifications
-            }
-          }
+    //             reminderNotis.reverse().forEach((item) => {
+    //               allreminderNotis.push(item)
+    //             })
+    //             allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
+    //           }
+    //         }
+    //       } else {
+    //         console.log("noti does not exist for child")
+    //         // create notification for that child first time
+    //         if (!isFutureDate(child?.birthDate)) {
+    //           const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
+    //           console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
+    //           let reminderNotis = getChildReminderNotifications(child, [],vchcEnabledFlag);
+    //           console.log(reminderNotis, "childNotis")
+    //           console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
+    //           allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
+    //         } else {
+    //           //for expecting child no notifications
+    //         }
+    //       }
 
-        })
-        // console.log(allchildNotis,"allchildNotis")
-        dispatch(setAllNotificationData(allchildNotis))
-        //generate notifications for all childs 
-        //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
-        //if already exist, then for each module get last period, and generate afterwards period's notifications
-        //after generating notifications make it false
-        let notiFlagObj = { key: 'generateNotifications', value: false };
-        dispatch(setInfoModalOpened(notiFlagObj));
-      }
-      fetchData()
-    }
+    //     })
+    //     // console.log(allchildNotis,"allchildNotis")
+    //     dispatch(setAllNotificationData(allchildNotis))
+    //     //generate notifications for all childs 
+    //     //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
+    //     //if already exist, then for each module get last period, and generate afterwards period's notifications
+    //     //after generating notifications make it false
+    //     let notiFlagObj = { key: 'generateNotifications', value: false };
+    //     dispatch(setInfoModalOpened(notiFlagObj));
+    //   }
+    //   fetchData()
+    // }
 
 
 
