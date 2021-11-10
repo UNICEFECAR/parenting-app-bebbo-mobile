@@ -68,16 +68,32 @@ const DailyHomeNotification = () => {
           );
           // console.log(currentMessageIndex, 'currentMessageIndex');
           // Set next daily message
-          let newNotification = {
-            messageId: records[currentMessageIndex + 1].id,
-            messageText: records[currentMessageIndex + 1].title,
-            day: currentDate.day,
-            month: currentDate.month,
-            year: currentDate.year,
-          };
-          let updateNotifcation = setNotiInDB(newNotification);
+          if(currentMessageIndex>-1){
+            let newNotification = {
+              messageId: records[currentMessageIndex + 1].id,
+              messageText: records[currentMessageIndex + 1].title,
+              day: currentDate.day,
+              month: currentDate.month,
+              year: currentDate.year,
+            };
+            let updateNotifcation = setNotiInDB(newNotification);
+            setNotification(newNotification);
+          }
+          else{
+            let firstNotification = {
+              messageId: records.length>0 ? records[0].id : '',
+              messageText: records.length>0? records[0].title : '',
+              day: currentDate.day,
+              month: currentDate.month,
+              year: currentDate.year,
+            };
+            // console.log(firstNotification,"firstNotification");
+            let updateNotifcation = setNotiInDB(firstNotification);
+            setNotification(firstNotification);
+          }
+          
           // console.log(updateNotifcation);
-          setNotification(newNotification);
+          
           // console.log(
           //   'DAILY MESSAGE VARIABLE IS updated  Set next daily message',
           //   newNotification,
