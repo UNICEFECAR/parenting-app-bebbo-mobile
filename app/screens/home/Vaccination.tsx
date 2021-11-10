@@ -144,10 +144,10 @@ const Vaccination = ({navigation,route}: Props) => {
         visible={modalVisible}
         onRequestClose={() => {
           // Alert.alert('Modal has been closed.');
-          setModalVisible(false);
+          // setModalVisible(false);
         }}
         onDismiss={() => {
-          setModalVisible(false);
+          // setModalVisible(false);
         }}>
         <PopupOverlay>
           <ModalPopupContainer>
