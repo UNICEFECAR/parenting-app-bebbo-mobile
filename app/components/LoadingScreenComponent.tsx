@@ -17,6 +17,7 @@ const item = {
 const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
+  const prevPage = props.prevPage;
   console.log(sponsors, '..11sponsors..');
   return (
     <LoadingContainer>
@@ -85,7 +86,11 @@ const LoadingScreenComponent = (props: any) => {
             <WrapView>
               {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
               <StaticLogo
-                source={require('../assets/loading/unicef_logo.png')}
+                // source={require('../assets/loading/unicef_logo.png')}
+                source={
+                    prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' 
+                    ? require('')
+                    : require('../assets/loading/unicef_logo.png')}
               />
             </WrapView>
             </FlexDirCol>
