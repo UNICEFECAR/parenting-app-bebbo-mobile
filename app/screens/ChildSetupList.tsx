@@ -25,7 +25,7 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, View } from 'react-native';
+import { Alert, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -107,12 +107,23 @@ const ChildSetupList = ({ navigation }: Props) => {
     {
           childList.length> 1 ? (
             <ChildListAction>
-            <TitleLinkSm numberOfLines={3} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+            <TouchableHighlight underlayColor="transparent" onPress={() => deleteRecord(index,dispatch,data.uuid)}><Icon
+                      name="ic_trash"
+                      size={16}
+                      color="#000"
+                      
+                    /></TouchableHighlight>
+                    
             </ChildListAction>
             ) :null
           }
           <ChildListAction>
-      <TitleLinkSm numberOfLines={3} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+          <TouchableHighlight underlayColor="transparent" onPress={() => editRecord(data)}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                      
+                    /></TouchableHighlight>
       </ChildListAction>
     </ChildColArea2>
   </ChildListingBox>
@@ -126,7 +137,7 @@ const ChildSetupList = ({ navigation }: Props) => {
         [
           {
             text: t('removeOption1'),
-            onPress: () => reject("error"),
+            onPress: () => resolve("error"),
             style: "cancel"
           },
           { text: t('growthScreendelText'), onPress: async () => {
