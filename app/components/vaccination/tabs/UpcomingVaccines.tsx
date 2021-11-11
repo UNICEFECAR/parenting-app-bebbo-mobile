@@ -7,6 +7,7 @@ import {
   ToolsHeadPress,
   ToolsHeadView,
   ToolsIconView,
+  ToolsIconView1,
   ToolsListContainer,
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
@@ -213,7 +214,7 @@ const UpcomingVaccines = (props: any) => {
                         </IconViewAlert>
                       )}
                     </ToolsIconView>
-                    <ToolsHeadingView>
+                    <ToolsHeadingView style={{maxWidth:"90%"}}>
                       <Heading4Regular>
                         {v.title}
                         {v.isMeasured ? ' - ' : null}{' '}
@@ -225,16 +226,6 @@ const UpcomingVaccines = (props: any) => {
                           formatStringDate(v.measurementDate,luxonLocale)
                           : null}
                       </Heading4Regular>
-                      {v.isMeasured ? <Pressable onPress={() => 
-                      navigation.navigate('AddChildVaccination', {
-                        headerTitle: t('editVcTitle'),
-                        vcPeriod: item,
-                        editVaccineDate:v.measurementDate,
-                      })}>
-                          <ButtonTextSmLineL numberOfLines={2}>
-                            {t('growthScreeneditText')}
-                          </ButtonTextSmLineL>
-                        </Pressable>: null}
                       {v?.pinned_article ? (
                         <Pressable
                           onPress={() => gotoArticle(v.pinned_article)}>
@@ -244,6 +235,23 @@ const UpcomingVaccines = (props: any) => {
                         </Pressable>
                       ) : null}
                     </ToolsHeadingView>
+                    <ToolsIconView1>
+                    {v.isMeasured ? <Pressable onPress={() => 
+                      navigation.navigate('AddChildVaccination', {
+                        headerTitle: t('editVcTitle'),
+                        vcPeriod: item,
+                        editVaccineDate:v.measurementDate,
+                      })}>
+                          {/* <ButtonTextSmLineL numberOfLines={2}>
+                            {t('growthScreeneditText')}
+                          </ButtonTextSmLineL> */}
+                           <ButtonTextSmLineL numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextSmLineL>
+                        </Pressable>: null}
+                    </ToolsIconView1>
                   </FDirRowStart>
                 </MainContainer>
               );
