@@ -660,7 +660,12 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                   onPress={() => {
                     setModalVisible(true);
                   }}>
-                  <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
+                  {/* <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine> */}
+                  <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+                      name="ic_trash"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextSmLine>
                 </ButtonDelPress>
               </HeaderActionView> : null}
           </HeaderRowView>

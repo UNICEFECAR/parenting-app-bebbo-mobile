@@ -154,9 +154,14 @@ const ActiveChildMeasureTimeline = (props: any) => {
                   })
                 }}>
                 <FlexDirRowEnd>
-                  <ButtonTextMdLine numberOfLines={2}>
+                  {/* <ButtonTextMdLine numberOfLines={2}>
                     {t('growthScreeneditText')}
-                  </ButtonTextMdLine>
+                  </ButtonTextMdLine> */}
+                  <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextMdLine>
                 </FlexDirRowEnd>
               </Pressable>
             </Flex1>

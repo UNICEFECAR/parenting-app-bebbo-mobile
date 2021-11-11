@@ -284,7 +284,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: () => reject('error'),
+          onPress: () => resolve('error'),
           style: 'cancel',
         },
         {
@@ -442,7 +442,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                 onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
-                <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
+                {/* <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW> */}
+                <Icon name={'ic_trash'} size={15} color="#FFF" />
               </ButtonDelPress>
             
           </HeaderActionView>

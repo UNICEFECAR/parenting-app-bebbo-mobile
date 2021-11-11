@@ -23,6 +23,7 @@ declare module 'styled-components/native' {
         ARTICLES_TINTCOLOR: string,
         PRIMARY_TEXTCOLOR: string,
         SECONDARY_TEXTCOLOR: string,
+        DISABLED_TEXTCOLOR: string,
         LIGHTSHADE_COLOR: string,
     },
     fonts:{
