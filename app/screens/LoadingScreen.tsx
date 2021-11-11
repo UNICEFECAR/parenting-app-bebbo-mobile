@@ -241,7 +241,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
   return (
     <>
     <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
-     <LoadingScreenComponent sponsors={sponsors}></LoadingScreenComponent>
+     <LoadingScreenComponent sponsors={sponsors} prevPage={prevPage}></LoadingScreenComponent>
    </>
 
   );
