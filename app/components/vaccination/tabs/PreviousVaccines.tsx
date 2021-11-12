@@ -136,7 +136,7 @@ const PreviousVaccines = (props: any) => {
                         </IconViewAlert>
                       )}
                     </ToolsIconView>
-                    <ToolsHeadingView>
+                    <ToolsHeadingView style={{maxWidth:"90%"}}>
                       <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
                       
                       {v?.pinned_article ?
