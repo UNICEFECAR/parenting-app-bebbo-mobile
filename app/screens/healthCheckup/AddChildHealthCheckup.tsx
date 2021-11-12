@@ -66,7 +66,7 @@ import {
   Alert,
   BackHandler,
   Modal,
-  Platform, Text,
+  Platform, Pressable, Text,
   TextInput,
   View
 } from 'react-native';
@@ -655,19 +655,28 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
               <Heading2>{showDelete ? t('hcEditHeaderTitle') : t('hcNewHeaderTitle')}</Heading2>
             </HeaderTitleView>
             {showDelete ?
-              <HeaderActionView>
-                <ButtonDelPress
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}>
-                  {/* <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine> */}
-                  <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
-                      name="ic_trash"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLine>
-                </ButtonDelPress>
-              </HeaderActionView> : null}
+              // <HeaderActionView>
+              //   <ButtonDelPress
+              //     onPress={() => {
+              //       setModalVisible(true);
+              //     }}>
+              //     {/* <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine> */}
+              //     <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+              //         name="ic_trash"
+              //         size={16}
+              //         color="#000"
+              //       /></ButtonTextSmLine>
+              //   </ButtonDelPress>
+              // </HeaderActionView>
+               <HeaderActionView style={{padding:0}}>
+               <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                   setModalVisible(true)
+                 }>
+                 <Icon name={'ic_trash'} size={20} color="#000" />
+                   </Pressable>
+             </HeaderActionView>
+              : null
+              }
           </HeaderRowView>
 
           <ScrollView style={{ flex: 9 }} keyboardShouldPersistTaps={'always'}>

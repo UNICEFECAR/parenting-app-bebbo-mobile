@@ -29,7 +29,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { OuterIconSpace1 } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -57,7 +57,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Modal, Platform, Text, TextInput, View } from 'react-native';
+import { Alert, BackHandler, Modal, Platform, Pressable, Text, TextInput, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -538,18 +538,14 @@ useEffect(() => {
           <HeaderTitleView>
             <Heading2 numberOfLines={1}>{showDelete ? t('editVcTitle') : t('addVcTitle')}</Heading2>
           </HeaderTitleView>
-          {showDelete ? <HeaderActionView>
-            <ButtonDelPress
-              onPress={() => {
-                setModalVisible(true);
-              }}>
-              {/* <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine> */}
-              <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
-                      name="ic_trash"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLine>
-            </ButtonDelPress>
+          {showDelete ? <HeaderActionView style={{padding:0}}>
+            <Pressable  style={{paddingLeft:10,paddingRight:10}} onPress={() => { setModalVisible(true); }}>
+            {/* <OuterIconSpace1 style={{backgroundColor:"red"}}> */}
+                 
+                    <Icon name={'ic_trash'} size={20} color="#000" />
+                 
+                {/* </OuterIconSpace1> */}
+                </Pressable>
           </HeaderActionView> : null}
         </HeaderRowView>
 
