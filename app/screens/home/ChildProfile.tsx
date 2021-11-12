@@ -210,7 +210,7 @@ const ChildProfile = ({ navigation }: Props) => {
             </Heading5>
           </ProfileTextView>
 
-          <ProfileActionView>
+          <ProfileActionView  style={{height:"100%",alignItems:"center",justifyContent:"center"}}>
             <FlexColEnd>
               {/* Premature Tag Insert Here */}
               {/* <ShiftFromBottom5>
@@ -223,12 +223,12 @@ const ChildProfile = ({ navigation }: Props) => {
               {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
-                  <OuterIconLeft>
+                  <OuterIconRight>
                     <TickView3>
                       <Icon name="ic_tick" size={11} color="#009B00" />
                     </TickView3>
 
-                  </OuterIconLeft>
+                  </OuterIconRight>
                   <OuterIconRight>
                     <Pressable onPress={() => {
                       console.log("..2222..");
@@ -281,7 +281,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   </Heading5>
 
                 </ProfileTextView>
-                <ProfileActionView style={{ flex: 1 }}>
+                <ProfileActionView  style={{flex:1,height:"100%",alignItems:"center",justifyContent:"center"}}>
             <FlexColEnd>
               {/* Premature Tag Insert Here */}
               {/* <ShiftFromBottom5>
@@ -294,7 +294,7 @@ const ChildProfile = ({ navigation }: Props) => {
               {/* Premature Tag End Here */}
               <FDirRow>
                 <OuterIconRow>
-                  <OuterIconLeft>
+                  <OuterIconRight>
                   <Pressable onPress={() => {
                         setActiveChild(languageCode, data.uuid, dispatch, child_age);
                       }}>
@@ -303,7 +303,7 @@ const ChildProfile = ({ navigation }: Props) => {
                         </TickView2>
                       </Pressable>
 
-                  </OuterIconLeft>
+                  </OuterIconRight>
                   <OuterIconRight>
                   <Pressable onPress={() => {
                         data.index = index;
@@ -412,7 +412,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   </ProfileTextView>
                   <ProfileActionView>
                     <ButtonLinkPress
-                      style={{width:50,paddingLeft:5}}
+                      style={{width:50,justifyContent:"flex-end"}}
                       onPress={() => {
                         navigation.navigate('EditParentDetails', {
                           userParentalRoleData:

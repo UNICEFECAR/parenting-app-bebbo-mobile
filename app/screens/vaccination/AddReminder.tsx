@@ -323,18 +323,25 @@ useEffect(() => {
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
           {editReminderItem ? (
-            <HeaderActionView>
-              <ButtonDelPress
-                onPress={() => {
-                  setModalVisible(true);
-                }}>
-                <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
-                      name="ic_trash"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLine>
-              </ButtonDelPress>
-            </HeaderActionView>
+            // <HeaderActionView>
+            //   <ButtonDelPress
+            //     onPress={() => {
+            //       setModalVisible(true);
+            //     }}>
+            //     <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+            //           name="ic_trash"
+            //           size={16}
+            //           color="#000"
+            //         /></ButtonTextSmLine>
+            //   </ButtonDelPress>
+            // </HeaderActionView>
+               <HeaderActionView style={{padding:0}}>
+               <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                   setModalVisible(true)
+                 }>
+                 <Icon name={'ic_trash'} size={20} color="#000" />
+                   </Pressable>
+             </HeaderActionView>
           ) : null}
         </HeaderRowView>
 
