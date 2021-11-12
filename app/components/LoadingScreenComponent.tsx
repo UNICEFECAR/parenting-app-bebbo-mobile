@@ -39,60 +39,66 @@ const LoadingScreenComponent = (props: any) => {
               
             }}>
               <FlexDirCol>
-            <View style={{marginBottom:15}}>
-              <VectorImage source={item.image} />
-            </View>
-            <View style={{
-                  width:180,height:60,
-                  //backgroundColor:'#000',
-                  alignContent:'center',
-                  marginTop:20,
-                  
-                }}>
-              <PartnerLogo 
-              style={{
-                flex: 1,
-                resizeMode: 'contain'
-              }}
-                source={
-                  sponsors?.country_national_partner!=null
-                    ? {
-                        uri:sponsors?.country_national_partner
-                      }
-                    : require('')
-                }
-              />
-            </View>
-            <View style={{
-                  width:180,height:60,
-                  // backgroundColor:'#000',
-                  alignContent:'center',
-                  marginTop:25,
-                }}>
-              <SponsorLogo
-              style={{
-                flex: 1,
-                resizeMode: 'contain'
-              }}
-                source={
-                  sponsors?.country_sponsor_logo!=null
-                    ? {
-                        uri:sponsors?.country_sponsor_logo
-                      }
-                    : require('')
-                }
-              />
-            </View>
-            <WrapView>
-              {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
-              <StaticLogo
-                // source={require('../assets/loading/unicef_logo.png')}
-                source={
-                    prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' 
-                    ? require('')
-                    : require('../assets/loading/unicef_logo.png')}
-              />
-            </WrapView>
+                    <View style={{marginBottom:15}}>
+                      <VectorImage source={item.image} />
+                    </View>
+                    <View style={{
+                          width:180,height:60,
+                          //backgroundColor:'#000',
+                          alignContent:'center',
+                          marginTop:20,
+                          
+                        }}>
+                      {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
+                            null :
+                          <PartnerLogo 
+                          style={{
+                            flex: 1,
+                            resizeMode: 'contain'
+                          }}
+                            source={
+                              sponsors?.country_national_partner!=null
+                                ? {
+                                    uri:sponsors?.country_national_partner
+                                  }
+                                : require('')
+                            }
+                          />
+                        }
+                    </View>
+                    <View style={{
+                          width:180,height:60,
+                          // backgroundColor:'#000',
+                          alignContent:'center',
+                          marginTop:25,
+                        }}>
+                        {prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' ?
+                            null :
+                          <SponsorLogo
+                          style={{
+                            flex: 1,
+                            resizeMode: 'contain'
+                          }}
+                            source={
+                              sponsors?.country_sponsor_logo!=null
+                                ? {
+                                    uri:sponsors?.country_sponsor_logo
+                                  }
+                                : require('')
+                            }
+                          />
+                        }
+                    </View>
+                    <WrapView>
+                      {/* <Text style= {{textAlign: 'center', color:'#fff', marginBottom:15}}>Supports</Text> */}
+                      <StaticLogo
+                        // source={require('../assets/loading/unicef_logo.png')}
+                        source={
+                            prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' 
+                            ? require('')
+                            : require('../assets/loading/unicef_logo.png')}
+                      />
+                    </WrapView>
             </FlexDirCol>
           </View>
 
