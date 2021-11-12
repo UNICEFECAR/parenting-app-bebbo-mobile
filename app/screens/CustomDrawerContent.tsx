@@ -215,120 +215,120 @@ const CustomDrawerContent = ({ navigation }: any) => {
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
-      if (generateNotificationsFlag == true) {
-        let allchildNotis: any[] = [];
-        // childList.map((child: any) => {
-        const notiExist = allnotis?.find((item) => String(item.childuuid) == String(activeChild.uuid))
-        console.log("notiExist", notiExist);
-        if (notiExist != undefined) {
-          // notiExist.gwcdnotis?.forEach((item) => {
-          //   allgwcdnotis.push(item)
-          // })
-          //remove reminder notis
-          // dispatch(setAllNotificationData(notiExist))
-          if (isFutureDate(activeChild?.birthDate)) {
-            // do not calculate for expecting child
-            //empty childNotis // find and remove child from notification slice
-            console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
-          } else {
-            const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, activeChild, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-            if (checkIfNewCalcRequired) {
-              console.log("NEWCALCREQUIRED")
-              console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
-              const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
+      // if (generateNotificationsFlag == true) {
+      //   let allchildNotis: any[] = [];
+      //   // childList.map((child: any) => {
+      //   const notiExist = allnotis?.find((item) => String(item.childuuid) == String(activeChild.uuid))
+      //   console.log("notiExist", notiExist);
+      //   if (notiExist != undefined) {
+      //     // notiExist.gwcdnotis?.forEach((item) => {
+      //     //   allgwcdnotis.push(item)
+      //     // })
+      //     //remove reminder notis
+      //     // dispatch(setAllNotificationData(notiExist))
+      //     if (isFutureDate(activeChild?.birthDate)) {
+      //       // do not calculate for expecting child
+      //       //empty childNotis // find and remove child from notification slice
+      //       console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
+      //     } else {
+      //       const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, activeChild, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
+      //       if (checkIfNewCalcRequired) {
+      //         console.log("NEWCALCREQUIRED")
+      //         console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
+      //         const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
 
-              // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
+      //         // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
 
-              ////  append new notifications for child 
-              let allgwcdnotis: any = [];
-              let allvcnotis: any = [];
-              let allhcnotis: any = [];
-              gwcdnotis.reverse().forEach((item) => {
-                allgwcdnotis.push(item)
-              })
-              if (notiExist.gwcdnotis) {
-                notiExist.gwcdnotis?.forEach((item) => {
-                  allgwcdnotis.push(item)
-                })
-              }
-              vcnotis.reverse().forEach((item) => {
-                allvcnotis.push(item)
-              })
-              if (notiExist.vcnotis) {
-                notiExist.vcnotis?.forEach((item) => {
-                  allvcnotis.push(item)
-                })
-              }
-              hcnotis.reverse().forEach((item) => {
-                allhcnotis.push(item)
-              })
-              if (notiExist.hcnotis) {
-                notiExist.hcnotis?.forEach((item) => {
-                  allhcnotis.push(item)
-                })
-              }
-              let allreminderNotis: any = []
-              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-              // if (notiExist.reminderNotis) {
-              //   notiExist.reminderNotis?.forEach((item) => {
-              //     allreminderNotis.push(item)
-              //   })
-              // }
-              reminderNotis.reverse().forEach((item) => {
-                allreminderNotis.push(item)
-              })
-              console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
-              allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
+      //         ////  append new notifications for child 
+      //         let allgwcdnotis: any = [];
+      //         let allvcnotis: any = [];
+      //         let allhcnotis: any = [];
+      //         gwcdnotis.reverse().forEach((item) => {
+      //           allgwcdnotis.push(item)
+      //         })
+      //         if (notiExist.gwcdnotis) {
+      //           notiExist.gwcdnotis?.forEach((item) => {
+      //             allgwcdnotis.push(item)
+      //           })
+      //         }
+      //         vcnotis.reverse().forEach((item) => {
+      //           allvcnotis.push(item)
+      //         })
+      //         if (notiExist.vcnotis) {
+      //           notiExist.vcnotis?.forEach((item) => {
+      //             allvcnotis.push(item)
+      //           })
+      //         }
+      //         hcnotis.reverse().forEach((item) => {
+      //           allhcnotis.push(item)
+      //         })
+      //         if (notiExist.hcnotis) {
+      //           notiExist.hcnotis?.forEach((item) => {
+      //             allhcnotis.push(item)
+      //           })
+      //         }
+      //         let allreminderNotis: any = []
+      //         let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
+      //         // if (notiExist.reminderNotis) {
+      //         //   notiExist.reminderNotis?.forEach((item) => {
+      //         //     allreminderNotis.push(item)
+      //         //   })
+      //         // }
+      //         reminderNotis.reverse().forEach((item) => {
+      //           allreminderNotis.push(item)
+      //         })
+      //         console.log(allhcnotis, allvcnotis, allgwcdnotis, reminderNotis, "ONLYnewnoti");
+      //         allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
-            } else {
-              //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
-              //find and remove child from notification slice
-              //clear notification which are already generated, 
-              //generate for new notifications // append reminders
-              let allreminderNotis: any = []
-              let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-              // if (notiExist.reminderNotis) {
-              //   notiExist.reminderNotis?.forEach((item) => {
-              //     allreminderNotis.push(item)
-              //   })
-              // }
-              reminderNotis.reverse().forEach((item) => {
-                allreminderNotis.push(item)
-              })
-              allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
-            }
-          }
-        } else {
-          console.log("noti does not exist for child");
-          // create notification for that child first time
-          if (!isFutureDate(activeChild?.birthDate)) {
-            const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-            console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-            let reminderNotis = getChildReminderNotifications(activeChild,[],vchcEnabledFlag);
-            console.log(reminderNotis, "new reminderNotis")
-            console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-            allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
-          } else {
-            //for expecting child no notifications
-          }
-        }
+      //       } else {
+      //         //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
+      //         //find and remove child from notification slice
+      //         //clear notification which are already generated, 
+      //         //generate for new notifications // append reminders
+      //         let allreminderNotis: any = []
+      //         let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
+      //         // if (notiExist.reminderNotis) {
+      //         //   notiExist.reminderNotis?.forEach((item) => {
+      //         //     allreminderNotis.push(item)
+      //         //   })
+      //         // }
+      //         reminderNotis.reverse().forEach((item) => {
+      //           allreminderNotis.push(item)
+      //         })
+      //         allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
+      //       }
+      //     }
+      //   } else {
+      //     console.log("noti does not exist for child");
+      //     // create notification for that child first time
+      //     if (!isFutureDate(activeChild?.birthDate)) {
+      //       const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(activeChild, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
+      //       console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
+      //       let reminderNotis = getChildReminderNotifications(activeChild,[],vchcEnabledFlag);
+      //       console.log(reminderNotis, "new reminderNotis")
+      //       console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
+      //       allchildNotis.push({ childuuid: activeChild.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
+      //     } else {
+      //       //for expecting child no notifications
+      //     }
+      //   }
 
-        const exceptActiveChildNotis =   [...allnotis].filter(item => String(item.childuuid) != String(activeChild.uuid));
-        // allnotis.filter((item) => String(item.childuuid) != String(activeChild.uuid))
-        exceptActiveChildNotis.forEach(element => {
-          allchildNotis.push(element)
-        });
-        // [...allchildNotis].filter(item => String(item.childuuid) != String(activeChild[0].uuid));
-        // })
-        console.log(allchildNotis,"allchildNotis=Drawer")
-        dispatch(setAllNotificationData(allchildNotis))
-        //generate notifications for all childs 
-        //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
-        //if already exist, then for each module get last period, and generate afterwards period's notifications
-        //after generating notifications make it false
-        let notiFlagObj = { key: 'generateNotifications', value: false };
-        dispatch(setInfoModalOpened(notiFlagObj));
-      }
+      //   const exceptActiveChildNotis =   [...allnotis].filter(item => String(item.childuuid) != String(activeChild.uuid));
+      //   // allnotis.filter((item) => String(item.childuuid) != String(activeChild.uuid))
+      //   exceptActiveChildNotis.forEach(element => {
+      //     allchildNotis.push(element)
+      //   });
+      //   // [...allchildNotis].filter(item => String(item.childuuid) != String(activeChild[0].uuid));
+      //   // })
+      //   console.log(allchildNotis,"allchildNotis=Drawer")
+      //   dispatch(setAllNotificationData(allchildNotis))
+      //   //generate notifications for all childs 
+      //   //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
+      //   //if already exist, then for each module get last period, and generate afterwards period's notifications
+      //   //after generating notifications make it false
+      //   let notiFlagObj = { key: 'generateNotifications', value: false };
+      //   dispatch(setInfoModalOpened(notiFlagObj));
+      // }
     }, [isOpen, activeChild.uuid, allnotis]),
   );
 
@@ -601,7 +601,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
           </DrawerLinkView>
           <DrawerLinkView onPress={() => {
             Platform.OS === 'android' ? Linking.openURL('https://play.google.com/store/apps/details?id=org.unicef.ecar.bebbo') :
-            Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id376771144?action=write-review');
+            Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review');
             //  Linking.openURL("market://details?id=com.whatsapp")
             // const options = {
             //   AppleAppID:"389801252",
