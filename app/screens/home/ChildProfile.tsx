@@ -412,6 +412,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   </ProfileTextView>
                   <ProfileActionView>
                     <ButtonLinkPress
+                      style={{width:50,paddingLeft:5}}
                       onPress={() => {
                         navigation.navigate('EditParentDetails', {
                           userParentalRoleData:
@@ -425,7 +426,7 @@ const ChildProfile = ({ navigation }: Props) => {
                             : '',
                         });
                       }}>
-                      <Text numberOfLines={2} style={{ textDecorationLine: "none" }}> <Icon
+                      <Text numberOfLines={2} style={{ textDecorationLine: "none"}}> <Icon
                         name="ic_edit"
                         size={16}
                         color="#000"
