@@ -2,6 +2,8 @@ package org.unicef.ecar.bebbo;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.rnfs.RNFSPackage;
@@ -45,7 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+      Log.d("Mainapplication", "Mainapplication java oncreate helloo");
+      I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
     sharedI18nUtilInstance.allowRTL(getApplicationContext(), true);
     // sharedI18nUtilInstance.forceRTL(getApplicationContext(), true);
     SoLoader.init(this, /* native exopackage */ false);
