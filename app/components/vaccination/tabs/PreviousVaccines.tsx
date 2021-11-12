@@ -27,7 +27,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
@@ -120,6 +120,7 @@ const PreviousVaccines = (props: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
+                  <View style={{flex:6,flexDirection:"row"}}>
                     <ToolsIconView>
                       {v.isMeasured ? (
                         <RadioActive
@@ -136,7 +137,7 @@ const PreviousVaccines = (props: any) => {
                         </IconViewAlert>
                       )}
                     </ToolsIconView>
-                    <ToolsHeadingView style={{maxWidth:"90%"}}>
+                    <ToolsHeadingView>
                       <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
                       
                       {v?.pinned_article ?
@@ -147,6 +148,8 @@ const PreviousVaccines = (props: any) => {
                         </Pressable>
                         : null}
                     </ToolsHeadingView>
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
                     <ToolsIconView1>
                     {v.isMeasured ? <Pressable onPress={() => 
                       navigation.navigate('AddChildVaccination', {
@@ -164,6 +167,7 @@ const PreviousVaccines = (props: any) => {
                     /></ButtonTextSmLineL>
                         </Pressable>: null}
                     </ToolsIconView1>
+                    </View>
                   </FDirRowStart>
                 </MainContainer>
               );
