@@ -33,14 +33,14 @@ export const TickView3 = styled.View`
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 export const TickView1 = styled.View`
-  padding: 1px 10px;
-  margin:0 5px;
+  padding: 1px 5px;
+  margin:0 0px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 export const TickView2 = styled.View`
   background-color: ${(props) => props.theme.colors.SECONDARY_COLOR};
   padding: 4px;
-  margin-left:5px;
+  margin:0 0px;
   border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
 export const IconViewAlert = styled(TickView)`
@@ -69,6 +69,9 @@ export const IconBox = styled.View`
 
 export const OuterIconSpace = styled.View`
  padding:8px
+`;
+export const OuterIconSpace1 = styled.View`
+ padding:0px 8px
 `;
 
 export const OuterIconDone = styled.View`
