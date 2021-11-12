@@ -331,8 +331,8 @@ const UpcomingHealthCheckup = (props: any) => {
                               editReminderItem: hcReminder,
                             });
                           }}>
-                          <ButtonTextSmLine numberOfLines={2}>
-                            {t('editCountryLang')}
+                          <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
+                          <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
                         </Pressable>
                       </ToolsActionView>
