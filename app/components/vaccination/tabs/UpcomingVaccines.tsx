@@ -22,7 +22,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
@@ -197,7 +197,8 @@ const UpcomingVaccines = (props: any) => {
             {item?.vaccines.map((v, i) => {
               return (
                 <MainContainer key={i}>
-                  <FDirRowStart>
+                  <FDirRowStart>     
+                    <View style={{flex:6,flexDirection:"row"}}>
                     <ToolsIconView>
                       {v.isMeasured ? (
                         <RadioActive
@@ -214,7 +215,7 @@ const UpcomingVaccines = (props: any) => {
                         </IconViewAlert>
                       )}
                     </ToolsIconView>
-                    <ToolsHeadingView style={{maxWidth:"90%"}}>
+                    <ToolsHeadingView>
                       <Heading4Regular>
                         {v.title}
                         {v.isMeasured ? ' - ' : null}{' '}
@@ -235,6 +236,8 @@ const UpcomingVaccines = (props: any) => {
                         </Pressable>
                       ) : null}
                     </ToolsHeadingView>
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
                     <ToolsIconView1>
                     {v.isMeasured ? <Pressable onPress={() => 
                       navigation.navigate('AddChildVaccination', {
@@ -252,6 +255,7 @@ const UpcomingVaccines = (props: any) => {
                     /></ButtonTextSmLineL>
                         </Pressable>: null}
                     </ToolsIconView1>
+                    </View>
                   </FDirRowStart>
                 </MainContainer>
               );
