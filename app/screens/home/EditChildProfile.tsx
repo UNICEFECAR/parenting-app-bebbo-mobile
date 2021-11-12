@@ -437,16 +437,23 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             )}
           </HeaderTitleView>
           {childList?.length > 1 && childData && childData?.uuid != '' ? (
-          <HeaderActionView>
-              <ButtonDelPress
-                onPress={() =>
-                  deleteRecord(childData?.index, dispatch, childData?.uuid)
-                }>
-                {/* <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW> */}
-                <Icon name={'ic_trash'} size={15} color="#FFF" />
-              </ButtonDelPress>
+          // <HeaderActionView>
+          //     <ButtonDelPress
+          //       onPress={() =>
+          //         deleteRecord(childData?.index, dispatch, childData?.uuid)
+          //       }>
+          //       {/* <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW> */}
+          //       <Icon name={'ic_trash'} size={15} color="#FFF" />
+          //     </ButtonDelPress>
             
-          </HeaderActionView>
+          // </HeaderActionView>
+           <HeaderActionView style={{padding:0}}>
+           <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+               deleteRecord(childData?.index, dispatch, childData?.uuid)
+             }>
+             <Icon name={'ic_trash'} size={20} color="#FFF" />
+               </Pressable>
+         </HeaderActionView>
           ) : null}
         </HeaderRowView>
         <ScrollView style={{ flex: 4 }}>

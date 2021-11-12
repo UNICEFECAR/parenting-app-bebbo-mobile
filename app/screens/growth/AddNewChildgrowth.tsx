@@ -616,19 +616,25 @@ useEffect(() => {
               <Heading2 numberOfLines={1}>{showDelete ? t('growthScreeneditNewBtntxt') : t('growthScreenaddNewBtntxt')}</Heading2>
             </HeaderTitleView>
             {showDelete ? (
-              <HeaderActionView>
-                <ButtonDelPress
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}>
-                  {/* <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine> */}
-                  <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
-                      name="ic_trash"
-                      size={16}
-                      color="#000"
-                    /></ButtonTextSmLine>
-                </ButtonDelPress>
-              </HeaderActionView>
+              // <HeaderActionView>
+              //   <ButtonDelPress
+              //     onPress={() => {
+              //       setModalVisible(true);
+              //     }}>
+              //     <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+              //         name="ic_trash"
+              //         size={16}
+              //         color="#000"
+              //       /></ButtonTextSmLine>
+              //   </ButtonDelPress>
+              // </HeaderActionView>
+              <HeaderActionView style={{padding:0}}>
+              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                 setModalVisible(true)
+                }>
+                <Icon name={'ic_trash'} size={20} color="#000" />
+                  </Pressable>
+            </HeaderActionView>
             ) : null}
           </HeaderRowView>
           <FlexCol>

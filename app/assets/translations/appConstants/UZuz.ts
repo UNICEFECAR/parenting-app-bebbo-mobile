@@ -189,7 +189,7 @@ const UZuz = {
               trackMilestoneViewHeader: "Boladagi muhim oʻzgarishlarni yangilang.",
               trackMilestoneViewBtn: "Farzandingizdagi muhim oʻzgarishlarni kuzatib boring",
               babyNotificationText: "Bolaning tugʻilgan sanasi yangilanmadi",
-              babyNotificationbyAge: "{{childName}} {{agelnMonth}} yoshda",
+              babyNotificationbyAge: "{{childName}} {{ageInMonth}} yoshda",
               babyNotificationUpdateBtn: "Profilni yangilash",
               favScreenHeader: "Sevimlilar",
               actScreenremovetoFavText: "Sevimlilardan olib tashlash",
