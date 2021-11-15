@@ -9,6 +9,7 @@ import {
   ToolsHeadPress,
   ToolsHeadView,
   ToolsIconView,
+  ToolsIconView1,
   ToolsListContainer,
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
@@ -288,6 +289,7 @@ const UpcomingHealthCheckup = (props: any) => {
               <MainContainer>
                 {hcReminder ? (
                   <FDirRowStart>
+                     <View style={{flex:6,flexDirection:"row"}}>
                     <ToolsIconView>
                       <IconViewBg>
                         <Icon
@@ -298,7 +300,7 @@ const UpcomingHealthCheckup = (props: any) => {
                         />
                       </IconViewBg>
                     </ToolsIconView>
-                    <ToolsHeadView>
+                    {/* <ToolsHeadView> */}
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                         <Heading4>
@@ -317,8 +319,9 @@ const UpcomingHealthCheckup = (props: any) => {
                           }
                         </Heading4>
                       </ToolsHeadingView>
-                      <ToolsActionView>
-                        <Pressable
+                      </View>
+                      <View  style={{flex:1,alignItems:"flex-end"}}>
+                      <Pressable
                           disabled={isFutureDate(activeChild?.birthDate)}
                           onPress={() => {
                             navigation.navigate('AddReminder', {
@@ -331,12 +334,16 @@ const UpcomingHealthCheckup = (props: any) => {
                               editReminderItem: hcReminder,
                             });
                           }}>
+                      <ToolsIconView1>
+                       
                           <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
-                        </Pressable>
-                      </ToolsActionView>
-                    </ToolsHeadView>
+                       
+                      </ToolsIconView1>
+                      </Pressable>
+                      </View>
+                    {/* </ToolsHeadView> */}
                   </FDirRowStart>
                 ) : isFutureDate(activeChild?.birthDate) ? null : (
                   <Pressable

@@ -238,13 +238,12 @@ const UpcomingVaccines = (props: any) => {
                     </ToolsHeadingView>
                     </View>
                     <View  style={{flex:1,alignItems:"flex-end"}}>
-                    <ToolsIconView1>
-                    {v.isMeasured ? <Pressable onPress={() => 
-                      navigation.navigate('AddChildVaccination', {
+                    {v.isMeasured ? <Pressable onPress={() =>navigation.navigate('AddChildVaccination', {
                         headerTitle: t('editVcTitle'),
                         vcPeriod: item,
                         editVaccineDate:v.measurementDate,
                       })}>
+                    <ToolsIconView1>
                           {/* <ButtonTextSmLineL numberOfLines={2}>
                             {t('growthScreeneditText')}
                           </ButtonTextSmLineL> */}
@@ -253,8 +252,8 @@ const UpcomingVaccines = (props: any) => {
                       size={16}
                       color="#000"
                     /></ButtonTextSmLineL>
-                        </Pressable>: null}
                     </ToolsIconView1>
+                    </Pressable>: null}
                     </View>
                   </FDirRowStart>
                 </MainContainer>
@@ -300,8 +299,7 @@ const UpcomingVaccines = (props: any) => {
                     {/* </ToolsHeadView> */}
                     </View>
                     <View  style={{flex:1,alignItems:"flex-end"}}>
-                      <ToolsIconView1>
-                        <Pressable
+                    <Pressable
                           onPress={() => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'vaccine', // from remiderType
@@ -313,11 +311,12 @@ const UpcomingVaccines = (props: any) => {
                               editReminderItem: vcReminder,
                             });
                           }}>
+                      <ToolsIconView1>
                           <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
-                        </Pressable>
                       </ToolsIconView1>
+                      </Pressable>
                       </View>
                   </FDirRowStart>
                 ) : (
