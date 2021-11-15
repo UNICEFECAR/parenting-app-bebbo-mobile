@@ -399,7 +399,7 @@ const en = {
                 addChildText:"Add your child details",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
-                fiveYearsGreater:"Growth module only support below 5 years child."
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old"
         }
 }
 export default en;

@@ -398,6 +398,7 @@ const BGbg = {
                 addChildText: "Добавете данни за вашето дете",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old"
         }
 }
 export default BGbg;
