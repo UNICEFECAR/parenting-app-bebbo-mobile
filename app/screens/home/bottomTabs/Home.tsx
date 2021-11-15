@@ -15,7 +15,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
+import { FeatureBox, FeatureDivideArea, HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -40,7 +40,7 @@ import {
   Alert,
   BackHandler, Linking, Modal,
   Platform,
-  ScrollView, Text, ToastAndroid
+  ScrollView, Text, ToastAndroid, View
 } from 'react-native';
 // import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
@@ -478,6 +478,9 @@ const Home = ({ route, navigation }: Props) => {
             )}
             {/* <Text> {getStatusBarHeight(0)}</Text> */}
             <DailyReads />
+            <FeatureDivideArea>
+            <DailyHomeNotification />
+            </FeatureDivideArea>
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
@@ -509,7 +512,7 @@ const Home = ({ route, navigation }: Props) => {
                   </HomeSurveyBox>
                 </ShiftFromTopBottom10>
               </MainContainer>
-              <DailyHomeNotification />
+            
             </FlexCol>
           </FlexCol>
         </ScrollView>
