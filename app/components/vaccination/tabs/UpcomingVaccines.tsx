@@ -266,6 +266,8 @@ const UpcomingVaccines = (props: any) => {
               <MainContainer>
                 {vcReminder ? (
                   <FDirRowStart>
+                     <View style={{flex:6,flexDirection:"row"}}>
+                    {/* <ToolsHeadView> */}
                     <ToolsIconView>
                     <IconViewBg>
                       <Icon
@@ -276,7 +278,6 @@ const UpcomingVaccines = (props: any) => {
                       />
                       </IconViewBg>
                     </ToolsIconView>
-                    <ToolsHeadView>
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                         <Heading4>
@@ -295,7 +296,11 @@ const UpcomingVaccines = (props: any) => {
                           }
                         </Heading4>
                       </ToolsHeadingView>
-                      <ToolsActionView>
+                    
+                    {/* </ToolsHeadView> */}
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                      <ToolsIconView1>
                         <Pressable
                           onPress={() => {
                             navigation.navigate('AddReminder', {
@@ -312,8 +317,8 @@ const UpcomingVaccines = (props: any) => {
                           <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
                         </Pressable>
-                      </ToolsActionView>
-                    </ToolsHeadView>
+                      </ToolsIconView1>
+                      </View>
                   </FDirRowStart>
                 ) : (
                   <Pressable
