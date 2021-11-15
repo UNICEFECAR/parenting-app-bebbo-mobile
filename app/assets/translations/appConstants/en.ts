@@ -399,6 +399,7 @@ const en = {
                 addChildText:"Add your child details",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
+                fiveYearsGreater:"Growth module only support below 5 years child."
         }
 }
 export default en;
