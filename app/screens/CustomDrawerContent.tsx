@@ -46,7 +46,7 @@ import {
 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import { DateTime } from 'luxon';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Linking, Modal, Platform, Pressable, ScrollView, Share, View } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -111,6 +111,12 @@ const CustomDrawerContent = ({ navigation }: any) => {
   );
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
+  );
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
   );
   const dispatch = useAppDispatch();
   // useEffect(() => {
@@ -541,7 +547,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenuchatTxt')}</Heading4>
           </DrawerLinkView>
-          {/* <DrawerLinkView onPress={() => navigation.navigate('Favourites')}>
+          <DrawerLinkView onPress={() => navigation.navigate('Favourites',{tabIndex: 0,backClicked:'no'})}>
             <OuterIconRow>
               <OuterIconLeft15>
                 <Icon name="ic_sb_favorites" size={25} color="#000" />
@@ -549,12 +555,15 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
 
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufavTxt')}</Heading4>
-            <BubbleContainer>
-              <BubbleView>
-                <Heading5>10</Heading5>
-              </BubbleView>
-            </BubbleContainer>
-          </DrawerLinkView> */}
+            {/* { favoriteadvices?.length + favoritegames?.length > 0 ?
+              <BubbleContainer>
+                <BubbleView>
+                  <Heading5>{favoriteadvices?.length + favoritegames?.length}</Heading5>
+                </BubbleView>
+              </BubbleContainer>
+              : null
+            } */}
+          </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
             <OuterIconRow>
               <OuterIconLeft15>
