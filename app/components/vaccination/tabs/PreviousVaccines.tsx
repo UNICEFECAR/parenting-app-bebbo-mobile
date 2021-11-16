@@ -13,6 +13,7 @@ import {
   ToolsHeadingView,
   ToolsHeadPress,
   ToolsIconView,
+  ToolsIconView1,
   ToolsListContainer,
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
@@ -26,7 +27,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../../App';
 import { isFutureDate } from '../../../services/childCRUD';
@@ -119,6 +120,7 @@ const PreviousVaccines = (props: any) => {
               return (
                 <MainContainer key={i}>
                   <FDirRowStart>
+                  <View style={{flex:6,flexDirection:"row"}}>
                     <ToolsIconView>
                       {v.isMeasured ? (
                         <RadioActive
@@ -137,16 +139,7 @@ const PreviousVaccines = (props: any) => {
                     </ToolsIconView>
                     <ToolsHeadingView>
                       <Heading4Regular>{v.title}{v.isMeasured ? " - " : null} {v.isMeasured ? formatStringDate(v.measurementDate, luxonLocale) : null}</Heading4Regular>
-                      {v.isMeasured ? <Pressable onPress={() => 
-                      navigation.navigate('AddChildVaccination', {
-                        headerTitle: t('editVcTitle'),
-                        vcPeriod: item,
-                        editVaccineDate:v.measurementDate,
-                      })}>
-                          <ButtonTextSmLineL numberOfLines={2}>
-                            {t('growthScreeneditText')}
-                          </ButtonTextSmLineL>
-                        </Pressable>: null}
+                      
                       {v?.pinned_article ?
                         <Pressable onPress={() => gotoArticle(v.pinned_article)}>
                           <ButtonTextSmLineL numberOfLines={2}>
@@ -155,6 +148,26 @@ const PreviousVaccines = (props: any) => {
                         </Pressable>
                         : null}
                     </ToolsHeadingView>
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                    <ToolsIconView1>
+                    {v.isMeasured ? <Pressable onPress={() => 
+                      navigation.navigate('AddChildVaccination', {
+                        headerTitle: t('editVcTitle'),
+                        vcPeriod: item,
+                        editVaccineDate:v.measurementDate,
+                      })}>
+                          {/* <ButtonTextSmLineL numberOfLines={2}>
+                            {t('growthScreeneditText')}
+                          </ButtonTextSmLineL> */}
+                          <ButtonTextSmLineL numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextSmLineL>
+                        </Pressable>: null}
+                    </ToolsIconView1>
+                    </View>
                   </FDirRowStart>
                 </MainContainer>
               );
