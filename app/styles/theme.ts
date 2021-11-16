@@ -18,7 +18,6 @@ export const appTheme= {
         ARTICLES_TINTCOLOR: '#FFD2C4',
         PRIMARY_TEXTCOLOR: '#000000',
         SECONDARY_TEXTCOLOR: '#ffffff',
-        DISABLED_TEXTCOLOR: '#bdbdbd',
         LIGHTSHADE_COLOR: '#F7F6F4',
     },
     fonts: {
