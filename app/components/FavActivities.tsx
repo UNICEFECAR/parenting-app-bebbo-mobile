@@ -1,9 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
-import { Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext } from 'react';
-import { Image, Pressable, StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
+import React, { useContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FlatList, Image, Pressable, StyleSheet } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
+import { useAppSelector } from '../../App';
+import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
+import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
+import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import { FlexDirRow } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
@@ -42,58 +46,122 @@ const FavActivities = (props: any) => {
     //   title: 'Picking stuff around',
     // },
   ];
+  const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const actHeaderColor = themeContext.colors.ACTIVITIES_COLOR;
   const actBackgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
- 
-  const gotoActivity =()=>{
-    // navigation.navigate('DetailsScreen', {
-    //   fromScreen: 'Activities',
-    //   headerColor: actHeaderColor,
-    //   backgroundColor: actBackgroundColor,
-    // });
-  }
-  const renderActivityItem = (item: typeof DATA[0], index: number) => (
-<Pressable onPress={gotoActivity} key={index}>
-      <ArticleListContainer>
-        <Image
-          style={styles.cardImage}
-          source={item.imagePath}
-          resizeMode={'cover'}
-        />
-        <ArticleListContent>
-            <ShiftFromTopBottom5>
-          <Heading6Bold>Cognitive</Heading6Bold>
-          </ShiftFromTopBottom5>
-          <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-        
-          <ShareFavButtons  isFavourite={true} backgroundColor={'#FFF'} item={item} isAdvice={false}/>
-      </ArticleListContainer>
-    </Pressable>
-
-    // <Pressable onPress={gotoActivity} key={index}>
-    //   <View style={styles.item}>
-    //     <Image
-    //       style={styles.cardImage}
-    //       source={item.imagePath}
-    //       resizeMode={'cover'}
-    //     />
-    //     <Text style={styles.label}>Cognitive</Text>
-    //     <Text style={styles.title}>{item.title}</Text>
-    //     <ShareFavButtons  isFavourite={true} backgroundColor={'#FFF'}/>
-    //   </View>
-    // </Pressable>
+  const flatListRef = useRef(null);
+  const activityCategoryData = useAppSelector(
+    (state: any) =>
+      JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
+const activeChild = useAppSelector((state: any) =>
+    state.childData.childDataSet.activeChild != ''
+      ? JSON.parse(state.childData.childDataSet.activeChild)
+      : [],
+  );
+const ActivitiesDataall = useAppSelector(
+  (state: any) =>
+    state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
+);
+const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
+  const [favGamesToShow,setfavGamesToShow] = useState([]);
+const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activeChild?.taxonomyData.id))
+  const goToActivityDetail = (item: any) => {
+    navigation.navigate('DetailsScreen',
+      {
+        fromScreen: "FavActivities",
+        headerColor: actHeaderColor,
+        backgroundColor: actBackgroundColor,
+        detailData: item,
+        listCategoryArray: [],
+        selectedChildActivitiesData: ActivitiesData,
+        // currentSelectedChildId: currentSelectedChildId
+      });
+  };
+  useFocusEffect(
+    React.useCallback(() => {
+      async function fetchData() {
+        if(favoritegames.length > 0){
+          const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
+          console.log("filterQuery favgames--",filterQuery);
+          const favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
+          console.log("favData---",favData);
+          setfavGamesToShow(favData);
+        }
+      }
+      fetchData()
+    },[favoritegames])
+  );
+  const SuggestedActivities = React.memo(({ item, index }) => {
+    console.log("SuggestedActivities", item.id);
+    return (
+        <ArticleListContainer>
+           <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
+          <ArticleListContent>
+            <ShiftFromTopBottom5>
+              <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
+            </ShiftFromTopBottom5>
+            <Heading3>{item.title}</Heading3>
+            {/* keep below code ActivityBox for future use */}
+            {/* {section == 1 ? 
+            <ActivityBox>
+            <View>
+              <Heading6Bold>
+                {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
+              </Heading6Bold>
+              <ShiftFromTop5>
+              <Heading4>{'Laugh at Human face'}</Heading4>
+              </ShiftFromTop5>
+            </View>
+            <View>
+              <ButtonTextSmLine>
+                {t('actScreentrack')} {t('actScreenmilestones')}
+              </ButtonTextSmLine>
+            </View>
+          </ActivityBox>
+        : null
+        } */}
+          </ArticleListContent>
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false} />
+          </Pressable>
+        </ArticleListContainer>
+     
+    )
+  });
   return (
     <>
        <FlexDirRow style={{backgroundColor:actBackgroundColor}}>
-          <ScrollView
-         >
-            {DATA.map((item, index) => {
-              return renderActivityItem(item, index);
-            })}
-          </ScrollView>
+       {favGamesToShow.length> 0 ? 
+                // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                <FlatList
+                  ref={flatListRef}
+                  data={favGamesToShow}
+                  onScroll={(e)=>{
+                    // if(keyboardStatus==true){
+                    //   Keyboard.dismiss();
+                    // }
+                  }}
+                  nestedScrollEnabled={true}
+                  // keyboardDismissMode={"on-drag"}
+                  // keyboardShouldPersistTaps='always'
+                  removeClippedSubviews={true} // Unmount components when outside of window 
+                  initialNumToRender={4} // Reduce initial render amount
+                  maxToRenderPerBatch={4} // Reduce number in each render batch
+                  updateCellsBatchingPeriod={100} // Increase time between renders
+                  windowSize={7} // Reduce the window size
+                  renderItem={({item, index}) => <SuggestedActivities item={item} index={index} /> }
+                  keyExtractor={(item) => item.id.toString()}
+                  />
+                : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
         </FlexDirRow>
     </>
   );
