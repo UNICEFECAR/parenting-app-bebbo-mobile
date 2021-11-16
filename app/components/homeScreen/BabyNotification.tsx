@@ -124,7 +124,7 @@ const BabyNotification = () => {
                 
                 <Icon
                       name="ic_edit"
-                      size={16}
+                      size={20}
                       color="#000"
                     />
                  
