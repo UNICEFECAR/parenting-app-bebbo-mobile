@@ -400,6 +400,60 @@ class UserRealmCommon extends Component {
             }
         });
     }
+    public async updateFavorites<Entity>(entitySchema: ObjectSchema,favoriteid:any,favoritetype:any,condition:any): Promise<Entity[]> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                        realm?.write(() => {
+                            if(favoritetype == 'advices')
+                            {
+                                if(obj[0].favoriteadvices.length>0){
+                                    let updateItemIndex = obj[0].favoriteadvices.findIndex(item=>{
+                                        return item==favoriteid
+                                    });
+                                    // console.log(updateItemIndex)
+                                    if(updateItemIndex==-1){
+                                        obj[0].favoriteadvices.push(favoriteid);
+                                    }else{
+                                        obj[0].favoriteadvices.splice(updateItemIndex,1);
+                                    }
+                                }else{
+                                    obj[0].favoriteadvices.push(favoriteid);
+                                }
+                            } else if(favoritetype == 'games')
+                            {
+                                if(obj[0].favoritegames.length>0){
+                                    let updateItemIndex = obj[0].favoritegames.findIndex(item=>{
+                                        return item==favoriteid
+                                    });
+                                    // console.log(updateItemIndex)
+                                    if(updateItemIndex==-1){
+                                        obj[0].favoritegames.push(favoriteid);
+                                    }else{
+                                        obj[0].favoritegames.splice(updateItemIndex,1);
+                                    }
+                                }else{
+                                    obj[0].favoritegames.push(favoriteid);
+                                }
+                            }
+                                
+
+                        // console.log(obj[0],"after change");
+                        });
+                   resolve('success');
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+                reject();
+            }
+        });
+    }
     public async getData<Entity>(entitySchema: ObjectSchema): Promise<any> {
         return new Promise(async (resolve, reject) => {
             try {
