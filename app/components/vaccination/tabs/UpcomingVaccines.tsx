@@ -7,6 +7,7 @@ import {
   ToolsHeadPress,
   ToolsHeadView,
   ToolsIconView,
+  ToolsIconView1,
   ToolsListContainer,
   ToolsListOuter
 } from '@components/shared/ToolsStyle';
@@ -21,7 +22,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
@@ -196,7 +197,8 @@ const UpcomingVaccines = (props: any) => {
             {item?.vaccines.map((v, i) => {
               return (
                 <MainContainer key={i}>
-                  <FDirRowStart>
+                  <FDirRowStart>     
+                    <View style={{flex:6,flexDirection:"row"}}>
                     <ToolsIconView>
                       {v.isMeasured ? (
                         <RadioActive
@@ -225,16 +227,6 @@ const UpcomingVaccines = (props: any) => {
                           formatStringDate(v.measurementDate,luxonLocale)
                           : null}
                       </Heading4Regular>
-                      {v.isMeasured ? <Pressable onPress={() => 
-                      navigation.navigate('AddChildVaccination', {
-                        headerTitle: t('editVcTitle'),
-                        vcPeriod: item,
-                        editVaccineDate:v.measurementDate,
-                      })}>
-                          <ButtonTextSmLineL numberOfLines={2}>
-                            {t('growthScreeneditText')}
-                          </ButtonTextSmLineL>
-                        </Pressable>: null}
                       {v?.pinned_article ? (
                         <Pressable
                           onPress={() => gotoArticle(v.pinned_article)}>
@@ -244,6 +236,25 @@ const UpcomingVaccines = (props: any) => {
                         </Pressable>
                       ) : null}
                     </ToolsHeadingView>
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                    {v.isMeasured ? <Pressable onPress={() =>navigation.navigate('AddChildVaccination', {
+                        headerTitle: t('editVcTitle'),
+                        vcPeriod: item,
+                        editVaccineDate:v.measurementDate,
+                      })}>
+                    <ToolsIconView1>
+                          {/* <ButtonTextSmLineL numberOfLines={2}>
+                            {t('growthScreeneditText')}
+                          </ButtonTextSmLineL> */}
+                           <ButtonTextSmLineL numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextSmLineL>
+                    </ToolsIconView1>
+                    </Pressable>: null}
+                    </View>
                   </FDirRowStart>
                 </MainContainer>
               );
@@ -254,6 +265,8 @@ const UpcomingVaccines = (props: any) => {
               <MainContainer>
                 {vcReminder ? (
                   <FDirRowStart>
+                     <View style={{flex:6,flexDirection:"row"}}>
+                    {/* <ToolsHeadView> */}
                     <ToolsIconView>
                     <IconViewBg>
                       <Icon
@@ -264,7 +277,6 @@ const UpcomingVaccines = (props: any) => {
                       />
                       </IconViewBg>
                     </ToolsIconView>
-                    <ToolsHeadView>
                       <ToolsHeadingView>
                         <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
                         <Heading4>
@@ -283,8 +295,11 @@ const UpcomingVaccines = (props: any) => {
                           }
                         </Heading4>
                       </ToolsHeadingView>
-                      <ToolsActionView>
-                        <Pressable
+                    
+                    {/* </ToolsHeadView> */}
+                    </View>
+                    <View  style={{flex:1,alignItems:"flex-end"}}>
+                    <Pressable
                           onPress={() => {
                             navigation.navigate('AddReminder', {
                               reminderType: 'vaccine', // from remiderType
@@ -296,12 +311,13 @@ const UpcomingVaccines = (props: any) => {
                               editReminderItem: vcReminder,
                             });
                           }}>
-                          <ButtonTextSmLine numberOfLines={2}>
-                            {t('editCountryLang')}
+                      <ToolsIconView1>
+                          <ButtonTextSmLine numberOfLines={2} style={{textDecorationLine:"none"}}>
+                          <Icon name="ic_edit" size={16} color="#000" />
                           </ButtonTextSmLine>
-                        </Pressable>
-                      </ToolsActionView>
-                    </ToolsHeadView>
+                      </ToolsIconView1>
+                      </Pressable>
+                      </View>
                   </FDirRowStart>
                 ) : (
                   <Pressable
