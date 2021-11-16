@@ -137,7 +137,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: () => reject('error'),
+          onPress: () => resolve('error'),
           style: 'cancel',
         },
         {
@@ -183,14 +183,20 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
             </Heading2w>
           </HeaderTitleView>
-          <HeaderActionView>
+          <HeaderActionView  style={{padding:0}}>
             {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              <ButtonDelPress
-                onPress={() =>
+              // <ButtonDelPress
+              //   onPress={() =>
+              //     deleteRecord(childData?.index, dispatch, childData?.uuid)
+              //   }>
+              //      <Icon name={'ic_trash'} color="#FFF" size={15} />
+              // </ButtonDelPress>
+              
+              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
-                <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
-              </ButtonDelPress>
+                      <Icon name={'ic_trash'} size={20} color="#FFF" />
+                  </Pressable>
             ) : null}
           </HeaderActionView>
         </HeaderRowView>
