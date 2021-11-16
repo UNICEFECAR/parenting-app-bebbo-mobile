@@ -13,6 +13,8 @@ import {
   Flex2,
   Flex3,
   Flex4,
+  Flex5,
+  Flex6
 } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
@@ -21,7 +23,7 @@ import { Heading3, Heading5 } from '@styles/typography';
 import { CHILDREN_PATH } from '@types/types';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
+import { TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { getCurrentChildAgeInMonths } from '../../services/childCRUD';
@@ -47,7 +49,7 @@ const BabyNotification = () => {
         <BgSecondary>
           <MainContainer>
             <FlexDirRowSpace>
-              <Flex3>
+              <Flex5>
                 <FlexDirRow>
                 <OuterIconRow>
                   <OuterIconLeft>
@@ -91,11 +93,8 @@ const BabyNotification = () => {
                   </FDirCol>
                 </View>
                 </FlexDirRow>
-              </Flex3>
-              <Flex2>
-                <View style={{marginLeft:5}}>
-                <ButtonTertiaryMd>
-                  <ButtonLinkPress 
+              </Flex5>
+              <TouchableHighlight underlayColor="transparent"
                     onPress={() => {
                       if (isFutureDate(activeChild.birthDate)) {
                         navigation.navigate('AddExpectingChildProfile', {
@@ -118,14 +117,22 @@ const BabyNotification = () => {
                         })
                       }
                     }}>
-                    <ButtonTextMd numberOfLines={2}>
-                      {t('babyNotificationUpdateBtn')}
-                      
-                    </ButtonTextMd>
-                  </ButtonLinkPress>
-                </ButtonTertiaryMd>
+              <Flex1 style={{padding:10}}>
+            
+                <View style={{alignItems:"flex-end"}}>
+                {/* <ButtonTertiaryMd> */}
+                
+                <Icon
+                      name="ic_edit"
+                      size={20}
+                      color="#000"
+                    />
+                 
+                {/* </ButtonTertiaryMd> */}
                 </View>
-              </Flex2>
+                
+              </Flex1>
+              </TouchableHighlight>
             </FlexDirRowSpace>
           </MainContainer>
         </BgSecondary>
