@@ -106,7 +106,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     
     {
           childList.length> 1 ? (
-            <TouchableHighlight style={{padding:10,marginRight:5}} underlayColor="transparent" onPress={() => deleteRecord(index,dispatch,data.uuid)}>
+            <TouchableHighlight style={{padding:8,marginRight:2}} underlayColor="transparent" onPress={() => deleteRecord(index,dispatch,data.uuid)}>
             <ChildListAction>
           <Icon
                       name="ic_trash"
@@ -119,7 +119,7 @@ const ChildSetupList = ({ navigation }: Props) => {
             </TouchableHighlight>
             ) :null
           }
-          <TouchableHighlight style={{padding:10,marginLeft:5}} underlayColor="transparent" onPress={() => editRecord(data)}>
+          <TouchableHighlight style={{padding:8,marginLeft:2}} underlayColor="transparent" onPress={() => editRecord(data)}>
           <ChildListAction>
           <Icon
                       name="ic_edit"
