@@ -25,7 +25,7 @@ import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, View } from 'react-native';
+import { Alert, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -106,14 +106,29 @@ const ChildSetupList = ({ navigation }: Props) => {
     
     {
           childList.length> 1 ? (
+            <TouchableHighlight style={{padding:8,marginRight:2}} underlayColor="transparent" onPress={() => deleteRecord(index,dispatch,data.uuid)}>
             <ChildListAction>
-            <TitleLinkSm numberOfLines={3} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+          <Icon
+                      name="ic_trash"
+                      size={16}
+                      color="#000"
+                      
+                    />
+                    
             </ChildListAction>
+            </TouchableHighlight>
             ) :null
           }
+          <TouchableHighlight style={{padding:8,marginLeft:2}} underlayColor="transparent" onPress={() => editRecord(data)}>
           <ChildListAction>
-      <TitleLinkSm numberOfLines={3} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+          <Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                      
+                    />
       </ChildListAction>
+      </TouchableHighlight>
     </ChildColArea2>
   </ChildListingBox>
      );
@@ -126,7 +141,7 @@ const ChildSetupList = ({ navigation }: Props) => {
         [
           {
             text: t('removeOption1'),
-            onPress: () => reject("error"),
+            onPress: () => resolve("error"),
             style: "cancel"
           },
           { text: t('growthScreendelText'), onPress: async () => {
