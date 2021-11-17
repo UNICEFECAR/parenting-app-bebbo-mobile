@@ -2,14 +2,14 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@styles/typography';
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, Pressable, StyleSheet } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
 import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
-import { FlexDirRow } from './shared/FlexBoxStyle';
+import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavActivities = (props: any) => {
@@ -95,6 +95,8 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
           const favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
           console.log("favData---",favData);
           setfavGamesToShow(favData);
+        }else {
+          setfavGamesToShow([]);
         }
       }
       fetchData()
@@ -139,7 +141,13 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
   });
   return (
     <>
-       <FlexDirRow style={{backgroundColor:actBackgroundColor}}>
+       <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          backgroundColor: actBackgroundColor,
+        }}>
+          <FlexCol>
        {favGamesToShow.length> 0 ? 
                 // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
                 <FlatList
@@ -162,7 +170,9 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
                   keyExtractor={(item) => item.id.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
-        </FlexDirRow>
+
+          </FlexCol>
+        </View>
     </>
   );
 };
