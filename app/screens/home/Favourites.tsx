@@ -15,6 +15,7 @@ import { ThemeContext } from 'styled-components/native';
 import { TabBarContainer, TabBarDefault } from '@components/shared/TabBarStyle';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
 import { useFocusEffect } from '@react-navigation/native';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -43,6 +44,10 @@ const Favourites = ({navigation, route}: Props) => {
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
       // console.log("in favorites usefocuseffect 11", route.params);
+      // async function fetchData() {
+      //   const favverified = await userRealmCommon.verifyFavorites();
+      // }
+      // fetchData()
       if (route.params?.backClicked != 'yes') {
         setSelectedIndex(0);
       } else {
