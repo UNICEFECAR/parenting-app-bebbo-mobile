@@ -103,6 +103,8 @@ useFocusEffect(
         const favData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
         console.log("favData---",favData);
         setfavAdvicesToShow(favData);
+      }else {
+        setfavAdvicesToShow([]);
       }
     }
     fetchData()

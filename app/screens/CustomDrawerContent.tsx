@@ -113,11 +113,12 @@ const CustomDrawerContent = ({ navigation }: any) => {
     (state.notificationData.vchcEnabled),
   );
   const favoriteadvices = useAppSelector((state: any) =>
-    state.childData.childDataSet.favoriteadvices
+    state.childData.childDataSet.favoriteadvices ? state.childData.childDataSet.favoriteadvices : []
   );
   const favoritegames = useAppSelector((state: any) =>
-    state.childData.childDataSet.favoritegames
+    state.childData.childDataSet.favoritegames ? state.childData.childDataSet.favoritegames : []
   );
+  const [favoritescount, setfavoritescount] = useState<any[]>(0);
   const dispatch = useAppDispatch();
   // useEffect(() => {
 
@@ -126,10 +127,29 @@ const CustomDrawerContent = ({ navigation }: any) => {
   // React.useCallback(() => {
 
   // );
+  const isOpen: boolean = useIsDrawerOpen();
+  useFocusEffect(
+    React.useCallback(() => {
+    if (isOpen) {
+      let favadvices,favgames;
+      if(favoriteadvices && favoriteadvices.length > 0) {
+        favadvices = favoriteadvices.length;
+      }else {
+        favadvices = 0;
+      }
+      if(favoritegames && favoritegames.length > 0) {
+        favgames = favoritegames.length;
+      }else {
+        favgames = 0;
+      }
+      console.log(favadvices,"--favadvices--",favgames);
+      setfavoritescount(favadvices + favgames);
+    }
+  }, [isOpen, activeChild.uuid, favoriteadvices,favoritegames]),
+  );
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
-  const isOpen: boolean = useIsDrawerOpen();
   useFocusEffect(
     React.useCallback(() => {
     if (isOpen) {
@@ -555,14 +575,14 @@ const CustomDrawerContent = ({ navigation }: any) => {
             </OuterIconRow>
 
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenufavTxt')}</Heading4>
-            {/* { favoriteadvices?.length + favoritegames?.length > 0 ?
+            { favoritescount > 0 ?
               <BubbleContainer>
                 <BubbleView>
-                  <Heading5>{favoriteadvices?.length + favoritegames?.length}</Heading5>
+                  <Heading5>{favoritescount}</Heading5>
                 </BubbleView>
               </BubbleContainer>
               : null
-            } */}
+            }
           </DrawerLinkView>
           <DrawerLinkView onPress={() => navigation.navigate('AboutusScreen')}>
             <OuterIconRow>
