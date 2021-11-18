@@ -46,9 +46,6 @@ const LastChildMeasure = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
-  const childAgeInYears = getCurrentChildAgeInYears(
-    DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
-  );
   // const [childmeasures, setChildmeasures] = React.useState<any[]>(activeChild.measures);
  
   // const setNewChildMeasureUpdates = () => {
@@ -232,7 +229,7 @@ const LastChildMeasure = (props: any) => {
           </FDirRowStart>
           </ShiftFromTop20>
           :null}
-          {childAgeInYears>5 ? <ShiftFromTop20>
+          {getCurrentChildAgeInYears(DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis())>5 ? <ShiftFromTop20>
           <FDirRowStart>
           <OuterIconRow>
                         <OuterIconLeft>
