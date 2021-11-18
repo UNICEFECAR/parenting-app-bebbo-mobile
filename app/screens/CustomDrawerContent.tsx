@@ -212,6 +212,26 @@ const CustomDrawerContent = ({ navigation }: any) => {
       Alert.alert(t('generalError'));
     }
   };
+  const onShare1 = async () => {
+    try {
+      const result = await Share.share({
+        // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
+        message:"https://bebbo.app/node/3411", 
+        //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      Alert.alert(t('generalError'));
+    }
+  };
   useFocusEffect(
     React.useCallback(() => {
       setModalVisible(false);
@@ -590,6 +610,14 @@ const CustomDrawerContent = ({ navigation }: any) => {
               </OuterIconLeft15>
             </OuterIconRow>
             <Heading4 style={{ flexShrink: 1 }}>{t('drawerMenushareTxt')}</Heading4>
+          </DrawerLinkView>
+          <DrawerLinkView onPress={() => onShare1()}>
+            <OuterIconRow>
+              <OuterIconLeft15>
+                <Icon name="ic_sb_shareapp" size={25} color="#000" />
+              </OuterIconLeft15>
+            </OuterIconRow>
+            <Heading4 style={{ flexShrink: 1 }}>Share details</Heading4>
           </DrawerLinkView>
           <DrawerLinkView onPress={() => { setModalVisible(true); }}>
             <OuterIconRow>
