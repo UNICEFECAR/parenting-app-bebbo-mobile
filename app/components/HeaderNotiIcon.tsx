@@ -2,8 +2,11 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
-import { Pressable } from 'react-native';
+import { Alert, Pressable } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren, isFutureDate } from '../services/childCRUD';
@@ -238,6 +241,20 @@ const HeaderNotiIcon = (props: any) => {
       }
 
     }, [activeChild.uuid, allnotis]),
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async () => {
+        const filterQuery = 'uuid == "'+activeChild.uuid+'"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
+        dispatch(setFavouriteGames(childData[0].favoritegames));
+        // Alert.alert("in header noti");
+        console.log(childData[0].favoritegames,"in headernoti fav usefocuseffect",childData[0].favoriteadvices)
+      }
+      fetchData()
+    }, [activeChild.uuid]),
   );
   const navigation = useNavigation();
   return (
