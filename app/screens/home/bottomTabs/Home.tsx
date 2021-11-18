@@ -27,6 +27,7 @@ import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
@@ -34,10 +35,11 @@ import {
   SideSpacing25
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect,useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  AppState,
   BackHandler, Linking, Modal,
   Platform,
   ScrollView, Text, ToastAndroid
@@ -70,6 +72,7 @@ const Home = ({ route, navigation }: Props) => {
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [initialUrl, setInitialUrl] = React.useState(false);
   const [date1, setdate1] = useState<Date | null>(null);
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
@@ -198,6 +201,8 @@ const Home = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
+  // const appState = useRef(AppState.currentState);
+  // const [appStateVisible, setAppStateVisible] = useState(appState.current);
   // console.log(allGrowthPeriods, "allGrowthPeriods")
   // console.log(allVaccinePeriods, "allVaccinePeriods")
   // console.log(allHealthCheckupsData, "allHealthCheckupsData")
@@ -385,6 +390,88 @@ const Home = ({ route, navigation }: Props) => {
     }
     // return {};
   }, [netInfoval.isConnected]);
+  const handleAppStateChange = async (nextAppState:any) => {
+    const url = await Linking.getInitialURL();
+    if (url !== null && !initialUrl) {
+      setInitialUrl(true);
+      console.log('deep link from init app', url)
+    }
+  }
+  useFocusEffect(
+    React.useCallback(() => {
+   
+    const getUrl=async()=>{
+      AppState.addEventListener('change', handleAppStateChange);
+      Linking.addEventListener('url', event => {
+       console.log('deep link from background', event.url);
+       const initialUrlnew:any=event.url
+       if(initialUrlnew===null){
+        return;
+      }
+       if(initialUrlnew && initialUrlnew.includes('node')){
+        let initialUrlnewId:any=initialUrlnew.split("/").pop();
+        const initialUrlnewId1:any=parseInt(initialUrlnewId);
+        console.log("rerenew",userIsOnboarded);
+        if (userIsOnboarded == true) {
+          navigation.navigate('DetailsScreen',
+            {
+              fromScreen:"HomeArt",
+              headerColor:headerColor,
+              backgroundColor:backgroundColor,
+              detailData:initialUrlnewId1,
+              listCategoryArray: []
+              // setFilteredArticleData: setFilteredArticleData
+            });
+        }
+      }
+      })
+      return () => {
+        AppState.removeEventListener('change', handleAppStateChange);
+        Linking.removeEventListener('url', event => {
+          console.log('11deep link from background', event.url);
+         })
+      }
+      // console.log("11")
+      // let initialUrlnew:any = await Linking.getInitialURL();
+      // // Alert.alert("22"+appStateVisible+initialUrlnew)
+      //  Alert.alert(initialUrlnew);
+      // // setInitialUrl(initialUrlnew);   
+      // if(initialUrlnew===null){
+      //   return;
+      // }
+      // if(initialUrlnew && initialUrlnew.includes('node')){
+      //   let initialUrlnewId:any=initialUrlnew.split("/").pop();
+      //   const initialUrlnewId1:any=parseInt(initialUrlnewId);
+      //   console.log("rerenew");
+      //   if (userIsOnboarded == true) {
+      //   // Alert.alert(typeof initialUrlnewId1)
+      //     //  Alert.alert(initialUrl);
+      //     // navigation.push('DetailsScreen',{});
+      //     // setTimeout(()=>{
+      //       // initialUrlnew=null;
+      //       navigation.navigate('DetailsScreen',
+      //       {
+      //         fromScreen:"HomeArt",
+      //         headerColor:headerColor,
+      //         backgroundColor:backgroundColor,
+      //         detailData:initialUrlnewId1,
+      //         listCategoryArray: []
+      //         // setFilteredArticleData: setFilteredArticleData
+      //       });
+      //     // },10000);
+         
+      //   }
+      //   else{
+          
+      //   }
+      // }
+    }
+    
+    getUrl();
+  
+  
+  }, [userIsOnboarded]),
+  );
   // }, [netInfoval.isConnected]);
   const downloadApis = () => {
     console.log("Download Pressed", apiJsonData);
