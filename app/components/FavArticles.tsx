@@ -10,6 +10,7 @@ import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
+import { FlexCol } from './shared/FlexBoxStyle';
 import ShareFavButtons from './shared/ShareFavButtons';
 
 const FavArticles = (props: any) => {
@@ -141,6 +142,7 @@ useFocusEffect(
           {/* {DATA.map((item, index) => {
             return renderActivityItem(item, index);
           })} */}
+          <FlexCol>
           {favAdvicesToShow.length> 0 ? 
                 // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
                 <FlatList
@@ -164,6 +166,7 @@ useFocusEffect(
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
         {/* </ScrollView> */}
+        </FlexCol>
       </View>
     </>
   );
