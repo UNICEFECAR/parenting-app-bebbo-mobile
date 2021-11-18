@@ -200,7 +200,12 @@ const LastChildMeasure = (props: any) => {
                 >
                 {/* <FlexDirRowEnd>
                   <ButtonTextMdLine> */}
-                   <ButtonTextMdLine numberOfLines={2}>{t('growthScreeneditText')}</ButtonTextMdLine>
+                   <ButtonTextMdLine numberOfLines={2} style={{textDecorationLine:"none"}}><Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                    /></ButtonTextMdLine>
+                   {/* <ButtonTextMdLine numberOfLines={2}>{t('growthScreeneditText')}</ButtonTextMdLine> */}
                   {/* </ButtonTextMdLine>
                 </FlexDirRowEnd> */}
               </ButtonEditPress>

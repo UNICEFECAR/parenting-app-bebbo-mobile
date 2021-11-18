@@ -4,7 +4,7 @@ const ProfileListingStyle = styled.View``;
 /*Manage Profile Drowpdown*/
 
 export const ProfileListView = styled.View`
-  padding: 11px 15px;
+  padding: 11px 8px;
   flex-direction: row;
   align-items: center;
   
@@ -53,7 +53,7 @@ export const ProfileLinkView = styled.View`
 /*Manage Profile Screen */
 
 export const ProfileListDefault = styled(ProfileListView)`
-  padding: 0px 15px;
+  padding: 0px 8px;
   
 `;
 export const ProfileSectionView = styled.View`
@@ -123,7 +123,7 @@ export const ParentColView = styled.View`
 `;
 
 export const ParentListView = styled.View`
-padding:10px 15px 3px;
+padding:10px 11px 3px;
 align-items:center;
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS};
 `
