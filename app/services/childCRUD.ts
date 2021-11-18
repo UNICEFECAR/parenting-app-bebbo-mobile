@@ -347,8 +347,9 @@ export const getCurrentChildAgeInYears = (birthDayMillis: number) => {
   if (childBirthDay) {
     let date = DateTime.fromMillis(childBirthDay);
     let convertInDays = timeNow.diff(date, "years").toObject().years;
+    console.log(convertInDays,"..334convertInDays...")
     if (convertInDays !== undefined && convertInDays > 0) {
-      years = Math.round(convertInDays);
+      years = convertInDays;
     }
     else {
       years = 0;
