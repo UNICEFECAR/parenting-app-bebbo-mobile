@@ -27,6 +27,7 @@ import { Modal, Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
+import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 
 const LastChildMeasure = (props: any) => {
@@ -225,6 +226,22 @@ const LastChildMeasure = (props: any) => {
                         </OuterIconLeft>
                       </OuterIconRow>
                       <Heading4 style={{flexShrink:1}}>{t('noRecentGrowthMeasure')}</Heading4>
+          </FDirRowStart>
+          </ShiftFromTop20>
+          :null}
+          {getCurrentChildAgeInYears(DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis())>5 ? <ShiftFromTop20>
+          <FDirRowStart>
+          <OuterIconRow>
+                        <OuterIconLeft>
+                            <IconViewAlert>
+                              <Icon
+                                name="ic_incom"
+                                size={24}
+                                color="#FFF"
+                              /></IconViewAlert>
+                        </OuterIconLeft>
+                      </OuterIconRow>
+                      <Heading4 style={{flexShrink:1}}>{t('fiveYearsGreater')}</Heading4>
           </FDirRowStart>
           </ShiftFromTop20>
           :null}
