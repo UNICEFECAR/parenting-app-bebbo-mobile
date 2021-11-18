@@ -1,5 +1,5 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading6 } from '@styles/typography';
+import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
 import { Alert, Pressable } from 'react-native';
@@ -12,7 +12,7 @@ import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren, isFutureDate } from '../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
-import { BubbleContainer, BubbleView } from './shared/NavigationDrawer';
+import { BubbleContainer, BubbleView, BubbleView1 } from './shared/NavigationDrawer';
 const headerHeight = 50;
 const HeaderNotiIcon = (props: any) => {
   const headerColor = props.headerColor;
@@ -265,9 +265,9 @@ const HeaderNotiIcon = (props: any) => {
         <Icon name="ic_sb_notification" size={32} color={props.color} style={{ position: 'relative' }} />
         {notifications.length > 0 ?
           <BubbleContainer style={{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }}>
-            <BubbleView>
-              <Heading6>{notifications.length}</Heading6>
-            </BubbleView>
+            <BubbleView1>
+              <Heading6w>{notifications.length}</Heading6w>
+            </BubbleView1>
           </BubbleContainer>
           : null}
       </Pressable>:null

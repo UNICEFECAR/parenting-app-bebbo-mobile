@@ -43,9 +43,11 @@ padding:10px 15px;
 export const ToolsIconView = styled.View`
 padding:4px 0
 `;
+export const ToolsIconView1 = styled.View`
+padding:4px;
+`;
 export const ToolsHeadingView = styled.View`
 padding:0 10px;
-
 align-self:center;
 `;
 export const ToolsActionView = styled.View`
