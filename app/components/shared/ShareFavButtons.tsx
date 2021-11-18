@@ -2,10 +2,14 @@ import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARE
 import { shareText } from '@assets/translations/appOfflineData/apiConstants';
 import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Share } from 'react-native';
 import styled from 'styled-components/native';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../database/schema/ChildDataSchema';
+import { setFavouriteAdvices, setFavouriteGames } from '../../redux/reducers/childSlice';
 import { FDirRow } from './FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from './Icon';
 export const ShareFavBox = styled.View`
@@ -21,9 +25,38 @@ export const ShareFavPress = styled.Pressable`
 padding:12px 0px;
 `;
 
-const ShareFavButtons = (props: any) => {
+const ShareFavButtons = React.memo((props: any) => {
+  const activeChilduuid = useAppSelector((state: any) =>
+  state.childData.childDataSet.activeChild != ''
+    ? JSON.parse(state.childData.childDataSet.activeChild).uuid
+    : [],
+);
+
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   const {t} = useTranslation();
-  const {backgroundColor, isFavourite,item,isAdvice} = props;
+  const dispatch = useAppDispatch();
+  const {backgroundColor,item,isAdvice} = props;
+  const [isFavourite,setisFavourite] = useState<Boolean>()
+  useEffect(() => {
+    const fetchData = async () => {
+      // const filterQuery = 'uuid == "'+activeChilduuid+'"';
+      // const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+      // get from store
+      console.log(item?.id,"favoriteadvices45---",favoriteadvices);
+      if(isAdvice==true){
+        setisFavourite(((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false);
+      }else {
+        setisFavourite(((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false);
+      }
+      console.log("isFavourite---",isFavourite);
+    }
+    fetchData()
+  }, []);
   const onShare = async () => {
    // console.log('share');
     try {
@@ -50,17 +83,42 @@ const ShareFavButtons = (props: any) => {
       Alert.alert(t('generalError'));
     }
   };
-  const onFavClick = ()=>{
+  const onFavClick = async ()=>{
+    const filterQuery = 'uuid == "'+activeChilduuid+'"';
+    console.log(filterQuery,"vshdvh---",isAdvice);
     if(isAdvice){
-     analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
-  }else{
-     analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
-  }
+    // console.log("filterQuery child dev--",filterQuery);
+    const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
+    const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+    setisFavourite(!isFavourite);
+    dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
+
+      analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
+    }else{
+      const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
+      const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+      setisFavourite(!isFavourite);
+      dispatch(setFavouriteGames(childData[0].favoritegames));
+      analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
+    }
 
     
   }
-  const unFavHandler = ()=>{
-
+  const unFavHandler = async ()=>{
+    const filterQuery = 'uuid == "'+activeChilduuid+'"';
+    if(isAdvice){
+      // console.log("filterQuery child dev--",filterQuery);
+      const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
+      const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+      setisFavourite(!isFavourite);
+      dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
+  
+      }else{
+        const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        setisFavourite(!isFavourite);
+        dispatch(setFavouriteGames(childData[0].favoritegames));
+      }
   }
   return (
     <>
@@ -76,7 +134,7 @@ const ShareFavButtons = (props: any) => {
           </FDirRow>
         </ShareFavPress>
 
-        {isFavourite ? (
+        { isFavourite ? (
           <ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
@@ -102,5 +160,5 @@ const ShareFavButtons = (props: any) => {
       </ShareFavBox>
     </>
   );
-};
+});
 export default ShareFavButtons;

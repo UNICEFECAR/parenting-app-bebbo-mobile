@@ -353,7 +353,7 @@ const Activities = ({ route, navigation }: Props) => {
         : null
         } */}
           </ArticleListContent>
-          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false} />
           </Pressable>
         </ArticleListContainer>
      
