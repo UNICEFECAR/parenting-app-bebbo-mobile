@@ -339,6 +339,25 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number) => {
   console.log(days, "..days..");
   return days;
 };
+export const getCurrentChildAgeInYears = (birthDayMillis: number) => {
+  let childBirthDay = birthDayMillis;
+  let timeNow: any = DateTime.local().toMillis();
+  timeNow = DateTime.fromMillis(timeNow);
+  let years: number = 0;
+  if (childBirthDay) {
+    let date = DateTime.fromMillis(childBirthDay);
+    let convertInDays = timeNow.diff(date, "years").toObject().years;
+    console.log(convertInDays,"..334convertInDays...")
+    if (convertInDays !== undefined && convertInDays > 0) {
+      years = convertInDays;
+    }
+    else {
+      years = 0;
+    }
+  };
+  console.log(years, "..years..");
+  return years;
+};
 export const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
 };
