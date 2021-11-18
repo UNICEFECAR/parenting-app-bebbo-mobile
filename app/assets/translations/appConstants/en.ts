@@ -399,6 +399,7 @@ const en = {
                 addChildText:"Add your child details",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
+                //phase2 strings
                 fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old"
         }
 }
