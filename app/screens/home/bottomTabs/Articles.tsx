@@ -9,6 +9,7 @@ import { DividerArt } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
 import { FlexCol } from '@components/shared/FlexBoxStyle';
 import Icon, { IconClearBox, IconClearPress, OuterIconRow } from '@components/shared/Icon';
+import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -44,6 +45,7 @@ export type ArticleCategoriesProps = {
 }
 const Articles = ({route, navigation}: Props) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isFavouriteArticle,setisFavouriteArticle] = useState(false);
   const [queryText,searchQueryText] = useState('');
   const dispatch = useAppDispatch();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
@@ -79,7 +81,7 @@ const Articles = ({route, navigation}: Props) => {
            </ShiftFromTopBottom5>
            <Heading3>{item.title}</Heading3>
            </ArticleListContent>
-           {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/> */}
+           <ShareFavButtons  backgroundColor={'#FFF'} item={item} isAdvice={true}/>
            </Pressable>
          </ArticleListContainer>
       
