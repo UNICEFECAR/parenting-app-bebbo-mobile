@@ -153,7 +153,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           <Heading3>{item.title}</Heading3>
           </ArticleListContent>
           </View>
-          {/* <ShareFavButtons  isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false}/> */}
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false}/>
         </RelatedArticleContainer>
       </Pressable>  
    ) 

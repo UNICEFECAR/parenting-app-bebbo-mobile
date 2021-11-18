@@ -5,6 +5,8 @@ import { Component } from 'react';
 import Realm, { ObjectSchema, Collection } from 'realm';
 import { getDiffinDays } from '../../services/childCRUD';
 import { userRealmConfig } from '../config/dbConfig';
+import { ActivitiesEntity, ActivitiesEntitySchema } from '../schema/ActivitiesSchema';
+import { ArticleEntity, ArticleEntitySchema } from '../schema/ArticleSchema';
 import { ChildEntity, ChildEntitySchema } from '../schema/ChildDataSchema';
 import { ConfigSettingsEntity, ConfigSettingsSchema } from '../schema/ConfigSettingsSchema';
 import { dataRealmCommon } from './dataRealmCommon';
@@ -389,6 +391,107 @@ class UserRealmCommon extends Component {
                             
                         
                         });
+                   resolve('success');
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+                reject();
+            }
+        });
+    }
+    public async updateFavorites<Entity>(entitySchema: ObjectSchema,favoriteid:any,favoritetype:any,condition:any): Promise<Entity[]> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
+                        realm?.write(() => {
+                            if(favoritetype == 'advices')
+                            {
+                                if(obj[0].favoriteadvices.length>0){
+                                    let updateItemIndex = obj[0].favoriteadvices.findIndex(item=>{
+                                        return item==favoriteid
+                                    });
+                                    // console.log(updateItemIndex)
+                                    if(updateItemIndex==-1){
+                                        obj[0].favoriteadvices.push(favoriteid);
+                                    }else{
+                                        obj[0].favoriteadvices.splice(updateItemIndex,1);
+                                    }
+                                }else{
+                                    obj[0].favoriteadvices.push(favoriteid);
+                                }
+                            } else if(favoritetype == 'games')
+                            {
+                                if(obj[0].favoritegames.length>0){
+                                    let updateItemIndex = obj[0].favoritegames.findIndex(item=>{
+                                        return item==favoriteid
+                                    });
+                                    // console.log(updateItemIndex)
+                                    if(updateItemIndex==-1){
+                                        obj[0].favoritegames.push(favoriteid);
+                                    }else{
+                                        obj[0].favoritegames.splice(updateItemIndex,1);
+                                    }
+                                }else{
+                                    obj[0].favoritegames.push(favoriteid);
+                                }
+                            }
+                                
+
+                        // console.log(obj[0],"after change");
+                        });
+                   resolve('success');
+                }
+                else {
+                    reject();
+                }
+            } catch (e) {
+               // console.log("realm error-",e);
+                reject();
+            }
+        });
+    }
+    public async verifyFavorites(): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                const realmdata = await dataRealmCommon.openRealm();
+                if(realm && realmdata)
+                {
+                    let obj:any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
+                    console.log("child data in realmcommon",obj);
+                    realm?.write(() => {
+                        if(obj.length > 0){
+                            obj.map((child: any) => {
+                                let favoriteadvices = child.favoriteadvices;
+                                let favoritegames = child.favoritegames;
+                                favoritegames = [...favoritegames,1234];
+                                if(favoriteadvices.length > 0)
+                                {
+                                    const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
+                                    let artobj:any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
+                                    const finaladvicesobj = favoriteadvices.filter((i:any) => artobj.find((f:any)=>f.id === i));
+                                    child.favoriteadvices = finaladvicesobj;
+                                    console.log(favoriteadvices,"artobj--",finaladvicesobj,"artobj---",artobj);
+                                }
+                                if(favoritegames.length > 0)
+                                {
+                                    const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
+                                    let actobj:any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
+                                    const finalgamesobj = favoritegames.filter((i:any) => actobj.find((f:any)=>f.id === i))
+                                    child.favoritegames = finalgamesobj
+                                    console.log(favoritegames,"actobj--",finalgamesobj,"actobj---",JSON.stringify(child.favoritegames));
+                                }
+                                
+                            })
+                        }
+                        console.log(obj,"after change");
+                    });
                    resolve('success');
                 }
                 else {
