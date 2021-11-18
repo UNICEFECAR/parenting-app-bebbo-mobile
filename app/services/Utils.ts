@@ -224,6 +224,10 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
         return false;
     }
     else {
+        if (name == '' || name == null || name == undefined) {
+            // return 'Please enter name.';
+            return false;
+        }
         if (param == 0) {
             console.log(gender, "..gender11..");
             console.log(relationship, "..relationship11..");
@@ -233,10 +237,7 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             }
         }
         if (param == 1) {
-            if (name == '' || name == null || name == undefined) {
-                // return 'Please enter name.';
-                return false;
-            }
+           
             if (gender == '' || gender == 0 || gender == null || gender == undefined) {
                 // return 'Please enter gender.';
                 return false;
@@ -263,6 +264,7 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             //     return false;
             // }
         }
+
         if (isPremature == "true") {
             if (plannedTermDate == null || plannedTermDate == undefined) {
                 // return 'Please enter due date';
