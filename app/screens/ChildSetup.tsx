@@ -1,4 +1,4 @@
-import { both_child_gender, both_parent_gender, femaleData, maleData, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+import { both_child_gender, both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -22,7 +22,7 @@ import { dobMax } from '@types/types';
 import { Settings } from 'luxon';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, TextInput } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -40,7 +40,8 @@ import {
   ShiftFromTop20,
   SideSpacing25,
   Heading3Centerw,
-  Heading2w
+  Heading2w,
+  ShiftFromTop10
 } from '../styles/typography';
 import { VerticalDivider } from '@components/shared/Divider';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -64,6 +65,7 @@ const ChildSetup = ({ navigation }: Props) => {
   const [isImportRunning, setIsImportRunning] = useState(false);
   const [isPremature, setIsPremature] = useState<string>('false');
   const [isExpected, setIsExpected] = useState<string>('false');
+  const [name, setName] = React.useState('');
   const [loading, setLoading] = useState(false);
   // const relationshipData = ['Father', 'Mother', 'Other'];
   let relationshipData = useAppSelector(
@@ -194,7 +196,8 @@ const ChildSetup = ({ navigation }: Props) => {
   }
   const AddChild = async () => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-    let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
+    // let defaultName = t('defaultChildPrefix') + (allJsonDatanew?.length + 1);
+    let defaultName =name;
     let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     let childSet: Array<any> = [];
     childSet.push(insertData);
@@ -249,11 +252,40 @@ const ChildSetup = ({ navigation }: Props) => {
                   </Flex1>
                 </FlexRow>
                 </FlexCol>
+                
                 <FlexCol>
                   <Heading2w>
                     {t('addChildText')}
                   </Heading2w>
                   <ChildDate sendData={sendData} dobMax={dobMax} prevScreen="Onboarding" />
+                  <ShiftFromTop20>
+                  <LabelText>{t('childNameTxt')}</LabelText>
+                  <FormInputBox>
+                    <TextInput
+                      style={{ width: '100%' }}
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      maxLength={30}
+                      clearButtonMode="always"
+                      onChangeText={(value) => {
+                        console.log(value, "..value")
+                        // setName(value.replace(/\s/g, ''));
+                        if (value.replace(/\s/g, "") == "") {
+                          console.log("..11value")
+                          setName(value.replace(/\s/g, ''));
+                        } else {
+                          setName(value.replace(regexpEmojiPresentation, ''));
+                        }
+                        // setName(value==""?value.replace(/\s/g, ''):value);
+                      }}
+                      // value={name.replace(/\s/g, '')}
+                      value={name}
+                      // onChangeText={queryText => handleSearch(queryText)}
+                      placeholder={t('childNamePlaceTxt')}
+                      allowFontScaling={false}
+                    />
+                  </FormInputBox>
+                </ShiftFromTop20>
                   {
                     birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ?
                       <FormContainer1>
@@ -267,6 +299,8 @@ const ChildSetup = ({ navigation }: Props) => {
                       </FormContainer1>
                       : null
                   }
+
+              
                   <ShiftFromTop20>
                     <FormInputGroup
                       onPress={() => {
@@ -283,6 +317,7 @@ const ChildSetup = ({ navigation }: Props) => {
                       </FormInputBox>
                     </FormInputGroup>
                   </ShiftFromTop20>
+
                   <View>
                     {
                       userRelationToParent != null && userRelationToParent != undefined && userRelationToParent != relationShipMotherId && userRelationToParent != relationShipFatherId ?
@@ -298,6 +333,8 @@ const ChildSetup = ({ navigation }: Props) => {
                         : null
                     }
                   </View>
+                  
+              
                 </FlexCol>
               
 
@@ -380,7 +417,7 @@ const ChildSetup = ({ navigation }: Props) => {
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
-              disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
+              disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
               onPress={(e) => {
                 e.stopPropagation();
                 // console.log(birthDate,"..birthDate..");
@@ -391,10 +428,10 @@ const ChildSetup = ({ navigation }: Props) => {
                 // console.log(birthDate,"..birthDate..");
                 let validated: any = false;
                 if (birthDate != null && birthDate != undefined && !isFutureDate(birthDate)) {
-                  validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, null, gender);
+                  validated = validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender);
                 }
                 else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
-                  validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, null, gender);
+                  validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
                 }
                 console.log(validated, "..validated..");
                 if (validated == true) {
