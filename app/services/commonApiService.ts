@@ -199,7 +199,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
   //let userEnteredChildData = await dataRealmCommon.getData<ConfigSettingsEntity>(ConfigSettingsSchema);
   //console.log(userEnteredChildData, "..userEnteredChildData..");
   // console.log("in onOnLoadApiSuccess");
-  console.log("in commonapi onOnLoadApiSuccess ---", response);
+  // console.log("in commonapi onOnLoadApiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
   if (allJsonData?.length>0) {
@@ -211,7 +211,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
 }
 export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
   // navigation.navigate('HomeDrawerNavigator');
-  console.log("in commonapi onChildSetuppiSuccess ---", response);
+  // console.log("in commonapi onChildSetuppiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   // console.log(allDatatoStore,"..allDatatoStore..")
   navigation.reset({
@@ -230,7 +230,7 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
   // navigation.navigate('HomeDrawerNavigator');
-  console.log(response,"--oldErrorObj---",oldErrorObj);
+  // console.log(response,"--oldErrorObj---",oldErrorObj);
   // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
@@ -331,6 +331,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // console.log(setAllNotificationData([]))
   
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
+    const favverified = await userRealmCommon.verifyFavorites();
+    console.log("favverified---",favverified);
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
