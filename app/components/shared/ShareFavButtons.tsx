@@ -25,7 +25,7 @@ export const ShareFavPress = styled.Pressable`
 padding:12px 0px;
 `;
 
-const ShareFavButtons = (props: any) => {
+const ShareFavButtons = React.memo((props: any) => {
   const activeChilduuid = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
@@ -41,13 +41,13 @@ const ShareFavButtons = (props: any) => {
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice} = props;
-  const [isFavourite,setisFavourite] = useState(false)
+  const [isFavourite,setisFavourite] = useState<Boolean>()
   useEffect(() => {
     const fetchData = async () => {
       // const filterQuery = 'uuid == "'+activeChilduuid+'"';
       // const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
       // get from store
-      console.log(item?.id,"favoriteadvices4---",favoriteadvices);
+      console.log(item?.id,"favoriteadvices45---",favoriteadvices);
       if(isAdvice==true){
         setisFavourite(((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false);
       }else {
@@ -56,7 +56,7 @@ const ShareFavButtons = (props: any) => {
       console.log("isFavourite---",isFavourite);
     }
     fetchData()
-  }, [item,favoriteadvices,favoritegames]);
+  }, []);
   const onShare = async () => {
    // console.log('share');
     try {
@@ -90,12 +90,14 @@ const ShareFavButtons = (props: any) => {
     // console.log("filterQuery child dev--",filterQuery);
     const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
     const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+    setisFavourite(!isFavourite);
     dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
 
       analytics().logEvent(FAVOURITE_ADVICE_ADDED, {advise_id:item?.id});
     }else{
       const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+      setisFavourite(!isFavourite);
       dispatch(setFavouriteGames(childData[0].favoritegames));
       analytics().logEvent(FAVOURITE_GAME_ADDED, {game_id:item?.id});
     }
@@ -108,11 +110,13 @@ const ShareFavButtons = (props: any) => {
       // console.log("filterQuery child dev--",filterQuery);
       const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);
       const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+      setisFavourite(!isFavourite);
       dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
   
       }else{
         const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'games',filterQuery);
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        setisFavourite(!isFavourite);
         dispatch(setFavouriteGames(childData[0].favoritegames));
       }
   }
@@ -156,5 +160,5 @@ const ShareFavButtons = (props: any) => {
       </ShareFavBox>
     </>
   );
-};
+});
 export default ShareFavButtons;
