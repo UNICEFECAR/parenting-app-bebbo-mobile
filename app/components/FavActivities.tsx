@@ -133,7 +133,7 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
         : null
         } */}
           </ArticleListContent>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false} />
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false} />
           </Pressable>
         </ArticleListContainer>
      

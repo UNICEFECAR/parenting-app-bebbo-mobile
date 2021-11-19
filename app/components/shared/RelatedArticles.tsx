@@ -39,6 +39,9 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
  
   // let relatedArticleData: any[] = [];
@@ -172,7 +175,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
                 <Heading3 numberOfLines={2}>{item.title}</Heading3>
               </ArticleListContent>
             </View>
-            <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={true}/>
+            <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
 
           </View>
         </RelatedArticleContainer>
