@@ -85,6 +85,10 @@ const Activities = ({ route, navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const MileStonesData = useAppSelector(
+    (state: any) =>
+      state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
+  );
   const renderIndicator = (progress: any, indeterminate: any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const activityModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsActivityModalOpened),
@@ -304,26 +308,20 @@ const Activities = ({ route, navigation }: Props) => {
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  const RenderActivityItem = React.memo(({ item, index }) => {
-    console.log("RenderActivityItem", item.id);
-    return (
-      <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
-        <ArticleListContainer>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
-          <ArticleListContent>
-            <ShiftFromTopBottom5>
-              <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
-            </ShiftFromTopBottom5>
-            <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-
-          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
-        </ArticleListContainer>
-      </Pressable>
-    )
-  });
+  const gotoMilestone = () => {
+    console.log("currentSelectedChildId---",currentSelectedChildId)
+    navigation.navigate('ChildDevelopment',
+    {
+      currentSelectedChildId: currentSelectedChildId
+    });
+  }
   const SuggestedActivities = React.memo(({ item, section, index }) => {
     console.log(section, "SuggestedActivities", item.id);
+    let milestonedatadetail = [];
+    if(section == 1) {
+      const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
+      milestonedatadetail = MileStonesData.filter((x:any)=>x.id == relatedmilestoneid);
+    }
     return (
         <ArticleListContainer>
            <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
@@ -334,24 +332,26 @@ const Activities = ({ route, navigation }: Props) => {
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
             {/* keep below code ActivityBox for future use */}
-            {/* {section == 1 ? 
+            {section == 1 && milestonedatadetail.length > 0 ? 
             <ActivityBox>
             <View>
               <Heading6Bold>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
               <ShiftFromTop5>
-              <Heading4>{'Laugh at Human face'}</Heading4>
+              <Heading4>{milestonedatadetail[0].title}</Heading4>
               </ShiftFromTop5>
             </View>
             <View>
-              <ButtonTextSmLine>
-                {t('actScreentrack')} {t('actScreenmilestones')}
-              </ButtonTextSmLine>
+              <Pressable onPress={() => gotoMilestone()}>
+                <ButtonTextSmLine numberOfLines={2}>
+                  {t('actScreentrack')} {t('actScreenmilestones')}
+                </ButtonTextSmLine>
+              </Pressable>
             </View>
           </ActivityBox>
         : null
-        } */}
+        }
           </ArticleListContent>
           <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false} />
           </Pressable>
@@ -372,55 +372,7 @@ const Activities = ({ route, navigation }: Props) => {
       data: otherGames
     }
   ];
-  const ContentThatGoesAboveTheFlatList = () => {
-
-    return (
-      <>
-        <View style={{}}>
-          {suggestedGames && suggestedGames?.length > 0 ?
-            <>
-              <ArticleHeading>
-                <FlexDirRowSpace>
-                  <Heading3>{t('actScreensugacttxt')}</Heading3>
-                  {activeChild.isPremature === 'true' ? (
-                  <Pressable onPress={() => setModalVisible1(true)}>
-                    <PrematureTagActivity>
-                      <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
-                    </PrematureTagActivity>
-                  </Pressable>
-                  ) : null}
-                </FlexDirRowSpace>
-              </ArticleHeading>
-
-              <FlatList
-                data={suggestedGames}
-                removeClippedSubviews={true} // Unmount components when outside of window 
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, index }) => SuggestedActivities(item, index)}
-                renderItem={({ item, index }) => <SuggestedActivities item={item} index={index} />}
-                keyExtractor={(item) => item.id.toString()}
-              />
-              {/* {otherGames && otherGames?.length > 0 ?
-                <ArticleHeading>
-                  <Heading3>{t('actScreenotheracttxt')}</Heading3>
-                </ArticleHeading>
-                :null} */}
-            </>
-            : null
-          }
-          {otherGames && otherGames?.length > 0 ?
-            <ArticleHeading>
-              <Heading3>{t('actScreenotheracttxt')}</Heading3>
-            </ArticleHeading>
-            : null}
-        </View>
-
-      </>
-    );
-  };
+  
   const HeadingComponent = React.memo(({ section }) => {
     return (
       <ArticleHeading>
