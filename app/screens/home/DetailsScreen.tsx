@@ -65,7 +65,12 @@ const DetailsScreen = ({route, navigation}: any) => {
     newHeaderColor = themeContext.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   }
-  
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
@@ -74,6 +79,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   // detailDataToUse = detailData;
   // setDetailDataToUse(detailData);
   // fromScreen === 'Activities'
+  const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   useEffect(() => {
     const backAction = () => {
       console.log("dwferfef")
@@ -343,7 +349,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               source={require('@assets/trash/defaultArticleImage.png')}/>   
               }
             </View>
-            <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isAdvice={fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true}/>
+            {adviceval == true ?
+              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/>
+            : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoritegames.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/> }
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
             {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
