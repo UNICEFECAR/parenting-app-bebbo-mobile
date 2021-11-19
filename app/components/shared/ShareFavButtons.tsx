@@ -56,7 +56,7 @@ const ShareFavButtons = React.memo((props: any) => {
       console.log("isFavourite---",isFavourite);
     }
     fetchData()
-  }, []);
+  }, [item]);
   const onShare = async () => {
    // console.log('share');
     try {
