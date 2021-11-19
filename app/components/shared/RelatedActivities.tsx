@@ -48,6 +48,9 @@ const RelatedActivities = (props:RelatedActivityProps) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   const {t} = useTranslation();
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
  
@@ -153,7 +156,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
           <Heading3>{item.title}</Heading3>
           </ArticleListContent>
           </View>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false}/>
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false}/>
         </RelatedArticleContainer>
       </Pressable>  
    ) 
