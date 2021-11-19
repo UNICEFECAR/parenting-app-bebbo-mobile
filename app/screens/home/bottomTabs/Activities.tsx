@@ -8,7 +8,7 @@ import RNFS from 'react-native-fs';
 import { MainContainer } from '@components/shared/Container';
 import { DividerAct } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import { FDirCol, FDirRow, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FDirCol, FDirRow, Flex2, Flex4, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
 import PrematureTag, { PrematureTagActivity } from '@components/shared/PrematureTag';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -334,21 +334,21 @@ const Activities = ({ route, navigation }: Props) => {
             {/* keep below code ActivityBox for future use */}
             {section == 1 && milestonedatadetail.length > 0 ? 
             <ActivityBox>
-            <View>
+            <Flex4>
               <Heading6Bold>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
               <ShiftFromTop5>
               <Heading4>{milestonedatadetail[0].title}</Heading4>
               </ShiftFromTop5>
-            </View>
-            <View>
+            </Flex4>
+            <Flex2>
               <Pressable onPress={() => gotoMilestone()}>
                 <ButtonTextSmLine numberOfLines={2}>
                   {t('actScreentrack')} {t('actScreenmilestones')}
                 </ButtonTextSmLine>
               </Pressable>
-            </View>
+              </Flex2>
           </ActivityBox>
         : null
         }
@@ -446,7 +446,7 @@ const Activities = ({ route, navigation }: Props) => {
               sections={DATA}
               // ref={flatListRef}
               ref={ref => (sectionListRef = ref)}
-              keyExtractor={(item, index) => item + index}
+              keyExtractor={(item, index) => String(item?.id) + String(index)}
               stickySectionHeadersEnabled={false}
               // initialNumToRender={4}
               // renderItem={({ item, title }) => <Item item={item} title={title}/>}
