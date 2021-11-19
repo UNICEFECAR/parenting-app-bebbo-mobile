@@ -39,6 +39,8 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -89,6 +91,9 @@ const Activities = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
   );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   const renderIndicator = (progress: any, indeterminate: any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const activityModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsActivityModalOpened),
@@ -106,6 +111,7 @@ const Activities = ({ route, navigation }: Props) => {
   const [filteredData, setfilteredData] = useState([]);
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
+  const [childMilestonedata,setchildMilestonedata] = useState([]);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
       let obj = { key: varkey, value: false };
@@ -218,7 +224,13 @@ const Activities = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-
+      console.log("in usefocuseffect with unmount23");
+      const fetchData = async () => {
+        const filterQuery = 'uuid == "'+activeChild?.uuid+'"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        setchildMilestonedata(childData[0].checkedMilestones)
+      }
+      fetchData()
       return () => {
         // setModalVisible(false);
         // setFilterArray([]);
@@ -247,8 +259,9 @@ const Activities = ({ route, navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
-      setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0));
-      setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0));
+      // || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)
+      setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));
+      setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)));
       console.log("filteredData inner---", filteredData);
     }, [filteredData])
   );
@@ -298,9 +311,9 @@ const Activities = ({ route, navigation }: Props) => {
         currentSelectedChildId: currentSelectedChildId
       });
   };
-  // console.log(filteredData,"--filteredData");
-  // console.log(suggestedGames,"--suggestedGames");
-  // console.log(otherGames,"--otherGames");
+  console.log(filteredData.length,"--filteredData");
+  console.log(suggestedGames.length,"--suggestedGames");
+  console.log(otherGames.length,"--otherGames");
 
   const onFilterArrayChange = (newFilterArray: any) => {
     console.log("on filterarray change", newFilterArray);
@@ -317,7 +330,7 @@ const Activities = ({ route, navigation }: Props) => {
   }
   const SuggestedActivities = React.memo(({ item, section, index }) => {
     console.log(section, "SuggestedActivities", item.id);
-    let milestonedatadetail = [];
+    let milestonedatadetail:any = [];
     if(section == 1) {
       const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
       milestonedatadetail = MileStonesData.filter((x:any)=>x.id == relatedmilestoneid);
@@ -332,14 +345,14 @@ const Activities = ({ route, navigation }: Props) => {
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
             {/* keep below code ActivityBox for future use */}
-            {section == 1 && milestonedatadetail.length > 0 ? 
+            {section == 1 && milestonedatadetail.length > 0 && ((childMilestonedata.findIndex((x:any)=>x == milestonedatadetail[0]?.id)) == -1) ? 
             <ActivityBox>
             <Flex4>
               <Heading6Bold>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
               <ShiftFromTop5>
-              <Heading4>{milestonedatadetail[0].title}</Heading4>
+              <Heading4>{milestonedatadetail[0]?.title}</Heading4>
               </ShiftFromTop5>
             </Flex4>
             <Flex2>
@@ -353,7 +366,7 @@ const Activities = ({ route, navigation }: Props) => {
         : null
         }
           </ArticleListContent>
-          <ShareFavButtons backgroundColor={'#FFF'} item={item} isAdvice={false} />
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false} />
           </Pressable>
         </ArticleListContainer>
      

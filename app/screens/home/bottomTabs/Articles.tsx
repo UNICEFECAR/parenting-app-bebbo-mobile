@@ -66,6 +66,9 @@ const Articles = ({route, navigation}: Props) => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
   const modalScreenKey = 'IsArticleModalOpened';
   const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
@@ -81,7 +84,7 @@ const Articles = ({route, navigation}: Props) => {
            </ShiftFromTopBottom5>
            <Heading3>{item.title}</Heading3>
            </ArticleListContent>
-           <ShareFavButtons  backgroundColor={'#FFF'} item={item} isAdvice={true}/>
+           <ShareFavButtons  backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
            </Pressable>
          </ArticleListContainer>
       
