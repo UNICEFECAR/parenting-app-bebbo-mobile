@@ -263,7 +263,7 @@ const Activities = ({ route, navigation }: Props) => {
       setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));
       setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)));
       console.log("filteredData inner---", filteredData);
-    }, [filteredData])
+    }, [filteredData,childMilestonedata])
   );
   const setFilteredActivityData = (itemId: any) => {
     console.log(itemId, "articleData in filtered ", selectedChildActivitiesData);
@@ -356,7 +356,7 @@ const Activities = ({ route, navigation }: Props) => {
               </ShiftFromTop5>
             </Flex4>
             <Flex2>
-              <Pressable onPress={() => gotoMilestone()}>
+              <Pressable onPress={() => gotoMilestone()} style={{paddingTop:15,paddingBottom:15}}>
                 <ButtonTextSmLine numberOfLines={2}>
                   {t('actScreentrack')} {t('actScreenmilestones')}
                 </ButtonTextSmLine>
