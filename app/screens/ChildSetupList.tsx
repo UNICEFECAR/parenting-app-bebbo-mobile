@@ -23,9 +23,9 @@ import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, BackHandler, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -74,7 +74,6 @@ const ChildSetupList = ({ navigation }: Props) => {
     : [],
   );
   console.log(activeChild,"..activeChild..");
-  
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch,child_age,0);
@@ -91,6 +90,16 @@ const ChildSetupList = ({ navigation }: Props) => {
           });
         });
       },500);
+      const backAction = () => {
+        return true;
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction,
+      );
+      return () => {
+        backHandler.remove();
+      }
     },[])
   );
 
