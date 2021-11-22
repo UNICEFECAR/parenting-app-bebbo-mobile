@@ -92,8 +92,12 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
         if(favoritegames.length > 0){
           const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
           console.log("filterQuery favgames--",filterQuery);
-          const favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
+          let favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
           console.log("favData---",favData);
+          if(favData.length == 0){
+            favData = ActivitiesDataall.filter((x: any) => (favoritegames.findIndex((y:any)=>y == x.id)) > -1);
+            console.log('offlinedata 2---',favData);
+          }
           setfavGamesToShow(favData);
         }else {
           setfavGamesToShow([]);
