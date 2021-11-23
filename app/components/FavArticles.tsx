@@ -64,6 +64,9 @@ const FavArticles = (props: any) => {
   const favoriteadvices = useAppSelector((state: any) =>
     state.childData.childDataSet.favoriteadvices
   );
+  const articleDataall = useAppSelector(
+    (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
+  );
   const [favAdvicesToShow,setfavAdvicesToShow] = useState([]);
   const goToArticleDetail = (item:any) => {
     navigation.navigate('DetailsScreen',
@@ -101,8 +104,12 @@ useFocusEffect(
       if(favoriteadvices.length > 0){
         const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
         console.log("filterQuery favarticles--",filterQuery);
-        const favData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
+        let favData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
         console.log("favData---",favData);
+        if(favData.length == 0){
+          favData = articleDataall.filter((x: any) => (favoriteadvices.findIndex((y:any)=>y == x.id)) > -1);
+          console.log('offlinedata 2---',favData);
+        }
         setfavAdvicesToShow(favData);
       }else {
         setfavAdvicesToShow([]);
