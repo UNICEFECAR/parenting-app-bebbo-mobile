@@ -1,4 +1,5 @@
 import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translations/appOfflineData/getDataToStore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
 import { Alert } from "react-native";
 import RNFS from 'react-native-fs';
@@ -41,7 +42,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     params: postdata
   })
     .then((response: any) => {
-      //console.log("successsssss");
+      console.log("successsssss");
       //  console.log(response.data);
       responseData.data = response.data,
         responseData.status = response.status
@@ -49,7 +50,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // return response;
     })
     .catch((err: any) => {
-     // console.log("errcodeee");
+     console.log("errcodeee");
       responseData.data = err.message
       responseData.status = err.response.status;
       return responseData;
@@ -322,6 +323,14 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         return allDatatoStore;
       }
   })
+  const forceUpdateData = [
+    {
+      apiEndpoint: appConfig.checkUpdate,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    }
+  ];
   const results = await Promise.all(resolvedPromises);
   console.log("done--",results);
   // navigation.setParams({fromPage:'Loading'});
@@ -338,6 +347,10 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setAllNotificationData([]));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
+    if(prevPage == 'CountryLangChange') {
+      const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
+      AsyncStorage.setItem('forceUpdateTime',String(apiresponse.data.updated_at));
+    }
   }
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
