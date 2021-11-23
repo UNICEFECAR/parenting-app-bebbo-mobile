@@ -108,7 +108,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
     }
-    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate")
+    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate")
     {
       const Ages=await getAge(childList,child_age);
       const newAges = [...new Set([...Ages,...bufferAgeBracket])]
