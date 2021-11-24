@@ -103,7 +103,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
 // useFocusEffect(
 //   React.useCallback(() => {
   useEffect(() => {
-console.log(windowWidth,windowHeight,"<><><><><><><><>")
+//console.log(windowWidth,windowHeight,"<><><><><><><><>")
     setDeviceOrientation( windowWidth < windowHeight
       ? 'portrait'
       : 'landscape')
@@ -133,7 +133,7 @@ useEffect(() => {
     growthMeasures,
     childBirthDate
   );
-  console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
+  //console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
   /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
@@ -144,7 +144,7 @@ useEffect(() => {
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-  console.log(chartType,chartData, 'new convertedMeasures');
+  //console.log(chartType,chartData, 'new convertedMeasures');
 // console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
