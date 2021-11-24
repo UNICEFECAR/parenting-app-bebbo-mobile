@@ -40,7 +40,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  BackHandler, Linking, Modal,
+  BackHandler, Button, Linking, Modal,
   Platform,
   ScrollView, Text, ToastAndroid, View
 } from 'react-native';
@@ -378,9 +378,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            {/* <View>
+            <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View> */}
+            </View>
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
