@@ -97,7 +97,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const flatListRef = React.useRef()
 
   const setIsModalOpened = async (varkey: any) => {
-    console.log("modalVisible--", modalVisible);
+    //console.log("modalVisible--", modalVisible);
     if (modalVisible == true) {
       let obj = { key: varkey, value: false };
       dispatch(setInfoModalOpened(obj));
@@ -106,7 +106,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   };
   // let selectedChildDevData:any;
   useEffect(() => {
-    console.log("in childdev focuseffect", childDevModalOpened);
+    //console.log("in childdev focuseffect", childDevModalOpened);
     setModalVisible(childDevModalOpened);
     // dispatch(setInfoModalOpened({key: modalScreenKey, value: true}));
 
@@ -119,11 +119,11 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     });
 
     return () => {
-      console.log("in unmount dev-", route.params?.currentSelectedChildId);
+     // console.log("in unmount dev-", route.params?.currentSelectedChildId);
       // if(route.params?.currentSelectedChildId)
       // {
       navigation.setParams({ currentSelectedChildId: 0 })
-      console.log(route.params?.currentSelectedChildId, "--after unmount");
+     // console.log(route.params?.currentSelectedChildId, "--after unmount");
       // route.params?.currentSelectedChildId = 0;
       // }
     }
@@ -143,7 +143,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
   }
   const showSelectedBracketData = async (item: any) => {
-    console.log("in showSelectedBracketData--", item);
+   // console.log("in showSelectedBracketData--", item);
     toTop();
     analytics().logEvent(CHILD_DEVELOPMENT_AGEGROUP_SELECTED, { age_id: item.id });
 
@@ -202,7 +202,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   }, []);
   useEffect(() => {
     // console.log("child dev usefocuseffect");
-    console.log("in childdev useeffect", route.params?.currentSelectedChildId);
+    //console.log("in childdev useeffect", route.params?.currentSelectedChildId);
     setshowNoData(false);
     if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
       // console.log(route.params?.categoryArray);
@@ -211,9 +211,16 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       showSelectedBracketData(firstChildDevData[0]);
     }
     else {
-      const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
+      if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
+        const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.prematureTaxonomyId);
+        showSelectedBracketData(firstChildDevData[0]);
+      }
+      else{
+        const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
+        showSelectedBracketData(firstChildDevData[0]);
+      }
       // console.log("firstChildDevData---",firstChildDevData);
-      showSelectedBracketData(firstChildDevData[0]);
+    
     }
     // const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
     // // console.log("firstChildDevData---",firstChildDevData);
@@ -311,8 +318,8 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     );
   };
   const ContentThatGoesAboveTheFlatList = () => {
-    console.log(selectedChildDevData, "---selectedChildDevData");
-    console.log(selectedChildMilestoneData, "---selectedChildMilestoneData");
+    //console.log(selectedChildDevData, "---selectedChildDevData");
+   // console.log(selectedChildMilestoneData, "---selectedChildMilestoneData");
     return (
       <>
 

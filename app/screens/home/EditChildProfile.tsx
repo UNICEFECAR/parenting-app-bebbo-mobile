@@ -98,7 +98,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   genders = genders.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
     return e.id != both_child_gender;
   });
-  console.log(genders, "..genders..");
+  //console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   // const getDefaultgenderValue = () => {
   //   return childData?.uuid != ''
@@ -138,7 +138,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   );
   const sendData = (data: any) => {
     // the callback. Use a better name
-    console.log("111111", data)
+   // console.log("111111", data)
     setBirthDate(data.birthDate);
     setPlannedTermDate(data.plannedTermDate);
     var myString: string = String(data.isPremature);
@@ -168,7 +168,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // getAllConfigData(dispatch);
-      console.log(childData, '..childData..');
+     // console.log(childData, '..childData..');
       // if(photoUri!='' && photoUri!=null && photoUri!=undefined){
       //   imageOptions = [
       //    // { id: 0, iconName: 'ic_trash', name: t('cameraOption1') },
@@ -178,7 +178,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       // }
       if (childData != undefined && childData != null && childData != '' && childData.uuid != '') {
         setphotoUri(childData.photoUri);
-       console.log(childData.photoUri, "..childData.photoUri..");
+      // console.log(childData.photoUri, "..childData.photoUri..");
         if (childData.photoUri != '' && childData.photoUri != null && childData.photoUri != undefined) {
           setCapturedImage('file://' + `${CHILDREN_PATH}/${childData.photoUri}`);
         }
@@ -202,7 +202,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
 
     deleteImageFile(capturedPhoto)
       .then(async (data: any) => {
-        console.log(childData, "..deleted..");
+       // console.log(childData, "..deleted..");
         MediaPicker.cleanupImages();
         setphotoUri('');
         setCapturedImage('');
@@ -232,7 +232,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       });
   };
   const handleImageOptionClick = async (item:any,index: number) => {
-    console.log(item,"..item")
+   // console.log(item,"..item")
     if (item.id == 0) {
       // MediaPicker.cleanupSingleImage((image:any) => {
       //   // image.path ==>> file path
@@ -267,7 +267,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     } 
     else if (item.id == 2) {
       MediaPicker.showGalleryImagePicker((image: any) => {
-        console.log(image)
+        //console.log(image)
         // image.path ==>> file path
         // console.log(image,"..image..");
         // cleanUPImage(image);
@@ -327,7 +327,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   //   // askPermissions();
   // }, []);
   const setPhoto = async (uuid: string) => {
-    console.log(capturedPhoto, "..capturedPhoto..");
+   // console.log(capturedPhoto, "..capturedPhoto..");
     let parts = capturedPhoto.split('.');
     let extension: string | null = null;
     if (parts.length > 1) {
@@ -351,9 +351,9 @@ const EditChildProfile = ({ route, navigation }: Props) => {
 
     // Copy image
     await copyFile(capturedPhoto, destPath);
-    console.log(capturedPhoto, "..imagepath..");
-    console.log(destPath, "..destPath..");
-    console.log(destPath.replace(CHILDREN_PATH, ''), "..destPath..");
+    // console.log(capturedPhoto, "..imagepath..");
+    // console.log(destPath, "..destPath..");
+    // console.log(destPath.replace(CHILDREN_PATH, ''), "..destPath..");
     setphotoUri(destPath.replace(CHILDREN_PATH, ''));
     return destPath.replace(CHILDREN_PATH, '');
   }
@@ -383,8 +383,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
         createdAt
       );
     let childSet: Array<any> = [];
-    console.log(capturedPhoto, '..capturedPhoto..');
-    console.log(photoDeleted, '..photoDeleted..');
+    // console.log(capturedPhoto, '..capturedPhoto..');
+    // console.log(photoDeleted, '..photoDeleted..');
     if (photoDeleted == true) {
       removePhoto();
       insertData.photoUri = '';
@@ -395,8 +395,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
       }
     }
     childSet.push(insertData);
-    console.log(insertData, '..insertData..');
-    console.log(childSet, '..childSet..');
+    // console.log(insertData, '..insertData..');
+    // console.log(childSet, '..childSet..');
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   };
 
@@ -511,10 +511,10 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        console.log(value, "..value")
+                      //  console.log(value, "..value")
                         // setName(value.replace(/\s/g, ''));
                         if (value.replace(/\s/g, "") == "") {
-                          console.log("..11value")
+                          //console.log("..11value")
                           setName(value.replace(/\s/g, ''));
                         } else {
                           // console.log("..22value");
@@ -571,8 +571,8 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       capturedPhoto == null ||
                       capturedPhoto == undefined || photoDeleted==true)
                   ) {
-                    console.log(capturedPhoto,"..capturedPhoto")
-                    console.log(photoDeleted,"..photoDeleted")
+                   // console.log(capturedPhoto,"..capturedPhoto")
+                   // console.log(photoDeleted,"..photoDeleted")
                     return null;
                   } else {
                     return (
@@ -634,7 +634,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                   gender,
                 );
                 if (validated == true) {
-                  console.log("24455e655")
+                 // console.log("24455e655")
                   AddChild();
                 } else {
                 }
