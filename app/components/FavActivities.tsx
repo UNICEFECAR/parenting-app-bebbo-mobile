@@ -91,12 +91,12 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
       async function fetchData() {
         if(favoritegames.length > 0){
           const filterQuery = favoritegames.map((x: any) => `id = '${x}'`).join(' OR ');
-          console.log("filterQuery favgames--",filterQuery);
+          //console.log("filterQuery favgames--",filterQuery);
           let favData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema, filterQuery);
-          console.log("favData---",favData);
+          //console.log("favData---",favData);
           if(favData.length == 0){
             favData = ActivitiesDataall.filter((x: any) => (favoritegames.findIndex((y:any)=>y == x.id)) > -1);
-            console.log('offlinedata 2---',favData);
+            //console.log('offlinedata 2---',favData);
           }
           setfavGamesToShow(favData);
         }else {
@@ -107,7 +107,7 @@ const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes
     },[favoritegames])
   );
   const SuggestedActivities = React.memo(({ item, index }) => {
-    console.log("SuggestedActivities", item.id);
+   // console.log("SuggestedActivities", item.id);
     return (
         <ArticleListContainer>
            <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
