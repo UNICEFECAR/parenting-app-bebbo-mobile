@@ -80,7 +80,7 @@ export const convertMeasuresData = (
       measurementDateInDays = days ? Math.round(days) : 0;
     }
 
-    if (measurementDateInDays < 1855) {
+    if (measurementDateInDays>=0 && measurementDateInDays < 1855) {
       measuresData.push({
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,
