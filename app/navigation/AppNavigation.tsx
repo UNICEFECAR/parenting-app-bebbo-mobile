@@ -29,14 +29,13 @@ import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-import useRealmListener from '../database/dbquery/userRealmListener';
 import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren } from '../services/childCRUD';
-import { retryAlert1 } from '../services/commonApiService';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
+import { retryAlert1 } from '../services/commonApiService';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -71,66 +70,17 @@ export default () => {
     (state: any) => state.selectedCountry.languageCode,
   );
  // console.log("userIsOnboarded appnav--", userIsOnboarded);
+ // console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [initialState, setInitialState] = React.useState();
   const [netState, setNetState] = React.useState('');
-  const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
   const dispatch = useAppDispatch();
   const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
-  // useEffect(() => {
-  //   async function addDBListener() {
-  //     const datarealm = await dataRealmCommon.openRealm();
-  //     console.log("datarealm----",datarealm);
-  //     // if(datarealm)
-  //     // {
-  //       const datalistenerobj = datarealm?.addListener('change',onRealmDataDbChange);
-  //     // }
-
-  //     return() => {
-  //       console.log("in useeffect return");
-  //     //   if(datarealm)
-  //     //   {
-  //     //     datarealm.removeListener("change",onRealmDataDbChange);
-  //     //   }
-  //     }
-  //     // let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-  //     // taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
-
-  //   }
-  //   // addDBListener()
-  // },[])
-  // console.log(netInfo,"..BeforeisConnected..");
-  // useEffect(() => {
-  //   const restoreState = async () => {
-  //     try {
-  //       const initialUrl = await Linking.getInitialURL();
-  //       if (Platform.OS !== 'web' && initialUrl == null) {
-  //         // Only restore state if there's no deep link and we're not on web
-  //         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-  //         const state = savedStateString ? JSON.parse(savedStateString) : undefined;
-
-  //         if (state !== undefined) {
-  //           setInitialState(state);
-  //         }
-  //       }
-  //     } finally {
-  //       setIsReady(true);
-  //     }
-  //   };
-  //   SplashScreen.hide();
-  //   if (!isReady) {
-  //     restoreState();
-  //   }
-  // }, [isReady]);
-
-  // if (!isReady) {
-  //   return null;
-  // }
-
-
+  
+  
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
@@ -225,6 +175,10 @@ export default () => {
   useEffect(() => {
     if (userIsOnboarded == true) {
      // console.log("calculated");
+     // console.log("calculated");
+      //call forceupdate api and check with asyncstorage
+      // dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      //if force update is being done the set showDownloadPopup to false
       let obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
       getAllChildren(dispatch, child_age, 0);
@@ -233,6 +187,7 @@ export default () => {
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
+  
   useEffect(() => {
     //Alert.alert(netState,"..netState")
 
