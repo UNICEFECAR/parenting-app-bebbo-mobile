@@ -103,12 +103,12 @@ useFocusEffect(
     async function fetchData() {
       if(favoriteadvices.length > 0){
         const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
-        console.log("filterQuery favarticles--",filterQuery);
+        //console.log("filterQuery favarticles--",filterQuery);
         let favData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
-        console.log("favData---",favData);
+       // console.log("favData---",favData);
         if(favData.length == 0){
           favData = articleDataall.filter((x: any) => (favoriteadvices.findIndex((y:any)=>y == x.id)) > -1);
-          console.log('offlinedata 2---',favData);
+          //console.log('offlinedata 2---',favData);
         }
         setfavAdvicesToShow(favData);
       }else {
@@ -119,7 +119,7 @@ useFocusEffect(
   },[favoriteadvices])
 );
   const RenderArticleItem = React.memo(({item, index}) => {
-    console.log("renderArticleItem-",index)
+    //console.log("renderArticleItem-",index)
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
