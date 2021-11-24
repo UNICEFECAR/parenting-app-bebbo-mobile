@@ -38,7 +38,7 @@ const LastChildMeasure = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"LastChildMeasureactiveChild")
+  //console.log(activeChild,"LastChildMeasureactiveChild")
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
@@ -107,7 +107,7 @@ const LastChildMeasure = (props: any) => {
   let convertInDays = lastmeasurementDate.diff(date, "days").days;
   let days = 0;
   if (convertInDays !== undefined) {days = Math.round(convertInDays)};
-  console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
+  //console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
   return (
     <>
       <BannerContainer1>

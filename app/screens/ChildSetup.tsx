@@ -105,7 +105,7 @@ const ChildSetup = ({ navigation }: Props) => {
   relationshipData = relationshipData.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
     return e.id != both_parent_gender;
   });
-  console.log(genders, "..genders..");
+  //console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   useFocusEffect(
     React.useCallback(() => {
@@ -144,7 +144,7 @@ const ChildSetup = ({ navigation }: Props) => {
     setGender(checkedItem.id);
   };
   const getCheckedParentItem = (checkedItem: any) => {
-    console.log(checkedItem, "..checkedItem");
+   // console.log(checkedItem, "..checkedItem");
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -166,13 +166,13 @@ const ChildSetup = ({ navigation }: Props) => {
         },
         {
           text: t('continueCountryLang'), onPress: async () => {
-            console.log(userRealmCommon.realm?.path, "..path")
+           // console.log(userRealmCommon.realm?.path, "..path")
             // this.setState({ isImportRunning: true, });
             setLoading(true);
             setIsImportRunning(true);
             //param 1 from settings import for navigation
             const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
-            console.log(importResponse, "..111111importResponse");
+            //console.log(importResponse, "..111111importResponse");
             if (importResponse.length > 0) {
               setIsImportRunning(false);
               setLoading(false);
@@ -201,7 +201,7 @@ const ChildSetup = ({ navigation }: Props) => {
     let insertData: any = await getNewChild('', isExpected, plannedTermDate, isPremature, birthDate, defaultName, '', gender, null);
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    console.log(childSet, "..childSet..");
+   // console.log(childSet, "..childSet..");
     addChild(languageCode, false, 0, childSet, dispatch, navigation, child_age, relationship, userRelationToParent);
   }
 
@@ -268,10 +268,10 @@ const ChildSetup = ({ navigation }: Props) => {
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        console.log(value, "..value")
+                        //console.log(value, "..value")
                         // setName(value.replace(/\s/g, ''));
                         if (value.replace(/\s/g, "") == "") {
-                          console.log("..11value")
+                          //console.log("..11value")
                           setName(value.replace(/\s/g, ''));
                         } else {
                           setName(value.replace(regexpEmojiPresentation, ''));
@@ -369,7 +369,7 @@ const ChildSetup = ({ navigation }: Props) => {
                 <ChildRelationList key={index}>
                   <Pressable
                     onPress={() => {
-                      console.log(item, "..item..");
+                     // console.log(item, "..item..");
                       setUserRelationToParent(item.id);
                       //   if(item.id == relationShipFatherId  || item.id == relationShipMotherId || relationship == '' || relationship == null || relationship == undefined){
                       //     setRelationship('');
@@ -377,7 +377,7 @@ const ChildSetup = ({ navigation }: Props) => {
                       //  if(item.id != relationShipFatherId  && item.id != relationShipMotherId && relationship != '' && relationship != null && relationship != undefined){
                       //   setRelationship('');
                       //  }
-                      console.log(userRelationToParent, "..userRelationToParent..");
+                     // console.log(userRelationToParent, "..userRelationToParent..");
                       if (item.id == relationShipMotherId) {
                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
                           setRelationship(femaleData.id);
@@ -395,9 +395,9 @@ const ChildSetup = ({ navigation }: Props) => {
                         }
                       }
                       else {
-                        console.log(item.id, "..item.id");
-                        console.log(relationship, "..relationship..");
-                        console.log(userRelationToParent, "..userRelationToParent..");
+                        //console.log(item.id, "..item.id");
+                        //console.log(relationship, "..relationship..");
+                        //console.log(userRelationToParent, "..userRelationToParent..");
                         if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
                           setRelationship('');
                         }
@@ -433,7 +433,7 @@ const ChildSetup = ({ navigation }: Props) => {
                 else if (birthDate != null && birthDate != undefined && isFutureDate(birthDate)) {
                   validated = validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender);
                 }
-                console.log(validated, "..validated..");
+                //console.log(validated, "..validated..");
                 if (validated == true) {
                   AddChild();
                 }
