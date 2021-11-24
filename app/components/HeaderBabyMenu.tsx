@@ -75,7 +75,7 @@ const HeaderBabyMenu = (props: any) => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-  // console.log(activeChild, '..activeChild..');
+   console.log(activeChild, '..activeChild..');
   const child_age = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -91,7 +91,7 @@ const HeaderBabyMenu = (props: any) => {
   });
   // console.log(getStatusBarHeight(0), "..getStatusBarHeight..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
-    console.log(genders, ".genders.")
+   // console.log(genders, ".genders.")
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset) => genderset.id === parseInt(data.gender)).name
@@ -316,7 +316,7 @@ const HeaderBabyMenu = (props: any) => {
       <HeaderActionView>
         <HeaderActionBox
           onPress={() => {
-             console.log(modalVisible,"..modalVisible..");
+            // console.log(modalVisible,"..modalVisible..");
             // if (modalVisible) {
             //   setModalVisible(false);
             // } else {

@@ -142,7 +142,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       }else {
         favgames = 0;
       }
-      console.log(favadvices,"--favadvices--",favgames);
+      //console.log(favadvices,"--favadvices--",favgames);
       setfavoritescount(favadvices + favgames);
     }
   }, [isOpen, activeChild.uuid, favoriteadvices,favoritegames]),
@@ -157,7 +157,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
       if (allnotis.length > 0) {
         const currentChildNotis = allnotis?.find((item) => item.childuuid == activeChild.uuid)
-        console.log(currentChildNotis, "allfilteredNotis")
+       // console.log(currentChildNotis, "allfilteredNotis")
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
         if (currentChildNotis) {
@@ -200,7 +200,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
           let combinedNotis = currentChildallnoti.sort(
             (a: any, b: any) => a.days_from - b.days_from,
           ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-          console.log(combinedNotis, "combinedNotis")
+        //  console.log(combinedNotis, "combinedNotis")
           // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
           // console.log(toRemove, "findcdNoti")
           // combinedNotis = combinedNotis.filter(function (el) {

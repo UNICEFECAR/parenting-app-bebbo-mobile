@@ -50,7 +50,7 @@ class UserRealmCommon extends Component {
                 // Open realm file
                 Realm.open(userRealmConfig)
                     .then(realm => {
-                        console.log("open realm");
+                       // console.log("open realm");
                         this.realm = realm;
                      //   this.realm.addListener('change', this.onRealmChange);
                         resolve(realm);
@@ -174,18 +174,18 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    console.log(obj[0],"obj0");
+                    //console.log(obj[0],"obj0");
                     realm?.write(() => {
-                        console.log(obj[0].reminders.length,"length")
+                        //console.log(obj[0].reminders.length,"length")
                     if(obj[0].reminders.length>0){
                         let updateItemIndex = obj[0].reminders.findIndex(item=>{
-                            console.log(reminder.uuid,"reminder.uuid",item.uuid)
+                            //console.log(reminder.uuid,"reminder.uuid",item.uuid)
                             return item.uuid==reminder.uuid
                           });
-                          console.log(updateItemIndex,"updateItemIndex")
+                          //console.log(updateItemIndex,"updateItemIndex")
                           obj[0].reminders.splice(updateItemIndex, 1);
                         //   console.log(updateItemIndex)
-                        console.log(obj[0].reminders,"obj[0].reminders1")
+                        //console.log(obj[0].reminders,"obj[0].reminders1")
                         // obj[0].reminders.map((item)=>{
                         //  console.log(item,"inside reminders")   
                         // })
@@ -195,14 +195,14 @@ class UserRealmCommon extends Component {
                     // obj[0].reminders.map((item)=>{
                     //     console.log(item,"inside reminders11")   
                     //    })
-                    console.log(obj[0].reminders,"obj[0].reminders2")
+                   //console.log(obj[0].reminders,"obj[0].reminders2")
                    resolve(obj[0].reminders);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+               //console.log("realm error-",e.message);
                reject('Fail');
             }
         });
@@ -219,7 +219,7 @@ class UserRealmCommon extends Component {
                         let updateItemIndex = obj[0].reminders.findIndex(item=>{
                             return item.uuid==reminder.uuid
                           });
-                          console.log(updateItemIndex,"reminderupdateIndex")
+                         // console.log(updateItemIndex,"reminderupdateIndex")
                           if(updateItemIndex!=-1){
                             obj[0].reminders[updateItemIndex]= reminder
                           }else{
@@ -235,7 +235,7 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+               //console.log("realm error-",e.message);
                reject('Fail');
             }
         });
@@ -247,18 +247,18 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    console.log(obj[0],"obj0");
+                    //console.log(obj[0],"obj0");
                     realm?.write(() => {
-                    console.log(obj[0].measures.length,"length")
+                    //console.log(obj[0].measures.length,"length")
                     if(obj[0].measures.length>0){
                         let updateItemIndex = obj[0].measures.findIndex(item=>{
-                            console.log(measure.uuid,"measure.uuid",item.uuid)
+                            //console.log(measure.uuid,"measure.uuid",item.uuid)
                             return item.uuid==measure.uuid
                           });
-                          console.log(updateItemIndex,"updateItemIndex")
+                          //console.log(updateItemIndex,"updateItemIndex")
                           obj[0].measures.splice(updateItemIndex, 1);
                         //   console.log(updateItemIndex)
-                        console.log(obj[0].measures,"obj[0].measures1")
+                        //console.log(obj[0].measures,"obj[0].measures1")
                         // obj[0].reminders.map((item)=>{
                         //  console.log(item,"inside reminders")   
                         // })
@@ -268,14 +268,14 @@ class UserRealmCommon extends Component {
                     // obj[0].reminders.map((item)=>{
                     //     console.log(item,"inside reminders11")   
                     //    })
-                    console.log(obj[0].measures,"obj[0].measures2")
+                   // console.log(obj[0].measures,"obj[0].measures2")
                    resolve(obj[0].measures);
                 }
                 else {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+              // console.log("realm error-",e.message);
                reject('Fail');
             }
         });
@@ -288,8 +288,8 @@ class UserRealmCommon extends Component {
                 {
                     // console.log(realm);
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                   console.log(obj,obj[0]);
-                   console.log(typeof obj[0].measures)
+                  // console.log(obj,obj[0]);
+                  // console.log(typeof obj[0].measures)
                     realm?.write(() => {
                     if(obj[0].measures.length>0){
                         let updateItemIndex = obj[0].measures.findIndex(item=>{
@@ -318,7 +318,7 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+              // console.log("realm error-",e.message);
                reject('Fail');
             }
         });
@@ -464,7 +464,7 @@ class UserRealmCommon extends Component {
                 if(realm && realmdata)
                 {
                     let obj:any = realm?.objects<ChildEntity>(ChildEntitySchema.name);
-                    console.log("child data in realmcommon",obj);
+                  //  console.log("child data in realmcommon",obj);
                     realm?.write(() => {
                         if(obj.length > 0){
                             obj.map((child: any) => {
@@ -477,7 +477,7 @@ class UserRealmCommon extends Component {
                                     let artobj:any = realmdata?.objects<ArticleEntity>(ArticleEntitySchema.name).filtered(filterQuery);
                                     const finaladvicesobj = favoriteadvices.filter((i:any) => artobj.find((f:any)=>f.id === i));
                                     child.favoriteadvices = finaladvicesobj;
-                                    console.log(favoriteadvices,"artobj--",finaladvicesobj,"artobj---",artobj);
+                                    //console.log(favoriteadvices,"artobj--",finaladvicesobj,"artobj---",artobj);
                                 }
                                 if(favoritegames.length > 0)
                                 {
@@ -485,12 +485,12 @@ class UserRealmCommon extends Component {
                                     let actobj:any = realmdata?.objects<ActivitiesEntity>(ActivitiesEntitySchema.name).filtered(filterQuery);
                                     const finalgamesobj = favoritegames.filter((i:any) => actobj.find((f:any)=>f.id === i))
                                     child.favoritegames = finalgamesobj
-                                    console.log(favoritegames,"actobj--",finalgamesobj,"actobj---",JSON.stringify(child.favoritegames));
+                                    //console.log(favoritegames,"actobj--",finalgamesobj,"actobj---",JSON.stringify(child.favoritegames));
                                 }
                                 
                             })
                         }
-                        console.log(obj,"after change");
+                       // console.log(obj,"after change");
                     });
                    resolve('success');
                 }
@@ -510,16 +510,16 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const obj = realm?.objects<Entity>(entitySchema.name);
-                    console.log("in try",obj);
+                    //console.log("in try",obj);
                     resolve(obj);
                     //console.log("---",realm.schema);
                 }
                 else {
-                    console.log("in 21error");
+                    //console.log("in 21error");
                     reject();
                 }
             } catch (e) {
-                console.log("in error",e);
+                //console.log("in error",e);
                 reject();
             }
         });
@@ -647,7 +647,7 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     const allRecords = realm?.objects(entitySchema.name).filtered(Condition);
-                    console.log(allRecords,"..allRecords..")
+                    //console.log(allRecords,"..allRecords..")
                     realm?.write(() => {
                         realm?.delete(allRecords);
                         resolve();
@@ -670,25 +670,25 @@ class UserRealmCommon extends Component {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
                     // const patient = realm?.objects('Patient').filtered("patient_id = $0", fromId);
 
-                    console.log(obj[0],"obj0");
+                    //console.log(obj[0],"obj0");
                     realm?.write(() => {
-                    console.log(obj[0].measures,"length")
+                    //console.log(obj[0].measures,"length")
                     if(obj[0].measures.length>0){
                         obj[0].measures.map((itemnew:any)=>{
-                            console.log(itemnew,"..itemnew")
+                            //console.log(itemnew,"..itemnew")
                          let updateItemIndex = obj[0].measures.findIndex((item,index)=>{
-                            console.log("measure.uuid",item);
+                            //console.log("measure.uuid",item);
                             const measuredays=getDiffinDays(param,item.measurementDate);
-                            console.log(measuredays,"..measuredays")
+                            //console.log(measuredays,"..measuredays")
                             return measuredays<0;
                           });
-                           console.log(updateItemIndex,"..measureupdateItemIndex")
+                           //console.log(updateItemIndex,"..measureupdateItemIndex")
                            if(updateItemIndex>=0){
                            obj[0].measures.splice(updateItemIndex, 1);
                            }
                            
                         })
-                        console.log(obj[0].measures,"..obj[0].measures")
+                        //console.log(obj[0].measures,"..obj[0].measures")
                        }
                     });
                     resolve(obj[0].measures);
@@ -697,7 +697,7 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+               //console.log("realm error-",e.message);
                reject('Fail');
             }
         });
@@ -709,9 +709,9 @@ class UserRealmCommon extends Component {
                 if(realm)
                 {
                     let obj:any = realm?.objects<Entity>(entitySchema.name).filtered(condition);
-                    console.log(obj[0],"obj0");
+                    //console.log(obj[0],"obj0");
                     realm?.write(() => {
-                    console.log(obj[0].reminders,"length")
+                    //console.log(obj[0].reminders,"length")
                       if(obj[0].reminders.length>0){
                         let updateItemIndex = obj[0].reminders.findIndex(async item=>{
                             let reminderDate:any = DateTime.fromMillis(item.reminderDate);
@@ -721,10 +721,10 @@ class UserRealmCommon extends Component {
                             const mins = new Date(item.reminderTime).getMinutes()
                             newreminderDate.setHours(hours);
                             newreminderDate.setMinutes(mins);
-                            console.log(newreminderDate,"..newreminderDate")
+                            //console.log(newreminderDate,"..newreminderDate")
                             return DateTime.fromJSDate(new Date(newreminderDate)).toMillis()<param;
                          });
-                         console.log(updateItemIndex,"..updateItemIndex")
+                         //console.log(updateItemIndex,"..updateItemIndex")
                          obj[0].reminders.splice(updateItemIndex, 1);
                       }
                     });
@@ -734,7 +734,7 @@ class UserRealmCommon extends Component {
                     reject('Fail');
                 }
             } catch (e) {
-               console.log("realm error-",e.message);
+               //console.log("realm error-",e.message);
                reject('Fail');
             }
         });
