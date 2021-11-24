@@ -73,7 +73,7 @@ const Articles = ({route, navigation}: Props) => {
   const modalScreenText = 'articleModalText';
   // const renderArticleItem = (item: typeof filteredData[0], index: number) => (
   const RenderArticleItem = React.memo(({item, index}) => {
-    console.log("renderArticleItem-",index)
+    //console.log("renderArticleItem-",index)
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
@@ -93,7 +93,7 @@ const Articles = ({route, navigation}: Props) => {
 });
 
 useFocusEffect(() => {
-  console.log("in article focuseffect without callback",articleModalOpened);
+  //console.log("in article focuseffect without callback",articleModalOpened);
   setModalVisible(articleModalOpened);
 })
   const themeContext = useContext(ThemeContext);
@@ -130,9 +130,9 @@ useFocusEffect(() => {
   const articleDataall = useAppSelector(
     (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
   );
-  console.log(articleDataall,"..articleDataall..");
+  //console.log(articleDataall,"..articleDataall..");
   let articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
-  console.log("56fg---",articleData);
+  //console.log("56fg---",articleData);
   const [filteredData,setfilteredData] = useState([]);
   const [filterArray,setFilterArray] = useState([]);
   const [loadingArticle, setLoadingArticle] = useState(true);
@@ -140,7 +140,7 @@ useFocusEffect(() => {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log(filteredData,"routes changed--",route);
+      //console.log(filteredData,"routes changed--",route);
       async function fetchData() {
         let Entity:any;
           if(route.params?.categoryArray && route.params?.categoryArray.length > 0)
@@ -178,7 +178,7 @@ useFocusEffect(() => {
       });
       // fetchData()
       return () => {
-        console.log("in article unmount");
+       // console.log("in article unmount");
         {
           navigation.setParams({categoryArray:[]})
           showSubscription.remove();
@@ -221,14 +221,14 @@ useFocusEffect(() => {
     flatListRef?.current?.scrollToOffset({ animated: Platform.OS=="android" ? true:false, offset: 0 })
 }
   const setFilteredArticleData = (itemId:any) => {
-    console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
+  //  console.log(itemId,"articleData in filtered 333",articleData.length,articleData);
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
     // }
     if(articleData != '' && articleData != null && articleData != undefined && articleData.length>0)
     {
-      console.log("in inf")
+    //  console.log("in inf")
       setLoadingArticle(true);
       if(itemId.length>0)
       {
@@ -236,7 +236,7 @@ useFocusEffect(() => {
         if(queryText !="" && queryText!=undefined && queryText!=null){ 
           newArticleData =newArticleData.filter(element => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
         }
-        console.log(newArticleData.length,"..in if")
+       // console.log(newArticleData.length,"..in if")
         setfilteredData(newArticleData);
         // if(newArticleData.length == 0)
         // {
@@ -247,7 +247,7 @@ useFocusEffect(() => {
         // setTimeout(function(){setLoading(false)}, 700);
       }else {
         let newArticleData = articleData != '' ? articleData : [];
-        console.log(newArticleData.length,"..in else");
+       // console.log(newArticleData.length,"..in else");
         if(queryText !="" && queryText!=undefined && queryText!=null){ 
           newArticleData =articleDataall.filter(element => element.body.toLowerCase().includes(queryText.toLowerCase()) || element.title.toLowerCase().includes(queryText.toLowerCase()) || element.summary.toLowerCase().includes(queryText.toLowerCase()));
         }
@@ -263,13 +263,13 @@ useFocusEffect(() => {
         // setTimeout(function(){setLoading(false)}, 700);
       }
     }else {
-      console.log("in else")
+      //console.log("in else")
       setLoadingArticle(false);
       setfilteredData([]);
     }
   }
   
-  console.log(filteredData.length,"---length");
+ // console.log(filteredData.length,"---length");
   const onFilterArrayChange = (newFilterArray: any) => {
     // console.log("on filterarray change",newFilterArray);
     // filterArray = [...newFilterArray];
@@ -278,12 +278,12 @@ useFocusEffect(() => {
     // console.log("on filterarray change after",filterArray)
   }
   const receivedLoadingArticle = (value) => {
-    console.log("receivedLoadingArticle--",value);
+   // console.log("receivedLoadingArticle--",value);
     setLoadingArticle(value);
   }
   //code for getting article dynamic data ends here.
 const searchList=async (queryText:any)=>{
-  console.log(queryText,"..queryText")
+ // console.log(queryText,"..queryText")
   setLoadingArticle(true);
   // const currentChildData = {
   //   "gender":activeChild.gender,
@@ -304,9 +304,9 @@ const searchList=async (queryText:any)=>{
   // artData.map((item)=>{
   //   console.log(item,"..search item")
   // });
-  console.log(artData.length,"..artData length")
+ // console.log(artData.length,"..artData length")
   articleData = [...artData];
-  console.log(articleData.length,"after search..articleData..",filterArray);
+  //console.log(articleData.length,"after search..articleData..",filterArray);
   //setLoadingArticle(false);
   // const articleData = articleDataall.filter((x:any)=> articleCategoryArray.includes(x.category))
   // if(artData.length<=0){
@@ -342,7 +342,7 @@ const searchList=async (queryText:any)=>{
                 clearButtonMode="always"
                 onChangeText={(queryText:any)=>{
                   if (queryText.replace(/\s/g, "") == "") {
-                    console.log("..11value")
+                   // console.log("..11value")
                     searchQueryText(queryText.replace(/\s/g, ''));
                   } else {
                     searchQueryText(queryText);
