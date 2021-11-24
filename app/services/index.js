@@ -79,12 +79,12 @@ export default class ScrollingButtonMenu extends React.Component {
         const {index,scrollindex, dataSourceCords2} = this.state;
         // console.log(dataSourceCords2[index],"scrolltoindex--",index);
         // console.log("this.dataSourceCords--",this.dataSourceCords);
-        console.log(index,"--scrollindex--",scrollindex);
+        //console.log(index,"--scrollindex--",scrollindex);
         if(index != scrollindex)
         {
             const screen1 = screenWidth / 2;
             const elementOffset = this.dataSourceCords[index];
-            console.log(this.dataSourceCords,"elementOffset--",elementOffset);
+           // console.log(this.dataSourceCords,"elementOffset--",elementOffset);
             if (elementOffset !== undefined && typeof this.scroll.scrollTo == 'function') {
                 let x = elementOffset.x - (screen1 - (elementOffset.width / 2));
                 this.scroll.scrollTo({
