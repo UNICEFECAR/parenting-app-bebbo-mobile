@@ -69,8 +69,8 @@ const CountrySelection = (props: any) => {
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors,
   );
-  console.log("...sponsors..", sponsors);
-  console.log("userIsOnboarded appnav--", userIsOnboarded);
+  //console.log("...sponsors..", sponsors);
+  //console.log("userIsOnboarded appnav--", userIsOnboarded);
   // useFocusEffect(
   //   React.useCallback(() => {
   //     // Alert.alert("focuseffect--",JSON.stringify(countryId));
@@ -113,7 +113,7 @@ const CountrySelection = (props: any) => {
       selectedCountry = localization.find(
         (country) => country.countryId === newCountryId,
       );
-      console.log(selectedCountry,"---selectedCountry");
+      //console.log(selectedCountry,"---selectedCountry");
       const fetchData = async () => {
         if (userIsOnboarded == false) {
           let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
@@ -164,7 +164,7 @@ const CountrySelection = (props: any) => {
                 <ButtonviewClick
                   style={{}}
                   onPress={() => {
-                    console.log("country-----",country);
+                    //console.log("country-----",country);
                       if(country.countryId == restOfTheWorldCountryId) {
                             Alert.alert(restOfTheWorldAlertTitle, restOfTheWorldAlertText,
                             [
