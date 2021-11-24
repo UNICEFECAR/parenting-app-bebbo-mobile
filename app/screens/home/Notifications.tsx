@@ -25,7 +25,7 @@ type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
-  console.log(allnotis, "allnotis");
+ // console.log(allnotis, "allnotis");
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const themeContext = useContext(ThemeContext);
@@ -79,24 +79,24 @@ const Notifications = () => {
     };
   }, []);
   const handleAppStateChange = (nextAppState) => {
-    console.log('App State: ' + nextAppState);
+   // console.log('App State: ' + nextAppState);
     if (appState != nextAppState) {
       if (appState.current.match(/inactive|background/) 
             && nextAppState === 'active') {
-        console.log(
-          'App State: ' +
-          'App has come to the foreground!'
-        );
-        console.log("App has come to the foreground!",allChildnotification);
+        // console.log(
+        //   'App State: ' +
+        //   'App has come to the foreground!'
+        // );
+        //console.log("App has come to the foreground!",allChildnotification);
         if (allChildnotification.length > 0) {
-          console.log(allChildnotification,"in if from background")
+         // console.log(allChildnotification,"in if from background")
           const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
-          console.log(currentChildNotis,"allfilteredNotis")
+         // console.log(currentChildNotis,"allfilteredNotis")
           calculateNotis(currentChildNotis)
         }
 
       }
-      console.log('App State: ' + nextAppState);
+     // console.log('App State: ' + nextAppState);
       appState.current = nextAppState;
     }
   };
@@ -127,9 +127,9 @@ const Notifications = () => {
   //   };
   // }, []);
   const calculateNotis = (currentChildNotis: any) => {
-    console.log(currentChildNotis, "currentChildNotis")
+   // console.log(currentChildNotis, "currentChildNotis")
     if (currentChildNotis!= undefined) {
-      console.log(currentChildNotis, "currentChildNotis")
+    //  console.log(currentChildNotis, "currentChildNotis")
       let currentChildallnoti: any = [];
       if (currentChildNotis.gwcdnotis) {
         currentChildNotis.gwcdnotis.forEach((item) => {
@@ -168,7 +168,7 @@ const Notifications = () => {
         .filter((item) => {
           return item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis())
         });
-      console.log(combinedNotis, "combinedNotis")
+      //console.log(combinedNotis, "combinedNotis")
       setNotifications(combinedNotis)
       setIsLoading(false)
     }else{
@@ -192,7 +192,7 @@ const Notifications = () => {
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
   const onCategorychange = async (selectedCategoriesParam: any) => {
-    console.log(selectedCategoriesParam);
+   // console.log(selectedCategoriesParam);
     const selectedFilters = selectedCategoriesParam.filter(category => category.isActivated == true).map(item => {
       return item.type
     });
@@ -205,34 +205,34 @@ const Notifications = () => {
     setselectedCategories(selectedFilters)
 
     // on vc hc reminder check add reminder category to list, and remove vica versa
-    console.log(selectedFilters, "selectedFilters")
+   // console.log(selectedFilters, "selectedFilters")
   };
   const onNotiItemChecked = (item: any, isChecked: boolean) => {
-    console.log(item, isChecked, checkedNotifications.length, "checkedNotifications")
+    //console.log(item, isChecked, checkedNotifications.length, "checkedNotifications")
     if (isChecked == true) {
       const allCheckedNotis = [
         ...checkedNotifications,
         item
       ];
       setCheckedNotifications(allCheckedNotis);
-      console.log(checkedNotifications, "checkedNotifications,in if");
+     // console.log(checkedNotifications, "checkedNotifications,in if");
 
     } else {
       const allCheckedNotis = [...checkedNotifications].filter(
         (element) => element !== item,
       );
       setCheckedNotifications(allCheckedNotis);
-      console.log(checkedNotifications, "checkedNotifications");
+     // console.log(checkedNotifications, "checkedNotifications");
     }
 
   }
   const onItemReadMarked = async (notiItem: any) => {
-    console.log(notiItem);
+   // console.log(notiItem);
     let allNotifications = [...allChildnotification];
-    console.log(allNotifications, "copiedAllNOTI")
+   // console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
-    console.log(currentChildNotis, currentChildIndex, "currentChildNotis")
+  //  console.log(currentChildNotis, currentChildIndex, "currentChildNotis")
     if (notiItem.type == 'gw' || notiItem.type == 'cd') {
       const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
       let newItem: any = { ...notiItem };
@@ -269,7 +269,7 @@ const Notifications = () => {
       }
     }
     allNotifications[currentChildIndex] = currentChildNotis
-    console.log(allNotifications, "allNotifications")
+    //console.log(allNotifications, "allNotifications")
     setAllChildNotification(allNotifications);
     dispatch(setAllNotificationData(allNotifications));
     
@@ -277,12 +277,12 @@ const Notifications = () => {
     return currentChildNotis
   }
   const onItemDeleteMarked = (notiItem: any) => {
-    console.log(notiItem,"delete");
+    //console.log(notiItem,"delete");
     let allNotifications = [...allChildnotification];
-    console.log(allNotifications, "copiedAllNOTI")
+    //console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
-    console.log(currentChildNotis, currentChildIndex, "currentChildNotis")
+   // console.log(currentChildNotis, currentChildIndex, "currentChildNotis")
     if (notiItem.type == 'gw' || notiItem.type == 'cd') {
       const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
       let newItem: any = { ...notiItem };
@@ -292,7 +292,7 @@ const Notifications = () => {
       allgwcdnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.gwcdnotis = allgwcdnotis;
       allNotifications[currentChildIndex] = currentChildNotis
-      console.log(allNotifications, "AFTERDELETE allNotifications")
+     // console.log(allNotifications, "AFTERDELETE allNotifications")
      setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
@@ -306,7 +306,7 @@ const Notifications = () => {
       allvcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.vcnotis = allvcnotis;
       allNotifications[currentChildIndex] = currentChildNotis
-      console.log(allNotifications, "AFTERDELETE allNotifications");
+      //console.log(allNotifications, "AFTERDELETE allNotifications");
       setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
@@ -320,7 +320,7 @@ const Notifications = () => {
       allhcnotis[notitoUpdateIndex] = newItem;
       currentChildNotis.hcnotis = allhcnotis
       allNotifications[currentChildIndex] = currentChildNotis
-      console.log(allNotifications, "AFTERDELETE allNotifications")
+     // console.log(allNotifications, "AFTERDELETE allNotifications")
      setAllChildNotification(allNotifications);
       dispatch(setAllNotificationData(allNotifications));
       // setAllNotification(allNotifications);
@@ -331,14 +331,14 @@ const Notifications = () => {
         let newItem: any = { ...notiItem };
         newItem.isDeleted = true;
         delete newItem.isChecked;
-        console.log(newItem, "deleteItem")
+       // console.log(newItem, "deleteItem")
         // currentChildNotis.reminderNotis = currentChildNotis.reminderNotis.map((item) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) ? newItem : item);
         let allremindenotis = [...currentChildNotis.reminderNotis]
         allremindenotis[notitoUpdateIndex] = newItem;
         currentChildNotis.reminderNotis = allremindenotis;
-        console.log(currentChildNotis, "currentChildNotis");
+       // console.log(currentChildNotis, "currentChildNotis");
         allNotifications[currentChildIndex] = currentChildNotis
-        console.log(allNotifications, "AFTERDELETE allNotifications");
+       // console.log(allNotifications, "AFTERDELETE allNotifications");
         setAllChildNotification(allNotifications);
         dispatch(setAllNotificationData(allNotifications));
         // setAllNotification(allNotifications);
@@ -350,18 +350,18 @@ const Notifications = () => {
   const deleteSelectedNotifications = async () => {
 
     let allNotifications = [...allChildnotification];
-    console.log(allNotifications, "copiedAllNOTI")
+    //console.log(allNotifications, "copiedAllNOTI")
     let currentChildNotis = { ...allNotifications.find((item) => item.childuuid == activeChild.uuid) }
     let currentChildIndex = allNotifications.findIndex((item) => item.childuuid == activeChild.uuid)
 
-    console.log(checkedNotifications);
+    //console.log(checkedNotifications);
 
     // allNotifications[currentChildIndex] = currentChildNotis
     // console.log(allNotifications, "allNotifications")
 
 
     checkedNotifications.map(async (notiItem) => {
-      console.log(notiItem);
+      //console.log(notiItem);
 
       if (notiItem.type == 'gw' || notiItem.type == 'cd') {
         const notitoUpdateIndex = currentChildNotis.gwcdnotis.findIndex((item) => (item.days_from == notiItem.days_from) && (item.days_to == notiItem.days_to) && (item.type == notiItem.type))
@@ -403,7 +403,7 @@ const Notifications = () => {
       }
     })
     allNotifications[currentChildIndex] = currentChildNotis
-    console.log(allNotifications, "allNotifications");
+    //console.log(allNotifications, "allNotifications");
     setAllChildNotification(allNotifications)
     dispatch(setAllNotificationData(allNotifications));
     // setAllNotification(allNotifications);
