@@ -397,7 +397,10 @@ const KGky = {
                 addChildText: "Балаңыз жөнүндө маалыматтарды кошуңуз",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
-                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old"
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle:"Information",
+                forceUpdatePopupText:"Data will be updated",
+                forceUpdateOkBtn:"OK"
         }
 }
 export default KGky;
