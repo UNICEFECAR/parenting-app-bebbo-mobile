@@ -82,7 +82,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
   );
   useEffect(() => {
     const backAction = () => {
-      console.log("11")
+     // console.log("11")
       navigation.goBack();
       return true;
     };
@@ -108,8 +108,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
   // };
 
   const saveParentData=async (relationship:any,parentName:any,userRelationToParent:any)=>{
-    console.log(userRelationToParent,"../",typeof(userRelationToParent))
-    console.log(typeof(relationship),"typeof");
+    //console.log(userRelationToParent,"../",typeof(userRelationToParent))
+    //console.log(typeof(relationship),"typeof");
     var relationshipnew:any=relationship;
     if (typeof relationshipnew === 'string' || relationshipnew instanceof String){
       relationship=relationshipnew
@@ -127,7 +127,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
     navigation.navigate('ChildProfileScreen');
   }
   const getCheckedParentItem = (checkedItem:any) => {
-    console.log(checkedItem,"..checkedItem");
+   // console.log(checkedItem,"..checkedItem");
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -231,9 +231,10 @@ const EditParentDetails = ({route,navigation}: Props) => {
                       //   setRelationship(String(item.id));
                       // }
                       // setRelationshipName(item.name);
-                      console.log(item,"..item..");  
+                     // console.log(item,"..item..");  
                         setUserRelationToParent(item.id);
-                        console.log(userRelationToParent,"..userRelationToParent..");  
+                        
+                      //  console.log(userRelationToParent,"..userRelationToParent..");  
                       if(item.id == relationShipMotherId){
                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
                           setRelationship(femaleData.id);
@@ -251,7 +252,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
                         }
                       }
                       else{
-                        if(userRelationToParent==relationShipMotherId || userRelationToParent==relationShipFatherId){
+                        console.log("22",userRelationToParent,item.id);
+                        if(item.id==relationShipMotherId || item.id==relationShipFatherId){
                           setRelationship('');
                         }
                       }
@@ -278,10 +280,10 @@ const EditParentDetails = ({route,navigation}: Props) => {
               onChangeText={(value:any) => { 
                 // setParentName(value.replace(/\s/g, ''))
                if (value.replace(/\s/g,"")=="") {
-                  console.log("..11value")
+                  //console.log("..11value")
                   setParentName(value.replace(/\s/g, '')); 
                  } else {
-                  console.log("..22value")
+                  //console.log("..22value")
                   // if (/^[a-zA-Z ]*$/.test(value)) {
                   setParentName(value.replace(regexpEmojiPresentation, ''));
                   // }
