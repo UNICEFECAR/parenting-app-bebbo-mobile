@@ -115,6 +115,7 @@ const ChildDate = (props: any) => {
     if (inFuture) {
       setIsExpected(true);
       setToggleCheckBox(false);
+      // setdueDate(null);
       props.sendData({
         birthDate: currentDate,
         plannedTermDate: dueDate,
@@ -123,6 +124,16 @@ const ChildDate = (props: any) => {
       });
     } else {
       setIsExpected(false);
+      // if(toggleCheckBox){
+      // setdueDate(new Date(
+      //   DateTime.fromJSDate(doborExpectedDate as Date)
+      //     .plus({weeks: minDue})
+      //     .toISODate(),
+      // ));
+      // }
+      // else{
+      //   setdueDate(null);
+      // }
       props.sendData({
         birthDate: currentDate,
         plannedTermDate: dueDate,

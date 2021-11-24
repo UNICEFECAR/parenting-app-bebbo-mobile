@@ -56,8 +56,7 @@ const GrowthChart = (props: any) => {
   let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
   // console.log(chartType, 'chartType0');
-  const childBirthDate = activeChild.birthDate;
-
+  const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
   // const labelX = props.chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
   // const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
   const labelX = props.chartType == chartTypes.weightForHeight ? t('growthScreencmText'):t('month') ;
