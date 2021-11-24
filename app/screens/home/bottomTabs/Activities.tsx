@@ -23,6 +23,7 @@ import {
   ActivityIndicator,
   FlatList,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   SectionList,
@@ -56,7 +57,7 @@ const Activities = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const flatListRef = React.useRef();
-  let sectionListRef;
+  let sectionListRef:any;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -127,6 +128,7 @@ const Activities = ({ route, navigation }: Props) => {
   const toTop = () => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    if(sectionListRef){
     sectionListRef.scrollToLocation(
       {
         animated:Platform.OS=="android" ? true:false,
@@ -134,6 +136,7 @@ const Activities = ({ route, navigation }: Props) => {
         itemIndex: 0
       }
     );
+    }
   }
   useFocusEffect(
     React.useCallback(() => {
