@@ -134,7 +134,7 @@ function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
     }
     return response;
   }catch (e) {
-    console.log("in apiCall catch");
+   // console.log("in apiCall catch");
     errorArr.push(data);
     return null;
   }
@@ -146,7 +146,7 @@ export function* fetchAPISaga() {
 }
 
 function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any) {
-  console.log("errorArr on redirect--",errorArr);
+ // console.log("errorArr on redirect--",errorArr);
   // if(errorArr && errorArr.length > 0)
   // {
     let payload = {errorArr:errorArr,fromPage:prevPage}
@@ -193,7 +193,7 @@ function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: an
       } else {
         onLoadApiArray = apiJsonData;
       }
-      console.log("onLoadApiArray--",onLoadApiArray);
+     // console.log("onLoadApiArray--",onLoadApiArray);
       errorArr = [];
       yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode,activeChild,oldErrorObj));
     } catch (e) {

@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width } = Dimensions.get('screen');
 const { height } = Dimensions.get('screen');
-console.log(width, "ScreenWidth")
+//console.log(width, "ScreenWidth")
 type Props = {
   /**
    * Container style
@@ -145,7 +145,7 @@ class Ruler extends React.Component<Props, State> {
     this.rulerWidth =
       props.width +
       (props.maximum - props.minimum) * this.snapSegment;
-    console.log(this.rulerWidth, "rulerWidth");
+   // console.log(this.rulerWidth, "rulerWidth");
     // console.log(props.segmentWidth, "segmentWidth");
     // console.log(props.segmentSpacing, "segmentSpacing");
     // console.log(this.snapSegment, "snapSegment");
@@ -192,7 +192,7 @@ class Ruler extends React.Component<Props, State> {
 
   componentDidMount() {
     const { minimum, initialValue, onChangeValue } = this.props;
-    console.log(initialValue,"initialValue");
+   // console.log(initialValue,"initialValue");
     if (this.scrollViewRef && this.scrollViewRef.current) {
      setTimeout(() => {
       this.scrollViewRef.current?.scrollTo({
@@ -210,7 +210,7 @@ class Ruler extends React.Component<Props, State> {
 
     // Create a listener
     this.scrollListener = this.state.scrollX.addListener(({ value }) => {
-      console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
+     // console.log(value, "fromScroll", this.snapSegment, minimum,Math.round(value / this.snapSegment) + minimum);
       this.setState({
         value: Math.round(value / this.snapSegment) + minimum,
         scrollValue: value,
