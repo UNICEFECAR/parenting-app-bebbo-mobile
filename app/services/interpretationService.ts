@@ -8,7 +8,7 @@ export interface InterpretationText {
 }
 export const getInterpretationWeightForHeight = (standardDeviation: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity) => {
     let childAgeId:any;
-    if(childTaxonomyData.prematureTaxonomyId!=null){
+    if(childTaxonomyData.prematureTaxonomyId!=null && childTaxonomyData.prematureTaxonomyId!="" && childTaxonomyData.prematureTaxonomyId!=undefined){
         childAgeId=childTaxonomyData.prematureTaxonomyId;
     }
     else{
@@ -76,8 +76,8 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
 export const getInterpretationHeightForAge = (standardDeviation: any, childBirthDate: any, childTaxonomyData: any, lastMeasurements: MeasurementEntity) => {
     let childAgeId:any;
     console.log(childBirthDate,"..childBirthDate")
-    if(childTaxonomyData.prematureTaxonomyId!=null){
-        childAgeId=childTaxonomyData.prematureTaxonomyId;
+    if(childTaxonomyData.prematureTaxonomyId!=null && childTaxonomyData.prematureTaxonomyId!="" && childTaxonomyData.prematureTaxonomyId!=undefined){
+    childAgeId=childTaxonomyData.prematureTaxonomyId;
     }
     else{
         childAgeId=childTaxonomyData.id;
