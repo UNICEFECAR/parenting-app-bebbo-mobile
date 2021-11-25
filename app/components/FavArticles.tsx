@@ -130,7 +130,7 @@ useFocusEffect(
            </ShiftFromTopBottom5>
            <Heading3>{item.title}</Heading3>
            </ArticleListContent>
-           <ShareFavButtons  backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
+           <ShareFavButtons  backgroundColor={'#FFF'} item={item} fromScreen={'Favourites'} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
            </Pressable>
          </ArticleListContainer>
       
