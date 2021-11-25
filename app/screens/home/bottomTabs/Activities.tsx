@@ -201,7 +201,7 @@ const Activities = ({ route, navigation }: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("child dev usefocuseffect");
+       console.log("child dev usefocuseffect",route.params);
     //  console.log("in usefocuseffect 1", route.params);
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
@@ -242,6 +242,7 @@ const Activities = ({ route, navigation }: Props) => {
       }
       fetchData()
       return () => {
+        console.log("unmount activity",route.params);
         // setModalVisible(false);
         // setFilterArray([]);
         // setCurrentSelectedChildId(0);
