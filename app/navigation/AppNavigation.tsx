@@ -66,9 +66,9 @@ export default () => {
       : false,
   );
 
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
+  // const languageCode = useAppSelector(
+  //   (state: any) => state.selectedCountry.languageCode,
+  // );
  // console.log("userIsOnboarded appnav--", userIsOnboarded);
  // console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
