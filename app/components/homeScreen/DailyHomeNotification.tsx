@@ -23,7 +23,7 @@ const DailyHomeNotification = () => {
       ? JSON.parse(state.utilsData.dailymessages)
       : state.utilsData.dailymessages,
   );
-  console.log(records, '<<records>>');
+  //console.log(records, '<<records>>');
   const currentNotification = useAppSelector((state: any) =>
   (state.utilsData.dailyMessageNotification),
 );
@@ -47,11 +47,11 @@ const DailyHomeNotification = () => {
   };
 
   useEffect(() => {
-    console.log(currentNotification, 'currentNotification<>');
+    //console.log(currentNotification, 'currentNotification<>');
     let currentDate = DateTime.local();
     // let currentDate = DateTime.local().plus({days: 4});//for testing next day noti change
     if (currentNotification != null && currentNotification != undefined && currentNotification != '') {
-      console.log(currentNotification, 'currentNotification<>');
+     // console.log(currentNotification, 'currentNotification<>');
       const currentNotificationVal = currentNotification!=''
         ? JSON.parse(currentNotification)
         : null;
@@ -125,7 +125,7 @@ const DailyHomeNotification = () => {
         month: currentDate.month,
         year: currentDate.year,
       };
-      console.log(firstNotification,"firstNotification");
+     // console.log(firstNotification,"firstNotification");
       let updateNotifcation = setNotiInDB(firstNotification);
       setNotification(firstNotification);
     }

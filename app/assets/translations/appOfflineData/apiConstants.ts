@@ -43,7 +43,8 @@ export const restOfTheWorldAlertTitle = 'Warning';
 export const restOfTheWorldOkTitle = 'Ok';
 export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and HC are not customized to a specific national health program.';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
-     console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
+    // console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
+    // console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
        // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
