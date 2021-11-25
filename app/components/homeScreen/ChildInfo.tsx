@@ -47,10 +47,11 @@ const PinnedChildDevData = useAppSelector(
     state.utilsData.PinnedChildDevData != '' ?JSON.parse(state.utilsData.PinnedChildDevData):[],
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
+  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  console.log(activityTaxonomyId, "..activityTaxonomyId..");
   useEffect(() => {
-    
     // console.log("selectedChildDevData changed--");
-    let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activeChild.taxonomyData.id))[0];
+    let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activityTaxonomyId))[0];
     filteredData = {...filteredData,name:activeChild.taxonomyData.name};
     const selectedChildDevData = filteredData;
     if(activeChildGender == "" || activeChildGender == 0 || activeChildGender == 40 || activeChildGender == 59) //for boy,other and blank
@@ -63,7 +64,7 @@ const PinnedChildDevData = useAppSelector(
       let filteredPinnedData = PinnedChildDevData.filter((x:any)=>x.id == selectedChildDevData?.girl_video_article)[0];
       setSelectedPinnedArticleData(filteredPinnedData);
     }
-  },[activeChild.uuid,activeChild.taxonomyData.id]);
+  },[activeChild.uuid,activityTaxonomyId]);
 
 const goToVideoArticleDetails = () => {
   navigation.navigate('DetailsScreen', {
