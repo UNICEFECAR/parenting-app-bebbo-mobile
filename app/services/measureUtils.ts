@@ -4,10 +4,10 @@ import { MeasuresEntity } from "../database/schema/ChildDataSchema";
 
 export const isGrowthMeasureExistForDate = (selectedMeasureDate:any,activeChild:any) => {
     const filteredMeasures = activeChild?.measures.filter((measure: MeasuresEntity) => {
-        console.log(Math.round(DateTime.fromMillis(measure.measurementDate).diff((selectedMeasureDate), "days").days) == 0)
+       // console.log(Math.round(DateTime.fromMillis(measure.measurementDate).diff((selectedMeasureDate), "days").days) == 0)
         return Math.round(DateTime.fromMillis(measure.measurementDate).diff((selectedMeasureDate), "days").days) == 0 && measure.isChildMeasured == true
     })
-    console.log(filteredMeasures,"filteredMeasures")
+   // console.log(filteredMeasures,"filteredMeasures")
     return filteredMeasures.length > 0 ? true : false
 }
 export const isVaccineMeasureExistForDate = (selectedMeasureDate:any,activeChild:any) => {

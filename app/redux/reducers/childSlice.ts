@@ -64,8 +64,8 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("bufferAgeBracket",action.payload.length);
-    console.log("state.bufferAgeBracket---",state.childDataSet.bufferAgeBracket);
+    // console.log("bufferAgeBracket",action.payload.length);
+    //console.log("state.bufferAgeBracket---",state.childDataSet.bufferAgeBracket);
       // state.bufferAgeBracket = action.payload;
       // if(state.childDataSet.bufferAgeBracket)
       // {

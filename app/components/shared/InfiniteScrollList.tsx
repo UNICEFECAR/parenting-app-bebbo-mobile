@@ -19,7 +19,7 @@ const InfiniteScrollList = (props : any) => {
     const flatListRef = useRef(null);
     // const memoizedValue = useMemo(() => renderArticleItem, [clientData]);
     useEffect(() => {
-        console.log("filteredData changed---",filteredData);
+       // console.log("filteredData changed---",filteredData);
         // onRefresh();
         setClientData([]);
         if(page > 1)
@@ -32,13 +32,13 @@ const InfiniteScrollList = (props : any) => {
     },[filteredData])
 
     const requestData = async (thePage: number) => {
-        console.log(thePage,"..thePage..")
+      //  console.log(thePage,"..thePage..")
         if(totalDataCount > 0)
         {
-            console.log(filteredData,"--filteredData");
+           // console.log(filteredData,"--filteredData");
             setIsLoading(true);
             let data = filteredData.slice((thePage - 1) * limit, thePage * limit);
-            console.log('..requestData..', data);
+           // console.log('..requestData..', data);
             serverDataLoaded(data);
             if(data?.length>0){
                 // data.map(async (item: any, index: number) => {
@@ -122,7 +122,7 @@ const InfiniteScrollList = (props : any) => {
     const handleLoadMore = () => {
         if(!onEndReachedCalledDuringMomentum)
         {
-            console.log('clientData.length', clientData.length);
+           // console.log('clientData.length', clientData.length);
             // console.log('totalDataCount', totalDataCount);
             // if (loadmore && !pending_process) {
             if (clientData.length < totalDataCount) {

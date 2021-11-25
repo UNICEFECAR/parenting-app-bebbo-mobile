@@ -59,7 +59,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
     return e.id!=both_child_gender;
   });
-  console.log(genders,"..genders..");
+ //console.log(genders,"..genders..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
@@ -101,7 +101,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    console.log(insertData,"..insertData");
+   // console.log(insertData,"..insertData");
     addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
 }
 const [gender, setGender] = React.useState(
@@ -148,10 +148,10 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                       maxLength={30}
                       clearButtonMode="always"
                       onChangeText={(value) => {
-                        console.log(value, "..value")
+                       // console.log(value, "..value")
                         // setName(value.replace(/\s/g, ''));
                         if (value.replace(/\s/g, "") == "") {
-                          console.log("..11value")
+                         // console.log("..11value")
                           setName(value.replace(/\s/g, ''));
                         } else {
                           setName(value.replace(regexpEmojiPresentation, ''));

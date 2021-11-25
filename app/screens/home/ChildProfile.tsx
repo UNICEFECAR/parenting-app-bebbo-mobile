@@ -97,7 +97,7 @@ const ChildProfile = ({ navigation }: Props) => {
   );
   useEffect(() => {
     const backAction = () => {
-      console.log("11")
+      //console.log("11")
       navigation.goBack();
       return true;
     };
@@ -162,11 +162,11 @@ const ChildProfile = ({ navigation }: Props) => {
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).parent_gender : [],
   );
 
-  console.log(relationshipData, "..relationshipData..")
+  //console.log(relationshipData, "..relationshipData..")
   let relationshipValue = relationshipData.length > 0 && userParentalRoleData.length > 0 ? relationshipData.find((o: any) => String(o.id) === userParentalRoleData[0].value) : '';
   let relationshipToParent = relationship_to_parent.length > 0 && userRelationToParent.length > 0 ? relationship_to_parent.find((o: any) => String(o.id) === userRelationToParent[0].value) : '';
-  console.log(relationshipValue, "..relationshipValue..")
-  console.log(relationshipToParent, "..relationshipToParent..")
+  //console.log(relationshipValue, "..relationshipValue..")
+  //console.log(relationshipToParent, "..relationshipToParent..")
   // const currentActiveChildId =
   //   allConfigData?.length > 0
   //     ? allConfigData.filter((item) => item.key === 'currentActiveChildId')
@@ -182,7 +182,7 @@ const ChildProfile = ({ navigation }: Props) => {
     if (a.uuid == currentActiveChild) return -1;
   });
   const renderChildProfile = (dispatch: any, data: any, index: number, genderName: string) => (
-    console.log(genderName, "...ggnme"),
+    //console.log(genderName, "...ggnme"),
     <View key={data.uuid}>
       {currentActiveChild != '' &&
         currentActiveChild != null &&
@@ -231,9 +231,9 @@ const ChildProfile = ({ navigation }: Props) => {
                   </OuterIconRight>
                   <OuterIconRight>
                     <Pressable onPress={() => {
-                      console.log("..2222..");
+                     // console.log("..2222..");
                       data.index = index;
-                      console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
+                      //console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
                       if (isFutureDate(data.birthDate)) {
                         navigation.navigate('AddExpectingChildProfile', { childData: data });
                       }
@@ -307,7 +307,7 @@ const ChildProfile = ({ navigation }: Props) => {
                   <OuterIconRight>
                   <Pressable onPress={() => {
                         data.index = index;
-                        console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
+                       // console.log(isFutureDate(data.birthDate), "..isFutureDate(data.birthDate)..");
                         if (isFutureDate(data.birthDate)) {
                           navigation.navigate('AddExpectingChildProfile', { childData: data });
                         }
@@ -362,10 +362,10 @@ const ChildProfile = ({ navigation }: Props) => {
               <ScrollView style={{ maxHeight: (windowHeight - parentViewHeight - profileViewHeight) - 140, height: 'auto' }} nestedScrollEnabled={true}>
                 {SortedchildList.length > 0
                   ? SortedchildList.map((item: any, index: number) => {
-                    console.log(item, "..item..");
+                  //  console.log(item, "..item..");
                     // console.log(genders,"..genders..");
                     const genderLocal = (genders?.length > 0 && item.gender != "") ? genders.find(genderset => genderset.id == parseInt(item.gender)).name : '';
-                    console.log(genderLocal, "..genderLocal..")
+                   // console.log(genderLocal, "..genderLocal..")
                     return renderChildProfile(dispatch, item, index, genderLocal);
                   })
                   : null}
