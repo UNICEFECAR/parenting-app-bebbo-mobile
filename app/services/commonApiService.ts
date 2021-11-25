@@ -33,7 +33,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
   selectedCountry = storedata.selectedCountry.countryId;
   selectedLang = storedata.selectedCountry.languageCode;
   let newurl = finalUrl(apiEndpoint, selectedCountry, selectedLang)
-  console.log("newurl--", newurl);
+ // console.log("newurl--", newurl);
   let responseData: any = {};
   responseData.apiEndpoint = apiEndpoint;
   return await axiosService({
@@ -42,7 +42,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     params: postdata
   })
     .then((response: any) => {
-      console.log("successsssss");
+      //console.log("successsssss");
       //  console.log(response.data);
       responseData.data = response.data,
         responseData.status = response.status
@@ -50,7 +50,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // return response;
     })
     .catch((err: any) => {
-     console.log("errcodeee");
+     //console.log("errcodeee");
       responseData.data = err.message
       responseData.status = err.response.status;
       return responseData;
@@ -63,7 +63,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
 }
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any) => {
  response = response[0];
- console.log(response,"..resonse..");
+ //console.log(response,"..resonse..");
  navigation.navigate('ChildProfileScreen');
  if(response.data && response.data.status && response.data.status == 200)
  {
@@ -180,13 +180,13 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
       // }
 
     
-      console.log(sponsarsObj, "..sponsarsObj..");
+     // console.log(sponsarsObj, "..sponsarsObj..");
       dispatch(setSponsorStore(sponsarsObj));
     }
     // const country= new CountryLanguageConfirmation();
     // country.dispatchSponsors();
   }
-  console.log("in commonapi sponsor ---", response);
+ // console.log("in commonapi sponsor ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"--allDatatoStore");
     // navigation.reset({
@@ -332,7 +332,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     }
   ];
   const results = await Promise.all(resolvedPromises);
-  console.log("done--",results);
+  //console.log("done--",results);
   // navigation.setParams({fromPage:'Loading'});
   dispatch(setInfoModalOpened({key:'showDownloadPopup', value: false}));
   //delete all notifications from slice for all child
@@ -341,7 +341,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     const favverified = await userRealmCommon.verifyFavorites();
-    console.log("favverified---",favverified);
+   // console.log("favverified---",favverified);
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
@@ -399,7 +399,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //   });
 }
 export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
-  console.log(response,"--oldErrorObj survey---",oldErrorObj);
+ // console.log(response,"--oldErrorObj survey---",oldErrorObj);
   // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
@@ -407,10 +407,10 @@ export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navig
       return allDatatoStore;
   });
   const results = await Promise.all(resolvedPromises);
-  console.log("survey done--",results);
+ // console.log("survey done--",results);
 }
 export const onApiFail = (error: any) => {
-  console.log(error, "..error..");
+ // console.log(error, "..error..");
 
 }
 export const retryAlert = () => {

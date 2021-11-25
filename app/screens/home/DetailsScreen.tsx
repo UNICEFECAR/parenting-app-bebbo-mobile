@@ -82,7 +82,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   useEffect(() => {
     const backAction = () => {
-      console.log("dwferfef")
+      //console.log("dwferfef")
       onHeaderBack()
       return true;
     };
@@ -283,7 +283,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     }
     else if(fromScreen == "Activities")
     {
-      console.log("detail screen----",currentSelectedChildId);
+      //console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},

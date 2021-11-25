@@ -186,7 +186,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
     hcItem.growthMeasures = measuresForHCPeriod;
 
   });
-  console.log(allHealthCheckupsDataNew, "allHealthCheckupsDataNew",allHealthCheckupsDataNew.length);
+  //console.log(allHealthCheckupsDataNew, "allHealthCheckupsDataNew",allHealthCheckupsDataNew.length);
   // console.log(allHealthCheckupsData, additionalMeasures, "modifiedHealthCheckupsData");
   // console.log(groupsForPeriods, "<groupsForPeriods>");
   //  regularAndAdditionalMeasures.additionalMeasures.filter(item => item.measurementPlace === "doctor").forEach((measures) => {
@@ -261,7 +261,7 @@ const checkIfMeasuredVaccineExistsForLocale = (vaccineIds)=>{
       upcomingPeriods = [previousPeriods[0], ...upcomingPeriods];
       currentPeriod = upcomingPeriods[0];
       previousPeriods.shift();
-      console.log(currentPeriod,"currentPeriod")
+     // console.log(currentPeriod,"currentPeriod")
     }
     }
     // if(upcomingPeriods[0].growthMeasures?.uuid){

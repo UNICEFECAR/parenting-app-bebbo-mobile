@@ -23,6 +23,7 @@ import {
   ActivityIndicator,
   FlatList,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   SectionList,
@@ -56,7 +57,7 @@ const Activities = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const flatListRef = React.useRef();
-  let sectionListRef;
+  let sectionListRef:any;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -120,13 +121,14 @@ const Activities = ({ route, navigation }: Props) => {
     }
   };
   useFocusEffect(() => {
-    console.log("in activity focuseffect without callback", activityModalOpened);
+   // console.log("in activity focuseffect without callback", activityModalOpened);
     setModalVisible(activityModalOpened);
   })
 
   const toTop = () => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    if(sectionListRef){
     sectionListRef.scrollToLocation(
       {
         animated:Platform.OS=="android" ? true:false,
@@ -134,13 +136,14 @@ const Activities = ({ route, navigation }: Props) => {
         itemIndex: 0
       }
     );
+    }
   }
   useFocusEffect(
     React.useCallback(() => {
       // console.log("useFocusEffect called");
       setLoading(true);
       // setModalVisible(true);
-      console.log("in usefocuseffect 2", route.params);
+    //  console.log("in usefocuseffect 2", route.params);
       async function fetchData() {
         if (route.params?.categoryArray) {
           // console.log(route.params?.categoryArray);
@@ -162,7 +165,7 @@ const Activities = ({ route, navigation }: Props) => {
   );
 
   const showSelectedBracketData = (item: any) => {
-    console.log("in showSelectedBracketData--", item);
+   // console.log("in showSelectedBracketData--", item);
 
     analytics().logEvent(GAME_AGEGROUP_SELECTED, { age_id: item.id });
     // if(route.params?.backClicked == 'yes')
@@ -172,7 +175,7 @@ const Activities = ({ route, navigation }: Props) => {
     setCurrentSelectedChildId(item.id);
     let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     // filteredData =filteredData.map( item => ({ ...item, name:item.name }) )
-    console.log("filteredData---", filteredData);
+   // console.log("filteredData---", filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
     // if(filteredData?.length>0){
@@ -199,7 +202,7 @@ const Activities = ({ route, navigation }: Props) => {
   useFocusEffect(
     React.useCallback(() => {
       // console.log("child dev usefocuseffect");
-      console.log("in usefocuseffect 1", route.params);
+    //  console.log("in usefocuseffect 1", route.params);
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
@@ -209,9 +212,16 @@ const Activities = ({ route, navigation }: Props) => {
           showSelectedBracketData(firstChildDevData[0]);
         }
         else {
+          if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
+            const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.prematureTaxonomyId);
+            // console.log("firstChildDevData---", firstChildDevData);
+             showSelectedBracketData(firstChildDevData[0]);
+          }
+          else{
           const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
-          console.log("firstChildDevData---", firstChildDevData);
+         // console.log("firstChildDevData---", firstChildDevData);
           showSelectedBracketData(firstChildDevData[0]);
+          }
         }
       } else {
         setLoading(false);
@@ -224,7 +234,7 @@ const Activities = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
-      console.log("in usefocuseffect with unmount23");
+     // console.log("in usefocuseffect with unmount23");
       const fetchData = async () => {
         const filterQuery = 'uuid == "'+activeChild?.uuid+'"';
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
@@ -241,7 +251,7 @@ const Activities = ({ route, navigation }: Props) => {
         // setLoading(false);
         // setfilteredData([]);
         // setshowNoData(false);
-        console.log("in unmount-", route.params?.currentSelectedChildId);
+      //  console.log("in unmount-", route.params?.currentSelectedChildId);
         navigation.setParams({ backClicked: 'no' })
         // if(route.params?.currentSelectedChildId)
         // {
@@ -258,21 +268,22 @@ const Activities = ({ route, navigation }: Props) => {
   );
   useFocusEffect(
     React.useCallback(() => {
+      console.log(activeChild,"..activeChild..")
       // console.log("child dev usefocuseffect");
       // || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)
       setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));
       setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)));
-      console.log("filteredData inner---", filteredData);
+      //console.log("filteredData inner---", filteredData);
     }, [filteredData,childMilestonedata])
   );
   const setFilteredActivityData = (itemId: any) => {
-    console.log(itemId, "articleData in filtered ", selectedChildActivitiesData);
+   // console.log(itemId, "articleData in filtered ", selectedChildActivitiesData);
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
     // }
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
-      console.log("in if");
+     // console.log("in if");
       if (itemId.length > 0) {
         const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
         setfilteredData(newArticleData);
@@ -299,7 +310,7 @@ const Activities = ({ route, navigation }: Props) => {
     toTop();
   }
   const goToActivityDetail = (item: typeof filteredData[0]) => {
-    console.log(selectedChildActivitiesData, "--selectedChildActivitiesData");
+   // console.log(selectedChildActivitiesData, "--selectedChildActivitiesData");
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Activities",
@@ -311,25 +322,25 @@ const Activities = ({ route, navigation }: Props) => {
         currentSelectedChildId: currentSelectedChildId
       });
   };
-  console.log(filteredData.length,"--filteredData");
-  console.log(suggestedGames.length,"--suggestedGames");
-  console.log(otherGames.length,"--otherGames");
+  //console.log(filteredData.length,"--filteredData");
+  //console.log(suggestedGames.length,"--suggestedGames");
+  //console.log(otherGames.length,"--otherGames");
 
   const onFilterArrayChange = (newFilterArray: any) => {
-    console.log("on filterarray change", newFilterArray);
+    //console.log("on filterarray change", newFilterArray);
     // filterArray = [...newFilterArray];
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
   const gotoMilestone = () => {
-    console.log("currentSelectedChildId---",currentSelectedChildId)
+    //console.log("currentSelectedChildId---",currentSelectedChildId)
     navigation.navigate('ChildDevelopment',
     {
       currentSelectedChildId: currentSelectedChildId
     });
   }
   const SuggestedActivities = React.memo(({ item, section, index }) => {
-    console.log(section, "SuggestedActivities", item.id);
+    //console.log(section, "SuggestedActivities", item.id);
     let milestonedatadetail:any = [];
     if(section == 1) {
       const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;

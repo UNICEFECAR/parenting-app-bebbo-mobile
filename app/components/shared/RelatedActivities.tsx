@@ -138,7 +138,7 @@ const RelatedActivities = (props:RelatedActivityProps) => {
     });
   };
   const RenderActivityItem = React.memo(({item, index}) => {
-    console.log("RenderActivityItem",item.id);
+   //console.log("RenderActivityItem",item.id);
     return(
       <Pressable onPress={() => { goToArticleDetail(item)}} key={index}
       style={{flexDirection:'row'}}
