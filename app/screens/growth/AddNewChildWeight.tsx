@@ -63,7 +63,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.weightValue) {
-      console.log(route.params?.weightValue);
+      //console.log(route.params?.weightValue);
       route.params?.weightValue.weight != NaN
         ? setweight(route.params?.weightValue.weight)
         : setweight(0);

@@ -117,7 +117,7 @@ const Home = ({ route, navigation }: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const netInfoval = useNetInfoHook();
-  console.log(netInfoval.isConnected, '--31home focuseffect--', userIsOnboarded);
+  //console.log(netInfoval.isConnected, '--31home focuseffect--', userIsOnboarded);
   const surveyItem = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)?.find(item => item.type == "survey")
@@ -133,9 +133,9 @@ const Home = ({ route, navigation }: Props) => {
       // console.log(currentCount,1);
       if (Platform.OS === 'android') {
         ToastAndroid.show(t('backPressText'), 6000);
-        console.log("in condition", currentCount);
+        //console.log("in condition", currentCount);
         setTimeout(() => {
-          console.log("in settimeout", currentCount);
+          //console.log("in settimeout", currentCount);
           currentCount = 0;
           // console.log(currentCount,5);
         }, 2000);
@@ -143,7 +143,7 @@ const Home = ({ route, navigation }: Props) => {
       } else {
         Alert.alert(t('backPressText'));
         setTimeout(() => {
-          console.log("in settimeout", currentCount);
+          //console.log("in settimeout", currentCount);
           currentCount = 0;
           // console.log(currentCount,5);
         }, 2000);
@@ -319,7 +319,7 @@ const Home = ({ route, navigation }: Props) => {
     });
   }
   const downloadApis = () => {
-    console.log("Download Pressed", apiJsonData);
+   // console.log("Download Pressed", apiJsonData);
     // if(apiJsonData && apiJsonData.length > 0)
     // {
     navigation.navigate('LoadingScreen', {
@@ -333,7 +333,7 @@ const Home = ({ route, navigation }: Props) => {
     // }
   }
   const callFailedApis = () => {
-    console.log("Download Pressed", errorObj);
+    //console.log("Download Pressed", errorObj);
     if (errorObj && errorObj.length > 0) {
       navigation.navigate('LoadingScreen', {
         apiJsonData: errorObj,

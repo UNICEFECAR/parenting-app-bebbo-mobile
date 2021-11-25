@@ -18,7 +18,7 @@ const LoadingScreenComponent = (props: any) => {
   const {t} = useTranslation();
   const sponsors = props.sponsors;
   const prevPage = props.prevPage;
-  console.log(sponsors, '..11sponsors..');
+ // console.log(sponsors, '..11sponsors..');
   return (
     <LoadingContainer>
       <MainView>
