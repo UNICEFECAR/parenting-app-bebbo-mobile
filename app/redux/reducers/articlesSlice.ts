@@ -38,8 +38,8 @@ export const articlesSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("Daily data---",state.dailyDataCategory);
-      console.log(action.payload);
+    // console.log("Daily data---",state.dailyDataCategory);
+     // console.log(action.payload);
       // console.log(action.payload.map(user => user));
       // dailyDataCategory
       // if(action.payload)
@@ -51,8 +51,8 @@ export const articlesSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("showedDailyDataCategory data---",state.showedDailyDataCategory);
-      console.log(action.payload);
+    // console.log("showedDailyDataCategory data---",state.showedDailyDataCategory);
+     // console.log(action.payload);
       // console.log(action.payload.map(user => user));
       // dailyDataCategory
       // if(action.payload)

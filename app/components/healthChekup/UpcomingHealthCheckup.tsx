@@ -113,7 +113,7 @@ const UpcomingHealthCheckup = (props: any) => {
       // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
       // console.log(days,"days")
       if (today.toMillis() < DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
-        console.log('healthCheckupReminder', healthCheckupReminder);
+        //console.log('healthCheckupReminder', healthCheckupReminder);
         hcReminder = healthCheckupReminder
       }
     })
