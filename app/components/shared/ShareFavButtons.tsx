@@ -33,7 +33,7 @@ const ShareFavButtons = React.memo((props: any) => {
 );
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
-  const {backgroundColor,item,isAdvice, isFavourite} = props;
+  const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
   
   const onShare = async () => {
    // console.log('share');
@@ -113,18 +113,30 @@ const ShareFavButtons = React.memo((props: any) => {
         </ShareFavPress>
 
         { isFavourite ? (
-          <ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
-            <FDirRow>
-              <OuterIconRow>
-                <OuterIconLeft>
-                  <Icon name="ic_trash" size={20} color="#000" />
-                </OuterIconLeft>
-              </OuterIconRow>
-              <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
-            </FDirRow>
-          </ShareFavPress>
-        ) : (
-          <ShareFavPress onPress={() =>onFavClick()} style={{alignItems:'flex-end'}}>
+           fromScreen && fromScreen == 'Favourites' ? 
+             (<ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
+              <FDirRow>
+                <OuterIconRow>
+                  <OuterIconLeft>
+                    <Icon name="ic_trash" size={20} color="#000" />
+                  </OuterIconLeft>
+                </OuterIconRow>
+                <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('favScreenremoveText')}</Heading4>
+              </FDirRow>
+            </ShareFavPress>) :
+             (<ShareFavPress onPress={() => unFavHandler()} style={{alignItems:'flex-end'}}>
+                <FDirRow>
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <Icon name="ic_sb_favorites" size={20} color="#000" />
+                    </OuterIconLeft>
+                  </OuterIconRow>
+                  <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenremovetoFavText')}</Heading4>
+                </FDirRow>
+              </ShareFavPress>)
+        )
+         : 
+          (<ShareFavPress onPress={() =>onFavClick()} style={{alignItems:'flex-end'}}>
             <FDirRow>
               <OuterIconRow>
                 <OuterIconLeft>
@@ -133,8 +145,8 @@ const ShareFavButtons = React.memo((props: any) => {
               </OuterIconRow>
               <Heading4 style={{flexShrink:1}} numberOfLines={1}>{t('actScreenaddtoFavText')}</Heading4>
             </FDirRow>
-          </ShareFavPress>
-        )}
+          </ShareFavPress>)
+        }
       </ShareFavBox>
     </>
   );
