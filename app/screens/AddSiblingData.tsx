@@ -14,7 +14,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -22,7 +22,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
-import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
+import { Heading1Centerw, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -122,6 +122,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
       <View style={{flex:1,backgroundColor:headerColor}}>
   
      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+     <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
       <OnboardingContainer>
         <View>
           <OnboardingHeading>
@@ -183,7 +184,11 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
          :null}
         </View>
 
-        <ButtonRow>
+      
+      </OnboardingContainer>
+      </ScrollView>
+      <SideSpacing25>
+      <ButtonRow>
           <ButtonPrimary
            disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
              
@@ -216,7 +221,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
-      </OnboardingContainer>
+        </SideSpacing25>
     </View>
     </>
   );
