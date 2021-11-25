@@ -63,7 +63,7 @@ const ShareFavButtons = React.memo((props: any) => {
   };
   const onFavClick = async ()=>{
     const filterQuery = 'uuid == "'+activeChilduuid+'"';
-    console.log(filterQuery,"vshdvh---",isAdvice);
+    //console.log(filterQuery,"vshdvh---",isAdvice);
     if(isAdvice){
     // console.log("filterQuery child dev--",filterQuery);
     const updatefavorites = await userRealmCommon.updateFavorites<ChildEntity>(ChildEntitySchema,item?.id,'advices',filterQuery);

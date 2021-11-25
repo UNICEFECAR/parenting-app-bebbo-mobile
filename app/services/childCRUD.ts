@@ -75,15 +75,33 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
   };
 
 }
-export const getTaxonomyData = async (param: any, birthDate: any, child_age: any) => {
+export const getTaxonomyData = async (param: any, birthDate: any, child_age: any,plannedTermDate:any,isPremature:any) => {
+  console.log(typeof isPremature,"..isPremature")
   if (birthDate != null && birthDate != undefined && birthDate != "") {
     let ageLimit = [];
     ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(birthDate)).toMillis()));
     console.log(ageLimit, "..ageLimit..")
+    let prematureageLimit = [];
+    if(isPremature=="true" && plannedTermDate!=null && plannedTermDate!=undefined && plannedTermDate!=""){
+    prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(plannedTermDate)).toMillis()));
+    }
+    console.log(prematureageLimit, "..prematureageLimit..")
     const taxonomyData = await checkBetween(param, ageLimit, child_age);
-    console.log(taxonomyData, "..taxonomyData..")
+    let prematureTaxonomyData:any=[];
+    if(prematureageLimit && prematureageLimit.length>0){
+       prematureTaxonomyData = await checkBetween(param, prematureageLimit, child_age);
+    }
+    console.log(taxonomyData, "..taxonomyData..");
+    console.log(prematureTaxonomyData, "..newprematureTaxonomyData..");
     if (taxonomyData?.length > 0) {
       // child.taxonomyData = taxonomyData[0];
+      if(prematureTaxonomyData && prematureTaxonomyData.length>0){
+        taxonomyData[0].prematureTaxonomyId=prematureTaxonomyData[0].id;
+      }
+      else{
+        taxonomyData[0].prematureTaxonomyId=null;
+      }
+      console.log(taxonomyData[0],"..11taxonomyData[0]")
       return taxonomyData[0];
     }
     else {
@@ -135,10 +153,28 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       if (child.birthDate != null && child.birthDate != undefined && child.birthDate != "") {
         let ageLimit = [];
         ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis()));
+        let prematureageLimit = [];
+        if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
+        prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
+        }
+        console.log(prematureageLimit, "..prematureageLimit..")
         // console.log(ageLimit,"..ageLimit..")  
         const taxonomyData = await checkBetween(1, ageLimit, child_age);
+        let prematureTaxonomyData:any=[];
+        if(prematureageLimit && prematureageLimit.length>0){
+           prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+        }
+        console.log(taxonomyData, "..taxonomyData..");
+        console.log(prematureTaxonomyData, "..newprematureTaxonomyData..");
         // console.log(taxonomyData,"..taxonomyData..")
         if (taxonomyData?.length > 0) {
+          if(prematureTaxonomyData && prematureTaxonomyData.length>0){
+            taxonomyData[0].prematureTaxonomyId=prematureTaxonomyData[0].id;
+          }
+          else{
+            taxonomyData[0].prematureTaxonomyId=null;
+          }
+          console.log(taxonomyData[0],"..21taxonomyData[0]")
           child.taxonomyData = taxonomyData[0];
         }
         else{}
@@ -168,9 +204,26 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
         let ageLimit = [];
         ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis()));
         // console.log(ageLimit,"..ageLimit..")  
+        let prematureageLimit = [];
+        if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
+        prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
+        }
         const taxonomyData = await checkBetween(1, ageLimit, child_age);
         // console.log(taxonomyData,"..taxonomyData..")
+        let prematureTaxonomyData:any=[];
+        if(prematureageLimit && prematureageLimit.length>0){
+           prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+        }
+        console.log(taxonomyData, "..taxonomyData..");
+        console.log(prematureTaxonomyData, "..newprematureTaxonomyData..");
         if (taxonomyData?.length > 0) {
+          if(prematureTaxonomyData && prematureTaxonomyData.length>0){
+            taxonomyData[0].prematureTaxonomyId=prematureTaxonomyData[0].id;
+          }
+          else{
+            taxonomyData[0].prematureTaxonomyId=null;
+          }
+          console.log(taxonomyData[0],"..31taxonomyData[0]")
           child.taxonomyData = taxonomyData[0];
         }
         //if notif.length>0 child.notifications.append
@@ -200,9 +253,24 @@ export const setActiveChild = async (languageCode: any, uuid: any, dispatch: any
       let ageLimit = [];
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.birthDate)).toMillis()));
        console.log(ageLimit,"..ageLimit..")  
+       let prematureageLimit = [];
+       if(child.isPremature=="true" && child.plannedTermDate!=null && child.plannedTermDate!=undefined && child.plannedTermDate!=""){
+       prematureageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(child.plannedTermDate)).toMillis()));
+       }
       const taxonomyData = await checkBetween(1, ageLimit, child_age);
+      let prematureTaxonomyData:any=[];
+      if(prematureageLimit && prematureageLimit.length>0){
+         prematureTaxonomyData = await checkBetween(1, prematureageLimit, child_age);
+      }
        console.log(taxonomyData,"..taxonomyData..")
       if (taxonomyData?.length > 0) {
+        if(prematureTaxonomyData && prematureTaxonomyData.length>0){
+          taxonomyData[0].prematureTaxonomyId=prematureTaxonomyData[0].id;
+        }
+        else{
+          taxonomyData[0].prematureTaxonomyId=null;
+        }
+        console.log(taxonomyData[0],"..41taxonomyData[0]")
         child.taxonomyData = taxonomyData[0];
       }
       //if notif.length>0 child.notifications.append
@@ -581,8 +649,8 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
       console.log(deleteresult, "..deleteresult..")
       ageLimit.push(getCurrentChildAgeInDays(DateTime.fromJSDate(new Date(data[0].birthDate)).toMillis()));
       console.log(ageLimit, "..ageLimit..")
-      const taxonomyData = await checkBetween(0, ageLimit, child_age);
-      console.log(taxonomyData, "..taxonomydata..");
+       const taxonomyData = await checkBetween(0, ageLimit, child_age);
+      //console.log(taxonomyData, "..taxonomydata..");
       let apiJsonData;
       if (taxonomyData?.length > 0) {
         apiJsonData = apiJsonDataGet(String(taxonomyData), "all");
@@ -719,7 +787,7 @@ export const getAllConfigData = async (dispatch: any) => {
 // }
 export const calc = async (value: any, child_age: any) => {
   console.log(value, "..  before taxonomy..");
-  value.taxonomyData = await getTaxonomyData(1, value.birthDate, child_age);
+  value.taxonomyData = await getTaxonomyData(1, value.birthDate, child_age,value.plannedTermDate,value.isPremature);
   console.log(value, "after taxonomy");
   return value;
 };

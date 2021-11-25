@@ -143,7 +143,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   // );
   //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item: any) => {
-    console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
+    //console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
     navigation.push('DetailsScreen',
       {
         // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
@@ -157,7 +157,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
       });
   };
   const RenderRelatedArticleItem = React.memo(({item, index}) => {
-    console.log("RenderRelatedArticleItem article",item.id);
+   // console.log("RenderRelatedArticleItem article",item.id);
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
         style={{ flexDirection: 'row' }}

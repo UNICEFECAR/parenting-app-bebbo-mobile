@@ -11,27 +11,27 @@ import VaccineItem from './VaccineItem';
 const TakenVaccines = (props: any) => {
   const {onTakenVaccineToggle, fromScreen,backgroundActiveColor} = props;
   let {takenVaccines} = props;
-  console.log(takenVaccines,"takenVaccines")
+  //console.log(takenVaccines,"takenVaccines")
 
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<any[]>(takenVaccines);
   // let allCheckedVaccines: any[] = [];
   const onToggleVaccine = (id, isVaccineItemChecked) => {
-    console.log(id,isVaccineItemChecked,"onToggleVaccine");
+    //console.log(id,isVaccineItemChecked,"onToggleVaccine");
     if (isVaccineItemChecked) {
       // const allCheckedVaccines = [...checkedVaccines, {
       //     uuid: id,
       //     // measurementDate: DateTime.now().toMillis(),
       //   }];
       // takenVaccines.map(x => (x.uuid == id ? { ...x, isMeasured: true } : x));
-      console.log(takenVaccines,"inTrue");
+     // console.log(takenVaccines,"inTrue");
       // takenVaccines.forEach((vcItem)=>{
       //   vcItem.isMeasured = vcItem.uuid == id ?  true : false;
       // })
       let updatedItem =  takenVaccines.find(el => el.uuid === id)
       updatedItem.isMeasured= true;
       takenVaccines[takenVaccines.findIndex(el => el.uuid === id)]=updatedItem;
-      console.log(updatedItem,"updatedItem")
+      //console.log(updatedItem,"updatedItem")
       setCheckedVaccines(takenVaccines);
       // allCheckedVaccines.push({
       //   uuid: id,
@@ -40,14 +40,14 @@ const TakenVaccines = (props: any) => {
       onTakenVaccineToggle(takenVaccines);
       // console.log(allCheckedVaccines,checkedVaccines,"allCheckedVaccines")
     } else {
-      console.log(checkedVaccines,"checkedVaccines");
+      //console.log(checkedVaccines,"checkedVaccines");
       takenVaccines.map(x => (x.uuid == id ? { ...x, isMeasured: false } : x));
-      console.log(takenVaccines,"inFalse");
+      //console.log(takenVaccines,"inFalse");
       let updatedItem =  takenVaccines.find(el => el.uuid === id)
-      console.log(updatedItem);
+      //console.log(updatedItem);
       updatedItem['isMeasured']= false;
       takenVaccines[takenVaccines.findIndex(el => el.uuid === id)]=updatedItem;
-      console.log(updatedItem,"updatedItem")
+      //console.log(updatedItem,"updatedItem")
       // takenVaccines.forEach((vcItem)=>{
       //   vcItem.isMeasured = vcItem.uuid == id ?  false : true;
       // })
@@ -56,7 +56,7 @@ const TakenVaccines = (props: any) => {
       // )?.isMeasured = false;
       setCheckedVaccines(takenVaccines);
       onTakenVaccineToggle(takenVaccines);
-      console.log(takenVaccines,checkedVaccines,"allCheckedVaccines")
+      //console.log(takenVaccines,checkedVaccines,"allCheckedVaccines")
     }
     
    
