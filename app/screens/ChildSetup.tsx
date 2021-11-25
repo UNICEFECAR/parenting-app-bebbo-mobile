@@ -251,7 +251,7 @@ const ChildSetup = ({ navigation }: Props) => {
                     </OrView>
                   </Flex1>
                 </FlexRow>
-                </FlexCol>
+            </FlexCol>
                 
                 <FlexCol>
                   <Heading2w>
