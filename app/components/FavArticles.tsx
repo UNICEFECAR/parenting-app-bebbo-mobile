@@ -8,6 +8,7 @@ import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
+import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
 import LoadableImage from '../services/LoadableImage';
 import { ArticleListContainer, ArticleListContent } from './shared/ArticlesStyle';
 import { FlexCol } from './shared/FlexBoxStyle';
@@ -101,11 +102,14 @@ const FavArticles = (props: any) => {
 useFocusEffect(
   React.useCallback(() => {
     async function fetchData() {
+      console.log("favoriteadvices----",favoriteadvices);
       if(favoriteadvices.length > 0){
         const filterQuery = favoriteadvices.map((x: any) => `id = '${x}'`).join(' OR ');
-        //console.log("filterQuery favarticles--",filterQuery);
-        let favData = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
-       // console.log("favData---",favData);
+        console.log("filterQuery favarticles--",filterQuery);
+        let favData1 = await dataRealmCommon.getFilteredData<ArticleEntity>(ArticleEntitySchema, filterQuery);
+       let favData2 = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema, filterQuery);
+       let favData = [...new Set([...favData1,...favData2])];
+       console.log("favData---",favData);
         if(favData.length == 0){
           favData = articleDataall.filter((x: any) => (favoriteadvices.findIndex((y:any)=>y == x.id)) > -1);
           //console.log('offlinedata 2---',favData);
