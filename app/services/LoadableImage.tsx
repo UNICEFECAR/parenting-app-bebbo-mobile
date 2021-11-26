@@ -180,7 +180,7 @@ const LoadableImage = (props:any) => {
       />}
       // onProgress={e => console.log(e.nativeEvent.loaded / e.nativeEvent.total)}
       renderError={(error:any) =>{ 
-      console.log("errr",error);
+    //  console.log("errr",error);
       return(<DefaultImage
       style={style}
       source={require('@assets/trash/defaultArticleImage.png')}/>);

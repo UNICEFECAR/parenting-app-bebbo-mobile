@@ -34,7 +34,7 @@ import { VideoArticleData } from "./VideoArticleData";
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    console.log(prevPage, "..prevPage..")
+  //  console.log(prevPage, "..prevPage..")
     return new Promise(async (resolve, reject) => {
         // if(apiEndpoint == appConfig.basicPages || apiEndpoint == appConfig.activities || apiEndpoint == appConfig.milestones)
         // console.log("getAllDataToStore--");
@@ -53,13 +53,13 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
         }
         else if (prevPage == "AddEditChild") {
             let Entity: any;
-            console.log(activeChild, "..currentChildData..")
+           // console.log(activeChild, "..currentChildData..")
             const currentChildData = {
                 "gender": activeChild.gender,
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            console.log(currentChildData, "..currentChildData..")
+            //console.log(currentChildData, "..currentChildData..")
             const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         }
@@ -163,7 +163,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
     return new Promise(async (resolve, reject) => {
-        console.log(currentChildData, "..currentChildData..")
+       // console.log(currentChildData, "..currentChildData..")
         // console.log("getDataToStore--",SchemaToUse);
         let databaselistener: any;
         let dataToStore: any;
@@ -215,9 +215,9 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 // }
                 // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
-                console.log(filterQuery, "..11filterQuery..");
+                //console.log(filterQuery, "..11filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
-                console.log(databaseData.length);
+                //console.log(databaseData.length);
                 dataToStore = databaseData;
             } else {
                 dataToStore = databaseData2;

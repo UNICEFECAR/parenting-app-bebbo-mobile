@@ -23,9 +23,9 @@ import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, View } from 'react-native';
+import { Alert, BackHandler, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
 import { ChildEntity } from '../database/schema/ChildDataSchema';
@@ -67,14 +67,13 @@ const ChildSetupList = ({ navigation }: Props) => {
   const childList = useAppSelector(
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
-  console.log(childList,"..childList..")
+ // console.log(childList,"..childList..")
   const activeChild = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
   );
   console.log(activeChild,"..activeChild..");
-  
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch,child_age,0);
@@ -91,6 +90,18 @@ const ChildSetupList = ({ navigation }: Props) => {
           });
         });
       },500);
+      const backAction = () => {
+        return true;
+      };
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction,
+      );
+      navigation.addListener('gestureEnd', backAction);
+      return () => {
+       navigation.removeListener('gestureEnd', backAction);
+        backHandler.remove();
+      }
     },[])
   );
 
@@ -106,14 +117,29 @@ const ChildSetupList = ({ navigation }: Props) => {
     
     {
           childList.length> 1 ? (
+            <TouchableHighlight style={{padding:8,marginRight:2}} underlayColor="transparent" onPress={() => deleteRecord(index,dispatch,data.uuid)}>
             <ChildListAction>
-            <TitleLinkSm numberOfLines={3} onPress={() => deleteRecord(index,dispatch,data.uuid)}>{t('growthScreendelText')}</TitleLinkSm>
+          <Icon
+                      name="ic_trash"
+                      size={16}
+                      color="#000"
+                      
+                    />
+                    
             </ChildListAction>
+            </TouchableHighlight>
             ) :null
           }
+          <TouchableHighlight style={{padding:8,marginLeft:2}} underlayColor="transparent" onPress={() => editRecord(data)}>
           <ChildListAction>
-      <TitleLinkSm numberOfLines={3} onPress={() => editRecord(data)}>{t('editProfileBtn')}</TitleLinkSm>
+          <Icon
+                      name="ic_edit"
+                      size={16}
+                      color="#000"
+                      
+                    />
       </ChildListAction>
+      </TouchableHighlight>
     </ChildColArea2>
   </ChildListingBox>
      );
@@ -126,12 +152,12 @@ const ChildSetupList = ({ navigation }: Props) => {
         [
           {
             text: t('removeOption1'),
-            onPress: () => reject("error"),
+            onPress: () => resolve("error"),
             style: "cancel"
           },
           { text: t('growthScreendelText'), onPress: async () => {
             const deletedata=await deleteChild(languageCode,index,dispatch,'ChildEntity', uuid,'uuid ="' + uuid+ '"',resolve,reject,child_age,t);
-            console.log(deletedata,"..deletedatares..")
+           // console.log(deletedata,"..deletedatares..")
             getAllChildren(dispatch,child_age,0);
           }
           }
@@ -152,10 +178,10 @@ const ChildSetupList = ({ navigation }: Props) => {
     // if(netInfo.isConnected){
       
     const Ages=await getAge(childList,child_age);
-    console.log(Ages,"..Ages..")
+   // console.log(Ages,"..Ages..")
     let apiJsonData;
     if(Ages?.length>0){
-      console.log(Ages,"..11Ages..")
+     // console.log(Ages,"..11Ages..")
       apiJsonData=apiJsonDataGet(String(Ages),"all")
     }
     else{
@@ -164,7 +190,7 @@ const ChildSetupList = ({ navigation }: Props) => {
      analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
     // await analytics().setUserProperties({ageid,is_premature,child_gender,relationship_with_child}) relationship_with_child:monther/father
 
-    console.log(apiJsonData,"..apiJsonData...")
+  //  console.log(apiJsonData,"..apiJsonData...")
     navigation.reset({
       index: 0,
       routes: [
@@ -206,7 +232,7 @@ const ChildSetupList = ({ navigation }: Props) => {
               childList.length> 0 ? (
               childList.map((item: ChildEntity, index: number) => {
                 const genderLocal=(genders?.length>0 && item.gender!="")? genders.find(genderset => genderset.id == parseInt(item.gender)).name:'';
-                console.log(genderLocal,"..genderLocal..")
+                //console.log(genderLocal,"..genderLocal..")
                return renderDailyReadItem(dispatch,item,index,genderLocal);
               })
             ) :
