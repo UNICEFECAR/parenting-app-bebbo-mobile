@@ -3,7 +3,7 @@ import { both_child_gender, regexpEmojiPresentation } from '@assets/translations
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
-import { ChildAddTop, FormContainer, FormContainerFlex, FormInputBox, LabelText } from '@components/shared/ChildSetupStyle';
+import { ChildAddTop, FormContainer, FormContainer1, FormContainerFlex, FormInputBox, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
@@ -169,9 +169,9 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                 </ShiftFromTop5>
           {
           birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
-          <FormContainer>
+          <FormContainer1>
           <LabelText>{t('genderLabel')}</LabelText>
-          <FormContainerFlex>
+          {/* <FormContainerFlex> */}
                 <ToggleRadios
                   options={genders}
                   defaultValue={defaultGenderValue}
@@ -179,8 +179,8 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                   tickColor={'#FFF'}
                   getCheckedItem={getCheckedItem}
                 />
-         </FormContainerFlex>
-         </FormContainer>
+         {/* </FormContainerFlex> */}
+         </FormContainer1>
          :null}
         </View>
 
