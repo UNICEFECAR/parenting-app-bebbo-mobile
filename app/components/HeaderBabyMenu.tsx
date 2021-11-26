@@ -1,7 +1,8 @@
 import Icon, {
   OuterIconLeft,
   OuterIconRow,
-  TickView
+  TickView,
+  TickView2
 } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import { useNavigation } from '@react-navigation/native';
@@ -74,7 +75,7 @@ const HeaderBabyMenu = (props: any) => {
       : [],
   );
   const currentActiveChild = activeChild.uuid;
-  // console.log(activeChild, '..activeChild..');
+   console.log(activeChild, '..activeChild..');
   const child_age = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -90,7 +91,7 @@ const HeaderBabyMenu = (props: any) => {
   });
   // console.log(getStatusBarHeight(0), "..getStatusBarHeight..");
   const renderChildItem = (dispatch: any, data: any, index: number) => {
-    console.log(genders, ".genders.")
+   // console.log(genders, ".genders.")
     const genderLocal =
       genders?.length > 0 && data.gender != ''
         ? genders.find((genderset) => genderset.id === parseInt(data.gender)).name
@@ -152,7 +153,7 @@ const HeaderBabyMenu = (props: any) => {
                     </OuterIconLeft>
                   </OuterIconRow>
 
-                  <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold>
+                  {/* <Heading5Bold>{t('childActivatedtxt')}</Heading5Bold> */}
                 </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
@@ -196,13 +197,20 @@ const HeaderBabyMenu = (props: any) => {
               </ShiftFromBottom5> */}
                 {/* Premature Tag End Here */}
                 <FDirRow>
-                  <ButtonTextSmLine  numberOfLines={2} style={{paddingTop:7,paddingBottom:7,}}
+                <Pressable style={{paddingTop:7,paddingBottom:7,}}
                     onPress={() => {
                       setModalVisible(false);
                       setActiveChild(languageCode, data.uuid, dispatch, child_age);
                     }}>
-                    {t('childActivatebtn')}
-                  </ButtonTextSmLine>
+                  
+                  <OuterIconRow>
+                    <OuterIconLeft>
+                      <TickView2>
+                        <Icon name="ic_tick" size={12} color="#000000" />
+                      </TickView2>
+                    </OuterIconLeft>
+                  </OuterIconRow>
+                  </Pressable>
                 </FDirRow>
               </FlexColEnd>
             </ProfileActionView>
@@ -308,7 +316,7 @@ const HeaderBabyMenu = (props: any) => {
       <HeaderActionView>
         <HeaderActionBox
           onPress={() => {
-             console.log(modalVisible,"..modalVisible..");
+            // console.log(modalVisible,"..modalVisible..");
             // if (modalVisible) {
             //   setModalVisible(false);
             // } else {

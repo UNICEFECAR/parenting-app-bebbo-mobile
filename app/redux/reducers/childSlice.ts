@@ -7,7 +7,9 @@ interface childDataType {
   childDataSet: { 
     allChild: string;
     activeChild:string;
-    bufferAgeBracket:Array<any>
+    bufferAgeBracket:Array<any>;
+    favoriteadvices:Array<any>;
+    favoritegames:Array<any>;
   }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
@@ -16,7 +18,9 @@ const initialState: childDataType = {
   childDataSet: { 
     allChild: '',
     activeChild:'',
-    bufferAgeBracket:[]
+    bufferAgeBracket:[],
+    favoriteadvices:[],
+    favoritegames:[],
   }
 };
 export const childSlice = createSlice({
@@ -60,8 +64,8 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-     console.log("bufferAgeBracket",action.payload.length);
-    console.log("state.bufferAgeBracket---",state.childDataSet.bufferAgeBracket);
+    // console.log("bufferAgeBracket",action.payload.length);
+    //console.log("state.bufferAgeBracket---",state.childDataSet.bufferAgeBracket);
       // state.bufferAgeBracket = action.payload;
       // if(state.childDataSet.bufferAgeBracket)
       // {
@@ -81,11 +85,23 @@ export const childSlice = createSlice({
       // }
      
     },
+    setFavouriteAdvices: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.childDataSet.favoriteadvices = action.payload;
+    },
+    setFavouriteGames: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.childDataSet.favoritegames = action.payload;
+    },
   },
   
 });
 
-export const {setAllChildData,removeChild,setActiveChildData, setDownloadedBufferAgeBracket} = childSlice.actions;
+export const {setAllChildData,removeChild,setActiveChildData, setDownloadedBufferAgeBracket, setFavouriteAdvices, setFavouriteGames} = childSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`

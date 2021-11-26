@@ -63,7 +63,9 @@ export default () => {
          >
           <TouchableOpacity
             
-            onPress={() => console.log('do nothing')}
+            onPress={() =>{
+              
+            }}
             activeOpacity={1}>
               <BottomBarBg>
             {/* <Pressable style={styles.item}>

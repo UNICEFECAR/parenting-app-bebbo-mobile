@@ -1,15 +1,18 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading6 } from '@styles/typography';
+import { Heading6w } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useEffect, useState } from 'react';
-import { Pressable } from 'react-native';
+import { Alert, Pressable } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../App';
+import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import { setFavouriteAdvices, setFavouriteGames } from '../redux/reducers/childSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren, isFutureDate } from '../services/childCRUD';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../services/notificationService';
 import Icon from './shared/Icon';
-import { BubbleContainer, BubbleView } from './shared/NavigationDrawer';
+import { BubbleContainer, BubbleView, BubbleView1 } from './shared/NavigationDrawer';
 const headerHeight = 50;
 const HeaderNotiIcon = (props: any) => {
   const headerColor = props.headerColor;
@@ -57,11 +60,11 @@ const HeaderNotiIcon = (props: any) => {
       const fetchData = async () => {
         let childList = await getAllChildren(dispatch, childAge, 1);
         let allchildNotis: any[] = [];
-        console.log(childList, "..childList..")
+       // console.log(childList, "..childList..")
         childList?.map((child: any) => {
-          console.log(child, "<<child>>")
+         // console.log(child, "<<child>>")
           const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-          console.log("notiExist", notiExist);
+        //  console.log("notiExist", notiExist);
           if (notiExist != undefined) {
             // notiExist.gwcdnotis?.forEach((item) => {
             //   allgwcdnotis.push(item)
@@ -71,17 +74,17 @@ const HeaderNotiIcon = (props: any) => {
             if (isFutureDate(child?.birthDate)) {
               // do not calculate for expecting child
               //empty childNotis // find and remove child from notification slice
-              console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
+              //console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
             } else {
               let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis, vchcEnabledFlag);
               const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-              console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
+            //  console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
               if (checkIfNewCalcRequired) {
-                console.log("NEWCALCREQUIRED")
-                console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
+              //  console.log("NEWCALCREQUIRED")
+               // console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
                 const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
 
-                console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
+                //console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
 
                 ////  append new notifications for child 
                 let allgwcdnotis: any = [];
@@ -121,7 +124,7 @@ const HeaderNotiIcon = (props: any) => {
                   allreminderNotis.push(item)
                 })
                 // remove duplicates by key of growth_period,periodName from reminderNotis
-                console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
+               // console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
                 allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
 
               } else {
@@ -137,7 +140,7 @@ const HeaderNotiIcon = (props: any) => {
                 //     allreminderNotis.push(item)
                 //   })
                 // }
-                console.log("Periods Not Moved Ahead", notiExist);
+               // console.log("Periods Not Moved Ahead", notiExist);
 
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
@@ -146,14 +149,14 @@ const HeaderNotiIcon = (props: any) => {
               }
             }
           } else {
-            console.log("noti does not exist for child")
+           // console.log("noti does not exist for child")
             // create notification for that child first time
             if (!isFutureDate(child?.birthDate)) {
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
+             // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
               let reminderNotis = getChildReminderNotifications(child, [], vchcEnabledFlag);
-              console.log(reminderNotis, "childNotis")
-              console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
+             // console.log(reminderNotis, "childNotis")
+             // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
               allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
             } else {
               //for expecting child no notifications
@@ -180,7 +183,7 @@ const HeaderNotiIcon = (props: any) => {
 
       if (allnotis.length > 0) {
         const currentChildNotis = allnotis?.find((item) => item.childuuid == activeChild.uuid)
-        console.log(currentChildNotis, "allfilteredNotis")
+       // console.log(currentChildNotis, "allfilteredNotis")
         //notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis
         if (!isFutureDate(activeChild?.birthDate)) {
           if (currentChildNotis) {
@@ -223,7 +226,7 @@ const HeaderNotiIcon = (props: any) => {
             let combinedNotis = currentChildallnoti.sort(
               (a: any, b: any) => a.days_from - b.days_from,
             ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-            console.log(combinedNotis, "combinedNotis")
+           // console.log(combinedNotis, "combinedNotis")
             // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
             // console.log(toRemove, "findcdNoti")
             // combinedNotis = combinedNotis.filter(function (el) {
@@ -239,6 +242,20 @@ const HeaderNotiIcon = (props: any) => {
 
     }, [activeChild.uuid, allnotis]),
   );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async () => {
+        const filterQuery = 'uuid == "'+activeChild.uuid+'"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        dispatch(setFavouriteAdvices(childData[0].favoriteadvices));
+        dispatch(setFavouriteGames(childData[0].favoritegames));
+        // Alert.alert("in header noti");
+       // console.log(childData[0].favoritegames,"in headernoti fav usefocuseffect",childData[0].favoriteadvices)
+      }
+      fetchData()
+    }, [activeChild.uuid]),
+  );
   const navigation = useNavigation();
   return (
     <>
@@ -248,9 +265,9 @@ const HeaderNotiIcon = (props: any) => {
         <Icon name="ic_sb_notification" size={32} color={props.color} style={{ position: 'relative' }} />
         {notifications.length > 0 ?
           <BubbleContainer style={{ position: 'absolute', right: -12, top: -5, justifyContent: 'center', alignItems: 'center' }}>
-            <BubbleView>
-              <Heading6>{notifications.length}</Heading6>
-            </BubbleView>
+            <BubbleView1>
+              <Heading6w>{notifications.length}</Heading6w>
+            </BubbleView1>
           </BubbleContainer>
           : null}
       </Pressable>:null

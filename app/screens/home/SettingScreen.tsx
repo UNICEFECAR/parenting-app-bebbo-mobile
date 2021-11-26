@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
@@ -142,116 +142,7 @@ const SettingScreen = (props: any) => {
   );
 
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
-  const apiJsonData = [
-    {
-      apiEndpoint: appConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    },
-    {
-      apiEndpoint: appConfig.taxonomies,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.videoArticles,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.dailyMessages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.activities,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.surveys,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestones,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childDevelopmentData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinations,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthCheckupData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.standardDeviation,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    }
-  ];
+  
   const importAllData = async () => {
     Alert.alert(t('importText'), t("dataConsistency"),
       [
@@ -264,11 +155,11 @@ const SettingScreen = (props: any) => {
         },
         {
           text: t('continueCountryLang'), onPress: async () => {
-            console.log(userRealmCommon.realm?.path, "..path")
+           // console.log(userRealmCommon.realm?.path, "..path")
             // this.setState({ isImportRunning: true, });
             setIsImportRunning(true);
             const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
-            console.log(importResponse, "..importResponse");
+           // console.log(importResponse, "..importResponse");
             // this.setState({ isImportRunning: false, });
             setIsImportRunning(false);
           }
@@ -283,12 +174,12 @@ const SettingScreen = (props: any) => {
     setIsExportRunning(true);
     var path = RNFS.DocumentDirectoryPath + '/my.backup';
     const userRealmPath = userRealmCommon.realm?.path;
-    console.log(userRealmPath, "..userRealmPath")
+   // console.log(userRealmPath, "..userRealmPath")
     if (!userRealmPath) return false;
 
     // Get realmContent
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    console.log(realmContent, "..11realmContent")
+   // console.log(realmContent, "..11realmContent")
 
     // write the file
     RNFS.writeFile(path, realmContent, 'base64')
@@ -446,7 +337,7 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.vcnotis.length > 0) {
           currentChildNotis.vcnotis = [...currentChildNotis.vcnotis]?.map((item) => {
             const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);   
-            console.log(Number(difftoToday),"difftoToday,vcnotis");
+          //  console.log(Number(difftoToday),"difftoToday,vcnotis");
           // console.log(vchcEnabledFlag,"vchcEnabledFlag");
           // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
@@ -566,7 +457,7 @@ const SettingScreen = (props: any) => {
         {
           text: t('downloadUpdateContinueBtn'), onPress: async () => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: apiJsonData,
+              apiJsonData: allApisObject,
               prevPage: 'DownloadUpdate'
             });
           }
@@ -961,7 +852,7 @@ const SettingScreen = (props: any) => {
                   </SettingOptions> */}
                   <SettingOptions>
                     <Pressable onPress={() => {
-                      console.log("icon clicked");
+                    //  console.log("icon clicked");
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
                         exportToDrive();
@@ -1002,7 +893,7 @@ const SettingScreen = (props: any) => {
               <PopupCloseContainer>
                 <PopupClose
                   onPress={() => {
-                    console.log('close');
+                  //  console.log('close');
                     setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -1017,7 +908,7 @@ const SettingScreen = (props: any) => {
                 <ButtonModal
                   // disabled={netInfoval.isConnected}
                   onPress={() => {
-                    console.log('close');
+                    //console.log('close');
                     setModalVisible(false);
                     // props.navigation.reset({
                     //   index: 0,
