@@ -1,4 +1,5 @@
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
+import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import BabyNotification from '@components/homeScreen/BabyNotification';
@@ -15,7 +16,7 @@ import {
 } from '@components/shared/ButtonGlobal';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
-import { HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
+import { FeatureBox, FeatureDivideArea, HomeSurveyBox, OfflineBar } from '@components/shared/HomeScreenStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -25,6 +26,7 @@ import ModalPopupContainer, {
 } from '@components/shared/ModalPopupStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -38,9 +40,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
-  BackHandler, Linking, Modal,
+  BackHandler, Button, Linking, Modal,
   Platform,
-  ScrollView, Text, ToastAndroid
+  ScrollView, Text, ToastAndroid, View
 } from 'react-native';
 // import Orientation from 'react-native-orientation-locker';
 import HTML from 'react-native-render-html';
@@ -51,6 +53,7 @@ import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
 import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
+import commonApiService from '../../../services/commonApiService';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
 import { getAllPeriodicSyncData } from '../../../services/periodicSync';
 import { getStatusBarHeight } from '../../../services/StatusBarHeight';
@@ -114,7 +117,7 @@ const Home = ({ route, navigation }: Props) => {
     (state: any) => state.selectedCountry.languageCode,
   );
   const netInfoval = useNetInfoHook();
-  console.log(netInfoval.isConnected, '--31home focuseffect--', userIsOnboarded);
+  //console.log(netInfoval.isConnected, '--31home focuseffect--', userIsOnboarded);
   const surveyItem = useAppSelector((state: any) =>
     state.utilsData.surveryData != ''
       ? JSON.parse(state.utilsData.surveryData)?.find(item => item.type == "survey")
@@ -130,9 +133,9 @@ const Home = ({ route, navigation }: Props) => {
       // console.log(currentCount,1);
       if (Platform.OS === 'android') {
         ToastAndroid.show(t('backPressText'), 6000);
-        console.log("in condition", currentCount);
+        //console.log("in condition", currentCount);
         setTimeout(() => {
-          console.log("in settimeout", currentCount);
+          //console.log("in settimeout", currentCount);
           currentCount = 0;
           // console.log(currentCount,5);
         }, 2000);
@@ -140,7 +143,7 @@ const Home = ({ route, navigation }: Props) => {
       } else {
         Alert.alert(t('backPressText'));
         setTimeout(() => {
-          console.log("in settimeout", currentCount);
+          //console.log("in settimeout", currentCount);
           currentCount = 0;
           // console.log(currentCount,5);
         }, 2000);
@@ -213,146 +216,71 @@ const Home = ({ route, navigation }: Props) => {
       : [],
   );
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
+  const forceUpdateData = [
+    {
+      apiEndpoint: appConfig.checkUpdate,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    }
+  ];
   useEffect(() => {
     // const uniqueId=getUniqueNameId(genders,'girl');
     // console.log(uniqueId,"..uniqueId");
     setModalVisible(false);
-
-    if (userIsOnboarded == false) {
-      dispatch(setuserIsOnboarded(true));
-      const currentDate = DateTime.now().toMillis();
-      dispatch(setSyncDate({ key: 'userOnboardedDate', value: currentDate }));
-      dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: currentDate }));
-      dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: currentDate }));
-      let obj = { key: 'showDownloadPopup', value: false };
-      dispatch(setInfoModalOpened(obj));
+    async function fetchNetInfo() {
+      if (userIsOnboarded == false) {
+        dispatch(setuserIsOnboarded(true));
+        const currentDate = DateTime.now().toMillis();
+        dispatch(setSyncDate({ key: 'userOnboardedDate', value: currentDate }));
+        dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: currentDate }));
+        dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: currentDate }));
+        let obj = { key: 'showDownloadPopup', value: false };
+        dispatch(setInfoModalOpened(obj));
+        const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
+        AsyncStorage.setItem('forceUpdateTime',String(apiresponse.data.updated_at));
+        console.log("forceupdate apiresponse2",apiresponse);
+      }
+      console.log(netInfoval, "--netInfoval--", apiJsonData);
+      console.log(showDownloadPopup, "--errorObj.length--", errorObj.length);
+      console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
+    
+      if(netInfoval.isConnected && showDownloadPopup)
+      {
+        const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
+        console.log("forceupdate apiresponse2",apiresponse);
+        let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
+        forceUpdateTime = forceUpdateTime ? forceUpdateTime : '0';
+        console.log("--forceUpdateTime--",forceUpdateTime);
+        if(apiresponse.data.status == 200) {
+          if(apiresponse.data.flag == 1) {
+           if(parseInt(apiresponse.data.updated_at) > parseInt(forceUpdateTime)){
+            Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
+              [
+                { text: t('forceUpdateOkBtn'), onPress: () => {
+                    dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
+                    AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
+                    forceUpdateApis()
+                  } 
+                }
+              ]
+            );
+           }else {
+            onNoForceUpdate();
+           }
+          }else {
+            onNoForceUpdate();
+          }
+        }else {
+          onNoForceUpdate();
+        }
+      }
     }
-    // if (generateNotificationsFlag == true) {
-    //   const fetchData = async () => {
-    //     let childList = await getAllChildren(dispatch, childAge, 1);
-    //     let allchildNotis: any[] = [];
-    //     console.log(childList, "..childList..")
-    //     childList?.map((child: any) => {
-    //       console.log(child, "<<child>>")
-    //       const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-    //       console.log("notiExist", notiExist);
-    //       if (notiExist != undefined) {
-    //         // notiExist.gwcdnotis?.forEach((item) => {
-    //         //   allgwcdnotis.push(item)
-    //         // })
-    //         //remove reminder notis
-    //         // dispatch(setAllNotificationData(notiExist))
-    //         if (isFutureDate(child?.birthDate)) {
-    //           // do not calculate for expecting child
-    //           //empty childNotis // find and remove child from notification slice
-    //           console.log("CHILD_ISEXPECTING_REMOVEALLNOTIREQUIRED")
-    //         } else {
-    //           let reminderNotis = getChildReminderNotifications(child, notiExist.reminderNotis,vchcEnabledFlag);
-    //           const checkIfNewCalcRequired = isPeriodsMovedAhead(childAge, notiExist, child, allVaccinePeriods, allGrowthPeriods, allHealthCheckupsData)
-    //           console.log(checkIfNewCalcRequired, "checkIfNewCalcRequired")
-    //           if (checkIfNewCalcRequired) {
-    //             console.log("NEWCALCREQUIRED")
-    //             console.log(notiExist.gwcdnotis, notiExist.vcnotis, notiExist.hcnotis, "EXISTINGNOTI");
-    //             const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getNextChildNotification(notiExist.lastgwperiodid, notiExist.lastvcperiodid, notiExist.lasthcperiodid, child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-
-    //             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "NEWNOTI2");
-
-    //             ////  append new notifications for child 
-    //             let allgwcdnotis: any = [];
-    //             let allvcnotis: any = [];
-    //             let allhcnotis: any = [];
-    //             gwcdnotis.reverse().forEach((item) => {
-    //               allgwcdnotis.push(item)
-    //             })
-    //             if (notiExist.gwcdnotis) {
-    //               notiExist.gwcdnotis?.forEach((item) => {
-    //                 allgwcdnotis.push(item)
-    //               })
-    //             }
-    //             vcnotis.reverse().forEach((item) => {
-    //               allvcnotis.push(item)
-    //             })
-    //             if (notiExist.vcnotis) {
-    //               notiExist.vcnotis?.forEach((item) => {
-    //                 allvcnotis.push(item)
-    //               })
-    //             }
-    //             hcnotis.reverse().forEach((item) => {
-    //               allhcnotis.push(item)
-    //             })
-    //             if (notiExist.hcnotis) {
-    //               notiExist.hcnotis?.forEach((item) => {
-    //                 allhcnotis.push(item)
-    //               })
-    //             }
-    //             let allreminderNotis: any = []
-    //             // if (notiExist.reminderNotis) {
-    //             //   notiExist.reminderNotis?.forEach((item) => {
-    //             //     allreminderNotis.push(item)
-    //             //   })
-    //             // }
-    //             reminderNotis.reverse().forEach((item) => {
-    //               allreminderNotis.push(item)
-    //             })
-    //             // remove duplicates by key of growth_period,periodName from reminderNotis
-    //             console.log(allhcnotis, allvcnotis, allgwcdnotis, allreminderNotis, "ONLYnewnoti");
-    //             allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: lastgwperiodid, lastvcperiodid: lastvcperiodid, lasthcperiodid: lasthcperiodid, gwcdnotis: allgwcdnotis, vcnotis: allvcnotis, hcnotis: allhcnotis, reminderNotis: allreminderNotis })
-
-    //           } else {
-
-    //             //for child dob taken from 2years to 3 months, calculate new notifications from 3 months onwards
-    //             //find and remove child from notification slice
-    //             //clear notification which are already generated, 
-    //             //generate for new notifications
-    //             let allreminderNotis: any = []
-    //             let reminderNotis = getChildReminderNotifications(activeChild, notiExist.reminderNotis,vchcEnabledFlag);
-    //             // if (notiExist.reminderNotis) {
-    //             //   notiExist.reminderNotis?.forEach((item) => {
-    //             //     allreminderNotis.push(item)
-    //             //   })
-    //             // }
-    //             console.log("Periods Not Moved Ahead",notiExist);
-                
-    //             reminderNotis.reverse().forEach((item) => {
-    //               allreminderNotis.push(item)
-    //             })
-    //             allchildNotis.push({ childuuid: notiExist.childuuid, lastgwperiodid: notiExist.lastgwperiodid, lastvcperiodid: notiExist.lastvcperiodid, lasthcperiodid: notiExist.lasthcperiodid, gwcdnotis: notiExist.gwcdnotis, vcnotis: notiExist.vcnotis, hcnotis: notiExist.hcnotis, reminderNotis: allreminderNotis })
-    //           }
-    //         }
-    //       } else {
-    //         console.log("noti does not exist for child")
-    //         // create notification for that child first time
-    //         if (!isFutureDate(child?.birthDate)) {
-    //           const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods,growthEnabledFlag,developmentEnabledFlag,vchcEnabledFlag);
-    //           console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
-    //           let reminderNotis = getChildReminderNotifications(child, [],vchcEnabledFlag);
-    //           console.log(reminderNotis, "childNotis")
-    //           console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, reminderNotis, "childNotis")
-    //           allchildNotis.push({ childuuid: child.uuid, lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis: gwcdnotis, vcnotis: vcnotis, hcnotis: hcnotis, reminderNotis: reminderNotis })
-    //         } else {
-    //           //for expecting child no notifications
-    //         }
-    //       }
-
-    //     })
-    //     // console.log(allchildNotis,"allchildNotis")
-    //     dispatch(setAllNotificationData(allchildNotis))
-    //     //generate notifications for all childs 
-    //     //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
-    //     //if already exist, then for each module get last period, and generate afterwards period's notifications
-    //     //after generating notifications make it false
-    //     let notiFlagObj = { key: 'generateNotifications', value: false };
-    //     dispatch(setInfoModalOpened(notiFlagObj));
-    //   }
-    //   fetchData()
-    // }
-
-
-
-
-    console.log(netInfoval, "--netInfoval--", apiJsonData);
-    console.log(showDownloadPopup, "--errorObj.length--", errorObj.length);
-    console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
+    fetchNetInfo()
+    // return {};
+  }, [netInfoval.isConnected]);
+  // }, [netInfoval.isConnected]);
+  const onNoForceUpdate = () => {
     if (netInfoval.isConnected && showDownloadPopup && (downloadBufferData == true || downloadWeeklyData == true || downloadMonthlyData == true)) {
       let flagtext = 'downloadBufferData ' + downloadBufferData + ' downloadWeeklyData ' + downloadWeeklyData + ' downloadMonthlyData ' + downloadMonthlyData;
       setTimeout(() => {
@@ -383,11 +311,15 @@ const Home = ({ route, navigation }: Props) => {
       );
       },2500);
     }
-    // return {};
-  }, [netInfoval.isConnected]);
-  // }, [netInfoval.isConnected]);
+  }
+  const forceUpdateApis = () => {
+    navigation.navigate('LoadingScreen', {
+      apiJsonData: allApisObject,
+      prevPage: 'ForceUpdate'
+    });
+  }
   const downloadApis = () => {
-    console.log("Download Pressed", apiJsonData);
+   // console.log("Download Pressed", apiJsonData);
     // if(apiJsonData && apiJsonData.length > 0)
     // {
     navigation.navigate('LoadingScreen', {
@@ -401,7 +333,7 @@ const Home = ({ route, navigation }: Props) => {
     // }
   }
   const callFailedApis = () => {
-    console.log("Download Pressed", errorObj);
+    //console.log("Download Pressed", errorObj);
     if (errorObj && errorObj.length > 0) {
       navigation.navigate('LoadingScreen', {
         apiJsonData: errorObj,
@@ -446,9 +378,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            {/* <View>
+            <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View> */}
+            </View>
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
@@ -478,6 +410,9 @@ const Home = ({ route, navigation }: Props) => {
             )}
             {/* <Text> {getStatusBarHeight(0)}</Text> */}
             <DailyReads />
+            <FeatureDivideArea>
+            <DailyHomeNotification />
+            </FeatureDivideArea>
             <ChildMilestones />
             <PlayingTogether />
             <AdviceAndArticles />
@@ -509,7 +444,7 @@ const Home = ({ route, navigation }: Props) => {
                   </HomeSurveyBox>
                 </ShiftFromTopBottom10>
               </MainContainer>
-              <DailyHomeNotification />
+            
             </FlexCol>
           </FlexCol>
         </ScrollView>

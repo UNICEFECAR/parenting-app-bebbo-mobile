@@ -9,12 +9,12 @@ type VaccineItemProps = {
 }
 const PlannedVaccines = (props: any) => {
   const {currentPeriodVaccines, onPlannedVaccineToggle, fromScreen,backgroundActiveColor} = props;
-  console.log(currentPeriodVaccines,"currentPeriodVaccines")
+  //console.log(currentPeriodVaccines,"currentPeriodVaccines")
   const {t} = useTranslation();
   const [checkedVaccines,setCheckedVaccines] = useState<VaccineItemProps[]>([]);
   // let allCheckedVaccines: any[] = [];
   const onToggleVaccine = (uuid, isVaccineItemChecked) => {
-    console.log(uuid,isVaccineItemChecked);
+    //console.log(uuid,isVaccineItemChecked);
     if (isVaccineItemChecked) {
       const allCheckedVaccines = [...checkedVaccines,
          {  uuid: uuid,}
