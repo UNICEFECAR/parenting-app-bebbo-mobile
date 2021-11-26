@@ -29,14 +29,13 @@ import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-import useRealmListener from '../database/dbquery/userRealmListener';
 import { onNetworkStateChange } from '../redux/reducers/bandwidthSlice';
 import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
 import { getAllChildren } from '../services/childCRUD';
-import { retryAlert1 } from '../services/commonApiService';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
+import { retryAlert1 } from '../services/commonApiService';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -67,70 +66,21 @@ export default () => {
       : false,
   );
 
-  const languageCode = useAppSelector(
-    (state: any) => state.selectedCountry.languageCode,
-  );
-  console.log("userIsOnboarded appnav--", userIsOnboarded);
+  // const languageCode = useAppSelector(
+  //   (state: any) => state.selectedCountry.languageCode,
+  // );
+ // console.log("userIsOnboarded appnav--", userIsOnboarded);
+ // console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [initialState, setInitialState] = React.useState();
   const [netState, setNetState] = React.useState('');
-  const callRealmListener = useRealmListener();
   // console.log("callRealmListener--",callRealmListener);
   const dispatch = useAppDispatch();
   const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
-  // useEffect(() => {
-  //   async function addDBListener() {
-  //     const datarealm = await dataRealmCommon.openRealm();
-  //     console.log("datarealm----",datarealm);
-  //     // if(datarealm)
-  //     // {
-  //       const datalistenerobj = datarealm?.addListener('change',onRealmDataDbChange);
-  //     // }
-
-  //     return() => {
-  //       console.log("in useeffect return");
-  //     //   if(datarealm)
-  //     //   {
-  //     //     datarealm.removeListener("change",onRealmDataDbChange);
-  //     //   }
-  //     }
-  //     // let taxonomyData2 = await dataRealmCommon.getData<TaxonomyEntity>(TaxonomySchema);
-  //     // taxonomyData2.addListener(() => dispatch(setAllTaxonomyData(taxonomyData2)));
-
-  //   }
-  //   // addDBListener()
-  // },[])
-  // console.log(netInfo,"..BeforeisConnected..");
-  // useEffect(() => {
-  //   const restoreState = async () => {
-  //     try {
-  //       const initialUrl = await Linking.getInitialURL();
-  //       if (Platform.OS !== 'web' && initialUrl == null) {
-  //         // Only restore state if there's no deep link and we're not on web
-  //         const savedStateString = await AsyncStorage.getItem(PERSISTENCE_KEY);
-  //         const state = savedStateString ? JSON.parse(savedStateString) : undefined;
-
-  //         if (state !== undefined) {
-  //           setInitialState(state);
-  //         }
-  //       }
-  //     } finally {
-  //       setIsReady(true);
-  //     }
-  //   };
-  //   SplashScreen.hide();
-  //   if (!isReady) {
-  //     restoreState();
-  //   }
-  // }, [isReady]);
-
-  // if (!isReady) {
-  //   return null;
-  // }
-
-
+  
+  
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
@@ -144,8 +94,8 @@ export default () => {
     async function fetchNetInfo() {
       if (netInfoval && netInfoval.isConnected != null) {
         // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
-        console.log("use effect net connected call");
-        console.log(toggleSwitchVal, "..hometoggleSwitchVal")
+       // console.log("use effect net connected call");
+       // console.log(toggleSwitchVal, "..hometoggleSwitchVal")
         if (netInfoval.isConnected == true) {
           if (Platform.OS == 'android') {
             if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
@@ -224,7 +174,11 @@ export default () => {
   }, [netInfoval.isConnected, netInfoval.netType, netInfoval.netValue?.details?.cellularGeneration]);
   useEffect(() => {
     if (userIsOnboarded == true) {
-      console.log("calculated");
+     // console.log("calculated");
+     // console.log("calculated");
+      //call forceupdate api and check with asyncstorage
+      // dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      //if force update is being done the set showDownloadPopup to false
       let obj = { key: 'showDownloadPopup', value: true };
       dispatch(setInfoModalOpened(obj));
       getAllChildren(dispatch, child_age, 0);
@@ -233,6 +187,7 @@ export default () => {
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
+  
   useEffect(() => {
     //Alert.alert(netState,"..netState")
 
@@ -240,22 +195,22 @@ export default () => {
     if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
       let confirmation = await retryAlert1(0, 0);
-      console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
-      console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+     // console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+      //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
       if (confirmation == "yes" && toggleSwitchVal == true) {
         dispatch(onNetworkStateChange(false));
       }
     }
     else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
       let confirmation = await retryAlert1(1, 1);
-      console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+      //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
       if (confirmation == "yes" && toggleSwitchVal == false) {
-        console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+        //console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
         dispatch(onNetworkStateChange(true));
       }
     }
   }
-    console.log(netState,"..netState")
+   // console.log(netState,"..netState")
   fetchNetInfo();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
@@ -280,7 +235,7 @@ export default () => {
               screen_class: currentRouteName,
             });
             analytics().logEvent(currentRouteName + "_opened");
-            console.log(currentRouteName,"currentRouteName")
+           // console.log(currentRouteName,"currentRouteName")
             // if(currentRouteName =="ChartFullScreen"){
             //   Orientation.lockToLandscape();
             // }else{
@@ -337,7 +292,7 @@ export default () => {
           <RootStack.Screen
             name="ChildSetupList"
             component={ChildSetupList}
-            options={{ headerShown: false }}
+            options={{ headerShown: false,gestureEnabled:false }}
           />
           <RootStack.Screen
             name="AddSiblingDataScreen"

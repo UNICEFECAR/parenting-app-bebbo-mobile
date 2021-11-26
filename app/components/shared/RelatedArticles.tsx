@@ -39,6 +39,9 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   const categoryData = useAppSelector(
     (state: any) => JSON.parse(state.utilsData.taxonomy.allTaxonomyData).category,
   );
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
   const renderIndicator = (progress:any, indeterminate:any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
  
   // let relatedArticleData: any[] = [];
@@ -140,7 +143,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
   // );
   //console.log("relatedArticleData---",relatedArticleData);
   const goToArticleDetail = (item: any) => {
-    console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
+    //console.log(item, fromScreen, headerColor, backgroundColor, listCategoryArray);
     navigation.push('DetailsScreen',
       {
         // fromScreen:fromScreen ? ((fromScreen == "ChildgrowthTab") ? 'ChildgrowthTab2' : (fromScreen == "MileStone" || fromScreen == "MileStoneActivity" ? "ChildDevelopment" : fromScreen)) :"Articles",
@@ -154,7 +157,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
       });
   };
   const RenderRelatedArticleItem = React.memo(({item, index}) => {
-    console.log("RenderRelatedArticleItem article",item.id);
+   // console.log("RenderRelatedArticleItem article",item.id);
     return (
       <Pressable onPress={() => { goToArticleDetail(item) }} key={index}
         style={{ flexDirection: 'row' }}
@@ -172,7 +175,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
                 <Heading3 numberOfLines={2}>{item.title}</Heading3>
               </ArticleListContent>
             </View>
-            {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={true}/> */}
+            <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={true}/>
 
           </View>
         </RelatedArticleContainer>
