@@ -16,7 +16,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -92,6 +92,7 @@ const Activities = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
   );
+  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
@@ -140,7 +141,7 @@ const Activities = ({ route, navigation }: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("useFocusEffect called");
+     console.log("useFocusEffect called route.params?.backClicked",route.params?.backClicked);
       setLoading(true);
       // setModalVisible(true);
     //  console.log("in usefocuseffect 2", route.params);
@@ -201,27 +202,34 @@ const Activities = ({ route, navigation }: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-       console.log("child dev usefocuseffect",route.params);
+       console.log("new child dev usefocuseffect",route.params);
     //  console.log("in usefocuseffect 1", route.params);
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
+          console.log("if route params 0",route.params);
           // console.log(route.params?.categoryArray);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           // console.log("firstChildDevData---",firstChildDevData);
           showSelectedBracketData(firstChildDevData[0]);
         }
         else {
-          if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
-            const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.prematureTaxonomyId);
+          console.log("else if route params 0",route.params,activityTaxonomyId);
+        //   if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
+        //     console.log("if again route params 0",route.params);
+        
+            
+        //   }
+        //   else{
+        //     console.log("else again route params 0",route.params);
+        
+        //   const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
+        //  // console.log("firstChildDevData---", firstChildDevData);
+        //   showSelectedBracketData(firstChildDevData[0]);
+        //   }
+        const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
             // console.log("firstChildDevData---", firstChildDevData);
-             showSelectedBracketData(firstChildDevData[0]);
-          }
-          else{
-          const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
-         // console.log("firstChildDevData---", firstChildDevData);
-          showSelectedBracketData(firstChildDevData[0]);
-          }
+        showSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
@@ -230,7 +238,7 @@ const Activities = ({ route, navigation }: Props) => {
         }
       }
 
-    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId])
+    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId,activityTaxonomyId])
   );
   useFocusEffect(
     React.useCallback(() => {
@@ -267,6 +275,9 @@ const Activities = ({ route, navigation }: Props) => {
       };
     }, [])
   );
+  // useEffect(()=>{
+    
+  // },[navigation.isFocused()])
   useFocusEffect(
     React.useCallback(() => {
       console.log(activeChild,"..activeChild..")
