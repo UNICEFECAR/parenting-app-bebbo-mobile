@@ -95,6 +95,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = React.useRef()
+  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
 
   const setIsModalOpened = async (varkey: any) => {
     //console.log("modalVisible--", modalVisible);
@@ -211,14 +212,14 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       showSelectedBracketData(firstChildDevData[0]);
     }
     else {
-      if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
-        const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.prematureTaxonomyId);
+   //   if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
+        const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
         showSelectedBracketData(firstChildDevData[0]);
-      }
-      else{
-        const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
-        showSelectedBracketData(firstChildDevData[0]);
-      }
+      // }
+      // else{
+      //   const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
+      //   showSelectedBracketData(firstChildDevData[0]);
+      // }
       // console.log("firstChildDevData---",firstChildDevData);
     
     }
@@ -226,7 +227,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     // // console.log("firstChildDevData---",firstChildDevData);
     // showSelectedBracketData(firstChildDevData[0]);
 
-  }, [activeChild?.uuid, route.params?.currentSelectedChildId]
+  }, [activeChild?.uuid, route.params?.currentSelectedChildId,activityTaxonomyId]
   );
   useFocusEffect(
     React.useCallback(() => {
