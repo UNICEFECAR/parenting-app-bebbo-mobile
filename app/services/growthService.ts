@@ -19,17 +19,17 @@ export const setInitialWeightValues = (weightValue: any) => {
   // console.log(weightValue,"weightValue")
   // console.log(weightValue+ ''.indexOf('.'),"indexOf");
   if (weightValue + ''.indexOf('.') === -1) {
-    console.log("in if")
+    //console.log("in if")
     return { weight: weightValue, weight1: 0 };
   } else {
-    console.log("in else")
+   // console.log("in else")
     let w = (weightValue + '').split('.');
     // console.log(w[1],"w1")
     if (weightValue && String(w[1]).length == 1) {
-      console.log("in else if")
+     // console.log("in else if")
       return { weight: Number(w[0]), weight1: Number(w[1]) * 10 };
     } else {
-      console.log("in else else")
+      //console.log("in else else")
       return {
         weight: Number(w[0]) >maxWeight ?maxWeight:Number(w[0]),
         weight1: Number(w[0]) >maxWeight ? (Number(w[0])-maxWeight)*100 : (w[1] == undefined ? 0 : Number(w[1])),
@@ -80,7 +80,7 @@ export const convertMeasuresData = (
       measurementDateInDays = days ? Math.round(days) : 0;
     }
 
-    if (measurementDateInDays < 1855) {
+    if (measurementDateInDays>=0 && measurementDateInDays < 1855) {
       measuresData.push({
         weight: item.weight ? parseFloat(item.weight) : 0,
         height: item.height ? parseFloat(item.height) : 0,

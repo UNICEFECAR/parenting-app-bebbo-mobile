@@ -174,17 +174,17 @@ export const utilsSlice = createSlice({
   reducers: {
     setAcceptTerms:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setAcceptTerms");
+       // console.log(action.payload,"actionpayload setAcceptTerms");
           state.acceptTerms = action.payload;
     },
     setuserIsOnboarded:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setuserIsOnboarded");
+        //console.log(action.payload,"actionpayload setuserIsOnboarded");
           state.userIsOnboarded = action.payload;
     },
     setSyncDate:( state:any,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setSyncDate");
+        //console.log(action.payload,"actionpayload setSyncDate");
         state[action.payload.key]=action.payload.value;
     },
     setDailyMessagesData:(  state,

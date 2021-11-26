@@ -1,9 +1,9 @@
 
-import { both_child_gender } from '@assets/translations/appOfflineData/apiConstants';
+import { both_child_gender, regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import { ButtonPrimary, ButtonRow, ButtonText } from '@components/shared/ButtonGlobal';
-import { ChildAddTop, FormContainer, FormContainerFlex, LabelText } from '@components/shared/ChildSetupStyle';
+import { ChildAddTop, FormContainer, FormContainer1, FormContainerFlex, FormInputBox, LabelText } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
@@ -14,7 +14,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, ScrollView, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -22,7 +22,7 @@ import { userRealmCommon } from '../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
 import { addChild, getNewChild } from '../services/childCRUD';
 import { validateForm } from '../services/Utils';
-import { Heading1Centerw, ShiftFromTop5 } from '../styles/typography';
+import { Heading1Centerw, ShiftFromTop5, SideSpacing25 } from '../styles/typography';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'HomeDrawerNavigator'
@@ -40,7 +40,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const { childData } = route.params;
   const uuid= childData != null ? childData.uuid:'';
   const createdAt = childData != null ? childData.createdAt:null;
-  const name= childData != null ? childData.childName:'';
+  // const name= childData != null ? childData.childName:'';
   const relationship= childData != null ? childData.relationship:'';
   const editScreen = childData != null ? true : false;
   const child_age = useAppSelector(
@@ -59,7 +59,7 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   genders = genders.map((v) => ({...v, title: v.name})).filter(function (e, i, a) {
     return e.id!=both_child_gender;
   });
-  console.log(genders,"..genders..");
+ //console.log(genders,"..genders..");
   let initialData: any = {};
   const [birthDate, setBirthDate] = useState<Date>();
   const [plannedTermDate, setPlannedTermDate] = useState<Date>();
@@ -77,10 +77,12 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0,0,0,0) > new Date().setHours(0,0,0,0)
   };
+  const [name, setName] = React.useState('');
   useFocusEffect(
     React.useCallback(() => {
     if(childData!=null && childData.uuid!=''){
       sendData(childData);
+      setName(childData.childName);
     }
     setDefaultGenderValue(childData && childData.uuid? genders.find((item) => item.id == childData?.gender): {title: ''})
     }, [])
@@ -88,17 +90,18 @@ const AddSiblingData = ({ route, navigation }: Props) => {
   const AddChild=async ()=>{
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
     let newNameIndex:any=0;
-    let defaultName:any="";
-    if(allJsonDatanew.length>0){
-       console.log(allJsonDatanew[allJsonDatanew.length-1].childName,"..allJsonDatanew[allJsonDatanew.length-1].childName")
-       newNameIndex=allJsonDatanew[allJsonDatanew.length-1].childName.split(t('defaultChildPrefix')).pop();
-       defaultName=t('defaultChildPrefix')+(parseInt(newNameIndex)+1);
-    }
-    console.log(defaultName,"..defaultName",editScreen);
+    let defaultName =name;
+    // let defaultName:any="";
+    // if(allJsonDatanew.length>0){
+    //    console.log(allJsonDatanew[allJsonDatanew.length-1].childName,"..allJsonDatanew[allJsonDatanew.length-1].childName")
+    //    newNameIndex=allJsonDatanew[allJsonDatanew.length-1].childName.split(t('defaultChildPrefix')).pop();
+    //    defaultName=t('defaultChildPrefix')+(parseInt(newNameIndex)+1);
+    // }
+    // console.log(defaultName,"..defaultName",editScreen);
     let insertData: any = editScreen ? await getNewChild(uuid,isExpected, plannedTermDate, isPremature,birthDate,name,'',gender,createdAt) : await getNewChild('',isExpected, plannedTermDate, isPremature,birthDate,defaultName,'',gender,createdAt)
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    console.log(insertData,"..insertData");
+   // console.log(insertData,"..insertData");
     addChild(languageCode,editScreen, 1, childSet, dispatch, navigation,child_age,null,null);
 }
 const [gender, setGender] = React.useState(
@@ -119,6 +122,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
       <View style={{flex:1,backgroundColor:headerColor}}>
   
      <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+     <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}>
       <OnboardingContainer>
         <View>
           <OnboardingHeading>
@@ -135,11 +139,39 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             </ChildAddTop>
           </OnboardingHeading>
           <ChildDate sendData={sendData} childData={childData} dobMax={dobMax} prevScreen="Onboarding"/>
+          <ShiftFromTop5>
+                  <LabelText>{t('childNameTxt')}</LabelText>
+                  <FormInputBox>
+                    <TextInput
+                      style={{ width: '100%' }}
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      maxLength={30}
+                      clearButtonMode="always"
+                      onChangeText={(value) => {
+                       // console.log(value, "..value")
+                        // setName(value.replace(/\s/g, ''));
+                        if (value.replace(/\s/g, "") == "") {
+                         // console.log("..11value")
+                          setName(value.replace(/\s/g, ''));
+                        } else {
+                          setName(value.replace(regexpEmojiPresentation, ''));
+                        }
+                        // setName(value==""?value.replace(/\s/g, ''):value);
+                      }}
+                      // value={name.replace(/\s/g, '')}
+                      value={name}
+                      // onChangeText={queryText => handleSearch(queryText)}
+                      placeholder={t('childNamePlaceTxt')}
+                      allowFontScaling={false}
+                    />
+                  </FormInputBox>
+                </ShiftFromTop5>
           {
           birthDate!=null && birthDate!=undefined && !isFutureDate(birthDate)?
-          <FormContainer>
+          <FormContainer1>
           <LabelText>{t('genderLabel')}</LabelText>
-          <FormContainerFlex>
+          {/* <FormContainerFlex> */}
                 <ToggleRadios
                   options={genders}
                   defaultValue={defaultGenderValue}
@@ -147,14 +179,18 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                   tickColor={'#FFF'}
                   getCheckedItem={getCheckedItem}
                 />
-         </FormContainerFlex>
-         </FormContainer>
+         {/* </FormContainerFlex> */}
+         </FormContainer1>
          :null}
         </View>
 
-        <ButtonRow>
+      
+      </OnboardingContainer>
+      </ScrollView>
+      <SideSpacing25>
+      <ButtonRow>
           <ButtonPrimary
-           disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, null, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, null, gender)}
+           disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(2, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(4, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
              
             // disabled={!validateForm(2,birthDate,isPremature,relationship,plannedTermDate,null,gender)}
             onPress={() => {
@@ -168,10 +204,10 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
               // console.log(isExpected,"..isExpected..");
               let validated:any=false;
               if(birthDate != null && birthDate != undefined && !isFutureDate(birthDate)){
-                validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+                validated=validateForm(2,birthDate,isPremature,relationship,plannedTermDate,name,gender);
               }
               else if(birthDate != null && birthDate != undefined && isFutureDate(birthDate)){
-                validated=validateForm(4,birthDate,isPremature,relationship,plannedTermDate,null,gender);
+                validated=validateForm(4,birthDate,isPremature,relationship,plannedTermDate,name,gender);
               }
               if(validated==true){
                AddChild();
@@ -185,7 +221,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
             <ButtonText numberOfLines={2}>{t('childSetupListsaveBtnText')}</ButtonText>
           </ButtonPrimary>
         </ButtonRow>
-      </OnboardingContainer>
+        </SideSpacing25>
     </View>
     </>
   );

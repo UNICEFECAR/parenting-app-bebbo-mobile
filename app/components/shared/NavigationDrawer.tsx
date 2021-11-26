@@ -43,3 +43,7 @@ padding:2px;
 background-color:${props => props.theme.colors.SECONDARY_COLOR};
 border-radius:${(props) => props.theme.borderRadius.BORDERRADIUS_CIRCLE};
 `;
+
+export const BubbleView1 = styled(BubbleView)`
+background-color:red;
+`;

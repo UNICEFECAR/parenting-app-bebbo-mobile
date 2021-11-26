@@ -151,7 +151,7 @@ class MediaPicker {
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
-      console.log("342334timeout")
+      //console.log("342334timeout")
     ImagePicker.openCamera({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -183,7 +183,7 @@ class MediaPicker {
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
-      console.log("342334timeout",options)
+      //console.log("342334timeout",options)
     ImagePicker.openCamera({
       width: options.width,
       height: options.height,
@@ -213,11 +213,11 @@ class MediaPicker {
    */
   pickImageFromGallery(callback:any, options:any) {
     options = { ...IMAGE_PICKER_OPTIONS, ...options };
-    console.log(options,"..options..")
+    //console.log(options,"..options..")
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
-      console.log("342334timeout")
+     // console.log("342334timeout")
     ImagePicker.openPicker({
       compressImageMaxWidth: options.compressImageMaxWidth,
       compressImageMaxHeight: options.compressImageMaxHeight,
@@ -249,7 +249,7 @@ class MediaPicker {
     // clean all images
     //this.cleanupImages();
     setTimeout(()=>{
-      console.log("11342334timeout")
+     // console.log("11342334timeout")
     ImagePicker.openPicker({
       // width: options.width,
       // height: options.height,
@@ -392,12 +392,12 @@ class MediaPicker {
   handlePermissionsGallery(triggerFunc:any) {
     let cameraOncedOpened:any=false;
     request(GALLERY_PERMISSION).then(async (photoPermission) => {
-      console.log(photoPermission,"..photoPermission")
-      console.log(triggerFunc,"..triggerFunc")
+    //  console.log(photoPermission,"..photoPermission")
+    //  console.log(triggerFunc,"..triggerFunc")
       if (
         photoPermission === RESULTS.GRANTED
       ) {
-        console.log(photoPermission,"..11photoPermission")
+      //  console.log(photoPermission,"..11photoPermission")
         triggerFunc();
       }
       else if (
@@ -409,12 +409,12 @@ class MediaPicker {
          options = { ...IMAGE_PICKER_OPTIONS, ...options };
          if (Platform.OS === 'ios') {
         setTimeout(()=>{
-          console.log("222timeout limited");
+          //console.log("222timeout limited");
         openLimitedPhotoLibraryPicker().then(()=>{
-          console.log("1222timeout limited");
+         // console.log("1222timeout limited");
           triggerFunc();
         }).catch(() => {
-          console.warn('Cannot open photo library picker');
+          //console.warn('Cannot open photo library picker');
         });
       },350);
     }
@@ -498,7 +498,7 @@ class MediaPicker {
       check(GALLERY_PERMISSION),
       // …
     ]).then(([photoStatus]) => {
-     console.log(photoStatus,"..photoStatus..")
+   //  console.log(photoStatus,"..photoStatus..")
       // Alert.alert(photoStatus,"..photoStatus..")
       if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
