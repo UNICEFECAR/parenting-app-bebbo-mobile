@@ -121,7 +121,7 @@ const en = {
                 actScreenmilestones: "Milestones",
                 actScreenprematureText: "Premature",
                 actScreenshareText: "Share",
-                actScreenaddtoFavText: "Add to favourites",
+                actScreenaddtoFavText: "Save",
                 developScreenheaderTitle: "Child development",
                 developScreenprematureText: "Premature",
                 developScreenchartLabel: "Pending",
@@ -194,7 +194,7 @@ const en = {
                 babyNotificationbyAge: "{{childName}} is {{ageInMonth}} old",
                 babyNotificationUpdateBtn: "Update profile",
                 favScreenHeader: "Favourites",
-                actScreenremovetoFavText: "Remove from Favourites",
+                actScreenremovetoFavText: "Saved",
                 appShareText: "Download Bebbo, your pocket partner in parenthood!",
                 vcHeader: "Vaccination",
                 vcSummaryHeader: "Vaccination summary",
@@ -399,6 +399,12 @@ const en = {
                 addChildText:"Add your child details",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
+                //phase2 strings
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle:"Information",
+                forceUpdatePopupText:"Data will be updated",
+                forceUpdateOkBtn:"OK",
+                favScreenremoveText:"Remove"
         }
 }
 export default en;

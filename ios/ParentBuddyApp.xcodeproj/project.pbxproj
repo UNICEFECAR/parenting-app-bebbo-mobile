@@ -27,6 +27,7 @@
 		7E0E37A226CA2A5000B51686 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E0E37A126CA2A5000B51686 /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
+		BFC06B252746B46300CCB3B3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFC06B272746B46300CCB3B3 /* InfoPlist.strings */; };
 		C2B224109B97464BA2BE7AA6 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
 		CE348A0DC0669090229DA5C6 /* libPods-ParentBuddyApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB32C69892FAD9982387F06 /* libPods-ParentBuddyApp-tvOSTests.a */; };
 		CE79669C26F9D6BD000C1CF9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE79669B26F9D6BD000C1CF9 /* splash.json */; };
@@ -82,6 +83,23 @@
 		ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-regular.woff"; path = "../app/assets/fonts/roboto/roboto-regular.woff"; sourceTree = "<group>"; };
 		AF645B11569440C0AF006D46 /* roboto-bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.woff"; path = "../app/assets/fonts/roboto/roboto-bold.woff"; sourceTree = "<group>"; };
 		B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.ttf"; path = "../app/assets/fonts/roboto/roboto-bold.ttf"; sourceTree = "<group>"; };
+		BFC06B262746B46300CCB3B3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BFC06B282746B49A00CCB3B3 /* bg-BG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "bg-BG"; path = "bg-BG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B292746BF5000CCB3B3 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BFC06B2A2746BF8800CCB3B3 /* ky-KG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ky-KG"; path = "ky-KG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B2B2746BFD700CCB3B3 /* ru-KG */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-KG"; path = "ru-KG.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B2C2746BFFA00CCB3B3 /* sq-AL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-AL"; path = "sq-AL.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B2D2746C06400CCB3B3 /* sr-Latn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn"; path = "sr-Latn.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B2F2746C0E200CCB3B3 /* sq-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-MK"; path = "sq-MK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B302746C11400CCB3B3 /* mk-MK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "mk-MK"; path = "mk-MK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B312746C15500CCB3B3 /* tg-TJ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tg-TJ"; path = "tg-TJ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B322746C21800CCB3B3 /* uz-UZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "uz-UZ"; path = "uz-UZ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B332746C24C00CCB3B3 /* be-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "be-BY"; path = "be-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B342746C28600CCB3B3 /* ru-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-BY"; path = "ru-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B352746C2A600CCB3B3 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B362746C33000CCB3B3 /* sr-Latn-ME */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-ME"; path = "sr-Latn-ME.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B372746C38100CCB3B3 /* sq-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-XK"; path = "sq-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		BFC06B382746C3A100CCB3B3 /* sr-Latn-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-XK"; path = "sr-Latn-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CE79669B26F9D6BD000C1CF9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../app/assets/splash.json; sourceTree = "<group>"; };
 		CE9E89C626F089CC0093EF36 /* ParentBuddyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParentBuddyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE9E89C726F089CC0093EF36 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
@@ -158,6 +176,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				BFC06B272746B46300CCB3B3 /* InfoPlist.strings */,
 			);
 			name = ParentBuddyApp;
 			sourceTree = "<group>";
@@ -364,6 +383,22 @@
 			knownRegions = (
 				en,
 				Base,
+				"bg-BG",
+				el,
+				"ky-KG",
+				"ru-KG",
+				"sq-AL",
+				"sr-Latn",
+				"sq-MK",
+				"mk-MK",
+				"tg-TJ",
+				"uz-UZ",
+				"be-BY",
+				"ru-BY",
+				"ru-RU",
+				"sr-Latn-ME",
+				"sq-XK",
+				"sr-Latn-XK",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -393,6 +428,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				63EEC8B7264B4E28BC060086 /* roboto-bold.svg in Resources */,
+				BFC06B252746B46300CCB3B3 /* InfoPlist.strings in Resources */,
 				67601B893111472CB4DFCCC1 /* roboto-regular.svg in Resources */,
 				C2B224109B97464BA2BE7AA6 /* roboto-bold.ttf in Resources */,
 				9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */,
@@ -744,6 +780,33 @@
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BFC06B272746B46300CCB3B3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFC06B262746B46300CCB3B3 /* en */,
+				BFC06B282746B49A00CCB3B3 /* bg-BG */,
+				BFC06B292746BF5000CCB3B3 /* el */,
+				BFC06B2A2746BF8800CCB3B3 /* ky-KG */,
+				BFC06B2B2746BFD700CCB3B3 /* ru-KG */,
+				BFC06B2C2746BFFA00CCB3B3 /* sq-AL */,
+				BFC06B2D2746C06400CCB3B3 /* sr-Latn */,
+				BFC06B2F2746C0E200CCB3B3 /* sq-MK */,
+				BFC06B302746C11400CCB3B3 /* mk-MK */,
+				BFC06B312746C15500CCB3B3 /* tg-TJ */,
+				BFC06B322746C21800CCB3B3 /* uz-UZ */,
+				BFC06B332746C24C00CCB3B3 /* be-BY */,
+				BFC06B342746C28600CCB3B3 /* ru-BY */,
+				BFC06B352746C2A600CCB3B3 /* ru-RU */,
+				BFC06B362746C33000CCB3B3 /* sr-Latn-ME */,
+				BFC06B372746C38100CCB3B3 /* sq-XK */,
+				BFC06B382746C3A100CCB3B3 /* sr-Latn-XK */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {

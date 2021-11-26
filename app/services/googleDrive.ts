@@ -25,9 +25,9 @@ import RNFS from 'react-native-fs';
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log("You can write storage")
+           // console.log("You can write storage")
         } else {
-            console.log("Write Storage permission denied")
+           // console.log("Write Storage permission denied")
         }
     } catch (err) {
         console.warn(err)
@@ -48,9 +48,9 @@ async function requestReadStoragePermission() {
             }
         )
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log("You can Read storage")
+           // console.log("You can Read storage")
         } else {
-            console.log("Read Storage permission denied")
+           // console.log("Read Storage permission denied")
         }
     } catch (err) {
         console.warn(err)
@@ -60,12 +60,12 @@ class GoogleDrive {
     private static instance: GoogleDrive;
     checkPermission = () => {
         PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE).then((writeGranted) => {
-            console.log('writeGranted', writeGranted)
+            //console.log('writeGranted', writeGranted)
             if (!writeGranted) {
                 requestWriteStoragePermission()
             }
             PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE).then((readGranted) => {
-                console.log('readGranted', readGranted)
+               // console.log('readGranted', readGranted)
                 if (!readGranted) {
                     requestReadStoragePermission()
                 }
@@ -90,7 +90,7 @@ class GoogleDrive {
      */
      public downloadFile=(fileId:any)=>{
         const options = this.configureGetOptions()
-        console.log(fileId)
+        //console.log(fileId)
         if (!fileId) throw new Error('Didn\'t provide a valid file id.')
         return `${_urlFiles}/files/${fileId}?alt=media`
     }
@@ -107,7 +107,7 @@ class GoogleDrive {
             "Authorization": `Bearer ${gdrive.accessToken}`
         }, downloadFileOptions.headers);
 
-        console.log('downloadFileOptions', downloadFileOptions)
+       // console.log('downloadFileOptions', downloadFileOptions)
         let fileresult= RNFS.downloadFile(downloadFileOptions);
         let downloadResult = await fileresult.promise;
         return downloadResult;
@@ -182,7 +182,7 @@ class GoogleDrive {
                   .setIsBase64(true)
                   .execute()
               ).id;
-            console.log(response,"..11response")
+          //  console.log(response,"..11response")
             if (response!="" && response!=null && response!=undefined) {
                 return response;
             } else {
@@ -221,7 +221,7 @@ class GoogleDrive {
                 return new Error(responseJson?.error?.message);
             }
         } catch (e) {
-            console.log(e);
+         //   console.log(e);
             return new Error('Permissions not created');
         }
     }
@@ -233,7 +233,7 @@ class GoogleDrive {
             return new ErrorAccessTokenNotSet();
         }
         const response: Response = await gdrive.files.delete(fileId);
-        console.log(response,"..response");
+       // console.log(response,"..response");
         return true;
         // Delete file
         // try {
@@ -258,7 +258,7 @@ class GoogleDrive {
         // Set Google access token
        
        const isAccessTokenSet = await this.setAccessToken();
-       console.log(isAccessTokenSet,"..isAccessTokenSet")
+       //console.log(isAccessTokenSet,"..isAccessTokenSet")
         if (!isAccessTokenSet) {
             return new ErrorAccessTokenNotSet();
         }
@@ -281,7 +281,7 @@ class GoogleDrive {
                   }
                 )
               )
-              console.log(filenew,"..filenew..")
+           //   console.log(filenew,"..filenew..")
             if(filenew.result && filenew.result.id!='' && filenew.result.id!=null &&  filenew.result.id!=undefined){
             return filenew.result.id;
             }
@@ -411,7 +411,7 @@ class GoogleDrive {
                 // Order: https://bit.ly/34ZczTf
                 orderBy: args.orderBy,
             });
-            console.log(response,"..old response..")
+           // console.log(response,"..old response..")
             let results:any = await response;
             if (results && results.files.length>0) {
                 return results.files;
