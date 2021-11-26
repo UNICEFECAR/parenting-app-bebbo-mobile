@@ -378,15 +378,15 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            <View>
+            {/* <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View>
+            </View> */}
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
                 dateFormat={'day month year'}
                 value={
-                  date1 != null ? date1 : new Date()
+                  date1 != null || date1 != undefined ? date1 : new Date()
                 }
                 mode={'date'}
                 display="default"
@@ -401,7 +401,7 @@ const Home = ({ route, navigation }: Props) => {
                 testID="dobdatePicker"
                 dateFormat={'day month year'}
                 value={
-                  date2 != null ? date2 : new Date()
+                  date2 != null || date2 != undefined ? date2 : new Date()
                 }
                 mode={'date'}
                 display="default"
