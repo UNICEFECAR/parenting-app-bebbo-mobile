@@ -127,6 +127,14 @@ font-family: 'roboto-regular';
 export const Heading4Regular = styled(Heading4)`
 font-family: 'roboto-regular';
 `
+export const Heading4RegularP = styled(Heading4)`
+font-family: 'roboto-regular';
+padding:5px;
+`
+export const Heading1P = styled(Heading1)`
+padding:5px;
+text-align:center;
+`
 export const Heading4Bold = styled(Heading4)`
 font-family: 'roboto-bold';
 `

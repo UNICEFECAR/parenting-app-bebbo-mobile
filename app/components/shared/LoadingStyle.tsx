@@ -33,6 +33,12 @@ export const StaticLogo = styled.Image`
  /* margin-top:20px;*/
  
 `;
+export const GoogleLogo = styled.Image`
+  width: 32px;
+  height: 32px;
+ /* margin-top:20px;*/
+ 
+`;
 export const LoadingText = styled.Text`
   color: #fff;
   font-size: 25px;
