@@ -197,6 +197,9 @@ export const ButtonDevelopmentMd = styled(ButtonPrimaryMd)`
 export const ButtonContainerTwo = styled.View`
 flex:1;max-height:80px;flex-direction:row;padding:0 10px;align-items:center;
 `;
+export const ButtonContainerTwoP =styled(ButtonContainerTwo)`
+padding:0;
+`;
 export const ButtonColTwo = styled.View`
 flex-direction:row;width:50%;padding:0px 5px;
 `;
