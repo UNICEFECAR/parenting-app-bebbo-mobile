@@ -2,6 +2,7 @@
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
 import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
@@ -127,6 +128,8 @@ const SettingScreen = (props: any) => {
   const [isDataSaverEnabled, setIsDataSaverEnabled] = useState(false);
   const [isExportRunning, setIsExportRunning] = useState(false);
   const [isImportRunning, setIsImportRunning] = useState(false);
+  const [isExportAlertVisible, setExportAlertVisible] = useState(false);
+  const [isImportAlertVisible, setImportAlertVisible] = useState(false);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
@@ -144,28 +147,35 @@ const SettingScreen = (props: any) => {
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
   
   const importAllData = async () => {
-    Alert.alert(t('importText'), t("dataConsistency"),
-      [
-        {
-          text: t("retryCancelPopUpBtn"),
-          onPress: () => {
+    setIsImportRunning(true);
+    const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
+    //console.log(importResponse, "..importResponse");
+    // this.setState({ isImportRunning: false, });
+    setIsImportRunning(false);
+    actionSheetRefImport.current?.setModalVisible(false); 
+    // Alert.alert(t('importText'), t("dataConsistency"),
+    //   [
+    //     {
+    //       text: t("retryCancelPopUpBtn"),
+    //       onPress: () => {
 
-          },
-          style: "cancel"
-        },
-        {
-          text: t('continueCountryLang'), onPress: async () => {
-           // console.log(userRealmCommon.realm?.path, "..path")
-            // this.setState({ isImportRunning: true, });
-            setIsImportRunning(true);
-            const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
-           // console.log(importResponse, "..importResponse");
-            // this.setState({ isImportRunning: false, });
-            setIsImportRunning(false);
-          }
-        }
-      ]
-    );
+    //       },
+    //       style: "cancel"
+    //     },
+    //     {
+    //       text: t('continueCountryLang'), onPress: async () => {
+    //        // console.log(userRealmCommon.realm?.path, "..path")
+    //         // this.setState({ isImportRunning: true, });
+          //   setIsImportRunning(true);
+          //   const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
+          //  // console.log(importResponse, "..importResponse");
+          //   // this.setState({ isImportRunning: false, });
+          //   setIsImportRunning(false);
+    //       }
+    //     }
+    //   ]
+    // );
+   // actionSheetRefImport.current?.setModalVisible();
   }
 
   const exportFile = async () => {
@@ -192,34 +202,56 @@ const SettingScreen = (props: any) => {
         Alert.alert('', t('settingExportError'))
       });
   }
+  const onExportCancel =() => {
+    setExportAlertVisible(false);
+  }
+  const onImportCancel =() => {
+    setImportAlertVisible(false);
+  }
   const exportToDrive = async () => {
-    Alert.alert(t('exportText'), t("dataConsistency"),
-      [
-        {
-          text: t("retryCancelPopUpBtn"),
-          onPress: () => {
-
-          },
-          style: "cancel"
-        },
-        {
-          text: t('continueCountryLang'), onPress: async () => {
             setIsExportRunning(true);
             const exportIsSuccess = await backup.export();
             setIsExportRunning(false);
             if (!exportIsSuccess) {
-              Alert.alert('', t('settingExportError'))
-              // ToastAndroid.show(t('settingExportError'), 6000);
+              Alert.alert('', t('settingExportError'));
             } else {
               Alert.alert('', t('settingExportSuccess'));
-
             };
-          }
-        }
-      ]
-    );
-    // actionSheetRef.current?.setModalVisible(false); 
+    // Alert.alert(t('exportText'), t("dataConsistency"),
+    //   [
+    //     {
+    //       text: t("retryCancelPopUpBtn"),
+    //       onPress: () => {
+
+    //       },
+    //       style: "cancel"
+    //     },
+    //     {
+    //       text: t('continueCountryLang'), onPress: async () => {
+    //         setIsExportRunning(true);
+    //         const exportIsSuccess = await backup.export();
+    //         setIsExportRunning(false);
+    //         if (!exportIsSuccess) {
+    //           Alert.alert('', t('settingExportError'))
+    //           // ToastAndroid.show(t('settingExportError'), 6000);
+    //         } else {
+    //           Alert.alert('', t('settingExportSuccess'));
+
+    //         };
+    //       }
+    //     }
+    //   ]
+    // );
+    actionSheetRef.current?.setModalVisible(false); 
   }
+  const handleExportAlertConfirm = () => {
+    setExportAlertVisible(false);
+    exportToDrive();
+  };
+  const handleImportAlertConfirm =async () => {
+    setImportAlertVisible(false);
+    importAllData()
+  };
   const exportAllData = async () => {
 
     actionSheetRef.current?.setModalVisible();
@@ -470,6 +502,7 @@ const SettingScreen = (props: any) => {
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
   const actionSheetRef = createRef<any>();
+  const actionSheetRefImport = createRef<any>();
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -795,7 +828,7 @@ const SettingScreen = (props: any) => {
             <ShiftFromTopBottom10>
               <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={() => {
                 if (netInfoval && netInfoval.isConnected == true) {
-                  importAllData()
+                  actionSheetRefImport.current?.setModalVisible(true); 
                 }
                 else {
                   Alert.alert('', t('noInternet'));
@@ -855,7 +888,58 @@ const SettingScreen = (props: any) => {
                     //  console.log("icon clicked");
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
-                        exportToDrive();
+                        setExportAlertVisible(true);
+                      }
+                      else {
+                        Alert.alert('', t('noInternet'));
+                      }
+
+                    }}>
+                      <VectorImage
+                        source={require('@assets/svg/ic_gdrive.svg')}
+                      />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreengdriveBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
+                    </Pressable>
+                  </SettingOptions>
+                </FDirRow>
+              </SettingShareData>
+            </BannerContainer>
+          </ActionSheet>
+          <ActionSheet ref={actionSheetRefImport}>
+            <BannerContainer>
+              <SettingHeading>
+                <Heading1>{t('settingScreenimportOptionHeader')}</Heading1>
+              </SettingHeading>
+              <SettingShareData>
+                <FDirRow>
+                  {/* <SettingOptions>
+                    <Pressable onPress={() => {
+                      console.log("icon clicked");
+                      //if(netInfoval && netInfoval.isConnected==true){
+                      exportFile()
+                      // }
+                      // else{
+                      //   Alert.alert('',t('noInternet'));
+                      // }
+                    }}>
+                      <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreenshareBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
+                    </Pressable>
+                  </SettingOptions> */}
+                  <SettingOptions>
+                    <Pressable onPress={() => {
+                    //  console.log("icon clicked");
+                    actionSheetRefImport.current?.setModalVisible(false);
+                      if (netInfoval && netInfoval.isConnected == true) {
+                        setImportAlertVisible(true);
                       }
                       else {
                         Alert.alert('', t('noInternet'));
@@ -927,6 +1011,9 @@ const SettingScreen = (props: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
+        <AlertModal loading={isExportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('exportText')} cancelText={t("retryCancelPopUpBtn")}  onConfirm={handleExportAlertConfirm} onCancel={onExportCancel}></AlertModal>
+        <AlertModal loading={isImportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")}  onConfirm={handleImportAlertConfirm} onCancel={onImportCancel}></AlertModal>
+    
       </View>
     </>
   );
