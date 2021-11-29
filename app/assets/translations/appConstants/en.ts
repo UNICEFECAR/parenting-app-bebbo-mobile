@@ -365,7 +365,7 @@ const en = {
                 alertForNoTakenVaccinesSelectTitle: "Please select vaccine(s)",
                 importText: "Import data",
                 exportText: "Export data",
-                dataConsistency: "For data consistency, please use the same language to import/export data. Do you want to continue?",
+                dataConsistency: "For data consistency, please use the same language to import/export data. \nTo continue, please sign in to your google drive account to import/export your data.",
                 dataSaver: "Do you want to switch {{toggle}} to data saver mode?",
                 backPressText: "Press again to close!",
                 generalError: "Something went wrong! Please try again",
@@ -404,7 +404,8 @@ const en = {
                 forceUpdatePopupTitle:"Information",
                 forceUpdatePopupText:"Data will be updated",
                 forceUpdateOkBtn:"OK",
-                favScreenremoveText:"Remove"
+                favScreenremoveText:"Remove",
+                settingScreenimportOptionHeader: "Import data on",
         }
 }
 export default en;
