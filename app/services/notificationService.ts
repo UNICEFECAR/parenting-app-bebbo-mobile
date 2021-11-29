@@ -47,7 +47,11 @@ const IsGrowthMeasuresForPeriodExist = (child, days_from, days_to) => {
   // console.log(isGrowthNotMeasureExist, 'isGrowthMeasureExist')
   // return isGrowthNotMeasureExist
 }
-export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
+export const getCDGWNotisForChild = (childTaxonomyData: any, child: any,prematureTaxonomy:any,childDaysTo:any,childDaysFrom:any) => {
+  console.log(childTaxonomyData,"..childTaxonomyData..");
+  console.log(child,"..child..")
+  console.log(prematureTaxonomy,"..22prematureTaxonomy..");
+  console.log(childDaysTo,"..33childDaysTo..",childDaysFrom,"..44childDaysFrom..")
   // childTaxonomyData.days_from childTaxonomyData.days_to
   // (childAgeInDays >= item.days_from && childAgeInDays <= item.days_to)
   // all notis between item.days_from  and item.days_to of a period
@@ -56,20 +60,73 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
   //   )
   //if> 3months then add noti
   //check gap between days_to and days_from
-  if ((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays) {
+  const childBirthDatePlanned=child?.taxonomyData.prematureTaxonomyId!=null && child?.taxonomyData.prematureTaxonomyId!="" && child?.taxonomyData.prematureTaxonomyId!=undefined? child.plannedTermDate:child.birthDate;
+  const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
+   if ((childDaysTo - childDaysFrom) >= threeeMonthDays) {
     noti.push(
       {
-        "days_from": childTaxonomyData.days_from,
-        "days_to": childTaxonomyData.days_to,
+        "days_from": childDaysFrom,
+        "days_to": childDaysTo,
         "type": "cd",
         "title": ('cdNoti1'),
         "checkinField": "days_from",
-        "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: childTaxonomyData.days_from }),
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom }),
         "isRead": false,
         "isDeleted": false,
         "periodName": childTaxonomyData.name,
-        "growth_period": childTaxonomyData.id,
+        // "growth_period": childTaxonomyData.id,
+        "growth_period": activityTaxonomyId
       })
+    const diff = Math.round((childDaysTo - childDaysFrom) / twoMonthDays);
+    // console.log(diff, item.days_from) //
+    for (var i = 0; i < diff; i++) { 
+      noti.push(
+        {
+          "days_from": childDaysFrom + (i * twoMonthDays),
+          "days_to": (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays,
+          "type": "cd",
+          "title": ('cdNoti2'),
+          "checkinField": "days_to",
+          "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: (i == diff - 1) ? childDaysTo - beforeDays : childDaysTo < childDaysFrom + (i * twoMonthDays) + twoMonthDays ? childDaysTo : childDaysFrom + (i * twoMonthDays) + twoMonthDays, }),
+          "isRead": false,
+          "isDeleted": false,
+          "periodName": childTaxonomyData.name,
+          "growth_period": activityTaxonomyId
+        },
+      )
+    }
+
+  } else {
+    noti.push(
+      {
+        "days_from": childDaysFrom,
+        "days_to":childDaysTo,
+        "type": "cd",
+        "title": ('cdNoti1'),
+        "checkinField": "days_from",
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysFrom }),
+        "isRead": false,
+        "isDeleted": false,
+        "periodName": childTaxonomyData.name,
+        // "growth_period": childTaxonomyData.id,
+        "growth_period": activityTaxonomyId
+      },
+      {
+        "days_from":childDaysFrom,
+        "days_to": childDaysTo - beforeDays,
+        "type": "cd",
+        "title": ('cdNoti2'),
+        "checkinField": "days_to",
+        "notificationDate": DateTime.fromJSDate(new Date(childBirthDatePlanned)).plus({ days: childDaysTo - beforeDays }),
+        "isRead": false,
+        "isDeleted": false,
+        "periodName": childTaxonomyData.name,
+        "growth_period": activityTaxonomyId
+      },
+    )
+    // console.log(noti,"noti")
+  }
+  if ((childTaxonomyData.days_to - childTaxonomyData.days_from) >= threeeMonthDays) {
     const diff = Math.round((childTaxonomyData.days_to - childTaxonomyData.days_from) / twoMonthDays);
     // console.log(diff, item.days_from) //
     for (var i = 0; i < diff; i++) {
@@ -91,20 +148,7 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
           },
         )
       }
-      noti.push(
-        {
-          "days_from": childTaxonomyData.days_from + (i * twoMonthDays),
-          "days_to": (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays,
-          "type": "cd",
-          "title": ('cdNoti2'),
-          "checkinField": "days_to",
-          "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: (i == diff - 1) ? childTaxonomyData.days_to - beforeDays : childTaxonomyData.days_to < childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays ? childTaxonomyData.days_to : childTaxonomyData.days_from + (i * twoMonthDays) + twoMonthDays, }),
-          "isRead": false,
-          "isDeleted": false,
-          "periodName": childTaxonomyData.name,
-          "growth_period": childTaxonomyData.id,
-        },
-      )
+     
     }
 
   } else {
@@ -125,32 +169,6 @@ export const getCDGWNotisForChild = (childTaxonomyData: any, child: any) => {
           "growth_period": childTaxonomyData.id,
         })
     }
-    noti.push(
-      {
-        "days_from": childTaxonomyData.days_from,
-        "days_to": childTaxonomyData.days_to,
-        "type": "cd",
-        "title": ('cdNoti1'),
-        "checkinField": "days_from",
-        "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: childTaxonomyData.days_from }),
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        "growth_period": childTaxonomyData.id,
-      },
-      {
-        "days_from": childTaxonomyData.days_from,
-        "days_to": childTaxonomyData.days_to - beforeDays,
-        "type": "cd",
-        "title": ('cdNoti2'),
-        "checkinField": "days_to",
-        "notificationDate": DateTime.fromJSDate(new Date(child.birthDate)).plus({ days: childTaxonomyData.days_to - beforeDays }),
-        "isRead": false,
-        "isDeleted": false,
-        "periodName": childTaxonomyData.name,
-        "growth_period": childTaxonomyData.id,
-      },
-    )
     // console.log(noti,"noti")
   }
   return noti;
@@ -159,15 +177,23 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
+  const childBirthDatePlanned=child?.taxonomyData.prematureTaxonomyId!=null && child?.taxonomyData.prematureTaxonomyId!="" && child?.taxonomyData.prematureTaxonomyId!=undefined? child.plannedTermDate:child.birthDate;
+  const childAgeInDaysForCD = getCurrentChildAgeInDays(
+    DateTime.fromJSDate(new Date(childBirthDatePlanned)).toMillis(),
+  );
+  console.log(childBirthDatePlanned,"..childBirthDatePlanned..",childAgeInDaysForCD,"..childAgeInDaysForCD")
   const childAgeObj = childAge.sort(
     (a: any, b: any) => a.days_from - b.days_from,
   );
+  const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
   //child.taxonomyData.id
   const lastchildgwperiod = childAgeObj.find(item => String(item.id) == String(gwperiodid));
   const lastchildgwperiodIndex = childAgeObj.findIndex(item => String(item.id) == String(gwperiodid));
-  const currentchildgwperiod = childAgeObj.find(element => element.days_from > lastchildgwperiod.days_from && element.days_from <= childAgeInDays);
-  const currentchildgwperiodIndex = childAgeObj.findIndex(element => element.days_from > lastchildgwperiod.days_from && element.days_to > childAgeInDays && element.days_from <= childAgeInDays);
-  // Alert.alert(String(lastchildgwperiod.id), 'last child gw period');
+  const currentchildgwperiod = childAgeObj.find(element => element.days_from > lastchildgwperiod.days_from && element.days_from <= childAgeInDaysForCD);
+  const currentchildgwperiodIndex = childAgeObj.findIndex(element => element.days_from > lastchildgwperiod.days_from && element.days_to > childAgeInDaysForCD && element.days_from <= childAgeInDaysForCD);
+  const prematurechildgwperiod = childAgeObj.find(item => String(item.id) == String(activityTaxonomyId));
+  console.log(prematurechildgwperiod,"..prematurechildgwperiod..");
+   // Alert.alert(String(lastchildgwperiod.id), 'last child gw period');
   // Alert.alert(String(currentchildgwperiod.id), 'current child gw period');
   // console.log(currentchildgwperiodIndex + " currentchildgwperiodIndex");
   // Alert.alert(lastchildgwperiodIndex + "lastchildgwperiodIndex");
@@ -176,10 +202,12 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   let vcnotis: any[] = [];
   let hcnotis: any[] = [];
   //find next period and calculate for it and return for gw cd noti
-
   for (let i = lastchildgwperiodIndex + 1; i <= currentchildgwperiodIndex; i++) {
-    let currentgwPeriodNoti = getCDGWNotisForChild(childAgeObj[i], child);
-    //console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
+    const childDaysTo = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : childAgeObj[i].days_to;
+    const childDaysFrom = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_from : childAgeObj[i].days_from;
+    console.log(childDaysTo,"..childDaysTo..",childDaysFrom,"..childDaysFrom..");  
+    let currentgwPeriodNoti = getCDGWNotisForChild(childAgeObj[i], child,prematurechildgwperiod,childDaysTo,childDaysFrom);
+    console.log(currentgwPeriodNoti, "currentgwPeriodNoti");
     lastgwperiodid = childAgeObj[i].id;
     // if (gwperiodid != lastgwperiodid) {
     currentgwPeriodNoti.forEach((noti) => {
@@ -270,14 +298,28 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   return notis
 }
 export const getChildNotification = (child: any, childAge: any, allHealthCheckupsData: any, allVaccinePeriods: any, allGrowthPeriods: any, growthEnabledFlag: boolean, developmentEnabledFlag: boolean, vchcEnabledFlag: boolean) => {
-  //console.log(child,"child","getChildNotification")
+  console.log(child,"child","getChildNotification")
   if (child.birthDate != null && child.birthDate != undefined) {
-
+    const childBirthDatePlanned=child?.taxonomyData.prematureTaxonomyId!=null && child?.taxonomyData.prematureTaxonomyId!="" && child?.taxonomyData.prematureTaxonomyId!=undefined? child.plannedTermDate:child.birthDate;
+    const childAgeInDaysForCD = getCurrentChildAgeInDays(
+      DateTime.fromJSDate(new Date(childBirthDatePlanned)).toMillis(),
+    );
+    const activityTaxonomyId = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? child?.taxonomyData.prematureTaxonomyId : child?.taxonomyData.id;
+ 
+  console.log(activityTaxonomyId,"..activityTaxonomyId",childBirthDatePlanned,"..childBirthDatePlanned");
+  
+    console.log(childBirthDatePlanned,"..33childBirthDatePlanned..",childAgeInDaysForCD,"..childAgeInDaysForCD")
+    const prematurechildgwperiod = childAge.find(item => String(item.id) == String(activityTaxonomyId));
+     console.log(prematurechildgwperiod,"..prematurechildgwperiod")
     const childAgeInDays = getCurrentChildAgeInDays(
       DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
     );
     const childCreateDate = DateTime.fromJSDate(new Date(child.createdAt)).toMillis();
     const childBirthDate = DateTime.fromJSDate(new Date(child.birthDate)).toMillis();
+    const childDaysTo = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_to : child.taxonomyData.days_to;
+    const childDaysFrom = child?.taxonomyData.prematureTaxonomyId != null && child?.taxonomyData.prematureTaxonomyId != undefined && child?.taxonomyData.prematureTaxonomyId != "" ? prematurechildgwperiod.days_from : child.taxonomyData.days_from;
+    console.log(childDaysTo,"..22childDaysTo..",childDaysFrom,"..22childDaysFrom..");
+   
     //console.log(childCreateDate > childBirthDate? child.createdAt:child.birthDate );
 
     // const childCreateDateInDays = getCurrentChildAgeInDays(
@@ -321,8 +363,8 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
       }
 
 
-      let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child)
-      // console.log(currentgwPeriodNoti, "currentgwPeriodNoti", child.taxonomyData.id);
+      let currentgwPeriodNoti = getCDGWNotisForChild(child.taxonomyData, child,prematurechildgwperiod,childDaysTo,childDaysFrom)
+      console.log(currentgwPeriodNoti, "12currentgwPeriodNoti", child.taxonomyData.id);
       if (growthEnabledFlag == false) {
         currentgwPeriodNoti = [...currentgwPeriodNoti]?.map((item) => {
           if (item.type == 'gw') {
@@ -362,7 +404,8 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
       // {lastperiodid:child.taxonomyData.id,notis:currentgwPeriodNoti}
       if (currentvcPeriodNoti && currenthcPeriodNoti && currentgwPeriodNoti) {
         let notis = {
-          lastgwperiodid: child.taxonomyData.id, gwcdnotis: currentgwPeriodNoti,
+          lastgwperiodid: child.taxonomyData.id, 
+          gwcdnotis: currentgwPeriodNoti,
           lastvcperiodid: currentvcPeriodNoti.length>0 ? currentvcPeriodNoti[0].growth_period : 0, vcnotis: currentvcPeriodNoti,
           lasthcperiodid: currenthcPeriodNoti.length>0 ? currenthcPeriodNoti[0].growth_period : 0, hcnotis: currenthcPeriodNoti,
         }
