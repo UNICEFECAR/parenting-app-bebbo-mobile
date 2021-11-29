@@ -11,7 +11,7 @@ import {
 } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
-import {FlexDirRowSpace,FlexCol, FlexRow, Flex1,Flex3, Flex2} from '@components/shared/FlexBoxStyle';
+import {FlexDirRowSpace,FlexCol, FlexRow, Flex1,Flex3, Flex2, FDirRow} from '@components/shared/FlexBoxStyle';
 
 import OnboardingHeading from '@components/shared/OnboardingHeading';
 import ToggleRadios from '@components/ToggleRadios';
@@ -41,9 +41,17 @@ import {
   SideSpacing25,
   Heading3Centerw,
   Heading2w,
-  ShiftFromTop10
+  ShiftFromTop10,
+  Heading1,
+  Heading4Regular,
+  ShiftFromTopBottom5
 } from '../styles/typography';
 import { VerticalDivider } from '@components/shared/Divider';
+import AlertModal from '@components/AlertModal';
+import { BannerContainer } from '@components/shared/Container';
+import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
+import VectorImage from 'react-native-vector-image';
+import useNetInfoHook from '../customHooks/useNetInfoHook';
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 
@@ -67,6 +75,9 @@ const ChildSetup = ({ navigation }: Props) => {
   const [isExpected, setIsExpected] = useState<string>('false');
   const [name, setName] = React.useState('');
   const [loading, setLoading] = useState(false);
+  const [isImportAlertVisible, setImportAlertVisible] = useState(false);
+  const actionSheetRefImport = createRef<any>();
+  const netInfoval = useNetInfoHook();
   // const relationshipData = ['Father', 'Mother', 'Other'];
   let relationshipData = useAppSelector(
     (state: any) =>
@@ -105,6 +116,9 @@ const ChildSetup = ({ navigation }: Props) => {
   relationshipData = relationshipData.map((v) => ({ ...v, title: v.name })).filter(function (e, i, a) {
     return e.id != both_parent_gender;
   });
+  const onImportCancel =() => {
+    setImportAlertVisible(false);
+  }
   //console.log(genders, "..genders..");
   //console.log(childData?.gender,"..childData?.gender..");
   useFocusEffect(
@@ -155,44 +169,64 @@ const ChildSetup = ({ navigation }: Props) => {
     }
   };
   const importAllData = async () => {
-    Alert.alert(t('importText'), t("dataConsistency"),
-      [
-        {
-          text: t("retryCancelPopUpBtn"),
-          onPress: () => {
+    setImportAlertVisible(false);
+    setLoading(true);
+    setIsImportRunning(true);
+    //param 1 from settings import for navigation
+    const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
+    //console.log(importResponse, "..111111importResponse");
+    if (importResponse.length > 0) {
+      setIsImportRunning(false);
+      setLoading(false);
+      navigation.navigate('ChildImportSetup',{
+        importResponse:JSON.stringify(importResponse)
+      });
+      // actionSheetRef1.current?.setModalVisible();
+      // setParentSection(true);  
+     
+    }
+    else {
+      setLoading(false);
+      setIsImportRunning(false);
+    }
+    // Alert.alert(t('importText'), t("dataConsistency"),
+    //   [
+    //     {
+    //       text: t("retryCancelPopUpBtn"),
+    //       onPress: () => {
 
-          },
-          style: "cancel"
-        },
-        {
-          text: t('continueCountryLang'), onPress: async () => {
-           // console.log(userRealmCommon.realm?.path, "..path")
-            // this.setState({ isImportRunning: true, });
-            setLoading(true);
-            setIsImportRunning(true);
-            //param 1 from settings import for navigation
-            const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
-            //console.log(importResponse, "..111111importResponse");
-            if (importResponse.length > 0) {
-              setIsImportRunning(false);
-              setLoading(false);
-              navigation.navigate('ChildImportSetup',{
-                importResponse:JSON.stringify(importResponse)
-              });
-              // actionSheetRef1.current?.setModalVisible();
-              // setParentSection(true);  
+    //       },
+    //       style: "cancel"
+    //     },
+    //     {
+    //       text: t('continueCountryLang'), onPress: async () => {
+    //        // console.log(userRealmCommon.realm?.path, "..path")
+    //         // this.setState({ isImportRunning: true, });
+    //         setLoading(true);
+    //         setIsImportRunning(true);
+    //         //param 1 from settings import for navigation
+    //         const importResponse = await backup.import1(navigation, languageCode, dispatch, child_age, genders);
+    //         //console.log(importResponse, "..111111importResponse");
+    //         if (importResponse.length > 0) {
+    //           setIsImportRunning(false);
+    //           setLoading(false);
+    //           navigation.navigate('ChildImportSetup',{
+    //             importResponse:JSON.stringify(importResponse)
+    //           });
+    //           // actionSheetRef1.current?.setModalVisible();
+    //           // setParentSection(true);  
              
-            }
-            else {
-              setLoading(false);
-              setIsImportRunning(false);
-            }
-            // this.setState({ isImportRunning: false, });
-            // setIsImportRunning(false);
-          }
-        }
-      ]
-    );
+    //         }
+    //         else {
+    //           setLoading(false);
+    //           setIsImportRunning(false);
+    //         }
+    //         // this.setState({ isImportRunning: false, });
+    //         // setIsImportRunning(false);
+    //       }
+    //     }
+    //   ]
+    // );
   }
   const AddChild = async () => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
@@ -233,8 +267,8 @@ const ChildSetup = ({ navigation }: Props) => {
                     disabled={isImportRunning}
                     onPress={(e) => {
                       e.stopPropagation();
-                      importAllData();
-
+                      // importAllData();
+                      actionSheetRefImport.current?.setModalVisible(true); 
                     }}>
                     <ButtonText>{t('OnboardingImportButton')}</ButtonText>
                   </ButtonPrimaryMd>
@@ -413,7 +447,57 @@ const ChildSetup = ({ navigation }: Props) => {
 
           </View>
         </ActionSheet>
+        <ActionSheet ref={actionSheetRefImport}>
+            <BannerContainer>
+              <SettingHeading>
+                <Heading1>{t('settingScreenimportOptionHeader')}</Heading1>
+              </SettingHeading>
+              <SettingShareData>
+                <FDirRow>
+                  {/* <SettingOptions>
+                    <Pressable onPress={() => {
+                      console.log("icon clicked");
+                      //if(netInfoval && netInfoval.isConnected==true){
+                      exportFile()
+                      // }
+                      // else{
+                      //   Alert.alert('',t('noInternet'));
+                      // }
+                    }}>
+                      <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreenshareBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
+                    </Pressable>
+                  </SettingOptions> */}
+                  <SettingOptions>
+                    <Pressable onPress={() => {
+                    //  console.log("icon clicked");
+                    actionSheetRefImport.current?.setModalVisible(false);
+                      if (netInfoval && netInfoval.isConnected == true) {
+                        setImportAlertVisible(true);
+                      }
+                      else {
+                        Alert.alert('', t('noInternet'));
+                      }
 
+                    }}>
+                      <VectorImage
+                        source={require('@assets/svg/ic_gdrive.svg')}
+                      />
+                      <ShiftFromTopBottom5>
+                        <Heading4Regular>
+                          {t('settingScreengdriveBtntxt')}
+                        </Heading4Regular>
+                      </ShiftFromTopBottom5>
+                    </Pressable>
+                  </SettingOptions>
+                </FDirRow>
+              </SettingShareData>
+            </BannerContainer>
+          </ActionSheet>
         <SideSpacing25>
           <ButtonRow>
             <ButtonPrimary
@@ -446,7 +530,8 @@ const ChildSetup = ({ navigation }: Props) => {
             </ButtonPrimary>
           </ButtonRow>
         </SideSpacing25>
-     
+        <AlertModal loading={isImportAlertVisible} disabled={isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")}  onConfirm={importAllData} onCancel={onImportCancel}></AlertModal>
+    
       </View>
       </>
   );
