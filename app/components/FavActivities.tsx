@@ -73,8 +73,11 @@ const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
   const [favGamesToShow,setfavGamesToShow] = useState([]);
-const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activeChild?.taxonomyData.id))
-  const goToActivityDetail = (item: any) => {
+  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+//const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activeChild?.taxonomyData.id))
+const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
+  
+const goToActivityDetail = (item: any) => {
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "FavActivities",
