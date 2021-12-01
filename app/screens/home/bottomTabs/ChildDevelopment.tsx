@@ -507,7 +507,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
             </PopupCloseContainer>
             <ModalPopupContent>
               <Heading4Centerr>
-                {t('childSetupprematureMessage')}
+                {t('childSetupprematureMessageNext')}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>
