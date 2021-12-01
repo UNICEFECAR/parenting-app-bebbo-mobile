@@ -401,7 +401,10 @@ const ALsq = {
               forceUpdatePopupTitle:"Information",
               forceUpdatePopupText:"Data will be updated",
               forceUpdateOkBtn:"OK",
-              favScreenremoveText:"Remove"
+              favScreenremoveText:"Remove",
+              settingScreenimportOptionHeader: "Import data on",
+              childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
+     
        }
 }
 export default ALsq;
