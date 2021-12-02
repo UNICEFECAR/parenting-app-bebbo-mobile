@@ -221,12 +221,23 @@ const HeaderNotiIcon = (props: any) => {
             let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
             //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
             let toDay = DateTime.fromJSDate(new Date()).toMillis();
-
-
+             let combinedNotis1 = currentChildallnoti.sort(
+              (a: any, b: any) => a.days_from - b.days_from,
+            )
+            console.log(combinedNotis1, "before combinedNotis1")
+           
             let combinedNotis = currentChildallnoti.sort(
               (a: any, b: any) => a.days_from - b.days_from,
-            ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
-           // console.log(combinedNotis, "combinedNotis")
+            ).filter((item) => {
+              console.log(item.type,"..type")
+                console.log(item.isRead,"..isRead")
+                console.log(toDay,"..toDay")
+                console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..notificationDate")
+                console.log(childBirthDate,"..childBirthDate")
+                console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..childBirthDate")
+               return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) 
+              });
+            console.log(combinedNotis, "combinedNotis")
             // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
             // console.log(toRemove, "findcdNoti")
             // combinedNotis = combinedNotis.filter(function (el) {

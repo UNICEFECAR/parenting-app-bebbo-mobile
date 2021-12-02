@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import {StyleSheet, View, Modal, ActivityIndicator, TouchableOpacity, Text} from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonColTwo, ButtonContainerTwoP, ButtonLinkPress, ButtonModal, ButtonText, ButtonTextLinew } from './shared/ButtonGlobal';
+import { ButtonColTwo4,ButtonColTwo6, ButtonContainerTwoP, ButtonLinkPress, ButtonModal, ButtonText, ButtonTextLinew } from './shared/ButtonGlobal';
 import { FDirRow, FlexCol } from './shared/FlexBoxStyle';
 import { ToolPress, ToolBoxText } from './shared/HomeScreenStyle';
 import { OuterIconRow, OuterIconLeft } from './shared/Icon';
@@ -26,13 +26,20 @@ const AlertModal = (props: any) =>{
         <Heading1P>{title}</Heading1P>
         <Heading4RegularP>{message}</Heading4RegularP>
         <ButtonContainerTwoP>
-         <ButtonColTwo>
+         <ButtonColTwo4>
         <TouchableOpacity onPress={onCancel}>
           <ButtonText  style={{color:"#000"}}>{cancelText}</ButtonText>
         </TouchableOpacity>
-        </ButtonColTwo>
-        <ButtonColTwo>
-        <ButtonLinkPress
+        </ButtonColTwo4>
+        <ButtonColTwo6>
+        <GoogleSigninButton
+  style={{ width: '100%', height: 48 }}
+  size={GoogleSigninButton.Size.Wide}
+  color={GoogleSigninButton.Color.Light}
+  onPress={onConfirm}
+  disabled={disabledValue}
+/>
+        {/* <ButtonLinkPress
              onPress={onConfirm}>
               <OuterIconRow>
                 <OuterIconLeft>
@@ -40,7 +47,7 @@ const AlertModal = (props: any) =>{
                 </OuterIconLeft>
                 <ButtonText style={{color:"#000",justifyContent:"center",alignSelf:"center",alignItems:"center",alignContent:"center"}}>Sign In</ButtonText>
               </OuterIconRow>
-            </ButtonLinkPress>
+            </ButtonLinkPress> */}
         {/* <TouchableOpacity onPress={onConfirm}>
          <GoogleLogo source={require('@assets/loading/g-normal.png')} />
           <ButtonText>Sign In</ButtonText>
@@ -48,7 +55,7 @@ const AlertModal = (props: any) =>{
         {/* <ToolPress onPress={onConfirm}  disabled={disabledValue}> */}
               
             {/* </ToolPress>  */}
-        </ButtonColTwo>
+        </ButtonColTwo6>
         </ButtonContainerTwoP>
         </View>
         </View>
