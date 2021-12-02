@@ -25,6 +25,8 @@ import i18n, {
   import RSen from '@assets/translations/appConstants/RSen';
   import BYbe from '@assets/translations/appConstants/BYbe';
   import BYru from '@assets/translations/appConstants/BYru';
+  // import GRarb from '@assets/translations/appConstants/GRarb';
+  // import GRda from '@assets/translations/appConstants/Grda';
   import { localization } from '@assets/data/localization';
   import { Alert } from 'react-native';
   import { store } from '../../App';
@@ -49,7 +51,9 @@ import i18n, {
     XKrs,
     RSen,
     BYbe,
-    BYru
+    BYru,
+    // GRarb,
+    // GRda
   };
   const newArr: any[] = [];
   const localisationnew = [...localization];

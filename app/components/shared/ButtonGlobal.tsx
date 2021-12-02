@@ -203,8 +203,12 @@ padding:0;
 export const ButtonColTwo = styled.View`
 flex-direction:row;width:50%;padding:0px 5px;
 `;
-
-
+export const ButtonColTwo4 = styled.View`
+flex-direction:row;width:40%;padding:0px 5px;
+`;
+export const ButtonColTwo6 = styled.View`
+flex-direction:row;width:60%;padding:0px 5px;
+`;
 export const ButtonModal = styled(ButtonPrimary)`
 width:auto; padding:5px 25px;margin: 15px 20px 0;
 min-width:150px;
