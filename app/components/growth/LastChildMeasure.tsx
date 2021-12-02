@@ -270,7 +270,7 @@ const LastChildMeasure = (props: any) => {
             </PopupCloseContainer>
             <ModalPopupContent>
               <Heading4Centerr>
-                {t('childSetupprematureMessage')}
+                {t('childSetupprematureMessageNext')}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>
