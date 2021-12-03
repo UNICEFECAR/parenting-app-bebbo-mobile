@@ -209,9 +209,6 @@ const Home = ({ route, navigation }: Props) => {
       : [],
   );
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
-  const findIfNotisExistForChild = (child) => {
-    return allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-  }
   useEffect(() => {
     // const uniqueId=getUniqueNameId(genders,'girl');
     // console.log(uniqueId,"..uniqueId");
@@ -232,7 +229,8 @@ const Home = ({ route, navigation }: Props) => {
         let allchildNotis: any[] = [];
         console.log(childList, "..childList..")
         childList.map((child: any) => {
-          const notiExist = findIfNotisExistForChild(child);
+          console.log(child, "<<child>>")
+          const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
           console.log("notiExist", notiExist);
           if (notiExist != undefined) {
             // notiExist.gwcdnotis?.forEach((item) => {
@@ -309,6 +307,8 @@ const Home = ({ route, navigation }: Props) => {
                 //     allreminderNotis.push(item)
                 //   })
                 // }
+                console.log("Periods Not Moved Ahead",notiExist);
+                
                 reminderNotis.reverse().forEach((item) => {
                   allreminderNotis.push(item)
                 })
