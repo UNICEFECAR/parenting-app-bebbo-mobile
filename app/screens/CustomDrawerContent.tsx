@@ -69,9 +69,6 @@ const CustomDrawerContent = ({ navigation }: any) => {
     (state.utilsData.generateNotifications),
   );
   let allnotis = useAppSelector((state: any) => state.notificationData.notifications);
-  const findIfNotisExistForChild = (child) => {
-    return allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-  }
   const [notifications, setNotifications] = useState<any[]>([]);
   // console.log(activeChild, "..draweractiveChild")
   const surveryData = useAppSelector((state: any) =>
@@ -211,7 +208,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
       if (generateNotificationsFlag == true) {
         let allchildNotis: any[] = [];
         // childList.map((child: any) => {
-        const notiExist = findIfNotisExistForChild(activeChild);
+        const notiExist = allnotis.find((item) => String(item.childuuid) == String(activeChild.uuid))
         console.log("notiExist", notiExist);
         if (notiExist != undefined) {
           // notiExist.gwcdnotis?.forEach((item) => {
@@ -306,8 +303,14 @@ const CustomDrawerContent = ({ navigation }: any) => {
           }
         }
 
+        const exceptActiveChildNotis =   [...allnotis].filter(item => String(item.childuuid) != String(activeChild.uuid));
+        // allnotis.filter((item) => String(item.childuuid) != String(activeChild.uuid))
+        exceptActiveChildNotis.forEach(element => {
+          allchildNotis.push(element)
+        });
+        // [...allchildNotis].filter(item => String(item.childuuid) != String(activeChild[0].uuid));
         // })
-        // console.log(allchildNotis,"allchildNotis")
+        console.log(allchildNotis,"allchildNotis=Drawer")
         dispatch(setAllNotificationData(allchildNotis))
         //generate notifications for all childs 
         //get all notifications for all childfrom slice, if [],then generate as per their DOB/createdate,
