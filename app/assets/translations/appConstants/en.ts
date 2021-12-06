@@ -407,6 +407,7 @@ const en = {
                 favScreenremoveText:"Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
+                settingScreenFileBtntxt: "File",
         }
 }
 export default en;
