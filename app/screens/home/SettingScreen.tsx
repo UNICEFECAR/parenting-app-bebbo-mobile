@@ -62,7 +62,8 @@ import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Modal, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import RNFS from 'react-native-fs';
+import DocumentPicker from 'react-native-document-picker';
+import RNFS, { stat } from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
@@ -181,26 +182,70 @@ const SettingScreen = (props: any) => {
   const exportFile = async () => {
     //need to add code.
     // Alert.alert('Coming Soon');
-    setIsExportRunning(true);
-    var path = RNFS.DocumentDirectoryPath + '/my.backup';
+    setIsExportRunning(false);
+   
+    //export 
+    const res: any = await DocumentPicker.pickDirectory();
+     console.log(res,"..res");
+    //  const res: any = await selectDirectory();
+    //  console.log(res,"..res");
+    //  const path1: any = await RNFS.stat(res.uri);
+    //  console.log(path1,"..path1..")
+    //  const res2: any =await RNFS.mkdir(res.uri);
+    //  console.log(res2,"..res2..res2")
+    //  RNFS.getFileUri(res.uri).then(filePath =>{
+    //    console.log(filePath,"..filePath");
+    //  }
+    // const RNGRP = require('react-native-get-real-path');
+    // RNGRP.getRealPathFromURI(res.uri).then(filePath =>{
+    //   console.log(filePath,"..filePath..")
+    // })
+    // const rel: any = await DocumentPicker.releaseSecureAccess(res.uri);
+
+    // console.log(decodeURIComponent(res.uri),"..11path..");
     const userRealmPath = userRealmCommon.realm?.path;
-   // console.log(userRealmPath, "..userRealmPath")
     if (!userRealmPath) return false;
-
-    // Get realmContent
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-   // console.log(realmContent, "..11realmContent")
-
-    // write the file
-    RNFS.writeFile(path, realmContent, 'base64')
+    // const data=await RNFetchBlob.fs.writeFile(res.uri, realmContent, 'base64');
+    // console.log(data,"..data..")
+  //   DocumentPicker.releaseSecureAccess([])
+  //           .then(async () => {
+  //   // const res: any = await DocumentPicker.pickDirectory();
+  //   // Alert.alert("11",res.uri);
+  //   // const path1: any = await RNFS.stat(res.uri)
+  //   // console.log(path1, "..path1..");
+  // //   if (res && res.uri) {
+  // //     const userRealmPath = userRealmCommon.realm?.path;
+  // //      if (!userRealmPath) return false;
+  // //      const realmContent = await RNFS.readFile(userRealmPath, 'base64');
+  // //      console.log(realmContent,"..realmContent");
+  // // //     // const stat = await RNFetchBlob.fs.stat(res.uri);
+  // // //     // console.log(stat,"..stat..");
+  // // //     const path = res.uri + '/my.backup';
+  // // //     console.log(path,"..path..");
+  // // //     setIsExportRunning(false);
+ 
+      RNFS.writeFile(decodeURIComponent(res.uri)+"my.backup", realmContent, 'base64')
       .then((success) => {
-        setIsExportRunning(false);
-        Alert.alert('', t('settingExportSuccess'));
+       console.log(success);
+       setIsExportRunning(false);
+       actionSheetRef.current?.setModalVisible(false); 
       })
       .catch((err) => {
+        console.log(err,"..err")
+        Alert.alert('', t('settingExportError'));
         setIsExportRunning(false);
-        Alert.alert('', t('settingExportError'))
       });
+  // //    }
+  // //   else{
+  // //     Alert.alert('', t('settingExportError'));
+  // //     setIsExportRunning(false);
+  // //   }
+  //   console.warn('releaseSecureAccess: success')
+  // })
+  // .catch((error)=>{
+  //   console.warn(error)
+  // })
   }
   const onExportCancel =() => {
     setExportAlertVisible(false);
@@ -827,12 +872,13 @@ const SettingScreen = (props: any) => {
             </ShiftFromTopBottom10>
             <ShiftFromTopBottom10>
               <ButtonPrimary disabled={isExportRunning || isImportRunning} onPress={() => {
-                if (netInfoval && netInfoval.isConnected == true) {
-                  actionSheetRefImport.current?.setModalVisible(true); 
-                }
-                else {
-                  Alert.alert('', t('noInternet'));
-                }
+                // if (netInfoval && netInfoval.isConnected == true) {
+                //   actionSheetRefImport.current?.setModalVisible(true); 
+                // }
+                // else {
+                //   Alert.alert('', t('noInternet'));
+                // }
+                actionSheetRefImport.current?.setModalVisible(true); 
               }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
@@ -865,7 +911,7 @@ const SettingScreen = (props: any) => {
               </SettingHeading>
               <SettingShareData>
                 <FDirRow>
-                  {/* <SettingOptions>
+                  <SettingOptions>
                     <Pressable onPress={() => {
                       console.log("icon clicked");
                       //if(netInfoval && netInfoval.isConnected==true){
@@ -882,7 +928,7 @@ const SettingScreen = (props: any) => {
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
-                  </SettingOptions> */}
+                  </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
                     //  console.log("icon clicked");
@@ -916,11 +962,50 @@ const SettingScreen = (props: any) => {
               </SettingHeading>
               <SettingShareData>
                 <FDirRow>
-                  {/* <SettingOptions>
+                  <SettingOptions>
                     <Pressable onPress={() => {
                       console.log("icon clicked");
+                      actionSheetRefImport.current?.setModalVisible(false);
+                      setTimeout(async () => {
+                        try {
+                          //import
+                          const res: any = await DocumentPicker.pick({
+                            type: [DocumentPicker.types.allFiles],
+                          })
+                          console.log(res, "..res..");
+  
+  
+                          if (res.length > 0 && res[0].uri) {
+                            const exportedFileContent:any = await RNFS.readFile(res[0].uri, 'base64');
+                            console.log(exportedFileContent,"..newexportedFileContent..")
+                            const exportedFileContentRealm:any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm',exportedFileContent,"base64");
+                            const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm'});
+                            const user1Path = importedrealm.path;
+                            console.log(user1Path,"..user1Path")
+                            const oldChildrenData = importedrealm.objects('ChildEntity');
+                            console.log(exportedFileContentRealm,"..exportedFileContentRealm..")
+                            console.log(oldChildrenData,"..newoldChildrenData..")
+                            setIsImportRunning(true);
+                            const importResponse = await backup.importFromFile(oldChildrenData,props.navigation,genders,dispatch,child_age,languageCode);
+                            console.log(importResponse, "..importResponse");
+                            // this.setState({ isImportRunning: false, });
+                            setIsImportRunning(false);
+                            actionSheetRefImport.current?.setModalVisible(false); 
+                           
+                          }
+  
+  
+                        } catch (err) {
+                          if (DocumentPicker.isCancel(err)) {
+                            // User cancelled the picker, exit any dialogs or menus and move on
+                          } else {
+                            throw err
+                          }
+                        }
+                      }, 350);
+                     
                       //if(netInfoval && netInfoval.isConnected==true){
-                      exportFile()
+                      // exportFile()
                       // }
                       // else{
                       //   Alert.alert('',t('noInternet'));
@@ -933,7 +1018,7 @@ const SettingScreen = (props: any) => {
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
-                  </SettingOptions> */}
+                  </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
                     //  console.log("icon clicked");
