@@ -100,7 +100,8 @@ export const appConfig = {
     childGrowthPinnedContent:'child_growth',
     healthcheckupPinnedContent:'health_check_ups',
     milestoneRelatedArticle:'milestonerelatedarticle',
-    checkUpdate:'check-update'
+    checkUpdate:'check-update',
+    faqs:'faqs'
 }
 
 export const allApisObject = [
@@ -208,6 +209,12 @@ export const allApisObject = [
     },
     {
       apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqs,
       method: 'get',
       postdata: {},
       saveinDB: true,
