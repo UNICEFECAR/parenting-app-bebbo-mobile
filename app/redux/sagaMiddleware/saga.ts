@@ -28,6 +28,9 @@ function* onFetchAPI(value: any) {
   const activeChild = value.activeChild;
   const oldErrorObj = value.oldErrorObj;
   const netInfovalisConnected = value.netInfovalisConnected;
+  const forceupdatetime = value.forceupdatetime;
+  const downloadWeeklyData = value.downloadWeeklyData;
+  const downloadMonthlyData = value.downloadMonthlyData;
   // console.log("prevPage--",prevPage);
   errorArr = [];
   try {
@@ -52,10 +55,10 @@ function* onFetchAPI(value: any) {
       // console.log(errorArr,"..errorArr..");
       // Alert.alert(errorArr.length+"-start--"+netInfovalisConnected+" hh "+prevPage);
       if (netInfovalisConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-          yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+          yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
       }
       else {
-          yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+          yield call(onApiSuccess, response, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
       }
     // }else {
     //   yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
@@ -65,10 +68,10 @@ function* onFetchAPI(value: any) {
   } catch (e) {
     // Alert.alert(errorArr.length+"-start--"+netInfovalisConnected+" hhnew "+prevPage);
     if (netInfovalisConnected == true && prevPage != 'Survey' && errorArr.length > 0) {
-        yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+        yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
     }
     else {
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
     }
     // yield call(onApiError,payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
   }
@@ -145,7 +148,7 @@ export function* fetchAPISaga() {
   yield takeEvery(FETCH_API, onFetchAPI);
 }
 
-function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any) {
+function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch: any, navigation: any,languageCode: string, activeChild: any,oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any) {
  // console.log("errorArr on redirect--",errorArr);
   // if(errorArr && errorArr.length > 0)
   // {
@@ -169,7 +172,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   }
    else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen' || prevPage == 'DownloadUpdate' || prevPage == 'ForceUpdate') {
     //dispatch action for before home page
-    yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
+    yield call(onHomeapiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData)
   }
    else if (prevPage == 'Survey') {
     //dispatch action for before home page
@@ -177,7 +180,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   }
 }
 
-function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any, oldErrorObj: any) {
+function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: any, languageCode: string,activeChild: any, oldErrorObj: any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any) {
   // if (prevPage !== 'CountryLanguageSelection') {
     try {
       const confirm = yield call(retryAlert);
@@ -195,13 +198,13 @@ function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: an
       }
      // console.log("onLoadApiArray--",onLoadApiArray);
       errorArr = [];
-      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode,activeChild,oldErrorObj));
+      yield put(fetchAPI(onLoadApiArray, prevPage, dispatch, navigation, languageCode,activeChild,oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData));
     } catch (e) {
       //code of what to fo if user selected cancel.
       try {
         const cancelclicked = yield call(cancelRetryAlert);
         // console.log("in cancel retry ---",errorArr);
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild, oldErrorObj);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode,activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
         // if (prevPage == 'Terms') {
         //   // navigation.navigate('ChildSetup');
         //   const allJsonData = navigateToPage();
@@ -229,7 +232,7 @@ function* onApiError(payload:any,prevPage: string, dispatch: any, navigation: an
         //   });
         // }
       }catch (e) {
-        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj);
+        yield call(onApiSuccess, payload, prevPage, dispatch, navigation, languageCode, activeChild, oldErrorObj,forceupdatetime,downloadWeeklyData,downloadMonthlyData);
       }
     }
   // }else {
