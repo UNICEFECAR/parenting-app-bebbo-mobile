@@ -58,7 +58,7 @@ import {
 //   navigation: ChildImportSetupNavigationProp,
 // };
 const ChildImportSetup = (props: any) => {
-  console.log(props.route.params,"..routeparams..");
+  //console.log(props.route.params,"..routeparams..");
   let {importResponse}=props.route.params;
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -92,7 +92,7 @@ const ChildImportSetup = (props: any) => {
   );
   useEffect(() => {
     const backAction = () => {
-      console.log("11")
+      //console.log("11")
       //navigation.goBack();
       return true;
     };
@@ -107,7 +107,7 @@ const ChildImportSetup = (props: any) => {
     }
   }, []);
   const getCheckedParentItem = (checkedItem: any) => {
-    console.log(checkedItem, "..checkedItem");
+   // console.log(checkedItem, "..checkedItem");
     if (
       typeof checkedItem.id === 'string' ||
       checkedItem.id instanceof String
@@ -217,7 +217,7 @@ const ChildImportSetup = (props: any) => {
                 <ChildRelationList key={index}>
                   <Pressable
                     onPress={() => {
-                      console.log(item, "..item..");
+                     // console.log(item, "..item..");
                       setUserRelationToParent(item.id);
                       //   if(item.id == relationShipFatherId  || item.id == relationShipMotherId || relationship == '' || relationship == null || relationship == undefined){
                       //     setRelationship('');
@@ -225,7 +225,7 @@ const ChildImportSetup = (props: any) => {
                       //  if(item.id != relationShipFatherId  && item.id != relationShipMotherId && relationship != '' && relationship != null && relationship != undefined){
                       //   setRelationship('');
                       //  }
-                      console.log(userRelationToParent, "..userRelationToParent..");
+                      //console.log(userRelationToParent, "..userRelationToParent..");
                       if (item.id == relationShipMotherId) {
                         if (typeof femaleData.id === 'string' || femaleData.id instanceof String) {
                           setRelationship(femaleData.id);
@@ -243,9 +243,9 @@ const ChildImportSetup = (props: any) => {
                         }
                       }
                       else {
-                        console.log(item.id, "..item.id");
-                        console.log(relationship, "..relationship..");
-                        console.log(userRelationToParent, "..userRelationToParent..");
+                      //  console.log(item.id, "..item.id");
+                        //console.log(relationship, "..relationship..");
+                        //console.log(userRelationToParent, "..userRelationToParent..");
                         if (userRelationToParent == relationShipMotherId || userRelationToParent == relationShipFatherId) {
                           setRelationship('');
                         }
@@ -268,7 +268,7 @@ const ChildImportSetup = (props: any) => {
               disabled={relationship==null || relationship=="" || relationship==undefined || userRelationToParent==undefined ? true :false}
               onPress={async (e) => {
                 e.stopPropagation();
-                console.log("..birthDate..",importResponse.length);
+               // console.log("..birthDate..",importResponse.length);
                 if(importResponse){
                   importResponse=JSON.parse(importResponse);
                 }
@@ -281,14 +281,14 @@ const ChildImportSetup = (props: any) => {
                 if (importResponse?.length > 0) {
                   const resolvedPromises = importResponse.map(async (item: any) => {
                     // getAllChildren(dispatch,child_age,0);
-                      console.log(item, "..item..");
+                     // console.log(item, "..item..");
                       if(item.birthDate!=null && item.birthDate!=undefined){
                       const itemnew = await getChild(item, genders);
                       let childData: any = [];
                       childData.push(itemnew);
-                      console.log(childData, "..childData..");
+                      //console.log(childData, "..childData..");
                       let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                      console.log(createresult, "..createresult");
+                      //console.log(createresult, "..createresult");
                       let relationshipnew:any = relationship;
                       if (typeof relationshipnew === 'string' || relationshipnew instanceof String) {
                         relationshipnew = relationship;
@@ -302,8 +302,8 @@ const ChildImportSetup = (props: any) => {
                       let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", item.uuid);
                       let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");                
                       if(counter==0){     
-                      console.log(item.uuid, "..data[0].uuid..");
-                      console.log(userRelationToParent,"..userRelationToParent")
+                    //  console.log(item.uuid, "..data[0].uuid..");
+                     // console.log(userRelationToParent,"..userRelationToParent")
                       const activeChildnew=await setActiveChild(languageCode, item.uuid, dispatch, child_age);
                       counter++;
                       } 
@@ -320,10 +320,10 @@ const ChildImportSetup = (props: any) => {
     
                     // props.navigation.navigate('ChildSetupList');
                     const Ages=await getAge(childList,child_age);
-    console.log(Ages,"..Ages..")
+   // console.log(Ages,"..Ages..")
     let apiJsonData;
     if(Ages?.length>0){
-      console.log(Ages,"..11Ages..")
+     // console.log(Ages,"..11Ages..")
       apiJsonData=apiJsonDataGet(String(Ages),"all")
     }
     else{
@@ -332,7 +332,7 @@ const ChildImportSetup = (props: any) => {
      analytics().logEvent(ONBOARDING_CHILD_COUNT, {child_count: childList?.length})
     // await analytics().setUserProperties({ageid,is_premature,child_gender,relationship_with_child}) relationship_with_child:monther/father
 
-    console.log(apiJsonData,"..apiJsonData...")
+   // console.log(apiJsonData,"..apiJsonData...")
     props.navigation.reset({
       index: 0,
       routes: [

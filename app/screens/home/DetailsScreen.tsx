@@ -56,7 +56,7 @@ export type RelatedArticlesProps = {
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
   let newHeaderColor,newBackgroundColor;
-  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct')
+  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
   {
     newHeaderColor = headerColor;
     newBackgroundColor = backgroundColor;
@@ -65,7 +65,12 @@ const DetailsScreen = ({route, navigation}: any) => {
     newHeaderColor = themeContext.colors.ARTICLES_COLOR;
     newBackgroundColor = themeContext.colors.ARTICLES_TINTCOLOR;
   }
-  
+  const favoriteadvices = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoriteadvices
+  );
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
@@ -74,9 +79,10 @@ const DetailsScreen = ({route, navigation}: any) => {
   // detailDataToUse = detailData;
   // setDetailDataToUse(detailData);
   // fromScreen === 'Activities'
+  const adviceval = fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ?false:true;
   useEffect(() => {
     const backAction = () => {
-      console.log("dwferfef")
+      //console.log("dwferfef")
       onHeaderBack()
       return true;
     };
@@ -95,7 +101,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   }, []);
   useEffect(() => {
       const functionOnLoad = async () => {
-        if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt")
+        if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles")
         {
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -106,7 +112,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             if(articleData && articleData.length > 0)
             {
               setDetailDataToUse(articleData[0]);
-              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct')
+              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
               {
                  analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
               }else{
@@ -123,7 +129,7 @@ const DetailsScreen = ({route, navigation}: any) => {
           }else if(typeof detailData == "object")
           {
             setDetailDataToUse(detailData);
-            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct')
+            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
@@ -138,7 +144,7 @@ const DetailsScreen = ({route, navigation}: any) => {
           // detailDataToUse = detailData;
           
           setDetailDataToUse(detailData);
-          if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct')
+          if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
@@ -277,7 +283,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     }
     else if(fromScreen == "Activities")
     {
-      console.log("detail screen----",currentSelectedChildId);
+      //console.log("detail screen----",currentSelectedChildId);
       navigation.navigate({
         name: fromScreen == "ChildgrowthTab2" ? "ChildgrowthTab" : fromScreen,
         params: {categoryArray:listCategoryArray,currentSelectedChildId:currentSelectedChildId,backClicked:'yes'},
@@ -289,6 +295,14 @@ const DetailsScreen = ({route, navigation}: any) => {
       navigation.navigate({
         name: fromScreen == "HomeAct" || fromScreen == "HomeArt" ? "Home" : fromScreen,
         params: {categoryArray:listCategoryArray,backClicked:'yes'},
+        merge: true,
+      });
+    }
+    else if(fromScreen == "FavActivities" || fromScreen == "FavArticles")
+    {
+      navigation.navigate({
+        name: fromScreen == "FavActivities" || fromScreen == "FavArticles" ? "Favourites" : fromScreen,
+        params: {tabIndex:fromScreen == "FavArticles" ? 0 : 1,backClicked:'yes'},
         merge: true,
       });
     }
@@ -335,7 +349,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               source={require('@assets/trash/defaultArticleImage.png')}/>   
               }
             </View>
-            {/* <ShareFavButtons  isFavourite={false} backgroundColor={newHeaderColor} item={detailDataToUse} isAdvice={fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct'?false:true}/> */}
+            {adviceval == true ?
+              <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoriteadvices.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/>
+            : <ShareFavButtons backgroundColor={newHeaderColor} item={detailDataToUse} isFavourite = {((favoritegames.findIndex((x:any)=>x == detailDataToUse?.id)) > -1) ? true : false} isAdvice={adviceval}/> }
             <ArticleDetailsContainer>
               <ShiftFromBottom5>
             {detailDataToUse && detailDataToUse?.category && detailDataToUse?.category!= 0 ?    
@@ -380,7 +396,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 </FlexCol>
               </>
             ) : null}
-            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt'? (
+            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' ? (
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
@@ -408,7 +424,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 </BgActivityTint>
               </>
             ) : null}
-            {fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' ? (
+            {fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities' ? (
               <>
               <TrackMilestoneView currentSelectedChildId={currentSelectedChildId}/>
               <View style={{backgroundColor: newBackgroundColor}}>

@@ -54,11 +54,11 @@ type Props = {
 
 const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   let childData = route.params.childData;
-  console.log(childData, "..childData..")
+  //console.log(childData, "..childData..")
   const editScreen = childData && childData.uuid != '' ? true : false;
-  console.log(editScreen, "..editScreen..")
+  //console.log(editScreen, "..editScreen..")
   //const [dobDate, setdobDate] = useState();
-
+  const [clicked, setClicked] = useState(false);
   const [showdob, setdobShow] = useState(false);
   const ondobChange = (event:any,selectedDate: any) => {
     const currentDate = selectedDate || plannedTermDate;
@@ -94,7 +94,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       : state.childData.childDataSet.allChild,
   );
   const handleDobConfirm = (event:any) => {
-    console.log("A date has been picked: ", event);
+    //console.log("A date has been picked: ", event);
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
@@ -109,7 +109,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
   );
   useEffect(() => {
     const backAction = () => {
-      console.log("11")
+     // console.log("11")
       navigation.goBack();
       return true;
     };
@@ -127,7 +127,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
     let insertData: any = editScreen ? await getNewChild(childData?.uuid, "true", null, '', plannedTermDate, name, '', '',childData?.createdAt) : await getNewChild('', "true", null, '', plannedTermDate, name, '', '',null);
     let childSet: Array<any> = [];
     childSet.push(insertData);
-    console.log(childData,"..childData")
+    //console.log(childData,"..childData")
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   }
   const deleteRecord = (index: number, dispatch: any, uuid: string) => {
@@ -137,7 +137,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
       Alert.alert(t('deleteChildTxt'), t('deleteWarnTxt'), [
         {
           text: t('removeOption1'),
-          onPress: () => reject('error'),
+          onPress: () => resolve('error'),
           style: 'cancel',
         },
         {
@@ -183,14 +183,20 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               {childData && childData?.uuid != '' && childData?.uuid != null && childData?.uuid != undefined  ? t('editExpectChildAddTxt'):t('expectChildAddTxt')}
             </Heading2w>
           </HeaderTitleView>
-          <HeaderActionView>
+          <HeaderActionView  style={{padding:0}}>
             {childList?.length > 1 && childData && childData?.uuid != '' ? (
-              <ButtonDelPress
-                onPress={() =>
+              // <ButtonDelPress
+              //   onPress={() =>
+              //     deleteRecord(childData?.index, dispatch, childData?.uuid)
+              //   }>
+              //      <Icon name={'ic_trash'} color="#FFF" size={15} />
+              // </ButtonDelPress>
+              
+              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
                   deleteRecord(childData?.index, dispatch, childData?.uuid)
                 }>
-                <ButtonTextSmLineW>{t('growthScreendeletebtnText')}</ButtonTextSmLineW>
-              </ButtonDelPress>
+                      <Icon name={'ic_trash'} size={20} color="#FFF" />
+                  </Pressable>
             ) : null}
           </HeaderActionView>
         </HeaderRowView>
@@ -262,7 +268,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               isVisible={isDobDatePickerVisible}
               mode="date"
               onConfirm={handleDobConfirm}
-              date={plannedTermDate!=null ? plannedTermDate : new Date()}
+              date={plannedTermDate!=null ? plannedTermDate : new Date(DateTime.local().plus({ days: 1 }).toISODate())}
               onCancel={() => {
                 // Alert.alert('Modal has been closed.');
                 setDobDatePickerVisibility(false);
@@ -285,10 +291,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 onChangeText={(value) => { 
                   // setName(value.replace(/\s/g, '')) 
                   if (value.replace(/\s/g,"")=="") {
-                    console.log("..11value")
+                   // console.log("..11value")
                     setName(value.replace(/\s/g, '')); 
                    } else {
-                    console.log("..22value")
+                    //console.log("..22value")
                     // if (/^[a-zA-Z ]*$/.test(value)) {
                     // setName(value);
                     // }
@@ -308,8 +314,9 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
         <ShiftFromTop10>
           <ButtonContainer>
             <ButtonPrimary
-              disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" ? true : false}
+              disabled={plannedTermDate == null || plannedTermDate == undefined || name == null || name == undefined || name == "" || clicked? true : false}
               onPress={() => {
+                setClicked(true);
                 //navigation.navigate('ChildProfileScreen');
                 // if(plannedTermDate==null || plannedTermDate==undefined){
                 //   Alert.alert('Please enter due date');
@@ -318,7 +325,10 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 //   Alert.alert('Please enter name');
                 // }
                 //else{
-                AddChild();
+                setTimeout(()=>{
+                  AddChild();
+                },0)
+                
                 // }
               }}>
               <ButtonText numberOfLines={2}>{childData && childData?.uuid != '' ? t('editProfileBtn') : t('growthScreensaveMeasures')}</ButtonText>

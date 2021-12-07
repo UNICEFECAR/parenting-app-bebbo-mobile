@@ -66,7 +66,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.heightValue) {
-      console.log(route.params?.heightValue);
+      //console.log(route.params?.heightValue);
       (route.params?.heightValue.height != NaN) ? setheight(route.params?.heightValue.height) : setheight(0);
       (route.params?.heightValue.height1 != NaN) ? setheight1(route.params?.heightValue.height1) : setheight1(0.0);
       // setInitialValues(route.params?.weightValue)
