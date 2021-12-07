@@ -42,7 +42,7 @@ export type HomeDrawerNavigatorStackParamList = {
   // ChildProfileScreen: undefined;
   
   UserGuide: undefined;
-  Favourites: undefined;
+  Favourites: {};
   SupportChat:undefined;
 };
 

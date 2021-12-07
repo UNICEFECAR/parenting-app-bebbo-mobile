@@ -79,6 +79,7 @@ interface hardcodedDataType {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
+  faqsData:{},
   userOnboardedDate:number,
   weeklyDownloadDate:number,
   monthlyDownloadDate:number,
@@ -163,6 +164,7 @@ const initialState: hardcodedDataType = {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
+  faqsData:{},
   userOnboardedDate:0,
   weeklyDownloadDate:0,
   monthlyDownloadDate:0,
@@ -174,17 +176,17 @@ export const utilsSlice = createSlice({
   reducers: {
     setAcceptTerms:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setAcceptTerms");
+       // console.log(action.payload,"actionpayload setAcceptTerms");
           state.acceptTerms = action.payload;
     },
     setuserIsOnboarded:(  state,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setuserIsOnboarded");
+        //console.log(action.payload,"actionpayload setuserIsOnboarded");
           state.userIsOnboarded = action.payload;
     },
     setSyncDate:( state:any,
       action: PayloadAction<any>,)=>{
-        console.log(action.payload,"actionpayload setSyncDate");
+        //console.log(action.payload,"actionpayload setSyncDate");
         state[action.payload.key]=action.payload.value;
     },
     setDailyMessagesData:(  state,
@@ -330,6 +332,14 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.surveryData = action.payload;
       },
+      setAllFaqsData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        // console.log(action.payload,"setAllFaqsData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.faqsData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -343,7 +353,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

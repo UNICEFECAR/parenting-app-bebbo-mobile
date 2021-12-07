@@ -24,7 +24,7 @@ export const notificationSlice = createSlice({
       action: PayloadAction<any>,
     ) => {
       // console.log("articles data---",state);
-      console.log(action.payload, "notifications");
+     // console.log(action.payload, "notifications");
       // console.log(action.payload.map(user => user));
       state.notifications = (action.payload);
       // if(action.payload)|| Array.isArray(action.payload)

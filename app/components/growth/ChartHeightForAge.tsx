@@ -73,6 +73,7 @@ const ChartHeightForAge = () => {
     standardDeviation = genderGirlData;
     obj = formatHeightData(genderGirlData,'height');
   }
+  
   const childBirthDate = activeChild.birthDate;
   const childTaxonomyData = activeChild.taxonomyData;
   const sortedMeasurements = activeChild.measures.sort(
@@ -81,11 +82,11 @@ const ChartHeightForAge = () => {
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
   const item: any = getInterpretationHeightForAge(
     standardDeviation,
-    childBirthDate,
+    activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined? activeChild.plannedTermDate:childBirthDate,
     childTaxonomyData,
     lastMeasurements,
   );
-  console.log(item);
+ // console.log(item);
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {

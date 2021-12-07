@@ -399,6 +399,13 @@ const MEcnr = {
                 addChildText: "Dodajte podatke o djetetu",
                 notiTimeAgoTxt: "ago",
                 todayTxt:"today",
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle:"Information",
+                forceUpdatePopupText:"Data will be updated",
+                forceUpdateOkBtn:"OK",
+                favScreenremoveText:"Remove",
+                settingScreenimportOptionHeader: "Import data on",
+                childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
         }
 
 }
