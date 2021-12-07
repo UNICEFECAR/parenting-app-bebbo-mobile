@@ -60,7 +60,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Modal, Pressable, ScrollView, View } from 'react-native';
+import { Alert, Modal, PermissionsAndroid, Platform, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import DocumentPicker from 'react-native-document-picker';
 import RNFS, { stat } from 'react-native-fs';
@@ -76,6 +76,7 @@ import { setAllNotificationData, toggleNotificationFlags } from '../../redux/red
 import { backup } from '../../services/backup';
 import { getAllChildren, isFutureDate } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
+import * as ScopedStorage from "react-native-scoped-storage";
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -146,14 +147,14 @@ const SettingScreen = (props: any) => {
   );
 
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
-  
+
   const importAllData = async () => {
     setIsImportRunning(true);
     const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
     //console.log(importResponse, "..importResponse");
     // this.setState({ isImportRunning: false, });
     setIsImportRunning(false);
-    actionSheetRefImport.current?.setModalVisible(false); 
+    actionSheetRefImport.current?.setModalVisible(false);
     // Alert.alert(t('importText'), t("dataConsistency"),
     //   [
     //     {
@@ -167,101 +168,70 @@ const SettingScreen = (props: any) => {
     //       text: t('continueCountryLang'), onPress: async () => {
     //        // console.log(userRealmCommon.realm?.path, "..path")
     //         // this.setState({ isImportRunning: true, });
-          //   setIsImportRunning(true);
-          //   const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
-          //  // console.log(importResponse, "..importResponse");
-          //   // this.setState({ isImportRunning: false, });
-          //   setIsImportRunning(false);
+    //   setIsImportRunning(true);
+    //   const importResponse = await backup.import(props.navigation, languageCode, dispatch, child_age, genders);
+    //  // console.log(importResponse, "..importResponse");
+    //   // this.setState({ isImportRunning: false, });
+    //   setIsImportRunning(false);
     //       }
     //     }
     //   ]
     // );
-   // actionSheetRefImport.current?.setModalVisible();
+    // actionSheetRefImport.current?.setModalVisible();
   }
 
   const exportFile = async () => {
     //need to add code.
     // Alert.alert('Coming Soon');
     setIsExportRunning(false);
-   
-    //export 
-    const res: any = await DocumentPicker.pickDirectory();
-     console.log(res,"..res");
-    //  const res: any = await selectDirectory();
-    //  console.log(res,"..res");
-    //  const path1: any = await RNFS.stat(res.uri);
-    //  console.log(path1,"..path1..")
-    //  const res2: any =await RNFS.mkdir(res.uri);
-    //  console.log(res2,"..res2..res2")
-    //  RNFS.getFileUri(res.uri).then(filePath =>{
-    //    console.log(filePath,"..filePath");
-    //  }
-    // const RNGRP = require('react-native-get-real-path');
-    // RNGRP.getRealPathFromURI(res.uri).then(filePath =>{
-    //   console.log(filePath,"..filePath..")
-    // })
-    // const rel: any = await DocumentPicker.releaseSecureAccess(res.uri);
-
-    // console.log(decodeURIComponent(res.uri),"..11path..");
     const userRealmPath = userRealmCommon.realm?.path;
     if (!userRealmPath) return false;
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    // const data=await RNFetchBlob.fs.writeFile(res.uri, realmContent, 'base64');
-    // console.log(data,"..data..")
-  //   DocumentPicker.releaseSecureAccess([])
-  //           .then(async () => {
-  //   // const res: any = await DocumentPicker.pickDirectory();
-  //   // Alert.alert("11",res.uri);
-  //   // const path1: any = await RNFS.stat(res.uri)
-  //   // console.log(path1, "..path1..");
-  // //   if (res && res.uri) {
-  // //     const userRealmPath = userRealmCommon.realm?.path;
-  // //      if (!userRealmPath) return false;
-  // //      const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-  // //      console.log(realmContent,"..realmContent");
-  // // //     // const stat = await RNFetchBlob.fs.stat(res.uri);
-  // // //     // console.log(stat,"..stat..");
-  // // //     const path = res.uri + '/my.backup';
-  // // //     console.log(path,"..path..");
-  // // //     setIsExportRunning(false);
- 
-      RNFS.writeFile(decodeURIComponent(res.uri)+"my.backup", realmContent, 'base64')
-      .then((success) => {
-       console.log(success);
-       setIsExportRunning(false);
-       actionSheetRef.current?.setModalVisible(false); 
-      })
-      .catch((err) => {
-        console.log(err,"..err")
+    //export 
+    if (Platform.OS === "android") {
+      let file = await ScopedStorage.openDocumentTree(true);
+      //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
+      let uri: any = await ScopedStorage.getPersistedUriPermissions();
+      console.log(uri, "..uri..");
+      let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*", realmContent, 'base64', false);
+      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined && fileDownload.split(/[#?]/)[0].split('.').pop().trim()=="backup") {
+        Alert.alert('', t('settingExportSuccess'));
+      }
+      else {
         Alert.alert('', t('settingExportError'));
-        setIsExportRunning(false);
-      });
-  // //    }
-  // //   else{
-  // //     Alert.alert('', t('settingExportError'));
-  // //     setIsExportRunning(false);
-  // //   }
-  //   console.warn('releaseSecureAccess: success')
-  // })
-  // .catch((error)=>{
-  //   console.warn(error)
-  // })
+      }
+    }
+    else {
+      const res: any = await DocumentPicker.pickDirectory();
+      RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
+        .then((success) => {
+          setIsExportRunning(false);
+          actionSheetRef.current?.setModalVisible(false);
+          Alert.alert('', t('settingExportSuccess'));
+        })
+        .catch((err) => {
+          console.log(err, "..err")
+          Alert.alert('', t('settingExportError'));
+          setIsExportRunning(false);
+        });
+    }
   }
-  const onExportCancel =() => {
+  const onExportCancel = () => {
     setExportAlertVisible(false);
   }
-  const onImportCancel =() => {
+  const onImportCancel = () => {
     setImportAlertVisible(false);
   }
   const exportToDrive = async () => {
-            setIsExportRunning(true);
-            const exportIsSuccess = await backup.export();
-            setIsExportRunning(false);
-            if (!exportIsSuccess) {
-              Alert.alert('', t('settingExportError'));
-            } else {
-              Alert.alert('', t('settingExportSuccess'));
-            };
+    setIsExportRunning(true);
+    const exportIsSuccess = await backup.export();
+    setIsExportRunning(false);
+    if (!exportIsSuccess) {
+      Alert.alert('', t('settingExportError'));
+    } else {
+      Alert.alert('', t('settingExportSuccess'));
+    };
     // Alert.alert(t('exportText'), t("dataConsistency"),
     //   [
     //     {
@@ -287,13 +257,13 @@ const SettingScreen = (props: any) => {
     //     }
     //   ]
     // );
-    actionSheetRef.current?.setModalVisible(false); 
+    actionSheetRef.current?.setModalVisible(false);
   }
   const handleExportAlertConfirm = () => {
     setExportAlertVisible(false);
     exportToDrive();
   };
-  const handleImportAlertConfirm =async () => {
+  const handleImportAlertConfirm = async () => {
     setImportAlertVisible(false);
     importAllData()
   };
@@ -331,19 +301,19 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'gw') {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
+              const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
               // console.log(isFutureDate(new Date(item.notificationDate)),"isFutureDate")
               // console.log(growthEnabledFlag,"growthEnabledFlag");
-// growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
+              // growthEnabledFlag == false checked because state update of growthEnabledFlag istaking time
               if (isFutureDate((item.notificationDate))) {
                 return { ...item, isDeleted: growthEnabledFlag == false ? false : true };
-              }else if(difftoToday==0  || difftoToday==-0){
-                if(growthEnabledFlag ==false){
+              } else if (difftoToday == 0 || difftoToday == -0) {
+                if (growthEnabledFlag == false) {
                   return { ...item, isDeleted: false };
-                }else{
+                } else {
                   return { ...item };
                 }
-               
+
               } else {
                 return { ...item };
               }
@@ -374,19 +344,19 @@ const SettingScreen = (props: any) => {
         if (currentChildNotis.gwcdnotis.length > 0) {
           currentChildNotis.gwcdnotis = [...currentChildNotis.gwcdnotis]?.map((item) => {
             if (item.type == 'cd') {
-              const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);   
+              const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
               // console.log(developmentEnabledFlag,"developmentEnabledFlag");
               // developmentEnabledFlag == false checked because state update of developmentEnabledFlag istaking time
               if (isFutureDate(new Date(item.notificationDate))) {
                 return { ...item, isDeleted: developmentEnabledFlag == false ? false : true };
-              }else if(difftoToday==0  || difftoToday==-0){
-                if(developmentEnabledFlag ==false){
+              } else if (difftoToday == 0 || difftoToday == -0) {
+                if (developmentEnabledFlag == false) {
                   return { ...item, isDeleted: false };
-                }else{
+                } else {
                   return { ...item };
                 }
               }
-                else {
+              else {
                 return { ...item };
               }
             } else {
@@ -413,18 +383,18 @@ const SettingScreen = (props: any) => {
       if (notiExist) {
         if (currentChildNotis.vcnotis.length > 0) {
           currentChildNotis.vcnotis = [...currentChildNotis.vcnotis]?.map((item) => {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);   
-          //  console.log(Number(difftoToday),"difftoToday,vcnotis");
-          // console.log(vchcEnabledFlag,"vchcEnabledFlag");
-          // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
+            //  console.log(Number(difftoToday),"difftoToday,vcnotis");
+            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
+            // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             }
-          
-            else if(difftoToday==0 || difftoToday==-0){
-              if(vchcEnabledFlag ==false){
+
+            else if (difftoToday == 0 || difftoToday == -0) {
+              if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
-              }else{
+              } else {
                 return { ...item };
               }
             } else {
@@ -434,15 +404,15 @@ const SettingScreen = (props: any) => {
         }
         if (notiExist.hcnotis.length > 0) {
           currentChildNotis.hcnotis = [...currentChildNotis.hcnotis]?.map((item) => {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);    
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
             // console.log(vchcEnabledFlag,"vchcEnabledFlag");
-           // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
+            // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            }else if(difftoToday==0  || difftoToday==-0){
-              if(vchcEnabledFlag ==false){
+            } else if (difftoToday == 0 || difftoToday == -0) {
+              if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
-              }else{
+              } else {
                 return { ...item };
               }
             } else {
@@ -452,15 +422,15 @@ const SettingScreen = (props: any) => {
         }
         if (notiExist.reminderNotis.length > 0) {
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
-            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);    
+            const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
             // console.log(vchcEnabledFlag,"vchcEnabledFlag");
-           // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
+            // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
-            }else if(difftoToday==0  || difftoToday==-0){
-              if(vchcEnabledFlag ==false){
+            } else if (difftoToday == 0 || difftoToday == -0) {
+              if (vchcEnabledFlag == false) {
                 return { ...item, isDeleted: false };
-              }else{
+              } else {
                 return { ...item };
               }
             }
@@ -568,11 +538,38 @@ const SettingScreen = (props: any) => {
   useFocusEffect(
     React.useCallback(() => {
       toggleSwitch();
-    }, [developmentEnabledFlag,growthEnabledFlag,vchcEnabledFlag])
+    }, [developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag])
   );
+  const importFromSettingsFile = async () => {
+    const res: any = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+    })
+    console.log(res, "..res..");
+
+
+    if (res.length > 0 && res[0].uri) {
+      const exportedFileContent: any = await RNFS.readFile(res[0].uri, 'base64');
+      console.log(exportedFileContent, "..newexportedFileContent..")
+      const exportedFileContentRealm: any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm', exportedFileContent, "base64");
+      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+      const user1Path = importedrealm.path;
+      console.log(user1Path, "..user1Path")
+      const oldChildrenData = importedrealm.objects('ChildEntity');
+      console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
+      console.log(oldChildrenData, "..newoldChildrenData..")
+      setIsImportRunning(true);
+      const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
+      console.log(importResponse, "..importResponse");
+      // this.setState({ isImportRunning: false, });
+      setIsImportRunning(false);
+      actionSheetRefImport.current?.setModalVisible(false);
+
+    }
+
+  }
   return (
     <>
-      <View style={{flex:1,backgroundColor:primaryColor}}>
+      <View style={{ flex: 1, backgroundColor: primaryColor }}>
         <FocusAwareStatusBar animated={true} backgroundColor={primaryColor} />
         <TabScreenHeader
           title={t('settingScreenheaderTitle')}
@@ -580,7 +577,7 @@ const SettingScreen = (props: any) => {
           textColor="#FFF"
         />
 
-        <ScrollView style={{ flex: 1 ,backgroundColor:"#FFF"}}>
+        <ScrollView style={{ flex: 1, backgroundColor: "#FFF" }}>
           <MainContainer>
             <SettingHeading>
               <Heading1>{t('settingScreennotiHeaderText')}</Heading1>
@@ -601,156 +598,156 @@ const SettingScreen = (props: any) => {
                 </ToggleLabelText>
               </FDirRowStart>
             </ShiftFromBottom10>
-          
-              <ShiftFromBottom10>
-                <SideSpacing10>
-                  <FDirRowStart>
-                    <FormOuterCheckbox
-                      onPress={() => {
-                        let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
-                        dispatch(toggleNotificationFlags(obj));
-                        toggleGrowthFutureNotiData();
-                        if (vchcEnabledFlag == false && growthEnabledFlag == true && developmentEnabledFlag == false) {
-                          setIsEnabled(false);
-                        } else {
-                          setIsEnabled(true);
-                        }
-                        if (growthEnabledFlag == true) {
-                          analytics().logEvent(GROWTH_NOTIFICATION_ON)
-                        } else {
-                          analytics().logEvent(GROWTH_NOTIFICATION_OFF)
-                        }
-                        // toggleSwitch();
-                        // analytics().logEvent(GROWTH_NOTIFICATION)
-                        // setIsEnabled(!isEnabled);
-                      }}>
-                      <CheckboxItem>
-                        <View>
-                          {growthEnabledFlag ? (
-                            <CheckboxActive>
-                              <Icon name="ic_tick" size={12} color="#000" />
-                            </CheckboxActive>
-                          ) : (
-                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                          )}
-                        </View>
-                      </CheckboxItem>
-                    </FormOuterCheckbox>
-                    {/* <Switch
+
+            <ShiftFromBottom10>
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      let obj = { key: 'growthEnabled', value: growthEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      toggleGrowthFutureNotiData();
+                      if (vchcEnabledFlag == false && growthEnabledFlag == true && developmentEnabledFlag == false) {
+                        setIsEnabled(false);
+                      } else {
+                        setIsEnabled(true);
+                      }
+                      if (growthEnabledFlag == true) {
+                        analytics().logEvent(GROWTH_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(GROWTH_NOTIFICATION_OFF)
+                      }
+                      // toggleSwitch();
+                      // analytics().logEvent(GROWTH_NOTIFICATION)
+                      // setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {growthEnabledFlag ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <ToggleLabelText1 >
-                      <Heading4Regular>
-                        {t('settingScreennotiType2')}
-                      </Heading4Regular>
-                    </ToggleLabelText1>
-                  </FDirRowStart>
-                </SideSpacing10>
-              </ShiftFromBottom10>
+                  <ToggleLabelText1 >
+                    <Heading4Regular>
+                      {t('settingScreennotiType2')}
+                    </Heading4Regular>
+                  </ToggleLabelText1>
+                </FDirRowStart>
+              </SideSpacing10>
+            </ShiftFromBottom10>
 
-              <ShiftFromBottom10>
-                <SideSpacing10>
-                  <FDirRowStart>
-                    <FormOuterCheckbox
-                      onPress={() => {
-                        let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
-                        dispatch(toggleNotificationFlags(obj));
-                        togglecdFutureNotiData();
-                        if (vchcEnabledFlag == false && growthEnabledFlag == false && developmentEnabledFlag == true) {
-                          setIsEnabled(false);
-                        } else {
-                          setIsEnabled(true);
-                        }
-                        if (developmentEnabledFlag == true) {
-                          analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
-                        } else {
-                          analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
-                        }
-                        // toggleSwitch();
+            <ShiftFromBottom10>
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      let obj = { key: 'developmentEnabled', value: developmentEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      togglecdFutureNotiData();
+                      if (vchcEnabledFlag == false && growthEnabledFlag == false && developmentEnabledFlag == true) {
+                        setIsEnabled(false);
+                      } else {
+                        setIsEnabled(true);
+                      }
+                      if (developmentEnabledFlag == true) {
+                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(DEVELOPMENT_NOTIFICATION_OFF)
+                      }
+                      // toggleSwitch();
 
-                        // setIsEnabled(!isEnabled);
-                      }}>
-                      <CheckboxItem>
-                        <View>
-                          {developmentEnabledFlag ? (
-                            <CheckboxActive>
-                              <Icon name="ic_tick" size={12} color="#000" />
-                            </CheckboxActive>
-                          ) : (
-                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                          )}
-                        </View>
-                      </CheckboxItem>
-                    </FormOuterCheckbox>
-                    {/* <Switch
+                      // setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {developmentEnabledFlag ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <ToggleLabelText1>
-                      <Heading4Regular>
-                        {t('settingScreennotiType3')}
-                      </Heading4Regular>
-                    </ToggleLabelText1>
-                  </FDirRowStart>
-                </SideSpacing10>
-              </ShiftFromBottom10>
+                  <ToggleLabelText1>
+                    <Heading4Regular>
+                      {t('settingScreennotiType3')}
+                    </Heading4Regular>
+                  </ToggleLabelText1>
+                </FDirRowStart>
+              </SideSpacing10>
+            </ShiftFromBottom10>
 
-              <ShiftFromBottom10>
-                <SideSpacing10>
-                  <FDirRowStart>
-                    <FormOuterCheckbox
-                      onPress={() => {
-                        let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
-                        dispatch(toggleNotificationFlags(obj));
-                        toggleVCHCVCRHCRFutureNotiData();
-                        if (vchcEnabledFlag == true && growthEnabledFlag == false && developmentEnabledFlag == false) {
-                          setIsEnabled(false);
-                        } else {
-                          setIsEnabled(true);
-                        }
-                        if (vchcEnabledFlag == true) {
-                          analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
-                        } else {
-                          analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
-                        }
-                        // toggleSwitch();
-                        // setIsEnabled(!isEnabled);
-                      }}>
-                      <CheckboxItem>
-                        <View>
-                          {vchcEnabledFlag ? (
-                            <CheckboxActive>
-                              <Icon name="ic_tick" size={12} color="#000" />
-                            </CheckboxActive>
-                          ) : (
-                            <Checkbox style={{ borderWidth: 1 }}></Checkbox>
-                          )}
-                        </View>
-                      </CheckboxItem>
-                    </FormOuterCheckbox>
-                    {/* <Switch
+            <ShiftFromBottom10>
+              <SideSpacing10>
+                <FDirRowStart>
+                  <FormOuterCheckbox
+                    onPress={() => {
+                      let obj = { key: 'vchcEnabled', value: vchcEnabledFlag == true ? false : true };
+                      dispatch(toggleNotificationFlags(obj));
+                      toggleVCHCVCRHCRFutureNotiData();
+                      if (vchcEnabledFlag == true && growthEnabledFlag == false && developmentEnabledFlag == false) {
+                        setIsEnabled(false);
+                      } else {
+                        setIsEnabled(true);
+                      }
+                      if (vchcEnabledFlag == true) {
+                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_ON)
+                      } else {
+                        analytics().logEvent(VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF)
+                      }
+                      // toggleSwitch();
+                      // setIsEnabled(!isEnabled);
+                    }}>
+                    <CheckboxItem>
+                      <View>
+                        {vchcEnabledFlag ? (
+                          <CheckboxActive>
+                            <Icon name="ic_tick" size={12} color="#000" />
+                          </CheckboxActive>
+                        ) : (
+                          <Checkbox style={{ borderWidth: 1 }}></Checkbox>
+                        )}
+                      </View>
+                    </CheckboxItem>
+                  </FormOuterCheckbox>
+                  {/* <Switch
                   trackColor={{false: trackFalseColor, true: trackTrueColor}}
                   thumbColor={isEnabled ? thumbTrueColor : thumbFalseColor}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 /> */}
-                    <ToggleLabelText1>
-                      <Heading4Regular>
-                        {t('settingScreennotiType4')}
-                      </Heading4Regular>
-                    </ToggleLabelText1>
-                  </FDirRowStart>
-                </SideSpacing10>
-              </ShiftFromBottom10>
-           
+                  <ToggleLabelText1>
+                    <Heading4Regular>
+                      {t('settingScreennotiType4')}
+                    </Heading4Regular>
+                  </ToggleLabelText1>
+                </FDirRowStart>
+              </SideSpacing10>
+            </ShiftFromBottom10>
+
             <View>
               <Heading4Regular>{t('settingScreennotiInfo')}</Heading4Regular>
             </View>
@@ -822,13 +819,13 @@ const SettingScreen = (props: any) => {
                   setModalVisible(true)
                 }}> */}
                 <IconAreaPress onPress={() => {
-                // if (netInfoval && netInfoval.isConnected == true) {
+                  // if (netInfoval && netInfoval.isConnected == true) {
                   setModalVisible(true)
-                // }
-                // else {
-                //   Alert.alert('', t('noInternet'));
-                // }
-              }}>
+                  // }
+                  // else {
+                  //   Alert.alert('', t('noInternet'));
+                  // }
+                }}>
                   <Icon name="ic_edit" size={16} color="#000" />
                 </IconAreaPress>
               </FlexDirRowSpace>
@@ -878,7 +875,7 @@ const SettingScreen = (props: any) => {
                 // else {
                 //   Alert.alert('', t('noInternet'));
                 // }
-                actionSheetRefImport.current?.setModalVisible(true); 
+                actionSheetRefImport.current?.setModalVisible(true);
               }}>
                 <ButtonText numberOfLines={2}>{t('settingScreenimportBtnText')}</ButtonText>
               </ButtonPrimary>
@@ -912,10 +909,33 @@ const SettingScreen = (props: any) => {
               <SettingShareData>
                 <FDirRow>
                   <SettingOptions>
-                    <Pressable onPress={() => {
+                    <Pressable onPress={async () => {
                       console.log("icon clicked");
                       //if(netInfoval && netInfoval.isConnected==true){
-                      exportFile()
+                      try {
+                        if (Platform.OS === "android") {
+                          console.log("1233");
+                          const userResponse = await PermissionsAndroid.requestMultiple([
+                            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                          ]);
+                          console.log(userResponse, "..userResponse..")
+                          if (userResponse) {
+                            console.log("You can write");
+                            exportFile();
+
+                          } else {
+                            console.log("You can write");
+                          }
+                        }
+                        else {
+                          exportFile();
+                        }
+
+                      } catch (err) {
+                        console.warn(err);
+                      }
+
                       // }
                       // else{
                       //   Alert.alert('',t('noInternet'));
@@ -931,7 +951,7 @@ const SettingScreen = (props: any) => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
-                    //  console.log("icon clicked");
+                      //  console.log("icon clicked");
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
                         setExportAlertVisible(true);
@@ -967,34 +987,25 @@ const SettingScreen = (props: any) => {
                       console.log("icon clicked");
                       actionSheetRefImport.current?.setModalVisible(false);
                       setTimeout(async () => {
+
                         try {
                           //import
-                          const res: any = await DocumentPicker.pick({
-                            type: [DocumentPicker.types.allFiles],
-                          })
-                          console.log(res, "..res..");
-  
-  
-                          if (res.length > 0 && res[0].uri) {
-                            const exportedFileContent:any = await RNFS.readFile(res[0].uri, 'base64');
-                            console.log(exportedFileContent,"..newexportedFileContent..")
-                            const exportedFileContentRealm:any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm',exportedFileContent,"base64");
-                            const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm'});
-                            const user1Path = importedrealm.path;
-                            console.log(user1Path,"..user1Path")
-                            const oldChildrenData = importedrealm.objects('ChildEntity');
-                            console.log(exportedFileContentRealm,"..exportedFileContentRealm..")
-                            console.log(oldChildrenData,"..newoldChildrenData..")
-                            setIsImportRunning(true);
-                            const importResponse = await backup.importFromFile(oldChildrenData,props.navigation,genders,dispatch,child_age,languageCode);
-                            console.log(importResponse, "..importResponse");
-                            // this.setState({ isImportRunning: false, });
-                            setIsImportRunning(false);
-                            actionSheetRefImport.current?.setModalVisible(false); 
-                           
+                          if (Platform.OS === "android") {
+                            console.log("1233");
+                            const userResponse = await PermissionsAndroid.requestMultiple([
+                              PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                            ]);
+                            console.log(userResponse, "..userResponse..")
+                            if (userResponse) {
+                              importFromSettingsFile();
+                            }
                           }
-  
-  
+                          else {
+                            importFromSettingsFile();
+                          }
+
+
                         } catch (err) {
                           if (DocumentPicker.isCancel(err)) {
                             // User cancelled the picker, exit any dialogs or menus and move on
@@ -1003,7 +1014,7 @@ const SettingScreen = (props: any) => {
                           }
                         }
                       }, 350);
-                     
+
                       //if(netInfoval && netInfoval.isConnected==true){
                       // exportFile()
                       // }
@@ -1021,8 +1032,8 @@ const SettingScreen = (props: any) => {
                   </SettingOptions>
                   <SettingOptions>
                     <Pressable onPress={() => {
-                    //  console.log("icon clicked");
-                    actionSheetRefImport.current?.setModalVisible(false);
+                      //  console.log("icon clicked");
+                      actionSheetRefImport.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
                         setImportAlertVisible(true);
                       }
@@ -1062,7 +1073,7 @@ const SettingScreen = (props: any) => {
               <PopupCloseContainer>
                 <PopupClose
                   onPress={() => {
-                  //  console.log('close');
+                    //  console.log('close');
                     setModalVisible(false);
                   }}>
                   <Icon name="ic_close" size={16} color="#000" />
@@ -1096,9 +1107,9 @@ const SettingScreen = (props: any) => {
             </ModalPopupContainer>
           </PopupOverlay>
         </Modal>
-        <AlertModal loading={isExportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('exportText')} cancelText={t("retryCancelPopUpBtn")}  onConfirm={handleExportAlertConfirm} onCancel={onExportCancel}></AlertModal>
-        <AlertModal loading={isImportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")}  onConfirm={handleImportAlertConfirm} onCancel={onImportCancel}></AlertModal>
-    
+        <AlertModal loading={isExportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('exportText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleExportAlertConfirm} onCancel={onExportCancel}></AlertModal>
+        <AlertModal loading={isImportAlertVisible} disabled={isExportRunning || isImportRunning} message={t("dataConsistency")} title={t('importText')} cancelText={t("retryCancelPopUpBtn")} onConfirm={handleImportAlertConfirm} onCancel={onImportCancel}></AlertModal>
+
       </View>
     </>
   );

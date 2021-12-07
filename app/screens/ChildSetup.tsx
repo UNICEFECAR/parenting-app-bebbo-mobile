@@ -22,7 +22,7 @@ import { dobMax } from '@types/types';
 import { Settings } from 'luxon';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, TextInput } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, TextInput, PermissionsAndroid, Platform } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -169,6 +169,48 @@ const ChildSetup = ({ navigation }: Props) => {
       setRelationship(String(checkedItem.id));
     }
   };
+  const importFromFile=async()=>{
+    const res: any = await DocumentPicker.pick({
+      type: [DocumentPicker.types.allFiles],
+    })
+    console.log(res, "..res..");
+
+
+    if (res.length > 0 && res[0].uri) {
+      const exportedFileContent:any = await RNFS.readFile(res[0].uri, 'base64');
+      console.log(exportedFileContent,"..newexportedFileContent..")
+     // console.log(oldChildrenData,"..newoldChildrenData..")
+      const exportedFileContentRealm:any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm',exportedFileContent,"base64");
+      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm'});
+      console.log(importedrealm,"...importedrealm");
+      const user1Path = importedrealm.path;
+      const oldChildrenData = importedrealm.objects('ChildEntity');
+      console.log(exportedFileContent,"..newexportedFileContent..")
+      console.log(oldChildrenData,"..newoldChildrenData..")
+      setImportAlertVisible(false);
+      setLoading(true);
+      setIsImportRunning(true);
+      if (oldChildrenData.length > 0) {
+        setIsImportRunning(false);
+        setLoading(false);
+        navigation.navigate('ChildImportSetup', {
+          importResponse: JSON.stringify(oldChildrenData)
+        });
+        importedrealm.close();
+        try {
+          Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+      } catch (error) {
+          //console.log(error);
+      } 
+      }
+      else {
+        setLoading(false);
+        setIsImportRunning(false);
+      }
+     
+    }
+
+  }
   const importAllData = async () => {
     setImportAlertVisible(false);
     setLoading(true);
@@ -482,46 +524,21 @@ const ChildSetup = ({ navigation }: Props) => {
                     setTimeout(async () => {
                       try {
                         //import
-                        const res: any = await DocumentPicker.pick({
-                          type: [DocumentPicker.types.allFiles],
-                        })
-                        console.log(res, "..res..");
-
-
-                        if (res.length > 0 && res[0].uri) {
-                          const exportedFileContent:any = await RNFS.readFile(res[0].uri, 'base64');
-                          console.log(exportedFileContent,"..newexportedFileContent..")
-                         // console.log(oldChildrenData,"..newoldChildrenData..")
-                          const exportedFileContentRealm:any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm',exportedFileContent,"base64");
-                          const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm'});
-                          console.log(importedrealm,"...importedrealm");
-                          const user1Path = importedrealm.path;
-                          const oldChildrenData = importedrealm.objects('ChildEntity');
-                          console.log(exportedFileContent,"..newexportedFileContent..")
-                          console.log(oldChildrenData,"..newoldChildrenData..")
-                          setImportAlertVisible(false);
-                          setLoading(true);
-                          setIsImportRunning(true);
-                          if (oldChildrenData.length > 0) {
-                            setIsImportRunning(false);
-                            setLoading(false);
-                            navigation.navigate('ChildImportSetup', {
-                              importResponse: JSON.stringify(oldChildrenData)
-                            });
-                            importedrealm.close();
-                            try {
-                              Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
-                          } catch (error) {
-                              //console.log(error);
-                          } 
+                        if (Platform.OS === "android") {
+                          console.log("1233");
+                          const userResponse = await PermissionsAndroid.requestMultiple([
+                            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                          ]);
+                          console.log(userResponse,"..userResponse..")
+                          if (userResponse) {
+                            importFromFile();
                           }
-                          else {
-                            setLoading(false);
-                            setIsImportRunning(false);
-                          }
-                         
                         }
-
+                        else{
+                          importFromFile();
+                        }
+                      
 
                       } catch (err) {
                         if (DocumentPicker.isCancel(err)) {
