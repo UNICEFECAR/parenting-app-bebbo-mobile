@@ -388,7 +388,24 @@ const GRda = {
                 dataSaveroff: "غیرفعال",
                 vcrNoti1: "در این تاریخ یک یادآوری واکسیناسیون تنظیم شده است {{reminderDateTime}}",
                 hcrNoti1: "در این تاریخ یک یادآوری  معاینه صحی  تنظیم شده است {{reminderDateTime}}",
-                parentGender: "جنسیت"
+                parentGender: "جنسیت",
+                successOnboardingImport:"You successfully imported child data",
+                updateImportText:"Please update your details to continue",
+                importOnboardingText:"You can import previously exported child data",
+                OnboardingImportButton:"Import now",
+                ORkeyText:"OR",
+                addChildText:"Add your child details",
+                notiTimeAgoTxt: "ago",
+                todayTxt:"today",
+                //phase2 strings
+                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle:"Information",
+                forceUpdatePopupText:"Data will be updated",
+                forceUpdateOkBtn:"OK",
+                favScreenremoveText:"Remove",
+                settingScreenimportOptionHeader: "Import data on",
+                childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
+                settingScreenFileBtntxt: "File",
         }
 }
 export default GRda;

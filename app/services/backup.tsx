@@ -97,6 +97,85 @@ class Backup {
             delete this.importedrealm;
         }
     }
+    public async importFromFile(oldChildrenData:any,navigation:any,genders:any,dispatch:any,child_age:any,langCode:any): Promise<any> {
+        if (oldChildrenData?.length > 0) {
+            const resolvedPromises = oldChildrenData.map(async (item: any) => {
+                //console.log(item, "..item..");
+                if(item.birthDate!=null && item.birthDate!=undefined){
+                const itemnew = await getChild(item, genders);
+                let childData: any = [];
+                childData.push(itemnew);
+                console.log(childData, "..childData..");
+                let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
+                console.log(createresult, "..createresult");
+                }
+                // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
+                //console.log(createresult,".....createresult...");
+            });
+            let notiFlagObj = { key: 'generateNotifications', value: true };
+            dispatch(setInfoModalOpened(notiFlagObj));
+            await Promise.all(resolvedPromises).then(async item => {
+                let allChildren = await getAllChildren(dispatch, child_age,1);
+                let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
+                let allChildrenList: Child[] = [];
+                this.closeImportedRealm();
+                    
+                if (allChildren.length > 0) {
+                    if (childId?.length > 0) {
+                    childId = childId[0].value;
+                    let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
+                    if(activeChildData.length>0){
+                        const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
+                        navigation.navigate('LoadingScreen', {
+                            apiJsonData: [],
+                            prevPage: 'ImportScreen'
+                        });
+                        try {
+                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                        } catch (error) {
+                            //console.log(error);
+                        }
+                        return "Imported";
+                    }
+                    else{
+                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                        navigation.navigate('LoadingScreen', {
+                            apiJsonData: [],
+                            prevPage: 'ImportScreen'
+                        });
+                        try {
+                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                        } catch (error) {
+                            //console.log(error);
+                        }
+                        return "Imported";
+                    }
+                    }
+                    else{
+                        const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
+                        navigation.navigate('LoadingScreen', {
+                            apiJsonData: [],
+                            prevPage: 'ImportScreen'
+                        });
+                        try {
+                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                        } catch (error) {
+                            //console.log(error);
+                        }
+                        return "Imported";
+                        
+                    }
+                }
+                else {
+                    return new Error('No Data');
+                }
+            }).catch(error => {
+                return new Error('No Import Succeded');
+            })
+
+
+        }
+    }
     public async import1(navigation: any, langCode: any, dispatch: any, child_age: any, genders: any): Promise<any> {
         // await googleAuth.signOut();
         const tokens = await googleAuth.getTokens();
