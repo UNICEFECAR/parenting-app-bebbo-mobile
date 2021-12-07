@@ -10,20 +10,20 @@ export const userRealmConfig: Realm.Configuration ={
     ReminderEntitySchema
    // MeasurementEntitySchema
   ],
-  schemaVersion: 1,
+  schemaVersion: 3,
   migration: (oldRealm, newRealm) => {
-   console.log("..user migration new..");
+  // console.log("..user migration new..");
     //0
-   console.log(oldRealm.schemaVersion,"..old schema version")
+  // console.log(oldRealm.schemaVersion,"..old schema version")
     //1
-   console.log(newRealm.schemaVersion,"..new schema version")
+  // console.log(newRealm.schemaVersion,"..new schema version")
     //realm old version was 0 and new version is 1.
     const oldObjects = oldRealm.objects('ChildEntity');
     const newObjects = newRealm.objects('ChildEntity');
-   console.log("oldobj---",oldObjects);
-   console.log("newObjects---",newObjects);
+   //console.log("oldobj---",oldObjects);
+   //console.log("newObjects---",newObjects);
     if(oldRealm.schemaVersion < 1){
-      console.log("inner lopp..")
+     // console.log("inner lopp..")
     //   const oldObjects = oldRealm.objects('ChildEntity');
     //   const newObjects = newRealm.objects('ChildEntity');
     //  console.log("oldobj---",oldObjects);

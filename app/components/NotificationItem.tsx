@@ -27,7 +27,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 const NotificationItem = (props: any) => {
   const { item, itemIndex, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, childAgeInDays, activeChild } = props;
   const themeContext = useContext(ThemeContext);
-  console.log(childAgeInDays, "childAgeInDays")
+ // console.log(childAgeInDays, "childAgeInDays")
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   // const primaryColor = themeContext.colors.PRIMARY_COLOR;
@@ -63,7 +63,7 @@ const NotificationItem = (props: any) => {
       markAsRead(item);
     }
     const type = item.type;
-    console.log(type);
+   // console.log(type);
     type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
         headerTitle: t('growthScreenaddNewBtntxt'),
@@ -214,9 +214,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                        //console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -324,9 +324,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                       // console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -450,9 +450,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                     //   console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -563,9 +563,9 @@ const NotificationItem = (props: any) => {
                           justifyContent: 'center',
                           alignItems: 'center',
                         }}
-                        onSelect={(value) =>
-                          console.log(`Selected number: ${value} ${item}`)
-                        }>
+                        onSelect={(value) =>{
+                       //   console.log(`Selected number: ${value} ${item}`)
+                        }}>
                         <MenuTrigger>
                           <Icon
                             
@@ -674,9 +674,9 @@ const NotificationItem = (props: any) => {
                           justifyContent: 'center',
                           alignItems: 'center',
                         }}
-                        onSelect={(value) =>
-                          console.log(`Selected number: ${value} ${item}`)
-                        }>
+                        onSelect={(value) =>{
+                         // console.log(`Selected number: ${value} ${item}`)
+                        }}>
                         <MenuTrigger>
                           <Icon
                             
@@ -791,9 +791,9 @@ const NotificationItem = (props: any) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
+                  onSelect={(value) =>{
+                    //console.log(`Selected number: ${value} ${item}`)
+                  }}>
                   <MenuTrigger>
                     <Icon
                       

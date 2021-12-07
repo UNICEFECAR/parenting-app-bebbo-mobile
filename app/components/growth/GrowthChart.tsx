@@ -56,8 +56,7 @@ const GrowthChart = (props: any) => {
   let {activeChild, chartType, bgObj,windowWidth,windowHeight} = props;
   const {t} = useTranslation();
   // console.log(chartType, 'chartType0');
-  const childBirthDate = activeChild.birthDate;
-
+  const childBirthDate =activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!="" && activeChild?.taxonomyData.prematureTaxonomyId!=undefined?  activeChild.plannedTermDate: activeChild.birthDate; 
   // const labelX = props.chartType == chartTypes.heightForAge ? t('month') : t('growthScreencmText');
   // const labelY = props.chartType == chartTypes.weightForHeight ? t('growthScreenkgText') : t('growthScreencmText');
   const labelX = props.chartType == chartTypes.weightForHeight ? t('growthScreencmText'):t('month') ;
@@ -103,7 +102,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
 // useFocusEffect(
 //   React.useCallback(() => {
   useEffect(() => {
-console.log(windowWidth,windowHeight,"<><><><><><><><>")
+//console.log(windowWidth,windowHeight,"<><><><><><><><>")
     setDeviceOrientation( windowWidth < windowHeight
       ? 'portrait'
       : 'landscape')
@@ -133,7 +132,7 @@ useEffect(() => {
     growthMeasures,
     childBirthDate
   );
-  console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
+  //console.log(convertedMeasures,"convertedMeasures" , chartTypes.weightForHeight);
   /* Create line chart array fochartDatar type chart */
   let chartData: any[] = [];
   convertedMeasures.map((item) => {
@@ -144,7 +143,7 @@ useEffect(() => {
         : {x: item.measurementDate / 30, y: item.height},
     );
   });
-  console.log(chartType,chartData, 'new convertedMeasures');
+  //console.log(chartType,chartData, 'new convertedMeasures');
 // console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
   return (
