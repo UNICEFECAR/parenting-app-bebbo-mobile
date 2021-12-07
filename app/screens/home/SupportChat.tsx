@@ -131,6 +131,7 @@ const faqsData = useAppSelector((state: any) =>
     state.childData.childDataSet.chatBotData
   );
   const flatListRef = useRef(null);
+  const isMountedRef = useRef<any>(null);
   const [steps,setsteps] = useState<any>([]);
 
 
@@ -258,10 +259,7 @@ const faqsData = useAppSelector((state: any) =>
       localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
     }
     console.log("updated localsteps--",localsteps);
-    setsteps(localsteps);
-
-    dispatch(setchatBotData(localsteps));
-    // AsyncStorage.setItem('chatBotData',JSON.stringify(steps));
+    updateChatBotData(localsteps);
   }
   const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
     // let localsteps = [...steps2];
@@ -272,9 +270,7 @@ const faqsData = useAppSelector((state: any) =>
         el.id === nextstepid ? i : acc
     ), -1);
     localsteps[index].showNextStep = true;
-    setsteps(localsteps);
-
-    dispatch(setchatBotData(localsteps));
+    updateChatBotData(localsteps);
     // AsyncStorage.setItem('chatBotData',JSON.stringify(steps));
   }
   
@@ -282,7 +278,7 @@ const faqsData = useAppSelector((state: any) =>
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
     // return {...x,label : x.name,value : i,trigger : '3'}
   });
-  console.log("--category---",category);
+  // console.log("--category---",category);
   const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
     console.log(steptogoto,"--stepnumber",currentstep);
     // let localsteps = [...steps2];
@@ -301,10 +297,7 @@ const faqsData = useAppSelector((state: any) =>
     console.log(localsteps,"---stepsjson---",localstepsjson);
     const updatedsteps = [...localsteps,...localstepsjson]
     console.log("merged--",updatedsteps);
-    setsteps((updatedsteps));
-
-    dispatch(setchatBotData(updatedsteps));
-    // AsyncStorage.setItem('chatBotData',JSON.stringify(updatedsteps));
+    updateChatBotData(updatedsteps);
     // if(steptogoto == 0) {
     //   // updatedjson.map(x=>x.answer = null);
     //   console.log(steps,"--updatedjson---",stepsjson);
@@ -323,7 +316,6 @@ const faqsData = useAppSelector((state: any) =>
       ],
     });
   }
-  
   const stepsjson = [
     {
       id: 0,
@@ -347,7 +339,7 @@ const faqsData = useAppSelector((state: any) =>
       id: 2,
       message: t('question1'),
       options:[],
-      actions:[{value:0,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:0}],
+      actions:[{value:0,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
       showNextStep:false,
       nextStep:3,
@@ -357,7 +349,7 @@ const faqsData = useAppSelector((state: any) =>
       id: 3,
       message: t('question2'),
       options:[],
-      actions:[{value:1,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:0},{value:2,label:t('backToCategoryTxt'),nextStepFunc:backToStep,nextStepval:1}],
+      actions:[{value:1,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1},{value:2,label:t('backToCategoryTxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
       showNextStep:false,
       nextStep:4,
@@ -378,7 +370,7 @@ const faqsData = useAppSelector((state: any) =>
       id: 5,
       message: t('question3'),
       options:[{value:100,label:t('donthavequestiontxt'),nextStepFunc:categorySelection}],
-      actions:[{value:3,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:1},{value:4,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:2},{value:5,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:0}],
+      actions:[{value:3,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:1},{value:4,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:2},{value:5,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
       showNextStep:false,
       nextStep:6,
@@ -426,17 +418,39 @@ const faqsData = useAppSelector((state: any) =>
       end:true
     },
   ];
-  useFocusEffect(
-    React.useCallback(() => {
-    console.log("steps changed--",steps);
-  },[steps])
-  );
-  useEffect(() => {
-    return () => {
-      console.log("in return");
-      setsteps([])
-    };
-  }, []);
+  // useEffect(() => {
+  //   console.log("steps changed--",steps);
+  //   isMountedRef.current = true;
+  //   if(steps && steps.length > 0) {
+  //     if(isMountedRef.current) {
+  //       dispatch(setchatBotData(steps));
+  //     }
+  //   }
+
+  //   return () => {
+  //     console.log("in return---");
+  //     isMountedRef.current = false;
+  //   };
+  // },[steps]);
+  
+  const updateChatBotData = (updatedData:any) => {
+    setsteps(updatedData);
+
+    dispatch(setchatBotData(updatedData));
+  }
+
+  const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
+    console.log(chatBotData,"--category in fetch3",stepsjson);
+    if(chatBotData && chatBotData.length > 0) {
+      console.log("savedData4---",chatBotData);
+      console.log("savedData4---",(chatBotData)[1].options[0]);
+      setsteps((stepsjson));
+    }else {
+      setsteps((stepsjson));
+      // AsyncStorage.setItem('chatBotData',JSON.stringify(stepsjson));
+      //dispatch(setchatBotData(stepsjson));
+    }
+  }
   useEffect(() => {
     // console.log("steps updated--",steps);
     // const category = taxonomy.chatbot_category.map((x:any,i:any)=> {
@@ -444,20 +458,13 @@ const faqsData = useAppSelector((state: any) =>
     //   // return {...x,label : x.name,value : i,trigger : '3'}
     // });
     async function fetchData() {
-      console.log(chatBotData,"--category in fetch3",stepsjson);
       // const savedData = await AsyncStorage.getItem('chatBotData');
-      if(chatBotData && chatBotData.length > 0) {
-        console.log("savedData4---",chatBotData);
-        console.log("savedData4---",(chatBotData)[1].options[0]);
-        setsteps((stepsjson));
-      }else {
-        setsteps((stepsjson));
-        // AsyncStorage.setItem('chatBotData',JSON.stringify(stepsjson));
-        //dispatch(setchatBotData(stepsjson));
-      }
+      setOnloadChatBotData(chatBotData,stepsjson);
+      // if(isMountedRef.current) {
+        
+      // }
     }
-    fetchData()    
-    
+    fetchData()        
   }, []);
   return (
     <>
@@ -493,7 +500,7 @@ const faqsData = useAppSelector((state: any) =>
                   maxToRenderPerBatch={4} // Reduce number in each render batch
                   updateCellsBatchingPeriod={100} // Increase time between renders
                   windowSize={7} // Reduce the window size
-                  renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}  />  }
+                  renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}  />  }
                   keyExtractor={(item,index) => index.toString()}
                   />
                 : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
