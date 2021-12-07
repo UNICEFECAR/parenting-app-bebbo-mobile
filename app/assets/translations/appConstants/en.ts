@@ -407,8 +407,7 @@ const en = {
                 favScreenremoveText:"Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
-
-
+                settingScreenFileBtntxt: "File",
                 //Chatbot strings
                 helloMessage: "Hello {{parentName}}, my name is Bebbo. I'm here to answer your questions",
                 selectAreaOfInterest: "Please select the area of interest from which you have a question",
