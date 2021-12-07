@@ -79,6 +79,7 @@ interface hardcodedDataType {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
+  faqsData:{},
   userOnboardedDate:number,
   weeklyDownloadDate:number,
   monthlyDownloadDate:number,
@@ -163,6 +164,7 @@ const initialState: hardcodedDataType = {
   VideoArticlesData:{},
   ActivitiesData:{},
   surveryData:{},
+  faqsData:{},
   userOnboardedDate:0,
   weeklyDownloadDate:0,
   monthlyDownloadDate:0,
@@ -330,6 +332,14 @@ export const utilsSlice = createSlice({
        (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
        state.surveryData = action.payload;
       },
+      setAllFaqsData: (
+        state,
+        action: PayloadAction<any>,
+      ) => {
+        // console.log(action.payload,"setAllFaqsData");
+       (typeof action.payload == 'object') ? (action.payload = JSON.stringify(action.payload)) : null;
+       state.faqsData = action.payload;
+      },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -343,7 +353,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

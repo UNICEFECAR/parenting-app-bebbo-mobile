@@ -10,7 +10,7 @@ export const userRealmConfig: Realm.Configuration ={
     ReminderEntitySchema
    // MeasurementEntitySchema
   ],
-  schemaVersion: 2,
+  schemaVersion: 3,
   migration: (oldRealm, newRealm) => {
   // console.log("..user migration new..");
     //0
