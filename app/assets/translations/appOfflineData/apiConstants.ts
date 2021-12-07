@@ -38,7 +38,7 @@ export const height_growth_type=6461;
 let today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
-export const restOfTheWorldCountryId = 1;
+export const restOfTheWorldCountryId = 126;
 export const restOfTheWorldAlertTitle = 'Warning';
 export const restOfTheWorldOkTitle = 'Ok';
 export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and HC are not customized to a specific national health program.';
@@ -100,7 +100,8 @@ export const appConfig = {
     childGrowthPinnedContent:'child_growth',
     healthcheckupPinnedContent:'health_check_ups',
     milestoneRelatedArticle:'milestonerelatedarticle',
-    checkUpdate:'check-update'
+    checkUpdate:'check-update',
+    faqs:'faqs'
 }
 
 export const allApisObject = [
@@ -208,6 +209,12 @@ export const allApisObject = [
     },
     {
       apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqs,
       method: 'get',
       postdata: {},
       saveinDB: true,

@@ -20,7 +20,7 @@ const setLoginState: ActionCreator<any> = (typeset: string,data:any) => {
   }
   };
   // const dispatchnew: Dispatch<any>;
-export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any,oldErrorObj?:Array<apijsonArray>,netInfovalisConnected?:boolean|null) => ({
+export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispatch?: Dispatch<AnyAction> | undefined,navigation?:any,languageCode?:string,activeChild?:any,oldErrorObj?:Array<apijsonArray>,netInfovalisConnected?:boolean|null,forceupdatetime?: any,downloadWeeklyData?:any, downloadMonthlyData?:any) => ({
   type: FETCH_API,
   payload:apiJsonData,
   prevPage:prevPage,
@@ -29,7 +29,10 @@ export const fetchAPI = (apiJsonData:Array<apijsonArray>,prevPage?:string,dispat
   languageCode:languageCode,
   activeChild:activeChild,
   oldErrorObj: oldErrorObj,
-  netInfovalisConnected: netInfovalisConnected
+  netInfovalisConnected: netInfovalisConnected,
+  forceupdatetime: forceupdatetime,
+  downloadWeeklyData: downloadWeeklyData,
+  downloadMonthlyData: downloadMonthlyData,
 });
 
 export const insertInDB = (apiJsonData:Array<apijsonArray>,dispatch?: Dispatch<AnyAction> | undefined) => ({

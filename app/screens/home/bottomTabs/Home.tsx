@@ -259,8 +259,8 @@ const Home = ({ route, navigation }: Props) => {
               [
                 { text: t('forceUpdateOkBtn'), onPress: () => {
                     dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-                    AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
-                    forceUpdateApis()
+                    //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
+                    forceUpdateApis(apiresponse.data.updated_at)
                   } 
                 }
               ]
@@ -312,10 +312,11 @@ const Home = ({ route, navigation }: Props) => {
       },2500);
     }
   }
-  const forceUpdateApis = () => {
+  const forceUpdateApis = (forceupdatetime) => {
     navigation.navigate('LoadingScreen', {
       apiJsonData: allApisObject,
-      prevPage: 'ForceUpdate'
+      prevPage: 'ForceUpdate',
+      forceupdatetime: 'forceupdatetime'
     });
   }
   const downloadApis = () => {
@@ -378,9 +379,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            {/* <View>
+            <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View> */}
+            </View>
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
