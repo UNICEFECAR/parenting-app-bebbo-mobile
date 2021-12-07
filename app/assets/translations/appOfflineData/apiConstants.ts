@@ -1,5 +1,6 @@
-import { apiUrlDevelop } from "react-native-dotenv";
+// import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
+const apiUrlDevelop  = 'https://staging.bebbo.app/api';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
@@ -100,7 +101,8 @@ export const appConfig = {
     childGrowthPinnedContent:'child_growth',
     healthcheckupPinnedContent:'health_check_ups',
     milestoneRelatedArticle:'milestonerelatedarticle',
-    checkUpdate:'check-update'
+    checkUpdate:'check-update',
+    faqs:'faqs'
 }
 
 export const allApisObject = [
@@ -208,6 +210,12 @@ export const allApisObject = [
     },
     {
       apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqs,
       method: 'get',
       postdata: {},
       saveinDB: true,
