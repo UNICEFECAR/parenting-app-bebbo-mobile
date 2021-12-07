@@ -16,6 +16,7 @@ import { ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ChildDevelopmentSchema } from '../database/schema/ChildDevelopmentSchema';
 import { DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSchema';
+import { FAQsSchema } from '../database/schema/FAQsSchema';
 import { HealthCheckUpsSchema } from '../database/schema/HealthCheckUpsSchema';
 import { MilestonesSchema } from '../database/schema/MilestonesSchema';
 import { PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
@@ -125,7 +126,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       // dataRealmCommon.deleteAllAtOnce();
       var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
         BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
-        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
         const resolvedPromises =  schemaarray.map(async schema => {
           await dataRealmCommon.deleteOneByOne(schema);
         })
