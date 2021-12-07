@@ -10,6 +10,7 @@ import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPage
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../database/schema/ChildDevelopmentSchema";
 import { ChildGrowthEntity, ChildGrowthSchema } from "../database/schema/ChildGrowthSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
+import { FAQsEntity, FAQsSchema } from "../database/schema/FAQsSchema";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from "../database/schema/HealthCheckUpsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../database/schema/MilestonesSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
@@ -111,6 +112,11 @@ export const addApiDataInRealm = async (response: any) => {
             insertData = response.payload.data.data;
             // Entity= Entity as ArticleEntity;
             EntitySchema = StandardDevWeightForHeightSchema;
+        }
+        else if (response.payload.apiEndpoint == appConfig.faqs) {
+            insertData = response.payload.data.data;
+            Entity= Entity as FAQsEntity;
+            EntitySchema = FAQsSchema;
         }
         // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
         if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {

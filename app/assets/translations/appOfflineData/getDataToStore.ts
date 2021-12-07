@@ -5,6 +5,7 @@ import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/Art
 import { BasicPagesEntity, BasicPagesSchema } from "../../../database/schema/BasicPagesSchema";
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../../../database/schema/ChildDevelopmentSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../../../database/schema/DailyHomeMessagesSchema";
+import { FAQsEntity, FAQsSchema } from "../../../database/schema/FAQsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../../../database/schema/MilestonesSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../../../database/schema/PinnedChildDevelopmentSchema";
 import { StandardDevHeightForAgeEntity, StandardDevHeightForAgeSchema } from "../../../database/schema/StandardDevHeightForAgeSchema";
@@ -14,7 +15,7 @@ import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/Taxonom
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllActivitiesData, setAllChildDevData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { ActivitiesData } from "./ActivitiesData";
@@ -23,6 +24,7 @@ import { articledata } from "./article";
 import basicPagesData from "./basicPages";
 import { ChildDevelopmentData } from "./ChildDevelopmentData";
 import { dailyHomeNotificationdata } from "./dailyHomeNotification";
+import { FaqsData } from "./FaqsData";
 import { healthCheckupsData } from './healthCheckupsData';
 import { MileStonesData } from "./MileStonesData";
 import { PinnedChildDevData } from "./PinnedChildDevData";
@@ -76,6 +78,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
             const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
             const allActivitiesData = await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
             const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
 
             resolve("nocall");
         } else if (prevPage == "ChilSetup") {
@@ -145,6 +148,10 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
         }
         else if (apiEndpoint == appConfig.surveys) {
             const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+            resolve("success");
+        }
+        else if (apiEndpoint == appConfig.faqs) {
+            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
             resolve("success");
         }
         else if (apiEndpoint == appConfig.articles) {
