@@ -33,7 +33,7 @@ type Props = {
 const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
   const {country,languagenew} = route.params;
-  console.log(languagenew,"--languagenew--");
+  //console.log(languagenew,"--languagenew--");
   const languages = country.languages;
   const {t, i18n} = useTranslation();
   const dispatch = useAppDispatch();

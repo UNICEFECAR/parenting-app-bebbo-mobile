@@ -39,9 +39,9 @@ class GoogleAuth {
         try {
             await GoogleSignin.hasPlayServices();
             user = await GoogleSignin.signIn();
-            console.log(user, "11user")
+          //  console.log(user, "11user")
         } catch (error) {
-            console.log(error, "error")
+          //  console.log(error, "error")
             // utils.setMyDebbugTxt(JSON.stringify(error, null, 4));
         }
 

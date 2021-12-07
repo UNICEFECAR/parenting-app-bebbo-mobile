@@ -66,6 +66,8 @@ export type ChildEntity = {
   isPremature?: string;
   isExpected?: string;
   isMigrated?: Boolean;
+  favoriteadvices?: number[];
+  favoritegames?: number[];
 };
 
 /**
@@ -98,6 +100,8 @@ export const ChildEntitySchema: ObjectSchema = {
     isPremature: { type: "string", optional: true },
     isExpected: { type: "string", optional: true },
     isMigrated: { type: 'bool', optional: true },
+    favoriteadvices: { type: "int[]", optional: true },
+    favoritegames: { type: "int[]", optional: true },
   }
 };
 
