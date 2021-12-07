@@ -193,14 +193,20 @@ const SettingScreen = (props: any) => {
       //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
       let uri: any = await ScopedStorage.getPersistedUriPermissions();
       console.log(uri, "..uri..");
-      let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*", realmContent, 'base64', false);
+      try{
+      let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*",realmContent, 'base64', false);
       console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
-      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined && fileDownload.split(/[#?]/)[0].split('.').pop().trim()=="backup") {
+      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
         Alert.alert('', t('settingExportSuccess'));
       }
       else {
         Alert.alert('', t('settingExportError'));
       }
+    }
+    catch(e){
+      // console.log('', e.message);
+      //Alert.alert('', e.message);
+    }
     }
     else {
       const res: any = await DocumentPicker.pickDirectory();
