@@ -37,7 +37,7 @@ export const bandWidthSlice = createSlice({
     //   // state.value += 1;
     // },
     onNetworkStateChange: (state, action: PayloadAction<any>) => {
-        console.log(action.payload,"..action.payload..");
+       // console.log(action.payload,"..action.payload..");
          state.lowbandWidth=action.payload;
         // state.networkState=action.payload.networkState;
         // state.connectionStrength=action.payload.connectionStrength

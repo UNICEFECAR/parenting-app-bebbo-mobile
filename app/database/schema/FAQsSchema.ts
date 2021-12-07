@@ -3,12 +3,13 @@ import { ObjectSchema } from "realm";
 export type FAQsEntity = {
     id: number,
     type: string,
-    title: string,
+    question: string,
     created_at: string,
     updated_at: string,
-    body: string,
-    chatbot_child_age: string,
-    chatbot_sub_category: string,
+    answer_part_1: string,
+    answer_part_2: string,
+    chatbot_subcategory: number,
+    related_article: number,
     mandatory: number,
   };
 
@@ -21,12 +22,13 @@ export type FAQsEntity = {
     properties: {
       id: { type: 'int' },
       type: { type: 'string' },
-      title: { type: 'string' },
+      question: { type: 'string' },
       created_at: { type: 'string' },
       updated_at: { type: 'string' },
-      body: { type: 'string' },
-      chatbot_child_age: { type: 'string' },
-      chatbot_sub_category: { type: 'string' },      
+      answer_part_1: { type: 'string' },
+      answer_part_2: { type: 'string' },
+      chatbot_subcategory: { type: 'int' },      
+      related_article: { type: 'int' },      
       mandatory: { type: 'int' },
     }
   };

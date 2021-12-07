@@ -94,6 +94,12 @@ export const getAllPeriodicSyncData = () => {
           postdata: {},
           saveinDB: true,
         },
+        {
+          apiEndpoint: appConfig.faqs,
+          method: 'get',
+          postdata: {},
+          saveinDB: true,
+        }
       ];
     const apiJsonDataSecondSync = [
         {
@@ -162,17 +168,17 @@ export const getAllPeriodicSyncData = () => {
         // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     }
     else{
-      console.log(bufferAgeBracket,"childList--",childList);
+     // console.log(bufferAgeBracket,"childList--",childList);
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)),'days').toObject().days;
-        console.log(childAgedays,"---child",child.taxonomyData);
+        //console.log(childAgedays,"---child",child.taxonomyData);
         if(childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days)
         {
           const i = childAge.findIndex((_item:any) => _item.id === child.taxonomyData.id);
           // if(i > -1 && i < childAge.length){
             if(i > -1 && i < childAge.length-1){
             const nextchildAgeData = childAge[i+1];
-            console.log("nextchildAgeData--",nextchildAgeData);
+           // console.log("nextchildAgeData--",nextchildAgeData);
             if(nextchildAgeData.age_bracket.length > 0){
               nextchildAgeData.age_bracket.map((ages:any)=>{
                 ageBrackets.push(ages);
@@ -181,13 +187,13 @@ export const getAllPeriodicSyncData = () => {
           }
         }
       })
-      console.log("before--",ageBrackets);
+      //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
-      console.log("unique--",ageBrackets);
+      //console.log("unique--",ageBrackets);
       if(bufferAgeBracket){
         ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
       }
-      console.log("new ageBrackets--",ageBrackets);
+      //console.log("new ageBrackets--",ageBrackets);
       if(ageBrackets.length > 0){
         downloadBufferData = true;
       }else {

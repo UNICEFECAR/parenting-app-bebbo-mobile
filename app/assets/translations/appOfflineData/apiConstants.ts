@@ -38,12 +38,13 @@ export const height_growth_type=6461;
 let today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
-export const restOfTheWorldCountryId = 1;
+export const restOfTheWorldCountryId = 126;
 export const restOfTheWorldAlertTitle = 'Warning';
 export const restOfTheWorldOkTitle = 'Ok';
 export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and HC are not customized to a specific national health program.';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
-     console.log("in finalurl", apiUrlDevelop);
+    // console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
+    // console.log("in finalurl", apiUrlDevelop);
     if(apiEndpoint==appConfig.sponsors){
        // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/'+selectedCountry;
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
@@ -51,9 +52,10 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.taxonomies){
         return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
     }
-    // if(apiEndpoint==appConfig.basicPages){
-    //     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
-    // }
+    if(apiEndpoint==appConfig.checkUpdate){
+        // return 'https://staging.bebbo.app/api'+ '/'+apiEndpoint+'/6';
+        return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedCountry;
+    }
     if(apiEndpoint==appConfig.vaccinePinnedContent){
         return apiUrlDevelop+ '/pinned-contents/'+selectedLang+'/vaccinations';
     }
@@ -97,9 +99,127 @@ export const appConfig = {
     childdevBoyPinnedContent:'child_development/'+boy_child_gender,
     childGrowthPinnedContent:'child_growth',
     healthcheckupPinnedContent:'health_check_ups',
-    milestoneRelatedArticle:'milestonerelatedarticle'
+    milestoneRelatedArticle:'milestonerelatedarticle',
+    checkUpdate:'check-update',
+    faqs:'faqs'
 }
 
+export const allApisObject = [
+    {
+      apiEndpoint: appConfig.sponsors,
+      method: 'get',
+      postdata: {},
+      saveinDB: false,
+    },
+    {
+      apiEndpoint: appConfig.taxonomies,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.basicPages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.videoArticles,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.dailyMessages,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.activities,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.surveys,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestones,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childDevelopmentData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinations,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthCheckupData,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.vaccinePinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childGrowthPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevGirlPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.childdevBoyPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.healthcheckupPinnedContent,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.milestoneRelatedArticle,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.standardDeviation,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    },
+    {
+      apiEndpoint: appConfig.faqs,
+      method: 'get',
+      postdata: {},
+      saveinDB: true,
+    }
+  ];
 export const articleCategoryobj = [
     {name:'playingAndLearning',id:55, image:'ic_artl_play'},
     {name:'healthAndWellbeingid',id:2, image:'ic_artl_health'},

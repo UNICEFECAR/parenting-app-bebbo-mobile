@@ -72,7 +72,7 @@ const AgeBrackets = (props: any) => {
   // let currentSelectedChildId: any;
   useLayoutEffect(
     React.useCallback(() => {
-      console.log(currentSelectedChildId,"--props.currentSelectedChildId");
+     // console.log(currentSelectedChildId,"--props.currentSelectedChildId");
   // //     const firstChildDevData = childAge.filter((x:any)=> x.id == activeChildId);
   // //     console.log("firstChildDevData---",firstChildDevData);
   // //     goToSelectedAgeBrac(firstChildDevData[0]);
