@@ -204,7 +204,7 @@ export const localization = [
   },
   {
     name: 'Rest of the world',
-    countryId: 1,
+    countryId: 126,
     displayName: 'Rest of the world',
     languages: [
       {
