@@ -57,7 +57,7 @@ const LoadingScreen = ({route, navigation }: Props) => {
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
 // const prevPage  = route.params.prevPage;
-const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets} = route.params;
+const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets, forceupdatetime} = route.params;
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
     );
@@ -103,11 +103,11 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
    // console.log('in callSagaApi ',netInfoval.isConnected);
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "Home")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate")
     {
@@ -135,11 +135,11 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       //dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
-      const currentDate = DateTime.now().toMillis();
-      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+      // const currentDate = DateTime.now().toMillis();
+      // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+      // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
      // console.log("called fetchapi after delete");
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "PeriodicSync")
     {
@@ -178,7 +178,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           })
           const results = await Promise.all(resolvedPromises);
          // console.log("delete downloadWeeklyData done--",results);
-        dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
+        // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
       }
       if(downloadMonthlyData == true)
       {
@@ -189,7 +189,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           })
           const results = await Promise.all(resolvedPromises);
          // console.log("delete downloadMonthlyData done--",results);
-        dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
+        // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
 
       }
       allAgeBrackets = [...new Set(allAgeBrackets)];
@@ -210,7 +210,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         // dispatch(setDownloadedBufferAgeBracket([]))
         dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
       }
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "ImportScreen")
     {
@@ -230,10 +230,10 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       const deleteArticles=await deleteArticleNotPinned();
       //console.log(deleteArticles,"..deleteArticles..");
       dispatch(setDownloadedBufferAgeBracket([]))
-      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
   }
   

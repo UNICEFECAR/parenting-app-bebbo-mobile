@@ -1,6 +1,7 @@
 import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
+import { DateTime } from 'luxon';
 import { Alert } from "react-native";
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
@@ -14,7 +15,7 @@ import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setInfoModalOpened } from '../redux/reducers/utilsSlice';
+import { setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 
 
@@ -229,7 +230,7 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
   //     params:{prevPage:prevPage},
   //   });
 }
-export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
+export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any) => {
   // navigation.navigate('HomeDrawerNavigator');
   // console.log(response,"--oldErrorObj---",oldErrorObj);
   // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
@@ -338,6 +339,24 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   //delete all notifications from slice for all child
   // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
   // console.log(setAllNotificationData([]))
+  const currentDate = DateTime.now().toMillis();
+  if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate") {
+    dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    if(prevPage == 'ForceUpdate'){
+      AsyncStorage.setItem('forceUpdateTime',forceupdatetime);
+    }
+  }
+  if(prevPage == "PeriodicSync") {
+    if(downloadWeeklyData == true)
+    {
+      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+    }
+    if(downloadMonthlyData == true)
+    {
+      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+    }
+  }
   
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     const favverified = await userRealmCommon.verifyFavorites();
