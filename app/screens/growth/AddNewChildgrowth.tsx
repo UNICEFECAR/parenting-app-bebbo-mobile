@@ -109,7 +109,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const handleMeasureConfirm = (event: any) => {
     const date = event;
-    console.log("A date has been picked: ", date);
+   // console.log("A date has been picked: ", date);
     onmeasureDateChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
@@ -134,12 +134,12 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   const [measurePlace, setMeasurePlace] = useState<number>();
   const [defaultMeasurePlace, setDefaultMeasurePlace] = useState<any>(null);
   useEffect(() => {
-    console.log(editMeasurementDate,"editMeasurementDate");
+   // console.log(editMeasurementDate,"editMeasurementDate");
     // find growthmeasures for date, if exist show growthmeasures with delete enabled.
     if (editMeasurementDate) {
       setShowDelete(true)
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
-      console.log(existingMeasure,"existingMeasure");
+      //console.log(existingMeasure,"existingMeasure");
       setmeasureDate(DateTime.fromJSDate(new Date(editMeasurementDate)));
       setWeightValue(existingMeasure?.weight)
       setHeightValue(existingMeasure?.height)
@@ -155,7 +155,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
 
   //set initvalue here for edit
   const onmeasureDateChange = (event: any, selectedDate: any) => {
-    console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
+    //console.log(DateTime.fromJSDate(selectedDate), 'new date', selectedDate);
     setmeasureDateShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(selectedDate));
@@ -188,7 +188,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           if (isVaccineMeasureExistForDate(DateTime.fromJSDate(selectedDate), activeChild)) {
             //  add measure where only vacccines were added.
             // allow adding growth values for that vaccine measure
-            console.log("in else only if vaccines exist")
+            //console.log("in else only if vaccines exist")
           } else {
             // add new measure
           }
@@ -202,7 +202,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
                 text: t('alertForModifyMeasuresOk'),
                 onPress: () => {
                   const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(selectedDate), activeChild)
-                  console.log(existingMeasure);
+                  //console.log(existingMeasure);
                   setWeightValue(existingMeasure.weight)
                   setHeightValue(existingMeasure.height)
                   handleDoctorRemark(existingMeasure.doctorComment)
@@ -301,7 +301,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
   }, [route.params?.weight, route.params?.height]);
   const deleteGrowth = async () => {
     // delete measure at measurementdate got from param
-    console.log(editMeasurementDate, "deleteGrowth")
+    //console.log(editMeasurementDate, "deleteGrowth")
     const measurementDateParam = editMeasurementDate
       ? dateTouched
         ? measureDate?.toMillis()
@@ -332,13 +332,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: "",
           measurementPlace: existingMeasure.measurementPlace,
         };
-        console.log(growthValues, 'updateInDeleteMeasure');
+        //console.log(growthValues, 'updateInDeleteMeasure');
         let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(updateresult, '..updateresult..');
+       // console.log(updateresult, '..updateresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
@@ -347,7 +347,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         }
         navigation.goBack();
 
-        console.log("in else only if vaccines exist")
+        //console.log("in else only if vaccines exist")
       } else {
         // delete measure
         //delete measure obj
@@ -356,7 +356,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           existingMeasure,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(deleteresult, '..deleteresult..');
+       // console.log(deleteresult, '..deleteresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (deleteresult) {
           activeChild.measures = deleteresult;
@@ -384,13 +384,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: "",
           measurementPlace: existingMeasure.measurementPlace,
         };
-        console.log(growthValues, 'updateInDeleteMeasure');
+        //console.log(growthValues, 'updateInDeleteMeasure');
         let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(updateresult, '..updateresult..');
+        //console.log(updateresult, '..updateresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
@@ -399,7 +399,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
         }
         navigation.goBack();
 
-        console.log("in else only if vaccines exist")
+        //console.log("in else only if vaccines exist")
       } else {
         // delete measure
         //delete measure obj
@@ -408,7 +408,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           existingMeasure,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(deleteresult, '..deleteresult..');
+        //console.log(deleteresult, '..deleteresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (deleteresult) {
           activeChild.measures = deleteresult;
@@ -435,7 +435,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
       : measureDate.toFormat('MM');
     if (editMeasurementDate) {
       const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(editMeasurementDate)), activeChild)
-      console.log(existingMeasure, "inEdit");
+      //console.log(existingMeasure, "inEdit");
       // if editMeasurementDate is not existingMeasure.mesurementDate , then remove growth from existingMeasure and add it to newMeasure
       if (editMeasurementDate != measureDate.toMillis() && existingMeasure.didChildGetVaccines == true) {
         const growthValues = {
@@ -450,13 +450,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        console.log(growthValues, 'add new SaveMeasure');
+        //console.log(growthValues, 'add new SaveMeasure');
         let updateresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(updateresult, '..updateresult..');
+        //console.log(updateresult, '..updateresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (updateresult?.length > 0) {
           activeChild.measures = updateresult;
@@ -475,13 +475,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: existingMeasure.doctorComment,
           measurementPlace: existingMeasure.measurementPlace,
         };
-        console.log(growthValues);
+        //console.log(growthValues);
         let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValuesForVaccineMeasured,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        //console.log(createresult, '..createresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
@@ -501,13 +501,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        console.log(growthValues);
+        //console.log(growthValues);
         let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        //console.log(createresult, '..createresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
@@ -520,7 +520,7 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
 
       if (isAnyMeasureExistForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)) {
         const existingMeasure = getMeasuresForDate(DateTime.fromJSDate(new Date(measureDate?.toMillis())), activeChild)
-        console.log(existingMeasure, "inEdit");
+        //console.log(existingMeasure, "inEdit");
 
         const growthValues = {
           uuid: existingMeasure.uuid,
@@ -534,13 +534,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        console.log(growthValues);
+        //console.log(growthValues);
         let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        //console.log(createresult, '..createresult..');
         //setActiveChild(languageCode,activeChild.uuid, dispatch, child_age);
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
@@ -563,13 +563,13 @@ const AddNewChildgrowth = ({ route, navigation }: any) => {
           doctorComment: remarkTxt,
           measurementPlace: measurePlace,
         };
-        console.log(growthValues, 'addthisitem');
+        //console.log(growthValues, 'addthisitem');
         let createresult = await userRealmCommon.updateChildMeasures<ChildEntity>(
           ChildEntitySchema,
           growthValues,
           'uuid ="' + activeChild.uuid + '"',
         );
-        console.log(createresult, '..createresult..');
+        //console.log(createresult, '..createresult..');
         if (createresult?.length > 0) {
           activeChild.measures = createresult;
           dispatch(setActiveChildData(activeChild));
@@ -616,14 +616,25 @@ useEffect(() => {
               <Heading2 numberOfLines={1}>{showDelete ? t('growthScreeneditNewBtntxt') : t('growthScreenaddNewBtntxt')}</Heading2>
             </HeaderTitleView>
             {showDelete ? (
-              <HeaderActionView>
-                <ButtonDelPress
-                  onPress={() => {
-                    setModalVisible(true);
-                  }}>
-                  <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
-                </ButtonDelPress>
-              </HeaderActionView>
+              // <HeaderActionView>
+              //   <ButtonDelPress
+              //     onPress={() => {
+              //       setModalVisible(true);
+              //     }}>
+              //     <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+              //         name="ic_trash"
+              //         size={16}
+              //         color="#000"
+              //       /></ButtonTextSmLine>
+              //   </ButtonDelPress>
+              // </HeaderActionView>
+              <HeaderActionView style={{padding:0}}>
+              <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                 setModalVisible(true)
+                }>
+                <Icon name={'ic_trash'} size={20} color="#000" />
+                  </Pressable>
+            </HeaderActionView>
             ) : null}
           </HeaderRowView>
           <FlexCol>

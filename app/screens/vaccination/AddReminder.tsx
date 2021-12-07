@@ -90,6 +90,7 @@ const AddReminder = ({ route, navigation }: any) => {
     editReminderItem ? editReminderItem.reminderDate : null,
   );
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
+  const [clicked, setClicked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [measureTime, setmeasureTime] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderTime : null,
@@ -137,16 +138,16 @@ const AddReminder = ({ route, navigation }: any) => {
   // maxTime.setMilliseconds(0);
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
-    console.log(selectedDate, "..selectedDate..")
-    console.log(currentDate, "..currentDate..")
+    //console.log(selectedDate, "..selectedDate..")
+    //console.log(currentDate, "..currentDate..")
     setmeasureShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(currentDate));
       setDateTouched(true);
-      console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
+      //console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
       if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
         setminmeasureTime(new Date(currentDate));
-        console.log(currentDate, "..11currentDatenew",)
+        //console.log(currentDate, "..11currentDatenew",)
         setmeasureTime(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
         // .setMinutes(new Date().getMinutes()<60?new Date().getMinutes()+1:00)
       }
@@ -154,7 +155,7 @@ const AddReminder = ({ route, navigation }: any) => {
         // console.log(currentDate,"..currentDatenew");
         // console.log(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
         const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        console.log(currentDatenew, "..currentDatenew")
+        //console.log(currentDatenew, "..currentDatenew")
         setminmeasureTime(new Date(currentDatenew));
         //setminmeasureTime(DateTime.fromJSDate(currentDate));
       }
@@ -170,13 +171,13 @@ const AddReminder = ({ route, navigation }: any) => {
   };
   const handleMeasureDateConfirm = (event: any) => {
     const date = event;
-    console.log("A date has been picked: ", date);
+    //console.log("A date has been picked: ", date);
     onmeasureChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
   const handleMeasureTimeConfirm = (event: any) => {
     const time = event;
-    console.log("A date has been picked: ", time);
+    //console.log("A date has been picked: ", time);
     onmeasureTimeChange(event, time);
     setMeasureTimePickerVisibility(false);
   };
@@ -199,7 +200,7 @@ const AddReminder = ({ route, navigation }: any) => {
     }
   };
   const isFormDisabled = () => {
-    if (measureDate && measureTime) {
+    if (measureDate && measureTime && !clicked) {
       return false;
     } else {
       return true;
@@ -209,13 +210,13 @@ const AddReminder = ({ route, navigation }: any) => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(
       ChildEntitySchema,
     );
-    console.log(allJsonDatanew?.length, 'allJsonDatanew');
+    //console.log(allJsonDatanew?.length, 'allJsonDatanew');
     let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
       editReminderItem,
       'uuid ="' + activeChild.uuid + '"',
     );
-    console.log(createresult?.length, 'ReminderDeleted');
+    //console.log(createresult?.length, 'ReminderDeleted');
     if (createresult) {
       activeChild.reminders = createresult;
       let notiFlagObj = { key: 'generateNotifications', value: true };
@@ -327,14 +328,25 @@ useEffect(() => {
             <Heading2 numberOfLines={1}>{headerTitle}</Heading2>
           </HeaderTitleView>
           {editReminderItem ? (
-            <HeaderActionView>
-              <ButtonDelPress
-                onPress={() => {
-                  setModalVisible(true);
-                }}>
-                <ButtonTextSmLine>{t('growthScreendeletebtnText')}</ButtonTextSmLine>
-              </ButtonDelPress>
-            </HeaderActionView>
+            // <HeaderActionView>
+            //   <ButtonDelPress
+            //     onPress={() => {
+            //       setModalVisible(true);
+            //     }}>
+            //     <ButtonTextSmLine style={{textDecorationLine:"none"}}><Icon
+            //           name="ic_trash"
+            //           size={16}
+            //           color="#000"
+            //         /></ButtonTextSmLine>
+            //   </ButtonDelPress>
+            // </HeaderActionView>
+               <HeaderActionView style={{padding:0}}>
+               <Pressable  style={{paddingLeft:10,paddingRight:10}}  onPress={() =>
+                   setModalVisible(true)
+                 }>
+                 <Icon name={'ic_trash'} size={20} color="#000" />
+                   </Pressable>
+             </HeaderActionView>
           ) : null}
         </HeaderRowView>
 
@@ -508,9 +520,13 @@ useEffect(() => {
             <ButtonTertiary
               disabled={isFormDisabled()}
               onPress={() => {
-                saveReminder().then(() => {
+                setClicked(true);
+                setTimeout(()=>{
+                  saveReminder().then(() => {
 
-                });
+                  });
+                },0)
+               
                 // navigation.goBack();
               }}>
               <ButtonText numberOfLines={2}>{buttonTitle}</ButtonText>

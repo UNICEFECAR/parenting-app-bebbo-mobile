@@ -74,7 +74,7 @@ const ChartWeightForHeight = () => {
     childTaxonomyData,
     lastMeasurements,
   );
-  console.log(item);
+  //console.log(item);
   const [isChartVisible, setIsChartVisible] = React.useState(false);
   useFocusEffect(
     React.useCallback(() => {

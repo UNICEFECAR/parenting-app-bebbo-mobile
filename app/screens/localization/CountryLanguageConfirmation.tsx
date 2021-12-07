@@ -67,7 +67,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
-  console.log(country,"---country",countryId);
+  //console.log(country,"---country",countryId);
   //console.log(country, language);
   const apiJsonData = [
     {
@@ -323,7 +323,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               <LocalizationAction>
                 <ButtonLinkText
                   onPress={() => {
-                    console.log(language,"country--",country);
+                    //console.log(language,"country--",country);
                     navigation.navigate('CountrySelection',{country:country,language:language})
                   }}>
                   <OuterIconRow>
