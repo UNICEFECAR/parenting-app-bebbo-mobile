@@ -204,7 +204,8 @@ const SettingScreen = (props: any) => {
       }
     }
     catch(e){
-      Alert.alert('', e.message);
+      // console.log('', e.message);
+      //Alert.alert('', e.message);
     }
     }
     else {
