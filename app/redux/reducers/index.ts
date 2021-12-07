@@ -20,8 +20,10 @@ const migrations = {
     childDataSet: {        ...
       state.childDataSet,        
       favoriteadvices:[],
-      favoritegames:[]
-    }    
+      favoritegames:[],
+      chatBotData:[]
+    },
+    faqsData:{}
   }  
   }
 }
