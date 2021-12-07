@@ -36,6 +36,7 @@ import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
+import { setchatBotData } from '../redux/reducers/childSlice';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -183,6 +184,7 @@ export default () => {
       dispatch(setInfoModalOpened(obj));
       getAllChildren(dispatch, child_age, 0);
     }
+    dispatch(setchatBotData([]));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
