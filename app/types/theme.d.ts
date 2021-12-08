@@ -33,6 +33,7 @@ declare module 'styled-components/native' {
         BORDERRADIUS: string,
         BORDERRADIUS_CIRCLE: string,
         
-    }
+    },
+    isRTL:boolean
   }
 }
