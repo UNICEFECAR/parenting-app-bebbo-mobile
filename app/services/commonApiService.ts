@@ -368,7 +368,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setInfoModalOpened(notiFlagObj));
     if(prevPage == 'CountryLangChange') {
       const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
-      AsyncStorage.setItem('forceUpdateTime',String(apiresponse.data.updated_at));
+      let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
+      AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
     }
   }
   if(prevPage == 'DownloadUpdate') {
