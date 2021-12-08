@@ -239,7 +239,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const saveSelection = () => {
     i18n.changeLanguage(language.locale)
     .then(() => {
-      if(language.locale == 'RSen')
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
       {
         if(AppLayoutDirection == 'ltr') {
           //remove rtl on backhandler
