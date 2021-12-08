@@ -7,7 +7,7 @@ import {
   ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
   LocalizationAction,
   LocalizationCol,
@@ -29,15 +29,17 @@ import {
   Heading3Centerw,
   Heading3Regular
 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { I18nManager, Text } from 'react-native';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import RNRestart from 'react-native-restart';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -58,6 +60,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   );
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
+  );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
   );
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
@@ -195,6 +200,16 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
     }
   ];
   const {t, i18n} = useTranslation();
+  console.log(I18nManager.isRTL,"---is rtl val");
+
+  useEffect(() => {
+    console.log("confirm useeffect called");
+    // dispatch(setrestartOnLangChange('no'));
+
+    return () => {
+      dispatch(setrestartOnLangChange('no'));
+    }
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -222,8 +237,28 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   );
 
   const saveSelection = () => {
-    i18n.changeLanguage(language.locale);
-   // console.log(language,"..language");
+    i18n.changeLanguage(language.locale)
+    .then(() => {
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+      {
+        if(AppLayoutDirection == 'ltr') {
+          //remove rtl on backhandler
+          // dispatch(setAppLayoutDirection('rtl'));
+          // dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          // dispatch(setAppLayoutDirectionParams({
+          //   country,
+          //   language,
+          // }));
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+        }else {
+          I18nManager.forceRTL(true);
+        }
+      }else {
+        I18nManager.forceRTL(false);
+      }
+    })
+    console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
     if(userIsOnboarded == true && (language.languageCode == languageCode))
     {
@@ -254,9 +289,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   return (
     <>
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={language}/>
       <OnboardingContainer>
-      {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
           <OnboardingshiftHead>
@@ -294,7 +328,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_edit" size={16} color="#000" />
+                      <IconML name="ic_edit" size={16} color="#000" />
                     </OuterIconLeft>
                     <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
                   </OuterIconRow>

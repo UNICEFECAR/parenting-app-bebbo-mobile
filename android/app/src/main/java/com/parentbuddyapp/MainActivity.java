@@ -2,6 +2,8 @@ package org.unicef.ecar.bebbo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.facebook.react.ReactActivity;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.security.ProviderInstaller;
@@ -20,6 +22,7 @@ public class MainActivity extends ReactActivity implements ProviderInstaller.Pro
 //Update the security provider when the activity is created.
    @Override
     protected void onCreate(Bundle savedInstanceState) {
+       Log.d("Mainactivity", "Mainactivity java oncreate helloo");
         SplashScreen.show(this,R.style.SplashScreenTheme,R.id.lottie);  // here
         SplashScreen.setAnimationFinished(true);
         super.onCreate(savedInstanceState);
