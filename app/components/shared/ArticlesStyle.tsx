@@ -28,12 +28,12 @@ export const SearchBox = styled.View`
   align-items:center;
   padding:0;
   height:50px;
-
   width:100%;
 `;
 export const SearchInput = styled.TextInput`
   flex:1;
   padding:0 15px;
+  text-align:left;
 `;
 
 

@@ -80,7 +80,15 @@ const PrivacyPolicy = ({navigation}: Props) => {
               baseFontStyle={{fontSize: 16, color: '#ffffff'}}
               ignoredStyles={['color', 'font-size', 'font-family']}
               tagsStyles={{
-                p: { marginBottom: 15, marginTop: 0 },h1: { marginBottom: 0, marginTop: 10},h2: { marginBottom: 15, marginTop: 0},h3: { marginBottom: 15, marginTop: 0 },h4: { marginBottom: 15, marginTop: 0 },h5: { marginBottom: 15, marginTop: 0 },h6: { marginBottom: 15, marginTop: 0 },span: { marginBottom: 15, marginTop: 0 },br: { height: 0 },
+                p: { marginBottom: 15, marginTop: 0,textAlign:'left' },
+                h1: { marginBottom: 0, marginTop: 10,textAlign:'left'},
+                h2: { marginBottom: 15, marginTop: 0,textAlign:'left'},
+                h3: { marginBottom: 15, marginTop: 0,textAlign:'left' },
+                h4: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
+                h5: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
+                h6: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
+                span: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
+                br: { height: 0 },
                 img: {maxWidth:Dimensions.get('window').width-50},
               }}
             />
