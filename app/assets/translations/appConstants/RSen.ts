@@ -119,7 +119,7 @@ const RSen = {
                 actScreenmilestones: "Milestones",
                 actScreenprematureText: "Premature",
                 actScreenshareText: "Share",
-                actScreenaddtoFavText: "Add to favourites",
+                actScreenaddtoFavText: "Save",
                 developScreenheaderTitle: "Child development",
                 developScreenprematureText: "Premature",
                 developScreenchartLabel: "Pending",
@@ -192,7 +192,7 @@ const RSen = {
                 babyNotificationbyAge: "{{childName}} is {{ageInMonth}} old",
                 babyNotificationUpdateBtn: "Update profile",
                 favScreenHeader: "Favourites",
-                actScreenremovetoFavText: "Remove from Favourites",
+                actScreenremovetoFavText: "Saved",
                 appShareText: "Download Bebbo, your pocket partner in parenthood!",
                 vcHeader: "Vaccination",
                 vcSummaryHeader: "Vaccination summary",
@@ -363,7 +363,7 @@ const RSen = {
                 alertForNoTakenVaccinesSelectTitle: "Please select vaccine(s)",
                 importText: "Import data",
                 exportText: "Export data",
-                dataConsistency: "For data consistency, please use the same language to import/export data. \nTo continue, please sign in to your google drive account to import/export your data.",
+                dataConsistency: "For data consistency, please use the same language to import/export data. \nTo continue, please sign in to your Google drive account to import/export your data.",
                 dataSaver: "Do you want to switch {{toggle}} to data saver mode?",
                 backPressText: "Press again to close!",
                 generalError: "Something went wrong! Please try again",
@@ -388,7 +388,6 @@ const RSen = {
                 vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
                 parentGender: "Gender",
-                //Onboarding Import text new Translations
                 successOnboardingImport: "You successfully imported child data",
                 updateImportText: "Please update your details to continue",
                 importOnboardingText: "You can import previously exported child data",
@@ -396,17 +395,14 @@ const RSen = {
                 ORkeyText: "OR",
                 addChildText: "Add your child details",
                 notiTimeAgoTxt: "ago",
-                todayTxt:"today",
-                //phase2 strings
-                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
-                forceUpdatePopupTitle:"Information",
-                forceUpdatePopupText:"Data will be updated",
-                forceUpdateOkBtn:"OK",
-                favScreenremoveText:"Remove",
+                todayTxt: "today",
+                fiveYearsGreater: "Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle: "Information",
+                forceUpdatePopupText: "Data will be updated",
+                forceUpdateOkBtn: "OK",
+                favScreenremoveText: "Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
-                //phase 2 new strings+chatbot strings
-                settingScreenFileBtntxt: "File",
                 helloMessage: "Hello {{parentName}}, my name is Bebbo. I'm here to answer your questions",
                 selectAreaOfInterest: "Please select the area of interest from which you have a question",
                 question1: "What is your question about?",
@@ -426,8 +422,10 @@ const RSen = {
                 exitchatBotTxt: "Exit the Chatbot",
                 sorryMsgTxt: "I am sorry you could not find an answer to your question. Please select one of the following options:",
                 feedbackLinkTxt: "Give us feedback",
-                notNowTxt: "Not now"
-    
+                notNowTxt: "Not now",
+                //phase 2 new strings
+                settingScreenFileBtntxt: "File",
+
         }
 }
 export default RSen;
