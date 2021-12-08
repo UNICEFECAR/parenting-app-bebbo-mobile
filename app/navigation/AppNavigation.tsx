@@ -24,7 +24,7 @@ import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Platform } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -35,6 +35,7 @@ import { getAllChildren } from '../services/childCRUD';
 import HomeDrawerNavigator from './HomeDrawerNavigator';
 import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
 import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
@@ -68,6 +69,17 @@ export default () => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
+  const restartOnLangChange = useAppSelector(
+    (state: any) => state.selectedCountry.restartOnLangChange,
+  );
+  const AppLayoutDirectionScreen = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
+  );
+  console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
@@ -78,7 +90,6 @@ export default () => {
  // console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
-  const [initialState, setInitialState] = React.useState();
   const [netState, setNetState] = React.useState('');
   // console.log("callRealmListener--",callRealmListener);
   const dispatch = useAppDispatch();
@@ -224,6 +235,8 @@ export default () => {
   }, [netState]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
+  console.log(routeNameRef.current,"callRealmListener12--",I18nManager.isRTL);
+
   return (
     // <ThemeProvider theme={theme}>
     <SafeAreaProvider>
@@ -263,8 +276,13 @@ export default () => {
       >
         <RootStack.Navigator
           initialRouteName={
-            userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
+            restartOnLangChange != 'yes' ?
+              userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
+            : AppLayoutDirectionScreen 
           }
+          // initialRouteName={
+          //   'Localization'
+          // }
           screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false}}
         >
           {/* initialRouteName={'Localization'}> */}

@@ -259,7 +259,15 @@ const activeChild = useAppSelector((state: any) =>
                       baseFontStyle={{fontSize: 14}}
                       ignoredStyles={['color', 'font-size', 'font-family','margin','padding']}
                       tagsStyles={{
-                        p:{marginTop:0,},
+                        p:{textAlign:'left',marginTop:0},
+                        h1:{textAlign:'left'},
+                        h2:{textAlign:'left'},
+                        h3:{textAlign:'left'},
+                        h4:{textAlign:'left'},
+                        h5:{textAlign:'left'},
+                        h6:{textAlign:'left'},
+                        span:{textAlign:'left'},
+                        li:{textAlign:'left'},
                       }}
                     />
                     : null 
