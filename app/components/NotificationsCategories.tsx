@@ -121,6 +121,9 @@ const styles = StyleSheet.create({
   iconStyle: {
     flex: 1,
     marginLeft: 10,
+    // justifyContent:'flex-start',
+    // backgroundColor:'red',
+    textAlign: 'left'
   },
   title: {
     fontSize: 10,
@@ -130,5 +133,6 @@ const styles = StyleSheet.create({
     width: 120,
     fontWeight: 'bold',
     justifyContent: 'flex-start',
+    textAlign: 'left'
   },
 });
