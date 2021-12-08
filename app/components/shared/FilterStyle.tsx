@@ -37,6 +37,7 @@ flex:1;
 font-weight:bold;
 color:${props => props.theme.colors.PRIMARY_TEXTCOLOR};
 flex-shrink:1;
+text-align:left;
 `;
 
 
