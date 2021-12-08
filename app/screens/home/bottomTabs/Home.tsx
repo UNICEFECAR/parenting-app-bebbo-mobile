@@ -238,13 +238,33 @@ const Home = ({ route, navigation }: Props) => {
         let obj = { key: 'showDownloadPopup', value: false };
         dispatch(setInfoModalOpened(obj));
         const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
-        AsyncStorage.setItem('forceUpdateTime',String(apiresponse.data.updated_at));
+        let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
+        AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
         console.log("forceupdate apiresponse2",apiresponse);
+      }
+      else if(netInfoval.isConnected && userIsOnboarded == true)
+      {
+        let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
+        if(forceUpdateTime == null || forceUpdateTime == undefined) {
+          Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
+              [
+                { text: t('forceUpdateOkBtn'), onPress: () => {
+                    dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
+                    //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
+                    navigation.navigate('LoadingScreen', {
+                      apiJsonData: allApisObject, 
+                      prevPage: 'CountryLangChange'
+                    });
+                  } 
+                }
+              ]
+            );
+          
+        }
       }
       console.log(netInfoval, "--netInfoval--", apiJsonData);
       console.log(showDownloadPopup, "--errorObj.length--", errorObj.length);
       console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
-    
       if(netInfoval.isConnected && showDownloadPopup)
       {
         const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
@@ -379,9 +399,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            <View>
+            {/* <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View>
+            </View> */}
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"
