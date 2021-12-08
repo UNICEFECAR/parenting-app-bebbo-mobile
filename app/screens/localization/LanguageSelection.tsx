@@ -15,10 +15,13 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
+import { FlatList, I18nManager } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import RNRestart from 'react-native-restart';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -33,6 +36,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
   //console.log(languagenew,"--languagenew--");
   const languages = country.languages;
   const {t, i18n} = useTranslation();
+  const dispatch = useAppDispatch();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -40,7 +44,11 @@ const LanguageSelection = ({route, navigation}: Props) => {
     (state: any) =>
       state.utilsData.userIsOnboarded
   );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
+  );
   useEffect(() => {
+    // AsyncStorage.setItem('isDirectionChanged','No')
     let newLanguageId: any,selectedLanguage;
     // if(userIsOnboarded == true){
       if(languagenew && languagenew != null){
@@ -66,7 +74,39 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const goToConfirmationScreen = () => {
-    i18n.changeLanguage(language.locale);
+    i18n.changeLanguage(language?.locale)
+    .then(() => {
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+      {
+        if(AppLayoutDirection == 'ltr') {
+          dispatch(setrestartOnLangChange('yes'));
+          dispatch(setAppLayoutDirection('rtl'));
+          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          dispatch(setAppLayoutDirectionParams({
+            country,
+            language,
+          }));
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+        }else {
+          I18nManager.forceRTL(true);
+        }
+      }else {
+        if(AppLayoutDirection == 'rtl') {
+          dispatch(setrestartOnLangChange('yes'));
+          dispatch(setAppLayoutDirection('ltr'));
+          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          dispatch(setAppLayoutDirectionParams({
+            country,
+            language,
+          }));
+          I18nManager.forceRTL(false);
+          RNRestart.Restart();
+        }else {
+          I18nManager.forceRTL(false);
+        }
+      }
+    })
     navigation.navigate('CountryLanguageConfirmation', {
       country,
       language,

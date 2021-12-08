@@ -7,6 +7,7 @@
 #import <Firebase.h>
 #import "ParentBuddyApp-Swift.h"
 #import "Orientation.h"
+#import <React/RCTI18nUtil.h>
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -94,7 +95,8 @@ static void InitializeFlipper(UIApplication *application) {
 
    // If you want the animation layout to be forced to remove when hide is called, use this code
    [RNSplashScreen setAnimationFinished:true];
-  
+  // in AppDelegate.m
+  [[RCTI18nUtil sharedInstance] allowRTL:YES];
   if ([FIRApp defaultApp] == nil) {
      [FIRApp configure];
    }
