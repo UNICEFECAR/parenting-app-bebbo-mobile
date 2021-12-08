@@ -229,42 +229,48 @@ const Home = ({ route, navigation }: Props) => {
     // console.log(uniqueId,"..uniqueId");
     setModalVisible(false);
     async function fetchNetInfo() {
-      if (userIsOnboarded == false) {
-        dispatch(setuserIsOnboarded(true));
-        const currentDate = DateTime.now().toMillis();
-        dispatch(setSyncDate({ key: 'userOnboardedDate', value: currentDate }));
-        dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: currentDate }));
-        dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: currentDate }));
-        let obj = { key: 'showDownloadPopup', value: false };
-        dispatch(setInfoModalOpened(obj));
-        const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
-        let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
-        AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
-        console.log("forceupdate apiresponse2",apiresponse);
-      }
-      else if(netInfoval.isConnected && userIsOnboarded == true)
-      {
-        let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
-        if(forceUpdateTime == null || forceUpdateTime == undefined) {
-          Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
-              [
-                { text: t('forceUpdateOkBtn'), onPress: () => {
-                    dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-                    //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
-                    navigation.navigate('LoadingScreen', {
-                      apiJsonData: allApisObject, 
-                      prevPage: 'CountryLangChange'
-                    });
-                  } 
-                }
-              ]
-            );
-          
+      console.log("userIsOnboarded----",userIsOnboarded);
+      if(netInfoval.isConnected) {
+        if (userIsOnboarded == false) {
+          console.log("--in iffffff--");
+          dispatch(setuserIsOnboarded(true));
+          const currentDate = DateTime.now().toMillis();
+          dispatch(setSyncDate({ key: 'userOnboardedDate', value: currentDate }));
+          dispatch(setSyncDate({ key: 'weeklyDownloadDate', value: currentDate }));
+          dispatch(setSyncDate({ key: 'monthlyDownloadDate', value: currentDate }));
+          let obj = { key: 'showDownloadPopup', value: false };
+          dispatch(setInfoModalOpened(obj));
+          const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
+          let forceUpdateTime = apiresponse && apiresponse.data && apiresponse.data.updated_at ? apiresponse.data.updated_at : '0';
+          AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
+          console.log("forceupdate apiresponse2",apiresponse);
         }
-      }
+        else
+        {
+          console.log(userIsOnboarded,"--in elseeee--",netInfoval.isConnected);
+          if(netInfoval.isConnected && userIsOnboarded == true) {
+            let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
+            if(forceUpdateTime == null || forceUpdateTime == undefined) {
+              dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
+              Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText')+'hiii',
+                  [
+                    { text: t('forceUpdateOkBtn'), onPress: () => {
+                        
+                        // navigation.navigate('LoadingScreen', {
+                        //   apiJsonData: allApisObject, 
+                        //   prevPage: 'CountryLangChange'
+                        // });
+                      } 
+                    }
+                  ]
+                );
+            }
+          }
+        }
       console.log(netInfoval, "--netInfoval--", apiJsonData);
       console.log(showDownloadPopup, "--errorObj.length--", errorObj.length);
       console.log(downloadWeeklyData, "--downloadWeeklyData-- and month", downloadMonthlyData);
+      }
       if(netInfoval.isConnected && showDownloadPopup)
       {
         const apiresponse = await commonApiService(forceUpdateData[0].apiEndpoint,forceUpdateData[0].method,forceUpdateData[0].postdata);
@@ -275,12 +281,12 @@ const Home = ({ route, navigation }: Props) => {
         if(apiresponse.data.status == 200) {
           if(apiresponse.data.flag == 1) {
            if(parseInt(apiresponse.data.updated_at) > parseInt(forceUpdateTime)){
-            Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
+            Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText')+'byee',
               [
                 { text: t('forceUpdateOkBtn'), onPress: () => {
-                    dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-                    //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
-                    forceUpdateApis(apiresponse.data.updated_at)
+                    // dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
+                    // //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
+                    // forceUpdateApis(apiresponse.data.updated_at)
                   } 
                 }
               ]

@@ -74,9 +74,9 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const goToConfirmationScreen = () => {
-    i18n.changeLanguage(language.locale)
+    i18n.changeLanguage(language?.locale)
     .then(() => {
-      if(language.locale == 'RSen')
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
       {
         if(AppLayoutDirection == 'ltr') {
           dispatch(setrestartOnLangChange('yes'));
