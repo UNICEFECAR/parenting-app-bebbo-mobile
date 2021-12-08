@@ -256,7 +256,7 @@ export default () => {
               screen_name: currentRouteName,
               screen_class: currentRouteName,
             });
-            analytics().logEvent(currentRouteName + "_screen_opened");
+            analytics().logEvent(currentRouteName + "_opened");
            // console.log(currentRouteName,"currentRouteName")
             // if(currentRouteName =="ChartFullScreen"){
             //   Orientation.lockToLandscape();
