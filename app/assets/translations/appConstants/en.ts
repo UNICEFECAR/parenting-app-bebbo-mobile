@@ -391,24 +391,21 @@ const en = {
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
                 parentGender: "Gender",
                 //Onboarding Import text new Translations
-                successOnboardingImport:"You successfully imported child data",
-                updateImportText:"Please update your details to continue",
-                importOnboardingText:"You can import previously exported child data",
-                OnboardingImportButton:"Import now",
-                ORkeyText:"OR",
-                addChildText:"Add your child details",
+                successOnboardingImport: "You successfully imported child data",
+                updateImportText: "Please update your details to continue",
+                importOnboardingText: "You can import previously exported child data",
+                OnboardingImportButton: "Import now",
+                ORkeyText: "OR",
+                addChildText: "Add your child details",
                 notiTimeAgoTxt: "ago",
-                todayTxt:"today",
-                //phase2 strings
-                fiveYearsGreater:"Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
-                forceUpdatePopupTitle:"Information",
-                forceUpdatePopupText:"Data will be updated",
-                forceUpdateOkBtn:"OK",
-                favScreenremoveText:"Remove",
+                todayTxt: "today",
+                fiveYearsGreater: "Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
+                forceUpdatePopupTitle: "Information",
+                forceUpdatePopupText: "Data will be updated",
+                forceUpdateOkBtn: "OK",
+                favScreenremoveText: "Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
-                settingScreenFileBtntxt: "File",
-                //Chatbot strings
                 helloMessage: "Hello {{parentName}}, my name is Bebbo. I'm here to answer your questions",
                 selectAreaOfInterest: "Please select the area of interest from which you have a question",
                 question1: "What is your question about?",
@@ -428,7 +425,9 @@ const en = {
                 exitchatBotTxt: "Exit the Chatbot",
                 sorryMsgTxt: "I am sorry you could not find an answer to your question. Please select one of the following options:",
                 feedbackLinkTxt: "Give us feedback",
-                notNowTxt: "Not now"
+                notNowTxt: "Not now",
+                //phase 2 new strings
+                settingScreenFileBtntxt: "File",
         }
 }
 export default en;
