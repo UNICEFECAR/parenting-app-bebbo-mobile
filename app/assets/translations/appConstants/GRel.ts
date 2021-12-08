@@ -405,6 +405,28 @@ const GRel = {
                 favScreenremoveText:"Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
+                //phase 2 new strings+chatbot strings
+                settingScreenFileBtntxt: "File",
+                helloMessage: "Hello {{parentName}}, my name is Bebbo. I'm here to answer your questions",
+                selectAreaOfInterest: "Please select the area of interest from which you have a question",
+                question1: "What is your question about?",
+                question2: "Please select from the following questions",
+                question3: "Please select from the following options to continue",
+                donthavequestiontxt: "I do not have any further questions",
+                backToSubCategoryTxt: "Explore {{subCategoryName}}",
+                backtoStarttxt: "Back to start",
+                backToCategoryTxt: "Back to {{categoryName}}",
+                hereIsExportAdviceTxt: "Here is our experts advice",
+                readMoreTxt: "Read more",
+                learnMoreLinkTxt: "Learn more about this topic",
+                question4: "Have you found what you were looking for?",
+                noNotFoundTxt: "No, I haven’t",
+                answerFoundTxt: "Yes, I have",
+                thankYouTxt: "Thank you for using the chatbot. Please come visit me again if you have other questions. Goodbye!",
+                exitchatBotTxt: "Exit the Chatbot",
+                sorryMsgTxt: "I am sorry you could not find an answer to your question. Please select one of the following options:",
+                feedbackLinkTxt: "Give us feedback",
+                notNowTxt: "Not now"
         }
 }
 export default GRel;
