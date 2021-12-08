@@ -6,7 +6,8 @@ import { addSpaceToHtml } from '../../services/Utils';
 import { Heading1, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
 
 const BotBubble = (props:any) =>{
-    const { message,steps} = props;
+    const { message,steps,userNameData} = props;
+    console.log("botbubble---",userNameData);
     const {t} = useTranslation();
     const [answer2visible, setanswer2visible] = useState(false);
     return (
@@ -140,13 +141,14 @@ const BotBubble = (props:any) =>{
   
 
 const ChatBot = (props:any) => {
-    console.log("chatbot----",props)
-    const { item,index,steps,stepsjson,categorySelection,dynamicStepSelection,backToStep,backToHomeScreen} = props;
+    // console.log("chatbot----",props)
+    const { userNameData,item,index,steps,stepsjson,categorySelection,dynamicStepSelection,backToStep,backToHomeScreen} = props;
+    console.log("ChatBot---",userNameData);
     return(
         <View style={{flex:1}} key={index}> 
           { item.showNextStep==true ? 
             <>
-              <BotBubble key={'b'+item.id+'-'+index} message={item.message} steps={item} /> 
+              <BotBubble key={'b'+item.id+'-'+index} message={item.message} steps={item} userNameData={userNameData} /> 
               {
                 item.answer ? 
                   <UserBubble key={'u'+item.id+'-'+item.answer.value} message={item.answer.label} steps={item} />

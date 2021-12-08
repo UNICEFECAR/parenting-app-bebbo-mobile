@@ -37,6 +37,8 @@ import LocalizationNavigation from './LocalizationNavigation';
 import { RootStackParamList } from './types';
 import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
+import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
+import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -66,7 +68,9 @@ export default () => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
-
+  const countryId = useAppSelector(
+    (state: any) => state.selectedCountry.countryId,
+  );
   // const languageCode = useAppSelector(
   //   (state: any) => state.selectedCountry.languageCode,
   // );
@@ -185,6 +189,9 @@ export default () => {
       getAllChildren(dispatch, child_age, 0);
     }
     dispatch(setchatBotData([]));
+    if(countryId == 1) {
+      dispatch(oncountrtIdChange(restOfTheWorldCountryId));
+    }
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
