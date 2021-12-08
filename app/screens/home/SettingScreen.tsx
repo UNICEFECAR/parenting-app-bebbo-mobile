@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, backUpPath } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -77,6 +77,7 @@ import { backup } from '../../services/backup';
 import { getAllChildren, isFutureDate } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
+import Share from 'react-native-share';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -187,41 +188,68 @@ const SettingScreen = (props: any) => {
     const userRealmPath = userRealmCommon.realm?.path;
     if (!userRealmPath) return false;
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    //export 
-    if (Platform.OS === "android") {
-      let file = await ScopedStorage.openDocumentTree(true);
-      //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
-      let uri: any = await ScopedStorage.getPersistedUriPermissions();
-      console.log(uri, "..uri..");
-      try{
-      let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*",realmContent, 'base64', false);
-      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
-      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
-        Alert.alert('', t('settingExportSuccess'));
-      }
-      else {
-        Alert.alert('', t('settingExportError'));
-      }
-    }
-    catch(e){
-      // console.log('', e.message);
-      //Alert.alert('', e.message);
-    }
-    }
-    else {
-      const res: any = await DocumentPicker.pickDirectory();
-      RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
-        .then((success) => {
-          setIsExportRunning(false);
-          actionSheetRef.current?.setModalVisible(false);
+    
+    RNFS.writeFile(backUpPath, realmContent, 'base64')
+    .then(async (success) => {
+      console.log("file://"+backUpPath,"..success..")
+      setIsExportRunning(false);
+      
+      try {
+        const result = await Share.open({
+          title: 'Backup Saved',
+          url: "file://"+backUpPath,
+        })
+        .then((res) => {
           Alert.alert('', t('settingExportSuccess'));
         })
         .catch((err) => {
-          console.log(err, "..err")
-          Alert.alert('', t('settingExportError'));
-          setIsExportRunning(false);
+         // Alert.alert('', t('settingExportSuccess'));
         });
-    }
+      } catch (error) {
+        //Alert.alert('', t('settingExportError'));
+      }
+      // Alert.alert('', t('settingExportSuccess'));
+    })
+    .catch((err) => {
+      console.log(err, "..err")
+      //Alert.alert('', t('settingExportError'));
+      setIsExportRunning(false);
+    });
+    //export 
+    // if (Platform.OS === "android") {
+    //   let file = await ScopedStorage.openDocumentTree(true);
+    //   //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
+    //   let uri: any = await ScopedStorage.getPersistedUriPermissions();
+    //   console.log(uri, "..uri..");
+    //   try{
+    //   let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*",realmContent, 'base64', false);
+    //   console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+    //   if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
+    //     Alert.alert('', t('settingExportSuccess'));
+    //   }
+    //   else {
+    //     Alert.alert('', t('settingExportError'));
+    //   }
+    // }
+    // catch(e){
+    //   // console.log('', e.message);
+    //   //Alert.alert('', e.message);
+    // }
+    // }
+    // else {
+    //   const res: any = await DocumentPicker.pickDirectory();
+    //   RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
+    //     .then((success) => {
+    //       setIsExportRunning(false);
+    //       actionSheetRef.current?.setModalVisible(false);
+    //       Alert.alert('', t('settingExportSuccess'));
+    //     })
+    //     .catch((err) => {
+    //       console.log(err, "..err")
+    //       Alert.alert('', t('settingExportError'));
+    //       setIsExportRunning(false);
+    //     });
+    // }
   }
   const onExportCancel = () => {
     setExportAlertVisible(false);
@@ -554,10 +582,10 @@ const SettingScreen = (props: any) => {
 
 
     if (res.length > 0 && res[0].uri) {
-      const exportedFileContent: any = await RNFS.readFile(res[0].uri, 'base64');
+      const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
       console.log(exportedFileContent, "..newexportedFileContent..")
-      const exportedFileContentRealm: any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm', exportedFileContent, "base64");
-      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+      const exportedFileContentRealm: any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + 'user1.realm', exportedFileContent, "base64");
+      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + 'user1.realm' });
       const user1Path = importedrealm.path;
       console.log(user1Path, "..user1Path")
       const oldChildrenData = importedrealm.objects('ChildEntity');
@@ -928,14 +956,21 @@ const SettingScreen = (props: any) => {
                           console.log(userResponse, "..userResponse..")
                           if (userResponse) {
                             console.log("You can write");
-                            exportFile();
+                            actionSheetRef.current?.setModalVisible(false);
+                            setTimeout(()=>{
+                              exportFile();
+                            },350)
+                            
 
                           } else {
                             console.log("You can write");
                           }
                         }
                         else {
-                          exportFile();
+                          actionSheetRef.current?.setModalVisible(false);
+                          setTimeout(()=>{
+                            exportFile();
+                          },350)
                         }
 
                       } catch (err) {
