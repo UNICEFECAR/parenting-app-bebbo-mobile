@@ -53,6 +53,7 @@ export const CheckboxContainer = styled.View`
 export const CheckboxItem = styled.View`
   margin-right: 10px;
   margin-top:2px;
+  
 `;
 
 export default Checkbox;
