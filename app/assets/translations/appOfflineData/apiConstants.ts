@@ -13,6 +13,7 @@ export const videoTypeYoutube = "youtube";
 export const videoTypeImage = "novideo";
 export const backupGDriveFolderName= 'ParentBuddy';
 export const backupGDriveFileName= 'my.backup';
+export const tempRealmFile=RNFS.DocumentDirectoryPath + '/' + 'user1.realm';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;

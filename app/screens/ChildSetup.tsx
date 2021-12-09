@@ -1,4 +1,4 @@
-import { both_child_gender, both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId } from '@assets/translations/appOfflineData/apiConstants';
+import { both_child_gender, both_parent_gender, femaleData, maleData, regexpEmojiPresentation, relationShipFatherId, relationShipMotherId, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import ChildDate from '@components/ChildDate';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -52,7 +52,8 @@ import { BannerContainer } from '@components/shared/Container';
 import { SettingHeading, SettingShareData, SettingOptions } from '@components/shared/SettingsStyle';
 import VectorImage from 'react-native-vector-image';
 import useNetInfoHook from '../customHooks/useNetInfoHook';
-import DocumentPicker from 'react-native-document-picker';
+import DocumentPicker, { isInProgress } from 'react-native-document-picker';
+import * as ScopedStorage from "react-native-scoped-storage";
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 import RNFS from 'react-native-fs';
@@ -169,28 +170,75 @@ const ChildSetup = ({ navigation }: Props) => {
       setRelationship(String(checkedItem.id));
     }
   };
+  const handleError = (err: any) => {
+    console.log(err,"..err")
+    if (DocumentPicker.isCancel(err)) {
+      console.log('cancelled')
+      // User cancelled the picker, exit any dialogs or menus and move on
+    } else if (isInProgress(err)) {
+      console.log('multiple pickers were opened, only the last will be considered')
+    } else {
+      throw err
+    }
+  };
   const importFromFile=async()=>{
-    const res: any = await DocumentPicker.pick({
-      type: [DocumentPicker.types.allFiles],
+    if(Platform.OS=="android"){
+      const dataset=await ScopedStorage.openDocument(true,'base64');
+      console.log(dataset,"..dataset");
+      if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
+        // console.log(oldChildrenData,"..newoldChildrenData..")
+         const exportedFileContentRealm:any = await RNFS.writeFile(tempRealmFile,dataset.data,"base64");
+         const importedrealm = await new Realm({ path: 'user1.realm'});
+         console.log(importedrealm,"...importedrealm");
+         const user1Path = importedrealm.path;
+         const oldChildrenData = importedrealm.objects('ChildEntity');
+         console.log(oldChildrenData,"..newoldChildrenData..")
+         setImportAlertVisible(false);
+         setLoading(true);
+         setIsImportRunning(true);
+         if (oldChildrenData.length > 0) {
+           await userRealmCommon.openRealm();
+           userRealmCommon.deleteAllAtOnce();
+           setIsImportRunning(false);
+           setLoading(false);
+           navigation.navigate('ChildImportSetup', {
+             importResponse: JSON.stringify(oldChildrenData)
+           });
+           importedrealm.close();
+           try {
+             Realm.deleteFile({ path: tempRealmFile });
+         } catch (error) {
+             //console.log(error);
+         } 
+         }
+         else {
+           setLoading(false);
+           setIsImportRunning(false);
+         }
+      }
+    }
+    else{
+    DocumentPicker.pick({
+      allowMultiSelection: false,
+      type: DocumentPicker.types.allFiles,
     })
+  .then(async (res:any)=>{
     console.log(res, "..res..");
-
-
     if (res.length > 0 && res[0].uri) {
-      const exportedFileContent:any = await RNFS.readFile(res[0].uri, 'base64');
-      console.log(exportedFileContent,"..newexportedFileContent..")
-     // console.log(oldChildrenData,"..newoldChildrenData..")
-      const exportedFileContentRealm:any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + '/' + 'user1.realm',exportedFileContent,"base64");
-      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + '/' + 'user1.realm'});
-      console.log(importedrealm,"...importedrealm");
-      const user1Path = importedrealm.path;
-      const oldChildrenData = importedrealm.objects('ChildEntity');
-      console.log(exportedFileContent,"..newexportedFileContent..")
-      console.log(oldChildrenData,"..newoldChildrenData..")
+      const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
+      const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            let importedrealm = await new Realm({ path:'user1.realm' });
+            const user1Path = importedrealm.path;
+            console.log(user1Path, "..user1Path");
+            const oldChildrenData = importedrealm.objects('ChildEntity');
+            console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
+            console.log(oldChildrenData, "..newoldChildrenData..")
       setImportAlertVisible(false);
       setLoading(true);
       setIsImportRunning(true);
       if (oldChildrenData.length > 0) {
+        await userRealmCommon.openRealm();
+        userRealmCommon.deleteAllAtOnce();
         setIsImportRunning(false);
         setLoading(false);
         navigation.navigate('ChildImportSetup', {
@@ -198,10 +246,11 @@ const ChildSetup = ({ navigation }: Props) => {
         });
         importedrealm.close();
         try {
-          Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+          Realm.deleteFile({ path: tempRealmFile});
       } catch (error) {
           //console.log(error);
       } 
+      
       }
       else {
         setLoading(false);
@@ -209,7 +258,10 @@ const ChildSetup = ({ navigation }: Props) => {
       }
      
     }
-
+   
+  })
+  .catch(handleError);
+   }
   }
   const importAllData = async () => {
     setImportAlertVisible(false);
@@ -562,7 +614,16 @@ const ChildSetup = ({ navigation }: Props) => {
                     //  console.log("icon clicked");
                     actionSheetRefImport.current?.setModalVisible(false);
                     if (netInfoval && netInfoval.isConnected == true) {
-                      setImportAlertVisible(true);
+                      if(Platform.OS=='ios'){
+                        setTimeout(()=>{
+                          setImportAlertVisible(true);
+                        },350)
+                      }
+                      else{
+                        setImportAlertVisible(true);
+                      }
+                
+                     
                     }
                     else {
                       Alert.alert('', t('noInternet'));
