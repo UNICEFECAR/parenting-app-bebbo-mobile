@@ -427,6 +427,7 @@ const MKmk = {
                 notNowTxt: "Не сега",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
         }
 }
 export default MKmk;

@@ -428,6 +428,7 @@ const en = {
                 notNowTxt: "Not now",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
         }
 }
 export default en;
