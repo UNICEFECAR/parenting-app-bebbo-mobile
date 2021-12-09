@@ -252,14 +252,14 @@ const Home = ({ route, navigation }: Props) => {
             let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
             if(forceUpdateTime == null || forceUpdateTime == undefined) {
               dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-              Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText')+'hiii',
+              Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
                   [
                     { text: t('forceUpdateOkBtn'), onPress: () => {
                         
-                        // navigation.navigate('LoadingScreen', {
-                        //   apiJsonData: allApisObject, 
-                        //   prevPage: 'CountryLangChange'
-                        // });
+                        navigation.navigate('LoadingScreen', {
+                          apiJsonData: allApisObject, 
+                          prevPage: 'CountryLangChange'
+                        });
                       } 
                     }
                   ]
@@ -281,12 +281,12 @@ const Home = ({ route, navigation }: Props) => {
         if(apiresponse.data.status == 200) {
           if(apiresponse.data.flag == 1) {
            if(parseInt(apiresponse.data.updated_at) > parseInt(forceUpdateTime)){
-            Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText')+'byee',
+            Alert.alert(t('forceUpdatePopupTitle'), t('forceUpdatePopupText'),
               [
                 { text: t('forceUpdateOkBtn'), onPress: () => {
-                    // dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
-                    // //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
-                    // forceUpdateApis(apiresponse.data.updated_at)
+                    dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
+                    //AsyncStorage.setItem('forceUpdateTime',apiresponse.data.updated_at);
+                    forceUpdateApis(apiresponse.data.updated_at)
                   } 
                 }
               ]
