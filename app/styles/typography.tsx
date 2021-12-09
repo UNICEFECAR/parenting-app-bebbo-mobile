@@ -165,6 +165,11 @@ export const Heading5BoldW = styled(Heading5)`
 color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
 
+export const Heading5BoldWh = styled(Heading5)`
+color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
+font-family: 'roboto-bold';
+`;
+
 export const Heading6 = styled.Text`
   font-size: 11px;
   line-height: 14px;
