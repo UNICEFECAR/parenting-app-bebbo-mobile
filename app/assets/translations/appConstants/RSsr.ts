@@ -425,6 +425,7 @@ const RSsr = {
               notNowTxt: "Ne sada",
               //phase 2 new strings
               settingScreenFileBtntxt: "File",
+              importBtntxt:"Import File"
 
        }
 

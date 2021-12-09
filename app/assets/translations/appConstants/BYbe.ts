@@ -425,6 +425,7 @@ const BYbe = {
                 notNowTxt: "Не зараз",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
 
         }
 }
