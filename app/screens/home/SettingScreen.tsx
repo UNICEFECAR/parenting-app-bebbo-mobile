@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig, backUpPath } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, backUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -62,7 +62,7 @@ import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Modal, PermissionsAndroid, Platform, Pressable, ScrollView, View } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
-import DocumentPicker from 'react-native-document-picker';
+import DocumentPicker, { isInProgress } from 'react-native-document-picker';
 import RNFS, { stat } from 'react-native-fs';
 import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
@@ -188,7 +188,9 @@ const SettingScreen = (props: any) => {
     const userRealmPath = userRealmCommon.realm?.path;
     if (!userRealmPath) return false;
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    
+    if(Platform.OS=="android"){
+    let uri1: any = await ScopedStorage.getPersistedUriPermissions();
+    }
     RNFS.writeFile(backUpPath, realmContent, 'base64')
     .then(async (success) => {
       console.log("file://"+backUpPath,"..success..")
@@ -217,22 +219,36 @@ const SettingScreen = (props: any) => {
     });
     //export 
     // if (Platform.OS === "android") {
-    //   let file = await ScopedStorage.openDocumentTree(true);
+    //   // let file = await ScopedStorage.openDocumentTree(true);
     //   //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
-    //   let uri: any = await ScopedStorage.getPersistedUriPermissions();
-    //   console.log(uri, "..uri..");
     //   try{
-    //   let fileDownload: any = await ScopedStorage.writeFile(file.uri, "my.backup", "*/*",realmContent, 'base64', false);
+    //   let fileDownload: any = await ScopedStorage.createFile(RNFS.DocumentDirectoryPath, "my.backup", "*/*",realmContent, 'base64', false);
+    //   let uri1: any = await ScopedStorage.getPersistedUriPermissions();
+    //   console.log(uri1, "..uri..");
     //   console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
     //   if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
     //     Alert.alert('', t('settingExportSuccess'));
+    //   //   try {
+    //   //   const result = await Share.open({
+    //   //     title: 'Backup Saved',
+    //   //     url: "file://"+backUpPath,
+    //   //   })
+    //   //   .then((res) => {
+    //   //     Alert.alert('', t('settingExportSuccess'));
+    //   //   })
+    //   //   .catch((err) => {
+    //   //    // Alert.alert('', t('settingExportSuccess'));
+    //   //   });
+    //   // } catch (error) {
+    //   //   //Alert.alert('', t('settingExportError'));
+    //   // }
     //   }
     //   else {
     //     Alert.alert('', t('settingExportError'));
     //   }
     // }
     // catch(e){
-    //   // console.log('', e.message);
+    //    console.log('', e.message);
     //   //Alert.alert('', e.message);
     // }
     // }
@@ -574,33 +590,80 @@ const SettingScreen = (props: any) => {
       toggleSwitch();
     }, [developmentEnabledFlag, growthEnabledFlag, vchcEnabledFlag])
   );
-  const importFromSettingsFile = async () => {
-    const res: any = await DocumentPicker.pick({
-      type: [DocumentPicker.types.allFiles],
-    })
-    console.log(res, "..res..");
-
-
-    if (res.length > 0 && res[0].uri) {
-      const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
-      console.log(exportedFileContent, "..newexportedFileContent..")
-      const exportedFileContentRealm: any = await RNFS.writeFile(RNFS.TemporaryDirectoryPath + 'user1.realm', exportedFileContent, "base64");
-      const importedrealm = await new Realm({ path: RNFS.TemporaryDirectoryPath + 'user1.realm' });
+  const handleError = (err: any) => {
+    console.log(err,"..err")
+    if (DocumentPicker.isCancel(err)) {
+      console.log('cancelled')
+      // User cancelled the picker, exit any dialogs or menus and move on
+    } else if (isInProgress(err)) {
+      console.log('multiple pickers were opened, only the last will be considered')
+    } else {
+      throw err
+    }
+  };
+  const importFromSettingsFile =async() => {
+    if(Platform.OS=="android"){
+    const dataset=await ScopedStorage.openDocument(true,'base64');
+    console.log(dataset,"..dataset");
+    if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
+      const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile,  dataset.data, "base64");
+      const importedrealm = await new Realm({ path:'user1.realm' });
       const user1Path = importedrealm.path;
       console.log(user1Path, "..user1Path")
       const oldChildrenData = importedrealm.objects('ChildEntity');
       console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
       console.log(oldChildrenData, "..newoldChildrenData..")
       setIsImportRunning(true);
-      const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
-      console.log(importResponse, "..importResponse");
+      if(oldChildrenData.length>0){
+        await userRealmCommon.openRealm();
+        userRealmCommon.deleteAllAtOnce();
+        const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
+        console.log(importResponse, "..importResponse");
       // this.setState({ isImportRunning: false, });
+      }
       setIsImportRunning(false);
       actionSheetRefImport.current?.setModalVisible(false);
 
     }
+    }
+    else{
+      DocumentPicker.pick({
+        allowMultiSelection: false,
+        type: DocumentPicker.types.allFiles,
+      })
+        .then(async (res:any)=>{
+          
+          if (res.length > 0 && res[0].uri) {
+            const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
+            const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
+            console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
+            let importedrealm = await new Realm({ path:'user1.realm' });
+            const user1Path = importedrealm.path;
+            console.log(user1Path, "..user1Path")
+            const oldChildrenData = importedrealm.objects('ChildEntity');
+           
+            console.log(oldChildrenData, "..newoldChildrenData..")
+            setIsImportRunning(true);
+            if(oldChildrenData.length>0){
+              await userRealmCommon.openRealm();
+              userRealmCommon.deleteAllAtOnce();
+            const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
+            console.log(importResponse, "..importResponse");
+            // this.setState({ isImportRunning: false, });
+            }
+            setIsImportRunning(false);
+            actionSheetRefImport.current?.setModalVisible(false);
+      
+          }
+        })
+        .catch(handleError);
+    }
+ 
+    // // console.log(res, "..res..");
 
+   
   }
+  
   return (
     <>
       <View style={{ flex: 1, backgroundColor: primaryColor }}>
@@ -957,10 +1020,7 @@ const SettingScreen = (props: any) => {
                           if (userResponse) {
                             console.log("You can write");
                             actionSheetRef.current?.setModalVisible(false);
-                            setTimeout(()=>{
-                              exportFile();
-                            },350)
-                            
+                            exportFile();
 
                           } else {
                             console.log("You can write");
@@ -968,7 +1028,7 @@ const SettingScreen = (props: any) => {
                         }
                         else {
                           actionSheetRef.current?.setModalVisible(false);
-                          setTimeout(()=>{
+                         setTimeout(()=>{
                             exportFile();
                           },350)
                         }
@@ -995,7 +1055,10 @@ const SettingScreen = (props: any) => {
                       //  console.log("icon clicked");
                       actionSheetRef.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
-                        setExportAlertVisible(true);
+                        // setExportAlertVisible(true);
+                        Platform.OS=='ios'? setTimeout(()=>{
+                          setExportAlertVisible(true);
+                        },350) : setExportAlertVisible(true);
                       }
                       else {
                         Alert.alert('', t('noInternet'));
@@ -1076,7 +1139,11 @@ const SettingScreen = (props: any) => {
                       //  console.log("icon clicked");
                       actionSheetRefImport.current?.setModalVisible(false);
                       if (netInfoval && netInfoval.isConnected == true) {
+
+                        Platform.OS=='ios'? setTimeout(()=>{
                         setImportAlertVisible(true);
+                      },350) : setImportAlertVisible(true);
+                     
                       }
                       else {
                         Alert.alert('', t('noInternet'));
