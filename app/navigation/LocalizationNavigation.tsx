@@ -18,7 +18,7 @@ export default () => {
   const AppLayoutDirectionParams = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionParams,
   );
-  console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
+  //console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   return (
     <LocalizationStack.Navigator 
       // initialRouteName="CountrySelection"
