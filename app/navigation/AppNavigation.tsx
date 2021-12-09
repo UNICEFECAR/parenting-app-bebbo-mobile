@@ -79,7 +79,7 @@ export default () => {
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
   );
-  console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
+ // console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
