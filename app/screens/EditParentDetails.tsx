@@ -123,7 +123,8 @@ const EditParentDetails = ({route,navigation}: Props) => {
     // console.log(userParentalRole,"..userParentalRole")
     // console.log(userNames,"..userNames");
     userRelationToParent=userRelationToParent.length>0?userRelationToParent[0].value:'';
-    updateActiveChild(activeChild,"parent_gender",relationship, dispatch,userRelationToParentRole);
+  //  updateActiveChild(activeChild,"parent_gender",relationship, dispatch,userRelationToParentRole);
+    updateActiveChild(activeChild,"parent_gender",relationship, dispatch,String(userRelationToParent));
     navigation.navigate('ChildProfileScreen');
   }
   const getCheckedParentItem = (checkedItem:any) => {
