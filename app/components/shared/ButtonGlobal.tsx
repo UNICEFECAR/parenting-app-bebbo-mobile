@@ -132,6 +132,9 @@ justify-content:center;
 padding:7px 0
 `
 
+export const ButtonLinkPressLeft = styled(ButtonLinkPress)`
+  justify-content:flex-start;
+`;
 export const ButtonTertiary = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
