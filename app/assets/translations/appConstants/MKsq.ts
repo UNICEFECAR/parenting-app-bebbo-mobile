@@ -426,6 +426,7 @@ const MKsq = {
                 notNowTxt: "Jo tani",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
         }
 }
 export default MKsq;
