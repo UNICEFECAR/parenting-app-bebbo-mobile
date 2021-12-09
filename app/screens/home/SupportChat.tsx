@@ -20,6 +20,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setchatBotData } from '../../redux/reducers/childSlice';
 import { useFocusEffect } from '@react-navigation/core';
 import ChatBot from './ChatBot';
+import ChatContainer, { ChatBgImage } from '@components/shared/SupportChatStyle';
+import VectorImage from 'react-native-vector-image';
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
@@ -134,7 +136,7 @@ const faqsData = useAppSelector((state: any) =>
   const isMountedRef = useRef<any>(null);
   const [steps,setsteps] = useState<any>([]);
 
-
+console.log("faqsData-----",faqsData);
   var toString = Object.prototype.toString;
   function deepCopy(obj:any) {
       var rv;
@@ -478,33 +480,36 @@ const faqsData = useAppSelector((state: any) =>
           headerColor={headerColor}
           textColor="#FFF"
         />
-        {/* <ScrollView> */}
-          <FlexCol style={{backgroundColor:'grey',width:'100%',padding:10}}>
-          {/* <ScrollView contentContainerStyle={{ padding: 0, paddingTop: 0 }}> */}
+          <FlexCol>
+            <ChatContainer>
             {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
-            {steps.length> 0 ? 
-                // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
-                <FlatList
-                  ref={flatListRef}
-                  data={steps}
-                  onScroll={(e)=>{
-                    // if(keyboardStatus==true){
-                    //   Keyboard.dismiss();
-                    // }
-                  }}
-                  nestedScrollEnabled={true}
-                  // keyboardDismissMode={"on-drag"}
-                  // keyboardShouldPersistTaps='always'
-                  removeClippedSubviews={true} // Unmount components when outside of window 
-                  initialNumToRender={4} // Reduce initial render amount
-                  maxToRenderPerBatch={4} // Reduce number in each render batch
-                  updateCellsBatchingPeriod={100} // Increase time between renders
-                  windowSize={7} // Reduce the window size
-                  renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}  />  }
-                  keyExtractor={(item,index) => index.toString()}
-                  />
-                : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
-            {/* </ScrollView> */}
+              {steps.length> 0 ? 
+                  // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                  <FlatList
+                    ref={flatListRef}
+                    data={steps}
+                    onScroll={(e)=>{
+                      // if(keyboardStatus==true){
+                      //   Keyboard.dismiss();
+                      // }
+                    }}
+                    nestedScrollEnabled={true}
+                    // keyboardDismissMode={"on-drag"}
+                    // keyboardShouldPersistTaps='always'
+                    removeClippedSubviews={true} // Unmount components when outside of window 
+                    initialNumToRender={4} // Reduce initial render amount
+                    maxToRenderPerBatch={4} // Reduce number in each render batch
+                    updateCellsBatchingPeriod={100} // Increase time between renders
+                    windowSize={7} // Reduce the window size
+                    renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}  />  }
+                    keyExtractor={(item,index) => index.toString()}
+                    />
+                  : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+
+                </ChatContainer>
+                <ChatBgImage>
+                  {/* <VectorImage source={require('@assets/svg/bebbo_logo_shape.svg')} style={{width: '100%', height: '100%'}} /> */}
+                </ChatBgImage>
           </FlexCol>
       </View>
     </>
