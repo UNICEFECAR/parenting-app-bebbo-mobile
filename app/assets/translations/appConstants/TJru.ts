@@ -426,6 +426,7 @@ const TJru = {
                 notNowTxt: "Не сейчас",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
 
         }
 }
