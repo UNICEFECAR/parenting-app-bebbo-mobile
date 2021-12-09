@@ -2,7 +2,7 @@ import { googleAuth } from "./googleAuth";
 import { googleDrive } from "./googleDrive";
 import RNFS from 'react-native-fs';
 import { userRealmCommon } from "../database/dbquery/userRealmCommon";
-import { backupGDriveFileName, backupGDriveFolderName } from "@assets/translations/appOfflineData/apiConstants";
+import { backupGDriveFileName, backupGDriveFolderName, tempRealmFile } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ConfigSettingsEntity, ConfigSettingsSchema } from "../database/schema/ConfigSettingsSchema";
@@ -12,6 +12,7 @@ import Realm, { ObjectSchema, Collection } from 'realm';
 import { getChild } from "./Utils";
 import { ChildEntity, ChildEntitySchema } from "../database/schema/ChildDataSchema";
 import { setInfoModalOpened } from "../redux/reducers/utilsSlice";
+
 /**
  * Export / import user realm to GDrive in order to create backup.
  */
@@ -126,12 +127,12 @@ class Backup {
                     let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                     if(activeChildData.length>0){
                         const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData: [],
-                            prevPage: 'ImportScreen'
-                        });
+                        // navigation.navigate('LoadingScreen', {
+                        //     apiJsonData: [],
+                        //     prevPage: 'ImportScreen'
+                        // });
                         try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            Realm.deleteFile({ path:  tempRealmFile});
                         } catch (error) {
                             //console.log(error);
                         }
@@ -139,12 +140,12 @@ class Backup {
                     }
                     else{
                         const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData: [],
-                            prevPage: 'ImportScreen'
-                        });
+                        // navigation.navigate('LoadingScreen', {
+                        //     apiJsonData: [],
+                        //     prevPage: 'ImportScreen'
+                        // });
                         try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            Realm.deleteFile({ path: tempRealmFile });
                         } catch (error) {
                             //console.log(error);
                         }
@@ -153,12 +154,12 @@ class Backup {
                     }
                     else{
                         const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
-                        navigation.navigate('LoadingScreen', {
-                            apiJsonData: [],
-                            prevPage: 'ImportScreen'
-                        });
+                        // navigation.navigate('LoadingScreen', {
+                        //     apiJsonData: [],
+                        //     prevPage: 'ImportScreen'
+                        // });
                         try {
-                            Realm.deleteFile({ path:  RNFS.TemporaryDirectoryPath + '/' + 'user1.realm' });
+                            Realm.deleteFile({ path:tempRealmFile });
                         } catch (error) {
                             //console.log(error);
                         }
@@ -217,7 +218,7 @@ class Backup {
         // userRealmCommon.closeRealm();
         const downloadres = await googleDrive.downloadAndReadFile({
             fileId: backupFileId,
-            filePath: RNFS.DocumentDirectoryPath + '/' + 'user1.realm',
+            filePath: tempRealmFile,
         });
         //console.log(downloadres, "..downloadres..");
         userRealmCommon.closeRealm();
@@ -290,7 +291,7 @@ class Backup {
         // userRealmCommon.closeRealm();
         const downloadres = await googleDrive.downloadAndReadFile({
             fileId: backupFileId,
-            filePath: RNFS.DocumentDirectoryPath + '/' + 'user1.realm',
+            filePath: tempRealmFile,
         });
         //console.log(downloadres, "..downloadres..");
         userRealmCommon.closeRealm();
@@ -315,9 +316,9 @@ class Backup {
                         const itemnew = await getChild(item, genders);
                         let childData: any = [];
                         childData.push(itemnew);
-                        //console.log(childData, "..childData..");
+                        console.log(childData, "..childData..");
                         let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, childData);
-                        //console.log(createresult, "..createresult");
+                        console.log(createresult, "..createresult");
                         }
                         // let createresult = newRealm.create(ChildEntitySchema.name, getChild(item));
                         //console.log(createresult,".....createresult...");
@@ -336,9 +337,9 @@ class Backup {
                         //   }
                         // }) 
                         let allChildren = await getAllChildren(dispatch, child_age,1);
-                        //console.log(allChildren, "..allChildren..")
+                        console.log(allChildren, "..allChildren..")
                         let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
-                        //console.log(childId,"..childId..")
+                        console.log(childId,"..childId..")
                         let allChildrenList: Child[] = [];
                         this.closeImportedRealm();
                             try {
@@ -352,7 +353,7 @@ class Backup {
                             let activeChildData = allChildren.filter((x:any)=>x.uuid == childId);
                             if(activeChildData.length>0){
                                 const activeChildnew=await setActiveChild(langCode,childId, dispatch, child_age);
-                                //console.log(activeChildnew,"..activeset")
+                                console.log(activeChildnew,"..activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -361,7 +362,7 @@ class Backup {
                             }
                             else{
                                 const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
-                                //console.log(activeChildnew,"..activeset")
+                                console.log(activeChildnew,"..22activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
@@ -371,7 +372,7 @@ class Backup {
                             }
                             else{
                                 const activeChildnew=await setActiveChild(langCode, '', dispatch, child_age);
-                                //console.log(activeChildnew,"..activeset")
+                                console.log(activeChildnew,"..33activeset")
                                 navigation.navigate('LoadingScreen', {
                                     apiJsonData: [],
                                     prevPage: 'ImportScreen'
