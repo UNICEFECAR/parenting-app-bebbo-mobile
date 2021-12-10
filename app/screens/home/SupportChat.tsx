@@ -507,7 +507,7 @@ console.log("faqsData-----",faqsData);
 
                 </ChatContainer>
                 <ChatBgImage>
-                  <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} />
+                  {/* <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} /> */}
                 </ChatBgImage>
           </FlexCol>
       </View>
