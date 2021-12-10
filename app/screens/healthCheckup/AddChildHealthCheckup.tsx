@@ -32,7 +32,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -648,7 +648,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 onPress={() => {
                   navigation.goBack();
                 }}>
-                <Icon name={'ic_back'} color="#000" size={15} />
+                <IconML name={'ic_back'} color="#000" size={15} />
               </HeaderIconPress>
             </HeaderIconView>
             <HeaderTitleView>
