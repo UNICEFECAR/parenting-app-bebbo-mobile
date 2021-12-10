@@ -12,7 +12,7 @@ import {
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -152,7 +152,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
                onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
+              <IconML name={'ic_back'} color="#FFF" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>

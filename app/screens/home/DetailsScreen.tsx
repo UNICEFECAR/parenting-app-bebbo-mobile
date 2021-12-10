@@ -7,7 +7,7 @@ import { BgActivityTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
 import { FlexCol, FlexDirRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderTitleView,HeaderIconPress } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TrackMilestoneView from '@components/shared/TrackMilestoneView';
@@ -328,7 +328,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <HeaderIconView>
               <HeaderIconPress
                 onPress={onHeaderBack}>
-                <Icon name={'ic_back'} color="#000" size={15} />
+                <IconML name={'ic_back'} color="#000" size={15} />
               </HeaderIconPress>
             </HeaderIconView>
             <HeaderTitleView>
