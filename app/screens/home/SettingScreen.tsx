@@ -1042,10 +1042,10 @@ const SettingScreen = (props: any) => {
                       //   Alert.alert('',t('noInternet'));
                       // }
                     }}>
-                      <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                      <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
-                          {t('settingScreenshareBtntxt')}
+                          {t('importBtntxt')}
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
