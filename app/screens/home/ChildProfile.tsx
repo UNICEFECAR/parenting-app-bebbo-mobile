@@ -8,6 +8,7 @@ import { VerticalDivider } from '@components/shared/Divider';
 import { FDirRow, FlexColEnd, FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import { HeaderIconView, HeaderRowView, HeaderTitleView, HeaderIconPress } from '@components/shared/HeaderContainerStyle';
 import Icon, {
+  IconML,
   OuterIconLeft,
   OuterIconRight,
   OuterIconRow,
@@ -349,7 +350,7 @@ const ChildProfile = ({ navigation }: Props) => {
                 e.stopPropagation();
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
+              <IconML name={'ic_back'} color="#FFF" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>

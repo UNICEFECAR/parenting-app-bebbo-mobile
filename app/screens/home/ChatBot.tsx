@@ -8,7 +8,7 @@ import { FlexCol, FlexRow } from '@components/shared/FlexBoxStyle';
 import VectorImage from 'react-native-vector-image';
 import { ButtonLinkPressLeft, ButtonTextMdLineL } from '@components/shared/ButtonGlobal';
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
 
 const BotBubble = (props: any) => {
@@ -138,7 +138,7 @@ const ActionBubble = (props: any) => {
             actionval?.nextStepFunc(stepindex, actionindex, actionval.nextStepval, steps[stepindex].id, steps, stepsjson)
           }}>
           <ActionBubbleIcon>
-            <Icon name="ic_back" size={16} color="#000" />
+            <IconML name="ic_back" size={16} color="#000" />
           </ActionBubbleIcon>
           <Heading4Regular style={{ flexShrink: 1 }}>
             {actionval?.label}

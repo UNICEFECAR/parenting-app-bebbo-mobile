@@ -12,7 +12,7 @@ import {
   TextAreaBox, TextBox
 } from '@components/shared/ChildSetupStyle';
 import { MainContainer } from '@components/shared/Container';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import { RootStackParamList } from '@navigation/types';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useFocusEffect } from '@react-navigation/native';
@@ -175,7 +175,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
+              <IconML name={'ic_back'} color="#FFF" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>

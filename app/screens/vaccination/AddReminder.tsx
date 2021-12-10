@@ -22,7 +22,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon, { IconViewBorder } from '@components/shared/Icon';
+import Icon, { IconML, IconViewBorder } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -321,7 +321,7 @@ useEffect(() => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#000" size={15} />
+              <IconML name={'ic_back'} color="#000" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
