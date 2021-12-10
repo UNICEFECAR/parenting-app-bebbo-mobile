@@ -286,8 +286,8 @@ const MEcnr = {
                 removeWarnTxt: "Da li želite da uklonite fotografiju?",
                 removeOption1: "Otkažite",
                 removeOption2: "Uklonite",
-                deleteChildTxt: "Obrišite dijete",
-                deleteWarnTxt: "Da li želite da obrišete dijete?",
+                deleteChildTxt: "Obrišite profil dijeteta",
+                deleteWarnTxt: "Da li želite da obrišete profil dijeteta?",
                 uploadPhtototxt: "Postavite fotografiju djeteta",
                 cameraOptionsHeader: "Odaberite",
                 noChildsTxt: "Nema podataka",
@@ -314,7 +314,7 @@ const MEcnr = {
                 developScreenCompletechartText: "Čestitamo, Vaše dijete je dostiglo sve prekretnice!",
                 noDataTxt: "Nema dostupnih podataka",
                 hcEditHeaderTitle: "Izmijenite 'Kontrolni zdravstveni pregled'",
-                genderLabel: "Dodajte rod",
+                genderLabel: "Dodajte pol",
                 removePhotoOption1: "Otkažite",
                 removePhotoOption2: "Uklonite",
                 expectedChildDobLabel: "Dijete još nije rođeno",
@@ -355,7 +355,7 @@ const MEcnr = {
                 SyncOnLoadPopupText: "Želite li sada da sinhronizujete podatke?",
                 SyncOnLoadCancelPopUpBtn: "Poništi",
                 SyncOnLoadRetryBtn: "Sinhronizacija",
-                cdNoti1: "Pratite razvoj svog djete u periodu od {{periodName}}",
+                cdNoti1: "Pratite razvoj svog djeteta u periodu od {{periodName}}",
                 cdNoti2: "Provjerite koje je prekretnice Vaše dijete postiglo u periodu od - {{periodName}}",
                 gwNoti1: "Ažurirajte mjere rasta za period od {{periodName}}",
                 hcNoti1: "Zakažite posjetu ljekaru za period: {{periodName}}",
@@ -427,7 +427,7 @@ const MEcnr = {
                 notNowTxt: "Ne sada",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
-                importBtntxt:"Import File"
+                importBtntxt: "Import File"
         }
 
 }
