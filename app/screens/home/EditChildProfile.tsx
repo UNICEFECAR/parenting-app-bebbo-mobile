@@ -24,7 +24,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon, { IconBox } from '@components/shared/Icon';
+import Icon, { IconBox, IconML } from '@components/shared/Icon';
 import { ProfileEditView } from '@components/shared/ProfileListingStyle';
 import ToggleRadios from '@components/ToggleRadios';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
@@ -426,7 +426,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#FFF" size={15} />
+              <IconML name={'ic_back'} color="#FFF" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
