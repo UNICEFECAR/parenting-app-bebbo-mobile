@@ -4,7 +4,7 @@ import { ButtonContainer, ButtonModal, ButtonTertiary, ButtonText } from '@compo
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -132,7 +132,7 @@ const AddNewChildHeight = ({ navigation, route }: Props) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#000" size={15} />
+              <IconML name={'ic_back'} color="#000" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
