@@ -8,7 +8,7 @@ import {
   ButtonviewNext,
   ButtonviewPrevious
 } from '@components/shared/ButtonView';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
@@ -180,7 +180,7 @@ const CountrySelection = (props: any) => {
                     
                     }
                   }>
-                  <Icon name="ic_angle_right" size={32} color="#000" />
+                  <IconML name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>
             </ShiftFromTopBottom10>
@@ -188,7 +188,7 @@ const CountrySelection = (props: any) => {
         ) : (
           <ButtonviewPrevious>
             <ButtonviewClick onPress={() => { }}>
-              <Icon name="ic_angle_right" size={32} color="#000" />
+              <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>
         )}
