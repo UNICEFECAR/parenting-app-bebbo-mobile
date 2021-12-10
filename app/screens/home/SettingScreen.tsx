@@ -1045,7 +1045,7 @@ const SettingScreen = (props: any) => {
                       <Icon name="ic_sb_shareapp" size={30} color="#000" />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
-                          {t('importBtntxt')}
+                          {t('settingScreenshareBtntxt')}
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
@@ -1130,7 +1130,7 @@ const SettingScreen = (props: any) => {
                       <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
-                          {t('settingScreenshareBtntxt')}
+                          {t('importBtntxt')}
                         </Heading4Regular>
                       </ShiftFromTopBottom5>
                     </Pressable>
