@@ -426,6 +426,7 @@ const GRel = {
                 notNowTxt: "Όχι τώρα",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
         }
 }
 export default GRel;
