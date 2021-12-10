@@ -51,12 +51,12 @@ export const UserBubbleTextContainer = styled.View`
     background-color:${props => props.theme.colors.PRIMARY_COLOR};
     padding: 15px;
     border-radius: ${(props) => props.theme.borderRadius.BORDERRADIUS};
-    margin-bottom: 40px,
-    margin-left: 100px,
+    margin-bottom: 40px;
+    margin-left: 100px;
     padding-top: 17px;
     padding-bottom: 17px;
-    width:auto,
-    min-width:160px,
+    width:auto;
+    min-width:160px;
 `;
 export const OptionBubbleContainer = styled.View`
     flex:1;
@@ -81,6 +81,8 @@ export const ActionBubbleContainer = styled.View`
     margin-right: 10px;
 `;
 export const ActionBubblePressable = styled.Pressable`
+    flex-direction: row;
+    flex:1;
     align-items: center;
     background-color: #75A7DD;
     padding: 4px;
