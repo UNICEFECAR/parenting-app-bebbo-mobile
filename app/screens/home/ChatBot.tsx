@@ -9,7 +9,7 @@ import VectorImage from 'react-native-vector-image';
 import { ButtonLinkPressLeft, ButtonTextMdLineL } from '@components/shared/ButtonGlobal';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from '@components/shared/Icon';
-import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable } from '@components/shared/SupportChatStyle';
+import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
 
 const BotBubble = (props: any) => {
   const { message, steps, userNameData } = props;
@@ -133,11 +133,7 @@ const ActionBubble = (props: any) => {
     <>
 
       <ActionBubbleContainer style={{ marginTop: actionindex == 0 ? 40 : 0 }}>
-        <Pressable
-          style={{
-            flexDirection: 'row',
-            flex: 1
-          }}
+        <ActionBubblePressable
           onPress={() => {
             actionval?.nextStepFunc(stepindex, actionindex, actionval.nextStepval, steps[stepindex].id, steps, stepsjson)
           }}>
@@ -147,7 +143,7 @@ const ActionBubble = (props: any) => {
           <Heading4Regular style={{ flexShrink: 1 }}>
             {actionval?.label}
           </Heading4Regular>
-        </Pressable>
+        </ActionBubblePressable>
       </ActionBubbleContainer>
     </>
   )
