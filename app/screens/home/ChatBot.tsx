@@ -78,7 +78,7 @@ const BotBubble = (props: any) => {
                 />
               </View>
               : null}
-            {steps && steps.textToShow && steps.textToShow.related_article && steps.textToShow.related_article != 0 && answer2visible == true ?
+            {steps && steps.textToShow && steps.textToShow.related_article && steps.textToShow.related_article != 0 && (answer2visible == true || (steps.textToShow.answer_part_2 == '' && answer2visible == false)) ?
               <SideSpacing15>
                 <ButtonLinkPressLeft
                   onPress={() => {
@@ -188,88 +188,3 @@ const ChatBot = (props: any) => {
 };
 
 export default React.memo(ChatBot);
-
-const styles = StyleSheet.create({
-  botStyle: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#f6f5f2',
-    padding: 15,
-    // margin:5,
-    //marginBottom:10,
-    // marginRight:50,
-    paddingTop: 17,
-    paddingBottom: 17,
-  },
-  userStyle: {
-    // flex:1,
-    // flexDirection: 'row',
-    // justifyContent: 'flex-end',
-    // alignItems: 'flex-end',
-    backgroundColor: '#2B2F84',
-    padding: 15,
-    borderRadius: 4,
-    // margin:5,
-    marginBottom: 40,
-    marginLeft: 100,
-    paddingTop: 17,
-    paddingBottom: 17,
-    width: 'auto',
-    minWidth: 160,
-    // maxWidth:'50%',
-  },
-  optionStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 4,
-    // marginBottom: 10,
-    borderWidth: 2,
-    borderColor: 'red',
-    // marginLeft: 55,
-    paddingTop: 17,
-    paddingBottom: 17,
-  },
-  actionStyle: {
-    flex: 1,
-    flexDirection: 'row',
-    // justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#75A7DD',
-    padding: 4,
-    paddingRight: 10,
-    borderRadius: 100,
-    // margin:5,
-    marginBottom: 10,
-    borderWidth: 2,
-    borderColor: '#2B2F84',
-    marginLeft: 65,
-    marginRight: 10,
-  },
-  imageStyle: {
-    height: 36,
-    width: 36,
-    borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 15,
-    marginLeft: 5,
-    // borderWidth:2,
-    // borderColor:'#000'
-  },
-  imageStyle1: {
-    height: 40,
-    width: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 15,
-    // marginLeft: 5,
-    backgroundColor: '#e2edf7',
-    borderRadius: 100,
-    // borderWidth:2,
-    // borderColor:'#000'
-  }
-});
