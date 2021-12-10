@@ -20,7 +20,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon, { OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft15, OuterIconRow } from '@components/shared/Icon';
 import { ImageIcon } from '@components/shared/Image';
 import ModalPopupContainer, {
   ModalPopupContent,
@@ -409,7 +409,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
                     </FlexDirRow>
                   </HeaderTitleView>
                   <HeaderActionView>
-                    <Icon name="ic_angle_right" size={16} color="#000" />
+                    <IconML name="ic_angle_right" size={16} color="#000" />
                   </HeaderActionView>
                 </HeaderRowView>
               </DrawerHeadContainer>
