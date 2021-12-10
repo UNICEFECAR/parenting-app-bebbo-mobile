@@ -426,7 +426,7 @@ const UZru = {
                 notNowTxt: "Не сейчас",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
-                importBtntxt:"Import File"
+                importBtntxt: "Import File"
         }
 }
 export default UZru;
