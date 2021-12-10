@@ -426,6 +426,7 @@ const TJtg = {
                 notNowTxt: "Ҳозир не",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
+                importBtntxt:"Import File"
         }
 }
 export default TJtg;
