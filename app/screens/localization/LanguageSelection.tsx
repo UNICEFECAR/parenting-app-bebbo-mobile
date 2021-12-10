@@ -6,7 +6,7 @@ import {
   ButtonviewNext,
   ButtonviewPrevious
 } from '@components/shared/ButtonView';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
@@ -133,21 +133,21 @@ const LanguageSelection = ({route, navigation}: Props) => {
           <BtnMultiple>
             <ButtonviewNext>
               <ButtonviewClick onPress={() => navigation.goBack()}>
-                <Icon name="ic_angle_left" size={32} color="#000" />
+                <IconML name="ic_angle_left" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
                   onPress={() => goToConfirmationScreen()}>
-                  <Icon name="ic_angle_right" size={32} color="#000" />
+                  <IconML name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
               onPress={() =>{}
               }>
-              <Icon name="ic_angle_right" size={32} color="#000" />
+              <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>}
           </BtnMultiple>
