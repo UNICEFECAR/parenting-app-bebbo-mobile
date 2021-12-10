@@ -11,7 +11,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import styled from 'styled-components/native';
-import botAvatarImage from '../../assets/avatar.png';
 import { ToolBoxText, ToolPress } from '@components/shared/HomeScreenStyle';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
@@ -508,7 +507,7 @@ console.log("faqsData-----",faqsData);
 
                 </ChatContainer>
                 <ChatBgImage>
-                  {/* <VectorImage source={require('@assets/svg/bebbo_logo_shape.svg')} style={{width: '100%', height: '100%'}} /> */}
+                  {/* <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} /> */}
                 </ChatBgImage>
           </FlexCol>
       </View>
