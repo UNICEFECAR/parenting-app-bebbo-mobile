@@ -426,6 +426,7 @@ const UZuz = {
               notNowTxt: "Xozir emas",
               //phase 2 new strings
               settingScreenFileBtntxt: "File",
+              importBtntxt:"Import File"
 
        }
 }
