@@ -77,6 +77,10 @@ export const OptionBubblePressable = styled.Pressable`
 export const ActionBubbleContainer = styled.View`
     flex:1;
     flex-direction: row;
+    margin-left: 65px;
+    margin-right: 10px;
+`;
+export const ActionBubblePressable = styled.Pressable`
     align-items: center;
     background-color: #75A7DD;
     padding: 4px;
@@ -85,8 +89,6 @@ export const ActionBubbleContainer = styled.View`
     margin-bottom: 10px;
     border-width: 2px;
     border-color: ${props => props.theme.colors.PRIMARY_COLOR};
-    margin-left: 65px;
-    margin-right: 10px;
 `;
 export const ActionBubbleIcon = styled.View`
     height: 40px;
