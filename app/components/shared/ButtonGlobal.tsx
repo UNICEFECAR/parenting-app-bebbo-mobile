@@ -131,10 +131,13 @@ align-items:center;
 justify-content:center;
 padding:7px 0
 `
-
+// only for chatbot call to action property start
 export const ButtonLinkPressLeft = styled(ButtonLinkPress)`
   justify-content:flex-start;
+  margin-bottom:10px;
 `;
+// only for chatbot call to action property end
+
 export const ButtonTertiary = styled(ButtonPrimary)`
   background-color: ${props => props.theme.colors.SECONDARY_TEXTCOLOR};
 `;
