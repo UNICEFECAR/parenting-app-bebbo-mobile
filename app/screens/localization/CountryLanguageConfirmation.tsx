@@ -36,7 +36,7 @@ import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
@@ -89,116 +89,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       saveinDB: true,
     },
   ];
-  const apiJsonDataOnboarded = [
-    {
-      apiEndpoint: appConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    },
-    {
-      apiEndpoint: appConfig.taxonomies,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.videoArticles,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.dailyMessages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.activities,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.surveys,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestones,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childDevelopmentData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinations,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthCheckupData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-        apiEndpoint: appConfig.standardDeviation,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-    }
-  ];
+  
   const {t, i18n} = useTranslation();
   console.log(I18nManager.isRTL,"---is rtl val");
 
@@ -284,7 +175,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
         dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       }
         navigation.navigate('LoadingScreen', {
-          apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
+          apiJsonData: userIsOnboarded == true ? allApisObject : apiJsonData, 
           prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
         });
     }
