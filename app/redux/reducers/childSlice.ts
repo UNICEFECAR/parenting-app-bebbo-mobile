@@ -10,7 +10,7 @@ interface childDataType {
     bufferAgeBracket:Array<any>;
     favoriteadvices:Array<any>;
     favoritegames:Array<any>;
-    chatBotData:Array<any>;
+    chatBotData:string;
   }
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
@@ -22,8 +22,16 @@ const initialState: childDataType = {
     bufferAgeBracket:[],
     favoriteadvices:[],
     favoritegames:[],
-    chatBotData:[]
+    chatBotData:''
   }
+};
+function stringifyWithFunctions(object: any) {
+  return JSON.stringify(object, (key, val) => {
+    if (typeof val === 'function') {
+      return `(${val})`; // make it a string, surround it by parenthesis to ensure we can revive it as an anonymous function
+    }
+    return val;
+  });
 };
 export const childSlice = createSlice({
   name: 'childData',
@@ -103,7 +111,8 @@ export const childSlice = createSlice({
       state,
       action: PayloadAction<any>,
     ) => {
-      state.childDataSet.chatBotData = action.payload;
+      // console.log("stringifyWithFunctions----",stringifyWithFunctions(action.payload));
+      state.childDataSet.chatBotData = stringifyWithFunctions(action.payload);
     },
   },
   
