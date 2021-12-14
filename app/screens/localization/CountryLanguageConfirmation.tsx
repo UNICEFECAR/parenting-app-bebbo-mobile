@@ -31,7 +31,7 @@ import {
 } from '@styles/typography';
 import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Text } from 'react-native';
+import { I18nManager, Platform, Text } from 'react-native';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -249,10 +249,14 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
           //   country,
           //   language,
           // }));
-          setTimeout(()=>{
+          Platform.OS=='ios'? setTimeout(()=>{
           I18nManager.forceRTL(true);
           RNRestart.Restart();
-          },100);
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart()
+          },0);
         }else {
           I18nManager.forceRTL(true);
         }
