@@ -10,11 +10,13 @@ import { ButtonLinkPressLeft, ButtonTextMdLineL } from '@components/shared/Butto
 import LinearGradient from 'react-native-linear-gradient';
 import Icon, { IconML } from '@components/shared/Icon';
 import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
+import { useNavigation } from '@react-navigation/native';
 
 const BotBubble = (props: any) => {
   const { message, steps, userNameData } = props;
   console.log("botbubble---", userNameData);
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const [answer2visible, setanswer2visible] = useState(false);
   return (
     <FlexRow>
@@ -83,6 +85,14 @@ const BotBubble = (props: any) => {
                 <ButtonLinkPressLeft
                   onPress={() => {
                     //show article related steps.textToShow.related_article
+                      navigation.navigate('DetailsScreen',
+                      {
+                        fromScreen:"SupportChat",
+                        headerColor:'',
+                        backgroundColor:'',
+                        detailData:steps.textToShow.related_article,
+                        // setFilteredArticleData: setFilteredArticleData
+                      });
 
                   }}>
                   <ButtonTextMdLineL>
@@ -109,7 +119,7 @@ const UserBubble = (props: any) => {
   )
 }
 const OptionBubble = (props: any) => {
-  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen } = props
+  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen, showFeedbackLink } = props
   return (
     <>
 
@@ -152,10 +162,10 @@ const ActionBubble = (props: any) => {
 
 const ChatBot = (props: any) => {
   // console.log("chatbot----",props)
-  const { userNameData, item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen } = props;
+  const { userNameData, item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink } = props;
   console.log("ChatBot---", userNameData);
   return (
-    <View style={{ flex: 1 }} key={index}>
+    <View style={{ flex: 1,paddingTop:index == 0 ? 10 : 0 }} key={index}>
       {item.showNextStep == true ?
         <>
           <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} userNameData={userNameData} />
@@ -167,7 +177,7 @@ const ChatBot = (props: any) => {
                 {item.options && item.options.length > 0 ?
                   item.options.map((y: any, i2: any) => {
                     return (
-                      <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} />
+                      <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />
                     )
                   })
                   : null}

@@ -1,104 +1,36 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { FlexCol,FlexDirCol} from '@components/shared/FlexBoxStyle';
+import { FDirRow, FlexCol,FlexDirCol} from '@components/shared/FlexBoxStyle';
 import TabScreenHeader from '@components/TabScreenHeader';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading1, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
+import { Heading1, Heading1Centerr, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, Image, ImageBackground, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import styled from 'styled-components/native';
-import { ToolBoxText, ToolPress } from '@components/shared/HomeScreenStyle';
-import { ScrollView } from 'react-native-gesture-handler';
-import HTML from 'react-native-render-html';
-import { addSpaceToHtml } from '../../services/Utils';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setchatBotData } from '../../redux/reducers/childSlice';
-import { useFocusEffect } from '@react-navigation/core';
 import ChatBot from './ChatBot';
 import ChatContainer, { ChatBgImage } from '@components/shared/SupportChatStyle';
 import VectorImage from 'react-native-vector-image';
+import ModalPopupContainer, { ModalPopupContent, PopupClose, PopupCloseContainer, PopupOverlay } from '@components/shared/ModalPopupStyle';
+import Icon from '@components/shared/Icon';
+import HTML from 'react-native-render-html';
+import { addSpaceToHtml } from '../../services/Utils';
+import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
+import analytics from '@react-native-firebase/analytics';
+import { FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: SupportChatNavigationProp;
 };
 
-const ChatbotJson = {
-  "helloMessage": "Hello ‘name’, my name is Bebbo. I'm here to answer your questions",
-  "selectAreaOfInterest": "Please select the area of interest from which you have a question",
-  "question1": "What is your question about? ",
-  "question2": "Please select from the following questions",
-  "question3": "Please select from the following options to continue",
-  "question4": "I do not have any further questions",
-  "question5": "Explore … (name of subcategory) ",
-  "question6": "Back to start",
-  "question7": "Back to… ( name of category)",
-  "question8": "Here is our experts advice",
-  "question9": "Read more",
-  "question10": "Learn more about this topic",
-  "question11": "Have you found what you were looking for?",
-  "question12": "No, I haven’t",
-  "question13": "Yes, I have",
-  "question14": "Thank you for using the chatbot.  Please come visit me again if you have other questions.  Goodbye!",
-  "question15": "Exit the Chatbot",
-  "question16": "I am sorry you could not find an answer to your question.  Please select one of the following options:",
-  "question17": "Give us feedback",
-  "question18": "Not now"
-}
 const subCategoryStepId = 2;
 const faqsStepId = 3;
 const expertAdviceId = 4;
 const explorecatstep = 1;
 const exploresubcatstep = 2;
-
-// const ChatBot2 = (props: any) => {
-//   const {steps,stepsjson,categorySelection,dynamicStepSelection,backToStep,backToHomeScreen} = props
-//   return (
-//     // <>
-//     <View style={{flex:1}} key={steps.length}>
-//       { steps.map((x: any,i: any)=>{
-//               return (
-//                 <>
-//                  { x.showNextStep==true ? 
-//                     <>
-//                       <BotBubble key={'b'+x.id+'-'+i} message={x.message} steps={x} /> 
-//                       {
-//                         x.answer ? 
-//                           <UserBubble key={'u'+x.id+'-'+x.answer.value} message={x.answer.label} steps={x} />
-//                           : 
-//                           <>
-//                             {x.options && x.options.length > 0 ? 
-//                               x.options.map((y:any,i2:any) => {
-//                                 return(
-//                                   <OptionBubble key={'o'+i+'-'+i2} optionval = {y} optionindex={i2} stepindex={i} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen}/>
-//                                 )
-//                               })
-//                             : null}
-//                             {x && x.actions && x.actions.length > 0 ? 
-//                                x.actions.map((y:any,i2:any) => {
-//                                  return(
-//                                    <ActionBubble key={'a'+i+'-'+i2} actionval = {y} actionindex={i2} stepindex={i} steps={steps} stepsjson={stepsjson} backToStep={backToStep} backToHomeScreen={backToHomeScreen} />
-//                                  )
-//                                })
-//                              : null}
-//                            </>
-//                       }
-//                     </>
-//                     : null 
-//                   }
-//                 </>
-//               )
-//             })
-//           }
-//       </View>
-//     // </>
-//   )
-// }
-
-
 
 const SupportChat = ({ navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
@@ -128,96 +60,30 @@ const faqsData = useAppSelector((state: any) =>
       ? JSON.parse(state.utilsData.faqsData)
       : state.utilsData.faqsData,
   );
-  const chatBotData = useAppSelector((state: any) =>
-    state.childData.childDataSet.chatBotData
-  );
-  const flatListRef = useRef(null);
-  const isMountedRef = useRef<any>(null);
-  const [steps,setsteps] = useState<any>([]);
-
-console.log("faqsData-----",faqsData);
-  var toString = Object.prototype.toString;
-  function deepCopy(obj:any) {
-      var rv;
-
-      switch (typeof obj) {
-          case "object":
-              if (obj === null) {
-                  // null => null
-                  rv = null;
-              } else {
-                  switch (toString.call(obj)) {
-                      case "[object Array]":
-                          // It's an array, create a new array with
-                          // deep copies of the entries
-                          rv = obj.map(deepCopy);
-                          break;
-                      case "[object Date]":
-                          // Clone the date
-                          rv = new Date(obj);
-                          break;
-                      case "[object RegExp]":
-                          // Clone the RegExp
-                          rv = new RegExp(obj);
-                          break;
-                      // ...probably a few others
-                      default:
-                          // Some other kind of object, deep-copy its
-                          // properties into a new object
-                          rv = Object.keys(obj).reduce(function(prev, key) {
-                              prev[key] = deepCopy(obj[key]);
-                              return prev;
-                          }, {});
-                          break;
-                  }
-              }
-              break;
-          default:
-              // It's a primitive, copy via assignment
-              rv = obj;
-              break;
+  function parseWithFunctions(obj) {
+    return JSON.parse(obj, (k, v) => {
+      if (typeof v === 'string' && v.indexOf('function') >= 0) {
+        return eval(v);
       }
-      return rv;
-  }
-
-  // const ChatBot3 = React.memo(({item, index}) => {
-  //   //console.log("renderArticleItem-",index)
-  //   return(
-  //       <View style={{flex:1}} key={index}> 
-  //         { item.showNextStep==true ? 
-  //           <>
-  //             <BotBubble key={'b'+item.id+'-'+index} message={item.message} steps={item} /> 
-  //             {
-  //               item.answer ? 
-  //                 <UserBubble key={'u'+item.id+'-'+item.answer.value} message={item.answer.label} steps={item} />
-  //                 : 
-  //                 <>
-  //                   {item.options && item.options.length > 0 ? 
-  //                     item.options.map((y:any,i2:any) => {
-  //                       return(
-  //                         <OptionBubble key={'o'+index+'-'+i2} optionval = {y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen}/>
-  //                       )
-  //                     })
-  //                   : null}
-  //                   {item && item.actions && item.actions.length > 0 ? 
-  //                       item.actions.map((y:any,i2:any) => {
-  //                         return(
-  //                           <ActionBubble key={'a'+index+'-'+i2} actionval = {y} actionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} backToStep={backToStep} backToHomeScreen={backToHomeScreen} />
-  //                         )
-  //                       })
-  //                     : null}
-  //                   </>
-  //             }
-  //           </>
-  //           : null 
-  //         }
-  //       </View>
-  //   ) 
-  // });
-
+      return v;
+    });
+  };
+  const chatBotData = useAppSelector((state: any) =>
+  state.childData.childDataSet.chatBotData != '' ? parseWithFunctions(state.childData.childDataSet.chatBotData) : state.childData.childDataSet.chatBotData
+  );
+  const surveryData = useAppSelector((state: any) =>
+    state.utilsData.surveryData != ''
+      ? JSON.parse(state.utilsData.surveryData)
+      : state.utilsData.surveryData,
+  );
+  const feedbackItem = surveryData.find((item:any) => item.type == "feedback")
+  const [steps,setsteps] = useState<any>([]);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const flatListRef = useRef(null);
   const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
-    console.log(steps2,"categorySelection--",optionIndex,stepIndex);
-    let localsteps = deepCopy(steps2);
+    // console.log(steps2,"categorySelection--",optionIndex,stepIndex);
+    // let localsteps = deepCopy(steps2);
+    let localsteps = [...steps2];
     // let localsteps = steps2.map(a => ({...a,...a.options,...a.actions}));
     // let localsteps = Object.assign([],steps2);
     console.log("---localsteps--",localsteps);
@@ -256,15 +122,15 @@ console.log("faqsData-----",faqsData);
       const indexForText2 = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === exploresubcatstep ? i : acc
       ), -1);
-      localsteps[index+1].actions[0].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText].answer.label})
-      localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
+      localsteps[index+1].actions[0].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
+      localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText].answer.label})
     }
     console.log("updated localsteps--",localsteps);
     updateChatBotData(localsteps);
   }
   const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
-    // let localsteps = [...steps2];
-    let localsteps = deepCopy(steps2);
+    let localsteps = [...steps2];
+    // let localsteps = deepCopy(steps2);
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
@@ -282,10 +148,10 @@ console.log("faqsData-----",faqsData);
   // console.log("--category---",category);
   const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
     console.log(steptogoto,"--stepnumber",currentstep);
-    // let localsteps = [...steps2];
-    // let localstepsjson = [...stepsjson2];
-    let localsteps = deepCopy(steps2);
-    let localstepsjson = deepCopy(stepsjson2);
+    let localsteps = [...steps2];
+    let localstepsjson = [...steps2];
+    // let localsteps = deepCopy(steps2);
+    // let localstepsjson = deepCopy(stepsjson2);
     //changing answer value from null to action value
     localsteps[stepIndex].answer = localsteps[stepIndex].actions[actionIndex];
     //get steptogoto index and get all item from json from that index till end.
@@ -293,11 +159,15 @@ console.log("faqsData-----",faqsData);
     const index = localstepsjson.reduce((acc: any, el: any, i: any) => (
       el.id === steptogoto ? i : acc
   ), -1);
-  console.log("index is --",index);
+  // console.log("index is --",index);
+    // localstepsjson[index].showNextStep = true;
+    //loop through object need to update later
     localstepsjson = localstepsjson.slice(index,localstepsjson.length);
+    localstepsjson = localstepsjson.map(item=>({ ...item, showNextStep: false,answer:null }));
+    localstepsjson[0].showNextStep = true;
     console.log(localsteps,"---stepsjson---",localstepsjson);
     const updatedsteps = [...localsteps,...localstepsjson]
-    console.log("merged--",updatedsteps);
+    // console.log("merged--",updatedsteps);
     updateChatBotData(updatedsteps);
     // if(steptogoto == 0) {
     //   // updatedjson.map(x=>x.answer = null);
@@ -316,6 +186,19 @@ console.log("faqsData-----",faqsData);
         },
       ],
     });
+  }
+  const showFeedbackLink = (stepIndex: any,optionIndex: any,steps2: any) => {
+    setModalVisible(true);
+    console.log("showFeedbackLink---",showFeedbackLink);
+    let localsteps = [...steps2];
+    // let localsteps = deepCopy(steps2);
+    localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
+    let nextstepid = localsteps[stepIndex].options[optionIndex].nextStepval;
+    const index = localsteps.reduce((acc: any, el: any, i: any) => (
+        el.id === nextstepid ? i : acc
+    ), -1);
+    localsteps[index].showNextStep = true;
+    updateChatBotData(localsteps);
   }
   const stepsjson = [
     {
@@ -350,7 +233,7 @@ console.log("faqsData-----",faqsData);
       id: 3,
       message: t('question2'),
       options:[],
-      actions:[{value:1,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1},{value:2,label:t('backToCategoryTxt'),nextStepFunc:backToStep,nextStepval:1}],
+      actions:[{value:1,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1},{value:2,label:t('backToCategoryTxt'),nextStepFunc:backToStep,nextStepval:2}],
       userInput: true,
       showNextStep:false,
       nextStep:4,
@@ -371,7 +254,7 @@ console.log("faqsData-----",faqsData);
       id: 5,
       message: t('question3'),
       options:[{value:100,label:t('donthavequestiontxt'),nextStepFunc:categorySelection}],
-      actions:[{value:3,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:1},{value:4,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:2},{value:5,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
+      actions:[{value:3,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:3},{value:4,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:2},{value:5,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
       showNextStep:false,
       nextStep:6,
@@ -400,8 +283,8 @@ console.log("faqsData-----",faqsData);
     {
       id: 8,
       message: t('sorryMsgTxt'),
-      options:[],
-      actions:[{value:7,label:t('feedbackLinkTxt'),nextStepFunc:backToHomeScreen,nextStepval:0},{value:8,label:t('notNowTxt'),nextStepFunc:dynamicStepSelection,nextStepval:9}],
+      options:[{value:103,label:t('feedbackLinkTxt'),nextStepFunc:showFeedbackLink,nextStepval:9},{value:104,label:t('notNowTxt'),nextStepFunc:dynamicStepSelection,nextStepval:9}],
+      actions:[],
       userInput: true,
       showNextStep:false,
       nextStep:9,
@@ -419,54 +302,46 @@ console.log("faqsData-----",faqsData);
       end:true
     },
   ];
-  // useEffect(() => {
-  //   console.log("steps changed--",steps);
-  //   isMountedRef.current = true;
-  //   if(steps && steps.length > 0) {
-  //     if(isMountedRef.current) {
-  //       dispatch(setchatBotData(steps));
-  //     }
-  //   }
-
-  //   return () => {
-  //     console.log("in return---");
-  //     isMountedRef.current = false;
-  //   };
-  // },[steps]);
   
   const updateChatBotData = (updatedData:any) => {
     setsteps(updatedData);
 
     dispatch(setchatBotData(updatedData));
+    // setTimeout(() => {
+    //   if(flatListRef && flatListRef.current && steps.length >0)  {
+    //     flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
+    //   }
+    // },500);
   }
-
+  useEffect(() => {
+    setTimeout(() => {
+      if(flatListRef && flatListRef.current && steps.length >0)  {
+        flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
+      }
+    },0);       
+  }, [steps]);
   const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
-    console.log(chatBotData,"--category in fetch3",stepsjson);
+    console.log(chatBotData,"--category in fetch4",stepsjson);
     if(chatBotData && chatBotData.length > 0) {
       console.log("savedData4---",chatBotData);
       console.log("savedData4---",(chatBotData)[1].options[0]);
-      setsteps((stepsjson));
+      setsteps((chatBotData));
     }else {
       setsteps((stepsjson));
-      // AsyncStorage.setItem('chatBotData',JSON.stringify(stepsjson));
-      //dispatch(setchatBotData(stepsjson));
     }
   }
   useEffect(() => {
-    // console.log("steps updated--",steps);
-    // const category = taxonomy.chatbot_category.map((x:any,i:any)=> {
-    //   return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
-    //   // return {...x,label : x.name,value : i,trigger : '3'}
-    // });
     async function fetchData() {
-      // const savedData = await AsyncStorage.getItem('chatBotData');
       setOnloadChatBotData(chatBotData,stepsjson);
-      // if(isMountedRef.current) {
-        
-      // }
     }
     fetchData()        
   }, []);
+  const scrollToIndexFailed = (error) => {
+    console.log("scrollToIndexFailed error--",error);
+      const offset = error.averageItemLength * error.index;
+      flatListRef?.current?.scrollToOffset({offset});
+      setTimeout(() => flatListRef?.current?.scrollToIndex({ index: error.index }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.
+  }
   return (
     <>
      <View style={{flex:1,backgroundColor:headerColor}}>
@@ -480,37 +355,94 @@ console.log("faqsData-----",faqsData);
           textColor="#FFF"
         />
           <FlexCol>
-            <ChatContainer>
-            {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
-              {steps.length> 0 ? 
-                  // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
-                  <FlatList
-                    ref={flatListRef}
-                    data={steps}
-                    onScroll={(e)=>{
-                      // if(keyboardStatus==true){
-                      //   Keyboard.dismiss();
-                      // }
-                    }}
-                    nestedScrollEnabled={true}
-                    // keyboardDismissMode={"on-drag"}
-                    // keyboardShouldPersistTaps='always'
-                    removeClippedSubviews={true} // Unmount components when outside of window 
-                    initialNumToRender={4} // Reduce initial render amount
-                    maxToRenderPerBatch={4} // Reduce number in each render batch
-                    updateCellsBatchingPeriod={100} // Increase time between renders
-                    windowSize={7} // Reduce the window size
-                    renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}  />  }
-                    keyExtractor={(item,index) => index.toString()}
-                    />
-                  : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+          {/* <ImageBackground source={require('@assets/loading/g-normal.png')} resizeMode="center" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}> */}
+              <ChatContainer>
+              {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
+                {steps.length> 0 ? 
+                    // <InfiniteScrollList filteredData ={filteredData} renderArticleItem = {renderArticleItem} receivedLoadingArticle={receivedLoadingArticle}/> 
+                    <FlatList
+                      ref={flatListRef}
+                      data={steps}
+                      onScroll={(e)=>{
+                        // if(keyboardStatus==true){
+                        //   Keyboard.dismiss();
+                        // }
+                      }}
+                      nestedScrollEnabled={true}
+                      initialScrollIndex={steps.length - 1}
+                      // keyboardDismissMode={"on-drag"}
+                      // keyboardShouldPersistTaps='always'
+                      removeClippedSubviews={true} // Unmount components when outside of window 
+                      initialNumToRender={50} // Reduce initial render amount
+                      maxToRenderPerBatch={50} // Reduce number in each render batch
+                      updateCellsBatchingPeriod={100} // Increase time between renders
+                      windowSize={65} // Reduce the window size
+                      renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />  }
+                      keyExtractor={(item,index) => index.toString()}
+                      onScrollToIndexFailed={scrollToIndexFailed}
+                      />
+                    : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 
                 </ChatContainer>
+                {/* </ImageBackground> */}
                 <ChatBgImage>
+                  {/* <VectorImage source={require('@assets/svg/ic_development_color.svg')} style={{width: '100%', height: '100%'}}/> */}
                   {/* <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} /> */}
+                  {/* <Image source={require('@assets/svg/img-bg-chatbot.png')} style={{flex:1,resizeMode:'cover'}} /> */}
                 </ChatBgImage>
           </FlexCol>
       </View>
+
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(false);
+        }}
+        onDismiss={() => {
+          setModalVisible(false);
+        }}>
+        <PopupOverlay>
+          <ModalPopupContainer>
+            <PopupCloseContainer>
+              <PopupClose
+                onPress={() => {
+                  setModalVisible(false);
+                }}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            {feedbackItem ?
+              <><ModalPopupContent>
+
+                <Heading1Centerr>{feedbackItem?.title}</Heading1Centerr>
+
+                {feedbackItem && feedbackItem?.body ?
+                  <HTML
+                    source={{ html: addSpaceToHtml(feedbackItem?.body)}}
+                    ignoredStyles={['color', 'font-size', 'font-family']}
+                  />
+                  : null
+                }
+
+              </ModalPopupContent>
+                <FDirRow>
+                  <ButtonModal
+                    onPress={() => {
+                      setModalVisible(false);
+                      analytics().logEvent(FEEDBACK_SUBMIT)
+                      Linking.openURL(feedbackItem?.survey_feedback_link)
+                    }}>
+                    <ButtonText numberOfLines={2}>{t('continueInModal')}</ButtonText>
+                  </ButtonModal>
+                </FDirRow>
+              </>
+              : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
+          </ModalPopupContainer>
+        </PopupOverlay>
+      </Modal>
     </>
   );
 };
