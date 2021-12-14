@@ -21,7 +21,7 @@ const migrations = {
           ...state.childDataSet,        
           favoriteadvices:[],
           favoritegames:[],
-          chatBotData:[]
+          chatBotData:''
         }
       }  
   }
