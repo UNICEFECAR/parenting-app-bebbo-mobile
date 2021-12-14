@@ -90,8 +90,10 @@ const LanguageSelection = ({route, navigation}: Props) => {
           I18nManager.forceRTL(true);
           RNRestart.Restart();
           },100):
+          setTimeout(()=>{
           I18nManager.forceRTL(true);
           RNRestart.Restart();
+          },0);
         }else {
           I18nManager.forceRTL(true);
         }
@@ -104,12 +106,15 @@ const LanguageSelection = ({route, navigation}: Props) => {
             country,
             language,
           }));
-          Platform.OS=='ios'? setTimeout(()=>{
+          Platform.OS=='ios'? 
+          setTimeout(()=>{
           I18nManager.forceRTL(false);
           RNRestart.Restart();
           },100):
+          setTimeout(()=>{
           I18nManager.forceRTL(false);
           RNRestart.Restart();
+          },0);
         }else {
           I18nManager.forceRTL(false);
         }
