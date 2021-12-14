@@ -11,13 +11,23 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon, { IconML } from '@components/shared/Icon';
 import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
 import { useNavigation } from '@react-navigation/native';
+import { useAppSelector } from '../../../App';
 
 const BotBubble = (props: any) => {
-  const { message, steps, userNameData } = props;
-  console.log("botbubble---", userNameData);
+  const { message, steps,stepindex } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [answer2visible, setanswer2visible] = useState(false);
+  const allConfigData = useAppSelector((state: any) =>
+    state.variableData?.variableData != ''
+      ? JSON.parse(state.variableData?.variableData)
+      : state.variableData?.variableData,
+    );
+    const userNameData =
+        allConfigData?.length > 0
+          ? allConfigData.filter((item:any) => item.key === 'userName')
+          : [];
+  console.log("botbubble---", userNameData);
   return (
     <FlexRow>
       <BotImage>
@@ -31,7 +41,10 @@ const BotBubble = (props: any) => {
       </BotImage>
       <BotBubbleContainer>
         <BotBubbleTextContainer>
-          <Heading4Bold>{message}</Heading4Bold>
+          {stepindex == 0 ?
+              <Heading4Bold>{t('helloMessage',{parentName:userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')})}</Heading4Bold>
+              : <Heading4Bold>{message}</Heading4Bold> 
+          }
         </BotBubbleTextContainer>
         {steps && steps.textToShow && steps.textToShow.answer_part_1 && steps.textToShow.answer_part_1 != '' ?
           <>
@@ -162,13 +175,12 @@ const ActionBubble = (props: any) => {
 
 const ChatBot = (props: any) => {
   // console.log("chatbot----",props)
-  const { userNameData, item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink } = props;
-  console.log("ChatBot---", userNameData);
+  const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink } = props;
   return (
     <View style={{ flex: 1,paddingTop:index == 0 ? 10 : 0 }} key={index}>
       {item.showNextStep == true ?
         <>
-          <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} userNameData={userNameData} />
+          <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} stepindex={index} />
           {
             item.answer ?
               <UserBubble key={'u' + item.id + '-' + item.answer.value} message={item.answer.label} steps={item} />
