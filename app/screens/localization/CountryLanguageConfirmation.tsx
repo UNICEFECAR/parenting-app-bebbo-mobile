@@ -249,8 +249,10 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
           //   country,
           //   language,
           // }));
+          setTimeout(()=>{
           I18nManager.forceRTL(true);
           RNRestart.Restart();
+          },100);
         }else {
           I18nManager.forceRTL(true);
         }
