@@ -320,6 +320,7 @@ const faqsData = useAppSelector((state: any) =>
       }
     },0);       
   }, [steps]);
+  
   const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
     console.log(chatBotData,"--category in fetch4",stepsjson);
     if(chatBotData && chatBotData.length > 0) {
@@ -377,7 +378,7 @@ const faqsData = useAppSelector((state: any) =>
                       maxToRenderPerBatch={50} // Reduce number in each render batch
                       updateCellsBatchingPeriod={100} // Increase time between renders
                       windowSize={65} // Reduce the window size
-                      renderItem={({item, index}) => <ChatBot userNameData={userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')} item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />  }
+                      renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />  }
                       keyExtractor={(item,index) => index.toString()}
                       onScrollToIndexFailed={scrollToIndexFailed}
                       />
