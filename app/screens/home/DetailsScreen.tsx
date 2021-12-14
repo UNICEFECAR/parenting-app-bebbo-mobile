@@ -102,7 +102,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   }, []);
   useEffect(() => {
       const functionOnLoad = async () => {
-        if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles")
+        if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
@@ -436,7 +436,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 </FlexCol>
               </>
             ) : null}
-            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' ? (
+            {fromScreen === 'ChildgrowthTab' || fromScreen === 'ChildgrowthTab2' || fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildVaccination" || fromScreen == "AddChildHealthCheckup" || fromScreen == "MileStone" || fromScreen === 'HomeArt' || fromScreen === 'FavArticles' || fromScreen === 'SupportChat' ? (
               <>
                 <FlexCol style={{backgroundColor: newBackgroundColor}}>
                   
