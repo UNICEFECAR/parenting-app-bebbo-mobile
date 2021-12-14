@@ -15,7 +15,7 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, I18nManager } from 'react-native';
+import { FlatList, I18nManager, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -86,8 +86,14 @@ const LanguageSelection = ({route, navigation}: Props) => {
             country,
             language,
           }));
+          Platform.OS=='ios'? setTimeout(()=>{
           I18nManager.forceRTL(true);
           RNRestart.Restart();
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+          },0);
         }else {
           I18nManager.forceRTL(true);
         }
@@ -100,8 +106,15 @@ const LanguageSelection = ({route, navigation}: Props) => {
             country,
             language,
           }));
+          Platform.OS=='ios'? 
+          setTimeout(()=>{
           I18nManager.forceRTL(false);
           RNRestart.Restart();
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(false);
+          RNRestart.Restart();
+          },0);
         }else {
           I18nManager.forceRTL(false);
         }
