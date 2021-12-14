@@ -71,6 +71,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
+
   // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
@@ -360,8 +361,27 @@ const DetailsScreen = ({route, navigation}: any) => {
             </ShiftFromBottom5>
             <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
+              // <HTML
+              //   source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
+              //   // source={{html: bodydata}} {...htmlProps}
+              //   baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
+              //   ignoredStyles={['color', 'font-size', 'font-family']}
+              //   tagsStyles={{
+              //     img: {maxWidth:Dimensions.get('window').width},
+              //     p:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h1:{marginBottom:0,marginTop:10,textAlign:'left'},
+              //     h2:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h3:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h4:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h5:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h6:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     span:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     li:{textAlign:'left'},
+              //     br:{height:0},
+              //   }}
+              // />
               <HTML
-                source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
+              source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
@@ -378,7 +398,27 @@ const DetailsScreen = ({route, navigation}: any) => {
                   li:{textAlign:'left'},
                   br:{height:0},
                 }}
-              />
+          renderers={{
+            img: (attribs) => {
+              console.log(attribs,"..attribs..")
+              const imagePath = attribs.src;
+              console.log(imagePath,"..imagePath");
+              let itemnew:any={
+                cover_image:{
+                  url:imagePath
+                }
+              };
+              return (
+                <>
+                 <LoadableImage key={imagePath+String(Math.random())} style={{
+                    height: 200,
+                    width: 200
+                  }} item={itemnew} toggleSwitchVal={toggleSwitchVal}/> 
+               </>
+              );
+            },
+          }}
+        />
                : null 
             } 
             </ArticleDetailsContainer>
