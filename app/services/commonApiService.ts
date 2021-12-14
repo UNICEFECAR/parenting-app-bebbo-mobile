@@ -13,6 +13,7 @@ import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSche
 import downloadImages from '../downloadImages/ImageStorage';
 import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
+import { setchatBotData } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
@@ -364,6 +365,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setDailyArticleGamesCategory({}));
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
+    dispatch(setchatBotData([]));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     if(prevPage == 'CountryLangChange') {
