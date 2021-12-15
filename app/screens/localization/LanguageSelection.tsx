@@ -6,7 +6,7 @@ import {
   ButtonviewNext,
   ButtonviewPrevious
 } from '@components/shared/ButtonView';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
@@ -15,10 +15,13 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
+import { FlatList, I18nManager, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
-import { useAppSelector } from '../../../App';
+import { useAppDispatch, useAppSelector } from '../../../App';
+import RNRestart from 'react-native-restart';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -30,9 +33,10 @@ type Props = {
 const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
   const {country,languagenew} = route.params;
-  console.log(languagenew,"--languagenew--");
+  //console.log(languagenew,"--languagenew--");
   const languages = country.languages;
   const {t, i18n} = useTranslation();
+  const dispatch = useAppDispatch();
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
@@ -40,7 +44,11 @@ const LanguageSelection = ({route, navigation}: Props) => {
     (state: any) =>
       state.utilsData.userIsOnboarded
   );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
+  );
   useEffect(() => {
+    // AsyncStorage.setItem('isDirectionChanged','No')
     let newLanguageId: any,selectedLanguage;
     // if(userIsOnboarded == true){
       if(languagenew && languagenew != null){
@@ -66,7 +74,52 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
   const goToConfirmationScreen = () => {
-    i18n.changeLanguage(language.locale);
+    i18n.changeLanguage(language?.locale)
+    .then(() => {
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+      {
+        if(AppLayoutDirection == 'ltr') {
+          dispatch(setrestartOnLangChange('yes'));
+          dispatch(setAppLayoutDirection('rtl'));
+          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          dispatch(setAppLayoutDirectionParams({
+            country,
+            language,
+          }));
+          Platform.OS=='ios'? setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+          },0);
+        }else {
+          I18nManager.forceRTL(true);
+        }
+      }else {
+        if(AppLayoutDirection == 'rtl') {
+          dispatch(setrestartOnLangChange('yes'));
+          dispatch(setAppLayoutDirection('ltr'));
+          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          dispatch(setAppLayoutDirectionParams({
+            country,
+            language,
+          }));
+          Platform.OS=='ios'? 
+          setTimeout(()=>{
+          I18nManager.forceRTL(false);
+          RNRestart.Restart();
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(false);
+          RNRestart.Restart();
+          },0);
+        }else {
+          I18nManager.forceRTL(false);
+        }
+      }
+    })
     navigation.navigate('CountryLanguageConfirmation', {
       country,
       language,
@@ -93,21 +146,21 @@ const LanguageSelection = ({route, navigation}: Props) => {
           <BtnMultiple>
             <ButtonviewNext>
               <ButtonviewClick onPress={() => navigation.goBack()}>
-                <Icon name="ic_angle_left" size={32} color="#000" />
+                <IconML name="ic_angle_left" size={32} color="#000" />
               </ButtonviewClick>
             </ButtonviewNext>
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
                   onPress={() => goToConfirmationScreen()}>
-                  <Icon name="ic_angle_right" size={32} color="#000" />
+                  <IconML name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>
             ) : <ButtonviewPrevious>
             <ButtonviewClick
               onPress={() =>{}
               }>
-              <Icon name="ic_angle_right" size={32} color="#000" />
+              <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>}
           </BtnMultiple>
