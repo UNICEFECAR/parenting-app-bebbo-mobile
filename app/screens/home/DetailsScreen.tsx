@@ -398,7 +398,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                   li:{textAlign:'left'},
                   br:{height:0},
                 }}
-          renderers={{
+           renderers={{
             img: (attribs) => {
               console.log(attribs,"..attribs..")
               const imagePath = attribs.src;
@@ -410,9 +410,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               };
               return (
                 <>
-                 <LoadableImage key={imagePath+String(Math.random())} style={{
+                 <LoadableImage key={imagePath+"/"+String(Math.random())} style={{
                     height: 200,
-                    width: 200
+                    width: '100%'
                   }} item={itemnew} toggleSwitchVal={toggleSwitchVal}/> 
                </>
               );
