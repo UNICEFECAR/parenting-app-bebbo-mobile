@@ -168,7 +168,7 @@ const LoadableImage = (props:any) => {
       source={{
         uri: item['cover_image'].url,
         priority: FastImage.priority.high,
-        cache:toggleSwitchVal || netInfo.isConnected ==false ?FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
+        cache:toggleSwitchVal || netInfo.isConnected ==false ? FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
       }}
       style={style}
       resizeMode={FastImage.resizeMode.cover}
