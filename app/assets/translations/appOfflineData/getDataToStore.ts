@@ -5,6 +5,7 @@ import { ArticleEntity, ArticleEntitySchema } from "../../../database/schema/Art
 import { BasicPagesEntity, BasicPagesSchema } from "../../../database/schema/BasicPagesSchema";
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../../../database/schema/ChildDevelopmentSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../../../database/schema/DailyHomeMessagesSchema";
+import { FAQsEntity, FAQsSchema } from "../../../database/schema/FAQsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../../../database/schema/MilestonesSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../../../database/schema/PinnedChildDevelopmentSchema";
 import { StandardDevHeightForAgeEntity, StandardDevHeightForAgeSchema } from "../../../database/schema/StandardDevHeightForAgeSchema";
@@ -14,7 +15,7 @@ import { TaxonomyEntity, TaxonomySchema } from "../../../database/schema/Taxonom
 import { VaccinationEntity, VaccinationSchema } from "../../../database/schema/VaccinationSchema";
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../../../database/schema/VideoArticleSchema";
 import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
-import { setAllActivitiesData, setAllChildDevData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
+import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
 import { ActivitiesData } from "./ActivitiesData";
@@ -23,6 +24,7 @@ import { articledata } from "./article";
 import basicPagesData from "./basicPages";
 import { ChildDevelopmentData } from "./ChildDevelopmentData";
 import { dailyHomeNotificationdata } from "./dailyHomeNotification";
+import { FaqsData } from "./FaqsData";
 import { healthCheckupsData } from './healthCheckupsData';
 import { MileStonesData } from "./MileStonesData";
 import { PinnedChildDevData } from "./PinnedChildDevData";
@@ -34,7 +36,7 @@ import { VideoArticleData } from "./VideoArticleData";
 
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
-    console.log(prevPage, "..prevPage..")
+  //  console.log(prevPage, "..prevPage..")
     return new Promise(async (resolve, reject) => {
         // if(apiEndpoint == appConfig.basicPages || apiEndpoint == appConfig.activities || apiEndpoint == appConfig.milestones)
         // console.log("getAllDataToStore--");
@@ -53,13 +55,13 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
         }
         else if (prevPage == "AddEditChild") {
             let Entity: any;
-            console.log(activeChild, "..currentChildData..")
+           // console.log(activeChild, "..currentChildData..")
             const currentChildData = {
                 "gender": activeChild.gender,
                 "parent_gender": activeChild.parent_gender,
                 "taxonomyData": activeChild.taxonomyData
             }
-            console.log(currentChildData, "..currentChildData..")
+            //console.log(currentChildData, "..currentChildData..")
             const artData = await getDataToStore(languageCode, dispatch, ArticleEntitySchema, Entity as ArticleEntity, articledata, setAllArticleData, "", currentChildData);
             resolve("nocall");
         }
@@ -76,6 +78,7 @@ const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: 
             const allVideoArticlesData = await getDataToStore(languageCode, dispatch, VideoArticleEntitySchema, Entity as VideoArticleEntity, VideoArticleData, setAllVideoArticlesData);
             const allActivitiesData = await getDataToStore(languageCode, dispatch, ActivitiesEntitySchema, Entity as ActivitiesEntity, ActivitiesData, setAllActivitiesData);
             const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
+            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
 
             resolve("nocall");
         } else if (prevPage == "ChilSetup") {
@@ -147,6 +150,10 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
             const allSurveyData = await getDataToStore(languageCode, dispatch, SurveysSchema, Entity as SurveysEntity, SurveyData, setAllSurveyData);
             resolve("success");
         }
+        else if (apiEndpoint == appConfig.faqs) {
+            const allFaqsData = await getDataToStore(languageCode, dispatch, FAQsSchema, Entity as FAQsEntity, FaqsData, setAllFaqsData);
+            resolve("success");
+        }
         else if (apiEndpoint == appConfig.articles) {
             const currentChildData = {
                 "gender": activeChild.gender,
@@ -163,7 +170,7 @@ export const getAllDataOnRetryToStore = async (apiEndpoint: string, languageCode
 
 export const getDataToStore = async (languageCode: string, dispatch: any, SchemaToUse: ObjectSchema, SchemaEntity: any, jsonData: any, setAllHardcodedData: Function, sortBy?: any, currentChildData?: any, queryText?: any) => {
     return new Promise(async (resolve, reject) => {
-        console.log(currentChildData, "..currentChildData..")
+       // console.log(currentChildData, "..currentChildData..")
         // console.log("getDataToStore--",SchemaToUse);
         let databaselistener: any;
         let dataToStore: any;
@@ -215,9 +222,9 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 // }
                 // title CONTAINS 'Pe' && summary CONTAINS 'Ac' && body CONTAINS 'About'
                 //const filterQuery='((child_age == 43 || child_age == 0) && (parent_gender == 60 || parent_gender == both) && (child_gender == 59 || child_gender == both)'
-                console.log(filterQuery, "..11filterQuery..");
+                //console.log(filterQuery, "..11filterQuery..");
                 let databaseData = await dataRealmCommon.getFilteredData<typeof SchemaEntity>(SchemaToUse, filterQuery);
-                console.log(databaseData.length);
+                //console.log(databaseData.length);
                 dataToStore = databaseData;
             } else {
                 dataToStore = databaseData2;

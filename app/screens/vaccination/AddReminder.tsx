@@ -22,7 +22,7 @@ import {
   HeaderRowView,
   HeaderTitleView
 } from '@components/shared/HeaderContainerStyle';
-import Icon, { IconViewBorder } from '@components/shared/Icon';
+import Icon, { IconML, IconViewBorder } from '@components/shared/Icon';
 import ModalPopupContainer, {
   PopupClose,
   PopupCloseContainer,
@@ -35,7 +35,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading2,
   Heading3Center,
+  Heading4,
+  Heading4Regular,
+  Heading5,
   Paragraph,
+  ShiftFromBottom10,
   ShiftFromTop20,
   ShiftFromTop30,
   ShiftFromTopBottom10
@@ -86,6 +90,7 @@ const AddReminder = ({ route, navigation }: any) => {
     editReminderItem ? editReminderItem.reminderDate : null,
   );
   const [showmeasure, setmeasureShow] = useState<Boolean>(false);
+  const [clicked, setClicked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [measureTime, setmeasureTime] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderTime : null,
@@ -133,16 +138,16 @@ const AddReminder = ({ route, navigation }: any) => {
   // maxTime.setMilliseconds(0);
   const onmeasureChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate || measureDate;
-    console.log(selectedDate, "..selectedDate..")
-    console.log(currentDate, "..currentDate..")
+    //console.log(selectedDate, "..selectedDate..")
+    //console.log(currentDate, "..currentDate..")
     setmeasureShow(false);
     if (selectedDate) {
       setmeasureDate(DateTime.fromJSDate(currentDate));
       setDateTouched(true);
-      console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
+      //console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
       if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
         setminmeasureTime(new Date(currentDate));
-        console.log(currentDate, "..11currentDatenew",)
+        //console.log(currentDate, "..11currentDatenew",)
         setmeasureTime(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
         // .setMinutes(new Date().getMinutes()<60?new Date().getMinutes()+1:00)
       }
@@ -150,7 +155,7 @@ const AddReminder = ({ route, navigation }: any) => {
         // console.log(currentDate,"..currentDatenew");
         // console.log(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
         const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
-        console.log(currentDatenew, "..currentDatenew")
+        //console.log(currentDatenew, "..currentDatenew")
         setminmeasureTime(new Date(currentDatenew));
         //setminmeasureTime(DateTime.fromJSDate(currentDate));
       }
@@ -166,13 +171,13 @@ const AddReminder = ({ route, navigation }: any) => {
   };
   const handleMeasureDateConfirm = (event: any) => {
     const date = event;
-    console.log("A date has been picked: ", date);
+    //console.log("A date has been picked: ", date);
     onmeasureChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
   const handleMeasureTimeConfirm = (event: any) => {
     const time = event;
-    console.log("A date has been picked: ", time);
+    //console.log("A date has been picked: ", time);
     onmeasureTimeChange(event, time);
     setMeasureTimePickerVisibility(false);
   };
@@ -195,7 +200,7 @@ const AddReminder = ({ route, navigation }: any) => {
     }
   };
   const isFormDisabled = () => {
-    if (measureDate && measureTime) {
+    if (measureDate && measureTime && !clicked) {
       return false;
     } else {
       return true;
@@ -205,13 +210,13 @@ const AddReminder = ({ route, navigation }: any) => {
     let allJsonDatanew = await userRealmCommon.getData<ChildEntity>(
       ChildEntitySchema,
     );
-    console.log(allJsonDatanew?.length, 'allJsonDatanew');
+    //console.log(allJsonDatanew?.length, 'allJsonDatanew');
     let createresult = await userRealmCommon.deleteChildReminders<ChildEntity>(
       ChildEntitySchema,
       editReminderItem,
       'uuid ="' + activeChild.uuid + '"',
     );
-    console.log(createresult?.length, 'ReminderDeleted');
+    //console.log(createresult?.length, 'ReminderDeleted');
     if (createresult) {
       activeChild.reminders = createresult;
       let notiFlagObj = { key: 'generateNotifications', value: true };
@@ -316,7 +321,7 @@ useEffect(() => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#000" size={15} />
+              <IconML name={'ic_back'} color="#000" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
@@ -346,7 +351,10 @@ useEffect(() => {
         </HeaderRowView>
 
         <ScrollView style={{ padding: 15, flex: 7 }}>
-          <Paragraph>{titleTxt}</Paragraph>
+          <ShiftFromBottom10>
+          <Heading4Regular>{titleTxt}</Heading4Regular>
+          {/* <Paragraph>{titleTxt}</Paragraph> */}
+          </ShiftFromBottom10>
           <FormInputGroup onPress={showmeasureDatepicker}>
             {Platform.OS != 'ios' ? (
               <FormInputBox>
@@ -512,9 +520,13 @@ useEffect(() => {
             <ButtonTertiary
               disabled={isFormDisabled()}
               onPress={() => {
-                saveReminder().then(() => {
+                setClicked(true);
+                setTimeout(()=>{
+                  saveReminder().then(() => {
 
-                });
+                  });
+                },0)
+               
                 // navigation.goBack();
               }}>
               <ButtonText numberOfLines={2}>{buttonTitle}</ButtonText>

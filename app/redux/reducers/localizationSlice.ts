@@ -7,7 +7,11 @@ interface selectedLocalizationType {
   languageCode: string;
   luxonLocale:string;
   locale: string;
-  sponsors:Array<any>
+  sponsors:Array<any>;
+  restartOnLangChange:string;
+  AppLayoutDirection:string;
+  AppLayoutDirectionScreen:string;
+  AppLayoutDirectionParams:Object;
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
@@ -16,7 +20,11 @@ const initialState: selectedLocalizationType = {
   languageCode: 'en',
   luxonLocale:'en',
   locale: 'en',
-  sponsors:[]
+  sponsors:[],
+  restartOnLangChange:'no',
+  AppLayoutDirection:'ltr',
+  AppLayoutDirectionScreen:'LanguageSelection',
+  AppLayoutDirectionParams:{}
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -55,6 +63,12 @@ export const localizationSlice = createSlice({
       state.locale = action.payload.language.locale;
       
     },
+    oncountrtIdChange: (state, action: PayloadAction<any>) => {
+     // console.log(state);
+     // console.log(action.payload);
+      // state.name = action.payload.name;
+      state.countryId = action.payload;      
+    },
     setSponsorStore: (
       state,
       action: PayloadAction<any>,
@@ -77,6 +91,33 @@ export const localizationSlice = createSlice({
       // console.log(action.payload);
       // state.name = action.payload.name;
       // state.countryId = action.payload.countryId;
+    },
+    setrestartOnLangChange: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      state.restartOnLangChange = action.payload;
+    },
+    setAppLayoutDirection: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      // console.log(action.payload);
+      state.AppLayoutDirection = action.payload;
+    },
+    setAppLayoutDirectionScreen: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      // console.log(action.payload);
+      state.AppLayoutDirectionScreen = action.payload;
+    },
+    setAppLayoutDirectionParams: (
+      state,
+      action: PayloadAction<any>,
+    ) => {
+      console.log(action.payload);
+      state.AppLayoutDirectionParams = action.payload;
     },
     // onLanguageSelect: (
     //   state,
@@ -104,7 +145,7 @@ export const localizationSlice = createSlice({
   // },
 });
 
-export const {onLocalizationSelect,setChildStore,setSponsorStore} = localizationSlice.actions;
+export const {onLocalizationSelect,setChildStore,setSponsorStore,oncountrtIdChange, setrestartOnLangChange, setAppLayoutDirection, setAppLayoutDirectionScreen, setAppLayoutDirectionParams} = localizationSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

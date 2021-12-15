@@ -16,6 +16,7 @@ import { ArticleEntitySchema } from '../database/schema/ArticleSchema';
 import { BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ChildDevelopmentSchema } from '../database/schema/ChildDevelopmentSchema';
 import { DailyHomeMessagesSchema } from '../database/schema/DailyHomeMessagesSchema';
+import { FAQsSchema } from '../database/schema/FAQsSchema';
 import { HealthCheckUpsSchema } from '../database/schema/HealthCheckUpsSchema';
 import { MilestonesSchema } from '../database/schema/MilestonesSchema';
 import { PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
@@ -56,7 +57,7 @@ const LoadingScreen = ({route, navigation }: Props) => {
     (state: any) => state.childData.childDataSet.allChild != '' ? JSON.parse(state.childData.childDataSet.allChild) : [],
   );
 // const prevPage  = route.params.prevPage;
-const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets} = route.params;
+const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadBufferData, ageBrackets, forceupdatetime} = route.params;
   const sponsors = useAppSelector(
       (state: any) => state.selectedCountry.sponsors,
     );
@@ -74,7 +75,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
   const netInfoval = useNetInfoHook();
     useFocusEffect(
       React.useCallback(() => {
-        console.log(netInfoval.isConnected,'--loading focuseffect--');
+       // console.log(netInfoval.isConnected,'--loading focuseffect--');
         if(netInfoval.isConnected != null)
         {
             callSagaApi();
@@ -99,20 +100,20 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     }, []);
 //console.log(apiJsonData,"..apiJsonData..");
   const callSagaApi = async () => {
-    console.log('in callSagaApi ',netInfoval.isConnected);
+   // console.log('in callSagaApi ',netInfoval.isConnected);
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "Home")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
-    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate")
+    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate")
     {
       const Ages=await getAge(childList,child_age);
       const newAges = [...new Set([...Ages,...bufferAgeBracket])]
-      console.log(newAges,"..Ages..")
+      //console.log(newAges,"..Ages..")
       let apiJsonDataarticle;
       if(newAges?.length>0){
         apiJsonDataarticle=apiJsonDataGet(String(newAges),"all")
@@ -121,33 +122,33 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         apiJsonDataarticle=apiJsonDataGet("all","all")
       }
       apiJsonData.push(apiJsonDataarticle[0]);
-      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+     // console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
         BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
-        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
         const resolvedPromises =  schemaarray.map(async schema => {
           await dataRealmCommon.deleteOneByOne(schema);
         })
         const results = await Promise.all(resolvedPromises);
-        console.log("delete done--",results);
+      //  console.log("delete done--",results);
       //dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
       dispatch(receiveAPIFailure(payload));
-      const currentDate = DateTime.now().toMillis();
-      dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
-      dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
-      console.log("called fetchapi after delete");
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      // const currentDate = DateTime.now().toMillis();
+      // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
+      // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
+     // console.log("called fetchapi after delete");
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "PeriodicSync")
     {
       let allAgeBrackets:any = [];
-      console.log(downloadMonthlyData,"--downloadMonthlyData--",downloadWeeklyData,downloadBufferData);
+      //console.log(downloadMonthlyData,"--downloadMonthlyData--",downloadWeeklyData,downloadBufferData);
       if(downloadBufferData == true)
       {
         if(ageBrackets?.length>0){
-          console.log(ageBrackets,"..11Ages..");
+          //console.log(ageBrackets,"..11Ages..");
           ageBrackets.map((ages:any)=>{
             allAgeBrackets.push(ages);
           })
@@ -158,13 +159,13 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             await dataRealmCommon.deleteOneByOne(schema);
           })
           const results = await Promise.all(resolvedPromises);
-          console.log("delete downloadBufferData done--",results);
+         // console.log("delete downloadBufferData done--",results);
       }
       if(downloadWeeklyData == true)
       {
         const Ages=await getAge(childList,child_age);
         const newAges = [...new Set([...Ages,...bufferAgeBracket])]
-        console.log(newAges,"..newAges..")
+       // console.log(newAges,"..newAges..")
         if(newAges?.length>0){
           newAges.map((age:any)=>{
             allAgeBrackets.push(age);
@@ -176,8 +177,8 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             await dataRealmCommon.deleteOneByOne(schema);
           })
           const results = await Promise.all(resolvedPromises);
-          console.log("delete downloadWeeklyData done--",results);
-        dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
+         // console.log("delete downloadWeeklyData done--",results);
+        // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
       }
       if(downloadMonthlyData == true)
       {
@@ -187,12 +188,12 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             await dataRealmCommon.deleteOneByOne(schema);
           })
           const results = await Promise.all(resolvedPromises);
-          console.log("delete downloadMonthlyData done--",results);
-        dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
+         // console.log("delete downloadMonthlyData done--",results);
+        // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
 
       }
       allAgeBrackets = [...new Set(allAgeBrackets)];
-      console.log(allAgeBrackets,"---in loading");
+     // console.log(allAgeBrackets,"---in loading");
       let apiJsonDataarticle;
       if(allAgeBrackets.length > 0){
         apiJsonDataarticle=apiJsonDataGet(String(allAgeBrackets),"all")
@@ -200,7 +201,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         apiJsonDataarticle=apiJsonDataGet("all","all")
       }
       apiJsonData.push(apiJsonDataarticle[0]);
-      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+     // console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       // dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       // let payload = {errorArr:[],fromPage:'OnLoad'}
@@ -209,30 +210,30 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         // dispatch(setDownloadedBufferAgeBracket([]))
         dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
       }
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else if(prevPage == "ImportScreen")
     {
       const Ages=await getAge(childList,child_age);
-      console.log(Ages,"..Ages..")
+      //console.log(Ages,"..Ages..")
       let apiJsonDataarticle;
       if(Ages?.length>0){
-        console.log(Ages,"..11Ages..")
+       // console.log(Ages,"..11Ages..")
         apiJsonDataarticle=apiJsonDataGet(String(Ages),"all")
       }
       else{
         apiJsonDataarticle=apiJsonDataGet("all","all")
       }
-      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+      //console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       //Article delete fun if not pinned have to create with ArticleEntitySchema after cvariable success dispatch
       const deleteArticles=await deleteArticleNotPinned();
-      console.log(deleteArticles,"..deleteArticles..");
+      //console.log(deleteArticles,"..deleteArticles..");
       dispatch(setDownloadedBufferAgeBracket([]))
-      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
     else {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
     }
   }
   

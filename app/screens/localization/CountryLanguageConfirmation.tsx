@@ -7,7 +7,7 @@ import {
   ButtonTextLg
 } from '@components/shared/ButtonGlobal';
 import { Flex1 } from '@components/shared/FlexBoxStyle';
-import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
+import Icon, { IconML, OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import OnboardingContainer, {
   LocalizationAction,
   LocalizationCol,
@@ -29,15 +29,17 @@ import {
   Heading3Centerw,
   Heading3Regular
 } from '@styles/typography';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { I18nManager, Platform, Text } from 'react-native';
 import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { appConfig } from '../../assets/translations/appOfflineData/apiConstants';
-import { onLocalizationSelect, setSponsorStore } from '../../redux/reducers/localizationSlice';
+import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
+import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import RNRestart from 'react-native-restart';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -59,10 +61,13 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const languageCode = useAppSelector(
     (state: any) => state.selectedCountry.languageCode,
   );
+  const AppLayoutDirection = useAppSelector(
+    (state: any) => state.selectedCountry.AppLayoutDirection,
+  );
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
-  console.log(country,"---country",countryId);
+  //console.log(country,"---country",countryId);
   //console.log(country, language);
   const apiJsonData = [
     {
@@ -84,117 +89,18 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
       saveinDB: true,
     },
   ];
-  const apiJsonDataOnboarded = [
-    {
-      apiEndpoint: appConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    },
-    {
-      apiEndpoint: appConfig.taxonomies,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.videoArticles,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.dailyMessages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.activities,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.surveys,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestones,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childDevelopmentData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinations,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthCheckupData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-        apiEndpoint: appConfig.standardDeviation,
-        method: 'get',
-        postdata: {},
-        saveinDB: true,
-    }
-  ];
+  
   const {t, i18n} = useTranslation();
+  console.log(I18nManager.isRTL,"---is rtl val");
+
+  useEffect(() => {
+    console.log("confirm useeffect called");
+    // dispatch(setrestartOnLangChange('no'));
+
+    return () => {
+      dispatch(setrestartOnLangChange('no'));
+    }
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -222,7 +128,33 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   );
 
   const saveSelection = () => {
-    i18n.changeLanguage(language.locale);
+    i18n.changeLanguage(language.locale)
+    .then(() => {
+      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+      {
+        if(AppLayoutDirection == 'ltr') {
+          //remove rtl on backhandler
+          // dispatch(setAppLayoutDirection('rtl'));
+          // dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+          // dispatch(setAppLayoutDirectionParams({
+          //   country,
+          //   language,
+          // }));
+          Platform.OS=='ios'? setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart();
+          },100):
+          setTimeout(()=>{
+          I18nManager.forceRTL(true);
+          RNRestart.Restart()
+          },0);
+        }else {
+          I18nManager.forceRTL(true);
+        }
+      }else {
+        I18nManager.forceRTL(false);
+      }
+    })
     console.log(language,"..language");
     //Settings.defaultLocale = language.luxonLocale;
     if(userIsOnboarded == true && (language.languageCode == languageCode))
@@ -243,7 +175,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
         dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       }
         navigation.navigate('LoadingScreen', {
-          apiJsonData: userIsOnboarded == true ? apiJsonDataOnboarded : apiJsonData, 
+          apiJsonData: userIsOnboarded == true ? allApisObject : apiJsonData, 
           prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
         });
     }
@@ -254,9 +186,8 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   return (
     <>
     <>
-    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
+    <FocusAwareStatusBar animated={true} backgroundColor={headerColor} key={language}/>
       <OnboardingContainer>
-      {/* <Text>{formatStringDate(new Date(),"bg")}</Text> */}
         <OnboardingconfirmationHead>
           <Icon name="ic_country" size={100} color="#FFF" />
           <OnboardingshiftHead>
@@ -289,12 +220,12 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
               <LocalizationAction>
                 <ButtonLinkText
                   onPress={() => {
-                    console.log(language,"country--",country);
+                    //console.log(language,"country--",country);
                     navigation.navigate('CountrySelection',{country:country,language:language})
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>
-                      <Icon name="ic_edit" size={16} color="#000" />
+                      <IconML name="ic_edit" size={16} color="#000" />
                     </OuterIconLeft>
                     <ButtonTextLg>{t('editCountryLang')}</ButtonTextLg>
                   </OuterIconRow>

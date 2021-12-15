@@ -110,11 +110,11 @@ padding:5px 7px;
 
 export const ParentLabel = styled.View`
  flex:1;
-
+ align-items:flex-start;
 `;
 export const ParentData = styled.View`
 flex:1;
-
+align-items:flex-start;
 `;
 
 export const ParentColView = styled.View`

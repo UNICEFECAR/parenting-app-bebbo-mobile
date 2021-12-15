@@ -9,7 +9,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow, FlexCol } from '@components/shared/FlexBoxStyle';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import ModalPopupContainer, {
   ModalPopupContent,
   PopupClose,
@@ -63,7 +63,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
       setTintColor(route.params?.backgroundColor);
     }
     if (route.params?.weightValue) {
-      console.log(route.params?.weightValue);
+      //console.log(route.params?.weightValue);
       route.params?.weightValue.weight != NaN
         ? setweight(route.params?.weightValue.weight)
         : setweight(0);
@@ -147,7 +147,7 @@ const AddNewChildWeight = ({ navigation, route }: Props) => {
               onPress={() => {
                 navigation.goBack();
               }}>
-              <Icon name={'ic_back'} color="#000" size={15} />
+              <IconML name={'ic_back'} color="#000" size={15} />
             </HeaderIconPress>
           </HeaderIconView>
           <HeaderTitleView>
