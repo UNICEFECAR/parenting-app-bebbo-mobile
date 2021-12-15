@@ -81,11 +81,11 @@ const activeChild = useAppSelector((state: any) =>
         setselVideoArticleData(currVideoArtData);
         const currActivityData = ActivitiesData.filter((x:any) => x.id == item?.related_activities[0])[0];
         setselActivitiesData(currActivityData);
-        console.log(currActivityData?.cover_image?.url,"----url");
+       // console.log(currActivityData?.cover_image?.url,"----url");
         if(currActivityData && currActivityData?.cover_image && currActivityData?.cover_image?.url != "")
         {   
           let imageName=removeParams(currActivityData?.cover_image?.url.split('/').pop());
-          console.log(imageName,"..imageName..");
+         // console.log(imageName,"..imageName..");
             let imageArray = [];
             imageArray.push({
                 srcUrl: currActivityData?.cover_image?.url, 
@@ -95,11 +95,11 @@ const activeChild = useAppSelector((state: any) =>
             })
             const imagesDownloadResult = await downloadImages(imageArray);
             if (await RNFS.exists(destinationFolder + '/' + imageName)) {
-              console.log("selActivityImage in if ",selActivityImage);
+            //  console.log("selActivityImage in if ",selActivityImage);
            //   setselActivityImage(encodeURI("file://" + destinationFolder + currActivityData?.cover_image?.url.split('/').pop()));
               setselActivityImage(encodeURI("file://" + destinationFolder + imageName));
             }else {
-             console.log("selActivityImage in else ",selActivityImage);
+            // console.log("selActivityImage in else ",selActivityImage);
             setselActivityImage('');
             }
             // console.log(imagesDownloadResult,"--imagesDownloadResult");
@@ -107,7 +107,7 @@ const activeChild = useAppSelector((state: any) =>
         if(currVideoArtData && currVideoArtData?.cover_image && currVideoArtData?.cover_image?.url != "")
         {   
           let imageName=removeParams(currVideoArtData?.cover_image?.url.split('/').pop());
-          console.log(imageName,"..imageName..");
+         // console.log(imageName,"..imageName..");
        
             let imageArray = [];
             imageArray.push({
@@ -145,7 +145,7 @@ const activeChild = useAppSelector((state: any) =>
   }
   const gotoArticle =(articleId: any[])=>{
     // 3626
-    console.log("currentSelectedChildId---",currentSelectedChildId)
+   // console.log("currentSelectedChildId---",currentSelectedChildId)
     navigation.navigate('DetailsScreen',
     {
       fromScreen:"MileStone",
@@ -156,7 +156,7 @@ const activeChild = useAppSelector((state: any) =>
     });
   }
   const gotoActivity =(activityData)=>{
-    console.log("activityData--",activityData);
+   // console.log("activityData--",activityData);
     navigation.navigate('DetailsScreen',
     {
       fromScreen:"MileStoneActivity", //ChildDevelopment
@@ -172,7 +172,7 @@ const activeChild = useAppSelector((state: any) =>
     const windowHeight = Dimensions.get('window').height;
     
   const openVideo = (videoArticle) => {
-    console.log("openVideo---",videoArticle);
+   // console.log("openVideo---",videoArticle);
     setModalVisible(!modalVisible)
   }
   return (
@@ -259,7 +259,15 @@ const activeChild = useAppSelector((state: any) =>
                       baseFontStyle={{fontSize: 14}}
                       ignoredStyles={['color', 'font-size', 'font-family','margin','padding']}
                       tagsStyles={{
-                        p:{marginTop:0,},
+                        p:{textAlign:'left',marginTop:0},
+                        h1:{textAlign:'left'},
+                        h2:{textAlign:'left'},
+                        h3:{textAlign:'left'},
+                        h4:{textAlign:'left'},
+                        h5:{textAlign:'left'},
+                        h6:{textAlign:'left'},
+                        span:{textAlign:'left'},
+                        li:{textAlign:'left'},
                       }}
                     />
                     : null 
@@ -325,12 +333,12 @@ const activeChild = useAppSelector((state: any) =>
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-                console.log("onRequestClose clicked",modalVisible);
+             //   console.log("onRequestClose clicked",modalVisible);
             // Alert.alert('Modal has been closed.');
               setModalVisible(!modalVisible);
             }}
             onDismiss={() => {
-                console.log("onDismiss clicked");
+              //  console.log("onDismiss clicked");
             //   setModalVisible(!modalVisible);
             }}>
             <View style={{width:windowWidth,height:windowHeight, backgroundColor:'rgba(0,0,0,0.7)',
@@ -355,7 +363,7 @@ alignItems:'center',justifyContent:'center'}}>
 
       // setModalVisible(!modalVisible);
 
-      console.log("close clicked");
+    //  console.log("close clicked");
 
       setModalVisible(!modalVisible);
 

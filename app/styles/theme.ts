@@ -1,3 +1,5 @@
+import { I18nManager } from "react-native";
+
 export const appTheme= {
     colors: {
         PRIMARY_COLOR: '#2B2F84',
@@ -27,6 +29,7 @@ export const appTheme= {
     borderRadius:{
         BORDERRADIUS:'4px',
         BORDERRADIUS_CIRCLE:'100px'
-    }
+    },
+    isRTL:I18nManager.isRTL
 };
 

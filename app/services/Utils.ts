@@ -10,6 +10,7 @@ import { BasicPagesEntity, BasicPagesSchema } from "../database/schema/BasicPage
 import { ChildDevelopmentEntity, ChildDevelopmentSchema } from "../database/schema/ChildDevelopmentSchema";
 import { ChildGrowthEntity, ChildGrowthSchema } from "../database/schema/ChildGrowthSchema";
 import { DailyHomeMessagesEntity, DailyHomeMessagesSchema } from "../database/schema/DailyHomeMessagesSchema";
+import { FAQsEntity, FAQsSchema } from "../database/schema/FAQsSchema";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from "../database/schema/HealthCheckUpsSchema";
 import { MilestonesEntity, MilestonesSchema } from "../database/schema/MilestonesSchema";
 import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from "../database/schema/PinnedChildDevelopmentSchema";
@@ -112,6 +113,11 @@ export const addApiDataInRealm = async (response: any) => {
             // Entity= Entity as ArticleEntity;
             EntitySchema = StandardDevWeightForHeightSchema;
         }
+        else if (response.payload.apiEndpoint == appConfig.faqs) {
+            insertData = response.payload.data.data;
+            Entity= Entity as FAQsEntity;
+            EntitySchema = FAQsSchema;
+        }
         // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
         if (EntitySchema == ArticleEntitySchema || EntitySchema == PinnedChildDevelopmentSchema) {
             // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
@@ -121,7 +127,7 @@ export const addApiDataInRealm = async (response: any) => {
                 resolve("successinsert");
             } catch (e) {
                 let errorArr = [];
-                console.log("in insert catch---", response.payload);
+                //console.log("in insert catch---", response.payload);
                 errorArr.push(response.payload);
                 let payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
@@ -134,7 +140,7 @@ export const addApiDataInRealm = async (response: any) => {
                 resolve("successinsert");
             } catch (e) {
                 let errorArr = [];
-                console.log("in insert catch---", response.payload);
+               // console.log("in insert catch---", response.payload);
                 errorArr.push(response.payload);
                 let payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
@@ -147,7 +153,7 @@ export const addApiDataInRealm = async (response: any) => {
                 resolve("successinsert");
             } catch (e) {
                 let errorArr = [];
-                console.log("in insert catch---", response.payload);
+               // console.log("in insert catch---", response.payload);
                 errorArr.push(response.payload);
                 let payload = { errorArr: errorArr, fromPage: 'OnLoad' }
                 response.dispatch(receiveAPIFailure(payload));
@@ -218,51 +224,53 @@ export const removeParams=(sParam:any)=>
   }    
 }
 export const validateForm = (param: any, birthDate: any, isPremature: any, relationship: any, plannedTermDate: any, name?: any, gender?: any) => {
-    console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender,"..123");
+   // console.log(param,birthDate,isPremature,relationship,plannedTermDate,name,gender,"..123");
     if (birthDate == null || birthDate == undefined) {
         //    return 'Please enter birth date.';
         return false;
     }
     else {
+        if (name == '' || name == null || name == undefined) {
+            // return 'Please enter name.';
+            return false;
+        }
         if (param == 0) {
-            console.log(gender, "..gender11..");
-            console.log(relationship, "..relationship11..");
+            //console.log(gender, "..gender11..");
+            //console.log(relationship, "..relationship11..");
             if (relationship == '' || relationship == null || relationship == undefined || gender == '' || gender == 0 || gender == null || gender == undefined) {
                 // return 'Please enter relationship.';
                 return false;
             }
         }
         if (param == 1) {
-            if (name == '' || name == null || name == undefined) {
-                // return 'Please enter name.';
-                return false;
-            }
+           
             if (gender == '' || gender == 0 || gender == null || gender == undefined) {
                 // return 'Please enter gender.';
                 return false;
             }
         }
         if (param == 2) {
-            console.log(gender, "..gender..");
+            //console.log(gender, "..gender..");
             if (gender == '' || gender == 0 || gender == null || gender == undefined) {
                 // return 'Please enter relationship.';
                 return false;
             }
         }
         if (param == 3) {
-            console.log(gender, "..gender..");
+            //console.log(gender, "..gender..");
             if (relationship == '' || relationship == null || relationship == undefined) {
                 // return 'Please enter relationship.';
                 return false;
             }
         }
         if (param == 4) {
-            console.log(gender, "..gender..");
+           // console.log(gender, "..gender..");
             // if(relationship =='' || relationship ==null || relationship ==undefined){
             //     // return 'Please enter relationship.';
             //     return false;
             // }
         }
+
         if (isPremature == "true") {
             if (plannedTermDate == null || plannedTermDate == undefined) {
                 // return 'Please enter due date';
@@ -273,8 +281,8 @@ export const validateForm = (param: any, birthDate: any, isPremature: any, relat
             }
         }
         else {
-            console.log(gender, "..gender112..");
-            console.log(relationship, "..relationship112..");
+            //console.log(gender, "..gender112..");
+            //console.log(relationship, "..relationship112..");
             return true;
         }
     }
@@ -329,7 +337,7 @@ export const getVimeoId = (url: string): string => {
 }
 const isAnyKeyValueFalse = (o: { [x: string]: any; }) => !!Object.keys(o).find(k => !o[k]);
 const formatImportedMeasures = (measures: any) => {
-    console.log(measures, "formatImportedMeasures")
+    //console.log(measures, "formatImportedMeasures")
     // console.log(typeof measures === 'object' && measures !== null)
     // if (typeof measure === 'string' || measure instanceof String){
     //imported from old app
@@ -400,7 +408,7 @@ const formatImportedReminders = (reminders: any) => {
             //import from old app's exported files
             let importedReminders = JSON.parse(reminders);
             importedReminders.forEach((reminder: any) => {
-                console.log(reminders, "importedReminders")
+                //console.log(reminders, "importedReminders")
                 reminder.reminderDate = Number(reminder.date);
                 reminder.reminderTime = Number(reminder.time);
                 reminder.reminderType = "healthCheckup";
@@ -447,16 +455,17 @@ export const getChild = async (child: any, genders: any) => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
     const childmeasures: any[] = await formatImportedMeasures(child.measures)
     const childreminders: any[] = await formatImportedReminders(child.reminders)
-    console.log(photoUri, "..photoUri..", childmeasures, childreminders);
-    console.log(child, "..childname..");
-    console.log("name" in child, "..child.hasOwnProperty..");
+    // const favoriteadvices:any[] = 
+    //console.log(photoUri, "..photoUri..", childmeasures, childreminders);
+    //console.log(child, "..childname..");
+   // console.log("name" in child, "..child.hasOwnProperty..");
     //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
     const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
-    console.log(childName, "..childname..");
+    //console.log(childName, "..childname..");
     let genderValue: any = child.gender;
-    console.log(typeof genderValue, "..typeof genderValue")
+    //console.log(typeof genderValue, "..typeof genderValue")
     if (typeof genderValue === 'string' || genderValue instanceof String) {
-        console.log(typeof genderValue, "..11typeof genderValue");
+       // console.log(typeof genderValue, "..11typeof genderValue");
         
         // console.log(genders.find((genderset:any) => genderset.name == child.gender).id,"/idset");
         if (genders.length > 0 && genderValue != "") {
@@ -465,9 +474,21 @@ export const getChild = async (child: any, genders: any) => {
         else {
             genderValue = 0;
         }
-        console.log(genderValue, "..22typeof genderValue")
+        //console.log(genderValue, "..22typeof genderValue")
     }
-    console.log(genderValue, "..genderValue..");
+    //console.log(genderValue, "..genderValue..");
+    let favoriteadvices: any[] = [],favoritegames: any[] = []
+    if(child && child.favoriteadvices && child.favoriteadvices.length > 0) {
+        favoriteadvices = [...child.favoriteadvices];
+    }else {
+        favoriteadvices = [];
+    }
+    if(child && child.favoritegames && child.favoritegames.length > 0) {
+        favoritegames = [...child.favoritegames];
+    }else {
+        favoritegames = [];
+    }
+    //console.log(favoritegames,"after import ",favoriteadvices);
     const inFuture = isFutureDate(child.birthDate);
     //child.isExpected?child.isExpected:"false"
     //mayur
@@ -490,7 +511,9 @@ export const getChild = async (child: any, genders: any) => {
         reminders: childreminders,
         isMigrated: true,
         isPremature: 'false', //calcualte if its premature or not?
-        isExpected: inFuture == true ? 'true' : 'false'
+        isExpected: inFuture == true ? 'true' : 'false',
+        favoriteadvices:favoriteadvices,
+        favoritegames: favoritegames
         //relationship:''
     };
 }

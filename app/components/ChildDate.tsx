@@ -65,7 +65,7 @@ const ChildDate = (props: any) => {
      if (birthDate == '' || birthDate == null || birthDate == undefined) {
         setdisablePrematureCheck(true);
       }
-      console.log(childData, '..childData..');
+     // console.log(childData, '..childData..');
       if (childData != null) {
         birthDate = childData.birthDate;
         isPremature = childData.isPremature;
@@ -92,13 +92,13 @@ const ChildDate = (props: any) => {
     }, []),
   );
   const handleDobConfirm = (event:any) => {
-    console.log("A date has been picked: ", event);
+   // console.log("A date has been picked: ", event);
     const date=event;
     ondobChange(event,date);
     setDobDatePickerVisibility(false);
   };
   const handleDueConfirm = (event:any) => {
-    console.log("A date has been picked: ", event);
+   // console.log("A date has been picked: ", event);
     const date=event;
     ondueDateChange(event,date);
     setDueDatePickerVisibility(false);
@@ -112,21 +112,22 @@ const ChildDate = (props: any) => {
     const inFuture = isFutureDate(currentDate);
     setdisablePrematureCheck(inFuture);
     setdoborExpectedDate(currentDate);
+    setdueDate(null);
     if (inFuture) {
       setIsExpected(true);
       setToggleCheckBox(false);
       props.sendData({
         birthDate: currentDate,
-        plannedTermDate: dueDate,
-        isPremature: false,
+        plannedTermDate: null,
+        isPremature: toggleCheckBox,
         isExpected: true,
       });
     } else {
       setIsExpected(false);
       props.sendData({
         birthDate: currentDate,
-        plannedTermDate: dueDate,
-        isPremature: false,
+        plannedTermDate: null,
+        isPremature: toggleCheckBox,
         isExpected: false,
       });
     }
@@ -346,7 +347,11 @@ const ChildDate = (props: any) => {
                      <DateTimePickerModal
                       isVisible={isDueDatePickerVisible}
                       mode="date"
-                      date={dueDate != null ? dueDate : new Date()}
+                      date={dueDate != null ? dueDate : new Date(
+                        DateTime.fromJSDate(doborExpectedDate as Date)
+                          .plus({weeks: minDue})
+                          .toISODate(),
+                      )}
                       onConfirm={handleDueConfirm}
                       onCancel={() => {
                         // Alert.alert('Modal has been closed.');
@@ -402,8 +407,9 @@ const ChildDate = (props: any) => {
               </PopupClose>
             </PopupCloseContainer>
             <ModalPopupContent>
+              
               <Heading4Centerr>
-                {t('childSetupprematureMessage')}
+                {prevScreen=="Onboarding" ? t('childSetupprematureMessage'):t('childSetupprematureMessageNext')}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>

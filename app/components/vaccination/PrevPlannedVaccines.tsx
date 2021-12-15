@@ -21,9 +21,9 @@ const PrevPlannedVaccines = (props: any) => {
       }
     });
   });
-  console.log("curr",currentPeriodVaccines)
+  //console.log("curr",currentPeriodVaccines)
   // allPreviousPendingVaccines.push(...currentPeriodVaccines);
-  console.log("prev",allPreviousPendingVaccines);
+  //console.log("prev",allPreviousPendingVaccines);
   if(isEditScreen== true){
           if(takenVaccine.length>0){
             allPreviousPendingVaccines = allPreviousPendingVaccines.filter((vItem)=>{

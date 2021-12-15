@@ -96,7 +96,7 @@ const Vaccination = ({navigation,route}: Props) => {
     overDuePreviousVCcount,
     doneVCcount,
   } = getAllVaccinePeriods();
-  console.log(totalUpcomingVaccines,"totalUpcomingVaccines");
+  //console.log(totalUpcomingVaccines,"totalUpcomingVaccines");
   const renderItem = (index: number) => {
     if (index === 0) {
       return (

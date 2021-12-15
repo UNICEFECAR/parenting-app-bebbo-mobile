@@ -62,7 +62,9 @@ export default () => {
 
       />      
       <HomeDrawerNavigator.Screen name="UserGuide" component={UserGuide}/>
-      <HomeDrawerNavigator.Screen name="Favourites" component={Favourites}/>
+      <HomeDrawerNavigator.Screen name="Favourites" component={Favourites}
+        initialParams={{tabIndex: 0,backClicked:'no'}}
+      />
 
     </HomeDrawerNavigator.Navigator>
   );

@@ -27,6 +27,7 @@ import { Modal, Pressable, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
+import { getCurrentChildAgeInYears } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 
 const LastChildMeasure = (props: any) => {
@@ -37,7 +38,7 @@ const LastChildMeasure = (props: any) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"LastChildMeasureactiveChild")
+  //console.log(activeChild,"LastChildMeasureactiveChild")
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const themeContext = useContext(ThemeContext);
@@ -106,7 +107,7 @@ const LastChildMeasure = (props: any) => {
   let convertInDays = lastmeasurementDate.diff(date, "days").days;
   let days = 0;
   if (convertInDays !== undefined) {days = Math.round(convertInDays)};
-  console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
+  //console.log(days,"daysfrom",activeChild?.taxonomyData?.days_from)
   return (
     <>
       <BannerContainer1>
@@ -228,6 +229,22 @@ const LastChildMeasure = (props: any) => {
           </FDirRowStart>
           </ShiftFromTop20>
           :null}
+          {getCurrentChildAgeInYears(DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis())>5 ? <ShiftFromTop20>
+          <FDirRowStart>
+          <OuterIconRow>
+                        <OuterIconLeft>
+                            <IconViewAlert>
+                              <Icon
+                                name="ic_incom"
+                                size={24}
+                                color="#FFF"
+                              /></IconViewAlert>
+                        </OuterIconLeft>
+                      </OuterIconRow>
+                      <Heading4 style={{flexShrink:1}}>{t('fiveYearsGreater')}</Heading4>
+          </FDirRowStart>
+          </ShiftFromTop20>
+          :null}
         </ShiftFromTop20>
       </BannerContainer1>
       <Modal
@@ -253,7 +270,7 @@ const LastChildMeasure = (props: any) => {
             </PopupCloseContainer>
             <ModalPopupContent>
               <Heading4Centerr>
-                {t('childSetupprematureMessage')}
+                {t('childSetupprematureMessageNext')}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>
