@@ -4,7 +4,7 @@ import { Heading4Bold, Heading4Regular, Heading5Bold, Heading6, ShiftFromTop10, 
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
+import { Pressable, View, Text } from 'react-native';
 import {
   Menu,
   MenuOption,
@@ -19,7 +19,7 @@ import { formatStringDate, formatStringTime } from '../services/Utils';
 import { ButtonTextSmLineL } from './shared/ButtonGlobal';
 import Checkbox, { CheckboxActive, CheckboxItem } from './shared/CheckboxStyle';
 import { FormOuterCheckbox } from './shared/ChildSetupStyle';
-import Divider, { DividerContainer } from './shared/Divider';
+import Divider, { DividerN, DividerContainer, VerticalDivider } from './shared/Divider';
 import { FlexDirRowStart } from './shared/FlexBoxStyle';
 import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from './shared/NotificationStyle';
 
@@ -27,7 +27,7 @@ import { NotifAction, NotificationListContainer, NotifIcon, NotifiContent } from
 const NotificationItem = (props: any) => {
   const { item, itemIndex, onItemReadMarked, onItemDeleteMarked, isDeleteEnabled, childAgeInDays, activeChild } = props;
   const themeContext = useContext(ThemeContext);
-  console.log(childAgeInDays, "childAgeInDays")
+ // console.log(childAgeInDays, "childAgeInDays")
   const hcheaderColor = themeContext.colors.HEALTHCHECKUP_COLOR;
   const navigation = useNavigation();
   // const primaryColor = themeContext.colors.PRIMARY_COLOR;
@@ -63,7 +63,7 @@ const NotificationItem = (props: any) => {
       markAsRead(item);
     }
     const type = item.type;
-    console.log(type);
+   // console.log(type);
     type == 'gw'
       ? navigation.navigate('AddNewChildgrowth', {
         headerTitle: t('growthScreenaddNewBtntxt'),
@@ -214,9 +214,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                        //console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -234,7 +234,7 @@ const NotificationItem = (props: any) => {
                           },
 
                           optionWrapper: {
-                            borderBottomWidth: 1,
+                            // borderBottomWidth: 1,
                             padding: 15,
                           },
 
@@ -242,6 +242,7 @@ const NotificationItem = (props: any) => {
                         <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
+                        <DividerN></DividerN>
                         <MenuOption value={2} onSelect={() => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
@@ -323,9 +324,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                       // console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -343,7 +344,7 @@ const NotificationItem = (props: any) => {
                           },
 
                           optionWrapper: {
-                            borderBottomWidth: 1,
+                            // borderBottomWidth: 1,
                             padding: 15,
                           },
 
@@ -351,6 +352,7 @@ const NotificationItem = (props: any) => {
                         <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
+                        <DividerN></DividerN>
                         <MenuOption value={2} onSelect={() => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
@@ -448,9 +450,9 @@ const NotificationItem = (props: any) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
-                      onSelect={(value) =>
-                        console.log(`Selected number: ${value} ${item}`)
-                      }>
+                      onSelect={(value) =>{
+                     //   console.log(`Selected number: ${value} ${item}`)
+                      }}>
                       <MenuTrigger>
                         <Icon
                           
@@ -468,7 +470,7 @@ const NotificationItem = (props: any) => {
                           },
 
                           optionWrapper: {
-                            borderBottomWidth: 1,
+                            // borderBottomWidth: 1,
                             padding: 15,
                           },
 
@@ -476,6 +478,7 @@ const NotificationItem = (props: any) => {
                         <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                           <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                         </MenuOption>
+                        <DividerN></DividerN>
                         <MenuOption value={2} onSelect={() => markAsRead(item)}>
                           <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                         </MenuOption>
@@ -560,9 +563,9 @@ const NotificationItem = (props: any) => {
                           justifyContent: 'center',
                           alignItems: 'center',
                         }}
-                        onSelect={(value) =>
-                          console.log(`Selected number: ${value} ${item}`)
-                        }>
+                        onSelect={(value) =>{
+                       //   console.log(`Selected number: ${value} ${item}`)
+                        }}>
                         <MenuTrigger>
                           <Icon
                             
@@ -580,7 +583,7 @@ const NotificationItem = (props: any) => {
                             },
 
                             optionWrapper: {
-                              borderBottomWidth: 1,
+                              // borderBottomWidth: 1,
                               padding: 15,
                             },
 
@@ -588,6 +591,7 @@ const NotificationItem = (props: any) => {
                           <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                             <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                           </MenuOption>
+                          <DividerN></DividerN>
                           <MenuOption value={2} onSelect={() => markAsRead(item)}>
                             <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                           </MenuOption>
@@ -670,9 +674,9 @@ const NotificationItem = (props: any) => {
                           justifyContent: 'center',
                           alignItems: 'center',
                         }}
-                        onSelect={(value) =>
-                          console.log(`Selected number: ${value} ${item}`)
-                        }>
+                        onSelect={(value) =>{
+                         // console.log(`Selected number: ${value} ${item}`)
+                        }}>
                         <MenuTrigger>
                           <Icon
                             
@@ -690,7 +694,7 @@ const NotificationItem = (props: any) => {
                             },
 
                             optionWrapper: {
-                              borderBottomWidth: 1,
+                              // borderBottomWidth: 1,
                               padding: 15,
                             },
 
@@ -698,6 +702,7 @@ const NotificationItem = (props: any) => {
                           <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                             <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                           </MenuOption>
+                          <DividerN></DividerN>
                           <MenuOption value={2} onSelect={() => markAsRead(item)}>
                             <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                           </MenuOption>
@@ -786,9 +791,9 @@ const NotificationItem = (props: any) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}
-                  onSelect={(value) =>
-                    console.log(`Selected number: ${value} ${item}`)
-                  }>
+                  onSelect={(value) =>{
+                    //console.log(`Selected number: ${value} ${item}`)
+                  }}>
                   <MenuTrigger>
                     <Icon
                       
@@ -806,7 +811,7 @@ const NotificationItem = (props: any) => {
                       },
 
                       optionWrapper: {
-                        borderBottomWidth: 1,
+                        // borderBottomWidth: 1,
                         padding: 15,
                       },
 
@@ -814,6 +819,7 @@ const NotificationItem = (props: any) => {
                     <MenuOption value={1} onSelect={() => markAsDelete(item)}>
                       <Heading5Bold>{t('notiOption1')}</Heading5Bold>
                     </MenuOption>
+                    <DividerN></DividerN>
                     <MenuOption value={2} onSelect={() => markAsRead(item)}>
                       <Heading5Bold> {item.isRead == true ? t('notiOption3') : t('notiOption2')}</Heading5Bold>
                     </MenuOption>
