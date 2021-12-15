@@ -27,7 +27,7 @@ export type RootStackParamList = {
 export type LocalizationStackParamList = {
   CountrySelection: {};
   LanguageSelection: undefined;
-  CountryLanguageConfirmation: undefined;
+  CountryLanguageConfirmation: {};
 };
 
 export type HomeDrawerNavigatorStackParamList = {
@@ -42,7 +42,7 @@ export type HomeDrawerNavigatorStackParamList = {
   // ChildProfileScreen: undefined;
   
   UserGuide: undefined;
-  Favourites: undefined;
+  Favourites: {};
   SupportChat:undefined;
 };
 

@@ -8,7 +8,7 @@ import {
   ButtonviewNext,
   ButtonviewPrevious
 } from '@components/shared/ButtonView';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingStyle from '@components/shared/OnboardingStyle';
 import { LocalizationStackParamList } from '@navigation/types';
@@ -69,8 +69,8 @@ const CountrySelection = (props: any) => {
   const sponsors = useAppSelector(
     (state: any) => state.selectedCountry.sponsors,
   );
-  console.log("...sponsors..", sponsors);
-  console.log("userIsOnboarded appnav--", userIsOnboarded);
+  //console.log("...sponsors..", sponsors);
+  //console.log("userIsOnboarded appnav--", userIsOnboarded);
   // useFocusEffect(
   //   React.useCallback(() => {
   //     // Alert.alert("focuseffect--",JSON.stringify(countryId));
@@ -113,7 +113,7 @@ const CountrySelection = (props: any) => {
       selectedCountry = localization.find(
         (country) => country.countryId === newCountryId,
       );
-      console.log(selectedCountry,"---selectedCountry");
+      //console.log(selectedCountry,"---selectedCountry");
       const fetchData = async () => {
         if (userIsOnboarded == false) {
           let deleteresult = await userRealmCommon.deleteBy(ChildEntitySchema,"isMigrated == false");
@@ -164,7 +164,7 @@ const CountrySelection = (props: any) => {
                 <ButtonviewClick
                   style={{}}
                   onPress={() => {
-                    console.log("country-----",country);
+                    //console.log("country-----",country);
                       if(country.countryId == restOfTheWorldCountryId) {
                             Alert.alert(restOfTheWorldAlertTitle, restOfTheWorldAlertText,
                             [
@@ -180,7 +180,7 @@ const CountrySelection = (props: any) => {
                     
                     }
                   }>
-                  <Icon name="ic_angle_right" size={32} color="#000" />
+                  <IconML name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>
             </ShiftFromTopBottom10>
@@ -188,7 +188,7 @@ const CountrySelection = (props: any) => {
         ) : (
           <ButtonviewPrevious>
             <ButtonviewClick onPress={() => { }}>
-              <Icon name="ic_angle_right" size={32} color="#000" />
+              <IconML name="ic_angle_right" size={32} color="#000" />
             </ButtonviewClick>
           </ButtonviewPrevious>
         )}

@@ -103,7 +103,7 @@ const UpcomingVaccines = (props: any) => {
       // let days = DateTime.fromJSDate(reminderDate).diff(today, 'days').toObject().days;
       // console.log(days,"days")
       if (today.toMillis()<DateTime.fromJSDate(new Date(reminderDate)).toMillis()) {
-        console.log('vaccineReminder',vaccineReminder);
+        //console.log('vaccineReminder',vaccineReminder);
         vcReminder = vaccineReminder
       }
     })
@@ -128,7 +128,7 @@ const UpcomingVaccines = (props: any) => {
     const yeas = item?.vaccines.some((el) => {
       return el.isMeasured == true;
     });
-    console.log(yeas, 'isMeasuredyeas');
+   // console.log(yeas, 'isMeasuredyeas');
     // open first collapsible in upcoming vaccine period
   }, []);
   const gotoArticle = (pinned_articleID) => {

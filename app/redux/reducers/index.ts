@@ -15,20 +15,42 @@ import { bandWidthSlice } from './bandwidthSlice';
 // import {createRealmPersistStorage} from '@bankify/redux-persist-realm';
 const migrations = {  
   0: (state: any) => {    
-      return {      ...
-    state,      
-    childDataSet: {        ...
-      state.childDataSet,        
-      bufferAgeBracket:[]
-    }    
-  }  
+      return {      
+        ...state,      
+        childDataSet: {       
+          ...state.childDataSet,        
+          favoriteadvices:[],
+          favoritegames:[],
+          chatBotData:''
+        }
+      }  
+  }
+}
+const migrationsutils = {  
+  0: (state: any) => {    
+      return {      
+        ...state,
+        faqsData:'',
+      }  
+  }
+}
+const migrationslocalization = {
+  0: (state: any) => {    
+      return {      
+        ...state,      
+        restartOnLangChange:'no',
+        AppLayoutDirection:'ltr',
+        AppLayoutDirectionScreen:'LanguageSelection',
+        AppLayoutDirectionParams:{}
+      }  
   }
 }
 const countryConfig = {
   key: 'country',
   storage: createRealmPersistStorage(),
-  // blacklist: ['countryTheme'],
-  // stateReconciler: autoMergeLevel2,
+  version: 0,
+  debug: true,
+  migrate: createMigrate(migrationslocalization, { debug: true }) 
 };
 const failedApiConfig = {
   key: 'onLoadFailedApis',
@@ -39,13 +61,16 @@ const failedApiConfig = {
 const utilConfig = {
   key: 'utilsData',
   storage: createRealmPersistStorage(),
+  version: 0,
+  debug: true,
+  migrate: createMigrate(migrationsutils, { debug: true }) 
 };
 const childConfig = {
   key: 'childData',
   storage: createRealmPersistStorage(),
   version: 0,
   debug: true,
-  // migrate: createMigrate(migrations, { debug: true }) 
+  migrate: createMigrate(migrations, { debug: true }) 
 };
 const articleConfig = {
   key: 'articlesData',
