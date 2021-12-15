@@ -23,7 +23,7 @@ const RenderImage = ({ uri,itemnew,toggleSwitchVal }:any) => {
           height: 200
           }}
      ><LoadableImage style={{ 
-      height: 'auto',
+      height: '100%',
       width: '100%',
       resizeMode: 'center'
     }} item={itemnew} toggleSwitchVal={toggleSwitchVal} /></View></>
