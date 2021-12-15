@@ -1,5 +1,5 @@
 import { ADVICE_SHARED, FAVOURITE_ADVICE_ADDED, FAVOURITE_GAME_ADDED, GAME_SHARED } from '@assets/data/firebaseEvents';
-import { shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { shareText, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
@@ -26,20 +26,27 @@ padding:12px 0px;
 `;
 
 const ShareFavButtons = React.memo((props: any) => {
+
   const activeChilduuid = useAppSelector((state: any) =>
   state.childData.childDataSet.activeChild != ''
     ? JSON.parse(state.childData.childDataSet.activeChild).uuid
     : [],
 );
+const locale = useAppSelector(
+  (state: any) => state.selectedCountry.locale,
+);
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
-  // console.log("sharefav item ", item);
+   console.log("sharefav item ", item);
   const onShare = async () => {
-   // console.log('share');
+   console.log('locale',locale);
+   const suburl=isAdvice?"/article/":"/activity/";
+   const mainUrl=shareTextButton+locale+suburl+item.id;
+   console.log(mainUrl,"..mainUrl")
     try {
       const result = await Share.share({
-        message:item ? item.title :t('appShareText')+shareText
+        message:mainUrl
             });
       if (result.action === Share.sharedAction) {
         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
