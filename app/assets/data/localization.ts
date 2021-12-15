@@ -60,6 +60,20 @@ export const localization = [
         locale: 'GRel',
         luxonLocale:'el-GR'
       },
+      {
+        name: 'Arabic',
+        displayName: 'عربي',
+        languageCode: 'rs-en',
+        locale: 'GRarb',
+        luxonLocale:'ar'
+      },
+      {
+        name: 'Dari',
+        displayName: 'دری',
+        languageCode: 'en',
+        locale: 'GRda',
+        luxonLocale:'fa-AF'
+      },
     ],
   },
   // {
@@ -204,7 +218,7 @@ export const localization = [
   },
   {
     name: 'Rest of the world',
-    countryId: 1,
+    countryId: 126,
     displayName: 'Rest of the world',
     languages: [
       {

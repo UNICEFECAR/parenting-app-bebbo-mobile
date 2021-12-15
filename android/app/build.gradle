@@ -133,8 +133,8 @@ android {
         applicationId "org.unicef.ecar.bebbo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.2.3"
     }
     splits {
         abi {
@@ -198,6 +198,7 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation project(':react-native-lottie-splash-screen')
+    implementation 'com.google.android.gms:play-services-base:17.3.0'
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

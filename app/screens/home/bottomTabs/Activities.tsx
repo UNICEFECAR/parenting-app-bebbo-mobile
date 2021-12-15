@@ -8,7 +8,7 @@ import RNFS from 'react-native-fs';
 import { MainContainer } from '@components/shared/Container';
 import { DividerAct } from '@components/shared/Divider';
 import FirstTimeModal from '@components/shared/FirstTimeModal';
-import { FDirCol, FDirRow, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
+import { FDirCol, FDirRow, Flex2, Flex4, FlexCol, FlexDirRow, FlexDirRowSpace } from '@components/shared/FlexBoxStyle';
 import PrematureTag, { PrematureTagActivity } from '@components/shared/PrematureTag';
 import ShareFavButtons from '@components/shared/ShareFavButtons';
 import TabScreenHeader from '@components/TabScreenHeader';
@@ -16,13 +16,14 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading3, Heading4, Heading4Center, Heading4Centerr, Heading5Bold, Heading6Bold, ShiftFromTop5, ShiftFromTopBottom5 } from '@styles/typography';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
   ActivityIndicator,
   FlatList,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   SectionList,
@@ -39,6 +40,8 @@ import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import Icon from '@components/shared/Icon';
 import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from '@components/shared/ModalPopupStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
+import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -54,7 +57,7 @@ const Activities = ({ route, navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const flatListRef = React.useRef();
-  let sectionListRef;
+  let sectionListRef:any;
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
@@ -85,6 +88,14 @@ const Activities = ({ route, navigation }: Props) => {
     (state: any) =>
       JSON.parse(state.utilsData.taxonomy.allTaxonomyData).activity_category,
   );
+  const MileStonesData = useAppSelector(
+    (state: any) =>
+      state.utilsData.MileStonesData != '' ? JSON.parse(state.utilsData.MileStonesData) : [],
+  );
+  const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
+  const favoritegames = useAppSelector((state: any) =>
+    state.childData.childDataSet.favoritegames
+  );
   const renderIndicator = (progress: any, indeterminate: any) => (<Text>{indeterminate ? 'Loading..' : progress * 100}</Text>);
   const activityModalOpened = useAppSelector((state: any) =>
     (state.utilsData.IsActivityModalOpened),
@@ -102,6 +113,7 @@ const Activities = ({ route, navigation }: Props) => {
   const [filteredData, setfilteredData] = useState([]);
   const [showNoData, setshowNoData] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
+  const [childMilestonedata,setchildMilestonedata] = useState([]);
   const setIsModalOpened = async (varkey: any) => {
     if (modalVisible == true) {
       let obj = { key: varkey, value: false };
@@ -110,13 +122,14 @@ const Activities = ({ route, navigation }: Props) => {
     }
   };
   useFocusEffect(() => {
-    console.log("in activity focuseffect without callback", activityModalOpened);
+   // console.log("in activity focuseffect without callback", activityModalOpened);
     setModalVisible(activityModalOpened);
   })
 
   const toTop = () => {
     // use current
     // flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 })
+    if(sectionListRef){
     sectionListRef.scrollToLocation(
       {
         animated:Platform.OS=="android" ? true:false,
@@ -124,13 +137,14 @@ const Activities = ({ route, navigation }: Props) => {
         itemIndex: 0
       }
     );
+    }
   }
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("useFocusEffect called");
+     console.log("useFocusEffect called route.params?.backClicked",route.params?.backClicked);
       setLoading(true);
       // setModalVisible(true);
-      console.log("in usefocuseffect 2", route.params);
+    //  console.log("in usefocuseffect 2", route.params);
       async function fetchData() {
         if (route.params?.categoryArray) {
           // console.log(route.params?.categoryArray);
@@ -152,7 +166,7 @@ const Activities = ({ route, navigation }: Props) => {
   );
 
   const showSelectedBracketData = (item: any) => {
-    console.log("in showSelectedBracketData--", item);
+   // console.log("in showSelectedBracketData--", item);
 
     analytics().logEvent(GAME_AGEGROUP_SELECTED, { age_id: item.id });
     // if(route.params?.backClicked == 'yes')
@@ -162,7 +176,7 @@ const Activities = ({ route, navigation }: Props) => {
     setCurrentSelectedChildId(item.id);
     let filteredData = ActivitiesData.filter((x: any) => x.child_age.includes(item.id));
     // filteredData =filteredData.map( item => ({ ...item, name:item.name }) )
-    console.log("filteredData---", filteredData);
+   // console.log("filteredData---", filteredData);
     setSelectedChildActivitiesData(filteredData);
     // console.log(filteredData?.length);
     // if(filteredData?.length>0){
@@ -188,20 +202,34 @@ const Activities = ({ route, navigation }: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-      // console.log("child dev usefocuseffect");
-      console.log("in usefocuseffect 1", route.params);
+       console.log("new child dev usefocuseffect",route.params);
+    //  console.log("in usefocuseffect 1", route.params);
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
         if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
+          console.log("if route params 0",route.params);
           // console.log(route.params?.categoryArray);
           const firstChildDevData = childAge.filter((x: any) => x.id == route.params?.currentSelectedChildId);
           // console.log("firstChildDevData---",firstChildDevData);
           showSelectedBracketData(firstChildDevData[0]);
         }
         else {
-          const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
-          console.log("firstChildDevData---", firstChildDevData);
-          showSelectedBracketData(firstChildDevData[0]);
+          console.log("else if route params 0",route.params,activityTaxonomyId);
+        //   if(activeChild?.taxonomyData.prematureTaxonomyId!=null && activeChild?.taxonomyData.prematureTaxonomyId!=undefined && activeChild?.taxonomyData.prematureTaxonomyId!=""){
+        //     console.log("if again route params 0",route.params);
+        
+            
+        //   }
+        //   else{
+        //     console.log("else again route params 0",route.params);
+        
+        //   const firstChildDevData = childAge.filter((x: any) => x.id == activeChild?.taxonomyData.id);
+        //  // console.log("firstChildDevData---", firstChildDevData);
+        //   showSelectedBracketData(firstChildDevData[0]);
+        //   }
+        const firstChildDevData = childAge.filter((x: any) => x.id == activityTaxonomyId);
+            // console.log("firstChildDevData---", firstChildDevData);
+        showSelectedBracketData(firstChildDevData[0]);
         }
       } else {
         setLoading(false);
@@ -210,12 +238,19 @@ const Activities = ({ route, navigation }: Props) => {
         }
       }
 
-    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId])
+    }, [activeChild?.uuid, languageCode, route.params?.currentSelectedChildId,activityTaxonomyId])
   );
   useFocusEffect(
     React.useCallback(() => {
-
+     // console.log("in usefocuseffect with unmount23");
+      const fetchData = async () => {
+        const filterQuery = 'uuid == "'+activeChild?.uuid+'"';
+        const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
+        setchildMilestonedata(childData[0].checkedMilestones)
+      }
+      fetchData()
       return () => {
+        console.log("unmount activity",route.params);
         // setModalVisible(false);
         // setFilterArray([]);
         // setCurrentSelectedChildId(0);
@@ -225,7 +260,7 @@ const Activities = ({ route, navigation }: Props) => {
         // setLoading(false);
         // setfilteredData([]);
         // setshowNoData(false);
-        console.log("in unmount-", route.params?.currentSelectedChildId);
+      //  console.log("in unmount-", route.params?.currentSelectedChildId);
         navigation.setParams({ backClicked: 'no' })
         // if(route.params?.currentSelectedChildId)
         // {
@@ -240,22 +275,27 @@ const Activities = ({ route, navigation }: Props) => {
       };
     }, [])
   );
+  // useEffect(()=>{
+    
+  // },[navigation.isFocused()])
   useFocusEffect(
     React.useCallback(() => {
+      console.log(activeChild,"..activeChild..")
       // console.log("child dev usefocuseffect");
-      setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0));
-      setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0));
-      console.log("filteredData inner---", filteredData);
-    }, [filteredData])
+      // || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)
+      setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));
+      setotherGames(filteredData.filter((x: any) => x.related_milestone.length == 0  || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)));
+      //console.log("filteredData inner---", filteredData);
+    }, [filteredData,childMilestonedata])
   );
   const setFilteredActivityData = (itemId: any) => {
-    console.log(itemId, "articleData in filtered ", selectedChildActivitiesData);
+   // console.log(itemId, "articleData in filtered ", selectedChildActivitiesData);
     // if(route.params?.backClicked == 'yes')
     // {
     //   navigation.setParams({backClicked:'no'})
     // }
     if (selectedChildActivitiesData && selectedChildActivitiesData.length > 0 && selectedChildActivitiesData != []) {
-      console.log("in if");
+     // console.log("in if");
       if (itemId.length > 0) {
         const newArticleData = selectedChildActivitiesData.filter((x: any) => itemId.includes(x.activity_category));
         setfilteredData(newArticleData);
@@ -282,7 +322,7 @@ const Activities = ({ route, navigation }: Props) => {
     toTop();
   }
   const goToActivityDetail = (item: typeof filteredData[0]) => {
-    console.log(selectedChildActivitiesData, "--selectedChildActivitiesData");
+   // console.log(selectedChildActivitiesData, "--selectedChildActivitiesData");
     navigation.navigate('DetailsScreen',
       {
         fromScreen: "Activities",
@@ -294,36 +334,30 @@ const Activities = ({ route, navigation }: Props) => {
         currentSelectedChildId: currentSelectedChildId
       });
   };
-  // console.log(filteredData,"--filteredData");
-  // console.log(suggestedGames,"--suggestedGames");
-  // console.log(otherGames,"--otherGames");
+  //console.log(filteredData.length,"--filteredData");
+  //console.log(suggestedGames.length,"--suggestedGames");
+  //console.log(otherGames.length,"--otherGames");
 
   const onFilterArrayChange = (newFilterArray: any) => {
-    console.log("on filterarray change", newFilterArray);
+    //console.log("on filterarray change", newFilterArray);
     // filterArray = [...newFilterArray];
     setFilterArray(newFilterArray)
     // console.log("on filterarray change after",filterArray)
   }
-  const RenderActivityItem = React.memo(({ item, index }) => {
-    console.log("RenderActivityItem", item.id);
-    return (
-      <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
-        <ArticleListContainer>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
-          <ArticleListContent>
-            <ShiftFromTopBottom5>
-              <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>
-            </ShiftFromTopBottom5>
-            <Heading3>{item.title}</Heading3>
-          </ArticleListContent>
-
-          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
-        </ArticleListContainer>
-      </Pressable>
-    )
-  });
+  const gotoMilestone = () => {
+    //console.log("currentSelectedChildId---",currentSelectedChildId)
+    navigation.navigate('ChildDevelopment',
+    {
+      currentSelectedChildId: currentSelectedChildId
+    });
+  }
   const SuggestedActivities = React.memo(({ item, section, index }) => {
-    console.log(section, "SuggestedActivities", item.id);
+    //console.log(section, "SuggestedActivities", item.id);
+    let milestonedatadetail:any = [];
+    if(section == 1) {
+      const relatedmilestoneid = item.related_milestone.length > 0 ? item.related_milestone[0] : 0;
+      milestonedatadetail = MileStonesData.filter((x:any)=>x.id == relatedmilestoneid);
+    }
     return (
         <ArticleListContainer>
            <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
@@ -334,26 +368,28 @@ const Activities = ({ route, navigation }: Props) => {
             </ShiftFromTopBottom5>
             <Heading3>{item.title}</Heading3>
             {/* keep below code ActivityBox for future use */}
-            {/* {section == 1 ? 
+            {section == 1 && milestonedatadetail.length > 0 && ((childMilestonedata.findIndex((x:any)=>x == milestonedatadetail[0]?.id)) == -1) ? 
             <ActivityBox>
-            <View>
+            <Flex4>
               <Heading6Bold>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
               <ShiftFromTop5>
-              <Heading4>{'Laugh at Human face'}</Heading4>
+              <Heading4>{milestonedatadetail[0]?.title}</Heading4>
               </ShiftFromTop5>
-            </View>
-            <View>
-              <ButtonTextSmLine>
-                {t('actScreentrack')} {t('actScreenmilestones')}
-              </ButtonTextSmLine>
-            </View>
+            </Flex4>
+            <Flex2>
+              <Pressable onPress={() => gotoMilestone()} style={{paddingTop:15,paddingBottom:15}}>
+                <ButtonTextSmLine numberOfLines={2}>
+                  {t('actScreentrack')} {t('actScreenmilestones')}
+                </ButtonTextSmLine>
+              </Pressable>
+              </Flex2>
           </ActivityBox>
         : null
-        } */}
+        }
           </ArticleListContent>
-          {/* <ShareFavButtons isFavourite={false} backgroundColor={'#FFF'} item={item} isAdvice={false} /> */}
+          <ShareFavButtons backgroundColor={'#FFF'} item={item} isFavourite = {((favoritegames.findIndex((x:any)=>x == item?.id)) > -1) ? true : false} isAdvice={false} />
           </Pressable>
         </ArticleListContainer>
      
@@ -372,55 +408,7 @@ const Activities = ({ route, navigation }: Props) => {
       data: otherGames
     }
   ];
-  const ContentThatGoesAboveTheFlatList = () => {
-
-    return (
-      <>
-        <View style={{}}>
-          {suggestedGames && suggestedGames?.length > 0 ?
-            <>
-              <ArticleHeading>
-                <FlexDirRowSpace>
-                  <Heading3>{t('actScreensugacttxt')}</Heading3>
-                  {activeChild.isPremature === 'true' ? (
-                  <Pressable onPress={() => setModalVisible1(true)}>
-                    <PrematureTagActivity>
-                      <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
-                    </PrematureTagActivity>
-                  </Pressable>
-                  ) : null}
-                </FlexDirRowSpace>
-              </ArticleHeading>
-
-              <FlatList
-                data={suggestedGames}
-                removeClippedSubviews={true} // Unmount components when outside of window 
-                initialNumToRender={4} // Reduce initial render amount
-                maxToRenderPerBatch={4} // Reduce number in each render batch
-                updateCellsBatchingPeriod={100} // Increase time between renders
-                windowSize={7} // Reduce the window size
-                // renderItem={({ item, index }) => SuggestedActivities(item, index)}
-                renderItem={({ item, index }) => <SuggestedActivities item={item} index={index} />}
-                keyExtractor={(item) => item.id.toString()}
-              />
-              {/* {otherGames && otherGames?.length > 0 ?
-                <ArticleHeading>
-                  <Heading3>{t('actScreenotheracttxt')}</Heading3>
-                </ArticleHeading>
-                :null} */}
-            </>
-            : null
-          }
-          {otherGames && otherGames?.length > 0 ?
-            <ArticleHeading>
-              <Heading3>{t('actScreenotheracttxt')}</Heading3>
-            </ArticleHeading>
-            : null}
-        </View>
-
-      </>
-    );
-  };
+  
   const HeadingComponent = React.memo(({ section }) => {
     return (
       <ArticleHeading>
@@ -494,7 +482,7 @@ const Activities = ({ route, navigation }: Props) => {
               sections={DATA}
               // ref={flatListRef}
               ref={ref => (sectionListRef = ref)}
-              keyExtractor={(item, index) => item + index}
+              keyExtractor={(item, index) => String(item?.id) + String(index)}
               stickySectionHeadersEnabled={false}
               // initialNumToRender={4}
               // renderItem={({ item, title }) => <Item item={item} title={title}/>}
@@ -539,7 +527,7 @@ const Activities = ({ route, navigation }: Props) => {
               </PopupCloseContainer>
               <ModalPopupContent>
                 <Heading4Centerr>
-                  {t('childSetupprematureMessage')}
+                  {t('childSetupprematureMessageNext')}
                 </Heading4Centerr>
               </ModalPopupContent>
             </ModalPopupContainer>
