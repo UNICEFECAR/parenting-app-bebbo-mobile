@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions  } from 'react-native';
+import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions, Image  } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -34,13 +34,14 @@ import analytics from '@react-native-firebase/analytics';
 import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
+import RenderImage from '../../services/RenderImage';
+
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: DetailsScreenNavigationProp;
 };
-
 export type RelatedArticlesProps = {
   related_articles?:any,
   category?:any,
@@ -316,6 +317,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       });
     }
   }
+  
   return (
     <>
     {detailDataToUse ?
@@ -381,7 +383,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               //   }}
               // />
               <HTML
-              source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
+              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
@@ -399,23 +401,20 @@ const DetailsScreen = ({route, navigation}: any) => {
                   br:{height:0},
                 }}
            renderers={{
-            img: (attribs) => {
-              console.log(attribs,"..attribs..")
-              const imagePath = attribs.src;
+            img:(attribs:any) => {
+              const imagePath:any = attribs.src;
               console.log(imagePath,"..imagePath");
+              if(imagePath!="" && imagePath!=null && imagePath!=undefined){
               let itemnew:any={
                 cover_image:{
                   url:imagePath
                 }
               };
-              return (
-                <>
-                 <LoadableImage key={imagePath+"/"+String(Math.random())} style={{
-                    height: 200,
-                    width: '100%'
-                  }} item={itemnew} toggleSwitchVal={toggleSwitchVal}/> 
-               </>
-              );
+              console.log(itemnew,"..itemnew")
+                return (
+                   <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                );
+              }
             },
           }}
         />
