@@ -22,9 +22,9 @@ import Terms from '@screens/Terms';
 import AddChildVaccination from '@screens/vaccination/AddChildVaccination';
 import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
-import React, { useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { I18nManager, Platform } from 'react-native';
+import { Alert, I18nManager, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -40,11 +40,12 @@ import { retryAlert1 } from '../services/commonApiService';
 import { setchatBotData } from '../redux/reducers/childSlice';
 import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/apiConstants';
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
+import { useDeepLinkURL } from '../services/DeepLinking';
+import { ThemeContext } from 'styled-components';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
 const RootStack = createStackNavigator<RootStackParamList>();
-
 const PERSISTENCE_KEY = 'NAVIGATION_STATE';
 export default () => {
   // const countryId = useAppSelector(
@@ -95,8 +96,61 @@ export default () => {
   const dispatch = useAppDispatch();
   const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
-  
-  
+  const themeContext = useContext(ThemeContext);
+  const headerColor = themeContext.colors.PRIMARY_COLOR;
+  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const {linkedURL, resetURL} = useDeepLinkURL();
+  useEffect(() => {
+    // ... handle deep link
+    callUrl(linkedURL);
+    resetURL();
+}, [linkedURL, resetURL,userIsOnboarded])
+const callUrl=(url:any)=>{
+  //Alert.alert(url,"..callurl initialUrl..")
+  if(url){
+  const initialUrlnew:any=url;
+     if(initialUrlnew===null){
+      return;
+    }
+    if(initialUrlnew && initialUrlnew.includes('/article/')){
+      let initialUrlnewId:any=initialUrlnew.split("/").pop();
+      const initialUrlnewId1:any=parseInt(initialUrlnewId);
+      console.log("rerenew",userIsOnboarded);
+      if (userIsOnboarded == true) {
+        if (navigationRef) {
+          navigationRef.current?.navigate('DetailsScreen',
+          {
+            fromScreen:"HomeArt",
+            headerColor:headerColor,
+            backgroundColor:backgroundColor,
+            detailData:initialUrlnewId1,
+            listCategoryArray: []
+            // setFilteredArticleData: setFilteredArticleData
+          });
+        }
+      }
+
+    }
+    else if(initialUrlnew && initialUrlnew.includes('/activity/')){
+      let initialUrlnewId:any=initialUrlnew.split("/").pop();
+      const initialUrlnewId1:any=parseInt(initialUrlnewId);
+      console.log("initialUrlnewId1 activity",initialUrlnewId1);
+      if (userIsOnboarded == true) {
+        if (navigationRef) 
+        navigationRef.current?.navigate('DetailsScreen',
+          {
+            fromScreen:"HomeAct",
+            headerColor:headerColor,
+            backgroundColor:backgroundColor,
+            detailData:initialUrlnewId1,
+            listCategoryArray: []
+            // setFilteredArticleData: setFilteredArticleData
+          });
+        }
+      }
+      
+    }
+}
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
