@@ -3,6 +3,7 @@ import { Heading3, Heading4Center, Heading6Bold, ShiftFromTopBottom5 } from '@st
 import React, { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
@@ -127,7 +128,7 @@ useFocusEffect(
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/> 
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/> 
            <ArticleListContent>
              <ShiftFromTopBottom5>
            <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>

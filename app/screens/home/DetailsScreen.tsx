@@ -35,6 +35,7 @@ import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebas
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
+import FastImage from 'react-native-fast-image';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -346,7 +347,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
-              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal}/>):
+              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
               <DefaultImage
               style={{width: '100%', height: 200}} 
               source={require('@assets/trash/defaultArticleImage.png')}/>   

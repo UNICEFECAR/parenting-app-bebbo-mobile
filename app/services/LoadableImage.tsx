@@ -17,7 +17,7 @@ const LoadableImage = (props:any) => {
   const [noImage, setNoImage] = useState<any>();
   // const [imageUrl, setImageUrl] = useState<any>();
   
-    const { style,item,toggleSwitchVal } = props;
+    const { style,item,toggleSwitchVal,resizeMode } = props;
    
     // console.log(item.id, "..id..")
     // const downloadImage = async (item:any) => {
@@ -171,7 +171,7 @@ const LoadableImage = (props:any) => {
         cache:toggleSwitchVal || netInfo.isConnected ==false ? FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
       }}
       style={style}
-      resizeMode={FastImage.resizeMode.center}
+      resizeMode={resizeMode}
       // onLoad={() => console.log('loaded')}
       // onLoadEnd={() => console.log('endloaded')}
       // onError={(e) => console.log('error')}
