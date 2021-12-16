@@ -404,7 +404,7 @@ const UZuz = {
               favScreenremoveText: "Oʻchirish",
               settingScreenimportOptionHeader: "Ma'lumotlarni import qilish",
               childSetupprematureMessageNext: "Ushbu boʻlimning mazmuni muddatidan avval tugʻilgan farzandingizning haqiqiy yoshiga qarab emas, balki toʻgʻrilangan yoshiga qarab koʻrsatiladi",
-              helloMessage: "Salom {{parentName}}, mening ismim Bebbo. Savollaringizga javob berishga tayyorman",
+              helloMessage: "Salom{{parentName}}, mening ismim Bebbo. Savollaringizga javob berishga tayyorman",
               selectAreaOfInterest: "Iltimos, savolingiz paydo bo'lgan sohani tanlang",
               question1: "Savolingiz nima haqida?",
               question2: "Iltimos, quyidagi savollardan tanlang",

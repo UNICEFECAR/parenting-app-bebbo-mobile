@@ -403,7 +403,7 @@ const RSen = {
                 favScreenremoveText: "Remove",
                 settingScreenimportOptionHeader: "Import data on",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
-                helloMessage: "Hello {{parentName}}, my name is Bebbo. I'm here to answer your questions",
+                helloMessage: "Hello{{parentName}}, my name is Bebbo. I'm here to answer your questions",
                 selectAreaOfInterest: "Please select the area of interest from which you have a question",
                 question1: "What is your question about?",
                 question2: "Please select from the following questions",
