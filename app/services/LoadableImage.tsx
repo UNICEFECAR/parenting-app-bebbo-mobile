@@ -171,7 +171,7 @@ const LoadableImage = (props:any) => {
         cache:toggleSwitchVal || netInfo.isConnected ==false ? FastImage.cacheControl.cacheOnly:FastImage.cacheControl.immutable
       }}
       style={style}
-      resizeMode={FastImage.resizeMode.cover}
+      resizeMode={FastImage.resizeMode.center}
       // onLoad={() => console.log('loaded')}
       // onLoadEnd={() => console.log('endloaded')}
       // onError={(e) => console.log('error')}
