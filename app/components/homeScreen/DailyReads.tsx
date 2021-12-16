@@ -11,6 +11,7 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -81,7 +82,7 @@ const DailyReads = () => {
       <View>
         <Pressable onPress={() => { goToArticleDetail(item) }} key={index}>
           <DailyBox>
-            <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}>
+            <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}>
               {/* <ImageBackground source={{
               uri: item.cover_image.url,
             }} style={styles.cardImage}> */}
