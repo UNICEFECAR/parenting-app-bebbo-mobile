@@ -31,7 +31,8 @@ const faqsStepId = 3;
 const expertAdviceId = 4;
 const explorecatstep = 1;
 const exploresubcatstep = 2;
-
+const delayOfSteps = 2000;
+const delayOfConcurrentSteps = 2500;
 const SupportChat = ({ navigation }: Props) => {
   const themeContext = useContext(ThemeContext);
   const headerColor=themeContext.colors.PRIMARY_COLOR;
@@ -95,6 +96,8 @@ const faqsData = useAppSelector((state: any) =>
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+    localsteps[index].delay = delayOfSteps;
     localsteps[index].showNextStep = true;
     if(nextstepid == subCategoryStepId) {
       //setting options for nextStepId
@@ -115,7 +118,7 @@ const faqsData = useAppSelector((state: any) =>
       localsteps[index].actions[1].label = t('backToCategoryTxt',{categoryName:localsteps[indexForText].answer.label})
     }else if(nextstepid == expertAdviceId) {
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
-      localsteps[index+1].showNextStep = true;
+      // localsteps[index+1].showNextStep = true;
       const indexForText = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === explorecatstep ? i : acc
       ), -1);
@@ -127,6 +130,19 @@ const faqsData = useAppSelector((state: any) =>
     }
     console.log("updated localsteps--",localsteps);
     updateChatBotData(localsteps);
+    if(nextstepid == expertAdviceId) {
+      showdynamicdelay(localsteps,index);
+    }
+  }
+
+  const showdynamicdelay=(stepobj,index) => {
+    setTimeout(() => {
+      let localsteps = [...stepobj]
+      localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+      localsteps[index+1].delay = delayOfSteps;
+      localsteps[index+1].showNextStep = true;
+      updateChatBotData(localsteps);
+    },delayOfSteps);
   }
   const dynamicStepSelection = (stepIndex: any,optionIndex: any,steps2: any) => {
     let localsteps = [...steps2];
@@ -136,6 +152,8 @@ const faqsData = useAppSelector((state: any) =>
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+    localsteps[index].delay = delayOfSteps;
     localsteps[index].showNextStep = true;
     updateChatBotData(localsteps);
     // AsyncStorage.setItem('chatBotData',JSON.stringify(steps));
@@ -163,8 +181,10 @@ const faqsData = useAppSelector((state: any) =>
     // localstepsjson[index].showNextStep = true;
     //loop through object need to update later
     localstepsjson = localstepsjson.slice(index,localstepsjson.length);
-    localstepsjson = localstepsjson.map(item=>({ ...item, showNextStep: false,answer:null }));
+    localstepsjson = localstepsjson.map(item=>({ ...item, showNextStep: false,answer:null,delay:0 }));
+    localstepsjson[0].delay = delayOfSteps;
     localstepsjson[0].showNextStep = true;
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
     console.log(localsteps,"---stepsjson---",localstepsjson);
     const updatedsteps = [...localsteps,...localstepsjson]
     // console.log("merged--",updatedsteps);
@@ -175,9 +195,18 @@ const faqsData = useAppSelector((state: any) =>
     //   // console.log("afteradding all again2--",[...steps,...updatedjson]);
     // }
   }
-  const backToHomeScreen = () => {
+  const backToHomeScreen = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
     //navigate to home screen.
     //ask if history needs to be cleared.
+    let localsteps = [...steps2];
+    let localstepsjson = [...stepsjson2];
+    localsteps[stepIndex].answer = localsteps[stepIndex].actions[actionIndex];
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+    localstepsjson = localstepsjson.slice(1,localstepsjson.length);
+    localstepsjson[0].showNextStep = true;
+    console.log(localsteps,"---backToHomeScreen---",localstepsjson);
+    const updatedsteps = [...localsteps,...localstepsjson];
+    dispatch(setchatBotData(updatedsteps));
     navigation.reset({
       index: 0,
       routes: [
@@ -197,14 +226,16 @@ const faqsData = useAppSelector((state: any) =>
     const index = localsteps.reduce((acc: any, el: any, i: any) => (
         el.id === nextstepid ? i : acc
     ), -1);
+    localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
+    localsteps[index].delay = delayOfSteps;
     localsteps[index].showNextStep = true;
     updateChatBotData(localsteps);
   }
   const stepsjson = [
     {
       id: 0,
-      message: t('helloMessage',{parentName:userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')}),
-      delay:500,
+      message: t('helloMessage',{parentName:userNameData?.length > 0 ? ' '+userNameData[0].value : ''}),
+      delay:delayOfSteps,
       userInput:false,
       showNextStep:true,
       nextStep: 1,
@@ -213,15 +244,17 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 1,
       message: t('selectAreaOfInterest'),
+      delay:delayOfSteps,
       options:category,
       userInput: true,
-      showNextStep:true,
+      showNextStep:false,
       nextStep:2,
       answer:null
     },
     {
       id: 2,
       message: t('question1'),
+      delay:0,
       options:[],
       actions:[{value:0,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
@@ -232,6 +265,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 3,
       message: t('question2'),
+      delay:0,
       options:[],
       actions:[{value:1,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1},{value:2,label:t('backToCategoryTxt'),nextStepFunc:backToStep,nextStepval:2}],
       userInput: true,
@@ -242,6 +276,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 4,
       message: t('hereIsExportAdviceTxt'),
+      delay:0,
       options:[],
       actions:[],
       textToShow:'',
@@ -253,6 +288,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 5,
       message: t('question3'),
+      delay:0,
       options:[{value:100,label:t('donthavequestiontxt'),nextStepFunc:categorySelection}],
       actions:[{value:3,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:3},{value:4,label:t('backToSubCategoryTxt'),nextStepFunc:backToStep,nextStepval:2},{value:5,label:t('backtoStarttxt'),nextStepFunc:backToStep,nextStepval:1}],
       userInput: true,
@@ -263,6 +299,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 6,
       message: t('question4'),
+      delay:0,
       options:[{value:101,label:t('answerFoundTxt'),nextStepFunc:dynamicStepSelection,nextStepval:7},{value:102,label:t('noNotFoundTxt'),nextStepFunc:dynamicStepSelection,nextStepval:8}],
       actions:[],
       userInput: true,
@@ -273,6 +310,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 7,
       message: t('thankYouTxt'),
+      delay:0,
       options:[],
       actions:[{value:6,label:t('exitchatBotTxt'),nextStepFunc:backToHomeScreen,nextStepval:0}],
       userInput: true,
@@ -283,6 +321,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 8,
       message: t('sorryMsgTxt'),
+      delay:0,
       options:[{value:103,label:t('feedbackLinkTxt'),nextStepFunc:showFeedbackLink,nextStepval:9},{value:104,label:t('notNowTxt'),nextStepFunc:dynamicStepSelection,nextStepval:9}],
       actions:[],
       userInput: true,
@@ -293,6 +332,7 @@ const faqsData = useAppSelector((state: any) =>
     {
       id: 9,
       message: t('thankYouTxt'),
+      delay:0,
       options:[],
       actions:[{value:9,label:t('exitchatBotTxt'),nextStepFunc:backToHomeScreen,nextStepval:0}],
       userInput: true,
@@ -314,11 +354,17 @@ const faqsData = useAppSelector((state: any) =>
     // },500);
   }
   useEffect(() => {
+    console.log("useeffect 2",steps);
     setTimeout(() => {
       if(flatListRef && flatListRef.current && steps.length >0)  {
         flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
       }
-    },0);       
+    },0);
+    setTimeout(() => {
+      if(flatListRef && flatListRef.current && steps.length >0)  {
+        flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
+      }
+    },delayOfConcurrentSteps);       
   }, [steps]);
   
   const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
@@ -329,9 +375,17 @@ const faqsData = useAppSelector((state: any) =>
       setsteps((chatBotData));
     }else {
       setsteps((stepsjson));
+      console.log("in else...")
+      setTimeout(() => {
+        console.log("in timeout...");
+        let localstepsjson = [...stepsjson];
+        localstepsjson[1].showNextStep = true;
+        setsteps(localstepsjson);
+      },delayOfConcurrentSteps); 
     }
   }
   useEffect(() => {
+    console.log("useeffect 1",steps);
     async function fetchData() {
       setOnloadChatBotData(chatBotData,stepsjson);
     }
@@ -356,7 +410,7 @@ const faqsData = useAppSelector((state: any) =>
           textColor="#FFF"
         />
           <FlexCol>
-          {/* <ImageBackground source={require('@assets/loading/g-normal.png')} resizeMode="center" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}> */}
+          <ImageBackground source={require('@assets/svg/img-bg-chatbot.png')} resizeMode="cover" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
               <ChatContainer>
               {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
                 {steps.length> 0 ? 
@@ -374,10 +428,10 @@ const faqsData = useAppSelector((state: any) =>
                       // keyboardDismissMode={"on-drag"}
                       // keyboardShouldPersistTaps='always'
                       removeClippedSubviews={true} // Unmount components when outside of window 
-                      initialNumToRender={50} // Reduce initial render amount
-                      maxToRenderPerBatch={50} // Reduce number in each render batch
+                      initialNumToRender={75} // Reduce initial render amount
+                      maxToRenderPerBatch={75} // Reduce number in each render batch
                       updateCellsBatchingPeriod={100} // Increase time between renders
-                      windowSize={65} // Reduce the window size
+                      windowSize={90} // Reduce the window size
                       renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />  }
                       keyExtractor={(item,index) => index.toString()}
                       onScrollToIndexFailed={scrollToIndexFailed}
@@ -385,12 +439,12 @@ const faqsData = useAppSelector((state: any) =>
                     : <Heading4Center>{t('noDataTxt')}</Heading4Center>}
 
                 </ChatContainer>
-                {/* </ImageBackground> */}
-                <ChatBgImage>
+                </ImageBackground>
+                {/* <ChatBgImage> */}
                   {/* <VectorImage source={require('@assets/svg/ic_development_color.svg')} style={{width: '100%', height: '100%'}}/> */}
                   {/* <VectorImage source={require('@assets/svg/img-bg-chatbot.svg')} style={{width: '100%', height: '100%'}} /> */}
                   {/* <Image source={require('@assets/svg/img-bg-chatbot.png')} style={{flex:1,resizeMode:'cover'}} /> */}
-                </ChatBgImage>
+                {/* </ChatBgImage> */}
           </FlexCol>
       </View>
 
