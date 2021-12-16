@@ -29,6 +29,7 @@ import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import analytics from '@react-native-firebase/analytics';
+import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   Heading1Centerr, Heading3Centerr, Heading3Regular, Heading4Center, ShiftFromTop20,
@@ -36,10 +37,11 @@ import {
   SideSpacing25
 } from '@styles/typography';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect,useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Alert,
+  AppState,
   BackHandler, Button, Linking, Modal,
   Platform,
   ScrollView, Text, ToastAndroid, View
@@ -73,6 +75,7 @@ const Home = ({ route, navigation }: Props) => {
   const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
   const headerColorChildInfo = themeContext.colors.CHILDDEVELOPMENT_COLOR;
   const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [initialUrl, setInitialUrl] = React.useState(false);
   const [date1, setdate1] = useState<Date | null>(null);
   const [show, setShow] = useState(false);
   const [date2, setdate2] = useState<Date | null>(null);
@@ -201,6 +204,8 @@ const Home = ({ route, navigation }: Props) => {
     (state: any) =>
       state.utilsData.vaccineData != '' ? JSON.parse(state.utilsData.vaccineData) : [],
   );
+  // const appState = useRef(AppState.currentState);
+  // const [appStateVisible, setAppStateVisible] = useState(appState.current);
   // console.log(allGrowthPeriods, "allGrowthPeriods")
   // console.log(allVaccinePeriods, "allVaccinePeriods")
   // console.log(allHealthCheckupsData, "allHealthCheckupsData")
@@ -344,6 +349,83 @@ const Home = ({ route, navigation }: Props) => {
       prevPage: 'ForceUpdate',
       forceupdatetime: 'forceupdatetime'
     });
+  }
+  const handleAppStateChange = async (nextAppState:any) => {
+    const url = await Linking.getInitialURL();
+    if (url !== null && !initialUrl) {
+      setInitialUrl(true);
+      console.log('deep link from init app', url)
+    }
+  }
+  useFocusEffect(
+    React.useCallback(() => {
+      //Alert.alert('hi coming');
+    const getUrl=async()=>{
+     // Alert.alert('coming link from background');
+      AppState.addEventListener('change', handleAppStateChange);
+      Linking.getInitialURL()
+      .then(url => {
+        callUrl(url);
+      })
+      .catch(err => {
+          console.warn('Deeplinking error', err)
+      })
+      Linking.addEventListener('url', event => {
+       // Alert.alert('deep link from background', event.url);
+        callUrl(event.url);
+      })
+      return () => {
+        AppState.removeEventListener('change', handleAppStateChange);
+        Linking.removeEventListener('url', event => {
+        //Alert.alert('11deep link from background', event.url);
+         })
+      }
+    }
+    
+    getUrl();
+  
+  
+  }, [userIsOnboarded]),
+  );
+  const callUrl=(url:any)=>{
+    const initialUrlnew:any=url;
+       if(initialUrlnew===null){
+        return;
+      }
+       if(initialUrlnew && initialUrlnew.includes('/article/')){
+        let initialUrlnewId:any=initialUrlnew.split("/").pop();
+        const initialUrlnewId1:any=parseInt(initialUrlnewId);
+        console.log("rerenew",userIsOnboarded);
+        if (userIsOnboarded == true) {
+          navigation.navigate('DetailsScreen',
+            {
+              fromScreen:"HomeArt",
+              headerColor:headerColor,
+              backgroundColor:backgroundColor,
+              detailData:initialUrlnewId1,
+              listCategoryArray: []
+              // setFilteredArticleData: setFilteredArticleData
+            });
+        }
+
+      }
+      else if(initialUrlnew && initialUrlnew.includes('/activity/')){
+        let initialUrlnewId:any=initialUrlnew.split("/").pop();
+        const initialUrlnewId1:any=parseInt(initialUrlnewId);
+        console.log("initialUrlnewId1 activity",initialUrlnewId1);
+        if (userIsOnboarded == true) {
+          navigation.navigate('DetailsScreen',
+            {
+              fromScreen:"HomeAct",
+              headerColor:headerColor,
+              backgroundColor:backgroundColor,
+              detailData:initialUrlnewId1,
+              listCategoryArray: []
+              // setFilteredArticleData: setFilteredArticleData
+            });
+        }
+        
+      }
   }
   const downloadApis = () => {
    // console.log("Download Pressed", apiJsonData);
