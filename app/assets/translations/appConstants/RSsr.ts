@@ -403,7 +403,7 @@ const RSsr = {
               favScreenremoveText: "Ukloni",
               settingScreenimportOptionHeader: "Uvesti podatke na",
               childSetupprematureMessageNext: "Sadržaj se u ovom odeljku prikazuje prema korigovanom, a ne prema stvarnom uzrastu vašeg prevremeno rođenog deteta",
-              helloMessage: "Zdravo {{parentName}}, ja sam Bebbo. Rado ću odgovoriti na vaša pitanja",
+              helloMessage: "Zdravo{{parentName}}, ja sam Bebbo. Rado ću odgovoriti na vaša pitanja",
               selectAreaOfInterest: "Molim vas izaberite oblast interesovanja za koju imate pitanje",
               question1: "Na šta se odnosi vaše pitanje?",
               question2: "Izaberite neko od sledećih pitanja",

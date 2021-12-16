@@ -405,7 +405,7 @@ const MKmk = {
                 favScreenremoveText: "Отстранете",
                 settingScreenimportOptionHeader: "Импортирајте податоци на",
                 childSetupprematureMessageNext: "Содржината во овој дел е прикажана според коригираната, а не според вистинската возраст на вашето предвремено родено дете",
-                helloMessage: "Здраво {{parentName}}, јас сум Bebbo, тука сум да одговорам на сите ваши прашања",
+                helloMessage: "Здраво{{parentName}}, јас сум Bebbo, тука сум да одговорам на сите ваши прашања",
                 selectAreaOfInterest: "Ве молиме одберете област за која сакате да поставите прашање",
                 question1: "На што се однесува вашето прашање?",
                 question2: "Ве молиме одберете едно од следните прашања",
