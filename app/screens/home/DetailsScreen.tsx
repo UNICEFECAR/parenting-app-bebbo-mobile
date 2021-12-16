@@ -18,7 +18,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions  } from 'react-native';
+import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions, Image  } from 'react-native';
 import HTML from 'react-native-render-html';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
@@ -34,13 +34,15 @@ import analytics from '@react-native-firebase/analytics';
 import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
+import RenderImage from '../../services/RenderImage';
+import FastImage from 'react-native-fast-image';
+
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
 type Props = {
   navigation: DetailsScreenNavigationProp;
 };
-
 export type RelatedArticlesProps = {
   related_articles?:any,
   category?:any,
@@ -71,6 +73,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const favoritegames = useAppSelector((state: any) =>
     state.childData.childDataSet.favoritegames
   );
+
   // console.log(typeof detailData,"--typeof");
   // console.log("detailData--",JSON.stringify(detailData));
   // console.log("fromScreen--",fromScreen);
@@ -315,6 +318,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       });
     }
   }
+  
   return (
     <>
     {detailDataToUse ?
@@ -343,7 +347,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
-              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal}/>):
+              (<LoadableImage style={{width: '100%', height: 200}} item={detailDataToUse} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>):
               <DefaultImage
               style={{width: '100%', height: 200}} 
               source={require('@assets/trash/defaultArticleImage.png')}/>   
@@ -360,8 +364,27 @@ const DetailsScreen = ({route, navigation}: any) => {
             </ShiftFromBottom5>
             <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
             {detailDataToUse && detailDataToUse.body ?
+              // <HTML
+              //   source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
+              //   // source={{html: bodydata}} {...htmlProps}
+              //   baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
+              //   ignoredStyles={['color', 'font-size', 'font-family']}
+              //   tagsStyles={{
+              //     img: {maxWidth:Dimensions.get('window').width},
+              //     p:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h1:{marginBottom:0,marginTop:10,textAlign:'left'},
+              //     h2:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h3:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h4:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h5:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     h6:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     span:{marginBottom:15,marginTop:0,textAlign:'left'},
+              //     li:{textAlign:'left'},
+              //     br:{height:0},
+              //   }}
+              // />
               <HTML
-                source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
+              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} {...htmlProps}
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
@@ -378,7 +401,24 @@ const DetailsScreen = ({route, navigation}: any) => {
                   li:{textAlign:'left'},
                   br:{height:0},
                 }}
-              />
+           renderers={{
+            img:(attribs:any) => {
+              const imagePath:any = attribs.src;
+              console.log(imagePath,"..imagePath");
+              if(imagePath!="" && imagePath!=null && imagePath!=undefined){
+              let itemnew:any={
+                cover_image:{
+                  url:imagePath
+                }
+              };
+              console.log(itemnew,"..itemnew")
+                return (
+                   <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+                );
+              }
+            },
+          }}
+        />
                : null 
             } 
             </ArticleDetailsContainer>
