@@ -1,14 +1,15 @@
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { Heading1P, Heading3Center, Heading4RegularP } from '@styles/typography';
+import { Heading1Centerr, Heading1P, Heading3Center, Heading3Centerr, Heading4Centerr, Heading4RegularP } from '@styles/typography';
 import React, { useContext } from 'react';
 import {StyleSheet, View, Modal, ActivityIndicator, TouchableOpacity, Text} from 'react-native';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
-import { ButtonColTwo4,ButtonColTwo6, ButtonContainerTwoP, ButtonLinkPress, ButtonModal, ButtonText, ButtonTextLinew } from './shared/ButtonGlobal';
+import { ButtonColTwo4,ButtonColTwo6, ButtonContainerTwoP, ButtonLinkPress, ButtonModal, ButtonText, ButtonTextLinew, ModalViewCustom, ViewModal } from './shared/ButtonGlobal';
 import { FDirRow, FlexCol } from './shared/FlexBoxStyle';
 import { ToolPress, ToolBoxText } from './shared/HomeScreenStyle';
-import { OuterIconRow, OuterIconLeft } from './shared/Icon';
+import Icon, { OuterIconRow, OuterIconLeft } from './shared/Icon';
 import { GoogleLogo } from './shared/LoadingStyle';
+import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, ModalPopupContent } from './shared/ModalPopupStyle';
 
 const AlertModal = (props: any) =>{
   const {loading,title,message,cancelText,onCancel,onConfirm,disabledValue} = props;
@@ -20,46 +21,39 @@ const AlertModal = (props: any) =>{
       onRequestClose={() => {
         // console.log('close modal');
       }}>
-      <View style={styles.modalBackground}>
-        <View style={styles.activityIndicatorWrapper}>
-        <View style={{flex:1}}>
-        <Heading1P>{title}</Heading1P>
-        <Heading4RegularP>{message}</Heading4RegularP>
-        <ButtonContainerTwoP>
-         <ButtonColTwo4>
-        <TouchableOpacity onPress={onCancel}>
-          <ButtonText  style={{color:"#000"}}>{cancelText}</ButtonText>
-        </TouchableOpacity>
-        </ButtonColTwo4>
-        <ButtonColTwo6>
-        <GoogleSigninButton
-  style={{ width: '100%', height: 48 }}
+          <PopupOverlay>
+          <ModalPopupContainer>
+          <PopupCloseContainer>
+              <PopupClose
+                onPress={onCancel}>
+                <Icon name="ic_close" size={16} color="#000" />
+              </PopupClose>
+            </PopupCloseContainer>
+            <ModalPopupContent>
+              <ModalViewCustom>
+              <Heading1Centerr>{title}</Heading1Centerr>
+              </ModalViewCustom>
+              <ModalViewCustom>
+              <Heading3Centerr>
+                {message}
+              </Heading3Centerr>
+              </ModalViewCustom>
+              </ModalPopupContent>
+              <FDirRow>
+              {/* <ButtonModal
+                onPress={onCancel}>
+                <ButtonText numberOfLines={2}>{cancelText}</ButtonText>
+              </ButtonModal> */}
+              <GoogleSigninButton
   size={GoogleSigninButton.Size.Wide}
   color={GoogleSigninButton.Color.Light}
   onPress={onConfirm}
   disabled={disabledValue}
 />
-        {/* <ButtonLinkPress
-             onPress={onConfirm}>
-              <OuterIconRow>
-                <OuterIconLeft>
-                <GoogleLogo source={require('@assets/loading/g-normal.png')} />
-                </OuterIconLeft>
-                <ButtonText style={{color:"#000",justifyContent:"center",alignSelf:"center",alignItems:"center",alignContent:"center"}}>Sign In</ButtonText>
-              </OuterIconRow>
-            </ButtonLinkPress> */}
-        {/* <TouchableOpacity onPress={onConfirm}>
-         <GoogleLogo source={require('@assets/loading/g-normal.png')} />
-          <ButtonText>Sign In</ButtonText>
-        </TouchableOpacity> */}
-        {/* <ToolPress onPress={onConfirm}  disabled={disabledValue}> */}
-              
-            {/* </ToolPress>  */}
-        </ButtonColTwo6>
-        </ButtonContainerTwoP>
-        </View>
-        </View>
-      </View>
+              </FDirRow>
+            
+          </ModalPopupContainer>
+        </PopupOverlay>
     </Modal>
   );
 };
@@ -76,7 +70,7 @@ const styles = StyleSheet.create({
   },
   activityIndicatorWrapper: {
     backgroundColor: '#FFFFFF',
-    height: 200,
+    height: '35%',
     width: "94%",
     borderRadius: 5,
     padding:"3%",
