@@ -63,7 +63,15 @@ const faqsData = useAppSelector((state: any) =>
   );
   function parseWithFunctions(obj) {
     return JSON.parse(obj, (k, v) => {
-      if (typeof v === 'string' && v.indexOf('function') >= 0) {
+      if (typeof v === 'string' && (v.indexOf('function categorySelection') >= 0 || 
+      v.indexOf('function showdynamicdelay') >= 0 ||
+      v.indexOf('function dynamicStepSelection') >= 0 ||
+      v.indexOf('function backToStep') >= 0 ||
+      v.indexOf('function backToHomeScreen') >= 0 ||
+      v.indexOf('function showFeedbackLink') >= 0 ||
+      v.indexOf('function updateChatBotData') >= 0
+      )) {
+        console.log("v val3----",v);
         return eval(v);
       }
       return v;
@@ -410,7 +418,7 @@ const faqsData = useAppSelector((state: any) =>
           textColor="#FFF"
         />
           <FlexCol>
-          <ImageBackground source={require('@assets/svg/img-bg-chatbot.png')} resizeMode="cover" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
+          <ImageBackground source={require('@assets/svg/img-bg-chatbot.png')} resizeMode="repeat" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
               <ChatContainer>
               {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
                 {steps.length> 0 ? 
