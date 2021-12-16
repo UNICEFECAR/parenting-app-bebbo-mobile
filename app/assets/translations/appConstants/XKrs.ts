@@ -403,7 +403,7 @@ const XKrs = {
               favScreenremoveText: "Ukloni",
               settingScreenimportOptionHeader: "Uvesti podatke na",
               childSetupprematureMessageNext: "Sadržaj se u ovom odeljku prikazuje prema korigovanom, a ne prema stvarnom uzrastu vašeg prevremeno rođenog deteta",
-              helloMessage: "Hello {{parentName}}, moje ime je Bebbo. Ovde sam da odgovorim na Vaša pitanja",
+              helloMessage: "Hello{{parentName}}, moje ime je Bebbo. Ovde sam da odgovorim na Vaša pitanja",
               selectAreaOfInterest: "Molim Vas izaberite oblast interesovanja iz koje imate pitanje",
               question1: "O ?emu je Vaše pitanje?",
               question2: "Izaberite jedno od slede?ih pitanja",

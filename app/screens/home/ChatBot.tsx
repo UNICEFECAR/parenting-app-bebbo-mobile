@@ -12,9 +12,10 @@ import Icon, { IconML } from '@components/shared/Icon';
 import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContainer, UserBubbleTextContainer, OptionBubbleContainer, ActionBubbleContainer,ActionBubbleIcon, OptionBubblePressable, ActionBubblePressable } from '@components/shared/SupportChatStyle';
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
+import ThreeDotsLoader from '../../services/ThreeDotsLoader';
 
 const BotBubble = (props: any) => {
-  const { message, steps,stepindex } = props;
+  const { message, steps,stepindex,loading } = props;
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [answer2visible, setanswer2visible] = useState(false);
@@ -27,7 +28,9 @@ const BotBubble = (props: any) => {
         allConfigData?.length > 0
           ? allConfigData.filter((item:any) => item.key === 'userName')
           : [];
+
   console.log("botbubble---", userNameData);
+  
   return (
     <FlexRow>
       <BotImage>
@@ -41,12 +44,16 @@ const BotBubble = (props: any) => {
       </BotImage>
       <BotBubbleContainer>
         <BotBubbleTextContainer>
-          {stepindex == 0 ?
-              <Heading4Bold>{t('helloMessage',{parentName:userNameData?.length > 0 ? userNameData[0].value : t('childInfoParentText')})}</Heading4Bold>
-              : <Heading4Bold>{message}</Heading4Bold> 
+          {loading == true ? <ThreeDotsLoader /> : 
+            <>
+              {stepindex == 0 ?
+                  <Heading4Bold>{t('helloMessage',{parentName:userNameData?.length > 0 ? ' '+userNameData[0].value : ''})}</Heading4Bold>
+                  : <Heading4Bold>{message}</Heading4Bold> 
+              }
+             </> 
           }
         </BotBubbleTextContainer>
-        {steps && steps.textToShow && steps.textToShow.answer_part_1 && steps.textToShow.answer_part_1 != '' ?
+        {loading == false && steps && steps.textToShow && steps.textToShow.answer_part_1 && steps.textToShow.answer_part_1 != '' ?
           <>
             {/* <Heading4Regular style={[{flex: 7,textAlignVertical:'center'}]}>{steps.textToShow.answer_part_1}</Heading4Regular> */}
             <View style={{ padding: 15, paddingTop: 5, paddingBottom: 5 }}>
@@ -176,32 +183,45 @@ const ActionBubble = (props: any) => {
 const ChatBot = (props: any) => {
   // console.log("chatbot----",props)
   const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink } = props;
+  const [loading,setLoading] = useState<boolean>(true);
+  useEffect(() => {
+    console.log(item.delay,"in chatbot useeffect2---",item.id);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false)
+    },item.delay);       
+  }, [item.showNextStep]);
   return (
     <View style={{ flex: 1,paddingTop:index == 0 ? 10 : 0 }} key={index}>
       {item.showNextStep == true ?
         <>
-          <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} stepindex={index} />
-          {
-            item.answer ?
-              <UserBubble key={'u' + item.id + '-' + item.answer.value} message={item.answer.label} steps={item} />
-              :
+          <BotBubble key={'b' + item.id + '-' + index} message={item.message} steps={item} stepindex={index} loading={loading}/>
+            {loading == false ? 
               <>
-                {item.options && item.options.length > 0 ?
-                  item.options.map((y: any, i2: any) => {
-                    return (
-                      <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />
-                    )
-                  })
-                  : null}
-                {item && item.actions && item.actions.length > 0 ?
-                  item.actions.map((y: any, i2: any) => {
-                    return (
-                      <ActionBubble key={'a' + index + '-' + i2} actionval={y} actionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} backToStep={backToStep} backToHomeScreen={backToHomeScreen} />
-                    )
-                  })
-                  : null}
-              </>
-          }
+                {
+                  item.answer ?
+                    <UserBubble key={'u' + item.id + '-' + item.answer.value} message={item.answer.label} steps={item} />
+                    :
+                    <>
+                      {item.options && item.options.length > 0 ?
+                        item.options.map((y: any, i2: any) => {
+                          return (
+                            <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />
+                          )
+                        })
+                        : null}
+                      {item && item.actions && item.actions.length > 0 ?
+                        item.actions.map((y: any, i2: any) => {
+                          return (
+                            <ActionBubble key={'a' + index + '-' + i2} actionval={y} actionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} backToStep={backToStep} backToHomeScreen={backToHomeScreen} />
+                          )
+                        })
+                        : null}
+                    </>
+                }
+              </> 
+              : null
+            }
         </>
         : null
       }
