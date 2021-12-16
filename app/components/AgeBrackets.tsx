@@ -5,7 +5,7 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useAppSelector } from '../../App';
-import ScrollingButtonMenu from '../services';
+import ScrollingButtonMenu from '../services/ScrollingButtonMenu';
 import AgeSliderContainer, { AgeSliderBox, AgeSliderNav } from './shared/AgeSliderContainer';
 // import ScrollingButtonMenu from 'react-native-scroll-menu';
 
