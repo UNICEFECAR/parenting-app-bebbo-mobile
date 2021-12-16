@@ -405,7 +405,7 @@ const MEcnr = {
                 favScreenremoveText: "Ukloni",
                 settingScreenimportOptionHeader: "Uvezite podatke na",
                 childSetupprematureMessageNext: "Sadržaji u ovom odjeljku prikazuju se prema korigovanom, a ne prema stvarnom uzrastu Vašeg prijevremeno rođenog djeteta",
-                helloMessage: "Zdravo, {{parentName}}, ja sam Bebbo. Rado ću odgovoriti na Vaša pitanja",
+                helloMessage: "Zdravo,{{parentName}}, ja sam Bebbo. Rado ću odgovoriti na Vaša pitanja",
                 selectAreaOfInterest: "Molim Vas da izaberete oblast interesovanja za koju imate pitanje",
                 question1: "Na šta se odnosi Vaše pitanje?",
                 question2: "Izaberite neko od sljedećih pitanja",
