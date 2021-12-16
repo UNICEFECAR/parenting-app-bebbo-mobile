@@ -42,6 +42,7 @@ import ModalPopupContainer, { PopupOverlay, PopupCloseContainer, PopupClose, Mod
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
 import { ChildEntity, ChildEntitySchema } from '../../../database/schema/ChildDataSchema';
+import FastImage from 'react-native-fast-image';
 type ActivitiesNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -361,7 +362,7 @@ const Activities = ({ route, navigation }: Props) => {
     return (
         <ArticleListContainer>
            <Pressable onPress={() => { goToActivityDetail(item) }} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
           <ArticleListContent>
             <ShiftFromTopBottom5>
               <Heading6Bold>{activityCategoryData.filter((x: any) => x.id == item.activity_category)[0].name}</Heading6Bold>

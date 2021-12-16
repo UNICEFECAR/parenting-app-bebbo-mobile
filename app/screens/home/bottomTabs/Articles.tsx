@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import {
   FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
@@ -77,7 +78,7 @@ const Articles = ({route, navigation}: Props) => {
     return(
         <ArticleListContainer>
           <Pressable onPress={() => { goToArticleDetail(item)}} key={index}>
-          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/> 
+          <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/> 
            <ArticleListContent>
              <ShiftFromTopBottom5>
            <Heading6Bold>{ categoryData.filter((x: any) => x.id==item.category)[0].name }</Heading6Bold>

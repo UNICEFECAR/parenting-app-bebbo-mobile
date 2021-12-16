@@ -219,3 +219,6 @@ export const ButtonModal = styled(ButtonPrimary)`
 width:auto; padding:5px 25px;margin: 15px 20px 0;
 min-width:150px;
 `;
+export const ModalViewCustom = styled.View`
+padding-top:5px;padding-bottom:5px;
+`;
