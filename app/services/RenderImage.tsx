@@ -25,7 +25,7 @@ const RenderImage = ({ uri,itemnew,toggleSwitchVal }:any) => {
      ><LoadableImage style={{ 
       height: '100%',
       width: '100%'
-    }} item={itemnew} toggleSwitchVal={toggleSwitchVal}  resizeMode={FastImage.resizeMode.center}/></View></>
+    }} item={itemnew} toggleSwitchVal={toggleSwitchVal}  resizeMode={FastImage.resizeMode.contain}/></View></>
         
     )
   }
