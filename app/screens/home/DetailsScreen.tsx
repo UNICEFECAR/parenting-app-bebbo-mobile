@@ -36,6 +36,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
 import FastImage from 'react-native-fast-image';
+import { ActivitiesEntity, ActivitiesEntitySchema } from '../../database/schema/ActivitiesSchema';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -57,6 +58,7 @@ export type RelatedArticlesProps = {
 // const headerColor = 'red';
 const DetailsScreen = ({route, navigation}: any) => {
   const {headerColor, fromScreen, backgroundColor,detailData, listCategoryArray, selectedChildActivitiesData, currentSelectedChildId} = route.params;
+  console.log(detailData,"..detailData...",fromScreen,"...fromScreen..");
   let newHeaderColor,newBackgroundColor;
   if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
   {
@@ -145,7 +147,40 @@ const DetailsScreen = ({route, navigation}: any) => {
         }else {
           // console.log(detailData,"fromScreen--",fromScreen);
           // detailDataToUse = detailData;
-          
+        if(fromScreen == "HomeAct"){
+          if(typeof detailData == "number")
+          {
+            const activityData = await dataRealmCommon.getFilteredData<ActivitiesEntity>(ActivitiesEntitySchema,'id == "'+detailData+'"');
+            if(activityData && activityData.length > 0)
+            {
+              setDetailDataToUse(activityData[0]);
+              if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+                {
+                   analytics().logEvent(GAME_DETAILS_OPENED,{game_id:activityData[0]?.id,game_category_id:activityData[0]?.activity_category});    
+                }else{
+                   analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:activityData[0]?.id,advice_catergory_id:activityData[0]?.category});
+                }
+            }
+            else {
+              //show alert and back function
+              Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
+              [
+                { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
+              ]
+            );
+            }
+          }
+          else{
+            setDetailDataToUse(detailData);
+            if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+              {
+                 analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
+              }else{
+                 analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
+              }
+          }
+        }
+        else{
           setDetailDataToUse(detailData);
           if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
@@ -153,6 +188,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             }else{
                analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
+        }
           // console.log("detailData--",(detailDataToUse));
         }
       }
