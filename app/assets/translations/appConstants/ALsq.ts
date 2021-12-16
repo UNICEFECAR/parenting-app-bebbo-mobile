@@ -403,7 +403,7 @@ const ALsq = {
               favScreenremoveText: "Hiq",
               settingScreenimportOptionHeader: "Importimi i të dhënave aktiv",
               childSetupprematureMessageNext: "Përmbajtja e këtij seksioni është paraqitur bazuar në moshën e korrigjuar dhe jo në atë aktuale për fëmijen tuaj që ka lindur parakohe",
-              helloMessage: "Përshëndetje {{parentName}}, unë jam Bebbo. Jam këtu për t'u përgjigjur pyetjeve",
+              helloMessage: "Përshëndetje{{parentName}}, unë jam Bebbo. Jam këtu për t'u përgjigjur pyetjeve",
               selectAreaOfInterest: "Ju lutem zgjidhni fushën e interesit për të cilën keni pyetje",
               question1: "Për cfarë është pyetja juaj?",
               question2: "Ju lutem përzgjidhni nga pyetjet e mëposhtme",
