@@ -14,6 +14,7 @@ import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
+import RenderImage from '../services/RenderImage';
 import { addSpaceToHtml } from '../services/Utils';
 type PrivacyPolicyNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -27,6 +28,11 @@ const PrivacyPolicy = ({navigation}: Props) => {
   const privacydata = useAppSelector(
     (state: any) => state.utilsData.privacypolicy.body,
   );
+  const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
   useFocusEffect(
     React.useCallback(() => {
       // Alert.alert("focuseffect--",JSON.stringify(countryId));
@@ -90,6 +96,23 @@ const PrivacyPolicy = ({navigation}: Props) => {
                 span: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
                 br: { height: 0 },
                 img: {maxWidth:Dimensions.get('window').width-50},
+              }}
+              renderers={{
+                img:(attribs:any) => {
+                  const imagePath:any = attribs.src;
+                  console.log(imagePath,"..imagePath");
+                  if(imagePath!="" && imagePath!=null && imagePath!=undefined){
+                  let itemnew:any={
+                    cover_image:{
+                      url:imagePath
+                    }
+                  };
+                    return (
+                      <RenderImage key={imagePath+"/"+Math.random()} uri={imagePath} itemnew={itemnew} toggleSwitchVal={toggleSwitchVal} />
+             
+                   );
+                  }
+                },
               }}
             />
             : null 

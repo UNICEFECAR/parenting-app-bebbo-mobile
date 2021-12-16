@@ -5,6 +5,7 @@ import { Heading2, Heading3, Heading6Bold, ShiftFromTopBottom5 } from '@styles/t
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, StyleSheet, View,Text, ActivityIndicator  } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import styled from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import { dataRealmCommon } from '../../database/dbquery/dataRealmCommon';
@@ -163,7 +164,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         style={{ flexDirection: 'row' }}
       >
         <RelatedArticleContainer style={{ backgroundColor: '#fff' }} key={index}>    
-        <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal}/>
+        <LoadableImage style={styles.cardImage} item={item} toggleSwitchVal={toggleSwitchVal} resizeMode={FastImage.resizeMode.cover}/>
           <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
             <View style={{ minHeight: 80, }}>
               <ArticleListContent>
