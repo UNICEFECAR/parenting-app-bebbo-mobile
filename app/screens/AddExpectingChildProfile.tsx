@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Alert,
   BackHandler,
-  Platform, Pressable, StyleSheet, Text, TextInput, View
+  Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -41,6 +41,7 @@ import {
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { regexpEmojiPresentation } from '@assets/translations/appOfflineData/apiConstants';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import TextInputML from '@components/shared/TextInputML';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -282,7 +283,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
           <FormContainer>
             <LabelText>{t('expectPreferNametxt')}</LabelText>
             <FormInputBox>
-              <TextInput
+              <TextInputML
                style={{width:'100%'}}
                 autoCapitalize="none"
                 autoCorrect={false}
