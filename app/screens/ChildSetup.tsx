@@ -228,7 +228,11 @@ const ChildSetup = ({ navigation }: Props) => {
     if (res.length > 0 && res[0].uri) {
       const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
       const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-            let importedrealm = await new Realm({ path:'user1.realm' });
+      let importedrealm=await new Realm({ path:'user1.realm' });
+      if(importedrealm){
+        importedrealm.close();
+      }
+      importedrealm=await new Realm({ path:'user1.realm' });
             const user1Path = importedrealm.path;
             console.log(user1Path, "..user1Path");
             const oldChildrenData = importedrealm.objects('ChildEntity');
