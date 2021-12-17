@@ -195,13 +195,13 @@ const SettingScreen = (props: any) => {
     .then(async (success) => {
       console.log("file://"+backUpPath,"..success..")
       setIsExportRunning(false);
-      
       try {
         const result = await Share.open({
           title: 'Backup Saved',
           url: "file://"+backUpPath,
         })
         .then((res) => {
+          console.log("exported res",res);
           Alert.alert('', t('settingExportSuccess'));
         })
         .catch((err) => {
@@ -607,7 +607,11 @@ const SettingScreen = (props: any) => {
     console.log(dataset,"..dataset");
     if (dataset && dataset.data!="" && dataset.data!=null && dataset.data!=undefined) {
       const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile,  dataset.data, "base64");
-      const importedrealm = await new Realm({ path:'user1.realm' });
+      let importedrealm=await new Realm({ path:'user1.realm' });
+      if(importedrealm){
+        importedrealm.close();
+      }
+      importedrealm=await new Realm({ path:'user1.realm' });
       const user1Path = importedrealm.path;
       console.log(user1Path, "..user1Path")
       const oldChildrenData = importedrealm.objects('ChildEntity');
@@ -636,24 +640,26 @@ const SettingScreen = (props: any) => {
           if (res.length > 0 && res[0].uri) {
             const exportedFileContent: any = await RNFS.readFile(decodeURIComponent(res[0].uri), 'base64');
             const exportedFileContentRealm: any = await RNFS.writeFile(tempRealmFile, exportedFileContent, "base64");
-            console.log(exportedFileContentRealm, "..exportedFileContentRealm..")
-            let importedrealm = await new Realm({ path:'user1.realm' });
+            console.log(exportedFileContentRealm, "..exportedFileContentRealm..");
+            let importedrealm=await new Realm({ path:'user1.realm' });
+            if(importedrealm){
+              importedrealm.close();
+            }
+            importedrealm=await new Realm({ path:'user1.realm' });
             const user1Path = importedrealm.path;
             console.log(user1Path, "..user1Path")
             const oldChildrenData = importedrealm.objects('ChildEntity');
-           
             console.log(oldChildrenData, "..newoldChildrenData..")
             setIsImportRunning(true);
             if(oldChildrenData.length>0){
-              await userRealmCommon.openRealm();
-              userRealmCommon.deleteAllAtOnce();
+            await userRealmCommon.openRealm();
+            userRealmCommon.deleteAllAtOnce();
             const importResponse = await backup.importFromFile(oldChildrenData, props.navigation, genders, dispatch, child_age, languageCode);
             console.log(importResponse, "..importResponse");
             // this.setState({ isImportRunning: false, });
             }
             setIsImportRunning(false);
             actionSheetRefImport.current?.setModalVisible(false);
-      
           }
         })
         .catch(handleError);
