@@ -20,6 +20,8 @@
  import 'intl/locale-data/jsonp/ru-KG';
  import 'intl/locale-data/jsonp/mk-MK';
  import 'intl/locale-data/jsonp/sq-MK';
+ import 'intl/locale-data/jsonp/ar';
+ import 'intl/locale-data/jsonp/fa-AF';
  import 'intl/locale-data/jsonp/sr-Latn-RS';
  import 'intl/locale-data/jsonp/uz-Latn-UZ';
  import 'intl/locale-data/jsonp/ru-RU';
