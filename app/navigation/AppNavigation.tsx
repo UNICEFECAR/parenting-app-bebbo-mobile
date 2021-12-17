@@ -97,8 +97,8 @@ export default () => {
   const netInfoval = useNetInfoHook();
   const { t } = useTranslation();
   const themeContext = useContext(ThemeContext);
-  const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const backgroundColor = themeContext.colors.PRIMARY_TINTCOLOR;
+  const headerColor = themeContext.colors.ACTIVITIES_COLOR;
+  const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
   const {linkedURL, resetURL} = useDeepLinkURL();
   useEffect(() => {
     // ... handle deep link
@@ -121,8 +121,8 @@ const callUrl=(url:any)=>{
           navigationRef.current?.navigate('DetailsScreen',
           {
             fromScreen:"HomeArt",
-            headerColor:headerColor,
-            backgroundColor:backgroundColor,
+            headerColor:'',
+            backgroundColor:'',
             detailData:initialUrlnewId1,
             listCategoryArray: []
             // setFilteredArticleData: setFilteredArticleData
