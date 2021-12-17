@@ -37,6 +37,7 @@ import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
 import FastImage from 'react-native-fast-image';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../../database/schema/ActivitiesSchema';
+import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/schema/VideoArticleSchema';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -124,12 +125,23 @@ const DetailsScreen = ({route, navigation}: any) => {
                  analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
               }
             }else {
-              //show alert and back function
-              Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
-              [
-                { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
-              ]
-            );
+              const videoarticleData = await dataRealmCommon.getFilteredData<VideoArticleEntity>(VideoArticleEntitySchema,'id == "'+detailData+'"');
+                if(videoarticleData && videoarticleData.length > 0) {
+                  setDetailDataToUse(videoarticleData[0]);
+                  if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
+                  {
+                    analytics().logEvent(GAME_DETAILS_OPENED,{game_id: videoarticleData[0]?.id,game_category_id:videoarticleData[0]?.activity_category});    
+                  }else{
+                    analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  videoarticleData[0]?.id,advice_catergory_id:videoarticleData[0]?.category});
+                  }
+                }else {
+                    //show alert and back function
+                    Alert.alert(t('detailScreenNoDataPopupTitle'), t('newdetailScreenNoDataPopupText'),
+                    [
+                      { text: t('detailScreenNoDataOkBtn'), onPress: () => onHeaderBack() }
+                    ]
+                  );
+                }
             }
           }else if(typeof detailData == "object")
           {
@@ -379,7 +391,7 @@ const DetailsScreen = ({route, navigation}: any) => {
           <ScrollView style={{flex: 4,backgroundColor:"#FFF"}}>
             <View>
               {
-              fromScreen ==="ChildDevelopment" || fromScreen === "Home" ?
+              fromScreen ==="ChildDevelopment" || fromScreen === "Home" || (detailDataToUse && detailDataToUse.cover_video && detailDataToUse.cover_video.url!="" && detailDataToUse.cover_video.url!=undefined) ?
               <VideoPlayer selectedPinnedArticleData={detailDataToUse}></VideoPlayer>
               :
               detailDataToUse && detailDataToUse.cover_image && detailDataToUse.cover_image.url!="" && detailDataToUse.cover_image.url!=undefined?
