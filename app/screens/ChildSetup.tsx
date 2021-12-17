@@ -22,7 +22,7 @@ import { dobMax } from '@types/types';
 import { Settings } from 'luxon';
 import React, { createRef, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, TextInput, PermissionsAndroid, Platform } from 'react-native';
+import { Pressable, Text, View, ScrollView, Alert, Modal, StyleSheet, PermissionsAndroid, Platform } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
@@ -57,6 +57,7 @@ import * as ScopedStorage from "react-native-scoped-storage";
 // import { ChildEntity } from '../database/schema/ChildDataSchema';
 
 import RNFS from 'react-native-fs';
+import TextInputML from '@components/shared/TextInputML';
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetupList'
@@ -392,7 +393,7 @@ const ChildSetup = ({ navigation }: Props) => {
               <ShiftFromTop20>
                 <LabelText>{t('childNameTxt')}</LabelText>
                 <FormInputBox>
-                  <TextInput
+                  <TextInputML
                     style={{ width: '100%' }}
                     autoCapitalize="none"
                     autoCorrect={false}
