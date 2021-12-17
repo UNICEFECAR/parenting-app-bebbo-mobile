@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Heading1, Heading1Centerr, Heading3Center, Heading4Bold, Heading4Center, Heading4Regular, Heading5BoldW } from '@styles/typography';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Image, ImageBackground, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, ImageBackground, Linking, Modal, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setchatBotData } from '../../redux/reducers/childSlice';
@@ -411,7 +411,9 @@ const faqsData = useAppSelector((state: any) =>
           textColor="#FFF"
         />
           <FlexCol>
-          <ImageBackground source={require('@assets/svg/img-bg-chatbot-ios.png')} resizeMode="repeat" style={{flex:1,width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
+          <ImageBackground 
+            source={Platform.OS === 'android' ? require('@assets/svg/img-bg-chatbot.png') : require('@assets/svg/img-bg-chatbot-ios.png')} 
+            resizeMode="repeat" style={{flex:1,width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
               <ChatContainer>
               {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
                 {steps.length> 0 ? 
