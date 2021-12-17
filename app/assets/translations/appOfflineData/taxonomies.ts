@@ -77,26 +77,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Newborn"
+                    "id": 110071,
+                    "name": "Child development",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Infant"
+                    "id": 110076,
+                    "name": "Better parenting",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Toddler"
+                    "id": 110081,
+                    "name": "Raising healthy children",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Pre-schooler"
+                    "id": 110086,
+                    "name": "Vaccination",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "All"
+                    "id": 110091,
+                    "name": "Keeping Yourself Healthy and Happy",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Development and learning",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Talking and reading",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Learning environment",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "My child and preschool",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Learning through play",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Loving relationships",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Playing with my child",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Challenging behaviour",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Learning at home",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Child connecting with others",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Developmental concerns",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Healthy habits",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Healthy eating",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Breastfeeding",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Safety and protection",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "About vaccines",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Vaccines safety",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Vaccine preventable diseases",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Vaccination schedule",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaccines and medical conditions",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Staying healthy and happy",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Getting help with my stress",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Coping with parenting challenges",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psychological wellbeing",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -207,7 +358,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 months",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -217,7 +368,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 months",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
