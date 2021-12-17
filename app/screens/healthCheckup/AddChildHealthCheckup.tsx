@@ -43,6 +43,7 @@ import {
   RadioInnerBox,
   RadioOuter
 } from '@components/shared/radio';
+import TextInputML from '@components/shared/TextInputML';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
@@ -67,7 +68,6 @@ import {
   BackHandler,
   Modal,
   Platform, Pressable, Text,
-  TextInput,
   View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -854,7 +854,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput style={{ flex: 1, textAlignVertical: 'top', padding: 10 }}
+                    <TextInputML style={{ flex: 1, textAlignVertical: 'top', padding: 10 }}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}

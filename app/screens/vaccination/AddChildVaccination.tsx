@@ -40,6 +40,7 @@ import {
   RadioInnerBox,
   RadioOuter
 } from '@components/shared/radio';
+import TextInputML from '@components/shared/TextInputML';
 import ToggleRadios from '@components/ToggleRadios';
 import PlannedVaccines from '@components/vaccination/PlannedVaccines';
 import PrevPlannedVaccines from '@components/vaccination/PrevPlannedVaccines';
@@ -57,7 +58,7 @@ import {
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, BackHandler, Modal, Platform, Pressable, Text, TextInput, View } from 'react-native';
+import { Alert, BackHandler, Modal, Platform, Pressable, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -746,7 +747,7 @@ useEffect(() => {
               </FormInputText>
              
                 <TextAreaBox>
-                  <TextInput style={{flex:1,textAlignVertical: 'top',padding:10}}
+                  <TextInputML style={{flex:1,textAlignVertical: 'top',padding:10}}
                     autoCapitalize="none"
                     autoCorrect={false}
                     maxLength={maxCharForRemarks}

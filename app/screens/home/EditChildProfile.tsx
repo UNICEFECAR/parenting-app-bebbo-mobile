@@ -45,7 +45,7 @@ import {
   ImageBackground,
   Pressable,
   ScrollView,
-  StyleSheet, TextInput,
+  StyleSheet,
   View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -62,6 +62,7 @@ import {
 } from '../../services/childCRUD';
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
+import TextInputML from '@components/shared/TextInputML';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -504,7 +505,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                 <ShiftFromTop10>
                   <LabelText>{t('childNameTxt')}</LabelText>
                   <FormInputBox>
-                    <TextInput
+                    <TextInputML
                       style={{ width: '100%' }}
                       autoCapitalize="none"
                       autoCorrect={false}

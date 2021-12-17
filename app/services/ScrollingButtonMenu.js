@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Icon from '@components/shared/Icon';
+import Icon, { IconML } from '@components/shared/Icon';
 
 export const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -146,7 +146,6 @@ export default class ScrollingButtonMenu extends React.Component {
     render() {
         const {items, upperCase, selectedOpacity, activeBackgroundColor, activeColor, buttonStyle, containerStyle, keyboardShouldPersistTaps} = this.props;
         const {index} = this.state;
-
         return (
             <View style={[
                 styles.scrollArea,
@@ -154,7 +153,7 @@ export default class ScrollingButtonMenu extends React.Component {
             ]}>
             <TouchableOpacity style={{padding:11}} onPress={() => this.leftArrow(items)}>
                 {/* <Text>L</Text> */}
-                <Icon name="ic_angle_left" size={16} color="#000" />
+                <IconML name="ic_angle_left" size={16} color="#000" />
             </TouchableOpacity>
                 <ScrollView
                     horizontal={true}
@@ -217,7 +216,7 @@ export default class ScrollingButtonMenu extends React.Component {
                     }
                 </ScrollView>
             <TouchableOpacity style={{padding:11}} onPress={() => this.rightArrow(items)}>
-                <Icon name="ic_angle_right" size={16} color="#000" />
+                <IconML name="ic_angle_right" size={16} color="#000" />
             </TouchableOpacity>
             </View>
         );
