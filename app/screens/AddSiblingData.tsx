@@ -7,6 +7,7 @@ import { ChildAddTop, FormContainer, FormContainer1, FormContainerFlex, FormInpu
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
+import TextInputML from '@components/shared/TextInputML';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -14,7 +15,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { dobMax } from '@types/types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -142,7 +143,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
           <ShiftFromTop5>
                   <LabelText>{t('childNameTxt')}</LabelText>
                   <FormInputBox>
-                    <TextInput
+                    <TextInputML
                       style={{ width: '100%' }}
                       autoCapitalize="none"
                       autoCorrect={false}
