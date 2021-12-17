@@ -411,7 +411,7 @@ const faqsData = useAppSelector((state: any) =>
           textColor="#FFF"
         />
           <FlexCol>
-          <ImageBackground source={require('@assets/svg/img-bg-chatbot.png')} resizeMode="repeat" style={{width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
+          <ImageBackground source={require('@assets/svg/img-bg-chatbot-ios.png')} resizeMode="repeat" style={{flex:1,width:'100%',height:'100%',backgroundColor:'#dbe9f6'}}>
               <ChatContainer>
               {/* <ChatBot steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen}/> */}
                 {steps.length> 0 ? 
