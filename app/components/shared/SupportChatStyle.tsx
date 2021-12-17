@@ -3,7 +3,8 @@ import { FlexCol } from './FlexBoxStyle';
 const ChatContainer = styled.View`
   width: 100%;
   height: 100%;
-  padding: 10px;
+  paddingLeft: 10px;
+  paddingRight: 10px;
   position:relative;
   z-index:1;
 `;
