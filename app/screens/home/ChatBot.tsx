@@ -39,7 +39,7 @@ const BotBubble = (props: any) => {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           colors={['#2B2F84', '#1F50A0', '#00AEEF']}>
-          <VectorImage style={{ width: 20, height: 20, borderRadius: 100, resizeMode: 'contain' }} source={require('@assets/svg/img-logo-chatbot.svg')} />
+          <VectorImage style={{ width: 20, height: 20, borderRadius: 100, resizeMode: 'contain' }} source={require('@assets/svg/img-logo-chatbot-new.svg')} />
         </LinearGradient>
       </BotImage>
       <BotBubbleContainer>
