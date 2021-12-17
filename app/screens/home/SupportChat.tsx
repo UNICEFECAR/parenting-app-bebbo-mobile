@@ -63,15 +63,8 @@ const faqsData = useAppSelector((state: any) =>
   );
   function parseWithFunctions(obj) {
     return JSON.parse(obj, (k, v) => {
-      if (typeof v === 'string' && (v.indexOf('function categorySelection') >= 0 || 
-      v.indexOf('function showdynamicdelay') >= 0 ||
-      v.indexOf('function dynamicStepSelection') >= 0 ||
-      v.indexOf('function backToStep') >= 0 ||
-      v.indexOf('function backToHomeScreen') >= 0 ||
-      v.indexOf('function showFeedbackLink') >= 0 ||
-      v.indexOf('function updateChatBotData') >= 0
-      )) {
-        console.log("v val3----",v);
+      if (typeof v === 'string' && k == 'nextStepFunc') {
+        console.log(k,"v val3----",v);
         return eval(v);
       }
       return v;

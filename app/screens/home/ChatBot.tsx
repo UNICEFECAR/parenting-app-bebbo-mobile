@@ -146,7 +146,7 @@ const OptionBubble = (props: any) => {
       <OptionBubbleContainer>
         <OptionBubblePressable
           onPress={() => {
-            optionval.nextStepFunc && optionval?.nextStepFunc(stepindex, optionindex, steps)
+            optionval?.nextStepFunc(stepindex, optionindex, steps)
           }}>
           <Heading4Centerr>
             {optionval?.label}

@@ -67,7 +67,6 @@ import {
   Platform,
   Pressable,
   Text,
-  TextInput,
   View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -93,6 +92,7 @@ import {
 } from '../../services/growthService';
 import { getMeasuresForDate, isAnyMeasureExistForDate, isGrowthMeasureExistForDate, isVaccineMeasureExistForDate } from '../../services/measureUtils';
 import { formatStringDate } from '../../services/Utils';
+import TextInputML from '@components/shared/TextInputML';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
 type Props = {
@@ -796,7 +796,7 @@ useEffect(() => {
                 </FormInputText>
                 
                   <TextAreaBox>
-                    <TextInput style={{flex:1,textAlignVertical: 'top',padding:10}}
+                    <TextInputML style={{flex:1,textAlignVertical: 'top',padding:10}}
                       autoCapitalize="none"
                       autoCorrect={false}
                       maxLength={maxCharForRemarks}

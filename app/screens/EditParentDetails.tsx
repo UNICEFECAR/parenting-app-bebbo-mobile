@@ -13,6 +13,7 @@ import {
 import { MainContainer } from '@components/shared/Container';
 import { HeaderIconPress, HeaderIconView, HeaderRowView, HeaderTitleView } from '@components/shared/HeaderContainerStyle';
 import Icon, { IconML } from '@components/shared/Icon';
+import TextInputML from '@components/shared/TextInputML';
 import ToggleRadios from '@components/ToggleRadios';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
@@ -21,7 +22,7 @@ import React, { createRef, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BackHandler,
-  Pressable, StyleSheet, Text, TextInput, View
+  Pressable, StyleSheet, Text, View
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -272,7 +273,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
           <FormContainer>
             <LabelText>{t('parentNameTxt')}</LabelText>
             <FormInputBox>
-            <TextInput
+            <TextInputML
               autoCapitalize="none"
               style={{width:'100%'}}
               autoCorrect={false}
