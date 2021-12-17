@@ -88,6 +88,12 @@ export const getAllPeriodicSyncData = () => {
           postdata: {},
           saveinDB: true,
         },
+        // {
+        //   apiEndpoint: appConfig.faqPinnedContent,
+        //   method: 'get',
+        //   postdata: {},
+        //   saveinDB: true,
+        // },
         {
           apiEndpoint: appConfig.milestoneRelatedArticle,
           method: 'get',
