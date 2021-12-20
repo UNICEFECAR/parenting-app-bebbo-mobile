@@ -403,7 +403,7 @@ const BYru = {
                 favScreenremoveText: "Удалить",
                 settingScreenimportOptionHeader: "Импортировать данные для",
                 childSetupprematureMessageNext: "Содержание этого раздела отображается согласно скорректированному возрасту ребенка, а не возрасту по рождению при недоношенности",
-                helloMessage: "Привет,{{parentName}}, я Bebbo. Я могу ответить на ваши вопросы",
+                helloMessage: "Привет,{{parentName}}, я Беббо. Я могу ответить на ваши вопросы",
                 selectAreaOfInterest: "Пожалуйста, выберите тему, к которой относится ваш вопрос",
                 question1: "О чем вы хотите спросить?",
                 question2: "Пожалуйста, выберите один из следующих вопросов",
