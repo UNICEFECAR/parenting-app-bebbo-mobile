@@ -404,7 +404,7 @@ const TJru = {
                 favScreenremoveText: "Удалить",
                 settingScreenimportOptionHeader: "Импорт данных о",
                 childSetupprematureMessageNext: "Содержание данного раздела отображается в соответствии с исправленным, а не фактическим возрастом вашего недоношенного ребенка",
-                helloMessage: "Привет,{{parentName}}, я Bebbo. Я могу ответить на ваши вопросы",
+                helloMessage: "Привет,{{parentName}}, я Беббо. Я могу ответить на ваши вопросы",
                 selectAreaOfInterest: "Пожалуйста, выберите тему, к которой относится ваш вопрос",
                 question1: "О чем вы хотите спросить?",
                 question2: "Пожалуйста, выберите один из следующих вопросов",

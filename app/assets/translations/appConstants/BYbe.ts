@@ -403,7 +403,7 @@ const BYbe = {
                 favScreenremoveText: "Выдаліць",
                 settingScreenimportOptionHeader: "Імпартаваць даныя для",
                 childSetupprematureMessageNext: "Змест гэтага раздзела адлюстроўваецца згодна са скарэкціраваным узростам дзіцяці, а не ўзростам па нараджэнні пры неданошанасці",
-                helloMessage: "Прывітанне,{{parentName}}, я Bebbo. Я магу адказаць на вашы пытанні",
+                helloMessage: "Прывітанне,{{parentName}}, я Беббо. Я магу адказаць на вашы пытанні",
                 selectAreaOfInterest: "Калі ласка, выберыце тэму, да якой адносіцца ваша пытанне",
                 question1: "Пра што вы хочаце спытаць?",
                 question2: "Калі ласка, выберыце адно з наступных пытанняў",
