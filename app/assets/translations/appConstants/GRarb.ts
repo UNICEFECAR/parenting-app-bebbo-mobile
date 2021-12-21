@@ -403,7 +403,7 @@ const GRarb = {
                 forceUpdatePopupText:"Data will be updated",
                 forceUpdateOkBtn:"OK",
                 favScreenremoveText:"Remove",
-                settingScreenimportOptionHeader: "Import data on",
+                settingScreenimportOptionHeader: "Import data from",
                 childSetupprematureMessageNext: "The content of this section is displayed according to the corrected and not the actual age of your prematurely born child",
                //phase 2 new strings+chatbot strings
                helloMessage: "Hello{{parentName}}, my name is Bebbo. I'm here to answer your questions",
