@@ -474,7 +474,8 @@ export const retryAlert1 = (bandwidth: any,toggle: any) => {
     }
     //"Do you want to switch"+toggle+"data saver mode?"
     setTimeout(() => {
-    Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
+   // Alert.alert(bandwidth, i18n.t('dataSaver',{toggle:toggle}),
+    Alert.alert(bandwidth,toggle,
       [
         {
           text: i18n.t('retryCancelPopUpBtn'),

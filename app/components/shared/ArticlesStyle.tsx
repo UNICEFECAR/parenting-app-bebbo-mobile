@@ -36,9 +36,7 @@ export const SearchInput = styled.TextInput`
   text-align:${(props) => props.theme.isRTL ? 'right' : 'left'};
 `;
 
-
-export const ActivityBox = styled.View`
-  flex-direction:row
+export const MainActivityBox = styled.View`
   justify-content:space-between;
   align-items:center;
   margin:10px 0 -10px;
@@ -46,6 +44,12 @@ export const ActivityBox = styled.View`
   border-top-width:1px;
   border-color:rgba(0,0,0,0.1)
   padding:10px 0;
+`;
+export const ActivityBox = styled.View`
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
 `;
 
 export const ArticleHeading = styled.View`
