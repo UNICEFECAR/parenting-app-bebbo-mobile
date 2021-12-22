@@ -2,7 +2,7 @@ import { destinationFolder } from '@assets/translations/appOfflineData/apiConsta
 import ActivitiesCategories from '@components/ActivitiesCategories';
 import AgeBrackets from '@components/AgeBrackets';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
-import { ActivityBox, ArticleHeading, ArticleListContainer, ArticleListContent } from '@components/shared/ArticlesStyle';
+import { ActivityBox, ArticleHeading, ArticleListContainer, ArticleListContent, MainActivityBox } from '@components/shared/ArticlesStyle';
 import { ButtonTextSmLine } from '@components/shared/ButtonGlobal';
 import RNFS from 'react-native-fs';
 import { MainContainer } from '@components/shared/Container';
@@ -370,14 +370,12 @@ const Activities = ({ route, navigation }: Props) => {
             <Heading3>{item.title}</Heading3>
             {/* keep below code ActivityBox for future use */}
             {section == 1 && milestonedatadetail.length > 0 && ((childMilestonedata.findIndex((x:any)=>x == milestonedatadetail[0]?.id)) == -1) ? 
+            <MainActivityBox>
             <ActivityBox>
             <Flex4>
-              <Heading6Bold>
+              <Heading6Bold  style={{paddingTop:17,paddingBottom:15,justifyContent:"center"}}>
                 {t('actScreenpendingMilestone')} {t('actScreenmilestones')}
               </Heading6Bold>
-              <ShiftFromTop5>
-              <Heading4>{milestonedatadetail[0]?.title}</Heading4>
-              </ShiftFromTop5>
             </Flex4>
             <Flex2>
               <Pressable onPress={() => gotoMilestone()} style={{paddingTop:15,paddingBottom:15}}>
@@ -387,6 +385,9 @@ const Activities = ({ route, navigation }: Props) => {
               </Pressable>
               </Flex2>
           </ActivityBox>
+          <ActivityBox><ShiftFromTop5>
+          <Heading4>{milestonedatadetail[0]?.title}</Heading4>
+          </ShiftFromTop5></ActivityBox></MainActivityBox>
         : null
         }
           </ArticleListContent>
