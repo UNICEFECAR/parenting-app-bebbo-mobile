@@ -184,88 +184,93 @@ const SettingScreen = (props: any) => {
   const exportFile = async () => {
     //need to add code.
     // Alert.alert('Coming Soon');
-    setIsExportRunning(false);
+    setIsExportRunning(true);
     const userRealmPath = userRealmCommon.realm?.path;
     if (!userRealmPath) return false;
     const realmContent = await RNFS.readFile(userRealmPath, 'base64');
-    if(Platform.OS=="android"){
-    let uri1: any = await ScopedStorage.getPersistedUriPermissions();
-    }
-    RNFS.writeFile(backUpPath, realmContent, 'base64')
-    .then(async (success) => {
-      console.log("file://"+backUpPath,"..success..")
-      setIsExportRunning(false);
-      try {
-        const result = await Share.open({
-          title: 'Backup Saved',
-          url: "file://"+backUpPath,
-        })
-        .then((res) => {
-          console.log("exported res",res);
-          Alert.alert('', t('settingExportSuccess'));
-        })
-        .catch((err) => {
-         // Alert.alert('', t('settingExportSuccess'));
-        });
-      } catch (error) {
-        //Alert.alert('', t('settingExportError'));
-      }
-      // Alert.alert('', t('settingExportSuccess'));
-    })
-    .catch((err) => {
-      console.log(err, "..err")
-      //Alert.alert('', t('settingExportError'));
-      setIsExportRunning(false);
-    });
-    //export 
-    // if (Platform.OS === "android") {
-    //   // let file = await ScopedStorage.openDocumentTree(true);
-    //   //await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
-    //   try{
-    //   let fileDownload: any = await ScopedStorage.createFile(RNFS.DocumentDirectoryPath, "my.backup", "*/*",realmContent, 'base64', false);
-    //   let uri1: any = await ScopedStorage.getPersistedUriPermissions();
-    //   console.log(uri1, "..uri..");
-    //   console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
-    //   if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
-    //     Alert.alert('', t('settingExportSuccess'));
-    //   //   try {
-    //   //   const result = await Share.open({
-    //   //     title: 'Backup Saved',
-    //   //     url: "file://"+backUpPath,
-    //   //   })
-    //   //   .then((res) => {
-    //   //     Alert.alert('', t('settingExportSuccess'));
-    //   //   })
-    //   //   .catch((err) => {
-    //   //    // Alert.alert('', t('settingExportSuccess'));
-    //   //   });
-    //   // } catch (error) {
-    //   //   //Alert.alert('', t('settingExportError'));
-    //   // }
-    //   }
-    //   else {
-    //     Alert.alert('', t('settingExportError'));
-    //   }
+     // export via create and share
+    // if(Platform.OS=="android"){
+    // let uri1: any = await ScopedStorage.getPersistedUriPermissions();
     // }
-    // catch(e){
-    //    console.log('', e.message);
-    //   //Alert.alert('', e.message);
-    // }
-    // }
-    // else {
-    //   const res: any = await DocumentPicker.pickDirectory();
-    //   RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
-    //     .then((success) => {
-    //       setIsExportRunning(false);
-    //       actionSheetRef.current?.setModalVisible(false);
+    // RNFS.writeFile(backUpPath, realmContent, 'base64')
+    // .then(async (success) => {
+    //   console.log("file://"+backUpPath,"..success..")
+    //   setIsExportRunning(false);
+    //   try {
+    //     const result = await Share.open({
+    //       title: 'Backup Saved',
+    //       url: "file://"+backUpPath,
+    //     })
+    //     .then((res) => {
+    //       console.log("exported res",res);
     //       Alert.alert('', t('settingExportSuccess'));
     //     })
     //     .catch((err) => {
-    //       console.log(err, "..err")
-    //       Alert.alert('', t('settingExportError'));
-    //       setIsExportRunning(false);
+    //      // Alert.alert('', t('settingExportSuccess'));
     //     });
-    // }
+    //   } catch (error) {
+    //     //Alert.alert('', t('settingExportError'));
+    //   }
+    //   // Alert.alert('', t('settingExportSuccess'));
+    // })
+    // .catch((err) => {
+    //   console.log(err, "..err")
+    //   //Alert.alert('', t('settingExportError'));
+    //   setIsExportRunning(false);
+    // });
+    // export via file system
+    if (Platform.OS === "android") {
+       let file = await ScopedStorage.openDocumentTree(true);
+       let uri: any = await ScopedStorage.getPersistedUriPermissions();
+      //  await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
+      try{
+      let fileDownload: any = await ScopedStorage.writeFile(file.uri,"my.backup","*/*",realmContent,'base64',false);
+      let uri1: any = await ScopedStorage.getPersistedUriPermissions();
+      console.log(uri1, "..uri..");
+      console.log(fileDownload.split(/[#?]/)[0].split('.').pop().trim(), "..fileDownload..");
+      if (fileDownload!=""  && fileDownload!=null && fileDownload!=undefined) {
+        Alert.alert('', t('settingExportSuccess'));
+        setIsExportRunning(false);
+      //   try {
+      //   const result = await Share.open({
+      //     title: 'Backup Saved',
+      //     url: "file://"+backUpPath,
+      //   })
+      //   .then((res) => {
+      //     Alert.alert('', t('settingExportSuccess'));
+      //   })
+      //   .catch((err) => {
+      //    // Alert.alert('', t('settingExportSuccess'));
+      //   });
+      // } catch (error) {
+      //   //Alert.alert('', t('settingExportError'));
+      // }
+      }
+      else {
+        Alert.alert('', t('settingExportError'));
+        setIsExportRunning(false);
+      }
+    }
+    catch(e:any){
+       console.log('', e.message);
+       setIsExportRunning(false);
+      //Alert.alert('', e.message);
+    }
+    }
+    else {
+      const res: any = await DocumentPicker.pickDirectory();
+      RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
+        .then((success) => {
+          setIsExportRunning(false);
+          actionSheetRef.current?.setModalVisible(false);
+          Alert.alert('', t('settingExportSuccess'));
+        })
+        .catch((err) => {
+          console.log(err, "..err")
+          Alert.alert('', t('settingExportError'));
+          setIsExportRunning(false);
+        });
+    }
   }
   const onExportCancel = () => {
     setExportAlertVisible(false);
@@ -1027,7 +1032,6 @@ const SettingScreen = (props: any) => {
                             console.log("You can write");
                             actionSheetRef.current?.setModalVisible(false);
                             exportFile();
-
                           } else {
                             console.log("You can write");
                           }
@@ -1048,7 +1052,7 @@ const SettingScreen = (props: any) => {
                       //   Alert.alert('',t('noInternet'));
                       // }
                     }}>
-                      <Icon name="ic_sb_shareapp" size={30} color="#000" />
+                     <VectorImage source={require('@assets/svg/ic_file.svg')} />
                       <ShiftFromTopBottom5>
                         <Heading4Regular>
                           {t('settingScreenshareBtntxt')}
