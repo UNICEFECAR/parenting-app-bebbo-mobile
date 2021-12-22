@@ -85,7 +85,7 @@ const en = {
                 settingScreenexportBtnText: "Export all saved data",
                 settingScreenimportBtnText: "Import all saved data",
                 settingScreenexportOptionHeader: "Export data to",
-                settingScreenshareBtntxt: "Share",
+                settingScreenshareBtntxt: "Export",
                 settingScreengdriveBtntxt: "Google drive",
                 userGuideheaderTitle: "User guide",
                 aboutUsScreenheaderTitle: "About us",
