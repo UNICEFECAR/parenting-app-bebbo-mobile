@@ -534,7 +534,8 @@ export const getNotificationDateInString = (t: any, birthDate: string) => {
     if (ageStr == "") {
       ageStr = t('todayTxt');
     }else{
-      ageStr = ageStr+ " "+t('notiTimeAgoTxt')
+      // ageStr = ageStr+ " "+t('notiTimeAgoTxt')
+      ageStr = t('notiTimeAgoTxt',{ageStr:ageStr})
     }
 
   }
