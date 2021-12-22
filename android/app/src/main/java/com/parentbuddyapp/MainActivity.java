@@ -1,6 +1,7 @@
 package org.unicef.ecar.bebbo;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -26,6 +27,9 @@ public class MainActivity extends ReactActivity implements ProviderInstaller.Pro
         SplashScreen.show(this,R.style.SplashScreenTheme,R.id.lottie);  // here
         SplashScreen.setAnimationFinished(true);
         super.onCreate(savedInstanceState);
+       Intent intent = getIntent();
+       String action = intent.getAction();
+       Uri data = intent.getData();
        ProviderInstaller.installIfNeededAsync(this, this);
     }
     @Override
