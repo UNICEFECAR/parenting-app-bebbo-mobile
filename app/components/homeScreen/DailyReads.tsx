@@ -1,4 +1,5 @@
-import { articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
+import { ADVICE_SHARED, GAME_SHARED } from '@assets/data/firebaseEvents';
+import { articleCategoryArray, shareTextButton } from '@assets/translations/appOfflineData/apiConstants';
 import { BgSecondaryTint } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
@@ -10,14 +11,14 @@ import { DateTime } from 'luxon';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, FlatList, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, ImageBackground, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../../redux/reducers/articlesSlice';
 import LoadableImage from '../../services/LoadableImage';
-
+import analytics from '@react-native-firebase/analytics';
 
 const DailyReads = () => {
   const { t } = useTranslation();
@@ -60,7 +61,9 @@ const DailyReads = () => {
   const dailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.dailyDataCategory,
   );
-
+  const locale = useAppSelector(
+    (state: any) => state.selectedCountry.locale,
+  );
   const showedDailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
@@ -77,6 +80,37 @@ const DailyReads = () => {
       selectedChildActivitiesData: ActivitiesData
     });
   }
+  const onShare = async (item:any) => {
+    const isAdvice=item.hasOwnProperty('activity_category')?false:true;
+    console.log(isAdvice,"dfd",item)
+    console.log('locale',locale);
+    const suburl=isAdvice?"/article/":"/activity/";
+    const mainUrl=shareTextButton+locale+suburl+item.id;
+    console.log(mainUrl,"..mainUrl")
+     try {
+       const result = await Share.share({
+         message:mainUrl
+             });
+       if (result.action === Share.sharedAction) {
+         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
+         if(isAdvice){
+            analytics().logEvent(ADVICE_SHARED, {advise_id:item?.id});
+         }else{
+            analytics().logEvent(GAME_SHARED, {game_id:item?.id});
+         }
+         if (result.activityType) {
+           // shared with activity type of result.activityType
+         } else {
+           // shared
+         }
+       } else if (result.action === Share.dismissedAction) {
+         // dismissed
+       }
+     } catch (error: any) {
+       // Alert.alert(error.message);
+       Alert.alert(t('generalError'));
+     }
+   };
   const RenderDailyReadItem = React.memo(({ item, index }) => {
     return (
       <View>
@@ -106,14 +140,16 @@ const DailyReads = () => {
             </DailyTag>
             {/*Parent Share , View Details*/}
             <DailyAction>
+            <Pressable onPress={() => { onShare(item)}}>
               <FDirRow>
-                {/* <OuterIconRow>
+                <OuterIconRow>
                     <OuterIconLeft>
                     <Icon name="ic_sb_shareapp" size={24} color="#000" />
                     </OuterIconLeft>
                   </OuterIconRow>
-                <Heading4>{t('homeScreenshareText')}</Heading4> */}
+                <Heading4>{t('homeScreenshareText')}</Heading4>
               </FDirRow>
+              </Pressable>
               <Pressable onPress={() => { goToArticleDetail(item) }}>
                 <FDirRow>
                   <OuterIconRow>
