@@ -126,7 +126,7 @@ const NotificationItem = (props: any) => {
   );
   const getVaccinesForPeriod = (period: string) => {
     const allvc = allVaccineData.filter((item) => item.growth_period == period);
-    let vc = '';
+    let vc = ' ';
     allvc.map((item: any, index: number) => {
       if (index == allvc.length - 1) {
         vc += `${item.title}.`
