@@ -1,5 +1,5 @@
 export const FaqsData:any = {
-    "en": [
+    "en":[
         {
             "id": 60241,
             "type": "FAQ",
@@ -281,8 +281,8 @@ export const FaqsData:any = {
             "type": "FAQ",
             "question": "What do I do when I get frustrated with my child?",
             "created_at": "Mon, 11/29/2021 - 17:07",
-            "updated_at": "Mon, 11/29/2021 - 17:10",
-            "answer_part_1": "<p>As our children get older, they may “push our buttons” with annoying behaviour. If your child is misbehaving, the most important thing for you is to stay calm. Don’t react immediately to the bad behaviour (unless the child is in danger) and take a deep breath first. If you are NOT quiet, you might shout or even slap, shake, or beat your child.</p>",
+            "updated_at": "Fri, 12/17/2021 - 16:00",
+            "answer_part_1": "<p>As our children get older, they may “push our buttons” with annoying behaviour. If your child is misbehaving, the most important thing for you is to stay calm. Don’t react immediately to the bad behaviour (unless the child is in danger) and take a deep breath first. If you are NOT calm, you might shout or even slap, shake, or beat your child.</p>",
             "answer_part_2": "<p>This is not a loving or effective way to respond to your child’s behaviour, and it will even make the behaviour worse. Also, never say to your child “you are bad” or “you are naughty”. Your child could get low self-confidence, feel worthless if you say things like “You naughty boy”. Children are not bad, but they misbehave.</p>",
             "chatbot_subcategory": 110131,
             "related_article": 846,
@@ -435,7 +435,7 @@ export const FaqsData:any = {
         {
             "id": 60081,
             "type": "FAQ",
-            "question": "What if I don&#039;t have the time or energy to play with my child? ",
+            "question": "What if I don't have the time or energy to play with my child? ",
             "created_at": "Mon, 11/29/2021 - 16:05",
             "updated_at": "Mon, 11/29/2021 - 16:40",
             "answer_part_1": "<p>Parenting is often not easy. Children require a lot of energy and motivation. Good care starts with taking good care of yourself: good food, health and psychosocial wellbeing/feeling good. Do at least one activity per day that makes you happy or relaxed.</p>",
@@ -507,7 +507,7 @@ export const FaqsData:any = {
         {
             "id": 60111,
             "type": "FAQ",
-            "question": "I don&#039;t have a lot of toys at home, what can I do? ",
+            "question": "I don't have a lot of toys at home, what can I do? ",
             "created_at": "Mon, 11/29/2021 - 16:05",
             "updated_at": "Mon, 11/29/2021 - 16:57",
             "answer_part_1": "<p>Children don’t need expensive toys to play. They love to play most with everyday items, so they can copy what you do. Give your children simple objects to play with and stimulate their imagination. A cardboard box can become an aeroplane, a car, a boat or a rocket.</p>",
@@ -831,7 +831,7 @@ export const FaqsData:any = {
         {
             "id": 59936,
             "type": "FAQ",
-            "question": " I don&#039;t have a lot of books at home, what can I do? ",
+            "question": " I don't have a lot of books at home, what can I do? ",
             "created_at": "Mon, 11/29/2021 - 12:12",
             "updated_at": "Mon, 11/29/2021 - 13:22",
             "answer_part_1": "<p>If it is difficult for you to pay for books, see if you can get them in public library, or there may be friends and neighbors who can share books from when their children were younger. It is also possible to make simple little books, you can write an illustrate your own stories, or take pictures from newspapers or magazines and create a story out of them.</p>",
@@ -903,7 +903,7 @@ export const FaqsData:any = {
         {
             "id": 59866,
             "type": "FAQ",
-            "question": "Will the stress in our life harm my child&#039;s development?",
+            "question": "Will the stress in our life harm my child's development?",
             "created_at": "Mon, 11/29/2021 - 10:27",
             "updated_at": "Mon, 11/29/2021 - 11:36",
             "answer_part_1": "<p>Today more than ever, many families’ lives are full of stress. Yes, it is true that lasting or intense stress (sometimes called “toxic stress”) can have negative effects on brain development. Loving parenting and families can provide a protective bubble around children.</p>",
@@ -1083,7 +1083,7 @@ export const FaqsData:any = {
         {
             "id": 59801,
             "type": "FAQ",
-            "question": "Is it too late to catch up if I didn&#039;t vaccinate my child at the recommended time?",
+            "question": "Is it too late to catch up if I didn't vaccinate my child at the recommended time?",
             "created_at": "Thu, 11/25/2021 - 10:22",
             "updated_at": "Fri, 11/26/2021 - 09:56",
             "answer_part_1": "<p>For most vaccines, it is never too late to catch up. Talk to your healthcare worker about how to get any missed vaccination doses for yourself or your child. Remember to mark your previous and upcoming vaccines on Bebbo Vaccination Tool. You can set up reminders on your phone on the Bebbo app and, thus, this way you will get reminders about upcoming vaccines and most likely will not miss the recommended time.</p>",
@@ -1301,12 +1301,12 @@ export const FaqsData:any = {
             "type": "FAQ",
             "question": "What should I eat when I’m nursing?",
             "created_at": "Tue, 11/23/2021 - 17:40",
-            "updated_at": "Fri, 11/26/2021 - 10:18",
+            "updated_at": "Mon, 12/20/2021 - 08:36",
             "answer_part_1": "<p>Most mothers can eat anything they want when they breastfeed. They can follow their regular diet. And the interesting thing is whatever they eat, the babies will taste through their milk and start to get them ready for table foods when they’re about six months old.</p>",
             "answer_part_2": "<p>To keep you and your baby healthy, your body needs more calories every day when you are breastfeeding. Do not just eat more, but eat more nutritious foods, including foods with calcium such as milk, cheeses, green vegetables, and nuts (depending on your culture’s food traditions). You’ll probably find that you are more thirsty, also. You might get in the habit of drinking water, juice, or milk while you are sitting down nursing your baby.</p>",
             "chatbot_subcategory": 110196,
             "related_article": 1836,
-            "mandatory": 0
+            "mandatory": 1
         },
         {
             "id": 59306,
@@ -1637,12 +1637,12 @@ export const FaqsData:any = {
             "type": "FAQ",
             "question": "What is anxiety? ",
             "created_at": "Tue, 11/23/2021 - 17:40",
-            "updated_at": "Fri, 11/26/2021 - 10:09",
+            "updated_at": "Mon, 12/20/2021 - 08:36",
             "answer_part_1": "<p>Anxiety is a normal human emotion, and it is usually a helpful emotion. It helps us to deal with fear or other extreme situations. When we are confronted by a ‘threat’, anxiety helps us decide whether we should stay and ‘fight’ the threat or get away from the threat (flight). </p>",
             "answer_part_2": "<p>The problem is when worry or anxiety becomes extreme. Then it can get in the way of your health and your daily life. It can even stop you from being the parent you want to be.</p>",
             "chatbot_subcategory": 110211,
             "related_article": 1881,
-            "mandatory": 0
+            "mandatory": 1
         },
         {
             "id": 59451,
@@ -1865,8 +1865,8 @@ export const FaqsData:any = {
             "type": "FAQ",
             "question": "How to balance screen time for your child? ",
             "created_at": "Tue, 11/23/2021 - 17:40",
-            "updated_at": "Fri, 11/26/2021 - 13:05",
-            "answer_part_1": "<p>It is hard to avoid your child to use a screen. However, experts recommend that children don’t have screen time during their first 18 months. An overuse of screens can cause problems of speech, language, motor abilities and fitness in young children. Nevertheless, screen time for toddlers is recommended to be limited to one hour per day and do it in the presence and company of the parents. Too much time on line takes time away from physical development, play with toys and other children, and other learning opportunities.</p>",
+            "updated_at": "Fri, 12/17/2021 - 15:35",
+            "answer_part_1": "<p>It is hard to avoid your child to use a screen. However, experts recommend that children don’t have screen time during their first 24 months. An overuse of screens can cause problems of speech, language, motor abilities and fitness in young children. Nevertheless, screen time for toddlers is recommended to be limited to one hour per day and do it in the presence and company of the parents. Too much time on line takes time away from physical development, play with toys and other children, and other learning opportunities.</p>",
             "answer_part_2": "<p>Even when you’re busy, try to find other things to interest your child, not just looking at online entertainment. In the kitchen, perhaps she can play with safe cooking utensils (pots and spoons). You can sing together while you are tidying up. She can help you put clean clothes away. All of these are playful learning activities that also strengthen your loving connections</p>",
             "chatbot_subcategory": 110151,
             "related_article": 2036,
