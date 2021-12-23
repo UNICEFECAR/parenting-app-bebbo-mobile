@@ -1,5 +1,4 @@
 
-
 const en = {
         translation: {
                 countryLangSelection: "You have selected country and language",
@@ -85,7 +84,7 @@ const en = {
                 settingScreenexportBtnText: "Export all saved data",
                 settingScreenimportBtnText: "Import all saved data",
                 settingScreenexportOptionHeader: "Export data to",
-                settingScreenshareBtntxt: "File manager",
+                settingScreenshareBtntxt: "File Manager",
                 settingScreengdriveBtntxt: "Google drive",
                 userGuideheaderTitle: "User guide",
                 aboutUsScreenheaderTitle: "About us",
@@ -385,12 +384,11 @@ const en = {
                 noInternet: "No internet available.",
                 lowBandwidth: "Low bandwidth",
                 highBandwidth: "High bandwidth",
-                dataSaveron:"Do you want to switch On to data saver mode?",
-                dataSaveroff:"Do you want to switch Off to data saver mode?",
+                dataSaveron: "Do you want to switch on to data saver mode?",
+                dataSaveroff: "Do you want to switch off to data saver mode?",
                 vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
                 parentGender: "Gender",
-                //Onboarding Import text new Translations
                 successOnboardingImport: "You successfully imported child data",
                 updateImportText: "Please update your details to continue",
                 importOnboardingText: "You can import previously exported child data",
@@ -398,7 +396,7 @@ const en = {
                 ORkeyText: "OR",
                 addChildText: "Add your child details",
                 notiTimeAgoTxt: "{{ageStr}} ago",
-                todayTxt: "today", 
+                todayTxt: "today",
                 fiveYearsGreater: "Standard growth values are available only for children 0-5 years old and therefore growth charts are not applicable for children older than 5 years old",
                 forceUpdatePopupTitle: "Information",
                 forceUpdatePopupText: "Data will be updated",
@@ -426,7 +424,6 @@ const en = {
                 sorryMsgTxt: "I am sorry you could not find an answer to your question. Please select one of the following options:",
                 feedbackLinkTxt: "Give us feedback",
                 notNowTxt: "Not now",
-                //phase 2 new strings
                 settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File"
         }
