@@ -258,8 +258,9 @@ const SettingScreen = (props: any) => {
     }
     }
     else {
-      const res: any = await DocumentPicker.pickDirectory();
-      RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
+      const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
+        console.log(resData,"..resData..");
+        RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
         .then((success) => {
           setIsExportRunning(false);
           actionSheetRef.current?.setModalVisible(false);
@@ -270,6 +271,11 @@ const SettingScreen = (props: any) => {
           Alert.alert('', t('settingExportError'));
           setIsExportRunning(false);
         });
+      }).catch((e)=>{
+        setIsExportRunning(false);
+        handleError(e);
+      });
+     
     }
   }
   const onExportCancel = () => {
@@ -597,8 +603,10 @@ const SettingScreen = (props: any) => {
   );
   const handleError = (err: any) => {
     console.log(err,"..err")
+    // setIsExportRunning(false);
+    // setIsImportRunning(false); 
     if (DocumentPicker.isCancel(err)) {
-      console.log('cancelled')
+      console.log('cancelled');
       // User cancelled the picker, exit any dialogs or menus and move on
     } else if (isInProgress(err)) {
       console.log('multiple pickers were opened, only the last will be considered')
