@@ -258,8 +258,10 @@ const SettingScreen = (props: any) => {
     }
     }
     else {
+      
       const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
         console.log(resData,"..resData..");
+        //DocumentPicker.releaseSecureAccess(res.uri);
         RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
         .then((success) => {
           setIsExportRunning(false);
