@@ -11,6 +11,7 @@ export function useDeepLinkURL() {
       const getUrlAsync = async () => {
         // Get the deep link used to open the app
         const initialUrl = await Linking.getInitialURL();
+        console.log(initialUrl,"..11initialUrl");
         if(initialUrl){
         setLinkedURL(decodeURI(initialUrl));
         }
