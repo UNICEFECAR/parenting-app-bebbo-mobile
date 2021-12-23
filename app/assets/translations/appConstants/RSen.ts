@@ -83,7 +83,7 @@ const RSen = {
                 settingScreenexportBtnText: "Export all saved data",
                 settingScreenimportBtnText: "Import all saved data",
                 settingScreenexportOptionHeader: "Export data to",
-                settingScreenshareBtntxt: "Export",
+                settingScreenshareBtntxt: "File Manager",
                 settingScreengdriveBtntxt: "Google drive",
                 userGuideheaderTitle: "User guide",
                 aboutUsScreenheaderTitle: "About us",
