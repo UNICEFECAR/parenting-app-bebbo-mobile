@@ -80,15 +80,15 @@ export default () => {
   const AppLayoutDirectionScreen = useAppSelector(
     (state: any) => state.selectedCountry.AppLayoutDirectionScreen,
   );
- // console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
+  // console.log(restartOnLangChange,"AppLayoutDirectionScreen appnav--", AppLayoutDirectionScreen);
   const countryId = useAppSelector(
     (state: any) => state.selectedCountry.countryId,
   );
   // const languageCode = useAppSelector(
   //   (state: any) => state.selectedCountry.languageCode,
   // );
- // console.log("userIsOnboarded appnav--", userIsOnboarded);
- // console.log("userIsOnboarded appnav--", userIsOnboarded);
+  // console.log("userIsOnboarded appnav--", userIsOnboarded);
+  // console.log("userIsOnboarded appnav--", userIsOnboarded);
   // const [isReady, setIsReady] = React.useState(false);
   // const [isReady, setIsReady] = React.useState(__DEV__ ? false : true);
   const [netState, setNetState] = React.useState('');
@@ -99,58 +99,59 @@ export default () => {
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.ACTIVITIES_COLOR;
   const backgroundColor = themeContext.colors.ACTIVITIES_TINTCOLOR;
-  const {linkedURL, resetURL} = useDeepLinkURL();
+  const { linkedURL, resetURL } = useDeepLinkURL();
   useEffect(() => {
     // ... handle deep link
     callUrl(linkedURL);
-    resetURL();
-}, [linkedURL, resetURL,userIsOnboarded])
-const callUrl=(url:any)=>{
-  //Alert.alert(url,"..callurl initialUrl..")
-  if(url){
-  const initialUrlnew:any=url;
-     if(initialUrlnew===null){
-      return;
-    }
-    if(initialUrlnew && initialUrlnew.includes('/article/')){
-      let initialUrlnewId:any=initialUrlnew.split("/").pop();
-      const initialUrlnewId1:any=parseInt(initialUrlnewId);
-      console.log("rerenew",userIsOnboarded);
-      if (userIsOnboarded == true) {
-        if (navigationRef) {
-          navigationRef.current?.navigate('DetailsScreen',
-          {
-            fromScreen:"HomeArt",
-            headerColor:'',
-            backgroundColor:'',
-            detailData:initialUrlnewId1,
-            listCategoryArray: []
-            // setFilteredArticleData: setFilteredArticleData
-          });
-        }
+  }, [linkedURL, resetURL, userIsOnboarded])
+  const callUrl = (url: any) => {
+    console.log(url, "..callurl initialUrl..");
+    if (url) {
+      const initialUrlnew: any = url;
+      if (initialUrlnew === null) {
+        return;
       }
+      if (initialUrlnew && initialUrlnew.includes('/article/')) {
+        let initialUrlnewId: any = initialUrlnew.split("/").pop();
+        const initialUrlnewId1: any = parseInt(initialUrlnewId);
+        console.log("rerenew", userIsOnboarded);
+        if (userIsOnboarded == true) {
+          if (navigationRef) {
+            navigationRef.current?.navigate('DetailsScreen',
+              {
+                fromScreen: "HomeArt",
+                headerColor: '',
+                backgroundColor: '',
+                detailData: initialUrlnewId1,
+                listCategoryArray: []
+                // setFilteredArticleData: setFilteredArticleData
+              });
 
-    }
-    else if(initialUrlnew && initialUrlnew.includes('/activity/')){
-      let initialUrlnewId:any=initialUrlnew.split("/").pop();
-      const initialUrlnewId1:any=parseInt(initialUrlnewId);
-      console.log("initialUrlnewId1 activity",initialUrlnewId1);
-      if (userIsOnboarded == true) {
-        if (navigationRef) 
-        navigationRef.current?.navigate('DetailsScreen',
-          {
-            fromScreen:"HomeAct",
-            headerColor:headerColor,
-            backgroundColor:backgroundColor,
-            detailData:initialUrlnewId1,
-            listCategoryArray: []
-            // setFilteredArticleData: setFilteredArticleData
-          });
+          }
+        }
+
+      }
+      else if (initialUrlnew && initialUrlnew.includes('/activity/')) {
+        let initialUrlnewId: any = initialUrlnew.split("/").pop();
+        const initialUrlnewId1: any = parseInt(initialUrlnewId);
+        console.log("initialUrlnewId1 activity", initialUrlnewId1);
+        if (userIsOnboarded == true) {
+          if (navigationRef) {
+            navigationRef.current?.navigate('DetailsScreen',
+              {
+                fromScreen: "HomeAct",
+                headerColor: headerColor,
+                backgroundColor: backgroundColor,
+                detailData: initialUrlnewId1,
+                listCategoryArray: []
+                // setFilteredArticleData: setFilteredArticleData
+              });
+          }
         }
       }
-      
+      resetURL();
     }
-}
+  }
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
@@ -164,8 +165,8 @@ const callUrl=(url:any)=>{
     async function fetchNetInfo() {
       if (netInfoval && netInfoval.isConnected != null) {
         // Alert.alert(netInfoval.netValue.type, "--234navnetInfoval--");
-       // console.log("use effect net connected call");
-       // console.log(toggleSwitchVal, "..hometoggleSwitchVal")
+        // console.log("use effect net connected call");
+        // console.log(toggleSwitchVal, "..hometoggleSwitchVal")
         if (netInfoval.isConnected == true) {
           if (Platform.OS == 'android') {
             if ((netInfoval.netValue.type == "unknown" || netInfoval.netValue.type == "other" || netInfoval.netValue.type == "bluetooth" || netInfoval.netValue.type == "vpn")) {
@@ -244,8 +245,8 @@ const callUrl=(url:any)=>{
   }, [netInfoval.isConnected, netInfoval.netType, netInfoval.netValue?.details?.cellularGeneration]);
   useEffect(() => {
     if (userIsOnboarded == true) {
-     // console.log("calculated");
-     // console.log("calculated");
+      // console.log("calculated");
+      // console.log("calculated");
       //call forceupdate api and check with asyncstorage
       // dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
       //if force update is being done the set showDownloadPopup to false
@@ -254,42 +255,42 @@ const callUrl=(url:any)=>{
       getAllChildren(dispatch, child_age, 0);
     }
     dispatch(setchatBotData([]));
-    if(countryId == 1) {
+    if (countryId == 1) {
       dispatch(oncountrtIdChange(restOfTheWorldCountryId));
     }
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     //add notification condition in else if required 1st time as well
   }, []);
-  
+
   useEffect(() => {
     //Alert.alert(netState,"..netState")
 
     async function fetchNetInfo() {
-    if (netState == "Highbandwidth" && toggleSwitchVal == true) {
+      if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
-      let confirmation = await retryAlert1(0, 0);
-     // console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
-      //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-      if (confirmation == "yes" && toggleSwitchVal == true) {
-        dispatch(onNetworkStateChange(false));
+        let confirmation = await retryAlert1(0, 0);
+        // console.log(toggleSwitchVal, "..21hometoggleSwitchVal")
+        //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+        if (confirmation == "yes" && toggleSwitchVal == true) {
+          dispatch(onNetworkStateChange(false));
+        }
+      }
+      else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
+        let confirmation = await retryAlert1(1, 1);
+        //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
+        if (confirmation == "yes" && toggleSwitchVal == false) {
+          //console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
+          dispatch(onNetworkStateChange(true));
+        }
       }
     }
-    else if (netState == "Lowbandwidth" && toggleSwitchVal == false) {
-      let confirmation = await retryAlert1(1, 1);
-      //console.log(toggleSwitchVal, "..11hometoggleSwitchVal", confirmation, "...confirmation")
-      if (confirmation == "yes" && toggleSwitchVal == false) {
-        //console.log(toggleSwitchVal, "..2234hometoggleSwitchVal")
-        dispatch(onNetworkStateChange(true));
-      }
-    }
-  }
-   // console.log(netState,"..netState")
-  fetchNetInfo();
+    // console.log(netState,"..netState")
+    fetchNetInfo();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
-  console.log(routeNameRef.current,"callRealmListener12--",I18nManager.isRTL);
+  console.log(routeNameRef.current, "callRealmListener12--", I18nManager.isRTL);
 
   return (
     // <ThemeProvider theme={theme}>
@@ -311,7 +312,7 @@ const callUrl=(url:any)=>{
               screen_class: currentRouteName,
             });
             analytics().logEvent(currentRouteName + "_opened");
-           // console.log(currentRouteName,"currentRouteName")
+            // console.log(currentRouteName,"currentRouteName")
             // if(currentRouteName =="ChartFullScreen"){
             //   Orientation.lockToLandscape();
             // }else{
@@ -332,12 +333,12 @@ const callUrl=(url:any)=>{
           initialRouteName={
             restartOnLangChange != 'yes' ?
               userIsOnboarded == true ? 'HomeDrawerNavigator' : 'Localization'
-            : AppLayoutDirectionScreen 
+              : AppLayoutDirectionScreen
           }
           // initialRouteName={
           //   'Localization'
           // }
-          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false}}
+          screenOptions={{ animationEnabled: Platform.OS == 'ios' ? true : false }}
         >
           {/* initialRouteName={'Localization'}> */}
           <RootStack.Screen
@@ -365,15 +366,15 @@ const callUrl=(url:any)=>{
             component={ChildSetup}
             options={{ headerShown: false }}
           />
-           <RootStack.Screen
+          <RootStack.Screen
             name="ChildImportSetup"
             component={ChildImportSetup}
-            options={{ headerShown: false,gestureEnabled:false }}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen
             name="ChildSetupList"
             component={ChildSetupList}
-            options={{ headerShown: false,gestureEnabled:false }}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen
             name="AddSiblingDataScreen"
@@ -383,7 +384,7 @@ const callUrl=(url:any)=>{
           <RootStack.Screen
             name="LoadingScreen"
             component={LoadingScreen}
-            options={{ headerShown: false ,gestureEnabled:false}}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
           <RootStack.Screen
             name="HomeDrawerNavigator"
@@ -440,7 +441,7 @@ const callUrl=(url:any)=>{
           />
           <RootStack.Screen
             name="ChartFullScreen"
-            options={{ headerShown: false,gestureEnabled:true }}
+            options={{ headerShown: false, gestureEnabled: true }}
             component={ChartFullScreen}
           />
           <RootStack.Screen
