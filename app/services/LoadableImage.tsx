@@ -1,6 +1,6 @@
 import { destinationFolder } from '@assets/translations/appOfflineData/apiConstants';
 import React, { Component, Suspense, useEffect, useState } from 'react';
-import { StyleSheet, View, Image, ActivityIndicator, Text } from 'react-native';
+import { StyleSheet, View, Image, ActivityIndicator, Text, Platform } from 'react-native';
 import downloadImages from '../downloadImages/ImageStorage';
 import RNFS from 'react-native-fs';
 import { useFocusEffect } from '@react-navigation/native';
@@ -14,7 +14,6 @@ const CustomImage = createImageProgress(FastImage);
 const LoadableImage = (props:any) => {
  //const [imageState, setImageState] = useState('loading');
   const netInfo = useNetInfo();
-  const [noImage, setNoImage] = useState<any>();
   // const [imageUrl, setImageUrl] = useState<any>();
   
     const { style,item,toggleSwitchVal,resizeMode } = props;
@@ -180,10 +179,19 @@ const LoadableImage = (props:any) => {
       />}
       // onProgress={e => console.log(e.nativeEvent.loaded / e.nativeEvent.total)}
       renderError={(error:any) =>{ 
-    //  console.log("errr",error);
-      return(<DefaultImage
-      style={style}
-      source={require('@assets/trash/defaultArticleImage.png')}/>);
+      console.log("errr",error);
+      if(Platform.OS=="android"){
+        return(<DefaultImage
+          style={style}
+          source={require('@assets/trash/defaultArticleImage.png')}/>);
+      }
+      else{
+      if(netInfo.isConnected==true){
+        return(<DefaultImage
+          style={style}
+          source={require('@assets/trash/defaultArticleImage.png')}/>);
+      }
+      }
       }
       }
 /> 
