@@ -287,7 +287,8 @@ const AddReminder = ({ route, navigation }: any) => {
         }
       }
     } else {
-      Alert.alert(t('reminderalertText'))
+      setClicked(false);
+      Alert.alert(t('reminderalertText')); 
     }
 
     // reminderalertText:"Reminder Date is before current Date Time"
@@ -523,7 +524,7 @@ useEffect(() => {
                 setClicked(true);
                 setTimeout(()=>{
                   saveReminder().then(() => {
-
+                   
                   });
                 },0)
                
