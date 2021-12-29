@@ -8,7 +8,8 @@ import { ObjectSchema } from "realm";
     updated_at: string,
     body: string,
     mandatory: number,
-    unique_name:string
+    unique_name:string,
+    embedded_images?: string[]
   };
 
 
@@ -26,6 +27,7 @@ import { ObjectSchema } from "realm";
       body: { type: 'string' },
       mandatory: { type: 'int' },
       unique_name: { type: 'string' },
+      embedded_images: { type: 'string[]',optional: true}
     }
   };
 
