@@ -266,7 +266,7 @@ export default () => {
   useEffect(() => {
     //Alert.alert(netState,"..netState")
 
-    async function fetchNetInfo() {
+    async function fetchNetInfoSet() {
       if (netState == "Highbandwidth" && toggleSwitchVal == true) {
 
         let confirmation = await retryAlert1(0, 0);
@@ -286,7 +286,7 @@ export default () => {
       }
     }
     // console.log(netState,"..netState")
-    fetchNetInfo();
+    fetchNetInfoSet();
   }, [netState]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
