@@ -2,14 +2,19 @@ import getAllDataToStore, { getAllDataOnRetryToStore } from '@assets/translation
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
 import { DateTime } from 'luxon';
-import { Alert } from "react-native";
+import { Alert, Image } from "react-native";
+import FastImage from 'react-native-fast-image';
 import RNFS from 'react-native-fs';
 import { store } from "../../App";
 import { appConfig, finalUrl } from '../assets/translations/appOfflineData/apiConstants';
 import { dataRealmCommon } from '../database/dbquery/dataRealmCommon';
 import { userRealmCommon } from '../database/dbquery/userRealmCommon';
+import { ActivitiesEntity, ActivitiesEntitySchema } from '../database/schema/ActivitiesSchema';
 import { ArticleEntity, ArticleEntitySchema } from '../database/schema/ArticleSchema';
+import { BasicPagesEntity, BasicPagesSchema } from '../database/schema/BasicPagesSchema';
 import { ChildEntity, ChildEntitySchema } from '../database/schema/ChildDataSchema';
+import { PinnedChildDevelopmentEntity, PinnedChildDevelopmentSchema } from '../database/schema/PinnedChildDevelopmentSchema';
+import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema/VideoArticleSchema';
 import downloadImages from '../downloadImages/ImageStorage';
 import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
@@ -231,9 +236,9 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
   //     params:{prevPage:prevPage},
   //   });
 }
-export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any) => {
+export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
   // navigation.navigate('HomeDrawerNavigator');
-  // console.log(response,"--oldErrorObj---",oldErrorObj);
+  console.log(prevPage,"--prevPage---");
   // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
@@ -341,7 +346,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // console.log("CLEARNOTIFICATIONS_LANGUAGECHANGE")
   // console.log(setAllNotificationData([]))
   const currentDate = DateTime.now().toMillis();
-  if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate") {
+  if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData") {
     dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
     dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     if(prevPage == 'ForceUpdate'){
@@ -391,7 +396,49 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         }
       ]
     );
-  }else {
+  }
+  else if(prevPage == 'DownloadAllData') {
+    console.log("enableImageDownload---",enableImageDownload);
+    if(enableImageDownload){
+      const allImagesucc = await downloadArticleImages();
+        console.log("download success---",allImagesucc);
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        [
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'HomeDrawerNavigator',
+                    // params: {prevPage}
+                  },
+                ],
+              });
+            }
+          }
+        ]
+      );
+    }else {
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        [
+          { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+              navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: 'HomeDrawerNavigator',
+                    // params: {prevPage}
+                  },
+                ],
+              });
+            }
+          }
+        ]
+      );
+    }
+        
+  }
+  else {
     navigation.reset({
       index: 0,
       routes: [
@@ -430,6 +477,113 @@ export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navig
   });
   const results = await Promise.all(resolvedPromises);
  // console.log("survey done--",results);
+}
+export const downloadArticleImages = async() => {
+  return new Promise(async (resolve, reject) => {
+      let databaseData = await dataRealmCommon.getData<ArticleEntity>(ArticleEntitySchema);
+      let databaseDataact = await dataRealmCommon.getData<ActivitiesEntity>(ActivitiesEntitySchema);
+      let databaseDatabasicpg = await dataRealmCommon.getData<BasicPagesEntity>(BasicPagesSchema);
+      let databaseDatapinnedCD = await dataRealmCommon.getData<PinnedChildDevelopmentEntity>(PinnedChildDevelopmentSchema);
+      let databaseDatavideoart = await dataRealmCommon.getData<VideoArticleEntity>(VideoArticleEntitySchema);
+      let imageArray: any[] = [];
+      databaseData.map((x:any)=>{
+        if(x.embedded_images && x.embedded_images.length > 0) {
+          x.embedded_images.map((y:any)=>{
+            if((y.split('https://')[1] || y.split('http://')[1])) {
+              imageArray.push({uri:y})
+            }
+          });
+          //console.log("hgdj23--",imageArray);
+        }
+        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
+          imageArray.push({uri:x.cover_image.url})
+        }
+      })
+      databaseDataact.map((x:any)=>{
+        if(x.embedded_images && x.embedded_images.length > 0) {
+          x.embedded_images.map((y:any)=>{
+            if((y.split('https://')[1] || y.split('http://')[1])) {
+              imageArray.push({uri:y})
+            }
+          });
+          // console.log("hgdj23--",imageArray);
+        }
+        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
+          imageArray.push({uri:x.cover_image.url})
+        }
+      })
+      databaseDatabasicpg.map((x:any)=>{
+        if(x.embedded_images && x.embedded_images.length > 0) {
+          x.embedded_images.map((y:any)=>{
+            if((y.split('https://')[1] || y.split('http://')[1])) {
+              imageArray.push({uri:y})
+            }
+          });
+          //console.log("hgdj23--",imageArray);
+        }
+        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
+          imageArray.push({uri:x.cover_image.url})
+        }
+      })
+      databaseDatapinnedCD.map((x:any)=>{
+        if(x.embedded_images && x.embedded_images.length > 0) {
+          x.embedded_images.map((y:any)=>{
+            if((y.split('https://')[1] || y.split('http://')[1])) {
+              imageArray.push({uri:y})
+            }
+          });
+          console.log("hgdj23--",imageArray);
+        }
+        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
+          imageArray.push({uri:x.cover_image.url})
+        }
+      })
+      databaseDatavideoart.map((x:any)=>{
+        if(x.embedded_images && x.embedded_images.length > 0) {
+          x.embedded_images.map((y:any)=>{
+            if((y.split('https://')[1] || y.split('http://')[1])) {
+              imageArray.push({uri:y})
+            }
+          });
+          console.log("hgdj23--",imageArray);
+        }
+        if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
+          imageArray.push({uri:x.cover_image.url})
+        }
+      })
+      
+      console.log(imageArray.length,"Imagearray212--",imageArray);
+      FastImage.preload(imageArray,()=>{
+        console.log("in progress");
+        //return 'success';
+      },
+      ()=>{
+        console.log("after complete")
+        resolve('complete');
+      })
+
+    //   console.log("Imagearray212--",imageArray);
+    //   var i: number,j, temporary, chunk = 10;
+    //   const promises = [];
+    //   for (i = 0,j = imageArray.length; i < j; i += chunk) {
+    //     promises.push(new Promise((resolve) => {
+    //         temporary = imageArray.slice(i, i + chunk);
+    //         // do whatever
+    //         FastImage.preload(temporary,()=>{
+    //           console.log("in progress");
+    //           //return 'success';
+    //         },
+    //         ()=>{
+    //           console.log("after complete")
+    //           resolve('complete');
+    //         })
+    //       }))
+    //   }
+
+    // const results = await Promise.all(promises);
+    // console.log("promise all complete--",results);
+      
+  });
 }
 export const onApiFail = (error: any) => {
  // console.log(error, "..error..");
