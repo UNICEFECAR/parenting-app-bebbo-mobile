@@ -105,7 +105,7 @@ export default () => {
     callUrl(linkedURL);
   }, [linkedURL, resetURL, userIsOnboarded])
   const callUrl = (url: any) => {
-    console.log(url, "..callurl initialUrl..");
+    // console.log(url, "..callurl initialUrl..");
     if (url) {
       const initialUrlnew: any = url;
       if (initialUrlnew === null) {
@@ -290,7 +290,7 @@ export default () => {
   }, [netState]);
   const routeNameRef = React.useRef<any>();
   const navigationRef = React.useRef<any>();
-  console.log(routeNameRef.current, "callRealmListener12--", I18nManager.isRTL);
+  // console.log(routeNameRef.current, "callRealmListener12--", I18nManager.isRTL);
 
   return (
     // <ThemeProvider theme={theme}>
