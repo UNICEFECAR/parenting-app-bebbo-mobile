@@ -88,7 +88,7 @@ const Childgrowth = ({navigation,route}: Props) => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild,"..activeChild..")
+  // console.log(activeChild,"..activeChild..")
   // const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
   let measures:any=[];
   if(activeChild?.measures.length>0){
