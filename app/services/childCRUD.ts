@@ -386,7 +386,7 @@ export const getDiffinDays = (day1millis: number, day2millis: number) => {
     //   days = 0;
     // }
   };
-  console.log(days, "..days..");
+  // console.log(days, "..days..");
   return days;
 };
 export const getCurrentChildAgeInDays = (birthDayMillis: number) => {
@@ -404,7 +404,7 @@ export const getCurrentChildAgeInDays = (birthDayMillis: number) => {
       days = 0;
     }
   };
-  console.log(days, "..days..");
+  // console.log(days, "..days..");
   return days;
 };
 export const getCurrentChildAgeInYears = (birthDayMillis: number) => {
