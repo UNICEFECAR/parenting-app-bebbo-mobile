@@ -18,7 +18,8 @@ export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText='\nhttps://www.bebbo.app/share';
-export const shareTextButton='https://tesmobility.datamatics.com/share/';
+export const shareTextButton='https://bebbo.app/share/';
+// export const shareTextButton='https://tesmobility.datamatics.com/share/';
 export const maleData:any={
     "id": 37,
     "name": "Male",
