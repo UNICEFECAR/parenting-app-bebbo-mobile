@@ -4,7 +4,7 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DateTime } from 'luxon';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Alert, BackHandler, Dimensions } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -72,13 +72,23 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       const bufferAgeBracket = useAppSelector((state: any) =>
       state.childData.childDataSet.bufferAgeBracket
     );
+    const toggleSwitchVal = useAppSelector((state: any) =>
+  state.bandWidthData?.lowbandWidth
+    ? state.bandWidthData.lowbandWidth
+    : false,
+);
   const netInfoval = useNetInfoHook();
     useFocusEffect(
       React.useCallback(() => {
-       // console.log(netInfoval.isConnected,'--loading focuseffect--');
         if(netInfoval.isConnected != null)
         {
-            callSagaApi();
+          let enableImageDownload = false;
+          if(toggleSwitchVal == false && netInfoval.isConnected ==true){
+            enableImageDownload = true
+          }else {
+            enableImageDownload= false
+          }
+          callSagaApi(enableImageDownload);
         }
           return () => {
             // console.log("loading screen left");
@@ -99,30 +109,31 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       }
     }, []);
 //console.log(apiJsonData,"..apiJsonData..");
-  const callSagaApi = async () => {
+  const callSagaApi = async (enableImageDownload: any) => {
    // console.log('in callSagaApi ',netInfoval.isConnected);
+   console.log(enableImageDownload,'--enableImageDownload in callsagaapi--');
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else if(prevPage == "Home")
     {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
-    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate")
+    else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData")
     {
       const Ages=await getAge(childList,child_age);
       const newAges = [...new Set([...Ages,...bufferAgeBracket])]
       //console.log(newAges,"..Ages..")
       let apiJsonDataarticle;
-      if(newAges?.length>0){
+      if(newAges?.length>0 && prevPage != "DownloadAllData"){
         apiJsonDataarticle=apiJsonDataGet(String(newAges),"all")
       }
       else{
         apiJsonDataarticle=apiJsonDataGet("all","all")
       }
       apiJsonData.push(apiJsonDataarticle[0]);
-     // console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+     console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
         BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
@@ -139,7 +150,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: currentDate}));
       // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
      // console.log("called fetchapi after delete");
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else if(prevPage == "PeriodicSync")
     {
@@ -210,7 +221,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         // dispatch(setDownloadedBufferAgeBracket([]))
         dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
       }
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else if(prevPage == "ImportScreen")
     {
@@ -230,10 +241,10 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       const deleteArticles=await deleteArticleNotPinned();
       //console.log(deleteArticles,"..deleteArticles..");
       dispatch(setDownloadedBufferAgeBracket([]))
-      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonDataarticle,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonDataarticle,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else {
-      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData))
+      dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
   }
   
