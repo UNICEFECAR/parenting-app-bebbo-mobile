@@ -73,7 +73,7 @@ const ChildSetupList = ({ navigation }: Props) => {
     ? JSON.parse(state.childData.childDataSet.activeChild)
     : [],
   );
-  console.log(activeChild,"..activeChild..");
+  // console.log(activeChild,"..activeChild..");
   useFocusEffect(
     React.useCallback(() => {
       getAllChildren(dispatch,child_age,0);
