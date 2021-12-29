@@ -52,6 +52,7 @@ export type ArticleEntity = {
     licensed: number,
     premature: number,
     mandatory: number,
+    embedded_images?: string[]
   };
 
 
@@ -86,5 +87,6 @@ export type ArticleEntity = {
       licensed: { type: 'int' },
       premature: { type: 'int' },
       mandatory: { type: 'int' },
+      embedded_images: { type: 'string[]',optional: true},
     }
   };

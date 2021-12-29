@@ -78,6 +78,7 @@ import { getAllChildren, isFutureDate } from '../../services/childCRUD';
 import { formatStringDate } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
+import { downloadArticleImages } from '../../services/commonApiService';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -576,6 +577,29 @@ const SettingScreen = (props: any) => {
     );
   }
 
+  const downloadAllData = () => {
+    Alert.alert(t('downloadAllPopupTitle'), t('downloadAllPopupText'),
+      [
+        {
+          text: t('downloadAllCancelPopUpBtn'),
+          onPress: () => {
+
+          },
+          style: "cancel"
+        },
+        {
+          text: t('downloadAllContinueBtn'), onPress: async () => {
+            // downloadArticleImages();
+            props.navigation.navigate('LoadingScreen', {
+              apiJsonData: allApisObject,
+              prevPage: 'DownloadAllData'
+            });
+          }
+        }
+      ]
+    );
+  }
+
   const [modalVisible, setModalVisible] = useState(false);
   const [country, setCountry] = useState<any>('');
   const [language, setlanguage] = useState<any>('');
@@ -684,7 +708,6 @@ const SettingScreen = (props: any) => {
 
    
   }
-  
   return (
     <>
       <View style={{ flex: 1, backgroundColor: primaryColor }}>
@@ -917,15 +940,21 @@ const SettingScreen = (props: any) => {
                 <ButtonText numberOfLines={2}>{t('settingScreendownldupdateBtn')}</ButtonText>
               </ButtonPrimary>
             </ShiftFromTop10>
-            {/* <ShiftFromTop20>
+            <ShiftFromTop10>
               <Heading4>{t('settingScreendownldSubHeader2Text')}</Heading4>
               <Heading6>{t('settingScreendownldSubHeader3Text')}</Heading6>
-            </ShiftFromTop20>
+            </ShiftFromTop10>
             <ShiftFromTop10>
-              <ButtonPrimary onPress={() => { }}>
+              <ButtonPrimary onPress={() => { if (netInfoval && netInfoval.isConnected == true) {
+                    downloadAllData()
+                  }
+                  else {
+                    Alert.alert('', t('noInternet'));
+                  }
+                }}>
                 <ButtonText numberOfLines={2}>{t('settingScreendownldallBtn')}</ButtonText>
               </ButtonPrimary>
-            </ShiftFromTop10> */}
+            </ShiftFromTop10>
           </MainContainer>
 
           <MainContainer>
