@@ -46,6 +46,7 @@ export type ActivitiesEntity = {
     cover_image?: CoverImageEntity,
     related_milestone: number[],
     mandatory: number,
+    embedded_images?: string[]
   };
 
 
@@ -72,5 +73,6 @@ export type ActivitiesEntity = {
       // cover_image: {type: 'object', objectType: 'CoverImage'} ,
       related_milestone: { type: 'int[]' },
       mandatory: { type: 'int' },
+      embedded_images: { type: 'string[]',optional: true},
     }
   };
