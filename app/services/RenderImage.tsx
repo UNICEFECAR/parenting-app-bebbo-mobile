@@ -5,16 +5,16 @@ import LoadableImage from "./LoadableImage";
 
 const RenderImage = ({ uri,itemnew,toggleSwitchVal }:any) => {
     console.log(itemnew,"..itemnew")
-    const [ imageSize, setImageSize ] = useState<any>({})
+    // const [ imageSize, setImageSize ] = useState<any>({})
   
-    useEffect(() => {
-      Image.getSize(uri, (width, height) => {
-        setImageSize({
-          width,
-          height
-        })
-      })
-    }, [])
+    // useEffect(() => {
+    //   // Image.getSize(uri, (width, height) => {
+    //   //   setImageSize({
+    //   //     width,
+    //   //     height
+    //   //   })
+    //   // })
+    // }, [])
   
     return (
        <><View 
