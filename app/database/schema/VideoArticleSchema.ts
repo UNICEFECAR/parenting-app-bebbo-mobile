@@ -24,6 +24,7 @@ export type VideoArticleEntity = {
     licensed: number,
     premature: number,
     mandatory: number,
+    embedded_images?: string[]
   };
 
 
@@ -56,5 +57,6 @@ export type VideoArticleEntity = {
       licensed: { type: 'int' },
       premature: { type: 'int' },
       mandatory: { type: 'int' },
+      embedded_images: { type: 'string[]',optional: true},
     }
   };
