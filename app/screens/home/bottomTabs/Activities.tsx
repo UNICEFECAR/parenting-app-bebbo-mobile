@@ -281,7 +281,7 @@ const Activities = ({ route, navigation }: Props) => {
   // },[navigation.isFocused()])
   useFocusEffect(
     React.useCallback(() => {
-      console.log(activeChild,"..activeChild..")
+      // console.log(activeChild,"..activeChild..")
       // console.log("child dev usefocuseffect");
       // || (x.related_milestone.length > 0 && (childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) > -1)
       setsuggestedGames(filteredData.filter((x: any) => x.related_milestone.length > 0 && ((childMilestonedata.findIndex((y:any)=>y == x.related_milestone[0])) == -1)));

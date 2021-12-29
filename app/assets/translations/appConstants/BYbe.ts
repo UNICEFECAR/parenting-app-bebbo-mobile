@@ -425,7 +425,16 @@ const BYbe = {
                 notNowTxt: "Не зараз",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File"
+                importBtntxt: "Import File",
+
+                //27/12/2021
+                downloadAllPopupTitle: "Update data",
+                downloadAllPopupText: "This will take time. Do you want to download all data now?",
+                downloadAllCancelPopUpBtn: "Cancel",
+                downloadAllContinueBtn: "Continue",
+                downloadAllSuccessPopupTitle: "Success",
+                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
+                downloadAllSuccessOkBtn: "Ok"
 
         }
 }
