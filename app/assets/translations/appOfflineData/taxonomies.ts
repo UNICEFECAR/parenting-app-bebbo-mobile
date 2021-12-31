@@ -5568,26 +5568,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "I porsalindur"
+                    "id": 110071,
+                    "name": "Zhvillimi fëmijës",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Foshnjë"
+                    "id": 110076,
+                    "name": "Prindërimi më i mirë",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Fëmijëria "
+                    "id": 110081,
+                    "name": "Rritja e fëmijëve të shëndetshem",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Mosha parashkollore "
+                    "id": 110086,
+                    "name": "Vaksinimi",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Të gjitha"
+                    "id": 110091,
+                    "name": "Kujdesi për veten",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Zhvillimi dhe mësimnxënia",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Të folurit dhe të lexuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Mjedisi i të mësuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Fëmija im dhe parashkollori",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Të mësuarit përmes lojës",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Marrëdhënie me dashuri",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Loja me fëmijën tim",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Sjellja sfiduese",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Mësimnxënia në shtëpi",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Lidhja e fëmijës me të tjerët",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "problemet e zhvillimit",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Shprehitë e shëndetshme",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Ushqyerja e shëndetshme",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Ushqyerja me gji",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Siguria dhe mbrojtja",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Rreth vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Siguria e vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Sëmundjet e parandalueshme nga vaksinat",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Kalendari i vaksinimit",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaksinat dhe kushtet mjekësore",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Ruajtja e shëndetit dhe lumturisë",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Kërkimi i ndihmës për stresin tim",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Ballafaqimi me sfidat e prindërimit",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Mirëqenia psikologjike",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -5698,7 +5849,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 muaj",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -5708,7 +5859,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 muaj",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -11019,6 +11170,783 @@ export const taxonomydata:any = {
             ]
         }
     }],
+    "by-be": [{
+        "langCode": "by-be",
+        "allData":{
+            "activity_category": [
+                {
+                    "id": 6421,
+                    "name": "Рухальная",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 6431,
+                    "name": "Сацыяльна- эмацыянальная",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 6436,
+                    "name": "Кагнітыўная",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 6441,
+                    "name": "Моўная і камунікатыўная",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 1,
+                    "name": "Харчаванне",
+                    "unique_name": "nutrition_and_breastfeeding"
+                },
+                {
+                    "id": 2,
+                    "name": "Здароўе і дабрабыт",
+                    "unique_name": "health_and_wellbeing"
+                },
+                {
+                    "id": 3,
+                    "name": "Бяспека і абарона",
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 4,
+                    "name": "Для бацькоў",
+                    "unique_name": "parenting_corner"
+                },
+                {
+                    "id": 5,
+                    "name": "Рост дзіцяці",
+                    "unique_name": "child_growth"
+                },
+                {
+                    "id": 6,
+                    "name": "Развіццё дзіцяці",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 7,
+                    "name": "Медагляды",
+                    "unique_name": "health_check_ups"
+                },
+                {
+                    "id": 8,
+                    "name": "Вакцынацыя",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 55,
+                    "name": "Гульні і навучанне",
+                    "unique_name": "play_and_learning"
+                },
+                {
+                    "id": 56,
+                    "name": "Адказнае выхаванне",
+                    "unique_name": "responsive_parenting"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 110071,
+                    "name": "Развіццё дзіцяці",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "Што значыць быць добрай маці/бацькам",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 110081,
+                    "name": "Здароўе дзіцяці",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 110086,
+                    "name": "Вакцынацыя",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 110091,
+                    "name": "Клопат пра сябе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развіццё і навучанне",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Зносіны і чытанне",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Асяроддзе для навучання",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Дзіця і дзіцячы сад",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Вучымся гуляючы",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Цёплыя адносіны",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Гуляем з дзіцем",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Непаслухмянства",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Вучымся дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Зносіны дзіцяці з іншымі людзьмі",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Прычыны для занепакоенасці",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здаровыя звычкі",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Правільнае харчаванне",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Грудное выкормліванне",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Бяспека і абарона",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Аб вакцынах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Бяспечнасць вакцын",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Хваробы, якія мы прадухіляем прышчэпкамі",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Графік вакцынацыі",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцыны і стан здароўя",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Падтрыманне здароўя і дабрабыту",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Як справіцца са стрэсам",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Як справіцца са складанасцямі ў доглядзе за дзіцем",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Псіхалагічны дабрабыт",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 43,
+                    "name": "1-ы месяц",
+                    "days_from": 0,
+                    "days_to": 30,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        43,
+                        44,
+                        45
+                    ]
+                },
+                {
+                    "id": 44,
+                    "name": "2-і месяц",
+                    "days_from": 31,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        44,
+                        45,
+                        46
+                    ]
+                },
+                {
+                    "id": 45,
+                    "name": "3–4 месяцы",
+                    "days_from": 61,
+                    "days_to": 120,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        45,
+                        46,
+                        47
+                    ]
+                },
+                {
+                    "id": 46,
+                    "name": "5–6 месяцаў",
+                    "days_from": 121,
+                    "days_to": 180,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        46,
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 47,
+                    "name": "7–9 месяцаў",
+                    "days_from": 181,
+                    "days_to": 270,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 48,
+                    "name": "10–12 месяцаў",
+                    "days_from": 271,
+                    "days_to": 360,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        48,
+                        49
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "13–18 месяцаў",
+                    "days_from": 361,
+                    "days_to": 540,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        49,
+                        50
+                    ]
+                },
+                {
+                    "id": 50,
+                    "name": "19–24 месяцы",
+                    "days_from": 541,
+                    "days_to": 720,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        50,
+                        51
+                    ]
+                },
+                {
+                    "id": 51,
+                    "name": "25–36 месяцаў",
+                    "days_from": 721,
+                    "days_to": 1080,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        51,
+                        52
+                    ]
+                },
+                {
+                    "id": 52,
+                    "name": "37–48 месяцаў",
+                    "days_from": 1081,
+                    "days_to": 1440,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        52,
+                        57
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "49–60 месяцаў",
+                    "days_from": 1441,
+                    "days_to": 1800,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        57,
+                        58
+                    ]
+                },
+                {
+                    "id": 58,
+                    "name": "61–72 месяцы",
+                    "days_from": 1801,
+                    "days_to": 2160,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        58
+                    ]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 40,
+                    "name": "Хлопчык",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 41,
+                    "name": "Дзяўчынка",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 59,
+                    "name": "Абодва",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 10003,
+                    "name": "1 месяц",
+                    "body": "На працягу першых 5 дзён нованароджаны губляе да 10 % сваёй масы цела пры нараджэнні, але пры адпаведным доглядзе і харчаванні, у першую чаргу пры грудным выкормліванні, ён кампенсуе гэту страту да канца другога тыдня жыцця. У наступны перыяд нованароджаны будзе прыбаўляць у вазе ад 20 да 30 г у дзень, да 5 см у месяц у даўжыню і 2-2,5 см у акружнасці галавы. ",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 10004,
+                    "name": "2 месяцы, 3 месяцы",
+                    "body": "На другім і трэцім месяцы дзіця працягвае расці прыкладна тымі ж тэмпамі, што і ў першыя тыдні. Ён будзе набіраць ад 700 да 900 г у месяц у вазе, ад 2,5 да 4 см у даўжыню і прыкладна 1,2 см у акружнасці галавы.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 10005,
+                    "name": "5 месяцаў (уключаючы 4-ы і 5-ы месяц)",
+                    "body": "Рост пачынае запавольвацца, і на чацвёртым, пятым і шостым месяцы дзіця набірае ў сярэднім 450-550 г вагі і каля 2 см у даўжыню.",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 10007,
+                    "name": "6 месяцаў",
+                    "body": "Дзіця працягвае набіраць у месяц 450-550 г у вазе і ў сярэднім каля 2 см у даўжыню. К 6 месяцам маса цела дзіцяці ўжо ўдвая большая за тую, якая была пры нараджэнні.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 10008,
+                    "name": "9 месяцаў (уключаючы 7–9-ы месяцы)",
+                    "body": "З сёмага па дзявяты месяц рост працягвае запавольвацца. Дзеці растуць рознымі тэмпамі, але важна, каб прасочвалася мадэль росту, якая ўстанавілася ў папярэднія месяцы.",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 10009,
+                    "name": "12 месяцаў (уключаючы 10–12-ы месяцы)",
+                    "body": "У апошнім трыместры першага года дзіця набірае каля 1 см у месяц, пры гэтым вага вар’іруецца і залежыць ад узроўню актыўнасці. На працягу першага года дзіця звычайна патройвае сваю вагу пры нараджэнні, вырастае ў сярэднім на 25 см, а акружнасць галавы павялічваецца на 12,5 см.",
+                    "days_from": 275,
+                    "days_to": 365
+                },
+                {
+                    "id": 10010,
+                    "name": "18 месяцаў (уключаючы другі год)",
+                    "body": "У другі год працягваецца паступовае запавольванне росту. За гэты год дзіця вырастае прыкладна на 12 см, набірае ў вазе 2-2,5 кг, а акружнасць галавы павялічваецца на 2-2,5 см.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 10012,
+                    "name": "3 гады і далей (трэці год і далей)",
+                    "body": "Рост з трэцяга года становіцца больш раўнамерным. За год дзіця набірае ў росце 5-7,5 см і ў вазе 2-3 кг.",
+                    "days_from": 731,
+                    "days_to": 2190
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 6466,
+                    "name": "Пры нараджэнні",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 6471,
+                    "name": "У поўны 1 месяц",
+                    "vaccination_opens": 30
+                },
+                {
+                    "id": 6476,
+                    "name": "У поўныя 2 месяцы",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 6481,
+                    "name": "У поўныя 3 месяцы",
+                    "vaccination_opens": 90
+                },
+                {
+                    "id": 6486,
+                    "name": "У поўныя 3.5 месяцы",
+                    "vaccination_opens": 105
+                },
+                {
+                    "id": 6491,
+                    "name": "У поўныя 4 месяцы",
+                    "vaccination_opens": 120
+                },
+                {
+                    "id": 6496,
+                    "name": "У поўных 5 месяцаў",
+                    "vaccination_opens": 150
+                },
+                {
+                    "id": 6501,
+                    "name": "У поўных 6 месяцаў",
+                    "vaccination_opens": 180
+                },
+                {
+                    "id": 6506,
+                    "name": "З 16 да 23 месяцаў",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6511,
+                    "name": "У поўных 7 месяцаў",
+                    "vaccination_opens": 210
+                },
+                {
+                    "id": 6516,
+                    "name": "У поўных 8 месяцаў",
+                    "vaccination_opens": 240
+                },
+                {
+                    "id": 6521,
+                    "name": "У поўных 9 месяцаў",
+                    "vaccination_opens": 270
+                },
+                {
+                    "id": 6526,
+                    "name": "У поўных 10 месяцаў",
+                    "vaccination_opens": 300
+                },
+                {
+                    "id": 6531,
+                    "name": "У поўных 11 месяцаў",
+                    "vaccination_opens": 330
+                },
+                {
+                    "id": 6532,
+                    "name": "У поўных 12 месяцаў",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6533,
+                    "name": "З 12 да 15 месяцаў",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6534,
+                    "name": "У поўных 15 месяцаў",
+                    "vaccination_opens": 455
+                },
+                {
+                    "id": 6535,
+                    "name": "У поўных 16 месяцаў",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6537,
+                    "name": "У поўны 21 месяц",
+                    "vaccination_opens": 635
+                },
+                {
+                    "id": 6538,
+                    "name": "У поўныя 2 гады",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6540,
+                    "name": "У поўных 27 месяцаў",
+                    "vaccination_opens": 820
+                },
+                {
+                    "id": 6541,
+                    "name": "У поўных 30 месяцаў",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6542,
+                    "name": "У поўныя 33 месяцы",
+                    "vaccination_opens": 1000
+                },
+                {
+                    "id": 6543,
+                    "name": "У поўныя 3 гады",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6544,
+                    "name": "З 30 да 36 месяцаў",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6545,
+                    "name": "З 24 да 30 месяцаў",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6546,
+                    "name": "З 36 да 48 месяцаў",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6547,
+                    "name": " У поўныя 42 месяцы",
+                    "vaccination_opens": 1275
+                },
+                {
+                    "id": 6548,
+                    "name": "У поўныя 4 гады",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6549,
+                    "name": " У поўныя 54 месяцы",
+                    "vaccination_opens": 1640
+                },
+                {
+                    "id": 6550,
+                    "name": "З 48 да 61 месяца",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6551,
+                    "name": "У поўных 5 гадоў",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 6552,
+                    "name": "З 3 да 7 гадоў",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6553,
+                    "name": "У поўных 6 гадоў",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 6556,
+                    "name": "У поўных 6.5 гадоў",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 6557,
+                    "name": "У поўных 7 гадоў",
+                    "vaccination_opens": 2555
+                },
+                {
+                    "id": 6560,
+                    "name": "У поўных 18 месяцаў",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 32906,
+                    "name": "У поўных 5.5 гадоў",
+                    "vaccination_opens": 2005
+                },
+                {
+                    "id": 59016,
+                    "name": "З 5 да 6 гадоў",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 59041,
+                    "name": "З 37 да 48 месяцаў",
+                    "vaccination_opens": 1125
+                },
+                {
+                    "id": 59051,
+                    "name": "У поўных 13 месяцаў",
+                    "vaccination_opens": 395
+                },
+                {
+                    "id": 59056,
+                    "name": "З 6 да 7 гадоў",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 59061,
+                    "name": "З 18 да 24 месяцаў",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 59076,
+                    "name": "З 12 да 18 месяцаў",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 59326,
+                    "name": "З 19 да 23 месяцаў",
+                    "vaccination_opens": 575
+                },
+                {
+                    "id": 109721,
+                    "name": "На 15-ы дзень",
+                    "vaccination_opens": 15
+                },
+                {
+                    "id": 110006,
+                    "name": "З 7 да 14 дзён",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 110011,
+                    "name": "З 4 да 6 гадоў",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 110016,
+                    "name": "На 21-ы дзень",
+                    "vaccination_opens": 21
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 6461,
+                    "name": "Рост для вагі",
+                    "unique_name": "height_for_weight"
+                },
+                {
+                    "id": 32786,
+                    "name": "Рост па ўзросце",
+                    "unique_name": "height_for_age"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 37,
+                    "name": "Мужчынскі",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 38,
+                    "name": "Жаночы",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 60,
+                    "name": "Абодва",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 109801,
+                    "name": "Маці",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109806,
+                    "name": "Бацька",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109811,
+                    "name": "Іншы блізкі дарослы",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109816,
+                    "name": "Спецыяліст",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 59001,
+                    "name": "Пад кіраўніцтвам бацькоў"
+                },
+                {
+                    "id": 59006,
+                    "name": "Самастойныя гульні"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation":[
+
+            ]
+        }
+    }],
     "by-ru": [{
         "langCode": "by-ru",
         "allData":{
@@ -11047,17 +11975,17 @@ export const taxonomydata:any = {
             "category": [
                 {
                     "id": 1,
-                    "name": "Питание и грудное вскармливание",
+                    "name": "Питание",
                     "unique_name": "nutrition_and_breastfeeding"
                 },
                 {
                     "id": 2,
-                    "name": "Здоровье и благополучие",
+                    "name": "Здоровье",
                     "unique_name": "health_and_wellbeing"
                 },
                 {
                     "id": 3,
-                    "name": "Безопасность и защита",
+                    "name": "Защита ребенка",
                     "unique_name": "safety_and_protection"
                 },
                 {
@@ -11092,30 +12020,181 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 56,
-                    "name": "Ответственное воспитание",
+                    "name": "Чуткое воспитание",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новорожденный"
+                    "id": 110071,
+                    "name": "Развитие ребенка",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Младенец"
+                    "id": 110076,
+                    "name": "Что значит быть хорошим родителем",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Малыш"
+                    "id": 110081,
+                    "name": "Здоровье ребенка",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Дошкольник"
+                    "id": 110086,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Все"
+                    "id": 110091,
+                    "name": "Забота о себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и обучение",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Общение и чтение",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Среда для обучения",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Ребенок и детский сад",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Учимся играя",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Теплые отношения",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Играем с ребенком",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Непослушание",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Учимся дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Общение ребенка с другими людьми",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Поводы для беспокойства",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здоровые привычки",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Правильное питание",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Грудное вскармиливание",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасность и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "О вакцинах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасность вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болезни, которые мы предотвращаем прививками",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "График вакцинации",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцины и состояние здоровья",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Поддержание здоровья и благополучия",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Как справиться со стрессом",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Как справиться со сложностями в уходе за ребенком",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологическое благополучие",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -11226,7 +12305,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37–48 месяцев",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -11236,7 +12315,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49–60 месяцев",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -11728,30 +12807,181 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 56,
-                    "name": "Отзивчиви родителски грижи",
+                    "name": "Отзивчиво родителство",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новородено"
+                    "id": 110071,
+                    "name": "Детско развитие",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Бебе"
+                    "id": 110076,
+                    "name": "По-добро родителство",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Малко дете"
+                    "id": 110081,
+                    "name": "Отглеждане на здрави деца",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Дете в предучилищна възраст"
+                    "id": 110086,
+                    "name": "Ваксинация",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Всички"
+                    "id": 110091,
+                    "name": "Грижа за себе си",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и учене",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Говорене и четене",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Учебна среда",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Моето дете и детската градина",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Учене чрез игра",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Обич и взаимоотношения",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Игра с моето дете",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Предизвикателно поведение",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Учене у дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Отношения на детето с други хора",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Притеснения за развитието",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здравословни навици",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Здравословно хранене",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Кърмене",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасност и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "За ваксините",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасност на ваксините",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болести, предотвратими с ваксини",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Имунизационен календар",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Ваксини и медицински състояния",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Как да останем здрави и щастливи",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Получаване на помощ за стрес",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Справяне с предизвикателствата в родителството",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психично здраве и благосъстояние",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -11862,7 +13092,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 месец",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -11872,7 +13102,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 месец",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -17125,6 +18355,670 @@ export const taxonomydata:any = {
                 {
                     "id": 6371,
                     "name": "veštačka ishrana"
+                },
+                {
+                    "id": 110216,
+                    "name": "ротавирус"
+                },
+                {
+                    "id": 110221,
+                    "name": "ротавирусна инфекция"
+                },
+                {
+                    "id": 110226,
+                    "name": "самотна майка"
+                },
+                {
+                    "id": 110231,
+                    "name": "самотен баща"
+                },
+                {
+                    "id": 110236,
+                    "name": "инвитро"
+                },
+                {
+                    "id": 110241,
+                    "name": "забременяване инвитро"
+                },
+                {
+                    "id": 110246,
+                    "name": "бащинство"
+                },
+                {
+                    "id": 110251,
+                    "name": "роля на бащата"
+                },
+                {
+                    "id": 110256,
+                    "name": "роля на таткото"
+                },
+                {
+                    "id": 110261,
+                    "name": "поведение в предучилищна възраст"
+                },
+                {
+                    "id": 110266,
+                    "name": "срамежливо поведение"
+                },
+                {
+                    "id": 110271,
+                    "name": "екран"
+                },
+                {
+                    "id": 110276,
+                    "name": "гледане на екрани"
+                },
+                {
+                    "id": 110281,
+                    "name": "употреба на технологии"
+                },
+                {
+                    "id": 110286,
+                    "name": "употреба на екрани от деца"
+                },
+                {
+                    "id": 110291,
+                    "name": "правила за употреба на технологии"
+                },
+                {
+                    "id": 110296,
+                    "name": "бебешки игри"
+                },
+                {
+                    "id": 110301,
+                    "name": "игра с бебе"
+                },
+                {
+                    "id": 110306,
+                    "name": "емоции при малки деца"
+                },
+                {
+                    "id": 110311,
+                    "name": "чувства при малки деца"
+                },
+                {
+                    "id": 110316,
+                    "name": "дейности за насърчаване на емоционалното развитие"
+                },
+                {
+                    "id": 110321,
+                    "name": "емоционално развитие"
+                },
+                {
+                    "id": 110326,
+                    "name": "тантрум"
+                },
+                {
+                    "id": 110331,
+                    "name": "разлика между момичета и момчета"
+                },
+                {
+                    "id": 110336,
+                    "name": "насърчаване на грамотността"
+                },
+                {
+                    "id": 110341,
+                    "name": "студено време"
+                },
+                {
+                    "id": 110346,
+                    "name": "изгаряне"
+                },
+                {
+                    "id": 110351,
+                    "name": "реакция при изгаряне"
+                },
+                {
+                    "id": 110356,
+                    "name": "превенция на изгарянията"
+                },
+                {
+                    "id": 110361,
+                    "name": "пожар"
+                },
+                {
+                    "id": 110366,
+                    "name": "пожари"
+                },
+                {
+                    "id": 110371,
+                    "name": "слънчево изгаряне"
+                },
+                {
+                    "id": 110376,
+                    "name": "падане"
+                },
+                {
+                    "id": 110381,
+                    "name": "ухапвания от насекомо"
+                },
+                {
+                    "id": 110386,
+                    "name": "ужилване"
+                },
+                {
+                    "id": 110391,
+                    "name": "защита срещу изгаряне"
+                },
+                {
+                    "id": 110396,
+                    "name": "защита срещу слънчево изгаряне"
+                },
+                {
+                    "id": 110401,
+                    "name": "отравяне на дете"
+                },
+                {
+                    "id": 110406,
+                    "name": "симптоми на отравяне"
+                },
+                {
+                    "id": 110411,
+                    "name": "предотвратяване на отравяне"
+                },
+                {
+                    "id": 110416,
+                    "name": "помощ при задушаване"
+                },
+                {
+                    "id": 110421,
+                    "name": "метод на Хаймлих"
+                },
+                {
+                    "id": 110426,
+                    "name": "задавяне"
+                },
+                {
+                    "id": 110431,
+                    "name": "помощ при задавяне"
+                },
+                {
+                    "id": 110436,
+                    "name": "превенция на задушаване"
+                },
+                {
+                    "id": 110441,
+                    "name": "превенция на задавяне"
+                },
+                {
+                    "id": 110446,
+                    "name": "реакция при отравяне"
+                },
+                {
+                    "id": 110451,
+                    "name": "синдром на внезапна смърт"
+                },
+                {
+                    "id": 110456,
+                    "name": "внезапна неочаквана смърт на кърмачето"
+                },
+                {
+                    "id": 110461,
+                    "name": "ВНСК"
+                },
+                {
+                    "id": 110466,
+                    "name": "контакт кожа до кожа"
+                },
+                {
+                    "id": 110471,
+                    "name": "детски сън"
+                },
+                {
+                    "id": 110476,
+                    "name": "сън в предучилищна възраст"
+                },
+                {
+                    "id": 110481,
+                    "name": "сън при малко дете"
+                },
+                {
+                    "id": 110486,
+                    "name": "заспиване"
+                },
+                {
+                    "id": 110491,
+                    "name": "паротит"
+                },
+                {
+                    "id": 110496,
+                    "name": "пикочна инфекция"
+                },
+                {
+                    "id": 110501,
+                    "name": "бебешки плач"
+                },
+                {
+                    "id": 110506,
+                    "name": "успокояване на бебе"
+                },
+                {
+                    "id": 110511,
+                    "name": "успокояване на плачещо бебе"
+                },
+                {
+                    "id": 110516,
+                    "name": "хигиена преди кърмене"
+                },
+                {
+                    "id": 110521,
+                    "name": "пушене"
+                },
+                {
+                    "id": 110526,
+                    "name": "пасивно пушене"
+                },
+                {
+                    "id": 110531,
+                    "name": "болки в корема"
+                },
+                {
+                    "id": 110536,
+                    "name": "смяна на пелени"
+                },
+                {
+                    "id": 110541,
+                    "name": "топлинен обрив"
+                },
+                {
+                    "id": 110546,
+                    "name": "бодлива топлина"
+                },
+                {
+                    "id": 110551,
+                    "name": "лечение на топлинен обрив"
+                },
+                {
+                    "id": 110556,
+                    "name": "милиария"
+                },
+                {
+                    "id": 110561,
+                    "name": "болка в корема"
+                },
+                {
+                    "id": 110566,
+                    "name": "стомашна болка"
+                },
+                {
+                    "id": 110571,
+                    "name": "коремна болка"
+                },
+                {
+                    "id": 110576,
+                    "name": "дехидратация"
+                },
+                {
+                    "id": 110581,
+                    "name": "лечение на повръщане"
+                },
+                {
+                    "id": 110586,
+                    "name": "херпес симплекс"
+                },
+                {
+                    "id": 110591,
+                    "name": "устна инфекция"
+                },
+                {
+                    "id": 110596,
+                    "name": "рани по устата"
+                },
+                {
+                    "id": 110601,
+                    "name": "детски зъби"
+                },
+                {
+                    "id": 110606,
+                    "name": "болки в зъбите"
+                },
+                {
+                    "id": 110611,
+                    "name": "приучаване към тоалетна"
+                },
+                {
+                    "id": 110616,
+                    "name": "приучаване към гърне"
+                },
+                {
+                    "id": 110621,
+                    "name": "използване на гърне"
+                },
+                {
+                    "id": 110626,
+                    "name": "гърне"
+                },
+                {
+                    "id": 110631,
+                    "name": "тетанус"
+                },
+                {
+                    "id": 110636,
+                    "name": "полио"
+                },
+                {
+                    "id": 110641,
+                    "name": "полиомиелит"
+                },
+                {
+                    "id": 110646,
+                    "name": "хемофилус инфлуенце тип Б"
+                },
+                {
+                    "id": 110651,
+                    "name": "ХИБ"
+                },
+                {
+                    "id": 110656,
+                    "name": "млечница"
+                },
+                {
+                    "id": 110661,
+                    "name": "гъбички"
+                },
+                {
+                    "id": 110666,
+                    "name": "кандидоза"
+                },
+                {
+                    "id": 110671,
+                    "name": "профилактични прегледи"
+                },
+                {
+                    "id": 110676,
+                    "name": "слух"
+                },
+                {
+                    "id": 110681,
+                    "name": "детски слух"
+                },
+                {
+                    "id": 110686,
+                    "name": "скрининг на слуха"
+                },
+                {
+                    "id": 110691,
+                    "name": "слухово увреждане"
+                },
+                {
+                    "id": 110696,
+                    "name": "увреждане на слуха"
+                },
+                {
+                    "id": 110701,
+                    "name": "боледуване по време на бременност"
+                },
+                {
+                    "id": 110706,
+                    "name": "бременност и COVID-19"
+                },
+                {
+                    "id": 110711,
+                    "name": "разстройство"
+                },
+                {
+                    "id": 110716,
+                    "name": "игри у дома"
+                },
+                {
+                    "id": 110721,
+                    "name": "домашни игри"
+                },
+                {
+                    "id": 110726,
+                    "name": "обличане"
+                },
+                {
+                    "id": 110731,
+                    "name": "събличане"
+                },
+                {
+                    "id": 110736,
+                    "name": "саморегулация"
+                },
+                {
+                    "id": 110741,
+                    "name": "изблици"
+                },
+                {
+                    "id": 110746,
+                    "name": "време пред екрана"
+                },
+                {
+                    "id": 110751,
+                    "name": "интернет"
+                },
+                {
+                    "id": 110756,
+                    "name": "безопасност в интернет"
+                },
+                {
+                    "id": 110761,
+                    "name": "неглижиране"
+                },
+                {
+                    "id": 110766,
+                    "name": "насилие срещу дете"
+                },
+                {
+                    "id": 110771,
+                    "name": "родителски конфликт"
+                },
+                {
+                    "id": 110776,
+                    "name": "рев"
+                },
+                {
+                    "id": 110781,
+                    "name": "многоезично дете"
+                },
+                {
+                    "id": 110786,
+                    "name": "двуезично дете"
+                },
+                {
+                    "id": 110791,
+                    "name": "позитивно родителство"
+                },
+                {
+                    "id": 110796,
+                    "name": "затруднения в развитието"
+                },
+                {
+                    "id": 110801,
+                    "name": "ритуал преди сън"
+                },
+                {
+                    "id": 110806,
+                    "name": "ритуал преди лягане"
+                },
+                {
+                    "id": 110811,
+                    "name": "рутина преди лягане"
+                },
+                {
+                    "id": 110816,
+                    "name": "рутина преди сън"
+                },
+                {
+                    "id": 110821,
+                    "name": "приспиване"
+                },
+                {
+                    "id": 110826,
+                    "name": "говорене на бебето"
+                },
+                {
+                    "id": 110831,
+                    "name": "ранно учене"
+                },
+                {
+                    "id": 110836,
+                    "name": "споделено родителство"
+                },
+                {
+                    "id": 110841,
+                    "name": "родителски роли"
+                },
+                {
+                    "id": 110846,
+                    "name": "обучителни затруднения"
+                },
+                {
+                    "id": 110851,
+                    "name": "трудности с ученето"
+                },
+                {
+                    "id": 110856,
+                    "name": "дислексия"
+                },
+                {
+                    "id": 110861,
+                    "name": "време"
+                },
+                {
+                    "id": 110866,
+                    "name": "публикуване на снимки"
+                },
+                {
+                    "id": 110871,
+                    "name": "проговаряне"
+                },
+                {
+                    "id": 110876,
+                    "name": "бебешки рев"
+                },
+                {
+                    "id": 110881,
+                    "name": "справяне с предизвикателно поведение"
+                },
+                {
+                    "id": 110886,
+                    "name": "самоконтрол"
+                },
+                {
+                    "id": 110891,
+                    "name": "хапане"
+                },
+                {
+                    "id": 110896,
+                    "name": "щипане"
+                },
+                {
+                    "id": 110901,
+                    "name": "дърпане на коса"
+                },
+                {
+                    "id": 110906,
+                    "name": "дърпане"
+                },
+                {
+                    "id": 110911,
+                    "name": "тревожност от раздяла"
+                },
+                {
+                    "id": 110916,
+                    "name": "раздяла при тръгване на ясла"
+                },
+                {
+                    "id": 110921,
+                    "name": "раздяла при тръгване на детска градина"
+                },
+                {
+                    "id": 110926,
+                    "name": "морбили"
+                },
+                {
+                    "id": 110931,
+                    "name": "дребна шарка"
+                },
+                {
+                    "id": 110936,
+                    "name": "страх от непознати"
+                },
+                {
+                    "id": 110941,
+                    "name": "крака"
+                },
+                {
+                    "id": 110946,
+                    "name": "грижа за стъпалата"
+                },
+                {
+                    "id": 110951,
+                    "name": "грижа за краката"
+                },
+                {
+                    "id": 110956,
+                    "name": "предизвикателно поведение"
+                },
+                {
+                    "id": 110961,
+                    "name": "трудно поведение"
+                },
+                {
+                    "id": 110966,
+                    "name": "говор"
+                },
+                {
+                    "id": 110971,
+                    "name": "реч"
+                },
+                {
+                    "id": 110976,
+                    "name": "говорно развитие"
+                },
+                {
+                    "id": 110981,
+                    "name": "деца с увреждане"
+                },
+                {
+                    "id": 110986,
+                    "name": "забавяне на проговарянето"
+                },
+                {
+                    "id": 110991,
+                    "name": "семейство"
+                },
+                {
+                    "id": 110996,
+                    "name": "деца с увреждания"
+                },
+                {
+                    "id": 111001,
+                    "name": "роля на майката"
+                },
+                {
+                    "id": 111006,
+                    "name": "отношения между родителите"
+                },
+                {
+                    "id": 111011,
+                    "name": "позитивна комуникация"
+                },
+                {
+                    "id": 111016,
+                    "name": "решаване на проблеми"
+                },
+                {
+                    "id": 111021,
+                    "name": "ядосване"
+                },
+                {
+                    "id": 111026,
+                    "name": "управление на гнева"
+                },
+                {
+                    "id": 111031,
+                    "name": "управление на стреса"
+                },
+                {
+                    "id": 111036,
+                    "name": "работещи родители"
+                },
+                {
+                    "id": 111041,
+                    "name": "болки в краката"
                 }
             ],
             "parent_gender": [
@@ -17221,7 +19115,7 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 3,
-                    "name": "Ασφάλεια και Προστασία",
+                    "name": "Ασφάλεια & Προστασία",
                     "unique_name": "safety_and_protection"
                 },
                 {
@@ -17256,30 +19150,181 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 56,
-                    "name": "Άσκηση Γονικής Μέριμνας",
+                    "name": "Γονική Μέριμνα",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Νεογέννητο"
+                    "id": 110071,
+                    "name": "Παιδική Ανάπτυξη",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Βρέφος"
+                    "id": 110076,
+                    "name": "Καλύτερη γονεϊκή μέριμνα",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Νήπιο"
+                    "id": 110081,
+                    "name": "Μεγαλώνοντας υγιή παιδιά",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Προσχολικής ηλικίας"
+                    "id": 110086,
+                    "name": "Εμβολιασμός",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Όλα"
+                    "id": 110091,
+                    "name": "Φροντίζοντας τον εαυτό σου",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Ανάπτυξη και μάθηση",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Ομιλία και ανάγνωση",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Περιβάλλον μάθησης",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Το παιδί μου στο νηπιαγωγείο",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Μάθηση μέσα από το παιχνίδι",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Σχέσεις αγάπης",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Παίζοντας  με το παιδί μου",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Δύσκολη συμπεριφορά",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Μάθηση στο σπίτι",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Σύνδεση του παιδιού με τους άλλους",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Αναπτυξιακές ανησυχίες",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Υγιεινές συνήθειες",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Υγιεινή διατροφή",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Θηλασμός",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Ασφάλεια και προστασία",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Σχετικά με τα εμβόλια",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Ασφάλεια εμβολίων",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Ασθένειες που μπορούν να προληφθούν με εμβόλιο",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Πρόγραμμα εμβολιασμού",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Εμβόλια και ιατρικές παθήσεις",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Παραμένοντας υγιείς και ευτυχισμένοι",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Βοήθεια για το άγχος μου",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Αντιμετώπιση των γονεϊκών προκλήσεων",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Ψυχολογική ευημερία",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -17390,7 +19435,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 μηνών",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -17400,7 +19445,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 μηνών",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -22532,26 +24577,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "I posalindur"
+                    "id": 110071,
+                    "name": "Zhvillimi fëmijës",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Foshnjë"
+                    "id": 110076,
+                    "name": "Prindërimi më i mirë",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Vogëlush"
+                    "id": 110081,
+                    "name": "Rritja e fëmijëve të shëndoshë",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "I moshës parashkollore"
+                    "id": 110086,
+                    "name": "Vaksinimi",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Të gjithë"
+                    "id": 110091,
+                    "name": "Kujdesi për veten",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Zhvillimi dhe mësimnxënia",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Të folurit dhe të lexuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Mjedisi i të mësuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Fëmija im dhe parashkollori",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Të mësuarit përmes lojës",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Marrëdhënie me dashuri",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Loja me fëmijën tim",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Sjellja sfiduese",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Mësimnxënia në shtëpi",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Lidhja e fëmijës me të tjerët",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Shqetësimet zhvillimore",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Shprehitë e shëndosha",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Ushqyerja e shëndoshë",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Gjidhënia",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Siguria dhe mbrojtja",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Rreth vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Siguria e vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Sëmundjet e parandalueshme me vaksinë",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Orari i vaksinimit",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaksinat dhe kushtet mjekësore",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Ruajtja e shëndetit dhe lumturisë",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Kërkimi i ndihmës për stresin tim",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Ballafaqimi me sfidat e prindërimit",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Mirëqenia psikologjike",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -22662,7 +24858,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "muajt 37-48 ",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -22672,7 +24868,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "muajt 49-60",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -22694,17 +24890,17 @@ export const taxonomydata:any = {
             "child_gender": [
                 {
                     "id": 40,
-                    "name": "dečak ",
+                    "name": "Djalë",
                     "unique_name": "boy"
                 },
                 {
                     "id": 41,
-                    "name": "devojčica ",
+                    "name": "Vajzë",
                     "unique_name": "girl"
                 },
                 {
                     "id": 59,
-                    "name": "oboje",
+                    "name": "Të dyja",
                     "unique_name": "both"
                 }
             ],
@@ -28072,26 +30268,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Novorođeno "
+                    "id": 110071,
+                    "name": "Razvoj deteta",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Odojče "
+                    "id": 110076,
+                    "name": "Bolje roditeljstvo",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Malo dete koje je prohodalo"
+                    "id": 110081,
+                    "name": "Podizanje zdrave dece",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Predškolskog uzrasta "
+                    "id": 110086,
+                    "name": "Vakcinacija",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Svi "
+                    "id": 110091,
+                    "name": "Briga o sebi",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Razvoj i učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Razgovor i čitanje",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Sredia za učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Moje dete i predškolska ustanova",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Učenje kroz igru",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Nežni odnosi prema deci",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Igranje sa svojom decom",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Izazovno ponašenje",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Učenje od kuće",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Povezivanje deteta sa drugima",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Brige o razvoju",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Zdrave navike",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Zdrava ishrana",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Dojenje",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Betbednost i zaštita",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "O vakcinama",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Bezbednost vakcina",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Bolesti koje se mogu sprečiti vvakcinacijom",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Raspored vakcinacije",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vakcine i medicinska stanja",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Ostanite zdravi i stećni",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Dobivanje pomoći u vez mog stresa",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Suočavanje sa roditeljskim izazovima",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psihološko blagostanje",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -28202,7 +30549,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 meseci",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -28212,7 +30559,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 meseci",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -28698,26 +31045,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Жаңы төрөлгөн"
+                    "id": 110071,
+                    "name": "Баланы өнүктүрүү",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Ымыркай"
+                    "id": 110076,
+                    "name": "Жакшы тарбия берүү",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Баса баштаган бала"
+                    "id": 110081,
+                    "name": "Дени сак балдарды  өстүрүү",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Мектепке чейинки курактагы бала"
+                    "id": 110086,
+                    "name": "Эмдөө",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Баары"
+                    "id": 110091,
+                    "name": "Өзүңүзгө кам көрүү",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Өнүгүү жана үйрөнүү",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Баарлашуу жана окуу",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Үйрөнүү чөйрөсү",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Балам жана бала бакча",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Оюн аркылуу үйрөнүү",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Мээримдүү мамилелер",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Балам менен ойноо",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Татаал жүрүм-турум",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Үйдө окуп үйрөнүү",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Баланын башкалар менен байланышы",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Өнүгүү маселелери",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Туура адаттар",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Туура тамактануу",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Эмизүү",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Коопсуздук жана коргоо",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Вакциналар жөнүндө",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Вакциналардын коопсуздугу",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Вакцина менен алдын ала турган оорулар",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Эмдөө графиги",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакциналар жана медициналык шарттар",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Дени сак жана бактылуу болуу",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Стрессти жеңүүгө жардам берүү",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Ата-энелик кыйынчылыктар менен күрөшүү",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологиялык туруктуулук",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -28828,7 +31326,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "3-4 жаш",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -28838,7 +31336,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "4-5 жаш",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -33994,26 +36492,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новорожденный"
+                    "id": 110071,
+                    "name": "Развитие ребенка",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Младенец"
+                    "id": 110076,
+                    "name": "Хорошее родительство",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Ребенок, начинающий ходить"
+                    "id": 110081,
+                    "name": "Воспитание здоровых детей",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Дошкольник"
+                    "id": 110086,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Все"
+                    "id": 110091,
+                    "name": "Забота о себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и обучение",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Общение и чтение",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Обучающая среда",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Мой ребенок и детский сад",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Обучение через игру",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Отношения с любовью",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Играю с ребенком",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Сложное поведение",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Обучение на дому",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Взаимодействие ребенка с другими",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Вопросы развития",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здоровые привычки",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Здоровое питание",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Кормление грудью",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасность и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "О вакцинах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасность вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болезни, предотвращаемые с помощью вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "График вакцинации",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцины и медицинские условия",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Как оставаться здоровыми и счастливыми",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Как справиться со стрессом",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Как справиться с трудностями воспитания",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологическое благополучие",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -34124,7 +36773,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 месяцев",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -34134,7 +36783,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 месяцев",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -38790,30 +41439,181 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 56,
-                    "name": "Roditeljstvo koje odgovara na potrebe djeteta",
+                    "name": "Podsticajno roditeljstvo",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Novorođenče"
+                    "id": 110071,
+                    "name": "Razvoj djeteta",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Odojče"
+                    "id": 110076,
+                    "name": "Bolje roditeljstvo",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Malo dijete"
+                    "id": 110081,
+                    "name": "Odgajanje zdrave djece",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Dijete predškolskog uzrasta"
+                    "id": 110086,
+                    "name": "Vakcinacija",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Sva djeca"
+                    "id": 110091,
+                    "name": "Briga o sebi",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Razvoj i učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Govor i čitanje",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Ambijent za učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Moje dijete i predškolska ustanova",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Učenje kroz igru",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Odnosi ispunjeni ljubavlju",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Igranje sa svojim djetetom",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Izazovna ponašanja",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Učenje kod kuće",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": " Djetetovo povezivanje s drugima",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Brige u vezi s razvojem djeteta",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Zdrave navike",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Zdrava ishrana",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Dojenje",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Sigurnost i zaštita",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "O vakcinama",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Bezbjednost vakcina",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Bolesti koje se mogu spriječiti vakcinacijom",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Kalendar imunizacije",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vakcine i zdravstvena stanja",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Kako da ostanete zdravi i srećni",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Podrška u stresnim situacijama",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Suočavanje s roditeljskim izazovima",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psihološka dobrobit",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -38924,7 +41724,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37–48 mjeseci",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -38934,7 +41734,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49–60 mjeseci",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -39031,247 +41831,247 @@ export const taxonomydata:any = {
             "growth_period": [
                 {
                     "id": 6466,
-                    "name": "Po rođenju",
+                    "name": "po rođenju",
                     "vaccination_opens": 0
                 },
                 {
                     "id": 6471,
-                    "name": "S navršenim 1 mjesecom",
+                    "name": "s navršenim 1 mjesecom",
                     "vaccination_opens": 30
                 },
                 {
                     "id": 6476,
-                    "name": "S navršenih 2 mjeseca",
+                    "name": "s navršenih 2 mjeseca",
                     "vaccination_opens": 60
                 },
                 {
                     "id": 6481,
-                    "name": "S navršena 3 mjeseca",
+                    "name": "s navršena 3 mjeseca",
                     "vaccination_opens": 90
                 },
                 {
                     "id": 6486,
-                    "name": "S navršena 3 i po mjeseca",
+                    "name": "s navršena 3 i po mjeseca",
                     "vaccination_opens": 105
                 },
                 {
                     "id": 6491,
-                    "name": "S navršena 4 mjeseca",
+                    "name": "s navršena 4 mjeseca",
                     "vaccination_opens": 120
                 },
                 {
                     "id": 6496,
-                    "name": "S navršenih 5 mjeseci",
+                    "name": "s navršenih 5 mjeseci",
                     "vaccination_opens": 150
                 },
                 {
                     "id": 6501,
-                    "name": "S navršenih 6 mjeseci",
+                    "name": "s navršenih 6 mjeseci",
                     "vaccination_opens": 180
                 },
                 {
                     "id": 6506,
-                    "name": "Između 16. i 23. mjeseca",
+                    "name": "između 16. i 23. mjeseca",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6511,
-                    "name": "S navršenih 7 mjeseci",
+                    "name": "s navršenih 7 mjeseci",
                     "vaccination_opens": 210
                 },
                 {
                     "id": 6516,
-                    "name": "S navršenih 8 mjeseci",
+                    "name": "s navršenih 8 mjeseci",
                     "vaccination_opens": 240
                 },
                 {
                     "id": 6521,
-                    "name": "S navršenih 9 mjeseci",
+                    "name": "s navršenih 9 mjeseci",
                     "vaccination_opens": 270
                 },
                 {
                     "id": 6526,
-                    "name": "S navršenih 10 mjeseci",
+                    "name": "s navršenih 10 mjeseci",
                     "vaccination_opens": 300
                 },
                 {
                     "id": 6531,
-                    "name": "S navršenih 11 mjeseci",
+                    "name": "s navršenih 11 mjeseci",
                     "vaccination_opens": 330
                 },
                 {
                     "id": 6532,
-                    "name": "S navršenih 12 mjeseci",
+                    "name": "s navršenih 12 mjeseci",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 6533,
-                    "name": "Između 12. i 15. mjeseca",
+                    "name": "između 12. i 15. mjeseca",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 6534,
-                    "name": "S navršenih 15 mjeseci",
+                    "name": "s navršenih 15 mjeseci",
                     "vaccination_opens": 455
                 },
                 {
                     "id": 6535,
-                    "name": "S navršenih 16 mjeseci",
+                    "name": "s navršenih 16 mjeseci",
                     "vaccination_opens": 485
                 },
                 {
                     "id": 6537,
-                    "name": "S navršenim 21 mjesecom",
+                    "name": "s navršenim 21 mjesecom",
                     "vaccination_opens": 635
                 },
                 {
                     "id": 6538,
-                    "name": "S navršene 2 godine",
+                    "name": "s navršene 2 godine",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6540,
-                    "name": "S navršenih 27 mjeseci",
+                    "name": "s navršenih 27 mjeseci",
                     "vaccination_opens": 820
                 },
                 {
                     "id": 6541,
-                    "name": "S navršenih 30 mjeseci",
+                    "name": "s navršenih 30 mjeseci",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6542,
-                    "name": "S navršena 33 mjeseca",
+                    "name": "s navršena 33 mjeseca",
                     "vaccination_opens": 1000
                 },
                 {
                     "id": 6543,
-                    "name": "S navršene 3 godine",
+                    "name": "s navršene 3 godine",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6544,
-                    "name": "Između 30. i 36. mjeseca",
+                    "name": "između 30. i 36. mjeseca",
                     "vaccination_opens": 910
                 },
                 {
                     "id": 6545,
-                    "name": "Između 24. i 30. mjeseca",
+                    "name": "između 24. i 30. mjeseca",
                     "vaccination_opens": 730
                 },
                 {
                     "id": 6546,
-                    "name": "Između 36. i 48. mjeseca",
+                    "name": "između 36. i 48. mjeseca",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6547,
-                    "name": "S navršena 42 mjeseca",
+                    "name": "s navršena 42 mjeseca",
                     "vaccination_opens": 1275
                 },
                 {
                     "id": 6548,
-                    "name": "S navršene 4 godine",
+                    "name": "s navršene 4 godine",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 6549,
-                    "name": "S navršena 54 mjeseca",
+                    "name": "s navršena 54 mjeseca",
                     "vaccination_opens": 1640
                 },
                 {
                     "id": 6550,
-                    "name": "Između 48. i 61. mjeseca",
+                    "name": "između 48. i 61. mjeseca",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 6551,
-                    "name": "S navršenih 5 godina",
+                    "name": "s navršenih 5 godina",
                     "vaccination_opens": 1825
                 },
                 {
                     "id": 6552,
-                    "name": "Između 3. i 7. godine",
+                    "name": "između 3. i 7. godine",
                     "vaccination_opens": 1095
                 },
                 {
                     "id": 6553,
-                    "name": "S navršenih 6 godina",
+                    "name": "s navršenih 6 godina",
                     "vaccination_opens": 2190
                 },
                 {
                     "id": 6556,
-                    "name": "S navršenih 6 i po godina",
+                    "name": "s navršenih 6 i po godina",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 6557,
-                    "name": "S navršenih 7 godina",
+                    "name": "s navršenih 7 godina",
                     "vaccination_opens": 2555
                 },
                 {
                     "id": 6560,
-                    "name": "S navršenih 18 mjeseci",
+                    "name": "s navršenih 18 mjeseci",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 32906,
-                    "name": "S navršenih 5 i po godina",
+                    "name": "s navršenih 5 i po godina",
                     "vaccination_opens": 2005
                 },
                 {
                     "id": 59016,
-                    "name": "Između 5. i 6. godine",
+                    "name": "između 5. i 6. godine",
                     "vaccination_opens": 1825
                 },
                 {
                     "id": 59041,
-                    "name": "Između 37. i 48. mjeseca",
+                    "name": "između 37. i 48. mjeseca",
                     "vaccination_opens": 1125
                 },
                 {
                     "id": 59051,
-                    "name": "S navršenih 13 mjeseci",
+                    "name": "s navršenih 13 mjeseci",
                     "vaccination_opens": 395
                 },
                 {
                     "id": 59056,
-                    "name": "Između 6. i 7. godine",
+                    "name": "između 6. i 7. godine",
                     "vaccination_opens": 2370
                 },
                 {
                     "id": 59061,
-                    "name": "Između 18. i 24. mjeseca",
+                    "name": "između 18. i 24. mjeseca",
                     "vaccination_opens": 545
                 },
                 {
                     "id": 59076,
-                    "name": "Između 12. i 18. mjeseca",
+                    "name": "između 12. i 18. mjeseca",
                     "vaccination_opens": 365
                 },
                 {
                     "id": 59326,
-                    "name": "Između 19. i 23. mjeseca",
+                    "name": "između 19. i 23. mjeseca",
                     "vaccination_opens": 575
                 },
                 {
                     "id": 109721,
-                    "name": "S navršenih 15 dana",
+                    "name": "s navršenih 15 dana",
                     "vaccination_opens": 15
                 },
                 {
                     "id": 110006,
-                    "name": "Između 7. i 14. dana",
+                    "name": "između 7. i 14. dana",
                     "vaccination_opens": 7
                 },
                 {
                     "id": 110011,
-                    "name": "Između 4. i 6. godine",
+                    "name": "između 4. i 6. godine",
                     "vaccination_opens": 1460
                 },
                 {
                     "id": 110016,
-                    "name": "S navršenim 21 danom",
+                    "name": "s navršenim 21 danom",
                     "vaccination_opens": 21
                 }
             ],
@@ -44022,17 +46822,17 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 2,
-                    "name": "Здравје и благосостојба",
+                    "name": "Здравје",
                     "unique_name": "health_and_wellbeing"
                 },
                 {
                     "id": 3,
-                    "name": "Безбедност и заштита",
+                    "name": "Детска заштита",
                     "unique_name": "safety_and_protection"
                 },
                 {
                     "id": 4,
-                    "name": "Родителско катче",
+                    "name": "Катче за родители",
                     "unique_name": "parenting_corner"
                 },
                 {
@@ -44047,12 +46847,12 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 7,
-                    "name": "Здравствени прегледи",
+                    "name": "Прегледи",
                     "unique_name": "health_check_ups"
                 },
                 {
                     "id": 8,
-                    "name": "Вакцинација",
+                    "name": "Вакцини",
                     "unique_name": "vaccination"
                 },
                 {
@@ -44062,30 +46862,181 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 56,
-                    "name": "Одговорно родителство",
+                    "name": "Родителство",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новородено"
+                    "id": 110071,
+                    "name": "Детски развој",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Доенче"
+                    "id": 110076,
+                    "name": "Подобро родителство",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Дете"
+                    "id": 110081,
+                    "name": "Воспитуваме здрави деца",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Претшколска возраст"
+                    "id": 110086,
+                    "name": "Вакцинација",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Сите"
+                    "id": 110091,
+                    "name": "Грижа за себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развој и учење",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Зборување и читање",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Средина за учење",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Моето дете и предучилишно образование",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Учење низ игра",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Љубов и поврзаност",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Игри со моето дете",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Проблематично однесување",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Учење дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Детето гради врски со други",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Грижи поврзани со развојот",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здрави навики",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Здрава исхрана",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Доење",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безбедност и заштита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "За вакцините",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безбедност на вакцините",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болести кои се спречуваат со вакцинација",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Календар за вакцинација",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцини и здравствени состојби",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Да останеме здрави и среќни",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Барање помош за соочување со стресот",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Предизвици на родителите",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психолошка благососотојба",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -44196,7 +47147,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 месеци",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -44206,7 +47157,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 месеци",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -49594,26 +52545,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новородено"
+                    "id": 110071,
+                    "name": "Zhvillimi fëmijës",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Доенче"
+                    "id": 110076,
+                    "name": "Prindërimi më i mirë",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Дете"
+                    "id": 110081,
+                    "name": "Rritja e fëmijëve të shëndoshë",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Претшколска возраст"
+                    "id": 110086,
+                    "name": "Vaksinimi",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Сите"
+                    "id": 110091,
+                    "name": "Kujdesi për veten",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Zhvillimi dhe mësimnxënia",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Të folurit dhe të lexuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Mjedisi i të mësuarit",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Fëmija im dhe parashkollori",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Të mësuarit përmes lojës",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Marrëdhënie me dashuri",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Loja me fëmijën tim",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Sjellja sfiduese",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Mësimnxënia në shtëpi",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Lidhja e fëmijës me të tjerët",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Shqetësimet zhvillimore",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Shprehitë e shëndosha",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Ushqyerja e shëndoshë",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Gjidhënia",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Siguria dhe mbrojtja",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Rreth vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Siguria e vaksinave",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Sëmundjet e parandalueshme me vaksinë",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Orari i vaksinimit",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaksinat dhe kushtet mjekësore",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Ruajtja e shëndetit dhe lumturisë",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Kërkimi i ndihmës për stresin tim",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Ballafaqimi me sfidat e prindërimit",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Mirëqenia psikologjike",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -49724,7 +52826,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 muaj",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -49734,7 +52836,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 muaj",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -50149,39 +53251,39 @@ export const taxonomydata:any = {
             "activity_category": [
                 {
                     "id": 6421,
-                    "name": "Motorni",
+                    "name": "Motoričke",
                     "unique_name": "motor"
                 },
                 {
                     "id": 6431,
-                    "name": "Socio- emotivni",
+                    "name": "Socio-emocionalne",
                     "unique_name": "socio_ emotional"
                 },
                 {
                     "id": 6436,
-                    "name": "Kognitivni",
+                    "name": "Saznajne",
                     "unique_name": "cognitive"
                 },
                 {
                     "id": 6441,
-                    "name": "Govorno-jezički",
+                    "name": "Govorno-jezičke",
                     "unique_name": "language_and_communication"
                 }
             ],
             "category": [
                 {
                     "id": 1,
-                    "name": "Ishrana i Dojenje",
+                    "name": "Ishrana i dojenje",
                     "unique_name": "nutrition_and_breastfeeding"
                 },
                 {
                     "id": 2,
-                    "name": "Zdravlje i Dobrobit",
+                    "name": "Zdravlje i dobrobit",
                     "unique_name": "health_and_wellbeing"
                 },
                 {
                     "id": 3,
-                    "name": "Bezbednost i Zaštita",
+                    "name": "Bezbednost i zaštita",
                     "unique_name": "safety_and_protection"
                 },
                 {
@@ -50211,35 +53313,186 @@ export const taxonomydata:any = {
                 },
                 {
                     "id": 55,
-                    "name": "Igra i Učenje",
+                    "name": "Igra i učenje",
                     "unique_name": "play_and_learning"
                 },
                 {
                     "id": 56,
-                    "name": "Responzivno roditeljstvo",
+                    "name": "Responsivno roditeljstvo",
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Novorođenče"
+                    "id": 110071,
+                    "name": "Razvoj deteta",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Odojče"
+                    "id": 110076,
+                    "name": "Uspešno roditeljstvo",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Malo dete"
+                    "id": 110081,
+                    "name": "Zdravo detinjstvo",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Predškolac"
+                    "id": 110086,
+                    "name": "Vakcinacija",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Sve"
+                    "id": 110091,
+                    "name": "Briga o sebi",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Razvoj i učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Pričanje i čitanje",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Podsticajna sredina za učenje",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Polazak u vrtić",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Učenje kroz igru",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Podržavajući porodični odnosi",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Zajedničke igre",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Izazovna ponašanja",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Učenje kod kuće",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Dete i okruženje",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Roditeljske zabrinutosti",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Zdrave navike",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Zdrava ishrana",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Dojenje",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Bezbednost i zaštita",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "O vakcinama",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Bezbednost vakcina",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Bolesti koje se mogu sprečiti vakcinacijom",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Kalendar obavezne vakcinacije",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vakcine i zdravstveno stanje deteta",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Budite zdravi i srećni",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Podrška u stresnim situacijama",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "U susret roditeljskim izazovima",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psihološka dobrobit",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -50350,7 +53603,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 meseci",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -50360,7 +53613,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 meseci",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -55496,26 +58749,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Newborn"
+                    "id": 110071,
+                    "name": "Raising smart children",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Infant"
+                    "id": 110076,
+                    "name": "Better parenting",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Toddler"
+                    "id": 110081,
+                    "name": "Raising healthy children",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Pre-schooler"
+                    "id": 110086,
+                    "name": "Vaccination",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "All"
+                    "id": 110091,
+                    "name": "Taking care of yourself",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Development and learning",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Talking and reading",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Learning environment",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "My child and preschool",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Learning through play",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Loving relationships",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Playing with my child",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Challenging behaviour",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Learning at home",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Child connecting with others",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Developmental concerns",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Healthy habits",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Healthy eating",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Breastfeeding",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Safety and protection",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "About vaccines",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Vaccines safety",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Vaccine preventable diseases",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Vaccination schedule",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaccines and medical conditions",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Staying healthy and happy",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Getting help with my stress",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Coping with parenting challenges",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Psychological wellbeing",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -55626,7 +59030,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 months",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -55636,7 +59040,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 months",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -60768,26 +64172,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Навзод"
+                    "id": 110071,
+                    "name": "Инкишофи кӯдак",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Тифл"
+                    "id": 110076,
+                    "name": "Тарбияи беҳтар",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Кӯдак синни барвақтӣ"
+                    "id": 110081,
+                    "name": "Тарбияи фарзандони солим",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Кӯдаки синни томактабӣ"
+                    "id": 110086,
+                    "name": "Ваксинатсия",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Ҳама"
+                    "id": 110091,
+                    "name": "Нисбати худ ғамхорӣ намудан",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Инкишоф ва омӯзиш",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Гап задан ва хондан",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Муҳити таълим",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Фарзанди ман ва муассисаи томактабӣ",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Омӯзиш тавассути бозӣ",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Муносибатҳои дӯстдошта",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Бозӣ ҳамроҳи фарзандам",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Рафтори душвор",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Омӯзиш дар хона",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Муоширати кӯдак бо дигарон",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Мушкилиҳои инкишоф",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Одатҳои солим",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Хӯроки солим",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Синамаконӣ",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Бехатарӣ ва муҳофизат",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Дар бораи ваксина",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Бехатарии ваксина",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Бемориҳои, ки бо кӯмаки ваксина пешгирӣ карда мешавад",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Ҷадвали ваксинагузаронӣ",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Ваксинаҳо ва шароити тиббӣ",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Саломату хушбахт будан",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Қабули кӯмак ҳангоми дар ҳолати стресс қарор доштан",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Мушкилиҳои падару модариро чӣ гуна бояд паси сар намуд",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Некӯаҳволии равонӣ",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -60898,7 +64453,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "моҳи 37-48-ум",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -60908,7 +64463,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "моҳи 49-60-ум",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -66128,26 +69683,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новорожденный"
+                    "id": 110071,
+                    "name": "Развитие Ребенка",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Младенец"
+                    "id": 110076,
+                    "name": "Улучшение в воспитании/Хорошее родительство",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Ребенок ясельного возраста"
+                    "id": 110081,
+                    "name": "Растить/Воспитание здоровых детей",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Ребенок дошкольного возраста"
+                    "id": 110086,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Все"
+                    "id": 110091,
+                    "name": "Забота о себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и обучение",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Общение и чтение",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Обучающая среда",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Мой ребенок и детский сад",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Обучение через игру",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Любящие взаимоотношения",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Играть с ребенком",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Трудное поведение",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Обучение на дому",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Взаимодействие ребенка с  другими",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Вопросы развития",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здоровые привычки",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Здоровое питание",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Грудное вскармливание",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасноть и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "О вакцинах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасность вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болезни, предотвращаемые с помощью вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "График вакцинации",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцины и медицинские условия",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Как оставаться здоровым и счастливым",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Как справиться со стрессом",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Как справиться с трудностями воспитания",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологическое благополучие",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -66258,7 +69964,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 месяцы",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -66268,7 +69974,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 месяцы",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -71416,26 +75122,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Yangi tug'ilgan chaqaloq"
+                    "id": 110071,
+                    "name": "Bola rivojlanishi",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Go'dak"
+                    "id": 110076,
+                    "name": "Bollalarni yaxshiroq tarbiyalash",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Ilk yoshdagi bola (kichkintoy)"
+                    "id": 110081,
+                    "name": "Sogʻlom bolalarni tarbiyalash",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Maktabgacha yoshdagi bola"
+                    "id": 110086,
+                    "name": "Emlash",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Barcha"
+                    "id": 110091,
+                    "name": "Oʻz-oʻziga gʻamxoʻrlik qilish",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Rivojlanish va taʼlim",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Gapirish va oʻqish",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Taʼlim muhiti",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Mening bolam va bolalar bogʻchasi",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Oʻyinlar yordamida oʻqitish",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Mehr-muhabbatli munosabatlar",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Oʻz farzandi bilan oʻynash",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Murakkab xulq-atvor",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Uyda oʻqitish",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Bolaning boshqalar bilan muloqoti",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Rivojlanish muammolari",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Sogʻlom odatlar",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Toʻgʻri ovqatlanish",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Koʻkrak suti bilan boqish",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Xavfsizlik va himoya",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "Vaksinalar haqida",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Vaksinalar xavfsizligi",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Vaksinalar yordamida oldini olish mumkin boʻlgan kasalliklar",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "Emlash jadvali",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Vaksinalar va tibbiy sharoitlar",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Soʻgʻlom va baxtli boʻlish",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Ruhiy zarbani yengib oʻtishda yordam",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Ota-onalarga xos muammolarni hal etish",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Ruhiy salomatlik",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -71546,7 +75403,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48-oylar",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -71556,7 +75413,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60-oylar",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [
@@ -76944,26 +80801,177 @@ export const taxonomydata:any = {
                     "unique_name": "responsive_parenting"
                 }
             ],
-            "chatbot_child_age": [
+            "chatbot_category": [
                 {
-                    "id": 32711,
-                    "name": "Новорожденный "
+                    "id": 110071,
+                    "name": "Развитие ребенка",
+                    "unique_name": "child_development"
                 },
                 {
-                    "id": 32716,
-                    "name": "Младенец"
+                    "id": 110076,
+                    "name": "Лучшее воспитание ребенка",
+                    "unique_name": "better_parenting"
                 },
                 {
-                    "id": 32721,
-                    "name": "Ребенок раннего возраста (малыш)"
+                    "id": 110081,
+                    "name": "Воспитание здорового ребенка",
+                    "unique_name": "raising_healthy_children"
                 },
                 {
-                    "id": 32726,
-                    "name": "Дошкольник"
+                    "id": 110086,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
                 },
                 {
-                    "id": 32731,
-                    "name": "Все"
+                    "id": 110091,
+                    "name": "Забота о себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и обучение",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Говорение и чтение",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Обучающая среда",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Мой ребенок и дошкольная образовательная организация",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Обучение через игру",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Любящие отношения",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Игры с ребенком",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Сложное поведение",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Обучение дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Общение ребенка с другими людьми",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Проблемы развития",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здоровые привычки",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Здоровое питание",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Грудное вскармливание",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасность и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "О вакцинах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасность вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Заболевания, которые можно предотвратить с помощью вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "График вакцинации",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцины и медицинские условия",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Оставаться здоровым и счастливым",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Помощь в преодолении стресса",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Справляться с родительскими проблемами",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологическое благополучие",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
                 }
             ],
             "child_age": [
@@ -77074,7 +81082,7 @@ export const taxonomydata:any = {
                     "id": 52,
                     "name": "37-48 месяцы",
                     "days_from": 1081,
-                    "days_to": 1140,
+                    "days_to": 1440,
                     "buffers_days": 10,
                     "age_bracket": [
                         52,
@@ -77084,7 +81092,7 @@ export const taxonomydata:any = {
                 {
                     "id": 57,
                     "name": "49-60 месяцы",
-                    "days_from": 1141,
+                    "days_from": 1441,
                     "days_to": 1800,
                     "buffers_days": 10,
                     "age_bracket": [

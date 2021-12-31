@@ -58,8 +58,9 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
     })
     .catch((err: any) => {
      //console.log("errcodeee");
-      responseData.data = err.message
-      responseData.status = err.response.status;
+     console.log('err--',err);
+      responseData.data = err?.message
+      responseData.status = err?.response?.status;
       return responseData;
       // if (err.code == 'ECONNABORTED' || err.message == 'Network Error') {
       //  return null;
@@ -108,7 +109,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   // })
   // console.log(filteredArray,"..filteredArray..");
 
-  if (response[0].apiEndpoint == appConfig.sponsors) {
+  if (response && response[0] && response[0].apiEndpoint == appConfig.sponsors) {
     response = response[0];
     if(response.data && response.data.status && response.data.status == 200)
     {
