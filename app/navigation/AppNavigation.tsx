@@ -114,9 +114,11 @@ export default () => {
       if (initialUrlnew && initialUrlnew.includes('/article/')) {
         let initialUrlnewId: any = initialUrlnew.split("/").pop();
         const initialUrlnewId1: any = parseInt(initialUrlnewId);
-        console.log("rerenew", userIsOnboarded);
+        console.log("rerenew2", userIsOnboarded);
         if (userIsOnboarded == true) {
           if (navigationRef) {
+          //   let obj = { key: 'showDownloadPopup', value: false };
+          // dispatch(setInfoModalOpened(obj));
             navigationRef.current?.navigate('DetailsScreen',
               {
                 fromScreen: "HomeArt",
@@ -137,6 +139,8 @@ export default () => {
         console.log("initialUrlnewId1 activity", initialUrlnewId1);
         if (userIsOnboarded == true) {
           if (navigationRef) {
+          //   let obj = { key: 'showDownloadPopup', value: false };
+          // dispatch(setInfoModalOpened(obj));
             navigationRef.current?.navigate('DetailsScreen',
               {
                 fromScreen: "HomeAct",
@@ -244,14 +248,22 @@ export default () => {
     return {};
   }, [netInfoval.isConnected, netInfoval.netType, netInfoval.netValue?.details?.cellularGeneration]);
   useEffect(() => {
+    console.log("linkedURL3---",linkedURL);
+  }, [linkedURL]);
+  useEffect(() => {
     if (userIsOnboarded == true) {
       // console.log("calculated");
       // console.log("calculated");
       //call forceupdate api and check with asyncstorage
       // dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected))
       //if force update is being done the set showDownloadPopup to false
-      let obj = { key: 'showDownloadPopup', value: true };
-      dispatch(setInfoModalOpened(obj));
+      // if(linkedURL) {
+      //   let obj = { key: 'showDownloadPopup', value: false };
+      //   dispatch(setInfoModalOpened(obj));
+      // }else {
+        let obj = { key: 'showDownloadPopup', value: true };
+        dispatch(setInfoModalOpened(obj));
+      // }
       getAllChildren(dispatch, child_age, 0);
     }
     dispatch(setchatBotData([]));
