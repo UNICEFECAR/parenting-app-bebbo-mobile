@@ -15,6 +15,7 @@ export const backupGDriveFolderName= 'ParentBuddy';
 export const backupGDriveFileName= 'my.backup';
 export const tempRealmFile=RNFS.DocumentDirectoryPath + '/' + 'user1.realm';
 export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
+export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
 export const shareText='\nhttps://www.bebbo.app/share';
