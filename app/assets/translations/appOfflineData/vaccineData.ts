@@ -443,6 +443,195 @@ export const vaccineData:any = {
             "updated_at": "Sat, 08/28/2021 - 03:52"
         }
     ],
+    "by-be":[
+        {
+            "uuid": "204d8838-7888-4387-9c84-340433723805",
+            "id": 58741,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад адру, эпідэмічнага паратыту, краснухі",
+            "growth_period": 6553,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 10/05/2021 - 18:34",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "acb2afd2-341d-4822-9998-2eaaea743972",
+            "id": 58736,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад дыфтэрыі, слупняку",
+            "growth_period": 6553,
+            "pinned_article": 58701,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 10/05/2021 - 18:33",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "14a9acba-5997-4f3a-87ce-db60a79bcae2",
+            "id": 58731,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад поліяміэліту",
+            "growth_period": 6481,
+            "pinned_article": 58306,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 10/05/2021 - 18:30",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "6529f8fa-0ef2-4ccc-a04e-2013ea8c2490",
+            "id": 57736,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад грыпу",
+            "growth_period": 6560,
+            "pinned_article": 58311,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 08/13/2021 - 20:10",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "50e26b6b-9c8a-4137-bead-f8f0ebc8c55e",
+            "id": 57731,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад грыпу",
+            "growth_period": 6501,
+            "pinned_article": 58311,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 08/13/2021 - 20:09",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "7f55975d-8dfb-4a07-b374-adf21e9f2838",
+            "id": 56946,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад поліяміэліту",
+            "growth_period": 6476,
+            "pinned_article": 58306,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:26",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "20ca0d0b-5b5a-4ba3-bfbc-c0a04ff1f0cd",
+            "id": 56936,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад дыфтэрыі, слупняку, коклюшу",
+            "growth_period": 6560,
+            "pinned_article": 58696,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:23",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "b096438b-c238-48a2-b22d-51c9139c2700",
+            "id": 56931,
+            "type": "Vaccinations - Age Periods",
+            "title": "*ад захворванняў, выкліканых бактэрыямі Streptococcus pneumoniae",
+            "growth_period": 6532,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:23",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "a1360ee2-bb7e-43f0-906c-6d90c019482d",
+            "id": 56926,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад адру, паратыту, краснухі",
+            "growth_period": 6532,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:21",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "1e4031d9-6e3f-4382-ba0b-fb6520cfae06",
+            "id": 56921,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад поліяміэліту",
+            "growth_period": 6491,
+            "pinned_article": 58306,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:21",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "d3479fe6-4c43-4c7c-b17e-fba9daca4008",
+            "id": 56916,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад гепатыту, слупняку, коклюшу, поліяміэліту, хвароб, выкліканых Haemophilus influenzae тыпу b",
+            "growth_period": 6491,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:20",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "eb562570-1077-44a3-ba25-2aec6193dc4d",
+            "id": 56911,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад захворванняў, выкліканых бактэрыямі Streptococus pneumoniae",
+            "growth_period": 6491,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:20",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "df80ac98-d9fa-4c5e-9676-b6bc67902d5a",
+            "id": 56906,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад гепатыту В, дыфтэрыі, слупняку, коклюшу, хвароб, выкліканых Haemophilus influenzae",
+            "growth_period": 6481,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:18",
+            "updated_at": "Tue, 12/28/2021 - 13:34"
+        },
+        {
+            "uuid": "b2145fb2-4fb6-44d7-9058-d1dccd1b436e",
+            "id": 56901,
+            "type": "Vaccinations - Age Periods",
+            "title": "*ад захворванняў, выкліканых бактэрыямі Streptococcus pneumoniae",
+            "growth_period": 6476,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:18",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "4da240cc-3ab5-4a97-8f2d-dd118728cd89",
+            "id": 56896,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад дыфтэрыі, слупняку, коклюшу, поліяміэліту, хвароб, выкліканых Haemophilus influenzae тыпу b",
+            "growth_period": 6476,
+            "pinned_article": 4896,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:16",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "5385600a-20c6-45e1-8fde-4675a13a8143",
+            "id": 56881,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад гепатыту В",
+            "growth_period": 6466,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:13",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "uuid": "d7daea39-3bc6-49cc-8536-4d897eb44fb2",
+            "id": 56886,
+            "type": "Vaccinations - Age Periods",
+            "title": "ад туберкулёзу",
+            "growth_period": 6466,
+            "pinned_article": 4676,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 16:13",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        }
+    ],
     "by-ru":[
         {
             "uuid": "1d60bbf3-366b-49d3-a6ac-b1c3dd9317de",
@@ -998,7 +1187,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:24",
-            "updated_at": "Wed, 09/22/2021 - 14:17"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "717dbf37-1276-437c-9320-69a4c8a47a59",
@@ -1009,7 +1198,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:24",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "1031a275-6ddf-4903-9689-f5e7ceefdf04",
@@ -1020,7 +1209,7 @@ export const vaccineData:any = {
             "pinned_article": 5071,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:12",
-            "updated_at": "Thu, 09/23/2021 - 14:42"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "8ba33d0a-5d13-4d3f-aa12-11879c716692",
@@ -1031,7 +1220,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:23",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "d294b428-5d83-4314-b512-a48177bbdff1",
@@ -1042,7 +1231,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:22",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "b4d28fa4-d05e-4cb1-9472-495a1760eb81",
@@ -1053,7 +1242,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:22",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "08c47a27-9078-45a1-913b-83c47486de6b",
@@ -1064,7 +1253,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:21",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "57ed5b31-6674-4752-aa80-14df0bf40891",
@@ -1075,7 +1264,7 @@ export const vaccineData:any = {
             "pinned_article": 5071,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:21",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "68e7d92c-9afd-4f74-af5e-eabadd0021a5",
@@ -1086,7 +1275,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:20",
-            "updated_at": "Wed, 09/22/2021 - 14:17"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "26abf8ad-8c7f-4957-9d78-92998a90babc",
@@ -1097,7 +1286,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:18",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "3ee8f8c7-cf2e-49fc-825c-84dfb9a966d1",
@@ -1108,7 +1297,7 @@ export const vaccineData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:17",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "19c21901-18fd-40c6-8729-6e4636959de9",
@@ -1119,7 +1308,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:17",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "1bd9cee8-19e2-4ddb-a1de-0110d4f0fa63",
@@ -1130,7 +1319,7 @@ export const vaccineData:any = {
             "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:16",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "1bdce426-7914-4e70-8dc9-99d1b3c7a98a",
@@ -1141,10 +1330,10 @@ export const vaccineData:any = {
             "pinned_article": 4676,
             "pinned_video_article": 0,
             "created_at": "Fri, 07/16/2021 - 16:14",
-            "updated_at": "Sat, 08/28/2021 - 03:50"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         }
     ],
-    "xk-rs": [
+    "xk-rs":  [
         {
             "uuid": "79e952d7-9390-4266-985b-04d3c26d6a77",
             "id": 56841,
@@ -1154,7 +1343,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:46",
-            "updated_at": "Wed, 09/29/2021 - 17:44"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "155d3833-7bff-451c-81a0-6e495b83f433",
@@ -1165,7 +1354,7 @@ export const vaccineData:any = {
             "pinned_article": 5071,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:46",
-            "updated_at": "Wed, 09/29/2021 - 17:46"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "665b55b6-b73f-499d-af82-639c5e2726a3",
@@ -1176,7 +1365,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:44",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "23778328-5ac2-458d-bcbe-bcfa1df11f67",
@@ -1187,7 +1376,7 @@ export const vaccineData:any = {
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:44",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "9973c794-70eb-428f-bbb0-b4bed6a25ef5",
@@ -1198,7 +1387,7 @@ export const vaccineData:any = {
             "pinned_article": 5071,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:41",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "1e6238ba-eb5b-493b-b52e-4dbec1f6eb56",
@@ -1209,7 +1398,7 @@ export const vaccineData:any = {
             "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:40",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "ea6cf0a2-32a5-4e4e-8805-3433c0995ef8",
@@ -1220,7 +1409,7 @@ export const vaccineData:any = {
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:40",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "f9f560a9-9f8f-4e4e-85b6-06a0d6617b19",
@@ -1231,7 +1420,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:38",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "6fae27ce-8251-439e-a9ca-620ffb042c18",
@@ -1242,7 +1431,7 @@ export const vaccineData:any = {
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:38",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "ca5e9a0d-8e74-4f2f-a0b2-c74b4b6e16ec",
@@ -1253,7 +1442,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:36",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "c170a978-9f9b-4429-84f4-c2e7ccd7ed9e",
@@ -1264,7 +1453,7 @@ export const vaccineData:any = {
             "pinned_article": 4796,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:36",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "00e61810-90ac-4345-9a33-e1d3ae2ec911",
@@ -1275,7 +1464,7 @@ export const vaccineData:any = {
             "pinned_article": 4896,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:35",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "db23593b-62e4-4825-b5c6-2cab9d09176d",
@@ -1286,7 +1475,7 @@ export const vaccineData:any = {
             "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:35",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "decd7258-5ffc-4d75-a78a-50ec5c126c73",
@@ -1297,7 +1486,7 @@ export const vaccineData:any = {
             "pinned_article": 4676,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:26",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "uuid": "59f2268d-91d4-4d5c-a7bb-2d661e631140",
@@ -1308,7 +1497,7 @@ export const vaccineData:any = {
             "pinned_article": 4661,
             "pinned_video_article": 0,
             "created_at": "Mon, 07/26/2021 - 15:26",
-            "updated_at": "Sat, 08/28/2021 - 04:06"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         }
     ],
     "kg-ky": [
