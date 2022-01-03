@@ -263,6 +263,208 @@ export const healthCheckupsData:any = {
             "updated_at": "Sat, 08/28/2021 - 03:23"
         }
     ],
+    "by-be": [
+        {
+            "id": 58861,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 6 гадоў",
+            "growth_period": 6553,
+            "pinned_article": 58691,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 14:58",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 58856,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 5 гадоў",
+            "growth_period": 6551,
+            "pinned_article": 58686,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 14:53",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 58846,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўныя 4 гады",
+            "growth_period": 6548,
+            "pinned_article": 58681,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 10/06/2021 - 14:52",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 57136,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У 3 гады",
+            "growth_period": 6543,
+            "pinned_article": 58676,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 07/26/2021 - 18:53",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 55721,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўныя 24 месяцы",
+            "growth_period": 6538,
+            "pinned_article": 4511,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:46",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 55716,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 18 месяцаў",
+            "growth_period": 6560,
+            "pinned_article": 4476,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:45",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 55711,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 12 месяцаў",
+            "growth_period": 6532,
+            "pinned_article": 4471,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:45",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 55706,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 11 месяцаў",
+            "growth_period": 6531,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:44",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 55701,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 10 месяцаў",
+            "growth_period": 6526,
+            "pinned_article": 58331,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:44",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33601,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 9 месяцаў",
+            "growth_period": 6521,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:44",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33596,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 8 месяцаў",
+            "growth_period": 6516,
+            "pinned_article": 58321,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:43",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33591,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 7 месяцаў",
+            "growth_period": 6511,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:43",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33586,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 6 месяцаў",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:42",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33581,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўных 5 месяцаў",
+            "growth_period": 6496,
+            "pinned_article": 4456,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:42",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33576,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўныя 4 месяцы",
+            "growth_period": 6491,
+            "pinned_article": 58326,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:41",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33571,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўныя 3 месяцы",
+            "growth_period": 6481,
+            "pinned_article": 4451,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:40",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33566,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўныя 2 месяцы",
+            "growth_period": 6476,
+            "pinned_article": 4446,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:40",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33561,
+            "type": "Health Check-ups - Age Periods",
+            "title": "У поўны 1 месяц",
+            "growth_period": 6471,
+            "pinned_article": 4441,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:40",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33556,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Тры тыдні пасля нараджэння",
+            "growth_period": 110016,
+            "pinned_article": 58981,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:39",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        },
+        {
+            "id": 33551,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Першыя тры дні пасля нараджэння",
+            "growth_period": 6466,
+            "pinned_article": 4526,
+            "pinned_video_article": 0,
+            "created_at": "Sat, 07/17/2021 - 12:39",
+            "updated_at": "Mon, 11/22/2021 - 05:29"
+        }
+    ],
     "by-ru": [
         {
             "id": 58841,
@@ -868,7 +1070,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 6896,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:56",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55931,
@@ -878,7 +1080,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4511,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:56",
-            "updated_at": "Wed, 10/06/2021 - 04:52"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55926,
@@ -888,7 +1090,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:55",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55921,
@@ -898,7 +1100,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4476,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:55",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55916,
@@ -908,7 +1110,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4471,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:54",
-            "updated_at": "Fri, 09/17/2021 - 17:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55911,
@@ -918,7 +1120,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4471,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:54",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55906,
@@ -928,7 +1130,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:54",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55901,
@@ -938,7 +1140,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:53",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55896,
@@ -948,7 +1150,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4466,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:52",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55891,
@@ -958,7 +1160,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:51",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55886,
@@ -968,7 +1170,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:51",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55881,
@@ -978,7 +1180,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4461,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:51",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55876,
@@ -988,7 +1190,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4456,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:50",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55871,
@@ -998,7 +1200,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4451,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:50",
-            "updated_at": "Fri, 09/17/2021 - 17:15"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55866,
@@ -1008,7 +1210,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4451,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:49",
-            "updated_at": "Fri, 09/17/2021 - 17:13"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55861,
@@ -1018,7 +1220,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4446,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:49",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55856,
@@ -1028,7 +1230,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4441,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:48",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55851,
@@ -1038,10 +1240,10 @@ export const healthCheckupsData:any = {
             "pinned_article": 4526,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:40",
-            "updated_at": "Sat, 08/28/2021 - 03:21"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         }
     ],
-    "xk-rs": [
+    "xk-rs":[
         {
             "id": 59036,
             "type": "Health Check-ups - Age Periods",
@@ -1050,7 +1252,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4511,
             "pinned_video_article": 0,
             "created_at": "Wed, 10/06/2021 - 17:52",
-            "updated_at": "Thu, 10/07/2021 - 11:14"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 57741,
@@ -1060,7 +1262,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 0,
             "pinned_video_article": 0,
             "created_at": "Fri, 08/13/2021 - 20:31",
-            "updated_at": "Fri, 08/13/2021 - 20:31"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55986,
@@ -1070,7 +1272,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 6896,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 14:01",
-            "updated_at": "Wed, 10/06/2021 - 04:57"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55981,
@@ -1080,7 +1282,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4476,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 14:00",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55976,
@@ -1090,7 +1292,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4471,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 14:00",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55971,
@@ -1100,7 +1302,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4466,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 14:00",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55966,
@@ -1110,7 +1312,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4461,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:59",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55961,
@@ -1120,7 +1322,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4456,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:59",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55956,
@@ -1130,7 +1332,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4451,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:58",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55951,
@@ -1140,7 +1342,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4446,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:58",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55946,
@@ -1150,7 +1352,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4441,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:57",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         },
         {
             "id": 55941,
@@ -1160,7 +1362,7 @@ export const healthCheckupsData:any = {
             "pinned_article": 4526,
             "pinned_video_article": 0,
             "created_at": "Sat, 07/17/2021 - 13:57",
-            "updated_at": "Sat, 08/28/2021 - 03:30"
+            "updated_at": "Mon, 11/22/2021 - 05:29"
         }
     ],
     "kg-ky": [
