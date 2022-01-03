@@ -296,7 +296,7 @@ const SettingScreen = (props: any) => {
            console.log(String(exists),"..exists..")
             if (exists) {
                 RNFS.unlink(tempbackUpPath).then(() => {
-                   RNFS.scanFile(tempbackUpPath);
+                   //RNFS.scanFile(tempbackUpPath);
                 })
              }
           });
