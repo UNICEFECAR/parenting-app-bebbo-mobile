@@ -339,6 +339,176 @@ export const ChildDevelopmentData:any = {
             "mandatory": 1
         }
     ],
+    "by-be": [
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Знаёмімся",
+            "child_age": [
+                43
+            ],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца першага месяца ваша дзіця:</p>\n\n<ul><li>многа плача, а вы не можаце яго супакоіць;</li>\n\t<li>дрэнна ссе і вельмі павольна есць;</li>\n\t<li>спіць больш, чым чакалася (больш за 16 гадзін у суткі), ці спіць трывожна;</li>\n\t<li>увогуле не варушыць рукамі ці нагамі;</li>\n\t<li>не ўздрыгвае пры гучным шуме;</li>\n\t<li>не міргае пры яркім святле.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:41",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Прывыкаем і выпрацоўваем распарадак",
+            "child_age": [
+                44
+            ],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра ці медсястры, якая прыходзіць, калі заўважыце, што да канца першага месяца ваша дзіця:</p>\n\n<ul><li>часта плача і вы звычайна не можаце яго супакоіць;</li>\n\t<li> не глядзіць на твары нават на кароткі час;</li>\n\t<li> не рэагуе на яркае святло ці моцныя гукі;</li>\n\t<li> дрэнна есць ці спіць (ці спіць больш за 16 гадзін у суткі);</li>\n\t<li> увогуле не варушыць рукамі ці нагамі;</li>\n\t<li> не цягне сваю руку ў рот;</li>\n\t<li> не ўсміхаецца людзям.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:43",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Розны вопыт",
+            "child_age": [
+                45
+            ],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра ці медсястры, якая прыходзіць, калі заўважыце, што да канца чацвёртага месяца ваша дзіця:</p>\n\n<ul><li>часта многа плача і яго не атрымліваецца супакоіць;</li>\n\t<li>не глядзіць у вочы і не звяртае ўвагі на твары людзей;</li>\n\t<li>не назірае за рухам прадметаў;</li>\n\t<li>не ўтварае ніякіх гукаў і не рэагуе на гукі;</li>\n\t<li>не трымае галаву;</li>\n\t<li>не цягнецца за цацкай ці прадметам, які знаходзіцца перад ім;</li>\n\t<li>не цягне прадметы ў рот.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:46",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Актыўнае даследаванне",
+            "child_age": [
+                46
+            ],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра ці медсястры, якая прыходзіць, калі заўважыце, што да канца шостага месяца ваша дзіця:</p>\n\n<ul><li>рэгулярна плача і яго складана супакоіць;</li>\n\t<li>не глядзіць вам у вочы ці не сочыць вачамі за аб’ектамі, якія рухаюцца;</li>\n\t<li>не агукае і не паварочваецца да крыніцы гуку;</li>\n\t<li>не смяецца і не павісквае;</li>\n\t<li>не пераварочваецца;</li>\n\t<li>не кантралюе сваю шыю і галаву;</li>\n\t<li>не можа сядзець нават з вашай дапамогай і падтрымкай;</li>\n\t<li>увогуле не цягнецца да прадметаў, нават калі вы заахвочваеце яго да гэтага;</li>\n\t<li>не імкнецца дацягнуцца да таго, што побач;</li>\n\t<li>адчувае цяжкасці з тым, каб нешта паднесці да рота.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:48",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Новыя адкрыцці",
+            "child_age": [
+                47
+            ],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра ці медсястры, якая прыходзіць, калі заўважыце, што да канца дзявятага месяца ваша дзіця: </p>\n\n<ul><li>не глядзіць вам у вочы ці не сочыць вачамі за прадметамі, якія рухаюцца;</li>\n\t<li>не агукае;</li>\n\t<li>не паварочвае галаву да крыніцы гуку;</li>\n\t<li>не глядзіць, куды вы паказваеце;</li>\n\t<li>не праяўляе прывязанасці да блізкіх – не ўсміхаецца ім;</li>\n\t<li>не адгукаецца на сваё імя;</li>\n\t<li>не пазнае знаёмых людзей;</li>\n\t<li>не перакочваецца;</li>\n\t<li>калі вы паднімаеце яго, яго цела занадта расслабленае ці занадта напружанае;</li>\n\t<li>не можа сядзець нават з вашай дапамогай і падтрымкай;</li>\n\t<li>адчувае цяжкасці з цвёрдай ежай.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:50",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Выпрацоўваем прывычкі і паслядоўнасць",
+            "child_age": [
+                48
+            ],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца першага года ваша дзіця:</p>\n\n<ul><li>не глядзіць вам у вочы ці не сочыць за аб’ектамі, якія рухаюцца;</li>\n\t<li>не рэагуе на гукі;</li>\n\t<li>не адгукаецца на сваё імя, калі вы яго завяце;</li>\n\t<li>не лапоча;</li>\n\t<li>ніякім чынам не імкнецца паведаміць вам пра свае жаданні ці патрэбнасці;</li>\n\t<li>не паказвае на прадметы;</li>\n\t<li>не паказвае эмоцый;</li>\n\t<li>не поўзае.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:51",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Першы крок і першае слова",
+            "child_age": [
+                49
+            ],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што ваша дзіця:</p>\n\n<ul><li>нешта дрэнна бачыць ці чуе;</li>\n\t<li>не гаворыць ні слова;</li>\n\t<li>адчувае цяжкасці пры выкананні нават простых указанняў;</li>\n\t<li>не выкарыстоўвае жэсты і не паказвае пальцам пры звароце;</li>\n\t<li>не глядзіць вам у вочы і не абдымае;</li>\n\t<li>не ходзіць самастойна.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:53",
+            "mandatory": 1
+        },
+        {
+            "id": 12008,
+            "type": "Child Development - Age Periods",
+            "title": "Набываем незалежнасць",
+            "child_age": [
+                50
+            ],
+            "boy_video_article": 7961,
+            "girl_video_article": 7956,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца другога года ваша дзіця:</p>\n\n<ul><li>не глядзіць на вас (у вочы);</li>\n\t<li>адчувае цяжкасці з тым, каб бачыць ці чуць у пэўных сітуацыях;</li>\n\t<li>не гаворыць ні слова;</li>\n\t<li>не паказвае на прадметы;</li>\n\t<li>не выконвае простыя ўказанні;</li>\n\t<li>не праяўляе пачуццяў;</li>\n\t<li>не ходзіць устойліва.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 18:49",
+            "mandatory": 1
+        },
+        {
+            "id": 12009,
+            "type": "Child Development - Age Periods",
+            "title": "Пачынае развівацца ўяўленне",
+            "child_age": [
+                51
+            ],
+            "boy_video_article": 7881,
+            "girl_video_article": 7966,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца трэцяга года ваша дзіця:</p>\n\n<ul><li>не глядзіць на вас (у вочы);</li>\n\t<li>дрэнна чуе ці бачыць некаторыя рэчы;</li>\n\t<li>не гаворыць кароткімі сказамі (мінімум 3 словы разам);</li>\n\t<li>гаворыць вельмі неразборліва;</li>\n\t<li>не выконвае простыя ўказанні;</li>\n\t<li>не хоча гуляць з іншымі дзецьмі, цацкамі і іншымі прадметамі;</li>\n\t<li>не прытвараецца і не падыгрывае падчас гульні;</li>\n\t<li>не бегае;</li>\n\t<li>не піша і не малюе;</li>\n\t<li>не можа трымаць у руцэ дробныя прадметы.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:57",
+            "mandatory": 1
+        },
+        {
+            "id": 12010,
+            "type": "Child Development - Age Periods",
+            "title": "Задаём пытанні",
+            "child_age": [
+                52
+            ],
+            "boy_video_article": 7976,
+            "girl_video_article": 7971,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца чацвёртага года ваша дзіця:</p>\n\n<ul><li>не праяўляе цікавасці да гульняў з іншымі ці да гульняў, дзе трэба падыгрываць;</li>\n\t<li>ігнаруе іншых дзяцей ці не рэагуе на людзей па-за сям’ёй;</li>\n\t<li>не можа падскочыць на месцы;</li>\n\t<li>не можа нічога напісаць (зрабіць паметкі на паперы);</li>\n\t<li>не выконвае ўказанні, якія складаюцца з трох частак;</li>\n\t<li>не можа расказаць любімую казку ці гісторыю.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 17:58",
+            "mandatory": 1
+        },
+        {
+            "id": 12011,
+            "type": "Child Development - Age Periods",
+            "title": "Радасць навучання i зносiн",
+            "child_age": [
+                57
+            ],
+            "boy_video_article": 7996,
+            "girl_video_article": 7991,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца пятага года ваша дзіця:</p>\n\n<ul><li>не можа ўпэўнена хадзіць, бегаць, паднімацца па лесвіцы, скакаць з лесвіцы;</li>\n\t<li>не можа адказаць на простыя пытанні (як цябе завуць? хто ў цябе ёсць у сям’і? твая любімая казка?);</li>\n\t<li>не можа выканаць двухсастаўнае ўказанне (пастаў кубак на стол, вазьмі мяч пад ложкам);</li>\n\t<li>не можа самастойна выканаць паўсядзённыя задачы, такія як ежа ці адзяванне;</li>\n\t<li>адчувае цяжкасці з тым, каб трымаць аловак;</li>\n\t<li>дэманструе вельмі інтэнсіўныя паводзіны (напрыклад, моцны спалох, агрэсію ці смутак);</li>\n\t<li>не гаворыць пра паўсядзённыя справы;</li>\n\t<li>не праяўляе цікавасці да зносін ні з дарослымі, ні з дзецьмі.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 18:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12012,
+            "type": "Child Development - Age Periods",
+            "title": "Гатоўнасць да новага асяроддзя",
+            "child_age": [
+                58
+            ],
+            "boy_video_article": 7986,
+            "girl_video_article": 7981,
+            "milestone": "<p>Назірайце за паводзінамі дзіцяці і звярніцеся да педыятра, калі заўважыце, што да канца шостага года ваша дзіця:</p>\n\n<ul><li>валодае вельмі кароткай канцэнтрацыяй увагі;</li>\n\t<li>зусім не цікавіцца літарамі, лічбамі, чытаннем ці пісьмом;</li>\n\t<li>здаецца, дрэнна чуе;</li>\n\t<li>не гаворыць выразна сказы з 5 ці больш слоў;</li>\n\t<li>не расказвае доўгія гісторыі, выкарыстоўваючы поўныя сказы;</li>\n\t<li>не адзяваецца і не карыстаецца прыбіральняй без дапамогі іншых;</li>\n\t<li>не можа падтрымаць размову;</li>\n\t<li>не можа гуляць у розныя гульні, гуляе ў нешта адно;</li>\n\t<li>не можа назваць сваё імя і адрас;</li>\n\t<li>не можа стаяць ці скакаць на адной назе.</li>\n</ul>",
+            "created_at": "Thu, 08/12/2021 - 21:48",
+            "updated_at": "Thu, 09/30/2021 - 18:04",
+            "mandatory": 1
+        }
+    ],
     "by-ru": [
         {
             "id": 12001,
@@ -849,7 +1019,7 @@ export const ChildDevelopmentData:any = {
             "mandatory": 1
         }
     ],
-    "xk-sq": [
+    "xk-sq":  [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
@@ -1019,7 +1189,7 @@ export const ChildDevelopmentData:any = {
             "mandatory": 1
         }
     ],
-    "xk-rs": [
+    "xk-rs":  [
         {
             "id": 12001,
             "type": "Child Development - Age Periods",
@@ -1169,7 +1339,7 @@ export const ChildDevelopmentData:any = {
             ],
             "boy_video_article": 7996,
             "girl_video_article": 7991,
-            "milestone": "<p>\nPratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:\n</p>\n<ul>\n<li>\nNe može sigurno da hoda, trči, skoči, da se penje uz stepenice\n</li>\n<li>\nNe može da odgovori na jednostavna pitanja (Kako se zoveš? Ko je tvoja porodica? Koja ti je omiljena priča?)\n</li>\n<li>\nNe može da izvrši nalog sa dva elementa (npr. spusti šolju na sto! ili donesi loptu ispod kreveta je!)\n</li>\n<li>\nNe može samostalno da izvršava svakodnevne rutine – da jede ili da se obuče\n</li>\n<li>\nIma teškoće da drži olovku (bojicu)\n</li>\n<li>\nPrenaglašeno u ponašanju ispoljava osećanja ( strah, agresivnost, tugu)\n</li>\n<li>\nNe govori o dnevnim aktivnostima\n</li>\n<li>\nNe pokazuje interesovanje da ostvari interakciju ni sa decom ni sa odraslima.\n</li>\n</ul>\n",
+            "milestone": "<p>Pratite ponašanja svog deteta i porazgovarajte sa izabranim pedijatrom ukoliko na kraju šeste godine primetite da vaše dete:   </p>\n<ul>\n<li>\nNe može sigurno da hoda, trči, skoči, da se penje uz stepenice\n</li>\n<li>\nNe može da odgovori na jednostavna pitanja (Kako se zoveš? Ko je tvoja porodica? Koja ti je omiljena priča?)\n</li>\n<li>\nNe može da izvrši nalog sa dva elementa (npr. spusti šolju na sto! ili donesi loptu ispod kreveta je!)\n</li>\n<li>\nNe može samostalno da izvršava svakodnevne rutine – da jede ili da se obuče\n</li>\n<li>\nIma teškoće da drži olovku (bojicu)\n</li>\n<li>\nPrenaglašeno u ponašanju ispoljava osećanja ( strah, agresivnost, tugu)\n</li>\n<li>\nNe govori o dnevnim aktivnostima\n</li>\n<li>\nNe pokazuje interesovanje da ostvari interakciju ni sa decom ni sa odraslima.\n</li>\n</ul>\n",
             "created_at": "Thu, 08/12/2021 - 21:48",
             "updated_at": "Thu, 08/12/2021 - 21:48",
             "mandatory": 1
