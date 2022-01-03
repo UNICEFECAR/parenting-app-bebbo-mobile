@@ -259,7 +259,7 @@ const SettingScreen = (props: any) => {
     }
     }
     else {
-      const updatedrealmContent:any='data:application-octet-stream;base64,'+realmContent;
+      //const updatedrealmContent:any='data:application-octet-stream;base64,'+realmContent;
       // const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
       //   console.log(resData,"..resData..");
       //   //DocumentPicker.releaseSecureAccess(res.uri);
@@ -304,7 +304,7 @@ const SettingScreen = (props: any) => {
           else{
             Alert.alert('', t('settingExportError'));
           }
-        } catch (error) {
+        } catch (error:any) {
           setIsExportRunning(false);
           if (error.error && error.error.code === "ECANCELLED500") {
             console.log("canceled");
