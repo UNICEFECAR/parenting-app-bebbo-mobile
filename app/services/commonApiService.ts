@@ -23,8 +23,6 @@ import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
 import { setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
-import KeepAwake from 'react-native-keep-awake';
-
 
 
 export const client =
@@ -72,7 +70,7 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
 export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any) => {
  response = response[0];
  //console.log(response,"..resonse..");
- KeepAwake.deactivate();
+//  deactivateKeepAwake();
  navigation.navigate('ChildProfileScreen');
  if(response.data && response.data.status && response.data.status == 200)
  {
@@ -197,7 +195,7 @@ export const onSponsorApiSuccess = async (response: any, dispatch: any, navigati
   }
  // console.log("in commonapi sponsor ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
-  KeepAwake.deactivate();
+  // deactivateKeepAwake();
   // console.log(allDatatoStore,"--allDatatoStore");
     // navigation.reset({
     //   index: 0,
@@ -213,7 +211,7 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
   // console.log("in commonapi onOnLoadApiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   let allJsonData =await userRealmCommon.getData<ChildEntity>(ChildEntitySchema);
-  KeepAwake.deactivate();
+  // deactivateKeepAwake();
   if (allJsonData?.length>0) {
     navigation.navigate('ChildSetupList');
   }
@@ -226,7 +224,7 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
   // console.log("in commonapi onChildSetuppiSuccess ---", response);
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   // console.log(allDatatoStore,"..allDatatoStore..")
-  KeepAwake.deactivate();
+  // deactivateKeepAwake();
   navigation.reset({
     index: 0,
     routes: [
@@ -384,7 +382,8 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
     }
   }
-  KeepAwake.deactivate();
+  console.log("keep awake deactivated");
+  // deactivateKeepAwake();
   if(prevPage == 'DownloadUpdate') {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
@@ -482,7 +481,7 @@ export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navig
       return allDatatoStore;
   });
   const results = await Promise.all(resolvedPromises);
-  KeepAwake.deactivate();
+  // deactivateKeepAwake();
  // console.log("survey done--",results);
 }
 export const downloadArticleImages = async() => {
