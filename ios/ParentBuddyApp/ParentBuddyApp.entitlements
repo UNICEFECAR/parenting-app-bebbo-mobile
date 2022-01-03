@@ -4,8 +4,8 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:bebbo.app</string>
-		<string>applinks:bebbo.app?mode=developer</string>
+		<string>applinks:tesmobility.datamatics.com</string>
+		<string>applinks:tesmobility.datamatics.com?mode=developer</string>
 	</array>
 </dict>
 </plist>
