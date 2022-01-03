@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig, backUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, backUpPath, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -259,26 +259,66 @@ const SettingScreen = (props: any) => {
     }
     }
     else {
+      const updatedrealmContent:any='data:application-octet-stream;base64,'+realmContent;
+      // const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
+      //   console.log(resData,"..resData..");
+      //   //DocumentPicker.releaseSecureAccess(res.uri);
+      //   RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
+      //   .then((success) => {
+      //     setIsExportRunning(false);
+      //     actionSheetRef.current?.setModalVisible(false);
+      //     Alert.alert('', t('settingExportSuccess'));
+      //   })
+      //   .catch((err) => {
+      //     console.log(err, "..err")
+      //     Alert.alert('', t('settingExportError'));
+      //     setIsExportRunning(false);
+      //   });
+      // }).catch((e)=>{
+      //   setIsExportRunning(false);
+      //   handleError(e);
+      // });
       
-      const resData: any = await DocumentPicker.pickDirectory().then((res:any)=>{
-        console.log(resData,"..resData..");
-        //DocumentPicker.releaseSecureAccess(res.uri);
-        RNFS.writeFile(decodeURIComponent(res.uri) + "my.backup", realmContent, 'base64')
-        .then((success) => {
+        RNFS.writeFile(tempbackUpPath, realmContent, 'base64').then(async (res:any)=>{
+          console.log(res,"..res..")
+          const shareOptions = {
+            title: 'Backup File',
+            url: tempbackUpPath,
+            saveToFiles:true,
+            failOnCancel:false
+          };
+          try {
+          const ShareResponse = await Share.open(shareOptions);
           setIsExportRunning(false);
-          actionSheetRef.current?.setModalVisible(false);
+          if(ShareResponse && ShareResponse.success){
           Alert.alert('', t('settingExportSuccess'));
-        })
-        .catch((err) => {
-          console.log(err, "..err")
-          Alert.alert('', t('settingExportError'));
+          await RNFS.exists(tempbackUpPath).then((exists) => {
+           console.log(String(exists),"..exists..")
+            if (exists) {
+                RNFS.unlink(tempbackUpPath).then(() => {
+                   RNFS.scanFile(tempbackUpPath);
+                })
+             }
+          });
+          }
+          else{
+            Alert.alert('', t('settingExportError'));
+          }
+        } catch (error) {
           setIsExportRunning(false);
-        });
-      }).catch((e)=>{
-        setIsExportRunning(false);
-        handleError(e);
-      });
-     
+          if (error.error && error.error.code === "ECANCELLED500") {
+            console.log("canceled");
+        } else {
+          Alert.alert('', t('settingExportError'));
+        }
+          //Alert.alert('sharePdfBase64 Error =>', JSON.stringify(error));
+        }
+          }).catch((e)=>{
+            setIsExportRunning(false);
+            Alert.alert('', t('settingExportError'));
+          });
+  
+    
     }
   }
   const onExportCancel = () => {
