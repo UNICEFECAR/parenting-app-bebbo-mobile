@@ -33,6 +33,7 @@ import { fetchAPI } from '../redux/sagaMiddleware/sagaActions';
 import { receiveAPIFailure } from '../redux/sagaMiddleware/sagaSlice';
 import { apiJsonDataGet, getAge } from '../services/childCRUD';
 import { deleteArticleNotPinned } from '../services/commonApiService';
+import KeepAwake from 'react-native-keep-awake';
 
 type ChildSetupNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -88,6 +89,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           }else {
             enableImageDownload= false
           }
+          KeepAwake.activate();
           callSagaApi(enableImageDownload);
         }
           return () => {
