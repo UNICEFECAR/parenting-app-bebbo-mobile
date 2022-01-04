@@ -115,6 +115,10 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
   const callSagaApi = async (enableImageDownload: any) => {
    // console.log('in callSagaApi ',netInfoval.isConnected);
    console.log(enableImageDownload,'--enableImageDownload in callsagaapi--');
+   const routes = navigation.dangerouslyGetState()?.routes;
+   console.log(routes.length,"in callSagaApi navigation history--",navigation.dangerouslyGetState());
+
+    const prevRoute = routes.length > 2 ? routes[routes.length - 2] : null;
     if(prevPage == "ChilSetup" || prevPage== "AddEditChild")
     {
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
@@ -138,13 +142,17 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       apiJsonData.push(apiJsonDataarticle[0]);
      console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
-      var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
-        BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
-        SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
-        const resolvedPromises =  schemaarray.map(async schema => {
-          await dataRealmCommon.deleteOneByOne(schema);
-        })
-        const results = await Promise.all(resolvedPromises);
+      if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
+
+      }else {
+        var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
+          BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
+          SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
+          const resolvedPromises =  schemaarray.map(async schema => {
+            await dataRealmCommon.deleteOneByOne(schema);
+          })
+          const results = await Promise.all(resolvedPromises);
+        }
       //  console.log("delete done--",results);
       //dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
@@ -168,11 +176,15 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           })
         }
         // await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
-        var schemaarray = [ArticleEntitySchema]
-          const resolvedPromises =  schemaarray.map(async schema => {
-            await dataRealmCommon.deleteOneByOne(schema);
-          })
-          const results = await Promise.all(resolvedPromises);
+        if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
+
+        }else {
+          var schemaarray = [ArticleEntitySchema]
+            const resolvedPromises =  schemaarray.map(async schema => {
+              await dataRealmCommon.deleteOneByOne(schema);
+            })
+            const results = await Promise.all(resolvedPromises);
+          }
          // console.log("delete downloadBufferData done--",results);
       }
       if(downloadWeeklyData == true)
@@ -185,23 +197,31 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
             allAgeBrackets.push(age);
           })
         }
-        var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,TaxonomySchema,
-          ActivitiesEntitySchema]
-          const resolvedPromises =  schemaarray.map(async schema => {
-            await dataRealmCommon.deleteOneByOne(schema);
-          })
-          const results = await Promise.all(resolvedPromises);
+        if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
+
+        }else {
+          var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,TaxonomySchema,
+            ActivitiesEntitySchema]
+            const resolvedPromises =  schemaarray.map(async schema => {
+              await dataRealmCommon.deleteOneByOne(schema);
+            })
+            const results = await Promise.all(resolvedPromises);
+          }
          // console.log("delete downloadWeeklyData done--",results);
         // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
       }
       if(downloadMonthlyData == true)
       {
-        var schemaarray = [DailyHomeMessagesSchema,BasicPagesSchema,MilestonesSchema,ChildDevelopmentSchema,
-          VaccinationSchema,HealthCheckUpsSchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
-          const resolvedPromises =  schemaarray.map(async schema => {
-            await dataRealmCommon.deleteOneByOne(schema);
-          })
-          const results = await Promise.all(resolvedPromises);
+        if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
+
+        }else {
+          var schemaarray = [DailyHomeMessagesSchema,BasicPagesSchema,MilestonesSchema,ChildDevelopmentSchema,
+            VaccinationSchema,HealthCheckUpsSchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
+            const resolvedPromises =  schemaarray.map(async schema => {
+              await dataRealmCommon.deleteOneByOne(schema);
+            })
+            const results = await Promise.all(resolvedPromises);
+          }
          // console.log("delete downloadMonthlyData done--",results);
         // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
 
