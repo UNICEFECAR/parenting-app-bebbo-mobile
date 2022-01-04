@@ -415,11 +415,11 @@ const Activities = ({ route, navigation }: Props) => {
     return (
       <ArticleHeading>
         <FlexDirRowSpace>
-          <Heading3>{section.title}</Heading3>
+          <Heading3 numberOfLines={1} style={{maxWidth:'50%'}}>{section.title}</Heading3>
           {section?.id == 1 && activeChild.isPremature === 'true' ? (
-            <Pressable onPress={() => setModalVisible1(true)}>
+            <Pressable style={{maxWidth:'50%'}} onPress={() => setModalVisible1(true)}>
               <PrematureTagActivity>
-                <Heading5Bold>{t('actScreenprematureText')}</Heading5Bold>
+                <Heading5Bold numberOfLines={1}>{t('actScreenprematureText')}</Heading5Bold>
               </PrematureTagActivity>
             </Pressable>
           ) : null}
