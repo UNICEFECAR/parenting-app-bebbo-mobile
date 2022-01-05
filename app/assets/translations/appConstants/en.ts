@@ -292,7 +292,7 @@ const en = {
                 cameraOptionsHeader: "Choose",
                 noChildsTxt: "No data",
                 relationShipTxt: "Relationship to the child",
-                parentNameTxt: "Parent name",
+                parentNameTxt: "Name",
                 parentPlaceNameTxt: "Enter your name",
                 editParentTxt: "Edit parent details",
                 notiDelSelected: "Delete selected ({{count}})",
@@ -384,8 +384,8 @@ const en = {
                 noInternet: "No internet available.",
                 lowBandwidth: "Low bandwidth",
                 highBandwidth: "High bandwidth",
-                dataSaveron: "Do you want to switch on to data saver mode?",
-                dataSaveroff: "Do you want to switch off to data saver mode?",
+                dataSaveron: "Do you want to switch on data saver mode?",
+                dataSaveroff: "Do you want to switch off data saver mode?",
                 vcrNoti1: "Reminder has been set for the vaccination on {{reminderDateTime}}",
                 hcrNoti1: "Reminder has been set for the Health-checkup on {{reminderDateTime}}",
                 parentGender: "Gender",
@@ -426,7 +426,6 @@ const en = {
                 notNowTxt: "Not now",
                 settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File",
-
                 //27/12/2021
                 downloadAllPopupTitle: "Update data",
                 downloadAllPopupText: "This will take time. Do you want to download all data now?",
