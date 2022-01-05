@@ -1102,18 +1102,18 @@ const SettingScreen = (props: any) => {
                       try {
                         if (Platform.OS === "android") {
                           console.log("1233");
-                          const userResponse = await PermissionsAndroid.requestMultiple([
-                            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-                          ]);
-                          console.log(userResponse, "..userResponse..")
-                          if (userResponse) {
+                          // const userResponse = await PermissionsAndroid.requestMultiple([
+                          //   PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                          //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                          // ]);
+                          // console.log(userResponse, "..userResponse..")
+                          // if (userResponse) {
                             console.log("You can write");
                             actionSheetRef.current?.setModalVisible(false);
                             exportFile();
-                          } else {
-                            console.log("You can write");
-                          }
+                          // } else {
+                          //   console.log("You can write");
+                          // }
                         }
                         else {
                           actionSheetRef.current?.setModalVisible(false);
@@ -1185,14 +1185,14 @@ const SettingScreen = (props: any) => {
                           //import
                           if (Platform.OS === "android") {
                             console.log("1233");
-                            const userResponse = await PermissionsAndroid.requestMultiple([
-                              PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-                            ]);
-                            console.log(userResponse, "..userResponse..")
-                            if (userResponse) {
+                            // const userResponse = await PermissionsAndroid.requestMultiple([
+                            //   PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                            //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                            // ]);
+                            // console.log(userResponse, "..userResponse..")
+                            // if (userResponse) {
                               importFromSettingsFile();
-                            }
+                            //}
                           }
                           else {
                             importFromSettingsFile();
