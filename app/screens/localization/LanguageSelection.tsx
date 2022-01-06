@@ -15,13 +15,14 @@ import { SelectionView } from '@styles/style';
 import { ShiftFromTopBottom10 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, I18nManager, Platform } from 'react-native';
+import { Alert, FlatList, I18nManager, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
+import { rotwLanguagelocaleen, rotwLanguagelocaleru } from '@assets/translations/appOfflineData/apiConstants';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -152,7 +153,22 @@ const LanguageSelection = ({route, navigation}: Props) => {
             {language ? (
               <ButtonviewNext>
                 <ButtonviewClick
-                  onPress={() => goToConfirmationScreen()}>
+                  onPress={() => {
+                    if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
+                          Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
+                          [
+                            { text:t('restOfTheWorldOkTitle'), onPress: async () => {
+                              goToConfirmationScreen()
+                              }
+                            }
+                          ]
+                        );
+                    }else {
+                      goToConfirmationScreen()
+                    }
+                    
+                  }
+                  }>
                   <IconML name="ic_angle_right" size={32} color="#000" />
                 </ButtonviewClick>
               </ButtonviewNext>

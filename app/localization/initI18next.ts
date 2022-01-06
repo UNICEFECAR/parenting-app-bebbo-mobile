@@ -7,6 +7,7 @@ import i18n, {
   import AsyncStorage from '@react-native-async-storage/async-storage';
   import * as RNLocalize from 'react-native-localize';
   import en from '@assets/translations/appConstants/en';
+  import ru from '@assets/translations/appConstants/ru';
   import RSsr from '@assets/translations/appConstants/RSsr';
   import MEcnr from '@assets/translations/appConstants/MEcnr';
   import ALsq from '@assets/translations/appConstants/ALsq';
@@ -34,6 +35,7 @@ import i18n, {
 
   export const AVAILABLE_LANGUAGES = {
     en,
+    ru,
     RSsr,
     MEcnr,
     ALsq,
@@ -106,7 +108,7 @@ import i18n, {
             // );
           }
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
-         // console.log(bestLng,"--bestLng--- ");
+         //console.log(bestLng,"--bestLng--- ");
         // console.log(bestLng,"--bestLng--- ",AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
         // console.log("langCodeNew---",langCodeNew);
