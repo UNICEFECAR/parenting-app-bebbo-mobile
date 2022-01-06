@@ -79,9 +79,11 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     : false,
 );
   const netInfoval = useNetInfoHook();
+  const [netflag,setnetflag] = useState(false);
     useFocusEffect(
       React.useCallback(() => {
-        if(netInfoval.isConnected != null)
+        console.log("in useeffect laoding---",netflag);
+        if(netInfoval.isConnected != null && netflag == false)
         {
           let enableImageDownload = false;
           if(toggleSwitchVal == false && netInfoval.isConnected ==true){
@@ -91,6 +93,7 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
           }
           console.log("keep awake activated");
           // activateKeepAwake();
+          setnetflag(true);
           callSagaApi(enableImageDownload);
         }
           return () => {
