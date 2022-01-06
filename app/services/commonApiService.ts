@@ -248,7 +248,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       if(x.apiEndpoint == appConfig.sponsors){
         const sponsorresp = response.filter((y:any)=>y.apiEndpoint == appConfig.sponsors);
         const sponsorrespnew = sponsorresp ? sponsorresp[0] : [];
-        if(sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
+        if(sponsorrespnew && sponsorrespnew.data && sponsorrespnew.data.status && sponsorrespnew.data.status == 200)
         {
           // const ImageArray = [];
           // let obj=[];
@@ -382,9 +382,12 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       AsyncStorage.setItem('forceUpdateTime',forceUpdateTime);
     }
   }
-  console.log("keep awake deactivated");
   // deactivateKeepAwake();
-  if(prevPage == 'DownloadUpdate') {
+  const storedata = store.getState();
+  const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
+  console.log("keep awake deactivated--",storedata.failedOnloadApiObjReducer.errorObj);
+
+  if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
     Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
         { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
@@ -402,7 +405,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
       ]
     );
   }
-  else if(prevPage == 'DownloadAllData') {
+  else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
     console.log("enableImageDownload---",enableImageDownload);
     if(enableImageDownload){
       const allImagesucc = await downloadArticleImages();
