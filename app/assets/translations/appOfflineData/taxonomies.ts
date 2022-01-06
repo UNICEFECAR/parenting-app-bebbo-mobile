@@ -5491,6 +5491,783 @@ export const taxonomydata:any = {
             ]
         }
     }],
+    "ru": [{
+        "langCode": "ru",
+        "allData":{
+            "activity_category": [
+                {
+                    "id": 6421,
+                    "name": "Двигательная",
+                    "unique_name": "motor"
+                },
+                {
+                    "id": 6431,
+                    "name": "Социально-эмоциональная",
+                    "unique_name": "socio_ emotional"
+                },
+                {
+                    "id": 6436,
+                    "name": "Когнитивная",
+                    "unique_name": "cognitive"
+                },
+                {
+                    "id": 6441,
+                    "name": "Языковая и коммуникативная",
+                    "unique_name": "language_and_communication"
+                }
+            ],
+            "category": [
+                {
+                    "id": 1,
+                    "name": "Питание",
+                    "unique_name": "nutrition_and_breastfeeding"
+                },
+                {
+                    "id": 2,
+                    "name": "Здоровье",
+                    "unique_name": "health_and_wellbeing"
+                },
+                {
+                    "id": 3,
+                    "name": "Защита ребенка",
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 4,
+                    "name": "Для родителей",
+                    "unique_name": "parenting_corner"
+                },
+                {
+                    "id": 5,
+                    "name": "Рост ребенка",
+                    "unique_name": "child_growth"
+                },
+                {
+                    "id": 6,
+                    "name": "Развитие ребенка",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 7,
+                    "name": "Медосмотры",
+                    "unique_name": "health_check_ups"
+                },
+                {
+                    "id": 8,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 55,
+                    "name": "Игры и обучение",
+                    "unique_name": "play_and_learning"
+                },
+                {
+                    "id": 56,
+                    "name": "Чуткое воспитание",
+                    "unique_name": "responsive_parenting"
+                }
+            ],
+            "chatbot_category": [
+                {
+                    "id": 110071,
+                    "name": "Развитие ребенка",
+                    "unique_name": "child_development"
+                },
+                {
+                    "id": 110076,
+                    "name": "Что значит быть хорошим родителем",
+                    "unique_name": "better_parenting"
+                },
+                {
+                    "id": 110081,
+                    "name": "Здоровье ребенка",
+                    "unique_name": "raising_healthy_children"
+                },
+                {
+                    "id": 110086,
+                    "name": "Вакцинация",
+                    "unique_name": "vaccination"
+                },
+                {
+                    "id": 110091,
+                    "name": "Забота о себе",
+                    "unique_name": "taking_care_of_yourself"
+                }
+            ],
+            "chatbot_subcategory": [
+                {
+                    "id": 110096,
+                    "name": "Развитие и обучение",
+                    "parent_category_id": 110071,
+                    "unique_name": "development_and_learning"
+                },
+                {
+                    "id": 110101,
+                    "name": "Общение и чтение",
+                    "parent_category_id": 110071,
+                    "unique_name": "talking_and_reading"
+                },
+                {
+                    "id": 110106,
+                    "name": "Среда для обучения",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_environment"
+                },
+                {
+                    "id": 110111,
+                    "name": "Ребенок и детский сад",
+                    "parent_category_id": 110071,
+                    "unique_name": "my_child_and_preschool"
+                },
+                {
+                    "id": 110116,
+                    "name": "Учимся играя",
+                    "parent_category_id": 110071,
+                    "unique_name": "learning_through_play"
+                },
+                {
+                    "id": 110121,
+                    "name": "Теплые отношения",
+                    "parent_category_id": 110076,
+                    "unique_name": "loving_relationships"
+                },
+                {
+                    "id": 110126,
+                    "name": "Играем с ребенком",
+                    "parent_category_id": 110076,
+                    "unique_name": "playing_with_my_child"
+                },
+                {
+                    "id": 110131,
+                    "name": "Непослушание",
+                    "parent_category_id": 110076,
+                    "unique_name": "challenging_behaviour"
+                },
+                {
+                    "id": 110136,
+                    "name": "Учимся дома",
+                    "parent_category_id": 110076,
+                    "unique_name": "learning_at_home"
+                },
+                {
+                    "id": 110141,
+                    "name": "Общение ребенка с другими людьми",
+                    "parent_category_id": 110076,
+                    "unique_name": "child_connecting_with_others"
+                },
+                {
+                    "id": 110146,
+                    "name": "Поводы для беспокойства",
+                    "parent_category_id": 110081,
+                    "unique_name": "developmental_concerns"
+                },
+                {
+                    "id": 110151,
+                    "name": "Здоровые привычки",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_habits"
+                },
+                {
+                    "id": 110156,
+                    "name": "Правильное питание",
+                    "parent_category_id": 110081,
+                    "unique_name": "healthy_eating"
+                },
+                {
+                    "id": 110161,
+                    "name": "Грудное вскармиливание",
+                    "parent_category_id": 110081,
+                    "unique_name": "breastfeeding"
+                },
+                {
+                    "id": 110166,
+                    "name": "Безопасность и защита",
+                    "parent_category_id": 110081,
+                    "unique_name": "safety_and_protection"
+                },
+                {
+                    "id": 110171,
+                    "name": "О вакцинах",
+                    "parent_category_id": 110086,
+                    "unique_name": "about_vaccines"
+                },
+                {
+                    "id": 110176,
+                    "name": "Безопасность вакцин",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_safety"
+                },
+                {
+                    "id": 110181,
+                    "name": "Болезни, которые мы предотвращаем прививками",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccine_preventable_diseases"
+                },
+                {
+                    "id": 110186,
+                    "name": "График вакцинации",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccination_schedule"
+                },
+                {
+                    "id": 110191,
+                    "name": "Вакцины и состояние здоровья",
+                    "parent_category_id": 110086,
+                    "unique_name": "vaccines_and_medical_conditions"
+                },
+                {
+                    "id": 110196,
+                    "name": "Поддержание здоровья и благополучия",
+                    "parent_category_id": 110091,
+                    "unique_name": "staying_healthy_and_happy"
+                },
+                {
+                    "id": 110201,
+                    "name": "Как справиться со стрессом",
+                    "parent_category_id": 110091,
+                    "unique_name": "getting_help_with_my_stress"
+                },
+                {
+                    "id": 110206,
+                    "name": "Как справиться со сложностями в уходе за ребенком",
+                    "parent_category_id": 110091,
+                    "unique_name": "coping_with_parenting_challenges"
+                },
+                {
+                    "id": 110211,
+                    "name": "Психологическое благополучие",
+                    "parent_category_id": 110091,
+                    "unique_name": "psychological_wellbeing"
+                }
+            ],
+            "child_age": [
+                {
+                    "id": 43,
+                    "name": "1-й месяц",
+                    "days_from": 0,
+                    "days_to": 30,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        43,
+                        44,
+                        45
+                    ]
+                },
+                {
+                    "id": 44,
+                    "name": "2-й месяц",
+                    "days_from": 31,
+                    "days_to": 60,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        44,
+                        45,
+                        46
+                    ]
+                },
+                {
+                    "id": 45,
+                    "name": "3–4 месяца",
+                    "days_from": 61,
+                    "days_to": 120,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        45,
+                        46,
+                        47
+                    ]
+                },
+                {
+                    "id": 46,
+                    "name": "5–6 месяцев",
+                    "days_from": 121,
+                    "days_to": 180,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        46,
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 47,
+                    "name": "7–9 месяцев",
+                    "days_from": 181,
+                    "days_to": 270,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        47,
+                        48
+                    ]
+                },
+                {
+                    "id": 48,
+                    "name": "10–12 месяцев",
+                    "days_from": 271,
+                    "days_to": 360,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        48,
+                        49
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "13–18 месяцев",
+                    "days_from": 361,
+                    "days_to": 540,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        49,
+                        50
+                    ]
+                },
+                {
+                    "id": 50,
+                    "name": "19–24 месяца",
+                    "days_from": 541,
+                    "days_to": 720,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        50,
+                        51
+                    ]
+                },
+                {
+                    "id": 51,
+                    "name": "25–36 месяцев",
+                    "days_from": 721,
+                    "days_to": 1080,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        51,
+                        52
+                    ]
+                },
+                {
+                    "id": 52,
+                    "name": "37–48 месяцев",
+                    "days_from": 1081,
+                    "days_to": 1440,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        52,
+                        57
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "49–60 месяцев",
+                    "days_from": 1441,
+                    "days_to": 1800,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        57,
+                        58
+                    ]
+                },
+                {
+                    "id": 58,
+                    "name": "61–72 месяца",
+                    "days_from": 1801,
+                    "days_to": 2160,
+                    "buffers_days": 10,
+                    "age_bracket": [
+                        58
+                    ]
+                }
+            ],
+            "child_gender": [
+                {
+                    "id": 40,
+                    "name": "Мальчик",
+                    "unique_name": "boy"
+                },
+                {
+                    "id": 41,
+                    "name": "Девочка",
+                    "unique_name": "girl"
+                },
+                {
+                    "id": 59,
+                    "name": "Оба",
+                    "unique_name": "both"
+                }
+            ],
+            "growth_introductory": [
+                {
+                    "id": 10003,
+                    "name": "1 месяц",
+                    "body": "В течение первых 5 дней новорождённый теряет до 10 % своей массы тела при рождении, но при соответствующем уходе и питании, в первую очередь при грудном вскармливании, он компенсирует эту потерю к концу второй недели жизни. В последующий период новорождённый будет прибавлять в весе от 20 до 30 г в день, до 5 см в месяц в длину и 2-2,5 см в окружности головы.",
+                    "days_from": 0,
+                    "days_to": 30
+                },
+                {
+                    "id": 10004,
+                    "name": "2 месяца, 3 месяца",
+                    "body": "На втором и третьем месяце ребенок продолжает расти примерно теми же темпами, что и в первые недели. Он будет набирать от 700 до 900 г в месяц в весе, от 2,5 до 4 см в длину и примерно 1,2 см в окружности головы.",
+                    "days_from": 31,
+                    "days_to": 91
+                },
+                {
+                    "id": 10005,
+                    "name": "5 месяцев (включая 4-й и 5-й месяц)",
+                    "body": "Рост начинает замедляться, и на четвертом, пятом и шестом месяце ребенок набирает в среднем 450-550 г веса и около 2 см в длину.",
+                    "days_from": 92,
+                    "days_to": 152
+                },
+                {
+                    "id": 10007,
+                    "name": "6 месяцев",
+                    "body": "Ребенок продолжает набирать в месяц 450-550 г в весе и в среднем около 2 см в длину. К 6 месяцам масса тела ребенка уже вдвое больше той, что была при рождении.",
+                    "days_from": 153,
+                    "days_to": 183
+                },
+                {
+                    "id": 10008,
+                    "name": "9 месяцев (включая 7–9-й месяцы)",
+                    "body": "С седьмого по девятый месяц рост продолжает замедляться. Дети растут разными темпами, но важно, чтобы послеживалась модель роста, установившаяся в предыдущие месяцы.",
+                    "days_from": 184,
+                    "days_to": 274
+                },
+                {
+                    "id": 10009,
+                    "name": "12 месяцев (включая 10–12-й месяцы)",
+                    "body": "В последнем триместре первого года ребенок набирает около 1 см в месяц, при этом вес варьируется и зависит от уровня активности. В течение первого года ребенок обычно утраивает свой вес при рождении, вырастает в среднем на 25 см, а окружность головы увеличивается на 12,5 см.",
+                    "days_from": 275,
+                    "days_to": 365
+                },
+                {
+                    "id": 10010,
+                    "name": "18 месяцев (включая второй год)",
+                    "body": "Во второй год продолжается постепенное замедление роста. За этот год ребенок вырастает примерно на 12 см, набирает в весе 2-2,5 кг, а окружность головы увеличивается на 2-2,5 см.",
+                    "days_from": 366,
+                    "days_to": 730
+                },
+                {
+                    "id": 10012,
+                    "name": "3 года и далее (третий год и далее)",
+                    "body": "Рост с третьего года становится более равномерным. За год ребенок набирает в росте 5-7,5 см и в весе 2-3 кг.",
+                    "days_from": 731,
+                    "days_to": 2190
+                }
+            ],
+            "growth_period": [
+                {
+                    "id": 6466,
+                    "name": "При рождении",
+                    "vaccination_opens": 0
+                },
+                {
+                    "id": 6471,
+                    "name": "В полный 1 месяц",
+                    "vaccination_opens": 30
+                },
+                {
+                    "id": 6476,
+                    "name": "В полных 2 месяца",
+                    "vaccination_opens": 60
+                },
+                {
+                    "id": 6481,
+                    "name": "В полных 3 месяца",
+                    "vaccination_opens": 90
+                },
+                {
+                    "id": 6486,
+                    "name": "В полных 3.5 месяца",
+                    "vaccination_opens": 105
+                },
+                {
+                    "id": 6491,
+                    "name": "В полных 4 месяца",
+                    "vaccination_opens": 120
+                },
+                {
+                    "id": 6496,
+                    "name": "В полных 5 месяцев",
+                    "vaccination_opens": 150
+                },
+                {
+                    "id": 6501,
+                    "name": "В полных 6 месяцев",
+                    "vaccination_opens": 180
+                },
+                {
+                    "id": 6506,
+                    "name": "С 16 до 23 месяцев",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6511,
+                    "name": "В полных 7 месяцев",
+                    "vaccination_opens": 210
+                },
+                {
+                    "id": 6516,
+                    "name": "В полных 8 месяцев",
+                    "vaccination_opens": 240
+                },
+                {
+                    "id": 6521,
+                    "name": "В полных 9 месяцев",
+                    "vaccination_opens": 270
+                },
+                {
+                    "id": 6526,
+                    "name": "В полных 10 месяцев",
+                    "vaccination_opens": 300
+                },
+                {
+                    "id": 6531,
+                    "name": "В полных 11 месяцев",
+                    "vaccination_opens": 330
+                },
+                {
+                    "id": 6532,
+                    "name": "В полных 12 месяцев",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6533,
+                    "name": "С 12 до 15 месяцев",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 6534,
+                    "name": "В полных 15 месяцев",
+                    "vaccination_opens": 455
+                },
+                {
+                    "id": 6535,
+                    "name": "В полных 16 месяцев",
+                    "vaccination_opens": 485
+                },
+                {
+                    "id": 6537,
+                    "name": "В полный 21 месяц",
+                    "vaccination_opens": 635
+                },
+                {
+                    "id": 6538,
+                    "name": "В полных 2 года",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6540,
+                    "name": "В полных 27 месяцев",
+                    "vaccination_opens": 820
+                },
+                {
+                    "id": 6541,
+                    "name": "В полных 30 месяцев",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6542,
+                    "name": "В полных 33 месяца",
+                    "vaccination_opens": 1000
+                },
+                {
+                    "id": 6543,
+                    "name": "В полных 3 года",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6544,
+                    "name": "С 30 до 36 месяцев",
+                    "vaccination_opens": 910
+                },
+                {
+                    "id": 6545,
+                    "name": "С 24 до 36 месяцев",
+                    "vaccination_opens": 730
+                },
+                {
+                    "id": 6546,
+                    "name": "С 36 до 48 месяцев",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6547,
+                    "name": "В полных 42 месяца",
+                    "vaccination_opens": 1275
+                },
+                {
+                    "id": 6548,
+                    "name": "В полные 4 года",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6549,
+                    "name": "В полных 54 месяца",
+                    "vaccination_opens": 1640
+                },
+                {
+                    "id": 6550,
+                    "name": "С 48 до 61 месяца",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 6551,
+                    "name": "В полных 5 лет",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 6552,
+                    "name": "С 3 до 7 лет",
+                    "vaccination_opens": 1095
+                },
+                {
+                    "id": 6553,
+                    "name": "В полных 6 лет",
+                    "vaccination_opens": 2190
+                },
+                {
+                    "id": 6556,
+                    "name": "В полных 6.5 лет",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 6557,
+                    "name": "В полных 7 лет",
+                    "vaccination_opens": 2555
+                },
+                {
+                    "id": 6560,
+                    "name": "В полных 18 месяцев",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 32906,
+                    "name": "В полных 5.5 лет",
+                    "vaccination_opens": 2005
+                },
+                {
+                    "id": 59016,
+                    "name": "С 5 до 6 лет",
+                    "vaccination_opens": 1825
+                },
+                {
+                    "id": 59041,
+                    "name": "С 37 до 48 месяцев",
+                    "vaccination_opens": 1125
+                },
+                {
+                    "id": 59051,
+                    "name": "В полных 13 месяцев",
+                    "vaccination_opens": 395
+                },
+                {
+                    "id": 59056,
+                    "name": "С 6 до 7 лет",
+                    "vaccination_opens": 2370
+                },
+                {
+                    "id": 59061,
+                    "name": "С 18 до 24 месяцев",
+                    "vaccination_opens": 545
+                },
+                {
+                    "id": 59076,
+                    "name": "С 12 до 18 месяцев",
+                    "vaccination_opens": 365
+                },
+                {
+                    "id": 59326,
+                    "name": "С 19 до 23 месяцев",
+                    "vaccination_opens": 575
+                },
+                {
+                    "id": 109721,
+                    "name": "На 15-й день",
+                    "vaccination_opens": 15
+                },
+                {
+                    "id": 110006,
+                    "name": "С 7 до 14 дней",
+                    "vaccination_opens": 7
+                },
+                {
+                    "id": 110011,
+                    "name": "С 4 до 6 лет",
+                    "vaccination_opens": 1460
+                },
+                {
+                    "id": 110016,
+                    "name": "На 21-й день",
+                    "vaccination_opens": 21
+                }
+            ],
+            "growth_type": [
+                {
+                    "id": 6461,
+                    "name": "Рост для веса",
+                    "unique_name": "height_for_weight"
+                },
+                {
+                    "id": 32786,
+                    "name": "Рост по возрасту",
+                    "unique_name": "height_for_age"
+                }
+            ],
+            "parent_gender": [
+                {
+                    "id": 37,
+                    "name": "Мужской",
+                    "unique_name": "male"
+                },
+                {
+                    "id": 38,
+                    "name": "Женский",
+                    "unique_name": "female"
+                },
+                {
+                    "id": 60,
+                    "name": "Оба",
+                    "unique_name": "both"
+                }
+            ],
+            "relationship_to_parent": [
+                {
+                    "id": 109801,
+                    "name": "Мать",
+                    "unique_name": "mother"
+                },
+                {
+                    "id": 109806,
+                    "name": "Отец",
+                    "unique_name": "father"
+                },
+                {
+                    "id": 109811,
+                    "name": "Другой близкий взрослый",
+                    "unique_name": "other_caregiver"
+                },
+                {
+                    "id": 109816,
+                    "name": "Специалист",
+                    "unique_name": "service_provider"
+                }
+            ],
+            "type_of_support": [
+                {
+                    "id": 59001,
+                    "name": "Под руководством родителей"
+                },
+                {
+                    "id": 59006,
+                    "name": "Самостоятельные игры"
+                }
+            ]
+        },
+        "standardDevData": {
+            "standard_deviation":[
+
+            ]
+        }
+    }],
     "al-sq": [{
         "langCode": "al-sq",
         "allData":{
