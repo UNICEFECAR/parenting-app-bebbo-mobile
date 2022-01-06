@@ -2,7 +2,6 @@ export const ONBOARDING_CHILD_COUNT="no_of_childsetup_onboarding"; //child_count
 export const GROWTH_MEASUREMENT_ADDED="child_measurement_entered";
 export const VACCINE_ADDED="child_vaccine_entered";
 export const ADVICE_CATEGORY_SELECTED="advise_category_selected";
-
 export const GAME_CATEGORY_SELECTED="game_category_selected"; //{game_category_id: 'P12453',}
 export const ADVICE_DETAILS_OPENED="advise_details_opened"; //,{advise_id: 'P12453',advice_catergory_id}
 export const GAME_DETAILS_OPENED="game_details_opened"; //{game_id: 'P12453',game_category_id}
@@ -26,3 +25,6 @@ export const GROWTH_NOTIFICATION_ON="growth_notification_on"; //,enabled:true/fa
 export const GROWTH_NOTIFICATION_OFF="growth_notification_off"; //,enabled:true/false
 export const VACCINE_HEALTHCHECKUP_NOTIFICATION_ON="vc_hc_notification_on";//enabled:true/false
 export const VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF="vc_hc_notification_off";//enabled:true/false
+export const CHATBOT_CATEGORY_SELECTED="chatbot_category_selected";//chatbot category
+export const CHATBOT_SUBCATEGORY_SELECTED="chatbot_subcategory_selected";//chatbot subcategory
+export const CHATBOT_FAQ_SELECTED="chatbot_faq_selected";//chatbot faq category
