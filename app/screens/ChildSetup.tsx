@@ -583,14 +583,14 @@ const ChildSetup = ({ navigation }: Props) => {
                         //import
                         if (Platform.OS === "android") {
                           console.log("1233");
-                          const userResponse = await PermissionsAndroid.requestMultiple([
-                            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-                          ]);
-                          console.log(userResponse,"..userResponse..")
-                          if (userResponse) {
+                          // const userResponse = await PermissionsAndroid.requestMultiple([
+                          //   PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                          //   PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+                          // ]);
+                          // console.log(userResponse,"..userResponse..")
+                          // if (userResponse) {
                             importFromFile();
-                          }
+                          //}
                         }
                         else{
                           importFromFile();

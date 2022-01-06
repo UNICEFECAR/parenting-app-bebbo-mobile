@@ -19,7 +19,7 @@ import HTML from 'react-native-render-html';
 import { addSpaceToHtml } from '../../services/Utils';
 import { ButtonModal, ButtonText } from '@components/shared/ButtonGlobal';
 import analytics from '@react-native-firebase/analytics';
-import { FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
+import { CHATBOT_CATEGORY_SELECTED, CHATBOT_FAQ_SELECTED, CHATBOT_SUBCATEGORY_SELECTED, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
 
 type SupportChatNavigationProp = StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -102,12 +102,15 @@ const faqsData = useAppSelector((state: any) =>
     localsteps[index].showNextStep = true;
     if(nextstepid == subCategoryStepId) {
       //setting options for nextStepId
+      analytics().logEvent(CHATBOT_CATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
       const subcat = taxonomy.chatbot_subcategory.filter((x:any)=>x.parent_category_id == localsteps[stepIndex].options[optionIndex].value);
       const subcat2 = subcat.map((x: any,i: any) => {
         return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
       });
       localsteps[index].options = subcat2;
+      
     }else if(nextstepid == faqsStepId) {
+      analytics().logEvent(CHATBOT_SUBCATEGORY_SELECTED+"_"+localsteps[stepIndex].options[optionIndex].value);
       const faqsoption = faqsData ? faqsData.filter((x:any)=>x.chatbot_subcategory == localsteps[stepIndex].options[optionIndex].value) : [];
       const faqsoption2 = faqsoption.map((x: any,i: any) => {
         return {...x,label : x.question,value : x.id,nextStepFunc : categorySelection}
@@ -119,13 +122,16 @@ const faqsData = useAppSelector((state: any) =>
       localsteps[index].actions[1].label = t('backToCategoryTxt',{categoryName:localsteps[indexForText].answer.label})
     }else if(nextstepid == expertAdviceId) {
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
-      // localsteps[index+1].showNextStep = true;
+      //console.log(localsteps[index].textToShow,"...faq id localsteps[index].textToShow.")
+     // localsteps[index+1].showNextStep = true;
       const indexForText = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === explorecatstep ? i : acc
       ), -1);
       const indexForText2 = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === exploresubcatstep ? i : acc
       ), -1);
+      console.log({faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value},"...faq subcat localsteps[indexForText2].answer.")
+      analytics().logEvent(CHATBOT_FAQ_SELECTED,{faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value});
       localsteps[index+1].actions[0].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
       localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText].answer.label})
     }
