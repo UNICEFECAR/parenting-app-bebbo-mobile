@@ -24,8 +24,7 @@ const ActivitiesCategories = (props: ActivityCategoriesProps) => {
         // console.log(filterArray,"includes(itemId)--",itemId);
         if (!filterArray.includes(itemId)) {
             filterArray.push(itemId);
-               analytics().logEvent(GAME_CATEGORY_SELECTED, {game_category_id:itemId});
-                                      
+            analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+itemId);                    
         } else {
             filterArray.splice(filterArray.indexOf(itemId), 1);
         }
