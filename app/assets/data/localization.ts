@@ -228,6 +228,13 @@ export const localization = [
         locale: 'en',
         luxonLocale:'en-US'
       },
+      {
+        name: 'Russian',
+        displayName: 'Русский',
+        languageCode: 'ru',
+        locale: 'ru',
+        luxonLocale:'ru-RU'
+      },
     ],
   },
 ];
