@@ -3,7 +3,7 @@ import { FlexCol, FlexRowEnd } from '@components/shared/FlexBoxStyle';
 import Icon from '@components/shared/Icon';
 import RelatedArticles from '@components/shared/RelatedArticles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Heading2, Heading4, ShiftFromTop10, ShiftFromTopBottom15 } from '@styles/typography';
+import { Heading2, Heading3Regular, Heading4, ShiftFromTop10, ShiftFromTopBottom15 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Dimensions, Pressable, View } from 'react-native';
@@ -150,22 +150,23 @@ useEffect(() => {
              {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null} 
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
-                <HTML
-                  source={{html: addSpaceToHtml(item?.interpretationText?.text)}}
-                  baseFontStyle={{fontSize: 16}}
-                  ignoredStyles={['color', 'font-size', 'font-family']}
-                  tagsStyles={{
-                    p:{textAlign:'left',},
-                    h1:{textAlign:'left'},
-                    h2:{textAlign:'left'},
-                    h3:{textAlign:'left'},
-                    h4:{textAlign:'left'},
-                    h5:{textAlign:'left'},
-                    h6:{textAlign:'left'},
-                    span:{textAlign:'left'},
-                    li:{textAlign:'left'},
-                  }}
-                />
+                <Heading3Regular>{item?.interpretationText?.text}</Heading3Regular>
+                // <HTML
+                //   source={{html: addSpaceToHtml(item?.interpretationText?.text)}}
+                //   baseFontStyle={{fontSize: 16}}
+                //   ignoredStyles={['color', 'font-size', 'font-family']}
+                //   tagsStyles={{
+                //     p:{textAlign:'left',},
+                //     h1:{textAlign:'left'},
+                //     h2:{textAlign:'left'},
+                //     h3:{textAlign:'left'},
+                //     h4:{textAlign:'left'},
+                //     h5:{textAlign:'left'},
+                //     h6:{textAlign:'left'},
+                //     span:{textAlign:'left'},
+                //     li:{textAlign:'left'},
+                //   }}
+                // />
               ) : null}
               
             </>
