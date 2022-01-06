@@ -414,16 +414,16 @@ const Activities = ({ route, navigation }: Props) => {
   const HeadingComponent = React.memo(({ section }) => {
     return (
       <ArticleHeading>
-        <FlexDirRowSpace>
-          <Heading3 numberOfLines={1} style={{maxWidth:'50%'}}>{section.title}</Heading3>
+        <View style={{flexDirection:'row'}}>
+          <Heading3 numberOfLines={1} style={{flex:1,maxWidth:'60%',paddingLeft:5,paddingRight:5}}>{section.title}</Heading3>
           {section?.id == 1 && activeChild.isPremature === 'true' ? (
-            <Pressable style={{maxWidth:'50%'}} onPress={() => setModalVisible1(true)}>
+            <Pressable style={{flex:1,maxWidth:'40%'}} onPress={() => setModalVisible1(true)}>
               <PrematureTagActivity>
                 <Heading5Bold numberOfLines={1}>{t('actScreenprematureText')}</Heading5Bold>
               </PrematureTagActivity>
             </Pressable>
           ) : null}
-        </FlexDirRowSpace>
+        </View>
       </ArticleHeading>
     )
   });
