@@ -243,6 +243,9 @@ export const vaccineData:any = {
             "updated_at": "Mon, 08/16/2021 - 14:13"
         }
     ],
+    "ru": [
+        
+    ],
     "al-sq":[
         {
             "uuid": "66fda5f9-02c9-4bf8-a2d2-3743f78dcdbd",
