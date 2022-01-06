@@ -22,7 +22,7 @@ const ArticleCategories = (props: ArticleCategoriesProps) => {
       // console.log(filterArray,"includes(itemId)--",itemId);
     if (!filterArray.includes(itemId)) {
       filterArray.push(itemId);
-       analytics().logEvent(ADVICE_CATEGORY_SELECTED, {advise_category_id:itemId});
+       analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+itemId);
 
     } else {
       filterArray.splice(filterArray.indexOf(itemId), 1);
