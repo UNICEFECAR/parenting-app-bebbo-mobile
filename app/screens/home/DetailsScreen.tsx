@@ -31,7 +31,7 @@ import WebView from "react-native-webview";
 import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
 import analytics from '@react-native-firebase/analytics';
-import { ADVICE_DETAILS_OPENED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
+import { ADVICE_CATEGORY_SELECTED, ADVICE_DETAILS_OPENED, GAME_CATEGORY_SELECTED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
 import RenderImage from '../../services/RenderImage';
@@ -109,6 +109,7 @@ const DetailsScreen = ({route, navigation}: any) => {
       const functionOnLoad = async () => {
         if(fromScreen == "VaccinationTab" || fromScreen == "HealthCheckupsTab" || fromScreen == "AddChildHealthCheckup" || fromScreen == "AddChildVaccination" || fromScreen == "MileStone" || fromScreen == "HomeArt" || fromScreen == "FavArticles" || fromScreen == "SupportChat")
         {
+          console.log(detailData,"..detailData..")
           // const articleData = useAppSelector(
           //   (state: any) => (state.articlesData.article.articles != '') ? JSON.parse(state.articlesData.article.articles) : state.articlesData.article.articles,
           // );
@@ -120,8 +121,10 @@ const DetailsScreen = ({route, navigation}: any) => {
               setDetailDataToUse(articleData[0]);
               if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
               {
+                 analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+articleData[0]?.activity_category);
                  analytics().logEvent(GAME_DETAILS_OPENED,{game_id: articleData[0]?.id,game_category_id:articleData[0]?.activity_category});    
               }else{
+                 analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+articleData[0]?.category);
                  analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  articleData[0]?.id,advice_catergory_id:articleData[0]?.category});
               }
             }else {
@@ -130,8 +133,10 @@ const DetailsScreen = ({route, navigation}: any) => {
                   setDetailDataToUse(videoarticleData[0]);
                   if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
                   {
+                    analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+videoarticleData[0]?.activity_category);
                     analytics().logEvent(GAME_DETAILS_OPENED,{game_id: videoarticleData[0]?.id,game_category_id:videoarticleData[0]?.activity_category});    
                   }else{
+                    analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+videoarticleData[0]?.category);
                     analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  videoarticleData[0]?.id,advice_catergory_id:videoarticleData[0]?.category});
                   }
                 }else {
@@ -148,8 +153,10 @@ const DetailsScreen = ({route, navigation}: any) => {
             setDetailDataToUse(detailData);
             if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
+               analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
+               analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
                analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
           }
@@ -168,8 +175,10 @@ const DetailsScreen = ({route, navigation}: any) => {
               setDetailDataToUse(activityData[0]);
               if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
                 {
+                   analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+activityData[0]?.activity_category);
                    analytics().logEvent(GAME_DETAILS_OPENED,{game_id:activityData[0]?.id,game_category_id:activityData[0]?.activity_category});    
                 }else{
+                   analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+activityData[0]?.category);
                    analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:activityData[0]?.id,advice_catergory_id:activityData[0]?.category});
                 }
             }
@@ -186,8 +195,10 @@ const DetailsScreen = ({route, navigation}: any) => {
             setDetailDataToUse(detailData);
             if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
               {
+                 analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                  analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
               }else{
+                 analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
                  analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
               }
           }
@@ -196,8 +207,10 @@ const DetailsScreen = ({route, navigation}: any) => {
           setDetailDataToUse(detailData);
           if(fromScreen === 'Activities' || fromScreen === 'MileStoneActivity' || fromScreen === 'HomeAct' || fromScreen === 'FavActivities')
             {
+               analytics().logEvent(GAME_CATEGORY_SELECTED+"_"+detailData?.activity_category);
                analytics().logEvent(GAME_DETAILS_OPENED,{game_id:detailData?.id,game_category_id:detailData?.activity_category});    
             }else{
+               analytics().logEvent(ADVICE_CATEGORY_SELECTED+"_"+detailData?.category);
                analytics().logEvent(ADVICE_DETAILS_OPENED,{advise_id:  detailData?.id,advice_catergory_id:detailData?.category});
             }
         }
@@ -313,7 +326,7 @@ const DetailsScreen = ({route, navigation}: any) => {
     }
   };
   const onHeaderBack =()=>{
-    // console.log("onHeaderBack called");
+    console.log("onHeaderBack called");
     if(fromScreen == "ChildDevelopment")
     {
       // console.log("detail screen----",currentSelectedChildId);
