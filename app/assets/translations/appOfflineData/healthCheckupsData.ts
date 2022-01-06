@@ -111,6 +111,18 @@ export const healthCheckupsData:any = {
             "updated_at": "Mon, 08/16/2021 - 14:15"
         }
     ],
+    "ru":[
+        {
+            "id": 56231,
+            "type": "Health Check-ups - Age Periods",
+            "title": "В полные 9 месяцев",
+            "growth_period": 6521,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "Mon, 12/20/2021 - 14:43",
+            "updated_at": "Mon, 12/20/2021 - 19:12"
+        }
+    ],
     "al-sq": [
         {
             "id": 55796,
