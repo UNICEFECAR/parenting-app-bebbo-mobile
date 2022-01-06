@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
-import { rotwLanguagelocaleen, rotwLanguagelocaleru } from '@assets/translations/appOfflineData/apiConstants';
+import { localization } from '@assets/data/localization';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -74,57 +74,75 @@ const LanguageSelection = ({route, navigation}: Props) => {
   );
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.PRIMARY_COLOR;
-  const goToConfirmationScreen = () => {
-    i18n.changeLanguage(language?.locale)
-    .then(() => {
-      if(language?.locale == 'GRarb' || language?.locale == 'GRda')
-      {
-        if(AppLayoutDirection == 'ltr') {
-          dispatch(setrestartOnLangChange('yes'));
-          dispatch(setAppLayoutDirection('rtl'));
-          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-          dispatch(setAppLayoutDirectionParams({
-            country,
-            language,
-          }));
-          Platform.OS=='ios'? setTimeout(()=>{
-          I18nManager.forceRTL(true);
-          RNRestart.Restart();
-          },100):
-          setTimeout(()=>{
-          I18nManager.forceRTL(true);
-          RNRestart.Restart();
-          },0);
-        }else {
-          I18nManager.forceRTL(true);
-        }
+  const rtlConditions = () => {
+    if(language?.locale == 'GRarb' || language?.locale == 'GRda')
+          {
+            if(AppLayoutDirection == 'ltr') {
+              dispatch(setrestartOnLangChange('yes'));
+              dispatch(setAppLayoutDirection('rtl'));
+              dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+              dispatch(setAppLayoutDirectionParams({
+                country,
+                language,
+              }));
+              Platform.OS=='ios'? setTimeout(()=>{
+              I18nManager.forceRTL(true);
+              RNRestart.Restart();
+              },100):
+              setTimeout(()=>{
+              I18nManager.forceRTL(true);
+              RNRestart.Restart();
+              },0);
+            }else {
+              I18nManager.forceRTL(true);
+            }
+    }else {
+      if(AppLayoutDirection == 'rtl') {
+        dispatch(setrestartOnLangChange('yes'));
+        dispatch(setAppLayoutDirection('ltr'));
+        dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
+        dispatch(setAppLayoutDirectionParams({
+          country,
+          language,
+        }));
+        Platform.OS=='ios'? 
+        setTimeout(()=>{
+        I18nManager.forceRTL(false);
+        RNRestart.Restart();
+        },100):
+        setTimeout(()=>{
+        I18nManager.forceRTL(false);
+        RNRestart.Restart();
+        },0);
       }else {
-        if(AppLayoutDirection == 'rtl') {
-          dispatch(setrestartOnLangChange('yes'));
-          dispatch(setAppLayoutDirection('ltr'));
-          dispatch(setAppLayoutDirectionScreen('CountryLanguageConfirmation'));
-          dispatch(setAppLayoutDirectionParams({
-            country,
-            language,
-          }));
-          Platform.OS=='ios'? 
-          setTimeout(()=>{
-          I18nManager.forceRTL(false);
-          RNRestart.Restart();
-          },100):
-          setTimeout(()=>{
-          I18nManager.forceRTL(false);
-          RNRestart.Restart();
-          },0);
-        }else {
-          I18nManager.forceRTL(false);
-        }
+        I18nManager.forceRTL(false);
       }
-    })
+    }
     navigation.navigate('CountryLanguageConfirmation', {
       country,
       language,
     })
+  }
+  const goToConfirmationScreen = () => {
+    i18n.changeLanguage(language?.locale)
+    .then(() => {
+      console.log(language,"--hdhghd--",i18n.language);
+      const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
+      const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+      if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
+            Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
+            [
+              { text:t('restOfTheWorldOkTitle'), onPress: async () => {
+                rtlConditions()
+                }
+              }
+            ]
+          );
+      }else {
+        rtlConditions();
+      }
+    })
+    
   }
   return (
     <>
@@ -154,19 +172,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
               <ButtonviewNext>
                 <ButtonviewClick
                   onPress={() => {
-                    if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
-                          Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
-                          [
-                            { text:t('restOfTheWorldOkTitle'), onPress: async () => {
-                              goToConfirmationScreen()
-                              }
-                            }
-                          ]
-                        );
-                    }else {
                       goToConfirmationScreen()
-                    }
-                    
                   }
                   }>
                   <IconML name="ic_angle_right" size={32} color="#000" />
