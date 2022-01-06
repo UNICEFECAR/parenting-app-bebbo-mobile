@@ -43,9 +43,11 @@ let today = new Date();
 today.setFullYear(today.getFullYear() + 5);
 export const  fiveYearFromNow = today;
 export const restOfTheWorldCountryId = 126;
-export const restOfTheWorldAlertTitle = 'Warning';
-export const restOfTheWorldOkTitle = 'Ok';
-export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and Health check-ups are not customized to a specific national health program.';
+export const rotwLanguagelocaleen = 'en';
+export const rotwLanguagelocaleru = 'ru';
+// export const restOfTheWorldAlertTitle = 'Warning';
+// export const restOfTheWorldOkTitle = 'Ok';
+// export const restOfTheWorldAlertText = 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and Health check-ups are not customized to a specific national health program.';
 export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,selectedLang: string)=>{
     // console.log(apiEndpoint,"in finalurl", apiUrlDevelop);
     // console.log("in finalurl", apiUrlDevelop);
