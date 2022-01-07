@@ -427,13 +427,13 @@ const TJru = {
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импорт файл",
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Žáíîâèòü äàííûå",
+                downloadAllPopupText: "òî çàéìåò êàêîå-òî âðåìß. ‚û õîòèòå çàãðóçèòü âñå äàííûå ñåé÷àñ?",
+                downloadAllCancelPopUpBtn: "Žòìåíèòü",
+                downloadAllContinueBtn: "ðîäîëæèòü",
+                downloadAllSuccessPopupTitle: "“ñïåõ",
+                downloadAllSuccessPopupText: "‚ñå äàííûå óñïåøíî çàãðóæåíû!!",
+                downloadAllSuccessOkBtn: "Žê"
 
         }
 }

@@ -431,7 +431,7 @@ const RSen = {
                 downloadAllCancelPopUpBtn: "Cancel",
                 downloadAllContinueBtn: "Continue",
                 downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
+                downloadAllSuccessPopupText: "All data downloaded successfully!!",
                 downloadAllSuccessOkBtn: "Ok"
         }
 }
