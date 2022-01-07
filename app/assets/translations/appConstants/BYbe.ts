@@ -428,14 +428,13 @@ const BYbe = {
                 importBtntxt: "Import File",
 
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
-
+                downloadAllPopupTitle: "Абнавіце даныя",
+                downloadAllPopupText: "Гэта зойме пэўны час. Вы хочаце загрузіць усе даныя зараз?",
+                downloadAllCancelPopUpBtn: "Адмяніць",
+                downloadAllContinueBtn: "Прадоўжыць",
+                downloadAllSuccessPopupTitle: "Поспех",
+                downloadAllSuccessPopupText: "Усе даныя паспяхова загружаны!!",
+                downloadAllSuccessOkBtn: "Ок"
         }
 }
 export default BYbe;
