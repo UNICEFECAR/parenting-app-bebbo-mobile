@@ -430,13 +430,13 @@ const MEcnr = {
                 importBtntxt: "Import File",
 
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Ažurirajte podatke",
+                downloadAllPopupText: "Ovo će potrajati. Da li želite da preuzmete sve podatke sada?",
+                downloadAllCancelPopUpBtn: "Otkažite",
+                downloadAllContinueBtn: "Nastavite",
+                downloadAllSuccessPopupTitle: "Uspješno obavljeno",
+                downloadAllSuccessPopupText: "Svi podaci su uspješno preuzeti!",
+                downloadAllSuccessOkBtn: "U redu"
         }
 
 }
