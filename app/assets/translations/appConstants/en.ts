@@ -434,9 +434,9 @@ const en = {
                 downloadAllSuccessPopupTitle: "Success",
                 downloadAllSuccessPopupText: "All Data downloaded successfully!!",
                 downloadAllSuccessOkBtn: "Ok",
-                restOfTheWorldAlertTitle: 'Warning',
-                restOfTheWorldOkTitle:'Ok',
-                restOfTheWorldAlertText: 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and Health check-ups are not customized to a specific national health program.'
+                restOfTheWorldAlertTitle: "Warning",
+                restOfTheWorldOkTitle: "Ok",
+                restOfTheWorldAlertText: "By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and Health check-ups are not customized to a specific national health program."
         }
 }
 export default en;

@@ -426,13 +426,13 @@ const KGky = {
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Файлды импорттоо",
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Дайындарды жаңыртуу",
+                downloadAllPopupText: "Бул убакытты талап кылат. Бардык дайындарды азыр жүктөп алгыңыз келеби?",
+                downloadAllCancelPopUpBtn: "Жокко чыгаруу",
+                downloadAllContinueBtn: "Улантуу",
+                downloadAllSuccessPopupTitle: "Ийгилик",
+                downloadAllSuccessPopupText: "Бардык маалыматтар ийгиликтүү жүктөлүп алынды!!",
+                downloadAllSuccessOkBtn: "Макул"
         }
 }
 export default KGky;
