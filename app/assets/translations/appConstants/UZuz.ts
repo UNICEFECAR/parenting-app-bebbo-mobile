@@ -427,12 +427,12 @@ const UZuz = {
               settingScreenFileBtntxt: "Fayl",
               importBtntxt: "Faylni import qilish",
               //27/12/2021
-              downloadAllPopupTitle: "Update data",
-              downloadAllPopupText: "This will take time. Do you want to download all data now?",
-              downloadAllCancelPopUpBtn: "Cancel",
-              downloadAllContinueBtn: "Continue",
-              downloadAllSuccessPopupTitle: "Success",
-              downloadAllSuccessPopupText: "All Data downloaded successfully!!",
+              downloadAllPopupTitle: "Maʼlumotlarni yangilash",
+              downloadAllPopupText: "Bu biroz vaqt oladi. Barcha maʼlumotlarni hozir yuklab olmoqchimisiz?",
+              downloadAllCancelPopUpBtn: "Rad etish",
+              downloadAllContinueBtn: "Davom etish",
+              downloadAllSuccessPopupTitle: "Muvaffaqiyatli",
+              downloadAllSuccessPopupText: "Barcha maʼlumotlar muvaffaqiyatli yuklab olindi!",
               downloadAllSuccessOkBtn: "Ok"
 
        }

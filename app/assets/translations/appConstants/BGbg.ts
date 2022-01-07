@@ -428,13 +428,13 @@ const BGbg = {
                 importBtntxt: "Import File",
 
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Актуализиране на данните",
+                downloadAllPopupText: "Този процес може да отнеме известно време. Искате ли да свалите всички данни сега?",
+                downloadAllCancelPopUpBtn: "Отмяна",
+                downloadAllContinueBtn: "Продължете",
+                downloadAllSuccessPopupTitle: "Успех",
+                downloadAllSuccessPopupText: "Всички данни са свалени успешно!!",
+                downloadAllSuccessOkBtn: "ОК"
         }
 }
 export default BGbg;
