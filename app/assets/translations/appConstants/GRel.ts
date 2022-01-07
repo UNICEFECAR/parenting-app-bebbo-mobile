@@ -429,13 +429,13 @@ const GRel = {
                 importBtntxt: "Import File",
 
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Ενημέρωση δεδομένων",
+                downloadAllPopupText: "Αυτό θα πάρει λίγο χρόνο. Θέλετε να κατεβάσετε όλα τα δεδομένα τώρα;",
+                downloadAllCancelPopUpBtn: "Ακύρωση",
+                downloadAllContinueBtn: "Συνέχεια",
+                downloadAllSuccessPopupTitle: "Τέλεια",
+                downloadAllSuccessPopupText: "Όλα τα δεδομένα ανανεώθηκαν με επιτυχία!!",
+                downloadAllSuccessOkBtn: "Οκ"
         }
 }
 export default GRel;

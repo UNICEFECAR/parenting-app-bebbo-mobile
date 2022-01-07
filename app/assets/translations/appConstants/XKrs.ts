@@ -428,13 +428,13 @@ const XKrs = {
               importBtntxt: "Import File",
 
               //27/12/2021
-              downloadAllPopupTitle: "Update data",
-              downloadAllPopupText: "This will take time. Do you want to download all data now?",
-              downloadAllCancelPopUpBtn: "Cancel",
-              downloadAllContinueBtn: "Continue",
-              downloadAllSuccessPopupTitle: "Success",
-              downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-              downloadAllSuccessOkBtn: "Ok"
+              downloadAllPopupTitle: "Ažurirajte podatke",
+              downloadAllPopupText: "Ovo će potrjati. Da li želite da preuzmete sve podatke sada?",
+              downloadAllCancelPopUpBtn: "Otkažite",
+              downloadAllContinueBtn: "Nastavite",
+              downloadAllSuccessPopupTitle: "Uspešno obavljeno",
+              downloadAllSuccessPopupText: "Svi podaci su uspešno preuzeti!!",
+              downloadAllSuccessOkBtn: "Uredu",
        }
 }
 export default XKrs;
