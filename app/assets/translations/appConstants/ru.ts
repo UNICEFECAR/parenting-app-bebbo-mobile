@@ -426,18 +426,17 @@ const ru = {
                 notNowTxt: "Не сейчас",
                 settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File",
-
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok",
-                restOfTheWorldAlertTitle: 'Warningru',
-                restOfTheWorldOkTitle:'Ok',
-                restOfTheWorldAlertText: 'By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and Health check-ups are not customized to a specific national health program.'
+                downloadAllPopupTitle: "Žáíîâèòü äàííûå",
+                downloadAllPopupText: "òî çàéìåò êàêîå-òî âðåìß. ‚û õîòèòå çàãðóçèòü âñå äàííûå ñåé÷àñ?",
+                downloadAllCancelPopUpBtn: "Žòìåíèòü",
+                downloadAllContinueBtn: "ðîäîëæèòü",
+                downloadAllSuccessPopupTitle: "“ñïåõ",
+                downloadAllSuccessPopupText: "‚ñå äàííûå óñïåøíî çàãðóæåíû!!",
+                downloadAllSuccessOkBtn: "Žê",
+                restOfTheWorldAlertTitle: "ðåäóïðåæäåíèå",
+                restOfTheWorldOkTitle: "Žê",
+                restOfTheWorldAlertText: "…ñëè âû âûáåðåòå Rest of the world (îñòàëüíûå ñòðàíû), âû ñìîæåòå ïîëüçîâàòüñß âñåìè ôóíêöèßìè åááî, íî èíôîðìàöèß î âàêöèíàõ è ìåäîñìîòðàõ ìîæåò íå ñîîòâåòñòâîâàòü íàöèîíàëüíîé ïðîãðàììå çäðàâîîõðàíåíèß âàøåé ñòðàíû."
         }
 }
 export default ru;
