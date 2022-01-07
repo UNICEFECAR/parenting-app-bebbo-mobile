@@ -427,13 +427,13 @@ const TJtg = {
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Файлро ворид кунед",
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Маълумотро навсозӣ кардан",
+                downloadAllPopupText: "Ба ин вақт талаб карда мешавад. Оё Шумо мехоҳед ҳамаи маълумотро ҳоло зеркашӣ намоед?",
+                downloadAllCancelPopUpBtn: "Бекор кардан",
+                downloadAllContinueBtn: "Идома додан",
+                downloadAllSuccessPopupTitle: "Бомуваффақият",
+                downloadAllSuccessPopupText: "Ҳамаи маълумот бомуваффақият зеркашӣ карда шуданд!",
+                downloadAllSuccessOkBtn: "Хуб"
         }
 }
 export default TJtg;
