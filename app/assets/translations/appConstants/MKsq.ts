@@ -428,13 +428,13 @@ const MKsq = {
                 settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File",
                 //27/12/2021
-                downloadAllPopupTitle: "Update data",
-                downloadAllPopupText: "This will take time. Do you want to download all data now?",
-                downloadAllCancelPopUpBtn: "Cancel",
-                downloadAllContinueBtn: "Continue",
-                downloadAllSuccessPopupTitle: "Success",
-                downloadAllSuccessPopupText: "All Data downloaded successfully!!",
-                downloadAllSuccessOkBtn: "Ok"
+                downloadAllPopupTitle: "Rifresko te dhënet",
+                downloadAllPopupText: "Kjo do kërkojë pak kohë. Doni ti shkarkoni të gjitha të dhënat tani?",
+                downloadAllCancelPopUpBtn: "Anullo",
+                downloadAllContinueBtn: "Vazhdo",
+                downloadAllSuccessPopupTitle: "Sukses",
+                downloadAllSuccessPopupText: "Te gjitha të dhënat u shkarkuan me sukses!!",
+                downloadAllSuccessOkBtn: "Dakort"
         }
 }
 export default MKsq;
