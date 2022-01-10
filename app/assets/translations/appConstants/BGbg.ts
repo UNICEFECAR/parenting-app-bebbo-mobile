@@ -424,9 +424,8 @@ const BGbg = {
                 feedbackLinkTxt: "Оставете обратна връзка",
                 notNowTxt: "Не сега",
                 //phase 2 new strings
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
-
+                settingScreenFileBtntxt: "файл",
+                importBtntxt: "Импортиране на файл",
                 //27/12/2021
                 downloadAllPopupTitle: "Актуализиране на данните",
                 downloadAllPopupText: "Този процес може да отнеме известно време. Искате ли да свалите всички данни сега?",
