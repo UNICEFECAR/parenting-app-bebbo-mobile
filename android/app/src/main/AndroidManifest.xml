@@ -46,7 +46,7 @@
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="http" />
     <data android:scheme="https" />
-    <data android:host="tesmobility.datamatics.com"  android:pathPrefix="/"/>
+    <data android:host="www.bebbo.app"  android:pathPrefix="/"/>
 </intent-filter>
  <!-- <intent-filter android:autoVerify="true">
     <action android:name="android.intent.action.VIEW" />

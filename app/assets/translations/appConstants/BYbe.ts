@@ -424,9 +424,8 @@ const BYbe = {
                 feedbackLinkTxt: "Падзяліцеся вашымі ўражаннямі",
                 notNowTxt: "Не зараз",
                 //phase 2 new strings
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
-
+                settingScreenFileBtntxt: "Файл",
+                importBtntxt: "Імпартаваць файл",
                 //27/12/2021
                 downloadAllPopupTitle: "Абнавіце даныя",
                 downloadAllPopupText: "Гэта зойме пэўны час. Вы хочаце загрузіць усе даныя зараз?",

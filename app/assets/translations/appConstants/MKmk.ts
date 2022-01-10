@@ -426,9 +426,8 @@ const MKmk = {
                 feedbackLinkTxt: "Споделете го вашето мислење за нашите услуги ",
                 notNowTxt: "Не сега",
                 //phase 2 new strings
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
-
+                settingScreenFileBtntxt: "Датотека",
+                importBtntxt: "Внесете датотека",
                 //27/12/2021
                 downloadAllPopupTitle: "Ажурирајте ги податоците",
                 downloadAllPopupText: "За ова ќе биде потребно време. Дали сакате да ги симнете сите податоци сега?",

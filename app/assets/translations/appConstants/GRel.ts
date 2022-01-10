@@ -426,8 +426,7 @@ const GRel = {
                 notNowTxt: "Όχι τώρα",
                 //phase 2 new strings
                 settingScreenFileBtntxt: "Διαχείριση Αρχείων",
-                importBtntxt: "Import File",
-
+                importBtntxt: " Εισαγωγή αρχείου",
                 //27/12/2021
                 downloadAllPopupTitle: "Ενημέρωση δεδομένων",
                 downloadAllPopupText: "Αυτό θα πάρει λίγο χρόνο. Θέλετε να κατεβάσετε όλα τα δεδομένα τώρα;",

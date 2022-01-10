@@ -21,6 +21,7 @@ import {
   FlatList,
   Image,
   Modal,
+  Platform,
   Pressable,
   Text, View
 } from 'react-native';
@@ -93,6 +94,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
   const [milestonePercent, setMilestonePercent] = useState(0);
   const [componentColors, setComponentColors] = useState({});
   const [showNoData, setshowNoData] = useState(false);
+  const [listLoading, setListLoading] = useState(false);
   const [modalVisible1, setModalVisible1] = useState(false);
   const flatListRef = React.useRef()
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
@@ -201,6 +203,15 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
       navigation.removeListener('gestureEnd', onBackPress);
       backHandler.remove()};
   }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+    // console.log("child dev usefocuseffect");
+    //console.log("in childdev useeffect", route.params?.currentSelectedChildId);
+    setListLoading(true);
+    return(()=>{
+      setListLoading(false);
+    })
+    },[]));
   useEffect(() => {
     // console.log("child dev usefocuseffect");
     //console.log("in childdev useeffect", route.params?.currentSelectedChildId);
@@ -226,7 +237,6 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     // const firstChildDevData = childAge.filter((x:any)=> x.id == activeChild?.taxonomyData.id);
     // // console.log("firstChildDevData---",firstChildDevData);
     // showSelectedBracketData(firstChildDevData[0]);
-
   }, [activeChild?.uuid, route.params?.currentSelectedChildId,activityTaxonomyId]
   );
   useFocusEffect(
@@ -330,6 +340,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     );
   };
   const ContentThatGoesAboveTheFlatList = () => {
+
     //console.log(selectedChildDevData, "---selectedChildDevData");
    // console.log(selectedChildMilestoneData, "---selectedChildMilestoneData");
     return (
@@ -341,15 +352,21 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
             currentSelectedChildId={currentSelectedChildId}
             showSelectedBracketData={showSelectedBracketData}
           /> */}
-        {selectedChildDevData && Object.keys(selectedChildDevData).length != 0 && selectedChildDevData != "" ?
+       { selectedChildDevData && Object.keys(selectedChildDevData).length != 0 && selectedChildDevData != "" ?
           <Container>
             {/* <Image
                 source={require('@assets/trash/card2.jpeg')}
                 style={{width: '100%'}}
               /> */}
-            <VideoPlayer style={{ width: '100%' }} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
+                     {
+                    Platform.OS=="ios" ?
+                    listLoading==true?
+            <VideoPlayer style={{ width: '100%' }} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>:null
+            :<VideoPlayer style={{ width: '100%' }} selectedPinnedArticleData={selectedPinnedArticleData}></VideoPlayer>
+                    }
           </Container>
-          : null}
+          : null
+          }
         <ArticleHeading>
           {selectedChildDevData && selectedChildDevData != {} && selectedChildDevData != "" ?
             <>
