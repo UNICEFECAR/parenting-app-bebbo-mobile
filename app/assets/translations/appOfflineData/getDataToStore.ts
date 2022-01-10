@@ -189,6 +189,13 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
                 offlineData = jsonData['en'][0].height_for_age;
             }
         }
+        else if(SchemaToUse.name == FAQsSchema.name) {
+            offlineData = jsonData[languageCode];
+            // console.log(offlineData);
+            if (offlineData == undefined || offlineData == "" || offlineData == {}) {
+                offlineData = [];
+            }
+        }
         else {
             offlineData = jsonData[languageCode];
             // console.log(offlineData);
