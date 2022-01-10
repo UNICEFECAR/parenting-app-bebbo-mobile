@@ -424,8 +424,8 @@ const ru = {
                 sorryMsgTxt: "Мне жаль, что вы не нашли ответ на свой вопрос. Пожалуйста, выберите один из следующих вариантов:",
                 feedbackLinkTxt: "Поделитесь вашими впечатлениями",
                 notNowTxt: "Не сейчас",
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
+                settingScreenFileBtntxt: "Файл",
+                importBtntxt: "Импортировать файл",
                 //27/12/2021
                 downloadAllPopupTitle: "Žáíîâèòü äàííûå",
                 downloadAllPopupText: "òî çàéìåò êàêîå-òî âðåìß. ‚û õîòèòå çàãðóçèòü âñå äàííûå ñåé÷àñ?",

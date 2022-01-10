@@ -60,20 +60,20 @@ export const localization = [
         locale: 'GRel',
         luxonLocale:'el-GR'
       },
-      {
-        name: 'Arabic',
-        displayName: 'عربي',
-        languageCode: 'rs-en',
-        locale: 'GRarb',
-        luxonLocale:'ar'
-      },
-      {
-        name: 'Dari',
-        displayName: 'دری',
-        languageCode: 'en',
-        locale: 'GRda',
-        luxonLocale:'fa-AF'
-      },
+      // {
+      //   name: 'Arabic',
+      //   displayName: 'عربي',
+      //   languageCode: 'rs-en',
+      //   locale: 'GRarb',
+      //   luxonLocale:'ar'
+      // },
+      // {
+      //   name: 'Dari',
+      //   displayName: 'دری',
+      //   languageCode: 'en',
+      //   locale: 'GRda',
+      //   luxonLocale:'fa-AF'
+      // },
     ],
   },
   {
