@@ -15,7 +15,7 @@ import { Heading2w, Heading4Center } from '@styles/typography';
 import { DateTime } from 'luxon';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, AppState, BackHandler, Pressable, View } from 'react-native';
+import { ActivityIndicator, AppState, BackHandler, FlatList, Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
@@ -44,6 +44,7 @@ const Notifications = () => {
   const [checkedNotifications, setCheckedNotifications] = useState<any[]>(
     [],
   );
+  const flatListRefNoti = useRef(null);
   const activeChild = useAppSelector((state: any) =>
     state.childData.childDataSet.activeChild != ''
       ? JSON.parse(state.childData.childDataSet.activeChild)
@@ -181,12 +182,12 @@ const Notifications = () => {
       setIsLoading(true);
       setAllChildNotification(allnotis);
       // console.log(allnotis) //allnotis.gwcdnotis,allnotis.hcnotis,allnotis.vcnotis
-      if (allChildnotification.length > 0) {
-        const currentChildNotis = allChildnotification.find((item) => item.childuuid == activeChild.uuid)
+      if (allnotis.length > 0) {
+        const currentChildNotis = allnotis.find((item) => item.childuuid == activeChild.uuid)
         // console.log(currentChildNotis,"allfilteredNotis")
         calculateNotis(currentChildNotis)
       }
-    }, [activeChild.uuid, allChildnotification])
+    }, [activeChild.uuid, allnotis])
   );
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
@@ -446,53 +447,115 @@ const Notifications = () => {
           </HeaderRowView>
           {isFutureDate(activeChild?.birthDate) ? <Heading4Center style={{marginTop:10}}>{t('noDataTxt')}</Heading4Center> :
             notifications.length > 0 ?
-              <ScrollView style={{ flex: 7, }}>
+              <View style={{ flex: 7, }}>
                 <NotificationsCategories onchange={onCategorychange} />
                 <View style={{ marginVertical: 0, paddingBottom: 10 }}>
                   {
 
                    
-                      (selectedCategories.length == 0) ? 
-                        notifications.map((item, index) => {
-                        return (
-                          <View key={index}>
-                            <NotificationItem
-                              item={item}
-                              itemIndex={index}
-                              isDeleteEnabled={isDeleteEnabled}
-                              onItemChecked={onNotiItemChecked}
-                              onItemReadMarked={onItemReadMarked}
-                              onItemDeleteMarked={onItemDeleteMarked}
-                              childAgeInDays={childAgeInDays}
-                              activeChild={activeChild}
-                            />
-                          </View>
-                        );
-                      })
+                      (selectedCategories.length == 0 && notifications.length>0) ? 
+                      //   notifications.map((item, index) => {
+                      //   return (
+                      //     <View key={index}>
+                      //       <NotificationItem
+                      //         item={item}
+                      //         itemIndex={index}
+                      //         isDeleteEnabled={isDeleteEnabled}
+                      //         onItemChecked={onNotiItemChecked}
+                      //         onItemReadMarked={onItemReadMarked}
+                      //         onItemDeleteMarked={onItemDeleteMarked}
+                      //         childAgeInDays={childAgeInDays}
+                      //         activeChild={activeChild}
+                      //       />
+                      //     </View>
+                      //   );
+                      // })
+                      <FlatList
+                       ref={flatListRefNoti}
+                       data={notifications}
+                       contentContainerStyle={{paddingBottom:110}}
+                       onScroll={(e)=>{
+                         // if(keyboardStatus==true){
+                         //   Keyboard.dismiss();
+                         // }
+                       }}
+                       nestedScrollEnabled={true}
+                       // keyboardDismissMode={"on-drag"}
+                       // keyboardShouldPersistTaps='always'
+                       removeClippedSubviews={true} // Unmount components when outside of window 
+                       initialNumToRender={4} // Reduce initial render amount
+                       maxToRenderPerBatch={4} // Reduce number in each render batch
+                       updateCellsBatchingPeriod={100} // Increase time between renders
+                       windowSize={7} // Reduce the window size
+                       renderItem={({item, index}) =>  <NotificationItem
+                               item={item}
+                               itemIndex={index}
+                               isDeleteEnabled={isDeleteEnabled}
+                               onItemChecked={onNotiItemChecked}
+                               onItemReadMarked={onItemReadMarked}
+                               onItemDeleteMarked={onItemDeleteMarked}
+                               childAgeInDays={childAgeInDays}
+                               activeChild={activeChild}
+                             />
+                      }
+                      keyExtractor={(item,index) => index.toString()}
+                  />
+
                       :
                        notifications.find((item) => selectedCategories.includes(item.type)) 
-                       ? notifications.map((item, index) => {
-                        if (selectedCategories.includes(item.type)) {
-                          return (
-                            <View key={index}>
-                              <NotificationItem
-                                item={item}
-                                itemIndex={index}
-                                isDeleteEnabled={isDeleteEnabled}
-                                onItemChecked={onNotiItemChecked}
-                                onItemReadMarked={onItemReadMarked}
-                                onItemDeleteMarked={onItemDeleteMarked}
-                                childAgeInDays={childAgeInDays}
-                                activeChild={activeChild}
-                              />
-                            </View>
-                          );
-                        }
-                    })
+                       ? 
+                       <FlatList
+                       ref={flatListRefNoti}
+                       contentContainerStyle={{paddingBottom:110}}
+                       data={notifications}
+                       onScroll={(e)=>{
+                         // if(keyboardStatus==true){
+                         //   Keyboard.dismiss();
+                         // }
+                       }}
+                       nestedScrollEnabled={true}
+                       // keyboardDismissMode={"on-drag"}
+                       // keyboardShouldPersistTaps='always'
+                       removeClippedSubviews={true} // Unmount components when outside of window 
+                       initialNumToRender={4} // Reduce initial render amount
+                       maxToRenderPerBatch={4} // Reduce number in each render batch
+                       updateCellsBatchingPeriod={100} // Increase time between renders
+                       windowSize={7} // Reduce the window size
+                       renderItem={({item, index}) =>  (selectedCategories.includes(item.type)?<NotificationItem
+                                   item={item}
+                                   itemIndex={index}
+                                   isDeleteEnabled={isDeleteEnabled}
+                                   onItemChecked={onNotiItemChecked}
+                                   onItemReadMarked={onItemReadMarked}
+                                   onItemDeleteMarked={onItemDeleteMarked}
+                                   childAgeInDays={childAgeInDays}
+                                   activeChild={activeChild}
+                                 />:null
+                       )}
+                      keyExtractor={(item,index) => index.toString()}
+                  />
+                    //    notifications.map((item, index) => {
+                    //     if (selectedCategories.includes(item.type)) {
+                    //       return (
+                    //         <View key={index}>
+                    //           <NotificationItem
+                    //             item={item}
+                    //             itemIndex={index}
+                    //             isDeleteEnabled={isDeleteEnabled}
+                    //             onItemChecked={onNotiItemChecked}
+                    //             onItemReadMarked={onItemReadMarked}
+                    //             onItemDeleteMarked={onItemDeleteMarked}
+                    //             childAgeInDays={childAgeInDays}
+                    //             activeChild={activeChild}
+                    //           />
+                    //         </View>
+                    //       );
+                    //     }
+                    // })
                     :<Heading4Center>{t('noDataTxt')}</Heading4Center>
                     }
                 </View>
-              </ScrollView> : isLoading==true ? <ActivityIndicator size="large" color={primaryColor} animating={true}/>:<Heading4Center>{t('noDataTxt')}</Heading4Center>}
+              </View> : isLoading==true ? <ActivityIndicator size="large" color={primaryColor} animating={true}/>:<Heading4Center>{t('noDataTxt')}</Heading4Center>}
           {
             isDeleteEnabled ? (
               <>
