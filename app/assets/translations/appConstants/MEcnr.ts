@@ -426,9 +426,8 @@ const MEcnr = {
                 feedbackLinkTxt: "Molimo Vas za Vašu povratnu informaciju",
                 notNowTxt: "Ne sada",
                 //phase 2 new strings
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
-
+                settingScreenFileBtntxt: "Datoteka",
+                importBtntxt: "Uvezi datoteku",
                 //27/12/2021
                 downloadAllPopupTitle: "Ažurirajte podatke",
                 downloadAllPopupText: "Ovo će potrajati. Da li želite da preuzmete sve podatke sada?",
