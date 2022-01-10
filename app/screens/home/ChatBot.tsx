@@ -139,7 +139,7 @@ const UserBubble = (props: any) => {
   )
 }
 const OptionBubble = (props: any) => {
-  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen, showFeedbackLink } = props
+  const { optionval, optionindex, stepindex, steps, categorySelection, dynamicStepSelection, backToHomeScreen, showFeedbackLink, noDataStep } = props
   return (
     <>
 
@@ -182,7 +182,7 @@ const ActionBubble = (props: any) => {
 
 const ChatBot = (props: any) => {
   // console.log("chatbot----",props)
-  const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink } = props;
+  const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink,noDataStep } = props;
   const [loading,setLoading] = useState<boolean>(true);
   useEffect(() => {
     console.log(item.delay,"in chatbot useeffect2---",item.id);
@@ -206,7 +206,7 @@ const ChatBot = (props: any) => {
                       {item.options && item.options.length > 0 ?
                         item.options.map((y: any, i2: any) => {
                           return (
-                            <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />
+                            <OptionBubble key={'o' + index + '-' + i2} optionval={y} optionindex={i2} stepindex={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />
                           )
                         })
                         : null}
