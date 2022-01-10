@@ -1,6 +1,6 @@
 import { BgPrimary } from '@components/shared/BackgroundColors';
 import { MainContainer } from '@components/shared/Container';
-import { Flex1, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
+import { Flex1, FlexCol, FlexDirRowStart } from '@components/shared/FlexBoxStyle';
 import Icon, { OuterIconLeft, OuterIconRow } from '@components/shared/Icon';
 import { Heading3Regularw, ShiftFromTopBottom10 } from '@styles/typography';
 import { DateTime } from 'luxon';
@@ -135,22 +135,24 @@ const DailyHomeNotification = () => {
   return (
     <>
     {records.length > 0?
-      <BgPrimary>
-        <MainContainer>
-          <ShiftFromTopBottom10>
-            <FlexDirRowStart>
-              <OuterIconRow>
-                <OuterIconLeft>
-                  <Icon name="ic_sb_loveapp" size={24} color="#fff" />
-                </OuterIconLeft>
-              </OuterIconRow>
-              <Flex1>
-                <Heading3Regularw>{notification?.messageText}</Heading3Regularw>
-              </Flex1>
-            </FlexDirRowStart>
-          </ShiftFromTopBottom10>
-        </MainContainer>
-      </BgPrimary>
+      <FlexCol>
+        <BgPrimary>
+          <MainContainer>
+            <ShiftFromTopBottom10>
+              <FlexDirRowStart>
+                <OuterIconRow>
+                  <OuterIconLeft>
+                    <Icon name="ic_sb_loveapp" size={24} color="#fff" />
+                  </OuterIconLeft>
+                </OuterIconRow>
+                <Flex1>
+                  <Heading3Regularw>{notification?.messageText}</Heading3Regularw>
+                </Flex1>
+              </FlexDirRowStart>
+            </ShiftFromTopBottom10>
+          </MainContainer>
+        </BgPrimary>
+        </FlexCol>
        : null}
     </>
   );

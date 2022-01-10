@@ -254,8 +254,7 @@ const HeaderNotiIcon = (props: any) => {
     }, [activeChild.uuid, allnotis]),
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
+  useEffect(() => {
       const fetchData = async () => {
         const filterQuery = 'uuid == "'+activeChild.uuid+'"';
         const childData = await userRealmCommon.getFilteredData<ChildEntity>(ChildEntitySchema, filterQuery);
@@ -265,8 +264,7 @@ const HeaderNotiIcon = (props: any) => {
        // console.log(childData[0].favoritegames,"in headernoti fav usefocuseffect",childData[0].favoriteadvices)
       }
       fetchData()
-    }, [activeChild.uuid]),
-  );
+    }, [activeChild.uuid]);
   const navigation = useNavigation();
   return (
     <>
