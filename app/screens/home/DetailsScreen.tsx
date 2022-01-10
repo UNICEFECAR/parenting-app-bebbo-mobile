@@ -15,7 +15,7 @@ import VideoPlayer from '@components/VideoPlayer';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { useFocusEffect, useScrollToTop } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Heading2, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
+import { Heading2, Heading3Regular, Heading6Bold, ShiftFromBottom5 } from '@styles/typography';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Pressable, ScrollView, View,ActivityIndicator,Text, BackHandler, Dimensions, Image  } from 'react-native';
@@ -424,6 +424,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               : null }
             </ShiftFromBottom5>
             <Heading2 style={{marginBottom:10}}>{detailDataToUse?.title}</Heading2>
+            {detailDataToUse && detailDataToUse?.summary ?
+            <Heading3Regular style={{marginBottom:10}}>{detailDataToUse.summary}</Heading3Regular> 
+            : null }
             {detailDataToUse && detailDataToUse.body ?
               // <HTML
               //   source={{html: addSpaceToHtml(detailDataToUse.body)}} {...htmlProps}
