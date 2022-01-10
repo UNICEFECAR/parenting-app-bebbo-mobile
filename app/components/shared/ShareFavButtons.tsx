@@ -4,7 +4,7 @@ import analytics from '@react-native-firebase/analytics';
 import { Heading4 } from '@styles/typography';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Share } from 'react-native';
+import { Alert, Platform, Share } from 'react-native';
 import styled from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -43,11 +43,12 @@ const locale = useAppSelector(
    console.log('locale',locale);
    const suburl=isAdvice?"/article/":"/activity/";
    const mainUrl=shareTextButton+locale+suburl+item.id;
+   //const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
    console.log(mainUrl,"..mainUrl")
     try {
       const result = await Share.share({
-        message:mainUrl
-            });
+        message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
+      });
       if (result.action === Share.sharedAction) {
         // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
         if(isAdvice){
