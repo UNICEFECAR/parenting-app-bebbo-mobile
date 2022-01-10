@@ -11,7 +11,7 @@ import { DateTime } from 'luxon';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, FlatList, ImageBackground, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, ImageBackground, Platform, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { ThemeContext } from 'styled-components/native';
@@ -86,11 +86,12 @@ const DailyReads = () => {
     console.log('locale',locale);
     const suburl=isAdvice?"/article/":"/activity/";
     const mainUrl=shareTextButton+locale+suburl+item.id;
-    console.log(mainUrl,"..mainUrl")
+    console.log(mainUrl,"..mainUrl");
+   // const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
      try {
        const result = await Share.share({
-         message:mainUrl
-             });
+        message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
+       });
        if (result.action === Share.sharedAction) {
          // await analytics().logEvent(APP_SHARE); //{advise_id:item?.id}
          if(isAdvice){
