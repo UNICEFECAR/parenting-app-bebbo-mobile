@@ -424,8 +424,8 @@ const ALsq = {
               feedbackLinkTxt: "Na jepni komente",
               notNowTxt: "Jo tani",
               //phase 2 new strings
-              settingScreenFileBtntxt: "File",
-              importBtntxt: "Import File",
+              settingScreenFileBtntxt: "Skedar",
+              importBtntxt: "Import Skedarin",
               //27/12/2021
               downloadAllPopupTitle: "Rifresko te dhënet",
               downloadAllPopupText: "Kjo do kërkojë pak kohë. Doni ti shkarkoni të gjitha të dhënat tani?",

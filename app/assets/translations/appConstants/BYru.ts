@@ -424,8 +424,8 @@ const BYru = {
                 feedbackLinkTxt: "Поделитесь вашими впечатлениями",
                 notNowTxt: "Не сейчас",
                 //phase 2 new strings
-                settingScreenFileBtntxt: "File",
-                importBtntxt: "Import File",
+                settingScreenFileBtntxt: "Файл",
+                importBtntxt: "Импортировать файл",
 
                 //27/12/2021
                 downloadAllPopupTitle: "Žáíîâèòü äàííûå",

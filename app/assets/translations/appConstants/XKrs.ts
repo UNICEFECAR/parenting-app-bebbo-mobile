@@ -424,9 +424,8 @@ const XKrs = {
               feedbackLinkTxt: "Dajte nam povratne informacije",
               notNowTxt: "Ne sada",
               //phase 2 new strings
-              settingScreenFileBtntxt: "File",
-              importBtntxt: "Import File",
-
+              settingScreenFileBtntxt: "Podaci",
+              importBtntxt: "Uvezite podatke",
               //27/12/2021
               downloadAllPopupTitle: "Ažurirajte podatke",
               downloadAllPopupText: "Ovo će potrjati. Da li želite da preuzmete sve podatke sada?",
