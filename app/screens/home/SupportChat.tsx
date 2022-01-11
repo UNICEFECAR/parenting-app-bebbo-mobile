@@ -82,6 +82,9 @@ const faqsData = useAppSelector((state: any) =>
   const [steps,setsteps] = useState<any>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const flatListRef = useRef(null);
+  const noDataStep = () => {
+
+  }
   const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
     // console.log(steps2,"categorySelection--",optionIndex,stepIndex);
     // let localsteps = deepCopy(steps2);
@@ -115,11 +118,15 @@ const faqsData = useAppSelector((state: any) =>
       const faqsoption2 = faqsoption.map((x: any,i: any) => {
         return {...x,label : x.question,value : x.id,nextStepFunc : categorySelection}
       });
+      if(faqsoption2.length <=0) {
+        faqsoption2.push({value:110,label:t('noDataTxt'),nextStepFunc:noDataStep,nextStepval:1})
+      }
       localsteps[index].options = faqsoption2;
       const indexForText = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === explorecatstep ? i : acc
       ), -1);
-      localsteps[index].actions[1].label = t('backToCategoryTxt',{categoryName:localsteps[indexForText].answer.label})
+      localsteps[index].actions[1].label = t('backToCategoryTxt',{categoryName:localsteps[indexForText].answer.label});
+      
     }else if(nextstepid == expertAdviceId) {
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
       //console.log(localsteps[index].textToShow,"...faq id localsteps[index].textToShow.")
@@ -441,7 +448,7 @@ const faqsData = useAppSelector((state: any) =>
                       maxToRenderPerBatch={75} // Reduce number in each render batch
                       updateCellsBatchingPeriod={100} // Increase time between renders
                       windowSize={90} // Reduce the window size
-                      renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} />  }
+                      renderItem={({item, index}) => <ChatBot item={item} index={index} steps={steps} stepsjson={stepsjson} categorySelection={categorySelection} dynamicStepSelection={dynamicStepSelection} backToStep={backToStep} backToHomeScreen={backToHomeScreen} showFeedbackLink={showFeedbackLink} noDataStep={noDataStep} />  }
                       keyExtractor={(item,index) => index.toString()}
                       onScrollToIndexFailed={scrollToIndexFailed}
                       />
