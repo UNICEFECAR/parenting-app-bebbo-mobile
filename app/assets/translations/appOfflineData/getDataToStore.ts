@@ -179,19 +179,21 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
             offlineData = jsonData[languageCode] ? jsonData[languageCode][0].weight_for_height : undefined;
             // console.log(offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                offlineData = jsonData['en'][0].weight_for_height;
+                // offlineData = jsonData['en'][0].weight_for_height;
+                offlineData = [];
             }
         }
         else if (SchemaToUse.name == StandardDevHeightForAgeSchema.name) {
             offlineData = jsonData[languageCode] ? jsonData[languageCode][0].height_for_age : undefined;
             // console.log(offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                offlineData = jsonData['en'][0].height_for_age;
+                // offlineData = jsonData['en'][0].height_for_age;
+                offlineData = [];
             }
         }
         else if(SchemaToUse.name == FAQsSchema.name) {
             offlineData = jsonData[languageCode];
-            // console.log(offlineData);
+            console.log('FAQsSchema--',offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
                 offlineData = [];
             }
@@ -200,7 +202,8 @@ export const getDataToStore = async (languageCode: string, dispatch: any, Schema
             offlineData = jsonData[languageCode];
             // console.log(offlineData);
             if (offlineData == undefined || offlineData == "" || offlineData == {}) {
-                offlineData = jsonData['en'];
+                // offlineData = jsonData['en'];
+                offlineData = [];
             }
         }
         let databaseData2 = await dataRealmCommon.getData<typeof SchemaEntity>(SchemaToUse, sortBy);
