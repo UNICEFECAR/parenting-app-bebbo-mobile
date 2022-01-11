@@ -559,7 +559,7 @@ const Notifications = () => {
           {
             isDeleteEnabled ? (
               <>
-                <ButtonContainerTwo>
+                <ButtonContainerTwo style={{backgroundColor:"#fff"}}>
                   <ButtonColTwo>
                     <ButtonSecondaryTint onPress={() => { setIsDeleteEnabled(!isDeleteEnabled); setCheckedNotifications([]) }}>
                       <ButtonText numberOfLines={2}>{t('growthDeleteOption1')}</ButtonText>
