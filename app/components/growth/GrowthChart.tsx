@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import Svg from 'react-native-svg';
 import { VictoryAreaProps } from 'victory-area';
 import { TickLabelProps, VictoryAxisCommonProps } from 'victory-core';
 import { VictoryLineProps } from 'victory-line';
@@ -70,6 +71,7 @@ const [deviceOrientation, setDeviceOrientation] = useState(
     ? 'portrait'
     : 'landscape'
 );
+
 // const [deviceHeight, setDeviceHeight] = useState(
 //   Dimensions.get('window').width < Dimensions.get('window').height
 //     ? Dimensions.get('window').height
@@ -146,11 +148,14 @@ useEffect(() => {
   //console.log(chartType,chartData, 'new convertedMeasures');
 // console.log(chartType, 'chartType1');
   let {topArea, bottomArea, middleArea} = bgObj;
+  const ChartClick=Platform.OS=="android"?Svg:View;
+
   return (
     <>
    <View style={{flexDirection:'column',alignItems:'center',}}>
+   <ChartClick>
       <VictoryChart 
-      containerComponent={<VictoryVoronoiContainer />}
+      containerComponent={<VictoryVoronoiContainer/>}
         theme={VictoryTheme.material}
         width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
         height={deviceOrientation === 'portrait' ?
@@ -300,8 +305,8 @@ useEffect(() => {
             },
           ]}
         />
-      </VictoryChart>
-      
+        </VictoryChart>
+      </ChartClick>
       <View style={styles.chartLegend}>
         <View style={styles.chartLegendItem}>
           <View
