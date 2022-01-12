@@ -203,7 +203,7 @@ const Activities = ({ route, navigation }: Props) => {
   }
   useFocusEffect(
     React.useCallback(() => {
-       console.log("new child dev usefocuseffect",route.params);
+      //  console.log("new activity usefocuseffect",route.params);
     //  console.log("in usefocuseffect 1", route.params);
       if (route.params?.backClicked != 'yes') {
         setshowNoData(false);
@@ -349,7 +349,8 @@ const Activities = ({ route, navigation }: Props) => {
     //console.log("currentSelectedChildId---",currentSelectedChildId)
     navigation.navigate('ChildDevelopment',
     {
-      currentSelectedChildId: currentSelectedChildId
+      currentSelectedChildId: currentSelectedChildId,
+      fromActivitiesScreen: true
     });
   }
   const SuggestedActivities = React.memo(({ item, section, index }) => {
