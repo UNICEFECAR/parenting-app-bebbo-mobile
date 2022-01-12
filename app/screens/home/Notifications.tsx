@@ -451,89 +451,38 @@ const Notifications = () => {
                 <NotificationsCategories onchange={onCategorychange} />
                 <View style={{ marginVertical: 0, paddingBottom: 10 }}>
                   {
-
-                   
-                      (selectedCategories.length == 0 && notifications.length>0) ? 
-                      //   notifications.map((item, index) => {
-                      //   return (
-                      //     <View key={index}>
-                      //       <NotificationItem
-                      //         item={item}
-                      //         itemIndex={index}
-                      //         isDeleteEnabled={isDeleteEnabled}
-                      //         onItemChecked={onNotiItemChecked}
-                      //         onItemReadMarked={onItemReadMarked}
-                      //         onItemDeleteMarked={onItemDeleteMarked}
-                      //         childAgeInDays={childAgeInDays}
-                      //         activeChild={activeChild}
-                      //       />
-                      //     </View>
-                      //   );
-                      // })
-                      <FlatList
-                       ref={flatListRefNoti}
-                       data={notifications}
-                       contentContainerStyle={{paddingBottom:110}}
-                       onScroll={(e)=>{
-                         // if(keyboardStatus==true){
-                         //   Keyboard.dismiss();
-                         // }
-                       }}
-                       nestedScrollEnabled={true}
-                       // keyboardDismissMode={"on-drag"}
-                       // keyboardShouldPersistTaps='always'
-                       removeClippedSubviews={true} // Unmount components when outside of window 
-                       initialNumToRender={8} // Reduce initial render amount
-                       maxToRenderPerBatch={8} // Reduce number in each render batch
-                       updateCellsBatchingPeriod={100} // Increase time between renders
-                       windowSize={30} // Reduce the window size
-                       renderItem={({item, index}) =>  <NotificationItem
-                               item={item}
-                               itemIndex={index}
-                               isDeleteEnabled={isDeleteEnabled}
-                               onItemChecked={onNotiItemChecked}
-                               onItemReadMarked={onItemReadMarked}
-                               onItemDeleteMarked={onItemDeleteMarked}
-                               childAgeInDays={childAgeInDays}
-                               activeChild={activeChild}
-                             />
-                      }
-                      keyExtractor={(item,index) => index.toString()}
-                  />
-
-                      :
-                       notifications.find((item) => selectedCategories.includes(item.type)) 
-                       ? 
-                       <FlatList
-                       ref={flatListRefNoti}
-                       contentContainerStyle={{paddingBottom:110}}
-                       data={notifications}
-                       onScroll={(e)=>{
-                         // if(keyboardStatus==true){
-                         //   Keyboard.dismiss();
-                         // }
-                       }}
-                       nestedScrollEnabled={true}
-                       // keyboardDismissMode={"on-drag"}
-                       // keyboardShouldPersistTaps='always'
-                       removeClippedSubviews={true} // Unmount components when outside of window 
-                       initialNumToRender={8} // Reduce initial render amount
-                       maxToRenderPerBatch={8} // Reduce number in each render batch
-                       updateCellsBatchingPeriod={100} // Increase time between renders
-                       windowSize={30} // Reduce the window size
-                       renderItem={({item, index}) =>  (selectedCategories.includes(item.type)?<NotificationItem
-                                   item={item}
-                                   itemIndex={index}
-                                   isDeleteEnabled={isDeleteEnabled}
-                                   onItemChecked={onNotiItemChecked}
-                                   onItemReadMarked={onItemReadMarked}
-                                   onItemDeleteMarked={onItemDeleteMarked}
-                                   childAgeInDays={childAgeInDays}
-                                   activeChild={activeChild}
-                                 />:null
-                       )}
-                      keyExtractor={(item,index) => index.toString()}
-                  />
+                    notifications?.length>0?
+                    selectedCategories.length==0 || (selectedCategories.length>0 && notifications.filter((item) => selectedCategories.includes(item.type)).length>0)?
+                    <FlatList
+                    ref={flatListRefNoti}
+                    data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
+                    contentContainerStyle={{paddingBottom:110}}
+                    onScroll={(e)=>{
+                      // if(keyboardStatus==true){
+                      //   Keyboard.dismiss();
+                      // }
+                    }}
+                    nestedScrollEnabled={true}
+                    // keyboardDismissMode={"on-drag"}
+                    // keyboardShouldPersistTaps='always'
+                    removeClippedSubviews={true} // Unmount components when outside of window 
+                    initialNumToRender={8} // Reduce initial render amount
+                    maxToRenderPerBatch={8} // Reduce number in each render batch
+                    updateCellsBatchingPeriod={100} // Increase time between renders
+                    windowSize={30} // Reduce the window size
+                    renderItem={({item, index}) =>  <NotificationItem
+                            item={item}
+                            itemIndex={index}
+                            isDeleteEnabled={isDeleteEnabled}
+                            onItemChecked={onNotiItemChecked}
+                            onItemReadMarked={onItemReadMarked}
+                            onItemDeleteMarked={onItemDeleteMarked}
+                            childAgeInDays={childAgeInDays}
+                            activeChild={activeChild}
+                          />
+                   }
+                   keyExtractor={(item,index) => index.toString()}
+                   />: <Heading4Center>{t('noDataTxt')}</Heading4Center>
                     //    notifications.map((item, index) => {
                     //     if (selectedCategories.includes(item.type)) {
                     //       return (
@@ -552,7 +501,7 @@ const Notifications = () => {
                     //       );
                     //     }
                     // })
-                    :<Heading4Center>{t('noDataTxt')}</Heading4Center>
+                   : <Heading4Center>{t('noDataTxt')}</Heading4Center>
                     }
                 </View>
               </View> : isLoading==true ? <ActivityIndicator size="large" color={primaryColor} animating={true}/>:<Heading4Center>{t('noDataTxt')}</Heading4Center>}
