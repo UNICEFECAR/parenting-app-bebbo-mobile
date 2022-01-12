@@ -426,13 +426,13 @@ const KGru = {
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импорт файла",
                 //27/12/2021
-                downloadAllPopupTitle: "Žáíîâèòü äàííûå",
-                downloadAllPopupText: "òî çàéìåò êàêîå-òî âðåìß. ‚û õîòèòå çàãðóçèòü âñå äàííûå ñåé÷àñ?",
-                downloadAllCancelPopUpBtn: "Žòìåíèòü",
-                downloadAllContinueBtn: "ðîäîëæèòü",
-                downloadAllSuccessPopupTitle: "“ñïåõ",
-                downloadAllSuccessPopupText: "‚ñå äàííûå óñïåøíî çàãðóæåíû!!",
-                downloadAllSuccessOkBtn: "Žê"
+                downloadAllPopupTitle: "Обновить данные",
+                downloadAllPopupText: "Это займет какое-то время. Вы хотите загрузить все данные сейчас?",
+                downloadAllCancelPopUpBtn: "Отменить",
+                downloadAllContinueBtn: "Продолжить",
+                downloadAllSuccessPopupTitle: "Успех",
+                downloadAllSuccessPopupText: "Все данные успешно загружены!!",
+                downloadAllSuccessOkBtn: "Ок"
         }
 }
 export default KGru;

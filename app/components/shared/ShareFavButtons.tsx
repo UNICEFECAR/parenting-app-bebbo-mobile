@@ -38,13 +38,13 @@ const locale = useAppSelector(
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
-   console.log("sharefav item ", item);
+  //  console.log("sharefav item ", item);
   const onShare = async () => {
-   console.log('locale',locale);
+  //  console.log('locale',locale);
    const suburl=isAdvice?"/article/":"/activity/";
    const mainUrl=shareTextButton+locale+suburl+item.id;
    //const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
-   console.log(mainUrl,"..mainUrl")
+  //  console.log(mainUrl,"..mainUrl")
     try {
       const result = await Share.share({
         message:item.title+'\n'+t('appShareText')+'\n'+mainUrl
