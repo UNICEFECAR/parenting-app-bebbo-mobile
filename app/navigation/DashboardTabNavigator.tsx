@@ -145,7 +145,7 @@ export default () => {
             tabBarIcon: ({ color, size }) => (
               <Icon name="ic_activities" color={color} size={size} />
             ),
-            unmountOnBlur:true,
+            // unmountOnBlur:true,
           }} />
         <DashboardBottomTab.Screen
           component={secondaryRoot}
