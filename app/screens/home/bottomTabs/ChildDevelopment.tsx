@@ -125,7 +125,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
      // console.log("in unmount dev-", route.params?.currentSelectedChildId);
       // if(route.params?.currentSelectedChildId)
       // {
-      navigation.setParams({ currentSelectedChildId: 0 })
+      navigation.setParams({ currentSelectedChildId: 0,fromActivitiesScreen: false })
      // console.log(route.params?.currentSelectedChildId, "--after unmount");
       // route.params?.currentSelectedChildId = 0;
       // }
@@ -184,7 +184,17 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     if(route.params?.fromNotificationScreen==true){
       navigation.navigate('NotificationsScreen');
       return true;
-    }else{
+    }
+    else if(route.params?.fromActivitiesScreen==true){
+      // console.log("currentSelectedChildId in child dev--",route.params?.currentSelectedChildId);
+      navigation.navigate('Activities',
+      {
+        currentSelectedChildId: route.params?.currentSelectedChildId,
+        backClicked: 'yes'
+      });
+      return true;
+    }
+    else{
       navigation.goBack();  
       return true;
     }
@@ -214,7 +224,7 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
     },[]));
   useEffect(() => {
     // console.log("child dev usefocuseffect");
-    //console.log("in childdev useeffect", route.params?.currentSelectedChildId);
+    // console.log("in childdev useeffect", route.params?.currentSelectedChildId);
     setshowNoData(false);
     if (route.params?.currentSelectedChildId && route.params?.currentSelectedChildId != 0) {
       // console.log(route.params?.categoryArray);
