@@ -56,7 +56,6 @@ const Aboutus = ({navigation}: Props) => {
             />
           </View>
 
-          <View>
             <ScrollView contentContainerStyle={{paddingBottom: 100,paddingHorizontal:10,paddingTop:20}}>
 
 
@@ -100,7 +99,6 @@ const Aboutus = ({navigation}: Props) => {
               {/* <HTML source={{html: body}} baseFontStyle={{fontSize: 16}} /> */}
            
           </View>
-        </View>
       </View>
     </>
   );
