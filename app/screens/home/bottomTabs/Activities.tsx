@@ -416,7 +416,7 @@ const Activities = ({ route, navigation }: Props) => {
     return (
       <ArticleHeading>
         <View style={{flexDirection:'row'}}>
-          <Heading3 numberOfLines={1} style={{flex:1,maxWidth:'60%',paddingLeft:5,paddingRight:5}}>{section.title}</Heading3>
+          <Heading3 numberOfLines={1} style={{flex:1,maxWidth:section?.id == 1 && activeChild.isPremature === 'true' ? '60%' : '90%',paddingLeft:5,paddingRight:5}}>{section.title}</Heading3>
           {section?.id == 1 && activeChild.isPremature === 'true' ? (
             <Pressable style={{flex:1,maxWidth:'40%'}} onPress={() => setModalVisible1(true)}>
               <PrematureTagActivity>
