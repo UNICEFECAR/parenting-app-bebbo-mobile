@@ -427,16 +427,16 @@ const ru = {
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импортировать файл",
                 //27/12/2021
-                downloadAllPopupTitle: "Žáíîâèòü äàííûå",
-                downloadAllPopupText: "òî çàéìåò êàêîå-òî âðåìß. ‚û õîòèòå çàãðóçèòü âñå äàííûå ñåé÷àñ?",
-                downloadAllCancelPopUpBtn: "Žòìåíèòü",
-                downloadAllContinueBtn: "ðîäîëæèòü",
-                downloadAllSuccessPopupTitle: "“ñïåõ",
-                downloadAllSuccessPopupText: "‚ñå äàííûå óñïåøíî çàãðóæåíû!!",
-                downloadAllSuccessOkBtn: "Žê",
-                restOfTheWorldAlertTitle: "ðåäóïðåæäåíèå",
-                restOfTheWorldOkTitle: "Žê",
-                restOfTheWorldAlertText: "…ñëè âû âûáåðåòå Rest of the world (îñòàëüíûå ñòðàíû), âû ñìîæåòå ïîëüçîâàòüñß âñåìè ôóíêöèßìè åááî, íî èíôîðìàöèß î âàêöèíàõ è ìåäîñìîòðàõ ìîæåò íå ñîîòâåòñòâîâàòü íàöèîíàëüíîé ïðîãðàììå çäðàâîîõðàíåíèß âàøåé ñòðàíû."
+                downloadAllPopupTitle: "Обновить данные",
+                downloadAllPopupText: "Это займет какое-то время. Вы хотите загрузить все данные сейчас?",
+                downloadAllCancelPopUpBtn: "Отменить",
+                downloadAllContinueBtn: "Продолжить",
+                downloadAllSuccessPopupTitle: "Успех",
+                downloadAllSuccessPopupText: "Все данные успешно загружены!!",
+                downloadAllSuccessOkBtn: "Ок",
+                restOfTheWorldAlertTitle: "Предупреждение",
+                restOfTheWorldOkTitle: "Ок",
+                restOfTheWorldAlertText: "Если вы выберете Rest of the world (остальные страны), вы сможете пользоваться всеми функциями Беббо, но информация о вакцинах и медосмотрах может не соответствовать национальной программе здравоохранения вашей страны."
         }
 }
 export default ru;
