@@ -756,6 +756,7 @@ useEffect(() => {
                     multiline={true}
                     onChangeText={(text) => handleDoctorRemark(text)}
                     placeholder={t('vcDoctorRemarkPlaceHolder')}
+                    placeholderTextColor={"gray"}
                     allowFontScaling={false}
 
                   />
