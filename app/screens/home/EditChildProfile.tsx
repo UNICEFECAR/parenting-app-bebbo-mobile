@@ -535,6 +535,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                       value={name}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
+                      placeholderTextColor={"gray"}
                       allowFontScaling={false}
                     />
                   </FormInputBox>

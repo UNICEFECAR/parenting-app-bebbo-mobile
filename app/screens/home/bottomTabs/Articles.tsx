@@ -361,6 +361,7 @@ const searchList=async (queryText:any)=>{
                 multiline={false}
                 // placeholder="Search for Keywords"
                 placeholder={t('articleScreensearchPlaceHolder')}
+                placeholderTextColor={"gray"}
                 style={{
                   
                 }}

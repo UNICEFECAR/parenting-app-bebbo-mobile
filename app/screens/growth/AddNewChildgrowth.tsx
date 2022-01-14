@@ -807,6 +807,7 @@ useEffect(() => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
+                      placeholderTextColor={"gray"}
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
