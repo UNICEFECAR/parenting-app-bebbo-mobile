@@ -176,14 +176,20 @@ export const addSpaceToHtml=(htmlInput:any)=>{
 	if(htmlInput !== null && htmlInput !== undefined){
 
 		let html = htmlInput;
-
+        // console.log("before html2--",html);
 		html = html.replace(/<[/]strong> /g, " </strong>");
-		html = html.replace(/<[/]em> /g, " </em>");
+        html = html.replace(/<[/]em> /g, " </em>");
 		html = html.replace(/<[/]i> /g, " </i>");
 		html = html.replace(/<[/]s> /g, " </s>");
 		html = html.replace(/<[/]u> /g, " </u>");
 		html = html.replace(/<[/]span> /g, " </span>");
-
+		html = html.replace(/<[/]strong> /g, " </strong>");
+		html = html.replace(/<[/]em> /g, " </em>");
+		html = html.replace(/<[/]i> /g, " </i>");
+		html = html.replace(/<[/]s> /g, " </s>");
+		html = html.replace(/<[/]u> /g, " </u>");
+		html = html.replace(/<[/]span> /g, " </span>");
+        // console.log("after html2--",html);
 		return html;
 	}
 }
