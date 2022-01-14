@@ -164,6 +164,7 @@ const headerColor = themeContext.colors.PRIMARY_COLOR;
                       value={name}
                       // onChangeText={queryText => handleSearch(queryText)}
                       placeholder={t('childNamePlaceTxt')}
+                      placeholderTextColor={"gray"}
                       allowFontScaling={false}
                     />
                   </FormInputBox>

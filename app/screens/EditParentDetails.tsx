@@ -295,6 +295,7 @@ const EditParentDetails = ({route,navigation}: Props) => {
               value={parentName}
               // onChangeText={queryText => handleSearch(queryText)}
               placeholder={t('parentPlaceNameTxt')}
+              placeholderTextColor={"gray"}
               allowFontScaling={false} 
             /></FormInputBox>
           </FormContainer>
