@@ -865,6 +865,7 @@ const AddChildHealthCheckup = ({ route, navigation }: any) => {
                       placeholder={t(
                         'growthScreenenterDoctorRemarkTextPlaceHolder',
                       )}
+                      placeholderTextColor={"gray"}
                       allowFontScaling={false}
                     />
                   </TextAreaBox>
