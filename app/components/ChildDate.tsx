@@ -294,7 +294,7 @@ const ChildDate = (props: any) => {
                 <FormInputGroup onPress={showdueDatepicker}>
                   <LabelText>{t('childSetupdueLabel')}</LabelText>
                   <FormInputBox>
-                    <FormDateText>
+                    <FormDateText  style={{flex:1,flexDirection:"row"}}>
                       <Text>
                         {' '}
                         {dueDate
