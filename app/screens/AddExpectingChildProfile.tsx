@@ -306,6 +306,7 @@ const AddExpectingChildProfile = ({ route, navigation }: Props) => {
                 value={name}
                 // onChangeText={queryText => handleSearch(queryText)}
                 placeholder={t('expectPreferNamePlacetxt')}
+                placeholderTextColor={"gray"}
                 allowFontScaling={false} 
               />
             </FormInputBox>
