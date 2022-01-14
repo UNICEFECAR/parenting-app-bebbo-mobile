@@ -40,12 +40,16 @@ const TrackMilestoneView = (props) => {
           <Pressable onPress={() => {}} style={{flexDirection: 'row'}}>
             <ButtonDevelopmentMd
               onPress={() =>
-                // navigation.navigate('Home', {screen: 'ChildDevelopment'})
-                navigation.navigate({
-                  name: "ChildDevelopment",
+                navigation.navigate('Home', {
+                  screen: 'ChildDevelopment',
                   params: {currentSelectedChildId:currentSelectedChildId ? currentSelectedChildId : 0},
                   merge: true,
                 })
+                // navigation.navigate({
+                //   name: "ChildDevelopment",
+                //   params: {currentSelectedChildId:currentSelectedChildId ? currentSelectedChildId : 0},
+                //   merge: true,
+                // })
               }>
               <ButtonTextMd numberOfLines={2}>{t('trackMilestoneViewBtn')}</ButtonTextMd>
             </ButtonDevelopmentMd>
