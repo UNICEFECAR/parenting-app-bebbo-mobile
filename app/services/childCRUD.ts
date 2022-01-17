@@ -45,7 +45,7 @@ export const apiJsonDataGet = (childAge: any, parentGender: any) => {
 export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTermDate?: any, isPremature?: string, birthDate?: any, name?: string, photoUri?: string, gender?: any, createdAt?: any): Promise<ChildEntity> => {
   console.log({
     uuid: uuidGet ? uuidGet : uuidv4(),
-    childName: (name != "" && name != null && name != undefined) ? name : '',
+    childName: (name != "" && name != null && name != undefined) ? name.trim() : '',
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
@@ -60,7 +60,7 @@ export const getNewChild = async (uuidGet: string, isExpected?: any, plannedTerm
   }, "chilObjGetNewChild")
   return {
     uuid: uuidGet ? uuidGet : uuidv4(),
-    childName: (name != "" && name != null && name != undefined) ? name : '',
+    childName: (name != "" && name != null && name != undefined) ? name.trim() : '',
     photoUri: photoUri ? photoUri : '',
     plannedTermDate: plannedTermDate ? plannedTermDate : null,
     birthDate: birthDate,
