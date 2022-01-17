@@ -353,9 +353,8 @@ class MediaPicker {
 
   handleError(error:any) {
     if (error.code && error.code === "E_PICKER_CANCELLED") return;
-
     let errorMsg = error.message ? error.message : error;
-
+    console.log(errorMsg,"..errorMsg")
     Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
   }
 
@@ -377,13 +376,15 @@ class MediaPicker {
         return cameraPermission;
       })
       .then((cameraPermission) => {
+        console.log(cameraPermission,"..cameraPermissioncameraPermission..")
         if (
           cameraPermission === RESULTS.GRANTED
         ) {
+          console.log("fgfggf")
           triggerFunc();
         }
         else if (
-          cameraPermission === RESULTS.DENIED
+          cameraPermission === RESULTS.DENIED || cameraPermission === RESULTS.BLOCKED || cameraPermission === RESULTS.UNAVAILABLE
         ){
           Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
         }
@@ -392,6 +393,7 @@ class MediaPicker {
   handlePermissionsGallery(triggerFunc:any) {
     let cameraOncedOpened:any=false;
     request(GALLERY_PERMISSION).then(async (photoPermission) => {
+        console.log(photoPermission,"..photoPermissionphotoPermission..")
     //  console.log(photoPermission,"..photoPermission")
     //  console.log(triggerFunc,"..triggerFunc")
       if (
@@ -451,7 +453,7 @@ class MediaPicker {
         
       }
       else if (
-        photoPermission === RESULTS.DENIED
+        photoPermission === RESULTS.DENIED ||  photoPermission === RESULTS.BLOCKED || photoPermission=== RESULTS.UNAVAILABLE
       ){
         Alert.alert(i18n.t('generalErrorTitle'), i18n.t('generalError'));
        //openSettings().catch(() => console.warn('cannot open settings'));
@@ -482,6 +484,7 @@ class MediaPicker {
       check(CAMERA_PERMISSION)
       // …
     ]).then(([cameraStatus]) => {
+      console.log(cameraStatus,"..cameraStatus..")
       // Alert.alert(cameraStatus,"..cameraStatus..")
       // Alert.alert(photoStatus,"..photoStatus..")
       if (cameraStatus === RESULTS.BLOCKED) {
@@ -498,7 +501,7 @@ class MediaPicker {
       check(GALLERY_PERMISSION),
       // …
     ]).then(([photoStatus]) => {
-   //  console.log(photoStatus,"..photoStatus..")
+     console.log(photoStatus,"..photoStatus..")
       // Alert.alert(photoStatus,"..photoStatus..")
       if (photoStatus === RESULTS.BLOCKED) {
         this.openSettingModal();
