@@ -259,7 +259,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     else if (item.id == 1) {
       MediaPicker.showCameraImagePicker((image: any) => {
         // image.path ==>> file path
-        // console.log(image,"..image..");
+         console.log(image,"..image..");
         // cleanUPImage(image);
         // setCapturedImage(image.path);
         onChildPhotoChange(image);
