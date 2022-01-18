@@ -135,10 +135,10 @@ const DailyHomeNotification = () => {
   return (
     <>
     {records.length > 0?
-      <FlexCol>
+      // <FlexCol>
         <BgPrimary>
           <MainContainer>
-            <ShiftFromTopBottom10>
+            <ShiftFromTopBottom10  style={{flex:1,flexDirection:'column'}}>
               <FlexDirRowStart>
                 <OuterIconRow>
                   <OuterIconLeft>
@@ -152,7 +152,7 @@ const DailyHomeNotification = () => {
             </ShiftFromTopBottom10>
           </MainContainer>
         </BgPrimary>
-        </FlexCol>
+        // </FlexCol>
        : null}
     </>
   );
