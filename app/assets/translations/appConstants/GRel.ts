@@ -424,10 +424,8 @@ const GRel = {
                 sorryMsgTxt: "Λυπάμαι που δεν μπορέσατε να βρείτε απάντηση στην ερώτηση σας. Παρακαλώ επιλέξτε μία από τις ακόλουθες επιλογές:",
                 feedbackLinkTxt: "΄Αφήστε τα σχόλια σας",
                 notNowTxt: "Όχι τώρα",
-                //phase 2 new strings
                 settingScreenFileBtntxt: "Διαχείριση Αρχείων",
                 importBtntxt: " Εισαγωγή αρχείου",
-                //27/12/2021
                 downloadAllPopupTitle: "Ενημέρωση δεδομένων",
                 downloadAllPopupText: "Αυτό θα πάρει λίγο χρόνο. Θέλετε να κατεβάσετε όλα τα δεδομένα τώρα;",
                 downloadAllCancelPopUpBtn: "Ακύρωση",

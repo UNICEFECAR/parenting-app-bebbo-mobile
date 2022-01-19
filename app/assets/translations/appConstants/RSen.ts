@@ -425,7 +425,6 @@ const RSen = {
                 notNowTxt: "Not now",
                 settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File",
-                //27/12/2021
                 downloadAllPopupTitle: "Download full data",
                 downloadAllPopupText: "This will download entire app content and will take time and more than 200MB data. We recommend doing this on Wi-Fi connection. Do you want to download all data now?",
                 downloadAllCancelPopUpBtn: "Cancel",
