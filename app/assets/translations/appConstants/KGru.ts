@@ -425,7 +425,6 @@ const KGru = {
                 notNowTxt: "Не сейчас",
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импорт файла",
-                //27/12/2021
                 downloadAllPopupTitle: "Обновить данные",
                 downloadAllPopupText: "Это займет какое-то время. Вы хотите загрузить все данные сейчас?",
                 downloadAllCancelPopUpBtn: "Отменить",
