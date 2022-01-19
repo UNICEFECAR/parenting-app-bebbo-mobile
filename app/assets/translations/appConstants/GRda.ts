@@ -404,7 +404,6 @@ const GRda = {
                 favScreenremoveText: "از بین بردن",
                 settingScreenimportOptionHeader: "وارد کردن داده ها به",
                 childSetupprematureMessageNext: "محتوای این بخش بطوری که تصحیح (درست) شده است ظاهر میشود و نه با سن واقعی طفل شما که زودتر از وقت اصلی تولد شده است",
-                //phase 2 new strings+chatbot strings
                 helloMessage: "سلام بر تو{{parentName}}اسم من به بو است. من اینجام تا به سوال های تو جواب بده هم ",
                 selectAreaOfInterest: "خواهشن بخش مورد نظر تان را انتخاب کنید تا این که سوال بپرسید ",
                 question1: "سوال شمادر مورد کدام بخش میباشد ?",
@@ -427,8 +426,6 @@ const GRda = {
                 notNowTxt: "الان نه",
                 settingScreenFileBtntxt: "فایل",
                 importBtntxt: "Import File",
-
-                //27/12/2021
                 downloadAllPopupTitle: "Download full data",
                 downloadAllPopupText: "This will download entire app content and will take time and more than 200MB data. We recommend doing this on Wi-Fi connection. Do you want to download all data now?",
                 downloadAllCancelPopUpBtn: "Cancel",
