@@ -426,7 +426,6 @@ const ru = {
                 notNowTxt: "Не сейчас",
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импортировать файл",
-                //27/12/2021
                 downloadAllPopupTitle: "Обновить данные",
                 downloadAllPopupText: "Это займет какое-то время. Вы хотите загрузить все данные сейчас?",
                 downloadAllCancelPopUpBtn: "Отменить",

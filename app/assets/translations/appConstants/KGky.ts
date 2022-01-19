@@ -425,7 +425,6 @@ const KGky = {
                 notNowTxt: "Азыр эмес",
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Файлды импорттоо",
-                //27/12/2021
                 downloadAllPopupTitle: "Дайындарды жаңыртуу",
                 downloadAllPopupText: "Бул убакытты талап кылат. Бардык дайындарды азыр жүктөп алгыңыз келеби?",
                 downloadAllCancelPopUpBtn: "Жокко чыгаруу",
