@@ -424,15 +424,13 @@ const UZru = {
                 sorryMsgTxt: "Мне очень жаль, что вы не смогли найти ответ на свой вопрос. Пожалуйста, выберите один из следующих вариантов:",
                 feedbackLinkTxt: "Оставьте нам свой отзыв",
                 notNowTxt: "Не сейчас",
-                //phase 2 new strings
                 settingScreenFileBtntxt: "Файл",
                 importBtntxt: "Импортировать файл",
-                //27/12/2021
                 downloadAllPopupTitle: "Обновить данные",
                 downloadAllPopupText: "Это займет какое-то время. Вы хотите загрузить все данные сейчас?",
                 downloadAllCancelPopUpBtn: "Отменить",
-                downloadAllContinueBtn:  "Продолжить",
-                downloadAllSuccessPopupTitle:  "Успех",
+                downloadAllContinueBtn: "Продолжить",
+                downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Все данные успешно загружены!!",
                 downloadAllSuccessOkBtn: "Ок"
         }

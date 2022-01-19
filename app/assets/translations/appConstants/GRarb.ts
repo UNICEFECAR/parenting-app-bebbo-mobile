@@ -404,7 +404,6 @@ const GRarb = {
                 favScreenremoveText: "حذف",
                 settingScreenimportOptionHeader: "إدخال بيانات إلى",
                 childSetupprematureMessageNext: "يَظهَرُ محتوى هذا الحقل وفقاَ للعمر الذي تم تعديله وليس اعتماداَ على العمر الحقيقي لطفلك المولود ولادة مُبكّرة.",
-                //phase 2 new strings+chatbot strings
                 helloMessage: "أنا بيبو . أنا هُنا لأُجيب على أسئلتكَ.{{parentName}} مرحبا  ",
                 selectAreaOfInterest: "الرجاء اختيار المجال الذي يهمك، لتطرح سؤالك بصدده",
                 question1: "بأي مجال يتعلق سؤالك",
@@ -426,10 +425,7 @@ const GRarb = {
                 feedbackLinkTxt: "آسف لأنك لم تجد جواباً لسؤالك. الرجاء استخدام إحدى الخيارات التالية",
                 notNowTxt: "ليس الآن",
                 settingScreenFileBtntxt: "ملف",
-                //settingScreenFileBtntxt: "File",
                 importBtntxt: "Import File",
-
-                //27/12/2021
                 downloadAllPopupTitle: "Download full data",
                 downloadAllPopupText: "This will download entire app content and will take time and more than 200MB data. We recommend doing this on Wi-Fi connection. Do you want to download all data now?",
                 downloadAllCancelPopUpBtn: "Cancel",
