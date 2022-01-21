@@ -152,7 +152,7 @@ useEffect(() => {
 
   return (
     <>
-   <View style={{flexDirection:'column',alignItems:'center',}}>
+   <View style={{flexDirection:'column',alignItems:'center',flex:1}}>
    <ChartClick>
       <VictoryChart 
       containerComponent={<VictoryVoronoiContainer/>}
