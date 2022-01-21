@@ -466,11 +466,11 @@ const ChildDevelopment = ({ route, navigation }: Props) => {
                 </FlexDirRowSpace>
               </DevelopmentStatus>
               <FDirRow>
-
+              {milestonePercent < 100 ?
                 <Heading3Regular>
                   {t('developScreenmileStoneQ')}
                 </Heading3Regular>
-
+              :null}
               </FDirRow>
             </FDirCol>
             : null}
