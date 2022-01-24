@@ -101,8 +101,6 @@
 		BFC06B342746C28600CCB3B3 /* ru-BY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-BY"; path = "ru-BY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		BFC06B352746C2A600CCB3B3 /* ru-RU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ru-RU"; path = "ru-RU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		BFC06B362746C33000CCB3B3 /* sr-Latn-ME */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-ME"; path = "sr-Latn-ME.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		BFC06B372746C38100CCB3B3 /* sq-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sq-XK"; path = "sq-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		BFC06B382746C3A100CCB3B3 /* sr-Latn-XK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sr-Latn-XK"; path = "sr-Latn-XK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		CE79669B26F9D6BD000C1CF9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../app/assets/splash.json; sourceTree = "<group>"; };
 		CE9E89C626F089CC0093EF36 /* ParentBuddyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParentBuddyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE9E89C726F089CC0093EF36 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
@@ -400,8 +398,6 @@
 				"ru-BY",
 				"ru-RU",
 				"sr-Latn-ME",
-				"sq-XK",
-				"sr-Latn-XK",
 				fa,
 				ar,
 				Base,
@@ -806,8 +802,6 @@
 				BFC06B342746C28600CCB3B3 /* ru-BY */,
 				BFC06B352746C2A600CCB3B3 /* ru-RU */,
 				BFC06B362746C33000CCB3B3 /* sr-Latn-ME */,
-				BFC06B372746C38100CCB3B3 /* sq-XK */,
-				BFC06B382746C3A100CCB3B3 /* sr-Latn-XK */,
 				BF4003FA276C996C00F208BD /* fa */,
 				BF4003FB276C9BD700F208BD /* ar */,
 			);
@@ -871,7 +865,7 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				ENABLE_BITCODE = NO;
@@ -964,7 +958,7 @@
 				);
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -989,12 +983,12 @@
 				CODE_SIGN_ENTITLEMENTS = ParentBuddyApp/ParentBuddyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 8;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.4;
+				MARKETING_VERSION = 1.2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

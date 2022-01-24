@@ -44,7 +44,7 @@ const UZuz = {
               childSetupListeditSiblingBtn: "Bola maʼlumotlarini tahrirlash",
               childSetupListcontinueBtnText: "Davom etish",
               childSetupListsaveBtnText: "Maʼlumotlarni saqlash",
-              drawerMenuchildInfo: "{{childob}} da tugʻilgan",
+              drawerMenuchildInfo: "{{childdob}} da tugʻilgan",
               drawerMenuhomeTxt: "Bosh sahifa",
               drawerMenunotiTxt: "Bildirishnomalar",
               drawerMenutoolsTxt: "Vositalar",
@@ -113,9 +113,9 @@ const UZuz = {
               actScreenheaderTitle: "Oʻyinlar",
               actScreensugacttxt: "Tavsiya etiladigan oʻyinlar",
               actScreenotheracttxt: "Boshqa oʻyinlar",
-              actScreenpendingMilestone: "Kutilmoqda",
+              actScreenpendingMilestone: "Kutilmoqda:",
               actScreencompleteMilestone: "Tugallandi",
-              actScreentrack: "Kuzatish",
+              actScreentrack: "Kuzatish:",
               actScreenmilestones: "Rivojlanish bosqichlari",
               actScreenprematureText: "Erta tugʻilgan",
               actScreenshareText: "Ulashish",
@@ -309,7 +309,7 @@ const UZuz = {
               cancelRetryPopupTitle: "Ogohlantirish",
               cancelPopupText: "Maʼlumotlar toʻliq yuklanmadi. Faqat cheklangan maʻlumotlar koʻrsatiladi",
               cancelPopUpBtn: "Tasdiqlash",
-              developScreenCompletechartLabel: "Tugatish",
+              developScreenCompletechartLabel: "Tugallandi",
               developScreenCompletechartText: "Tabriklaymiz, farzandingiz barcha bosqichlardan oʻtdi!",
               noDataTxt: "Maʼlumot yoʻq",
               hcEditHeaderTitle: "Tibbiy koʻrikni tahrirlash",
@@ -356,7 +356,7 @@ const UZuz = {
               SyncOnLoadRetryBtn: "Sinxronlash",
               cdNoti1: "{{periodName}} davrida farzandingizning rivojlanishini kuzatib boring",
               cdNoti2: "{{periodName}} davrida farzandingiz qaysi bosqichlarga yetganini tekshiring",
-              gwNoti1: "{{periodName}} davri uchun oʻsish oʻchamlarini kiriting",
+              gwNoti1: "{{periodName}} davri uchun oʻsish oʻlchamlarini kiriting",
               hcNoti1: "{{periodName}} shifokor koʻrigidan oʻtishni rejalashtiring",
               vcNoti1: "{{periodName}} {{childName}} quyidagi emlash(lar)ni olishi kerak:",
               alertForExistingMeasuresTitle: "Bu sana uchun oʻlchov maʼlumotlari allaqachon mavjud, boshqa sanani tanlang",
@@ -405,7 +405,7 @@ const UZuz = {
               settingScreenimportOptionHeader: "Ma'lumotlarni import qilish",
               childSetupprematureMessageNext: "Ushbu boʻlimning mazmuni muddatidan avval tugʻilgan farzandingizning haqiqiy yoshiga qarab emas, balki toʻgʻrilangan yoshiga qarab koʻrsatiladi",
               helloMessage: "Salom{{parentName}}, mening ismim Bebbo. Savollaringizga javob berishga tayyorman",
-              selectAreaOfInterest: "Iltimos, savolingiz oid boʻlgan sohani tanlang",
+              selectAreaOfInterest: "Iltimos, savolingizga oid boʻlgan sohani tanlang",
               question1: " Savolingiz nima haqida?",
               question2: " Iltimos, quyidagi savollardan birini tanlang",
               question3: " Davom etish uchun quyidagi variantlardan birini tanlang",
@@ -433,7 +433,6 @@ const UZuz = {
               downloadAllSuccessPopupTitle: "Muvaffaqiyatli",
               downloadAllSuccessPopupText: "Barcha maʼlumotlar muvaffaqiyatli yuklab olindi!",
               downloadAllSuccessOkBtn: "Ok"
-
        }
 }
 export default UZuz;
