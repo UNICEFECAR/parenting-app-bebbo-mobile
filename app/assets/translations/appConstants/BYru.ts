@@ -432,8 +432,6 @@ const BYru = {
                 downloadAllSuccessPopupTitle: "Успех",
                 downloadAllSuccessPopupText: "Все данные успешно загружены!",
                 downloadAllSuccessOkBtn: "Ок"
-
-
         }
 }
 export default BYru;
