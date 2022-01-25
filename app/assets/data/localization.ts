@@ -1,4 +1,6 @@
-export const localization = [
+import { isBuildkosovo } from "@assets/translations/appOfflineData/apiConstants";
+
+const localizationall = [
   {
     name: 'Albania',
     countryId: 6,
@@ -238,4 +240,51 @@ export const localization = [
     ],
   },
 ];
+
+const localizationkosovo = [
+  {
+    name: 'Kosovo',
+    countryId: 21,
+    displayName: 'Kosovo (Kosova)',
+    languages: [
+      {
+        name: 'Albanian',
+        displayName: 'Shqip',
+        languageCode: 'xk-sq',
+        locale: 'XKsq',
+        luxonLocale:'sq-XK'
+      },
+      {
+        name: 'Serbian',
+        displayName: 'Srpski',
+        languageCode: 'xk-rs',
+        locale: 'XKrs',
+        luxonLocale:'sr-Latn-XK'
+      },
+    ],
+  },
+  {
+    name: 'Rest of the world',
+    countryId: 126,
+    displayName: 'Rest of the world',
+    languages: [
+      {
+        name: 'English',
+        displayName: 'English',
+        languageCode: 'en',
+        locale: 'en',
+        luxonLocale:'en-US'
+      },
+      {
+        name: 'Russian',
+        displayName: 'Русский',
+        languageCode: 'ru',
+        locale: 'ru',
+        luxonLocale:'ru-RU'
+      },
+    ],
+  },
+];
+const localization = isBuildkosovo == true ? localizationkosovo : localizationall;
+export default localization;
 
