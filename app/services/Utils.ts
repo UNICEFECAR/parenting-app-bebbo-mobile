@@ -462,13 +462,14 @@ export const getChild = async (child: any, genders: any) => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
     const childmeasures: any[] = await formatImportedMeasures(child.measures)
     const childreminders: any[] = await formatImportedReminders(child.reminders)
+    const isPremature:any=child.isPremature=="true"?"true":"false";
     // const favoriteadvices:any[] = 
     //console.log(photoUri, "..photoUri..", childmeasures, childreminders);
     //console.log(child, "..childname..");
    // console.log("name" in child, "..child.hasOwnProperty..");
     //const childName:any=child.hasOwnProperty("name") ? child.name:child.childName;
     const childName: any = ("name" in child) === true ? child.name : ("childName" in child) === true ? child.childName : ""
-    //console.log(childName, "..childname..");
+    console.log(isPremature, "..isPremature..");
     let genderValue: any = child.gender;
     //console.log(typeof genderValue, "..typeof genderValue")
     if (typeof genderValue === 'string' || genderValue instanceof String) {
@@ -517,7 +518,7 @@ export const getChild = async (child: any, genders: any) => {
         //mayur
         reminders: childreminders,
         isMigrated: true,
-        isPremature: 'false', //calcualte if its premature or not?
+        isPremature: isPremature,
         isExpected: inFuture == true ? 'true' : 'false',
         favoriteadvices:favoriteadvices,
         favoritegames: favoritegames
