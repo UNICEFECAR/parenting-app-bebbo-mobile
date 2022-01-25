@@ -16,7 +16,7 @@ interface selectedLocalizationType {
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
-  countryId: 1,
+  countryId: 126,
   languageCode: 'en',
   luxonLocale:'en',
   locale: 'en',
