@@ -28,10 +28,11 @@ import i18n, {
   import BYru from '@assets/translations/appConstants/BYru';
   import GRarb from '@assets/translations/appConstants/GRarb';
   import GRda from '@assets/translations/appConstants/GRda';
-  import { localization } from '@assets/data/localization';
+  // import { localization } from '@assets/data/localization';
   import { Alert } from 'react-native';
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
+import localization from '@assets/data/localization';
 
   export const AVAILABLE_LANGUAGES = {
     en,
@@ -60,7 +61,7 @@ import i18n, {
   const newArr: any[] = [];
   const localisationnew = [...localization];
   // const localisationnew = arrCopy.filter(o=>o.languages = o.languages.filter(x=> x.languageCode != 'rs-en'))
- // console.log(localisationnew,"--localisationnew");
+ console.log(localisationnew,"--localisationnew");
   const findAllByKey:any = (obj: object | null, keyToFind: string) => {
     return Object.entries(obj)
       .reduce((acc, [key, value]) => (key === keyToFind)
