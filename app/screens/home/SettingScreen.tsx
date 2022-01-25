@@ -68,7 +68,7 @@ import { Switch } from 'react-native-gesture-handler';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
 import { store, useAppDispatch, useAppSelector } from '../../../App';
-import { localization } from '../../assets/data/localization';
+import localization  from '../../assets/data/localization';
 import useNetInfoHook from '../../customHooks/useNetInfoHook';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
