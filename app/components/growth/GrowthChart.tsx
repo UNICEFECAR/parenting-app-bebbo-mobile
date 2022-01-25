@@ -152,8 +152,11 @@ useEffect(() => {
 
   return (
     <>
-   <View style={{flexDirection:'column',alignItems:'center',flex:1}}>
-   <ChartClick>
+   <View style={{flexDirection:'column',alignItems:'center'}}>
+   <ChartClick width={deviceOrientation === 'portrait' ? windowWidth-30 : windowWidth-60}
+        height={deviceOrientation === 'portrait' ?
+        windowWidth - 60
+          : windowHeight-50}>
       <VictoryChart 
       containerComponent={<VictoryVoronoiContainer/>}
         theme={VictoryTheme.material}
