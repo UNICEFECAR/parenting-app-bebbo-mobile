@@ -1,4 +1,4 @@
-import { isBuildkosovo } from "@assets/translations/appOfflineData/apiConstants";
+import { buildFor, buildForFoleja,buildForBebbo } from "@assets/translations/appOfflineData/apiConstants";
 
 const localizationall = [
   {
@@ -262,29 +262,8 @@ const localizationkosovo = [
         luxonLocale:'sr-Latn-XK'
       },
     ],
-  },
-  {
-    name: 'Rest of the world',
-    countryId: 126,
-    displayName: 'Rest of the world',
-    languages: [
-      {
-        name: 'English',
-        displayName: 'English',
-        languageCode: 'en',
-        locale: 'en',
-        luxonLocale:'en-US'
-      },
-      {
-        name: 'Russian',
-        displayName: 'Русский',
-        languageCode: 'ru',
-        locale: 'ru',
-        luxonLocale:'ru-RU'
-      },
-    ],
-  },
+  }
 ];
-const localization = isBuildkosovo == true ? localizationkosovo : localizationall;
+const localization = buildFor == buildForFoleja ? localizationkosovo : localizationall;
 export default localization;
 
