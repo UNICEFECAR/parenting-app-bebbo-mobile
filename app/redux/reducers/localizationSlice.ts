@@ -1,3 +1,4 @@
+import localization from '@assets/data/localization';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 
@@ -16,10 +17,10 @@ interface selectedLocalizationType {
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: selectedLocalizationType = {
   // name: 'Rest of the world',
-  countryId: 126,
-  languageCode: 'en',
-  luxonLocale:'en',
-  locale: 'en',
+  countryId: localization[localization.length-1].countryId, //126
+  languageCode: localization[localization.length-1].languages[0].languageCode, //'en'
+  luxonLocale: localization[localization.length-1].languages[0].luxonLocale, //'en'
+  locale:  localization[localization.length-1]?.languages[0]?.locale, //'en'
   sponsors:[],
   restartOnLangChange:'no',
   AppLayoutDirection:'ltr',
