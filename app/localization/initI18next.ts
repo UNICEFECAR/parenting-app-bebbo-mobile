@@ -6,58 +6,12 @@ import i18n, {
   import {initReactI18next} from 'react-i18next';
   import AsyncStorage from '@react-native-async-storage/async-storage';
   import * as RNLocalize from 'react-native-localize';
-  import en from '@assets/translations/appConstants/en';
-  import ru from '@assets/translations/appConstants/ru';
-  import RSsr from '@assets/translations/appConstants/RSsr';
-  import MEcnr from '@assets/translations/appConstants/MEcnr';
-  import ALsq from '@assets/translations/appConstants/ALsq';
-  import BGbg from '@assets/translations/appConstants/BGbg';
-  import GRel from '@assets/translations/appConstants/GRel';
-  import KGky from '@assets/translations/appConstants/KGky';
-  import KGru from '@assets/translations/appConstants/KGru';
-  import MKmk from '@assets/translations/appConstants/MKmk';
-  import MKsq from '@assets/translations/appConstants/MKsq';
-  import TJru from '@assets/translations/appConstants/TJru';
-  import TJtg from '@assets/translations/appConstants/TJtg';
-  import UZru from '@assets/translations/appConstants/UZru';
-  import UZuz from '@assets/translations/appConstants/UZuz';
-  import XKsq from '@assets/translations/appConstants/XKsq';
-  import XKrs from '@assets/translations/appConstants/XKrs';
-  import RSen from '@assets/translations/appConstants/RSen';
-  import BYbe from '@assets/translations/appConstants/BYbe';
-  import BYru from '@assets/translations/appConstants/BYru';
-  import GRarb from '@assets/translations/appConstants/GRarb';
-  import GRda from '@assets/translations/appConstants/GRda';
-  // import { localization } from '@assets/data/localization';
-  import { Alert } from 'react-native';
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
 import localization from '@assets/data/localization';
-
-  export const AVAILABLE_LANGUAGES = {
-    en,
-    ru,
-    RSsr,
-    MEcnr,
-    ALsq,
-    BGbg,
-    GRel,
-    KGky,
-    KGru,
-    MKmk,
-    MKsq,
-    TJru,
-    TJtg,
-    UZru,
-    UZuz,
-    XKsq,
-    XKrs,
-    RSen,
-    BYbe,
-    BYru,
-    GRarb,
-    GRda
-  };
+import { buildFor, buildForFoleja, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
+  export const AVAILABLE_LANGUAGES = buildFor == buildForFoleja ? require('./Available_lang_xk').default : require('./Available_lang_bebbo').default;
+  console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const newArr: any[] = [];
   const localisationnew = [...localization];
   // const localisationnew = arrCopy.filter(o=>o.languages = o.languages.filter(x=> x.languageCode != 'rs-en'))
@@ -82,7 +36,6 @@ import localization from '@assets/data/localization';
  // console.log(AVAILABLE_LANGUAGES,"----");
   // const AVALAILABLE_LANG_CODES = Object.keys(AVAILABLE_LANGUAGES);
   const AVALAILABLE_LANG_CODES = findAllByKey(localisationnew,'luxonLocale');
-  //console.log(AVALAILABLE_LANG_CODES,"AVALAILABLE_LANG_CODES34");
   const languageDetector: LanguageDetectorAsyncModule = {
     type: 'languageDetector',
     // If this is set to true, your detect function receives a callback function that you should call with your language,
@@ -113,12 +66,12 @@ import localization from '@assets/data/localization';
         // console.log(bestLng,"--bestLng--- ",AVALAILABLE_LANG_CODES);
          const langCodeNew = findLangCode(bestLng?.languageTag);
         // console.log("langCodeNew---",langCodeNew);
-         let lang2 = langCodeNew ?langCodeNew : 'en';
+         let lang2 = langCodeNew ?langCodeNew : localization[localization.length-1]?.languages[0]?.locale;
          const country = localization.find(x => x.languages.some(item => item.locale === lang2));
         const language = localization.reduce((prev, product):any => prev || product.languages.find(item => item.locale === lang2), undefined);
         //console.log(country,"--country--",language);
         store.dispatch(onLocalizationSelect({country,language}))
-          callback(langCodeNew ?? 'en');
+          callback(langCodeNew ?? localization[localization.length-1]?.languages[0]?.locale);
           //callback(bestLng?.languageTag ?? 'en');
           return;
         }
