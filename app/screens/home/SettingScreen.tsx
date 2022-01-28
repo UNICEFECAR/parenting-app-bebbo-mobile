@@ -1,7 +1,7 @@
 
 
 import { DEVELOPMENT_NOTIFICATION_OFF, DEVELOPMENT_NOTIFICATION_ON, GROWTH_NOTIFICATION_OFF, GROWTH_NOTIFICATION_ON, VACCINE_HEALTHCHECKUP_NOTIFICATION_OFF, VACCINE_HEALTHCHECKUP_NOTIFICATION_ON } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig, backUpPath, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, backUpPath, buildFor, buildForFoleja, tempbackUpPath, tempRealmFile } from '@assets/translations/appOfflineData/apiConstants';
 import AlertModal from '@components/AlertModal';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -1294,7 +1294,7 @@ const SettingScreen = (props: any) => {
                     // });
                     props.navigation.navigate('Localization',
                       {
-                        screen: 'CountrySelection',
+                        screen: buildFor == buildForFoleja ? 'LanguageSelection' : 'CountrySelection',
                         params: { country: null, language: null }
                       });
                     // props.navigation.navigate('Localization')

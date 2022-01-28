@@ -23,6 +23,7 @@ import RNRestart from 'react-native-restart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
 import  localization  from '@assets/data/localization';
+import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
   LocalizationStackParamList,
@@ -33,9 +34,17 @@ type Props = {
 };
 const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
-  const {country,languagenew} = route.params;
+  console.log("in lang file ---",route.params);
+  let country:any,languagenew: any;
+  if(buildFor == buildForFoleja && (route.params == null || route.params == undefined)) {
+    country = localization[localization.length-1];
+    languagenew = null;
+  }else {
+    country = route.params.country;
+    languagenew = route.params.languagenew;
+  }
   //console.log(languagenew,"--languagenew--");
-  const languages = country.languages;
+  const languages = country?.languages;
   const {t, i18n} = useTranslation();
   const dispatch = useAppDispatch();
   const languageCode = useAppSelector(
@@ -126,18 +135,21 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const goToConfirmationScreen = () => {
     i18n.changeLanguage(language?.locale)
     .then(() => {
-      console.log(language,"--hdhghd--",i18n.language);
-      const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
-      const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
-      if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
-            Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
-            [
-              { text:t('restOfTheWorldOkTitle'), onPress: async () => {
-                rtlConditions()
-                }
-              }
-            ]
-          );
+      if(buildFor == buildForBebbo) {
+          const rotwLanguagelocaleen = localization[localization.length - 1].languages[0].locale;
+          const rotwLanguagelocaleru = localization[localization.length - 1].languages[1].locale;
+          if(language?.locale == rotwLanguagelocaleen || language?.locale == rotwLanguagelocaleru) {
+                Alert.alert(t('restOfTheWorldAlertTitle'), t('restOfTheWorldAlertText'),
+                [
+                  { text:t('restOfTheWorldOkTitle'), onPress: async () => {
+                    rtlConditions()
+                    }
+                  }
+                ]
+              );
+          }else {
+            rtlConditions();
+          }
       }else {
         rtlConditions();
       }
