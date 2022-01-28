@@ -1,6 +1,4 @@
 import { articleCategoryArray } from '@assets/translations/appOfflineData/apiConstants';
-import { articledata } from '@assets/translations/appOfflineData/article';
-import { getDataToStore } from '@assets/translations/appOfflineData/getDataToStore';
 import ArticleCategories from '@components/ArticleCategories';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
@@ -21,12 +19,8 @@ import {
   FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../../App';
-import { userRealmCommon } from '../../../database/dbquery/userRealmCommon';
-import { ArticleEntity, ArticleEntitySchema } from '../../../database/schema/ArticleSchema';
-import { setAllArticleData } from '../../../redux/reducers/articlesSlice';
 import { setInfoModalOpened } from '../../../redux/reducers/utilsSlice';
 import LoadableImage from '../../../services/LoadableImage';
 
