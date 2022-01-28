@@ -36,7 +36,7 @@ import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig, buildFor, buildForREMOVED_FACEBOOK_APP_ID1 } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
@@ -221,7 +221,11 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                 <ButtonLinkText
                   onPress={() => {
                     //console.log(language,"country--",country);
-                    navigation.navigate('CountrySelection',{country:country,language:language})
+                    if(buildFor == buildForREMOVED_FACEBOOK_APP_ID1) {
+                      navigation.navigate('LanguageSelection',{country:country,languagenew:language})
+                    }else {
+                      navigation.navigate('CountrySelection',{country:country,language:language})
+                    }
                   }}>
                   <OuterIconRow>
                     <OuterIconLeft>

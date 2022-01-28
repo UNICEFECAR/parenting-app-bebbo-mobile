@@ -1,3 +1,4 @@
+import { buildFor, buildForREMOVED_FACEBOOK_APP_ID1 } from '@assets/translations/appOfflineData/apiConstants';
 import { createStackNavigator } from '@react-navigation/stack';
 import CountryLanguageConfirmation from '@screens/localization/CountryLanguageConfirmation';
 import CountrySelection from '@screens/localization/CountrySelection';
@@ -22,7 +23,7 @@ export default () => {
   return (
     <LocalizationStack.Navigator 
       // initialRouteName="CountrySelection"
-      initialRouteName= {restartOnLangChange != 'yes' ? "CountrySelection" : AppLayoutDirectionScreen}
+      initialRouteName= {restartOnLangChange != 'yes' ? buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? "LanguageSelection" : "CountrySelection" : AppLayoutDirectionScreen}
     >
       <LocalizationStack.Screen
         name="CountrySelection"

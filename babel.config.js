@@ -34,6 +34,7 @@ module.exports = (api) => {
           '@types': './app/types',
           '@styles': './app/styles',
           '@navigation': './app/navigation',
+          '@offlinedata': './app/assets/translations/appOfflineData',
         },
       },
     ],

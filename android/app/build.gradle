@@ -183,7 +183,7 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
         }
-        xq {
+        xk {
             minSdkVersion rootProject.ext.minSdkVersion
             applicationId 'com.parentbuddyapp'
             targetSdkVersion rootProject.ext.targetSdkVersion
