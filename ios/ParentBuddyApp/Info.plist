@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.185520625819-qc2dnj0lo720h08fqo44ame1c1dp992k</string>
+				<string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
 			</array>
 		</dict>
 		<dict>
