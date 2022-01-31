@@ -44,3 +44,7 @@ ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks
 ios/ParentBuddyApp.xcodeproj/xcuserdata/kalyanikaushik.xcuserdatad/xcschemes/xcschememanagement.plist
 ios/GoogleServices/Xk/GoogleService-Info_old.plist
 ios/GoogleServices/Production/GoogleService-Info_new.plist
+ios/ParentBuddyApp/Info.plist
+ios/ParentBuddyAppXk-Info.plist
+ios/ParentBuddyApp/Info.plist
+ios/ParentBuddyAppXk-Info.plist
