@@ -21,9 +21,9 @@ export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
-export const shareText=buildFor == buildForFoleja?'\nhttps://www.foleja.app/share/':'\nhttps://www.bebbo.app/share/';
+export const shareText=buildFor == buildForFoleja?'\nhttps://www.bebbo.app/share/':'\nhttps://www.bebbo.app/share/';
 //export const shareTextButton='https://bebbo.app/share/';
-export const shareTextButton=buildFor == buildForFoleja?'https://www.foleja.app/share/':'https://www.bebbo.app/share/';
+export const shareTextButton=buildFor == buildForFoleja?'https://www.bebbo.app/share/':'https://www.bebbo.app/share/';
 export const maleData:any={
     "id": 37,
     "name": "Male",
