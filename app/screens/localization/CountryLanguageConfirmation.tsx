@@ -40,6 +40,7 @@ import { allApisObject, appConfig, buildFor, buildForFoleja } from '../../assets
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
+import localization from '@assets/data/localization';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -221,7 +222,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
                 <ButtonLinkText
                   onPress={() => {
                     //console.log(language,"country--",country);
-                    if(buildFor == buildForFoleja) {
+                    if(localization.length == 1) {
                       navigation.navigate('LanguageSelection',{country:country,languagenew:language})
                     }else {
                       navigation.navigate('CountrySelection',{country:country,language:language})
