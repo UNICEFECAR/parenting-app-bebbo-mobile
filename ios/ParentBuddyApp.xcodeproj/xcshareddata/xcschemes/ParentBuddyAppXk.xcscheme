@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-               BuildableName = "ParentBuddyApp.app"
+               BuildableName = "ParentBuddyAppXk.app"
                BlueprintName = "ParentBuddyAppXk"
                ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-            BuildableName = "ParentBuddyApp.app"
+            BuildableName = "ParentBuddyAppXk.app"
             BlueprintName = "ParentBuddyAppXk"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
@@ -57,15 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF838C9C27A42D8000CC12B9"
-            BuildableName = "ParentBuddyApp.app"
+            BuildableName = "ParentBuddyAppXk.app"
             BlueprintName = "ParentBuddyAppXk"
             ReferencedContainer = "container:ParentBuddyApp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
