@@ -1,3 +1,4 @@
+import localization from '@assets/data/localization';
 import { buildFor, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 import { createStackNavigator } from '@react-navigation/stack';
 import CountryLanguageConfirmation from '@screens/localization/CountryLanguageConfirmation';
@@ -23,7 +24,7 @@ export default () => {
   return (
     <LocalizationStack.Navigator 
       // initialRouteName="CountrySelection"
-      initialRouteName= {restartOnLangChange != 'yes' ? buildFor == buildForFoleja ? "LanguageSelection" : "CountrySelection" : AppLayoutDirectionScreen}
+      initialRouteName= {restartOnLangChange != 'yes' ? localization.length == 1 ? "LanguageSelection" : "CountrySelection" : AppLayoutDirectionScreen}
     >
       <LocalizationStack.Screen
         name="CountrySelection"

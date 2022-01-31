@@ -36,10 +36,12 @@ const LanguageSelection = ({route, navigation}: Props) => {
   const [language, setLanguage] = useState();
   console.log("in lang file ---",route.params);
   let country:any,languagenew: any;
-  if(buildFor == buildForFoleja && (route.params == null || route.params == undefined)) {
+  if(buildFor == buildForFoleja && (route.params == null || route.params == undefined || route.params?.country == null)) {
+    console.log("in if--");
     country = localization[localization.length-1];
     languagenew = null;
   }else {
+    console.log("in else--");
     country = route.params.country;
     languagenew = route.params.languagenew;
   }
@@ -69,7 +71,7 @@ const LanguageSelection = ({route, navigation}: Props) => {
     // }else {
     //   newLanguageId = languageCode;
     // }
-    selectedLanguage = languages.find(
+    selectedLanguage = languages?.find(
       (lang) => lang.languageCode === newLanguageId,
     );
     setLanguage(selectedLanguage);
