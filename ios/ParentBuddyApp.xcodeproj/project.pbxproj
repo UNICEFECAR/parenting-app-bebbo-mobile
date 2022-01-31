@@ -100,7 +100,7 @@
 		AF645B11569440C0AF006D46 /* roboto-bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.woff"; path = "../app/assets/fonts/roboto/roboto-bold.woff"; sourceTree = "<group>"; };
 		B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.ttf"; path = "../app/assets/fonts/roboto/roboto-bold.ttf"; sourceTree = "<group>"; };
 		BF4003FC276CC00100F208BD /* ParentBuddyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParentBuddyApp.entitlements; path = ParentBuddyApp/ParentBuddyApp.entitlements; sourceTree = "<group>"; };
-		BF838CBA27A42D8000CC12B9 /* ParentBuddyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppXk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838CBB27A42D8000CC12B9 /* ParentBuddyAppXk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppXk-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppXk-Info.plist"; sourceTree = "<absolute>"; };
 		BF838CBC27A42DB800CC12B9 /* ParentBuddyAppXk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ParentBuddyAppXk.entitlements; path = ParentBuddyApp/ParentBuddyAppXk.entitlements; sourceTree = "<group>"; };
 		BF838CC027A42EAA00CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 				00E356EE1AD99517003FC87E /* ParentBuddyAppTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ParentBuddyApp-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ParentBuddyApp-tvOSTests.xctest */,
-				BF838CBA27A42D8000CC12B9 /* ParentBuddyApp.app */,
+				BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,7 +448,7 @@
 			);
 			name = ParentBuddyAppXk;
 			productName = ParentBuddyApp;
-			productReference = BF838CBA27A42D8000CC12B9 /* ParentBuddyApp.app */;
+			productReference = BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -464,7 +464,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 93BCKGKLMZ;
+						DevelopmentTeam = K288UMKCNF;
 						LastSwiftMigration = 1250;
 						ProvisioningStyle = Manual;
 					};
@@ -1141,7 +1141,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				HEADER_SEARCH_PATHS = (
@@ -1240,7 +1240,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
+				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1259,7 +1259,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = ParentBuddyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.0;
@@ -1270,7 +1270,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.ecar.bebbo;
 				PRODUCT_NAME = ParentBuddyApp;
-				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
+				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1611,9 +1611,10 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = ParentBuddyAppXk;
 				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1641,9 +1642,10 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.bebbo;
-				PRODUCT_NAME = ParentBuddyApp;
+				PRODUCT_NAME = ParentBuddyAppXk;
 				PROVISIONING_PROFILE_SPECIFIER = Bebbo_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
