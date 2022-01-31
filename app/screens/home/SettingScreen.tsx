@@ -1294,7 +1294,7 @@ const SettingScreen = (props: any) => {
                     // });
                     props.navigation.navigate('Localization',
                       {
-                        screen: buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? 'LanguageSelection' : 'CountrySelection',
+                        screen: localization.length == 1 ? 'LanguageSelection' : 'CountrySelection',
                         params: { country: null, language: null }
                       });
                     // props.navigation.navigate('Localization')
