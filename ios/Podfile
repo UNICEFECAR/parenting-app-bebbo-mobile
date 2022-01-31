@@ -39,6 +39,9 @@ target 'ParentBuddyApp' do
   target 'ParentBuddyAppXk' do
     shared_pods
   end
+  target 'ParentBuddyAppDev' do
+    shared_pods
+  end
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
