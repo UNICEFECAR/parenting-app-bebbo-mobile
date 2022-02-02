@@ -18,7 +18,7 @@ platform :ios, '10.0'
 #     end
 #   end
 # end
-target 'ParentBuddyApp' do
+def shared_pods
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
@@ -29,11 +29,22 @@ target 'ParentBuddyApp' do
   pod 'react-native-lottie-splash-screen', :path => '../node_modules/react-native-lottie-splash-screen'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RNFS', :path => '../node_modules/react-native-fs'
+end
+target 'ParentBuddyApp' do
+  shared_pods
   target 'ParentBuddyAppTests' do
     inherit! :complete
     # Pods for testing
   end
-
+  target 'ParentBuddyAppXk' do
+    shared_pods
+  end
+  target 'ParentBuddyAppDev' do
+    shared_pods
+  end
+  target 'ParentBuddyAppXkDev' do
+    shared_pods
+  end
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
