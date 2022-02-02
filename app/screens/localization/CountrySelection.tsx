@@ -1,4 +1,4 @@
-import { localization } from '@assets/data/localization';
+import  localization  from '@assets/data/localization';
 import CountryItem from '@components/CountryItem';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
