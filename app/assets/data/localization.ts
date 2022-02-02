@@ -1,4 +1,6 @@
-export const localization = [
+import { buildFor, buildForREMOVED_FACEBOOK_APP_ID1,buildForREMOVED_FACEBOOK_APP_ID1 } from "@assets/translations/appOfflineData/apiConstants";
+
+const localizationall = [
   {
     name: 'Albania',
     countryId: 6,
@@ -238,4 +240,30 @@ export const localization = [
     ],
   },
 ];
+
+const localizationkosovo = [
+  {
+    name: 'Kosovo',
+    countryId: 21,
+    displayName: 'Kosovo (Kosova)',
+    languages: [
+      {
+        name: 'Albanian',
+        displayName: 'Shqip',
+        languageCode: 'xk-sq',
+        locale: 'XKsq',
+        luxonLocale:'sq-XK'
+      },
+      {
+        name: 'Serbian',
+        displayName: 'Srpski',
+        languageCode: 'xk-rs',
+        locale: 'XKrs',
+        luxonLocale:'sr-Latn-XK'
+      },
+    ],
+  }
+];
+const localization = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? localizationkosovo : localizationall;
+export default localization;
 

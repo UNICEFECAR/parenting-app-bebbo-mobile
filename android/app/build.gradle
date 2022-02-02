@@ -122,6 +122,7 @@ def jscFlavor = 'org.webkit:android-jsc-intl:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
+    flavorDimensions "default"
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -129,13 +130,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {
-        applicationId "org.unicef.ecar.bebbo"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "1.1.0"
-    }
+    
     splits {
         abi {
             reset()
@@ -147,20 +142,36 @@ android {
     signingConfigs {
 
         release {
-        if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-        storeFile file(MYAPP_UPLOAD_STORE_FILE)
-        storePassword MYAPP_UPLOAD_STORE_PASSWORD
-        keyAlias MYAPP_UPLOAD_KEY_ALIAS
-        keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
         }
-        }
-
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        xk {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE_FOLEJA')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE_FOLEJA)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD_FOLEJA
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS_FOLEJA
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD_FOLEJA
+            }
+        }
+    }
+    defaultConfig {
+        applicationId "org.unicef.ecar.bebbo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "0.1.0"
+        signingConfig signingConfigs.release
+
     }
     buildTypes {
         debug {
@@ -169,9 +180,29 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    productFlavors {
+        prod {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.ecar.bebbo'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 5
+            versionName "1.2.8"
+            signingConfig signingConfigs.release
+        }
+        xk {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'org.unicef.kosovo.foleja'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "0.1.1"
+            signingConfig signingConfigs.xk
         }
     }
 

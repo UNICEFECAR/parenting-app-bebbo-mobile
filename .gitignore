@@ -34,14 +34,20 @@ android/gradle.properties
 *.hprof
 
 
-*.plist
 google-services.json
 google-services_old.json
 debug.keystore
-GoogleService-Info.plist
-GoogleService-Info_old.plist
-Info.plist
 *.keystore
+ios/GoogleServices/Production/GoogleService-Info.plist
+ios/GoogleServices/Xk/GoogleService-Info.plist
+ios/ParentBuddyApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ios/ParentBuddyApp.xcodeproj/xcuserdata/kalyanikaushik.xcuserdatad/xcschemes/xcschememanagement.plist
+ios/GoogleServices/Xk/GoogleService-Info_old.plist
+ios/GoogleServices/Production/GoogleService-Info_new.plist
 ios/ParentBuddyApp/Info.plist
-*.plist
+ios/ParentBuddyAppXk-Info.plist
 ios/ParentBuddyApp/Info.plist
+ios/ParentBuddyAppXk-Info.plist
+ios/GoogleServices/Development/GoogleService-Info.plist
+ios/ParentBuddyApp/Info.plist
+ios/GoogleServices/XkDevelopment/GoogleService-Info.plist
