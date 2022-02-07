@@ -13,6 +13,7 @@ import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContain
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
+import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 
 const BotBubble = (props: any) => {
   const { message, steps,stepindex,loading } = props;
@@ -39,7 +40,7 @@ const BotBubble = (props: any) => {
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           colors={['#2B2F84', '#1F50A0', '#00AEEF']}>
-          <VectorImage style={{ width: 20, height: 20, borderRadius: 100, resizeMode: 'contain' }} source={require('@assets/svg/img-logo-chatbot-new.svg')} />
+          <VectorImage style={{ width: 20, height: 20, borderRadius: 100, resizeMode: 'contain' }} source={buildFor == buildForFoleja ? require('@assets/svg/xk/img-logo-chatbot-new.svg') : require('@assets/svg/bebbo/img-logo-chatbot-new.svg')} />
         </LinearGradient>
       </BotImage>
       <BotBubbleContainer>
