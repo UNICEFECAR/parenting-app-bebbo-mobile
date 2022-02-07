@@ -36,7 +36,7 @@ import { BackHandler } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from 'styled-components/native';
 import { useAppDispatch, useAppSelector } from '../../../App';
-import { allApisObject, appConfig, buildFor, buildForFoleja } from '../../assets/translations/appOfflineData/apiConstants';
+import { allApisObject, appConfig } from '../../assets/translations/appOfflineData/apiConstants';
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
