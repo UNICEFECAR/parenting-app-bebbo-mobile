@@ -32,6 +32,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import LinearGradient from 'react-native-linear-gradient';
 import VectorImage from 'react-native-vector-image';
 import { ThemeContext } from 'styled-components/native';
+import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 type Walkthrough1NavigationProp = StackNavigationProp<
   RootStackParamList,
   'ChildSetup'
@@ -48,7 +49,7 @@ const Walkthrough = ({navigation}: Props) => {
   const data = [
     {
       title: t('walkthroughTextstitle0'),
-      image: require('@assets/svg/bebbo_logo_shape.svg'),
+      image: buildFor == buildForFoleja ? require('@assets/svg/xk/bebbo_logo_shape.svg') : require('@assets/svg/bebbo/bebbo_logo_shape.svg'),
       colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
       textcolor: '#FFF',
       subtitle: t('walkthroughTextssubtitle0'),

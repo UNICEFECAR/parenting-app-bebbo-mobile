@@ -1,3 +1,4 @@
+import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -10,7 +11,7 @@ import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, Stat
 
 
 const item = {
-  image: require('@assets/svg/bebbo_logo_shape.svg'),
+  image: buildFor == buildForFoleja ? require('@assets/svg/xk/bebbo_logo_shape.svg') : require('@assets/svg/bebbo/bebbo_logo_shape.svg'),
   colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
 };
 
@@ -94,7 +95,7 @@ const LoadingScreenComponent = (props: any) => {
                       <StaticLogo
                         // source={require('../assets/loading/unicef_logo.png')}
                         source={
-                            prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection' 
+                            (prevPage == 'CountryLangChange' || prevPage == 'CountryLanguageSelection') && buildFor == buildForBebbo
                             ? require('')
                             : require('../assets/loading/unicef_logo.png')}
                       />
