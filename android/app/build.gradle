@@ -192,7 +192,7 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
             versionCode 5
-            versionName "1.2.8"
+            versionName "1.2.9"
             signingConfig signingConfigs.release
         }
         xk {
@@ -201,7 +201,7 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
             versionCode 1
-            versionName "0.1.1"
+            versionName "0.1.2"
             signingConfig signingConfigs.xk
         }
     }
