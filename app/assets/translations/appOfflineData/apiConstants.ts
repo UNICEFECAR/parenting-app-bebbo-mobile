@@ -3,6 +3,7 @@ import RNFS from 'react-native-fs';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'foleja'; //'foleja'
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'bebbo'; //'foleja'
+//export const buildFor = buildForREMOVED_FACEBOOK_APP_ID1; //'foleja'
 export const buildFor = buildForREMOVED_FACEBOOK_APP_ID1; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
