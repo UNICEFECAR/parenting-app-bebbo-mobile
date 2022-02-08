@@ -3,6 +3,7 @@ import RNFS from 'react-native-fs';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
 export const buildForBebbo = 'bebbo'; //'foleja'
+//export const buildFor = buildForFoleja; //'foleja'
 export const buildFor = buildForFoleja; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
