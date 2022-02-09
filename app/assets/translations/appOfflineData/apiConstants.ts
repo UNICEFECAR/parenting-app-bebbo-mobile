@@ -3,8 +3,8 @@ import RNFS from 'react-native-fs';
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const buildForFoleja = 'foleja'; //'foleja'
 export const buildForBebbo = 'bebbo'; //'foleja'
-//export const buildFor = buildForFoleja; //'foleja'
 export const buildFor = buildForFoleja; //'foleja'
+//export const buildFor = buildForBebbo; //'foleja'
 export const maxRelatedArticleSize = 3;
 export const isArticlePinned = '1';
 export const articleCategory = '4,1,55,56,3,2';
@@ -22,9 +22,9 @@ export const backUpPath = RNFS.DocumentDirectoryPath + '/my.backup';
 export const tempbackUpPath = RNFS.TemporaryDirectoryPath + 'my.backup';
 export const firstPeriodicSyncDays = 7;
 export const secondPeriodicSyncDays = 30;
-export const shareText=buildFor == buildForFoleja?'\nhttps://www.bebbo.app/share/':'\nhttps://www.bebbo.app/share/';
+export const shareText=(String(buildFor) == buildForFoleja)?'\nhttps://www.bebbo.app/share/':'\nhttps://www.bebbo.app/share/';
 //export const shareTextButton='https://bebbo.app/share/';
-export const shareTextButton=buildFor == buildForFoleja?'https://www.bebbo.app/share/':'https://www.bebbo.app/share/';
+export const shareTextButton=(String(buildFor) == buildForFoleja)?'https://www.bebbo.app/share/':'https://www.bebbo.app/share/';
 export const maleData:any={
     "id": 37,
     "name": "Male",
