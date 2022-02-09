@@ -1,3 +1,3 @@
 export const FaqsData:any = {
-    "en":[]
+    "xk-sq":[]
 };
