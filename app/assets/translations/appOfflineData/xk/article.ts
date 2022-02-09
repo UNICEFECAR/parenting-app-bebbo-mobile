@@ -1,7 +1,47 @@
 export const articledata:any = {
     //No data
     "xk-sq": [
-        
+        {
+            "id": 331,
+            "type": "Article",
+            "title": "Vëmendja pozitive ndaj fëmijës suaj",
+            "created_at": "Thu, 02/03/2022 - 17:18",
+            "updated_at": "Thu, 02/03/2022 - 17:18",
+            "summary": "Vëmendje pozitive është kur i përgjigjeni fëmijës tuaj me ngrohtësi dhe duke treguar interes. Ndihmon fëmijën tuaj të ndihet i/e sigurt/ë dhe i/e vlerësuar. Zbuloni se si t’i shfrytëzoni sa më shumë momentet e përditshme për t’i treguar vëmendje pozitive fëmijës tuaj.",
+            "body": "<h2>Çfarë është vëmendja pozitive?</h2><p>Vëmendja pozitive është mënyra sesi shfaqni kënaqësi tek fëmija juaj dhe ngrohtësi në marrëdhënien tuaj përmes:</p><ul><li>duke i buzëqeshur fëmijës tuaj</li>\t<li>duke mbajtur kontakt me sy dhe duke përdorur shprehjet faciale që tregojnë përkujdesje</li>\t<li>duke qenë fizikisht i/e butë dhe i/e kujdesshëm/e me fëmijën tuaj</li>\t<li>duke përdorur fjalë për të festuar dhe inkurajuar fëmijën tuaj</li>\t<li>duke treguar interes për interesat, aktivitetet dhe arritjet e fëmijës suaj.</li></ul><h2>Pse vëmendja pozitive është e rëndësishme</h2><p>Që nga lindja, fëmijët kanë nevojë për përvoja dhe marrëdhënie që u tregojnë atyre se janë qenie njerëzore të vlefshme, të aftë dhe që u sjellin kënaqësi të tjerëve. Vëmendja, reagimet dhe përgjigjet pozitive nga të rriturit kryesorë i ndihmojnë fëmijët të krijojnë një përshtypje sesa të vlerësuar janë.</p><p>Imazhi i fëmijës suaj ndërtohet me kalimin e kohës me mesazhe pozitive dhe të dashura nga ju apo njerëz të tjerë të rëndësishëm në jetën e tij/saj.</p><p>Ndjenjat e sigurisë dhe nbrojtjes te fëmija juaj formohen nga ndërveprimet e tij/saj me ju dhe njerëzit e tjerë që kujdesen për të. Nëse e siguroni dhe mbështesni fëmijën tuaj kur ai/ajo është i/e frikësuar, i/e pasigurt ose i/e ballafaquar me një situatë të re ose të panjohur, ai/ajo do të ndjejë siguri dhe mbrojtje.</p><h2>Si të tregoni vëmendje pozitive: për të gjitha moshat</h2><p>Pavarësisht nga mosha e fëmijës suaj, ka gjëra të thjeshta që mund të bëni çdo ditë për të dërguar mesazhin se fëmija juaj është i veçantë dhe i rëndësishëm. Për shembull:</p><ul><li>Shikoni fëmijën tuaj dhe buzëqeshni atij/asaj.</li>\t<li>Tregoni interes për atë që po bën fëmija juaj - kërkoni që ai/ajo t'ju tregojë për këtë nëse ai/ajo mundet.</li>\t<li>Kushtojini vëmendje dhe dëgjoni nga afër kur fëmija juaj flet me ju.</li>\t<li>Krijoni disa rituale të veçanta që mund t'i ndani së bashku.</li></ul><p>Ka edhe mënyra sesi mund t'i tregoni vëmendje pozitive fëmijëve të moshave të ndryshme.</p><h2>Të sapolindurit dhe foshnjat: këshilla për vëmendje pozitive</h2><ul><li>Ngushëlloni fëmijën tuaj kur ai/ajo qan.</li>\t<li>Buzëqeshni kur fëmija juaj buzëqesh.</li>\t<li>Përgjigjuni tingujve që bën fëmija juaj duke thënë diçka në këmbim.</li>\t<li>Bisedoni për atë që po ndodh rreth jush.</li>\t<li>Vini re se për çfarë interesohet foshnja juaj dhe nxiteni atë të eksplorojë - për shembull, tregojini fëmijës tuaj sesi të shkundë një zhurmë shumëngjyrëshe që i ka rënë në sy.</li></ul><h2>Fëmijët e vegjël: këshilla për vëmendje pozitive</h2><ul><li>Tregojini fëmijës tuaj atë që ju pëlqen në atë që ai/ajo po bën. Për shembull, 'Më pëlqen kur ti ndihmon të mbledhim blloqet'. Përdorni një ton pozitiv të zërit për të përputhur me lavdërimet.</li>\t<li>Ndjeni momentin me fëmijën tuaj. Kjo mund të jetë aq e thjeshtë sa të uleni me fëmijën për të parë së bashku një lodër që ai/ajo pëlqen.</li>\t<li>Kur flisni së bashku, lini kohë pasi të flisni, në mënyrë që fëmija juaj të përgjigjet, edhe nëse ai/ajo nuk mund të gjejë gjithmonë fjalët e duhura.</li></ul><h2>Parashkollorët: këshilla për vëmendje pozitive</h2><p>Merrni kohë për të bërë aktivitetet e preferuara të fëmijës tuaj me të - për shembull, bashkim pjesësh figure, Lego, pikturë etj.</p><ul><li>Jepni shumë reagime në lidhje me llojet e sjelljeve që dëshironi të inkurajoni - për shembull, 'Faleminderit që sollët pjatën tuaj në kuzhinë. Kjo e bën shumë më të shpejtë pastrimin pas drekës '.</li>\t<li>Mos harroni të buzëqeshni dhe të bëni kontakt me sy me fëmijën tuaj kur e përshëndetni atë në mëngjes - ndoshta edhe kushtoni një moment kohë për një përqafim të veçantë.</li></ul><p><strong>Kur është e vështirë të jesh pozitiv</strong></p><p>Nuk është realiste apo as normale të jesh pozitiv gjatë gjithë kohës. Dhe fëmija juaj do të përballojë mirë nëse herë pas here nuk jeni të disponueshëm, në ankth ose të hutuar.  Streset në shtëpi, si dhe pandemia, pasiguria ekonomike dhe ngjarje të tjera krijojnë kohë të vështira për ju dhe fëmijën tuaj.  Mos harroni të kujdeseni për veten.</p><p><strong>Është ajo që ndodh me kalimin e kohës, dhe jo çdo incident i veçantë, që bën ndryshimin.</strong> Nëse fëmija juaj merr vëmendje kryesisht pozitive nga ju me kalimin e kohës, ai/ajo do të ndihet i/e dashur dhe i/e sigurt/ë.</p><p>Sidoqoftë, kur prindërit nuk janë vazhdimisht në gjendje të përqëndrohen në nevojat e fëmijëve të tyre, fëmijët mund të ndikohen negativisht në vitet e para dhe në të ardhmen. Nëse shumë nga ndërveprimet tuaja të përditshme me fëmijën tuaj janë negative, ose nëse është e vështirë për ju të ndiheni dhe të veproni pozitivisht me fëmijën tuaj, ia vlen të kërkoni ndihmë nga një profesionist shëndetësor ose ndihmë tjetër profesionale.</p>",
+            "category": 56,
+            "child_age": [
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                57,
+                58
+            ],
+            "child_gender": 59,
+            "parent_gender": 60,
+            "keywords": [
+                4771,
+                4766,
+                4761
+            ],
+            "cover_image": {
+                "url": "https://staging.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-11/6D0A3198.JPG?itok=GaPkhhmW",
+                "name": "6D0A3198.JPG",
+                "alt": "Vëmendja pozitive ndaj fëmijës suaj"
+            },
+            "related_articles": [],
+            "licensed": 0,
+            "premature": 0,
+            "mandatory": 0,
+            "embedded_images": []
+        }
     ],
     "xk-rs": [
         {
@@ -35,7 +75,7 @@ export const articledata:any = {
                 4761
             ],
             "cover_image": {
-                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=-yXJiS6R",
+                "url": "https://staging.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/UNI11812.jpg?itok=DensKiox",
                 "name": "© UNICEF/UNI11812/Pirozzi",
                 "alt": "Mother with her baby giving him positive attention."
             },
