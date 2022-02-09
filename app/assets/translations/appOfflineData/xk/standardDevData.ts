@@ -349,10 +349,40 @@ export const standardDevData:any = {
                         3351,
                         3346
                     ],
-                    "name": "Më shumë rreth rritjes 7 - 9 muaj - vonesa e moderuar e rritjes",
-                    "text": "Vëmendje! Rritja e fëmijës suaj në gjatësi është e ngadaltë dhe tani vonohet mesatarisht. Shqyrtoni nëse ndonjë nga shkaqet afatgjata të mundshme ka kontribuar në të: kequshqyerja kronike, sëmundja kronike, çrregullimi endokrin etj. Sigurohuni që të caktoni një takim me një pediatër për ekzaminim shtesë, marrjen e rekomandimeve shtesë dhe përcaktimin e dinamikës së monitorimit të mëtejshëm të rritjes."
+                    "name": "Më shumë rreth rritjes 7 - 9 muaj - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
                 },
                 "emergencySmallLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - gjatësia mbi mesatare",
+                    "text": "Fëmija juaj është rritur dhe është shumë herë më i/e gjatë sesa diapazoni normal për moshën dhe gjininë e tij. Ndoshta është rezultat i potencialit të tij gjenetik, por gjithsesi flisni për këtë gjë me pediatrin tuaj. Vazhdoni të ndiqni rekomandimet dhe të monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
+                }
+            },
+            {
+                "child_age": [],
+                "goodText": {
+                    "articleID": [
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Më shumë rreth rritjes 7 - 9 muaj - rritje tipike për moshën",
+                    "text": "Bravo! Fëmija juaj rritet në gjatësi/lartësi në radhë ose pak mbi gamën që pritet për moshën dhe gjininë e tij. Vazhdoni të ndiqni rekomandimet e praktikës së mirë në të ushqyerit, aktivitetin fizik dhe gjumin dhe vëzhgoni rritjen e fëmijës tuaj."
+                },
+                "warrningSmallLengthText": {
                     "articleID": [
                         3606,
                         3406,
@@ -362,100 +392,63 @@ export const standardDevData:any = {
                     "name": "Më shumë rreth rritjes 7 - 9 muaj - vonesë e madhe në rritje",
                     "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
                 },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
+                },
                 "warrningBigLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - gjatësia mbi mesatare",
+                    "text": "Fëmija juaj është rritur dhe është shumë herë më i/e gjatë sesa diapazoni normal për moshën dhe gjininë e tij. Ndoshta është rezultat i potencialit të tij gjenetik, por gjithsesi flisni për këtë gjë me pediatrin tuaj. Vazhdoni të ndiqni rekomandimet dhe të monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
+                }
+            },
+            {
+                "child_age": [],
+                "goodText": {
                     "articleID": [
                         3406,
                         3351,
                         3346
                     ],
-                    "name": "Më shumë rreth rritjes 7 - 9 muaj - mbi gjatësi mesatare për moshën",
-                    "text": "Fëmija juaj është rritur në një lartësi shumë më të lartë se mosha dhe gjinia e tij normale. Ndoshta është rezultat i potencialit të tij gjenetik, por prapë flisni për këtë me pediatërin. Vazhdoni t'i ndiqni rekomandimet e miratuara dhe vëzhgoni rritjen e fëmijës tuaj në intervale të rregullta."
-                }
-            },
-            {
-                "child_age": [
-                    48
-                ],
-                "goodText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Më shumë rreth rritjes 10 - 12 muaj - rritja tipike për moshën",
-                    "text": "Bravo! Fëmija juaj rritet në gjatësi/lartësi në vijë ose pak mbi intervalin që pritet për moshën dhe gjininë e tij/saj. Vazhdoni të ndiqni rekomandimet e praktikës së mirë në të ushqyerit, aktivitetin fizik dhe gjumin dhe monitoroni rritjen e fëmijës suaj."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Më shumë rreth rritjes 10 - 12 muaj - vonesa e moderuar në rritje",
-                    "text": "Kujdes! Rritja e fëmijës tuaj në gjatësi/lartësi është e ngadaltë dhe tani është në vonesë të moderuar.  Duhet të shqyrtoni nëse ndonjë nga shkaktarët e mundshëm afat-gjatë kanë kontribuar në këtë: kequshqyerja kronike, sëmundja kronike, çrregullime endokrine, etj. Sigurohuni që të caktoni një takim me pediatrin për një ekzaminim të mëtejshëm, duke marr rekomandime shtesë dhe përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Më shumë rreth rritjes 10 - 12 muaj - vonesë e madhe e rritjes",
-                    "text": "Urgjentisht! Rritja e gjatësisë së fëmijës tuaj është shumë e vonuar. Caktoni një takim urgjent me një pediatër për ekzaminim shtesë, marrjen e trajtimit të duhur dhe përcaktimin e dinamikës së monitorimit të mëtejshëm të rritjes!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "Më shumë rreth rritjes 10 - 12 muaj - gjatësia/lartësia mbi-mesatare për moshën",
-                    "text": "Fëmija juaj është rritur në një gjatësi që është mbi gamën normale për moshën dhe gjininë e tij. Kjo mbase është rezultat i potencialit të tij gjenetik, por megjithatë duhet të flisni me pediatrin në lidhje me këtë. Vazhdoni të ndiqni rekomandimet e aprovuara dhe monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
-                }
-            },
-            {
-                "child_age": [
-                    50,
-                    49
-                ],
-                "goodText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "Më shumë rreth rritjes 13 - 24 muaj - rritja tipike për moshën",
-                    "text": "Bravo! Fëmija juaj rritet në gjatësi/lartësi në vijë ose pak mbi intervalin që pritet për moshën dhe gjininë e tij. Vazhdoni të ndiqni rekomandimet e praktikës së mirë në të ushqyerit, aktivitetin fizik dhe gjumin dhe monitoroni rritjen e fëmijës suaj."
+                    "name": "Më shumë rreth rritjes 7 - 9 muaj - rritje tipike për moshën",
+                    "text": "Bravo! Fëmija juaj rritet në gjatësi/lartësi në radhë ose pak mbi gamën që pritet për moshën dhe gjininë e tij. Vazhdoni të ndiqni rekomandimet e praktikës së mirë në të ushqyerit, aktivitetin fizik dhe gjumin dhe vëzhgoni rritjen e fëmijës tuaj."
                 },
                 "warrningSmallLengthText": {
                     "articleID": [
                         3606,
-                        3391,
-                        3386,
-                        3361
+                        3406,
+                        3351,
+                        3346
                     ],
-                    "name": "Më shumë rreth rritjes 13 - 24 muaj - vonesë e moderuar e rritjes",
-                    "text": "Vëmendje! Rritja e gjatësisë së fëmijës tuaj është e ngadaltë dhe tani vonohet në mënyrë të moderuar. Shqyrtoni nëse ndonjë nga shkaqet e mundshme afatgjata ka kontribuar në të: kequshqyerja kronike, sëmundjet kronike, çrregullimi endokrin, etj. Sigurohuni që të planifikoni një takim me një pediatër për ekzaminim shtesë, marrjen e rekomandimeve shtesë dhe përcaktimin e dinamikës së mbikqyrjes së mëtejshme të rritjes."
+                    "name": "Më shumë rreth rritjes 7 - 9 muaj - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
                 },
                 "emergencySmallLengthText": {
                     "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
+                        3401,
+                        3346,
+                        3341
                     ],
-                    "name": "Më shumë rreth rritjes 13 - 24 muaj - vonesë e madhe e rritjes",
-                    "text": "Urgjentisht! Rritja e gjatësisë së fëmijës tuaj është shumë e vonuar. Caktoni një takim urgjent me një pediatër për ekzaminim shtesë, marrjen e trajtimit të duhur dhe përcaktimin e dinamikës së monitorimit të mëtejshëm të rritjes!"
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
                 },
                 "warrningBigLengthText": {
                     "articleID": [
-                        3391,
-                        3386,
-                        3361
+                        3401,
+                        3346,
+                        3341
                     ],
-                    "name": "Më shumë rreth rritjes 13 - 24 muaj - gjatësia mbi mesataren për moshën",
-                    "text": "Fëmija juaj është rritur në një lartësi shumë më të lartë se diapazoni normal për moshën dhe gjininë e tij. Ndoshta është rezultat i potencialit të tij gjenetik, por gjithsesi flisni për këtë me pediatrin. Vazhdoni të ndiqni rekomandimet e miratuara dhe të monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - gjatësia mbi mesatare",
+                    "text": "Fëmija juaj është rritur dhe është shumë herë më i/e gjatë sesa diapazoni normal për moshën dhe gjininë e tij. Ndoshta është rezultat i potencialit të tij gjenetik, por gjithsesi flisni për këtë gjë me pediatrin tuaj. Vazhdoni të ndiqni rekomandimet dhe të monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
                 }
             },
             {
@@ -468,24 +461,6 @@ export const standardDevData:any = {
                 "goodText": {
                     "articleID": [
                         5891,
-                        3396
-                    ],
-                    "name": "Më shumë rreth rritjes 25 - 72 muaj - rritje tipike për moshën",
-                    "text": "Bravo! Fëmija juaj rritet në gjatësi në vijë ose pak mbi kufirin e pritur për moshën dhe gjininë e tij. Vazhdoni të ndiqni rekomandimet e praktikës së mirë në të ushqyerit, aktivitetin fizik dhe gjumin dhe monitoroni rritjen e fëmijës suaj."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "Më shumë rreth rritjes 25 - 60 muaj - vonesë e moderuar e rritjes",
-                    "text": "Vëmendja! Rritja e fëmijës tuaj në gjatësi është e ngadaltë dhe tani vonohet mesatarisht. Merrni parasysh nëse ndonjë prej shkaqeve afatgjata të mundshme ka kontribuar në të: kequshqyerja kronike, sëmundjet kronike, çrregullimi endokrin, etj. Sigurohuni që të caktoni një takim me një pediatër për ekzaminim shtesë, duke marrë rekomandime shtesë dhe duke përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        5891,
                         3606,
                         3396,
                         3366
@@ -493,14 +468,33 @@ export const standardDevData:any = {
                     "name": "Më shumë rreth rritjes 25 - 60 muaj - vonesë e madhe në rritje",
                     "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
                 },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Më shumë rreth rritjes 7 - 9 muaj - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - vonesë e madhe në rritje",
+                    "text": "Urgjente! Rritja e fëmijës suaj në lidhje me gjatësinë e tij/saj është seriozisht e vonuar. Lini një takim urgjent me një pediatër për ekzaminim shtesë, për të marrë trajtimin e duhur dhe për të përcaktuar dinamikën e monitorimit të mëtejshëm të rritjes!"
+                },
                 "warrningBigLengthText": {
                     "articleID": [
-                        5891,
-                        3396,
-                        3366
+                        3401,
+                        3346,
+                        3341
                     ],
-                    "name": "Më shumë rreth rritjes 25 - 60 muaj - mbi gjatësinë mesatare për moshën",
-                    "text": "Fëmija juaj është rritur në një lartësi shumë më të lartë se mosha dhe gjinia e tij normale. Ndoshta është rezultat i potencialit të tij gjenetik, por prapë flisni për këtë me pediatërin. Vazhdoni t'i ndiqni rekomandimet e miratuara dhe vëzhgoni rritjen e fëmijës tuaj në intervale të rregullta."
+                    "name": "Më shumë rreth rritjes në 6 muajt e parë - gjatësia mbi mesatare",
+                    "text": "Fëmija juaj është rritur dhe është shumë herë më i/e gjatë sesa diapazoni normal për moshën dhe gjininë e tij. Ndoshta është rezultat i potencialit të tij gjenetik, por gjithsesi flisni për këtë gjë me pediatrin tuaj. Vazhdoni të ndiqni rekomandimet dhe të monitoroni rritjen e fëmijës tuaj në intervale të rregullta."
                 }
             }
         ]
