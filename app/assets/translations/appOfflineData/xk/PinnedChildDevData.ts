@@ -1,3 +1,3 @@
 export const PinnedChildDevData:any = {
-    "en":[]
+    "xk-sq":[]
 };
