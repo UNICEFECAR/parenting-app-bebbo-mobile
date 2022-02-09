@@ -26,10 +26,15 @@
 		518435E4BEEF40C098DA6032 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 7E381652FDB746499AC00012 /* roboto-regular.woff2 */; };
 		63EEC8B7264B4E28BC060086 /* roboto-bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE70F0FA9C4C97B81D5F41 /* roboto-bold.svg */; };
 		67601B893111472CB4DFCCC1 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */; };
+		7C138A82CDD7FD4C62175D5F /* libPods-ParentBuddyApp-ParentBuddyAppXk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C412D7F456CCD424A4D2595E /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		81DB6E9C79A119C3816C3270 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		81DB6E9C79A119C3816C3270 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
 		BB98D254EAAFA3AB3CCA18D5 /* libPods-ParentBuddyApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEF3D7F0FA5943B0A46E9BC /* libPods-ParentBuddyApp-tvOSTests.a */; };
+		BF362F2327B288BD000E92B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = BF362F2227B288BD000E92B9 /* splash.json */; };
+		BF362F2427B288BD000E92B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = BF362F2227B288BD000E92B9 /* splash.json */; };
+		BF362F2627B288D3000E92B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = BF362F2527B288D3000E92B9 /* splash.json */; };
+		BF362F2727B288D3000E92B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = BF362F2527B288D3000E92B9 /* splash.json */; };
 		BF838CA027A42D8000CC12B9 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
 		BF838CA127A42D8000CC12B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		BF838CA227A42D8000CC12B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -39,7 +44,6 @@
 		BF838CAA27A42D8000CC12B9 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */; };
 		BF838CAB27A42D8000CC12B9 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
 		BF838CAC27A42D8000CC12B9 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
-		BF838CAD27A42D8000CC12B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE79669B26F9D6BD000C1CF9 /* splash.json */; };
 		BF838CAE27A42D8000CC12B9 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */; };
 		BF838CAF27A42D8000CC12B9 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DCFCF254384121AFD15232 /* roboto-regular.ttf */; };
 		BF838CB027A42D8000CC12B9 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */; };
@@ -58,7 +62,6 @@
 		BF838CFC27A7E21500CC12B9 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */; };
 		BF838CFD27A7E21500CC12B9 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
 		BF838CFE27A7E21500CC12B9 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
-		BF838CFF27A7E21500CC12B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE79669B26F9D6BD000C1CF9 /* splash.json */; };
 		BF838D0027A7E21500CC12B9 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */; };
 		BF838D0127A7E21500CC12B9 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DCFCF254384121AFD15232 /* roboto-regular.ttf */; };
 		BF838D0227A7E21500CC12B9 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */; };
@@ -74,15 +77,13 @@
 		BF838D2327A8082B00CC12B9 /* roboto-regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */; };
 		BF838D2427A8082B00CC12B9 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
 		BF838D2527A8082B00CC12B9 /* roboto-bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = AF645B11569440C0AF006D46 /* roboto-bold.woff */; };
-		BF838D2627A8082B00CC12B9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE79669B26F9D6BD000C1CF9 /* splash.json */; };
 		BF838D2727A8082B00CC12B9 /* roboto-bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = EFAF5542772A48CE96BF36C4 /* roboto-bold.woff2 */; };
 		BF838D2827A8082B00CC12B9 /* roboto-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56DCFCF254384121AFD15232 /* roboto-regular.ttf */; };
 		BF838D2927A8082B00CC12B9 /* roboto-regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = ABE444F221AB4FE5BDD5591C /* roboto-regular.woff */; };
 		BF838D2A27A8082B00CC12B9 /* roboto-regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 7E381652FDB746499AC00012 /* roboto-regular.woff2 */; };
 		BF838D3427A8091300CC12B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF838D3327A8091300CC12B9 /* GoogleService-Info.plist */; };
 		C2B224109B97464BA2BE7AA6 /* roboto-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */; };
-		C5D79C8C7FAEEF5D3C3566B3 /* libPods-ParentBuddyApp-ParentBuddyAppXk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 230879EB1A80FADC5F902275 /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */; };
-		CE79669C26F9D6BD000C1CF9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE79669B26F9D6BD000C1CF9 /* splash.json */; };
+		C5D79C8C7FAEEF5D3C3566B3 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		CE9E89C826F089CC0093EF36 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E89C726F089CC0093EF36 /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
@@ -140,8 +141,10 @@
 		ADD257AE9C44137381683541 /* Pods-ParentBuddyApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParentBuddyApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ParentBuddyApp-tvOS/Pods-ParentBuddyApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		AF645B11569440C0AF006D46 /* roboto-bold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.woff"; path = "../app/assets/fonts/roboto/roboto-bold.woff"; sourceTree = "<group>"; };
 		B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-bold.ttf"; path = "../app/assets/fonts/roboto/roboto-bold.ttf"; sourceTree = "<group>"; };
+		BF362F2227B288BD000E92B9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../../../app/assets/LottieSplash/Bebbo/splash.json; sourceTree = "<group>"; };
+		BF362F2527B288D3000E92B9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../../../app/assets/LottieSplash/Foleja/splash.json; sourceTree = "<group>"; };
 		BF4003FC276CC00100F208BD /* ParentBuddyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParentBuddyApp.entitlements; path = ParentBuddyApp/ParentBuddyApp.entitlements; sourceTree = "<group>"; };
-		BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppXk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF838CBA27A42D8000CC12B9 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838CBB27A42D8000CC12B9 /* ParentBuddyAppXk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppXk-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppXk-Info.plist"; sourceTree = "<absolute>"; };
 		BF838CBC27A42DB800CC12B9 /* ParentBuddyAppXk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ParentBuddyAppXk.entitlements; path = ParentBuddyApp/ParentBuddyAppXk.entitlements; sourceTree = "<group>"; };
 		BF838CC027A42EAA00CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -169,10 +172,10 @@
 		BF838D0C27A7E21500CC12B9 /* ParentBuddyAppDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838D0D27A7E21500CC12B9 /* ParentBuddyAppDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppDev-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppDev-Info.plist"; sourceTree = "<absolute>"; };
 		BF838D1127A7E78B00CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppXkDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF838D3127A8082C00CC12B9 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838D3227A8082D00CC12B9 /* ParentBuddyAppXkDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppXkDev-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppXkDev-Info.plist"; sourceTree = "<absolute>"; };
 		BF838D3327A8091300CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CE79669B26F9D6BD000C1CF9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../app/assets/splash.json; sourceTree = "<group>"; };
+		C412D7F456CCD424A4D2595E /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppXk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9E89C626F089CC0093EF36 /* ParentBuddyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParentBuddyApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE9E89C726F089CC0093EF36 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "roboto-regular.svg"; path = "../app/assets/fonts/roboto/roboto-regular.svg"; sourceTree = "<group>"; };
@@ -198,7 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81DB6E9C79A119C3816C3270 /* BuildFile in Frameworks */,
+				81DB6E9C79A119C3816C3270 /* (null) in Frameworks */,
 				3580558E7BD2D316F00A7EEC /* libPods-ParentBuddyApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +226,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5D79C8C7FAEEF5D3C3566B3 /* libPods-ParentBuddyApp-ParentBuddyAppXk.a in Frameworks */,
+				C5D79C8C7FAEEF5D3C3566B3 /* (null) in Frameworks */,
+				7C138A82CDD7FD4C62175D5F /* libPods-ParentBuddyApp-ParentBuddyAppXk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +270,7 @@
 		13B07FAE1A68108700A75B9A /* ParentBuddyApp */ = {
 			isa = PBXGroup;
 			children = (
+				BF362F1C27B287C8000E92B9 /* LottieSplash */,
 				BF838CCC27A438FB00CC12B9 /* InfoPlist_Bebbo */,
 				BF838CC427A434CE00CC12B9 /* InfoPlist_Xk */,
 				BF838CBD27A42E7400CC12B9 /* GoogleServices */,
@@ -316,6 +321,7 @@
 				FBC23B934048ED268F478279 /* libPods-ParentBuddyApp-ParentBuddyAppDev.a */,
 				8E2E0B22C78C20B95241AC39 /* libPods-ParentBuddyApp.a */,
 				DDB6340EB3791CC48248F25E /* libPods-ParentBuddyApp-ParentBuddyAppXkDev.a */,
+				C412D7F456CCD424A4D2595E /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				5EEE70F0FA9C4C97B81D5F41 /* roboto-bold.svg */,
-				CE79669B26F9D6BD000C1CF9 /* splash.json */,
 				CF5A89EF45F5475AB99FA3D3 /* roboto-regular.svg */,
 				B2322BB70AFB4CA2937E3837 /* roboto-bold.ttf */,
 				AF645B11569440C0AF006D46 /* roboto-bold.woff */,
@@ -370,11 +375,36 @@
 				00E356EE1AD99517003FC87E /* ParentBuddyAppTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ParentBuddyApp-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ParentBuddyApp-tvOSTests.xctest */,
-				BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */,
+				BF838CBA27A42D8000CC12B9 /* Foleja.app */,
 				BF838D0C27A7E21500CC12B9 /* ParentBuddyAppDev.app */,
-				BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */,
+				BF838D3127A8082C00CC12B9 /* Foleja.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BF362F1C27B287C8000E92B9 /* LottieSplash */ = {
+			isa = PBXGroup;
+			children = (
+				BF362F1E27B287F8000E92B9 /* Bebbo */,
+				BF362F1D27B287DA000E92B9 /* Xk */,
+			);
+			path = LottieSplash;
+			sourceTree = "<group>";
+		};
+		BF362F1D27B287DA000E92B9 /* Xk */ = {
+			isa = PBXGroup;
+			children = (
+				BF362F2527B288D3000E92B9 /* splash.json */,
+			);
+			path = Xk;
+			sourceTree = "<group>";
+		};
+		BF362F1E27B287F8000E92B9 /* Bebbo */ = {
+			isa = PBXGroup;
+			children = (
+				BF362F2227B288BD000E92B9 /* splash.json */,
+			);
+			path = Bebbo;
 			sourceTree = "<group>";
 		};
 		BF838CBD27A42E7400CC12B9 /* GoogleServices */ = {
@@ -542,7 +572,7 @@
 			);
 			name = ParentBuddyAppXk;
 			productName = ParentBuddyApp;
-			productReference = BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */;
+			productReference = BF838CBA27A42D8000CC12B9 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BF838CED27A7E21500CC12B9 /* ParentBuddyAppDev */ = {
@@ -586,7 +616,7 @@
 			);
 			name = ParentBuddyAppXkDev;
 			productName = ParentBuddyApp;
-			productReference = BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */;
+			productReference = BF838D3127A8082C00CC12B9 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -616,7 +646,7 @@
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
 					BF838C9C27A42D8000CC12B9 = {
-						DevelopmentTeam = 93BCKGKLMZ;
+						DevelopmentTeam = K288UMKCNF;
 						ProvisioningStyle = Manual;
 					};
 					BF838CED27A7E21500CC12B9 = {
@@ -691,11 +721,11 @@
 				67601B893111472CB4DFCCC1 /* roboto-regular.svg in Resources */,
 				C2B224109B97464BA2BE7AA6 /* roboto-bold.ttf in Resources */,
 				9DF386A602734BDD8FBC7002 /* roboto-bold.woff in Resources */,
-				CE79669C26F9D6BD000C1CF9 /* splash.json in Resources */,
 				2A0F6AC26C074BD7B3F138D1 /* roboto-bold.woff2 in Resources */,
 				0C16CB43AF2C40A89CF6F187 /* roboto-regular.ttf in Resources */,
 				47893DF8512247D6A2F04AD0 /* roboto-regular.woff in Resources */,
 				518435E4BEEF40C098DA6032 /* roboto-regular.woff2 in Resources */,
+				BF362F2327B288BD000E92B9 /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,11 +756,11 @@
 				BF838CAA27A42D8000CC12B9 /* roboto-regular.svg in Resources */,
 				BF838CAB27A42D8000CC12B9 /* roboto-bold.ttf in Resources */,
 				BF838CAC27A42D8000CC12B9 /* roboto-bold.woff in Resources */,
-				BF838CAD27A42D8000CC12B9 /* splash.json in Resources */,
 				BF838CAE27A42D8000CC12B9 /* roboto-bold.woff2 in Resources */,
 				BF838CAF27A42D8000CC12B9 /* roboto-regular.ttf in Resources */,
 				BF838CB027A42D8000CC12B9 /* roboto-regular.woff in Resources */,
 				BF838CB127A42D8000CC12B9 /* roboto-regular.woff2 in Resources */,
+				BF362F2627B288D3000E92B9 /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,12 +775,12 @@
 				BF838CFC27A7E21500CC12B9 /* roboto-regular.svg in Resources */,
 				BF838CFD27A7E21500CC12B9 /* roboto-bold.ttf in Resources */,
 				BF838CFE27A7E21500CC12B9 /* roboto-bold.woff in Resources */,
-				BF838CFF27A7E21500CC12B9 /* splash.json in Resources */,
 				BF838D0027A7E21500CC12B9 /* roboto-bold.woff2 in Resources */,
 				BF838D0127A7E21500CC12B9 /* roboto-regular.ttf in Resources */,
 				BF838D0227A7E21500CC12B9 /* roboto-regular.woff in Resources */,
 				BF838D0327A7E21500CC12B9 /* roboto-regular.woff2 in Resources */,
 				BF838D1227A7E78B00CC12B9 /* GoogleService-Info.plist in Resources */,
+				BF362F2427B288BD000E92B9 /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,11 +796,11 @@
 				BF838D2327A8082B00CC12B9 /* roboto-regular.svg in Resources */,
 				BF838D2427A8082B00CC12B9 /* roboto-bold.ttf in Resources */,
 				BF838D2527A8082B00CC12B9 /* roboto-bold.woff in Resources */,
-				BF838D2627A8082B00CC12B9 /* splash.json in Resources */,
 				BF838D2727A8082B00CC12B9 /* roboto-bold.woff2 in Resources */,
 				BF838D2827A8082B00CC12B9 /* roboto-regular.ttf in Resources */,
 				BF838D2927A8082B00CC12B9 /* roboto-regular.woff in Resources */,
 				BF838D2A27A8082B00CC12B9 /* roboto-regular.woff2 in Resources */,
+				BF362F2727B288D3000E92B9 /* splash.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,7 +1922,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				HEADER_SEARCH_PATHS = (
@@ -1989,9 +2019,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = ParentBuddyAppXk;
-				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
+				PRODUCT_NAME = Foleja;
+				PROVISIONING_PROFILE_SPECIFIER = Foleja_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2011,7 +2041,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 93BCKGKLMZ;
+				DEVELOPMENT_TEAM = K288UMKCNF;
 				INFOPLIST_FILE = "ParentBuddyAppXk-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.1.0;
@@ -2020,9 +2050,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = ParentBuddyAppXk;
-				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
+				PRODUCT_NAME = Foleja;
+				PROVISIONING_PROFILE_SPECIFIER = Foleja_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
 				SWIFT_VERSION = 5.0;
@@ -2132,7 +2162,7 @@
 				);
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2163,7 +2193,7 @@
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2281,14 +2311,14 @@
 				);
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -2312,14 +2342,14 @@
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
