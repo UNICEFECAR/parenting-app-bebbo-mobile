@@ -144,7 +144,7 @@
 		BF362F2227B288BD000E92B9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../../../app/assets/LottieSplash/Bebbo/splash.json; sourceTree = "<group>"; };
 		BF362F2527B288D3000E92B9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash.json; path = ../../../app/assets/LottieSplash/Foleja/splash.json; sourceTree = "<group>"; };
 		BF4003FC276CC00100F208BD /* ParentBuddyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ParentBuddyApp.entitlements; path = ParentBuddyApp/ParentBuddyApp.entitlements; sourceTree = "<group>"; };
-		BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppXk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF838CBA27A42D8000CC12B9 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838CBB27A42D8000CC12B9 /* ParentBuddyAppXk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppXk-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppXk-Info.plist"; sourceTree = "<absolute>"; };
 		BF838CBC27A42DB800CC12B9 /* ParentBuddyAppXk.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = ParentBuddyAppXk.entitlements; path = ParentBuddyApp/ParentBuddyAppXk.entitlements; sourceTree = "<group>"; };
 		BF838CC027A42EAA00CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 		BF838D0C27A7E21500CC12B9 /* ParentBuddyAppDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838D0D27A7E21500CC12B9 /* ParentBuddyAppDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppDev-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppDev-Info.plist"; sourceTree = "<absolute>"; };
 		BF838D1127A7E78B00CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParentBuddyAppXkDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF838D3127A8082C00CC12B9 /* Foleja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foleja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF838D3227A8082D00CC12B9 /* ParentBuddyAppXkDev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ParentBuddyAppXkDev-Info.plist"; path = "/Users/kalyanikaushik/Desktop/Datamatics/parenting-app-bebbo-mobile/ios/ParentBuddyAppXkDev-Info.plist"; sourceTree = "<absolute>"; };
 		BF838D3327A8091300CC12B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C412D7F456CCD424A4D2595E /* libPods-ParentBuddyApp-ParentBuddyAppXk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParentBuddyApp-ParentBuddyAppXk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,9 +375,9 @@
 				00E356EE1AD99517003FC87E /* ParentBuddyAppTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* ParentBuddyApp-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* ParentBuddyApp-tvOSTests.xctest */,
-				BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */,
+				BF838CBA27A42D8000CC12B9 /* Foleja.app */,
 				BF838D0C27A7E21500CC12B9 /* ParentBuddyAppDev.app */,
-				BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */,
+				BF838D3127A8082C00CC12B9 /* Foleja.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -572,7 +572,7 @@
 			);
 			name = ParentBuddyAppXk;
 			productName = ParentBuddyApp;
-			productReference = BF838CBA27A42D8000CC12B9 /* ParentBuddyAppXk.app */;
+			productReference = BF838CBA27A42D8000CC12B9 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BF838CED27A7E21500CC12B9 /* ParentBuddyAppDev */ = {
@@ -616,7 +616,7 @@
 			);
 			name = ParentBuddyAppXkDev;
 			productName = ParentBuddyApp;
-			productReference = BF838D3127A8082C00CC12B9 /* ParentBuddyAppXkDev.app */;
+			productReference = BF838D3127A8082C00CC12B9 /* Foleja.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2020,7 +2020,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
-				PRODUCT_NAME = ParentBuddyAppXk;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -2051,7 +2051,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.unicef.kosovo.foleja;
-				PRODUCT_NAME = ParentBuddyAppXk;
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Production_Unicef;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -2162,7 +2162,7 @@
 				);
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2193,7 +2193,7 @@
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				INFOPLIST_FILE = "ParentBuddyAppDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.2.8;
+				MARKETING_VERSION = 1.2.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2311,14 +2311,14 @@
 				);
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
@@ -2342,14 +2342,14 @@
 				DEVELOPMENT_TEAM = 93BCKGKLMZ;
 				INFOPLIST_FILE = "ParentBuddyAppXkDev-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.1.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datamatics.foleja;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Foleja;
 				PROVISIONING_PROFILE_SPECIFIER = Foleja_Datamatics_Enterprise;
 				SWIFT_OBJC_BRIDGING_HEADER = "ParentBuddyApp-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ParentBuddyApp-Swift.h";
