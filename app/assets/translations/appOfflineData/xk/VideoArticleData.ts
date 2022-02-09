@@ -1,3 +1,3 @@
 export const VideoArticleData:any = {
-    "en":[]
+    "xk-sq":[]
 };

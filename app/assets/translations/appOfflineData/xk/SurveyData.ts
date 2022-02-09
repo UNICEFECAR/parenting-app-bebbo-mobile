@@ -1,3 +1,3 @@
 export const SurveyData:any = {
-    "en": []
+    "xk-sq": []
 };

@@ -1,3 +1,3 @@
 export const dailyHomeNotificationdata:any = {  
-    "en": []
+    "xk-sq": []
 };
