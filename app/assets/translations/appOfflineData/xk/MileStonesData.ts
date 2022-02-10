@@ -1,83 +1,11 @@
 export const MileStonesData: any = {
     "xk-sq": [
         {
-            "id": 6996,
-            "type": "Milestone",
-            "title": "I njeh dallimet themelore midis gjërave që janë reale, të shtirura ose imagjinare",
-            "created_at": "Thu, 02/03/2022 - 17:18",
-            "updated_at": "Thu, 02/03/2022 - 17:18",
-            "body": "<p>Trillon histori për një personazh që nuk ekziston, ose e di që kafshët nuk mund të flasin në jetën reale.</p>",
-            "child_age": [
-                52
-            ],
-            "related_activities": [
-                7441
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 7041,
-            "type": "Milestone",
-            "title": "Përdor fjali me pesë ose më shumë fjalë; përdor fjalët për t'u shprehur për të ardhmen",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Bashkon fjalët për të shprehur idetë e saj/tij; mund të thotë se çfarë \"do\" ose \"mund\" të ndodhë në të ardhmen.</p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7486
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2646,
-            "type": "Milestone",
-            "title": "Zhvillon koordinimin dorë-sy",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Rritet aftësia për koordinimin dorë-sy, për shembull: fëmija juaj shikon një objekt dhe përpiqet që ta arrijë atë.</p>",
-            "child_age": [
-                45
-            ],
-            "related_activities": [
-                7661
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6406
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2901,
-            "type": "Milestone",
-            "title": "Kërkon të ndajë interesat dhe kënaqësitë me të rriturit, në mënyrë spontane",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Pëlqen lojëra reciproke, \"unë ta jap ty - ti ma jep mua\", \"unë bëj - ti bën\" dhe të ngjashme si këto.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7731
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6551
-            ],
-            "mandatory": 1
-        },
-        {
             "id": 7056,
             "type": "Milestone",
             "title": "Mund të numërojë deri në dhjetë dhe të emërtojë dhjetë gjësende pa gabime",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "created_at": "Fri, 02/04/2022 - 10:00",
+            "updated_at": "Fri, 02/04/2022 - 11:18",
             "body": "<p>Gjithashtu mund të thotë \"e para, e dyta\", deri në 10, të numëroj ditët e javës dhe muajt.</p>",
             "child_age": [
                 57
@@ -90,96 +18,20 @@ export const MileStonesData: any = {
             "mandatory": 1
         },
         {
-            "id": 2696,
+            "id": 6996,
             "type": "Milestone",
-            "title": "Mund të ulet me pak mbështetje",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Kur ai/ajo ka mbështetje ose mbështetet në diçka, foshnja mund të ulet dhe për një kohë të shkurtër mund të mbajë pozicionin ulur në mënyrë të pavarur.</p>",
+            "title": "I njeh dallimet themelore midis gjërave që janë reale, të shtirura ose imagjinare",
+            "created_at": "Thu, 02/03/2022 - 14:25",
+            "updated_at": "Thu, 02/03/2022 - 14:25",
+            "body": "<p>Trillon histori për një personazh që nuk ekziston, ose e di që kafshët nuk mund të flasin në jetën reale.</p>",
             "child_age": [
-                46
+                52
             ],
             "related_activities": [
-                7671
+                7441
             ],
             "related_articles": [],
             "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2936,
-            "type": "Milestone",
-            "title": "Zgjedh objekte të vogla me gishta, dhe ushqehet me gishta",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Ka një \"kapje\" më të mirë - mund të manipulojë me objekte shumë të vogla duke i kapur ato me gishtin e madh dhe me gishtin tregues.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7766
-            ],
-            "related_articles": [
-                3571
-            ],
-            "related_video_articles": [
-                6536
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 7081,
-            "type": "Milestone",
-            "title": "Përdor aftësi për të marrë pjesë në mënyrë të pavarur në rutinat e përditshme dhe aktivitetet sociale",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Mund të vishen dhe të zhvishen në mënyrë të pavarur, përdor një lugë dhe pirun, përdor tualetin vetëm dhe lan duart. Mund të ndahet nga prindërit dhe të përfshihet në aktivitete të pavarura sociale. </p>",
-            "child_age": [
-                57
-            ],
-            "related_activities": [
-                7526
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2531,
-            "type": "Milestone",
-            "title": "Ngazëllehet kur i flisni",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Fri, 01/21/2022 - 18:36",
-            "body": "<p>Kur dëgjon zërin tuaj, foshnja tregon entuziazëm, por gjithashtu vini re se si ngadalëson lëvizjet e tij/saj, duket se po dëgjon, se është i/e pranishëm …</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7586
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6311
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2701,
-            "type": "Milestone",
-            "title": "Mund të thotë një fjali me 2 deri në 3 fjalë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/22/2021 - 06:04",
-            "body": "<p>Mund të formulojë dhe të thotë fjali me 2 deri në 3 fjalë mjaft mirë sa anëtarët e familjes mund ta kuptojnë atë.</p>",
-            "child_age": [
-                51
-            ],
-            "related_activities": [
-                7391
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6816
-            ],
             "mandatory": 1
         },
         {
@@ -194,23 +46,6 @@ export const MileStonesData: any = {
             ],
             "related_activities": [
                 7276
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 7086,
-            "type": "Milestone",
-            "title": "Merr pjesë në aktivitete të ndryshme që kërkojnë shkathtësi të lartë fizike",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Në gjendje të qëndrojë me njërën këmbë, të gjuajë saktë një top, si dhe të godasë me top një objektiv etj. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7531
             ],
             "related_articles": [],
             "related_video_articles": [],
@@ -233,6 +68,23 @@ export const MileStonesData: any = {
             "related_video_articles": [
                 6296
             ],
+            "mandatory": 1
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Merr pjesë në aktivitete të ndryshme që kërkojnë shkathtësi të lartë fizike",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Në gjendje të qëndrojë me njërën këmbë, të gjuajë saktë një top, si dhe të godasë me top një objektiv etj. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 1
         },
         {
@@ -274,23 +126,6 @@ export const MileStonesData: any = {
             "mandatory": 1
         },
         {
-            "id": 7106,
-            "type": "Milestone",
-            "title": "Tregon një histori të plotë",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Fëmija arrin të ri-tregojë në mënyrë të përmbledhur një histori të caktuar, plotësisht në mënyrë të pavarur dhe të saktë, duke treguar ngjarjet sipas një rendi kronologjik, pra ngjarje në të cilat ai/ajo ka marrë pjesë, apo një shfaqje televizive.</p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7826
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
             "id": 2556,
             "type": "Milestone",
             "title": "Kur qëndron në stomak, ai ngre kokën",
@@ -307,6 +142,23 @@ export const MileStonesData: any = {
             "related_video_articles": [
                 6281
             ],
+            "mandatory": 1
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Tregon një histori të plotë",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Fëmija arrin të ri-tregojë në mënyrë të përmbledhur një histori të caktuar, plotësisht në mënyrë të pavarur dhe të saktë, duke treguar ngjarjet sipas një rendi kronologjik, pra ngjarje në të cilat ai/ajo ka marrë pjesë, apo një shfaqje televizive.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 1
         },
         {
@@ -350,23 +202,6 @@ export const MileStonesData: any = {
             "mandatory": 1
         },
         {
-            "id": 7131,
-            "type": "Milestone",
-            "title": "Arrin të kuptojë ndryshimin midis lojës reale dhe imagjinare, apo lojërave \"besojmë sikur\"",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Thu, 08/12/2021 - 21:39",
-            "body": "<p>Ai/ajo vetëm krijon histori, ngjarje, personazhe nga imagjinata e tij/saj; i paraqet ato artistikisht, i përshkruan dhe u cakton atyre atribute që nuk janë realiste. Ai/ajo argëtohet ndërsa e bën këtë, i/e vetëdijshëm/e se gjithçka është e mundur në botën e imagjinatës. </p>",
-            "child_age": [
-                58
-            ],
-            "related_activities": [
-                7571
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
             "id": 2561,
             "type": "Milestone",
             "title": "Bën tinguj të ndryshëm kur është i lumtur, i mërzitur apo i uritur",
@@ -383,6 +218,23 @@ export const MileStonesData: any = {
             "related_video_articles": [
                 6316
             ],
+            "mandatory": 1
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Arrin të kuptojë ndryshimin midis lojës reale dhe imagjinare, apo lojërave \"besojmë sikur\"",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Ai/ajo vetëm krijon histori, ngjarje, personazhe nga imagjinata e tij/saj; i paraqet ato artistikisht, i përshkruan dhe u cakton atyre atribute që nuk janë realiste. Ai/ajo argëtohet ndërsa e bën këtë, i/e vetëdijshëm/e se gjithçka është e mundur në botën e imagjinatës. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
             "mandatory": 1
         },
         {
@@ -665,6 +517,154 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [],
             "mandatory": 1
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Përdor fjali me pesë ose më shumë fjalë; përdor fjalët për t'u shprehur për të ardhmen",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Bashkon fjalët për të shprehur idetë e saj/tij; mund të thotë se çfarë \"do\" ose \"mund\" të ndodhë në të ardhmen.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Zhvillon koordinimin dorë-sy",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/22/2021 - 06:04",
+            "body": "<p>Rritet aftësia për koordinimin dorë-sy, për shembull: fëmija juaj shikon një objekt dhe përpiqet që ta arrijë atë.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Kërkon të ndajë interesat dhe kënaqësitë me të rriturit, në mënyrë spontane",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/22/2021 - 06:04",
+            "body": "<p>Pëlqen lojëra reciproke, \"unë ta jap ty - ti ma jep mua\", \"unë bëj - ti bën\" dhe të ngjashme si këto.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Mund të ulet me pak mbështetje",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Kur ai/ajo ka mbështetje ose mbështetet në diçka, foshnja mund të ulet dhe për një kohë të shkurtër mund të mbajë pozicionin ulur në mënyrë të pavarur.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Zgjedh objekte të vogla me gishta, dhe ushqehet me gishta",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/22/2021 - 06:04",
+            "body": "<p>Ka një \"kapje\" më të mirë - mund të manipulojë me objekte shumë të vogla duke i kapur ato me gishtin e madh dhe me gishtin tregues.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Ngazëllehet kur i flisni",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Fri, 01/21/2022 - 18:36",
+            "body": "<p>Kur dëgjon zërin tuaj, foshnja tregon entuziazëm, por gjithashtu vini re se si ngadalëson lëvizjet e tij/saj, duket se po dëgjon, se është i/e pranishëm …</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Përdor aftësi për të marrë pjesë në mënyrë të pavarur në rutinat e përditshme dhe aktivitetet sociale",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Thu, 08/12/2021 - 21:39",
+            "body": "<p>Mund të vishen dhe të zhvishen në mënyrë të pavarur, përdor një lugë dhe pirun, përdor tualetin vetëm dhe lan duart. Mund të ndahet nga prindërit dhe të përfshihet në aktivitete të pavarura sociale. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Mund të thotë një fjali me 2 deri në 3 fjalë",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/22/2021 - 06:04",
+            "body": "<p>Mund të formulojë dhe të thotë fjali me 2 deri në 3 fjalë mjaft mirë sa anëtarët e familjes mund ta kuptojnë atë.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 1
         }
     ],
     "xk-rs": [
@@ -836,6 +836,42 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [
                 58501
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Pomaže pri oblačenju",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:14",
+            "body": "<p>Sarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Oglašava se",
+            "created_at": "Thu, 08/12/2021 - 21:39",
+            "updated_at": "Wed, 09/29/2021 - 12:15",
+            "body": "<p>Beba se oglašava plakanjem, ali i proizvodi glasove</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
             ],
             "mandatory": 1
         },
@@ -1313,42 +1349,6 @@ export const MileStonesData: any = {
             "related_articles": [],
             "related_video_articles": [
                 6816
-            ],
-            "mandatory": 1
-        },
-        {
-            "id": 2961,
-            "type": "Milestone",
-            "title": "Pomaže pri oblačenju",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:14",
-            "body": "<p>Sarađuje kada ga oblačite, gura prilikom oblačenja rukava ili nogavica.</p>",
-            "child_age": [
-                48
-            ],
-            "related_activities": [
-                7276
-            ],
-            "related_articles": [],
-            "related_video_articles": [],
-            "mandatory": 1
-        },
-        {
-            "id": 2541,
-            "type": "Milestone",
-            "title": "Oglašava se",
-            "created_at": "Thu, 08/12/2021 - 21:39",
-            "updated_at": "Wed, 09/29/2021 - 12:15",
-            "body": "<p>Beba se oglašava plakanjem, ali i proizvodi glasove</p>",
-            "child_age": [
-                43
-            ],
-            "related_activities": [
-                7596
-            ],
-            "related_articles": [],
-            "related_video_articles": [
-                6296
             ],
             "mandatory": 1
         }
