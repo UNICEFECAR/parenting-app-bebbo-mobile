@@ -54,6 +54,7 @@ import { useAppDispatch, useAppSelector } from '../../../../App';
 import useNetInfoHook from '../../../customHooks/useNetInfoHook';
 import { setAllNotificationData } from '../../../redux/reducers/notificationSlice';
 import { setInfoModalOpened, setSyncDate, setuserIsOnboarded } from '../../../redux/reducers/utilsSlice';
+import { fetchAPI } from '../../../redux/sagaMiddleware/sagaActions';
 import { getAllChildren, isFutureDate } from '../../../services/childCRUD';
 import commonApiService from '../../../services/commonApiService';
 import { getChildNotification, getChildReminderNotifications, getNextChildNotification, isPeriodsMovedAhead } from '../../../services/notificationService';
@@ -254,6 +255,16 @@ const Home = ({ route, navigation }: Props) => {
         }else {
           if(netInfoval.isConnected && showDownloadPopup)
           {
+
+            const apiJsonDatasurvey = [
+              {
+                apiEndpoint: appConfig.surveys,
+                method: 'get',
+                postdata: {},
+                saveinDB: true,
+              }
+            ];
+            dispatch(fetchAPI(apiJsonData,'Survey',dispatch,navigation,languageCode,activeChild,apiJsonDatasurvey,netInfoval.isConnected));
             let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
             if(forceUpdateTime == null || forceUpdateTime == undefined) {
               dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
