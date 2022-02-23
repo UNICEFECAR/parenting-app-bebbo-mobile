@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector } from '../../../App';
 import RNRestart from 'react-native-restart';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange } from '../../redux/reducers/localizationSlice';
-import  localization  from '@assets/data/localization';
+import  {localization}  from '../../dynamicImports';
 import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
 
 type LanguageSelectionNavigationProp = StackNavigationProp<
