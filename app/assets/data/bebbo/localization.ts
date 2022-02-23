@@ -1,5 +1,3 @@
-import { buildFor, buildForFoleja,buildForBebbo } from "@assets/translations/appOfflineData/apiConstants";
-
 const localizationall = [
   {
     name: 'Albania',
@@ -240,30 +238,5 @@ const localizationall = [
     ],
   },
 ];
-
-const localizationkosovo = [
-  {
-    name: 'Kosovo',
-    countryId: 21,
-    displayName: 'Kosovo (Kosova)',
-    languages: [
-      {
-        name: 'Albanian',
-        displayName: 'Shqip',
-        languageCode: 'xk-sq',
-        locale: 'XKsq',
-        luxonLocale:'sq-XK'
-      },
-      {
-        name: 'Serbian',
-        displayName: 'Srpski',
-        languageCode: 'xk-rs',
-        locale: 'XKrs',
-        luxonLocale:'sr-Latn-XK'
-      },
-    ],
-  }
-];
-const localization = buildFor == buildForFoleja ? localizationkosovo : localizationall;
-export default localization;
+export default localizationall;
 
