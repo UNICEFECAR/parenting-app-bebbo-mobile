@@ -1,5 +1,5 @@
 import { APP_SHARE, FEEDBACK_SUBMIT } from '@assets/data/firebaseEvents';
-import { shareText } from '@assets/translations/appOfflineData/apiConstants';
+import { buildFor, buildForBebbo, shareText } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import {
   BgDevelopment,
@@ -80,6 +80,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const [modalVisible, setModalVisible] = useState<boolean>(true);
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
+  );
+  const locale = useAppSelector(
+    (state: any) => state.selectedCountry.locale,
   );
   const childList = useAppSelector((state: any) =>
     state.childData.childDataSet.allChild != ''
@@ -218,10 +221,13 @@ const CustomDrawerContent = ({ navigation }: any) => {
   );
   // }, [isOpen, activeChild.uuid, allnotis]);
   const onShare = async () => {
+    let localeData=(String(buildFor) != buildForBebbo)?locale:"";
+    let messageData=t('appShareText')+shareText+localeData;
+    console.log(messageData,"..messageData..");
     try {
       const result = await Share.share({
         // message: t('appShareText')+'\nhttps://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en', 
-        message: t('appShareText')+shareText, 
+        message:messageData , 
         //message:'https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en'
       });
       if (result.action === Share.sharedAction) {
