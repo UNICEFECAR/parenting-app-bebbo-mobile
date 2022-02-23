@@ -8,9 +8,8 @@ import i18n, {
   import * as RNLocalize from 'react-native-localize';
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-import localization from '@assets/data/localization';
-import { buildFor, buildForFoleja, buildForBebbo } from '@assets/translations/appOfflineData/apiConstants';
-  export const AVAILABLE_LANGUAGES = buildFor == buildForFoleja ? require('./Available_lang_xk').default : require('./Available_lang_bebbo').default;
+  import {localization} from '../dynamicImports';
+  import { AVAILABLE_LANGUAGES } from '../dynamicImports';
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const newArr: any[] = [];
   const localisationnew = [...localization];

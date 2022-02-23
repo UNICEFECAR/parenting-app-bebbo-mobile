@@ -18,21 +18,8 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { appConfig, both_child_gender, both_parent_gender, buildFor, buildForFoleja } from "./apiConstants";
-const taxonomydata = buildFor == buildForFoleja ? require('@offlinedata/xk/taxonomies').taxonomydata : require('@offlinedata/bebbo/taxonomies').taxonomydata;
-const ActivitiesData = buildFor == buildForFoleja ? require('@offlinedata/xk/ActivitiesData').ActivitiesData : require('@offlinedata/bebbo/ActivitiesData').ActivitiesData;
-const articledata = buildFor == buildForFoleja ? require('@offlinedata/xk/article').articledata : require('@offlinedata/bebbo/article').articledata;
-const basicPagesData = buildFor == buildForFoleja ? require('@offlinedata/xk/basicPages').basicPagesData : require('@offlinedata/bebbo/basicPages').basicPagesData;
-const ChildDevelopmentData = buildFor == buildForFoleja ? require('@offlinedata/xk/ChildDevelopmentData').ChildDevelopmentData : require('@offlinedata/bebbo/ChildDevelopmentData').ChildDevelopmentData;
-const FaqsData = buildFor == buildForFoleja ? require('@offlinedata/xk/FaqsData').FaqsData : require('@offlinedata/bebbo/FaqsData').FaqsData;
-const healthCheckupsData = buildFor == buildForFoleja ? require('@offlinedata/xk/healthCheckupsData').healthCheckupsData : require('@offlinedata/bebbo/healthCheckupsData').healthCheckupsData;
-const dailyHomeNotificationdata = buildFor == buildForFoleja ? require('@offlinedata/xk/dailyHomeNotification').dailyHomeNotificationdata : require('@offlinedata/bebbo/dailyHomeNotification').dailyHomeNotificationdata;
-const MileStonesData = buildFor == buildForFoleja ? require('@offlinedata/xk/MileStonesData').MileStonesData : require('@offlinedata/bebbo/MileStonesData').MileStonesData;
-const PinnedChildDevData = buildFor == buildForFoleja ? require('@offlinedata/xk/PinnedChildDevData').PinnedChildDevData : require('@offlinedata/bebbo/PinnedChildDevData').PinnedChildDevData;
-const standardDevData = buildFor == buildForFoleja ? require('@offlinedata/xk/standardDevData').standardDevData : require('@offlinedata/bebbo/standardDevData').standardDevData;
-const SurveyData = buildFor == buildForFoleja ? require('@offlinedata/xk/SurveyData').SurveyData : require('@offlinedata/bebbo/SurveyData').SurveyData;
-const vaccineData = buildFor == buildForFoleja ? require('@offlinedata/xk/vaccineData').vaccineData : require('@offlinedata/bebbo/vaccineData').vaccineData;
-const VideoArticleData = buildFor == buildForFoleja ? require('@offlinedata/xk/VideoArticleData').VideoArticleData : require('@offlinedata/bebbo/VideoArticleData').VideoArticleData;
+import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
+import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '../../../dynamicImports';
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
   //  console.log(prevPage, "..prevPage..")
