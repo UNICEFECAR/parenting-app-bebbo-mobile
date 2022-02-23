@@ -31,6 +31,7 @@ import WebView from "react-native-webview";
 import LoadableImage from '../../services/LoadableImage';
 import { DefaultImage } from '@components/shared/Image';
 import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { ADVICE_CATEGORY_SELECTED, ADVICE_DETAILS_OPENED, GAME_CATEGORY_SELECTED, GAME_DETAILS_OPENED } from '@assets/data/firebaseEvents';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addSpaceToHtml } from '../../services/Utils';
@@ -395,6 +396,12 @@ const DetailsScreen = ({route, navigation}: any) => {
                 onPress={onHeaderBack}>
                 <IconML name={'ic_back'} color="#000" size={15} />
               </HeaderIconPress>
+              {/* <HeaderIconPress
+                onPress={()=>{
+                  crashlytics().crash();
+                }}>
+                <IconML name={'ic_back'} color="#000" size={15} />
+              </HeaderIconPress> */}
             </HeaderIconView>
             <HeaderTitleView>
             <Heading2 numberOfLines={1}>{detailDataToUse?.title}</Heading2>
