@@ -8,8 +8,8 @@ import i18n, {
   import * as RNLocalize from 'react-native-localize';
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-  import {localization} from '../dynamicImports';
-  import { AVAILABLE_LANGUAGES } from '../dynamicImports';
+  import {localization} from '@dynamicImportsClass/dynamicImports';
+  import { AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const newArr: any[] = [];
   const localisationnew = [...localization];
