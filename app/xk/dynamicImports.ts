@@ -1,3 +1,4 @@
+import 'intl';
 require('intl/locale-data/jsonp/sq-XK')
 require('intl/locale-data/jsonp/sr-Latn-XK')
 export const localization=require('@assets/data/xk/localization').default;

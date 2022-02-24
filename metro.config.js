@@ -6,6 +6,7 @@
  */
 const blacklist = require('metro-config/src/defaults/exclusionList')
 module.exports = {
+  resetCache:true,
   transformer: {
     getTransformOptions: async () => ({
       transform: {
