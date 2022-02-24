@@ -1,3 +1,4 @@
+import 'intl';
 require('intl/locale-data/jsonp/sq-AL')
 require('intl/locale-data/jsonp/be-BY')
 require('intl/locale-data/jsonp/ru-BY')
