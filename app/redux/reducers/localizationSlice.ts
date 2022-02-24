@@ -1,4 +1,4 @@
-import {localization} from '../../dynamicImports';
+import {localization} from '@dynamicImportsClass/dynamicImports';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import {RootState} from './../../../App';
 

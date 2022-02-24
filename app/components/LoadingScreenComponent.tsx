@@ -1,5 +1,5 @@
 import { buildFor, buildForREMOVED_FACEBOOK_APP_ID1, buildForREMOVED_FACEBOOK_APP_ID1 } from '@assets/translations/appOfflineData/apiConstants';
-import { bebbo_logo_shape } from '../dynamicImports';
+import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
