@@ -13,7 +13,7 @@ import { BotImage, BotBubbleContainer, BotBubbleTextContainer, UserBubbleContain
 import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from '../../../App';
 import ThreeDotsLoader from '../../services/ThreeDotsLoader';
-import { img_logo_chatbot_new } from '../../dynamicImports';
+import { img_logo_chatbot_new } from '@dynamicImportsClass/dynamicImports';
 
 const BotBubble = (props: any) => {
   const { message, steps,stepindex,loading } = props;
