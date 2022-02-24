@@ -40,7 +40,7 @@ import { allApisObject, appConfig } from '../../assets/translations/appOfflineDa
 import { onLocalizationSelect, setAppLayoutDirection, setAppLayoutDirectionParams, setAppLayoutDirectionScreen, setrestartOnLangChange, setSponsorStore } from '../../redux/reducers/localizationSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
 import RNRestart from 'react-native-restart';
-import {localization} from '../../dynamicImports';
+import {localization} from '@dynamicImportsClass/dynamicImports';
 
 type CountryLanguageConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,

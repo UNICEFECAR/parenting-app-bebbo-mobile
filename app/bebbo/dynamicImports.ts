@@ -18,7 +18,7 @@ require('@assets/customLocale/me-cnr')
 export const localization=require('@assets/data/bebbo/localization').default;
 export const bebbo_logo_shape=require('@assets/svg/bebbo/bebbo_logo_shape.svg');
 export const img_logo_chatbot_new=require('@assets/svg/bebbo/img-logo-chatbot-new.svg');
-export const AVAILABLE_LANGUAGES =require('../../../localization/Available_lang_bebbo').default;
+export const AVAILABLE_LANGUAGES =require('../localization/Available_lang_bebbo').default;
 export const taxonomydata =require('@offlinedata/bebbo/taxonomies').taxonomydata;
 export const ActivitiesData =require('@offlinedata/bebbo/ActivitiesData').ActivitiesData;
 export const articledata = require('@offlinedata/bebbo/article').articledata;
