@@ -18,21 +18,8 @@ import { setAllArticleData } from "../../../redux/reducers/articlesSlice";
 import { setAllActivitiesData, setAllChildDevData, setAllFaqsData, setAllHealthCheckupsData, setAllMileStonesData, setAllPinnedChildDevData, setAllSurveyData, setAllTaxonomyData, setAllTermsData, setAllVaccineData, setAllVideoArticlesData, setDailyMessagesData, setStandardDevHFAData, setStandardDevWFHData } from "../../../redux/reducers/utilsSlice";
 import { HealthCheckUpsEntity, HealthCheckUpsSchema } from './../../../database/schema/HealthCheckUpsSchema';
 import { SurveysEntity } from './../../../database/schema/SurveysSchema';
-import { appConfig, both_child_gender, both_parent_gender, buildFor, buildForREMOVED_FACEBOOK_APP_ID1 } from "./apiConstants";
-const taxonomydata = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/taxonomies').taxonomydata : require('@offlinedata/bebbo/taxonomies').taxonomydata;
-const ActivitiesData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/ActivitiesData').ActivitiesData : require('@offlinedata/bebbo/ActivitiesData').ActivitiesData;
-const articledata = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/article').articledata : require('@offlinedata/bebbo/article').articledata;
-const basicPagesData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/basicPages').basicPagesData : require('@offlinedata/bebbo/basicPages').basicPagesData;
-const ChildDevelopmentData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/ChildDevelopmentData').ChildDevelopmentData : require('@offlinedata/bebbo/ChildDevelopmentData').ChildDevelopmentData;
-const FaqsData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/FaqsData').FaqsData : require('@offlinedata/bebbo/FaqsData').FaqsData;
-const healthCheckupsData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/healthCheckupsData').healthCheckupsData : require('@offlinedata/bebbo/healthCheckupsData').healthCheckupsData;
-const dailyHomeNotificationdata = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/dailyHomeNotification').dailyHomeNotificationdata : require('@offlinedata/bebbo/dailyHomeNotification').dailyHomeNotificationdata;
-const MileStonesData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/MileStonesData').MileStonesData : require('@offlinedata/bebbo/MileStonesData').MileStonesData;
-const PinnedChildDevData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/PinnedChildDevData').PinnedChildDevData : require('@offlinedata/bebbo/PinnedChildDevData').PinnedChildDevData;
-const standardDevData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/standardDevData').standardDevData : require('@offlinedata/bebbo/standardDevData').standardDevData;
-const SurveyData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/SurveyData').SurveyData : require('@offlinedata/bebbo/SurveyData').SurveyData;
-const vaccineData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/vaccineData').vaccineData : require('@offlinedata/bebbo/vaccineData').vaccineData;
-const VideoArticleData = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('@offlinedata/xk/VideoArticleData').VideoArticleData : require('@offlinedata/bebbo/VideoArticleData').VideoArticleData;
+import { appConfig, both_child_gender, both_parent_gender} from "./apiConstants";
+import { basicPagesData, taxonomydata, articledata, dailyHomeNotificationdata, standardDevData, vaccineData, healthCheckupsData, ChildDevelopmentData, PinnedChildDevData, MileStonesData, VideoArticleData, ActivitiesData, SurveyData, FaqsData } from '@dynamicImportsClass/dynamicImports';
 // const getAllDataToStore = async (languageCode:string,dispatch:any,apiEndpoint:string) => {
 const getAllDataToStore = async (languageCode: string, dispatch: any, prevPage: string, activeChild?: any) => {
   //  console.log(prevPage, "..prevPage..")
