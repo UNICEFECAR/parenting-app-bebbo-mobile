@@ -1,5 +1,5 @@
-import XKrs from "@assets/translations/appConstants/XKrs";
-import XKsq from "@assets/translations/appConstants/XKsq";
+import XKrs from "@assets/translations/appConstants/xk/XKrs";
+import XKsq from "@assets/translations/appConstants/xk/XKsq";
 
 const AVAILABLE_LANGUAGES_XK = {
     XKsq,
