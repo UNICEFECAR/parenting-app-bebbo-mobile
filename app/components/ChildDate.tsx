@@ -409,7 +409,8 @@ const ChildDate = (props: any) => {
             <ModalPopupContent>
               
               <Heading4Centerr>
-                {prevScreen=="Onboarding" ? t('childSetupprematureMessage'):t('childSetupprematureMessageNext')}
+                {t('childSetupprematureMessage')}
+                {/* {prevScreen=="Onboarding" ? t('childSetupprematureMessage'):t('childSetupprematureMessageNext')} */}
               </Heading4Centerr>
             </ModalPopupContent>
           </ModalPopupContainer>
