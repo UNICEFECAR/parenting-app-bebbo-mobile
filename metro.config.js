@@ -4,8 +4,9 @@
  *
  * @format
  */
-
+const blacklist = require('metro-config/src/defaults/exclusionList')
 module.exports = {
+  resetCache:true,
   transformer: {
     getTransformOptions: async () => ({
       transform: {
@@ -14,4 +15,7 @@ module.exports = {
       },
     }),
   },
+  resolver: {
+  blacklistRE: blacklist([/bebbo\/.*/])
+  }
 };

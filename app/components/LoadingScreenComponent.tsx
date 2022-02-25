@@ -1,4 +1,5 @@
 import { buildFor, buildForBebbo, buildForFoleja } from '@assets/translations/appOfflineData/apiConstants';
+import { bebbo_logo_shape } from '@dynamicImportsClass/dynamicImports';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -8,10 +9,8 @@ import styled from 'styled-components/native';
 import { FlexDirCol } from './shared/FlexBoxStyle';
 import { LoadingContainer, LoadingText, MainView, PartnerLogo, SponsorLogo, StaticLogo, WrapView } from './shared/LoadingStyle';
 
-
-
 const item = {
-  image: buildFor == buildForFoleja ? require('@assets/svg/xk/bebbo_logo_shape.svg') : require('@assets/svg/bebbo/bebbo_logo_shape.svg'),
+  image:bebbo_logo_shape,
   colors: ['#2B2F84', '#1F50A0',  '#00AEEF'],
 };
 
