@@ -8,9 +8,8 @@ import i18n, {
   import * as RNLocalize from 'react-native-localize';
   import { store } from '../../App';
   import { onLocalizationSelect } from '../redux/reducers/localizationSlice';
-import localization from '@assets/data/localization';
-import { buildFor, buildForREMOVED_FACEBOOK_APP_ID1, buildForREMOVED_FACEBOOK_APP_ID1 } from '@assets/translations/appOfflineData/apiConstants';
-  export const AVAILABLE_LANGUAGES = buildFor == buildForREMOVED_FACEBOOK_APP_ID1 ? require('./Available_lang_xk').default : require('./Available_lang_bebbo').default;
+  import {localization} from '@dynamicImportsClass/dynamicImports';
+  import { AVAILABLE_LANGUAGES } from '@dynamicImportsClass/dynamicImports';
   console.log("AVAILABLE_LANGUAGES--",AVAILABLE_LANGUAGES);
   const newArr: any[] = [];
   const localisationnew = [...localization];
