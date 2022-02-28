@@ -51,11 +51,14 @@ import Icon from '@components/shared/Icon';
 import { ButtonModal } from '@components/shared/ButtonGlobal';
 import { FDirRow } from '@components/shared/FlexBoxStyle';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { DateTime } from 'luxon';
+import { MeasuresEntity } from '../../database/schema/ChildDataSchema';
+import { formatStringDate } from '../../services/Utils';
 type ChildgrowthNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
   navigation: ChildgrowthNavigationProp;
-  AddNewChildgrowth;
+  AddNewChildgrowth: any;
 };
 const Childgrowth = ({navigation,route}: Props) => {
   const {t} = useTranslation();
@@ -77,6 +80,9 @@ const Childgrowth = ({navigation,route}: Props) => {
   const growthModalOpened = useAppSelector((state: any) =>
       (state.utilsData.IsGrowthModalOpened),
     );
+    const luxonLocale = useAppSelector(
+      (state: any) => state.selectedCountry.luxonLocale,
+    );
    useFocusEffect(()=>{
     // console.log('growthModalOpened',growthModalOpened);
     // pass true to make modal visible every time & reload
@@ -91,9 +97,52 @@ const Childgrowth = ({navigation,route}: Props) => {
   // console.log(activeChild,"..activeChild..")
   // const measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
   let measures:any=[];
+  let days = 0;
   if(activeChild?.measures.length>0){
      measures = activeChild.measures.filter((item) => item.isChildMeasured == true);
     }
+//Code for Growth text hiding condition starts here
+  if(measures.length > 0){
+      let measurementDate: DateTime = DateTime.local();
+      const timeNow = DateTime.local();
+      let childmeasures = measures.map((item: MeasuresEntity) => {
+        if (item.measurementDate) {
+          measurementDate = DateTime.fromJSDate(new Date(item.measurementDate));
+        }
+
+        let month: number = 0;
+
+        if (activeChild?.birthDate) {
+          let birthDay = DateTime.fromJSDate(new Date(activeChild?.birthDate));
+          month = Math.round(measurementDate.diff(birthDay, 'month').months);
+        }
+        return {
+          uuid:item.uuid,
+          weight: item.weight ? parseFloat(item.weight) : 0,
+          height: item.height ? parseFloat(item.height) : 0,
+          measurementDate: formatStringDate(item?.measurementDate, luxonLocale),
+          dateToMilis: measurementDate.toMillis(),
+          isChildMeasured:item.isChildMeasured,
+          titleDateInMonth: month,
+          measurementPlace:item.measurementPlace,
+          doctorComment:item.doctorComment,
+          didChildGetVaccines:item.didChildGetVaccines,
+          vaccineIds:item.vaccineIds,
+        };
+      });
+
+      childmeasures = childmeasures.sort(
+        (a: any, b: any) => a.dateToMilis - b.dateToMilis,
+      );
+        let lastmeasurementDate =  DateTime.fromMillis(childmeasures[
+          childmeasures.length - 1
+        ]?.dateToMilis)
+        let date = DateTime.fromISO(activeChild.birthDate);
+        // console.log(date,"DOB");
+        let convertInDays = lastmeasurementDate.diff(date, "days").days;
+        if (convertInDays !== undefined) {days = Math.round(convertInDays)};
+      }
+    //Code for Growth text hiding condition ends here
   // const standardDevData = useAppSelector((state: any) =>
   //   JSON.parse(state.utilsData.taxonomy.standardDevData),
   // );
@@ -252,8 +301,8 @@ const {width,height}= Dimensions.get('window');
                     <FlexCol>
                     <SideSpacing10>
                       <FlexCol>
-                      {selectedIndex == 0 ? <ChartWeightForHeight /> : null}
-                      {selectedIndex == 1 ? <ChartHeightForAge /> : null}
+                      {selectedIndex == 0 ? <ChartWeightForHeight days={days} /> : null}
+                      {selectedIndex == 1 ? <ChartHeightForAge days={days} /> : null}
                       </FlexCol>
                     </SideSpacing10>
                     </FlexCol>

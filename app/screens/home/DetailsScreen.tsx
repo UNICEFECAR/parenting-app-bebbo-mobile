@@ -39,6 +39,7 @@ import RenderImage from '../../services/RenderImage';
 import FastImage from 'react-native-fast-image';
 import { ActivitiesEntity, ActivitiesEntitySchema } from '../../database/schema/ActivitiesSchema';
 import { VideoArticleEntity, VideoArticleEntitySchema } from '../../database/schema/VideoArticleSchema';
+import iframe from '@native-html/iframe-plugin';
 
 type DetailsScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
@@ -455,7 +456,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               //   }}
               // />
               <HTML
-              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} {...htmlProps}
+              source={{html: addSpaceToHtml(detailDataToUse.body)}} key={detailDataToUse.id} 
                 // source={{html: bodydata}} {...htmlProps}
                 baseFontStyle={{fontSize: 16, color: '#000000',margin:0,padding:0}}
                 ignoredStyles={['color', 'font-size', 'font-family']}
@@ -473,6 +474,8 @@ const DetailsScreen = ({route, navigation}: any) => {
                   br:{height:0},
                 }}
            renderers={{
+            table,
+            iframe,
             img:(attribs:any) => {
               const imagePath:any = attribs.src;
               console.log(imagePath,"..imagePath");
@@ -488,6 +491,16 @@ const DetailsScreen = ({route, navigation}: any) => {
                 );
               }
             },
+          }}
+          WebView={WebView}
+          ignoredTags= {IGNORED_TAGS}
+          renderersProps={{
+            table: {
+              cssRules
+              // Put the table config here (previously,
+              // the first argument of makeTableRenderer)
+            },
+            iframe: { webViewProps: { allowsFullscreenVideo: true } }
           }}
         />
                : null 

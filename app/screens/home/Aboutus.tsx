@@ -1,5 +1,6 @@
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import TabScreenHeader from '@components/TabScreenHeader';
+import iframe from '@native-html/iframe-plugin';
 import { HomeDrawerNavigatorStackParamList } from '@navigation/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
@@ -7,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import HTML from 'react-native-render-html';
+import WebView from 'react-native-webview';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../../App';
 import LoadableImage from '../../services/LoadableImage';
@@ -76,6 +78,7 @@ const Aboutus = ({navigation}: Props) => {
                 br: { height: 0 }
               }}
               renderers={{
+                iframe,
                 img:(attribs:any) => {
                   const imagePath:any = attribs.src;
                   console.log(imagePath,"..imagePath");
@@ -91,6 +94,10 @@ const Aboutus = ({navigation}: Props) => {
                    );
                   }
                 },
+              }}
+              WebView={WebView}
+              renderersProps={{
+                iframe: { webViewProps: { allowsFullscreenVideo: true } }
               }}
             />
             : null 
