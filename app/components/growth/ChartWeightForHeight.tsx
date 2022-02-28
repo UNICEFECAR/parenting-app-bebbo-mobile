@@ -14,7 +14,7 @@ import { formatHeightData } from '../../services/growthService';
 import { getInterpretationWeightForHeight } from '../../services/interpretationService';
 import GrowthChart, { chartTypes } from './GrowthChart';
 import { addSpaceToHtml } from '../../services/Utils';
-const ChartWeightForHeight = () => {
+const ChartWeightForHeight = (props: any) => {
   const navigation = useNavigation();
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
@@ -47,6 +47,8 @@ const ChartWeightForHeight = () => {
   );
   let obj: any;
   let standardDeviation: any;
+  console.log("props in height for age chart23----",props.days);
+  console.log("props in height for age taxonomy----",activeChild?.taxonomyData?.days_from);
   if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
     // standardDeviation = require('../../assets/translations/appOfflineData/boystandardDeviation.json');
@@ -133,9 +135,9 @@ const ChartWeightForHeight = () => {
           </View>
         )}
         <ShiftFromTopBottom15>
-          {item ? (
+          {item && (props.days >= activeChild.taxonomyData.days_from) ? (
             <>
-              {(item?.interpretationText?.name && item?.interpretationText?.text) ?<Heading2>{t('growthScreensumHeading')}</Heading2> : null} 
+              {/* {(item?.interpretationText?.name && item?.interpretationText?.text) ?<Heading2>{t('growthScreensumHeading')}</Heading2> : null}  */}
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <>
@@ -162,23 +164,26 @@ const ChartWeightForHeight = () => {
           ) : null}
         </ShiftFromTopBottom15>
       </FlexCol>
-
-      <FlexCol
-        style={{
-          backgroundColor: backgroundColor,
-          marginLeft: -20,
-          marginRight: -20,
-        }}>
-        <RelatedArticles
-          fromScreen={'ChildgrowthTab'}
-          related_articles={item?.interpretationText?.articleID}
-          category={5}
-          currentId={chartTypes.weightForHeight}
-          headerColor={headerColor}
-          backgroundColor={backgroundColor}
-          navigation={navigation}
-        />
-      </FlexCol>
+      {(props.days< activeChild.taxonomyData.days_from) ? 
+        null :
+          <FlexCol
+            style={{
+              backgroundColor: backgroundColor,
+              marginLeft: -20,
+              marginRight: -20,
+            }}>
+            <RelatedArticles
+              fromScreen={'ChildgrowthTab'}
+              related_articles={item?.interpretationText?.articleID}
+              category={5}
+              currentId={chartTypes.weightForHeight}
+              headerColor={headerColor}
+              backgroundColor={backgroundColor}
+              navigation={navigation}
+            />
+          </FlexCol>
+          
+          }
     </FlexCol>
   );
 };
