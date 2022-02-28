@@ -16,6 +16,6 @@ module.exports = {
     }),
   },
   resolver: {
-  blacklistRE: blacklist([/bebbo\/.*/])
+  blacklistRE: blacklist([/xk\/.*/])
   }
 };

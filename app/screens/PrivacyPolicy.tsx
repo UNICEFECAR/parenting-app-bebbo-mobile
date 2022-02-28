@@ -3,6 +3,7 @@ import { ChildAddTop } from '@components/shared/ChildSetupStyle';
 import Icon from '@components/shared/Icon';
 import OnboardingContainer from '@components/shared/OnboardingContainer';
 import OnboardingHeading from '@components/shared/OnboardingHeading';
+import iframe from '@native-html/iframe-plugin';
 import { RootStackParamList } from '@navigation/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -12,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { BackHandler, Dimensions, Pressable, ScrollView, useWindowDimensions, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import WebView from 'react-native-webview';
 import { ThemeContext } from 'styled-components/native';
 import { useAppSelector } from '../../App';
 import RenderImage from '../services/RenderImage';
@@ -98,6 +100,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
                 img: {maxWidth:Dimensions.get('window').width-50},
               }}
               renderers={{
+                iframe,
                 img:(attribs:any) => {
                   const imagePath:any = attribs.src;
                   console.log(imagePath,"..imagePath");
@@ -113,6 +116,10 @@ const PrivacyPolicy = ({navigation}: Props) => {
                    );
                   }
                 },
+              }}
+              WebView={WebView}
+              renderersProps={{
+                iframe: { webViewProps: { allowsFullscreenVideo: true } }
               }}
             />
             : null 
