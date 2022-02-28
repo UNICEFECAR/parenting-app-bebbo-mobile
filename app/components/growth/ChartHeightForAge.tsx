@@ -15,7 +15,7 @@ import { getInterpretationHeightForAge } from '../../services/interpretationServ
 import { addSpaceToHtml } from '../../services/Utils';
 import GrowthChart, { chartTypes } from './GrowthChart';
 
-const ChartHeightForAge = () => {
+const ChartHeightForAge = (props: any) => {
   const {t} = useTranslation();
   const themeContext = useContext(ThemeContext);
   const headerColor = themeContext.colors.CHILDGROWTH_COLOR;
@@ -29,6 +29,7 @@ const ChartHeightForAge = () => {
   //   state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).growth_type:[],
   // );
   // console.log(growth_type,"..growth_type..")
+  
   const navigation = useNavigation();
   const fullScreenChart = (chartType, obj) => {
     // console.log((activeChild,chartType,obj,standardDeviation));
@@ -49,6 +50,8 @@ const ChartHeightForAge = () => {
   );
   let obj: any;
   let standardDeviation: any;
+  console.log("props in height for age chart23----",props.days);
+  console.log("props in height for age taxonomy----",activeChild?.taxonomyData?.days_from);
    // if (activeChild?.gender == '40' || activeChild?.gender == '') {
   if (activeChild?.gender == boy_child_gender || activeChild?.gender == '') {
     //boy or no gender added
@@ -145,9 +148,9 @@ useEffect(() => {
         )}
 
         <ShiftFromTopBottom15>
-          {item ? (
+          {item && (props.days >= activeChild.taxonomyData.days_from) ? (
             <>
-             {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null} 
+             {/* {item?.interpretationText?.name && item?.interpretationText?.text ? <Heading2>{t('growthScreensumHeading')}</Heading2> : null}  */}
               <Heading4> {item?.interpretationText?.name}</Heading4>
               {item?.interpretationText?.text ? (
                 <Heading3Regular>{item?.interpretationText?.text}</Heading3Regular>
@@ -173,22 +176,25 @@ useEffect(() => {
           ) : null}
         </ShiftFromTopBottom15>
       </FlexCol>
-      <FlexCol
-        style={{
-          backgroundColor: backgroundColor,
-          marginLeft: -20,
-          marginRight: -20,
-        }}>
-        <RelatedArticles
-          fromScreen={'ChildgrowthTab'}
-          related_articles={item?.interpretationText?.articleID}
-          category={5}
-          currentId={chartTypes.heightForAge}
-          headerColor={headerColor}
-          backgroundColor={backgroundColor}
-          navigation={navigation}
-        />
-      </FlexCol>
+      {(props.days >= activeChild.taxonomyData.days_from) ?
+          <FlexCol
+            style={{
+              backgroundColor: backgroundColor,
+              marginLeft: -20,
+              marginRight: -20,
+            }}>
+            <RelatedArticles
+              fromScreen={'ChildgrowthTab'}
+              related_articles={item?.interpretationText?.articleID}
+              category={5}
+              currentId={chartTypes.heightForAge}
+              headerColor={headerColor}
+              backgroundColor={backgroundColor}
+              navigation={navigation}
+            />
+          </FlexCol>
+          : null 
+        }
     </FlexCol>
   );
 };
