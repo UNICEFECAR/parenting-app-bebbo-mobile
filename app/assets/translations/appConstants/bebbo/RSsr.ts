@@ -394,7 +394,7 @@ const RSsr = {
               OnboardingImportButton: "Uvezite sada",
               ORkeyText: "Ili",
               addChildText: "Dodajte podatke o detetu",
-              notiTimeAgoTxt: "pre {{ageStr}}",
+              notiTimeAgoTxt: "ranije {{ageStr}}",
               todayTxt: "sada",
               fiveYearsGreater: "Standardne vrednosti rasta dostupne su samo za decu od 0 do 5 godina i stoga grafikoni rasta nisu primenljivi za decu stariju od 5 godina",
               forceUpdatePopupTitle: "Informacija",
@@ -412,7 +412,7 @@ const RSsr = {
               backToSubCategoryTxt: "Istražite {{subCategoryName}}",
               backtoStarttxt: "Vratite se na početak",
               backToCategoryTxt: "Vratite se na {{categoryName}}",
-              hereIsExportAdviceTxt: "Stručnjci vam savetuju",
+              hereIsExportAdviceTxt: "Stručnajci vam savetuju",
               readMoreTxt: "Više o tome",
               learnMoreLinkTxt: "Saznajte više o tome",
               question4: "Da li ste pronašli to što vas je zanimalo?",
@@ -432,7 +432,6 @@ const RSsr = {
               downloadAllSuccessPopupTitle: "Uspešno obavljeno",
               downloadAllSuccessPopupText: "Svi podaci su uspešno preuzeti!!",
               downloadAllSuccessOkBtn: "U redu"
-
        }
 
 }
