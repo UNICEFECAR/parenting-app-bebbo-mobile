@@ -42,6 +42,7 @@ import { restOfTheWorldCountryId } from '@assets/translations/appOfflineData/api
 import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
+import messaging from '@react-native-firebase/messaging';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -157,10 +158,21 @@ export default () => {
     }
   }
   useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log("msg----",remoteMessage);
+      if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
+        Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body,[
+          { text: t('forceUpdateOkBtn') }
+        ]);
+      }
+    });
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
+
+    return unsubscribe;
   }, []);
+  
   useMemo(() => {
     // if (userIsOnboarded == true) {
     fetchNetInfo();
