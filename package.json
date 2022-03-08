@@ -22,6 +22,7 @@
     "@react-native-firebase/analytics": "^12.6.0",
     "@react-native-firebase/app": "^12.6.0",
     "@react-native-firebase/crashlytics": "^12.6.0",
+    "@react-native-firebase/messaging": "^14.5.1",
     "@react-native-google-signin/google-signin": "^6.0.1",
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/drawer": "^5.12.9",
