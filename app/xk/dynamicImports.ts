@@ -1,6 +1,6 @@
 import 'intl';
-require('intl/locale-data/jsonp/sq-XK')
-require('intl/locale-data/jsonp/sr-Latn-XK')
+// require('intl/locale-data/jsonp/sq-XK')
+// require('intl/locale-data/jsonp/sr-Latn-XK')
 export const localization=require('@assets/data/xk/localization').default;
 export const bebbo_logo_shape=require('@assets/svg/xk/bebbo_logo_shape.svg');
 export const img_logo_chatbot_new=require('@assets/svg/xk/img-logo-chatbot-new.svg');

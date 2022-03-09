@@ -477,9 +477,12 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
     if (diff.years > 0) {
       //ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
       ageStr += diff.years + (diff.years > 1 ? (diff.years >= 5 ? ' ' + t('years5tag') : ' ' + t('yearstag')) : ' ' + t('yeartag'));
-      ageStr += ' ';
+     
     }
     if (diff.months > 0) {
+      if(ageStr!="" && ageStr!=null && ageStr!=undefined){
+      ageStr += ' '+t('childInfoAndText')+' ';
+      }
       //ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
       ageStr += diff.months + (diff.months > 1 ? (diff.months >= 5 ? ' ' + t('months5tag') : ' ' + t('monthstag')) : ' ' + t('monthtag'));
 
@@ -487,8 +490,15 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string) => {
     //  console.log(Math.round(diff.days),"..diffff...")
     // if(diff.days>0){ 
     if (diff.days >=1 && diff.months == "" && diff.years == "") {
+      let lastDigit =Math.round(diff.days)%10;
+      console.log(lastDigit,"..lastDigit..");
+    // ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) ==22 && Math.round(diff.days) ==23 && Math.round(diff.days) ==24  ? ' ' + t('daystag'):Math.round(diff.days) ==21 ? ' ' + t('daytag'):Math.round(diff.days) >= 5 && Math.round(diff.days) !=21&& Math.round(diff.days) !=22 && Math.round(diff.days) !=24 && Math.round(diff.days) !=23? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+//ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+   ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25? ' ' + t('days5tag') : Math.round(diff.days) == 21?' ' +  t('daytag'):' ' + t('daystag')) : ' ' + t('daytag'));
+      //(Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+      console.log(ageStr,"..ageStrnew.")
       //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
-      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+    //  ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
       // ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? (Math.round(diff.days)>=5 ? " days5 ": " day24 "): " day");
     }
     console.log(ageStr,"..ageStr")
@@ -516,9 +526,12 @@ export const getNotificationDateInString = (t: any, birthDate: string) => {
     if (diff.years > 0) {
       //ageStr = diff.years + (diff.years > 1 ? t('yearstag') : t('yeartag'));
       ageStr += diff.years + (diff.years > 1 ? (diff.years >= 5 ? ' ' + t('years5tag') : ' ' + t('yearstag')) : ' ' + t('yeartag'));
-      ageStr += ' ';
+     
     }
     if (diff.months > 0) {
+      if(ageStr!="" && ageStr!=null && ageStr!=undefined){
+      ageStr += ' '+t('childInfoAndText')+' ';
+      }
       //ageStr += diff.months + (diff.months > 1 ? t('monthstag') : t('monthtag'));
       ageStr += diff.months + (diff.months > 1 ? (diff.months >= 5 ? ' ' + t('months5tag') : ' ' + t('monthstag')) : ' ' + t('monthtag'));
 
@@ -526,8 +539,11 @@ export const getNotificationDateInString = (t: any, birthDate: string) => {
     //  console.log(Math.round(diff.days),"..diffff...")
     // if(diff.days>0){ 
     if (diff.days >=1 && diff.months == "" && diff.years == "") {
+      let lastDigit =Math.round(diff.days)%10;
       //ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? t('daystag') : t('daytag'));
-      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(diff.days) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+    //  ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? (Math.round(lastDigit) >= 5 ? ' ' + t('days5tag') : ' ' + t('daystag')) : ' ' + t('daytag'));
+      ageStr += Math.round(diff.days) + (Math.round(diff.days) > 1 ? ((Math.round(diff.days) >= 5 && Math.round(diff.days) <= 20) || Math.round(diff.days) >= 25? ' ' + t('days5tag') : Math.round(diff.days) == 21?' ' +  t('daytag'):' ' + t('daystag')) : ' ' + t('daytag'));
+  
       // ageStr += Math.round(diff.days) + (Math.round(diff.days)>1 ? (Math.round(diff.days)>=5 ? " days5 ": " day24 "): " day");
     }
     console.log(ageStr,"..ageStr")
