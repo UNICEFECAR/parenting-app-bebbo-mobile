@@ -334,7 +334,7 @@ const UZuz = {
               editChildDobLabel: "Tugʻilgan sanani kiriting",
               childInfoBabyText: "Chaqaloq",
               childInfoParentText: "Ota-ona",
-              childInfoAndText: "va",
+              childInfoAndText: "ва",
               childSetupdobText: "Tugʻilgan sanani kiriting",
               growthModalText: "Bu yerga farzandingizning vazn va boʻy oʻchamlarini kiritib boring; oʻsishini yaxshiroq qoʻllab-quvvatlashni oʻrganib olasiz",
               vaccineModalText: "Bu yerda milliy emlash taqvimiga muvofiq roʻyxatdan oʻtishingiz, kuzatib borishingiz va har bir emlash haqida koʻproq maʼlumot olishingiz mumkin. Farzandingizni emlatish eslatmasini yoqing va xabarnomalar olib turing!",
