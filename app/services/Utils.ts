@@ -2,7 +2,7 @@ import { CHILDREN_PATH } from "@types/types";
 import RNFS from 'react-native-fs';
 import { ObjectSchema } from "realm";
 import { v4 as uuidv4 } from 'uuid';
-import { appConfig, isArticlePinned } from "../assets/translations/appOfflineData/apiConstants";
+import { appConfig, isArticlePinned, luxonDefaultLocale } from "../assets/translations/appOfflineData/apiConstants";
 import { dataRealmCommon } from "../database/dbquery/dataRealmCommon";
 import { ActivitiesEntity, ActivitiesEntitySchema } from "../database/schema/ActivitiesSchema";
 import { ArticleEntity, ArticleEntitySchema } from "../database/schema/ArticleSchema";
@@ -21,7 +21,6 @@ import { VaccinationEntity, VaccinationSchema } from "../database/schema/Vaccina
 import { VideoArticleEntity, VideoArticleEntitySchema } from "../database/schema/VideoArticleSchema";
 import { receiveAPIFailure } from "../redux/sagaMiddleware/sagaSlice";
 import { isFutureDate } from "./childCRUD";
-const IntlPolyfill = require('intl');
 export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
         // console.log(new Date()," response in utils-",response);
@@ -195,17 +194,18 @@ export const addSpaceToHtml=(htmlInput:any)=>{
 }
 export const formatDate = (dateData: any, luxonLocale: string) => {
     // return new IntlPolyfill.DateTimeFormat(luxonLocale, {day:'2-digit', month: 'short',year:'numeric' }).format(new Date(dateData))
-    let day = new IntlPolyfill.DateTimeFormat(luxonLocale, { day: '2-digit' }).format(new Date(dateData));
-    let month = new IntlPolyfill.DateTimeFormat(luxonLocale, { month: 'short' }).format(new Date(dateData));
-    let year = new IntlPolyfill.DateTimeFormat(luxonLocale, { year: 'numeric' }).format(new Date(dateData));
-    let dateView = day + " " + month + " " + year;
+    let day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
+    let month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
+    let year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
+    let dateView = day + "." + month + "." + year;
+    console.log(dateView,"..dateView");
     return dateView;
 }
 export const formatStringDate = (dateData: any, luxonLocale: string) => {
-    let day = new IntlPolyfill.DateTimeFormat(luxonLocale, { day: '2-digit' }).format(new Date(dateData));
-    let month = new IntlPolyfill.DateTimeFormat(luxonLocale, { month: 'short' }).format(new Date(dateData));
-    let year = new IntlPolyfill.DateTimeFormat(luxonLocale, { year: 'numeric' }).format(new Date(dateData));
-    let dateView = day + " " + month + " " + year;
+    let day = new Intl.DateTimeFormat(luxonDefaultLocale, { day: '2-digit' }).format(new Date(dateData));
+    let month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
+    let year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
+    let dateView = day + "." + month+ "." + year;
     return dateView;
 }
 
@@ -217,7 +217,7 @@ export const formatStringTime = (dateData: any, luxonLocale: string) => {
     // let timeView=hour+":"+minute+" "+period;
     //   return timeView;
     
-    return new IntlPolyfill.DateTimeFormat(luxonLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
+    return new Intl.DateTimeFormat(luxonDefaultLocale, { hour: 'numeric', minute: 'numeric', hour12: false }).format(new Date(dateData));
     // return DateTime.fromJSDate(new Date(dateData)).setLocale(luxonLocale).toFormat('hh:mm a');
 }
 export const removeParams=(sParam:any)=>

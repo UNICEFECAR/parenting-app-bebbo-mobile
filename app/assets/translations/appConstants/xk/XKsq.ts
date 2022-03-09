@@ -335,7 +335,7 @@ const XKsq = {
                 editChildDobLabel: "Shkruaj datën e lindjes",
                 childInfoBabyText: " Foshnja",
                 childInfoParentText: "Prindi",
-                childInfoAndText: "dhe",
+                childInfoAndText: "e",
                 childSetupdobText: "Shkruani datën e lindjes",
                 growthModalText: "Shkruani dhe përditësoni peshën dhe gjatësinë e fëmijës suaj këtu; do të mësoni se si ta mbështesni zhvillimin e tij/saj",
                 vaccineModalText: "Këtu mund të regjistroni, gjurmoni, dhe zbuloni më shumë për secilën vaksinë sipas kalendarit kombëtar të vaksinimit. Caktoni rikujtues për vaksinimet e fëmijës suaj dhe pranoni njoftime!",

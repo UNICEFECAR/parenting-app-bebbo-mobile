@@ -63,6 +63,7 @@ import {
 import MediaPicker from '../../services/MediaPicker';
 import { validateForm } from '../../services/Utils';
 import TextInputML from '@components/shared/TextInputML';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 
@@ -133,6 +134,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
   const createdAt = childData != null ? childData.createdAt : null;
   const [isExpected, setIsExpected] = React.useState<string>('false');
   const [destPath, setDestPath] = React.useState<string>('');
+  const [loading,setLoading] = React.useState<Boolean>(false);
   const child_age = useAppSelector(
     (state: any) =>
       state.utilsData.taxonomy.allTaxonomyData != '' ? JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_age : [],
@@ -398,6 +400,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
     childSet.push(insertData);
     // console.log(insertData, '..insertData..');
     // console.log(childSet, '..childSet..');
+    setLoading(false);
     addChild(languageCode, editScreen, 2, childSet, dispatch, navigation, child_age, null,null);
   };
 
@@ -458,6 +461,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
           ) : null}
         </HeaderRowView>
         <ScrollView style={{ flex: 4 }}>
+        <OverlayLoadingComponent loading={loading} />
           {/* <Text>{capturedPhoto}</Text> */}
           <FlexCol>
             {capturedPhoto != '' && capturedPhoto != null && capturedPhoto != undefined && photoDeleted == false ? (
@@ -637,6 +641,7 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                 );
                 if (validated == true) {
                  // console.log("24455e655")
+                  setLoading(true);
                   AddChild();
                 } else {
                 }
