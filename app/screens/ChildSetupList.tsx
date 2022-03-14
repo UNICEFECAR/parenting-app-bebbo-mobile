@@ -1,5 +1,6 @@
 import { ONBOARDING_CHILD_COUNT } from '@assets/data/firebaseEvents';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
+import OverlayLoadingComponent from '@components/OverlayLoadingComponent';
 import {
   ButtonLinkPress, ButtonPrimary, ButtonRow, ButtonText,
   ButtonTextLinew
@@ -23,7 +24,7 @@ import { RootStackParamList } from '@navigation/types';
 import analytics from '@react-native-firebase/analytics';
 import { CommonActions, useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Text, TouchableHighlight, View } from 'react-native';
 import { ThemeContext } from 'styled-components/native';
@@ -48,6 +49,7 @@ type Props = {
 const ChildSetupList = ({ navigation }: Props) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
   const genders = useAppSelector(
     (state: any) =>
     state.utilsData.taxonomy.allTaxonomyData != '' ?JSON.parse(state.utilsData.taxonomy.allTaxonomyData).child_gender:[],
@@ -212,6 +214,7 @@ const ChildSetupList = ({ navigation }: Props) => {
      <View style={{flex: 1, backgroundColor: headerColor}}>
         <FocusAwareStatusBar animated={true} backgroundColor={headerColor} />
       <OnboardingContainer>
+      <OverlayLoadingComponent loading={loading} />
         <OnboardingHeading>
           <ChildCenterView>
             <Heading1Centerw>
@@ -263,7 +266,12 @@ const ChildSetupList = ({ navigation }: Props) => {
           <ButtonPrimary
             onPress={(e) => {
               e.stopPropagation();
-              childSetup();
+              setLoading(true);
+              setTimeout(()=>{
+                setLoading(false);
+                childSetup();
+              },0)
+             
             }}>
             <ButtonText numberOfLines={2}>{t('childSetupListcontinueBtnText')}</ButtonText>
           </ButtonPrimary>

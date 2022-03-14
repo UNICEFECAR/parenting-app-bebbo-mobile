@@ -658,6 +658,7 @@ const ChildSetup = ({ navigation }: Props) => {
               disabled={birthDate != null && birthDate != undefined && !isFutureDate(birthDate) ? !validateForm(0, birthDate, isPremature, relationship, plannedTermDate, name, gender) : !validateForm(3, birthDate, isPremature, relationship, plannedTermDate, name, gender)}
               onPress={(e) => {
                 e.stopPropagation();
+                setLoading(true);
                 // console.log(birthDate,"..birthDate..");
                 // console.log(isPremature,"..isPremature..");
                 // console.log(plannedTermDate,"..plannedTermDate..");
@@ -673,7 +674,10 @@ const ChildSetup = ({ navigation }: Props) => {
                 }
                 //console.log(validated, "..validated..");
                 if (validated == true) {
-                  AddChild();
+                  setTimeout(()=>{
+                    setLoading(false);
+                    AddChild();
+                  },0)
                 }
                 else {
                   //  Alert.alert(validated);
