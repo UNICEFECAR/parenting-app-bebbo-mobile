@@ -624,12 +624,13 @@ const EditChildProfile = ({ route, navigation }: Props) => {
             }
             onPress={(e) => {
               e.preventDefault();
-              setAddChild(false);
+              setLoading(true);
+            //  setAddChild(false);
               //  console.log(birthDate,"..birthDate..");
               //  console.log(isPremature,"..isPremature..");
               //  console.log(plannedTermDate,"..plannedTermDate..");
               //  console.log(isExpected,"..isExpected..");
-              if (addChildParam == true) {
+           //  if (addChildParam == true) {
                 const validated = validateForm(
                   1,
                   birthDate,
@@ -639,13 +640,15 @@ const EditChildProfile = ({ route, navigation }: Props) => {
                   name,
                   gender,
                 );
+                console.log("24455e655",validated)
                 if (validated == true) {
-                 // console.log("24455e655")
-                  setLoading(true);
-                  AddChild();
+                  setTimeout(()=>{
+                    setLoading(false);
+                    AddChild();
+                  },0)
                 } else {
                 }
-              }
+             // }
 
             }}>
             {childData && childData?.uuid != '' ? (
