@@ -217,6 +217,20 @@ const localizationall = [
     ],
   },
   {
+    name: 'Ukraine',
+    countryId: 136,
+    displayName: 'Ukraine (Україна)',
+    languages: [
+      {
+        name: 'Ukrainian',
+        displayName: 'українська',
+        languageCode: 'uk',
+        locale: 'uk',
+        luxonLocale:'uk-UA'
+      }
+    ],
+  },
+  {
     name: 'Rest of the world',
     countryId: 126,
     displayName: 'Rest of the world',
@@ -237,6 +251,7 @@ const localizationall = [
       },
     ],
   },
+ 
 ];
 export default localizationall;
 
