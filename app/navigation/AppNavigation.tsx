@@ -158,6 +158,21 @@ export default () => {
     }
   }
   useEffect(() => {
+    async function requestUserPermission() {
+      const authStatus = await messaging().requestPermission();
+      const enabled =
+        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL;  
+      if (enabled) {
+        console.log('Authorization status:', authStatus);
+      }
+    }
+    if(Platform.OS=="ios"){
+    requestUserPermission();
+    }
+  }, []);
+  useEffect(() => {
+    
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       console.log("msg----",remoteMessage);
       if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
