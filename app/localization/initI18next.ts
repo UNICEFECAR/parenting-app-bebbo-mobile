@@ -14,7 +14,7 @@ import i18n, {
   const newArr: any[] = [];
   const localisationnew = [...localization];
   // const localisationnew = arrCopy.filter(o=>o.languages = o.languages.filter(x=> x.languageCode != 'rs-en'))
- console.log(localisationnew,"--localisationnew");
+ //console.log(localisationnew,"--localisationnew",RNLocalize.getLocales());
   const findAllByKey:any = (obj: object | null, keyToFind: string) => {
     return Object.entries(obj)
       .reduce((acc, [key, value]) => (key === keyToFind)
@@ -60,6 +60,7 @@ import i18n, {
             //   'No language is set, choosing the best available or English as fallback',
             // );
           }
+          
           const bestLng = RNLocalize.findBestAvailableLanguage(AVALAILABLE_LANG_CODES);
          //console.log(bestLng,"--bestLng--- ");
         // console.log(bestLng,"--bestLng--- ",AVALAILABLE_LANG_CODES);
