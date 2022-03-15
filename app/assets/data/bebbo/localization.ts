@@ -196,6 +196,20 @@ const localizationall = [
     ],
   },
   {
+    name: 'Ukraine',
+    countryId: 136,
+    displayName: 'Ukraine (Україна)',
+    languages: [
+      {
+        name: 'Ukrainian',
+        displayName: 'українська',
+        languageCode: 'uk',
+        locale: 'uk',
+        luxonLocale:'uk-UA'
+      }
+    ],
+  },
+  {
     name: 'Uzbekistan',
     countryId: 51,
     displayName: 'Uzbekistan (Oʻzbekiston)',
@@ -214,20 +228,6 @@ const localizationall = [
         locale: 'UZru',
         luxonLocale:'ru-RU'//need to be verified
       },
-    ],
-  },
-  {
-    name: 'Ukraine',
-    countryId: 136,
-    displayName: 'Ukraine (Україна)',
-    languages: [
-      {
-        name: 'Ukrainian',
-        displayName: 'українська',
-        languageCode: 'uk',
-        locale: 'uk',
-        luxonLocale:'uk-UA'
-      }
     ],
   },
   {
