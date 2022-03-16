@@ -89,6 +89,7 @@ const NotificationItem = (props: any) => {
               headerTitle: t('vcReminderHeading'),
               buttonTitle: t('hcReminderAddBtn'),
               titleTxt: t('hcReminderText'),
+              titleTxt2: t('hcDefinedReminderText'),
               warningTxt: t('hcReminderDeleteWarning'),
               headerColor: hcheaderColor,
               fromNotificationScreen: true,
