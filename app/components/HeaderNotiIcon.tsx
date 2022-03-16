@@ -64,7 +64,7 @@ const HeaderNotiIcon = (props: any) => {
         childList?.map((child: any) => {
          // console.log(child, "<<child>>")
           const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-        //  console.log("notiExist", notiExist);
+         console.log("notiExist---", notiExist);
           if (notiExist != undefined) {
             // notiExist.gwcdnotis?.forEach((item) => {
             //   allgwcdnotis.push(item)

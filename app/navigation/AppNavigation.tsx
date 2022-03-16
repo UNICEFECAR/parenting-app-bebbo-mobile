@@ -43,6 +43,7 @@ import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
+import LocalNotifications from '../services/LocalNotifications';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -183,6 +184,7 @@ export default () => {
     });
     setTimeout(() => {
       SplashScreen.hide();
+      LocalNotifications.schduleNotification(new Date(Date.now() + 60 * 1000),'Reminder!','title','1647350709887');
     }, 2000);
 
     return unsubscribe;
