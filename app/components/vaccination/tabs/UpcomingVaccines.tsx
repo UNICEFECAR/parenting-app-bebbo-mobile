@@ -306,6 +306,7 @@ const UpcomingVaccines = (props: any) => {
                               headerTitle: t('vcEditReminderHeading'),
                               buttonTitle: t('vcReminderAddBtn'),
                               titleTxt: t('vcReminderText'),
+                              titleTxt2: t('vcDefinedReminderText'),
                               warningTxt: t('vcReminderDeleteWarning'),
                               headerColor: headerColor,
                               editReminderItem: vcReminder,
@@ -328,6 +329,7 @@ const UpcomingVaccines = (props: any) => {
                         headerTitle: t('vcReminderHeading'),
                         buttonTitle: t('vcReminderAddBtn'),
                         titleTxt: t('vcReminderText'),
+                        titleTxt2: t('vcDefinedReminderText'),
                         warningTxt: t('vcReminderDeleteWarning'),
                         headerColor: headerColor,
                       });

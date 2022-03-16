@@ -237,6 +237,7 @@ const HealthCheckups = ({navigation,route}: Props) => {
                       headerTitle: t('vcReminderHeading'),
                       buttonTitle: t('hcReminderAddBtn'),
                       titleTxt: t('hcReminderText'),
+                      titleTxt2: t('hcDefinedReminderText'),
                       warningTxt: t('hcReminderDeleteWarning'),
                       headerColor: headerColor,
                     });

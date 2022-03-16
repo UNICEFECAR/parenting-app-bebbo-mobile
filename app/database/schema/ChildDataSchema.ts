@@ -38,6 +38,8 @@ export const ReminderEntitySchema = {
     reminderType: { type: "string" },
     reminderDate: { type: "int" },
     reminderTime: { type: "int" },
+    reminderDateDefined: { type: "int" },
+    reminderTimeDefined: { type: "int" },
   }
 }
 export type ReminderEntity = {
@@ -45,6 +47,8 @@ export type ReminderEntity = {
   reminderType: remiderType,
   reminderDate: number,
   reminderTime: number,
+  reminderDateDefined: number,
+  reminderTimeDefined: number,
 }
 
 export type ChildEntity = {
