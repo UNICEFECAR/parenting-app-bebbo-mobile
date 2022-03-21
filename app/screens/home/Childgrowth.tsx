@@ -83,6 +83,9 @@ const Childgrowth = ({navigation,route}: Props) => {
     const luxonLocale = useAppSelector(
       (state: any) => state.selectedCountry.luxonLocale,
     );
+    const pluralShow = useAppSelector(
+      (state: any) => state.selectedCountry.pluralShow,
+    );
    useFocusEffect(()=>{
     // console.log('growthModalOpened',growthModalOpened);
     // pass true to make modal visible every time & reload
@@ -240,6 +243,7 @@ const {width,height}= Dimensions.get('window');
                             ? getCurrentChildAgeInMonths(
                                 t,
                                 activeChild.birthDate,
+                                pluralShow
                               )
                             : '',
                       }):t('expectedChildDobLabel')
