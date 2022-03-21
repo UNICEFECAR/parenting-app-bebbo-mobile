@@ -1,6 +1,6 @@
 import { beforeDays, maxPeriodDays, threeeMonthDays, twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
-import { getCurrentChildAgeInDays } from './childCRUD';
+import { getCurrentChildAgeInDays, isFutureDate } from './childCRUD';
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
@@ -9,7 +9,7 @@ export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, a
     (a: any, b: any) => a.days_from - b.days_from,
   );
   let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
-    (a: any, b: any) => a.days_from - b.days_from,
+    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
   const lastvcperiod = vcNotis.findIndex(item => item.growth_period == notiExist.lastvcperiodid)
   const currentvcperiod = vcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
@@ -218,7 +218,7 @@ export const getNextChildNotification = (gwperiodid: any, vcperiodid: any, hcper
   ///perform computation for hc,vc
   // get all notis between last period id to current running period
   let vcNotis: any = getVCNotis(allVaccinePeriods, allGrowthPeriods, child).sort(
-    (a: any, b: any) => a.days_from - b.days_from,
+    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
   const lastvcperiod = vcNotis.findIndex(item => item.growth_period == vcperiodid)
   const currentvcperiod = vcNotis.findIndex(item => item.days_from <= childAgeInDays && item.days_to >= childAgeInDays)
@@ -445,8 +445,10 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
           // if hc exists, add vc ,and vica versa 
           // or add one that exists
           const itemtype = element.reminderType == 'vaccine' ? 'vcr' : 'hcr';
-          const reminderexist = reminderNotis.filter(item => item.uuid == element.uuid && item.type == itemtype)
-          //console.log(reminderexist, "reminderexist");
+          const filteredPastRemidnerNotis = reminderNotis.filter((item:any)=> !isFutureDate(item.notificationDate));
+          console.log("filteredPastRemidnerNotis2---",filteredPastRemidnerNotis);
+          const reminderexist = reminderNotis.filter((item:any) => item.uuid == element.uuid && item.type == itemtype)
+          console.log(reminderexist.length, "reminderexist length---",reminderexist);
           //get only past reminders  till today and filter by child age
           let finalremDT:any, finalremDTDefined:any;  
             const onlyDate = new Date(element.reminderDate);
@@ -471,8 +473,9 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                   "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
                   "checkinField": "days_from",
                   "notificationDate": DateTime.fromJSDate(new Date()),
-                  "isRead": element.reminderDateDefined == reminderexist.periodName ? reminderexist.isRead : false,
+                  "isRead": isFutureDate(reminderexist.notificationDate) ? false : reminderexist.isRead,
                   "isDeleted": element.reminderDateDefined == reminderexist.periodName ? reminderexist.isDeleted : false,
+                  // "isDeleted": element.reminderDateDefined == reminderexist.periodName ? reminderexist.isDeleted : false,
                   "growth_period": element.reminderTimeDefined,
                   "periodName": element.reminderDateDefined,
                   "uuid": element.uuid,
@@ -548,8 +551,8 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                 //schedule date
                 // if (Math.floor(childvcReminderDateInDays) <= childAgeInDays) {
                   noti.push({
-                    "days_from": Math.floor(childvcReminderDateInDays),
-                    "days_to": Math.floor(childvcReminderDateInDays),
+                    "days_from": Math.floor(childvcReminderDateInDays+1),
+                    "days_to": Math.floor(childvcReminderDateInDays+1),
                     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                     "subtype": "scheduled",
                     "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
@@ -562,7 +565,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                     "uuid": element.uuid,
                   })
 
-                  console.log("noti val ---",noti);
+                  console.log("noti val2 ---",noti);
             // }
           }
         // } 
@@ -654,8 +657,8 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
 
     });
   }
-  let sortednoti = noti.sort(
-    (a: any, b: any) => a.days_from - b.days_from,
+  let sortednoti = reminderNotis.sort(
+    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
   // if(vchcEnabledFlag==false){
   //   sortednoti = [...sortednoti].map(item=>{
@@ -732,7 +735,7 @@ export const getVCNotis = (allVaccinePeriods: any, allGrowthPeriods: any, child:
   // console.log(groupsForPeriods, "groupsForPeriods")
   //console.log(noti, "inVC")
   let sortednoti = noti.sort(
-    (a: any, b: any) => a.days_from - b.days_from,
+    (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
   return sortednoti;
 }

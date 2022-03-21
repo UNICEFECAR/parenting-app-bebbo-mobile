@@ -221,13 +221,13 @@ const HeaderNotiIcon = (props: any) => {
             let childBirthDate = DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis();
             //  (item.days_from < childAgeInDays && childCrateDate <= fromDate)
             let toDay = DateTime.fromJSDate(new Date()).toMillis();
-             let combinedNotis1 = currentChildallnoti.sort(
-              (a: any, b: any) => a.days_from - b.days_from,
+             let combinedNotis1:any = currentChildallnoti.sort(
+              (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
             )
             console.log(combinedNotis1, "before combinedNotis1")
            
             let combinedNotis = currentChildallnoti.sort(
-              (a: any, b: any) => a.days_from - b.days_from,
+              (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
             ).filter((item) => {
               console.log(item.type,"..type")
                 console.log(item.isRead,"..isRead")

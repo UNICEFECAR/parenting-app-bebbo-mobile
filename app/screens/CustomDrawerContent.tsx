@@ -201,7 +201,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
 
 
           let combinedNotis = currentChildallnoti.sort(
-            (a: any, b: any) => a.days_from - b.days_from,
+            (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
           ).filter((item) => { return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) });
         //  console.log(combinedNotis, "combinedNotis")
           // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
