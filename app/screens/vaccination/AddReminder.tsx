@@ -141,6 +141,10 @@ const AddReminder = ({ route, navigation }: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const vchcEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.vchcEnabled),
+  );
+  console.log("in add rmeinder---",vchcEnabledFlag);
   // const defaultTimePickerMinValue = ()=>{
   //   var minTime  = new Date();
   //   minTime.getHours()
@@ -298,6 +302,14 @@ const AddReminder = ({ route, navigation }: any) => {
     );
     //console.log(createresult?.length, 'ReminderDeleted');
     if (createresult) {
+      if(editReminderItem) {
+        let previousDTDefined;
+        const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
+        previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
+        previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
+        console.log("deleteing dtdefined---",previousDTDefined);
+        LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+      }
       activeChild.reminders = createresult;
       let notiFlagObj = { key: 'generateNotifications', value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
@@ -357,7 +369,7 @@ const AddReminder = ({ route, navigation }: any) => {
       : measureDateDefined?.toMillis())
     finalReminderDateDefined.setHours(hoursDefined);
     finalReminderDateDefined.setMinutes(minsDefined);
-
+      console.log(DateTime.fromJSDate(finalReminderDate).toMillis(),"---finalReminderDate--",DateTime.fromJSDate(finalReminderDateDefined).toMillis());
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
       if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
       && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
@@ -393,12 +405,21 @@ const AddReminder = ({ route, navigation }: any) => {
           // console.log(createresult);
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const title = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
-            // if(editReminderItem) {
-            //   LocalNotifications.cancelReminderLocalNotification(editReminderItem.reminderTimeDefined);
-            // }
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
+            const title = reminderType == 'vcr' ? titlevcr : titlehcr;
+            if(editReminderItem) {
+              let previousDTDefined;
+              const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
+              previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
+              previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
+              console.log("editing dtdefined---",previousDTDefined);
+              LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+            }
             console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
-            LocalNotifications.schduleNotification(finalReminderDateDefined,'Reminder!',title,measureTimeNewDefined);
+            if(vchcEnabledFlag == true) {
+             LocalNotifications.schduleNotification(finalReminderDateDefined,'Reminder!',title,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
+            }
             dispatch(setActiveChildData(activeChild));
             let notiFlagObj = { key: 'generateNotifications', value: true };
             dispatch(setInfoModalOpened(notiFlagObj));
