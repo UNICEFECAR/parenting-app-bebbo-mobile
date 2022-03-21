@@ -36,17 +36,22 @@ class LocalNotifications {
   }
 
   schduleNotification(date,title,message,notiId) {
-    console.log(notiId,"--notiId--",String(notiId));
+    let notificationid = String(notiId).substr(String(notiId).length-9);
+    console.log(notiId,"--notiId--",notificationid);
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
-      id:notiId,
+      id:notificationid,
       title: '🔔 '+title,
       message: message,
       date,
     });
   }
   cancelReminderLocalNotification(notiId) {
-    PushNotification.cancelLocalNotification(notiId);
+    let notificationid = String(notiId).substr(String(notiId).length-9);
+    PushNotification.cancelLocalNotification(notificationid);
+  }
+  cancelAllReminderLocalNotification() {
+    PushNotification.cancelAllLocalNotifications();
   }
 }
 
