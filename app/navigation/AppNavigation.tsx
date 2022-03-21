@@ -184,7 +184,7 @@ export default () => {
     });
     setTimeout(() => {
       SplashScreen.hide();
-      LocalNotifications.schduleNotification(new Date(Date.now() + 60 * 1000),'Reminder!','title','1647350709887');
+      // LocalNotifications.schduleNotification(new Date(Date.now() + 5 * 1000),'Reminder!','title','350709887');
     }, 2000);
 
     return unsubscribe;

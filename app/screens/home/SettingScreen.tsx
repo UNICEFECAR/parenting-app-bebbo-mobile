@@ -75,10 +75,11 @@ import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
 import { setAllNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
 import { backup } from '../../services/backup';
 import { getAllChildren, isFutureDate } from '../../services/childCRUD';
-import { formatStringDate } from '../../services/Utils';
+import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
 import { downloadArticleImages } from '../../services/commonApiService';
+import LocalNotifications from '../../services/LocalNotifications';
 type SettingScreenNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 type Props = {
@@ -525,10 +526,25 @@ const SettingScreen = (props: any) => {
           })
         }
         if (notiExist.reminderNotis.length > 0) {
+          if(vchcEnabledFlag == true) {
+            //cancel all local notifications
+            LocalNotifications.cancelAllReminderLocalNotification();
+          }
           currentChildNotis.reminderNotis = [...currentChildNotis.reminderNotis]?.map((item) => {
             const difftoToday = Math.round(DateTime.fromJSDate(new Date(item.notificationDate)).diff(DateTime.fromJSDate(new Date()), 'days').days);
-            // console.log(vchcEnabledFlag,"vchcEnabledFlag");
+            console.log(vchcEnabledFlag,"----vchcEnabledFlag");
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
+            if(vchcEnabledFlag == false) {
+              //enable future notifications
+              console.log(item,'---isfuture date4 ---',isFutureDate(new Date(item.notificationDate)));
+              if(item.subtype == 'reminder' && isFutureDate(new Date(item.notificationDate)))
+              {
+                const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
+                const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
+                const title = item.type == 'vcr' ? titlevcr : titlehcr;
+                LocalNotifications.schduleNotification(item.notificationDate,'Reminder!',title,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
+              }
+            }
             if (isFutureDate(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             } else if (difftoToday == 0 || difftoToday == -0) {
