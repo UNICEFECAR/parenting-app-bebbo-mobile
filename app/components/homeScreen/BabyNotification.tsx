@@ -38,6 +38,9 @@ const BabyNotification = () => {
   );
   console.log(activeChild, "..activeChild.gender..")
   const bgColor = themeContext.colors.SECONDARY_COLOR;
+  const pluralShow = useAppSelector(
+    (state: any) => state.selectedCountry.pluralShow,
+  );
   const isFutureDate = (date: Date) => {
     return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
   };
@@ -84,6 +87,7 @@ const BabyNotification = () => {
                                 ? getCurrentChildAgeInMonths(
                                   t,
                                   activeChild.birthDate,
+                                  pluralShow
                                 )
                                 : '',
                           }) : t('expectedChildDobLabel')

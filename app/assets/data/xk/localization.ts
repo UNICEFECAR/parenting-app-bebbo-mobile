@@ -9,14 +9,16 @@ const localizationkosovo = [
         displayName: 'Shqip',
         languageCode: 'xk-sq',
         locale: 'XKsq',
-        luxonLocale:'sq-XK'
+        luxonLocale:'sq-XK',
+        pluralShow:true
       },
       {
         name: 'Serbian',
         displayName: 'Srpski',
         languageCode: 'xk-rs',
         locale: 'XKrs',
-        luxonLocale:'sr-Latn-XK'
+        luxonLocale:'sr-Latn-XK',
+        pluralShow:true
       },
     ],
   }
