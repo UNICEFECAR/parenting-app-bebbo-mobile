@@ -8,6 +8,7 @@ interface selectedLocalizationType {
   languageCode: string;
   luxonLocale:string;
   locale: string;
+  pluralShow:boolean;
   sponsors:Array<any>;
   restartOnLangChange:string;
   AppLayoutDirection:string;
@@ -21,6 +22,7 @@ const initialState: selectedLocalizationType = {
   languageCode: localization[localization.length-1].languages[0].languageCode, //'en'
   luxonLocale: localization[localization.length-1].languages[0].luxonLocale, //'en'
   locale:  localization[localization.length-1]?.languages[0]?.locale, //'en'
+  pluralShow:localization[localization.length-1]?.languages[0]?.pluralShow,//false
   sponsors:[],
   restartOnLangChange:'no',
   AppLayoutDirection:'ltr',
@@ -62,7 +64,7 @@ export const localizationSlice = createSlice({
       state.languageCode = action.payload.language.languageCode;
       state.luxonLocale = action.payload.language.luxonLocale;
       state.locale = action.payload.language.locale;
-      
+      state.pluralShow = action.payload.language.pluralShow;
     },
     oncountrtIdChange: (state, action: PayloadAction<any>) => {
      // console.log(state);
