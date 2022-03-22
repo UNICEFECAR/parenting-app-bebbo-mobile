@@ -9,7 +9,8 @@ const localizationall = [
         displayName: 'Shqip',
         languageCode: 'al-sq',
         locale: 'ALsq',
-        luxonLocale:'sq-AL'
+        luxonLocale:'sq-AL',
+        pluralShow:true
       },
     ],
   },
@@ -23,14 +24,16 @@ const localizationall = [
         displayName: 'Беларуская мова',
         languageCode: 'by-be',
         locale: 'BYbe',
-        luxonLocale:'be-BY'
+        luxonLocale:'be-BY',
+        pluralShow:true
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'by-ru',
         locale: 'BYru',
-        luxonLocale:'ru-BY'
+        luxonLocale:'ru-BY',
+        pluralShow:true
       }
     ],
   },
@@ -44,7 +47,8 @@ const localizationall = [
         displayName: 'Български',
         languageCode: 'bg-bg',
         locale: 'BGbg',
-        luxonLocale:'bg-BG'//pending to verify
+        luxonLocale:'bg-BG',//pending to verify
+        pluralShow:false
       },
     ],
   },
@@ -58,7 +62,8 @@ const localizationall = [
         displayName: 'Ελληνικά',
         languageCode: 'gr-el',
         locale: 'GRel',
-        luxonLocale:'el-GR'
+        luxonLocale:'el-GR',
+        pluralShow:false
       },
       // {
       //   name: 'Arabic',
@@ -107,14 +112,16 @@ const localizationall = [
         displayName: 'Кыргызча',
         languageCode: 'kg-ky',
         locale: 'KGky',
-        luxonLocale:'ky-KG'
+        luxonLocale:'ky-KG',
+        pluralShow:true
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'kg-ru',
         locale: 'KGru',
-        luxonLocale:'ru-KG'
+        luxonLocale:'ru-KG',
+        pluralShow:true
       },
     ],
   },
@@ -128,7 +135,8 @@ const localizationall = [
         displayName: 'Crnogorski',
         languageCode: 'me-cnr',
         locale: 'MEcnr',
-        luxonLocale:'me-cnr'//need to be verified
+        luxonLocale:'me-cnr',//need to be verified
+        pluralShow:true
       },
     ],
   },
@@ -142,14 +150,16 @@ const localizationall = [
         displayName: 'Македонски',
         languageCode: 'mk-mk',
         locale: 'MKmk',
-        luxonLocale:'mk-MK'
+        luxonLocale:'mk-MK',
+        pluralShow:true
       },
       {
         name: 'Albanian',
         displayName: 'Shqip',
         languageCode: 'mk-sq',
         locale: 'MKsq',
-        luxonLocale:'sq-MK'
+        luxonLocale:'sq-MK',
+        pluralShow:true
       },
     ],
   },
@@ -163,14 +173,16 @@ const localizationall = [
         displayName: 'Srpski',
         languageCode: 'rs-sr',
         locale: 'RSsr',
-        luxonLocale:'sr-Latn-RS'
+        luxonLocale:'sr-Latn-RS',
+        pluralShow:true
       },
       {
         name: 'English',
         displayName: 'English',
         languageCode: 'rs-en',
         locale: 'RSen',
-        luxonLocale:'en-US'//need to be verified
+        luxonLocale:'en-US',//need to be verified
+        pluralShow:false
       },
     ],
   },
@@ -184,14 +196,16 @@ const localizationall = [
         displayName: 'Тоҷикӣ',
         languageCode: 'tj-tg',
         locale: 'TJtg',
-        luxonLocale:'tg-TJ'//need to be verified
+        luxonLocale:'tg-TJ',//need to be verified
+        pluralShow:true
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'tj-ru',
         locale: 'TJru',
-        luxonLocale:'ru-RU'//need to be verified
+        luxonLocale:'ru-RU',//need to be verified
+        pluralShow:true
       },
     ],
   },
@@ -205,7 +219,8 @@ const localizationall = [
         displayName: 'українська',
         languageCode: 'uk',
         locale: 'uk',
-        luxonLocale:'uk-UA'
+        luxonLocale:'uk-UA',
+        pluralShow:true
       }
     ],
   },
@@ -219,14 +234,16 @@ const localizationall = [
         displayName: "Oʻzbekcha",
         languageCode: 'uz-uz',
         locale: 'UZuz',
-        luxonLocale:'uz-Latn-UZ'
+        luxonLocale:'uz-Latn-UZ',
+        pluralShow:true
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'uz-ru',
         locale: 'UZru',
-        luxonLocale:'ru-RU'//need to be verified
+        luxonLocale:'ru-RU',//need to be verified
+        pluralShow:true
       },
     ],
   },
@@ -240,14 +257,16 @@ const localizationall = [
         displayName: 'English',
         languageCode: 'en',
         locale: 'en',
-        luxonLocale:'en-US'
+        luxonLocale:'en-US',
+        pluralShow:false
       },
       {
         name: 'Russian',
         displayName: 'Русский',
         languageCode: 'ru',
         locale: 'ru',
-        luxonLocale:'ru-RU'
+        luxonLocale:'ru-RU',
+        pluralShow:true
       },
     ],
   },
