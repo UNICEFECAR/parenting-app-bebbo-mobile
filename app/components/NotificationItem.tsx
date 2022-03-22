@@ -35,6 +35,9 @@ const NotificationItem = (props: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const pluralShow = useAppSelector(
+    (state: any) => state.selectedCountry.pluralShow,
+  );
   const geticonname = (type: string) => {
     // console.log(type)
     return type == 'gw'
@@ -171,7 +174,8 @@ const NotificationItem = (props: any) => {
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getNotificationDateInString(
                       t,
-                      DateTime.fromJSDate(new Date(item.notificationDate))
+                      DateTime.fromJSDate(new Date(item.notificationDate)),
+                      pluralShow
                     )}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{formatStringDate(childCrateDate, luxonLocale)}</Heading6>
@@ -285,7 +289,8 @@ const NotificationItem = (props: any) => {
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getNotificationDateInString(
                       t,
-                      DateTime.fromJSDate(new Date(item.notificationDate))
+                      DateTime.fromJSDate(new Date(item.notificationDate)),
+                      pluralShow
                     )}</Heading6>
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
                 </ShiftFromTop5>
@@ -410,7 +415,8 @@ const NotificationItem = (props: any) => {
                   <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                     getNotificationDateInString(
                       t,
-                      DateTime.fromJSDate(new Date(item.notificationDate))
+                      DateTime.fromJSDate(new Date(item.notificationDate)),
+                      pluralShow
                     )}</Heading6>
                   {/* <Heading6></Heading6> */}
                   {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
@@ -523,7 +529,8 @@ const NotificationItem = (props: any) => {
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                       getNotificationDateInString(
                         t,
-                        DateTime.fromJSDate(new Date(item.notificationDate))
+                        DateTime.fromJSDate(new Date(item.notificationDate)),
+                        pluralShow
                       )}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
@@ -634,7 +641,8 @@ const NotificationItem = (props: any) => {
                     <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                       getNotificationDateInString(
                         t,
-                        DateTime.fromJSDate(new Date(item.notificationDate))
+                        DateTime.fromJSDate(new Date(item.notificationDate)),
+                        pluralShow
                       )}</Heading6>
                     {/* <Heading6></Heading6> */}
                     {/* <Heading6>{item.days_from},{item.days_to},{String(item.growth_period)}</Heading6> */}
@@ -751,7 +759,8 @@ const NotificationItem = (props: any) => {
               <Heading6>  {formatStringDate(item.notificationDate, luxonLocale)} - {
                 getNotificationDateInString(
                   t,
-                  DateTime.fromJSDate(new Date(item.notificationDate))
+                  DateTime.fromJSDate(new Date(item.notificationDate)),
+                  pluralShow
                 )}</Heading6>
               {/* <Heading6></Heading6> */}
               {/* <Heading6>{item.days_from},{item.days_to}{"VCR reminder"}</Heading6> */}
