@@ -67,7 +67,8 @@ const ChartWeightForHeight = (props: any) => {
     obj = formatHeightData(genderGirlData,'weight');
   }
   const childTaxonomyData = activeChild.taxonomyData;
-  const sortedMeasurements = activeChild.measures.sort(
+  // const sortedMeasurements2 = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0);
+  const sortedMeasurements = activeChild.measures.filter((item)=>item.isChildMeasured== true&& item.weight>0 && item.height>0).sort(
     (a: any, b: any) => a.measurementDate - b.measurementDate,
   );
   const lastMeasurements = sortedMeasurements[sortedMeasurements.length - 1];
