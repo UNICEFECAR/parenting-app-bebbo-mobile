@@ -1,5 +1,5 @@
 import PushNotification from 'react-native-push-notification';
-// import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 class LocalNotifications {
   constructor() {
     PushNotification.configure({
@@ -9,7 +9,7 @@ class LocalNotifications {
       },
       onNotification: function (notification) {
         console.log('NOTIFICATION:', notification);
-        // notification.finish(PushNotificationIOS.FetchResult.NoData);
+       // notification.finish(PushNotificationIOS.FetchResult.NoData);
       },
       popInitialNotification: true,
       requestPermissions: true,
