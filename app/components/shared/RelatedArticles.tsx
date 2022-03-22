@@ -94,7 +94,7 @@ const RelatedArticles = (props: RelatedArticlesProps) => {
         // }
       }
       fetchData()
-    }, [currentId])
+    }, [currentId,related_articles])
   );
   // console.log("relatedArticleData--",JSON.stringify(relatedArticleData));
   // const getSameCategoryArticle = () => {
