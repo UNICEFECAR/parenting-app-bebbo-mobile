@@ -32,7 +32,7 @@ export const getInterpretationWeightForHeight = (standardDeviation: any, childTa
         //if lastMeasurements.height is 0.0 then 
     };
     // console.log(chartData,"chartData");
-    // console.log(weight,height,"<formatted>")
+    console.log(weight,height,"<formatted>")
     const allinterpretationData = useAppSelector(
         (state: any) =>
             JSON.parse(state.utilsData.weight_for_height),
