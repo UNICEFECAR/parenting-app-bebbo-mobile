@@ -184,6 +184,7 @@ export default () => {
     });
     setTimeout(() => {
       SplashScreen.hide();
+      console.log("acsd")
       // LocalNotifications.schduleNotification(new Date(Date.now() + 5 * 1000),'Reminder!','title','350709887');
     }, 2000);
 
