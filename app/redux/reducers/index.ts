@@ -43,12 +43,18 @@ const migrationslocalization = {
         AppLayoutDirectionScreen:'LanguageSelection',
         AppLayoutDirectionParams:{}
       }  
-  }
+  },
+  1: (state: any) => {    
+    return {      
+      ...state,      
+      pluralShow:false,
+    }  
+}
 }
 const countryConfig = {
   key: 'country',
   storage: createRealmPersistStorage(),
-  version: 0,
+  version: 1,
   debug: true,
   migrate: createMigrate(migrationslocalization, { debug: true }) 
 };
