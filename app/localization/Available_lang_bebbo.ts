@@ -14,7 +14,7 @@ import RSsr from "@assets/translations/appConstants/bebbo/RSsr";
 import ru from "@assets/translations/appConstants/bebbo/ru";
 import TJru from "@assets/translations/appConstants/bebbo/TJru";
 import TJtg from "@assets/translations/appConstants/bebbo/TJtg";
-import uk from "@assets/translations/appConstants/bebbo/uk";
+// import uk from "@assets/translations/appConstants/bebbo/uk";
 import UZru from "@assets/translations/appConstants/bebbo/UZru";
 import UZuz from "@assets/translations/appConstants/bebbo/UZuz";
 
@@ -32,7 +32,7 @@ const AVAILABLE_LANGUAGES = {
     MKsq,
     TJru,
     TJtg,
-    uk,
+   // uk,
     UZru,
     UZuz,
     // XKsq,
