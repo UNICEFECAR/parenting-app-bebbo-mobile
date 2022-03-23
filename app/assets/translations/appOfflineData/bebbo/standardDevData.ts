@@ -7786,512 +7786,512 @@ export const standardDevData:any = {
             }
         ]
     }],
-    "uk": [ {
-        "weight_for_height": [
-            {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
-                "goodText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - adequate weight for length/height",
-                    "text": "Bravo! Your child grows well and her/ his weight is in harmonious with her/his height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
-                },
-                "warrningSmallHeightText": {
-                    "articleID": [
-                        3416,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months- mild malnutrition",
-                    "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a pediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
-                },
-                "emergencySmallHeightText": {
-                    "articleID": [
-                        3401,
-                        3371,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - severe malnutrition",
-                    "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician  to investigate the cause and determine how to compensate for the loss."
-                },
-                "warrningBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - overweight",
-                    "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a pediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
-                },
-                "emergencyBigHeightText": {
-                    "articleID": [
-                        3401,
-                        3376,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - obesity",
-                    "text": "There is no or minimal risk of being overweight for a baby of 0-6-month-old being exclusively breastfed.  It has been proven and scientifically confirmed that breastfeeding, especially prolonged - at least 12 months, protects a child from obesity later in childhood and adulthood.For babies on artificial nutrition, there is always a danger of overweight.  For overweight or obese babies, advice from the baby's doctor can be helpful. Never withhold food from a baby in an attempt to cause weight loss. To grow and develop as they should, babies need proper nutrition, exclusive breastfeeding during the first 6 months of life. For formula-fed babies, make sure you follow the instructions to prepare the feeds correctly (right amount of water and powder) and follow the instruction for the number of the feeds and the amount of feeds per day."
-                }
-            },
-            {
-                "child_age": [
-                    47
-                ],
-                "goodText": {
-                    "articleID": [
-                        3416,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7-9 months - adequate weight for length/height",
-                    "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
-                },
-                "warrningSmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7-9 months- mild malnutrition",
-                    "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
-                },
-                "emergencySmallHeightText": {
-                    "articleID": [
-                        3406,
-                        3371,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - severe malnutrition",
-                    "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
-                },
-                "warrningBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - overweight",
-                    "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a pediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
-                },
-                "emergencyBigHeightText": {
-                    "articleID": [
-                        3406,
-                        3376,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - obesity",
-                    "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
-                }
-            },
-            {
-                "child_age": [
-                    48
-                ],
-                "goodText": {
-                    "articleID": [
-                        3416,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10-12 months - adequate weight for length/height",
-                    "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
-                },
-                "warrningSmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3371,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10-12 months- mild malnutrition",
-                    "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
-                },
-                "emergencySmallHeightText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 -12 months - severe malnutrition",
-                    "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
-                },
-                "warrningBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 -12 months - overweight",
-                    "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
-                },
-                "emergencyBigHeightText": {
-                    "articleID": [
-                        3411,
-                        3376,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 - 12 months - obesity",
-                    "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. Excess body weight most often occurs as a consequence of overeating and / or insufficient physical activity. Changes in the child's environment and manner of care, can contribute to this. This weight can seriously endanger your child's health. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!  "
-                }
-            },
-            {
-                "child_age": [
-                    50,
-                    49
-                ],
-                "goodText": {
-                    "articleID": [
-                        3416,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "More about growth 13-24 months - adequate weight for length/height",
-                    "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
-                },
-                "warrningSmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "More about growth 13-24 months- mild malnutrition",
-                    "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
-                },
-                "emergencySmallHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3371,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - severe malnutrition",
-                    "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
-                },
-                "warrningBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "More about growth 13 -24 months - overweight",
-                    "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
-                },
-                "emergencyBigHeightText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3381,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - obesity",
-                    "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
-                }
-            },
-            {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
-                "goodText": {
-                    "articleID": [
-                        5891,
-                        3416,
-                        3396,
-                        3366
-                    ],
-                    "name": "More about growth 25- 60 months - adequate weight for length/height",
-                    "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
-                },
-                "warrningSmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - mild malnutrition",
-                    "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea  some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a pediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
-                },
-                "emergencySmallHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3371,
-                        3366
-                    ],
-                    "name": "More about growth  25 - 60 months - severe malnutrition",
-                    "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
-                },
-                "warrningBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - overweight",
-                    "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
-                },
-                "emergencyBigHeightText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3381,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - obesity",
-                    "text": "Urgent attention! Your child is obese, that is, s/he has a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
-                }
-            }
-        ],
-        "height_for_age": [
-            {
-                "child_age": [
-                    46,
-                    45,
-                    44,
-                    43
-                ],
-                "goodText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - typical growth for the age",
-                    "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - moderate growth delay",
-                    "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a pediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months - severe growth delay",
-                    "text": "Urgent! Your child’s growth in length / height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        3401,
-                        3346,
-                        3341
-                    ],
-                    "name": "More about growth in the first 6 months- above average length",
-                    "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
-                }
-            },
-            {
-                "child_age": [
-                    47
-                ],
-                "goodText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - typical growth for the age",
-                    "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - moderate growth delay",
-                    "text": "Attention! Your child’s growth in length / height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - severe growth delay",
-                    "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        3406,
-                        3351,
-                        3346
-                    ],
-                    "name": "More about growth 7 - 9 months - above average length/height for age",
-                    "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
-                }
-            },
-            {
-                "child_age": [
-                    48
-                ],
-                "goodText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 - 12 months - typical growth for the age",
-                    "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 - 12 months - moderate growth delay",
-                    "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 - 12 months - severe growth delay",
-                    "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        3411,
-                        3356,
-                        3346
-                    ],
-                    "name": "More about growth 10 - 12 months - above average length/height for age",
-                    "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
-                }
-            },
-            {
-                "child_age": [
-                    50,
-                    49
-                ],
-                "goodText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - typical growth for the age",
-                    "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - moderate growth delay",
-                    "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        3606,
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - severe growth delay",
-                    "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        3391,
-                        3386,
-                        3361
-                    ],
-                    "name": "More about growth 13 - 24 months - above average length/height for age",
-                    "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
-                }
-            },
-            {
-                "child_age": [
-                    58,
-                    57,
-                    52,
-                    51
-                ],
-                "goodText": {
-                    "articleID": [
-                        5891,
-                        3396
-                    ],
-                    "name": "More about growth 25 - 72 months - typical growth for the age",
-                    "text": "Bravo! Your child grows in length / height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
-                },
-                "warrningSmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - moderate growth delay",
-                    "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
-                },
-                "emergencySmallLengthText": {
-                    "articleID": [
-                        5891,
-                        3606,
-                        3396,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - severe growth delay",
-                    "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
-                },
-                "warrningBigLengthText": {
-                    "articleID": [
-                        5891,
-                        3396,
-                        3366
-                    ],
-                    "name": "More about growth 25 - 60 months - above average length/height for age",
-                    "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
-                }
-            }
-        ]
-    }],
+    // "uk": [ {
+    //     "weight_for_height": [
+    //         {
+    //             "child_age": [
+    //                 46,
+    //                 45,
+    //                 44,
+    //                 43
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3416,
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - adequate weight for length/height",
+    //                 "text": "Bravo! Your child grows well and her/ his weight is in harmonious with her/his height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
+    //             },
+    //             "warrningSmallHeightText": {
+    //                 "articleID": [
+    //                     3416,
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months- mild malnutrition",
+    //                 "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a pediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
+    //             },
+    //             "emergencySmallHeightText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3371,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - severe malnutrition",
+    //                 "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician  to investigate the cause and determine how to compensate for the loss."
+    //             },
+    //             "warrningBigHeightText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3376,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - overweight",
+    //                 "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a pediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
+    //             },
+    //             "emergencyBigHeightText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3376,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - obesity",
+    //                 "text": "There is no or minimal risk of being overweight for a baby of 0-6-month-old being exclusively breastfed.  It has been proven and scientifically confirmed that breastfeeding, especially prolonged - at least 12 months, protects a child from obesity later in childhood and adulthood.For babies on artificial nutrition, there is always a danger of overweight.  For overweight or obese babies, advice from the baby's doctor can be helpful. Never withhold food from a baby in an attempt to cause weight loss. To grow and develop as they should, babies need proper nutrition, exclusive breastfeeding during the first 6 months of life. For formula-fed babies, make sure you follow the instructions to prepare the feeds correctly (right amount of water and powder) and follow the instruction for the number of the feeds and the amount of feeds per day."
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 47
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3416,
+    //                     3406,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7-9 months - adequate weight for length/height",
+    //                 "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
+    //             },
+    //             "warrningSmallHeightText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3371,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7-9 months- mild malnutrition",
+    //                 "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
+    //             },
+    //             "emergencySmallHeightText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3371,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - severe malnutrition",
+    //                 "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
+    //             },
+    //             "warrningBigHeightText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3376,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - overweight",
+    //                 "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a pediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
+    //             },
+    //             "emergencyBigHeightText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3376,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - obesity",
+    //                 "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 48
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3416,
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10-12 months - adequate weight for length/height",
+    //                 "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
+    //             },
+    //             "warrningSmallHeightText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3371,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10-12 months- mild malnutrition",
+    //                 "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length / height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
+    //             },
+    //             "emergencySmallHeightText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 -12 months - severe malnutrition",
+    //                 "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
+    //             },
+    //             "warrningBigHeightText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3376,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 -12 months - overweight",
+    //                 "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
+    //             },
+    //             "emergencyBigHeightText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3376,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 - 12 months - obesity",
+    //                 "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. Excess body weight most often occurs as a consequence of overeating and / or insufficient physical activity. Changes in the child's environment and manner of care, can contribute to this. This weight can seriously endanger your child's health. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!  "
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 50,
+    //                 49
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3416,
+    //                     3391,
+    //                     3386,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13-24 months - adequate weight for length/height",
+    //                 "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
+    //             },
+    //             "warrningSmallHeightText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3371,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13-24 months- mild malnutrition",
+    //                 "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea, some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a paediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
+    //             },
+    //             "emergencySmallHeightText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3371,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - severe malnutrition",
+    //                 "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
+    //             },
+    //             "warrningBigHeightText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3381,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 -24 months - overweight",
+    //                 "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
+    //             },
+    //             "emergencyBigHeightText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3381,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - obesity",
+    //                 "text": "Urgent attention! Your child is obese, that is, they have a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 58,
+    //                 57,
+    //                 52,
+    //                 51
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3416,
+    //                     3396,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25- 60 months - adequate weight for length/height",
+    //                 "text": "Bravo! Your child grows well and their weight is in harmonious with their height. Continue to follow the recommendations for optimal nutrition, physical activity and sleep. Keep track of your child's growth."
+    //             },
+    //             "warrningSmallHeightText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396,
+    //                     3371,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - mild malnutrition",
+    //                 "text": "Attention! Your child is losing weight (or not gaining weight) and has a moderate lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some immediate causes: recent infectious disease or diarrhoea  some other chronic illness, insufficient and a very improper diet, changes in the immediate environment, etc. Be sure to schedule an examination with a pediatrician to discover the cause, correct the loss and determine the dynamics of further monitoring of growth. You child needs major consideration to have an improved diet."
+    //             },
+    //             "emergencySmallHeightText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396,
+    //                     3371,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth  25 - 60 months - severe malnutrition",
+    //                 "text": "Attention! Your child has a serious lack of weight for length/height. This situation could have happened in a course of few weeks, hence consider to find out some possible immediate causes, some causes could be: recent illness, metabolic and chronic diseases, insufficient and improper diet, changes in the immediate environment, etc. Urgently consult a paediatrician to investigate the cause and determine how to compensate for the loss."
+    //             },
+    //             "warrningBigHeightText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396,
+    //                     3381,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - overweight",
+    //                 "text": "Attention! Your child is moderately overweight for height. This overweight can endanger his/her health, so think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to make an appointment with a paediatrician to get additional recommendations and determine the dynamics of monitoring your child's growth."
+    //             },
+    //             "emergencyBigHeightText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396,
+    //                     3381,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - obesity",
+    //                 "text": "Urgent attention! Your child is obese, that is, s/he has a serious excess weight for height. This weight can seriously endanger your child's health. Think about what contributed to that: excess intake of energy-rich foods (such as sweet and oily products), intake of junk foods, reduced physical activity, increased screen time or changes in the immediate environment, etc. Be sure to schedule a visit to the paediatrician for an examination and additional diagnostics, as well as to determine the dynamics of further growth monitoring!"
+    //             }
+    //         }
+    //     ],
+    //     "height_for_age": [
+    //         {
+    //             "child_age": [
+    //                 46,
+    //                 45,
+    //                 44,
+    //                 43
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - typical growth for the age",
+    //                 "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
+    //             },
+    //             "warrningSmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - moderate growth delay",
+    //                 "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a pediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
+    //             },
+    //             "emergencySmallLengthText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months - severe growth delay",
+    //                 "text": "Urgent! Your child’s growth in length / height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
+    //             },
+    //             "warrningBigLengthText": {
+    //                 "articleID": [
+    //                     3401,
+    //                     3346,
+    //                     3341
+    //                 ],
+    //                 "name": "More about growth in the first 6 months- above average length",
+    //                 "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 47
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - typical growth for the age",
+    //                 "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
+    //             },
+    //             "warrningSmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3406,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - moderate growth delay",
+    //                 "text": "Attention! Your child’s growth in length / height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
+    //             },
+    //             "emergencySmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3406,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - severe growth delay",
+    //                 "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
+    //             },
+    //             "warrningBigLengthText": {
+    //                 "articleID": [
+    //                     3406,
+    //                     3351,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 7 - 9 months - above average length/height for age",
+    //                 "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 48
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 - 12 months - typical growth for the age",
+    //                 "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
+    //             },
+    //             "warrningSmallLengthText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 - 12 months - moderate growth delay",
+    //                 "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
+    //             },
+    //             "emergencySmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 - 12 months - severe growth delay",
+    //                 "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
+    //             },
+    //             "warrningBigLengthText": {
+    //                 "articleID": [
+    //                     3411,
+    //                     3356,
+    //                     3346
+    //                 ],
+    //                 "name": "More about growth 10 - 12 months - above average length/height for age",
+    //                 "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 50,
+    //                 49
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - typical growth for the age",
+    //                 "text": "Bravo! Your child grows in length/height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
+    //             },
+    //             "warrningSmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3391,
+    //                     3386,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - moderate growth delay",
+    //                 "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
+    //             },
+    //             "emergencySmallLengthText": {
+    //                 "articleID": [
+    //                     3606,
+    //                     3391,
+    //                     3386,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - severe growth delay",
+    //                 "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
+    //             },
+    //             "warrningBigLengthText": {
+    //                 "articleID": [
+    //                     3391,
+    //                     3386,
+    //                     3361
+    //                 ],
+    //                 "name": "More about growth 13 - 24 months - above average length/height for age",
+    //                 "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
+    //             }
+    //         },
+    //         {
+    //             "child_age": [
+    //                 58,
+    //                 57,
+    //                 52,
+    //                 51
+    //             ],
+    //             "goodText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396
+    //                 ],
+    //                 "name": "More about growth 25 - 72 months - typical growth for the age",
+    //                 "text": "Bravo! Your child grows in length / height in line or slightly above the range expected for his age and gender. Continue to follow the recommendations of good practice in nutrition, physical activity and sleep and monitor your child's growth."
+    //             },
+    //             "warrningSmallLengthText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3606,
+    //                     3396,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - moderate growth delay",
+    //                 "text": "Attention! Your child’s growth in length/height is slow and is now moderately delayed. Consider whether any of the long term possible causes contributed to it: chronic malnutrition, chronic disease, endocrine disorder, etc. Be sure to schedule an appointment with a paediatrician for additional examination, obtaining additional recommendations and determining the dynamics of further monitoring of growth."
+    //             },
+    //             "emergencySmallLengthText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3606,
+    //                     3396,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - severe growth delay",
+    //                 "text": "Urgent! Your child’s growth in length/height is severely delayed. Make an urgent appointment with a paediatrician for additional examination, obtaining appropriate treatment and determining the dynamics of further growth monitoring!"
+    //             },
+    //             "warrningBigLengthText": {
+    //                 "articleID": [
+    //                     5891,
+    //                     3396,
+    //                     3366
+    //                 ],
+    //                 "name": "More about growth 25 - 60 months - above average length/height for age",
+    //                 "text": "Your child has grown to a height well above the normal range for his age and gender. It is probably the result of his genetic potential, but still talk about it with the paediatrician. Continue to follow the adopted recommendations and monitor your child's growth at regular intervals."
+    //             }
+    //         }
+    //     ]
+    // }],
     "uz-uz": [{
         "weight_for_height": [
             {
