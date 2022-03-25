@@ -7,6 +7,7 @@
 #import <Firebase.h>
 #import "ParentBuddyApp-Swift.h"
 #import "Orientation.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 // Add the header at the top of the file:
 #import <React/RCTLinkingManager.h>
 #import <React/RCTI18nUtil.h>
@@ -103,6 +104,8 @@ static void InitializeFlipper(UIApplication *application) {
      [FIRApp configure];
    }
 //  [RNSplashScreen show];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                        didFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
 //- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
@@ -129,7 +132,16 @@ static void InitializeFlipper(UIApplication *application) {
    openURL:(NSURL *)url
    options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  return [RCTLinkingManager application:application openURL:url options:options];
+//  return [RCTLinkingManager application:application openURL:url options:options];
+  if ([[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options]) {
+     return YES;
+   }
+
+   if ([RCTLinkingManager application:application openURL:url options:options]) {
+     return YES;
+   }
+
+   return NO;
 }
 // Add this above `@end`:
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
