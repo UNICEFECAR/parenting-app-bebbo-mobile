@@ -18,16 +18,27 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleSignature</key>
+  <key>CFBundleSignature</key>
 	<string>????</string>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>fbapi</string>
+    <string>fb-messenger-share-api</string>
+  </array>
 	<key>CFBundleURLTypes</key>
 	<array>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+       <string>fb{facebook_app_id}</string>
+      </array>
+    </dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
+				<string>com.googleusercontent.apps.{firebase_project_number}-{client_id_key}</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,6 +54,16 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>{facebook_app_id}</string>
+	<key>FacebookClientToken</key>
+	<string>{facebook_client_token}</string>
+	<key>FacebookDisplayName</key>
+	<string>{facebook_app_display_name}</string>
+  <key>FacebookAutoLogAppEventsEnabled</key>
+  <true/>
+  <key>FacebookAdvertiserIDCollectionEnabled</key>
+  <true/>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSRequiresIPhoneOS</key>
@@ -77,6 +98,11 @@
 		<string>roboto-regular.woff</string>
 		<string>roboto-regular.woff2</string>
 		<string>fontello.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
