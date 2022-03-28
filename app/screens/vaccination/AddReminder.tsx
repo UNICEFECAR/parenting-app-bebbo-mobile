@@ -407,7 +407,8 @@ const AddReminder = ({ route, navigation }: any) => {
             activeChild.reminders = createresult;
             const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
             const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
-            const title = reminderType == 'vcr' ? titlevcr : titlehcr;
+            const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
+            console.log(message,"reminderType----",reminderType);
             if(editReminderItem) {
               let previousDTDefined;
               const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
@@ -418,7 +419,7 @@ const AddReminder = ({ route, navigation }: any) => {
             }
             console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
             if(vchcEnabledFlag == true) {
-             LocalNotifications.schduleNotification(finalReminderDateDefined,'Reminder!',title,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
+             LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
             }
             dispatch(setActiveChildData(activeChild));
             let notiFlagObj = { key: 'generateNotifications', value: true };
@@ -432,11 +433,11 @@ const AddReminder = ({ route, navigation }: any) => {
           }
       }else {
         setClicked(false);
-        Alert.alert(t('reminderalertTextDefined'));
+        Alert.alert('', t('reminderalertTextDefined'));
       }
     } else {
       setClicked(false);
-      Alert.alert(t('reminderalertText')); 
+      Alert.alert('', t('reminderalertText')); 
     }
 
     // reminderalertText:"Reminder Date is before current Date Time"
