@@ -41,7 +41,7 @@ class LocalNotifications {
     PushNotification.localNotificationSchedule({
       channelId: 'reminders',
       id:notificationid,
-      title: '🔔 '+title,
+      title: title,
       message: message,
       date,
     });
