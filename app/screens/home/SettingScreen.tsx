@@ -74,7 +74,7 @@ import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
 import { onNetworkStateChange } from '../../redux/reducers/bandwidthSlice';
 import { setAllNotificationData, toggleNotificationFlags } from '../../redux/reducers/notificationSlice';
 import { backup } from '../../services/backup';
-import { getAllChildren, isFutureDate } from '../../services/childCRUD';
+import { getAllChildren, isFutureDate, isFutureDateTime } from '../../services/childCRUD';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 import * as ScopedStorage from "react-native-scoped-storage";
 import Share from 'react-native-share';
@@ -536,16 +536,16 @@ const SettingScreen = (props: any) => {
             // vchcEnabledFlag == false checked because state update of vchcEnabledFlag istaking time
             if(vchcEnabledFlag == false) {
               //enable future notifications
-              console.log(item,'---isfuture date4 ---',isFutureDate(new Date(item.notificationDate)));
-              if(item.subtype == 'reminder' && isFutureDate(new Date(item.notificationDate)))
+              console.log(item,'---isfuture date4 ---',isFutureDateTime(new Date(item.notificationDate)));
+              if(item.subtype == 'reminder' && isFutureDateTime(new Date(item.notificationDate)))
               {
                 const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
                 const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(item.periodName, luxonLocale) + "," + formatStringTime(item.growth_period, luxonLocale)});
-                const title = item.type == 'vcr' ? titlevcr : titlehcr;
-                LocalNotifications.schduleNotification(item.notificationDate,'Reminder!',title,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
+                const message = item.type == 'vaccine' ? titlevcr : titlehcr;
+                LocalNotifications.schduleNotification(item.notificationDate,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(item.notificationDate)).toMillis());
               }
             }
-            if (isFutureDate(new Date(item.notificationDate))) {
+            if (isFutureDateTime(new Date(item.notificationDate))) {
               return { ...item, isDeleted: vchcEnabledFlag == false ? false : true };
             } else if (difftoToday == 0 || difftoToday == -0) {
               if (vchcEnabledFlag == false) {

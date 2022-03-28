@@ -260,7 +260,7 @@ const Notifications = () => {
       currentChildNotis.hcnotis = allhcnotis
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
       if (currentChildNotis.reminderNotis) {
-        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) && (item.subtype == notiItem.subtype));
+        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));
         let newItem: any = { ...notiItem };
         newItem.isRead = (newItem.isRead == true) ? false : true;
         delete newItem.isChecked;
@@ -328,7 +328,7 @@ const Notifications = () => {
       calculateNotis(currentChildNotis);
     } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
       if (currentChildNotis.reminderNotis) {
-        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type)  && (item.subtype == notiItem.subtype) );
+        const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type) && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));
         let newItem: any = { ...notiItem };
         newItem.isDeleted = true;
         delete newItem.isChecked;
@@ -390,7 +390,7 @@ const Notifications = () => {
         currentChildNotis.hcnotis = allhcnotis
       } else if (notiItem.type == 'hcr' || notiItem.type == 'vcr') {
         if (currentChildNotis.reminderNotis) {
-          const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type)  && (item.subtype == notiItem.subtype));          
+          const notitoUpdateIndex = currentChildNotis.reminderNotis.findIndex((item:any) => (item.uuid == notiItem.uuid) && (item.type == notiItem.type)  && (item.subtype == notiItem.subtype) && (item.subtypeid == notiItem.subtypeid));          
           let newItem: any = { ...notiItem };
           newItem.isDeleted = (newItem.isDeleted == true) ? false : true;
           delete newItem.isChecked;
