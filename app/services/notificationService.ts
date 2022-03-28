@@ -1,6 +1,8 @@
 import { beforeDays, maxPeriodDays, threeeMonthDays, twoMonthDays } from "@assets/translations/appOfflineData/apiConstants";
 import { DateTime } from "luxon";
-import { getCurrentChildAgeInDays, isFutureDate } from './childCRUD';
+import { getCurrentChildAgeInDays, isFutureDate, isFutureDateTime } from './childCRUD';
+import { v4 as uuidv4 } from 'uuid';
+
 export const isPeriodsMovedAhead = (childAge: any, notiExist: any, child: any, allVaccinePeriods: any, allGrowthPeriods: any, allHealthCheckupsData: any,) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
@@ -426,11 +428,18 @@ export const getChildNotification = (child: any, childAge: any, allHealthCheckup
 }
 export const getChildReminderNotifications = (child: any, reminderNotis: any, vchcEnabledFlag: boolean) => {
   ///get existing notis and compare for isread and is deleted
-  //console.log(reminderNotis, "ExistingreminderNotis")
+  console.log(child, "passed child data")
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(child.birthDate)).toMillis(),
   );
   let noti: any[] = [];
+  const filteredPastRemidnerNotis = reminderNotis.filter((item:any)=> !isFutureDateTime(new Date(item.notificationDate)));
+    console.log("--filteredPastRemidnerNotis3---",filteredPastRemidnerNotis);
+    if(filteredPastRemidnerNotis.length > 0) {
+      filteredPastRemidnerNotis.map((x:any) => {
+        noti.push(x);
+      })
+  }
   if (child?.reminders && child.reminders?.length > 0) {
     console.log(reminderNotis,"--reminderNotis2----",child.reminders);
     child.reminders?.forEach((element: any, index: number) => {
@@ -445,10 +454,10 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
           // if hc exists, add vc ,and vica versa 
           // or add one that exists
           const itemtype = element.reminderType == 'vaccine' ? 'vcr' : 'hcr';
-          const filteredPastRemidnerNotis = reminderNotis.filter((item:any)=> !isFutureDate(item.notificationDate));
-          console.log("filteredPastRemidnerNotis2---",filteredPastRemidnerNotis);
-          const reminderexist = reminderNotis.filter((item:any) => item.uuid == element.uuid && item.type == itemtype)
-          console.log(reminderexist.length, "reminderexist length---",reminderexist);
+          
+          const futurereminderexist = reminderNotis.filter((item:any) => item.uuid == element.uuid && item.type == itemtype && isFutureDateTime(new Date(item.notificationDate)) )
+          const reminderexist = reminderNotis.filter((item:any) => item.uuid == element.uuid && item.type == itemtype);
+          console.log(futurereminderexist.length, "reminderexist length3---",futurereminderexist);
           //get only past reminders  till today and filter by child age
           let finalremDT:any, finalremDTDefined:any;  
             const onlyDate = new Date(element.reminderDate);
@@ -458,72 +467,198 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
             finalremDTDefined = onlyDateDefined.setHours(new Date(element.reminderTimeDefined).getHours());
             finalremDTDefined = new Date(onlyDateDefined.setMinutes(new Date(element.reminderTimeDefined).getMinutes()));
 
-            console.log(finalremDT,"---finalremDTDefined----",finalremDTDefined);
-            console.log(DateTime.fromJSDate(finalremDT),"---fromjsdate finalremDTDefined----",DateTime.fromJSDate(finalremDTDefined));
-          if (reminderexist.length > 0) {
-            console.log("reminderexist---",reminderexist);
-            reminderexist.map((x:any) => {
-              console.log("reminderexist3 x val---",x);
-              if(x.subtype == "start") {
+            // console.log(finalremDT,"---finalremDTDefined----",finalremDTDefined);
+            // console.log(DateTime.fromJSDate(finalremDT),"---fromjsdate finalremDTDefined----",DateTime.fromJSDate(finalremDTDefined));
+          if (futurereminderexist.length > 0) {
+            // console.log("reminderexist---",reminderexist);
+            const futureStartReminder =  reminderNotis.filter((item:any) => item.uuid == element.uuid && item.type == itemtype && item.subtype == 'start' );
+            // const futureStartReminder =  reminderNotis.sort(
+            //   (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
+            // ).reverse()
+            //   .filter((item:any) => {
+            //     return item.uuid == element.uuid && item.type == itemtype && item.subtype == 'start'
+            //   });
+            const futureMidReminder =  futurereminderexist.find((x:any) => x.subtype == 'reminder');
+            const futureScheduledReminder =  futurereminderexist.find((x:any) => x.subtype == 'scheduled');
+            console.log(futureScheduledReminder,"--futureMidReminder---",futureMidReminder);
+            console.log(futureStartReminder,"--futureStartReminder.length-1----",futureStartReminder[0]);
+            if(futureMidReminder || futureScheduledReminder) {
+              console.log(element.reminderDate ,'==', futureScheduledReminder.periodName ,'&&', element.reminderDateDefined ,'==', futureStartReminder[0].periodName,"in 1st if of start");
+              console.log(element.reminderTime ,'==', futureScheduledReminder.growth_period ,'&&', element.reminderTimeDefined ,'==', futureStartReminder[0].growth_period,"in 1st if of start2");
+              if(element.reminderDate == futureScheduledReminder.periodName && element.reminderTime == futureScheduledReminder.growth_period && element.reminderDateDefined == futureStartReminder[0].periodName && element.reminderTimeDefined == futureStartReminder[0].growth_period)
+              {
+
+              }else {
                 noti.push({
                   "days_from": Math.floor(childvcReminderDateInDaysDefined),
                   "days_to": Math.floor(childvcReminderDateInDaysDefined),
                   "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                   "subtype": "start",
+                  "subtypeid": uuidv4(),
                   "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
                   "checkinField": "days_from",
                   "notificationDate": DateTime.fromJSDate(new Date()),
-                  "isRead": isFutureDate(reminderexist.notificationDate) ? false : reminderexist.isRead,
-                  "isDeleted": element.reminderDateDefined == reminderexist.periodName ? reminderexist.isDeleted : false,
-                  // "isDeleted": element.reminderDateDefined == reminderexist.periodName ? reminderexist.isDeleted : false,
+                  "isRead": false,
+                  "isDeleted": vchcEnabledFlag == false ? true : false,
                   "growth_period": element.reminderTimeDefined,
                   "periodName": element.reminderDateDefined,
                   "uuid": element.uuid,
                 })
               }
-              if(x.subtype == "reminder") {
+            }
+            if(futureMidReminder && futureMidReminder != undefined) {
+              console.log("in end if of reminder");
                 noti.push({
                   "days_from": Math.floor(childvcReminderDateInDays),
                   "days_to": Math.floor(childvcReminderDateInDays),
                   "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                   "subtype": "reminder",
+                  "subtypeid": uuidv4(),
                   "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
                   "checkinField": "days_from",
-                  "notificationDate": DateTime.fromJSDate(new Date(finalremDTDefined)),
-                  "isRead": element.reminderDate == reminderexist.periodName ? reminderexist.isRead : false,
-                  "isDeleted": element.reminderDate == reminderexist.periodName ? reminderexist.isDeleted : false,
+                  "notificationDate": DateTime.fromJSDate(finalremDTDefined),
+                  "isRead": false,
+                  "isDeleted": vchcEnabledFlag == false ? true : false,
                   "growth_period": element.reminderTime,
                   "periodName": element.reminderDate,
                   "uuid": element.uuid,
                 })
+              // if(element.reminderDate == futureMidReminder.periodName && element.reminderDateDefined == futureStartReminder[0].periodName){
+              //   console.log("in 2nd if inner if of reminder");
+              //   noti.push({
+              //     "days_from": Math.floor(childvcReminderDateInDays),
+              //     "days_to": Math.floor(childvcReminderDateInDays),
+              //     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              //     "subtype": "reminder",
+              //     "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
+              //     "checkinField": "days_from",
+              //     "notificationDate": DateTime.fromJSDate(finalremDTDefined),
+              //     "isRead": futureMidReminder.isRead,
+              //     "isDeleted": futureMidReminder.isDeleted,
+              //     "growth_period": element.reminderTime,
+              //     "periodName": element.reminderDate,
+              //     "uuid": element.uuid,
+              //   })
+              // } else {
+              //   console.log("in 2nd if inner else of reminder");
+              //   noti.push({
+              //     "days_from": Math.floor(childvcReminderDateInDays),
+              //     "days_to": Math.floor(childvcReminderDateInDays),
+              //     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              //     "subtype": "reminder",
+              //     "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
+              //     "checkinField": "days_from",
+              //     "notificationDate": DateTime.fromJSDate(finalremDTDefined),
+              //     "isRead": false,
+              //     "isDeleted": vchcEnabledFlag == false ? true : false,
+              //     "growth_period": element.reminderTime,
+              //     "periodName": element.reminderDate,
+              //     "uuid": element.uuid,
+              //   })
+              // }
+            }
+            if(futureScheduledReminder && futureScheduledReminder != undefined && futureScheduledReminder != null) {
+              console.log("--in 3rd if of schedule");
+              if(futureMidReminder == null || futureMidReminder == undefined) {
+                console.log(element.reminderDate ,'==', futureScheduledReminder.periodName ,'&&', element.reminderDateDefined ,'==', futureStartReminder[0].periodName,"in 3rd if inner->inner if of scheduled");
+                console.log(element.reminderTime ,'==', futureScheduledReminder.growth_period ,'&&', element.reminderTimeDefined ,'==', futureStartReminder[0].growth_period,"in 3rd if inner->inner if of scheduled2");
+             
+                if(element.reminderDate == futureScheduledReminder.periodName && element.reminderTime == futureScheduledReminder.growth_period && element.reminderDateDefined == futureStartReminder[0].periodName && element.reminderTimeDefined == futureStartReminder[0].growth_period) {
+                }else {
+                  noti.push({
+                    "days_from": Math.floor(childvcReminderDateInDays),
+                    "days_to": Math.floor(childvcReminderDateInDays),
+                    "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+                    "subtype": "reminder",
+                    "subtypeid": uuidv4(),
+                    "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
+                    "checkinField": "days_from",
+                    "notificationDate": DateTime.fromJSDate(finalremDTDefined),
+                    "isRead": false,
+                    "isDeleted": vchcEnabledFlag == false ? true : false,
+                    "growth_period": element.reminderTime,
+                    "periodName": element.reminderDate,
+                    "uuid": element.uuid,
+                  })
+                }
               }
-              if(x.subtype == "scheduled") {
-                noti.push({
-                  "days_from": Math.floor(childvcReminderDateInDays+1),
-                  "days_to": Math.floor(childvcReminderDateInDays+1),
-                  "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
-                  "subtype": "scheduled",
-                  "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
-                  "checkinField": "days_from",
-                  "notificationDate": DateTime.fromJSDate(finalremDT),
-                  "isRead": element.reminderDate == reminderexist.periodName ? reminderexist.isRead : false,
-                  "isDeleted": element.reminderDate == reminderexist.periodName ? reminderexist.isDeleted : false,
-                  "growth_period": element.reminderTime,
-                  "periodName": element.reminderDate,
-                  "uuid": element.uuid,
-                })
-              }
-            })
-
-            
-          } else {
-            
+              noti.push({
+                "days_from": Math.floor(childvcReminderDateInDays+1),
+                "days_to": Math.floor(childvcReminderDateInDays+1),
+                "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+                "subtype": "scheduled",
+                "subtypeid": uuidv4(),
+                "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
+                "checkinField": "days_from",
+                "notificationDate": DateTime.fromJSDate(finalremDT),
+                "isRead": false,
+                "isDeleted": vchcEnabledFlag == false ? true : false,
+                "growth_period": element.reminderTime,
+                "periodName": element.reminderDate,
+                "uuid": element.uuid,
+              })
+              // if(element.reminderDate == futureScheduledReminder.periodName && element.reminderDateDefined == futureStartReminder[0].periodName) {
+              //   console.log("in 3rd if inner if of scheduled");
+              //   noti.push({
+              //     "days_from": Math.floor(childvcReminderDateInDays+1),
+              //     "days_to": Math.floor(childvcReminderDateInDays+1),
+              //     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              //     "subtype": "scheduled",
+              //     "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
+              //     "checkinField": "days_from",
+              //     "notificationDate": DateTime.fromJSDate(finalremDT),
+              //     "isRead": futureScheduledReminder.isRead,
+              //     "isDeleted": futureScheduledReminder.isDeleted,
+              //     "growth_period": element.reminderTime,
+              //     "periodName": element.reminderDate,
+              //     "uuid": element.uuid,
+              //   })
+              // }else {
+              //   console.log("in 3rd if inner else of scheduled---",futureMidReminder);
+              //   if(futureMidReminder == null || futureMidReminder == undefined) {
+              //     console.log("in 3rd if inner->inner if of scheduled");
+              //     noti.push({
+              //       "days_from": Math.floor(childvcReminderDateInDays),
+              //       "days_to": Math.floor(childvcReminderDateInDays),
+              //       "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              //       "subtype": "reminder",
+              //       "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
+              //       "checkinField": "days_from",
+              //       "notificationDate": DateTime.fromJSDate(finalremDTDefined),
+              //       "isRead": false,
+              //       "isDeleted": vchcEnabledFlag == false ? true : false,
+              //       "growth_period": element.reminderTime,
+              //       "periodName": element.reminderDate,
+              //       "uuid": element.uuid,
+              //     })
+              //   }
+              //   noti.push({
+              //     "days_from": Math.floor(childvcReminderDateInDays+1),
+              //     "days_to": Math.floor(childvcReminderDateInDays+1),
+              //     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
+              //     "subtype": "scheduled",
+              //     "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
+              //     "checkinField": "days_from",
+              //     "notificationDate": DateTime.fromJSDate(finalremDT),
+              //     "isRead": false,
+              //     "isDeleted": vchcEnabledFlag == false ? true : false,
+              //     "growth_period": element.reminderTime,
+              //     "periodName": element.reminderDate,
+              //     "uuid": element.uuid,
+              //   })
+              // }
+            }
+                        
+          } 
+          if(reminderexist.length == 0) {
+            console.log("in reminderexist that is new");
                 // a reminder has been set for {schedule date}.This will come as soon as reminder is created
                 noti.push({
                   "days_from": Math.floor(childvcReminderDateInDaysDefined),
                   "days_to": Math.floor(childvcReminderDateInDaysDefined),
                   "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                   "subtype": "start",
+                  "subtypeid": uuidv4(),
                   "title": element.reminderType == 'vaccine' ? ('vcrNoti1') : ('hcrNoti1'),
                   "checkinField": "days_from",
                   "notificationDate": DateTime.fromJSDate(new Date()),
@@ -539,6 +674,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                   "days_to": Math.floor(childvcReminderDateInDays),
                   "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                   "subtype": "reminder",
+                  "subtypeid": uuidv4(),
                   "title": element.reminderType == 'vaccine' ? ('vcrNoti2') : ('hcrNoti2'),
                   "checkinField": "days_from",
                   "notificationDate": DateTime.fromJSDate(finalremDTDefined),
@@ -555,6 +691,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                     "days_to": Math.floor(childvcReminderDateInDays+1),
                     "type": element.reminderType == 'vaccine' ? "vcr" : "hcr",
                     "subtype": "scheduled",
+                    "subtypeid": uuidv4(),
                     "title": element.reminderType == 'vaccine' ? ('vcrNoti3') : ('hcrNoti3'),
                     "checkinField": "days_from",
                     "notificationDate": DateTime.fromJSDate(finalremDT),
@@ -565,7 +702,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
                     "uuid": element.uuid,
                   })
 
-                  console.log("noti val2 ---",noti);
+                  // console.log("noti val2 ---",noti);
             // }
           }
         // } 
@@ -657,7 +794,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
 
     });
   }
-  let sortednoti = reminderNotis.sort(
+  let sortednoti = noti.sort(
     (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
   );
   // if(vchcEnabledFlag==false){
@@ -669,7 +806,7 @@ export const getChildReminderNotifications = (child: any, reminderNotis: any, vc
   //     }
   //   })
   // }
- // console.log(sortednoti, "sortednoti")
+ console.log(sortednoti, "sortednoti3----")
   return sortednoti;
   // healthCheckupReminders.forEach((element: any, index: number) => {
   //   const childhcReminderDateInDays = getCurrentChildAgeInDays(

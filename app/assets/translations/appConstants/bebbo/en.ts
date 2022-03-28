@@ -438,6 +438,7 @@ const en = {
                 restOfTheWorldAlertText: "By selecting Rest of the world, you will enjoy all features of Bebbo, but note that vaccinations and health check-ups are not customized to a specific national health program.",
 
                 //9/03/2022
+                remindersAlertTitle: "🔔 Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
                 reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
