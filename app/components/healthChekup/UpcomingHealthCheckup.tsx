@@ -329,6 +329,7 @@ const UpcomingHealthCheckup = (props: any) => {
                               headerTitle: t('vcEditReminderHeading'),
                               buttonTitle: t('hcReminderAddBtn'),
                               titleTxt: t('hcReminderText'),
+                              titleTxt2: t('hcDefinedReminderText'),
                               warningTxt: t('hcReminderDeleteWarning'),
                               headerColor: headerColor,
                               editReminderItem: hcReminder,
@@ -354,6 +355,7 @@ const UpcomingHealthCheckup = (props: any) => {
                         headerTitle: t('vcReminderHeading'),
                         buttonTitle: t('hcReminderAddBtn'),
                         titleTxt: t('hcReminderText'),
+                        titleTxt2: t('hcDefinedReminderText'),
                         warningTxt: t('hcReminderDeleteWarning'),
                         headerColor: headerColor,
                       });
