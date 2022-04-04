@@ -45,6 +45,7 @@ import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
 import {AppEventsLogger, Settings} from 'react-native-fbsdk-next';
 import {PERMISSIONS, RESULTS, request, check} from 'react-native-permissions';
+import LocalNotifications from '../services/LocalNotifications';
 
 // import {ThemeProvider} from 'styled-components/native';
 // import {useSelector} from 'react-redux';
@@ -295,6 +296,8 @@ async function initPixel(){
     });
     setTimeout(() => {
       SplashScreen.hide();
+      console.log("acsd")
+      // LocalNotifications.schduleNotification(new Date(Date.now() + 5 * 1000),'Reminder!','title','350709887');
     }, 2000);
 
     return unsubscribe;
