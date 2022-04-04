@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">REMOVED_FACEBOOK_APP_ID1</string>
+    <string name="app_name">{facebook_app_name}</string>
+    <string name="facebook_app_id">{facebook_app_id}</string>
+    <string name="facebook_client_token">{facebook_client_token}</string>
 </resources>

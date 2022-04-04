@@ -43,6 +43,8 @@ import { oncountrtIdChange } from '../redux/reducers/localizationSlice';
 import { useDeepLinkURL } from '../services/DeepLinking';
 import { ThemeContext } from 'styled-components';
 import messaging from '@react-native-firebase/messaging';
+import {AppEventsLogger, Settings} from 'react-native-fbsdk-next';
+import {PERMISSIONS, RESULTS, request, check} from 'react-native-permissions';
 import LocalNotifications from '../services/LocalNotifications';
 
 // import {ThemeProvider} from 'styled-components/native';
@@ -158,7 +160,107 @@ export default () => {
       resetURL();
     }
   }
+  
+useEffect(() => {
+  
+//  requestTrackingPermission()
+//       .then(status => {
+//         const enableTracking =
+//           status === 'authorized' || status === 'unavailable';
+//           console.log(enableTracking,"..enableTracking..");
+//         if (enableTracking) {
+//           // Settings.setAdvertiserTrackingEnabled(true).then(() => {
+//           //      Settings.initializeSDK(); 
+//           // });
+//         }
+//       })
+//       .catch(e => Alert.alert(t('generalError')));
+    }, []);
+  
   useEffect(() => {
+//     async function requestTransparencyPermission(){ 
+     
+//   // if (Platform.OS === 'ios') {
+//   //   const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+//   //   if (ATT_CHECK === RESULTS.DENIED) {
+//   //     try {
+//   //       const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+//   //       if (ATT === RESULTS.GRANTED) {
+//   //         Settings.setAdvertiserTrackingEnabled(true).then(() => {
+//   //           Settings.initializeSDK();
+//   //         });
+//   //       }
+//   //     } catch (error) {
+//   //       throw error;
+//   //     } finally {
+//   //       Settings.initializeSDK();
+//   //     }
+//   //     Settings.initializeSDK();
+//   //     Settings.setAdvertiserTrackingEnabled(true);
+//   //    // Settings.FacebookAutoLogAppEventsEnabled(true);
+//   //   }
+//   // } else {
+//   //   Settings.initializeSDK();
+//   //   Settings.setAdvertiserTrackingEnabled(true);
+//   // }
+// //} 
+//       // requestTrackingPermission()
+//       // .then(status => {
+//       //   const enableTracking =
+//       //     status === 'authorized' || status === 'unavailable';
+//       //     console.log(enableTracking,"..enableTracking..")
+//       //   if (enableTracking) {
+//       //     Settings.setAdvertiserTrackingEnabled(true).then(() => {
+//       //          Settings.initializeSDK(); 
+//       //     });
+//       //   }
+//       // })
+//       // .catch(e => Alert.alert(t('generalError')));
+//       // const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+//       // console.log(ATT_CHECK,"..ATT_CHECK")
+//       //   if (ATT_CHECK === RESULTS.DENIED) {
+//       //     try {
+//       //         const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+//       //         if (ATT === RESULTS.GRANTED) {
+//       //             Settings.setAdvertiserTrackingEnabled(true).then(() => {
+//       //                 Settings.initializeSDK();
+//       //             });
+//       //         }
+//       //     } catch (error) {
+//       //         throw error;
+//       //     } finally {
+//       //         Settings.initializeSDK();
+//       //     }
+//       //   }
+//     }   
+async function initPixel(){
+  if (Platform.OS === 'ios') {
+  const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+  console.log(ATT_CHECK,"..ATT_CHECK..");
+  if (ATT_CHECK === RESULTS.DENIED) {
+  try {
+  const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+  if (ATT === RESULTS.GRANTED) {
+  console.log(ATT,"..ATT..");
+  Settings.setAdvertiserTrackingEnabled(true).then(() => {
+  Settings.initializeSDK();
+  });
+  }
+  } catch (error) {
+  throw error;
+  } finally {
+  Settings.initializeSDK();
+  }
+  Settings.initializeSDK();
+  Settings.setAdvertiserTrackingEnabled(true);
+  // Settings.FacebookAutoLogAppEventsEnabled(true);
+  }
+  } else {
+  Settings.initializeSDK();
+  Settings.setAdvertiserTrackingEnabled(true);
+  }
+}
+
     async function requestUserPermission() {
       const authStatus = await messaging().requestPermission();
       const enabled =
@@ -167,10 +269,20 @@ export default () => {
       if (enabled) {
         console.log('Authorization status:', authStatus);
       }
+      // if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
+      //   // enable tracking features
+      //   if (Platform.OS === 'ios') {
+      //     Settings.setAdvertiserTrackingEnabled(true);
+      //   }
+      //   Settings.initializeSDK();
+      // }
+      
+     
     }
     if(Platform.OS=="ios"){
     requestUserPermission();
     }
+    initPixel();
   }, []);
   useEffect(() => {
     
