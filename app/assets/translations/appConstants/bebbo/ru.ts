@@ -435,7 +435,17 @@ const ru = {
                 downloadAllSuccessOkBtn: "Ок",
                 restOfTheWorldAlertTitle: "Предупреждение",
                 restOfTheWorldOkTitle: "Ок",
-                restOfTheWorldAlertText: "Если вы выберете Rest of the world (остальные страны), вы сможете пользоваться всеми функциями Беббо, но информация о вакцинах и медосмотрах может не соответствовать национальной программе здравоохранения вашей страны."
+                restOfTheWorldAlertText: "Если вы выберете Rest of the world (остальные страны), вы сможете пользоваться всеми функциями Беббо, но информация о вакцинах и медосмотрах может не соответствовать национальной программе здравоохранения вашей страны.",
+
+                //9/03/2022
+                remindersAlertTitle: "🔔 Reminder!",
+                vcDefinedReminderText: "Enter the date and time of the reminder",
+                hcDefinedReminderText: "Enter the date and time of the reminder",
+                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
+                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
+                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
+                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
+                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
         }
 }
 export default ru;
