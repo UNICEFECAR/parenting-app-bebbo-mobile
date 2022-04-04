@@ -432,7 +432,17 @@ const UZuz = {
               downloadAllContinueBtn: "Davom etish",
               downloadAllSuccessPopupTitle: "Muvaffaqiyatli",
               downloadAllSuccessPopupText: "Barcha maʼlumotlar muvaffaqiyatli yuklab olindi!",
-              downloadAllSuccessOkBtn: "Ok"
+              downloadAllSuccessOkBtn: "Ok",
+
+              //9/03/2022
+              remindersAlertTitle: "🔔 Reminder!",
+              vcDefinedReminderText: "Enter the date and time of the reminder",
+              hcDefinedReminderText: "Enter the date and time of the reminder",
+              reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
+              vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
+              hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
+              vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
+              hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
        }
 }
 export default UZuz;

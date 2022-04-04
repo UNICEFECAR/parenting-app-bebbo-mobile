@@ -338,7 +338,7 @@ const uk = {
                 childInfoAndText: "та",
                 childSetupdobText: "Введіть дату народження",
                 growthModalText: "Введіть і продовжуйте оновлювати вагу і зріст своєї дитини тут; ви дізнаєтеся, як краще підтримувати її/його ріст",
-                vaccineModalText: "Тут ви можете зареєструватися, відстежити та дізнатися більше про вакцини, рекомендовані календарем планової вакцинації ВООЗ (не налаштовано на конкретний календар у країні). Встановіть нагадування про вакцинації та отримуйте сповіщення.",
+                vaccineModalText: "Тут ви можете зареєструватися, відстежити та дізнатися більше про вакцини, рекомендовані національним календарем планової вакцинації МОЗ України. Встановіть нагадування про вакцинації та отримуйте сповіщення.",
                 hcModalText: "Тут ви можете вводити записи, встановлювати нагадування та отримувати сповіщення про медичні огляди (не налаштовано відповідно на конкретний календар у країні), а також дізнаватися більше про їхній вміст!",
                 tryText: "Повторіть спробу... ",
                 deleteSuccess: "Користувача успішно видалено",
@@ -435,7 +435,17 @@ const uk = {
                 downloadAllSuccessOkBtn: "ОК",
                 restOfTheWorldAlertTitle: "Попередження",
                 restOfTheWorldOkTitle: "ОК",
-                restOfTheWorldAlertText: "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями REMOVED_FACEBOOK_APP_ID1, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я."
+                restOfTheWorldAlertText: "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями REMOVED_FACEBOOK_APP_ID1, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я.",
+
+                //9/03/2022
+                remindersAlertTitle: "🔔 Reminder!",
+                vcDefinedReminderText: "Enter the date and time of the reminder",
+                hcDefinedReminderText: "Enter the date and time of the reminder",
+                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
+                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
+                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
+                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
+                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
         }
 }
 export default uk;
