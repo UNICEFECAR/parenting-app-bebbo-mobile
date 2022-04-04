@@ -7,6 +7,7 @@
 #import <Firebase.h>
 #import "ParentBuddyApp-Swift.h"
 #import "Orientation.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
 // Add the header at the top of the file:
@@ -105,9 +106,14 @@ static void InitializeFlipper(UIApplication *application) {
      [FIRApp configure];
    }
 //  [RNSplashScreen show];
+<<<<<<< HEAD
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                        didFinishLaunchingWithOptions:launchOptions];
+=======
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
    center.delegate = self;
 
+>>>>>>> main
   return YES;
 }
 //- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
@@ -134,7 +140,16 @@ static void InitializeFlipper(UIApplication *application) {
    openURL:(NSURL *)url
    options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-  return [RCTLinkingManager application:application openURL:url options:options];
+//  return [RCTLinkingManager application:application openURL:url options:options];
+  if ([[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options]) {
+     return YES;
+   }
+
+   if ([RCTLinkingManager application:application openURL:url options:options]) {
+     return YES;
+   }
+
+   return NO;
 }
 // Add this above `@end`:
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
