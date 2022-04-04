@@ -431,6 +431,11 @@ export const isFutureDate = (date: Date) => {
 };
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
+  console.log(birthDate,"..birthDate..");
+  birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
+  // var d = new Date(birthDate).toString();
+  // console.log(d,"..d..")
+  // birthDate=d;
   // let months: any = 0;
   // console.log(new Date(birthDate),"..new Date(birthDate)..")
   // const inFuture=isFutureDate(new Date(birthDate));
@@ -466,7 +471,7 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
   //const date1 = DateTime.fromISO(DateTime.local().toISODate());
   const date1 = DateTime.local();
   const date2 = DateTime.fromISO(birthDate);
-
+  //console.log(date2)
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
   console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
@@ -510,8 +515,8 @@ export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:
 
 export const getNotificationDateInString = (t: any, birthDate: string,pluralShow:boolean) => {
   const date1 = DateTime.local();
+  birthDate=Platform.OS=='ios'?new Date(birthDate).toString():birthDate;
   const date2 = DateTime.fromISO(birthDate);
-
   const diff: any = date1.diff(date2, ["years", "months", "days"]);
   console.log(diff.toObject(),"..diffobject");
   var ageStr = "";
