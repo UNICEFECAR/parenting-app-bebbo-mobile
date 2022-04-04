@@ -40,6 +40,7 @@ import {
   Heading5,
   Paragraph,
   ShiftFromBottom10,
+  ShiftFromBottom20,
   ShiftFromTop20,
   ShiftFromTop30,
   ShiftFromTopBottom10
@@ -66,6 +67,7 @@ import {
 } from '../../database/schema/ChildDataSchema';
 import { setActiveChildData } from '../../redux/reducers/childSlice';
 import { setInfoModalOpened } from '../../redux/reducers/utilsSlice';
+import LocalNotifications from '../../services/LocalNotifications';
 import { formatStringDate, formatStringTime } from '../../services/Utils';
 
 type ChildSetupNavigationProp = StackNavigationProp<RootStackParamList>;
@@ -80,12 +82,13 @@ const AddReminder = ({ route, navigation }: any) => {
     headerTitle,
     buttonTitle,
     titleTxt,
+    titleTxt2,
     warningTxt,
     headerColor,
     reminderType,
     editReminderItem,
   } = route.params;
-  // console.log(editReminderItem,"editReminderItem");
+  console.log(editReminderItem,"----editReminderItem2");
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDate : null,
   );
@@ -104,6 +107,21 @@ const AddReminder = ({ route, navigation }: any) => {
   const [isMeasureDatePickerVisible, setMeasureDatePickerVisibility] = useState(false);
   const [isMeasureTimePickerVisible, setMeasureTimePickerVisibility] = useState(false);
 
+  const [measureDateDefined, setmeasureDateDefined] = useState<DateTime>(
+    editReminderItem ? editReminderItem.reminderDateDefined : null,
+  );
+  const [showmeasureDefined, setmeasureShowDefined] = useState<Boolean>(false);
+  const [measureTimeDefined, setmeasureTimeDefined] = useState<DateTime>(
+    editReminderItem ? editReminderItem.reminderTimeDefined : null,
+  );
+  const [minmeasureTimeDefined, setminmeasureTimeDefined] = useState<any>(
+    editReminderItem ? new Date(editReminderItem.reminderDateDefined) : new Date(),
+  );
+  const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<Boolean>(false);
+  const [dateTouchedDefined, setDateTouchedDefined] = useState<Boolean>(false);
+  const [timeTouchedDefined, setTimeTouchedDefined] = useState<Boolean>(false);
+  const [isMeasureDatePickerVisibleDefined, setMeasureDatePickerVisibilityDefined] = useState(false);
+  const [isMeasureTimePickerVisibleDefined, setMeasureTimePickerVisibilityDefined] = useState(false);
   // const defaultDatePickerValue = new Date();
   // const defaulttimePickerValue = new Date();
   const languageCode = useAppSelector(
@@ -123,6 +141,10 @@ const AddReminder = ({ route, navigation }: any) => {
   const luxonLocale = useAppSelector(
     (state: any) => state.selectedCountry.luxonLocale,
   );
+  const vchcEnabledFlag = useAppSelector((state: any) =>
+    (state.notificationData.vchcEnabled),
+  );
+  console.log("in add rmeinder---",vchcEnabledFlag);
   // const defaultTimePickerMinValue = ()=>{
   //   var minTime  = new Date();
   //   minTime.getHours()
@@ -163,10 +185,43 @@ const AddReminder = ({ route, navigation }: any) => {
     }
 
   };
+  const onmeasureChangeDefined = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate || measureDateDefined;
+    //console.log(selectedDate, "..selectedDate..")
+    //console.log(currentDate, "..currentDate..")
+    setmeasureShowDefined(false);
+    if (selectedDate) {
+      setmeasureDateDefined(DateTime.fromJSDate(currentDate));
+      setDateTouchedDefined(true);
+      //console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
+      if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
+        setminmeasureTimeDefined(new Date(currentDate));
+        //console.log(currentDate, "..11currentDatenew",)
+        setmeasureTimeDefined(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
+        // .setMinutes(new Date().getMinutes()<60?new Date().getMinutes()+1:00)
+      }
+      else {
+        // console.log(currentDate,"..currentDatenew");
+        // console.log(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
+        const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
+        //console.log(currentDatenew, "..currentDatenew")
+        setminmeasureTimeDefined(new Date(currentDatenew));
+        //setminmeasureTime(DateTime.fromJSDate(currentDate));
+      }
+
+    }
+
+  };
   const showmeasureDatepicker = () => {
     setmeasureShow(true);
     if (Platform.OS == 'ios') {
       setMeasureDatePickerVisibility(true);
+    }
+  };
+  const showmeasureDatepickerDefined = () => {
+    setmeasureShowDefined(true);
+    if (Platform.OS == 'ios') {
+      setMeasureDatePickerVisibilityDefined(true);
     }
   };
   const handleMeasureDateConfirm = (event: any) => {
@@ -175,11 +230,23 @@ const AddReminder = ({ route, navigation }: any) => {
     onmeasureChange(event, date);
     setMeasureDatePickerVisibility(false);
   };
+  const handleMeasureDateConfirmDefined = (event: any) => {
+    const date = event;
+    //console.log("A date has been picked: ", date);
+    onmeasureChangeDefined(event, date);
+    setMeasureDatePickerVisibilityDefined(false);
+  };
   const handleMeasureTimeConfirm = (event: any) => {
     const time = event;
     //console.log("A date has been picked: ", time);
     onmeasureTimeChange(event, time);
     setMeasureTimePickerVisibility(false);
+  };
+  const handleMeasureTimeConfirmDefined = (event: any) => {
+    const time = event;
+    //console.log("A date has been picked: ", time);
+    onmeasureTimeChangeDefined(event, time);
+    setMeasureTimePickerVisibilityDefined(false);
   };
 
   const onmeasureTimeChange = (event: any, selectedTime: any) => {
@@ -193,14 +260,31 @@ const AddReminder = ({ route, navigation }: any) => {
     }
     // console.log(reminderType, measureDate, measureTime);
   };
+  const onmeasureTimeChangeDefined = (event: any, selectedTime: any) => {
+    // console.log(selectedTime,"selectedTime");
+    const currentTime = selectedTime || measureTimeDefined;
+    // console.log(currentTime,"currentTime");
+    setmeasureShowTimeDefined(false);
+    if (selectedTime) {
+      setmeasureTimeDefined(DateTime.fromJSDate(currentTime));
+      setTimeTouchedDefined(true);
+    }
+    // console.log(reminderType, measureDate, measureTime);
+  };
   const showmeasureTimepicker = () => {
     setmeasureShowTime(true);
     if (Platform.OS == 'ios') {
       setMeasureTimePickerVisibility(true);
     }
   };
+  const showmeasureTimepickerDefined = () => {
+    setmeasureShowTimeDefined(true);
+    if (Platform.OS == 'ios') {
+      setMeasureTimePickerVisibilityDefined(true);
+    }
+  };
   const isFormDisabled = () => {
-    if (measureDate && measureTime && !clicked) {
+    if (measureDate && measureTime && measureDateDefined && measureTimeDefined && !clicked) {
       return false;
     } else {
       return true;
@@ -218,6 +302,14 @@ const AddReminder = ({ route, navigation }: any) => {
     );
     //console.log(createresult?.length, 'ReminderDeleted');
     if (createresult) {
+      if(editReminderItem) {
+        let previousDTDefined;
+        const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
+        previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
+        previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
+        console.log("deleteing dtdefined---",previousDTDefined);
+        LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+      }
       activeChild.reminders = createresult;
       let notiFlagObj = { key: 'generateNotifications', value: true };
       dispatch(setInfoModalOpened(notiFlagObj));
@@ -229,12 +321,18 @@ const AddReminder = ({ route, navigation }: any) => {
     // check if reminderdate and time are less than current time show error alert
     // else allow saving
 
-    let measureTimeNew;
+    let measureTimeNew,measureTimeNewDefined;
     if (typeof measureTime === 'number' || measureTime instanceof Number) {
       measureTimeNew = measureTime;
     }
     else {
       measureTimeNew = measureTime.toMillis();
+    }
+    if (typeof measureTimeDefined === 'number' || measureTimeDefined instanceof Number) {
+      measureTimeNewDefined = measureTimeDefined;
+    }
+    else {
+      measureTimeNewDefined = measureTimeDefined.toMillis();
     }
     const hours = new Date(editReminderItem
       ? timeTouched
@@ -253,42 +351,93 @@ const AddReminder = ({ route, navigation }: any) => {
       : measureDate?.toMillis())
     finalReminderDate.setHours(hours);
     finalReminderDate.setMinutes(mins);
+    
+    const hoursDefined = new Date(editReminderItem
+      ? timeTouchedDefined
+        ? measureTimeNewDefined
+        : measureTimeNewDefined
+      : measureTimeNewDefined).getHours();
+    const minsDefined = new Date(editReminderItem
+      ? timeTouchedDefined
+        ? measureTimeNewDefined
+        : measureTimeNewDefined
+      : measureTimeNewDefined).getMinutes()
+    let finalReminderDateDefined = new Date(editReminderItem
+      ? dateTouchedDefined
+        ? measureDateDefined?.toMillis()
+        : measureDateDefined
+      : measureDateDefined?.toMillis())
+    finalReminderDateDefined.setHours(hoursDefined);
+    finalReminderDateDefined.setMinutes(minsDefined);
+      console.log(DateTime.fromJSDate(finalReminderDate).toMillis(),"---finalReminderDate--",DateTime.fromJSDate(finalReminderDateDefined).toMillis());
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
-      const reminderValues = {
-        uuid: editReminderItem ? editReminderItem.uuid : uuidv4(),
-        reminderType: reminderType,
-        reminderDate: editReminderItem
-          ? dateTouched
-            ? measureDate?.toMillis()
-            : measureDate
-          : measureDate?.toMillis(),
-        reminderTime: editReminderItem
-          ? timeTouched
-            ? measureTimeNew
-            : measureTimeNew
-          : measureTimeNew,
-      };
-      let createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
-        ChildEntitySchema,
-        reminderValues,
-        'uuid ="' + activeChild.uuid + '"',
-      );
-      // console.log(createresult);
-      if (createresult?.length > 0) {
-        activeChild.reminders = createresult;
-        dispatch(setActiveChildData(activeChild));
-        let notiFlagObj = { key: 'generateNotifications', value: true };
-        dispatch(setInfoModalOpened(notiFlagObj));
-        navigation.goBack();
-        if (reminderType == 'vaccine') {
-          analytics().logEvent(VACCINE_REMINDER_SET)
-        } else {
-          analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
-        }
+      if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
+      && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
+          const reminderValues = {
+            uuid: editReminderItem ? editReminderItem.uuid : uuidv4(),
+            reminderType: reminderType,
+            reminderDate: editReminderItem
+              ? dateTouched
+                ? measureDate?.toMillis()
+                : measureDate
+              : measureDate?.toMillis(),
+            reminderTime: editReminderItem
+              ? timeTouched
+                ? measureTimeNew
+                : measureTimeNew
+              : measureTimeNew,
+            reminderDateDefined: editReminderItem
+              ? dateTouchedDefined
+                ? measureDateDefined?.toMillis()
+                : measureDateDefined
+              : measureDateDefined?.toMillis(),
+            reminderTimeDefined: editReminderItem
+              ? timeTouchedDefined
+                ? measureTimeNewDefined
+                : measureTimeNewDefined
+              : measureTimeNewDefined,
+          };
+          let createresult = await userRealmCommon.updateChildReminders<ChildEntity>(
+            ChildEntitySchema,
+            reminderValues,
+            'uuid ="' + activeChild.uuid + '"',
+          );
+          // console.log(createresult);
+          if (createresult?.length > 0) {
+            activeChild.reminders = createresult;
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
+            const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
+            console.log(message,"reminderType----",reminderType);
+            if(editReminderItem) {
+              let previousDTDefined;
+              const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
+              previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
+              previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
+              console.log("editing dtdefined---",previousDTDefined);
+              LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
+            }
+            console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
+            if(vchcEnabledFlag == true) {
+             LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
+            }
+            dispatch(setActiveChildData(activeChild));
+            let notiFlagObj = { key: 'generateNotifications', value: true };
+            dispatch(setInfoModalOpened(notiFlagObj));
+            navigation.goBack();
+            if (reminderType == 'vaccine') {
+              analytics().logEvent(VACCINE_REMINDER_SET)
+            } else {
+              analytics().logEvent(HEALTH_CHECKUP_REMINDER_SET)
+            }
+          }
+      }else {
+        setClicked(false);
+        Alert.alert('', t('reminderalertTextDefined'));
       }
     } else {
       setClicked(false);
-      Alert.alert(t('reminderalertText')); 
+      Alert.alert('', t('reminderalertText')); 
     }
 
     // reminderalertText:"Reminder Date is before current Date Time"
@@ -513,9 +662,153 @@ useEffect(() => {
               )}
             </FormInputGroup>
           </ShiftFromTop20>
-          <View></View>
+          {/* <View></View>
 
-          <View></View>
+          <View></View> */}
+          <ShiftFromBottom20></ShiftFromBottom20>
+          <ShiftFromBottom10>
+          <Heading4Regular>{titleTxt2}</Heading4Regular>
+          {/* <Paragraph>{titleTxt2}</Paragraph> */}
+          </ShiftFromBottom10>
+          <FormInputGroup onPress={showmeasureDatepickerDefined}>
+            {Platform.OS != 'ios' ? (
+              <FormInputBox>
+                <FormDateText>
+                  <Text>
+                    {measureDateDefined
+                      ?
+                      // DateTime.fromJSDate(new Date(measureDate)).toFormat(
+                      //     'dd/MM/yyyy',
+                      //   )
+                      formatStringDate(measureDateDefined, luxonLocale)
+                      : t('vcReminderDate')}
+                  </Text>
+                  {showmeasureDefined && (
+                    <DateTimePicker
+                      testID="measuredatePickerDefined"
+                      value={
+                        editReminderItem ? new Date(measureDateDefined) : new Date()
+                      }
+                      mode={'date'}
+                      display="default"
+                      minimumDate={new Date()}
+                      maximumDate={new Date(measureDate)}
+                      onChange={onmeasureChangeDefined}
+                    />
+                  )}
+                </FormDateText>
+                <FormDateAction>
+                  <Icon name="ic_calendar" size={20} color="#000" />
+                </FormDateAction>
+              </FormInputBox>
+            ) : (
+              <FormInputBox>
+                <FormDateText>
+                  <Text>
+                    {measureDateDefined
+                      ?
+                      formatStringDate(measureDateDefined, luxonLocale)
+                      : t('vcReminderDate')}
+                  </Text>
+                  <DateTimePickerModal
+                    isVisible={isMeasureDatePickerVisibleDefined}
+                    mode="date"
+                    onConfirm={handleMeasureDateConfirmDefined}
+                    date={editReminderItem ? new Date(measureDateDefined) : new Date()}
+                    onCancel={() => {
+                      // Alert.alert('Modal has been closed.');
+                      setMeasureDatePickerVisibilityDefined(false);
+                    }}
+                    minimumDate={new Date()}
+                    maximumDate={new Date(measureDate)}
+                  />
+
+                </FormDateText>
+                <FormDateAction>
+                  <Icon name="ic_calendar" size={20} color="#000" />
+                </FormDateAction>
+              </FormInputBox>
+            )}
+          </FormInputGroup>
+          <ShiftFromTop20>
+            <FormInputGroup onPress={showmeasureTimepickerDefined}>
+              {Platform.OS != 'ios' ? (
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>
+                      {measureTimeDefined
+                        ?
+                        // DateTime.fromJSDate(new Date(measureTime)).toFormat(
+                        //     'hh:mm a',
+                        //   )
+                        formatStringTime(measureTimeDefined, luxonLocale)
+                        : t('vcReminderTime')}
+                    </Text>
+                    {showmeasureTimeDefined && (
+                      <DateTimePicker
+                        testID="measuretimePickerDefined"
+                        value={
+                          editReminderItem ? new Date(measureTimeDefined) : new Date()
+                        }
+                        mode={'time'}
+                        display="default"
+                        is24Hour={true}
+                        minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
+                        maximumDate={measureTime ? new Date(measureTime) : new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
+                        onChange={onmeasureTimeChangeDefined}
+                      />
+                    )}
+                  </FormDateText>
+                  <FormDateAction>
+                    <IconViewBorder>
+                      <Icon
+                        name="ic_time"
+                        size={20}
+                        color="#000"
+                      />
+                    </IconViewBorder>
+                  </FormDateAction>
+                </FormInputBox>
+              ) : (
+                <FormInputBox>
+                  <FormDateText>
+                    <Text>
+                      {measureTimeDefined
+                        ?
+                        // DateTime.fromJSDate(new Date(measureTime)).toFormat(
+                        //     'hh:mm a',
+                        //   )
+                        formatStringTime(measureTimeDefined, luxonLocale)
+                        : t('vcReminderTime')}
+                    </Text>
+                    <DateTimePickerModal
+                      isVisible={isMeasureTimePickerVisibleDefined}
+                      mode="time"
+                      onConfirm={handleMeasureTimeConfirmDefined}
+                      date={editReminderItem ? new Date(measureTimeDefined) : new Date()}
+                      onCancel={() => {
+                        // Alert.alert('Modal has been closed.');
+                        setMeasureTimePickerVisibilityDefined(false);
+                      }}
+                      // minimumDate={minmeasureTimeDefined}
+                      minimumDate={new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
+                      maximumDate={measureTime ? new Date(measureTime) : new Date(DateTime.local().plus({ minutes: +1 }).toISODate())}
+                    />
+
+                  </FormDateText>
+                  <FormDateAction>
+                    <IconViewBorder>
+                      <Icon
+                        name="ic_time"
+                        size={20}
+                        color="#000"
+                      />
+                    </IconViewBorder>
+                  </FormDateAction>
+                </FormInputBox>
+              )}
+            </FormInputGroup>
+          </ShiftFromTop20>
 
           <ShiftFromTop30>
             <ButtonTertiary
