@@ -590,7 +590,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let createresult = await userRealmCommon.create<ChildEntity>(ChildEntitySchema, data);
     // dispatch(setActiveChildData(data[0]));
   }
-
+  //new child add from 
   if (param == 0) {
     // navigation.reset({
     //   index: 0,
@@ -613,6 +613,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");
     setActiveChild(languageCode, data[0].uuid, dispatch, child_age);
   }
+  //child add from add sibling
   else if (param == 1) {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
     if (currentActiveChildId?.length > 0) {
@@ -624,6 +625,7 @@ export const addChild = async (languageCode: any, editScreen: boolean, param: nu
     navigation.navigate('ChildSetupList');
     // setActiveChild(data[0].uuid,dispatch,child_age);
   }
+  //child add from edit/add expecting
   else {
     let currentActiveChildId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
     let ageLimit = [];
