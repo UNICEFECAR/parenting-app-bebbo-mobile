@@ -429,6 +429,9 @@ export const getCurrentChildAgeInYears = (birthDayMillis: number) => {
 export const isFutureDate = (date: Date) => {
   return new Date(date).setHours(0, 0, 0, 0) > new Date().setHours(0, 0, 0, 0)
 };
+export const isFutureDateTime = (date: Date) => {
+  return new Date(date) > new Date()
+};
 
 export const getCurrentChildAgeInMonths = (t: any, birthDate: string,pluralShow:boolean) => {
   console.log(birthDate,"..birthDate..");
