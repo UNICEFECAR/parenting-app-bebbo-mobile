@@ -438,14 +438,14 @@ const ru = {
                 restOfTheWorldAlertText: "Если вы выберете Rest of the world (остальные страны), вы сможете пользоваться всеми функциями Беббо, но информация о вакцинах и медосмотрах может не соответствовать национальной программе здравоохранения вашей страны.",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Напоминание!",
+                vcDefinedReminderText: "Установите дату и время напоминания",
+                hcDefinedReminderText: "Установите дату и время напоминания",
+                reminderalertTextDefined: "Дата напоминания должна быть между сегодняшней датой-временем и датой-временем записи к врачу",
+                vcrNoti2: "Вакцинация запланирована на {{reminderDateTime}}",
+                hcrNoti2: "Медосмотр запланирован на {{reminderDateTime}}",
+                vcrNoti3: "Вакцинация запланирована на {{reminderDateTime}}, пожалуйста, введите данные о вакцине",
+                hcrNoti3: "Медосмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные о медосмотре",
         }
 }
 export default ru;
