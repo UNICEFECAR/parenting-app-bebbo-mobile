@@ -435,14 +435,14 @@ const TJtg = {
                 downloadAllSuccessOkBtn: "Хуб",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Огоҳкунӣ!",
+                vcDefinedReminderText: "Сана ва вақти огоҳкуниро муқаррар кунед",
+                hcDefinedReminderText: "Сана ва вақти огоҳкуниро муқаррар кунед",
+                reminderalertTextDefined: "Санаи огоҳкунӣ бояд байни санаи имрӯза - вақт ва санаю вақти ба нақша гирифта шуда бошад ",
+                vcrNoti2: "Ваксинатсия ба нақша гирифта шудааст дар {{reminderDateTime}}",
+                hcrNoti2: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}}",
+                vcrNoti3: "Ваксинатсия ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи ваксина ворид намоед",
+                hcrNoti3: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи муоинаи тиббӣ ворид намоед",
         }
 }
 export default TJtg;
