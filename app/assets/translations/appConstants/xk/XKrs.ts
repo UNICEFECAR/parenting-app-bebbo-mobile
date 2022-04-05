@@ -431,7 +431,15 @@ const XKrs = {
               downloadAllContinueBtn: "Nastavite",
               downloadAllSuccessPopupTitle: "Uspešno obavljeno",
               downloadAllSuccessPopupText: "Svi podaci su uspešno preuzeti!!",
-              downloadAllSuccessOkBtn: "Uredu"
+              downloadAllSuccessOkBtn: "Uredu",
+              remindersAlertTitle: "Podsetnik!",
+              vcDefinedReminderText: "Unesite datum i vreme podsetnika",
+              hcDefinedReminderText: "Unesite datum i vreme podsetnika",
+              reminderalertTextDefined: "Podesite podsetnik između današnjeg i zakazanog datuma",
+              vcrNoti2: "Vakcinacija je zakazana za {{reminderDateTime}}",
+              hcrNoti2: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}",
+              vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas unesite detalje o vakcinaciji",
+              hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
        }
 }
 export default XKrs;

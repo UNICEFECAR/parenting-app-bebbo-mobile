@@ -435,14 +435,14 @@ const UZru = {
                 downloadAllSuccessOkBtn: "Ок",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Напоминание!",
+                vcDefinedReminderText: "Введите дату и время напоминания",
+                hcDefinedReminderText: "Введите дату и время напоминания",
+                reminderalertTextDefined: "Дата напоминания должна быть между текущей датой и запланированной датой и временем",
+                vcrNoti2: "Вакцинация запланирована на {{reminderDateTime}}",
+                hcrNoti2: "Медицинский осмотр запланирован на {{reminderDateTime}}",
+                vcrNoti3: "Вакцинация запланирована на {{reminderDateTime}}, пожалуйста, введите данные вакцинации",
+                hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
         }
 }
 export default UZru;
