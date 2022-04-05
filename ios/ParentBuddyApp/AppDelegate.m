@@ -106,14 +106,10 @@ static void InitializeFlipper(UIApplication *application) {
      [FIRApp configure];
    }
 //  [RNSplashScreen show];
-<<<<<<< HEAD
   [[FBSDKApplicationDelegate sharedInstance] application:application
                         didFinishLaunchingWithOptions:launchOptions];
-=======
-  UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
    center.delegate = self;
-
->>>>>>> main
   return YES;
 }
 //- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
