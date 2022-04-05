@@ -435,14 +435,14 @@ const MKsq = {
                 downloadAllSuccessOkBtn: "Dakort",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Rikujtim!",
+                vcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
+                hcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
+                reminderalertTextDefined: "Data e alarmit rikujtues duhet të jetë ndërmjet datës aktuale dhe datës së planifikuar",
+                vcrNoti2: "Vaksinimi është planifikuar më {{reminderDateTime}}",
+                hcrNoti2: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}",
+                vcrNoti3: "Vaksinimi është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e vaksinimit",
+                hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
         }
 }
 export default MKsq;
