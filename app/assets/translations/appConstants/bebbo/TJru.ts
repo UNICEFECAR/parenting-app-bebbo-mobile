@@ -435,14 +435,14 @@ const TJru = {
                 downloadAllSuccessOkBtn: "Ок",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Напоминание!",
+                vcDefinedReminderText: "Установите дату и время напоминания",
+                hcDefinedReminderText: "Установите дату и время напоминания",
+                reminderalertTextDefined: "Дата напоминания должна быть между сегодняшней датой-временем и датой-временем записи к врачу",
+                vcrNoti2: "План {e запланирована на {{reminderDateTime}}",
+                hcrNoti2: "Плановый осмотр запланирован на {{reminderDateTime}}",
+                vcrNoti3: "Эм {e запланирована на {{reminderDateTime}}, пожалуйста, введите данные вакцинации",
+                hcrNoti3: "Плановый осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные планового осмотра",
 
         }
 }
