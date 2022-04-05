@@ -435,14 +435,14 @@ const GRel = {
                 downloadAllSuccessOkBtn: "Οκ",
                 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Υπενθύμιση!",
+                vcDefinedReminderText: "Προσθέστε την ημερομηνία και ώρα της υπενθύμισης",
+                hcDefinedReminderText: "Προσθέστε την ημερομηνία και ώρα της υπενθύμισης",
+                reminderalertTextDefined: "Η ημερομηνία υπενθύμισης πρέπει να είναι μεταξύ της τρέχουσας ημερομηνίας και της προγραμματισμένης ημερομηνίας",
+                vcrNoti2: "Ο εμβολιασμός προγραμματίστηκε για {{reminderDateTime}}",
+                hcrNoti2: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}",
+                vcrNoti3: "Ο εμβολιασμός προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα εμβολιασμού",
+                hcrNoti3: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα του ιατρικού ελέγχου",
         }
 }
 export default GRel;

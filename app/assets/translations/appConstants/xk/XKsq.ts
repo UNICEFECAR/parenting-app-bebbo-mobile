@@ -432,7 +432,15 @@ const XKsq = {
                 downloadAllContinueBtn: "Vazhdo",
                 downloadAllSuccessPopupTitle: "Sukses",
                 downloadAllSuccessPopupText: "Te gjitha të dhënat u shkarkuan me sukses!!",
-                downloadAllSuccessOkBtn: "Në rregull"
+                downloadAllSuccessOkBtn: "Në rregull",
+                remindersAlertTitle: "Rikujtim!",
+                vcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
+                hcDefinedReminderText: "Vendosni datën dhe orën për alarmin rikujtues",
+                reminderalertTextDefined: "Data e alarmit rikujtues duhet të jetë ndërmjet datës aktuale dhe datës së planifikuar",
+                vcrNoti2: "Vaksinimi është planifikuar më {{reminderDateTime}}",
+                hcrNoti2: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}",
+                vcrNoti3: "Vaksinimi është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e vaksinimit",
+                hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
         }
 }
 export default XKsq;
