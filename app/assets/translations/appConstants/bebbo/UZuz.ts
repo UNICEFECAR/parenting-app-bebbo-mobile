@@ -435,14 +435,14 @@ const UZuz = {
               downloadAllSuccessOkBtn: "Ok",
 
               //9/03/2022
-              remindersAlertTitle: "🔔 Reminder!",
-              vcDefinedReminderText: "Enter the date and time of the reminder",
-              hcDefinedReminderText: "Enter the date and time of the reminder",
-              reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-              vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-              hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-              vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-              hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+              remindersAlertTitle: "Eslatma!",
+              vcDefinedReminderText: "Eslatma sanasi va vaqtini kiriting",
+              hcDefinedReminderText: "Eslatma sanasi va vaqtini kiriting",
+              reminderalertTextDefined: "Eslatma sanasi bugungi sana va rejalashtirilgan sana orasida boʻlishi kerak",
+              vcrNoti2: "Emlash {{reminderDateTime}} sanasiga rejalashtirildi",
+              hcrNoti2: "Tibbiy koʻrik {{reminderDateTime}} sanasiga rejalashtirildi",
+              vcrNoti3: "Emlash {{reminderDateTime}} sanasiga rejalashtirildi, emlash maʼlumotlarini kiriting",
+              hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
        }
 }
 export default UZuz;
