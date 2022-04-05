@@ -227,7 +227,6 @@ const ChildDate = (props: any) => {
                   // Alert.alert('Modal has been closed.');
                   setDobDatePickerVisibility(false);
                 }}
-                timeZoneOffsetInMinutes={0}
                 minimumDate={new Date(dobMin)}
                 maximumDate={new Date(dobMax)}
                 />
@@ -348,7 +347,6 @@ const ChildDate = (props: any) => {
                      <DateTimePickerModal
                       isVisible={isDueDatePickerVisible}
                       mode="date"
-                      timeZoneOffsetInMinutes={0}
                       date={dueDate != null ? dueDate : new Date(
                         DateTime.fromJSDate(doborExpectedDate as Date)
                           .plus({weeks: minDue})
