@@ -434,14 +434,14 @@ const RSsr = {
               downloadAllSuccessOkBtn: "U redu",
 
               //9/03/2022
-              remindersAlertTitle: "🔔 Reminder!",
-              vcDefinedReminderText: "Enter the date and time of the reminder",
-              hcDefinedReminderText: "Enter the date and time of the reminder",
-              reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-              vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-              hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-              vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-              hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+              remindersAlertTitle: "Podsetnik!",
+              vcDefinedReminderText: "Unesite datum i vreme podsetnika",
+              hcDefinedReminderText: "Unesite datum i vreme podsetnika",
+              reminderalertTextDefined: "Podesite podsetnik između današnjeg i zakazanog datuma",
+              vcrNoti2: "Vakcinacija je zakazana za {{reminderDateTime}}",
+              hcrNoti2: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}",
+              vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas unesite detalje o vakcinaciji",
+              hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
        }
 
 }

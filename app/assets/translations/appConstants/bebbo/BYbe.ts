@@ -434,14 +434,14 @@ const BYbe = {
                 downloadAllSuccessOkBtn: "Ок",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Напамiнанне!",
+                vcDefinedReminderText: "Устанавіце дату і час напамінання",
+                hcDefinedReminderText: "Устанавіце дату і час напамінання",
+                reminderalertTextDefined: "Дата напамінання павінна быць паміж сённяшняй датай-часам і датай-часам запісу да ўрача",
+                vcrNoti2: "Вакцынацыя запланавана на {{reminderDateTime}}",
+                hcrNoti2: "Медагляд запланаваны на {{reminderDateTime}}",
+                vcrNoti3: "Вакцынацыя запланавана на {{reminderDateTime}}, калі ласка, увядзіце даныя пра вакцыну",
+                hcrNoti3: "Медагляд запланаваны на {{reminderDateTime}}, калі ласка, увядзіце даныя пра медагляд",
         }
 }
 export default BYbe;

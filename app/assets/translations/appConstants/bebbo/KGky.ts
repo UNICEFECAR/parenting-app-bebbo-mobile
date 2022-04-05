@@ -434,14 +434,14 @@ const KGky = {
                 downloadAllSuccessOkBtn: "Макул",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Эскертүү!",
+                vcDefinedReminderText: "Эстеткичтин күнүн жана убактысын киргизиңиз",
+                hcDefinedReminderText: "Эстеткичтин күнүн жана убактысын киргизиңиз",
+                reminderalertTextDefined: "Эстеткич датасы учурдагы күн убактысы менен пландаштырылган күн убактысынын ортосунда болушу керек",
+                vcrNoti2: "Эмдөө {{reminderDateTime}} күнү пландаштырылган",
+                hcrNoti2: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган",
+                vcrNoti3: "Эмдөө {{reminderDateTime}} күнү пландаштырылган, эмдөө чоо-жайын киргизиңиз",
+                hcrNoti3: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган, медициналык текшерүүнүн чоо-жайын киргизиңиз",
         }
 }
 export default KGky;
