@@ -436,14 +436,14 @@ const MKmk = {
                 downloadAllSuccessOkBtn: "Во ред",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Потсетник!",
+                vcDefinedReminderText: "Внесете датум и време на потсетникот",
+                hcDefinedReminderText: "Внесете датум и време на потсетникот",
+                reminderalertTextDefined: "Потсетникот да биде поставен помеѓу денешниот датум и денот на закажаниот термин",
+                vcrNoti2: "Вакцинација закажана за {{reminderDateTime}}",
+                hcrNoti2: "Здравствен преглед закажан за {{reminderDateTime}}",
+                vcrNoti3: "Вакцинација закажана за {{reminderDateTime}}, Ве молиме внесете детали за вакцинацијата.",
+                hcrNoti3: "Здравствен преглед закажан за {{reminderDateTime}}, Ве молиме внесете детали за прегледот.",
         }
 }
 export default MKmk;
