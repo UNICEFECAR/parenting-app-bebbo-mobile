@@ -438,14 +438,14 @@ const uk = {
                 restOfTheWorldAlertText: "Вибравши параметр «Інші країни світу», ви користуватиметеся всіма можливостями REMOVED_FACEBOOK_APP_ID1, але зверніть увагу, що вакцинація та медичний огляд не підлаштовуються під конкретну національну програму охорони здоров'я.",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
-                vcDefinedReminderText: "Enter the date and time of the reminder",
-                hcDefinedReminderText: "Enter the date and time of the reminder",
-                reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
-                vcrNoti2: "Vaccination has been scheduled on {{reminderDateTime}}",
-                hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
-                vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
-                hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                remindersAlertTitle: "Нагадування!",
+                vcDefinedReminderText: "Введіть дату та час нагадування",
+                hcDefinedReminderText: "Введіть дату та час нагадування",
+                reminderalertTextDefined: "Дата нагадування повинна бути між поточним та запланованим часом та датою",
+                vcrNoti2: "Вакцинація запланована на {{reminderDateTime}}",
+                hcrNoti2: "Перевірка стану здоров 'я запланована на {{reminderDateTime}}",
+                vcrNoti3: "Вакцинація запланована на{{reminderDateTime}}, будь ласка, введіть дані про вакцинацію",
+                hcrNoti3: "Медичне обстеження заплановано на{{reminderDateTime}}, будь ласка, введіть дані медичного обстеження",
         }
 }
 export default uk;
