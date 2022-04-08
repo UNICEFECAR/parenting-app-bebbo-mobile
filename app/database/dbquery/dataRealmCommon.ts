@@ -303,6 +303,79 @@ class DataRealmCommon {
         });
     }
 
+    public async deleteDeltaData(Schemavideo:string,Schemaarticle:string,Schemaactivities:string,Schemafaqs:string,records:any): Promise<String> {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const realm = await this.openRealm();
+                if(realm)
+                {
+                    console.log("in deletedeta data---",records);
+                    const articleids = records && records.article && records.article.length > 0 ? records.article : []
+                    const activitiesids = records && records.activities && records.activities.length > 0 ? records.activities : []
+                    const video_articleids = records && records.video_article && records.video_article.length > 0 ? records.video_article : []
+                    const faqids = records && records.faq && records.faq.length > 0 ? records.faq : []
+                     realm?.write(() => {
+                        if(articleids.length > 0) {
+                            const filterQuery = articleids.map((x: any) => `id = '${x}'`).join(' OR ');
+                            if (
+                                realm.objects(Schemaarticle).filtered(filterQuery)
+                                .length > 0
+                            ) {
+                                //let collectionPages = Object.assign([], realm.objects(Schema));
+                                realm.delete(
+                                realm.objects(Schemaarticle).filtered(filterQuery)
+                                );
+                            }
+                        }
+                        if(activitiesids.length > 0) {
+                            const filterQuery = activitiesids.map((x: any) => `id = '${x}'`).join(' OR ');
+                            if (
+                                realm.objects(Schemaactivities).filtered(filterQuery)
+                                .length > 0
+                            ) {
+                                //let collectionPages = Object.assign([], realm.objects(Schema));
+                                realm.delete(
+                                realm.objects(Schemaactivities).filtered(filterQuery)
+                                );
+                            }
+                        }
+                        if(video_articleids.length > 0) {
+                            const filterQuery = video_articleids.map((x: any) => `id = '${x}'`).join(' OR ');
+                            if (
+                                realm.objects(Schemavideo).filtered(filterQuery)
+                                .length > 0
+                            ) {
+                                //let collectionPages = Object.assign([], realm.objects(Schema));
+                                realm.delete(
+                                realm.objects(Schemavideo).filtered(filterQuery)
+                                );
+                            }
+                        }
+                        if(faqids.length > 0) {
+                            const filterQuery = faqids.map((x: any) => `id = '${x}'`).join(' OR ');
+                            if (
+                                realm.objects(Schemafaqs).filtered(filterQuery)
+                                .length > 0
+                            ) {
+                                //let collectionPages = Object.assign([], realm.objects(Schema));
+                                realm.delete(
+                                realm.objects(Schemafaqs).filtered(filterQuery)
+                                );
+                            }
+                        }
+                        // realm?.delete(realm.objectForPrimaryKey(Schema, record));
+                        resolve('success');
+                    });
+                }
+                else {
+                    reject('error');
+                }  
+            } catch (e:any) {
+               // console.log(e.message,"..error in delete..");
+                reject('error');
+            }
+        });
+    }
     public async delete(Schema:string,filterCondition:any): Promise<String> {
         return new Promise(async (resolve, reject) => {
             try {

@@ -18,10 +18,10 @@ import { VideoArticleEntity, VideoArticleEntitySchema } from '../database/schema
 import downloadImages from '../downloadImages/ImageStorage';
 import { commonApiInterface } from "../interface/interface";
 import { setDailyArticleGamesCategory, setShowedDailyDataCategory } from '../redux/reducers/articlesSlice';
-import { setchatBotData } from '../redux/reducers/childSlice';
+import { setchatBotData, setDownloadedBufferAgeBracket } from '../redux/reducers/childSlice';
 import { setSponsorStore } from '../redux/reducers/localizationSlice';
 import { setAllNotificationData } from '../redux/reducers/notificationSlice';
-import { setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
+import { setIncrementalSyncDT, setInfoModalOpened, setSyncDate } from '../redux/reducers/utilsSlice';
 import axiosService from './axiosService';
 
 
@@ -67,36 +67,62 @@ const commonApiService: commonApiInterface = async (apiEndpoint: string, methodn
       // }
     });
 }
-export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any) => {
- response = response[0];
+export const updateIncrementalSyncDT = async(response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
+  const articleresp = response.find((y:any)=>y.apiEndpoint == appConfig.articles);
+  const videoarticleresp = response.find((y:any)=>y.apiEndpoint == appConfig.videoArticles);
+  const activitiesresp = response.find((y:any)=>y.apiEndpoint == appConfig.activities);
+  const faqpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqPinnedContent);
+  const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
+  const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
+  const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
+console.log(activitiesresp,"articleresp---",articleresp);
+  if(articleresp && articleresp != {} && articleresp.data) {
+    if(prevPage != "AddEditChild") {
+      dispatch(setIncrementalSyncDT({key: 'articlesDatetime', value: articleresp.data.datetime}));
+    }
+  }
+  if(videoarticleresp && videoarticleresp != {} && videoarticleresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'videoArticlesDatetime', value: videoarticleresp.data.datetime}));
+  }
+  if(activitiesresp && activitiesresp != {} && activitiesresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'activitiesDatetime', value: activitiesresp.data.datetime}));
+  }
+  if(faqpinnedresp && faqpinnedresp != {} && faqpinnedresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'faqPinnedContentDatetime', value: faqpinnedresp.data.datetime}));
+  }
+  if(faqsresp && faqsresp != {} && faqsresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'faqsDatetime', value: faqsresp.data.datetime}));
+  }
+  if(faqupdatedpinnedresp && faqupdatedpinnedresp != {} && faqupdatedpinnedresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'faqUpdatedPinnedContentDatetime', value: faqupdatedpinnedresp.data.datetime}));
+  }
+  if(archiveresp && archiveresp != {} && archiveresp.data) {
+    dispatch(setIncrementalSyncDT({key: 'archiveDatetime', value: archiveresp.data.datetime}));
+  }
+}
+export const onAddEditChildSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string,activeChild: any,oldErrorObj:any) => {
+//  response = response[0];
  //console.log(response,"..resonse..");
 //  deactivateKeepAwake();
+console.log(oldErrorObj,"in commonapi onAddEditChildSuccess ---", response);
+const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
+if(artresp && artresp != {})
+{
+  const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
+  if(artobj && artobj != {}){
+    const storedata = store.getState();
+    const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
+    console.log("keep awake deactivated--",bufferAgeBracket);
+    // console.log("storedata.utilsData.taxonomy.allTaxonomyData--",storedata.utilsData.taxonomy.allTaxonomyData);
+    const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
+    const agesarr = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number);
+    const mergedarray = [...new Set([...agesarr,...bufferAgeBracket])];
+    console.log("mergedarray---",mergedarray);
+    dispatch(setDownloadedBufferAgeBracket(mergedarray))
+  }
+}
+
  navigation.navigate('ChildProfileScreen');
- if(response.data && response.data.status && response.data.status == 200)
- {
- let insertData = response.data.data;
- let Entity:any;
-  Entity=Entity as ArticleEntity;
-  let EntitySchema = ArticleEntitySchema;
-  let pinnedArticle = "";
-  //let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
-//   try{
-//     // let createresult = await dataRealmCommon.createArticles<typeof Entity>(EntitySchema, insertData,pinnedArticle);
-//     // console.log(createresult,"..createresult..");
-//     // // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
-//     // console.log(allDatatoStore,"..allDatatoStore..")
-//     // console.log(new Date(),"in insert success---",response);
-//     navigation.navigate('ChildProfileScreen');
-// }
-// catch(e) {
-//     let errorArr = [];
-//     console.log("in insert catch---",response);
-//     errorArr.push(response);
-//     navigation.navigate('ChildProfileScreen');
-//     dispatch(receiveAPIFailure(errorArr));
-// }
- }
- 
 }
 export const onSponsorApiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage:string) => {
   // async function* onSponsorApiSuccess(response: any,dispatch: (arg0: { payload: any; type: string; }) => void,navigation: any){
@@ -219,9 +245,28 @@ export const onOnLoadApiSuccess = async (response: any, dispatch: any, navigatio
     navigation.navigate('ChildSetup');
   }
 }
-export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any) => {
+export const onChildSetuppiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any,oldErrorObj:any) => {
   // navigation.navigate('HomeDrawerNavigator');
-  // console.log("in commonapi onChildSetuppiSuccess ---", response);
+  console.log(oldErrorObj,"in commonapi onChildSetuppiSuccess ---", response);
+  const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
+  if(artresp && artresp != {})
+  {
+    const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
+    if(artobj && artobj != {}){
+      const storedata = store.getState();
+      console.log("storedata.utilsData.taxonomy.allTaxonomyData--",storedata.utilsData.taxonomy.allTaxonomyData);
+      const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
+      console.log("childagearray--",childagearray);
+      const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
+      dispatch(setDownloadedBufferAgeBracket(artarray))
+    }
+  }
+  //setDownloadedBufferAgeBracket save data from apiJsonData
+  // if(prevPage== "AddEditChild") {
+  //   //append agebrakcet into existing
+  // }else {
+  //   //just replace with new agebracket
+  // }
   const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage,activeChild);
   // console.log(allDatatoStore,"..allDatatoStore..")
   // deactivateKeepAwake();
@@ -367,6 +412,22 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     }
   }
   
+  if(prevPage == 'DownloadAllData' || prevPage == 'ImportScreen' || prevPage == 'CountryLangChange'){
+    const artresp = response.find((x:any)=> x.apiEndpoint == 'articles' && x.status == 200);
+    if(artresp && artresp != {})
+    {
+      const artobj = oldErrorObj.find((x:any) => x.apiEndpoint == 'articles');
+      if(artobj && artobj != {}){
+        const storedata = store.getState();
+        const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
+        const artarray = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number)
+        console.log(artarray,"---childagearray--",childagearray);
+        dispatch(setDownloadedBufferAgeBracket(artarray))
+      }
+    }
+  }
+
+
   if(prevPage == 'CountryLangChange' || prevPage == 'ImportScreen'){
     const favverified = await userRealmCommon.verifyFavorites();
    // console.log("favverified---",favverified);
@@ -374,6 +435,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     dispatch(setShowedDailyDataCategory({}));
     dispatch(setAllNotificationData([]));
     dispatch(setchatBotData([]));
+    dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: false}));
     let notiFlagObj = { key: 'generateNotifications', value: true };
     dispatch(setInfoModalOpened(notiFlagObj));
     if(prevPage == 'CountryLangChange') {
@@ -406,13 +468,12 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
     );
   }
   else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
-    console.log("enableImageDownload---",enableImageDownload);
     if(enableImageDownload){
       const allImagesucc = await downloadArticleImages();
-        console.log("download success---",allImagesucc);
         Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+              dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
               navigation.reset({
                 index: 0,
                 routes: [
@@ -430,6 +491,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
+            dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
               navigation.reset({
                 index: 0,
                 routes: [
