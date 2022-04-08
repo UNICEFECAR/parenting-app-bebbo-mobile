@@ -443,6 +443,8 @@ const UZru = {
                 hcrNoti2: "Медицинский осмотр запланирован на {{reminderDateTime}}",
                 vcrNoti3: "Вакцинация запланирована на {{reminderDateTime}}, пожалуйста, введите данные вакцинации",
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default UZru;

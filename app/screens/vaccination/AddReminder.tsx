@@ -114,9 +114,7 @@ const AddReminder = ({ route, navigation }: any) => {
   const [measureTimeDefined, setmeasureTimeDefined] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderTimeDefined : null,
   );
-  const [minmeasureTimeDefined, setminmeasureTimeDefined] = useState<any>(
-    editReminderItem ? new Date(editReminderItem.reminderDateDefined) : new Date(),
-  );
+ 
   const [showmeasureTimeDefined, setmeasureShowTimeDefined] = useState<Boolean>(false);
   const [dateTouchedDefined, setDateTouchedDefined] = useState<Boolean>(false);
   const [timeTouchedDefined, setTimeTouchedDefined] = useState<Boolean>(false);
@@ -195,7 +193,6 @@ const AddReminder = ({ route, navigation }: any) => {
       setDateTouchedDefined(true);
       //console.log(new Date(selectedDate).toDateString(), "/", new Date().toDateString());
       if (new Date(selectedDate).toDateString() == new Date().toDateString()) {
-        setminmeasureTimeDefined(new Date(currentDate));
         //console.log(currentDate, "..11currentDatenew",)
         setmeasureTimeDefined(new Date(currentDate).setMinutes(new Date().getMinutes() < 59 ? new Date().getMinutes() + 1 : 0))
         // .setMinutes(new Date().getMinutes()<60?new Date().getMinutes()+1:00)
@@ -205,7 +202,6 @@ const AddReminder = ({ route, navigation }: any) => {
         // console.log(new Date(new Date(currentDate).setHours(0, 0, 0, 0)))
         const currentDatenew = new Date(new Date(currentDate).setHours(0, 0, 0, 0))
         //console.log(currentDatenew, "..currentDatenew")
-        setminmeasureTimeDefined(new Date(currentDatenew));
         //setminmeasureTime(DateTime.fromJSDate(currentDate));
       }
 
@@ -405,8 +401,8 @@ const AddReminder = ({ route, navigation }: any) => {
           // console.log(createresult);
           if (createresult?.length > 0) {
             activeChild.reminders = createresult;
-            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
-            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDateDefined, luxonLocale) + "," + formatStringTime(measureTimeNewDefined, luxonLocale)});
+            const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
+            const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
             console.log(message,"reminderType----",reminderType);
             if(editReminderItem) {
