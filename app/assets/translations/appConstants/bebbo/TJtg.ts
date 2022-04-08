@@ -443,6 +443,8 @@ const TJtg = {
                 hcrNoti2: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}}",
                 vcrNoti3: "Ваксинатсия ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи ваксина ворид намоед",
                 hcrNoti3: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи муоинаи тиббӣ ворид намоед",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default TJtg;
