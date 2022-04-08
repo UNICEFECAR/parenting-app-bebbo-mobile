@@ -442,6 +442,8 @@ const RSen = {
                 hcrNoti2: "Health-checkup has been scheduled on {{reminderDateTime}}",
                 vcrNoti3: "Vaccination has been scheduled on {{reminderDateTime}}, please enter vaccination details",
                 hcrNoti3: "Health-checkup has been scheduled on {{reminderDateTime}}, please enter Health-checkup details",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default RSen;

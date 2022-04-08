@@ -442,6 +442,8 @@ const KGru = {
                 hcrNoti2: "Медицинский осмотр запланирован на {{reminderDateTime}}",
                 vcrNoti3: "Вакцинация запланирована на {{reminderDateTime}}, пожалуйста, введите данные вакцинации",
                 hcrNoti3: "Медицинский осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные медицинского осмотра",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default KGru;

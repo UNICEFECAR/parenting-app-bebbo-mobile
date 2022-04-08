@@ -446,6 +446,8 @@ const ru = {
                 hcrNoti2: "Медосмотр запланирован на {{reminderDateTime}}",
                 vcrNoti3: "Вакцинация запланирована на {{reminderDateTime}}, пожалуйста, введите данные о вакцине",
                 hcrNoti3: "Медосмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные о медосмотре",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default ru;
