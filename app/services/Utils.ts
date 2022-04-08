@@ -25,6 +25,9 @@ export const addApiDataInRealm = async (response: any) => {
     return new Promise(async (resolve, reject) => {
         // console.log(new Date()," response in utils-",response);
         let EntitySchema = <ObjectSchema>{};
+        let EntitySchema2 = <ObjectSchema>{};
+        let EntitySchema3 = <ObjectSchema>{};
+        let EntitySchema4 = <ObjectSchema>{};
         let Entity: any;
         let insertData = [];
         let pinnedArticle = "";
@@ -38,11 +41,20 @@ export const addApiDataInRealm = async (response: any) => {
             response.payload.apiEndpoint == appConfig.childGrowthPinnedContent ||
             response.payload.apiEndpoint == appConfig.healthcheckupPinnedContent ||
             response.payload.apiEndpoint == appConfig.faqPinnedContent ||
+            response.payload.apiEndpoint == appConfig.faqUpdatedPinnedContent ||
             response.payload.apiEndpoint == appConfig.milestoneRelatedArticle) {
             insertData = response.payload.data.data;
             Entity = Entity as ArticleEntity;
             EntitySchema = ArticleEntitySchema;
             pinnedArticle = isArticlePinned;
+        }
+        else if (response.payload.apiEndpoint == appConfig.archive) {
+            insertData = response.payload.data.data;
+            Entity = Entity as VideoArticleEntity;
+            EntitySchema = VideoArticleEntitySchema;
+            EntitySchema2 = ArticleEntitySchema;
+            EntitySchema3 = ActivitiesEntitySchema;
+            EntitySchema4 = FAQsSchema;
         }
         else if (response.payload.apiEndpoint == appConfig.childdevGirlPinnedContent ||
             response.payload.apiEndpoint == appConfig.childdevBoyPinnedContent) {
@@ -133,7 +145,23 @@ export const addApiDataInRealm = async (response: any) => {
                 response.dispatch(receiveAPIFailure(payload));
                 reject();
             }
-        } else if (EntitySchema == StandardDevWeightForHeightSchema) {
+        } 
+        else if (EntitySchema == VideoArticleEntitySchema && response.payload.apiEndpoint == appConfig.archive) {
+            // let deleteresult = await dataRealmCommon.deleteAll(EntitySchema);
+            try {
+                let createresult = await dataRealmCommon.deleteDeltaData(EntitySchema.name,EntitySchema2.name,EntitySchema3.name,EntitySchema4.name, insertData);
+                // console.log(new Date(),"in insert success---",response);
+                resolve("successinsert");
+            } catch (e) {
+                let errorArr = [];
+                //console.log("in insert catch---", response.payload);
+                errorArr.push(response.payload);
+                let payload = { errorArr: errorArr, fromPage: 'OnLoad' }
+                response.dispatch(receiveAPIFailure(payload));
+                reject();
+            }
+        } 
+        else if (EntitySchema == StandardDevWeightForHeightSchema) {
             try {
                 let createresult = await dataRealmCommon.createStandardDev<typeof Entity>(insertData);
                 // console.log(new Date(),"in insert success---",response);
