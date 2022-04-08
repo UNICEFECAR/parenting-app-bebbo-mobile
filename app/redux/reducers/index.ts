@@ -32,6 +32,21 @@ const migrationsutils = {
         ...state,
         faqsData:'',
       }  
+  },
+  1: (state: any) => {    
+      return {      
+        ...state,
+        incrementalSyncDT:{
+          articlesDatetime: '',
+          videoArticlesDatetime: '',
+          activitiesDatetime: '',
+          faqPinnedContentDatetime: '',
+          faqsDatetime: '',
+          faqUpdatedPinnedContentDatetime: '',
+          archiveDatetime: ''
+        },
+        allDataDownloadFlag:false
+      }  
   }
 }
 const migrationslocalization = {
@@ -67,7 +82,7 @@ const failedApiConfig = {
 const utilConfig = {
   key: 'utilsData',
   storage: createRealmPersistStorage(),
-  version: 0,
+  version: 1,
   debug: true,
   migrate: createMigrate(migrationsutils, { debug: true }) 
 };
