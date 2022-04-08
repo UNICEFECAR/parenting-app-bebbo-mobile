@@ -148,6 +148,9 @@ const SettingScreen = (props: any) => {
   const monthlyDownloadDate = useAppSelector(
     (state: any) => state.utilsData.monthlyDownloadDate,
   );
+  const incrementalSyncDT = useAppSelector((state: any) =>
+      (state.utilsData.incrementalSyncDT),
+    );
 
   const lastUpdatedDate = weeklyDownloadDate < monthlyDownloadDate ? weeklyDownloadDate : monthlyDownloadDate;
 
@@ -624,7 +627,7 @@ const SettingScreen = (props: any) => {
         {
           text: t('downloadUpdateContinueBtn'), onPress: async () => {
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allApisObject,
+              apiJsonData: allApisObject(true,incrementalSyncDT),
               prevPage: 'DownloadUpdate'
             });
           }
@@ -647,7 +650,7 @@ const SettingScreen = (props: any) => {
           text: t('downloadAllContinueBtn'), onPress: async () => {
             // downloadArticleImages();
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allApisObject,
+              apiJsonData: allApisObject(false,incrementalSyncDT),
               prevPage: 'DownloadAllData'
             });
           }
