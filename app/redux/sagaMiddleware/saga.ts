@@ -1,4 +1,4 @@
-import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess } from './../../services/commonApiService';
+import { onAddEditChildSuccess, onHomeapiSuccess, onHomeSurveyapiSuccess, updateIncrementalSyncDT } from './../../services/commonApiService';
 import { AxiosResponse } from 'axios';
 import { all, call, put, SagaReturnType, takeEvery } from 'redux-saga/effects';
 import { userRealmCommon } from '../../database/dbquery/userRealmCommon';
@@ -158,12 +158,14 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     let payload = {errorArr:errorArr,fromPage:prevPage}
       yield put(receiveAPIFailure(payload))
   // }
+  console.log(prevPage,"response in saga success function--",response);
+  yield call(updateIncrementalSyncDT, response, dispatch, navigation, languageCode, prevPage);
   if (prevPage == 'Terms') {
     //dispatch action for terms page
     yield call(onOnLoadApiSuccess, response, dispatch, navigation, languageCode, prevPage);
   } else if (prevPage == 'AddEditChild') {
     //dispatch action for sponsor page
-    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
+    yield call(onAddEditChildSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
   else if (prevPage == 'CountryLanguageSelection') {
     //dispatch action for sponsor page
@@ -171,7 +173,7 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
   }
    else if (prevPage == 'ChilSetup') {
     //dispatch action for before home page
-    yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild)
+    yield call(onChildSetuppiSuccess, response, dispatch, navigation, languageCode, prevPage,activeChild,oldErrorObj)
   }
    else if (prevPage == 'Home' || prevPage == 'CountryLangChange' || prevPage == 'PeriodicSync' || prevPage == 'ImportScreen' || prevPage == 'DownloadUpdate' || prevPage == 'ForceUpdate' || prevPage == 'DownloadAllData') {
     //dispatch action for before home page

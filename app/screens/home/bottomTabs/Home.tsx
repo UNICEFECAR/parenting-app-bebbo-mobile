@@ -1,5 +1,5 @@
 import { SURVEY_SUBMIT } from '@assets/data/firebaseEvents';
-import { allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
+import {  allApisObject, appConfig } from '@assets/translations/appOfflineData/apiConstants';
 import FocusAwareStatusBar from '@components/FocusAwareStatusBar';
 import AdviceAndArticles from '@components/homeScreen/AdviceAndArticles';
 import BabyNotification from '@components/homeScreen/BabyNotification';
@@ -127,7 +127,9 @@ const Home = ({ route, navigation }: Props) => {
       ? JSON.parse(state.utilsData.surveryData)?.find(item => item.type == "survey")
       : state.utilsData.surveryData,
   );
- 
+  const incrementalSyncDT = useAppSelector((state: any) =>
+    (state.utilsData.incrementalSyncDT),
+  );
   let currentCount = 0;
   let { downloadWeeklyData, downloadMonthlyData, apiJsonData, downloadBufferData, ageBrackets } = getAllPeriodicSyncData();
   const onBackPress = () => {
@@ -273,7 +275,7 @@ const Home = ({ route, navigation }: Props) => {
                     { text: t('forceUpdateOkBtn'), onPress: () => {
                         
                         navigation.navigate('LoadingScreen', {
-                          apiJsonData: allApisObject, 
+                          apiJsonData: allApisObject(false,incrementalSyncDT), 
                           prevPage: 'CountryLangChange'
                         });
                       } 
@@ -385,7 +387,7 @@ const Home = ({ route, navigation }: Props) => {
   }
   const forceUpdateApis = (forceupdatetime: any) => {
     navigation.navigate('LoadingScreen', {
-      apiJsonData: allApisObject,
+      apiJsonData: allApisObject(true,incrementalSyncDT),
       prevPage: 'ForceUpdate',
       forceupdatetime: forceupdatetime
     });
@@ -450,9 +452,9 @@ const Home = ({ route, navigation }: Props) => {
               headerColor={headerColorChildInfo}
               backgroundColor={backgroundColorChildInfo}
             />
-            {/* <View>
+            <View>
               <Button onPress={() => setShow(true)} title={"Weekly " + date1} />
-            </View> */}
+            </View>
             {show && (
               <DateTimePicker
                 testID="dobdatePicker"

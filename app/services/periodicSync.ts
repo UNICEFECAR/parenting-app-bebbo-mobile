@@ -30,7 +30,10 @@ export const getAllPeriodicSyncData = () => {
     const monthlyDownloadDate = useAppSelector(
         (state: any) => state.utilsData.monthlyDownloadDate,
     );
-    
+    const incrementalSyncDT = useAppSelector((state: any) =>
+      (state.utilsData.incrementalSyncDT),
+    );
+    console.log("buffer age bracket value is---",bufferAgeBracket);
     const apiJsonDataFirstSync = [
         {
           apiEndpoint: appConfig.taxonomies,
@@ -43,13 +46,13 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.videoArticles,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['videoArticlesDatetime']},
           saveinDB: true,
         },
         {
           apiEndpoint: appConfig.activities,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['activitiesDatetime']},
           saveinDB: true,
         },
         // {
@@ -91,7 +94,7 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqPinnedContent,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['faqPinnedContentDatetime']},
           saveinDB: true,
         },
         {
@@ -103,7 +106,19 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqs,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['faqsDatetime']},
+          saveinDB: true,
+        },
+        {
+          apiEndpoint: appConfig.faqUpdatedPinnedContent,
+          method: 'get',
+          postdata: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqUpdatedPinnedContentDatetime']} : {},
+          saveinDB: true,
+        },
+        {
+          apiEndpoint: appConfig.archive,
+          method: 'get',
+          postdata: incrementalSyncDT['archiveDatetime'] != '' ? {datetime: incrementalSyncDT['archiveDatetime']} : {},
           saveinDB: true,
         }
       ];
@@ -196,9 +211,9 @@ export const getAllPeriodicSyncData = () => {
       //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
       //console.log("unique--",ageBrackets);
-      if(bufferAgeBracket){
-        ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
-      }
+      // if(bufferAgeBracket){
+      //   ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
+      // }
       //console.log("new ageBrackets--",ageBrackets);
       if(ageBrackets.length > 0){
         downloadBufferData = true;
