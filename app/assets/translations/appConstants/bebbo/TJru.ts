@@ -443,6 +443,8 @@ const TJru = {
                 hcrNoti2: "Плановый осмотр запланирован на {{reminderDateTime}}",
                 vcrNoti3: "Эм {e запланирована на {{reminderDateTime}}, пожалуйста, введите данные вакцинации",
                 hcrNoti3: "Плановый осмотр запланирован на {{reminderDateTime}}, пожалуйста, введите данные планового осмотра",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
 
         }
 }

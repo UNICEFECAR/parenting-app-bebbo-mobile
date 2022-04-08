@@ -404,13 +404,19 @@ const formatImportedMeasures = (measures: any) => {
     // }
 }
 const formatImportedReminders = (reminders: any) => {
+    console.log(reminders,"--reminders after import3--");
     if (reminders == "" || reminders == [] || reminders == null) {
         // in old app reminders were string, new app has reminders array
         return [];
     } else {
         if (typeof reminders === 'object' && reminders !== null) {
             //import from new app's exported files
-            return reminders;
+            let importedReminders = [...reminders];
+            importedReminders.forEach((rem:any) => {
+                rem.reminderDateDefined = rem.reminderDateDefined ? rem.reminderDateDefined : rem.reminderDate;
+                rem.reminderTimeDefined = rem.reminderTimeDefined ? rem.reminderTimeDefined : rem.reminderTime-60000;
+            });
+            return importedReminders;
         } else {
             //import from old app's exported files
             let importedReminders = JSON.parse(reminders);
@@ -418,6 +424,8 @@ const formatImportedReminders = (reminders: any) => {
                 //console.log(reminders, "importedReminders")
                 reminder.reminderDate = Number(reminder.date);
                 reminder.reminderTime = Number(reminder.time);
+                reminder.reminderDateDefined = Number(reminder.date);
+                reminder.reminderTimeDefined = Number(reminder.time)-60000;
                 reminder.reminderType = "healthCheckup";
                 reminder.uuid = (reminder.uuid);
                 delete reminder.date;
@@ -462,6 +470,7 @@ export const getChild = async (child: any, genders: any) => {
     const photoUri = await RNFS.exists(CHILDREN_PATH + child.photoUri);
     const childmeasures: any[] = await formatImportedMeasures(child.measures)
     const childreminders: any[] = await formatImportedReminders(child.reminders)
+    console.log("reminders output---",childreminders);
     const isPremature:any=child.isPremature=="true"?"true":"false";
     // const favoriteadvices:any[] = 
     //console.log(photoUri, "..photoUri..", childmeasures, childreminders);
