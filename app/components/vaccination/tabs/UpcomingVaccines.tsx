@@ -278,7 +278,7 @@ const UpcomingVaccines = (props: any) => {
                       </IconViewBg>
                     </ToolsIconView>
                       <ToolsHeadingView>
-                        <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
+                        <Heading4Regular>{t('vcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
                           // DateTime.fromJSDate(
