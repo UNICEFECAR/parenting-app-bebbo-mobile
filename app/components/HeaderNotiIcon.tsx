@@ -60,10 +60,10 @@ const HeaderNotiIcon = (props: any) => {
       const fetchData = async () => {
         let childList = await getAllChildren(dispatch, childAge, 1);
         let allchildNotis: any[] = [];
-       // console.log(childList, "..childList..")
+       console.log(allnotis, "..allnotis in header noti2..",childList);
         childList?.map((child: any) => {
           const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-         console.log(child,"notiExist---", notiExist);
+         console.log(child,"notiExist2---", notiExist);
           if (notiExist != undefined) {
             // notiExist.gwcdnotis?.forEach((item) => {
             //   allgwcdnotis.push(item)
@@ -154,7 +154,7 @@ const HeaderNotiIcon = (props: any) => {
             // create notification for that child first time
             if (!isFutureDate(child?.birthDate)) {
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
-             // console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
+             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
             //  console.log(child, "passed <<child>>2")
               let reminderNotis = getChildReminderNotifications(child, [], vchcEnabledFlag);
              // console.log(reminderNotis, "childNotis")

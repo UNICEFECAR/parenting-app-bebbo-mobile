@@ -446,6 +446,8 @@ const uk = {
                 hcrNoti2: "Перевірка стану здоров 'я запланована на {{reminderDateTime}}",
                 vcrNoti3: "Вакцинація запланована на{{reminderDateTime}}, будь ласка, введіть дані про вакцинацію",
                 hcrNoti3: "Медичне обстеження заплановано на{{reminderDateTime}}, будь ласка, введіть дані медичного обстеження",
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
         }
 }
 export default uk;
