@@ -302,7 +302,7 @@ const UpcomingHealthCheckup = (props: any) => {
                     </ToolsIconView>
                     {/* <ToolsHeadView> */}
                       <ToolsHeadingView>
-                        <Heading4Regular>{t('hcHasReminder')}</Heading4Regular>
+                        <Heading4Regular>{t('hcHasScheduled')}</Heading4Regular>
                         <Heading4>
                           {
                             // DateTime.fromJSDate(

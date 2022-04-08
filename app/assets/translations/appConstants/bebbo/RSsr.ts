@@ -442,6 +442,8 @@ const RSsr = {
               hcrNoti2: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}",
               vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas unesite detalje o vakcinaciji",
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
+              hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",
        }
 
 }

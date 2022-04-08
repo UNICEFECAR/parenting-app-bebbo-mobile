@@ -442,6 +442,7 @@ const BGbg = {
                 hcrNoti2: "Профилактичният преглед е насрочен за {{reminderDateTime}}",
                 vcrNoti3: "Ваксинацията е насрочена за {{reminderDateTime}}, моля въведете данните за ваксинацията",
                 hcrNoti3: "Профилактичният преглед е насрочен за {{reminderDateTime}}, моля въведете данните за прегледа",
-        }
+                hcHasScheduled: "Health-check is scheduled",
+                vcHasScheduled: "Vaccination is scheduled",}
 }
 export default BGbg;
