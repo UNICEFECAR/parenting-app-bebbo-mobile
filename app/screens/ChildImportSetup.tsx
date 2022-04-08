@@ -296,15 +296,28 @@ const ChildImportSetup = (props: any) => {
                       else {
                         relationshipnew = String(relationship);
                       }
-                      
+                      let childId = await dataRealmCommon.getFilteredData<ConfigSettingsEntity>(ConfigSettingsSchema, "key='currentActiveChildId'");
                       let userParentalRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userParentalRole", relationship);
                       let userRelationToParentRole = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userRelationToParent", String(userRelationToParent));
-                      let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", item.uuid);
+                      //let currentActiveChildId = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "currentActiveChildId", item.uuid);
                       let userEnteredChildData = await dataRealmCommon.updateSettings<ConfigSettingsEntity>(ConfigSettingsSchema, "userEnteredChildData", "true");                
-                      if(counter==0){     
+                      if(counter==0){   
+                        if (childId?.length > 0) {
+                          childId = childId[0].value;
+                          let activeChildData = importResponse.filter((x:any)=>x.uuid == childId);
+                          if(activeChildData.length>0){
+                              const activeChildnew=await setActiveChild(languageCode,childId, dispatch, child_age);
+                          }      
+                          else{
+                            const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age); 
+                          }
+                        }
+                        else{
+                          const activeChildnew=await setActiveChild(languageCode,'', dispatch, child_age); 
+                        }  
                     //  console.log(item.uuid, "..data[0].uuid..");
                      // console.log(userRelationToParent,"..userRelationToParent")
-                      const activeChildnew=await setActiveChild(languageCode, item.uuid, dispatch, child_age);
+                      //const activeChildnew=await setActiveChild(languageCode, item.uuid, dispatch, child_age);
                       counter++;
                       } 
                       
@@ -317,7 +330,6 @@ const ChildImportSetup = (props: any) => {
                   await Promise.all(resolvedPromises).then(async item => {
                     if(importResponse.length>0){
                       let childList = await getAllChildren(dispatch, child_age, 1);
-    
                     // props.navigation.navigate('ChildSetupList');
                     const Ages=await getAge(childList,child_age);
    // console.log(Ages,"..Ages..")
