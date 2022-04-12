@@ -68,7 +68,7 @@ const DailyHomeNotification = () => {
           );
           // console.log(currentMessageIndex, 'currentMessageIndex');
           // Set next daily message
-          if(currentMessageIndex>-1){
+          if(currentMessageIndex>-1 && records[currentMessageIndex + 1]){
             let newNotification = {
               messageId: records[currentMessageIndex + 1].id,
               messageText: records[currentMessageIndex + 1].title,
