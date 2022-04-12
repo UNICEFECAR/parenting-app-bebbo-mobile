@@ -444,8 +444,8 @@ const MEcnr = {
                 hcrNoti2: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}",
                 vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas da unesete podatke o vakcinaciji",
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Zdravstveni pregled je zakazan",
+                vcHasScheduled: "Vakcinacija je zakazana",
         }
 
 }
