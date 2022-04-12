@@ -443,8 +443,8 @@ const MKsq = {
                 hcrNoti2: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}",
                 vcrNoti3: "Vaksinimi është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e vaksinimit",
                 hcrNoti3: "Takimi për kontrollin shëndetësor është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet për kontrollin shëndetësor",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Kontrolli shëndetësor është i caktuar",
+                vcHasScheduled: "Vaksinimi është i caktuar",
         }
 }
 export default MKsq;

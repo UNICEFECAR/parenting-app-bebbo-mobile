@@ -442,8 +442,8 @@ const BYbe = {
                 hcrNoti2: "Медагляд запланаваны на {{reminderDateTime}}",
                 vcrNoti3: "Вакцынацыя запланавана на {{reminderDateTime}}, калі ласка, увядзіце даныя пра вакцыну",
                 hcrNoti3: "Медагляд запланаваны на {{reminderDateTime}}, калі ласка, увядзіце даныя пра медагляд",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Медыцынскі агляд запланаваны",
+                vcHasScheduled: "Вакцынацыя запланавана",
         }
 }
 export default BYbe;
