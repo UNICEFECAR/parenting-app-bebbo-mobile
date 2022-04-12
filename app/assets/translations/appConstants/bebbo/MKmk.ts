@@ -444,8 +444,8 @@ const MKmk = {
                 hcrNoti2: "Здравствен преглед закажан за {{reminderDateTime}}",
                 vcrNoti3: "Вакцинација закажана за {{reminderDateTime}}, Ве молиме внесете детали за вакцинацијата.",
                 hcrNoti3: "Здравствен преглед закажан за {{reminderDateTime}}, Ве молиме внесете детали за прегледот.",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Прегледот е закажан",
+                vcHasScheduled: "Вакцинацијата е закажана",
         }
 }
 export default MKmk;
