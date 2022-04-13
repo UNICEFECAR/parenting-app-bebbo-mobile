@@ -44,6 +44,8 @@ class LocalNotifications {
       title: title,
       message: message,
       date,
+      // largeIcon: "ic_launcher",
+      // smallIcon: "ic_notification"
     });
   }
   cancelReminderLocalNotification(notiId) {

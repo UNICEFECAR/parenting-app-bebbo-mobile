@@ -98,7 +98,7 @@ const uk = {
                 homeScreentodayarticle: "Порада на сьогодні",
                 homeScreentodaygame: "Гра на сьогодні",
                 homeScreenshareText: "Поділитися",
-                homeScreenviewDetailsText: "Переглянути деталі",
+                homeScreenviewDetailsText: "Деталі",
                 homeScreenexpText: "Яким є ваш досвід виховання дітей?",
                 homeScreenexpBtnText: "Проведіть коротке опитування",
                 homeScreencdHeader: "Розвиток вашої дитини",
@@ -130,7 +130,7 @@ const uk = {
                 developScreenmileStone: "Етап",
                 developScreenrelatedArticleText: "Переглянути пов'язані поради",
                 developScreenrelatedAct: "Пов'язані ігри ",
-                developScreenviewDetails: "Переглянути деталі",
+                developScreenviewDetails: "деталі",
                 articleScreenheaderTitle: "Поради ",
                 articleScreensearchPlaceHolder: "Пошук ключових слів",
                 articleScreennoSearchResult: "Не знайдено порад",
@@ -446,8 +446,8 @@ const uk = {
                 hcrNoti2: "Перевірка стану здоров 'я запланована на {{reminderDateTime}}",
                 vcrNoti3: "Вакцинація запланована на{{reminderDateTime}}, будь ласка, введіть дані про вакцинацію",
                 hcrNoti3: "Медичне обстеження заплановано на{{reminderDateTime}}, будь ласка, введіть дані медичного обстеження",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Медичний огляд заплановано",
+                vcHasScheduled: "Щеплення заплановано",
         }
 }
 export default uk;

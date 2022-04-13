@@ -441,6 +441,8 @@ const XKsq = {
                 hcrNoti2: "Kontrolli shëndetësor është planifikuar më {{reminderDateTime}}",
                 vcrNoti3: "Vaksinimi është planifikuar më {{reminderDateTime}}, ju lutemi vendosni detajet e vaksinimit",
                 hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
+                hcHasScheduled: "Kontrolla shëndetësore është caktuar",
+                vcHasScheduled: "Vaksinimi është caktuar",
         }
 }
 export default XKsq;

@@ -443,8 +443,8 @@ const UZuz = {
               hcrNoti2: "Tibbiy koʻrik {{reminderDateTime}} sanasiga rejalashtirildi",
               vcrNoti3: "Emlash {{reminderDateTime}} sanasiga rejalashtirildi, emlash maʼlumotlarini kiriting",
               hcrNoti3: "Kontrolni zdravstveni pregled je zakazan za {{reminderDateTime}}, molimo Vas da unesete podatke o pregledu",
-              hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+              hcHasScheduled: "Sog'liqni saqlash tekshiruvi rejalashtirildi",
+                vcHasScheduled: "Emlash rejalashtirildi",
        }
 }
 export default UZuz;
