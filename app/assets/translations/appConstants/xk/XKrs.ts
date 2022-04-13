@@ -440,6 +440,8 @@ const XKrs = {
               hcrNoti2: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}",
               vcrNoti3: "Vakcinacija je zakazana za {{reminderDateTime}}, molimo Vas unesite detalje o vakcinaciji",
               hcrNoti3: "Preventivni pedijatrijski pregled je zakazan za {{reminderDateTime}}, molimo Vas unesite detalje  o pregledu",
+              hcHasScheduled: "Zdravstveni pregled je zakazan",
+              vcHasScheduled: "Vakcinacija je zakazana",
        }
 }
 export default XKrs;
