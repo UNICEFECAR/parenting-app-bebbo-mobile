@@ -2719,176 +2719,176 @@ export const ChildDevelopmentData:any = {
             "mandatory": 1
         }
     ],
-    // "uk":   [
-    //     {
-    //         "id": 12001,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Getting to know each other",
-    //         "child_age": [
-    //             43
-    //         ],
-    //         "boy_video_article": 7886,
-    //         "girl_video_article": 7891,
-    //         "milestone": "<p>Watch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the first month your baby: </p>\n\n<ul><li>is crying a lot, and you are not able to comfort your baby</li>\n\t<li>sucks poorly and feeds very slowly</li>\n\t<li>sleeps more than expected (more than 16 hours a day), or does not sleep peacefully</li>\n\t<li>is not moving her/his arms or legs at all</li>\n\t<li>does not startle when a loud noise is made</li>\n\t<li>does not blink at bright lights.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:36",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12002,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Mutual adjustments  and establishing routines",
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "boy_video_article": 7901,
-    //         "girl_video_article": 7896,
-    //         "milestone": "<p>Watch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the second month your baby:</p>\n\n<ul><li>frequently cries a lot, and you are not usually able to soothe you baby</li>\n\t<li>isn’t watching faces even for a short time</li>\n\t<li>isn’t responding to bright light or loud sounds</li>\n\t<li>isn’t feeding or sleeping well (or sleeps more than 16 hours a day)</li>\n\t<li>isn’t moving her/his arms or legs at all</li>\n\t<li>isn`t bringing her/his hands to her/his mouth </li>\n\t<li>isn’t smiling at people.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:39",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12003,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Diverse experiences",
-    //         "child_age": [
-    //             45
-    //         ],
-    //         "boy_video_article": 7911,
-    //         "girl_video_article": 7906,
-    //         "milestone": "<p>Watch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the fourth month your baby: </p>\n\n<ul><li>frequently cries a lot and cannot be comforted</li>\n\t<li>isn’t making eye contact or paying attention to people's faces</li>\n\t<li>doesn’t watch things as they move</li>\n\t<li>isn’t making any sounds or responding to sounds</li>\n\t<li>can’t hold her/his head steady</li>\n\t<li>isn’t reaching for a toy or object that is in front of her/him</li>\n\t<li>doesn’t bring things to her/his mouth.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:38",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12004,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Intensive exploration",
-    //         "child_age": [
-    //             46
-    //         ],
-    //         "boy_video_article": 7921,
-    //         "girl_video_article": 7916,
-    //         "milestone": "<p>Watch your baby's behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the sixth month your baby: </p>\n\n<ul><li>regularly cries for a long time and cannot be comforted</li>\n\t<li>isn’t making eye contact with you or isn’t following moving objects with her/his eyes</li>\n\t<li>isn’t babbling or turning towards the source of a sound</li>\n\t<li>isn’t laughing or making squealing sounds</li>\n\t<li>isn’t rolling over</li>\n\t<li>has no control over her/his neck and head</li>\n\t<li>cannot sit even with your help and support</li>\n\t<li>isn’t reaching for objects at all even when you encourage her/him to do so</li>\n\t<li>doesn’t try to get things that are within reach</li>\n\t<li>has difficulty getting things to her/his mouth.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:34",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12005,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "New discoveries",
-    //         "child_age": [
-    //             47
-    //         ],
-    //         "boy_video_article": 7931,
-    //         "girl_video_article": 7926,
-    //         "milestone": "<p>Watch your baby’s behaviour and talk to your paediatrician or visiting nurse if you notice that at the end of the ninth month your baby: </p>\n\n<ul><li>isn’t making eye contact with you or isn’t following moving objects with her/his eyes</li>\n\t<li>Isn’t babbling (“mama,” “dada,” etc.)</li>\n\t<li>Isn’t turning her/his head towards a sound source</li>\n\t<li>doesn’t look where you point</li>\n\t<li>doesn’t show affection for her/his caregivers – doesn’t smile at them</li>\n\t<li>doesn’t respond to her/his own name</li>\n\t<li>doesn’t seem to recognize familiar people</li>\n\t<li>isn’t rolling</li>\n\t<li>when you lift her/him, she/he is either floppy or too stiff</li>\n\t<li>can’t sit even with your help and support</li>\n\t<li>has difficulties eating solid food.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:34",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12006,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Establishing habits and consistency",
-    //         "child_age": [
-    //             48
-    //         ],
-    //         "boy_video_article": 7941,
-    //         "girl_video_article": 7936,
-    //         "milestone": "<p>Watch your child’s behaviour and talk to your paediatrician if you notice that at the end of the first year of life your baby:</p>\n\n<ul><li>isn`t making eye contact with you or isn’t following moving objects with her/his eyes</li>\n\t<li>is not interested in sounds</li>\n\t<li>does not respond to her/his name when you call her/him</li>\n\t<li>isn’t babbling</li>\n\t<li>isn’t trying to let you know in any way what her/his desires or needs are</li>\n\t<li>isn’t pointing to objects</li>\n\t<li>isn’t showing emotions</li>\n\t<li>isn’t crawling</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:35",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12007,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "The first step and the first word",
-    //         "child_age": [
-    //             49
-    //         ],
-    //         "boy_video_article": 7951,
-    //         "girl_video_article": 7946,
-    //         "milestone": "<p>Watch your child’s behaviour and talk to your paediatrician if you notice that your child:</p>\n\n<ul><li>has difficulty seeing or hearing some things</li>\n\t<li>does not say a single word</li>\n\t<li>finds it difficult to follow even straightforward instructions</li>\n\t<li>does not use gestures and pointing in communication</li>\n\t<li>doesn’t make eye contact with you and does not cuddle</li>\n\t<li>isn`t walking independently by herself/himself.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:36",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12008,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Becoming independent",
-    //         "child_age": [
-    //             50
-    //         ],
-    //         "boy_video_article": 7961,
-    //         "girl_video_article": 7956,
-    //         "milestone": "<p>Follow your child`s behaviour and talk to your paediatrician if you notice that at the end of the second year your child:</p>\n\n<ul><li>Doesn’t look at you (eye contact)</li>\n\t<li>has difficulties seeing or hearing certain things</li>\n\t<li>doesn’t say a single word</li>\n\t<li>doesn’t point to objects</li>\n\t<li>doesn’t follow simple instructions</li>\n\t<li>doesn’t show feelings</li>\n\t<li>isn’t walking steadily</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:33",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12009,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Imagination starts to blossom",
-    //         "child_age": [
-    //             51
-    //         ],
-    //         "boy_video_article": 7881,
-    //         "girl_video_article": 7966,
-    //         "milestone": "<p>Follow your child’s behaviour and talk to your paediatrician if you notice that at the end of the third year of life your child:</p>\n\n<ul><li>Doesn’t look at you (eye contact)</li>\n\t<li>has difficulties hearing or seeing some things</li>\n\t<li>doesn’t speak in short sentences (at least 3 words together)</li>\n\t<li>has very unclear speech</li>\n\t<li>doesn’t follow simple instructions</li>\n\t<li>doesn’t want to play with other children or with toys and other objects</li>\n\t<li>doesn’t make-believe or pretend during play</li>\n\t<li>cannot run</li>\n\t<li>isn’t scribbling or drawing</li>\n\t<li>cannot hold small objects in her/his hand.</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:32",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12010,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Asking questions",
-    //         "child_age": [
-    //             52
-    //         ],
-    //         "boy_video_article": 7976,
-    //         "girl_video_article": 7971,
-    //         "milestone": "<p>Follow your child’s behaviour and talk to your paediatrician if you notice that at the end of the fourth year of life your child:</p>\n\n<ul><li>Shows no interest in playing games with others or playing make-believe/pretend games</li>\n\t<li>Ignores other children or does not respond to people outside the family</li>\n\t<li>Can't jump in place</li>\n\t<li>Has difficulty scribbling (making marks on paper)</li>\n\t<li>Does not follow an instruction that has three parts</li>\n\t<li>Can't tell a favorite story</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:32",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12011,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Joy of association",
-    //         "child_age": [
-    //             57
-    //         ],
-    //         "boy_video_article": 7996,
-    //         "girl_video_article": 7991,
-    //         "milestone": "<p>Follow your child’s behaviour and talk to your paediatrician if you notice that at the end of the fifth year of life your child:</p>\n\n<ul><li>Can't confidently walk, run, climb, jump or use stairs</li>\n\t<li>Can't answer simple questions (What's your name? Who is your family? What's your favorite story?)</li>\n\t<li>Can't follow a two-part direction (Put a cup on the table! Or Take the ball under the bed!)</li>\n\t<li>Can't perform daily routines such as eating or dressing on her own</li>\n\t<li>Seems to have difficulty holding a pencil</li>\n\t<li>Shows extreme behavior (such as extremely fearful ,or aggressive, or sad)</li>\n\t<li>Doesn’t talk about daily activities</li>\n\t<li>Doesn't show interest in interacting with either adults or children</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:32",
-    //         "mandatory": 1
-    //     },
-    //     {
-    //         "id": 12012,
-    //         "type": "Child Development - Age Periods",
-    //         "title": "Readiness for new environments",
-    //         "child_age": [
-    //             58
-    //         ],
-    //         "boy_video_article": 7986,
-    //         "girl_video_article": 7981,
-    //         "milestone": "<p>Follow your child’s behaviour and talk to your paediatrician if you notice that at the end of the sixth year of life your child:</p>\n\n<ul><li>Has a very short attention span</li>\n\t<li>Is not at all interested in letters, numbers, reading or writing</li>\n\t<li>Seems not to hear well</li>\n\t<li>Doesn’t speak clearly in sentences of 5 or more words</li>\n\t<li>Doesn’t tell longer stories using complete sentences</li>\n\t<li>Doesn’t dress and use toilet without help</li>\n\t<li>Can’t take part in conversations</li>\n\t<li>Can’t play in more than one way</li>\n\t<li>Can’t give her/his name and address</li>\n\t<li>Can’t stand or hop on one foot</li>\n</ul>",
-    //         "created_at": "Thu, 08/12/2021 - 21:48",
-    //         "updated_at": "Tue, 09/07/2021 - 09:31",
-    //         "mandatory": 1
-    //     }
-    // ],
+    "uk": [
+        {
+            "id": 12012,
+            "type": "Child Development - Age Periods",
+            "title": "Готовність до нових умов",
+            "child_age": [
+                58
+            ],
+            "boy_video_article": 7986,
+            "girl_video_article": 7981,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що наприкінці шостого року життя ваша дитина:</p>\n\n<ul><li>Має дуже короткий проміжок уваги</li>\n\t<li>Зовсім не цікавиться літерами, цифрами, читанням чи письмом</li>\n\t<li>Вам здається, що дитина погано чує</li>\n\t<li>Не говорить чітко реченнями з 5 або більше слів</li>\n\t<li>Не розповідає довгі історії, використовуючи повні речення</li>\n\t<li>Без сторонньої допомоги не одягається і не ходить в туалет</li>\n\t<li>Не може брати участь у розмовах</li>\n\t<li>Не може грати більш ніж одним способом</li>\n\t<li>Не може назвати своє ім'я та адресу</li>\n\t<li>Не може стояти або стрибати на одній нозі</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:50",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12011,
+            "type": "Child Development - Age Periods",
+            "title": "Радість від асоціації",
+            "child_age": [
+                57
+            ],
+            "boy_video_article": 7996,
+            "girl_video_article": 7991,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що наприкінці п’ятого року життя ваша дитина:</p>\n\n<ul><li>Не може впевнено ходити, бігати, підніматися, стрибати або користуватися сходами</li>\n\t<li>Не може відповісти на прості запитання (Як тебе звати? Хто ваша родина? Яка твоя улюблена історія?)</li>\n\t<li>Не може дотримуватися напряму, що складається з двох частин (Постав чашку на стіл! Або візьми м'яч під ліжком!)</li>\n\t<li>Не може самостійно виконувати повсякденні процедури, наприклад їсти або одягатися</li>\n\t<li>Вам здається, що дитині важко тримати олівець</li>\n\t<li>Дитина проявляє незвичну поведінку (наприклад, надзвичайно боязку, або агресивну, або сумну)</li>\n\t<li>Не говорить про щоденні справи</li>\n\t<li>Не проявляє інтересу до спілкування ні з дорослими, ні з дітьми</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:40",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12010,
+            "type": "Child Development - Age Periods",
+            "title": "Задавати питання",
+            "child_age": [
+                52
+            ],
+            "boy_video_article": 7976,
+            "girl_video_article": 7971,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що наприкінці четвертого року життя ваша дитина:</p>\n\n<ul><li>Не виявляє інтересу до ігор з іншими дітьми або до рольових ігор</li>\n\t<li>Ігнорує інших дітей або не реагує на людей поза сім’єю</li>\n\t<li>Не може стрибати на місці</li>\n\t<li>Має труднощі з писанням (робить позначки на папері)</li>\n\t<li>Не дотримується інструкції, яка складається з трьох частин</li>\n\t<li>Не може розповісти улюблену історію</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:35",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12009,
+            "type": "Child Development - Age Periods",
+            "title": "Уява починає розцвітати",
+            "child_age": [
+                51
+            ],
+            "boy_video_article": 7881,
+            "girl_video_article": 7966,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що в кінці третього року життя ваша дитина:</p>\n\n<ul><li>Не дивиться на вас (відсутній зоровий контакт)</li>\n\t<li>має труднощі зі слухом або зором</li>\n\t<li>не говорить короткими реченнями (принаймні 3 слова разом узяті)</li>\n\t<li>має дуже незрозумілу мову</li>\n\t<li>не дотримується простих інструкцій</li>\n\t<li>не хоче грати з іншими дітьми або з іграшками та іншими предметами</li>\n\t<li>не вірить і не прикидається під час гри</li>\n\t<li>не може бігати</li>\n\t<li>не пише і не малює</li>\n\t<li>не може утримати в руці дрібні предмети.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:31",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12008,
+            "type": "Child Development - Age Periods",
+            "title": "Стати незалежним",
+            "child_age": [
+                50
+            ],
+            "boy_video_article": 7961,
+            "girl_video_article": 7956,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини та поговоріть зі своїм педіатром, якщо ви помітите, що наприкінці другого року ваша дитина:</p>\n\n<ul><li>Не дивиться на вас (відсутній зоровий контакт)</li>\n\t<li>має труднощі з баченням або слуханням певних речей</li>\n\t<li>не говорить жодного слова</li>\n\t<li>не вказує на об'єкти</li>\n\t<li>не дотримується простих інструкцій</li>\n\t<li>не проявляє почуттів</li>\n\t<li>не ходить впевнено</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:28",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Перший крок і перше слово",
+            "child_age": [
+                49
+            ],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що вашій дитині:</p>\n\n<ul><li>важко дивитись на речі або чути звуки</li>\n\t<li>не вимовляє жодного слова</li>\n\t<li>важко дотримуватися навіть простих інструкцій</li>\n\t<li>вона не використовує жести при спілкуванні</li>\n\t<li>малюк не контактує з вами очима і не обіймається</li>\n\t<li>він не ходить самостійно сам по собі.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:26",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Встановлення звичок і послідовності",
+            "child_age": [
+                48
+            ],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром, якщо ви помітили, що наприкінці першого року життя ваша дитина:</p>\n\n<ul><li>не встановлює з вами зоровий контакт або не стежить своїми очима за рухомими об’єктами</li>\n\t<li>не цікавиться звуками</li>\n\t<li>не реагує на своє ім'я, коли ви звертаєтесь</li>\n\t<li>не лепече</li>\n\t<li>не намагається будь-яким чином дати вам знати, які її/його бажання чи потреби</li>\n\t<li>не вказує на предмети</li>\n\t<li>не виявляє емоцій</li>\n\t<li>не повзає</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:23",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Нові відкриття",
+            "child_age": [
+                47
+            ],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром або медичною сестрою, якщо ви помітили, що наприкінці дев’ятого місяця ваша дитина: </p>\n\n<ul><li>не встановлює з вами зоровий контакт або не стежить своїми очима за рухомими об’єктами</li>\n\t<li>не лепетить (\"мама\", \"тато\" тощо)</li>\n\t<li>не повертає голову до джерела звуку</li>\n\t<li>не дивиться, куди ви вказуєте</li>\n\t<li>не виявляє прихильності до своїх рідних – не посміхається їм</li>\n\t<li>не реагує на своє ім'я</li>\n\t<li>не впізнає знайомих людей</li>\n\t<li>не перевертається</li>\n\t<li>коли ви піднімаєте дитину, її тіло або занадто розслаблене або напружене </li>\n\t<li>не може сидіти навіть з вашою допомогою та підтримкою</li>\n\t<li>має труднощі з вживанням твердої їжі.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:21",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Інтенсивне дослідження",
+            "child_age": [
+                46
+            ],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром або медичною сестрою, якщо ви помітили, що наприкінці шостого місяця ваша дитина: </p>\n\n<ul><li>регулярно довго плаче і не може втішитися</li>\n\t<li>не встановлює з вами зоровий контакт або не стежить своїми очима за рухомими об’єктами</li>\n\t<li>не лепетить і не повертається до джерела звуку</li>\n\t<li>не сміється і не видає звуків</li>\n\t<li>не перевертається</li>\n\t<li>не контролює свою шию та голову</li>\n\t<li>не може сидіти навіть з вашою допомогою та підтримкою</li>\n\t<li>взагалі не тягнеться до предметів, навіть якщо ви заохочуєте її/його це зробити</li>\n\t<li>не намагається отримати речі, які є в межах досяжності</li>\n\t<li>має труднощі піднести речі до рота.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:18",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Різноманітний досвід",
+            "child_age": [
+                45
+            ],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром або медичною сестрою, якщо ви помітили, що наприкінці четвертого місяця ваша дитина: </p>\n\n<ul><li>часто багато плаче і не може втішитися</li>\n\t<li>не встановлює зоровий контакт і не звертає уваги на обличчя людей</li>\n\t<li>не дивиться на речі, коли вони рухаються</li>\n\t<li>не видає жодних звуків і не реагує на звуки</li>\n\t<li>не може тримати голову нерухомо</li>\n\t<li>не тягнеться до іграшки чи предмета, що знаходиться перед ним</li>\n\t<li>не підносить речі до рота.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:16",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Взаємні корективи та встановлення розпорядку",
+            "child_age": [
+                44
+            ],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини та поговоріть зі своїм педіатром або медсестрою, якщо ви помітили, що наприкінці другого місяця ваша дитина:</p>\n\n<ul><li>часто багато плаче, і ви зазвичай не в змозі заспокоїти дитину</li>\n\t<li>не дивиться в обличчя навіть на короткий час</li>\n\t<li>не реагує на яскраве світло або гучні звуки</li>\n\t<li>не їсть або не спить добре (або спить більше 16 годин на день)</li>\n\t<li>не рухає ручками або ніжками взагалі</li>\n\t<li>не підносить ручки до рота </li>\n\t<li>не посміхається людям.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:15",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        },
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Знайомство один з одним",
+            "child_age": [
+                43
+            ],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "<p>Слідкуйте за поведінкою вашої дитини і поговоріть зі своїм педіатром або медсестрою, якщо ви помітили, що в кінці першого місяця ваша дитина: </p>\n\n<ul><li>багато плаче, і ви не в змозі втішити її</li>\n\t<li>погано смокче і харчується дуже повільно</li>\n\t<li>спить більше, ніж очікувалося (більше 16 годин на добу), або спить неспокійно</li>\n\t<li>не рухає руками або ногами взагалі</li>\n\t<li>не лякається, коли лунає гучний шум</li>\n\t<li>не моргає від яскравого світла.</li>\n</ul>",
+            "created_at": "Tue, 03/22/2022 - 13:10",
+            "updated_at": "Thu, 03/24/2022 - 11:17",
+            "mandatory": 1
+        }
+    ],
     "uz-uz": [
         {
             "id": 12001,
