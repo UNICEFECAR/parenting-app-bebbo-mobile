@@ -443,8 +443,8 @@ const GRel = {
                 hcrNoti2: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}",
                 vcrNoti3: "Ο εμβολιασμός προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα εμβολιασμού",
                 hcrNoti3: "Ο ιατρικός έλεγχος προγραμματίστηκε για {{reminderDateTime}}, παρακαλώ καταχωρείστε τα δεδομένα του ιατρικού ελέγχου",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Ο ιατρικός έλεγχος προγραμματίστηκε",
+                vcHasScheduled: "Ο εμβολιασμός προγραμματίστηκε",
         }
 }
 export default GRel;
