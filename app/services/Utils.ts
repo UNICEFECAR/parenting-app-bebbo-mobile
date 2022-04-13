@@ -226,7 +226,7 @@ export const formatDate = (dateData: any, luxonLocale: string) => {
     let month = new Intl.DateTimeFormat(luxonDefaultLocale, { month: '2-digit' }).format(new Date(dateData));
     let year = new Intl.DateTimeFormat(luxonDefaultLocale, { year: 'numeric' }).format(new Date(dateData));
     let dateView = day + "." + month + "." + year;
-    console.log(dateView,"..dateView");
+    // console.log(dateView,"..dateView");
     return dateView;
 }
 export const formatStringDate = (dateData: any, luxonLocale: string) => {
