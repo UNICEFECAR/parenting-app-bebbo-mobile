@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="org.unicef.ecar.bebbo">
+  package="org.unicef.ecar.bebbo" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -38,8 +38,20 @@
                     android:value="false"/>
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
-                    android:resource="@color/noti_color"/> <!-- or @android:color/{name} to use a standard color -->
-
+                    android:resource="@color/noti_color"/>
+                     <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/noti_color"
+            tools:replace="android:resource" />
+                     <!-- or @android:color/{name} to use a standard color -->
+        <!-- <meta-data
+            android:name="com.dieam.reactnativepushnotification.notification_color"
+            android:resource="@color/ic_notification_color" /> -->
+<meta-data
+            android:name="com.dieam.reactnativepushnotification.notification_icon"
+            android:resource="@mipmap/ic_notification" />
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+             android:resource="@mipmap/ic_notification" />
       <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions" />
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" />
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver">
