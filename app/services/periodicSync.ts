@@ -211,9 +211,9 @@ export const getAllPeriodicSyncData = () => {
       //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
       // console.log("unique--",ageBrackets);
-      // if(bufferAgeBracket){
-      //   ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
-      // }
+      if(bufferAgeBracket){
+        ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
+      }
       //console.log("new ageBrackets--",ageBrackets);
       if(ageBrackets.length > 0){
         downloadBufferData = true;
