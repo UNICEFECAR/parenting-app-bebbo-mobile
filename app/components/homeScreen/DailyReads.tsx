@@ -52,7 +52,7 @@ const DailyReads = () => {
       state.utilsData.ActivitiesData != '' ? JSON.parse(state.utilsData.ActivitiesData) : [],
   );
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
-  console.log(activityTaxonomyId, "..activityTaxonomyId..");
+  // console.log(activityTaxonomyId, "..activityTaxonomyId..");
   const ActivitiesData = ActivitiesDataall.filter((x: any) => x.child_age.includes(activityTaxonomyId))
   const activityCategoryArray = useAppSelector(
     (state: any) =>
@@ -181,7 +181,7 @@ const DailyReads = () => {
     //console.log(dailyDataCategory,"--showedDailyDataCategory 3--",showedDailyDataCategory);
     if (dailyDataCategoryall[activeChild.uuid] === undefined) {
       dailyDataCategory = { advice: 0, games: 0, currentadviceid: 0, currentgamesid: 0, currentDate: '', taxonomyid: activeChild.taxonomyData.id,prematureTaxonomyId:activityTaxonomyId };
-      console.log(dailyDataCategory,"..dailyDataCategory")
+      // console.log(dailyDataCategory,"..dailyDataCategory")
     } else {
       // if(dailyDataCategoryall[activeChild.uuid].taxonomyid == activeChild.taxonomyData.id)
       // {

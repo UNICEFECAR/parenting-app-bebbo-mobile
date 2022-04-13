@@ -36,7 +36,7 @@ const BabyNotification = () => {
       ? JSON.parse(state.childData.childDataSet.activeChild)
       : [],
   );
-  console.log(activeChild, "..activeChild.gender..")
+  // console.log(activeChild, "..activeChild.gender..")
   const bgColor = themeContext.colors.SECONDARY_COLOR;
   const pluralShow = useAppSelector(
     (state: any) => state.selectedCountry.pluralShow,

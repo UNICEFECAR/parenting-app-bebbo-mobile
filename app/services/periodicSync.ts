@@ -112,13 +112,13 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqUpdatedPinnedContent,
           method: 'get',
-          postdata: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqUpdatedPinnedContentDatetime']} : {},
+          postdata: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqUpdatedPinnedContentDatetime']} : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqPinnedContentDatetime']} : {},
           saveinDB: true,
         },
         {
           apiEndpoint: appConfig.archive,
           method: 'get',
-          postdata: incrementalSyncDT['archiveDatetime'] != '' ? {datetime: incrementalSyncDT['archiveDatetime']} : {},
+          postdata: incrementalSyncDT['archiveDatetime'] != '' ? {datetime: incrementalSyncDT['archiveDatetime']} : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqPinnedContentDatetime']} : {},
           saveinDB: true,
         }
       ];
@@ -189,7 +189,7 @@ export const getAllPeriodicSyncData = () => {
         // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     }
     else{
-     // console.log(bufferAgeBracket,"childList--",childList);
+    //  console.log(bufferAgeBracket,"childList--",childList);
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)),'days').toObject().days;
         //console.log(childAgedays,"---child",child.taxonomyData);
@@ -210,7 +210,7 @@ export const getAllPeriodicSyncData = () => {
       })
       //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
-      //console.log("unique--",ageBrackets);
+      // console.log("unique--",ageBrackets);
       // if(bufferAgeBracket){
       //   ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
       // }
