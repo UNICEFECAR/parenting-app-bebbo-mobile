@@ -12558,684 +12558,694 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
-    // "uk": [
-    //     {
-    //         "id": 2531,
-    //         "type": "Milestone",
-    //         "title": "Gets excited when you talk to him",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>When he hears your voice the baby shows excitement, but you also notice that he slows down his movements, seems to be listening, be present…</p>",
-    //         "child_age": [
-    //             43
-    //         ],
-    //         "related_activities": [
-    //             7586
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6311
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2541,
-    //         "type": "Milestone",
-    //         "title": "Makes sounds",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>The baby cries, but also produces sounds</p>",
-    //         "child_age": [
-    //             43
-    //         ],
-    //         "related_activities": [
-    //             7596
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6296
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2556,
-    //         "type": "Milestone",
-    //         "title": "When lying on his tummy, he lifts his head",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>When you put him lying on his tummy, the baby will try to lift his head to clear the airway.</p>",
-    //         "child_age": [
-    //             43
-    //         ],
-    //         "related_activities": [
-    //             7606
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6281
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2561,
-    //         "type": "Milestone",
-    //         "title": "Makes different sounds when he is happy, upset or hungry",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Baby's crying differs when he has certain needs, so based on the sounds he makes it can be recognized whether he is happy, upset or has some other need.</p>",
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "related_activities": [
-    //             7611
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6316
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2566,
-    //         "type": "Milestone",
-    //         "title": "Can comfort herself for a while",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>The baby soothes herself by sucking her finger or her little hand.</p>",
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "related_activities": [
-    //             7176
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6361
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2571,
-    //         "type": "Milestone",
-    //         "title": "Turns his head towards the sound source and shows that he is listening",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>If he hears a human voice or some other sound, the baby turns his head towards it. As he listens to the voice he stares at the parent or the person speaking, slowing his movements.</p>",
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "related_activities": [
-    //             7721
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6326
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2586,
-    //         "type": "Milestone",
-    //         "title": "Shows boredom or cries if the activity changes",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Mon, 10/18/2021 - 13:34",
-    //         "body": "<p>The baby complains by crying if she is left in one position for a long time, or protests if you put her down after holding her in your arms.</p>",
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "related_activities": [
-    //             7181
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6916
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2631,
-    //         "type": "Milestone",
-    //         "title": "Starts babbling",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Vocalizes and produces sounds that resemble vowels - a, e, i, o, u</p>",
-    //         "child_age": [
-    //             45
-    //         ],
-    //         "related_activities": [
-    //             7651
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6371
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2636,
-    //         "type": "Milestone",
-    //         "title": "Climbs up and down stairs",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Walks up the stairs with support, using alternately one foot and then the other.</p>",
-    //         "child_age": [
-    //             51
-    //         ],
-    //         "related_activities": [
-    //             7416
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6811
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2646,
-    //         "type": "Milestone",
-    //         "title": "Establishes hand-eye coordination",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>The hand-eye coordination ability increases, for example: your baby looks at an object and tries to reach it.</p>",
-    //         "child_age": [
-    //             45
-    //         ],
-    //         "related_activities": [
-    //             7661
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6406
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2696,
-    //         "type": "Milestone",
-    //         "title": "Can sit with some support",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>When he has support or holds onto something, the baby can sit, and for a short time can maintain the sitting position independently.</p>",
-    //         "child_age": [
-    //             46
-    //         ],
-    //         "related_activities": [
-    //             7671
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2701,
-    //         "type": "Milestone",
-    //         "title": "Can say a sentence of 2 to 3 words",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Can compose and say sentences of 2 to 3 words well enough for the family members to understand her.</p>",
-    //         "child_age": [
-    //             51
-    //         ],
-    //         "related_activities": [
-    //             7391
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6816
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2731,
-    //         "type": "Milestone",
-    //         "title": "Responds to the sound of the voice by making sounds - by merging vowels: a, e, u...",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>When someone is addressing him, talking, singing, reading to him…the baby responds.</p>",
-    //         "child_age": [
-    //             46
-    //         ],
-    //         "related_activities": [
-    //             7211
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6421
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2746,
-    //         "type": "Milestone",
-    //         "title": "The baby is excited when he realizes that it's time to play",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>He rejoices, looks happy and enjoys the play and contact, especially with parents and familiar persons.</p>",
-    //         "child_age": [
-    //             46
-    //         ],
-    //         "related_activities": [
-    //             7841
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6441
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2766,
-    //         "type": "Milestone",
-    //         "title": "Likes to play in the company of children",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Play is no longer just parallel – side by side, but has more complex elements, imagination and playfulness.</p>",
-    //         "child_age": [
-    //             51
-    //         ],
-    //         "related_activities": [
-    //             7371
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6931
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2786,
-    //         "type": "Milestone",
-    //         "title": "Begins to understand the meaning of the word \"no\".",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Begins to understand the meaning of the word \"no\".  When he hears the word, he stops the activity and recognizes disapproval.</p>",
-    //         "child_age": [
-    //             47
-    //         ],
-    //         "related_activities": [
-    //             7226
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6476
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2816,
-    //         "type": "Milestone",
-    //         "title": "Uses one hand more than the other",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Begins to use one hand more - left or right.</p>",
-    //         "child_age": [
-    //             50
-    //         ],
-    //         "related_activities": [
-    //             7356
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6666
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2856,
-    //         "type": "Milestone",
-    //         "title": "Lifts himself up to a crawling position. Some children are already crawling.",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Lifts himself up to a crawling position. Some children are already crawling. He can get into a crawling position on his own. He moves by crawling whether it`s backwards or forwards.</p>",
-    //         "child_age": [
-    //             47
-    //         ],
-    //         "related_activities": [
-    //             7706
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6486
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2866,
-    //         "type": "Milestone",
-    //         "title": "Pushes away, tries to stand up.",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Pushes away, tries to stand up. She tries to get up holding on to the furniture, but she needs help and support.</p>",
-    //         "child_age": [
-    //             47
-    //         ],
-    //         "related_activities": [
-    //             7241
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6471
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2876,
-    //         "type": "Milestone",
-    //         "title": "Parts of the child`s communication are also understood by people who are not with him every day",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>He begins to pronounce voices more clearly and uses more and more words with meaning, and therefore communication is easier.</p>",
-    //         "child_age": [
-    //             50
-    //         ],
-    //         "related_activities": [
-    //             7346
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2901,
-    //         "type": "Milestone",
-    //         "title": "Spontaneously seeks to share interests and pleasures with adults",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Enjoys reciprocal games, \"I give it to you - you give it to me\", \"I do - you do\" and the like.</p>",
-    //         "child_age": [
-    //             48
-    //         ],
-    //         "related_activities": [
-    //             7731
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6551
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2936,
-    //         "type": "Milestone",
-    //         "title": "Picks small objects with her fingers, feeds with her fingers",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Has a better \"pincer grasp\" - can manipulate very small objects by taking them with her thumb and forefinger.</p>",
-    //         "child_age": [
-    //             48
-    //         ],
-    //         "related_activities": [
-    //             7766
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6536
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2961,
-    //         "type": "Milestone",
-    //         "title": "Helps with dressing",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Cooperates when you dress him, pushes  his hand through the sleeves and legs through hoses.</p>",
-    //         "child_age": [
-    //             48
-    //         ],
-    //         "related_activities": [
-    //             7276
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2966,
-    //         "type": "Milestone",
-    //         "title": "Is becoming more and more independent",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Sometimes he resists orders, gets angry, wants to control others, quarrels, orders, defends his things.</p>",
-    //         "child_age": [
-    //             50
-    //         ],
-    //         "related_activities": [
-    //             7786
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2981,
-    //         "type": "Milestone",
-    //         "title": "Understands and executes simple orders",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Follows simply stated instructions with no demonstration, can perform what is expected of him.</p>",
-    //         "child_age": [
-    //             49
-    //         ],
-    //         "related_activities": [
-    //             7326
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6571
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 2986,
-    //         "type": "Milestone",
-    //         "title": "Pronounces words with meaning",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>She speaks at least one or a few individual words when addressing parents.</p>",
-    //         "child_age": [
-    //             49
-    //         ],
-    //         "related_activities": [
-    //             7286
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6851
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 3001,
-    //         "type": "Milestone",
-    //         "title": "Scribbles independently with a pencil or crayons on paper",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Thu, 08/12/2021 - 21:37",
-    //         "body": "<p>Likes to use the scribble movement, whether it`s with a pencil on paper, with a hand on sand, with a stick on mud, or water on concrete. </p>",
-    //         "child_age": [
-    //             49
-    //         ],
-    //         "related_activities": [
-    //             7296
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             6606
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 6976,
-    //         "type": "Milestone",
-    //         "title": "Likes to please others and cooperate",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Tue, 09/28/2021 - 16:53",
-    //         "body": "<p>Recognizes others’ feelings; often enjoys sharing with others; able to take turns. </p>",
-    //         "child_age": [
-    //             52
-    //         ],
-    //         "related_activities": [
-    //             7426
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58521
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 6981,
-    //         "type": "Milestone",
-    //         "title": "Uses sentences of 4 to 5 words",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Tue, 09/28/2021 - 16:32",
-    //         "body": "<p>Puts words together in ways that make sense and communicate her/his ideas.</p>",
-    //         "child_age": [
-    //             52
-    //         ],
-    //         "related_activities": [
-    //             7431
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58501
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 6996,
-    //         "type": "Milestone",
-    //         "title": "Knows basic differences between things that are real, pretend or imaginary",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Tue, 09/28/2021 - 17:04",
-    //         "body": "<p>Makes up a story about a character that does not exist, or knows animals cannot talk in real life.</p>",
-    //         "child_age": [
-    //             52
-    //         ],
-    //         "related_activities": [
-    //             7441
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58551
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7041,
-    //         "type": "Milestone",
-    //         "title": "Speaks in sentences of five or more words; uses words to talk about the future",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 09:34",
-    //         "body": "<p>Puts words together to express her/his ideas; can say what “will” or “may” happen in the future.</p>",
-    //         "child_age": [
-    //             57
-    //         ],
-    //         "related_activities": [
-    //             7486
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58581
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7056,
-    //         "type": "Milestone",
-    //         "title": "Can count to ten and name ten objects without mistakes",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 09:49",
-    //         "body": "<p>Can also say “first, second,” up to 10, count days of week and months.</p>",
-    //         "child_age": [
-    //             57
-    //         ],
-    //         "related_activities": [
-    //             7501
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58601
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7081,
-    //         "type": "Milestone",
-    //         "title": "Uses skills to independently participate in everyday routines and social activities",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 09:44",
-    //         "body": "<p>Can dress and undress independently, uses a spoon and fork, uses the toilet alone and washes hands. Can separate from parents and get involved in independent social activities. </p>",
-    //         "child_age": [
-    //             57
-    //         ],
-    //         "related_activities": [
-    //             7526
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58596
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7086,
-    //         "type": "Milestone",
-    //         "title": "Skillfully participates in varied activities requiring advanced physical skills",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 09:59",
-    //         "body": "<p>Able to stand on one leg, kick a ball precisely, hit a target with a ball etc. </p>",
-    //         "child_age": [
-    //             58
-    //         ],
-    //         "related_activities": [
-    //             7531
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58611
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7106,
-    //         "type": "Milestone",
-    //         "title": "Tells a complete story",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 10:51",
-    //         "body": "<p>The child manages to retell the plot of a certain story completely independently and accurately, correctly arranging the events in chronological order, the event in which he/she participated, or a TV show.</p>",
-    //         "child_age": [
-    //             58
-    //         ],
-    //         "related_activities": [
-    //             7826
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58656
-    //         ],
-    //         "mandatory": 0
-    //     },
-    //     {
-    //         "id": 7131,
-    //         "type": "Milestone",
-    //         "title": "Shows understanding of difference between real and pretend or make-believe",
-    //         "created_at": "Thu, 08/12/2021 - 21:37",
-    //         "updated_at": "Wed, 09/29/2021 - 10:46",
-    //         "body": "<p>He/she only invents stories, events, characters from his/her imagination, artistically presents, describes, and assigns them properties that are not realistic. He/she has fun while doing it, aware that everything is possible in the world of imagination. </p>",
-    //         "child_age": [
-    //             58
-    //         ],
-    //         "related_activities": [
-    //             7571
-    //         ],
-    //         "related_articles": [],
-    //         "related_video_articles": [
-    //             58641
-    //         ],
-    //         "mandatory": 0
-    //     }
-    // ],
+    "uk":  [
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Вимовляє слова зі значенням",
+            "created_at": "Fri, 03/18/2022 - 13:13",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Звертаючись до батьків, малюк говорить хоча б одне або кілька окремих слів.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Стає все більш незалежним",
+            "created_at": "Fri, 03/18/2022 - 13:10",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Іноді малюк чинить опір наказам, сердиться, хоче контролювати оточуючих, свариться, вимагає, захищає свої речі.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [
+                4781
+            ],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Допомагає під час одягання",
+            "created_at": "Fri, 03/18/2022 - 13:09",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Малюк допомагає, коли ви його одягаєте, просуває руку крізь рукава і ноги в шланги.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Показує розуміння різниці між реальним і удаваним чи вигаданим",
+            "created_at": "Fri, 03/18/2022 - 13:07",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Він/вона лише вигадує історії, події, персонажів зі своєї уяви, художньо представляє, описує та присвоює їм нереалістичні властивості. Він/вона отримує задоволення від цього, усвідомлюючи, що у світі уяви можливо все.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58641
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Перебирає пальцями дрібні предмети, їсть пальцями",
+            "created_at": "Fri, 03/18/2022 - 13:04",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Володіє кращим «клещовим хватом» - може маніпулювати дуже дрібними предметами, беручи їх великим і вказівним пальцями.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Розуміє та виконує прості прохання",
+            "created_at": "Fri, 03/18/2022 - 13:03",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Дотримується простих інструкцій без демонстрації, може виконувати те, що від неї/нього очікують.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [
+                4776
+            ],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Розповідає повну історію",
+            "created_at": "Fri, 03/18/2022 - 13:02",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Дитина може повністю самостійно і точно переказати сюжет певної історії, правильно розставляючи події в хронологічній послідовності, події, в якій вона брала участь, або телепередачу.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58656
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Спонтанно прагне поділитися інтересами і задоволеннями з дорослими",
+            "created_at": "Fri, 03/18/2022 - 12:56",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Насолоджується взаємними іграми: \"Я даю його тобі - ти мені це даєш\", \"Я роблю - ти робиш\" тощо.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Відштовхується, намагається встати.",
+            "created_at": "Fri, 03/18/2022 - 12:55",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Відштовхується, намагається встати. Дитина намагається встати, тримаючись за меблі, але потребує допомоги та підтримки.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Мову дитини також частково розуміють люди, які не кожен день перебувають з дитиною",
+            "created_at": "Fri, 03/18/2022 - 12:54",
+            "updated_at": "Thu, 03/24/2022 - 11:26",
+            "body": "<p>Дитина починає чіткіше вимовляти звуки і вживає все більше і більше слів зі змістом, а тому спілкуватися стає легше.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Вміло бере участь у різноманітних видах діяльності, що вимагають розширених фізичних навичок",
+            "created_at": "Fri, 03/18/2022 - 12:54",
+            "updated_at": "Thu, 03/24/2022 - 11:28",
+            "body": "<p>Вміє стояти на одній нозі, точно бити по м’ячу, бити м’ячем у ціль тощо.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58611
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Використовує навички для самостійної участі в повсякденних процедурах і соціальних заходах",
+            "created_at": "Fri, 03/18/2022 - 12:52",
+            "updated_at": "Thu, 03/24/2022 - 11:28",
+            "body": "<p>Вміє одягатися і роздягатися самостійно, користується ложкою і виделкою, самостійно ходить в туалет і миє руки. Може відокремитися від батьків і залучитися до іншої соціальної діяльності.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58596
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Піднімається в положення для повзання. Деякі діти вже повзають.",
+            "created_at": "Fri, 03/18/2022 - 12:49",
+            "updated_at": "Thu, 03/24/2022 - 11:28",
+            "body": "<p>Піднімається в положення для повзання. Деякі діти вже повзають. Дитина може самостійно зайняти позу для повзання. Дитина рухається повзаючи вперед чи назад.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Вміє рахувати до десяти і називати десять предметів без помилок",
+            "created_at": "Fri, 03/18/2022 - 12:45",
+            "updated_at": "Thu, 03/24/2022 - 11:28",
+            "body": "<p>Може також сказати «перший, другий», рахувати до 10, рахувати дні тижня та місяці.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Говорить реченнями з п'яти і більше слів; використовує слова, щоб говорити про майбутнє",
+            "created_at": "Fri, 03/18/2022 - 12:42",
+            "updated_at": "Thu, 03/24/2022 - 11:29",
+            "body": "<p>Складає слова, щоб висловити свої ідеї; може сказати, що «буде» чи «може» статися в майбутньому.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58581
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Користується однією рукою більше, ніж іншою",
+            "created_at": "Fri, 03/18/2022 - 12:34",
+            "updated_at": "Thu, 03/24/2022 - 11:29",
+            "body": "<p>Починає більше використовувати одну руку - ліву або праву.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Знає основні відмінності між речами реальними, удаваними чи уявними",
+            "created_at": "Fri, 03/18/2022 - 12:32",
+            "updated_at": "Thu, 03/24/2022 - 11:29",
+            "body": "<p>Складає історію про персонажа, якого не існує, або знає, що тварини не можуть говорити в реальному житті.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Використовує речення із 4 до 5 слів",
+            "created_at": "Fri, 03/18/2022 - 12:29",
+            "updated_at": "Thu, 03/24/2022 - 11:29",
+            "body": "<p>Складає слова так, щоб вони мали сенс, і передавали її/його ідеї.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58501
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Подобається радувати інших і взаємодіяти",
+            "created_at": "Fri, 03/18/2022 - 12:28",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Визнає чужі почуття; часто полюбляє ділитися з іншими; вміє гратися по черзі. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58521
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Реагує на звук голосу, видаючи звуки - об'єднуючи голосні: а, о, у...",
+            "created_at": "Fri, 03/18/2022 - 12:27",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Коли хтось звертається до нього, розмовляє, співає, читає йому... дитина відповідає.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Починає розуміти значення слова «ні».",
+            "created_at": "Fri, 03/18/2022 - 12:26",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Починає розуміти значення слова «ні».  Коли чує це слово, малюк припиняє діяльність і розуміє несхвалення.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Самостійно малює олівцем або крейдою на папері",
+            "created_at": "Fri, 03/18/2022 - 11:40",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Любить малювати каракулі, будь то олівцем на папері, рукою по піску, паличкою по землі або водою на бетоні.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Любить грати в компанії дітей",
+            "created_at": "Fri, 03/18/2022 - 11:15",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Грає вже не просто паралельна – пліч-о-пліч, а має складніші елементи, уяву та грайливість.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Дитина схвильована, коли розуміє, що пора грати",
+            "created_at": "Fri, 03/18/2022 - 11:09",
+            "updated_at": "Thu, 03/24/2022 - 11:30",
+            "body": "<p>Радіє, виглядає щасливим і насолоджується грою і контактом, особливо з батьками і знайомими людьми.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Налагоджує координацію рук і очей",
+            "created_at": "Fri, 03/18/2022 - 10:54",
+            "updated_at": "Thu, 03/24/2022 - 11:31",
+            "body": "<p>Збільшується здатність до координації рук і очей, наприклад: ваша дитина дивиться на предмет і намагається до нього дотягнутися.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Починає лепетати",
+            "created_at": "Fri, 03/18/2022 - 10:51",
+            "updated_at": "Thu, 03/24/2022 - 11:31",
+            "body": "<p>Вокалізує та видає звуки, що нагадують голосні – а, е, і, о, у</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Може вимовити речення від 2 до 3 слів",
+            "created_at": "Fri, 03/18/2022 - 10:49",
+            "updated_at": "Thu, 03/24/2022 - 11:31",
+            "body": "<p>Дитина може складати і вимовляти речення від 2 до 3 слів досить добре, щоб члени сім'ї її зрозуміли.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Піднімається вгору і вниз по сходах",
+            "created_at": "Fri, 03/18/2022 - 10:48",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Піднімається по сходах з опорою, використовуючи по черзі одну ногу, а потім іншу.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Може сидіти з певною підтримкою",
+            "created_at": "Fri, 03/18/2022 - 10:48",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Маючи опору або тримаючись за щось, малюк може сидіти і недовго зберігати сидяче положення самостійно.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Показує нудьгу або плаче, якщо діяльність змінюється",
+            "created_at": "Fri, 03/18/2022 - 10:15",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Дитина скаржиться, плачучи, якщо вона залишається в одному положенні протягом тривалого часу, або протестує, якщо ви поклали після того, як тримали її на руках.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6916
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Може сама заспокоїтися на деякий час",
+            "created_at": "Fri, 03/18/2022 - 10:09",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Дитина заспокоюється, смоктаючи палець або ручку.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Дитина видає різні звуки, коли вона щаслива, засмучена чи голодна",
+            "created_at": "Fri, 03/18/2022 - 10:08",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Плач дитини відрізняється, коли у неї є певні потреби. Тому за звуками можна розпізнати, чи малюк щасливий, засмучений або має якісь інші потреби.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Лежачи на животику, дитина піднімає голову",
+            "created_at": "Fri, 03/18/2022 - 10:07",
+            "updated_at": "Thu, 03/24/2022 - 11:33",
+            "body": "<p>Коли ви покладете дитину лежачи на животик, вона буде намагатися підняти голову, щоб очистити дихальні шляхи.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Видає звуки",
+            "created_at": "Fri, 03/18/2022 - 10:03",
+            "updated_at": "Thu, 03/24/2022 - 11:35",
+            "body": "<p>Дитина плаче, але також видає звуки</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Повертає голову до джерела звуку і показує, що слухає",
+            "created_at": "Thu, 03/17/2022 - 20:58",
+            "updated_at": "Thu, 03/24/2022 - 11:35",
+            "body": "<p>Якщо малюк чує людський голос або якийсь інший звук, повертає голову до нього. Коли дитина слухає голос, вона дивиться на батька або людину, що говорить, сповільнюючи рухи.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Збуджується, коли ви розмовляєте з нею/ним",
+            "created_at": "Thu, 03/17/2022 - 20:53",
+            "updated_at": "Thu, 03/24/2022 - 11:35",
+            "body": "<p>Коли дитина чує ваш голос, вона хвилюється, але ви також помічаєте, що дитина уповільнює свої рухи, ніби слухає, уважно стежить...</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 1
+        }
+    ],
     "uz-uz":[
         {
             "id": 2531,
