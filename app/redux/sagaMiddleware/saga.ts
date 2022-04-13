@@ -89,7 +89,7 @@ function* onFetchAPI(value: any) {
 // async function* fetchUsers() {
 // }
 function* apiCall(data: apijsonArray,dispatch: any,languageCode: string) {
-  // console.log("in api call",new Date());
+  console.log("in api call",data);
   try{
     const response = yield call(commonApiService, data.apiEndpoint, data.method, data.postdata);
     // console.log(response,"  in apicall",new Date())
@@ -158,7 +158,6 @@ function* onApiSuccess(response: AxiosResponse<any>, prevPage: string, dispatch:
     let payload = {errorArr:errorArr,fromPage:prevPage}
       yield put(receiveAPIFailure(payload))
   // }
-  console.log(prevPage,"response in saga success function--",response);
   yield call(updateIncrementalSyncDT, response, dispatch, navigation, languageCode, prevPage);
   if (prevPage == 'Terms') {
     //dispatch action for terms page
