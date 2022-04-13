@@ -27,7 +27,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,6 +43,21 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>	
+	<true/>	
+	<key>FacebookAppID</key>	
+	<string>$(facebookAppId)</string>	
+	<key>FacebookAutoLogAppEventsEnabled</key>	
+	<true/>	
+	<key>FacebookClientToken</key>	
+	<string>$(facebookClientToken)</string>	
+	<key>FacebookDisplayName</key>	
+	<string>$(facebookAppDisplayName)</string>	
+	<key>LSApplicationQueriesSchemes</key>	
+	<array>	
+		<string>fbapi</string>	
+		<string>fb-messenger-share-api</string>	
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -76,6 +91,11 @@
 		<string>roboto-regular.woff2</string>
 		<string>fontello.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>	
+	<array>	
+		<string>fetch</string>	
+		<string>remote-notification</string>	
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -88,5 +108,7 @@
 	<false/>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>	
+	<string>App would like to access IDFA for tracking purpose</string>
 </dict>
 </plist>
