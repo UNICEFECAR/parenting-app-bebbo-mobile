@@ -442,8 +442,8 @@ const KGky = {
                 hcrNoti2: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган",
                 vcrNoti3: "Эмдөө {{reminderDateTime}} күнү пландаштырылган, эмдөө чоо-жайын киргизиңиз",
                 hcrNoti3: "Медициналык текшерүү {{reminderDateTime}} күнү пландаштырылган, медициналык текшерүүнүн чоо-жайын киргизиңиз",
-                hcHasScheduled: "Health-check is scheduled",
-                vcHasScheduled: "Vaccination is scheduled",
+                hcHasScheduled: "Ден соолукту текшерүү пландаштырылган",
+                vcHasScheduled: "Эмдөө пландаштырылган",
         }
 }
 export default KGky;
