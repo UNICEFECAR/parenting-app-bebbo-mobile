@@ -309,7 +309,7 @@ class DataRealmCommon {
                 const realm = await this.openRealm();
                 if(realm)
                 {
-                    console.log("in deletedeta data---",records);
+                    // console.log("in deletedeta data---",records);
                     const articleids = records && records.article && records.article.length > 0 ? records.article : []
                     const activitiesids = records && records.activities && records.activities.length > 0 ? records.activities : []
                     const video_articleids = records && records.video_article && records.video_article.length > 0 ? records.video_article : []

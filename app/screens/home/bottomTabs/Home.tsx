@@ -266,7 +266,7 @@ const Home = ({ route, navigation }: Props) => {
                 saveinDB: true,
               }
             ];
-            dispatch(fetchAPI(apiJsonData,'Survey',dispatch,navigation,languageCode,activeChild,apiJsonDatasurvey,netInfoval.isConnected));
+            dispatch(fetchAPI(apiJsonDatasurvey,'Survey',dispatch,navigation,languageCode,activeChild,apiJsonDatasurvey,netInfoval.isConnected));
             let forceUpdateTime = await AsyncStorage.getItem('forceUpdateTime');
             if(forceUpdateTime == null || forceUpdateTime == undefined) {
               dispatch(setInfoModalOpened({ key: 'showDownloadPopup', value: false }));
@@ -467,9 +467,9 @@ const Home = ({ route, navigation }: Props) => {
                 onChange={ondobChange}
               />
             )}
-            {/* <View>
+            <View>
               <Button onPress={() => setShow2(true)} title={"Monthly " + date2} />
-            </View> */}
+            </View>
             {show2 && (
               <DateTimePicker
                 testID="dobdatePicker"

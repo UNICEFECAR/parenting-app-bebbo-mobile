@@ -60,10 +60,10 @@ const HeaderNotiIcon = (props: any) => {
       const fetchData = async () => {
         let childList = await getAllChildren(dispatch, childAge, 1);
         let allchildNotis: any[] = [];
-       console.log(allnotis, "..allnotis in header noti2..",childList);
+      //  console.log(allnotis, "..allnotis in header noti2..",childList);
         childList?.map((child: any) => {
           const notiExist = allnotis.find((item) => String(item.childuuid) == String(child.uuid))
-         console.log(child,"notiExist2---", notiExist);
+        //  console.log(child,"notiExist2---", notiExist);
           if (notiExist != undefined) {
             // notiExist.gwcdnotis?.forEach((item) => {
             //   allgwcdnotis.push(item)
@@ -154,7 +154,7 @@ const HeaderNotiIcon = (props: any) => {
             // create notification for that child first time
             if (!isFutureDate(child?.birthDate)) {
               const { lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis } = getChildNotification(child, childAge, allHealthCheckupsData, allVaccinePeriods, allGrowthPeriods, growthEnabledFlag, developmentEnabledFlag, vchcEnabledFlag);
-             console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
+            //  console.log(lastgwperiodid, lastvcperiodid, lasthcperiodid, gwcdnotis, vcnotis, hcnotis, "childNotis")
             //  console.log(child, "passed <<child>>2")
               let reminderNotis = getChildReminderNotifications(child, [], vchcEnabledFlag);
              // console.log(reminderNotis, "childNotis")
@@ -226,20 +226,20 @@ const HeaderNotiIcon = (props: any) => {
              let combinedNotis1:any = currentChildallnoti.sort(
               (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
             )
-            console.log(combinedNotis1, "before combinedNotis1")
+            // console.log(combinedNotis1, "before combinedNotis1")
            
             let combinedNotis = currentChildallnoti.sort(
               (a: any, b: any) => new Date(a.notificationDate) - new Date(b.notificationDate),
             ).filter((item) => {
-              console.log(item.type,"..type")
-                console.log(item.isRead,"..isRead")
-                console.log(toDay,"..toDay")
-                console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..notificationDate")
-                console.log(childBirthDate,"..childBirthDate")
-                console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..childBirthDate")
+              // console.log(item.type,"..type")
+              //   console.log(item.isRead,"..isRead")
+              //   console.log(toDay,"..toDay")
+              //   console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..notificationDate")
+              //   console.log(childBirthDate,"..childBirthDate")
+              //   console.log(DateTime.fromJSDate(new Date(item.notificationDate)).toMillis(),"..childBirthDate")
                return item.isRead == false && item.isDeleted == false && (toDay >= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis() && childBirthDate <= DateTime.fromJSDate(new Date(item.notificationDate)).toMillis()) 
               });
-            console.log(combinedNotis, "combinedNotis")
+            // console.log(combinedNotis, "combinedNotis")
             // const toRemove = combinedNotis.filter(item => item.title == "cdNoti2" && item.days_to >= childAgeInDays)
             // console.log(toRemove, "findcdNoti")
             // combinedNotis = combinedNotis.filter(function (el) {

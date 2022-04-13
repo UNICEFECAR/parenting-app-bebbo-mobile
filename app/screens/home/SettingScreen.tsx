@@ -127,6 +127,9 @@ const SettingScreen = (props: any) => {
       ? state.bandWidthData.lowbandWidth
       : false,
   );
+  const allDataDownloadFlag = useAppSelector((state: any) =>
+  (state.utilsData.allDataDownloadFlag),
+);
   // console.log(toggleSwitchVal, "..toggleSwitchVal..");
   const { t, i18n } = useTranslation();
   const [isEnabled, setIsEnabled] = useState(false);
@@ -650,7 +653,7 @@ const SettingScreen = (props: any) => {
           text: t('downloadAllContinueBtn'), onPress: async () => {
             // downloadArticleImages();
             props.navigation.navigate('LoadingScreen', {
-              apiJsonData: allApisObject(false,incrementalSyncDT),
+              apiJsonData: allDataDownloadFlag == false ? allApisObject(false,incrementalSyncDT) : allApisObject(true,incrementalSyncDT),
               prevPage: 'DownloadAllData'
             });
           }
