@@ -4831,308 +4831,208 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    // "uk":[
-    //     {
-    //         "id": 7571,
-    //         "type": "Games",
-    //         "title": "Flying Imagination",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: NoneWhat You Can Do Together: Get your kids to imagine what it would be like to fly. Where would you go? Who would you see? How fast would you travel?Kids could imagine what it might be like to visit the moon, or perhaps they’d use their flying powers to do good, like rescuing animals stuck in high places.",
-    //         "body": "<p><strong>Materials You Need: </strong>None</p><p><strong>What You Can Do Together: </strong>Get your kids to imagine what it would be like to fly. Where would you go? Who would you see? How fast would you travel?</p><p>Kids could imagine what it might be like to visit the moon, or perhaps they’d use their flying powers to do good, like rescuing animals stuck in high places.</p><p>Be sure to probe for details– what do you think it smells like 5000m in the air? What does it feel like on your skin? There are no wrong answers, the sky’s the limit! Did you know that the world’s fastest bird is the peregrine falcon? These brilliant birds can reach speeds of up to 240 miles per hour!</p><p><strong>What Your Child is Learning: </strong>Imaginative kids will love letting their imaginations run wild as they picture what it would be like to fly! This activity is all about communication, as your kids learn to vocalise their thoughts, feelings and flying fantasies.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             58
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/flying_imagination-cover-picture.jpg?itok=5vaEj2LH",
-    //             "name": "flying_imagination-cover-picture.jpg",
-    //             "alt": "Illustration of Flying imagination"
-    //         },
-    //         "related_milestone": [
-    //             7131
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7606,
-    //         "type": "Games",
-    //         "title": "Look At Your Ball",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: Ball; blanket.What You Can Do Together: To carry out this activity, you must prepare the environment where it will happen. Choose a room with few distractors, place the blanket on the floor or a large bed. Then lay your little one on her stomach on the blanket. You should sit facing the front with your legs open, one leg on each side so that you make a barrier in front of your little one.",
-    //         "body": "<p><strong>Materials You Need: </strong>Ball; blanket.</p><p><strong>What You Can Do Together: </strong>To carry out this activity, you must prepare the environment where it will happen. Choose a room with few distractors, place the blanket on the floor or a large bed. Then lay your little one on her stomach on the blanket. You should sit facing the front with your legs open, one leg on each side so that you make a barrier in front of your little one.</p><p>Now talk to your little one to get her attention, when you do it, take the ball, show it to her and put it on the floor. Roll the ball slowly from one side to the other so that your little one can follow the ball with her eyes. Continue for about five minutes or until you see that your little one is tired. If your little one cannot lift her head yet, you can show her the ball by moving it only from the bottom up, little by little she will<strong> </strong>have enough strength to be able to lift her head and follow the ball with her eyes.</p><p><strong>What Your Child is Learning: </strong>Strengthen your little one's muscles while stimulating their eyesight by developing the ability to follow moving objects with their gaze, a necessary skill to perform hand-eye coordination tasks such as reading and writing in the future.</p>",
-    //         "activity_category": 6421,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             43
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
-    //             "name": "@Spencer Selover",
-    //             "alt": "A new-born baby looking attentively somewhere"
-    //         },
-    //         "related_milestone": [
-    //             2556
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7631,
-    //         "type": "Games",
-    //         "title": "My First Turns",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: None",
-    //         "body": "<p><strong>Materials You Need: </strong>None</p><p><strong>What You Can Do Together: </strong>Little by little, babies get to know their bodies more and begin to coordinate the movements that will allow them to discover their world. This activity will help your little one to get started with this skill, which with practice they will master in no time. To start, you only need to lay your little one on her back on a soft surface, like your bed. Take one of her legs and cross it in front of the other. Do it again with the other leg. Repeat about three times and on the fourth time, take the leg, cross it in front of the other, put your other hand under her back and help her roll over until she is on her tummy. You can recite the following rhyme while doing the exercises:</p><p><em>     Round and round and you'll change!</em></p><p><em>     What you can see?</em></p><p><em>     Round, round, you will give,</em></p><p><em>     You alone will see!</em></p><p>Remember that all movements must be delicate and that your little one must already have enough strength in her neck to avoid hurting her. Lie her on her back and repeat for the other side. Finish the exercise with lots of kisses. Now talk to your little one to get his or her attention. When you do it, you can repeat the rhyme.</p><p><strong>What Your Child is Learning: </strong>Help your little one begin to have the strength and coordinated movements to turn from back to tummy, which will allow her to start to have the necessary coordination to move in a few months.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             44
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
-    //             "name": "my_first_turns-cover-picture.jpg",
-    //             "alt": "A child turning from back to tummy"
-    //         },
-    //         "related_milestone": [
-    //             2601
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7656,
-    //         "type": "Games",
-    //         "title": "Say My Name",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: NoneWhat You Can Do Together: To carry out this activity, you only need to lay your little one on her back on a soft surface, such as her crib or bed. Now talk to your little one to get his or her attention. When you do it, you can sing her the following song:     Where is (your child's name)?     Where is (your child's name)?     Here you are! Here you are!",
-    //         "body": "<p><strong>Materials You Need: </strong>None</p><p><strong>What You Can Do Together: </strong>To carry out this activity, you only need to lay your little one on her back on a soft surface, such as her crib or bed. Now talk to your little one to get his or her attention. When you do it, you can sing her the following song:</p><p><em>     Where is (your child's name)?</em></p><p><em>     Where is (your child's name)?</em></p><p><em>     Here you are! Here you are!</em></p><p>Then you can vary, saying it out loud and low. Another way to help your baby recognize her name, your voice, and the place of origin of a sound is to place yourself in different positions of the bed or crib and sing the song from there at the foot of the bed, near the pillows, on one side and the other. Sing with your little one's name until your little one can turn around to see where you are. Always end by saying to your baby, “I love you (little one's name)!”. And give them a little kiss.</p><p><strong>What Your Child is Learning: </strong>This activity will help your little one to begin recognising her name and using body movements in response to familiar words.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             45
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/say_my_name-cover-picture.jpg?itok=M48Jcpos",
-    //             "name": "say_my_name-cover-picture.jpg",
-    //             "alt": "A child laying on his or her back with a focussed expression on his or her face"
-    //         },
-    //         "related_milestone": [
-    //             2641
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7231,
-    //         "type": "Games",
-    //         "title": "Reading with your baby",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: A baby book (made of cloth or with a hardcover, brightly colored pictures, and tactile elements). If you don't have one, you may use plain paper folded in half on which you can draw a few pictures or shapes in bright colors.",
-    //         "body": "<p><strong>Materials You Need: </strong>A baby book (made of cloth or with a hardcover, brightly colored pictures, and tactile elements). If you don't have one, you may use plain paper folded in half on which you can draw a few pictures or shapes in bright colors.</p><p><strong>What You Can Do Together:</strong> Put the baby on your lap so that you can look at the book together, but you should also be able to see your baby’s face. Place the book so that you can both see it and then read it! You can describe what is in the picture or tell a story about it, point your finger at the pictures, and name them. Use short and simple sentences. Vary the tone of your voice, be quiet, then be surprised…</p><p>Let your baby see your facial expressions, and you observe his reactions and name those that you see he likes or dislikes. Allow him to touch the book, put it in his mouth (if it is safe), and explore it in other ways. If the baby makes a sound while reading, allow him to \"read\" as well. Listen to him and respond by repeating his sounds, asking questions, and praising him. When you notice that your baby is no longer interested – he looks away or protests in some other way - patiently wait for his attention to return to the book and continue. If the book is no longer interesting to him, come back to it later. </p><p><strong>What Your Child is Learning: </strong>Reading and looking at books together is important for your baby's communication skills and language development.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             47
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Reading%2520with%2520your%2520baby-cover-picture.jpg?itok=1FI9_YIw",
-    //             "name": "@Elisabeth Wales",
-    //             "alt": "A mother looking at the book with her baby"
-    //         },
-    //         "related_milestone": [
-    //             2791
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7671,
-    //         "type": "Games",
-    //         "title": "Musical Movements",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: Music with different rhythms; wooden trowel/spatula/spoon or stick. What You Can Do Together: To start this activity, have the music you will use with your little one ready; you can use music with different rhythms and make them easy to follow.",
-    //         "body": "<p><strong>Materials You Need: </strong>Music with different rhythms; wooden trowel/spatula/spoon or stick. </p><p><strong>What You Can Do Together: </strong>To start this activity, have the music you will use with your little one ready; you can use music with different rhythms and make them easy to follow.</p><p>Carry your little one and dance to the rhythm of the music. You can move around the house so that he or she becomes familiar with the movement. Then you can sit with your little one on the floor, on a comfortable surface, and follow the rhythm of the music, this time hitting the floor with the wooden paddle/spatula or with your hands. Invite her to imitate the movements you make.</p><p>In this activity, your little one will not follow the rhythm, but it will be an introduction so that she can achieve it later.</p><p>If you can't put on music, you can sing a song and dance and perform movements on the floor to the beat.</p><p><strong>What Your Child is Learning: </strong>With this activity, you will help your little one initiate his or her sense of rhythm and establish a relationship with movement and sit with some support.</p>",
-    //         "activity_category": 6421,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             46
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
-    //             "name": "musical_movements-cover-picture.png",
-    //             "alt": "A mother is holding the child in her arms imitating dancing"
-    //         },
-    //         "related_milestone": [
-    //             2696
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7246,
-    //         "type": "Games",
-    //         "title": "Who Is This Person?",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: NoneWhat You Can Do Together: You may be surprised that, at this age, your child suddenly begins to be afraid, shy, or uneasy when meeting people he does not know. Before, perhaps, your child gave everyone big smiles. This is another step in your child’s development. It shows that your child knows and cares a lot about the difference between you—his special people—and everyone else.",
-    //         "body": "<p><strong>Materials You Need: </strong>None</p><p><strong>What You Can Do Together: </strong>You may be surprised that, at this age, your child suddenly begins to be afraid, shy, or uneasy when meeting people he does not know. Before, perhaps, your child gave everyone big smiles. This is another step in your child’s development. It shows that your child knows and cares a lot about the difference between you—his special people—and everyone else.</p><p>When possible, give your child time to warm up to a new person. Hold your child, talk easily to the other person, and by doing this you are comforting your child. Rather than teasing or urging your child (“Don’t be so shy!), let him respond, or not respond, in any way that seems to make your child more relaxed. If the new person starts to overwhelm your child with friendliness, you might simply say, “Let’s give him a bit of time to get to know you,” again avoiding labelling your child as shy or fearful. Depending on the situation, you might give the new person a little toy or other item that your child may be curious about to “break the ice.”</p><p><strong>What Your Child is Learning: </strong>This uneasiness with new people may last for quite a bit of time, but your child is learning two things. First, he is learning that you are a source of reassurance and comfort in upsetting situations (emotional security). Second, your child is learning that other people are often quite nice and may be fun to be with (social development). As always, your support makes a big difference.</p>",
-    //         "activity_category": 6431,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             48
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Who%2520Is%2520This%2520Person-cover-picture.jpg?itok=r4m_GFrg",
-    //             "name": "@Pixabay",
-    //             "alt": "Grandmother and grandfather carrying two babies"
-    //         },
-    //         "related_milestone": [
-    //             2871
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7306,
-    //         "type": "Games",
-    //         "title": "Search for sound",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: None.",
-    //         "body": "<p><strong>Materials You Need: </strong>None.</p><p><strong>What You Can Do Together: </strong>Just as children love to search for treasure, they are happy to go in search for sounds. All you need to do is to start the habit of stop and listening well in order to catch all the sounds in the room or around you. Stay quiet for a bit and encourage your child to do the same. Say something like \"shhhhh, let's hear what sound we can catch\" and then point to your ears. You may hear pounding, whining, creaking, rattling, scratching, chattering. Encourage the child “Let’s see if we can collect the sounds we can hear. I can hear the clock ticking, the bus passing, the neighbor arriving by elevator.” Use lots of interesting words like that - even if your child doesn't understand them yet.  </p><p>If the child is older, you can also ask the question \"Where could I find this sound?\" (And then imitate it). Let him enjoy the feeling of discovery and making the connection between the sound and the object that makes it, by naming it. In that way, the language will connect with the concepts and enrich the vocabulary as well. </p><p>You can use this activity in practically every life situation - during free play and free time, but also during daily routines - dressing, preparing meals, hygiene routine, shopping,  walking, driving, and (if local health requirements permit) waiting for the bus or for your turn at the bank, post office, or at the doctor.</p><p><strong>What Your Child is Learning: </strong>Your child is looking forward to activities with you and as you play together he imitates facial expressions, gestures, and some activities of close people, points with her index finger to what interests him, or offers things to other people in order to interest them and involve them in the game. This activity builds his vocabulary and knowledge of the world. Let your child explore the surroundings and tell you what he hears, even with babbling or simple words.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             49
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
-    //             "name": "Vodič za roditelje",
-    //             "alt": "Potraga za zvukom"
-    //         },
-    //         "related_milestone": [
-    //             3021
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7346,
-    //         "type": "Games",
-    //         "title": "Let's Visit and Talk!",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: None",
-    //         "body": "<p><strong>Materials You Need: </strong>None</p><p><strong>What You Can Do Together: </strong>At this age, your child’s language is developing rapidly. You are giving your child many opportunities to use sounds and words at home. More and more, you are able to understand each other! If possible, give your child opportunities to communicate with others, whether it be grandparents (in person or in video calls), neighbours, or shopkeepers. Gradually, your child may try to say things to these grownups. You help by asking your child questions — for example, “Oh, here is some fruit. What fruit shall we buy?” If your child responds with some words, repeat or say a bit more, and connect with the shopkeeper. This kind of experience can happen in many different ways. It’s exciting for your child to begin to communicate and be understood.</p><p><strong>What Your Child is Learning: </strong>Your child is developing language and communicative skills. They are also becoming more confident in social situations. Your support builds their sense of security and comfort in new situations.</p>",
-    //         "activity_category": 6441,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             50
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Visit%2520and%2520Talk-cover-picture._2.jpeg?itok=qE31flxF",
-    //             "name": "@Hero Images",
-    //             "alt": "Grandparents doing a videocall with their granddaughter"
-    //         },
-    //         "related_milestone": [
-    //             2876
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7406,
-    //         "type": "Games",
-    //         "title": "Let's Look at a Book",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: One or more picture books (If you do not have picture books, you can make a simple one by pasting magazine pictures onto pages and putting them together, or drawing simple pictures)",
-    //         "body": "<p><strong>Materials You Need: </strong>One or more picture books (If you do not have picture books, you can make a simple one by pasting magazine pictures onto pages and putting them together, or drawing simple pictures)</p><p><strong>What You Can Do Together: </strong>Looking at picture books is an activity that your child will enjoy at this age, if you share it with him.  As you read or talk about the pictures, encourage your child to turn the pages. Make it exciting: for example, “Oh, let us see where the cat goes now. Can you turn the page?” Demonstrate, and guide your child’s hand if needed. You can say, “Thank you for turning the page. Now I see the cat is in the tree!” As your child becomes interested and able to turn pages, make this part of your everyday storybook reading. You may also see your child becoming eager to turn book or magazine pages independently.</p><p><strong>What Your Child is Learning: </strong>The action of turning pages is a new fine motor skill, using your child’s hands more skillfully. Your child’s thinking is also strengthened as he makes connections between what is on the pages and the step of turning to see a new picture.</p>",
-    //         "activity_category": 6436,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             51
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
-    //             "name": "@cottonbro",
-    //             "alt": "A child looking at a book"
-    //         },
-    //         "related_milestone": [
-    //             5861
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7426,
-    //         "type": "Games",
-    //         "title": "My Special Helper",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: Everyday objects or other materials used in daily life. For example clean folded clothes; toys or other objects your child has been playing with; spoons, unbreakable cups, or other objects from a meal; materials found in the garden, such as leaves on the ground.",
-    //         "body": "<p><strong>Materials You Need: </strong>Everyday objects or other materials used in daily life. For example clean folded clothes; toys or other objects your child has been playing with; spoons, unbreakable cups, or other objects from a meal; materials found in the garden, such as leaves on the ground.</p><p><strong>What You Can Do Together: </strong>Invite your child to “be your special helper.” Say something like “I really need your help putting these socks away. Some go in baby sister’s cupboard; some go in yours. Can you please take these and put them away? Oh, what a big help you are. Thank you!”</p><p>This kind of activity can be part of your routines every day, with different materials and tasks. </p><p><strong>What Your Child is Learning: </strong>Your child is learning to cooperate, and that helping others makes your child and others happy. Your child is also learning to follow simple directions and learns the names of more objects. He may be learning how to sort or group things, also —for example, you could ask your child to find all the very little socks and put them in one pile and the bigger socks in another pile. Make this activity fun and friendly, not a test of their abilities.</p>",
-    //         "activity_category": 6431,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             52
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
-    //             "name": "@Phillip Goldsberry",
-    //             "alt": "Children helping their parents"
-    //         },
-    //         "related_milestone": [
-    //             6976
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     },
-    //     {
-    //         "id": 7511,
-    //         "type": "Games",
-    //         "title": "Colour Hunt",
-    //         "created_at": "Thu, 08/12/2021 - 21:33",
-    //         "updated_at": "Mon, 11/22/2021 - 05:29",
-    //         "summary": "Materials You Need: Small objects, each of one colour (such as a red sock or an orange).What You Can Do Together: Invite your child to play a “Colour Hunt” game. “Look! Here’s a red sock. Can you find some other things that have a red colour? Let’s look together!” Explore different parts of your home or have the hunt outdoors. Use the name of the colour often.  ",
-    //         "body": "<p><strong>Materials You Need: </strong>Small objects, each of one colour (such as a red sock or an orange).</p><p><strong>What You Can Do Together: </strong>Invite your child to play a “Colour Hunt” game. “Look! Here’s a <em>red </em>sock. Can you find some other things that have a <em>red </em>colour? Let’s look together!” Explore different parts of your home or have the hunt outdoors. Use the name of the colour often.  </p><p>At other times, do the colour hunt activity looking for items of a different colour. Include purple, orange, brown as your child learns more colours. As he learns more, you might ask your child just to find items of a certain colour without matching—or ask your child which colour he wants to look for. </p><p>Help your child learn colours just by using their names in everyday conversation (cooking: “Now I’ll peel those yellow bananas” or dressing: “Let’s find your purple shirt to wear today.”)</p><p><strong>What Your Child is Learning: </strong>Knowing colours is an important part of school readiness. Your child’s thinking is developing as your child learns the concept that objects may look different but have the same colour—and that similar items, like hats, maybe of different colours.</p>",
-    //         "activity_category": 6436,
-    //         "equipment": 0,
-    //         "type_of_support": 59001,
-    //         "child_age": [
-    //             57
-    //         ],
-    //         "cover_image": {
-    //             "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
-    //             "name": "@Cory Woodward",
-    //             "alt": "Child facing the coloured road"
-    //         },
-    //         "related_milestone": [
-    //             7061
-    //         ],
-    //         "mandatory": 1,
-    //         "embedded_images": []
-    //     }
-    // ],
+    "uk":[
+        {
+            "id": 7511,
+            "type": "Games",
+            "title": "Полювання на кольори",
+            "created_at": "Tue, 03/29/2022 - 11:26",
+            "updated_at": "Tue, 03/29/2022 - 11:39",
+            "summary": "Необхідні матеріали: Маленькі предмети, кожен одного кольору (наприклад, оранжева шкарпетка або апельсин).Що ви можете зробити разом: Запропонуйте дитині пограти в гру \"Полювання на кольори\". \"Дивись! Ось червона шкарпетка. Чи можеш ти знайти інші речі, які мають червоний колір? Подивимось разом!\" Досліджуйте різні частини свого будинку або проводьте полювання на свіжому повітрі. Часто використовуйте назву кольору.",
+            "body": "<p><strong>Необхідні матеріали: </strong>Маленькі предмети, кожен одного кольору (наприклад, оранжева шкарпетка або апельсин).</p><p><strong>Що ви можете зробити разом: </strong>Запропонуйте дитині пограти в гру \"Полювання на кольори\". \"Дивись! Ось червона шкарпетка. Чи можеш ти знайти інші речі, які мають червоний колір? Подивимось разом!\" Досліджуйте різні частини свого будинку або проводьте полювання на свіжому повітрі. Часто використовуйте назву кольору.</p><p>В інший час займайтеся пошуком кольорів, шукаючи предмети іншого кольору. Додайте фіолетовий, помаранчевий, коричневий, коли ваша дитина дізнається більше кольорів. У міру того, як вона дізнається більше, ви можете попросити дитину просто знайти предмети певного кольору або запитати дитину, який колір вона бажає шукати.</p><p>Допоможіть своїй дитині вивчити кольори, просто використовуючи їхні імена в повсякденній розмові (готування: \"А зараз я почищу ці жовті банани\" або одягання: \"Давай знайдемо твою фіолетову сорочку, щоб одягнути її сьогодні\".)</p><p><strong>Чого навчиться ваша дитина: </strong>Знання кольорів є важливою частиною підготовки до школи. Мислення вашої дитини розвивається, коли ваша дитина засвоює концепцію про те, що предмети можуть виглядати по-різному, але мати однаковий колір — і що схожі предмети, наприклад, капелюхи, можуть бути різних кольорів.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                57
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Colour%2520Hunt-cover-picture.jpg?itok=59xQEN1V",
+                "name": "@Cory Woodward",
+                "alt": "Child facing the coloured road"
+            },
+            "related_milestone": [
+                7061
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7426,
+            "type": "Games",
+            "title": "Мій особливий помічник",
+            "created_at": "Tue, 03/29/2022 - 07:51",
+            "updated_at": "Tue, 03/29/2022 - 11:39",
+            "summary": "Необхідні матеріали: повсякденні предмети або інші матеріали, що використовуються в повсякденному житті. Наприклад, чистий складений одяг; іграшки або інші предмети, з якими грала ваша дитина; ложки, чашки, що не б'ються, або інші предмети з їжі; матеріали, знайдені в саду, наприклад, листя на землі.",
+            "body": "<p><strong>Необхідні матеріали: </strong>повсякденні предмети або інші матеріали, що використовуються в повсякденному житті. Наприклад, чистий складений одяг; іграшки або інші предмети, з якими грала ваша дитина; ложки, чашки, що не б'ються, або інші предмети з їжі; матеріали, знайдені в саду, наприклад, листя на землі.</p><p><strong>Що ви можете робити разом: </strong>запропонуйте своїй дитині \"стати вашим особливим помічником\". Скажіть щось на кшталт \"Мені дуже потрібна твоя допомога, щоб прибрати ці шкарпетки. Деякі підуть у шафу сестрички; деякі у твою. Можеш, будь ласка, взяти їх і прибрати? Ой, ти дуже допомогла. Дякую!\"</p><p>Такий вид діяльності може бути частиною вашої щоденної роботи з різними матеріалами та завданнями. </p><p><strong>Чого навчається ваша дитина: </strong>ваша дитина вчиться співпрацювати, і допомога іншим робить вашу дитину та інших щасливими. Ваша дитина також вчиться слідувати простим вказівкам і вивчає назви інших предметів. Можливо, вона також вчиться сортувати або групувати речі — наприклад, ви можете попросити дитину знайти всі маленькі шкарпетки і покласти їх в одну купу, а великі шкарпетки — в іншу. Зробіть це заняття веселим і дружнім, а не перевіркою її здібностей.</p>",
+            "activity_category": 6431,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                52
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/My%2520Special%2520Helper-cover-picture.jpg?itok=G0NjesNG",
+                "name": "@Phillip Goldsberry",
+                "alt": "Children helping their parents"
+            },
+            "related_milestone": [
+                6976
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7406,
+            "type": "Games",
+            "title": "Давай подивимося на книгу",
+            "created_at": "Mon, 03/28/2022 - 20:18",
+            "updated_at": "Tue, 03/29/2022 - 11:39",
+            "summary": "Необхідні матеріали: одна або кілька книжок з картинками (якщо у вас немає книжок з картинками, ви можете зробити просту, вставивши зображення з журналу на сторінки та поєднавши їх, або зробивши прості малюнки)",
+            "body": "<p><strong>Необхідні матеріали: </strong>одна або кілька книжок з картинками (якщо у вас немає книжок з картинками, ви можете зробити просту, вставивши зображення з журналу на сторінки та поєднавши їх, або зробивши прості малюнки)</p><p><strong>Що ви можете робити разом: </strong>розглядування книжок з картинками – заняття, яке сподобається вашій дитині в цьому віці, якщо ви покажете їй це. Коли ви читаєте або розповідаєте про малюнки, заохочуйте дитину перегортати сторінки. Зробіть це захоплюючим заняттям: наприклад: \"О, давай подивимося, куди зараз йде кіт. Ти можеш перегорнути сторінку?\" Продемонструйте та направляйте руку дитини, якщо потрібно. Ви можете сказати: \"Дякую, що перегорнув сторінку. Тепер я бачу, що кіт на дереві!\" Коли ваша дитина зацікавиться і зможе перегортати сторінки, зробіть це частиною вашого щоденного читання збірника оповідань. Ви також можете помітити, як ваша дитина починає самостійно перегортати сторінки книги чи журналу.</p><p><strong>Чого навчається ваша дитина: </strong>перегортання сторінок – це розвиток дрібної моторики, коли ваша дитина вміло використовує свої руки. Мислення вашої дитини також зміцнюється, коли вона встановлює зв’язок між зображеннями на сторінках і перегортанням нової, щоб побачити нову картинку.</p>",
+            "activity_category": 6436,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                51
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Let%2527s%2520Look%2520at%2520a%2520Book-cover-picture.jpg?itok=Ho_bSe-d",
+                "name": "@cottonbro",
+                "alt": "A child looking at a book"
+            },
+            "related_milestone": [
+                5861
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7306,
+            "type": "Games",
+            "title": "Шукаємо звуки",
+            "created_at": "Mon, 03/28/2022 - 11:57",
+            "updated_at": "Tue, 03/29/2022 - 11:39",
+            "summary": "Необхідні матеріали: Жодного.",
+            "body": "<p><strong>Необхідні матеріали: </strong>Жодного.</p><p><strong>Що ви можете зробити разом: </strong>Так само, як діти люблять шукати скарби, вони раді шукати звуки. Все, що вам потрібно зробити, це почати звикнути зупинятися і добре прислухатися для вловлювання всіх звуків у кімнаті або навколо вас. Зробіть тишу й заохочуйте дитину робити те саме. Скажіть щось на кшталт \"шшшш, давай  послухаємо, який звук ми можемо вловити\", а потім вкажіть на вуха. Ви можете почути стукіт, ниття, скрип, брязкіт, дряпання, цокання. Заохочуйте дитину: \"Давай подивимося, чи зможемо ми розібрати звуки, які ми чуємо. Я чую, як цокає годинник, проїжджає автобус, сусід приїжджає на ліфті\". Використовуйте багато таких цікавих слів, навіть якщо ваша дитина їх ще не розуміє.  </p><p>Якщо дитина старша, ви також можете задати запитання \"Де я можу знайти цей звук?\" (А потім наслідуйте його). Дозвольте дитині насолодитися відчуттям відкриття та встановлення зв’язку між звуком і предметом, який його створює, назвавши його. Таким чином мова зв’яжеться з поняттями та збагатить словниковий запас.</p><p>Ви можете займатись цим практично в будь-якій життєвій ситуації - під час ігор і вільного часу, а також під час повсякденних справ - одягання, приготування їжі, гігієнічних процедур, покупок, прогулянки, водіння (якщо це дозволяють місцеві вимоги охорони здоров'я), очікування автобуса або в черзі в банку, на пошті чи у лікаря.</p><p><strong>Чого навчиться ваша дитина: </strong>Ваша дитина з нетерпінням чекає на заняття з вами, і, коли ви граєте разом, вона імітує вирази обличчя, жести та деякі дії близьких людей, показує вказівним пальцем на те, що її цікавить, або пропонує щось іншим людям, щоб зацікавити їх і залучити до гри. Це розширює словниковий запас і знання про світ. Дозвольте своїй дитині досліджувати навколишнє середовище та розповідати вам, що вона чує, через лепет або прості слова.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                49
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/ART_3230.JPG?itok=Pq51mhvc",
+                "name": "Vodič za roditelje",
+                "alt": "Potraga za zvukom"
+            },
+            "related_milestone": [
+                3021
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7671,
+            "type": "Games",
+            "title": "Музичні рухи",
+            "created_at": "Sun, 03/27/2022 - 23:08",
+            "updated_at": "Tue, 03/29/2022 - 11:40",
+            "summary": "Необхідні матеріали: музика з різними ритмами; дерев’яний шпатель/лопатка/ложка або паличка. Що ви можете робити разом: щоб розпочати це заняття, підготуйте музику, яку ви будете використовувати з малюком; ви можете використовувати музику з різними ритмами і зробити їх легкими для виконання.",
+            "body": "<p><strong>Необхідні матеріали: </strong>музика з різними ритмами; дерев’яний шпатель/лопатка/ложка або паличка. </p><p><strong>Що ви можете робити разом: </strong>щоб розпочати це заняття, підготуйте музику, яку ви будете використовувати з малюком; ви можете використовувати музику з різними ритмами і зробити їх легкими для виконання.</p><p>Носіть свого малюка і танцюйте в ритмі музики. Ви можете рухатися по дому, щоб він чи вона ознайомилися з рухом. Потім ви можете сидіти з малюком на підлозі, на зручній поверхні, і слідувати ритму музики, цього разу стукаючи об підлогу дерев’яною лопаткою або руками. Запропонуйте їй повторювати ваші рухи.</p><p>У цьому занятті ваша дитина не буде слідувати ритму, але це буде вступом, щоб вона могла навчитися цього пізніше.</p><p>Якщо ви не можете включити музику, можна заспівати пісню, танцювати і виконувати рухи на підлозі в такт.</p><p><strong>Чого навчається ваша дитина: </strong>за допомогою цього заняття ви допоможете своїй дитині розвинути почуття ритму і встановити зв’язок з рухом, а також навчите її сидіти з певною підтримкою.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                46
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/musical_movements-cover-picture.png?itok=iGWnVtyG",
+                "name": "musical_movements-cover-picture.png",
+                "alt": "A mother is holding the child in her arms imitating dancing"
+            },
+            "related_milestone": [
+                2696
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7656,
+            "type": "Games",
+            "title": "Назви моє ім'я",
+            "created_at": "Sun, 03/27/2022 - 22:51",
+            "updated_at": "Tue, 03/29/2022 - 11:40",
+            "summary": "Матеріали, які вам потрібні: немаєЩо можна зробити разом: для цієї гри потрібно лише покласти дитину на спину на м'яку поверхню, наприклад, її ліжечко або ліжко. Тепер поговоріть зі своїм малюком, щоб привернути його або її увагу. Коли ви це зробите, ви можете заспівати їй наступну пісню:     Де (ім'я вашої дитини)?     Де (ім'я вашої дитини)?     Ось ти де! Ось ти де!",
+            "body": "<p><strong>Матеріали, які вам потрібні: </strong>немає</p><p><strong>Що можна зробити разом: </strong>для цієї гри потрібно лише покласти дитину на спину на м'яку поверхню, наприклад, її ліжечко або ліжко. Тепер поговоріть зі своїм малюком, щоб привернути його або її увагу. Коли ви це зробите, ви можете заспівати їй наступну пісню:</p><p><em>     Де (ім'я вашої дитини)?</em></p><p><em>     Де (ім'я вашої дитини)?</em></p><p><em>     Ось ти де! Ось ти де!</em></p><p>Тоді ви можете змінювати тембр, кажучи це вголос і низько. Ще один спосіб допомогти вашій дитині розпізнавати своє ім'я, ваш голос і місце походження звуку — говорити в різних положеннях відносно ліжка і заспівати пісню звідти біля підніжжя ліжка, біля подушок, з одного боку і з іншого. Проспівайте ім'я свого малюка, поки ваш малюк не зможе розвернутися, щоб побачити, де ви знаходитесь. Завжди закінчуйте словами: \"Я люблю тебе (ім'я маленького)!\". І поцілуйте малюка.</p><p><strong>Чого вчиться ваша дитина: </strong>ця вправа допоможе вашій дитині почати розпізнавати своє ім'я і використовувати рухи тіла у відповідь на знайомі слова.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                45
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2022-01/say-my-name-cover-image.jpg?itok=yK6DBuDc",
+                "name": "say-my-name-cover-image.jpg",
+                "alt": "A child laying on his or her back with a focussed expression on his or her face "
+            },
+            "related_milestone": [
+                2641
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7631,
+            "type": "Games",
+            "title": "Мої перші повороти",
+            "created_at": "Sun, 03/27/2022 - 22:04",
+            "updated_at": "Tue, 03/29/2022 - 11:40",
+            "summary": "Необхідні матеріали: немає",
+            "body": "<p><strong>Необхідні матеріали: </strong>немає</p><p><strong>Що ви можете зробити разом: </strong>мало-помалу немовлята краще пізнають своє тіло і починають координувати рухи, які дозволять їм відкривати цей світ. Це заняття допоможе вашому малюкові розпочати роботу з цією навичкою, яку з практикою вони оволодіють миттєво. Для початку вам потрібно лише покласти дитину на спину на м’яку поверхню, як-от ваше ліжко. Візьміть одну з її ніг і схрестіть її перед іншою. Зробіть це ще раз іншою ногою. Повторіть приблизно три рази, а в четвертий раз візьміть ногу, схрестіть її перед іншою, іншу руку покладіть під її спину і допоможіть їй перевернутися, поки дитина не опиниться на животі. Виконуючи вправи, ви можете прочитати наступну риму:</p><p><em>     Кругом, і ти змінишся!</em></p><p><em>     Що ти можеш побачити?</em></p><p><em>     Кругом, кругом, отак,</em></p><p><em>     Ти все побачиш!</em></p><p>Пам’ятайте, що всі рухи повинні бути делікатними і що у вашої дитини вже має бути достатньо сили в шиї, щоб не поранити її. Покладіть її на спину і повторіть вправу для іншого боку. Завершіть вправу великою кількістю поцілунків. Тепер поговоріть зі своїм малюком, щоб привернути його чи її увагу. Коли ви це зробите, ви можете повторити риму.</p><p><strong>Чого навчається ваша дитина: </strong>допоможіть своїй дитині набратися сил і скоординованих рухів, щоб повертатися зі спинки на животик, що дозволить їй за кілька місяців мати необхідну координацію для руху.</p>",
+            "activity_category": 6441,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                44
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/my_first_turns-cover-picture.jpg?itok=hrrZ8Qz7",
+                "name": "my_first_turns-cover-picture.jpg",
+                "alt": "A child turning from back to tummy"
+            },
+            "related_milestone": [
+                2601
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        },
+        {
+            "id": 7606,
+            "type": "Games",
+            "title": "Подивись на свій м'яч",
+            "created_at": "Sun, 03/27/2022 - 21:38",
+            "updated_at": "Tue, 03/29/2022 - 11:40",
+            "summary": "Матеріали, які вам потрібні: м'яч; ковдра.Що можна робити разом: для цієї гри необхідно підготувати зручне місце. Виберіть кімнату з невеликою кількістю відволікаючих факторів, помістіть ковдру на підлогу або на велике ліжко. Потім покладіть свою дитину на живіт на ковдру. Сядьте обличчям до голови з відкритими ногами, по одній нозі з кожного боку, щоб зробити бар'єр перед своїм малюком.",
+            "body": "<p><strong>Матеріали, які вам потрібні: </strong>м'яч; ковдра.</p><p><strong>Що можна робити разом: </strong>для цієї гри необхідно підготувати зручне місце. Виберіть кімнату з невеликою кількістю відволікаючих факторів, помістіть ковдру на підлогу або на велике ліжко. Потім покладіть свою дитину на живіт на ковдру. Сядьте обличчям до голови з відкритими ногами, по одній нозі з кожного боку, щоб зробити бар'єр перед своїм малюком.</p><p>Тепер поговоріть зі своїм дитиною, щоб привернути її увагу, коли ви це зробите, візьміть м'яч, покажіть його і покладіть на підлогу. Повільно катайте м'яч з одного боку на інший, щоб ваш малюк міг стежити за м'ячем очима. Продовжуйте близько п'яти хвилин або до тих пір, поки не побачите, що ваша дитина втомилася. Якщо ваша дитина ще не може підняти голову, ви можете показати їй м'яч, рухаючи його тільки знизу вгору, потроху у неї буде<strong> </strong>достатньо сил, щоб мати можливість підняти голову і слідкувати за м'ячем очима.</p><p><strong>Чого вчиться ваша дитина: </strong>зміцнюйте м'язи вашого малюка, стимулюючи зір, розвиваючи здатність слідкувати поглядом за рухомими об'єктами, необхідні навички для виконання завдань координації рук і очей, таких як читання і письмо в майбутньому.</p>",
+            "activity_category": 6421,
+            "equipment": 0,
+            "type_of_support": 59001,
+            "child_age": [
+                43
+            ],
+            "cover_image": {
+                "url": "https://www.bebbo.app/sites/default/files/styles/content_1200xh_/public/2021-08/Look%2520at%2520your%2520ball-cover-picture.jpg?itok=SF_Uixzh",
+                "name": "@Spencer Selover",
+                "alt": "A new-born baby looking attentively somewhere"
+            },
+            "related_milestone": [
+                2556
+            ],
+            "mandatory": 1,
+            "embedded_images": []
+        }
+    ],
     "uz-uz": [
         {
             "id": 7406,
