@@ -1,6 +1,5 @@
-// import { apiUrlDevelop } from "react-native-dotenv";
+import { apiUrlDevelop } from "react-native-dotenv";
 import RNFS from 'react-native-fs';
-const apiUrlDevelop = "";
 export const destinationFolder=RNFS.DocumentDirectoryPath + '/content/';
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'foleja'; //'foleja'
 export const buildForREMOVED_FACEBOOK_APP_ID1 = 'bebbo'; //'foleja'
@@ -249,13 +248,13 @@ export const appConfig = {
       allApiObject.push({
         apiEndpoint: appConfig.faqUpdatedPinnedContent,
         method: 'get',
-        postdata: isDatetimeReq == true &&  dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqUpdatedPinnedContentDatetime']} : {},
+        postdata: isDatetimeReq == true &&  dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqUpdatedPinnedContentDatetime']} : dateTimeObj['faqPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
         saveinDB: true,
       },
       {
         apiEndpoint: appConfig.archive,
         method: 'get',
-        postdata: isDatetimeReq == true &&  dateTimeObj['archiveDatetime'] != '' ? {datetime: dateTimeObj['archiveDatetime']} : {},
+        postdata: isDatetimeReq == true &&  dateTimeObj['archiveDatetime'] != '' ? {datetime: dateTimeObj['archiveDatetime']} : dateTimeObj['faqPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
         saveinDB: true,
       })
     }

@@ -48,7 +48,7 @@ const PinnedChildDevData = useAppSelector(
   );
   const [selectedPinnedArticleData,setSelectedPinnedArticleData] = useState();
   const activityTaxonomyId = activeChild?.taxonomyData.prematureTaxonomyId != null && activeChild?.taxonomyData.prematureTaxonomyId != undefined && activeChild?.taxonomyData.prematureTaxonomyId != "" ? activeChild?.taxonomyData.prematureTaxonomyId : activeChild?.taxonomyData.id;
-  console.log(activityTaxonomyId, "..activityTaxonomyId..");
+  // console.log(activityTaxonomyId, "..activityTaxonomyId..");
   useEffect(() => {
     // console.log("selectedChildDevData changed--");
     let filteredData = ChildDevData.filter((x:any)=>x.child_age.includes(activityTaxonomyId))[0];

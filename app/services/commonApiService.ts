@@ -75,7 +75,7 @@ export const updateIncrementalSyncDT = async(response: any, dispatch: any, navig
   const faqsresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqs);
   const faqupdatedpinnedresp = response.find((y:any)=>y.apiEndpoint == appConfig.faqUpdatedPinnedContent);
   const archiveresp = response.find((y:any)=>y.apiEndpoint == appConfig.archive);
-console.log(activitiesresp,"articleresp---",articleresp);
+// console.log(faqupdatedpinnedresp,"faqupdatedpinnedresp---",articleresp);
   if(articleresp && articleresp != {} && articleresp.data) {
     if(prevPage != "AddEditChild") {
       dispatch(setIncrementalSyncDT({key: 'articlesDatetime', value: articleresp.data.datetime}));
@@ -112,12 +112,12 @@ if(artresp && artresp != {})
   if(artobj && artobj != {}){
     const storedata = store.getState();
     const bufferAgeBracket = storedata.childData.childDataSet.bufferAgeBracket;
-    console.log("keep awake deactivated--",bufferAgeBracket);
+    // console.log("keep awake deactivated--",bufferAgeBracket);
     // console.log("storedata.utilsData.taxonomy.allTaxonomyData--",storedata.utilsData.taxonomy.allTaxonomyData);
     const childagearray = storedata.utilsData.taxonomy.allTaxonomyData  != '' ? JSON.parse(storedata.utilsData.taxonomy.allTaxonomyData).child_age:[];
     const agesarr = artobj.postdata.childAge == 'all' ? childagearray.map(x=>x.id) : artobj.postdata.childAge.split(',').map(Number);
     const mergedarray = [...new Set([...agesarr,...bufferAgeBracket])];
-    console.log("mergedarray---",mergedarray);
+    // console.log("mergedarray---",mergedarray);
     dispatch(setDownloadedBufferAgeBracket(mergedarray))
   }
 }
@@ -286,7 +286,7 @@ export const onChildSetuppiSuccess = async (response: any, dispatch: any, naviga
 }
 export const onHomeapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any,forceupdatetime:any,downloadWeeklyData:any,downloadMonthlyData:any,enableImageDownload:any) => {
   // navigation.navigate('HomeDrawerNavigator');
-  console.log(prevPage,"--prevPage---");
+  console.log(prevPage,"--prevPage in onHomeapiSuccess---",response);
   // const allDatatoStore = await getAllDataToStore(languageCode,dispatch,prevPage);
   // console.log(allDatatoStore,"..allDatatoStore..")
   const resolvedPromises =  oldErrorObj.map(async (x:any) => {
@@ -447,10 +447,19 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   // deactivateKeepAwake();
   const storedata = store.getState();
   const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
-  console.log("keep awake deactivated--",storedata.failedOnloadApiObjReducer.errorObj);
-
+  // console.log("keep awake deactivated--",storedata.failedOnloadApiObjReducer.errorObj);
+  let msgtext = '';
+  response.map((x:any)=> {
+      msgtext += x.apiEndpoint+" count "
+      if(x.data != null && x.data != undefined && x.data?.data != null && x.data?.data != undefined){
+        msgtext += Object.keys(x.data.data).length+`\n`;
+      }else {
+        msgtext +=  x.data.message+`\n`;
+      }
+  });
+  // console.log("after---",msgtext);
   if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
-    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText')+' '+msgtext,
       [
         { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
             navigation.reset({
@@ -470,7 +479,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
     if(enableImageDownload){
       const allImagesucc = await downloadArticleImages();
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText')+' '+msgtext,
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
               dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
@@ -488,7 +497,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         ]
       );
     }else {
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText')+' '+msgtext,
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
             dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
@@ -509,33 +518,32 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         
   }
   else {
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'HomeDrawerNavigator',
-          // params: {prevPage}
-        },
-      ],
-    });
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText')+' '+msgtext,
+      [
+        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+            navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: 'HomeDrawerNavigator',
+                  // params: {prevPage}
+                },
+              ],
+            });
+          }
+        }
+      ]
+    );
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [
+    //     {
+    //       name: 'HomeDrawerNavigator',
+    //       // params: {prevPage}
+    //     },
+    //   ],
+    // });
   }
-  // navigation.dispatch(
-  //   CommonActions.reset({
-  //     index: 0,
-  //     routes: [
-  //       // { name: 'Home' },
-  //       {
-  //         name: 'HomeDrawerNavigator',
-  //         params: { prevPage: prevPage },
-  //       },
-  //     ],
-  //   })
-  // );
-  // navigation.navigate('Home',
-  //   {
-  //     screen:"Home",
-  //     params:{prevPage:prevPage},
-  //   });
 }
 export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
  // console.log(response,"--oldErrorObj survey---",oldErrorObj);
@@ -603,7 +611,7 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          console.log("hgdj23--",imageArray);
+          // console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
@@ -616,20 +624,20 @@ export const downloadArticleImages = async() => {
               imageArray.push({uri:y})
             }
           });
-          console.log("hgdj23--",imageArray);
+          // console.log("hgdj23--",imageArray);
         }
         if(x['cover_image'] != "" && x['cover_image'] != null && x['cover_image'] != undefined && x['cover_image'].url != "" && x['cover_image'].url != null && x['cover_image'].url != undefined && (x['cover_image'].url.split('https://')[1] || x['cover_image'].url.split('http://')[1])) {
           imageArray.push({uri:x.cover_image.url})
         }
       })
       
-      console.log(imageArray.length,"Imagearray212--",imageArray);
+      // console.log(imageArray.length,"Imagearray212--",imageArray);
       FastImage.preload(imageArray,()=>{
-        console.log("in progress");
+        // console.log("in progress");
         //return 'success';
       },
       ()=>{
-        console.log("after complete")
+        // console.log("after complete")
         resolve('complete');
       })
 
