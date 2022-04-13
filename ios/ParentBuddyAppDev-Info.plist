@@ -25,7 +25,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb{facebook_app_id}</string>
+				<string>fb$(facebookAppId)</string>
 			</array>
 		</dict>
 		<dict>
@@ -33,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 		<dict>
@@ -52,13 +52,13 @@
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
 	<key>FacebookAppID</key>
-	<string>{facebook_app_id}</string>
+	<string>$(facebookAppId)</string>
 	<key>FacebookAutoLogAppEventsEnabled</key>
 	<true/>
 	<key>FacebookClientToken</key>
-	<string>{facebook_client_token}</string>
+	<string>$(facebookClientToken)</string>
 	<key>FacebookDisplayName</key>
-	<string>{facebook_app_name}</string>
+	<string>$(facebookAppDisplayName)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
