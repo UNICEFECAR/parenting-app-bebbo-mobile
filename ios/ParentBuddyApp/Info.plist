@@ -20,17 +20,12 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb{facebook_app_id}</string>
+				<string>fb$(facebookAppId)</string>
 			</array>
 		</dict>
 		<dict>
@@ -38,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.185520625819-{{firebase_project_number}}-{{client_id_key}}</string>
+				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
 		<dict>
@@ -57,13 +52,18 @@
 	<key>FacebookAdvertiserIDCollectionEnabled</key>
 	<true/>
 	<key>FacebookAppID</key>
-	<string>{facebook_app_id}</string>
+	<string>$(facebookAppId)</string>
 	<key>FacebookAutoLogAppEventsEnabled</key>
 	<true/>
 	<key>FacebookClientToken</key>
-	<string>{facebook_client_token}</string>
+	<string>$(facebookClientToken)</string>
 	<key>FacebookDisplayName</key>
-	<string>{facebook_app_name}</string>
+	<string>$(facebookAppDisplayName)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSRequiresIPhoneOS</key>
@@ -89,6 +89,8 @@
 	<string>Let me add photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Let me use your photo library</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>App would like to access IDFA for tracking purpose</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>roboto-bold.ttf</string>
@@ -114,7 +116,5 @@
 	<array/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>NSUserTrackingUsageDescription</key>
-	<string>App would like to access IDFA for tracking purpose</string>
 </dict>
 </plist>
