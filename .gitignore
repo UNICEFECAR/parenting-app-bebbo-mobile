@@ -52,3 +52,10 @@ ios/GoogleServices/Development/GoogleService-Info.plist
 ios/ParentBuddyApp/Info.plist
 ios/GoogleServices/XkDevelopment/GoogleService-Info.plist
 android/app/src/prod/res/values/strings.xml
+# react-native-config codegen
+ios/tmp.xcconfig
+
+.envbebboprod
+.envxk
+.envxkdev
+.envbebbodev
