@@ -287,7 +287,7 @@ async function initPixel(){
   useEffect(() => {
     
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      console.log("msg----",remoteMessage);
+      // console.log("msg----",remoteMessage);
       if(remoteMessage && remoteMessage.notification && remoteMessage.notification.body && remoteMessage.notification.title) {
         Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body,[
           { text: t('forceUpdateOkBtn') }
@@ -296,7 +296,7 @@ async function initPixel(){
     });
     setTimeout(() => {
       SplashScreen.hide();
-      console.log("acsd")
+      // console.log("acsd")
       // LocalNotifications.schduleNotification(new Date(Date.now() + 5 * 1000),'Reminder!','title','350709887');
     }, 2000);
 

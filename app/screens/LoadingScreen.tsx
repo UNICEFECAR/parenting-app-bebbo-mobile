@@ -219,9 +219,7 @@ const incrementalSyncDT = useAppSelector((state: any) =>
 
       }else {
         //check download all flag on second downlaodd all click
-        console.log(prevPage,"---out of if---",allDataDownloadFlag);
         if(prevPage == "CountryLangChange" || (prevPage == "DownloadAllData" && allDataDownloadFlag == false)) {
-          console.log(prevPage,"---in if---",allDataDownloadFlag);
           var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
             BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
             SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
@@ -249,7 +247,6 @@ const incrementalSyncDT = useAppSelector((state: any) =>
       if(downloadBufferData == true)
       {
         if(ageBrackets?.length>0){
-          console.log(ageBrackets,"..11Ages..",bufferAgeBracket);
           ageBrackets.map((ages:any)=>{
             if(bufferAgeBracket.indexOf(ages) == -1) {
               allAgeBrackets.push(ages);
@@ -274,7 +271,7 @@ const incrementalSyncDT = useAppSelector((state: any) =>
         // const Ages=await getAge(childList,child_age);
         // const newAges = [...new Set([...Ages,...bufferAgeBracket])]
         const Ages = await getAgeWithAgeBrackets(prevPage);
-        console.log("Ages----",Ages)
+        // console.log("Ages----",Ages)
         //check download all flag
         const newAges = [...new Set([...Ages.alldataarr,...Ages.deltadataarr])]
 
@@ -321,7 +318,7 @@ const incrementalSyncDT = useAppSelector((state: any) =>
 
       }
       allAgeBrackets = [...new Set(allAgeBrackets)];
-     console.log(allAgeBrackets,"---deltaageBracktes----",deltaageBracktes);
+    //  console.log(allAgeBrackets,"---deltaageBracktes----",deltaageBracktes);
       let apiJsonDataarticleall: any[]=[], apiJsonDataarticledelta: any[]=[];
 
       if(allAgeBrackets.length > 0){
@@ -348,7 +345,8 @@ const incrementalSyncDT = useAppSelector((state: any) =>
       // dispatch(receiveAPIFailure(payload));
       if(allAgeBrackets.length > 0) {
         // dispatch(setDownloadedBufferAgeBracket([]))
-        const newAges = [...new Set([...ageBrackets,...bufferAgeBracket])]
+        const newAges = [...new Set([...allAgeBrackets,...bufferAgeBracket])]
+        // console.log(allAgeBrackets,"---newAges--",newAges);
         dispatch(setDownloadedBufferAgeBracket(newAges))
       }
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
