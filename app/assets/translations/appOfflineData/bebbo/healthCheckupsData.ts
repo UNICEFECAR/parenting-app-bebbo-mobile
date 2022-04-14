@@ -2323,7 +2323,108 @@ export const healthCheckupsData:any = {
             "updated_at": "Mon, 09/27/2021 - 20:12"
         }
     ],
-    "uk": [],
+    "uk":  [
+        {
+            "id": 61431,
+            "type": "Health Check-ups - Age Periods",
+            "title": "4 повні місяці",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 21:11",
+            "updated_at": "Wed, 04/13/2022 - 21:11"
+        },
+        {
+            "id": 61426,
+            "type": "Health Check-ups - Age Periods",
+            "title": "3 повні місяці",
+            "growth_period": 6481,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 21:10",
+            "updated_at": "Wed, 04/13/2022 - 21:11"
+        },
+        {
+            "id": 61416,
+            "type": "Health Check-ups - Age Periods",
+            "title": "18 повних місяців",
+            "growth_period": 6560,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:57",
+            "updated_at": "Wed, 04/13/2022 - 19:58"
+        },
+        {
+            "id": 61411,
+            "type": "Health Check-ups - Age Periods",
+            "title": "12 повних місяців",
+            "growth_period": 6532,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:56",
+            "updated_at": "Wed, 04/13/2022 - 19:57"
+        },
+        {
+            "id": 61406,
+            "type": "Health Check-ups - Age Periods",
+            "title": "9 повних місяців",
+            "growth_period": 6521,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:56",
+            "updated_at": "Wed, 04/13/2022 - 19:56"
+        },
+        {
+            "id": 61401,
+            "type": "Health Check-ups - Age Periods",
+            "title": "6 повних місяців",
+            "growth_period": 6501,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:55",
+            "updated_at": "Wed, 04/13/2022 - 19:55"
+        },
+        {
+            "id": 61396,
+            "type": "Health Check-ups - Age Periods",
+            "title": "5 повний місяців",
+            "growth_period": 6496,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:50",
+            "updated_at": "Wed, 04/13/2022 - 19:55"
+        },
+        {
+            "id": 61391,
+            "type": "Health Check-ups - Age Periods",
+            "title": "2 повні місяці",
+            "growth_period": 6476,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:49",
+            "updated_at": "Wed, 04/13/2022 - 19:49"
+        },
+        {
+            "id": 61386,
+            "type": "Health Check-ups - Age Periods",
+            "title": "1 повний місяць",
+            "growth_period": 6471,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:38",
+            "updated_at": "Wed, 04/13/2022 - 19:38"
+        },
+        {
+            "id": 61381,
+            "type": "Health Check-ups - Age Periods",
+            "title": "При народженні",
+            "growth_period": 6466,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/13/2022 - 19:37",
+            "updated_at": "Wed, 04/13/2022 - 19:37"
+        }
+    ],
     "uz-uz":  [
         {
             "id": 57766,
