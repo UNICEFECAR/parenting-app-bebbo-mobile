@@ -5637,6 +5637,5 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
-    //ukraine
     
 };

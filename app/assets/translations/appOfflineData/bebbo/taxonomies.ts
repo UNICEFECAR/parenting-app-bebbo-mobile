@@ -1,5 +1,4 @@
 export const taxonomydata:any = {
-     //api saara data
     "en": [{
         "langCode": "en",
         "allData":{
