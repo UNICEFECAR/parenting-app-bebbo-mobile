@@ -30,6 +30,12 @@
 				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb$(facebookAppId)</string>
+      </array>
+    </dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
