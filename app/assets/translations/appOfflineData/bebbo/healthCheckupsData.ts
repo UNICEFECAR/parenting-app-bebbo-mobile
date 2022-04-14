@@ -1572,9 +1572,148 @@ export const healthCheckupsData:any = {
         }
     ],
     //no data
-    // "mk-sq": [
-
-    // ],
+    "mk-sq": [
+        {
+            "id": 55726,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne lindje",
+            "growth_period": 6466,
+            "pinned_article": 4526,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:14"
+        },
+        {
+            "id": 55781,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Midis moshes 36-48 muajshe",
+            "growth_period": 6546,
+            "pinned_article": 4511,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Mon, 02/14/2022 - 21:59"
+        },
+        {
+            "id": 55786,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne moshen 4 vjecare",
+            "growth_period": 6548,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:35"
+        },
+        {
+            "id": 55736,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te dyte",
+            "growth_period": 6476,
+            "pinned_article": 4446,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:29"
+        },
+        {
+            "id": 55741,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te katert",
+            "growth_period": 6491,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:30"
+        },
+        {
+            "id": 55746,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te gjashte",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:28"
+        },
+        {
+            "id": 55751,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te nente",
+            "growth_period": 6521,
+            "pinned_article": 4466,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:31"
+        },
+        {
+            "id": 55756,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te 12-te",
+            "growth_period": 6532,
+            "pinned_article": 4471,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:32"
+        },
+        {
+            "id": 55761,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te 15-te",
+            "growth_period": 6534,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Wed, 02/02/2022 - 13:36"
+        },
+        {
+            "id": 55766,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te 18-te",
+            "growth_period": 6560,
+            "pinned_article": 4476,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:33"
+        },
+        {
+            "id": 55771,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te 24-te",
+            "growth_period": 6538,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:34"
+        },
+        {
+            "id": 55776,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne fund te muajit te 30-te",
+            "growth_period": 6541,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Wed, 02/02/2022 - 13:36"
+        },
+        {
+            "id": 55791,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne moshen 5 vjecare",
+            "growth_period": 6551,
+            "pinned_article": 0,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Wed, 02/02/2022 - 13:37"
+        },
+        {
+            "id": 55796,
+            "type": "Health Check-ups - Age Periods",
+            "title": "Ne moshen 6 vjecare",
+            "growth_period": 6553,
+            "pinned_article": 6896,
+            "pinned_video_article": 0,
+            "created_at": "Fri, 10/15/2021 - 21:59",
+            "updated_at": "Thu, 10/21/2021 - 18:35"
+        }
+    ],
     "rs-sr": [
         {
             "id": 57746,
