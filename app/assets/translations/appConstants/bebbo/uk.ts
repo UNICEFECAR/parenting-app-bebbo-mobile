@@ -130,7 +130,7 @@ const uk = {
                 developScreenmileStone: "Етап",
                 developScreenrelatedArticleText: "Переглянути пов'язані поради",
                 developScreenrelatedAct: "Пов'язані ігри ",
-                developScreenviewDetails: "деталі",
+                developScreenviewDetails: "Деталі",
                 articleScreenheaderTitle: "Поради ",
                 articleScreensearchPlaceHolder: "Пошук ключових слів",
                 articleScreennoSearchResult: "Не знайдено порад",
