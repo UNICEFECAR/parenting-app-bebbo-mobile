@@ -243,8 +243,238 @@ export const vaccineData:any = {
             "updated_at": "Mon, 08/16/2021 - 14:13"
         }
     ],
-    "ru": [
-        
+    "ru":  [
+        {
+            "uuid": "9ce5dd04-b8bb-486b-aa36-9f9aa021e88f",
+            "id": 56266,
+            "type": "Vaccinations - Age Periods",
+            "title": "от гепатита B - вторая доза",
+            "growth_period": 6476,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 15:59"
+        },
+        {
+            "uuid": "5d2ba4f6-5304-4227-9b14-b74513cf235c",
+            "id": 56271,
+            "type": "Vaccinations - Age Periods",
+            "title": "от дифтерии, столбняка, коклюша - первая доза",
+            "growth_period": 6476,
+            "pinned_article": 58826,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:00"
+        },
+        {
+            "uuid": "eb6e781d-a465-4e0f-97e5-f6c82f21d576",
+            "id": 56276,
+            "type": "Vaccinations - Age Periods",
+            "title": "от заболеваний, вызванных бактериями Streptococus pneumoniae - первая доза",
+            "growth_period": 6476,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:00"
+        },
+        {
+            "uuid": "d439ce3d-1702-4d9f-8ed1-4a0efd0ccf6f",
+            "id": 56281,
+            "type": "Vaccinations - Age Periods",
+            "title": "от дифтерии, столбняка, коклюша - втора доза",
+            "growth_period": 6486,
+            "pinned_article": 58826,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:02"
+        },
+        {
+            "uuid": "ff7f28d6-72ef-42ce-8355-2bb4f693514b",
+            "id": 56286,
+            "type": "Vaccinations - Age Periods",
+            "title": "от заболеваний, вызванных бактериями Streptococus pneumoniae - вторая доза",
+            "growth_period": 6486,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:01"
+        },
+        {
+            "uuid": "c870be0b-119c-419c-bca3-e7b1a1162099",
+            "id": 56291,
+            "type": "Vaccinations - Age Periods",
+            "title": "от дифтерии, столбняка, коклюша - третья доза",
+            "growth_period": 6496,
+            "pinned_article": 58826,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:02"
+        },
+        {
+            "uuid": "108cfce0-fcce-4bc9-b330-ee0941cac90b",
+            "id": 56296,
+            "type": "Vaccinations - Age Periods",
+            "title": "от заболеваний, вызванных бактериями Streptococus pneumoniae - третья доза",
+            "growth_period": 6496,
+            "pinned_article": 4796,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:01"
+        },
+        {
+            "uuid": "d1c26b60-1e0c-45c7-99de-2526c05ebd17",
+            "id": 56306,
+            "type": "Vaccinations - Age Periods",
+            "title": "от кори, паротита, краснухи",
+            "growth_period": 6533,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:03"
+        },
+        {
+            "uuid": "396de639-043b-4ad7-a95f-19bb8435cbd5",
+            "id": 58816,
+            "type": "Vaccinations - Age Periods",
+            "title": "от Haemophilus influenzae тип b - третья доза",
+            "growth_period": 6501,
+            "pinned_article": 58821,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:09"
+        },
+        {
+            "uuid": "9f436c3d-f853-434f-924b-a82e78a25850",
+            "id": 56256,
+            "type": "Vaccinations - Age Periods",
+            "title": "от гепатита B - первая доза",
+            "growth_period": 6466,
+            "pinned_article": 4661,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:03"
+        },
+        {
+            "uuid": "9cc18d0c-e9a1-4d11-86cd-ccbc01a61bc7",
+            "id": 58811,
+            "type": "Vaccinations - Age Periods",
+            "title": "от Haemophilus influenzae тип b - вторая доза",
+            "growth_period": 6486,
+            "pinned_article": 58821,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:09"
+        },
+        {
+            "uuid": "a7cba10b-22c4-498a-a8be-d5a67ccce947",
+            "id": 58806,
+            "type": "Vaccinations - Age Periods",
+            "title": "от Haemophilus influenzae тип b - вторая доза",
+            "growth_period": 6476,
+            "pinned_article": 58821,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:09"
+        },
+        {
+            "uuid": "5aa0a493-afc5-4d96-81d2-713b359f527d",
+            "id": 58801,
+            "type": "Vaccinations - Age Periods",
+            "title": "от полиомиелита - третья доза",
+            "growth_period": 6501,
+            "pinned_article": 58786,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:06"
+        },
+        {
+            "uuid": "e9474131-e0c5-41ee-860c-dad740539ddd",
+            "id": 58796,
+            "type": "Vaccinations - Age Periods",
+            "title": "от полиомиелита - вторая доза",
+            "growth_period": 6486,
+            "pinned_article": 58786,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:06"
+        },
+        {
+            "uuid": "877575e1-aa08-4031-ab1e-cf7c865095f3",
+            "id": 58791,
+            "type": "Vaccinations - Age Periods",
+            "title": "от полиомиелита - первая доза",
+            "growth_period": 6476,
+            "pinned_article": 58786,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:06"
+        },
+        {
+            "uuid": "f5800e27-68b2-43d4-9689-2f6e69ae9e93",
+            "id": 58776,
+            "type": "Vaccinations - Age Periods",
+            "title": "от ротавирусной инфекции – третья доза",
+            "growth_period": 6501,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:06"
+        },
+        {
+            "uuid": "a16b5b86-446e-4823-bdd9-778da8165752",
+            "id": 58771,
+            "type": "Vaccinations - Age Periods",
+            "title": "от ротавирусной инфекции – вторая доза",
+            "growth_period": 6486,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:05"
+        },
+        {
+            "uuid": "943d883c-5edc-49af-9226-6481bc63c8aa",
+            "id": 58766,
+            "type": "Vaccinations - Age Periods",
+            "title": "от ротавирусной инфекции – первая доза",
+            "growth_period": 6476,
+            "pinned_article": 58781,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:05"
+        },
+        {
+            "uuid": "3ecd65d1-133f-4edd-92a6-a862d27ef838",
+            "id": 58756,
+            "type": "Vaccinations - Age Periods",
+            "title": "от ветряной оспы",
+            "growth_period": 59076,
+            "pinned_article": 58761,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:04"
+        },
+        {
+            "uuid": "339a0f5a-6064-4b31-bd59-18e99a0f77f1",
+            "id": 58746,
+            "type": "Vaccinations - Age Periods",
+            "title": "от дифтерии и столбняка (DT) – бустерная доза",
+            "growth_period": 6553,
+            "pinned_article": 58751,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:11"
+        },
+        {
+            "uuid": "70d23dd8-26d3-4505-ab47-0a6d0049685b",
+            "id": 56321,
+            "type": "Vaccinations - Age Periods",
+            "title": "от кори, паротита, краснухи - ревакцинация",
+            "growth_period": 59056,
+            "pinned_article": 5071,
+            "pinned_video_article": 0,
+            "created_at": "Tue, 12/21/2021 - 18:54",
+            "updated_at": "Thu, 01/06/2022 - 16:03"
+        }
     ],
     "al-sq":[
         {
