@@ -435,7 +435,7 @@ const GRda = {
                 downloadAllSuccessOkBtn: "Ok",
 
                 //9/03/2022
-                remindersAlertTitle: "🔔 Reminder!",
+                remindersAlertTitle: "Reminder!",
                 vcDefinedReminderText: "Enter the date and time of the reminder",
                 hcDefinedReminderText: "Enter the date and time of the reminder",
                 reminderalertTextDefined: "Reminder date should be between current date time and scheduled date time",
