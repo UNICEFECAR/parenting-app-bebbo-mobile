@@ -456,7 +456,7 @@ const Notifications = () => {
                     <FlatList
                     ref={flatListRefNoti}
                     data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
-                    contentContainerStyle={{paddingBottom:130}}
+                    contentContainerStyle={{paddingBottom:108}}
                     onScroll={(e)=>{
                       // if(keyboardStatus==true){
                       //   Keyboard.dismiss();
