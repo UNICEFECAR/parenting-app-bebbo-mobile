@@ -78,11 +78,17 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     ? state.bandWidthData.lowbandWidth
     : false,
 );
+const incrementalSyncDT = useAppSelector((state: any) =>
+      (state.utilsData.incrementalSyncDT),
+    );
+    const allDataDownloadFlag = useAppSelector((state: any) =>
+  (state.utilsData.allDataDownloadFlag),
+);
   const netInfoval = useNetInfoHook();
   const [netflag,setnetflag] = useState(false);
     useFocusEffect(
       React.useCallback(() => {
-        console.log("in useeffect laoding---",netflag);
+        console.log(incrementalSyncDT,"incrementalSyncDT in useeffect laoding---",netflag);
         if(netInfoval.isConnected != null && netflag == false)
         {
           let enableImageDownload = false;
@@ -115,9 +121,45 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       }
     }, []);
 //console.log(apiJsonData,"..apiJsonData..");
+  const getAgeWithAgeBrackets = async (prevPage:any) => {
+    let alldataarr: any[]=[],deltadataarr:any[]=[];
+    if(allDataDownloadFlag == true && prevPage != "CountryLangChange") {
+      bufferAgeBracket.map((x:any)=>deltadataarr.push(x));
+    }
+    else {
+        const Ages=await getAge(childList,child_age);
+        let ageBrackets: any = [];
+        childList.map((child: any) => {
+          const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)),'days').toObject().days;
+          //console.log(childAgedays,"---child",child.taxonomyData);
+          if(childAgedays >= child.taxonomyData.days_to - child.taxonomyData.buffers_days)
+          {
+            const i = child_age.findIndex((_item:any) => _item.id === child.taxonomyData.id);
+            // if(i > -1 && i < childAge.length){
+              if(i > -1 && i < child_age.length-1){
+              const nextchildAgeData = child_age[i+1];
+            // console.log("nextchildAgeData--",nextchildAgeData);
+              if(nextchildAgeData.age_bracket.length > 0){
+                nextchildAgeData.age_bracket.map((ages:any)=>{
+                  ageBrackets.push(ages);
+                })
+              }
+            }
+          }
+        });
+        const newAges = [...new Set([...Ages,...ageBrackets])];
+        newAges.map(x=> {
+          if(bufferAgeBracket.indexOf(x) == -1) {
+            alldataarr.push(x);
+          }else {
+            deltadataarr.push(x);
+          }
+        })
+      }
+    return {alldataarr: alldataarr,deltadataarr: deltadataarr};
+  }
   const callSagaApi = async (enableImageDownload: any) => {
    // console.log('in callSagaApi ',netInfoval.isConnected);
-   console.log(enableImageDownload,'--enableImageDownload in callsagaapi--');
    const routes = navigation.dangerouslyGetState()?.routes;
    console.log(routes.length,"in callSagaApi navigation history--",navigation.dangerouslyGetState());
 
@@ -128,34 +170,65 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     }
     else if(prevPage == "Home")
     {
+      //append agebrackets to existing on error obj
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else if(prevPage == "CountryLangChange" || prevPage == "DownloadUpdate" || prevPage == "ForceUpdate" || prevPage == "DownloadAllData")
     {
-      const Ages=await getAge(childList,child_age);
-      const newAges = [...new Set([...Ages,...bufferAgeBracket])]
+      //when downloading all data replace agebrackets
+      // const Ages=await getAge(childList,child_age);
+      const Ages = await getAgeWithAgeBrackets(prevPage);
+      const newAges = [...new Set([...Ages.alldataarr,...Ages.deltadataarr])]
+
       //console.log(newAges,"..Ages..")
-      let apiJsonDataarticle;
-      if(newAges?.length>0 && prevPage != "DownloadAllData"){
-        apiJsonDataarticle=apiJsonDataGet(String(newAges),"all")
+      let apiJsonDataarticleall: any[]=[], apiJsonDataarticledelta: any[]=[];
+      if(Ages.alldataarr?.length>0 || Ages.deltadataarr?.length>0){
+        if(prevPage == "DownloadAllData" && allDataDownloadFlag == true) {
+          if(Ages.alldataarr?.length>0) {
+            apiJsonDataarticleall=apiJsonDataGet(String(Ages.alldataarr),"all");
+          }
+          if(Ages.deltadataarr?.length>0) {
+            apiJsonDataarticledelta=apiJsonDataGet(String(Ages.deltadataarr),"all",true,incrementalSyncDT);
+          }
+        }
+        else if(prevPage == "DownloadAllData" && allDataDownloadFlag == false) {
+          apiJsonDataarticleall=apiJsonDataGet("all","all")
+        }else if(prevPage == "CountryLangChange") {
+          apiJsonDataarticleall=apiJsonDataGet(String(newAges),"all")
+        }else {
+          if(Ages.alldataarr?.length>0) {
+            apiJsonDataarticleall=apiJsonDataGet(String(Ages.alldataarr),"all");
+          }
+          if(Ages.deltadataarr?.length>0) {
+            apiJsonDataarticledelta=apiJsonDataGet(String(Ages.deltadataarr),"all",true,incrementalSyncDT);
+          }
+        }
+      }else {
+        apiJsonDataarticleall=apiJsonDataGet("all","all");
       }
-      else{
-        apiJsonDataarticle=apiJsonDataGet("all","all")
+
+      if(apiJsonDataarticleall.length > 0) {
+        apiJsonData.push(apiJsonDataarticleall[0]);
       }
-      apiJsonData.push(apiJsonDataarticle[0]);
-     console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
+      if(apiJsonDataarticledelta.length > 0) {
+        apiJsonData.push(apiJsonDataarticledelta[0]);
+      }
+     console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticleall,"---apiJsonDataarticleall---",apiJsonDataarticledelta);
       // dataRealmCommon.deleteAllAtOnce();
       if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
 
       }else {
-        var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
-          BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
-          SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
-          const resolvedPromises =  schemaarray.map(async schema => {
-            await dataRealmCommon.deleteOneByOne(schema);
-          })
-          const results = await Promise.all(resolvedPromises);
-        }
+        //check download all flag on second downlaodd all click
+        if(prevPage == "CountryLangChange" || (prevPage == "DownloadAllData" && allDataDownloadFlag == false)) {
+          var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,DailyHomeMessagesSchema,
+            BasicPagesSchema,TaxonomySchema,MilestonesSchema,ChildDevelopmentSchema,VaccinationSchema,HealthCheckUpsSchema,
+            SurveysSchema,ActivitiesEntitySchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema,FAQsSchema]
+            const resolvedPromises =  schemaarray.map(async schema => {
+              await dataRealmCommon.deleteOneByOne(schema);
+            })
+            const results = await Promise.all(resolvedPromises);
+          }
+      }
       //  console.log("delete done--",results);
       //dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       let payload = {errorArr:[],fromPage:'OnLoad'}
@@ -168,47 +241,62 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
     }
     else if(prevPage == "PeriodicSync")
     {
-      let allAgeBrackets:any = [];
+      //if flag true for buffer then append those in agebrackets
+      let allAgeBrackets:any[] = [], deltaageBracktes:any[] = [];
       //console.log(downloadMonthlyData,"--downloadMonthlyData--",downloadWeeklyData,downloadBufferData);
       if(downloadBufferData == true)
       {
         if(ageBrackets?.length>0){
-          //console.log(ageBrackets,"..11Ages..");
           ageBrackets.map((ages:any)=>{
-            allAgeBrackets.push(ages);
+            if(bufferAgeBracket.indexOf(ages) == -1) {
+              allAgeBrackets.push(ages);
+            }else {
+              deltaageBracktes.push(ages);
+            }
           })
         }
-        // await dataRealmCommon.deleteOneByOne(ArticleEntitySchema);
         if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
 
         }else {
           var schemaarray = [ArticleEntitySchema]
-            const resolvedPromises =  schemaarray.map(async schema => {
-              await dataRealmCommon.deleteOneByOne(schema);
-            })
-            const results = await Promise.all(resolvedPromises);
+            // const resolvedPromises =  schemaarray.map(async schema => {
+            //   await dataRealmCommon.deleteOneByOne(schema);
+            // })
+            // const results = await Promise.all(resolvedPromises);
           }
          // console.log("delete downloadBufferData done--",results);
       }
       if(downloadWeeklyData == true)
       {
-        const Ages=await getAge(childList,child_age);
-        const newAges = [...new Set([...Ages,...bufferAgeBracket])]
+        // const Ages=await getAge(childList,child_age);
+        // const newAges = [...new Set([...Ages,...bufferAgeBracket])]
+        const Ages = await getAgeWithAgeBrackets(prevPage);
+        // console.log("Ages----",Ages)
+        //check download all flag
+        const newAges = [...new Set([...Ages.alldataarr,...Ages.deltadataarr])]
+
+      //console.log(newAges,"..Ages..")
        // console.log(newAges,"..newAges..")
-        if(newAges?.length>0){
-          newAges.map((age:any)=>{
-            allAgeBrackets.push(age);
-          })
-        }
+       if(Ages.alldataarr?.length > 0) {
+        allAgeBrackets = [...new Set([...allAgeBrackets,...Ages.alldataarr])]
+       }
+       if(Ages.deltadataarr?.length > 0) {
+        deltaageBracktes = [...new Set([...deltaageBracktes,...Ages.deltadataarr])]
+       }
+        // if(newAges?.length>0){
+        //   newAges.map((age:any)=>{
+        //     allAgeBrackets.push(age);
+        //   })
+        // }
         if(prevRoute && prevRoute.name && prevRoute.name == 'DetailsScreen') {
 
         }else {
           var schemaarray = [ArticleEntitySchema,PinnedChildDevelopmentSchema,VideoArticleEntitySchema,TaxonomySchema,
             ActivitiesEntitySchema]
-            const resolvedPromises =  schemaarray.map(async schema => {
-              await dataRealmCommon.deleteOneByOne(schema);
-            })
-            const results = await Promise.all(resolvedPromises);
+            // const resolvedPromises =  schemaarray.map(async schema => {
+            //   await dataRealmCommon.deleteOneByOne(schema);
+            // })
+            // const results = await Promise.all(resolvedPromises);
           }
          // console.log("delete downloadWeeklyData done--",results);
         // dispatch(setSyncDate({key: 'weeklyDownloadDate', value: DateTime.now().toMillis()}));
@@ -220,24 +308,36 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
         }else {
           var schemaarray = [DailyHomeMessagesSchema,BasicPagesSchema,MilestonesSchema,ChildDevelopmentSchema,
             VaccinationSchema,HealthCheckUpsSchema,StandardDevHeightForAgeSchema,StandardDevWeightForHeightSchema]
-            const resolvedPromises =  schemaarray.map(async schema => {
-              await dataRealmCommon.deleteOneByOne(schema);
-            })
-            const results = await Promise.all(resolvedPromises);
+            // const resolvedPromises =  schemaarray.map(async schema => {
+            //   await dataRealmCommon.deleteOneByOne(schema);
+            // })
+            // const results = await Promise.all(resolvedPromises);
           }
          // console.log("delete downloadMonthlyData done--",results);
         // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: DateTime.now().toMillis()}));
 
       }
       allAgeBrackets = [...new Set(allAgeBrackets)];
-     // console.log(allAgeBrackets,"---in loading");
-      let apiJsonDataarticle;
+    //  console.log(allAgeBrackets,"---deltaageBracktes----",deltaageBracktes);
+      let apiJsonDataarticleall: any[]=[], apiJsonDataarticledelta: any[]=[];
+
       if(allAgeBrackets.length > 0){
-        apiJsonDataarticle=apiJsonDataGet(String(allAgeBrackets),"all")
-      }else {
-        apiJsonDataarticle=apiJsonDataGet("all","all")
+        apiJsonDataarticleall=apiJsonDataGet(String(allAgeBrackets),"all")
       }
-      apiJsonData.push(apiJsonDataarticle[0]);
+      if(deltaageBracktes.length > 0){
+        apiJsonDataarticledelta=apiJsonDataGet(String(deltaageBracktes),"all",true,incrementalSyncDT)
+      }
+      // else {
+      //   apiJsonDataarticle=apiJsonDataGet("all","all",true,incrementalSyncDT)
+      // }
+      if(apiJsonDataarticleall.length > 0) {
+        apiJsonData.push(apiJsonDataarticleall[0]);
+      }
+      if(apiJsonDataarticledelta.length > 0) {
+        apiJsonData.push(apiJsonDataarticledelta[0]);
+      }
+      console.log(apiJsonData,"--apiJsonDataarticle sync---",apiJsonDataarticleall,"---apiJsonDataarticleall---",apiJsonDataarticledelta);
+      // apiJsonData.push(apiJsonDataarticle[0]);
      // console.log(apiJsonData,"--apiJsonDataarticle---",apiJsonDataarticle);
       // dataRealmCommon.deleteAllAtOnce();
       // dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
@@ -245,12 +345,15 @@ const {apiJsonData, prevPage, downloadWeeklyData, downloadMonthlyData, downloadB
       // dispatch(receiveAPIFailure(payload));
       if(allAgeBrackets.length > 0) {
         // dispatch(setDownloadedBufferAgeBracket([]))
-        dispatch(setDownloadedBufferAgeBracket(allAgeBrackets))
+        const newAges = [...new Set([...allAgeBrackets,...bufferAgeBracket])]
+        // console.log(allAgeBrackets,"---newAges--",newAges);
+        dispatch(setDownloadedBufferAgeBracket(newAges))
       }
       dispatch(fetchAPI(apiJsonData,prevPage,dispatch,navigation,languageCode,activeChild,apiJsonData,netInfoval.isConnected,forceupdatetime,downloadWeeklyData, downloadMonthlyData,enableImageDownload))
     }
     else if(prevPage == "ImportScreen")
     {
+            //when importing data replace agebrackets
       const Ages=await getAge(childList,child_age);
       //console.log(Ages,"..Ages..")
       let apiJsonDataarticle;
