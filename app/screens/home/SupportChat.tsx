@@ -64,7 +64,6 @@ const faqsData = useAppSelector((state: any) =>
   function parseWithFunctions(obj) {
     return JSON.parse(obj, (k, v) => {
       if (typeof v === 'string' && k == 'nextStepFunc') {
-        console.log(k,"v val3----",v);
         return eval(v);
       }
       return v;
@@ -86,12 +85,10 @@ const faqsData = useAppSelector((state: any) =>
 
   }
   const categorySelection = (stepIndex: any,optionIndex: any,steps2: any) => {
-    // console.log(steps2,"categorySelection--",optionIndex,stepIndex);
     // let localsteps = deepCopy(steps2);
     let localsteps = [...steps2];
     // let localsteps = steps2.map(a => ({...a,...a.options,...a.actions}));
     // let localsteps = Object.assign([],steps2);
-    console.log("---localsteps--",localsteps);
     //changing answer value from null to option value
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
     //changing showNextStep to true of the nextStep id
@@ -129,7 +126,6 @@ const faqsData = useAppSelector((state: any) =>
       
     }else if(nextstepid == expertAdviceId) {
       localsteps[index].textToShow = localsteps[stepIndex].options[optionIndex];
-      //console.log(localsteps[index].textToShow,"...faq id localsteps[index].textToShow.")
      // localsteps[index+1].showNextStep = true;
       const indexForText = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === explorecatstep ? i : acc
@@ -137,12 +133,10 @@ const faqsData = useAppSelector((state: any) =>
       const indexForText2 = localsteps.reduce((acc: any, el: any, i: any) => (
           el.id === exploresubcatstep ? i : acc
       ), -1);
-      console.log({faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value},"...faq subcat localsteps[indexForText2].answer.")
       analytics().logEvent(CHATBOT_FAQ_SELECTED,{faq_Id:localsteps[index].textToShow.id,faq_Subcategory_Id:localsteps[indexForText2].answer.value});
       localsteps[index+1].actions[0].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText2].answer.label})
       localsteps[index+1].actions[1].label = t('backToSubCategoryTxt',{subCategoryName:localsteps[indexForText].answer.label})
     }
-    console.log("updated localsteps--",localsteps);
     updateChatBotData(localsteps);
     if(nextstepid == expertAdviceId) {
       showdynamicdelay(localsteps,index);
@@ -177,9 +171,7 @@ const faqsData = useAppSelector((state: any) =>
     return {...x,label : x.name,value : x.id,nextStepFunc : categorySelection}
     // return {...x,label : x.name,value : i,trigger : '3'}
   });
-  // console.log("--category---",category);
   const backToStep = (stepIndex:any,actionIndex:any,steptogoto: number,currentstep: number,steps2: any,stepsjson2:any) => {
-    console.log(steptogoto,"--stepnumber",currentstep);
     let localsteps = [...steps2];
     let localstepsjson = [...steps2];
     // let localsteps = deepCopy(steps2);
@@ -191,7 +183,6 @@ const faqsData = useAppSelector((state: any) =>
     const index = localstepsjson.reduce((acc: any, el: any, i: any) => (
       el.id === steptogoto ? i : acc
   ), -1);
-  // console.log("index is --",index);
     // localstepsjson[index].showNextStep = true;
     //loop through object need to update later
     localstepsjson = localstepsjson.slice(index,localstepsjson.length);
@@ -199,9 +190,7 @@ const faqsData = useAppSelector((state: any) =>
     localstepsjson[0].delay = delayOfSteps;
     localstepsjson[0].showNextStep = true;
     localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
-    console.log(localsteps,"---stepsjson---",localstepsjson);
     const updatedsteps = [...localsteps,...localstepsjson]
-    // console.log("merged--",updatedsteps);
     updateChatBotData(updatedsteps);
     // if(steptogoto == 0) {
     //   // updatedjson.map(x=>x.answer = null);
@@ -218,7 +207,6 @@ const faqsData = useAppSelector((state: any) =>
     localsteps=localsteps.map(item=>({ ...item, delay: 0 }));
     localstepsjson = localstepsjson.slice(1,localstepsjson.length);
     localstepsjson[0].showNextStep = true;
-    console.log(localsteps,"---backToHomeScreen---",localstepsjson);
     const updatedsteps = [...localsteps,...localstepsjson];
     dispatch(setchatBotData(updatedsteps));
     navigation.reset({
@@ -232,7 +220,6 @@ const faqsData = useAppSelector((state: any) =>
   }
   const showFeedbackLink = (stepIndex: any,optionIndex: any,steps2: any) => {
     setModalVisible(true);
-    console.log("showFeedbackLink---",showFeedbackLink);
     let localsteps = [...steps2];
     // let localsteps = deepCopy(steps2);
     localsteps[stepIndex].answer = localsteps[stepIndex].options[optionIndex];
@@ -368,7 +355,6 @@ const faqsData = useAppSelector((state: any) =>
     // },500);
   }
   useEffect(() => {
-    console.log("useeffect 2",steps);
     setTimeout(() => {
       if(flatListRef && flatListRef.current && steps.length >0)  {
         flatListRef.current.scrollToIndex({ animated: true, index: steps.length-1, viewPosition:1 });
@@ -382,16 +368,11 @@ const faqsData = useAppSelector((state: any) =>
   }, [steps]);
   
   const setOnloadChatBotData = (chatBotData:any,stepsjson:any) => {
-    console.log(chatBotData,"--category in fetch4",stepsjson);
     if(chatBotData && chatBotData.length > 0) {
-      console.log("savedData4---",chatBotData);
-      console.log("savedData4---",(chatBotData)[1].options[0]);
       setsteps((chatBotData));
     }else {
       setsteps((stepsjson));
-      console.log("in else...")
       setTimeout(() => {
-        console.log("in timeout...");
         let localstepsjson = [...stepsjson];
         localstepsjson[1].showNextStep = true;
         setsteps(localstepsjson);
@@ -399,14 +380,12 @@ const faqsData = useAppSelector((state: any) =>
     }
   }
   useEffect(() => {
-    console.log("useeffect 1",steps);
     async function fetchData() {
       setOnloadChatBotData(chatBotData,stepsjson);
     }
     fetchData()        
   }, []);
   const scrollToIndexFailed = (error) => {
-    console.log("scrollToIndexFailed error--",error);
       const offset = error.averageItemLength * error.index;
       flatListRef?.current?.scrollToOffset({offset});
       setTimeout(() => flatListRef?.current?.scrollToIndex({ index: error.index }), 10); // You may choose to skip this line if the above typically works well because your average item height is accurate.

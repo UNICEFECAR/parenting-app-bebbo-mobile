@@ -84,6 +84,16 @@ interface hardcodedDataType {
   weeklyDownloadDate:number,
   monthlyDownloadDate:number,
   bufferDataDownloadFlag:boolean,
+  incrementalSyncDT:{
+    articlesDatetime: string,
+    videoArticlesDatetime: string,
+    activitiesDatetime: string,
+    faqPinnedContentDatetime: string,
+    faqsDatetime: string,
+    faqUpdatedPinnedContentDatetime: string,
+    archiveDatetime: string,
+  },
+  allDataDownloadFlag:boolean
 }
 // const selectedCountry = (state: RootState) => state.selectedCountry;
 const initialState: hardcodedDataType = {
@@ -169,6 +179,16 @@ const initialState: hardcodedDataType = {
   weeklyDownloadDate:0,
   monthlyDownloadDate:0,
   bufferDataDownloadFlag:false,
+  incrementalSyncDT:{
+    articlesDatetime: '',
+    videoArticlesDatetime: '',
+    activitiesDatetime: '',
+    faqPinnedContentDatetime: '',
+    faqsDatetime: '',
+    faqUpdatedPinnedContentDatetime: '',
+    archiveDatetime: '',
+  },
+  allDataDownloadFlag:false
 };
 export const utilsSlice = createSlice({
   name: 'utilsData',
@@ -253,6 +273,10 @@ export const utilsSlice = createSlice({
     setInfoModalOpened:( state:any,
       action: PayloadAction<any>,)=>{
         state[action.payload.key]=action.payload.value;
+      },
+    setIncrementalSyncDT:( state:any,
+      action: PayloadAction<any>,)=>{
+        state.incrementalSyncDT[action.payload.key]=action.payload.value;
       },
       setStandardDevWFHData: (
         state,
@@ -353,7 +377,7 @@ export const utilsSlice = createSlice({
   // },
 });
 
-export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData} = utilsSlice.actions;
+export const {setAcceptTerms,setuserIsOnboarded,setSyncDate,setAllTaxonomyData,setAllTermsData,setInfoModalOpened,setDailyMessagesData,setStandardDevWFHData,setStandardDevHFAData,setAllVaccineData,setAllHealthCheckupsData,setAllChildDevData,setAllPinnedChildDevData,setAllMileStonesData,setAllVideoArticlesData,setAllActivitiesData,setAllSurveyData,setAllFaqsData,setIncrementalSyncDT} = utilsSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

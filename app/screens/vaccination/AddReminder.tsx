@@ -88,7 +88,7 @@ const AddReminder = ({ route, navigation }: any) => {
     reminderType,
     editReminderItem,
   } = route.params;
-  console.log(editReminderItem,"----editReminderItem2");
+  // console.log(editReminderItem,"----editReminderItem2");
   const [measureDate, setmeasureDate] = useState<DateTime>(
     editReminderItem ? editReminderItem.reminderDate : null,
   );
@@ -142,7 +142,7 @@ const AddReminder = ({ route, navigation }: any) => {
   const vchcEnabledFlag = useAppSelector((state: any) =>
     (state.notificationData.vchcEnabled),
   );
-  console.log("in add rmeinder---",vchcEnabledFlag);
+  // console.log("in add rmeinder---",vchcEnabledFlag);
   // const defaultTimePickerMinValue = ()=>{
   //   var minTime  = new Date();
   //   minTime.getHours()
@@ -303,7 +303,7 @@ const AddReminder = ({ route, navigation }: any) => {
         const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
         previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
         previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
-        console.log("deleteing dtdefined---",previousDTDefined);
+        // console.log("deleteing dtdefined---",previousDTDefined);
         LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
       }
       activeChild.reminders = createresult;
@@ -365,7 +365,7 @@ const AddReminder = ({ route, navigation }: any) => {
       : measureDateDefined?.toMillis())
     finalReminderDateDefined.setHours(hoursDefined);
     finalReminderDateDefined.setMinutes(minsDefined);
-      console.log(DateTime.fromJSDate(finalReminderDate).toMillis(),"---finalReminderDate--",DateTime.fromJSDate(finalReminderDateDefined).toMillis());
+      // console.log(DateTime.fromJSDate(finalReminderDate).toMillis(),"---finalReminderDate--",DateTime.fromJSDate(finalReminderDateDefined).toMillis());
     if (DateTime.fromJSDate(finalReminderDate).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) {
       if((DateTime.fromJSDate(finalReminderDateDefined).toMillis() > DateTime.fromJSDate(new Date()).toMillis()) 
       && (DateTime.fromJSDate(finalReminderDateDefined).toMillis() < DateTime.fromJSDate(finalReminderDate).toMillis())) {
@@ -404,16 +404,16 @@ const AddReminder = ({ route, navigation }: any) => {
             const titlevcr = t('vcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
             const titlehcr = t('hcrNoti2', {reminderDateTime: formatStringDate(measureDate, luxonLocale) + "," + formatStringTime(measureTimeNew, luxonLocale)});
             const message = reminderType == 'vaccine' ? titlevcr : titlehcr;
-            console.log(message,"reminderType----",reminderType);
+            // console.log(message,"reminderType----",reminderType);
             if(editReminderItem) {
               let previousDTDefined;
               const onlyDateDefined = new Date(editReminderItem.reminderDateDefined);
               previousDTDefined = onlyDateDefined.setHours(new Date(editReminderItem.reminderTimeDefined).getHours());
               previousDTDefined = new Date(onlyDateDefined.setMinutes(new Date(editReminderItem.reminderTimeDefined).getMinutes()));
-              console.log("editing dtdefined---",previousDTDefined);
+              // console.log("editing dtdefined---",previousDTDefined);
               LocalNotifications.cancelReminderLocalNotification(DateTime.fromJSDate(new Date(previousDTDefined)).toMillis());
             }
-            console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
+            // console.log(finalReminderDateDefined,"---finalReminderDateDefined",measureTimeNewDefined);
             if(vchcEnabledFlag == true) {
              LocalNotifications.schduleNotification(finalReminderDateDefined,t('remindersAlertTitle'),message,DateTime.fromJSDate(new Date(finalReminderDateDefined)).toMillis());
             }
