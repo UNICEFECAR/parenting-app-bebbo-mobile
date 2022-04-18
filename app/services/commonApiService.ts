@@ -448,18 +448,18 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   const storedata = store.getState();
   const errorObj = storedata.failedOnloadApiObjReducer.errorObj;
   // console.log("keep awake deactivated--",storedata.failedOnloadApiObjReducer.errorObj);
-  let msgtext = '';
-  response.map((x:any)=> {
-      msgtext += x.apiEndpoint+" count "
-      if(x.data != null && x.data != undefined && x.data?.data != null && x.data?.data != undefined){
-        msgtext += Object.keys(x.data.data).length+`\n`;
-      }else {
-        msgtext +=  x.data.message+`\n`;
-      }
-  });
+  // let msgtext = '';
+  // response.map((x:any)=> {
+  //     msgtext += x.apiEndpoint+" count "
+  //     if(x.data != null && x.data != undefined && x.data?.data != null && x.data?.data != undefined){
+  //       msgtext += Object.keys(x.data.data).length+`\n`;
+  //     }else {
+  //       msgtext +=  x.data.message+`\n`;
+  //     }
+  // });
   // console.log("after---",msgtext);
   if(prevPage == 'DownloadUpdate' && errorObj?.length == 0) {
-    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText')+' '+msgtext,
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
         { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
             navigation.reset({
@@ -479,7 +479,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
   else if(prevPage == 'DownloadAllData' && errorObj?.length == 0) {
     if(enableImageDownload){
       const allImagesucc = await downloadArticleImages();
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText')+' '+msgtext,
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
               dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
@@ -497,7 +497,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         ]
       );
     }else {
-        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText')+' '+msgtext,
+        Alert.alert(i18n.t('downloadAllSuccessPopupTitle'), i18n.t('downloadAllSuccessPopupText'),
         [
           { text:i18n.t('downloadAllSuccessOkBtn'), onPress: async () => {
             dispatch(setInfoModalOpened({key:'allDataDownloadFlag', value: true}));
@@ -518,7 +518,7 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         
   }
   else {
-    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText')+' '+msgtext,
+    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
       [
         { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
             navigation.reset({
