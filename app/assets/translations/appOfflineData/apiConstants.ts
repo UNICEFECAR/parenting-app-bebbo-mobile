@@ -82,6 +82,9 @@ export const finalUrl = (apiEndpoint:string,selectedCountry: number | undefined,
     if(apiEndpoint==appConfig.milestoneRelatedArticle){
         return apiUrlDevelop+ '/related-article-contents/'+selectedLang+'/milestone';
     }
+    if(apiEndpoint==appConfig.faqUpdatedPinnedContent){
+      return apiUrlDevelop+ '/updated-pinned-contents/'+selectedLang+'/faq';
+  }
     return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang;
     // return apiUrlDevelop+ '/'+apiEndpoint+'/'+selectedLang+'/all';
 }
@@ -108,133 +111,155 @@ export const appConfig = {
     childGrowthPinnedContent:'child_growth',
     healthcheckupPinnedContent:'health_check_ups',
     faqPinnedContent:'faq',
+    faqUpdatedPinnedContent:'updatedfaq',
     milestoneRelatedArticle:'milestonerelatedarticle',
     checkUpdate:'check-update',
-    faqs:'faqs'
+    faqs:'faqs',
+    archive:'archive',
 }
 
-export const allApisObject = [
-    {
-      apiEndpoint: appConfig.sponsors,
-      method: 'get',
-      postdata: {},
-      saveinDB: false,
-    },
-    {
-      apiEndpoint: appConfig.taxonomies,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.basicPages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.videoArticles,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.dailyMessages,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.activities,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.surveys,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestones,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childDevelopmentData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinations,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthCheckupData,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.vaccinePinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childGrowthPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevGirlPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.childdevBoyPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.healthcheckupPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqPinnedContent,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.milestoneRelatedArticle,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.standardDeviation,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
-    },
-    {
-      apiEndpoint: appConfig.faqs,
-      method: 'get',
-      postdata: {},
-      saveinDB: true,
+
+  export const allApisObject = (isDatetimeReq:any, dateTimeObj:any) => {
+    console.log(dateTimeObj['videoArticlesDatetime']);
+    console.log(isDatetimeReq,"---isDatetimeReq---",dateTimeObj);
+    const allApiObject = [
+      {
+        apiEndpoint: appConfig.sponsors,
+        method: 'get',
+        postdata: {},
+        saveinDB: false,
+      },
+      {
+        apiEndpoint: appConfig.taxonomies,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.basicPages,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.videoArticles,
+        method: 'get',
+        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['videoArticlesDatetime']} : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.dailyMessages,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.activities,
+        method: 'get',
+        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['activitiesDatetime']} : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.surveys,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.milestones,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.childDevelopmentData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.vaccinations,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.healthCheckupData,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.vaccinePinnedContent,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.childGrowthPinnedContent,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.childdevGirlPinnedContent,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.childdevBoyPinnedContent,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.healthcheckupPinnedContent,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.faqPinnedContent,
+        method: 'get',
+        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.milestoneRelatedArticle,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.standardDeviation,
+        method: 'get',
+        postdata: {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.faqs,
+        method: 'get',
+        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['faqsDatetime']} : {},
+        saveinDB: true,
+      }
+    ];
+    if(isDatetimeReq == true) {
+      allApiObject.push({
+        apiEndpoint: appConfig.faqUpdatedPinnedContent,
+        method: 'get',
+        postdata: isDatetimeReq == true &&  dateTimeObj['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqUpdatedPinnedContentDatetime']} : dateTimeObj['faqPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
+        saveinDB: true,
+      },
+      {
+        apiEndpoint: appConfig.archive,
+        method: 'get',
+        postdata: isDatetimeReq == true &&  dateTimeObj['archiveDatetime'] != '' ? {datetime: dateTimeObj['archiveDatetime']} : dateTimeObj['faqPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
+        saveinDB: true,
+      })
     }
-  ];
+    return allApiObject;
+  }
 export const articleCategoryobj = [
     {name:'playingAndLearning',id:55, image:'ic_artl_play'},
     {name:'healthAndWellbeingid',id:2, image:'ic_artl_health'},

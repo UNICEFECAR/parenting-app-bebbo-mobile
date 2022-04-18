@@ -192,7 +192,16 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
             versionCode 6
-            versionName "1.3.5"
+            versionName "1.3.8"
+            signingConfig signingConfigs.release
+        }
+        prodstaging {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'com.datamatics.bebbo'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 6
+            versionName "1.3.8"
             signingConfig signingConfigs.release
         }
         xk {
@@ -201,7 +210,16 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
             versionCode 1
-            versionName "0.1.2"
+            versionName "1.0.0"
+            signingConfig signingConfigs.xk
+        }
+        xkstaging {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'com.datamatics.foleja'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.myapp"
+            versionCode 1
+            versionName "0.1.6"
             signingConfig signingConfigs.xk
         }
     }
