@@ -68,6 +68,9 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
+  const incrementalSyncDT = useAppSelector((state: any) =>
+      (state.utilsData.incrementalSyncDT),
+    );
   //console.log(country,"---country",countryId);
   //console.log(country, language);
   const apiJsonData = [
@@ -176,7 +179,7 @@ const CountryLanguageConfirmation = ({route, navigation}: Props) => {
         dispatch(setSponsorStore({country_national_partner:null,country_sponsor_logo:null}));
       }
         navigation.navigate('LoadingScreen', {
-          apiJsonData: userIsOnboarded == true ? allApisObject : apiJsonData, 
+          apiJsonData: userIsOnboarded == true ? allApisObject(false,incrementalSyncDT) : apiJsonData, 
           prevPage: userIsOnboarded == true ? 'CountryLangChange' :'CountryLanguageSelection'
         });
     }

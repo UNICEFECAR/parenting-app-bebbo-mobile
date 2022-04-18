@@ -30,7 +30,6 @@ const BotBubble = (props: any) => {
           ? allConfigData.filter((item:any) => item.key === 'userName')
           : [];
 
-  console.log("botbubble---", userNameData);
   
   return (
     <FlexRow>
@@ -182,11 +181,9 @@ const ActionBubble = (props: any) => {
 
 
 const ChatBot = (props: any) => {
-  // console.log("chatbot----",props)
   const { item, index, steps, stepsjson, categorySelection, dynamicStepSelection, backToStep, backToHomeScreen, showFeedbackLink,noDataStep } = props;
   const [loading,setLoading] = useState<boolean>(true);
   useEffect(() => {
-    console.log(item.delay,"in chatbot useeffect2---",item.id);
     setLoading(true);
     setTimeout(() => {
       setLoading(false)

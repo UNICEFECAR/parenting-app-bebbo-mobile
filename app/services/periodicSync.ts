@@ -30,7 +30,10 @@ export const getAllPeriodicSyncData = () => {
     const monthlyDownloadDate = useAppSelector(
         (state: any) => state.utilsData.monthlyDownloadDate,
     );
-    
+    const incrementalSyncDT = useAppSelector((state: any) =>
+      (state.utilsData.incrementalSyncDT),
+    );
+    console.log("buffer age bracket value is---",bufferAgeBracket);
     const apiJsonDataFirstSync = [
         {
           apiEndpoint: appConfig.taxonomies,
@@ -43,13 +46,13 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.videoArticles,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['videoArticlesDatetime']},
           saveinDB: true,
         },
         {
           apiEndpoint: appConfig.activities,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['activitiesDatetime']},
           saveinDB: true,
         },
         // {
@@ -91,7 +94,7 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqPinnedContent,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['faqPinnedContentDatetime']},
           saveinDB: true,
         },
         {
@@ -103,7 +106,19 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqs,
           method: 'get',
-          postdata: {},
+          postdata: {datetime: incrementalSyncDT['faqsDatetime']},
+          saveinDB: true,
+        },
+        {
+          apiEndpoint: appConfig.faqUpdatedPinnedContent,
+          method: 'get',
+          postdata: incrementalSyncDT['faqUpdatedPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqUpdatedPinnedContentDatetime']} : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqPinnedContentDatetime']} : {},
+          saveinDB: true,
+        },
+        {
+          apiEndpoint: appConfig.archive,
+          method: 'get',
+          postdata: incrementalSyncDT['archiveDatetime'] != '' ? {datetime: incrementalSyncDT['archiveDatetime']} : incrementalSyncDT['faqPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqPinnedContentDatetime']} : {},
           saveinDB: true,
         }
       ];
@@ -174,7 +189,7 @@ export const getAllPeriodicSyncData = () => {
         // dispatch(setSyncDate({key: 'monthlyDownloadDate', value: currentDate}));
     }
     else{
-     // console.log(bufferAgeBracket,"childList--",childList);
+    //  console.log(bufferAgeBracket,"childList--",childList);
       childList.map((child: any) => {
         const childAgedays = (DateTime.now()).diff((DateTime.fromISO(child.birthDate)),'days').toObject().days;
         //console.log(childAgedays,"---child",child.taxonomyData);
@@ -195,7 +210,7 @@ export const getAllPeriodicSyncData = () => {
       })
       //console.log("before--",ageBrackets);
       ageBrackets = [...new Set(ageBrackets)]; 
-      //console.log("unique--",ageBrackets);
+      // console.log("unique--",ageBrackets);
       if(bufferAgeBracket){
         ageBrackets = ageBrackets.filter((val:any)=>!bufferAgeBracket.includes(val));
       }
