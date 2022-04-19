@@ -449,14 +449,14 @@ const Notifications = () => {
             notifications.length > 0 ?
               <View style={{ flex: 7, }}>
                 <NotificationsCategories onchange={onCategorychange} />
-                <View style={{ marginVertical: 0, paddingBottom: 10 }}>
+                <View style={{ flex:1, marginVertical: 0, paddingBottom: 10 }}>
                   {
                     notifications?.length>0?
                     selectedCategories.length==0 || (selectedCategories.length>0 && notifications.filter((item) => selectedCategories.includes(item.type)).length>0)?
                     <FlatList
                     ref={flatListRefNoti}
                     data={selectedCategories.length == 0 ? notifications:notifications.filter((item) => selectedCategories.includes(item.type))}
-                    contentContainerStyle={{paddingBottom:108}}
+                    contentContainerStyle={{paddingBottom:'8%'}}
                     onScroll={(e)=>{
                       // if(keyboardStatus==true){
                       //   Keyboard.dismiss();
