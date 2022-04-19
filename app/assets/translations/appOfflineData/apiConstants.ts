@@ -144,7 +144,7 @@ export const appConfig = {
       {
         apiEndpoint: appConfig.videoArticles,
         method: 'get',
-        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['videoArticlesDatetime']} : {},
+        postdata: isDatetimeReq == true && dateTimeObj['videoArticlesDatetime'] != '' ? {datetime: dateTimeObj['videoArticlesDatetime']} : {},
         saveinDB: true,
       },
       {
@@ -156,7 +156,7 @@ export const appConfig = {
       {
         apiEndpoint: appConfig.activities,
         method: 'get',
-        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['activitiesDatetime']} : {},
+        postdata: isDatetimeReq == true && dateTimeObj['activitiesDatetime'] != '' ? {datetime: dateTimeObj['activitiesDatetime']} : {},
         saveinDB: true,
       },
       {
@@ -222,7 +222,7 @@ export const appConfig = {
       {
         apiEndpoint: appConfig.faqPinnedContent,
         method: 'get',
-        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
+        postdata: isDatetimeReq == true && dateTimeObj['faqPinnedContentDatetime'] != '' ? {datetime: dateTimeObj['faqPinnedContentDatetime']} : {},
         saveinDB: true,
       },
       {
@@ -240,7 +240,7 @@ export const appConfig = {
       {
         apiEndpoint: appConfig.faqs,
         method: 'get',
-        postdata: isDatetimeReq == true ? {datetime: dateTimeObj['faqsDatetime']} : {},
+        postdata: isDatetimeReq == true && dateTimeObj['faqsDatetime'] != '' ? {datetime: dateTimeObj['faqsDatetime']} : {},
         saveinDB: true,
       }
     ];
