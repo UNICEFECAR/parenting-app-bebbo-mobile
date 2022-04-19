@@ -153,6 +153,9 @@ const CustomDrawerContent = ({ navigation }: any) => {
   const childAgeInDays = getCurrentChildAgeInDays(
     DateTime.fromJSDate(new Date(activeChild.birthDate)).toMillis(),
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   useFocusEffect(
     React.useCallback(() => {
     if (isOpen) {
@@ -221,7 +224,7 @@ const CustomDrawerContent = ({ navigation }: any) => {
   );
   // }, [isOpen, activeChild.uuid, allnotis]);
   const onShare = async () => {
-    let localeData=(String(buildFor) != buildForBebbo)?locale:"";
+    let localeData=(String(buildFor) != buildForBebbo)?languageCode:"";
     let messageData=t('appShareText')+shareText+localeData;
     console.log(messageData,"..messageData..");
     try {
