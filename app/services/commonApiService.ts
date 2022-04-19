@@ -518,31 +518,31 @@ export const onHomeapiSuccess = async (response: any, dispatch: any, navigation:
         
   }
   else {
-    Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
-      [
-        { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: 'HomeDrawerNavigator',
-                  // params: {prevPage}
-                },
-              ],
-            });
-          }
-        }
-      ]
-    );
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [
-    //     {
-    //       name: 'HomeDrawerNavigator',
-    //       // params: {prevPage}
-    //     },
-    //   ],
-    // });
+    // Alert.alert(i18n.t('downloadUpdateSuccessPopupTitle'), i18n.t('downloadUpdateSuccessPopupText'),
+    //   [
+    //     { text:i18n.t('downloadUpdateSuccessOkBtn'), onPress: async () => {
+    //         navigation.reset({
+    //           index: 0,
+    //           routes: [
+    //             {
+    //               name: 'HomeDrawerNavigator',
+    //               // params: {prevPage}
+    //             },
+    //           ],
+    //         });
+    //       }
+    //     }
+    //   ]
+    // );
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'HomeDrawerNavigator',
+          // params: {prevPage}
+        },
+      ],
+    });
   }
 }
 export const onHomeSurveyapiSuccess = async (response: any, dispatch: any, navigation: any,languageCode: string,prevPage: string,activeChild: any, oldErrorObj:any) => {
