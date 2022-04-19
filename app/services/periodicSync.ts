@@ -46,13 +46,13 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.videoArticles,
           method: 'get',
-          postdata: {datetime: incrementalSyncDT['videoArticlesDatetime']},
+          postdata: incrementalSyncDT['videoArticlesDatetime'] != '' ? {datetime: incrementalSyncDT['videoArticlesDatetime']} : {},
           saveinDB: true,
         },
         {
           apiEndpoint: appConfig.activities,
           method: 'get',
-          postdata: {datetime: incrementalSyncDT['activitiesDatetime']},
+          postdata: incrementalSyncDT['activitiesDatetime'] != '' ? {datetime: incrementalSyncDT['activitiesDatetime']} : {},
           saveinDB: true,
         },
         // {
@@ -94,7 +94,7 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqPinnedContent,
           method: 'get',
-          postdata: {datetime: incrementalSyncDT['faqPinnedContentDatetime']},
+          postdata: incrementalSyncDT['faqPinnedContentDatetime'] != '' ? {datetime: incrementalSyncDT['faqPinnedContentDatetime']} : {},
           saveinDB: true,
         },
         {
@@ -106,7 +106,7 @@ export const getAllPeriodicSyncData = () => {
         {
           apiEndpoint: appConfig.faqs,
           method: 'get',
-          postdata: {datetime: incrementalSyncDT['faqsDatetime']},
+          postdata: incrementalSyncDT['faqsDatetime'] != '' ? {datetime: incrementalSyncDT['faqsDatetime']} : {},
           saveinDB: true,
         },
         {
