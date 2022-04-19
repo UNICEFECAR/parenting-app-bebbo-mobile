@@ -64,6 +64,9 @@ const DailyReads = () => {
   const locale = useAppSelector(
     (state: any) => state.selectedCountry.locale,
   );
+  const languageCode = useAppSelector(
+    (state: any) => state.selectedCountry.languageCode,
+  );
   const showedDailyDataCategoryall = useAppSelector(
     (state: any) => state.articlesData.showedDailyDataCategory,
   );
@@ -85,7 +88,7 @@ const DailyReads = () => {
     console.log(isAdvice,"dfd",item)
     console.log('locale',locale);
     const suburl=isAdvice?"/article/":"/activity/";
-    const mainUrl=shareTextButton+locale+suburl+item.id;
+    const mainUrl=shareTextButton+languageCode+suburl+item.id;
     console.log(mainUrl,"..mainUrl");
    // const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
      try {
