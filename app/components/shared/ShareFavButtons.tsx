@@ -35,6 +35,9 @@ const ShareFavButtons = React.memo((props: any) => {
 const locale = useAppSelector(
   (state: any) => state.selectedCountry.locale,
 );
+const languageCode = useAppSelector(
+  (state: any) => state.selectedCountry.languageCode,
+);
   const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const {backgroundColor,item,isAdvice, isFavourite, fromScreen} = props;
@@ -42,7 +45,7 @@ const locale = useAppSelector(
   const onShare = async () => {
   //  console.log('locale',locale);
    const suburl=isAdvice?"/article/":"/activity/";
-   const mainUrl=shareTextButton+locale+suburl+item.id;
+   const mainUrl=shareTextButton+languageCode+suburl+item.id;
    //const spacekeyData=Platform.OS=="android"?'\n':'\r\n';
   //  console.log(mainUrl,"..mainUrl")
     try {
