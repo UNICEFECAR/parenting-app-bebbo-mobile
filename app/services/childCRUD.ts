@@ -26,7 +26,7 @@ export const apiJsonDataGet = (childAge: any, parentGender: any,isDatetimeReq?:a
     {
       apiEndpoint: appConfig.articles,
       method: 'get',
-      postdata: isDatetimeReq == true ? {...postData,datetime : dateTimeObj.articlesDatetime} : {...postData},
+      postdata: isDatetimeReq == true && dateTimeObj.articlesDatetime != '' ? {...postData,datetime : dateTimeObj.articlesDatetime} : {...postData},
       // postdata: {
       //   childGender: 'all',
       //   childAge: childAge != "" && childAge != undefined && childAge != null ? childAge : "all",
