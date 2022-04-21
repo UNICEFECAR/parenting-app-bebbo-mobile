@@ -265,9 +265,15 @@ async function initPixel(){
       const authStatus = await messaging().requestPermission();
       const enabled =
         authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;  
+        authStatus === messaging.AuthorizationStatus.PROVISIONAL; 
+        console.log(enabled,"..enabled..",authStatus,"..authStatus.."); 
       if (enabled) {
-        console.log('Authorization status:', authStatus);
+        console.log(enabled,"..inif..");
+        initPixel();
+      }
+      else{
+        console.log(enabled,"..inelse..");
+        initPixel();
       }
       // if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
       //   // enable tracking features
@@ -282,7 +288,14 @@ async function initPixel(){
     if(Platform.OS=="ios"){
     requestUserPermission();
     }
-    initPixel();
+    else{
+      Settings.initializeSDK();
+      Settings.setAdvertiserTrackingEnabled(true);
+    }
+    
+    // setTimeout(() => {
+      
+    // }, 6000);
   }, []);
   useEffect(() => {
     
