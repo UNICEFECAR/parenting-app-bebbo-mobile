@@ -30,12 +30,12 @@
 				<string>com.googleusercontent.apps.$(projectNumber)-$(clientIdKey)</string>
 			</array>
 		</dict>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb$(facebookAppId)</string>
-      </array>
-    </dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb$(facebookAppId)</string>
+			</array>
+		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -49,20 +49,20 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>FacebookAdvertiserIDCollectionEnabled</key>	
-	<true/>	
-	<key>FacebookAppID</key>	
-	<string>$(facebookAppId)</string>	
-	<key>FacebookAutoLogAppEventsEnabled</key>	
-	<true/>	
-	<key>FacebookClientToken</key>	
-	<string>$(facebookClientToken)</string>	
-	<key>FacebookDisplayName</key>	
-	<string>$(facebookAppDisplayName)</string>	
-	<key>LSApplicationQueriesSchemes</key>	
-	<array>	
-		<string>fbapi</string>	
-		<string>fb-messenger-share-api</string>	
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
+	<key>FacebookAppID</key>
+	<string>$(facebookAppId)</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
+	<key>FacebookClientToken</key>
+	<string>$(facebookClientToken)</string>
+	<key>FacebookDisplayName</key>
+	<string>$(facebookAppDisplayName)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -80,13 +80,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Let me use the camera</string>
+	<string>This app requires camera permission for capturing profile image</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Let me add photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Let me use your photo library</string>
+	<string>This app requires photo library permission for capturing profile image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>roboto-bold.ttf</string>
@@ -97,10 +97,10 @@
 		<string>roboto-regular.woff2</string>
 		<string>fontello.ttf</string>
 	</array>
-	<key>UIBackgroundModes</key>	
-	<array>	
-		<string>fetch</string>	
-		<string>remote-notification</string>	
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -114,7 +114,7 @@
 	<false/>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
-	<key>NSUserTrackingUsageDescription</key>	
+	<key>NSUserTrackingUsageDescription</key>
 	<string>App would like to access IDFA for tracking purpose</string>
 </dict>
 </plist>
