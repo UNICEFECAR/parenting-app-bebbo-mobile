@@ -24,7 +24,7 @@ import AddReminder from '@screens/vaccination/AddReminder';
 import Walkthrough from '@screens/Walkthrough';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, I18nManager, Platform } from 'react-native';
+import { Alert, AppState, I18nManager, Platform } from 'react-native';
 import SplashScreen from "react-native-lottie-splash-screen";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppDispatch, useAppSelector } from '../../App';
@@ -161,105 +161,56 @@ export default () => {
     }
   }
   
-useEffect(() => {
-  
-//  requestTrackingPermission()
-//       .then(status => {
-//         const enableTracking =
-//           status === 'authorized' || status === 'unavailable';
-//           console.log(enableTracking,"..enableTracking..");
-//         if (enableTracking) {
-//           // Settings.setAdvertiserTrackingEnabled(true).then(() => {
-//           //      Settings.initializeSDK(); 
-//           // });
-//         }
-//       })
-//       .catch(e => Alert.alert(t('generalError')));
-    }, []);
-  
+ useEffect(() => {
+  async function initPixel(){
+    if (Platform.OS === 'ios') {
+    const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+    console.log(ATT_CHECK,"..ATT_CHECK..");
+    if (ATT_CHECK === RESULTS.DENIED) {
+    try {
+    const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
+    if (ATT === RESULTS.GRANTED) {
+    console.log(ATT,"..ATT..");
+    Settings.setAdvertiserTrackingEnabled(true).then(() => {
+    Settings.initializeSDK();
+    });
+    }
+    } catch (error) {
+    throw error;
+    } finally {
+    Settings.initializeSDK();
+    }
+    Settings.initializeSDK();
+    Settings.setAdvertiserTrackingEnabled(true);
+    // Settings.FacebookAutoLogAppEventsEnabled(true);
+    }
+    } else {
+    Settings.initializeSDK();
+    Settings.setAdvertiserTrackingEnabled(true);
+    }
+  }
+    const updateTrackingStatus = (status: any) => {
+        if (status === 'active') {
+            ;(() => {
+                initPixel();
+            })()
+        }
+    }
+
+    // Ready to check the permission now
+    if (AppState.currentState === 'active') {
+        updateTrackingStatus(AppState.currentState)
+    } else {
+        // Need to wait until the app is ready before checking the permission
+        AppState.addEventListener('change', updateTrackingStatus)
+
+        return () => {
+            AppState.removeEventListener('change', updateTrackingStatus)
+        }
+    }
+}, [AppState.currentState])
   useEffect(() => {
-//     async function requestTransparencyPermission(){ 
-     
-//   // if (Platform.OS === 'ios') {
-//   //   const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-//   //   if (ATT_CHECK === RESULTS.DENIED) {
-//   //     try {
-//   //       const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-//   //       if (ATT === RESULTS.GRANTED) {
-//   //         Settings.setAdvertiserTrackingEnabled(true).then(() => {
-//   //           Settings.initializeSDK();
-//   //         });
-//   //       }
-//   //     } catch (error) {
-//   //       throw error;
-//   //     } finally {
-//   //       Settings.initializeSDK();
-//   //     }
-//   //     Settings.initializeSDK();
-//   //     Settings.setAdvertiserTrackingEnabled(true);
-//   //    // Settings.FacebookAutoLogAppEventsEnabled(true);
-//   //   }
-//   // } else {
-//   //   Settings.initializeSDK();
-//   //   Settings.setAdvertiserTrackingEnabled(true);
-//   // }
-// //} 
-//       // requestTrackingPermission()
-//       // .then(status => {
-//       //   const enableTracking =
-//       //     status === 'authorized' || status === 'unavailable';
-//       //     console.log(enableTracking,"..enableTracking..")
-//       //   if (enableTracking) {
-//       //     Settings.setAdvertiserTrackingEnabled(true).then(() => {
-//       //          Settings.initializeSDK(); 
-//       //     });
-//       //   }
-//       // })
-//       // .catch(e => Alert.alert(t('generalError')));
-//       // const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-//       // console.log(ATT_CHECK,"..ATT_CHECK")
-//       //   if (ATT_CHECK === RESULTS.DENIED) {
-//       //     try {
-//       //         const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-//       //         if (ATT === RESULTS.GRANTED) {
-//       //             Settings.setAdvertiserTrackingEnabled(true).then(() => {
-//       //                 Settings.initializeSDK();
-//       //             });
-//       //         }
-//       //     } catch (error) {
-//       //         throw error;
-//       //     } finally {
-//       //         Settings.initializeSDK();
-//       //     }
-//       //   }
-//     }   
-async function initPixel(){
-  if (Platform.OS === 'ios') {
-  const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-  console.log(ATT_CHECK,"..ATT_CHECK..");
-  if (ATT_CHECK === RESULTS.DENIED) {
-  try {
-  const ATT = await request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
-  if (ATT === RESULTS.GRANTED) {
-  console.log(ATT,"..ATT..");
-  Settings.setAdvertiserTrackingEnabled(true).then(() => {
-  Settings.initializeSDK();
-  });
-  }
-  } catch (error) {
-  throw error;
-  } finally {
-  Settings.initializeSDK();
-  }
-  Settings.initializeSDK();
-  Settings.setAdvertiserTrackingEnabled(true);
-  // Settings.FacebookAutoLogAppEventsEnabled(true);
-  }
-  } else {
-  Settings.initializeSDK();
-  Settings.setAdvertiserTrackingEnabled(true);
-  }
-}
+  
 
     async function requestUserPermission() {
       const authStatus = await messaging().requestPermission();
@@ -269,20 +220,13 @@ async function initPixel(){
         console.log(enabled,"..enabled..",authStatus,"..authStatus.."); 
       if (enabled) {
         console.log(enabled,"..inif..");
-        initPixel();
+       // initPixel();
       }
       else{
         console.log(enabled,"..inelse..");
-        initPixel();
+        //initPixel();
       }
-      // if (trackingStatus === 'authorized' || trackingStatus === 'unavailable') {
-      //   // enable tracking features
-      //   if (Platform.OS === 'ios') {
-      //     Settings.setAdvertiserTrackingEnabled(true);
-      //   }
-      //   Settings.initializeSDK();
-      // }
-      
+     
      
     }
     if(Platform.OS=="ios"){
