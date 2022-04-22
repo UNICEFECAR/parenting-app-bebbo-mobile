@@ -431,20 +431,45 @@ const formatImportedMeasures = (measures: any) => {
     //     return measures;
     // }
 }
-const formatImportedReminders = (reminders: any) => {
-    console.log(reminders,"--reminders after import3--");
+const callAsyncOperationdatetime = async (rem:any) => {
+    const rem1 = rem;
+    // console.log(rem,"rem in callAsyncOperationdatetime5--",{...rem1});
+    // let remnew = rem;
+    let remnew = {
+        reminderDate : rem?.reminderDate,
+        reminderTime : rem?.reminderTime,
+        reminderType : rem?.reminderType,
+        uuid : rem?.uuid,
+        reminderDateDefined: rem.reminderDateDefined && rem.reminderDateDefined > 0 ? rem.reminderDateDefined : rem.reminderDate,
+        reminderTimeDefined: rem.reminderTimeDefined && rem.reminderTimeDefined > 0 ? rem.reminderTimeDefined : rem.reminderTime-60000
+    };
+    // console.log("remnew in callAsyncOperationdatetime--",remnew);
+    // remnew['reminderDateDefined'] = remnew.reminderDateDefined ? parseInt(remnew.reminderDateDefined) : parseInt(remnew.reminderDate);
+    // remnew['reminderTimeDefined'] = remnew.reminderTimeDefined ? parseInt(remnew.reminderTimeDefined) : parseInt(remnew.reminderTime)-60000;
+    // console.log("modified remnew2---",remnew);
+    return await remnew;
+}
+
+const formatImportedReminders = async (reminders: any) => {
+    // console.log(reminders,"--reminders after import3--");
     if (reminders == "" || reminders == [] || reminders == null) {
         // in old app reminders were string, new app has reminders array
         return [];
     } else {
         if (typeof reminders === 'object' && reminders !== null) {
             //import from new app's exported files
-            let importedReminders = [...reminders];
-            importedReminders.forEach((rem:any) => {
-                rem.reminderDateDefined = rem.reminderDateDefined ? rem.reminderDateDefined : rem.reminderDate;
-                rem.reminderTimeDefined = rem.reminderTimeDefined ? rem.reminderTimeDefined : rem.reminderTime-60000;
-            });
-            return importedReminders;
+            let importedReminders:any[] = [...reminders];
+            // importedReminders.forEach((rem:any) => {
+            //     rem.reminderDateDefined = rem?.reminderDateDefined ? rem?.reminderDateDefined : rem?.reminderDate;
+            //     rem.reminderTimeDefined = rem?.reminderTimeDefined ? rem?.reminderTimeDefined : rem?.reminderTime-60000;
+            // });
+            let results: any[] = await Promise.all(importedReminders.map(async (item:any): Promise<any> => {
+                const item2  =  await callAsyncOperationdatetime(item);
+                // console.log("item in func---",item2);
+                return item2;
+            }));
+            console.log("Promise.all---",results)
+            return results;
         } else {
             //import from old app's exported files
             let importedReminders = JSON.parse(reminders);

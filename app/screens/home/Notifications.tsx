@@ -25,7 +25,7 @@ type NotificationsNavigationProp =
   StackNavigationProp<HomeDrawerNavigatorStackParamList>;
 const Notifications = () => {
   let allnotis = useAppSelector((state: any) => (state.notificationData.notifications));
- console.log(JSON.stringify(allnotis), "allnotis--");
+//  console.log(JSON.stringify(allnotis), "allnotis--");
   const [allChildnotification, setAllChildNotification] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const themeContext = useContext(ThemeContext);
