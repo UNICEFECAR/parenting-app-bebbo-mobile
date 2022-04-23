@@ -162,7 +162,7 @@ export default () => {
   }
   
  useEffect(() => {
-  async function initPixel(){
+  const initPixel=async()=>{
     if (Platform.OS === 'ios') {
     const ATT_CHECK = await check(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY);
     console.log(ATT_CHECK,"..ATT_CHECK..");
@@ -190,10 +190,9 @@ export default () => {
     }
   }
     const updateTrackingStatus = (status: any) => {
+      console.log(status,"..status")
         if (status === 'active') {
-            ;(() => {
-                initPixel();
-            })()
+          initPixel();
         }
     }
 
@@ -232,10 +231,7 @@ export default () => {
     if(Platform.OS=="ios"){
     requestUserPermission();
     }
-    else{
-      Settings.initializeSDK();
-      Settings.setAdvertiserTrackingEnabled(true);
-    }
+    
     
     // setTimeout(() => {
       
