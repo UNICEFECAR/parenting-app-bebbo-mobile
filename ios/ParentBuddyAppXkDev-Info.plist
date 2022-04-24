@@ -90,7 +90,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires photo library permission for capturing profile image</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>App would like to access IDFA for tracking purpose</string>
+	<string>App would like to track auto log enabled app events to track app behaviour including app installation and activate app events. App is not collecting any personal information of users.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>roboto-bold.ttf</string>
