@@ -225,7 +225,39 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
         projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
         clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
         ```
-      
+        
+  8. Running application based on flavours
+  * After you install the application you can create build files for various flavors with below npx commands.
+	
+     Prod
+     ```
+	npx react-native run-android --variant=prodRelease --appId org.unicef.ecar.bebbo (apk)
+	cd android && ./gradlew bundleProdRelease (aab)
+	npx react-native run-ios --scheme ParentBuddyApp (ipa)
+     ```
+
+     Prodstaging
+     ```
+	npx react-native run-android --variant=prodstagingRelease --appId com.datamatics.bebbo (apk)
+	cd android && ./gradlew bundleProdstagingRelease (aab)
+    npx react-native run-ios --scheme ParentBuddyAppDev (ipa)
+     ```
+
+     xk 
+     ```
+	npx react-native run-android --variant=xkRelease --appId org.unicef.kosovo.foleja (apk)
+	cd android && ./gradlew bundleXkRelease (aab)
+	npx react-native run-ios --scheme ParentBuddyAppXk (ipa)
+     ```
+
+     xkstaging 
+    ```
+	npx react-native run-android --variant=xkstagingRelease --appId com.datamatics.foleja (apk)
+	cd android && ./gradlew bundleXkstagingRelease (aab)
+	npx react-native run-ios --scheme ParentBuddyAppXkDev (ipa)
+    ```
+
+
         
         
 <!-- RUNNING -->
