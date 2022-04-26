@@ -174,22 +174,15 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
           
 
     
-6. configure google Signin and GDrive Import/Export
-    - Enable Google Drive API from Cloud Console.
-    - Choose Scope For Drive Access
-    - Copy Access key from GoogleInfo.plist and add in ios/info.plist as
-    ```sh
-        <key>CFBundleURLTypes</key>
-        <array>
-        <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-        <string>com.googleusercontent.apps.{{firebase_project_number}}-{{client_id_key}}</string>
-        </array>
-        </dict>
-        </array>        
+7. configure google Signin and GDrive Import/Export
+```
+    -Configure Google Signin and GDrive Import/Export
+    -Enable Google Drive API from Cloud Console.
+    -Choose Scope For Drive Access
+    -Copy details of REVERSED_CLIENT_ID as in the below example from GoogleService-Info.plist 
+     and add in .env file as  projectNumber and clientIdKey.
+       Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
+```
 
 <!-- RUNNING -->
 ## Running
