@@ -97,11 +97,14 @@ and add
 
 ```sh
 apiUrlDevelop = "";
-       -In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows : "@dynamicImportsClass/*": ["./app/xk/*"]
-       -In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : blacklistRE: blacklist([/bebbo\/.*/])
-       -In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : '@dynamicImportsClass': './app/xk'
+       -In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
+       "@dynamicImportsClass/*": ["./app/xk/*"]
+       -In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : 
+       blacklistRE: blacklist([/bebbo\/.*/])
+       -In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+       '@dynamicImportsClass': './app/xk'
        -Run below command to generate vector images based on flavour folders :
-             -npx react-native-vector-image generate
+        npx react-native-vector-image generate
        -Create .env file at project root and add below 6 variables in it :
       
              -apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
