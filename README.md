@@ -130,23 +130,10 @@ After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
    ```
 
-4. Create .env file at project root and add below 6 variables in it
- ```
-    apiUrlDevelop = 'https://hostname.com/api'
-    -For Facebook Analytics (Get these details from Facebook developer console)
-       facebookAppDisplayName=XXXXXXXXXXXX
-       facebookAppId=XXXXXXXXXXXX
-       facebookClientToken=XXXXXXXXXXXX
-
-   -For Google SignIn (Get it from step 5)
-       projectNumber=XXXXXXXXXXXX
-       clientIdKey=XXXXXXXXXXXX
- ```
-
-5. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
+4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
 Refer this library for custom fonts : https://github.com/oblador/react-native-vector-icons
 
-6. Configure Firebase services
+5. Configure Firebase services
     - [Create Firebase project](https://console.firebase.google.com/)
     - Add iOS and Android apps to Firebase project the standard way
     - Use Firebase wizards to create these:
@@ -174,7 +161,7 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
           
 
     
-7. configure google Signin and GDrive Import/Export
+6. Configure google Signin and GDrive Import/Export
 ```
     -Configure Google Signin and GDrive Import/Export
     -Enable Google Drive API from Cloud Console.
@@ -183,6 +170,24 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
      and add in .env file as  projectNumber and clientIdKey.
        Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 ```
+7. Steps required while creating Flavour builds: 
+     ```
+     -Follow below steps for Bebbo Prod and ProdStaging :
+       -In apiConstants.ts change buildFor const value to buildForBebbo as follows : export const buildFor = buildForBebbo;
+       -In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows : "@dynamicImportsClass/*": ["./app/xk/*"]
+       -In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : blacklistRE: blacklist([/bebbo\/.*/])
+       -In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : '@dynamicImportsClass': './app/xk'
+       -Run below command to generate vector images based on flavour folders :
+             -npx react-native-vector-image generate
+       -Create .env file at project root and add below 6 variables in it :
+      
+             -apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
+             -facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+             -facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+             -facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+             -projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+             -clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+       
 
 <!-- RUNNING -->
 ## Running
