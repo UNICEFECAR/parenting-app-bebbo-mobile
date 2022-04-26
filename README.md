@@ -130,7 +130,7 @@ After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
    ```
 
-4.Create .env file at project root and add below 6 variables in it
+4. Create .env file at project root and add below 6 variables in it
  ```
     apiUrlDevelop = 'https://hostname.com/api'
     -For Facebook Analytics (Get these details from Facebook developer console)
