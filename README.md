@@ -92,43 +92,33 @@ git clone https://github.com/github_username/repo_name.git
 ```sh
 npm install
 ```
-create .env file at project root
-and add
-
-```sh
-apiUrlDevelop = 'https://hostname.com/api'
-```
-configure custom icons used in App 
-from android/app/src/main/assets/fonts/fontello.ttf
-using from https://github.com/oblador/react-native-vector-icons#custom-fonts
-
 3. Only on Mac, go to "ios" folder, and run
 ```sh
 pod install
 ```
 Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
 After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
-  ```
-    Steps to add script :
-      -click on target’s build phases add on + sign.
-      -Add new run script phase.
-      -Rename it to [CP-User] [RNFB] Core Configuration
-      -Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Core Configuration” 
+
+  **Steps to add script:**
+   * click on target’s build phases add on + sign.
+   * Add new run script phase.
+   * Rename it to [CP-User] [RNFB] Core Configuration
+   * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Core Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Core Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      -Copy files path from input files from ParentBuddyApp target and paste to 
+   * Copy files path from input files from ParentBuddyApp target and paste to 
       other targets  “[CP-User] [RNFB] Core Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      -click on target’s build phases add on + sign.
-      -Add new run script
-      -Rename it to  “[CP-User] [RNFB] Crashlytics Configuration”.
-      -Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Crashlytics Configuration” 
+   * click on target’s build phases add on + sign.
+   * Add new run script
+   * Rename it to  “[CP-User] [RNFB] Crashlytics Configuration”.
+   * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Crashlytics Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Crashlytics Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-      -Copy files path from input files from ParentBuddyApp target and paste to other 
+   * Copy files path from input files from ParentBuddyApp target and paste to other 
       targets “[CP-User] [RNFB] Crashlytics Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-   ```
+   
 
 4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
 Refer this library for custom fonts : https://github.com/oblador/react-native-vector-icons
@@ -140,59 +130,104 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
         - google-services.json
         - GoogleService-Info.plist
     - Copy google-services.json files for Android for various flavours at different locations as mentioned here:
-    
-          Prod - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
+       
+         Prod
+         
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
           
-          Prodstaging - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging 
           
-          Xk - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xk 
+         Prodstaging 
           
-          xkstaging - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xkstaging 
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging 
+           
+         Xk
           
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xk 
+          
+             
+         xkstaging
+          
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xkstaging 
+          
+          
+         
     - Copy GoogleService-Info.plist files for iOS for various flavours at different locations as mentioned here:
     
-          Prod - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Production
+         Prod
+      
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Production
           
-          Prodstaging - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
           
-          Xk - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Xk
+         Prodstaging
+      
+          https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
           
-          xkstaging - https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
+          
+         Xk
+      
+           https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Xk
+          
+          
+         xkstaging
+      
+           https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
+          
           
 
     
 6. Configure google Signin and GDrive Import/Export
-```
-    -Configure Google Signin and GDrive Import/Export
-    -Enable Google Drive API from Cloud Console.
-    -Choose Scope For Drive Access
-    -Copy details of REVERSED_CLIENT_ID as in the below example from GoogleService-Info.plist 
+    * Configure Google Signin and GDrive Import/Export
+    * Enable Google Drive API from Cloud Console.
+    * Choose Scope For Drive Access
+    * Copy details of REVERSED_CLIENT_ID as in the below example from GoogleService-Info.plist 
      and add in .env file as  projectNumber and clientIdKey.
-       Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
-```
-7. Steps required while creating Flavour builds: 
-     ```
-     -Follow below steps for Bebbo Prod and ProdStaging :
-       -In apiConstants.ts change buildFor const value to buildForBebbo as follows :
-       export const buildFor = buildForBebbo;
-       -In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
-       "@dynamicImportsClass/*": ["./app/xk/*"]
-       -In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : 
-       blacklistRE: blacklist([/bebbo\/.*/])
-       -In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
-       '@dynamicImportsClass': './app/xk'
-       -Run below command to generate vector images based on flavour folders :
-        npx react-native-vector-image generate
-       -Create .env file at project root and add below 6 variables in it :
-      
-             -apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
-             -facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-             -facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-             -facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
-             -projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
-             -clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
-       
+       * Format in GoogleService-Info.plist will be like com.googleusercontent.apps.${projectNumber}-${clientIdKey}
 
+7. Steps required while creating Flavour builds.Follow below steps for Bebbo Prod and ProdStaging
+   
+      * In apiConstants.ts change buildFor const value to buildForBebbo as follows :
+         
+         ```
+         export const buildFor = buildForBebbo;
+         ```
+ 
+      * In tsconfig.json keep dynamicImportsClass value to ./app/bebbo/* as follows :
+       
+        ```
+         "@dynamicImportsClass/*": ["./app/xk/*"]
+         ```
+       
+      * In metro.config.js keep blacklistRe value to /bebbo\/.*/ as follows : 
+       
+         ```
+         blacklistRE: blacklist([/bebbo\/.*/])
+         ```
+       
+      * In babel.config.js keep dynamicImportsClass value to ./app/bebbo as follows : 
+        
+        ```
+        '@dynamicImportsClass': './app/xk'
+        ```
+       
+      * Run below command to generate vector images based on flavour folders :
+       
+         ```
+         npx react-native-vector-image generate
+         ```
+        
+      * Create .env file at project root and add below 6 variables in it :
+         
+        ```
+        apiUrlDevelop = 'https://hostname.com/api' (server api endPoint)
+        facebookAppDisplayName=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        facebookAppId=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        facebookClientToken=XXXXXXXXXXXX (For Facebook Analytics.Get these details from Facebook developer console)
+        projectNumber=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        clientIdKey=XXXXXXXXXXXX (For Google SignIn. Get it from step 5)
+        ```
+      
+        
+        
 <!-- RUNNING -->
 ## Running
 
