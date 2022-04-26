@@ -130,47 +130,41 @@ Refer this library for custom fonts : https://github.com/oblador/react-native-ve
         - google-services.json
         - GoogleService-Info.plist
     - Copy google-services.json files for Android for various flavours at different locations as mentioned here:
-       
-            Prod
-         
-              https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
-          
-          
-            Prodstaging 
-          
-              https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging 
-            
-            Xk
-          
-              https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xk 
-          
-             
-           xkstaging
-          
-             https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xkstaging 
-          
-          
-         
+    
+       Prod
+       ```
+           https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prod 
+       ```
+       Prodstaging 
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/prodstaging 
+        ```
+       Xk
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xk
+       ```
+       xkstaging
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/android/app/src/xkstaging 
+       ```    
     - Copy GoogleService-Info.plist files for iOS for various flavours at different locations as mentioned here:
     
-           Prod
-      
-             https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Production
-          
-          
-           Prodstaging
-      
-             https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
-          
-          
-           Xk
-      
-             https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Xk
-          
-          
-           xkstaging
-      
-             https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
+       Prod
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Production
+       ```
+       Prodstaging
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Development
+       ```
+       Xk
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/Xk
+       ```
+       xkstaging
+       ```
+       https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/tree/main/ios/GoogleServices/XkDevelopment
+       ```
           
           
 
