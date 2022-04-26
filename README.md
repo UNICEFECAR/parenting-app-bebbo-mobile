@@ -143,7 +143,7 @@ After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User
        clientIdKey=XXXXXXXXXXXX
  ```
 
-5.Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
+5. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
 Refer this library for custom fonts : https://github.com/oblador/react-native-vector-icons
 
 6. Configure Firebase services
