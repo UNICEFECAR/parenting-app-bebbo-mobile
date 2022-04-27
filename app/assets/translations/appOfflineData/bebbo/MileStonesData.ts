@@ -7844,6 +7844,9 @@ export const MileStonesData: any = {
             "mandatory": 0
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "id": 7106,
@@ -9867,6 +9870,9 @@ export const MileStonesData: any = {
             ],
             "mandatory": 0
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr": [
         {

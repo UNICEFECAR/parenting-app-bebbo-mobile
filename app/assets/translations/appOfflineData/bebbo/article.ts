@@ -386,6 +386,9 @@ export const articledata:any = {
             "embedded_images": []
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "id": 331,
@@ -514,6 +517,9 @@ export const articledata:any = {
             "mandatory": 0,
             "embedded_images": []
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr": [
         {
