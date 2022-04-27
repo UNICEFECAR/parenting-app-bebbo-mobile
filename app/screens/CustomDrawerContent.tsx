@@ -659,7 +659,8 @@ const CustomDrawerContent = ({ navigation }: any) => {
                 Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1588918146?action=write-review') 
               }
               else {
-                Linking.openURL('itms://itunes.apple.com/in/app/apple-store/id1607980150?action=write-review');
+                //itms-apps://itunes.apple.com/us/app/foleja/id1607980150?mt=8&action=write-review
+                Linking.openURL('itms://itunes.apple.com/tr/app/apple-store/id1607980150?action=write-review');
               }
             }
             
