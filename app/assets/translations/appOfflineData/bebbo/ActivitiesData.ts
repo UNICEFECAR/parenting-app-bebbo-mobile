@@ -2717,6 +2717,9 @@ export const ActivitiesData:any = {
             "embedded_images": []
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "id": 7426,
@@ -3622,6 +3625,9 @@ export const ActivitiesData:any = {
             "mandatory": 1,
             "embedded_images": []
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr": [
         {

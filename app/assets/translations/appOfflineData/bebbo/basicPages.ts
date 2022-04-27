@@ -348,6 +348,9 @@ export const basicPagesData:any = {
             "embedded_images": []
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "id": 4836,
@@ -458,6 +461,9 @@ export const basicPagesData:any = {
             "unique_name": "privacy_policy",
             "embedded_images": []
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr":[
         {
