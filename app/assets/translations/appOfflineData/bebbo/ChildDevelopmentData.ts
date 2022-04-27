@@ -1530,7 +1530,174 @@ export const ChildDevelopmentData:any = {
         }
     ],
     "md-ro": [
-
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Începeți să vă cunoașteți mai bine",
+            "child_age": [
+                43
+            ],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul primei luni, copilul tău: </p>\n\n<ul><li>plânge foarte mult și nu reușești să îți alini copilul</li>\n\t<li>suge prost și se hrănește foarte încet</li>\n\t<li>doarme mai mult decât este de așteptat (mai mult de 16 ore pe zi) sau nu doarme liniștit</li>\n\t<li>nu-și mișcă deloc brațele sau picioarele</li>\n\t<li>nu se sperie la un zgomot puternic</li>\n\t<li>nu clipește la lumini puternice.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:29",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Ajustări reciproce și stabilirea rutinelor",
+            "child_age": [
+                44
+            ],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a doua luni, copilul tău:</p>\n\n<ul><li>plânge frecvent foarte mult și, de obicei, nu reușești să îți liniștești copilul</li>\n\t<li>nu se uită la fețe, nici măcar pentru o perioadă scurtă de timp</li>\n\t<li>nu reacționează la lumină puternică sau la sunete puternice</li>\n\t<li>nu se hrănește sau nu doarme bine (sau doarme mai mult de 16 ore pe zi)</li>\n\t<li>nu-și mișcă deloc brațele sau picioarele</li>\n\t<li>nu-și duce mâinile la gură </li>\n\t<li>nu zâmbește la oameni.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Experiențe diverse",
+            "child_age": [
+                45
+            ],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a patra luni, copilul tău:</p>\n\n<ul><li>adesea plânge mult și nu poate fi alinat</li>\n\t<li>nu are contact vizual sau nu acordă atenție fețelor oamenilor</li>\n\t<li>nu urmărește lucrurile în timp ce se mișcă</li>\n\t<li>nu scoate niciun sunet sau nu răspunde la sunete</li>\n\t<li>nu-și poate ține capul nemișcat</li>\n\t<li>nu se întinde după o jucărie sau un obiect care se află în fața sa</li>\n\t<li>nu-și duce lucruri la gură.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Explorare intensivă",
+            "child_age": [
+                46
+            ],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a șasea luni, copilul tău:</p>\n\n<ul><li>plânge în mod regulat mult timp și nu poate fi alinat</li>\n\t<li>nu are contact vizual cu tine sau nu urmărește cu ochii obiecte în mișcare</li>\n\t<li>nu gângurește sau nu se întoarce spre sursa unui sunet</li>\n\t<li>nu râde sau nu scoate sunete ascuțite</li>\n\t<li>nu se rostogolește</li>\n\t<li>nu are control asupra gâtului și capului său</li>\n\t<li>nu poate sta în șezut nici măcar cu ajutorul și sprijinul tău</li>\n\t<li>nu atinge deloc obiecte chiar și atunci când îl încurajezi să facă acest lucru</li>\n\t<li>nu încearcă să apuce lucruri care sunt la îndemână</li>\n\t<li>are dificultăți să ducă lucrurile la gură.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Noi descoperiri",
+            "child_age": [
+                47
+            ],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a noua luni, copilul tău:</p>\n\n<ul><li>nu are contact vizual cu tine sau nu urmărește cu privirea obiectele în mișcare</li>\n\t<li>nu gângurește („mama”, „dada” etc.)</li>\n\t<li>nu își întoarce capul spre o sursă de sunet</li>\n\t<li>nu se uită unde arăți</li>\n\t<li>nu-și arată afecțiunea față de cei care îl îngrijesc – nu le zâmbește</li>\n\t<li>nu răspunde la propriul nume</li>\n\t<li>nu pare să recunoască persoanele cunoscute</li>\n\t<li>nu se rostogolește</li>\n\t<li>atunci când îl ridici, este fie moale, fie prea rigid</li>\n\t<li>nu poate sta în șezut nici măcar cu ajutorul și sprijinul tău</li>\n\t<li>are dificultăți în a mânca alimente solide.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Stabilirea obiceiurilor și consecvență",
+            "child_age": [
+                48
+            ],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "<p>Urmărește comportamentul copilului tău și adresează-te medicului pediatru dacă observi că, la sfârșitul primului an de viață, copilul tău:</p>\n\n<ul><li>nu are contact vizual cu tine sau nu urmărește cu privirea obiecte în mișcare</li>\n\t<li>nu este interesat de sunete</li>\n\t<li>nu răspunde la numele său când este chemat</li>\n\t<li>nu gângurește</li>\n\t<li>nu încearcă să îți spună în niciun fel care sunt dorințele sau nevoile sale</li>\n\t<li>nu arată spre obiecte</li>\n\t<li>nu arată emoții</li>\n\t<li>nu merge de-a bușilea</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Primul pas și primul cuvânt",
+            "child_age": [
+                49
+            ],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "<p>Urmărește comportamentul copilului tău și adresează-te medicului pediatru dacă observați că copilul tău:</p>\n\n<ul><li>are dificultăți în a vedea sau a auzi unele lucruri</li>\n\t<li>nu spune niciun cuvânt</li>\n\t<li>are dificultăți să urmeze chiar și instrucțiuni simple</li>\n\t<li>nu folosește gesturi și indicarea în comunicare</li>\n\t<li>nu are contact vizual cu tine și nu se alintă</li>\n\t<li>nu merge independent singur.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12008,
+            "type": "Child Development - Age Periods",
+            "title": "Copilul devine independent",
+            "child_age": [
+                50
+            ],
+            "boy_video_article": 7961,
+            "girl_video_article": 7956,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al doilea an, copilul tău:</p>\n\n<ul><li>nu se uită la tine (contact vizual)</li>\n\t<li>are dificultăți în a vedea sau a auzi anumite lucruri</li>\n\t<li>nu spune niciun cuvânt</li>\n\t<li>nu indică spre obiecte</li>\n\t<li>nu urmează instrucțiuni simple</li>\n\t<li>nu manifestă sentimente</li>\n\t<li>nu merge pe jos fără ezitare</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12009,
+            "type": "Child Development - Age Periods",
+            "title": "Imaginația începe să înflorească",
+            "child_age": [
+                51
+            ],
+            "boy_video_article": 7881,
+            "girl_video_article": 7966,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al treilea an de viață, copilul tău:</p>\n\n<ul><li>nu se uită la tine (contact vizual)</li>\n\t<li>are dificultăți în a auzi sau a vedea unele lucruri</li>\n\t<li>nu vorbește în propoziții scurte (cel puțin 3 cuvinte împreună)</li>\n\t<li>vorbește foarte neclar</li>\n\t<li>nu urmează instrucțiuni simple</li>\n\t<li>nu vrea să se joace cu alți copii sau cu jucării și alte obiecte</li>\n\t<li>nu face joc de rol sau nu se preface în timpul jocului</li>\n\t<li>nu poate alerga</li>\n\t<li>nu mâzgălește sau nu desenează</li>\n\t<li>nu poate ține obiecte mici în mână.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12010,
+            "type": "Child Development - Age Periods",
+            "title": "Copilul pune întrebări",
+            "child_age": [
+                52
+            ],
+            "boy_video_article": 7976,
+            "girl_video_article": 7971,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al patrulea an de viață, copilul tău:</p>\n\n<ul><li>nu manifestă interes în a juca jocuri cu alții sau jocuri de rol</li>\n\t<li>ignoră alți copii sau nu răspunde persoanelor din afara familiei</li>\n\t<li>nu poate sări pe loc</li>\n\t<li>are dificultăți să mâzgălească (să facă semne pe hârtie)</li>\n\t<li>nu urmează o instrucțiune care are trei părți</li>\n\t<li>nu poate spune o poveste preferată</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:30",
+            "mandatory": 1
+        },
+        {
+            "id": 12011,
+            "type": "Child Development - Age Periods",
+            "title": "Bucuria asocierii",
+            "child_age": [
+                57
+            ],
+            "boy_video_article": 7996,
+            "girl_video_article": 7991,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al cincilea an de viață, copilul tău:</p>\n\n<ul><li>nu poate merge, alerga, urca, sări sau folosi scările cu încredere</li>\n\t<li>nu pot răspunde la întrebări simple (Cum te cheamă? Cine este familia ta? Care este povestea ta preferată?)</li>\n\t<li>nu poate urma o indicație din două părți (Pune o ceașcă pe masă! sau Ia mingea de sub pat!)</li>\n\t<li>nu poate efectua rutine zilnice, cum ar fi să mănânce sau să se îmbrace singur</li>\n\t<li>pare să aibă dificultăți în ținerea unui creion în mână</li>\n\t<li>manifestă un comportament extrem (de exemplu, extrem de temător sau agresiv sau trist)</li>\n\t<li>nu vorbește despre activitățile zilnice</li>\n\t<li>nu manifestă interes pentru a interacționa nici cu adulții, nici cu copiii</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:31",
+            "mandatory": 1
+        },
+        {
+            "id": 12012,
+            "type": "Child Development - Age Periods",
+            "title": "Pregătirea pentru medii noi",
+            "child_age": [
+                58
+            ],
+            "boy_video_article": 7986,
+            "girl_video_article": 7981,
+            "milestone": "<p>Urmărește comportamentul copilului tău și discută cu medicul pediatru dacă observi că, la sfârșitul celui de-al șaselea an de viață, copilul tău:</p>\n\n<ul><li>are o durată a atenției foarte scurtă</li>\n\t<li>nu este deloc interesat de litere, cifre, citit sau scris</li>\n\t<li>pare că nu aude bine</li>\n\t<li>nu vorbește clar în propoziții de 5 sau mai multe cuvinte</li>\n\t<li>nu spune povești mai lungi folosind propoziții complete</li>\n\t<li>nu se îmbracă și nu folosește toaleta fără ajutor</li>\n\t<li>nu poate lua parte la conversații</li>\n\t<li>nu se poate juca în mai mult de un singur fel</li>\n\t<li>nu-și poate spune numele și adresa</li>\n\t<li>nu poate sta sau sări într-un picior</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:46",
+            "updated_at": "Wed, 04/27/2022 - 16:31",
+            "mandatory": 1
+        }
     ],
     "me-cnr": [
         {
@@ -2043,7 +2210,174 @@ export const ChildDevelopmentData:any = {
         }
     ],
     "ro-ro": [
-
+        {
+            "id": 12001,
+            "type": "Child Development - Age Periods",
+            "title": "Începeți să vă cunoașteți mai bine",
+            "child_age": [
+                43
+            ],
+            "boy_video_article": 7886,
+            "girl_video_article": 7891,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul primei luni, copilul tău: </p>\n\n<ul><li>plânge foarte mult și nu reușești să îți alini copilul</li>\n\t<li>suge prost și se hrănește foarte încet</li>\n\t<li>doarme mai mult decât este de așteptat (mai mult de 16 ore pe zi) sau nu doarme liniștit</li>\n\t<li>nu-și mișcă deloc brațele sau picioarele</li>\n\t<li>nu se sperie la un zgomot puternic</li>\n\t<li>nu clipește la lumini puternice.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12002,
+            "type": "Child Development - Age Periods",
+            "title": "Ajustări reciproce și stabilirea rutinelor",
+            "child_age": [
+                44
+            ],
+            "boy_video_article": 7901,
+            "girl_video_article": 7896,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a doua luni, copilul tău:</p>\n\n<ul><li>plânge frecvent foarte mult și, de obicei, nu reușești să îți liniștești copilul</li>\n\t<li>nu se uită la fețe, nici măcar pentru o perioadă scurtă de timp</li>\n\t<li>nu reacționează la lumină puternică sau la sunete puternice</li>\n\t<li>nu se hrănește sau nu doarme bine (sau doarme mai mult de 16 ore pe zi)</li>\n\t<li>nu-și mișcă deloc brațele sau picioarele</li>\n\t<li>nu-și duce mâinile la gură </li>\n\t<li>nu zâmbește la oameni.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12003,
+            "type": "Child Development - Age Periods",
+            "title": "Experiențe diverse",
+            "child_age": [
+                45
+            ],
+            "boy_video_article": 7911,
+            "girl_video_article": 7906,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a patra luni, copilul tău:</p>\n\n<ul><li>adesea plânge mult și nu poate fi alinat</li>\n\t<li>nu are contact vizual sau nu acordă atenție fețelor oamenilor</li>\n\t<li>nu urmărește lucrurile în timp ce se mișcă</li>\n\t<li>nu scoate niciun sunet sau nu răspunde la sunete</li>\n\t<li>nu-și poate ține capul nemișcat</li>\n\t<li>nu se întinde după o jucărie sau un obiect care se află în fața sa</li>\n\t<li>nu-și duce lucruri la gură.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12004,
+            "type": "Child Development - Age Periods",
+            "title": "Explorare intensivă",
+            "child_age": [
+                46
+            ],
+            "boy_video_article": 7921,
+            "girl_video_article": 7916,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a șasea luni, copilul tău:</p>\n\n<ul><li>plânge în mod regulat mult timp și nu poate fi alinat</li>\n\t<li>nu are contact vizual cu tine sau nu urmărește cu ochii obiecte în mișcare</li>\n\t<li>nu gângurește sau nu se întoarce spre sursa unui sunet</li>\n\t<li>nu râde sau nu scoate sunete ascuțite</li>\n\t<li>nu se rostogolește</li>\n\t<li>nu are control asupra gâtului și capului său</li>\n\t<li>nu poate sta în șezut nici măcar cu ajutorul și sprijinul tău</li>\n\t<li>nu atinge deloc obiecte chiar și atunci când îl încurajezi să facă acest lucru</li>\n\t<li>nu încearcă să apuce lucruri care sunt la îndemână</li>\n\t<li>are dificultăți să ducă lucrurile la gură.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12005,
+            "type": "Child Development - Age Periods",
+            "title": "Noi descoperiri",
+            "child_age": [
+                47
+            ],
+            "boy_video_article": 7931,
+            "girl_video_article": 7926,
+            "milestone": "<p>Urmărește comportamentul bebelușului tău și adresează-te medicului pediatru sau asistentei medicale dacă observi că, la sfârșitul celei de-a noua luni, copilul tău:</p>\n\n<ul><li>nu are contact vizual cu tine sau nu urmărește cu privirea obiectele în mișcare</li>\n\t<li>nu gângurește („mama”, „dada” etc.)</li>\n\t<li>nu își întoarce capul spre o sursă de sunet</li>\n\t<li>nu se uită unde arăți</li>\n\t<li>nu-și arată afecțiunea față de cei care îl îngrijesc – nu le zâmbește</li>\n\t<li>nu răspunde la propriul nume</li>\n\t<li>nu pare să recunoască persoanele cunoscute</li>\n\t<li>nu se rostogolește</li>\n\t<li>atunci când îl ridici, este fie moale, fie prea rigid</li>\n\t<li>nu poate sta în șezut nici măcar cu ajutorul și sprijinul tău</li>\n\t<li>are dificultăți în a mânca alimente solide.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12006,
+            "type": "Child Development - Age Periods",
+            "title": "Stabilirea obiceiurilor și consecvență",
+            "child_age": [
+                48
+            ],
+            "boy_video_article": 7941,
+            "girl_video_article": 7936,
+            "milestone": "<p>Urmărește comportamentul copilului tău și adresează-te medicului pediatru dacă observi că, la sfârșitul primului an de viață, copilul tău:</p>\n\n<ul><li>nu are contact vizual cu tine sau nu urmărește cu privirea obiecte în mișcare</li>\n\t<li>nu este interesat de sunete</li>\n\t<li>nu răspunde la numele său când este chemat</li>\n\t<li>nu gângurește</li>\n\t<li>nu încearcă să îți spună în niciun fel care sunt dorințele sau nevoile sale</li>\n\t<li>nu arată spre obiecte</li>\n\t<li>nu arată emoții</li>\n\t<li>nu merge de-a bușilea</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12007,
+            "type": "Child Development - Age Periods",
+            "title": "Primul pas și primul cuvânt",
+            "child_age": [
+                49
+            ],
+            "boy_video_article": 7951,
+            "girl_video_article": 7946,
+            "milestone": "<p>Urmărește comportamentul copilului tău și adresează-te medicului pediatru dacă observați că copilul tău:</p>\n\n<ul><li>are dificultăți în a vedea sau a auzi unele lucruri</li>\n\t<li>nu spune niciun cuvânt</li>\n\t<li>are dificultăți să urmeze chiar și instrucțiuni simple</li>\n\t<li>nu folosește gesturi și indicarea în comunicare</li>\n\t<li>nu are contact vizual cu tine și nu se alintă</li>\n\t<li>nu merge independent singur.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12008,
+            "type": "Child Development - Age Periods",
+            "title": "Copilul devine independent",
+            "child_age": [
+                50
+            ],
+            "boy_video_article": 7961,
+            "girl_video_article": 7956,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al doilea an, copilul tău:</p>\n\n<ul><li>nu se uită la tine (contact vizual)</li>\n\t<li>are dificultăți în a vedea sau a auzi anumite lucruri</li>\n\t<li>nu spune niciun cuvânt</li>\n\t<li>nu indică spre obiecte</li>\n\t<li>nu urmează instrucțiuni simple</li>\n\t<li>nu manifestă sentimente</li>\n\t<li>nu merge pe jos fără ezitare</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12009,
+            "type": "Child Development - Age Periods",
+            "title": "Imaginația începe să înflorească",
+            "child_age": [
+                51
+            ],
+            "boy_video_article": 7881,
+            "girl_video_article": 7966,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al treilea an de viață, copilul tău:</p>\n\n<ul><li>nu se uită la tine (contact vizual)</li>\n\t<li>are dificultăți în a auzi sau a vedea unele lucruri</li>\n\t<li>nu vorbește în propoziții scurte (cel puțin 3 cuvinte împreună)</li>\n\t<li>vorbește foarte neclar</li>\n\t<li>nu urmează instrucțiuni simple</li>\n\t<li>nu vrea să se joace cu alți copii sau cu jucării și alte obiecte</li>\n\t<li>nu face joc de rol sau nu se preface în timpul jocului</li>\n\t<li>nu poate alerga</li>\n\t<li>nu mâzgălește sau nu desenează</li>\n\t<li>nu poate ține obiecte mici în mână.</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12010,
+            "type": "Child Development - Age Periods",
+            "title": "Copilul pune întrebări",
+            "child_age": [
+                52
+            ],
+            "boy_video_article": 7976,
+            "girl_video_article": 7971,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al patrulea an de viață, copilul tău:</p>\n\n<ul><li>nu manifestă interes în a juca jocuri cu alții sau jocuri de rol</li>\n\t<li>ignoră alți copii sau nu răspunde persoanelor din afara familiei</li>\n\t<li>nu poate sări pe loc</li>\n\t<li>are dificultăți să mâzgălească (să facă semne pe hârtie)</li>\n\t<li>nu urmează o instrucțiune care are trei părți</li>\n\t<li>nu poate spune o poveste preferată</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12011,
+            "type": "Child Development - Age Periods",
+            "title": "Bucuria asocierii",
+            "child_age": [
+                57
+            ],
+            "boy_video_article": 7996,
+            "girl_video_article": 7991,
+            "milestone": "<p>Urmărește comportamentul copilului tău și vorbește cu medicul pediatru dacă observi că, la sfârșitul celui de-al cincilea an de viață, copilul tău:</p>\n\n<ul><li>nu poate merge, alerga, urca, sări sau folosi scările cu încredere</li>\n\t<li>nu pot răspunde la întrebări simple (Cum te cheamă? Cine este familia ta? Care este povestea ta preferată?)</li>\n\t<li>nu poate urma o indicație din două părți (Pune o ceașcă pe masă! sau Ia mingea de sub pat!)</li>\n\t<li>nu poate efectua rutine zilnice, cum ar fi să mănânce sau să se îmbrace singur</li>\n\t<li>pare să aibă dificultăți în ținerea unui creion în mână</li>\n\t<li>manifestă un comportament extrem (de exemplu, extrem de temător sau agresiv sau trist)</li>\n\t<li>nu vorbește despre activitățile zilnice</li>\n\t<li>nu manifestă interes pentru a interacționa nici cu adulții, nici cu copiii</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        },
+        {
+            "id": 12012,
+            "type": "Child Development - Age Periods",
+            "title": "Pregătirea pentru medii noi",
+            "child_age": [
+                58
+            ],
+            "boy_video_article": 7986,
+            "girl_video_article": 7981,
+            "milestone": "<p>Urmărește comportamentul copilului tău și discută cu medicul pediatru dacă observi că, la sfârșitul celui de-al șaselea an de viață, copilul tău:</p>\n\n<ul><li>are o durată a atenției foarte scurtă</li>\n\t<li>nu este deloc interesat de litere, cifre, citit sau scris</li>\n\t<li>pare că nu aude bine</li>\n\t<li>nu vorbește clar în propoziții de 5 sau mai multe cuvinte</li>\n\t<li>nu spune povești mai lungi folosind propoziții complete</li>\n\t<li>nu se îmbracă și nu folosește toaleta fără ajutor</li>\n\t<li>nu poate lua parte la conversații</li>\n\t<li>nu se poate juca în mai mult de un singur fel</li>\n\t<li>nu-și poate spune numele și adresa</li>\n\t<li>nu poate sta sau sări într-un picior</li>\n</ul>",
+            "created_at": "Wed, 04/27/2022 - 15:45",
+            "updated_at": "Wed, 04/27/2022 - 16:02",
+            "mandatory": 1
+        }
     ],
     "rs-sr": [
         {
