@@ -99,26 +99,49 @@ pod install
 Before running ios App on Device, necessary certificate setup from Apple developer Account is required.
 After each time pod install,copy [CP-User] [RNFB] Core Configuration && [CP-User] [RNFB] Crashlytics Configuration in each target’s build phases if missing from main target (ParentBuddyApp)
 
-  **Steps to add script:**
+  **Steps to add script(For reference attached screenshots):**
    * click on target’s build phases add on + sign.
    * Add new run script phase.
+    ```
+      https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png
+    ```
    * Rename it to [CP-User] [RNFB] Core Configuration
+      ```
+      https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png
+      ```
    * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Core Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Core Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
+      ```
+      https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_ConfigurationScript.png
+      ```
    * Copy files path from input files from ParentBuddyApp target and paste to 
       other targets  “[CP-User] [RNFB] Core Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
+      ```
+      https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Core_Input_ConfigurationFile.png
+      ```
    * click on target’s build phases add on + sign.
    * Add new run script
+      ```
+      https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/AddScript.png
+      ```
    * Rename it to  “[CP-User] [RNFB] Crashlytics Configuration”.
+      ```
+     https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png
+      ```
    * Copy script from ParentBuddyApp target’s “[CP-User] [RNFB] Crashlytics Configuration” 
       script to other selected target’s  “[CP-User] [RNFB] Crashlytics Configuration” script 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
+      ```
+     https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Crashalytics_Script.png
+      ```
    * Copy files path from input files from ParentBuddyApp target and paste to other 
       targets “[CP-User] [RNFB] Crashlytics Configuration” script input files 
       in “ParentBuddyAppXk”,“ParentBuddyAppXkDev”,“ParentBuddyAppDev” targets.
-   
+      ```
+     https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/referenceImages/Copy_Input_Crashalytics_File.png
+      ```
 
 4. Copy fontello.ttf file from https://github.com/UNICEFECAR/parenting-app-bebbo-mobile/blob/main/app/assets/fonts/fontello.ttf to node_modules/react-native-vector-icons/Fonts  
 Refer this library for custom fonts : https://github.com/oblador/react-native-vector-icons
