@@ -1357,6 +1357,9 @@ export const healthCheckupsData:any = {
             "updated_at": "Thu, 09/30/2021 - 13:20"
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "id": 59066,
@@ -1713,6 +1716,9 @@ export const healthCheckupsData:any = {
             "created_at": "Fri, 10/15/2021 - 21:59",
             "updated_at": "Thu, 10/21/2021 - 18:35"
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr": [
         {

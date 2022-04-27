@@ -4244,6 +4244,9 @@ export const standardDevData:any = {
             }
         ]
     }],
+    "md-ro": [
+
+    ],
     "me-cnr": [ {
         "weight_for_height": [
             {
@@ -5762,6 +5765,9 @@ export const standardDevData:any = {
             }
         ]
     }],
+    "ro-ro": [
+
+    ],
     "rs-sr":[ {
         "weight_for_height": [
             {

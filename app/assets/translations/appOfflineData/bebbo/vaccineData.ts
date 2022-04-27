@@ -1810,6 +1810,9 @@ export const vaccineData:any = {
             "updated_at": "Thu, 10/07/2021 - 16:22"
         }
     ],
+    "md-ro": [
+
+    ],
     "me-cnr": [
         {
             "uuid": "7b26917b-4551-4e28-858b-c2abc883c560",
@@ -2123,6 +2126,9 @@ export const vaccineData:any = {
             "created_at": "Fri, 07/16/2021 - 14:25",
             "updated_at": "Thu, 10/07/2021 - 17:23"
         }
+    ],
+    "ro-ro": [
+
     ],
     "rs-sr":[
         {

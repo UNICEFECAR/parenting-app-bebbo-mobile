@@ -17,6 +17,8 @@ import TJtg from "@assets/translations/appConstants/bebbo/TJtg";
 import uk from "@assets/translations/appConstants/bebbo/uk";
 import UZru from "@assets/translations/appConstants/bebbo/UZru";
 import UZuz from "@assets/translations/appConstants/bebbo/UZuz";
+import MDro from "@assets/translations/appConstants/bebbo/MDro";
+import ROro from "@assets/translations/appConstants/bebbo/ROro";
 
 const AVAILABLE_LANGUAGES = {
     en,
@@ -41,7 +43,9 @@ const AVAILABLE_LANGUAGES = {
     BYbe,
     BYru,
     // GRarb,
-    // GRda
+    // GRda,
+    MDro,
+    ROro
   };
 
   export default AVAILABLE_LANGUAGES;
