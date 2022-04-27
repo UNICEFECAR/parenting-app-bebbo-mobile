@@ -1358,7 +1358,36 @@ export const healthCheckupsData:any = {
         }
     ],
     "md-ro": [
-
+        {
+            "id": 56226,
+            "type": "Health Check-ups - Age Periods",
+            "title": "With full 6 months",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:34",
+            "updated_at": "Wed, 04/27/2022 - 16:35"
+        },
+        {
+            "id": 56251,
+            "type": "Health Check-ups - Age Periods",
+            "title": "With full 6 years ",
+            "growth_period": 6553,
+            "pinned_article": 6896,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:34",
+            "updated_at": "Wed, 04/27/2022 - 16:35"
+        },
+        {
+            "id": 23081,
+            "type": "Health Check-ups - Age Periods",
+            "title": "At birth",
+            "growth_period": 6466,
+            "pinned_article": 4526,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:34",
+            "updated_at": "Wed, 04/27/2022 - 16:35"
+        }
     ],
     "me-cnr": [
         {
@@ -1718,7 +1747,36 @@ export const healthCheckupsData:any = {
         }
     ],
     "ro-ro": [
-
+        {
+            "id": 56226,
+            "type": "Health Check-ups - Age Periods",
+            "title": "With full 6 months",
+            "growth_period": 6501,
+            "pinned_article": 4461,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:29",
+            "updated_at": "Wed, 04/27/2022 - 16:30"
+        },
+        {
+            "id": 56251,
+            "type": "Health Check-ups - Age Periods",
+            "title": "With full 6 years ",
+            "growth_period": 6553,
+            "pinned_article": 6896,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:29",
+            "updated_at": "Wed, 04/27/2022 - 16:30"
+        },
+        {
+            "id": 23081,
+            "type": "Health Check-ups - Age Periods",
+            "title": "At birth",
+            "growth_period": 6466,
+            "pinned_article": 4526,
+            "pinned_video_article": 0,
+            "created_at": "Wed, 04/27/2022 - 16:29",
+            "updated_at": "Wed, 04/27/2022 - 16:30"
+        }
     ],
     "rs-sr": [
         {

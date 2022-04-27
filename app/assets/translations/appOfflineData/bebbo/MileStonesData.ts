@@ -7845,7 +7845,692 @@ export const MileStonesData: any = {
         }
     ],
     "md-ro": [
-
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Mâzgălește independent cu un creion sau creioane colorate pe hârtie",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:07",
+            "body": "<p>Îi place să folosească mișcarea mâzgălitului, fie că este cu un creion pe hârtie, cu o mână pe nisip, cu un băț în noroi sau apă pe beton. </p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Îi place să îi mulțumească pe alții și să coopereze",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:07",
+            "body": "<p>Recunoaște sentimentele celorlalți; adesea îi place să împartă cu ceilalți; este capabil să își aștepte rândul. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58521
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Folosește propoziții de 4 până la 5 cuvinte",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:07",
+            "body": "<p>Folosește cuvintele împreună în moduri care au sens și își comunică ideile.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58501
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Cunoaște diferențele de bază dintre lucrurile care sunt reale, simulate sau imaginare",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:07",
+            "body": "<p>Compune o poveste despre un personaj care nu există sau știe că animalele nu pot vorbi în viața reală.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Vorbește în propoziții de cinci sau mai multe cuvinte; folosește cuvinte pentru a vorbi despre viitor",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:07",
+            "body": "<p>Folosește cuvinte împreună pentru a-și exprima ideile; poate spune ce „se va întâmpla” sau „se poate întâmpla” în viitor.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58581
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Poate să numere până la zece și să numească zece obiecte fără greșeli",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>De asemenea, poate spune „primul, al doilea” până la 10, poate număra zilele săptămânii și lunile.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Folosește abilitățile pentru a participa în mod independent la rutinele de zi cu zi și la activități sociale",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Se poate îmbrăca și dezbrăca independent, folosește lingura și furculița, folosește toaleta singur și se spală pe mâini. Se poate separa de părinți și se poate implica în activități sociale independente. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58596
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Participă cu îndemânare la activități variate care necesită abilități fizice avansate",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Poate să stea într-un picior, să lovească o minge cu precizie, să lovească o țintă cu o minge etc. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58611
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Se entuziasmează când vorbești cu el",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Când copilul îți aude vocea, își arată entuziasmul, dar observi și că își încetinește mișcările, pare să asculte, să fie prezent...</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Scoate sunete",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Bebelușul plânge, dar produce și sunete</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Când este întins pe burtă, copilul încearcă să ridice capul",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Când pui copilul întins pe burtă, va încerca să ridice capul pentru a-și elibera căile respiratorii.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Spune o poveste completă",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Copilul reușește să repovestească intriga unei anumite povești complet independent și corect, aranjând corect evenimentele în ordine cronologică, evenimentul la care a participat sau o emisiune TV.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58656
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Arată că înțelege diferența dintre real și simulat sau joc de rol",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Inventează povești, evenimente, personaje doar din imaginația sa, prezintă, descrie și le atribuie în mod artistic proprietăți care nu sunt realiste. Se distrează în timp ce face acest lucru, conștient că totul este posibil în lumea imaginației. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58641
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Se poate autoliniști pentru o vreme",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Bebelușul se autoliniștește sugându-și degetul sau mânuța.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Întoarce capul spre sursa sunetului și arată că ascultă",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Dacă aude o voce umană sau alt sunet, copilul întoarce capul spre acesta. În timp ce ascultă vocea, copilul se uită fix la părinte sau la persoana care vorbește, încetinindu-și mișcările.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Arată plictiseală sau plânge dacă activitatea se schimbă",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Bebelușul protestează plângând dacă rămâne mult timp într-o poziție sau dacă îl pui jos după ce l-ai ținut în brațe.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6916
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Urcă și coboară scările",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Urcă scările cu sprijin, folosind alternativ un picior și apoi celălalt.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Copilul scoate sunete diferite atunci când este fericit, supărat sau flămând",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Plânsul bebelușului diferă atunci când acesta are anumite nevoi, astfel încât, pe baza sunetelor pe care le scoate, se poate recunoaște dacă este fericit, supărat sau are alte nevoi.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Începe să gângurească",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Vocalizează și produce sunete care seamănă cu vocale - a, e, i, o, u</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Are coordonare mână-ochi",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:08",
+            "body": "<p>Capacitatea de coordonare mână-ochi crește, de exemplu: bebelușul se uită la un obiect și încearcă să îl apuce.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Poate sta cu puțin sprijin",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Când are sprijin sau se ține de ceva, bebelușul poate sta în șezut și pentru o perioadă scurtă de timp își poate menține independent poziția șezând.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Poate spune o propoziție de 2-3 cuvinte",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Poate compune și spune propoziții de 2-3 cuvinte suficient de bine pentru ca membrii familiei să îl înțeleagă.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Răspunde la sunetul vocii producând sunete - prin combinarea vocalelor: a, e, u...",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Când cineva i se adresează, îi vorbește, îi cântă, îi citește... bebelușul răspunde.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Copilul este entuziasmat când își dă seama că este timpul pentru joacă",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Se bucură, pare fericit și îi face plăcere jocul și contactul, mai ales cu părinții și persoanele familiare.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Îi place să se joace în compania copiilor",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Jocul nu mai este doar paralel – unul lângă altul, ci are elemente mai complexe, imaginație și caracter jucăuș.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Începe să înțeleagă sensul cuvântului „nu”.",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Începe să înțeleagă sensul cuvântului „nu”.  Când aude cuvântul, oprește activitatea și recunoaște dezaprobarea.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Folosește o mână mai mult decât cealaltă",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Începe să folosească o mână mai mult - stânga sau dreapta.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Se ridică singur în poziție de mers de-a bușilea. Unii copii merg deja de-a bușilea.",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Se ridică singur în poziție de mers de-a bușilea. Unii copii merg deja de-a bușilea. Copilul poate lua singur o poziție de mers de-a bușilea. Copilul se mișcă târându-se înapoi sau înainte.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Se împinge, încearcă să se ridice.",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Se împinge, încearcă să se ridice. Încearcă să se ridice ținându-se de mobilier, dar are nevoie de ajutor și sprijin.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Părți ale comunicării copilului sunt înțelese și de persoane care nu sunt cu copilul în fiecare zi",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Copilul începe să pronunțe cuvintele mai clar și folosește din ce în ce mai multe cuvinte cu sens și, prin urmare, comunicarea este mai ușoară.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Caută spontan să își împărtășească interesele și plăcerile cu adulții",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Îi plac jocurile reciproce, „Eu ți-o dau ție, tu mi-o dai mie”, „Eu fac, tu faci” și altele asemenea.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Apucă obiecte mici cu degetele, se hrănește cu degetele",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Are o „prindere” mai bună - poate manipula obiecte foarte mici, luându-le cu degetul mare și arătătorul.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Ajută la îmbrăcat",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Cooperează atunci când îl îmbraci, își împinge mâna prin mânecă și picioarele prin cracii pantalonilor.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Devine din ce în ce mai independent",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:09",
+            "body": "<p>Uneori se opune instrucțiunilor, se înfurie, vrea să-i controleze pe alții, se ceartă, dă instrucțiuni, își apără lucrurile.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [
+                4781
+            ],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Înțelege și execută instrucțiuni simple",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "body": "<p>Urmează instrucțiuni formulate simplu fără demonstrație, poate efectua ceea ce se așteaptă de la el.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [
+                4776
+            ],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Pronunță cuvinte cu sens",
+            "created_at": "Tue, 04/26/2022 - 01:05",
+            "updated_at": "Tue, 04/26/2022 - 01:10",
+            "body": "<p>Vorbește cel puțin unul sau câteva cuvinte individuale atunci când se adresează părinților.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 1
+        }
     ],
     "me-cnr": [
         {
@@ -9872,7 +10557,692 @@ export const MileStonesData: any = {
         }
     ],
     "ro-ro": [
-
+        {
+            "id": 3001,
+            "type": "Milestone",
+            "title": "Mâzgălește independent cu un creion sau creioane colorate pe hârtie",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:06",
+            "body": "<p>Îi place să folosească mișcarea mâzgălitului, fie că este cu un creion pe hârtie, cu o mână pe nisip, cu un băț în noroi sau apă pe beton. </p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7296
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6606
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6981,
+            "type": "Milestone",
+            "title": "Folosește propoziții de 4 până la 5 cuvinte",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:06",
+            "body": "<p>Folosește cuvintele împreună în moduri care au sens și își comunică ideile.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7431
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58501
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6996,
+            "type": "Milestone",
+            "title": "Cunoaște diferențele de bază dintre lucrurile care sunt reale, simulate sau imaginare",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:06",
+            "body": "<p>Compune o poveste despre un personaj care nu există sau știe că animalele nu pot vorbi în viața reală.</p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7441
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7041,
+            "type": "Milestone",
+            "title": "Vorbește în propoziții de cinci sau mai multe cuvinte; folosește cuvinte pentru a vorbi despre viitor",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:06",
+            "body": "<p>Folosește cuvinte împreună pentru a-și exprima ideile; poate spune ce „se va întâmpla” sau „se poate întâmpla” în viitor.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7486
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58581
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7056,
+            "type": "Milestone",
+            "title": "Poate să numere până la zece și să numească zece obiecte fără greșeli",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>De asemenea, poate spune „primul, al doilea” până la 10, poate număra zilele săptămânii și lunile.</p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7501
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58601
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 6976,
+            "type": "Milestone",
+            "title": "Îi place să îi mulțumească pe alții și să coopereze",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:06",
+            "body": "<p>Recunoaște sentimentele celorlalți; adesea îi place să împartă cu ceilalți; este capabil să își aștepte rândul. </p>",
+            "child_age": [
+                52
+            ],
+            "related_activities": [
+                7426
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58521
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2531,
+            "type": "Milestone",
+            "title": "Se entuziasmează când vorbești cu el",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Când copilul îți aude vocea, își arată entuziasmul, dar observi și că își încetinește mișcările, pare să asculte, să fie prezent...</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7586
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6311
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7081,
+            "type": "Milestone",
+            "title": "Folosește abilitățile pentru a participa în mod independent la rutinele de zi cu zi și la activități sociale",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Se poate îmbrăca și dezbrăca independent, folosește lingura și furculița, folosește toaleta singur și se spală pe mâini. Se poate separa de părinți și se poate implica în activități sociale independente. </p>",
+            "child_age": [
+                57
+            ],
+            "related_activities": [
+                7526
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58596
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7086,
+            "type": "Milestone",
+            "title": "Participă cu îndemânare la activități variate care necesită abilități fizice avansate",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Poate să stea într-un picior, să lovească o minge cu precizie, să lovească o țintă cu o minge etc. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7531
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58611
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7106,
+            "type": "Milestone",
+            "title": "Spune o poveste completă",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Copilul reușește să repovestească intriga unei anumite povești complet independent și corect, aranjând corect evenimentele în ordine cronologică, evenimentul la care a participat sau o emisiune TV.</p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7826
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58656
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 7131,
+            "type": "Milestone",
+            "title": "Arată că înțelege diferența dintre real și simulat sau joc de rol",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Inventează povești, evenimente, personaje doar din imaginația sa, prezintă, descrie și le atribuie în mod artistic proprietăți care nu sunt realiste. Se distrează în timp ce face acest lucru, conștient că totul este posibil în lumea imaginației. </p>",
+            "child_age": [
+                58
+            ],
+            "related_activities": [
+                7571
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                58641
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2541,
+            "type": "Milestone",
+            "title": "Scoate sunete",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Bebelușul plânge, dar produce și sunete</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7596
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6296
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2556,
+            "type": "Milestone",
+            "title": "Când este întins pe burtă, copilul încearcă să ridice capul",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Când pui copilul întins pe burtă, va încerca să ridice capul pentru a-și elibera căile respiratorii.</p>",
+            "child_age": [
+                43
+            ],
+            "related_activities": [
+                7606
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6281
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2561,
+            "type": "Milestone",
+            "title": "Copilul scoate sunete diferite atunci când este fericit, supărat sau flămând",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Plânsul bebelușului diferă atunci când acesta are anumite nevoi, astfel încât, pe baza sunetelor pe care le scoate, se poate recunoaște dacă este fericit, supărat sau are alte nevoi.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7611
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6316
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2566,
+            "type": "Milestone",
+            "title": "Se poate autoliniști pentru o vreme",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Bebelușul se autoliniștește sugându-și degetul sau mânuța.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7176
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6361
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2571,
+            "type": "Milestone",
+            "title": "Întoarce capul spre sursa sunetului și arată că ascultă",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Dacă aude o voce umană sau alt sunet, copilul întoarce capul spre acesta. În timp ce ascultă vocea, copilul se uită fix la părinte sau la persoana care vorbește, încetinindu-și mișcările.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7721
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6326
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2586,
+            "type": "Milestone",
+            "title": "Arată plictiseală sau plânge dacă activitatea se schimbă",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Bebelușul protestează plângând dacă rămâne mult timp într-o poziție sau dacă îl pui jos după ce l-ai ținut în brațe.</p>",
+            "child_age": [
+                44
+            ],
+            "related_activities": [
+                7181
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6916
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2631,
+            "type": "Milestone",
+            "title": "Începe să gângurească",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:07",
+            "body": "<p>Vocalizează și produce sunete care seamănă cu vocale - a, e, i, o, u</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7651
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6371
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2636,
+            "type": "Milestone",
+            "title": "Urcă și coboară scările",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Urcă scările cu sprijin, folosind alternativ un picior și apoi celălalt.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7416
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6811
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2646,
+            "type": "Milestone",
+            "title": "Are coordonare mână-ochi",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Capacitatea de coordonare mână-ochi crește, de exemplu: bebelușul se uită la un obiect și încearcă să îl apuce.</p>",
+            "child_age": [
+                45
+            ],
+            "related_activities": [
+                7661
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6406
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2696,
+            "type": "Milestone",
+            "title": "Poate sta cu puțin sprijin",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Când are sprijin sau se ține de ceva, bebelușul poate sta în șezut și pentru o perioadă scurtă de timp își poate menține independent poziția șezând.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7671
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2701,
+            "type": "Milestone",
+            "title": "Poate spune o propoziție de 2-3 cuvinte",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Poate compune și spune propoziții de 2-3 cuvinte suficient de bine pentru ca membrii familiei să îl înțeleagă.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7391
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6816
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2731,
+            "type": "Milestone",
+            "title": "Răspunde la sunetul vocii producând sunete - prin combinarea vocalelor: a, e, u...",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Când cineva i se adresează, îi vorbește, îi cântă, îi citește... bebelușul răspunde.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7211
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6421
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2746,
+            "type": "Milestone",
+            "title": "Copilul este entuziasmat când își dă seama că este timpul pentru joacă",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Se bucură, pare fericit și îi face plăcere jocul și contactul, mai ales cu părinții și persoanele familiare.</p>",
+            "child_age": [
+                46
+            ],
+            "related_activities": [
+                7841
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6441
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2766,
+            "type": "Milestone",
+            "title": "Îi place să se joace în compania copiilor",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Jocul nu mai este doar paralel – unul lângă altul, ci are elemente mai complexe, imaginație și caracter jucăuș.</p>",
+            "child_age": [
+                51
+            ],
+            "related_activities": [
+                7371
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6931
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2786,
+            "type": "Milestone",
+            "title": "Începe să înțeleagă sensul cuvântului „nu”.",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Începe să înțeleagă sensul cuvântului „nu”.  Când aude cuvântul, oprește activitatea și recunoaște dezaprobarea.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7226
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6476
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2856,
+            "type": "Milestone",
+            "title": "Se ridică singur în poziție de mers de-a bușilea. Unii copii merg deja de-a bușilea.",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Se ridică singur în poziție de mers de-a bușilea. Unii copii merg deja de-a bușilea. Copilul poate lua singur o poziție de mers de-a bușilea. Copilul se mișcă târându-se înapoi sau înainte.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7706
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6486
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2866,
+            "type": "Milestone",
+            "title": "Se împinge, încearcă să se ridice.",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Se împinge, încearcă să se ridice. Încearcă să se ridice ținându-se de mobilier, dar are nevoie de ajutor și sprijin.</p>",
+            "child_age": [
+                47
+            ],
+            "related_activities": [
+                7241
+            ],
+            "related_articles": [
+                4531
+            ],
+            "related_video_articles": [
+                6471
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2876,
+            "type": "Milestone",
+            "title": "Părți ale comunicării copilului sunt înțelese și de persoane care nu sunt cu copilul în fiecare zi",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Copilul începe să pronunțe cuvintele mai clar și folosește din ce în ce mai multe cuvinte cu sens și, prin urmare, comunicarea este mai ușoară.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7346
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2901,
+            "type": "Milestone",
+            "title": "Caută spontan să își împărtășească interesele și plăcerile cu adulții",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Îi plac jocurile reciproce, „Eu ți-o dau ție, tu mi-o dai mie”, „Eu fac, tu faci” și altele asemenea.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7731
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6551
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2936,
+            "type": "Milestone",
+            "title": "Apucă obiecte mici cu degetele, se hrănește cu degetele",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Are o „prindere” mai bună - poate manipula obiecte foarte mici, luându-le cu degetul mare și arătătorul.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7766
+            ],
+            "related_articles": [
+                3571
+            ],
+            "related_video_articles": [
+                6536
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2816,
+            "type": "Milestone",
+            "title": "Folosește o mână mai mult decât cealaltă",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:08",
+            "body": "<p>Începe să folosească o mână mai mult - stânga sau dreapta.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7356
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6666
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2961,
+            "type": "Milestone",
+            "title": "Ajută la îmbrăcat",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "body": "<p>Cooperează atunci când îl îmbraci, își împinge mâna prin mânecă și picioarele prin cracii pantalonilor.</p>",
+            "child_age": [
+                48
+            ],
+            "related_activities": [
+                7276
+            ],
+            "related_articles": [],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2966,
+            "type": "Milestone",
+            "title": "Devine din ce în ce mai independent",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "body": "<p>Uneori se opune instrucțiunilor, se înfurie, vrea să-i controleze pe alții, se ceartă, dă instrucțiuni, își apără lucrurile.</p>",
+            "child_age": [
+                50
+            ],
+            "related_activities": [
+                7786
+            ],
+            "related_articles": [
+                4781
+            ],
+            "related_video_articles": [],
+            "mandatory": 1
+        },
+        {
+            "id": 2981,
+            "type": "Milestone",
+            "title": "Înțelege și execută instrucțiuni simple",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "body": "<p>Urmează instrucțiuni formulate simplu fără demonstrație, poate efectua ceea ce se așteaptă de la el.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7326
+            ],
+            "related_articles": [
+                4776
+            ],
+            "related_video_articles": [
+                6571
+            ],
+            "mandatory": 1
+        },
+        {
+            "id": 2986,
+            "type": "Milestone",
+            "title": "Pronunță cuvinte cu sens",
+            "created_at": "Tue, 04/26/2022 - 17:23",
+            "updated_at": "Wed, 04/27/2022 - 16:09",
+            "body": "<p>Vorbește cel puțin unul sau câteva cuvinte individuale atunci când se adresează părinților.</p>",
+            "child_age": [
+                49
+            ],
+            "related_activities": [
+                7286
+            ],
+            "related_articles": [],
+            "related_video_articles": [
+                6851
+            ],
+            "mandatory": 1
+        }
     ],
     "rs-sr": [
         {
