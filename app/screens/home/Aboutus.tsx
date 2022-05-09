@@ -75,7 +75,8 @@ const Aboutus = ({navigation}: Props) => {
                 h5: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
                 h6: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
                 span: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
-                br: { height: 0 }
+                br: { height: 0 },
+                iframe:{maxWidth:'100%',height:200}
               }}
               renderers={{
                 iframe,

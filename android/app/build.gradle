@@ -200,8 +200,8 @@ android {
             applicationId 'com.datamatics.bebbo'
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "com.myapp"
-            versionCode 6
-            versionName "1.3.8"
+            versionCode 7
+            versionName "1.4.0"
             signingConfig signingConfigs.release
         }
         xk {
