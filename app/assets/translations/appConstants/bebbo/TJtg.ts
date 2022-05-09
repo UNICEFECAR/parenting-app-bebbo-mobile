@@ -194,7 +194,7 @@ const TJtg = {
                 babyNotificationUpdateBtn: "Навсозӣ намудани маълумот",
                 favScreenHeader: "Интихобшуда",
                 actScreenremovetoFavText: "Сабт шудааст",
-                appShareText: "Беббо - ро боргирӣ кунед шарики киссагии шумо оид ба волидайнӣ",
+                appShareText: "Беббо - ро боргирӣ кунед шарики кисагии Шумо оид ба рушди малакаҳои волидайн",
                 vcHeader: "Иммунизатсия",
                 vcSummaryHeader: "Шиносномаи иммунизатсия",
                 vcStatus1: "Дар нақша аст",
@@ -433,8 +433,6 @@ const TJtg = {
                 downloadAllSuccessPopupTitle: "Бомуваффақият",
                 downloadAllSuccessPopupText: "Ҳамаи маълумот бомуваффақият боргирӣ карда шуданд!",
                 downloadAllSuccessOkBtn: "Хуб",
-
-                //9/03/2022
                 remindersAlertTitle: "Огоҳкунӣ!",
                 vcDefinedReminderText: "Сана ва вақти огоҳкуниро муқаррар кунед",
                 hcDefinedReminderText: "Сана ва вақти огоҳкуниро муқаррар кунед",
@@ -444,7 +442,7 @@ const TJtg = {
                 vcrNoti3: "Ваксинатсия ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи ваксина ворид намоед",
                 hcrNoti3: "Муоинаи тиббӣ ба нақша гирифта шудааст дар {{reminderDateTime}} лутфан, маълумотро дар бораи муоинаи тиббӣ ворид намоед",
                 hcHasScheduled: "Муоинаи тиббии навбатӣ ба нақша гирифта шудааст",
-                vcHasScheduled: "Иммунизатсия ба нақша гирифта шудааст",
+                vcHasScheduled: "Иммунизатсия ба нақша гирифта шудааст"
         }
 }
 export default TJtg;
