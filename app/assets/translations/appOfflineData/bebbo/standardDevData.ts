@@ -4244,6 +4244,533 @@ export const standardDevData:any = {
             }
         ]
     }],
+    "md-ro": [{
+        "weight_for_height": [
+            {
+                "child_age": [
+                    43,
+                    44,
+                    45,
+                    46
+                ],
+                "goodText": {
+                    "articleID": [
+                        3401,
+                        3416,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6236,
+                        3401,
+                        3416,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere în primele 6 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6236,
+                        3371,
+                        3401,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere în primele 6 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3401,
+                        3376,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3401,
+                        3341,
+                        3376,
+                        3346
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - obezitate",
+                    "text": "Nu există niciun risc sau există un risc minim de a fi supraponderal pentru un copil de 0-6 luni care este alăptat exclusiv la sân. A fost dovedit și confirmat științific că alăptarea, în special cea prelungită - cel puțin 12 luni, protejează copilul de obezitate mai târziu în copilărie și la vârsta adultă. În cazul bebelușilor care primesc hrană artificială, există întotdeauna pericolul de supraponderabilitate. În cazul bebelușilor supraponderali sau obezi, poate fi de ajutor sfatul medicului copilului. Nu reține niciodată un bebeluș de la hrănire în încercarea de a-l face să piardă în greutate. Pentru a crește și a se dezvolta așa cum ar trebui, bebelușii au nevoie de o nutriție adecvată, de alăptare exclusivă la sân în primele 6 luni de viață. În cazul bebelușilor hrăniți cu formulă de lapte, asigură-te că urmezi instrucțiunile de preparare corectă a porțiilor (cantitatea corectă de apă și de formulă) și urmează instrucțiunile privind cantitatea și numărul de mese pe zi."
+                }
+            },
+            {
+                "child_age": [
+                    47
+                ],
+                "goodText": {
+                    "articleID": [
+                        3406,
+                        3416,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3406,
+                        3371,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3406,
+                        3371,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3406,
+                        3376,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - greutate în exces",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la aceasta: aportul în exces de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau modificări ale mediului imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3406,
+                        3376,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Această greutate poate pune în pericol grav sănătatea copilului tău. Gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de junk food, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la pediatru pentru un examen și in diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            },
+            {
+                "child_age": [
+                    48
+                ],
+                "goodText": {
+                    "articleID": [
+                        3411,
+                        3416,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3411,
+                        3371,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3411,
+                        3376,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3411,
+                        3376,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Excesul de greutate corporală apare cel mai adesea ca o consecință a supraalimentării și/sau a activității fizice insuficiente. Schimbările în mediul și modul de îngrijire al copilului pot contribui la acest lucru. Această greutate poate pune grav în pericol sănătatea copilului tău. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!  "
+                }
+            },
+            {
+                "child_age": [
+                    49,
+                    50
+                ],
+                "goodText": {
+                    "articleID": [
+                        3391,
+                        3416,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3371,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3391,
+                        3371,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 de luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3381,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate poate pune în pericol sănătatea sa, deci gândește-te la ce a contribuit la aceasta: consumul excesiv de alimente bogate în energie (cum ar fi produse dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3381,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Această greutate poate pune grav în pericol sănătatea copilului tău. Gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            },
+            {
+                "child_age": [
+                    51,
+                    52,
+                    57,
+                    58
+                ],
+                "goodText": {
+                    "articleID": [
+                        3396,
+                        3416,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25- 60 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3371,
+                        3396,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3396,
+                        3371,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3396,
+                        5891,
+                        3381,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        5891,
+                        3396,
+                        3381,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are un exces semnificativ de greutate față de înălțimea sa. Această greutate poate pune serios în pericol sănătatea copilului tău. Gândește-te la ce a contribuit la aceasta: consumul în exces de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            }
+        ],
+        "height_for_age": [
+            {
+                "child_age": [
+                    43,
+                    44,
+                    45,
+                    46
+                ],
+                "goodText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341,
+                        3416
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bune practici în alimentație, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3401,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - întârziere moderată a creșterii",
+                    "text": "Atenție! Creșterea în lungime/înălțime a copilului tău este lentă și acum este moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boală cronică, tulburări endocrine etc. Asigură-te că faci o programare la un medic pediatru pentru un examen suplimentar, pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este sever întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - peste lungimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este probabil rezultatul potențialului său genetic, dar totuși discută despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    47
+                ],
+                "goodText": {
+                    "articleID": [
+                        3406,
+                        3351,
+                        3346,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bune practici în alimentație, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3406,
+                        3346,
+                        3351
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - întârziere moderată a creșterii",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și acum este moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un medic pediatru pentru un examen suplimentar, obținerea de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este sever întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime cu mult peste limitele normale pentru vârsta și sexul său. Acesta este, probabil, rezultatul potențialului său genetic, dar vorbește totuși despre asta cu pediatrul. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    48
+                ],
+                "goodText": {
+                    "articleID": [
+                        3411,
+                        3356,
+                        3346,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în nutriție, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și este acum moderat întârziată. Ia în considerare dacă oricare dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un pediatru pentru un examen suplimentar, obținere de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, pentru a obține un tratament adecvat și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este probabil rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    49,
+                    50
+                ],
+                "goodText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3361,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în ceea ce privește alimentația, activitatea fizică și somnul și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și este acum moderat întârziată. Ia în considerare dacă oricare dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un medic pediatru pentru un examen suplimentar, obținere de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este, probabil, rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    51,
+                    52,
+                    57,
+                    58
+                ],
+                "goodText": {
+                    "articleID": [
+                        5891,
+                        3396,
+                        3386,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 25-72 de luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în ceea ce privește alimentația, activitatea fizică și somnul și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        5891,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea în lungime/înălțime a copilului tău este lentă și este acum moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boală cronică, tulburări endocrine etc. Asigură-te că faci o programare la un medic pediatru pentru un examen suplimentar, pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        5891,
+                        3606,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        5891,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este, probabil, rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            }
+        ]
+    }],
     "me-cnr": [ {
         "weight_for_height": [
             {
@@ -5758,6 +6285,533 @@ export const standardDevData:any = {
                     ],
                     "name": "Më shumë rreth rritjes 25 - 60 muaj - gjatësia mbi normat mesatare për moshën",
                     "text": "Fëmija juaj është rritur me një gjatësi shumë më të lartë se mosha dhe gjinia e tij/saj. Ndoshta është rezultat i potencialit të tij/saj gjenetik, por prapë flisni për këtë me pediatrin. Vazhdoni t'i ndiqni rekomandimet e miratuara dhe vëzhgoni rritjen e fëmijës tuaj në intervale të rregullta."
+                }
+            }
+        ]
+    }],
+    "ro-ro": [{
+        "weight_for_height": [
+            {
+                "child_age": [
+                    43,
+                    44,
+                    45,
+                    46
+                ],
+                "goodText": {
+                    "articleID": [
+                        3401,
+                        3416,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6236,
+                        3401,
+                        3416,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere în primele 6 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6236,
+                        3371,
+                        3401,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere în primele 6 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3401,
+                        3376,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3401,
+                        3341,
+                        3376,
+                        3346
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - obezitate",
+                    "text": "Nu există niciun risc sau există un risc minim de a fi supraponderal pentru un copil de 0-6 luni care este alăptat exclusiv la sân. A fost dovedit și confirmat științific că alăptarea, în special cea prelungită - cel puțin 12 luni, protejează copilul de obezitate mai târziu în copilărie și la vârsta adultă. În cazul bebelușilor care primesc hrană artificială, există întotdeauna pericolul de supraponderabilitate. În cazul bebelușilor supraponderali sau obezi, poate fi de ajutor sfatul medicului copilului. Nu reține niciodată un bebeluș de la hrănire în încercarea de a-l face să piardă în greutate. Pentru a crește și a se dezvolta așa cum ar trebui, bebelușii au nevoie de o nutriție adecvată, de alăptare exclusivă la sân în primele 6 luni de viață. În cazul bebelușilor hrăniți cu formulă de lapte, asigură-te că urmezi instrucțiunile de preparare corectă a porțiilor (cantitatea corectă de apă și de formulă) și urmează instrucțiunile privind cantitatea și numărul de mese pe zi."
+                }
+            },
+            {
+                "child_age": [
+                    47
+                ],
+                "goodText": {
+                    "articleID": [
+                        3406,
+                        3416,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3406,
+                        3371,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3406,
+                        3371,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3406,
+                        3376,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - greutate în exces",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la aceasta: aportul în exces de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau modificări ale mediului imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3406,
+                        3376,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Această greutate poate pune în pericol grav sănătatea copilului tău. Gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de junk food, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la pediatru pentru un examen și in diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            },
+            {
+                "child_age": [
+                    48
+                ],
+                "goodText": {
+                    "articleID": [
+                        3411,
+                        3416,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3411,
+                        3371,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3411,
+                        3376,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3411,
+                        3376,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Excesul de greutate corporală apare cel mai adesea ca o consecință a supraalimentării și/sau a activității fizice insuficiente. Schimbările în mediul și modul de îngrijire al copilului pot contribui la acest lucru. Această greutate poate pune grav în pericol sănătatea copilului tău. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!  "
+                }
+            },
+            {
+                "child_age": [
+                    49,
+                    50
+                ],
+                "goodText": {
+                    "articleID": [
+                        3391,
+                        3416,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3371,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni- malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3391,
+                        3371,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 de luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3381,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate poate pune în pericol sănătatea sa, deci gândește-te la ce a contribuit la aceasta: consumul excesiv de alimente bogate în energie (cum ar fi produse dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3381,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are o greutate excesivă pentru înălțimea sa. Această greutate poate pune grav în pericol sănătatea copilului tău. Gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            },
+            {
+                "child_age": [
+                    51,
+                    52,
+                    57,
+                    58
+                ],
+                "goodText": {
+                    "articleID": [
+                        3396,
+                        3416,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25- 60 luni - greutatea adecvată pentru lungime/înălțime",
+                    "text": "Bravo! Copilul tău crește bine și greutatea sa este în armonie cu înălțimea sa. Continuă să urmezi recomandările pentru o nutriție optimă, activitate fizică și somn. Urmărește creșterea copilului tău."
+                },
+                "warrningSmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3371,
+                        3396,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - malnutriție ușoară",
+                    "text": "Atenție! Copilul tău pierde în greutate (sau nu câștigă în greutate) și are o lipsă moderată de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze imediate: boli infecțioase recente sau diaree, alte boli cronice, dietă insuficientă și foarte necorespunzătoare, schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a descoperi cauza, pentru a corecta pierderea și pentru a stabili dinamica monitorizării ulterioare a creșterii. Copilul tău are nevoie de atenție deosebită pentru a avea un regim alimentar îmbunătățit."
+                },
+                "emergencySmallHeightText": {
+                    "articleID": [
+                        6201,
+                        3396,
+                        3371,
+                        5891,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - malnutriție severă",
+                    "text": "Atenție! Copilul tău are o lipsă gravă de greutate pentru lungimea/înălțimea sa. Această situație s-ar fi putut întâmpla în câteva săptămâni, deci ia în considerare câteva cauze posibile imediate, precum: boli recente, afecțiuni metabolice și cronice, dietă insuficientă și necorespunzătoare, schimbări în mediul imediat apropiat etc. Consultă urgent un pediatru pentru a investiga cauza și a determina cum să compensezi pierderea."
+                },
+                "warrningBigHeightText": {
+                    "articleID": [
+                        3396,
+                        5891,
+                        3381,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - excesul de greutate",
+                    "text": "Atenție! Copilul tău este moderat supraponderal pentru înălțimea sa. Acest exces de greutate îi poate pune în pericol sănătatea, așa că gândește-te la ce a contribuit la acest lucru: consumul excesiv de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, activitatea fizică redusă, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că faci o programare la un medic pediatru pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării creșterii copilului tău."
+                },
+                "emergencyBigHeightText": {
+                    "articleID": [
+                        5891,
+                        3396,
+                        3381,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - obezitate",
+                    "text": "Atenție urgentă! Copilul tău este obez, adică are un exces semnificativ de greutate față de înălțimea sa. Această greutate poate pune serios în pericol sănătatea copilului tău. Gândește-te la ce a contribuit la aceasta: consumul în exces de alimente bogate în energie (cum ar fi produsele dulci și uleioase), consumul de alimente nesănătoase, reducerea activității fizice, creșterea timpului petrecut în fața ecranului sau schimbări în mediul imediat apropiat etc. Asigură-te că programezi o vizită la medicul pediatru pentru un examen și diagnostic suplimentar, precum și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                }
+            }
+        ],
+        "height_for_age": [
+            {
+                "child_age": [
+                    43,
+                    44,
+                    45,
+                    46
+                ],
+                "goodText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341,
+                        3416
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bune practici în alimentație, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3401,
+                        3341,
+                        3346
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - întârziere moderată a creșterii",
+                    "text": "Atenție! Creșterea în lungime/înălțime a copilului tău este lentă și acum este moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boală cronică, tulburări endocrine etc. Asigură-te că faci o programare la un medic pediatru pentru un examen suplimentar, pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este sever întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        3401,
+                        3346,
+                        3341
+                    ],
+                    "name": "Mai multe despre creșterea în primele 6 luni - peste lungimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este probabil rezultatul potențialului său genetic, dar totuși discută despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    47
+                ],
+                "goodText": {
+                    "articleID": [
+                        3406,
+                        3351,
+                        3346,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bune practici în alimentație, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3406,
+                        3346,
+                        3351
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - întârziere moderată a creșterii",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și acum este moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un medic pediatru pentru un examen suplimentar, obținerea de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este sever întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3406,
+                        3351,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 7-9 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime cu mult peste limitele normale pentru vârsta și sexul său. Acesta este, probabil, rezultatul potențialului său genetic, dar vorbește totuși despre asta cu pediatrul. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    48
+                ],
+                "goodText": {
+                    "articleID": [
+                        3411,
+                        3356,
+                        3346,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în nutriție, activitate fizică și somn și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și este acum moderat întârziată. Ia în considerare dacă oricare dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un pediatru pentru un examen suplimentar, obținere de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un medic pediatru pentru un examen suplimentar, pentru a obține un tratament adecvat și pentru a stabili dinamica monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3411,
+                        3356,
+                        3346
+                    ],
+                    "name": "Mai multe despre creștere 10-12 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este probabil rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    49,
+                    50
+                ],
+                "goodText": {
+                    "articleID": [
+                        3391,
+                        3386,
+                        3361,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în ceea ce privește alimentația, activitatea fizică și somnul și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea copilului tău în lungime/înălțime este lentă și este acum moderat întârziată. Ia în considerare dacă oricare dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boli cronice, tulburări endocrine etc. Asigură-te că programezi o întâlnire cu un medic pediatru pentru un examen suplimentar, obținere de recomandări suplimentare și stabilirea dinamicii monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        3606,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        3391,
+                        3386,
+                        3361
+                    ],
+                    "name": "Mai multe despre creștere 13-24 luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este, probabil, rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
+                }
+            },
+            {
+                "child_age": [
+                    51,
+                    52,
+                    57,
+                    58
+                ],
+                "goodText": {
+                    "articleID": [
+                        5891,
+                        3396,
+                        3386,
+                        3416
+                    ],
+                    "name": "Mai multe despre creștere 25-72 de luni - creștere tipică pentru vârstă",
+                    "text": "Bravo! Copilul tău crește în lungime/înălțime în conformitate cu sau ușor peste intervalul așteptat pentru vârsta și sexul său. Continuă să urmezi recomandările de bună practică în ceea ce privește alimentația, activitatea fizică și somnul și să monitorizezi creșterea copilului tău."
+                },
+                "warrningSmallLengthText": {
+                    "articleID": [
+                        3606,
+                        5891,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - întârziere moderată de creștere",
+                    "text": "Atenție! Creșterea în lungime/înălțime a copilului tău este lentă și este acum moderat întârziată. Ia în considerare dacă vreuna dintre cauzele posibile pe termen lung a contribuit la aceasta: malnutriție cronică, boală cronică, tulburări endocrine etc. Asigură-te că faci o programare la un medic pediatru pentru un examen suplimentar, pentru a obține recomandări suplimentare și pentru a stabili dinamica monitorizării ulterioare a creșterii."
+                },
+                "emergencySmallLengthText": {
+                    "articleID": [
+                        5891,
+                        3606,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 luni - întârziere severă a creșterii",
+                    "text": "Urgent! Creșterea în lungime/înălțime a copilului tău este grav întârziată. Fă o programare urgentă la un pediatru pentru un examen suplimentar, obținerea unui tratament adecvat și stabilirea dinamicii monitorizării ulterioare a creșterii!"
+                },
+                "warrningBigLengthText": {
+                    "articleID": [
+                        6116,
+                        5891,
+                        3396,
+                        3366
+                    ],
+                    "name": "Mai multe despre creștere 25-60 de luni - peste lungimea/înălțimea medie",
+                    "text": "Copilul tău a crescut la o înălțime mult peste limitele normale pentru vârsta și sexul său. Este, probabil, rezultatul potențialului său genetic, dar discută totuși despre asta cu medicul pediatru. Continuă să urmezi recomandările adoptate și să monitorizezi creșterea copilului tău la intervale regulate."
                 }
             }
         ]

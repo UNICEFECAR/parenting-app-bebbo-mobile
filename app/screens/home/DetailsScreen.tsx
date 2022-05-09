@@ -472,6 +472,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                   span:{marginBottom:15,marginTop:0,textAlign:'left'},
                   li:{textAlign:'left'},
                   br:{height:0},
+                  iframe:{maxWidth:'100%',height:200}
                 }}
            renderers={{
             table,

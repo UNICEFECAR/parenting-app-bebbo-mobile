@@ -126,6 +126,21 @@ const localizationall = [
     ],
   },
   {
+    name: 'Moldova',
+    countryId: 146,
+    displayName: 'Moldova (Moldova)',
+    languages: [
+      {
+        name: 'Romanian',
+        displayName: 'Română',
+        languageCode: 'md-ro',
+        locale: 'MDro', //verify
+        luxonLocale:'ro-MD',
+        pluralShow:false
+      },
+    ],
+  },
+  {
     name: 'Montenegro',
     countryId: 31,
     displayName: 'Montenegro (Crna Gora)',
@@ -160,6 +175,21 @@ const localizationall = [
         locale: 'MKsq',
         luxonLocale:'sq-MK',
         pluralShow:true
+      },
+    ],
+  },
+  {
+    name: 'Romania',
+    countryId: 141,
+    displayName: 'Romania (România)',
+    languages: [
+      {
+        name: 'Romanian',
+        displayName: 'Română',
+        languageCode: 'ro-ro',
+        locale: 'ROro',
+        luxonLocale:'ro-RO',
+        pluralShow:false
       },
     ],
   },
