@@ -98,6 +98,7 @@ const PrivacyPolicy = ({navigation}: Props) => {
                 span: { marginBottom: 15, marginTop: 0 ,textAlign:'left'},
                 br: { height: 0 },
                 img: {maxWidth:Dimensions.get('window').width-50},
+                iframe:{maxWidth:'100%',height:200}
               }}
               renderers={{
                 iframe,
